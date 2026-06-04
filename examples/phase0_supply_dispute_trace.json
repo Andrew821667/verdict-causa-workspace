@@ -58,9 +58,39 @@
     "norm_id": "norm-supply-delivery-duty-v0",
     "source_id": "synthetic-ru-gk-supply-delivery-duty",
     "schema_version": "contracts.norm.v0",
-    "translator_version": "json-to-z3-placeholder.v0",
-    "formal_payload": {
-      "placeholder": "formalized:norm-supply-delivery-duty-v0"
+    "translator_version": "contracts-json-to-formal-v0",
+    "obligation_rule": {
+      "id": "obligation-rule:norm-supply-delivery-duty-v0",
+      "source_id": "synthetic-ru-gk-supply-delivery-duty",
+      "debtor": "supplier",
+      "creditor": "buyer",
+      "action": "deliver goods by the agreed date",
+      "conditions": [
+        {
+          "id": "condition-supply-relation",
+          "text": "A supply relation exists between supplier and buyer.",
+          "source_ref": "synthetic-ru-gk-supply-delivery-duty"
+        },
+        {
+          "id": "condition-agreed-date",
+          "text": "The parties agreed on a delivery date.",
+          "source_ref": "synthetic-ru-gk-supply-delivery-duty"
+        }
+      ],
+      "exceptions": [
+        {
+          "id": "exception-valid-excuse",
+          "text": "A valid contractual or statutory excuse applies.",
+          "source_ref": "synthetic-ru-gk-supply-delivery-duty"
+        }
+      ],
+      "consequences": [
+        {
+          "id": "consequence-breach-risk",
+          "text": "Missing the agreed date creates a candidate breach issue.",
+          "source_ref": "synthetic-ru-gk-supply-delivery-duty"
+        }
+      ]
     }
   },
   "formal_contradiction_detected": true,
@@ -147,13 +177,14 @@
       {
         "id": "norm-supply-delivery-duty-v0",
         "layer": "formal_norm",
-        "label": "Reviewed supply delivery norm JSON",
+        "label": "Structured supply delivery obligation rule",
         "source_refs": [
           "synthetic-ru-gk-supply-delivery-duty"
         ],
         "metadata": {
           "review_status": "reviewed",
-          "translator_version": "json-to-z3-placeholder.v0"
+          "translator_version": "contracts-json-to-formal-v0",
+          "formal_rule_id": "obligation-rule:norm-supply-delivery-duty-v0"
         }
       },
       {
@@ -217,7 +248,7 @@
     "warnings": [
       "Synthetic demo only.",
       "Not legal advice.",
-      "Formal translation is a placeholder, not legal formalization."
+      "Formal translation is a first structured output, not full legal formalization."
     ]
   }
 }

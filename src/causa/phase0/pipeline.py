@@ -73,13 +73,13 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             notes=[f"Review status: {trace.reviewed_norm.review_status.value}."],
         ),
         PipelineStepResult(
-            id="translate-formal-placeholder",
-            title="Attach deterministic formal placeholder",
+            id="translate-structured-formal-output",
+            title="Translate reviewed JSON to structured obligation rule",
             status=PipelineStepStatus.WARNING,
-            artifact_refs=[trace.formal_translation.norm_id],
+            artifact_refs=[trace.formal_translation.obligation_rule.id],
             notes=[
-                "Current translation is deterministic but still a placeholder.",
-                "This is not legal formalization.",
+                "Current translation is deterministic and structured.",
+                "It is not yet a Z3 formula or complete legal formalization.",
             ],
         ),
         PipelineStepResult(
@@ -183,8 +183,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 pipeline.trace.reviewed_norm.id,
             ],
             remaining_work=[
-                "Replace placeholder formal output with first deterministic structured translation.",
-                "Add richer contractual norm schema.",
+                "Translate structured obligation rules to a first solver-ready representation.",
+                "Add richer contractual norm schema for exceptions and temporal applicability.",
             ],
         ),
         ReadinessItem(

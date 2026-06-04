@@ -58,7 +58,9 @@ Phase 0 should define a small reviewed JSON subset for contractual norms:
 
 ## Translation status
 
-The current `formal_checks.py` module is a toy placeholder. It is only a reminder that formal consistency checks are part of the architecture. It is not yet legal formalization.
+The current bootstrap translator emits a deterministic structured `FormalObligationRule` for a narrow contractual subset. This is the first intermediate formal output, not a Z3 formula and not complete legal formalization.
+
+The current `formal_checks.py` module remains a toy solver placeholder. It is only a reminder that formal consistency checks are part of the architecture.
 
 ## Acceptance tests
 

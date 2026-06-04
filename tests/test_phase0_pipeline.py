@@ -16,7 +16,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
     assert {step.id for step in result.steps} >= {
         "select-source",
         "review-bootstrap-json",
-        "translate-formal-placeholder",
+        "translate-structured-formal-output",
         "build-case-graph",
         "ground-claim",
         "classify-candidate",
@@ -27,11 +27,11 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
     }
 
 
-def test_supply_dispute_pipeline_keeps_placeholder_warnings() -> None:
+def test_supply_dispute_pipeline_keeps_solver_readiness_warnings() -> None:
     result = run_supply_dispute_pipeline()
     warning_steps = {step.id for step in result.steps if step.status == PipelineStepStatus.WARNING}
 
-    assert "translate-formal-placeholder" in warning_steps
+    assert "translate-structured-formal-output" in warning_steps
     assert "produce-translation" in warning_steps
 
 

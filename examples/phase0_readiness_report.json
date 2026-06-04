@@ -37,8 +37,8 @@
         "norm-supply-delivery-duty-v0"
       ],
       "remaining_work": [
-        "Replace placeholder formal output with first deterministic structured translation.",
-        "Add richer contractual norm schema."
+        "Translate structured obligation rules to a first solver-ready representation.",
+        "Add richer contractual norm schema for exceptions and temporal applicability."
       ]
     },
     {

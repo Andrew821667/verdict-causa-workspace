@@ -9,7 +9,9 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     trace = build_supply_dispute_demo_trace()
 
     assert trace.reviewed_norm.is_reviewed is True
-    assert trace.formal_translation.translator_version == "json-to-z3-placeholder.v0"
+    assert trace.formal_translation.translator_version == "contracts-json-to-formal-v0"
+    assert trace.formal_translation.obligation_rule.debtor == "supplier"
+    assert trace.formal_translation.obligation_rule.creditor == "buyer"
     assert trace.claim.sources == [trace.legal_source.id]
     assert trace.candidate_type == CandidateType.GAP_HEURISTIC
     assert trace.policy.mode.value == "standard"
@@ -31,3 +33,4 @@ def test_exported_supply_dispute_trace_fixture_is_valid() -> None:
 
     assert trace.disclaimer.startswith("Synthetic Phase 0 trace")
     assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.1.0"
+    assert trace.formal_translation.obligation_rule.id == "obligation-rule:norm-supply-delivery-duty-v0"

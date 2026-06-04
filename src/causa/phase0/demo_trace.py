@@ -163,11 +163,12 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
             KnowledgeNode(
                 id=reviewed_norm.id,
                 layer=KnowledgeLayer.FORMAL_NORM,
-                label="Reviewed supply delivery norm JSON",
+                label="Structured supply delivery obligation rule",
                 source_refs=[source.id],
                 metadata={
                     "review_status": reviewed_norm.review_status.value,
                     "translator_version": formal_translation.translator_version,
+                    "formal_rule_id": formal_translation.obligation_rule.id,
                 },
             ),
             KnowledgeNode(
@@ -201,7 +202,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         warnings=[
             "Synthetic demo only.",
             "Not legal advice.",
-            "Formal translation is a placeholder, not legal formalization.",
+            "Formal translation is a first structured output, not full legal formalization.",
         ],
     )
 
