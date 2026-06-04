@@ -58,6 +58,16 @@ The initial architecture is organized around:
 
 See [docs/architecture.md](docs/architecture.md) for details.
 
+For Phase 0 implementation detail, see:
+
+- [Phase 0 execution plan](docs/phase-0-execution-plan.md);
+- [Universal core specification](docs/universal-core-spec.md);
+- [Bootstrap pipeline specification](docs/bootstrap-pipeline-spec.md);
+- [Management Plane specification](docs/management-plane-spec.md);
+- [Translation Layer specification](docs/translation-layer-spec.md);
+- [Evaluation and Red Team specification](docs/evaluation-and-red-team-spec.md);
+- [Phase 0 backlog](docs/phase-0-backlog.md).
+
 ## Governance and auditability
 
 New legal hypotheses should not become active knowledge by default. They move through a governance pipeline that includes type classification, formal checks, source checks, benchmark checks, red-team testing, expert review, cross-review for high-impact candidates, sandboxing, activation, monitoring, revalidation, rejection, and rollback.
