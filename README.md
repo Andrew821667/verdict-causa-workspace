@@ -105,6 +105,16 @@ pytest
 ruff check src tests
 ```
 
+## Phase 0 synthetic trace
+
+Generate the current synthetic supply-dispute trace:
+
+```bash
+python scripts/export_phase0_demo_trace.py
+```
+
+The output is written to `examples/phase0_supply_dispute_trace.json`. It is a non-production architecture demo, not legal advice.
+
 ## License
 
 Apache-2.0. See [LICENSE](LICENSE).

@@ -1,0 +1,223 @@
+{
+  "disclaimer": "Synthetic Phase 0 trace. Not production-ready and not legal advice.",
+  "legal_source": {
+    "id": "synthetic-ru-gk-supply-delivery-duty",
+    "title": "Synthetic civil-law supply delivery duty",
+    "source_type": "statute",
+    "jurisdiction": "RU",
+    "text": "Synthetic non-authoritative source: under a supply relation, the supplier must deliver goods by the agreed date unless a valid contractual or statutory excuse applies.",
+    "valid_from": null,
+    "valid_to": null,
+    "metadata": {
+      "synthetic": true,
+      "non_authoritative": true,
+      "purpose": "Phase 0 demo trace only"
+    }
+  },
+  "reviewed_norm": {
+    "id": "norm-supply-delivery-duty-v0",
+    "schema_version": "contracts.norm.v0",
+    "source_id": "synthetic-ru-gk-supply-delivery-duty",
+    "subjects": [
+      "supplier",
+      "buyer"
+    ],
+    "actions": [
+      "deliver goods by the agreed date"
+    ],
+    "conditions": [
+      {
+        "id": "condition-supply-relation",
+        "text": "A supply relation exists between supplier and buyer."
+      },
+      {
+        "id": "condition-agreed-date",
+        "text": "The parties agreed on a delivery date."
+      }
+    ],
+    "exceptions": [
+      {
+        "id": "exception-valid-excuse",
+        "text": "A valid contractual or statutory excuse applies."
+      }
+    ],
+    "consequences": [
+      {
+        "id": "consequence-breach-risk",
+        "text": "Missing the agreed date creates a candidate breach issue."
+      }
+    ],
+    "temporal_notes": [
+      "Assess performance against the agreed delivery date."
+    ],
+    "related_norms": [],
+    "review_status": "reviewed",
+    "reviewer_id": "synthetic-domain-owner"
+  },
+  "formal_translation": {
+    "norm_id": "norm-supply-delivery-duty-v0",
+    "source_id": "synthetic-ru-gk-supply-delivery-duty",
+    "schema_version": "contracts.norm.v0",
+    "translator_version": "json-to-z3-placeholder.v0",
+    "formal_payload": {
+      "placeholder": "formalized:norm-supply-delivery-duty-v0"
+    }
+  },
+  "formal_contradiction_detected": true,
+  "claim": {
+    "id": "claim-supply-late-delivery",
+    "text": "The supplier may have breached the delivery obligation if the agreed delivery date was missed and no valid excuse applies.",
+    "sources": [
+      "synthetic-ru-gk-supply-delivery-duty"
+    ],
+    "confidence": 0.62
+  },
+  "candidate": {
+    "id": "candidate-supply-excuse-scope",
+    "statement": "When delivery is late, the system should ask whether the supplier has a contractual or statutory excuse before treating delay as breach.",
+    "supporting_sources": [
+      "synthetic-ru-gk-supply-delivery-duty"
+    ],
+    "contradicting_sources": [],
+    "risk_level": "medium",
+    "status": "proposed"
+  },
+  "candidate_type": "gap_heuristic",
+  "governance_profile": {
+    "candidate_type": "gap_heuristic",
+    "required_stages": [
+      "type_classification",
+      "expert_review"
+    ],
+    "requires_sandbox": false,
+    "requires_cross_review": false,
+    "expiration_days": 365
+  },
+  "policy": {
+    "mode": "standard",
+    "risk_tier": "t3_draft_letter",
+    "max_agent_passes": 3,
+    "allow_candidate_principles": true,
+    "require_red_team": false,
+    "review": {
+      "human_review": false,
+      "cross_review": false,
+      "replayable_trace": true,
+      "complete_provenance": false
+    }
+  },
+  "red_team_scenario": {
+    "id": "red-team-supply-delay-excuse-overreach",
+    "title": "Overbroad excuse for late delivery",
+    "institutional_package_id": "contracts-ru-v0",
+    "unacceptable_outcome": "Use a vague alleged acceptance delay to erase all delivery liability without checking source support.",
+    "target_failure_type": "overbroad_candidate_principle"
+  },
+  "translation": {
+    "id": "translation-phase0-supply-dispute-v0",
+    "trace_id": "trace-phase0-supply-dispute-v0",
+    "level": "professional",
+    "template_version": "translation-template-v0",
+    "text": "Synthetic professional explanation: the current trace treats late delivery as a candidate breach issue, but the reasoning must first check whether a valid excuse exists. This is a non-production demo and not legal advice.",
+    "faithfulness_checked": false,
+    "usability_checked": false
+  },
+  "decision_trace": {
+    "id": "trace-phase0-supply-dispute-v0",
+    "case_id": "case-supply-1",
+    "versions": {
+      "knowledge_version": "knowledge-demo-v0",
+      "institutional_package_version": "contracts-ru-v0@0.1.0",
+      "policy_version": "policy-demo-v0",
+      "translation_template_version": "translation-template-v0",
+      "model_profile": "no-llm-synthetic-demo"
+    },
+    "nodes": [
+      {
+        "id": "synthetic-ru-gk-supply-delivery-duty",
+        "layer": "source",
+        "label": "Synthetic civil-law supply delivery duty",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "purpose": "Phase 0 demo trace only"
+        }
+      },
+      {
+        "id": "norm-supply-delivery-duty-v0",
+        "layer": "formal_norm",
+        "label": "Reviewed supply delivery norm JSON",
+        "source_refs": [
+          "synthetic-ru-gk-supply-delivery-duty"
+        ],
+        "metadata": {
+          "review_status": "reviewed",
+          "translator_version": "json-to-z3-placeholder.v0"
+        }
+      },
+      {
+        "id": "case-supply-1",
+        "layer": "case",
+        "label": "Synthetic disputed supply delivery case",
+        "source_refs": [
+          "synthetic-ru-gk-supply-delivery-duty"
+        ],
+        "metadata": {
+          "relation_type": "supply",
+          "synthetic": true
+        }
+      },
+      {
+        "id": "candidate-supply-excuse-scope",
+        "layer": "doctrine",
+        "label": "Candidate gap heuristic for valid excuse check",
+        "source_refs": [
+          "synthetic-ru-gk-supply-delivery-duty"
+        ],
+        "metadata": {
+          "candidate_type": "gap_heuristic",
+          "status": "proposed",
+          "required_stages": [
+            "type_classification",
+            "expert_review"
+          ]
+        }
+      }
+    ],
+    "edges": [
+      {
+        "source_id": "synthetic-ru-gk-supply-delivery-duty",
+        "target_id": "norm-supply-delivery-duty-v0",
+        "relation": "parsed_to",
+        "metadata": {}
+      },
+      {
+        "source_id": "norm-supply-delivery-duty-v0",
+        "target_id": "case-supply-1",
+        "relation": "applies_to",
+        "metadata": {}
+      },
+      {
+        "source_id": "case-supply-1",
+        "target_id": "claim-supply-late-delivery",
+        "relation": "supports_claim",
+        "metadata": {}
+      },
+      {
+        "source_id": "claim-supply-late-delivery",
+        "target_id": "candidate-supply-excuse-scope",
+        "relation": "raises_candidate",
+        "metadata": {}
+      }
+    ],
+    "claims": [
+      "claim-supply-late-delivery"
+    ],
+    "warnings": [
+      "Synthetic demo only.",
+      "Not legal advice.",
+      "Formal translation is a placeholder, not legal formalization."
+    ]
+  }
+}
