@@ -115,6 +115,14 @@ python scripts/export_phase0_demo_trace.py
 
 The output is written to `examples/phase0_supply_dispute_trace.json`. It is a non-production architecture demo, not legal advice.
 
+Generate the current Phase 0 readiness report:
+
+```bash
+python scripts/export_phase0_readiness_report.py
+```
+
+The output is written to `examples/phase0_readiness_report.json`.
+
 ## License
 
 Apache-2.0. See [LICENSE](LICENSE).

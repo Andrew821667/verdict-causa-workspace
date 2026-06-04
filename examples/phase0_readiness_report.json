@@ -1,0 +1,120 @@
+{
+  "id": "phase0-readiness-report-v0",
+  "project_stage": "architectural_prototype",
+  "ready_for_production": false,
+  "summary": "Phase 0 has a working synthetic path, but formal translation, package depth, governance execution, translation testing, and evaluation coverage remain incomplete.",
+  "items": [
+    {
+      "id": "ws1-universal-core",
+      "title": "Universal core data model",
+      "status": "passed",
+      "evidence_refs": [
+        "src/causa/core/models.py",
+        "src/causa/core/knowledge_graph.py",
+        "trace-phase0-supply-dispute-v0"
+      ],
+      "remaining_work": [
+        "Expand provenance and audit metadata."
+      ]
+    },
+    {
+      "id": "ws2-knowledge-plane",
+      "title": "Knowledge Plane skeleton",
+      "status": "passed",
+      "evidence_refs": [
+        "trace-phase0-supply-dispute-v0"
+      ],
+      "remaining_work": [
+        "Add graph persistence and retrieval behavior."
+      ]
+    },
+    {
+      "id": "ws3-bootstrap",
+      "title": "Neuro-symbolic bootstrap pipeline",
+      "status": "warning",
+      "evidence_refs": [
+        "src/causa/core/bootstrap.py",
+        "norm-supply-delivery-duty-v0"
+      ],
+      "remaining_work": [
+        "Replace placeholder formal output with first deterministic structured translation.",
+        "Add richer contractual norm schema."
+      ]
+    },
+    {
+      "id": "ws4-contracts-package",
+      "title": "Contractual institutional package",
+      "status": "warning",
+      "evidence_refs": [
+        "src/causa/institutional/contracts/package.py",
+        "docs/first-institution-contracts.md"
+      ],
+      "remaining_work": [
+        "Expand vocabulary, authority rules, temporal rules, legal operators, benchmarks, and red-team scenarios."
+      ]
+    },
+    {
+      "id": "ws5-management-plane",
+      "title": "Management Plane",
+      "status": "passed",
+      "evidence_refs": [
+        "src/causa/management/policy_matrix.py",
+        "policy-demo-v0"
+      ],
+      "remaining_work": [
+        "Add policy version persistence and rollback records."
+      ]
+    },
+    {
+      "id": "ws6-governance",
+      "title": "Governance pipeline",
+      "status": "warning",
+      "evidence_refs": [
+        "src/causa/governance/profiles.py",
+        "candidate-supply-excuse-scope"
+      ],
+      "remaining_work": [
+        "Execute stage transitions with stored decisions.",
+        "Add sandbox and revalidation records."
+      ]
+    },
+    {
+      "id": "ws7-translation",
+      "title": "Translation and explainability layer",
+      "status": "warning",
+      "evidence_refs": [
+        "translation-phase0-supply-dispute-v0"
+      ],
+      "remaining_work": [
+        "Implement faithfulness checks.",
+        "Implement usability checks.",
+        "Add executive and forensic examples."
+      ]
+    },
+    {
+      "id": "ws8-evaluation-red-team",
+      "title": "Evaluation and Red Team",
+      "status": "warning",
+      "evidence_refs": [
+        "red-team-supply-delay-excuse-overreach"
+      ],
+      "remaining_work": [
+        "Add benchmark suite.",
+        "Add multiple red-team scenarios.",
+        "Separate benchmark quality and practice utility metrics."
+      ]
+    },
+    {
+      "id": "ws9-zero-to-value",
+      "title": "Zero-to-Value synthetic path",
+      "status": "passed",
+      "evidence_refs": [
+        "examples/phase0_supply_dispute_trace.json",
+        "phase0-supply-dispute-pipeline-v0"
+      ],
+      "remaining_work": [
+        "Add synthetic source set and pilot-style task list."
+      ]
+    }
+  ]
+}
