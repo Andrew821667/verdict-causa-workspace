@@ -1,0 +1,37 @@
+[project]
+name = "causa-workspace"
+version = "0.1.0"
+description = "Auditable legal AI infrastructure with institutional packages, governance pipeline and formal consistency checks."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+authors = [
+  {name = "Andrew Popov"}
+]
+dependencies = [
+  "pydantic>=2.7",
+  "networkx>=3.2",
+  "z3-solver>=4.12",
+  "typer>=0.12",
+  "rich>=13.7"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.5",
+  "mypy>=1.10"
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

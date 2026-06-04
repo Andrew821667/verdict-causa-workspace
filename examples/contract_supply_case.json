@@ -1,0 +1,31 @@
+{
+  "id": "case-supply-1",
+  "relation_type": "supply",
+  "parties": [
+    {
+      "id": "supplier",
+      "name": "Example Supplier LLC",
+      "role": "supplier"
+    },
+    {
+      "id": "buyer",
+      "name": "Example Buyer LLC",
+      "role": "buyer"
+    }
+  ],
+  "obligations": [
+    {
+      "id": "delivery-1",
+      "debtor_party_id": "supplier",
+      "creditor_party_id": "buyer",
+      "description": "Deliver goods by the agreed date.",
+      "due_date": "2026-01-15",
+      "status": "disputed"
+    }
+  ],
+  "facts": [
+    "The buyer alleges late delivery.",
+    "The supplier alleges that acceptance was delayed."
+  ],
+  "legal_sources": []
+}
