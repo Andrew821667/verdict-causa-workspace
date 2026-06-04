@@ -198,7 +198,7 @@ Phase 0 is not done when the repository looks polished. It is done when the syst
 
 1. legal source selected;
 2. source represented as reviewed bootstrap JSON;
-3. first deterministic structured formal output attached;
+3. first deterministic structured formal output and narrow constraint set attached;
 4. case graph built;
 5. claim generated with source grounding;
 6. contradiction or gap classified;
@@ -222,11 +222,11 @@ Phase 0 is not done when the repository looks polished. It is done when the syst
 
 ## Immediate next milestones
 
-1. Translate structured obligation rules to a first solver-ready representation.
-2. Add 5-10 synthetic contractual sources and benchmark tasks.
-3. Add 5-10 red-team scenarios for supply disputes.
-4. Add richer temporal applicability checks for contractual obligations.
-5. Add a machine-readable Phase 0 readiness report.
+1. Add 5-10 synthetic contractual sources and benchmark tasks.
+2. Add 5-10 red-team scenarios for supply disputes.
+3. Add richer temporal applicability checks for contractual obligations.
+4. Expand constraint sets beyond the basic duty/date/exception pattern.
+5. Add practice-utility metrics placeholders.
 
 ## Current synthetic trace
 
@@ -239,7 +239,7 @@ It demonstrates the intended Phase 0 path:
 
 1. synthetic legal source;
 2. reviewed bootstrap JSON;
-3. deterministic structured obligation rule;
+3. deterministic structured obligation rule and narrow constraint evaluation;
 4. source-grounded legal claim;
 5. proposed candidate gap heuristic;
 6. governance profile;
@@ -250,4 +250,4 @@ It demonstrates the intended Phase 0 path:
 
 The trace is non-production and is not legal advice.
 
-The readiness report is also intentionally conservative: it marks Phase 0 as an architectural prototype, records warnings for incomplete solver-ready formalization and untested Translation Layer quality, and keeps `ready_for_production` set to `false`.
+The readiness report is also intentionally conservative: it marks Phase 0 as an architectural prototype, records warnings for narrow solver coverage and untested Translation Layer quality, and keeps `ready_for_production` set to `false`.

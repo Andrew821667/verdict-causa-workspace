@@ -17,6 +17,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "select-source",
         "review-bootstrap-json",
         "translate-structured-formal-output",
+        "evaluate-obligation-constraints",
         "build-case-graph",
         "ground-claim",
         "classify-candidate",
@@ -31,7 +32,6 @@ def test_supply_dispute_pipeline_keeps_solver_readiness_warnings() -> None:
     result = run_supply_dispute_pipeline()
     warning_steps = {step.id for step in result.steps if step.status == PipelineStepStatus.WARNING}
 
-    assert "translate-structured-formal-output" in warning_steps
     assert "produce-translation" in warning_steps
 
 

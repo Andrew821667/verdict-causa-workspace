@@ -24,7 +24,14 @@ from causa.institutional.contracts.package import CONTRACTS_PACKAGE_MANIFEST
 from causa.management.policy_matrix import PolicyMatrixEntry, build_policy_matrix_entry
 from causa.management.risk_tiers import RiskTier
 from causa.management.sla_modes import SLAMode
-from causa.reasoning.formal_checks import check_basic_contradiction
+from causa.reasoning.formal_checks import (
+    ConstraintEvaluation,
+    ConstraintSet,
+    ObligationFactSet,
+    build_obligation_constraint_set,
+    check_basic_contradiction,
+    evaluate_obligation_constraints,
+)
 from causa.translation import TranslationArtifact, TranslationLevel
 
 
@@ -33,6 +40,9 @@ class Phase0DemoTrace(BaseModel):
     legal_source: LegalSource
     reviewed_norm: ReviewedNormJSON
     formal_translation: FormalTranslationResult
+    obligation_facts: ObligationFactSet
+    constraint_set: ConstraintSet
+    constraint_evaluation: ConstraintEvaluation
     formal_contradiction_detected: bool
     claim: LegalClaim
     candidate: CandidateHypothesis
@@ -93,6 +103,16 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         reviewer_id="synthetic-domain-owner",
     )
     formal_translation = translate_reviewed_norm(reviewed_norm)
+    obligation_facts = ObligationFactSet(
+        duty_exists=True,
+        due_date_missed=True,
+        valid_exception_applies=False,
+    )
+    constraint_set = build_obligation_constraint_set(formal_translation.obligation_rule)
+    constraint_evaluation = evaluate_obligation_constraints(
+        constraint_set=constraint_set,
+        facts=obligation_facts,
+    )
     formal_contradiction_detected = check_basic_contradiction(True, False)
     claim = LegalClaim(
         id="claim-supply-late-delivery",
@@ -169,6 +189,8 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     "review_status": reviewed_norm.review_status.value,
                     "translator_version": formal_translation.translator_version,
                     "formal_rule_id": formal_translation.obligation_rule.id,
+                    "constraint_set_id": constraint_set.id,
+                    "breach_issue": constraint_evaluation.breach_issue,
                 },
             ),
             KnowledgeNode(
@@ -202,7 +224,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         warnings=[
             "Synthetic demo only.",
             "Not legal advice.",
-            "Formal translation is a first structured output, not full legal formalization.",
+            "Constraint set covers only a narrow contractual obligation pattern.",
         ],
     )
 
@@ -211,6 +233,9 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         legal_source=source,
         reviewed_norm=reviewed_norm,
         formal_translation=formal_translation,
+        obligation_facts=obligation_facts,
+        constraint_set=constraint_set,
+        constraint_evaluation=constraint_evaluation,
         formal_contradiction_detected=formal_contradiction_detected,
         claim=claim,
         candidate=candidate,

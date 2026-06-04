@@ -93,6 +93,30 @@
       ]
     }
   },
+  "obligation_facts": {
+    "duty_exists": true,
+    "due_date_missed": true,
+    "valid_exception_applies": false
+  },
+  "constraint_set": {
+    "id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
+    "rule_id": "obligation-rule:norm-supply-delivery-duty-v0",
+    "source_id": "synthetic-ru-gk-supply-delivery-duty",
+    "expressions": [
+      "duty_exists",
+      "due_date_missed",
+      "valid_exception_applies",
+      "breach_issue == duty_exists AND due_date_missed AND NOT valid_exception_applies"
+    ]
+  },
+  "constraint_evaluation": {
+    "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
+    "satisfiable": true,
+    "breach_issue": true,
+    "reasons": [
+      "Duty exists, due date is missed, and no valid exception applies."
+    ]
+  },
   "formal_contradiction_detected": true,
   "claim": {
     "id": "claim-supply-late-delivery",
@@ -184,7 +208,9 @@
         "metadata": {
           "review_status": "reviewed",
           "translator_version": "contracts-json-to-formal-v0",
-          "formal_rule_id": "obligation-rule:norm-supply-delivery-duty-v0"
+          "formal_rule_id": "obligation-rule:norm-supply-delivery-duty-v0",
+          "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
+          "breach_issue": true
         }
       },
       {
@@ -248,7 +274,7 @@
     "warnings": [
       "Synthetic demo only.",
       "Not legal advice.",
-      "Formal translation is a first structured output, not full legal formalization."
+      "Constraint set covers only a narrow contractual obligation pattern."
     ]
   }
 }

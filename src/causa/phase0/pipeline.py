@@ -75,11 +75,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
         PipelineStepResult(
             id="translate-structured-formal-output",
             title="Translate reviewed JSON to structured obligation rule",
-            status=PipelineStepStatus.WARNING,
+            status=PipelineStepStatus.PASSED,
             artifact_refs=[trace.formal_translation.obligation_rule.id],
             notes=[
                 "Current translation is deterministic and structured.",
-                "It is not yet a Z3 formula or complete legal formalization.",
+                "Structured output is narrow and limited to contractual obligation rules.",
+            ],
+        ),
+        PipelineStepResult(
+            id="evaluate-obligation-constraints",
+            title="Evaluate narrow obligation constraints",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[trace.constraint_set.id],
+            notes=[
+                *trace.constraint_evaluation.reasons,
+                "This is solver-backed, but only for a narrow Phase 0 subset.",
             ],
         ),
         PipelineStepResult(
@@ -183,7 +193,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 pipeline.trace.reviewed_norm.id,
             ],
             remaining_work=[
-                "Translate structured obligation rules to a first solver-ready representation.",
+                "Expand solver-ready representation beyond narrow obligation facts.",
                 "Add richer contractual norm schema for exceptions and temporal applicability.",
             ],
         ),
