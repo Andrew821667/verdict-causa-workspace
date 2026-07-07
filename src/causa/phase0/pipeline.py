@@ -2,6 +2,7 @@ from enum import Enum
 
 from pydantic import BaseModel, Field
 
+from causa.institutional.contracts.benchmark_runner import run_synthetic_supply_benchmark_suite
 from causa.phase0.demo_trace import Phase0DemoTrace, build_supply_dispute_demo_trace
 
 
@@ -164,6 +165,7 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
 
 def build_phase0_readiness_report() -> Phase0ReadinessReport:
     pipeline = run_supply_dispute_pipeline()
+    benchmark_report = run_synthetic_supply_benchmark_suite()
 
     items = [
         ReadinessItem(
@@ -247,9 +249,11 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
             id="ws8-evaluation-red-team",
             title="Evaluation and Red Team",
             status=PipelineStepStatus.WARNING,
-            evidence_refs=[pipeline.trace.red_team_scenario.id],
+            evidence_refs=[
+                pipeline.trace.red_team_scenario.id,
+                benchmark_report.id,
+            ],
             remaining_work=[
-                "Add benchmark suite.",
                 "Add multiple red-team scenarios.",
                 "Separate benchmark quality and practice utility metrics.",
             ],

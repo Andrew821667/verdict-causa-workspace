@@ -123,6 +123,14 @@ python scripts/export_phase0_readiness_report.py
 
 The output is written to `examples/phase0_readiness_report.json`.
 
+Generate the synthetic supply benchmark report:
+
+```bash
+python scripts/export_synthetic_supply_benchmarks.py
+```
+
+The output is written to `examples/synthetic_supply_benchmark_report.json`.
+
 ## License
 
 Apache-2.0. See [LICENSE](LICENSE).

@@ -1,0 +1,89 @@
+{
+  "id": "synthetic-supply-benchmark-suite-v0",
+  "institutional_package_id": "contracts-ru-v0",
+  "total": 6,
+  "passed": 6,
+  "failed": 0,
+  "results": [
+    {
+      "task_id": "bench-supply-late-no-excuse",
+      "passed": true,
+      "breach_issue": true,
+      "source_refs": [
+        "synthetic-ru-contract-supply-delivery-duty",
+        "synthetic-ru-contract-delivery-term"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Duty exists, due date is missed, and no valid exception applies."
+      ]
+    },
+    {
+      "task_id": "bench-supply-late-valid-excuse",
+      "passed": true,
+      "breach_issue": false,
+      "source_refs": [
+        "synthetic-ru-contract-supply-delivery-duty",
+        "synthetic-ru-contract-valid-excuse"
+      ],
+      "warnings": [],
+      "reasons": [
+        "No breach issue under the current narrow obligation constraints."
+      ]
+    },
+    {
+      "task_id": "bench-no-duty-no-breach",
+      "passed": true,
+      "breach_issue": false,
+      "source_refs": [
+        "synthetic-ru-contract-supply-delivery-duty"
+      ],
+      "warnings": [],
+      "reasons": [
+        "No breach issue under the current narrow obligation constraints."
+      ]
+    },
+    {
+      "task_id": "bench-payment-duty-needs-separate-analysis",
+      "passed": true,
+      "breach_issue": false,
+      "source_refs": [
+        "synthetic-ru-contract-payment-duty"
+      ],
+      "warnings": [
+        "payment duty requires separate analysis"
+      ],
+      "reasons": [
+        "No breach issue under the current narrow obligation constraints."
+      ]
+    },
+    {
+      "task_id": "bench-defects-not-basic-delivery-date",
+      "passed": true,
+      "breach_issue": false,
+      "source_refs": [
+        "synthetic-ru-contract-acceptance-defects"
+      ],
+      "warnings": [
+        "defects require separate analysis"
+      ],
+      "reasons": [
+        "No breach issue under the current narrow obligation constraints."
+      ]
+    },
+    {
+      "task_id": "bench-penalty-reduction-boundary",
+      "passed": true,
+      "breach_issue": true,
+      "source_refs": [
+        "synthetic-ru-contract-penalty-reduction"
+      ],
+      "warnings": [
+        "penalty reduction does not erase liability"
+      ],
+      "reasons": [
+        "Duty exists, due date is missed, and no valid exception applies."
+      ]
+    }
+  ]
+}

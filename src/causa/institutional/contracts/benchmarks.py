@@ -1,0 +1,90 @@
+from causa.evaluation import BenchmarkTask
+from causa.governance.failure_taxonomy import FailureType
+from causa.institutional.contracts.package import CONTRACTS_PACKAGE_MANIFEST
+
+
+SYNTHETIC_SUPPLY_BENCHMARKS = [
+    BenchmarkTask(
+        id="bench-supply-late-no-excuse",
+        title="Late delivery with no valid excuse raises breach issue",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=[
+            "synthetic-ru-contract-supply-delivery-duty",
+            "synthetic-ru-contract-delivery-term",
+        ],
+        facts={
+            "duty_exists": True,
+            "due_date_missed": True,
+            "valid_exception_applies": False,
+        },
+        expected_breach_issue=True,
+    ),
+    BenchmarkTask(
+        id="bench-supply-late-valid-excuse",
+        title="Late delivery with valid excuse does not raise breach issue",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=[
+            "synthetic-ru-contract-supply-delivery-duty",
+            "synthetic-ru-contract-valid-excuse",
+        ],
+        facts={
+            "duty_exists": True,
+            "due_date_missed": True,
+            "valid_exception_applies": True,
+        },
+        expected_breach_issue=False,
+    ),
+    BenchmarkTask(
+        id="bench-no-duty-no-breach",
+        title="No delivery duty means no breach issue",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=["synthetic-ru-contract-supply-delivery-duty"],
+        facts={
+            "duty_exists": False,
+            "due_date_missed": True,
+            "valid_exception_applies": False,
+        },
+        expected_breach_issue=False,
+    ),
+    BenchmarkTask(
+        id="bench-payment-duty-needs-separate-analysis",
+        title="Payment duty should not be erased by unrelated delivery argument",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=["synthetic-ru-contract-payment-duty"],
+        expected_failure_types=[FailureType.OVERBROAD_CANDIDATE_PRINCIPLE],
+        facts={
+            "duty_exists": True,
+            "due_date_missed": False,
+            "valid_exception_applies": False,
+        },
+        expected_breach_issue=False,
+        required_warning_fragments=["payment duty requires separate analysis"],
+    ),
+    BenchmarkTask(
+        id="bench-defects-not-basic-delivery-date",
+        title="Defects are separate from basic delivery date issue",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=["synthetic-ru-contract-acceptance-defects"],
+        facts={
+            "duty_exists": True,
+            "due_date_missed": False,
+            "valid_exception_applies": False,
+        },
+        expected_breach_issue=False,
+        required_warning_fragments=["defects require separate analysis"],
+    ),
+    BenchmarkTask(
+        id="bench-penalty-reduction-boundary",
+        title="Penalty reduction does not erase liability automatically",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=["synthetic-ru-contract-penalty-reduction"],
+        expected_failure_types=[FailureType.OVERBROAD_CANDIDATE_PRINCIPLE],
+        facts={
+            "duty_exists": True,
+            "due_date_missed": True,
+            "valid_exception_applies": False,
+        },
+        expected_breach_issue=True,
+        required_warning_fragments=["penalty reduction does not erase liability"],
+    ),
+]
