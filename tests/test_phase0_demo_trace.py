@@ -13,6 +13,7 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     assert trace.formal_translation.obligation_rule.debtor == "supplier"
     assert trace.formal_translation.obligation_rule.creditor == "buyer"
     assert trace.temporal_evaluation.due_date_missed is True
+    assert trace.source_applicability.applicable is True
     assert trace.obligation_facts.due_date_missed is True
     assert trace.constraint_evaluation.breach_issue is True
     assert trace.claim.sources == [trace.legal_source.id]
@@ -39,3 +40,4 @@ def test_exported_supply_dispute_trace_fixture_is_valid() -> None:
     assert trace.formal_translation.obligation_rule.id == "obligation-rule:norm-supply-delivery-duty-v0"
     assert trace.constraint_set.id == "constraint-set:obligation-rule:norm-supply-delivery-duty-v0"
     assert trace.temporal_facts.agreed_due_date.isoformat() == "2026-01-15"
+    assert trace.legal_source.valid_from == "2020-01-01"

@@ -58,7 +58,7 @@ Phase 0 should define a small reviewed JSON subset for contractual norms:
 
 ## Translation status
 
-The current bootstrap translator emits a deterministic structured `FormalObligationRule` for a narrow contractual subset. The contracts package can compute due-date miss status from temporal facts, and the reasoning layer can build a solver-backed `ConstraintSet` from that rule for the limited pattern: duty exists + due date missed + no valid exception => breach issue.
+The current bootstrap translator emits a deterministic structured `FormalObligationRule` for a narrow contractual subset. The contracts package can compute source applicability and due-date miss status from temporal facts, and the reasoning layer can build a solver-backed `ConstraintSet` from that rule for the limited pattern: duty exists + due date missed + no valid exception => breach issue.
 
 This is still not complete legal formalization. It is a deliberately narrow Phase 0 solver-ready layer.
 

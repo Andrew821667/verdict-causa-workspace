@@ -222,11 +222,11 @@ Phase 0 is not done when the repository looks polished. It is done when the syst
 
 ## Immediate next milestones
 
-1. Add source-version temporal validity checks for norm texts.
-2. Expand constraint sets beyond the basic duty/date/exception pattern.
-3. Add practice-utility metrics placeholders.
-4. Replace deterministic red-team guardrail checks with adversarial model-driven attack attempts.
-5. Add Phase 0 package version changelog and compatibility matrix.
+1. Expand constraint sets beyond the basic duty/date/exception pattern.
+2. Add practice-utility metrics placeholders.
+3. Replace deterministic red-team guardrail checks with adversarial model-driven attack attempts.
+4. Add Phase 0 package version changelog and compatibility matrix.
+5. Add source revision conflict examples with `valid_to`.
 
 ## Current synthetic trace
 
@@ -241,7 +241,7 @@ It demonstrates the intended Phase 0 path:
 
 1. synthetic legal source;
 2. reviewed bootstrap JSON;
-3. deterministic structured obligation rule, temporal due-date evaluation, and narrow constraint evaluation;
+3. deterministic structured obligation rule, source applicability check, temporal due-date evaluation, and narrow constraint evaluation;
 4. source-grounded legal claim;
 5. proposed candidate gap heuristic;
 6. governance profile;

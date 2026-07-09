@@ -16,6 +16,10 @@ from causa.core.knowledge_graph import (
     VersionCoordinates,
 )
 from causa.core.models import CandidateHypothesis, LegalClaim, LegalSource, SourceType
+from causa.core.temporal_validity import (
+    SourceApplicabilityEvaluation,
+    evaluate_source_applicability,
+)
 from causa.evaluation import RedTeamScenario
 from causa.governance.candidate_types import CandidateType
 from causa.governance.failure_taxonomy import FailureType
@@ -47,6 +51,7 @@ class Phase0DemoTrace(BaseModel):
     formal_translation: FormalTranslationResult
     temporal_facts: ContractTemporalFacts
     temporal_evaluation: TemporalEvaluation
+    source_applicability: SourceApplicabilityEvaluation
     obligation_facts: ObligationFactSet
     constraint_set: ConstraintSet
     constraint_evaluation: ConstraintEvaluation
@@ -72,6 +77,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
             "the supplier must deliver goods by the agreed date unless a valid "
             "contractual or statutory excuse applies."
         ),
+        valid_from="2020-01-01",
         metadata={
             "synthetic": True,
             "non_authoritative": True,
@@ -116,6 +122,10 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         evaluation_date="2026-01-21",
     )
     temporal_evaluation = evaluate_delivery_due_date(temporal_facts)
+    source_applicability = evaluate_source_applicability(
+        source,
+        temporal_facts.evaluation_date,
+    )
     obligation_facts = ObligationFactSet(
         duty_exists=True,
         due_date_missed=temporal_evaluation.due_date_missed,
@@ -203,6 +213,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     "translator_version": formal_translation.translator_version,
                     "formal_rule_id": formal_translation.obligation_rule.id,
                     "constraint_set_id": constraint_set.id,
+                    "source_applicable": source_applicability.applicable,
                     "due_date_missed": temporal_evaluation.due_date_missed,
                     "breach_issue": constraint_evaluation.breach_issue,
                 },
@@ -249,6 +260,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         formal_translation=formal_translation,
         temporal_facts=temporal_facts,
         temporal_evaluation=temporal_evaluation,
+        source_applicability=source_applicability,
         obligation_facts=obligation_facts,
         constraint_set=constraint_set,
         constraint_evaluation=constraint_evaluation,

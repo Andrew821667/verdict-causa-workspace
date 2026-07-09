@@ -10,6 +10,7 @@ SYNTHETIC_CONTRACT_SOURCES = [
             "Synthetic source: in a supply relation, the supplier must deliver goods "
             "by the agreed date unless a valid excuse applies."
         ),
+        valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "delivery_duty"},
     ),
     LegalSource(
@@ -20,6 +21,7 @@ SYNTHETIC_CONTRACT_SOURCES = [
             "Synthetic source: when parties agree a delivery date, performance is "
             "assessed against that date."
         ),
+        valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "delivery_term"},
     ),
     LegalSource(
@@ -30,6 +32,7 @@ SYNTHETIC_CONTRACT_SOURCES = [
             "Synthetic source: a valid contractual or statutory excuse can prevent "
             "a late delivery issue from becoming a breach issue."
         ),
+        valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "valid_excuse"},
     ),
     LegalSource(
@@ -40,6 +43,7 @@ SYNTHETIC_CONTRACT_SOURCES = [
             "Synthetic source: acceptance and defects should be evaluated separately "
             "from the basic delivery date question."
         ),
+        valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "acceptance_defects"},
     ),
     LegalSource(
@@ -50,6 +54,7 @@ SYNTHETIC_CONTRACT_SOURCES = [
             "Synthetic source: the buyer payment duty should not be erased by an "
             "unrelated delivery argument without source-grounded analysis."
         ),
+        valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "payment_duty"},
     ),
     LegalSource(
@@ -60,6 +65,7 @@ SYNTHETIC_CONTRACT_SOURCES = [
             "Synthetic source: penalty reduction analysis should not erase all "
             "liability automatically."
         ),
+        valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "penalty_reduction"},
     ),
 ]

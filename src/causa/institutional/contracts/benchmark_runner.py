@@ -1,7 +1,9 @@
 from causa.core.bootstrap import FormalObligationRule
+from causa.core.temporal_validity import evaluate_source_applicability
 from causa.evaluation import BenchmarkSuiteReport, BenchmarkTask, BenchmarkTaskResult
 from causa.institutional.contracts.benchmarks import SYNTHETIC_SUPPLY_BENCHMARKS
 from causa.institutional.contracts.package import CONTRACTS_PACKAGE_MANIFEST
+from causa.institutional.contracts.synthetic_sources import get_synthetic_contract_source
 from causa.institutional.contracts.temporal import (
     ContractTemporalFacts,
     TemporalEvaluation,
@@ -32,6 +34,20 @@ def _temporal_evaluation_for_task(task: BenchmarkTask) -> TemporalEvaluation | N
     return evaluate_delivery_due_date(facts)
 
 
+def _source_applicability_reasons(task: BenchmarkTask) -> tuple[bool, list[str]]:
+    if not task.temporal_facts:
+        return True, []
+    temporal_facts = ContractTemporalFacts.model_validate(task.temporal_facts)
+    applicable = True
+    reasons: list[str] = []
+    for source_ref in task.expected_source_refs:
+        source = get_synthetic_contract_source(source_ref)
+        evaluation = evaluate_source_applicability(source, temporal_facts.evaluation_date)
+        applicable = applicable and evaluation.applicable
+        reasons.extend(f"{source_ref}: {reason}" for reason in evaluation.reasons)
+    return applicable, reasons
+
+
 def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
     rule = FormalObligationRule(
         id=f"benchmark-rule:{task.id}",
@@ -53,12 +69,14 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
         valid_exception_applies=task.facts.get("valid_exception_applies", False),
     )
     evaluation = evaluate_obligation_constraints(constraint_set, facts)
+    sources_applicable, source_applicability_reasons = _source_applicability_reasons(task)
     warnings = _warnings_for_task(task)
     reasons = list(evaluation.reasons)
 
     passed = True
     if task.expected_breach_issue is not None:
         passed = passed and evaluation.breach_issue == task.expected_breach_issue
+    passed = passed and sources_applicable
     for expected_source_ref in task.expected_source_refs:
         passed = passed and expected_source_ref in task.expected_source_refs
     for required_fragment in task.required_warning_fragments:
@@ -75,6 +93,7 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
         warnings=warnings,
         reasons=reasons,
         temporal_reasons=temporal_evaluation.reasons if temporal_evaluation else [],
+        source_applicability_reasons=source_applicability_reasons,
     )
 
 

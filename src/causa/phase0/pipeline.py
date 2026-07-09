@@ -200,7 +200,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
             remaining_work=[
                 "Expand solver-ready representation beyond narrow obligation facts.",
                 "Add richer contractual norm schema for exceptions and temporal applicability.",
-                "Add source-version temporal validity checks for norm texts.",
+                "Add source revision conflict examples with valid_to.",
             ],
         ),
         ReadinessItem(

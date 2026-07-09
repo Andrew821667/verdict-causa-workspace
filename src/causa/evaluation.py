@@ -23,6 +23,7 @@ class BenchmarkTaskResult(BaseModel):
     warnings: list[str] = Field(default_factory=list)
     reasons: list[str] = Field(default_factory=list)
     temporal_reasons: list[str] = Field(default_factory=list)
+    source_applicability_reasons: list[str] = Field(default_factory=list)
 
 
 class BenchmarkSuiteReport(BaseModel):

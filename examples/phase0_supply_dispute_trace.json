@@ -6,7 +6,7 @@
     "source_type": "statute",
     "jurisdiction": "RU",
     "text": "Synthetic non-authoritative source: under a supply relation, the supplier must deliver goods by the agreed date unless a valid contractual or statutory excuse applies.",
-    "valid_from": null,
+    "valid_from": "2020-01-01",
     "valid_to": null,
     "metadata": {
       "synthetic": true,
@@ -102,6 +102,14 @@
     "due_date_missed": true,
     "reasons": [
       "Actual performance date is later than the agreed due date."
+    ]
+  },
+  "source_applicability": {
+    "source_id": "synthetic-ru-gk-supply-delivery-duty",
+    "moment": "2026-01-21",
+    "applicable": true,
+    "reasons": [
+      "Source is applicable at the evaluation date."
     ]
   },
   "obligation_facts": {
@@ -223,6 +231,7 @@
           "translator_version": "contracts-json-to-formal-v0",
           "formal_rule_id": "obligation-rule:norm-supply-delivery-duty-v0",
           "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
+          "source_applicable": true,
           "due_date_missed": true,
           "breach_issue": true
         }

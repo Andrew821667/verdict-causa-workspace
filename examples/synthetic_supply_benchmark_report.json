@@ -19,6 +19,10 @@
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date.",
+        "synthetic-ru-contract-delivery-term: Source is applicable at the evaluation date."
       ]
     },
     {
@@ -35,6 +39,10 @@
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date.",
+        "synthetic-ru-contract-valid-excuse: Source is applicable at the evaluation date."
       ]
     },
     {
@@ -50,6 +58,9 @@
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date."
       ]
     },
     {
@@ -67,6 +78,9 @@
       ],
       "temporal_reasons": [
         "Actual performance date is on or before the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-payment-duty: Source is applicable at the evaluation date."
       ]
     },
     {
@@ -84,6 +98,9 @@
       ],
       "temporal_reasons": [
         "Actual performance date is on or before the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-acceptance-defects: Source is applicable at the evaluation date."
       ]
     },
     {
@@ -101,6 +118,9 @@
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-penalty-reduction: Source is applicable at the evaluation date."
       ]
     }
   ]
