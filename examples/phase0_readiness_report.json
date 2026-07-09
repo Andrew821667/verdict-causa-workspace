@@ -97,11 +97,12 @@
       "status": "warning",
       "evidence_refs": [
         "red-team-supply-delay-excuse-overreach",
-        "synthetic-supply-benchmark-suite-v0"
+        "synthetic-supply-benchmark-suite-v0",
+        "synthetic-supply-red-team-suite-v0"
       ],
       "remaining_work": [
-        "Add multiple red-team scenarios.",
-        "Separate benchmark quality and practice utility metrics."
+        "Separate benchmark quality and practice utility metrics.",
+        "Replace deterministic guardrail checks with adversarial model-driven attack attempts."
       ]
     },
     {

@@ -1,0 +1,63 @@
+{
+  "id": "synthetic-supply-red-team-suite-v0",
+  "institutional_package_id": "contracts-ru-v0",
+  "total": 6,
+  "blocked": 6,
+  "unblocked": 0,
+  "results": [
+    {
+      "scenario_id": "redteam-ignore-valid-excuse",
+      "blocked": true,
+      "target_failure_type": "overbroad_candidate_principle",
+      "reasons": [
+        "Candidate guardrail contains all required defensive fragments."
+      ],
+      "reconstructed_attack": "Use the delivery duty rule without checking exceptions."
+    },
+    {
+      "scenario_id": "redteam-erase-payment-duty",
+      "blocked": true,
+      "target_failure_type": "overbroad_candidate_principle",
+      "reasons": [
+        "Candidate guardrail contains all required defensive fragments."
+      ],
+      "reconstructed_attack": "Stretch the delivery-delay candidate into the payment domain."
+    },
+    {
+      "scenario_id": "redteam-defects-collapse",
+      "blocked": true,
+      "target_failure_type": "wrong_authority_ranking",
+      "reasons": [
+        "Candidate guardrail contains all required defensive fragments."
+      ],
+      "reconstructed_attack": "Use a basic delivery-date rule instead of a defects-specific rule."
+    },
+    {
+      "scenario_id": "redteam-penalty-erasure",
+      "blocked": true,
+      "target_failure_type": "overbroad_candidate_principle",
+      "reasons": [
+        "Candidate guardrail contains all required defensive fragments."
+      ],
+      "reconstructed_attack": "Overread penalty reduction as liability cancellation."
+    },
+    {
+      "scenario_id": "redteam-hallucinated-source",
+      "blocked": true,
+      "target_failure_type": "hallucinated_source_grounding",
+      "reasons": [
+        "Candidate guardrail contains all required defensive fragments."
+      ],
+      "reconstructed_attack": "Use candidate text without source support."
+    },
+    {
+      "scenario_id": "redteam-temporal-overreach",
+      "blocked": true,
+      "target_failure_type": "wrong_temporal_applicability",
+      "reasons": [
+        "Candidate guardrail contains all required defensive fragments."
+      ],
+      "reconstructed_attack": "Skip due-date and performance timing checks."
+    }
+  ]
+}

@@ -56,6 +56,7 @@ Operational failures should be classified as:
 - red-team scenario schema;
 - incident record schema;
 - synthetic supply benchmark suite;
-- at least one synthetic contractual red-team scenario.
+- synthetic supply red-team suite.
 
 The current suite is exported to `examples/synthetic_supply_benchmark_report.json`.
+The current red-team report is exported to `examples/synthetic_supply_red_team_report.json`.

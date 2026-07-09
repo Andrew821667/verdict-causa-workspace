@@ -44,6 +44,31 @@ class RedTeamScenario(BaseModel):
     institutional_package_id: str
     unacceptable_outcome: str
     target_failure_type: FailureType
+    attack_vector: str = ""
+    required_guardrail_fragments: list[str] = Field(default_factory=list)
+
+
+class RedTeamScenarioResult(BaseModel):
+    scenario_id: str
+    blocked: bool
+    target_failure_type: FailureType
+    reasons: list[str] = Field(default_factory=list)
+    reconstructed_attack: str | None = None
+
+
+class RedTeamSuiteReport(BaseModel):
+    id: str
+    institutional_package_id: str
+    total: int
+    blocked: int
+    unblocked: int
+    results: list[RedTeamScenarioResult] = Field(default_factory=list)
+
+    @property
+    def block_rate(self) -> float:
+        if self.total == 0:
+            return 0.0
+        return self.blocked / self.total
 
 
 class IncidentRecord(BaseModel):
