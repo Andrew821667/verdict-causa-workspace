@@ -40,6 +40,7 @@ def test_synthetic_supply_benchmark_suite_passes_current_narrow_expectations() -
     assert report.total == len(SYNTHETIC_SUPPLY_BENCHMARKS)
     assert report.failed == 0
     assert report.success_rate == 1.0
+    assert any(result.temporal_reasons for result in report.results)
 
 
 def test_payment_benchmark_records_separate_analysis_warning() -> None:

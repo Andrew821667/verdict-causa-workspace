@@ -27,3 +27,5 @@ They also exercise defeasible reasoning, principles and balancing, lex specialis
 ## Initial code
 
 The current package contains a small schema for parties, obligations, relation type, and contract cases. It is intentionally minimal and should be expanded through governed changes.
+
+The current executable subset includes a synthetic temporal check for agreed delivery due date, actual performance date, and evaluation date. It does not yet model source-version temporal validity for norm texts.

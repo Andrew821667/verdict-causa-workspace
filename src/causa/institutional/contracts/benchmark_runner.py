@@ -2,6 +2,11 @@ from causa.core.bootstrap import FormalObligationRule
 from causa.evaluation import BenchmarkSuiteReport, BenchmarkTask, BenchmarkTaskResult
 from causa.institutional.contracts.benchmarks import SYNTHETIC_SUPPLY_BENCHMARKS
 from causa.institutional.contracts.package import CONTRACTS_PACKAGE_MANIFEST
+from causa.institutional.contracts.temporal import (
+    ContractTemporalFacts,
+    TemporalEvaluation,
+    evaluate_delivery_due_date,
+)
 from causa.reasoning.formal_checks import (
     ObligationFactSet,
     build_obligation_constraint_set,
@@ -20,6 +25,13 @@ def _warnings_for_task(task: BenchmarkTask) -> list[str]:
     return warnings
 
 
+def _temporal_evaluation_for_task(task: BenchmarkTask) -> TemporalEvaluation | None:
+    if not task.temporal_facts:
+        return None
+    facts = ContractTemporalFacts.model_validate(task.temporal_facts)
+    return evaluate_delivery_due_date(facts)
+
+
 def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
     rule = FormalObligationRule(
         id=f"benchmark-rule:{task.id}",
@@ -29,9 +41,15 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
         action="perform contractual duty",
     )
     constraint_set = build_obligation_constraint_set(rule)
+    temporal_evaluation = _temporal_evaluation_for_task(task)
+    due_date_missed = (
+        temporal_evaluation.due_date_missed
+        if temporal_evaluation is not None
+        else task.facts.get("due_date_missed", False)
+    )
     facts = ObligationFactSet(
         duty_exists=task.facts.get("duty_exists", False),
-        due_date_missed=task.facts.get("due_date_missed", False),
+        due_date_missed=due_date_missed,
         valid_exception_applies=task.facts.get("valid_exception_applies", False),
     )
     evaluation = evaluate_obligation_constraints(constraint_set, facts)
@@ -56,6 +74,7 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
         source_refs=task.expected_source_refs,
         warnings=warnings,
         reasons=reasons,
+        temporal_reasons=temporal_evaluation.reasons if temporal_evaluation else [],
     )
 
 

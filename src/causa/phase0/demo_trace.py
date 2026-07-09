@@ -21,6 +21,11 @@ from causa.governance.candidate_types import CandidateType
 from causa.governance.failure_taxonomy import FailureType
 from causa.governance.profiles import GovernanceProfile, get_governance_profile
 from causa.institutional.contracts.package import CONTRACTS_PACKAGE_MANIFEST
+from causa.institutional.contracts.temporal import (
+    ContractTemporalFacts,
+    TemporalEvaluation,
+    evaluate_delivery_due_date,
+)
 from causa.management.policy_matrix import PolicyMatrixEntry, build_policy_matrix_entry
 from causa.management.risk_tiers import RiskTier
 from causa.management.sla_modes import SLAMode
@@ -40,6 +45,8 @@ class Phase0DemoTrace(BaseModel):
     legal_source: LegalSource
     reviewed_norm: ReviewedNormJSON
     formal_translation: FormalTranslationResult
+    temporal_facts: ContractTemporalFacts
+    temporal_evaluation: TemporalEvaluation
     obligation_facts: ObligationFactSet
     constraint_set: ConstraintSet
     constraint_evaluation: ConstraintEvaluation
@@ -103,9 +110,15 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         reviewer_id="synthetic-domain-owner",
     )
     formal_translation = translate_reviewed_norm(reviewed_norm)
+    temporal_facts = ContractTemporalFacts(
+        agreed_due_date="2026-01-15",
+        actual_performance_date="2026-01-20",
+        evaluation_date="2026-01-21",
+    )
+    temporal_evaluation = evaluate_delivery_due_date(temporal_facts)
     obligation_facts = ObligationFactSet(
         duty_exists=True,
-        due_date_missed=True,
+        due_date_missed=temporal_evaluation.due_date_missed,
         valid_exception_applies=False,
     )
     constraint_set = build_obligation_constraint_set(formal_translation.obligation_rule)
@@ -190,6 +203,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     "translator_version": formal_translation.translator_version,
                     "formal_rule_id": formal_translation.obligation_rule.id,
                     "constraint_set_id": constraint_set.id,
+                    "due_date_missed": temporal_evaluation.due_date_missed,
                     "breach_issue": constraint_evaluation.breach_issue,
                 },
             ),
@@ -233,6 +247,8 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         legal_source=source,
         reviewed_norm=reviewed_norm,
         formal_translation=formal_translation,
+        temporal_facts=temporal_facts,
+        temporal_evaluation=temporal_evaluation,
         obligation_facts=obligation_facts,
         constraint_set=constraint_set,
         constraint_evaluation=constraint_evaluation,

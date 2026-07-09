@@ -10,6 +10,7 @@ class BenchmarkTask(BaseModel):
     expected_source_refs: list[str] = Field(default_factory=list)
     expected_failure_types: list[FailureType] = Field(default_factory=list)
     facts: dict[str, bool] = Field(default_factory=dict)
+    temporal_facts: dict[str, str] = Field(default_factory=dict)
     expected_breach_issue: bool | None = None
     required_warning_fragments: list[str] = Field(default_factory=list)
 
@@ -21,6 +22,7 @@ class BenchmarkTaskResult(BaseModel):
     source_refs: list[str] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
     reasons: list[str] = Field(default_factory=list)
+    temporal_reasons: list[str] = Field(default_factory=list)
 
 
 class BenchmarkSuiteReport(BaseModel):

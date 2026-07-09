@@ -14,8 +14,12 @@ SYNTHETIC_SUPPLY_BENCHMARKS = [
         ],
         facts={
             "duty_exists": True,
-            "due_date_missed": True,
             "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-20",
+            "evaluation_date": "2026-01-21",
         },
         expected_breach_issue=True,
     ),
@@ -29,8 +33,12 @@ SYNTHETIC_SUPPLY_BENCHMARKS = [
         ],
         facts={
             "duty_exists": True,
-            "due_date_missed": True,
             "valid_exception_applies": True,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-20",
+            "evaluation_date": "2026-01-21",
         },
         expected_breach_issue=False,
     ),
@@ -41,8 +49,12 @@ SYNTHETIC_SUPPLY_BENCHMARKS = [
         expected_source_refs=["synthetic-ru-contract-supply-delivery-duty"],
         facts={
             "duty_exists": False,
-            "due_date_missed": True,
             "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-20",
+            "evaluation_date": "2026-01-21",
         },
         expected_breach_issue=False,
     ),
@@ -54,8 +66,12 @@ SYNTHETIC_SUPPLY_BENCHMARKS = [
         expected_failure_types=[FailureType.OVERBROAD_CANDIDATE_PRINCIPLE],
         facts={
             "duty_exists": True,
-            "due_date_missed": False,
             "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-15",
+            "evaluation_date": "2026-01-21",
         },
         expected_breach_issue=False,
         required_warning_fragments=["payment duty requires separate analysis"],
@@ -67,8 +83,12 @@ SYNTHETIC_SUPPLY_BENCHMARKS = [
         expected_source_refs=["synthetic-ru-contract-acceptance-defects"],
         facts={
             "duty_exists": True,
-            "due_date_missed": False,
             "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-14",
+            "evaluation_date": "2026-01-21",
         },
         expected_breach_issue=False,
         required_warning_fragments=["defects require separate analysis"],
@@ -81,8 +101,12 @@ SYNTHETIC_SUPPLY_BENCHMARKS = [
         expected_failure_types=[FailureType.OVERBROAD_CANDIDATE_PRINCIPLE],
         facts={
             "duty_exists": True,
-            "due_date_missed": True,
             "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-20",
+            "evaluation_date": "2026-01-21",
         },
         expected_breach_issue=True,
         required_warning_fragments=["penalty reduction does not erase liability"],

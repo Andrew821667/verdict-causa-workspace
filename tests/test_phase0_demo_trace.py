@@ -12,6 +12,8 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     assert trace.formal_translation.translator_version == "contracts-json-to-formal-v0"
     assert trace.formal_translation.obligation_rule.debtor == "supplier"
     assert trace.formal_translation.obligation_rule.creditor == "buyer"
+    assert trace.temporal_evaluation.due_date_missed is True
+    assert trace.obligation_facts.due_date_missed is True
     assert trace.constraint_evaluation.breach_issue is True
     assert trace.claim.sources == [trace.legal_source.id]
     assert trace.candidate_type == CandidateType.GAP_HEURISTIC
@@ -36,3 +38,4 @@ def test_exported_supply_dispute_trace_fixture_is_valid() -> None:
     assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.1.0"
     assert trace.formal_translation.obligation_rule.id == "obligation-rule:norm-supply-delivery-duty-v0"
     assert trace.constraint_set.id == "constraint-set:obligation-rule:norm-supply-delivery-duty-v0"
+    assert trace.temporal_facts.agreed_due_date.isoformat() == "2026-01-15"

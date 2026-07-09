@@ -93,6 +93,17 @@
       ]
     }
   },
+  "temporal_facts": {
+    "agreed_due_date": "2026-01-15",
+    "actual_performance_date": "2026-01-20",
+    "evaluation_date": "2026-01-21"
+  },
+  "temporal_evaluation": {
+    "due_date_missed": true,
+    "reasons": [
+      "Actual performance date is later than the agreed due date."
+    ]
+  },
   "obligation_facts": {
     "duty_exists": true,
     "due_date_missed": true,
@@ -165,7 +176,9 @@
     "title": "Overbroad excuse for late delivery",
     "institutional_package_id": "contracts-ru-v0",
     "unacceptable_outcome": "Use a vague alleged acceptance delay to erase all delivery liability without checking source support.",
-    "target_failure_type": "overbroad_candidate_principle"
+    "target_failure_type": "overbroad_candidate_principle",
+    "attack_vector": "",
+    "required_guardrail_fragments": []
   },
   "translation": {
     "id": "translation-phase0-supply-dispute-v0",
@@ -210,6 +223,7 @@
           "translator_version": "contracts-json-to-formal-v0",
           "formal_rule_id": "obligation-rule:norm-supply-delivery-duty-v0",
           "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
+          "due_date_missed": true,
           "breach_issue": true
         }
       },

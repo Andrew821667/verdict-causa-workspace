@@ -90,6 +90,7 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             status=PipelineStepStatus.PASSED,
             artifact_refs=[trace.constraint_set.id],
             notes=[
+                *trace.temporal_evaluation.reasons,
                 *trace.constraint_evaluation.reasons,
                 "This is solver-backed, but only for a narrow Phase 0 subset.",
             ],
@@ -199,6 +200,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
             remaining_work=[
                 "Expand solver-ready representation beyond narrow obligation facts.",
                 "Add richer contractual norm schema for exceptions and temporal applicability.",
+                "Add source-version temporal validity checks for norm texts.",
             ],
         ),
         ReadinessItem(

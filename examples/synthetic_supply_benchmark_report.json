@@ -16,6 +16,9 @@
       "warnings": [],
       "reasons": [
         "Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
       ]
     },
     {
@@ -29,6 +32,9 @@
       "warnings": [],
       "reasons": [
         "No breach issue under the current narrow obligation constraints."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
       ]
     },
     {
@@ -41,6 +47,9 @@
       "warnings": [],
       "reasons": [
         "No breach issue under the current narrow obligation constraints."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
       ]
     },
     {
@@ -55,6 +64,9 @@
       ],
       "reasons": [
         "No breach issue under the current narrow obligation constraints."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is on or before the agreed due date."
       ]
     },
     {
@@ -69,6 +81,9 @@
       ],
       "reasons": [
         "No breach issue under the current narrow obligation constraints."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is on or before the agreed due date."
       ]
     },
     {
@@ -83,6 +98,9 @@
       ],
       "reasons": [
         "Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
       ]
     }
   ]
