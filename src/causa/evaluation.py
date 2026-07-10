@@ -11,6 +11,7 @@ class BenchmarkTask(BaseModel):
     expected_failure_types: list[FailureType] = Field(default_factory=list)
     facts: dict[str, bool] = Field(default_factory=dict)
     temporal_facts: dict[str, str] = Field(default_factory=dict)
+    expected_source_applicability: dict[str, bool] = Field(default_factory=dict)
     expected_breach_issue: bool | None = None
     required_warning_fragments: list[str] = Field(default_factory=list)
 

@@ -14,6 +14,29 @@ SYNTHETIC_CONTRACT_SOURCES = [
         metadata={"synthetic": True, "topic": "delivery_duty"},
     ),
     LegalSource(
+        id="synthetic-ru-contract-supply-delivery-duty-v1",
+        title="Synthetic supply delivery duty v1",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Synthetic source v1: in a supply relation, the supplier must deliver goods "
+            "by the agreed date unless a valid excuse applies."
+        ),
+        valid_from="2020-01-01",
+        valid_to="2025-12-31",
+        metadata={"synthetic": True, "topic": "delivery_duty", "revision": "v1"},
+    ),
+    LegalSource(
+        id="synthetic-ru-contract-supply-delivery-duty-v2",
+        title="Synthetic supply delivery duty v2",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Synthetic source v2: for supply relations evaluated from 2026 onward, "
+            "delivery duty analysis must check agreed date, actual performance, and valid excuse."
+        ),
+        valid_from="2026-01-01",
+        metadata={"synthetic": True, "topic": "delivery_duty", "revision": "v2"},
+    ),
+    LegalSource(
         id="synthetic-ru-contract-delivery-term",
         title="Synthetic agreed delivery term",
         source_type=SourceType.STATUTE,

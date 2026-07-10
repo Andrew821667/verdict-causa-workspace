@@ -43,7 +43,8 @@ def _source_applicability_reasons(task: BenchmarkTask) -> tuple[bool, list[str]]
     for source_ref in task.expected_source_refs:
         source = get_synthetic_contract_source(source_ref)
         evaluation = evaluate_source_applicability(source, temporal_facts.evaluation_date)
-        applicable = applicable and evaluation.applicable
+        expected = task.expected_source_applicability.get(source_ref, True)
+        applicable = applicable and evaluation.applicable == expected
         reasons.extend(f"{source_ref}: {reason}" for reason in evaluation.reasons)
     return applicable, reasons
 

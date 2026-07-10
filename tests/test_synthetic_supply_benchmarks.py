@@ -17,7 +17,7 @@ from causa.phase0.pipeline import build_phase0_readiness_report
 def test_synthetic_contract_source_set_has_initial_coverage() -> None:
     topics = {source.metadata["topic"] for source in SYNTHETIC_CONTRACT_SOURCES}
 
-    assert len(SYNTHETIC_CONTRACT_SOURCES) >= 6
+    assert len(SYNTHETIC_CONTRACT_SOURCES) >= 8
     assert {
         "delivery_duty",
         "delivery_term",
@@ -26,6 +26,16 @@ def test_synthetic_contract_source_set_has_initial_coverage() -> None:
         "payment_duty",
         "penalty_reduction",
     } <= topics
+
+
+def test_synthetic_contract_source_set_has_delivery_duty_revisions() -> None:
+    revisions = {
+        source.metadata.get("revision")
+        for source in SYNTHETIC_CONTRACT_SOURCES
+        if source.metadata["topic"] == "delivery_duty"
+    }
+
+    assert {"v1", "v2"} <= revisions
 
 
 def test_get_synthetic_contract_source_by_id() -> None:
@@ -42,6 +52,14 @@ def test_synthetic_supply_benchmark_suite_passes_current_narrow_expectations() -
     assert report.success_rate == 1.0
     assert any(result.temporal_reasons for result in report.results)
     assert any(result.source_applicability_reasons for result in report.results)
+
+
+def test_revision_benchmark_records_old_source_not_applicable() -> None:
+    task = next(task for task in SYNTHETIC_SUPPLY_BENCHMARKS if task.id.endswith("not-applicable-in-2026"))
+    result = run_benchmark_task(task)
+
+    assert result.passed is True
+    assert any("after source valid_to" in reason for reason in result.source_applicability_reasons)
 
 
 def test_payment_benchmark_records_separate_analysis_warning() -> None:

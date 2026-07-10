@@ -111,4 +111,55 @@ SYNTHETIC_SUPPLY_BENCHMARKS = [
         expected_breach_issue=True,
         required_warning_fragments=["penalty reduction does not erase liability"],
     ),
+    BenchmarkTask(
+        id="bench-delivery-duty-v1-applies-before-2026",
+        title="Delivery duty v1 applies before 2026",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=["synthetic-ru-contract-supply-delivery-duty-v1"],
+        facts={
+            "duty_exists": True,
+            "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2025-12-20",
+            "actual_performance_date": "2025-12-22",
+            "evaluation_date": "2025-12-30",
+        },
+        expected_breach_issue=True,
+    ),
+    BenchmarkTask(
+        id="bench-delivery-duty-v2-applies-from-2026",
+        title="Delivery duty v2 applies from 2026",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=["synthetic-ru-contract-supply-delivery-duty-v2"],
+        facts={
+            "duty_exists": True,
+            "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-20",
+            "evaluation_date": "2026-01-21",
+        },
+        expected_breach_issue=True,
+    ),
+    BenchmarkTask(
+        id="bench-delivery-duty-v1-not-applicable-in-2026",
+        title="Delivery duty v1 is not applicable in 2026",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=["synthetic-ru-contract-supply-delivery-duty-v1"],
+        expected_source_applicability={
+            "synthetic-ru-contract-supply-delivery-duty-v1": False,
+        },
+        facts={
+            "duty_exists": True,
+            "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-20",
+            "evaluation_date": "2026-01-21",
+        },
+        expected_breach_issue=True,
+    ),
 ]

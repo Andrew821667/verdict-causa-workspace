@@ -222,11 +222,11 @@ Phase 0 is not done when the repository looks polished. It is done when the syst
 
 ## Immediate next milestones
 
-1. Expand constraint sets beyond the basic duty/date/exception pattern.
-2. Add practice-utility metrics placeholders.
-3. Replace deterministic red-team guardrail checks with adversarial model-driven attack attempts.
-4. Add Phase 0 package version changelog and compatibility matrix.
-5. Add source revision conflict examples with `valid_to`.
+1. Add authority and lex specialis examples for general vs special contractual norms.
+2. Expand constraint sets beyond the basic duty/date/exception pattern.
+3. Add practice-utility metrics placeholders.
+4. Replace deterministic red-team guardrail checks with adversarial model-driven attack attempts.
+5. Add Phase 0 package version changelog and compatibility matrix.
 
 ## Current synthetic trace
 

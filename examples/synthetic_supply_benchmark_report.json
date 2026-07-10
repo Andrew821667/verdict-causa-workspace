@@ -1,8 +1,8 @@
 {
   "id": "synthetic-supply-benchmark-suite-v0",
   "institutional_package_id": "contracts-ru-v0",
-  "total": 6,
-  "passed": 6,
+  "total": 9,
+  "passed": 9,
   "failed": 0,
   "results": [
     {
@@ -121,6 +121,60 @@
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-penalty-reduction: Source is applicable at the evaluation date."
+      ]
+    },
+    {
+      "task_id": "bench-delivery-duty-v1-applies-before-2026",
+      "passed": true,
+      "breach_issue": true,
+      "source_refs": [
+        "synthetic-ru-contract-supply-delivery-duty-v1"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-supply-delivery-duty-v1: Source is applicable at the evaluation date."
+      ]
+    },
+    {
+      "task_id": "bench-delivery-duty-v2-applies-from-2026",
+      "passed": true,
+      "breach_issue": true,
+      "source_refs": [
+        "synthetic-ru-contract-supply-delivery-duty-v2"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-supply-delivery-duty-v2: Source is applicable at the evaluation date."
+      ]
+    },
+    {
+      "task_id": "bench-delivery-duty-v1-not-applicable-in-2026",
+      "passed": true,
+      "breach_issue": true,
+      "source_refs": [
+        "synthetic-ru-contract-supply-delivery-duty-v1"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-supply-delivery-duty-v1: Evaluation date is after source valid_to."
       ]
     }
   ]
