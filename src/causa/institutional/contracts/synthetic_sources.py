@@ -14,6 +14,28 @@ SYNTHETIC_CONTRACT_SOURCES = [
         metadata={"synthetic": True, "topic": "delivery_duty"},
     ),
     LegalSource(
+        id="synthetic-ru-contract-general-performance-duty",
+        title="Synthetic general contractual performance duty",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Synthetic general source: contractual obligations should be performed "
+            "properly according to the agreement."
+        ),
+        valid_from="2020-01-01",
+        metadata={"synthetic": True, "topic": "performance_duty", "specificity": "general"},
+    ),
+    LegalSource(
+        id="synthetic-ru-contract-supply-specific-delivery-duty",
+        title="Synthetic supply-specific delivery duty",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Synthetic special source: in supply contracts, delivery timing is assessed "
+            "under supply-specific delivery rules."
+        ),
+        valid_from="2020-01-01",
+        metadata={"synthetic": True, "topic": "delivery_duty", "specificity": "special"},
+    ),
+    LegalSource(
         id="synthetic-ru-contract-supply-delivery-duty-v1",
         title="Synthetic supply delivery duty v1",
         source_type=SourceType.STATUTE,

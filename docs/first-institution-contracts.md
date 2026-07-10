@@ -28,4 +28,4 @@ They also exercise defeasible reasoning, principles and balancing, lex specialis
 
 The current package contains a small schema for parties, obligations, relation type, and contract cases. It is intentionally minimal and should be expanded through governed changes.
 
-The current executable subset includes a synthetic temporal check for agreed delivery due date, actual performance date, evaluation date, and source applicability at the evaluation date. It also includes first source revision conflict examples with `valid_to`.
+The current executable subset includes a synthetic temporal check for agreed delivery due date, actual performance date, evaluation date, and source applicability at the evaluation date. It also includes first source revision conflict examples with `valid_to` and a narrow `lex specialis` evaluator: a supply-specific source outranks a general contractual source, independently of candidate order. This is an auditable Phase 0 rule, not a complete conflict-resolution engine.

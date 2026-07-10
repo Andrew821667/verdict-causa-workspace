@@ -38,6 +38,19 @@ def test_synthetic_contract_source_set_has_delivery_duty_revisions() -> None:
     assert {"v1", "v2"} <= revisions
 
 
+def test_synthetic_contract_source_set_has_general_and_special_sources() -> None:
+    specificity_by_id = {
+        source.id: source.metadata.get("specificity")
+        for source in SYNTHETIC_CONTRACT_SOURCES
+    }
+
+    assert specificity_by_id["synthetic-ru-contract-general-performance-duty"] == "general"
+    assert (
+        specificity_by_id["synthetic-ru-contract-supply-specific-delivery-duty"]
+        == "special"
+    )
+
+
 def test_get_synthetic_contract_source_by_id() -> None:
     source = get_synthetic_contract_source("synthetic-ru-contract-valid-excuse")
 
@@ -52,6 +65,7 @@ def test_synthetic_supply_benchmark_suite_passes_current_narrow_expectations() -
     assert report.success_rate == 1.0
     assert any(result.temporal_reasons for result in report.results)
     assert any(result.source_applicability_reasons for result in report.results)
+    assert any(result.authority_winner for result in report.results)
 
 
 def test_revision_benchmark_records_old_source_not_applicable() -> None:
@@ -60,6 +74,24 @@ def test_revision_benchmark_records_old_source_not_applicable() -> None:
 
     assert result.passed is True
     assert any("after source valid_to" in reason for reason in result.source_applicability_reasons)
+
+
+def test_lex_specialis_benchmarks_select_supply_specific_source() -> None:
+    authority_results = [
+        run_benchmark_task(task)
+        for task in SYNTHETIC_SUPPLY_BENCHMARKS
+        if "specialis" in task.id or "supply-special" in task.id
+    ]
+
+    assert len(authority_results) == 2
+    assert all(result.passed for result in authority_results)
+    assert {
+        result.authority_winner for result in authority_results
+    } == {"synthetic-ru-contract-supply-specific-delivery-duty"}
+    assert all(
+        "Special source prevails over general source." in result.authority_reasons
+        for result in authority_results
+    )
 
 
 def test_payment_benchmark_records_separate_analysis_warning() -> None:
@@ -76,7 +108,7 @@ def test_exported_synthetic_supply_benchmark_report_fixture_is_valid() -> None:
     report = BenchmarkSuiteReport.model_validate(data)
 
     assert report.id == "synthetic-supply-benchmark-suite-v0"
-    assert report.total >= 6
+    assert report.total == len(SYNTHETIC_SUPPLY_BENCHMARKS)
     assert report.failed == 0
 
 

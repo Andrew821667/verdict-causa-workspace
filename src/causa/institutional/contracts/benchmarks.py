@@ -162,4 +162,52 @@ SYNTHETIC_SUPPLY_BENCHMARKS = [
         },
         expected_breach_issue=True,
     ),
+    BenchmarkTask(
+        id="bench-lex-specialis-supply-over-general",
+        title="Supply-specific source prevails over general contractual source",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=[
+            "synthetic-ru-contract-general-performance-duty",
+            "synthetic-ru-contract-supply-specific-delivery-duty",
+        ],
+        authority_candidate_source_refs=[
+            "synthetic-ru-contract-general-performance-duty",
+            "synthetic-ru-contract-supply-specific-delivery-duty",
+        ],
+        expected_authority_winner="synthetic-ru-contract-supply-specific-delivery-duty",
+        facts={
+            "duty_exists": True,
+            "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-20",
+            "evaluation_date": "2026-01-21",
+        },
+        expected_breach_issue=True,
+    ),
+    BenchmarkTask(
+        id="bench-general-does-not-override-supply-special",
+        title="General source must not override supply-specific source",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=[
+            "synthetic-ru-contract-general-performance-duty",
+            "synthetic-ru-contract-supply-specific-delivery-duty",
+        ],
+        authority_candidate_source_refs=[
+            "synthetic-ru-contract-supply-specific-delivery-duty",
+            "synthetic-ru-contract-general-performance-duty",
+        ],
+        expected_authority_winner="synthetic-ru-contract-supply-specific-delivery-duty",
+        facts={
+            "duty_exists": True,
+            "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-20",
+            "evaluation_date": "2026-01-21",
+        },
+        expected_breach_issue=True,
+    ),
 ]

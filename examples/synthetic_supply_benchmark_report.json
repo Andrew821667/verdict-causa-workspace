@@ -1,8 +1,8 @@
 {
   "id": "synthetic-supply-benchmark-suite-v0",
   "institutional_package_id": "contracts-ru-v0",
-  "total": 9,
-  "passed": 9,
+  "total": 11,
+  "passed": 11,
   "failed": 0,
   "results": [
     {
@@ -23,7 +23,9 @@
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date.",
         "synthetic-ru-contract-delivery-term: Source is applicable at the evaluation date."
-      ]
+      ],
+      "authority_winner": null,
+      "authority_reasons": []
     },
     {
       "task_id": "bench-supply-late-valid-excuse",
@@ -43,7 +45,9 @@
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date.",
         "synthetic-ru-contract-valid-excuse: Source is applicable at the evaluation date."
-      ]
+      ],
+      "authority_winner": null,
+      "authority_reasons": []
     },
     {
       "task_id": "bench-no-duty-no-breach",
@@ -61,7 +65,9 @@
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date."
-      ]
+      ],
+      "authority_winner": null,
+      "authority_reasons": []
     },
     {
       "task_id": "bench-payment-duty-needs-separate-analysis",
@@ -81,7 +87,9 @@
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-payment-duty: Source is applicable at the evaluation date."
-      ]
+      ],
+      "authority_winner": null,
+      "authority_reasons": []
     },
     {
       "task_id": "bench-defects-not-basic-delivery-date",
@@ -101,7 +109,9 @@
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-acceptance-defects: Source is applicable at the evaluation date."
-      ]
+      ],
+      "authority_winner": null,
+      "authority_reasons": []
     },
     {
       "task_id": "bench-penalty-reduction-boundary",
@@ -121,7 +131,9 @@
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-penalty-reduction: Source is applicable at the evaluation date."
-      ]
+      ],
+      "authority_winner": null,
+      "authority_reasons": []
     },
     {
       "task_id": "bench-delivery-duty-v1-applies-before-2026",
@@ -139,7 +151,9 @@
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty-v1: Source is applicable at the evaluation date."
-      ]
+      ],
+      "authority_winner": null,
+      "authority_reasons": []
     },
     {
       "task_id": "bench-delivery-duty-v2-applies-from-2026",
@@ -157,7 +171,9 @@
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty-v2: Source is applicable at the evaluation date."
-      ]
+      ],
+      "authority_winner": null,
+      "authority_reasons": []
     },
     {
       "task_id": "bench-delivery-duty-v1-not-applicable-in-2026",
@@ -175,6 +191,58 @@
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty-v1: Evaluation date is after source valid_to."
+      ],
+      "authority_winner": null,
+      "authority_reasons": []
+    },
+    {
+      "task_id": "bench-lex-specialis-supply-over-general",
+      "passed": true,
+      "breach_issue": true,
+      "source_refs": [
+        "synthetic-ru-contract-general-performance-duty",
+        "synthetic-ru-contract-supply-specific-delivery-duty"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-general-performance-duty: Source is applicable at the evaluation date.",
+        "synthetic-ru-contract-supply-specific-delivery-duty: Source is applicable at the evaluation date."
+      ],
+      "authority_winner": "synthetic-ru-contract-supply-specific-delivery-duty",
+      "authority_reasons": [
+        "Selected synthetic-ru-contract-supply-specific-delivery-duty.",
+        "Special source prevails over general source."
+      ]
+    },
+    {
+      "task_id": "bench-general-does-not-override-supply-special",
+      "passed": true,
+      "breach_issue": true,
+      "source_refs": [
+        "synthetic-ru-contract-general-performance-duty",
+        "synthetic-ru-contract-supply-specific-delivery-duty"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-general-performance-duty: Source is applicable at the evaluation date.",
+        "synthetic-ru-contract-supply-specific-delivery-duty: Source is applicable at the evaluation date."
+      ],
+      "authority_winner": "synthetic-ru-contract-supply-specific-delivery-duty",
+      "authority_reasons": [
+        "Selected synthetic-ru-contract-supply-specific-delivery-duty.",
+        "Special source prevails over general source."
       ]
     }
   ]

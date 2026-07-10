@@ -222,7 +222,7 @@ Phase 0 is not done when the repository looks polished. It is done when the syst
 
 ## Immediate next milestones
 
-1. Add authority and lex specialis examples for general vs special contractual norms.
+1. Expand the authority model beyond `lex specialis` specificity metadata into source hierarchy and conflict taxonomy.
 2. Expand constraint sets beyond the basic duty/date/exception pattern.
 3. Add practice-utility metrics placeholders.
 4. Replace deterministic red-team guardrail checks with adversarial model-driven attack attempts.

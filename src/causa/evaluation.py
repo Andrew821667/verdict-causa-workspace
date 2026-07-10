@@ -8,6 +8,8 @@ class BenchmarkTask(BaseModel):
     title: str
     institutional_package_id: str
     expected_source_refs: list[str] = Field(default_factory=list)
+    authority_candidate_source_refs: list[str] = Field(default_factory=list)
+    expected_authority_winner: str | None = None
     expected_failure_types: list[FailureType] = Field(default_factory=list)
     facts: dict[str, bool] = Field(default_factory=dict)
     temporal_facts: dict[str, str] = Field(default_factory=dict)
@@ -25,6 +27,8 @@ class BenchmarkTaskResult(BaseModel):
     reasons: list[str] = Field(default_factory=list)
     temporal_reasons: list[str] = Field(default_factory=list)
     source_applicability_reasons: list[str] = Field(default_factory=list)
+    authority_winner: str | None = None
+    authority_reasons: list[str] = Field(default_factory=list)
 
 
 class BenchmarkSuiteReport(BaseModel):

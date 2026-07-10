@@ -1,6 +1,10 @@
 from causa.core.bootstrap import FormalObligationRule
 from causa.core.temporal_validity import evaluate_source_applicability
 from causa.evaluation import BenchmarkSuiteReport, BenchmarkTask, BenchmarkTaskResult
+from causa.institutional.contracts.authority_model import (
+    AuthorityEvaluation,
+    evaluate_lex_specialis,
+)
 from causa.institutional.contracts.benchmarks import SYNTHETIC_SUPPLY_BENCHMARKS
 from causa.institutional.contracts.package import CONTRACTS_PACKAGE_MANIFEST
 from causa.institutional.contracts.synthetic_sources import get_synthetic_contract_source
@@ -49,6 +53,16 @@ def _source_applicability_reasons(task: BenchmarkTask) -> tuple[bool, list[str]]
     return applicable, reasons
 
 
+def _authority_evaluation_for_task(task: BenchmarkTask) -> AuthorityEvaluation | None:
+    if not task.authority_candidate_source_refs:
+        return None
+    sources = [
+        get_synthetic_contract_source(source_ref)
+        for source_ref in task.authority_candidate_source_refs
+    ]
+    return evaluate_lex_specialis(sources)
+
+
 def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
     rule = FormalObligationRule(
         id=f"benchmark-rule:{task.id}",
@@ -71,6 +85,7 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
     )
     evaluation = evaluate_obligation_constraints(constraint_set, facts)
     sources_applicable, source_applicability_reasons = _source_applicability_reasons(task)
+    authority_evaluation = _authority_evaluation_for_task(task)
     warnings = _warnings_for_task(task)
     reasons = list(evaluation.reasons)
 
@@ -78,6 +93,12 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
     if task.expected_breach_issue is not None:
         passed = passed and evaluation.breach_issue == task.expected_breach_issue
     passed = passed and sources_applicable
+    if task.expected_authority_winner is not None:
+        passed = (
+            passed
+            and authority_evaluation is not None
+            and authority_evaluation.selected_source_id == task.expected_authority_winner
+        )
     for expected_source_ref in task.expected_source_refs:
         passed = passed and expected_source_ref in task.expected_source_refs
     for required_fragment in task.required_warning_fragments:
@@ -95,6 +116,10 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
         reasons=reasons,
         temporal_reasons=temporal_evaluation.reasons if temporal_evaluation else [],
         source_applicability_reasons=source_applicability_reasons,
+        authority_winner=(
+            authority_evaluation.selected_source_id if authority_evaluation else None
+        ),
+        authority_reasons=authority_evaluation.reasons if authority_evaluation else [],
     )
 
 
