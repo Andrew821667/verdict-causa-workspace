@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.9.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v1"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v1"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed liability evidence is mandatory for the synthetic Phase 0 path.",
+            "Formal models cover narrow prerequisites under Civil Code articles 333 and 401.",
+            "The model does not determine evidence weight, penalty amount, or a court outcome.",
+        ],
+        notes_ru=[
+            "Проверенные данные об ответственности обязательны для синтетического пути Этапа 0.",
+            "Формальная модель покрывает узкие предпосылки статей 333 и 401 ГК РФ.",
+            "Модель не определяет вес доказательств, размер снижения или результат суда.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.8.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

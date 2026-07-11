@@ -73,7 +73,7 @@ def compute_translation_template_hash(
 
 
 def build_russian_translation_template_set() -> TranslationTemplateSet:
-    version = "translation-template-ru-v2"
+    version = "translation-template-ru-v3"
     templates = (
         TranslationTemplateDefinition(
             level=TranslationLevel.EXECUTIVE,
@@ -104,6 +104,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Применимая норма и юридическая сила\n{rule_and_authority_ru}\n\n"
                 "Формальная проверка\n{formal_result_ru}\n\n"
                 "Контрфактическая чувствительность\n{counterfactual_professional_ru}\n\n"
+                "Ответственность и неустойка\n{liability_professional_ru}\n\n"
                 "Ограничения и действия эксперта\n{limitations_ru}\n\n"
                 "{disclaimer_ru}"
             ),
@@ -114,10 +115,11 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Применимая норма и юридическая сила",
                 "Формальная проверка",
                 "Контрфактическая чувствительность",
+                "Ответственность и неустойка",
                 "Ограничения и действия эксперта",
             ),
             min_characters=800,
-            max_characters=4_500,
+            max_characters=5_500,
         ),
         TranslationTemplateDefinition(
             level=TranslationLevel.FORENSIC,
@@ -132,6 +134,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Governance-журнал кандидата\n{governance_ru}\n\n"
                 "Сравнение путей рассуждения\n{path_comparison_ru}\n\n"
                 "Bounded counterfactual-анализ\n{counterfactual_forensic_ru}\n\n"
+                "Модель ответственности (статьи 333 и 401 ГК РФ)\n{liability_forensic_ru}\n\n"
                 "Ограничения\n{limitations_ru}\n\n"
                 "{disclaimer_ru}"
             ),
@@ -145,10 +148,11 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Governance-журнал кандидата",
                 "Сравнение путей рассуждения",
                 "Bounded counterfactual-анализ",
+                "Модель ответственности (статьи 333 и 401 ГК РФ)",
                 "Ограничения",
             ),
             min_characters=1_600,
-            max_characters=16_000,
+            max_characters=22_000,
         ),
     )
     return TranslationTemplateSet(

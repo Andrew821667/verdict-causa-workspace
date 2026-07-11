@@ -58,6 +58,69 @@
         "topic": "case_evidence",
         "case_id": "case-supply-1"
       }
+    },
+    {
+      "id": "synthetic-ru-gk401-liability-model-v1",
+      "title": "Синтетическая проверенная модель оснований ответственности по статье 401 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: для ответственности и освобождения отдельно проверяются вина, характер деятельности должника, непреодолимая сила и исключенные обычные коммерческие риски.",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "liability_article_401",
+        "legal_reference": "ГК РФ, статья 401",
+        "basis_url": "https://minjust.gov.ru/ru/pages/grazhdanskij-kodeks/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk333-penalty-model-v1",
+      "title": "Синтетическая проверенная модель снижения неустойки по статье 333 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: модель проверяет заявление предпринимателя, явную несоразмерность и риск необоснованной выгоды, но не определяет размер снижения и не подменяет судебную оценку.",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "penalty_article_333",
+        "legal_reference": "ГК РФ, статья 333",
+        "basis_url": "https://minjust.gov.ru/ru/pages/grazhdanskij-kodeks/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-plenum7-liability-guidance-v1",
+      "title": "Синтетическая модель разъяснений Пленума ВС РФ об ответственности",
+      "source_type": "case_law",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление разъяснений: бремя доказывания, признаки непреодолимой силы, исключенные коммерческие риски и предпосылки снижения неустойки проверяются раздельно.",
+      "valid_from": "2017-02-07",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "liability_plenum_guidance",
+        "legal_reference": "Постановление Пленума ВС РФ от 24.03.2016 № 7",
+        "basis_url": "https://www.vsrf.ru/documents/own/8478/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-liability-evidence",
+      "title": "Синтетическая проверенная запись фактов об ответственности и неустойке",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: факты, относящиеся к вине, освобождению от ответственности и заявлению о снижении неустойки, одобрены для Этапа 0.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "liability_case_evidence",
+        "case_id": "case-supply-1"
+      }
     }
   ],
   "request": {
@@ -106,7 +169,7 @@
     "case_evidence": {
       "id": "reviewed-case-evidence-supply-1-v0",
       "case_id": "case-supply-1",
-      "schema_version": "contracts.case-evidence.v0",
+      "schema_version": "contracts.case-evidence.v1",
       "assertions": [
         {
           "id": "evidence-duty_exists",
@@ -230,23 +293,202 @@
       "evaluation_date": "2026-01-21",
       "review_status": "reviewed",
       "reviewer_id": "synthetic-authority-reviewer"
+    },
+    "liability_evidence": {
+      "id": "reviewed-liability-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.liability-evidence.v0",
+      "assertions": [
+        {
+          "id": "liability-evidence-breach_established",
+          "predicate": "breach_established",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-debtor_acting_in_business",
+          "predicate": "debtor_acting_in_business",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-fault_rebuttal_asserted",
+          "predicate": "fault_rebuttal_asserted",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-reasonable_care_proven",
+          "predicate": "reasonable_care_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-all_reasonable_measures_proven",
+          "predicate": "all_reasonable_measures_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-force_majeure_claimed",
+          "predicate": "force_majeure_claimed",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-extraordinary_event_proven",
+          "predicate": "extraordinary_event_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-unavoidable_event_proven",
+          "predicate": "unavoidable_event_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-beyond_debtor_control_proven",
+          "predicate": "beyond_debtor_control_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-force_majeure_causal_link_proven",
+          "predicate": "force_majeure_causal_link_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-excluded_commercial_risk_only",
+          "predicate": "excluded_commercial_risk_only",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-notice_and_mitigation_proven",
+          "predicate": "notice_and_mitigation_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-intentional_breach",
+          "predicate": "intentional_breach",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-advance_liability_exclusion_clause",
+          "predicate": "advance_liability_exclusion_clause",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-penalty_claimed",
+          "predicate": "penalty_claimed",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-contractual_penalty",
+          "predicate": "contractual_penalty",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-penalty_reduction_requested",
+          "predicate": "penalty_reduction_requested",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-manifest_disproportionality_proven",
+          "predicate": "manifest_disproportionality_proven",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-unjustified_benefit_risk_proven",
+          "predicate": "unjustified_benefit_risk_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "id": "liability-evidence-only_excluded_reduction_reasons",
+          "predicate": "only_excluded_reduction_reasons",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk401-liability-model-v1",
+        "synthetic-ru-gk333-penalty-model-v1",
+        "synthetic-ru-plenum7-liability-guidance-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-liability-reviewer"
     }
   },
   "result": {
     "request_id": "analysis-request-case-supply-1-v0",
     "case_id": "case-supply-1",
-    "pipeline_version": "contracts-reviewed-analysis-v0",
+    "pipeline_version": "contracts-reviewed-analysis-v1",
     "reviewer_ids": [
       "synthetic-authority-reviewer",
       "synthetic-case-evidence-reviewer",
+      "synthetic-liability-reviewer",
       "synthetic-norm-reviewer",
       "synthetic-temporal-reviewer"
     ],
     "source_ids": [
+      "synthetic-case-supply-1-liability-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
       "synthetic-ru-contract-supply-delivery-duty-v1",
       "synthetic-ru-contract-supply-delivery-duty-v2",
-      "synthetic-ru-contract-supply-delivery-term"
+      "synthetic-ru-contract-supply-delivery-term",
+      "synthetic-ru-gk333-penalty-model-v1",
+      "synthetic-ru-gk401-liability-model-v1",
+      "synthetic-ru-plenum7-liability-guidance-v1"
     ],
     "formal_translation": {
       "norm_id": "norm-supply-delivery-duty-v0",
@@ -314,7 +556,7 @@
     },
     "evidence_mapping": {
       "evidence_id": "reviewed-case-evidence-supply-1-v0",
-      "schema_version": "contracts.case-evidence.v0",
+      "schema_version": "contracts.case-evidence.v1",
       "mapping_version": "contracts-reviewed-evidence-to-facts-v0",
       "formal_rule_id": "obligation-rule:norm-supply-delivery-duty-v0",
       "facts": {
@@ -489,12 +731,232 @@
         "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
       ]
     },
+    "liability_evidence_mapping": {
+      "evidence_id": "reviewed-liability-evidence-supply-1-v0",
+      "schema_version": "contracts.liability-evidence.v0",
+      "mapping_version": "contracts-reviewed-liability-to-facts-v0",
+      "facts": {
+        "breach_established": true,
+        "debtor_acting_in_business": true,
+        "fault_rebuttal_asserted": true,
+        "reasonable_care_proven": false,
+        "all_reasonable_measures_proven": false,
+        "force_majeure_claimed": true,
+        "extraordinary_event_proven": false,
+        "unavoidable_event_proven": false,
+        "beyond_debtor_control_proven": false,
+        "force_majeure_causal_link_proven": false,
+        "excluded_commercial_risk_only": true,
+        "notice_and_mitigation_proven": false,
+        "intentional_breach": false,
+        "advance_liability_exclusion_clause": false,
+        "penalty_claimed": true,
+        "contractual_penalty": true,
+        "penalty_reduction_requested": true,
+        "manifest_disproportionality_proven": true,
+        "unjustified_benefit_risk_proven": false,
+        "only_excluded_reduction_reasons": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk401-liability-model-v1",
+        "synthetic-ru-gk333-penalty-model-v1",
+        "synthetic-ru-plenum7-liability-guidance-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "advance_liability_exclusion_clause",
+          "assertion_id": "liability-evidence-advance_liability_exclusion_clause",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "all_reasonable_measures_proven",
+          "assertion_id": "liability-evidence-all_reasonable_measures_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "beyond_debtor_control_proven",
+          "assertion_id": "liability-evidence-beyond_debtor_control_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "breach_established",
+          "assertion_id": "liability-evidence-breach_established",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "contractual_penalty",
+          "assertion_id": "liability-evidence-contractual_penalty",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_acting_in_business",
+          "assertion_id": "liability-evidence-debtor_acting_in_business",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "excluded_commercial_risk_only",
+          "assertion_id": "liability-evidence-excluded_commercial_risk_only",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "extraordinary_event_proven",
+          "assertion_id": "liability-evidence-extraordinary_event_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "fault_rebuttal_asserted",
+          "assertion_id": "liability-evidence-fault_rebuttal_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "force_majeure_causal_link_proven",
+          "assertion_id": "liability-evidence-force_majeure_causal_link_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "force_majeure_claimed",
+          "assertion_id": "liability-evidence-force_majeure_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "intentional_breach",
+          "assertion_id": "liability-evidence-intentional_breach",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "manifest_disproportionality_proven",
+          "assertion_id": "liability-evidence-manifest_disproportionality_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "notice_and_mitigation_proven",
+          "assertion_id": "liability-evidence-notice_and_mitigation_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "only_excluded_reduction_reasons",
+          "assertion_id": "liability-evidence-only_excluded_reduction_reasons",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "penalty_claimed",
+          "assertion_id": "liability-evidence-penalty_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "penalty_reduction_requested",
+          "assertion_id": "liability-evidence-penalty_reduction_requested",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "reasonable_care_proven",
+          "assertion_id": "liability-evidence-reasonable_care_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "unavoidable_event_proven",
+          "assertion_id": "liability-evidence-unavoidable_event_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "unjustified_benefit_risk_proven",
+          "assertion_id": "liability-evidence-unjustified_benefit_risk_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-liability-evidence"
+          ]
+        }
+      ]
+    },
+    "liability_constraint_set": {
+      "id": "liability-constraint-set:reviewed-liability-evidence-supply-1-v0",
+      "model_version": "contracts-liability-articles-333-401-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk401-liability-model-v1",
+        "synthetic-ru-gk333-penalty-model-v1",
+        "synthetic-ru-plenum7-liability-guidance-v1"
+      ],
+      "expressions": [
+        "fault_rebutted == fault_rebuttal_asserted AND reasonable_care_proven AND all_reasonable_measures_proven",
+        "force_majeure_qualified == force_majeure_claimed AND extraordinary_event_proven AND unavoidable_event_proven AND beyond_debtor_control_proven AND force_majeure_causal_link_proven AND NOT excluded_commercial_risk_only AND NOT intentional_breach",
+        "exemption_prerequisites_satisfied == breach_established AND ((NOT debtor_acting_in_business AND fault_rebutted) OR (debtor_acting_in_business AND force_majeure_qualified))",
+        "liability_issue == breach_established AND NOT exemption_prerequisites_satisfied",
+        "force_majeure_notice_gap == force_majeure_qualified AND NOT notice_and_mitigation_proven",
+        "intentional_exclusion_invalid == intentional_breach AND advance_liability_exclusion_clause",
+        "penalty_reduction_procedurally_available == penalty_claimed AND (NOT debtor_acting_in_business OR penalty_reduction_requested)",
+        "penalty_reduction_substantively_supported == penalty_claimed AND manifest_disproportionality_proven AND NOT only_excluded_reduction_reasons AND (NOT (debtor_acting_in_business AND contractual_penalty) OR unjustified_benefit_risk_proven)",
+        "penalty_reduction_prerequisites_satisfied == penalty_reduction_procedurally_available AND penalty_reduction_substantively_supported",
+        "liability_survives_penalty_reduction == liability_issue AND penalty_reduction_prerequisites_satisfied"
+      ]
+    },
+    "liability_evaluation": {
+      "constraint_set_id": "liability-constraint-set:reviewed-liability-evidence-supply-1-v0",
+      "satisfiable": true,
+      "fault_rebutted": false,
+      "force_majeure_qualified": false,
+      "exemption_prerequisites_satisfied": false,
+      "liability_issue": true,
+      "force_majeure_notice_gap": false,
+      "intentional_exclusion_invalid": false,
+      "penalty_reduction_procedurally_available": true,
+      "penalty_reduction_substantively_supported": false,
+      "penalty_reduction_prerequisites_satisfied": false,
+      "invalid_penalty_reduction_basis": false,
+      "liability_survives_penalty_reduction": false,
+      "requires_judicial_assessment": true,
+      "reasons_ru": [
+        "Указано только исключенное коммерческое обстоятельство; оно не признано непреодолимой силой в текущей модели.",
+        "Нарушение установлено, а формальные предпосылки освобождения от ответственности не подтверждены."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные предпосылки статей 333 и 401 ГК РФ.",
+        "Квалификация доказательств, исключительность случая и размер снижения относятся к суду.",
+        "Результат не является юридической консультацией."
+      ]
+    },
     "counterfactual_sensitivity": {
       "id": "counterfactual-sensitivity:analysis:analysis-request-case-supply-1-v0",
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.8.0",
+      "institutional_package_version": "contracts-ru-v0@0.9.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -1086,6 +1548,9 @@
     "warnings_ru": [
       "Используются только синтетические проверенные входные данные.",
       "Детерминированный анализ ограничен узким набором правил; содержательная правовая оценка остается за экспертом.",
+      "Модель проверяет только формальные предпосылки статей 333 и 401 ГК РФ.",
+      "Квалификация доказательств, исключительность случая и размер снижения относятся к суду.",
+      "Результат не является юридической консультацией.",
       "Не является юридической консультацией."
     ]
   }

@@ -184,6 +184,8 @@ def test_forensic_level_contains_reproduction_governance_and_path_comparison() -
     assert "contracts-legal-operators-ru-v1" in forensic
     professional = bundle.artifact_for(TranslationLevel.PROFESSIONAL).text
     assert "Контрфактическая чувствительность" in professional
+    assert "Ответственность и неустойка" in professional
+    assert "Модель ответственности (статьи 333 и 401 ГК РФ)" in forensic
     assert bundle.path_comparisons[0].selected_path == "active_reviewed_path"
 
 

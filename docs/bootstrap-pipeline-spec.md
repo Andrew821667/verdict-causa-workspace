@@ -58,9 +58,11 @@ Phase 0 should define a small reviewed JSON subset for contractual norms:
 
 ## Translation status
 
-The current bootstrap translator emits a deterministic structured `FormalObligationRule` for a narrow contractual subset. The contracts package now accepts separate reviewed case, temporal, and authority inputs. It rejects draft inputs, missing reviewer coordinates, incomplete or duplicate predicates, unknown source references, mismatched case/date coordinates, unsupported schema versions, inapplicable norm sources, and a different authority winner.
+The current bootstrap translator emits a deterministic structured `FormalObligationRule` for a narrow contractual subset. The contracts package now accepts separate reviewed case, temporal, authority, and liability inputs. It rejects draft inputs, missing reviewer coordinates, incomplete or duplicate predicates, unknown source references, mismatched case/date coordinates, unsupported schema versions, inapplicable norm sources, and a different authority winner.
 
-Reviewed case evidence uses `contracts.case-evidence.v0`. The deterministic `contracts-reviewed-evidence-to-facts-v0` mapper produces the complete narrow `ObligationFactSet`: no absent predicate is silently treated as false. Every mapped fact retains its evidence assertion and source references. Duty and exception facts also retain links to the relevant formal condition or exception atoms from the reviewed norm.
+Reviewed case evidence uses `contracts.case-evidence.v1`. The deterministic `contracts-reviewed-evidence-to-facts-v0` mapper produces the complete narrow `ObligationFactSet`: no absent predicate is silently treated as false. Every mapped fact retains its evidence assertion and source references. Duty and exception facts also retain links to the relevant formal condition or exception atoms from the reviewed norm.
+
+Reviewed liability evidence uses `contracts.liability-evidence.v0` and contains all 20 predicates required by the narrow articles 333/401 model. Its facts and legal source references are validated independently and mapped by `contracts-reviewed-liability-to-facts-v0`. Missing liability predicates are never inferred from the general breach result.
 
 For the Russian-law package, every expert-facing temporal, source-applicability, authority, and formal result includes Russian reasons in `reasons_ru`. Stable English `reasons` remain as a compatibility layer and are not the primary legal-audit presentation.
 
@@ -75,7 +77,7 @@ This is still not complete legal formalization. It is a deliberately narrow Phas
 - Invalid JSON fails schema validation.
 - Translation output includes source id and schema version.
 - Translation is deterministic.
-- Draft case, temporal, or authority inputs cannot be analyzed.
+- Draft case, temporal, authority, or liability inputs cannot be analyzed.
 - Every required formal fact has assertion and source provenance.
 - Unknown sources, incomplete evidence, and coordinate mismatches fail closed.
 - Authority resolution runs before formal constraint evaluation.

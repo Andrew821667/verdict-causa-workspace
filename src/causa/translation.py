@@ -21,6 +21,12 @@ class TranslationAssertionCode(str, Enum):
     AUTHORITY_WINNER = "authority_winner"
     HUMAN_RESOLUTION_REQUIRED = "human_resolution_required"
     COUNTERFACTUAL_SENSITIVITY = "counterfactual_sensitivity"
+    FAULT_REBUTTED = "fault_rebutted"
+    FORCE_MAJEURE_QUALIFIED = "force_majeure_qualified"
+    LIABILITY_EXEMPTION_PREREQUISITES = "liability_exemption_prerequisites"
+    LIABILITY_ISSUE = "liability_issue"
+    PENALTY_REDUCTION_PREREQUISITES = "penalty_reduction_prerequisites"
+    INTENTIONAL_EXCLUSION_INVALID = "intentional_exclusion_invalid"
 
 
 class TranslationAssertion(BaseModel):

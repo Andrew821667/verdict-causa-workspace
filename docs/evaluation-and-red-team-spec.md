@@ -96,4 +96,6 @@ The current red-team report is exported to `examples/synthetic_supply_red_team_r
 
 Ограниченный договорный контрфактический слой имеет отдельный benchmark из семи задач и Red Team из семи атак. Они проверяют формальный эффект каждого оператора и блокируют прямую подмену результата, выдуманные факты, отключение review, невыполненные preconditions, дубли операторов и обход бюджета. Объединенный артефакт экспортируется в `examples/synthetic_counterfactual_evaluation_report.json`.
 
+Модель ответственности имеет отдельный benchmark из десяти задач и Red Team из десяти атак. Они проверяют бремя опровержения вины, полный состав непреодолимой силы, исключенные коммерческие риски, уведомление, умышленное нарушение и формальные границы снижения неустойки предпринимателя. Объединенный артефакт экспортируется в `examples/synthetic_liability_evaluation_report.json`.
+
 For the contractual package, authority benchmarks record the rule used to resolve a candidate set: temporal applicability, higher authority, `lex specialis`, or unresolved equal authority. The synthetic Phase 0 resolver applies temporal validity before the policy `constitutional > statutory > regulatory > judicial > contractual > factual`; it does not use `lex specialis` across those levels.

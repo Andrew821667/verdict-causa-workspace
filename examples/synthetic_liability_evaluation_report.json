@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "title_ru": "Синтетическая оценка ответственности и снижения неустойки",
+  "disclaimer_ru": "Модель проверяет только формальные предпосылки статей 333 и 401 ГК РФ, не определяет размер ответственности и требует проверки юристом.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-liability-evidence-supply-1-v0",
+    "schema_version": "contracts.liability-evidence.v0",
+    "mapping_version": "contracts-reviewed-liability-to-facts-v0",
+    "facts": {
+      "breach_established": true,
+      "debtor_acting_in_business": true,
+      "fault_rebuttal_asserted": true,
+      "reasonable_care_proven": false,
+      "all_reasonable_measures_proven": false,
+      "force_majeure_claimed": true,
+      "extraordinary_event_proven": false,
+      "unavoidable_event_proven": false,
+      "beyond_debtor_control_proven": false,
+      "force_majeure_causal_link_proven": false,
+      "excluded_commercial_risk_only": true,
+      "notice_and_mitigation_proven": false,
+      "intentional_breach": false,
+      "advance_liability_exclusion_clause": false,
+      "penalty_claimed": true,
+      "contractual_penalty": true,
+      "penalty_reduction_requested": true,
+      "manifest_disproportionality_proven": true,
+      "unjustified_benefit_risk_proven": false,
+      "only_excluded_reduction_reasons": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk401-liability-model-v1",
+      "synthetic-ru-gk333-penalty-model-v1",
+      "synthetic-ru-plenum7-liability-guidance-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "advance_liability_exclusion_clause",
+        "assertion_id": "liability-evidence-advance_liability_exclusion_clause",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "all_reasonable_measures_proven",
+        "assertion_id": "liability-evidence-all_reasonable_measures_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "beyond_debtor_control_proven",
+        "assertion_id": "liability-evidence-beyond_debtor_control_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "breach_established",
+        "assertion_id": "liability-evidence-breach_established",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "contractual_penalty",
+        "assertion_id": "liability-evidence-contractual_penalty",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_acting_in_business",
+        "assertion_id": "liability-evidence-debtor_acting_in_business",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "excluded_commercial_risk_only",
+        "assertion_id": "liability-evidence-excluded_commercial_risk_only",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "extraordinary_event_proven",
+        "assertion_id": "liability-evidence-extraordinary_event_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "fault_rebuttal_asserted",
+        "assertion_id": "liability-evidence-fault_rebuttal_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "force_majeure_causal_link_proven",
+        "assertion_id": "liability-evidence-force_majeure_causal_link_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "force_majeure_claimed",
+        "assertion_id": "liability-evidence-force_majeure_claimed",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "intentional_breach",
+        "assertion_id": "liability-evidence-intentional_breach",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "manifest_disproportionality_proven",
+        "assertion_id": "liability-evidence-manifest_disproportionality_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "notice_and_mitigation_proven",
+        "assertion_id": "liability-evidence-notice_and_mitigation_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "only_excluded_reduction_reasons",
+        "assertion_id": "liability-evidence-only_excluded_reduction_reasons",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "penalty_claimed",
+        "assertion_id": "liability-evidence-penalty_claimed",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "penalty_reduction_requested",
+        "assertion_id": "liability-evidence-penalty_reduction_requested",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "reasonable_care_proven",
+        "assertion_id": "liability-evidence-reasonable_care_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "unavoidable_event_proven",
+        "assertion_id": "liability-evidence-unavoidable_event_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "unjustified_benefit_risk_proven",
+        "assertion_id": "liability-evidence-unjustified_benefit_risk_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-liability-evidence"
+        ]
+      }
+    ]
+  },
+  "reviewed_constraint_set": {
+    "id": "liability-constraint-set:reviewed-liability-evidence-supply-1-v0",
+    "model_version": "contracts-liability-articles-333-401-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk401-liability-model-v1",
+      "synthetic-ru-gk333-penalty-model-v1",
+      "synthetic-ru-plenum7-liability-guidance-v1"
+    ],
+    "expressions": [
+      "fault_rebutted == fault_rebuttal_asserted AND reasonable_care_proven AND all_reasonable_measures_proven",
+      "force_majeure_qualified == force_majeure_claimed AND extraordinary_event_proven AND unavoidable_event_proven AND beyond_debtor_control_proven AND force_majeure_causal_link_proven AND NOT excluded_commercial_risk_only AND NOT intentional_breach",
+      "exemption_prerequisites_satisfied == breach_established AND ((NOT debtor_acting_in_business AND fault_rebutted) OR (debtor_acting_in_business AND force_majeure_qualified))",
+      "liability_issue == breach_established AND NOT exemption_prerequisites_satisfied",
+      "force_majeure_notice_gap == force_majeure_qualified AND NOT notice_and_mitigation_proven",
+      "intentional_exclusion_invalid == intentional_breach AND advance_liability_exclusion_clause",
+      "penalty_reduction_procedurally_available == penalty_claimed AND (NOT debtor_acting_in_business OR penalty_reduction_requested)",
+      "penalty_reduction_substantively_supported == penalty_claimed AND manifest_disproportionality_proven AND NOT only_excluded_reduction_reasons AND (NOT (debtor_acting_in_business AND contractual_penalty) OR unjustified_benefit_risk_proven)",
+      "penalty_reduction_prerequisites_satisfied == penalty_reduction_procedurally_available AND penalty_reduction_substantively_supported",
+      "liability_survives_penalty_reduction == liability_issue AND penalty_reduction_prerequisites_satisfied"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "liability-constraint-set:reviewed-liability-evidence-supply-1-v0",
+    "satisfiable": true,
+    "fault_rebutted": false,
+    "force_majeure_qualified": false,
+    "exemption_prerequisites_satisfied": false,
+    "liability_issue": true,
+    "force_majeure_notice_gap": false,
+    "intentional_exclusion_invalid": false,
+    "penalty_reduction_procedurally_available": true,
+    "penalty_reduction_substantively_supported": false,
+    "penalty_reduction_prerequisites_satisfied": false,
+    "invalid_penalty_reduction_basis": false,
+    "liability_survives_penalty_reduction": false,
+    "requires_judicial_assessment": true,
+    "reasons_ru": [
+      "Указано только исключенное коммерческое обстоятельство; оно не признано непреодолимой силой в текущей модели.",
+      "Нарушение установлено, а формальные предпосылки освобождения от ответственности не подтверждены."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные предпосылки статей 333 и 401 ГК РФ.",
+      "Квалификация доказательств, исключительность случая и размер снижения относятся к суду.",
+      "Результат не является юридической консультацией."
+    ]
+  },
+  "benchmark_report": {
+    "id": "synthetic-contract-liability-benchmark-suite-v0",
+    "locale": "ru-RU",
+    "institutional_package_id": "contracts-ru-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "liability-bench-general-fault-not-rebutted",
+        "passed": true,
+        "observed_outcomes": {
+          "fault_rebutted": false,
+          "liability_issue": true
+        },
+        "reasons_ru": [
+          "Ожидаемые формальные предпосылки подтверждены."
+        ]
+      },
+      {
+        "task_id": "liability-bench-general-fault-rebutted",
+        "passed": true,
+        "observed_outcomes": {
+          "fault_rebutted": true,
+          "exemption_prerequisites_satisfied": true,
+          "liability_issue": false
+        },
+        "reasons_ru": [
+          "Ожидаемые формальные предпосылки подтверждены."
+        ]
+      },
+      {
+        "task_id": "liability-bench-business-force-majeure",
+        "passed": true,
+        "observed_outcomes": {
+          "force_majeure_qualified": true,
+          "exemption_prerequisites_satisfied": true,
+          "liability_issue": false
+        },
+        "reasons_ru": [
+          "Ожидаемые формальные предпосылки подтверждены."
+        ]
+      },
+      {
+        "task_id": "liability-bench-force-majeure-notice-gap",
+        "passed": true,
+        "observed_outcomes": {
+          "force_majeure_qualified": true,
+          "force_majeure_notice_gap": true
+        },
+        "reasons_ru": [
+          "Ожидаемые формальные предпосылки подтверждены."
+        ]
+      },
+      {
+        "task_id": "liability-bench-business-penalty-no-request",
+        "passed": true,
+        "observed_outcomes": {
+          "penalty_reduction_procedurally_available": false,
+          "penalty_reduction_prerequisites_satisfied": false
+        },
+        "reasons_ru": [
+          "Ожидаемые формальные предпосылки подтверждены."
+        ]
+      },
+      {
+        "task_id": "liability-bench-business-contractual-penalty",
+        "passed": true,
+        "observed_outcomes": {
+          "penalty_reduction_prerequisites_satisfied": true,
+          "liability_survives_penalty_reduction": true,
+          "requires_judicial_assessment": true
+        },
+        "reasons_ru": [
+          "Ожидаемые формальные предпосылки подтверждены."
+        ]
+      },
+      {
+        "task_id": "liability-bench-no-unjustified-benefit",
+        "passed": true,
+        "observed_outcomes": {
+          "penalty_reduction_substantively_supported": false,
+          "penalty_reduction_prerequisites_satisfied": false
+        },
+        "reasons_ru": [
+          "Ожидаемые формальные предпосылки подтверждены."
+        ]
+      },
+      {
+        "task_id": "liability-bench-excluded-reduction-reasons",
+        "passed": true,
+        "observed_outcomes": {
+          "invalid_penalty_reduction_basis": true,
+          "penalty_reduction_prerequisites_satisfied": false
+        },
+        "reasons_ru": [
+          "Ожидаемые формальные предпосылки подтверждены."
+        ]
+      },
+      {
+        "task_id": "liability-bench-intentional-exclusion-invalid",
+        "passed": true,
+        "observed_outcomes": {
+          "intentional_exclusion_invalid": true
+        },
+        "reasons_ru": [
+          "Ожидаемые формальные предпосылки подтверждены."
+        ]
+      },
+      {
+        "task_id": "liability-bench-no-breach",
+        "passed": true,
+        "observed_outcomes": {
+          "liability_issue": false
+        },
+        "reasons_ru": [
+          "Ожидаемые формальные предпосылки подтверждены."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "synthetic-contract-liability-red-team-suite-v0",
+    "locale": "ru-RU",
+    "institutional_package_id": "contracts-ru-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "liability-redteam-counterparty-default-force-majeure",
+        "blocked": true,
+        "observed_outcomes": {
+          "force_majeure_qualified": false
+        },
+        "reasons_ru": [
+          "Формальные ограничения отклонили требуемый атакой результат."
+        ]
+      },
+      {
+        "case_id": "liability-redteam-ordinary-event",
+        "blocked": true,
+        "observed_outcomes": {
+          "force_majeure_qualified": false
+        },
+        "reasons_ru": [
+          "Формальные ограничения отклонили требуемый атакой результат."
+        ]
+      },
+      {
+        "case_id": "liability-redteam-avoidable-event",
+        "blocked": true,
+        "observed_outcomes": {
+          "force_majeure_qualified": false
+        },
+        "reasons_ru": [
+          "Формальные ограничения отклонили требуемый атакой результат."
+        ]
+      },
+      {
+        "case_id": "liability-redteam-no-causal-link",
+        "blocked": true,
+        "observed_outcomes": {
+          "exemption_prerequisites_satisfied": false
+        },
+        "reasons_ru": [
+          "Формальные ограничения отклонили требуемый атакой результат."
+        ]
+      },
+      {
+        "case_id": "liability-redteam-business-penalty-without-request",
+        "blocked": true,
+        "observed_outcomes": {
+          "penalty_reduction_prerequisites_satisfied": false
+        },
+        "reasons_ru": [
+          "Формальные ограничения отклонили требуемый атакой результат."
+        ]
+      },
+      {
+        "case_id": "liability-redteam-financial-hardship-only",
+        "blocked": true,
+        "observed_outcomes": {
+          "penalty_reduction_prerequisites_satisfied": false
+        },
+        "reasons_ru": [
+          "Формальные ограничения отклонили требуемый атакой результат."
+        ]
+      },
+      {
+        "case_id": "liability-redteam-no-benefit-risk",
+        "blocked": true,
+        "observed_outcomes": {
+          "penalty_reduction_prerequisites_satisfied": false
+        },
+        "reasons_ru": [
+          "Формальные ограничения отклонили требуемый атакой результат."
+        ]
+      },
+      {
+        "case_id": "liability-redteam-erase-liability",
+        "blocked": true,
+        "observed_outcomes": {
+          "liability_survives_penalty_reduction": true
+        },
+        "reasons_ru": [
+          "Формальные ограничения отклонили требуемый атакой результат."
+        ]
+      },
+      {
+        "case_id": "liability-redteam-intentional-exclusion",
+        "blocked": true,
+        "observed_outcomes": {
+          "intentional_exclusion_invalid": true
+        },
+        "reasons_ru": [
+          "Формальные ограничения отклонили требуемый атакой результат."
+        ]
+      },
+      {
+        "case_id": "liability-redteam-presume-exemption",
+        "blocked": true,
+        "observed_outcomes": {
+          "exemption_prerequisites_satisfied": false
+        },
+        "reasons_ru": [
+          "Формальные ограничения отклонили требуемый атакой результат."
+        ]
+      }
+    ]
+  }
+}

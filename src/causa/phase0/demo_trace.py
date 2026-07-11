@@ -272,6 +272,22 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     "legal_operator_library_hash": (
                         analysis_result.counterfactual_sensitivity.operator_library_hash
                     ),
+                    "liability_evidence_mapping_id": (
+                        analysis_result.liability_evidence_mapping.evidence_id
+                    ),
+                    "liability_constraint_set_id": (
+                        analysis_result.liability_constraint_set.id
+                    ),
+                    "liability_model_version": (
+                        analysis_result.liability_constraint_set.model_version
+                    ),
+                    "liability_issue": analysis_result.liability_evaluation.liability_issue,
+                    "force_majeure_qualified": (
+                        analysis_result.liability_evaluation.force_majeure_qualified
+                    ),
+                    "penalty_reduction_prerequisites_satisfied": (
+                        analysis_result.liability_evaluation.penalty_reduction_prerequisites_satisfied
+                    ),
                     "source_applicable": source_applicability.applicable,
                     "authority_winner": (
                         analysis_result.authority_evaluation.selected_source_id

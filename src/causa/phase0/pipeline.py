@@ -13,6 +13,9 @@ from causa.institutional.contracts.red_team_runner import run_synthetic_supply_r
 from causa.institutional.contracts.synthetic_counterfactual import (
     build_synthetic_counterfactual_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_liability import (
+    build_synthetic_liability_evaluation_artifact,
+)
 from causa.institutional.contracts.versioning import (
     evaluate_contracts_package_compatibility,
 )
@@ -164,6 +167,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-liability-prerequisites",
+            title="Проверка предпосылок ответственности и снижения неустойки",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.liability_evidence_mapping.evidence_id,
+                trace.analysis_result.liability_constraint_set.id,
+                *trace.analysis_result.liability_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.liability_evaluation.reasons_ru,
+                "Проверяются только формальные предпосылки статей 333 и 401 ГК РФ.",
+                "Размер снижения неустойки и оценка доказательств не автоматизируются.",
+            ],
+        ),
+        PipelineStepResult(
             id="build-case-graph",
             title="Построение четырехслойной трассировки решения",
             status=PipelineStepStatus.PASSED,
@@ -270,6 +288,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     red_team_report = run_synthetic_supply_red_team_suite()
     compatibility_check = evaluate_contracts_package_compatibility()
     counterfactual_artifact = build_synthetic_counterfactual_evaluation_artifact()
+    liability_artifact = build_synthetic_liability_evaluation_artifact()
 
     items = [
         ReadinessItem(
@@ -317,17 +336,21 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "src/causa/institutional/contracts/versioning.py",
                 "src/causa/institutional/contracts/migrations.py",
                 "src/causa/institutional/contracts/legal_operators.py",
+                "src/causa/institutional/contracts/liability.py",
+                "docs/contract-liability-spec.md",
                 "examples/synthetic_counterfactual_evaluation_report.json",
-                "examples/migrations/contracts-ru-v0-0.1.0-to-0.8.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.3.0-to-0.8.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.4.0-to-0.8.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.5.0-to-0.8.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.6.0-to-0.8.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.7.0-to-0.8.0-migration-report.json",
+                "examples/synthetic_liability_evaluation_report.json",
+                "examples/migrations/contracts-ru-v0-0.1.0-to-0.9.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.3.0-to-0.9.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.4.0-to-0.9.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.5.0-to-0.9.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.6.0-to-0.9.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.7.0-to-0.9.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.8.0-to-0.9.0-migration-report.json",
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
             ],
             remaining_work=[
-                "Расширить словарь, правила юридической силы и временные правила за пределы текущего среза.",
+                "Расширить словарь, правила юридической силы и временные правила за пределы поставки и текущей модели ответственности.",
                 "Расширить legal operators на заключение, изменение и расторжение договора.",
                 "Добавлять replay-миграцию для каждого семантического релиза пакета.",
             ],
@@ -389,6 +412,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 red_team_report.id,
                 counterfactual_artifact.benchmark_report.id,
                 counterfactual_artifact.red_team_report.id,
+                liability_artifact.benchmark_report.id,
+                liability_artifact.red_team_report.id,
             ],
             remaining_work=[
                 "Получить privacy- и экспертное одобрение до сбора несинтетических пилотных наблюдений.",
@@ -404,6 +429,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_reviewed_contract_analysis.json",
                 "examples/synthetic_translation_bundle_report.json",
                 "examples/synthetic_counterfactual_evaluation_report.json",
+                "examples/synthetic_liability_evaluation_report.json",
                 pipeline.id,
             ],
             remaining_work=["Расширить синтетический набор источников и перечень пилотных задач."],

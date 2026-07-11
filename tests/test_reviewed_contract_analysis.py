@@ -76,6 +76,7 @@ def test_reviewed_analysis_resolves_temporal_authority_before_formal_evaluation(
         ("case_evidence", "Case evidence must be reviewed"),
         ("temporal_evidence", "Temporal evidence must be reviewed"),
         ("authority_input", "Authority input must be reviewed"),
+        ("liability_evidence", "Liability evidence must be reviewed"),
     ],
 )
 def test_analysis_rejects_each_unreviewed_input(

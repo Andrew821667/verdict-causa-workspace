@@ -57,17 +57,21 @@
         "src/causa/institutional/contracts/versioning.py",
         "src/causa/institutional/contracts/migrations.py",
         "src/causa/institutional/contracts/legal_operators.py",
+        "src/causa/institutional/contracts/liability.py",
+        "docs/contract-liability-spec.md",
         "examples/synthetic_counterfactual_evaluation_report.json",
-        "examples/migrations/contracts-ru-v0-0.1.0-to-0.8.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.3.0-to-0.8.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.4.0-to-0.8.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.5.0-to-0.8.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.6.0-to-0.8.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.7.0-to-0.8.0-migration-report.json",
-        "contracts-ru-v0@0.8.0"
+        "examples/synthetic_liability_evaluation_report.json",
+        "examples/migrations/contracts-ru-v0-0.1.0-to-0.9.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.3.0-to-0.9.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.4.0-to-0.9.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.5.0-to-0.9.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.6.0-to-0.9.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.7.0-to-0.9.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.8.0-to-0.9.0-migration-report.json",
+        "contracts-ru-v0@0.9.0"
       ],
       "remaining_work": [
-        "Расширить словарь, правила юридической силы и временные правила за пределы текущего среза.",
+        "Расширить словарь, правила юридической силы и временные правила за пределы поставки и текущей модели ответственности.",
         "Расширить legal operators на заключение, изменение и расторжение договора.",
         "Добавлять replay-миграцию для каждого семантического релиза пакета."
       ]
@@ -81,7 +85,7 @@
         "src/causa/management/policy_registry.py",
         "examples/synthetic_management_policy_registry_report.json",
         "policy-snapshot:phase0-standard-t3@1",
-        "sha256:920187c1d8073d36d88fe210ce605b0662eda9cd8378dbb7bf0371328be45230"
+        "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff"
       ],
       "remaining_work": [
         "Заменить локальное атомарное JSON-хранилище транзакционным production backend."
@@ -128,7 +132,9 @@
         "synthetic-privacy-safe-pilot-utility-report-v0",
         "synthetic-supply-red-team-suite-v0",
         "synthetic-contract-counterfactual-benchmark-suite-v0",
-        "synthetic-contract-counterfactual-red-team-suite-v0"
+        "synthetic-contract-counterfactual-red-team-suite-v0",
+        "synthetic-contract-liability-benchmark-suite-v0",
+        "synthetic-contract-liability-red-team-suite-v0"
       ],
       "remaining_work": [
         "Получить privacy- и экспертное одобрение до сбора несинтетических пилотных наблюдений.",
@@ -144,6 +150,7 @@
         "examples/synthetic_reviewed_contract_analysis.json",
         "examples/synthetic_translation_bundle_report.json",
         "examples/synthetic_counterfactual_evaluation_report.json",
+        "examples/synthetic_liability_evaluation_report.json",
         "phase0-supply-dispute-pipeline-v0"
       ],
       "remaining_work": [

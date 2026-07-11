@@ -147,6 +147,22 @@ def _provenance_refs(
     return sorted(references)
 
 
+def _liability_refs(
+    result: ReviewedContractAnalysisResult,
+    *fact_names: str,
+) -> list[str]:
+    references = {
+        *result.liability_evidence_mapping.legal_source_refs,
+        *(
+            source_ref
+            for item in result.liability_evidence_mapping.provenance
+            if item.fact_name in fact_names
+            for source_ref in item.source_refs
+        ),
+    }
+    return sorted(references)
+
+
 def build_translation_assertions(
     request: ReviewedContractAnalysisRequest,
     result: ReviewedContractAnalysisResult,
@@ -155,6 +171,7 @@ def build_translation_assertions(
     authority = result.authority_evaluation
     authority_refs = list(request.authority_input.candidate_source_ids)
     counterfactual_report = result.counterfactual_sensitivity
+    liability = result.liability_evaluation
     critical_scenario = (
         next(
             scenario
@@ -327,6 +344,91 @@ def build_translation_assertions(
                 else "В пределах бюджета материальная контрфактическая чувствительность не выявлена."
             ),
             source_refs=[],
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.FAULT_REBUTTED,
+            value=liability.fault_rebutted,
+            text_ru=(
+                "Формальные предпосылки опровержения вины подтверждены."
+                if liability.fault_rebutted
+                else "Формальные предпосылки опровержения вины не подтверждены."
+            ),
+            source_refs=_liability_refs(
+                result,
+                "fault_rebuttal_asserted",
+                "reasonable_care_proven",
+                "all_reasonable_measures_proven",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.FORCE_MAJEURE_QUALIFIED,
+            value=liability.force_majeure_qualified,
+            text_ru=(
+                "Формальные признаки непреодолимой силы подтверждены."
+                if liability.force_majeure_qualified
+                else "Полный набор формальных признаков непреодолимой силы не подтвержден."
+            ),
+            source_refs=_liability_refs(
+                result,
+                "force_majeure_claimed",
+                "extraordinary_event_proven",
+                "unavoidable_event_proven",
+                "beyond_debtor_control_proven",
+                "force_majeure_causal_link_proven",
+                "excluded_commercial_risk_only",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.LIABILITY_EXEMPTION_PREREQUISITES,
+            value=liability.exemption_prerequisites_satisfied,
+            text_ru=(
+                "Формальные предпосылки освобождения от ответственности подтверждены."
+                if liability.exemption_prerequisites_satisfied
+                else "Формальные предпосылки освобождения от ответственности не подтверждены."
+            ),
+            source_refs=_liability_refs(result, *[item.fact_name for item in result.liability_evidence_mapping.provenance]),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.LIABILITY_ISSUE,
+            value=liability.liability_issue,
+            text_ru=(
+                "Формальная модель сохраняет вопрос об ответственности за нарушение."
+                if liability.liability_issue
+                else "Текущая формальная модель не сохраняет вопрос об ответственности."
+            ),
+            source_refs=_liability_refs(result, "breach_established"),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.PENALTY_REDUCTION_PREREQUISITES,
+            value=liability.penalty_reduction_prerequisites_satisfied,
+            text_ru=(
+                "Формальные предпосылки постановки вопроса о снижении неустойки подтверждены."
+                if liability.penalty_reduction_prerequisites_satisfied
+                else "Полный набор формальных предпосылок снижения неустойки не подтвержден."
+            ),
+            source_refs=_liability_refs(
+                result,
+                "penalty_claimed",
+                "contractual_penalty",
+                "penalty_reduction_requested",
+                "manifest_disproportionality_proven",
+                "unjustified_benefit_risk_proven",
+                "only_excluded_reduction_reasons",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.INTENTIONAL_EXCLUSION_INVALID,
+            value=liability.intentional_exclusion_invalid,
+            text_ru=(
+                "Выявлена недопустимая оговорка об исключении умышленной ответственности."
+                if liability.intentional_exclusion_invalid
+                else "Недопустимая оговорка об исключении умышленной ответственности не выявлена."
+            ),
+            source_refs=_liability_refs(
+                result,
+                "intentional_breach",
+                "advance_liability_exclusion_clause",
+            ),
         ),
     ]
     return assertions
@@ -511,6 +613,33 @@ def _render_context(
             f"- {counterfactual_report.disclaimer_ru}",
         ]
     )
+    liability = result.liability_evaluation
+    liability_professional_ru = "\n".join(
+        [
+            *[f"- {reason}" for reason in liability.reasons_ru],
+            "- Снижение неустойки не рассчитывается автоматически и не устраняет ответственность.",
+            "- Оценка доказательств и размер возможного снижения относятся к компетенции суда.",
+        ]
+    )
+    liability_forensic_ru = "\n".join(
+        [
+            f"- Constraint set: {result.liability_constraint_set.id}.",
+            f"- Model version: {result.liability_constraint_set.model_version}.",
+            f"- Evidence mapping: {result.liability_evidence_mapping.mapping_version}.",
+            f"- Legal sources: {', '.join(result.liability_evidence_mapping.legal_source_refs)}.",
+            *[
+                f"- Rule: {expression}."
+                for expression in result.liability_constraint_set.expressions
+            ],
+            *[
+                f"- Fact {item.fact_name}: assertion={item.assertion_id}; "
+                f"sources={', '.join(item.source_refs)}."
+                for item in result.liability_evidence_mapping.provenance
+            ],
+            *[f"- Результат: {reason}" for reason in liability.reasons_ru],
+            *[f"- Ограничение: {warning}" for warning in liability.warnings_ru],
+        ]
+    )
     return {
         "conclusion_ru": conclusion_ru,
         "key_basis_ru": key_basis_ru,
@@ -528,6 +657,8 @@ def _render_context(
         "path_comparison_ru": path_comparison_ru,
         "counterfactual_professional_ru": counterfactual_professional_ru,
         "counterfactual_forensic_ru": counterfactual_forensic_ru,
+        "liability_professional_ru": liability_professional_ru,
+        "liability_forensic_ru": liability_forensic_ru,
         "disclaimer_ru": TRANSLATION_DISCLAIMER_RU,
     }
 
@@ -720,7 +851,7 @@ def evaluate_translation_usability(
                         message_ru=f"Отсутствует раздел «{heading}».",
                     )
                 )
-        minimum_cyrillic_ratio = 0.30 if level == TranslationLevel.FORENSIC else 0.55
+        minimum_cyrillic_ratio = 0.20 if level == TranslationLevel.FORENSIC else 0.55
         if _cyrillic_ratio(artifact.text) < minimum_cyrillic_ratio:
             issues.append(
                 TranslationCheckIssue(

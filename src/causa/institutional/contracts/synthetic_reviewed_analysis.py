@@ -15,6 +15,11 @@ from causa.institutional.contracts.reviewed_analysis import (
     ReviewedTemporalEvidence,
     run_reviewed_contract_analysis,
 )
+from causa.institutional.contracts.liability import (
+    LiabilityEvidenceAssertion,
+    LiabilityEvidencePredicate,
+    ReviewedLiabilityEvidence,
+)
 from causa.institutional.contracts.synthetic_sources import (
     get_synthetic_contract_source,
 )
@@ -26,6 +31,10 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-contract-supply-delivery-duty-v2",
     "synthetic-ru-contract-supply-delivery-term",
     "synthetic-case-supply-1-reviewed-evidence",
+    "synthetic-ru-gk401-liability-model-v1",
+    "synthetic-ru-gk333-penalty-model-v1",
+    "synthetic-ru-plenum7-liability-guidance-v1",
+    "synthetic-case-supply-1-liability-evidence",
 )
 
 
@@ -120,6 +129,59 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             evaluation_date="2026-01-21",
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-authority-reviewer",
+        ),
+        liability_evidence=ReviewedLiabilityEvidence(
+            id="reviewed-liability-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                LiabilityEvidenceAssertion(
+                    id=f"liability-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-liability-evidence",),
+                )
+                for predicate, value in (
+                    (LiabilityEvidencePredicate.BREACH_ESTABLISHED, True),
+                    (LiabilityEvidencePredicate.DEBTOR_ACTING_IN_BUSINESS, True),
+                    (LiabilityEvidencePredicate.FAULT_REBUTTAL_ASSERTED, True),
+                    (LiabilityEvidencePredicate.REASONABLE_CARE_PROVEN, False),
+                    (LiabilityEvidencePredicate.ALL_REASONABLE_MEASURES_PROVEN, False),
+                    (LiabilityEvidencePredicate.FORCE_MAJEURE_CLAIMED, True),
+                    (LiabilityEvidencePredicate.EXTRAORDINARY_EVENT_PROVEN, False),
+                    (LiabilityEvidencePredicate.UNAVOIDABLE_EVENT_PROVEN, False),
+                    (LiabilityEvidencePredicate.BEYOND_DEBTOR_CONTROL_PROVEN, False),
+                    (LiabilityEvidencePredicate.FORCE_MAJEURE_CAUSAL_LINK_PROVEN, False),
+                    (LiabilityEvidencePredicate.EXCLUDED_COMMERCIAL_RISK_ONLY, True),
+                    (LiabilityEvidencePredicate.NOTICE_AND_MITIGATION_PROVEN, False),
+                    (LiabilityEvidencePredicate.INTENTIONAL_BREACH, False),
+                    (
+                        LiabilityEvidencePredicate.ADVANCE_LIABILITY_EXCLUSION_CLAUSE,
+                        False,
+                    ),
+                    (LiabilityEvidencePredicate.PENALTY_CLAIMED, True),
+                    (LiabilityEvidencePredicate.CONTRACTUAL_PENALTY, True),
+                    (LiabilityEvidencePredicate.PENALTY_REDUCTION_REQUESTED, True),
+                    (
+                        LiabilityEvidencePredicate.MANIFEST_DISPROPORTIONALITY_PROVEN,
+                        True,
+                    ),
+                    (
+                        LiabilityEvidencePredicate.UNJUSTIFIED_BENEFIT_RISK_PROVEN,
+                        False,
+                    ),
+                    (
+                        LiabilityEvidencePredicate.ONLY_EXCLUDED_REDUCTION_REASONS,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk401-liability-model-v1",
+                "synthetic-ru-gk333-penalty-model-v1",
+                "synthetic-ru-plenum7-liability-guidance-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-liability-reviewer",
         ),
     )
 

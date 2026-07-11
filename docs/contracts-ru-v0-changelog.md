@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.9.0 - 2026-07-11
+
+- Adds mandatory reviewed liability evidence with 20 provenance-backed predicates.
+- Adds narrow formal prerequisite models for Civil Code articles 401 and 333.
+- Separates fault rebuttal, force majeure, excluded commercial risks, notice, and intentional breach clauses.
+- Separates procedural and substantive prerequisites for judicial penalty reduction without calculating an amount.
+- Adds ten liability benchmarks and ten adversarial overreach checks.
+- Upgrades evidence to `contracts.case-evidence.v1`, analysis to `contracts-reviewed-analysis-v1`, and Russian templates to `ru-v3`.
+
 ## 0.8.0 - 2026-07-11
 
 - Adds a hash-addressed library of seven typed contractual legal operators.

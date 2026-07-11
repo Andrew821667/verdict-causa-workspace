@@ -191,6 +191,76 @@ SYNTHETIC_CONTRACT_SOURCES = [
         valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "penalty_reduction"},
     ),
+    LegalSource(
+        id="synthetic-ru-gk401-liability-model-v1",
+        title="Синтетическая проверенная модель оснований ответственности по статье 401 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: для ответственности и освобождения отдельно "
+            "проверяются вина, характер деятельности должника, непреодолимая сила и "
+            "исключенные обычные коммерческие риски."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "liability_article_401",
+            "legal_reference": "ГК РФ, статья 401",
+            "basis_url": "https://minjust.gov.ru/ru/pages/grazhdanskij-kodeks/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk333-penalty-model-v1",
+        title="Синтетическая проверенная модель снижения неустойки по статье 333 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: модель проверяет заявление предпринимателя, "
+            "явную несоразмерность и риск необоснованной выгоды, но не определяет размер "
+            "снижения и не подменяет судебную оценку."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "penalty_article_333",
+            "legal_reference": "ГК РФ, статья 333",
+            "basis_url": "https://minjust.gov.ru/ru/pages/grazhdanskij-kodeks/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-plenum7-liability-guidance-v1",
+        title="Синтетическая модель разъяснений Пленума ВС РФ об ответственности",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление разъяснений: бремя доказывания, признаки "
+            "непреодолимой силы, исключенные коммерческие риски и предпосылки снижения "
+            "неустойки проверяются раздельно."
+        ),
+        valid_from="2017-02-07",
+        metadata={
+            "synthetic": True,
+            "topic": "liability_plenum_guidance",
+            "legal_reference": "Постановление Пленума ВС РФ от 24.03.2016 № 7",
+            "basis_url": "https://www.vsrf.ru/documents/own/8478/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-liability-evidence",
+        title="Синтетическая проверенная запись фактов об ответственности и неустойке",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: факты, относящиеся к вине, освобождению от "
+            "ответственности и заявлению о снижении неустойки, одобрены для Этапа 0."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "liability_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
 ]
 
 
