@@ -107,10 +107,11 @@
         "red-team-supply-delay-excuse-overreach",
         "synthetic-supply-benchmark-suite-v0",
         "synthetic-supply-practice-utility-report-v0",
+        "synthetic-privacy-safe-pilot-utility-report-v0",
         "synthetic-supply-red-team-suite-v0"
       ],
       "remaining_work": [
-        "Collect non-synthetic pilot observations with privacy controls.",
+        "Obtain privacy and human-review approval before collecting non-synthetic pilot observations.",
         "Integrate a reviewed external model provider for attack wording under privacy controls."
       ]
     },

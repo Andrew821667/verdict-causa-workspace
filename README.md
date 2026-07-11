@@ -141,6 +141,14 @@ python scripts/export_synthetic_supply_practice_utility.py
 
 The output is written to `examples/synthetic_supply_practice_utility_report.json`.
 
+Generate the synthetic privacy-safe pilot utility schema demo:
+
+```bash
+python scripts/export_privacy_safe_pilot_utility.py
+```
+
+The output is written to `examples/synthetic_privacy_safe_pilot_utility_report.json`.
+
 Generate the synthetic supply red-team report:
 
 ```bash

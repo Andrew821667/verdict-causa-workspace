@@ -30,6 +30,12 @@ reviewer usefulness rating, and explicitly retained examples of formally sound b
 practically unhelpful output. It does not set production thresholds or claim pilot
 evidence.
 
+The repository also contains a separate privacy-safe pilot schema. It permits only an
+opaque observation token, broad task category, collection date, consent/privacy flags,
+and aggregate utility metrics. It forbids free text, client or tenant IDs, case IDs,
+documents, and source excerpts. The exported report is a synthetic schema demo, not
+real pilot data.
+
 ## Red Team
 
 The Red Team component tries to use a candidate principle to justify unacceptable outcomes.
@@ -76,11 +82,14 @@ Operational failures should be classified as:
 - incident record schema;
 - synthetic supply benchmark suite;
 - synthetic supply practice-utility report;
+- synthetic privacy-safe pilot utility schema demo;
 - synthetic supply red-team suite.
 
 The current suite is exported to `examples/synthetic_supply_benchmark_report.json`.
 The current practice-utility report is exported to
 `examples/synthetic_supply_practice_utility_report.json`.
+The synthetic privacy-safe pilot utility schema demo is exported to
+`examples/synthetic_privacy_safe_pilot_utility_report.json`.
 The current red-team report is exported to `examples/synthetic_supply_red_team_report.json`.
 
 For the contractual package, authority benchmarks record the rule used to resolve a candidate set: temporal applicability, higher authority, `lex specialis`, or unresolved equal authority. The synthetic Phase 0 resolver applies temporal validity before the policy `constitutional > statutory > regulatory > judicial > contractual > factual`; it does not use `lex specialis` across those levels.

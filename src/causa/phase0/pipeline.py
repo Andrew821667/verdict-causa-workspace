@@ -6,6 +6,9 @@ from causa.institutional.contracts.benchmark_runner import run_synthetic_supply_
 from causa.institutional.contracts.practice_utility import (
     build_synthetic_supply_practice_utility_report,
 )
+from causa.institutional.contracts.pilot_utility import (
+    build_privacy_safe_pilot_utility_report,
+)
 from causa.institutional.contracts.red_team_runner import run_synthetic_supply_red_team_suite
 from causa.institutional.contracts.versioning import (
     evaluate_contracts_package_compatibility,
@@ -175,6 +178,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     pipeline = run_supply_dispute_pipeline()
     benchmark_report = run_synthetic_supply_benchmark_suite()
     practice_utility_report = build_synthetic_supply_practice_utility_report()
+    privacy_safe_pilot_report = build_privacy_safe_pilot_utility_report()
     red_team_report = run_synthetic_supply_red_team_suite()
     compatibility_check = evaluate_contracts_package_compatibility()
 
@@ -272,10 +276,11 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 pipeline.trace.red_team_scenario.id,
                 benchmark_report.id,
                 practice_utility_report.id,
+                privacy_safe_pilot_report.id,
                 red_team_report.id,
             ],
             remaining_work=[
-                "Collect non-synthetic pilot observations with privacy controls.",
+                "Obtain privacy and human-review approval before collecting non-synthetic pilot observations.",
                 "Integrate a reviewed external model provider for attack wording under privacy controls.",
             ],
         ),

@@ -32,3 +32,10 @@ Secrets should be provided through environment variables or secret stores and ne
 Any external model provider used for adversarial attack wording must receive only data that is
 permitted for that provider and tenant. Generated wording is review-required evidence, not an
 instruction to mutate formal constraints, source references, or authority inputs.
+
+## Pilot Utility Observations
+
+Pilot utility observations must use the privacy-safe schema. It permits only opaque observation
+tokens, broad task categories, dates, consent/privacy flags, and aggregate metrics. It rejects
+free text and fields that could identify a client, tenant, case, or source document. Collecting
+non-synthetic observations requires privacy and human-review approval outside this repository.

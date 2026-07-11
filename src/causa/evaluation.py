@@ -1,4 +1,7 @@
-from pydantic import BaseModel, Field
+from datetime import date
+from enum import Enum
+
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from causa.governance.failure_taxonomy import FailureType
 
@@ -83,6 +86,56 @@ class PracticeUtilityReport(BaseModel):
     average_reviewer_usefulness_rating: float
     formally_smart_but_practically_useless_count: int
     observations: list[PracticeUtilityObservation] = Field(default_factory=list)
+
+
+class PilotTaskCategory(str, Enum):
+    SUPPLY_DELIVERY = "supply_delivery"
+    PAYMENT = "payment"
+    DEFECTS = "defects"
+    AUTHORITY = "authority"
+
+
+class PilotDataOrigin(str, Enum):
+    SYNTHETIC_SCHEMA_DEMO = "synthetic_schema_demo"
+    APPROVED_ANONYMIZED_PILOT = "approved_anonymized_pilot"
+
+
+class PrivacySafePilotUtilityObservation(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(pattern=r"^pilot-[a-f0-9]{8}$")
+    task_category: PilotTaskCategory
+    collection_date: date
+    data_origin: PilotDataOrigin
+    privacy_reviewed: bool
+    consent_recorded: bool
+    time_to_useful_draft_minutes: float = Field(ge=0)
+    accepted_argument_count: int = Field(ge=0)
+    human_correction_count: int = Field(ge=0)
+    reviewer_usefulness_rating: float = Field(ge=1, le=5)
+    formally_smart_but_practically_useless: bool = False
+
+    @model_validator(mode="after")
+    def require_privacy_controls(self) -> "PrivacySafePilotUtilityObservation":
+        if not self.privacy_reviewed:
+            raise ValueError("Privacy review is required for pilot utility observations.")
+        if not self.consent_recorded:
+            raise ValueError("Consent record is required for pilot utility observations.")
+        return self
+
+
+class PrivacySafePilotUtilityReport(BaseModel):
+    id: str
+    institutional_package_id: str
+    data_origin: PilotDataOrigin
+    schema_version: str
+    total_observations: int
+    average_time_to_useful_draft_minutes: float
+    total_accepted_argument_count: int
+    total_human_correction_count: int
+    average_reviewer_usefulness_rating: float
+    formally_smart_but_practically_useless_count: int
+    observations: list[PrivacySafePilotUtilityObservation] = Field(default_factory=list)
 
 
 class RedTeamScenario(BaseModel):

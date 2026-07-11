@@ -1,0 +1,40 @@
+{
+  "id": "synthetic-privacy-safe-pilot-utility-report-v0",
+  "institutional_package_id": "contracts-ru-v0",
+  "data_origin": "synthetic_schema_demo",
+  "schema_version": "privacy-safe-pilot-utility.v0",
+  "total_observations": 2,
+  "average_time_to_useful_draft_minutes": 24.0,
+  "total_accepted_argument_count": 1,
+  "total_human_correction_count": 3,
+  "average_reviewer_usefulness_rating": 3.25,
+  "formally_smart_but_practically_useless_count": 1,
+  "observations": [
+    {
+      "id": "pilot-00000001",
+      "task_category": "supply_delivery",
+      "collection_date": "2026-07-11",
+      "data_origin": "synthetic_schema_demo",
+      "privacy_reviewed": true,
+      "consent_recorded": true,
+      "time_to_useful_draft_minutes": 20.0,
+      "accepted_argument_count": 1,
+      "human_correction_count": 1,
+      "reviewer_usefulness_rating": 4.0,
+      "formally_smart_but_practically_useless": false
+    },
+    {
+      "id": "pilot-00000002",
+      "task_category": "authority",
+      "collection_date": "2026-07-11",
+      "data_origin": "synthetic_schema_demo",
+      "privacy_reviewed": true,
+      "consent_recorded": true,
+      "time_to_useful_draft_minutes": 28.0,
+      "accepted_argument_count": 0,
+      "human_correction_count": 2,
+      "reviewer_usefulness_rating": 2.5,
+      "formally_smart_but_practically_useless": true
+    }
+  ]
+}
