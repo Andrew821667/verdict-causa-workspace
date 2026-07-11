@@ -4,7 +4,7 @@ from causa.institutional.package import InstitutionalPackageManifest
 CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
     id="contracts-ru-v0",
     legal_institute="Contractual relations: obligations, sale, supply, and breach liability",
-    version="0.7.0",
+    version="0.8.0",
     core_compatibility=">=0.1,<0.2",
     vocabulary_refs=["src/causa/institutional/contracts/vocabulary.py"],
     authority_model_refs=["src/causa/institutional/contracts/authority_model.py"],
@@ -18,9 +18,15 @@ CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
         "src/causa/institutional/contracts/reviewed_analysis.py",
     ],
     contradiction_taxonomy_refs=["src/causa/institutional/contracts/contradiction_taxonomy.py"],
-    legal_operator_refs=["docs/phase-0-backlog.md#p2-first-meaningful-legal-package-work"],
-    benchmark_refs=["docs/evaluation-and-red-team-spec.md#phase-0-artifacts"],
-    red_team_refs=["docs/evaluation-and-red-team-spec.md#red-team"],
+    legal_operator_refs=["src/causa/institutional/contracts/legal_operators.py"],
+    benchmark_refs=[
+        "docs/evaluation-and-red-team-spec.md#phase-0-artifacts",
+        "src/causa/institutional/contracts/counterfactual_evaluation.py",
+    ],
+    red_team_refs=[
+        "docs/evaluation-and-red-team-spec.md#red-team",
+        "src/causa/institutional/contracts/counterfactual_evaluation.py",
+    ],
     confidence_policy_refs=["docs/management-plane-spec.md#confidence-and-activation-policies"],
     activation_policy_refs=["docs/management-plane-spec.md#confidence-and-activation-policies"],
     domain_owner_responsibilities_ref="docs/institutional-packages.md#each-package-should-define",

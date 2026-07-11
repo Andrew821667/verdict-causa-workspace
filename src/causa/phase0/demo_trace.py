@@ -37,6 +37,7 @@ from causa.management.synthetic_registry import (
 )
 from causa.localization.ru import GOVERNANCE_STAGE_LABELS_RU, label_ru
 from causa.reasoning.formal_checks import check_basic_contradiction
+from causa.reasoning.counterfactual import CounterfactualBudget
 from causa.translation import TranslationArtifact, TranslationLevel
 from causa.translation_pipeline import TranslationBundle, build_translation_bundle
 
@@ -103,16 +104,24 @@ class Phase0DemoTrace(BaseModel):
 
 
 def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
-    analysis_artifact = build_synthetic_supply_analysis_artifact()
-    sources = analysis_artifact.sources
-    analysis_request = analysis_artifact.request
-    analysis_result = analysis_artifact.result
     policy_registry_artifact = build_synthetic_management_policy_registry_artifact()
     policy_registry = policy_registry_artifact.registry
     policy_snapshot = active_policy_snapshot(
         policy_registry,
         SYNTHETIC_POLICY_FAMILY_ID,
     )
+    if not policy_snapshot.payload.allow_counterfactual:
+        raise ValueError("Активная политика запрещает контрфактический анализ Этапа 0.")
+    counterfactual_budget = CounterfactualBudget(
+        max_scenarios=policy_snapshot.payload.counterfactual_max_scenarios,
+        max_changed_facts_per_scenario=(
+            policy_snapshot.payload.counterfactual_max_changed_facts
+        ),
+    )
+    analysis_artifact = build_synthetic_supply_analysis_artifact(counterfactual_budget)
+    sources = analysis_artifact.sources
+    analysis_request = analysis_artifact.request
+    analysis_result = analysis_artifact.result
     source = next(
         source
         for source in sources
@@ -218,6 +227,12 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
             policy_content_hash=policy_snapshot.content_hash,
             translation_template_version=translation.template_version,
             translation_template_hash=translation.template_content_hash,
+            legal_operator_library_version=(
+                analysis_result.counterfactual_sensitivity.operator_library_version
+            ),
+            legal_operator_library_hash=(
+                analysis_result.counterfactual_sensitivity.operator_library_hash
+            ),
             model_profile=policy_snapshot.payload.model_profile,
         ),
         nodes=[
@@ -251,6 +266,12 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     ),
                     "formal_rule_id": formal_translation.obligation_rule.id,
                     "constraint_set_id": constraint_set.id,
+                    "counterfactual_sensitivity_report_id": (
+                        analysis_result.counterfactual_sensitivity.id
+                    ),
+                    "legal_operator_library_hash": (
+                        analysis_result.counterfactual_sensitivity.operator_library_hash
+                    ),
                     "source_applicable": source_applicability.applicable,
                     "authority_winner": (
                         analysis_result.authority_evaluation.selected_source_id

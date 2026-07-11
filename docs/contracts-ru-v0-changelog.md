@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.8.0 - 2026-07-11
+
+- Adds a hash-addressed library of seven typed contractual legal operators.
+- Adds deterministic one-step sensitivity analysis with immutable baseline facts.
+- Enforces policy-controlled scenario and fact-change budgets, preconditions, and mandatory human review.
+- Adds seven counterfactual benchmarks and seven adversarial bypass checks.
+- Adds operator-library coordinates to decision traces and Russian professional/forensic explanations.
+- Adds replay migration from `0.7.0` and updates the Translation Layer templates to `ru-v2`.
+
 ## 0.7.0 - 2026-07-11
 
 - Adds versioned Russian templates for executive, professional, and forensic legal explanations.

@@ -489,6 +489,569 @@
         "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
       ]
     },
+    "counterfactual_sensitivity": {
+      "id": "counterfactual-sensitivity:analysis:analysis-request-case-supply-1-v0",
+      "trace_id": "analysis:analysis-request-case-supply-1-v0",
+      "locale": "ru-RU",
+      "engine_version": "bounded-counterfactual-engine-v0",
+      "institutional_package_version": "contracts-ru-v0@0.8.0",
+      "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
+      "operator_library_version": "contracts-legal-operators-ru-v1",
+      "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
+      "budget": {
+        "max_scenarios": 8,
+        "max_changed_facts_per_scenario": 4
+      },
+      "baseline_fact_hash": "sha256:43743656d2dacec4dac5a19a88fb60bd3169daa1b58986146345371792ff389d",
+      "baseline_facts": {
+        "duty_exists": true,
+        "due_date_missed": true,
+        "valid_exception_applies": false,
+        "performance_completed": true,
+        "performance_nonconforming": false,
+        "payment_duty_exists": false,
+        "payment_due": false,
+        "payment_missed": false,
+        "payment_defense_applies": false,
+        "loss_claimed": false,
+        "causation_established": false,
+        "remedy_requested": false,
+        "limitation_period_expired": false
+      },
+      "baseline_evaluation": {
+        "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
+        "satisfiable": true,
+        "breach_issue": true,
+        "late_performance_issue": true,
+        "defect_issue": false,
+        "payment_default_issue": false,
+        "damages_remedy_available": false,
+        "causation_evidence_gap": false,
+        "limitation_bar": false,
+        "reasons": [
+          "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
+        ],
+        "reasons_ru": [
+          "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
+        ]
+      },
+      "scenarios": [
+        {
+          "id": "counterfactual:analysis:analysis-request-case-supply-1-v0:correct_performance_date",
+          "operator_id": "contract-operator:correct_performance_date",
+          "operator_code": "correct_performance_date",
+          "operator_kind": "change_temporal_anchor",
+          "title_ru": "Изменить временную привязку исполнения",
+          "legal_question_ru": "Изменится ли вывод, если исполнение считать совершенным в согласованный срок?",
+          "baseline_fact_hash": "sha256:43743656d2dacec4dac5a19a88fb60bd3169daa1b58986146345371792ff389d",
+          "hypothetical_fact_hash": "sha256:935ea697b9fac3f67ac2f00cddd48ae1badbdab880d965fc16c0d13baa1ddcec",
+          "fact_deltas": [
+            {
+              "field_name": "due_date_missed",
+              "field_label_ru": "Пропуск срока",
+              "before": true,
+              "after": false
+            }
+          ],
+          "outcome_deltas": [
+            {
+              "field_name": "breach_issue",
+              "field_label_ru": "Вопрос о нарушении обязательства",
+              "before": true,
+              "after": false
+            },
+            {
+              "field_name": "late_performance_issue",
+              "field_label_ru": "Просрочка исполнения",
+              "before": true,
+              "after": false
+            }
+          ],
+          "hypothetical_facts": {
+            "duty_exists": true,
+            "due_date_missed": false,
+            "valid_exception_applies": false,
+            "performance_completed": true,
+            "performance_nonconforming": false,
+            "payment_duty_exists": false,
+            "payment_due": false,
+            "payment_missed": false,
+            "payment_defense_applies": false,
+            "loss_claimed": false,
+            "causation_established": false,
+            "remedy_requested": false,
+            "limitation_period_expired": false
+          },
+          "hypothetical_evaluation": {
+            "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
+            "satisfiable": true,
+            "breach_issue": false,
+            "late_performance_issue": false,
+            "defect_issue": false,
+            "payment_default_issue": false,
+            "damages_remedy_available": false,
+            "causation_evidence_gap": false,
+            "limitation_bar": false,
+            "reasons": [
+              "No contractual issue under the current narrow constraint set."
+            ],
+            "reasons_ru": [
+              "Текущий узкий набор ограничений не выявил нарушения обязательства."
+            ]
+          },
+          "material": true,
+          "requires_human_review": true,
+          "warning_ru": "Контрфактические сценарии являются гипотезами чувствительности формальной модели, не устанавливают факты и требуют проверки юристом."
+        },
+        {
+          "id": "counterfactual:analysis:analysis-request-case-supply-1-v0:activate_valid_exception",
+          "operator_id": "contract-operator:activate_valid_exception",
+          "operator_code": "activate_valid_exception",
+          "operator_kind": "activate_exception",
+          "title_ru": "Активировать основание освобождения",
+          "legal_question_ru": "Изменится ли вывод при подтвержденном применимом основании освобождения?",
+          "baseline_fact_hash": "sha256:43743656d2dacec4dac5a19a88fb60bd3169daa1b58986146345371792ff389d",
+          "hypothetical_fact_hash": "sha256:e9bc343034edf7b1d28355399a0543de2bf24a8e4eb79cdacff91ab46f46ad9a",
+          "fact_deltas": [
+            {
+              "field_name": "valid_exception_applies",
+              "field_label_ru": "Применимое основание освобождения",
+              "before": false,
+              "after": true
+            }
+          ],
+          "outcome_deltas": [
+            {
+              "field_name": "breach_issue",
+              "field_label_ru": "Вопрос о нарушении обязательства",
+              "before": true,
+              "after": false
+            },
+            {
+              "field_name": "late_performance_issue",
+              "field_label_ru": "Просрочка исполнения",
+              "before": true,
+              "after": false
+            }
+          ],
+          "hypothetical_facts": {
+            "duty_exists": true,
+            "due_date_missed": true,
+            "valid_exception_applies": true,
+            "performance_completed": true,
+            "performance_nonconforming": false,
+            "payment_duty_exists": false,
+            "payment_due": false,
+            "payment_missed": false,
+            "payment_defense_applies": false,
+            "loss_claimed": false,
+            "causation_established": false,
+            "remedy_requested": false,
+            "limitation_period_expired": false
+          },
+          "hypothetical_evaluation": {
+            "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
+            "satisfiable": true,
+            "breach_issue": false,
+            "late_performance_issue": false,
+            "defect_issue": false,
+            "payment_default_issue": false,
+            "damages_remedy_available": false,
+            "causation_evidence_gap": false,
+            "limitation_bar": false,
+            "reasons": [
+              "No contractual issue under the current narrow constraint set."
+            ],
+            "reasons_ru": [
+              "Текущий узкий набор ограничений не выявил нарушения обязательства."
+            ]
+          },
+          "material": true,
+          "requires_human_review": true,
+          "warning_ru": "Контрфактические сценарии являются гипотезами чувствительности формальной модели, не устанавливают факты и требуют проверки юристом."
+        },
+        {
+          "id": "counterfactual:analysis:analysis-request-case-supply-1-v0:confirm_nonconforming_performance",
+          "operator_id": "contract-operator:confirm_nonconforming_performance",
+          "operator_code": "confirm_nonconforming_performance",
+          "operator_kind": "change_qualification",
+          "title_ru": "Квалифицировать исполнение как ненадлежащее",
+          "legal_question_ru": "Изменится ли набор нарушений при подтвержденном несоответствии исполнения?",
+          "baseline_fact_hash": "sha256:43743656d2dacec4dac5a19a88fb60bd3169daa1b58986146345371792ff389d",
+          "hypothetical_fact_hash": "sha256:e12c949325ff6db782ba029f48897d182c65af083b404addb6db35e7a3ea38e2",
+          "fact_deltas": [
+            {
+              "field_name": "performance_nonconforming",
+              "field_label_ru": "Ненадлежащее исполнение",
+              "before": false,
+              "after": true
+            }
+          ],
+          "outcome_deltas": [
+            {
+              "field_name": "defect_issue",
+              "field_label_ru": "Ненадлежащее исполнение",
+              "before": false,
+              "after": true
+            }
+          ],
+          "hypothetical_facts": {
+            "duty_exists": true,
+            "due_date_missed": true,
+            "valid_exception_applies": false,
+            "performance_completed": true,
+            "performance_nonconforming": true,
+            "payment_duty_exists": false,
+            "payment_due": false,
+            "payment_missed": false,
+            "payment_defense_applies": false,
+            "loss_claimed": false,
+            "causation_established": false,
+            "remedy_requested": false,
+            "limitation_period_expired": false
+          },
+          "hypothetical_evaluation": {
+            "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
+            "satisfiable": true,
+            "breach_issue": true,
+            "late_performance_issue": true,
+            "defect_issue": true,
+            "payment_default_issue": false,
+            "damages_remedy_available": false,
+            "causation_evidence_gap": false,
+            "limitation_bar": false,
+            "reasons": [
+              "Late performance issue: Duty exists, due date is missed, and no valid exception applies.",
+              "Defect issue: completed performance is confirmed nonconforming."
+            ],
+            "reasons_ru": [
+              "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено.",
+              "Выявлен недостаток исполнения: завершенное исполнение признано ненадлежащим."
+            ]
+          },
+          "material": true,
+          "requires_human_review": true,
+          "warning_ru": "Контрфактические сценарии являются гипотезами чувствительности формальной модели, не устанавливают факты и требуют проверки юристом."
+        },
+        {
+          "id": "counterfactual:analysis:analysis-request-case-supply-1-v0:establish_payment_default",
+          "operator_id": "contract-operator:establish_payment_default",
+          "operator_code": "establish_payment_default",
+          "operator_kind": "add_or_remove_fact",
+          "title_ru": "Добавить подтвержденную просрочку платежа",
+          "legal_question_ru": "Возникнет ли самостоятельный вопрос о просрочке подтвержденного платежа?",
+          "baseline_fact_hash": "sha256:43743656d2dacec4dac5a19a88fb60bd3169daa1b58986146345371792ff389d",
+          "hypothetical_fact_hash": "sha256:3d912b1c0d1f7503cbf8fe9f1e8198fabff1d3a9afa7930776b060b291eac6c8",
+          "fact_deltas": [
+            {
+              "field_name": "payment_duty_exists",
+              "field_label_ru": "Наличие обязанности по оплате",
+              "before": false,
+              "after": true
+            },
+            {
+              "field_name": "payment_due",
+              "field_label_ru": "Наступление срока оплаты",
+              "before": false,
+              "after": true
+            },
+            {
+              "field_name": "payment_missed",
+              "field_label_ru": "Пропуск платежа",
+              "before": false,
+              "after": true
+            }
+          ],
+          "outcome_deltas": [
+            {
+              "field_name": "payment_default_issue",
+              "field_label_ru": "Просрочка платежа",
+              "before": false,
+              "after": true
+            }
+          ],
+          "hypothetical_facts": {
+            "duty_exists": true,
+            "due_date_missed": true,
+            "valid_exception_applies": false,
+            "performance_completed": true,
+            "performance_nonconforming": false,
+            "payment_duty_exists": true,
+            "payment_due": true,
+            "payment_missed": true,
+            "payment_defense_applies": false,
+            "loss_claimed": false,
+            "causation_established": false,
+            "remedy_requested": false,
+            "limitation_period_expired": false
+          },
+          "hypothetical_evaluation": {
+            "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
+            "satisfiable": true,
+            "breach_issue": true,
+            "late_performance_issue": true,
+            "defect_issue": false,
+            "payment_default_issue": true,
+            "damages_remedy_available": false,
+            "causation_evidence_gap": false,
+            "limitation_bar": false,
+            "reasons": [
+              "Late performance issue: Duty exists, due date is missed, and no valid exception applies.",
+              "Payment default issue: payment duty is due, missed, and has no valid defense."
+            ],
+            "reasons_ru": [
+              "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено.",
+              "Выявлена просрочка платежа: обязанность наступила, платеж пропущен, применимое возражение не установлено."
+            ]
+          },
+          "material": true,
+          "requires_human_review": true,
+          "warning_ru": "Контрфактические сценарии являются гипотезами чувствительности формальной модели, не устанавливают факты и требуют проверки юристом."
+        },
+        {
+          "id": "counterfactual:analysis:analysis-request-case-supply-1-v0:request_damages_with_causation",
+          "operator_id": "contract-operator:request_damages_with_causation",
+          "operator_code": "request_damages_with_causation",
+          "operator_kind": "change_remedy_path",
+          "title_ru": "Проверить требование убытков с причинной связью",
+          "legal_question_ru": "Станет ли требование убытков формально доступным при подтвержденной связи?",
+          "baseline_fact_hash": "sha256:43743656d2dacec4dac5a19a88fb60bd3169daa1b58986146345371792ff389d",
+          "hypothetical_fact_hash": "sha256:49994a8bc9a15dbeb9c7e3e517a1ea07e63b6e104851dd1dbc627d75e77df3ab",
+          "fact_deltas": [
+            {
+              "field_name": "loss_claimed",
+              "field_label_ru": "Заявление об убытках",
+              "before": false,
+              "after": true
+            },
+            {
+              "field_name": "causation_established",
+              "field_label_ru": "Установленная причинная связь",
+              "before": false,
+              "after": true
+            },
+            {
+              "field_name": "remedy_requested",
+              "field_label_ru": "Заявленный способ защиты",
+              "before": false,
+              "after": true
+            }
+          ],
+          "outcome_deltas": [
+            {
+              "field_name": "damages_remedy_available",
+              "field_label_ru": "Формальная доступность требования убытков",
+              "before": false,
+              "after": true
+            }
+          ],
+          "hypothetical_facts": {
+            "duty_exists": true,
+            "due_date_missed": true,
+            "valid_exception_applies": false,
+            "performance_completed": true,
+            "performance_nonconforming": false,
+            "payment_duty_exists": false,
+            "payment_due": false,
+            "payment_missed": false,
+            "payment_defense_applies": false,
+            "loss_claimed": true,
+            "causation_established": true,
+            "remedy_requested": true,
+            "limitation_period_expired": false
+          },
+          "hypothetical_evaluation": {
+            "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
+            "satisfiable": true,
+            "breach_issue": true,
+            "late_performance_issue": true,
+            "defect_issue": false,
+            "payment_default_issue": false,
+            "damages_remedy_available": true,
+            "causation_evidence_gap": false,
+            "limitation_bar": false,
+            "reasons": [
+              "Late performance issue: Duty exists, due date is missed, and no valid exception applies.",
+              "Damages remedy is available under the current narrow facts."
+            ],
+            "reasons_ru": [
+              "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено.",
+              "По текущему узкому набору фактов имеются формальные предпосылки для требования убытков."
+            ]
+          },
+          "material": true,
+          "requires_human_review": true,
+          "warning_ru": "Контрфактические сценарии являются гипотезами чувствительности формальной модели, не устанавливают факты и требуют проверки юристом."
+        },
+        {
+          "id": "counterfactual:analysis:analysis-request-case-supply-1-v0:request_damages_without_causation",
+          "operator_id": "contract-operator:request_damages_without_causation",
+          "operator_code": "request_damages_without_causation",
+          "operator_kind": "change_causal_link",
+          "title_ru": "Проверить требование убытков без причинной связи",
+          "legal_question_ru": "Выявит ли модель доказательственный пробел при отсутствии причинной связи?",
+          "baseline_fact_hash": "sha256:43743656d2dacec4dac5a19a88fb60bd3169daa1b58986146345371792ff389d",
+          "hypothetical_fact_hash": "sha256:d6bb14fa493b7a2f0f81c771025456e05689b0b576aafe62d0dcb7c9faf6e5f5",
+          "fact_deltas": [
+            {
+              "field_name": "loss_claimed",
+              "field_label_ru": "Заявление об убытках",
+              "before": false,
+              "after": true
+            },
+            {
+              "field_name": "remedy_requested",
+              "field_label_ru": "Заявленный способ защиты",
+              "before": false,
+              "after": true
+            }
+          ],
+          "outcome_deltas": [
+            {
+              "field_name": "causation_evidence_gap",
+              "field_label_ru": "Пробел причинной связи",
+              "before": false,
+              "after": true
+            }
+          ],
+          "hypothetical_facts": {
+            "duty_exists": true,
+            "due_date_missed": true,
+            "valid_exception_applies": false,
+            "performance_completed": true,
+            "performance_nonconforming": false,
+            "payment_duty_exists": false,
+            "payment_due": false,
+            "payment_missed": false,
+            "payment_defense_applies": false,
+            "loss_claimed": true,
+            "causation_established": false,
+            "remedy_requested": true,
+            "limitation_period_expired": false
+          },
+          "hypothetical_evaluation": {
+            "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
+            "satisfiable": true,
+            "breach_issue": true,
+            "late_performance_issue": true,
+            "defect_issue": false,
+            "payment_default_issue": false,
+            "damages_remedy_available": false,
+            "causation_evidence_gap": true,
+            "limitation_bar": false,
+            "reasons": [
+              "Late performance issue: Duty exists, due date is missed, and no valid exception applies.",
+              "Causation evidence gap: a remedy is requested for claimed loss without established causation."
+            ],
+            "reasons_ru": [
+              "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено.",
+              "Пробел в доказательствах причинной связи: заявлены убытки, но причинная связь не подтверждена."
+            ]
+          },
+          "material": true,
+          "requires_human_review": true,
+          "warning_ru": "Контрфактические сценарии являются гипотезами чувствительности формальной модели, не устанавливают факты и требуют проверки юристом."
+        },
+        {
+          "id": "counterfactual:analysis:analysis-request-case-supply-1-v0:test_limitation_bar",
+          "operator_id": "contract-operator:test_limitation_bar",
+          "operator_code": "test_limitation_bar",
+          "operator_kind": "change_remedy_path",
+          "title_ru": "Проверить влияние исковой давности",
+          "legal_question_ru": "Заблокирует ли указанное истечение срока иначе доступное требование убытков?",
+          "baseline_fact_hash": "sha256:43743656d2dacec4dac5a19a88fb60bd3169daa1b58986146345371792ff389d",
+          "hypothetical_fact_hash": "sha256:20f5acb484091d4a50cc668ae29bc640005b234fcf8533ab9bca4b21fad9a0e7",
+          "fact_deltas": [
+            {
+              "field_name": "loss_claimed",
+              "field_label_ru": "Заявление об убытках",
+              "before": false,
+              "after": true
+            },
+            {
+              "field_name": "causation_established",
+              "field_label_ru": "Установленная причинная связь",
+              "before": false,
+              "after": true
+            },
+            {
+              "field_name": "remedy_requested",
+              "field_label_ru": "Заявленный способ защиты",
+              "before": false,
+              "after": true
+            },
+            {
+              "field_name": "limitation_period_expired",
+              "field_label_ru": "Истечение срока исковой давности",
+              "before": false,
+              "after": true
+            }
+          ],
+          "outcome_deltas": [
+            {
+              "field_name": "limitation_bar",
+              "field_label_ru": "Барьер исковой давности",
+              "before": false,
+              "after": true
+            }
+          ],
+          "hypothetical_facts": {
+            "duty_exists": true,
+            "due_date_missed": true,
+            "valid_exception_applies": false,
+            "performance_completed": true,
+            "performance_nonconforming": false,
+            "payment_duty_exists": false,
+            "payment_due": false,
+            "payment_missed": false,
+            "payment_defense_applies": false,
+            "loss_claimed": true,
+            "causation_established": true,
+            "remedy_requested": true,
+            "limitation_period_expired": true
+          },
+          "hypothetical_evaluation": {
+            "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
+            "satisfiable": true,
+            "breach_issue": true,
+            "late_performance_issue": true,
+            "defect_issue": false,
+            "payment_default_issue": false,
+            "damages_remedy_available": false,
+            "causation_evidence_gap": false,
+            "limitation_bar": true,
+            "reasons": [
+              "Late performance issue: Duty exists, due date is missed, and no valid exception applies.",
+              "Limitation bar: the requested remedy is time-barred."
+            ],
+            "reasons_ru": [
+              "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено.",
+              "Установлен формальный барьер исковой давности для заявленного требования."
+            ]
+          },
+          "material": true,
+          "requires_human_review": true,
+          "warning_ru": "Контрфактические сценарии являются гипотезами чувствительности формальной модели, не устанавливают факты и требуют проверки юристом."
+        }
+      ],
+      "skipped_operators": [],
+      "critical_scenario_ids": [
+        "counterfactual:analysis:analysis-request-case-supply-1-v0:activate_valid_exception",
+        "counterfactual:analysis:analysis-request-case-supply-1-v0:confirm_nonconforming_performance",
+        "counterfactual:analysis:analysis-request-case-supply-1-v0:correct_performance_date",
+        "counterfactual:analysis:analysis-request-case-supply-1-v0:request_damages_without_causation",
+        "counterfactual:analysis:analysis-request-case-supply-1-v0:establish_payment_default",
+        "counterfactual:analysis:analysis-request-case-supply-1-v0:request_damages_with_causation",
+        "counterfactual:analysis:analysis-request-case-supply-1-v0:test_limitation_bar"
+      ],
+      "budget_exhausted": false,
+      "summary_ru": [
+        "Вычислено гипотетических сценариев: 7.",
+        "Материально изменяют формальный результат: 7.",
+        "Пропущено операторов по ограничениям: 0."
+      ],
+      "disclaimer_ru": "Контрфактические сценарии являются гипотезами чувствительности формальной модели, не устанавливают факты и требуют проверки юристом."
+    },
     "authority_evaluation": {
       "selected_source_id": "synthetic-ru-contract-supply-delivery-duty-v2",
       "selected_authority_level": "statutory",

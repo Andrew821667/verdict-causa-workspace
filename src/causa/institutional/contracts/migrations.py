@@ -149,6 +149,26 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.7.0",
+        to_version="0.8.0",
+        reasons=[
+            "Reviewed analysis now includes bounded counterfactual sensitivity results.",
+            "The legal-operator library and revised translation templates are hash-addressed artifacts.",
+        ],
+        reasons_ru=[
+            "Проверенный анализ теперь включает результаты ограниченной контрфактической чувствительности.",
+            "Библиотека legal operators и обновленные шаблоны объяснения стали hash-addressed артефактами.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_counterfactual_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_management_policy_registry.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

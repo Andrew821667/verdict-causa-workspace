@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.8.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v0"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v0"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "A versioned legal-operator library provides bounded contractual counterfactuals.",
+            "Counterfactual branches preserve baseline facts and enforce fact and scenario budgets.",
+            "Dedicated benchmark and red-team suites cover operator behavior and bypass attempts.",
+        ],
+        notes_ru=[
+            "Версионированная библиотека legal operators реализует ограниченные договорные контрфакты.",
+            "Контрфактические ветви сохраняют исходные факты и соблюдают бюджеты изменений и сценариев.",
+            "Отдельные benchmark и Red Team покрывают поведение операторов и попытки обхода ограничений.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.7.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

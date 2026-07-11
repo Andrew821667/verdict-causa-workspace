@@ -73,6 +73,7 @@ For Phase 0 implementation detail, see:
 - [Bootstrap pipeline specification](docs/bootstrap-pipeline-spec.md);
 - [Management Plane specification](docs/management-plane-spec.md);
 - [Translation Layer specification](docs/translation-layer-spec.md);
+- [Bounded contractual counterfactual specification](docs/contract-counterfactual-spec.md);
 - [Evaluation and Red Team specification](docs/evaluation-and-red-team-spec.md);
 - [Contracts RU v0 changelog](docs/contracts-ru-v0-changelog.md);
 - [Contracts RU v0 compatibility matrix](docs/contracts-ru-v0-compatibility.md);
@@ -157,6 +158,14 @@ python scripts/export_synthetic_translation_bundle.py
 
 The output is written to `examples/synthetic_translation_bundle_report.json`. Human usability still requires a lawyer pilot.
 
+Generate the bounded contractual counterfactual report with dedicated benchmark and Red Team results:
+
+```bash
+python scripts/export_synthetic_counterfactual_evaluation.py
+```
+
+The output is written to `examples/synthetic_counterfactual_evaluation_report.json`. Every branch is hypothetical, budget-limited, and subject to lawyer review.
+
 Generate the current Phase 0 readiness report:
 
 ```bash
@@ -203,13 +212,14 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-The command writes replay reports for legacy `0.1.0`, `0.3.0`, `0.4.0`, `0.5.0`, and `0.6.0` artifacts:
+The command writes replay reports for legacy `0.1.0`, `0.3.0`, `0.4.0`, `0.5.0`, `0.6.0`, and `0.7.0` artifacts:
 
-- `examples/migrations/contracts-ru-v0-0.1.0-to-0.7.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.3.0-to-0.7.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.4.0-to-0.7.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.5.0-to-0.7.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.6.0-to-0.7.0-migration-report.json`.
+- `examples/migrations/contracts-ru-v0-0.1.0-to-0.8.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.3.0-to-0.8.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.4.0-to-0.8.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.5.0-to-0.8.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.6.0-to-0.8.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.7.0-to-0.8.0-migration-report.json`.
 
 ## License
 

@@ -18,6 +18,8 @@ class VersionCoordinates(BaseModel):
     policy_content_hash: str | None = None
     translation_template_version: str | None = None
     translation_template_hash: str | None = None
+    legal_operator_library_version: str | None = None
+    legal_operator_library_hash: str | None = None
     model_profile: str | None = None
 
 

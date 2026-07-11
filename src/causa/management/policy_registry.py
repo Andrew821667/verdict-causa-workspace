@@ -63,6 +63,9 @@ POLICY_FIELD_LABELS_RU = {
     "replayable_trace": "Обязательная воспроизводимая трассировка",
     "complete_provenance": "Обязательное полное происхождение данных",
     "escalate_on_low_confidence": "Эскалация при низкой уверенности",
+    "allow_counterfactual": "Допуск ограниченного контрфактического анализа",
+    "counterfactual_max_scenarios": "Максимальное число контрфактических сценариев",
+    "counterfactual_max_changed_facts": "Максимум изменений фактов в сценарии",
     "translation_template_version": "Версия шаблона юридического объяснения",
     "translation_template_hash": "Hash шаблонов юридического объяснения",
     "model_profile": "Профиль модели",
@@ -87,6 +90,9 @@ class BehaviorPolicyPayload(BaseModel):
     replayable_trace: bool
     complete_provenance: bool
     escalate_on_low_confidence: bool
+    allow_counterfactual: bool
+    counterfactual_max_scenarios: int = Field(ge=1, le=32)
+    counterfactual_max_changed_facts: int = Field(ge=1, le=8)
     translation_template_version: str
     translation_template_hash: str
     model_profile: str
@@ -544,7 +550,7 @@ def active_policy_snapshot(
 
 
 def _boolean_safety_impact(field_name: str, before: bool, after: bool) -> PolicyChangeImpact:
-    if field_name == "allow_candidate_principles":
+    if field_name in {"allow_candidate_principles", "allow_counterfactual"}:
         return PolicyChangeImpact.TIGHTENING if before and not after else PolicyChangeImpact.RELAXATION
     return PolicyChangeImpact.TIGHTENING if not before and after else PolicyChangeImpact.RELAXATION
 
@@ -558,6 +564,7 @@ def _change_impact(field_name: str, before: Any, after: Any) -> PolicyChangeImpa
         "cross_review",
         "complete_provenance",
         "escalate_on_low_confidence",
+        "allow_counterfactual",
     }
     if field_name in safety_booleans:
         return _boolean_safety_impact(field_name, bool(before), bool(after))

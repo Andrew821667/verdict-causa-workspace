@@ -17,6 +17,7 @@ Management Plane определяет, как система действует.
 - допустимость принципов-кандидатов;
 - обязательность formal check, Red Team, expert review и cross-review;
 - требования воспроизводимой трассировки и полного provenance;
+- разрешение bounded counterfactual, лимит сценариев и максимум изменений фактов;
 - версию и SHA-256 hash набора шаблонов юридического объяснения;
 - профиль модели.
 
@@ -57,6 +58,7 @@ Decision trace сохраняет одновременно:
 - `policy_version` — ID активного snapshot;
 - `policy_content_hash` — SHA-256 payload;
 - версию и SHA-256 hash набора шаблонов объяснения;
+- версию и SHA-256 hash библиотеки legal operators;
 - профиль модели.
 
 Phase 0 trace также содержит активный snapshot и состояние реестра, поэтому строка версии может быть проверена против фактического поведения. Governance-решения кандидата ссылаются на те же snapshot ID и content hash.

@@ -18,6 +18,7 @@ from causa.institutional.contracts.reviewed_analysis import (
 from causa.institutional.contracts.synthetic_sources import (
     get_synthetic_contract_source,
 )
+from causa.reasoning.counterfactual import CounterfactualBudget
 
 
 SYNTHETIC_ANALYSIS_SOURCE_IDS = (
@@ -123,7 +124,9 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
     )
 
 
-def build_synthetic_supply_analysis_artifact() -> ReviewedContractAnalysisArtifact:
+def build_synthetic_supply_analysis_artifact(
+    counterfactual_budget: CounterfactualBudget | None = None,
+) -> ReviewedContractAnalysisArtifact:
     sources = build_synthetic_supply_analysis_sources()
     request = build_synthetic_supply_analysis_request()
     return ReviewedContractAnalysisArtifact(
@@ -133,5 +136,9 @@ def build_synthetic_supply_analysis_artifact() -> ReviewedContractAnalysisArtifa
         ),
         sources=sources,
         request=request,
-        result=run_reviewed_contract_analysis(request, sources),
+        result=run_reviewed_contract_analysis(
+            request,
+            sources,
+            counterfactual_budget=counterfactual_budget,
+        ),
     )

@@ -10,6 +10,9 @@ from causa.institutional.contracts.pilot_utility import (
     build_privacy_safe_pilot_utility_report,
 )
 from causa.institutional.contracts.red_team_runner import run_synthetic_supply_red_team_suite
+from causa.institutional.contracts.synthetic_counterfactual import (
+    build_synthetic_counterfactual_evaluation_artifact,
+)
 from causa.institutional.contracts.versioning import (
     evaluate_contracts_package_compatibility,
 )
@@ -145,6 +148,22 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-counterfactual-sensitivity",
+            title="Проверка контрфактической чувствительности договорного вывода",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.counterfactual_sensitivity.id,
+                trace.analysis_result.counterfactual_sensitivity.operator_library_id,
+                trace.analysis_result.counterfactual_sensitivity.operator_library_hash,
+                *trace.analysis_result.counterfactual_sensitivity.critical_scenario_ids,
+            ],
+            notes=[
+                "Применяются только типизированные legal operators договорного пакета.",
+                "Исходные проверенные факты не изменяются; все ветви явно гипотетические.",
+                "Число сценариев и изменений фактов ограничено воспроизводимым бюджетом.",
+            ],
+        ),
+        PipelineStepResult(
             id="build-case-graph",
             title="Построение четырехслойной трассировки решения",
             status=PipelineStepStatus.PASSED,
@@ -197,6 +216,7 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
                 "Применена активная политика: стандартный режим × уровень риска T3.",
                 f"Ревизия реестра политик: {trace.policy_registry.revision}.",
                 "ID и content hash снимка сохранены в координатах трассировки.",
+                "Политика разрешает bounded counterfactual и фиксирует оба его бюджета.",
             ],
         ),
         PipelineStepResult(
@@ -249,6 +269,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     privacy_safe_pilot_report = build_privacy_safe_pilot_utility_report()
     red_team_report = run_synthetic_supply_red_team_suite()
     compatibility_check = evaluate_contracts_package_compatibility()
+    counterfactual_artifact = build_synthetic_counterfactual_evaluation_artifact()
 
     items = [
         ReadinessItem(
@@ -295,15 +316,19 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contracts-ru-v0-compatibility.md",
                 "src/causa/institutional/contracts/versioning.py",
                 "src/causa/institutional/contracts/migrations.py",
-                "examples/migrations/contracts-ru-v0-0.1.0-to-0.7.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.3.0-to-0.7.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.4.0-to-0.7.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.5.0-to-0.7.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.6.0-to-0.7.0-migration-report.json",
+                "src/causa/institutional/contracts/legal_operators.py",
+                "examples/synthetic_counterfactual_evaluation_report.json",
+                "examples/migrations/contracts-ru-v0-0.1.0-to-0.8.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.3.0-to-0.8.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.4.0-to-0.8.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.5.0-to-0.8.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.6.0-to-0.8.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.7.0-to-0.8.0-migration-report.json",
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
             ],
             remaining_work=[
-                "Расширить словарь, правила юридической силы, временные правила, правовые операторы и контрольные сценарии.",
+                "Расширить словарь, правила юридической силы и временные правила за пределы текущего среза.",
+                "Расширить legal operators на заключение, изменение и расторжение договора.",
                 "Добавлять replay-миграцию для каждого семантического релиза пакета.",
             ],
         ),
@@ -362,6 +387,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 practice_utility_report.id,
                 privacy_safe_pilot_report.id,
                 red_team_report.id,
+                counterfactual_artifact.benchmark_report.id,
+                counterfactual_artifact.red_team_report.id,
             ],
             remaining_work=[
                 "Получить privacy- и экспертное одобрение до сбора несинтетических пилотных наблюдений.",
@@ -376,6 +403,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/phase0_supply_dispute_trace.json",
                 "examples/synthetic_reviewed_contract_analysis.json",
                 "examples/synthetic_translation_bundle_report.json",
+                "examples/synthetic_counterfactual_evaluation_report.json",
                 pipeline.id,
             ],
             remaining_work=["Расширить синтетический набор источников и перечень пилотных задач."],

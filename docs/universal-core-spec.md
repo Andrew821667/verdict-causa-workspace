@@ -69,6 +69,7 @@ Every decision trace must identify:
 - institutional package version;
 - policy snapshot ID and content hash;
 - translation template version and content hash;
+- legal-operator library version and content hash when counterfactual analysis is used;
 - model/provider profile if applicable.
 
 ## Source hierarchy

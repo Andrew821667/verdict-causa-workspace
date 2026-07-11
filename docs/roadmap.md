@@ -38,7 +38,7 @@ Provide reproducible decision traces, provenance graph, semantic diffs, rollback
 
 ## Phase 5 - Bounded counterfactual engine
 
-Add typed legal operators, MCTS-style exploration under compute budget, and micro-scenario libraries. Extend modes to `deep` and `research`, and risk tiers to T4-T6.
+Expand the Phase 0 one-step typed legal-operator library into MCTS-style exploration under compute budget and reusable micro-scenario libraries. Extend modes to `deep` and `research`, and risk tiers to T4-T6.
 
 ## Phase 6 - Reasoning profiles and enterprise readiness
 

@@ -1,0 +1,12 @@
+{
+  "id": "legacy-phase0-trace-contracts-ru-v0-0.7.0",
+  "artifact_type": "phase0_decision_trace",
+  "package_id": "contracts-ru-v0",
+  "package_version": "0.7.0",
+  "payload": {
+    "translation_template_version": "translation-template-ru-v1",
+    "legal_operator_library_version": null,
+    "legal_operator_library_hash": null,
+    "counterfactual_sensitivity_present": false
+  }
+}

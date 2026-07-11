@@ -15,6 +15,7 @@ from causa.management.policy_registry import (
     PolicySnapshot,
     activate_policy_snapshot,
     active_policy_snapshot,
+    compare_policy_snapshots,
     compute_policy_content_hash,
     create_policy_registry,
     create_policy_snapshot,
@@ -51,6 +52,9 @@ def _baseline_payload() -> BehaviorPolicyPayload:
         replayable_trace=True,
         complete_provenance=False,
         escalate_on_low_confidence=True,
+        allow_counterfactual=True,
+        counterfactual_max_scenarios=8,
+        counterfactual_max_changed_facts=4,
         translation_template_version=translation_templates.version,
         translation_template_hash=translation_templates.content_hash,
         model_profile="no-llm-synthetic-demo",
@@ -99,6 +103,21 @@ def test_policy_hash_is_deterministic_and_sensitive_to_behavior() -> None:
         _baseline_payload()
     )
     assert compute_policy_content_hash(baseline) != compute_policy_content_hash(changed)
+
+
+def test_counterfactual_permission_is_a_policy_relaxation() -> None:
+    enabled = _baseline_payload()
+    disabled = enabled.model_copy(update={"allow_counterfactual": False})
+    before = _snapshot(1, payload=disabled)
+    after = _snapshot(2, payload=enabled, parent_snapshot_id=before.id)
+
+    diff = compare_policy_snapshots(before, after)
+    change = next(
+        item for item in diff.changes if item.field_name == "allow_counterfactual"
+    )
+
+    assert change.impact == PolicyChangeImpact.RELAXATION
+    assert change.field_label_ru == "Допуск ограниченного контрфактического анализа"
 
 
 def test_policy_snapshot_rejects_tampered_payload() -> None:

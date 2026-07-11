@@ -20,6 +20,10 @@ from causa.institutional.contracts.authority_model import (
     AuthorityEvaluation,
     evaluate_source_authority,
 )
+from causa.institutional.contracts.legal_operators import (
+    ContractCounterfactualSensitivityReport,
+    run_contract_counterfactual_sensitivity,
+)
 from causa.institutional.contracts.temporal import (
     ContractTemporalFacts,
     TemporalEvaluation,
@@ -32,6 +36,7 @@ from causa.reasoning.formal_checks import (
     build_obligation_constraint_set,
     evaluate_obligation_constraints,
 )
+from causa.reasoning.counterfactual import CounterfactualBudget
 
 
 CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v0"
@@ -153,6 +158,7 @@ class ReviewedContractAnalysisResult(BaseModel):
     evidence_mapping: CaseEvidenceMappingResult
     constraint_set: ConstraintSet
     constraint_evaluation: ConstraintEvaluation
+    counterfactual_sensitivity: ContractCounterfactualSensitivityReport
     authority_evaluation: AuthorityEvaluation
     requires_human_resolution: bool
     warnings: list[str] = Field(default_factory=list)
@@ -298,6 +304,8 @@ def map_reviewed_case_evidence_to_facts(
 def run_reviewed_contract_analysis(
     request: ReviewedContractAnalysisRequest,
     sources: list[LegalSource],
+    *,
+    counterfactual_budget: CounterfactualBudget | None = None,
 ) -> ReviewedContractAnalysisResult:
     norm_reviewer_id = _require_reviewed(
         artifact_name="Reviewed norm",
@@ -358,6 +366,12 @@ def run_reviewed_contract_analysis(
         constraint_set,
         evidence_mapping.facts,
     )
+    counterfactual_sensitivity = run_contract_counterfactual_sensitivity(
+        trace_id=f"analysis:{request.id}",
+        constraint_set=constraint_set,
+        baseline_facts=evidence_mapping.facts,
+        budget=counterfactual_budget,
+    )
     requires_human_resolution = authority_evaluation.selected_source_id is None
 
     return ReviewedContractAnalysisResult(
@@ -380,6 +394,7 @@ def run_reviewed_contract_analysis(
         evidence_mapping=evidence_mapping,
         constraint_set=constraint_set,
         constraint_evaluation=constraint_evaluation,
+        counterfactual_sensitivity=counterfactual_sensitivity,
         authority_evaluation=authority_evaluation,
         requires_human_resolution=requires_human_resolution,
         warnings=[

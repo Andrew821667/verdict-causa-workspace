@@ -30,7 +30,7 @@ This backlog turns the concept into engineering tasks. It is intentionally more 
 - Add authority model rules for general vs special contractual norms.
 - Add temporal rules for obligation formation and performance date.
 - Add contradiction taxonomy examples.
-- Add legal operators for contractual counterfactuals.
+- [x] Add bounded legal operators for the current contractual fact model.
 - Add 5-10 benchmark tasks.
 - Add 5-10 red-team scenarios.
 

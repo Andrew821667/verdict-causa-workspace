@@ -154,6 +154,16 @@ def build_translation_assertions(
     evaluation = result.constraint_evaluation
     authority = result.authority_evaluation
     authority_refs = list(request.authority_input.candidate_source_ids)
+    counterfactual_report = result.counterfactual_sensitivity
+    critical_scenario = (
+        next(
+            scenario
+            for scenario in counterfactual_report.scenarios
+            if scenario.id == counterfactual_report.critical_scenario_ids[0]
+        )
+        if counterfactual_report.critical_scenario_ids
+        else None
+    )
     assertions = [
         TranslationAssertion(
             code=TranslationAssertionCode.SOURCE_APPLICABLE,
@@ -303,6 +313,21 @@ def build_translation_assertions(
             ),
             source_refs=authority_refs,
         ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.COUNTERFACTUAL_SENSITIVITY,
+            value=(
+                critical_scenario.operator_code.value
+                if critical_scenario
+                else "no_material_sensitivity"
+            ),
+            text_ru=(
+                "Минимальная гипотеза чувствительности «"
+                f"{critical_scenario.title_ru}» изменяет формальный результат."
+                if critical_scenario
+                else "В пределах бюджета материальная контрфактическая чувствительность не выявлена."
+            ),
+            source_refs=[],
+        ),
     ]
     return assertions
 
@@ -444,6 +469,48 @@ def _render_context(
             f"- Причина выбора: {comparison.selection_reason_ru}",
         ]
     )
+    counterfactual_report = result.counterfactual_sensitivity
+    critical_scenarios = [
+        scenario
+        for scenario_id in counterfactual_report.critical_scenario_ids
+        for scenario in counterfactual_report.scenarios
+        if scenario.id == scenario_id
+    ]
+    counterfactual_professional_ru = "\n".join(
+        (
+            f"- {scenario.title_ru}: меняются выводы — "
+            + ", ".join(delta.field_label_ru for delta in scenario.outcome_deltas)
+            + "."
+        )
+        for scenario in critical_scenarios[:3]
+    ) or "- В пределах установленного бюджета материальные изменения не выявлены."
+    counterfactual_forensic_ru = "\n".join(
+        [
+            f"- Engine: {counterfactual_report.engine_version}.",
+            f"- Operator library: {counterfactual_report.operator_library_version}.",
+            f"- Operator library hash: {counterfactual_report.operator_library_hash}.",
+            f"- Baseline fact hash: {counterfactual_report.baseline_fact_hash}.",
+            f"- Budget: scenarios={counterfactual_report.budget.max_scenarios}; "
+            f"changed_facts={counterfactual_report.budget.max_changed_facts_per_scenario}.",
+            *[
+                (
+                    f"- {scenario.operator_code.value}: факты ["
+                    + "; ".join(
+                        f"{delta.field_name}={delta.before}->{delta.after}"
+                        for delta in scenario.fact_deltas
+                    )
+                    + "]; выводы ["
+                    + "; ".join(
+                        f"{delta.field_name}={delta.before}->{delta.after}"
+                        for delta in scenario.outcome_deltas
+                    )
+                    + f"]; hypothetical_hash={scenario.hypothetical_fact_hash}."
+                )
+                for scenario in counterfactual_report.scenarios
+            ],
+            f"- {counterfactual_report.disclaimer_ru}",
+        ]
+    )
     return {
         "conclusion_ru": conclusion_ru,
         "key_basis_ru": key_basis_ru,
@@ -459,6 +526,8 @@ def _render_context(
         "all_assertions_ru": all_assertions_ru,
         "governance_ru": governance_ru,
         "path_comparison_ru": path_comparison_ru,
+        "counterfactual_professional_ru": counterfactual_professional_ru,
+        "counterfactual_forensic_ru": counterfactual_forensic_ru,
         "disclaimer_ru": TRANSLATION_DISCLAIMER_RU,
     }
 

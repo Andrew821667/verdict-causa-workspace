@@ -43,6 +43,16 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     assert trace.translation_bundle.usability_report.structural_checks_passed is True
     assert trace.translation_bundle.usability_report.requires_human_pilot is True
     assert trace.translation_bundle.ready_for_human_review is True
+    assert trace.policy_snapshot.payload.allow_counterfactual is True
+    assert trace.analysis_result.counterfactual_sensitivity.budget.max_scenarios == 8
+    assert (
+        trace.decision_trace.versions.legal_operator_library_hash
+        == trace.analysis_result.counterfactual_sensitivity.operator_library_hash
+    )
+    assert (
+        trace.decision_trace.versions.legal_operator_library_version
+        == trace.analysis_result.counterfactual_sensitivity.operator_library_version
+    )
     assert (
         trace.translation_bundle.template_content_hash
         == trace.decision_trace.versions.translation_template_hash
@@ -64,7 +74,7 @@ def test_exported_supply_dispute_trace_fixture_is_valid() -> None:
 
     assert trace.locale == "ru-RU"
     assert trace.disclaimer.startswith("Синтетическая трассировка Этапа 0")
-    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.7.0"
+    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.8.0"
     assert trace.decision_trace.versions.policy_version == trace.policy_snapshot.id
     assert (
         trace.decision_trace.versions.policy_content_hash

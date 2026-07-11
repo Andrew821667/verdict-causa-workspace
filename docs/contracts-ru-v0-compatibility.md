@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.8.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v0` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v0` | supported synthetic release with bounded contractual legal operators |
 | `0.7.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v0` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v0` | supported synthetic release with Russian three-level Translation Layer |
 | `0.6.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v0` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v0` | supported synthetic release with immutable policy coordinates |
 | `0.5.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v0` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v0` | supported synthetic release with ru-RU audit layer |
@@ -12,9 +13,11 @@
 | `0.2.0` | `0.1.0` | `contracts.norm.v0` | n/a | `contracts-json-to-formal-v0` | n/a | historical synthetic release |
 | `0.1.0` | `0.1.0` | `contracts.norm.v0` | n/a | `contracts-json-to-formal-v0` | n/a | historical synthetic release |
 
-This matrix is intentionally exact rather than a claim that every `0.7.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
+This matrix is intentionally exact rather than a claim that every `0.8.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+For `0.7.0` to `0.8.0`, preserve the old reviewed trace and regenerate analysis, policy registry, Translation Layer, Phase 0 trace, and readiness artifacts. Counterfactual scenarios cannot be inferred from the former free-form explanation. They must be replayed against the hash-addressed operator library and the policy-controlled budget.
 
 For `0.6.0` to `0.7.0`, preserve the old trace and regenerate the Management Plane registry, Translation Layer bundle, governance artifact, trace, and readiness report. A historical template version without its content hash cannot prove which text governed the explanation. Old free-form explanation text must not be promoted into the new structured assertions by inference.
 
@@ -42,4 +45,4 @@ A future release that changes the reviewed norm schema, formal predicates, autho
 
 ## Rollback Path
 
-If `0.7.0` proves unsafe or incompatible, pin `0.6.0` together with core `0.1.0`, norm schema `contracts.norm.v0`, evidence schema `contracts.case-evidence.v0`, translator `contracts-json-to-formal-v0`, and pipeline `contracts-reviewed-analysis-v0`. Preserve `0.7.0` bundles and template hashes as audit evidence, but do not synthesize their structured assertions inside `0.6.0`. No package version is production-approved in Phase 0.
+If `0.8.0` proves unsafe or incompatible, pin `0.7.0` together with core `0.1.0`, norm schema `contracts.norm.v0`, evidence schema `contracts.case-evidence.v0`, translator `contracts-json-to-formal-v0`, and pipeline `contracts-reviewed-analysis-v0`. Preserve `0.8.0` sensitivity reports and operator hashes as audit evidence, but do not import their hypothetical facts into `0.7.0`. No package version is production-approved in Phase 0.

@@ -48,6 +48,8 @@ def test_reviewed_analysis_maps_every_fact_with_provenance() -> None:
     ]
     assert result.constraint_evaluation.late_performance_issue is True
     assert result.constraint_evaluation.breach_issue is True
+    assert len(result.counterfactual_sensitivity.scenarios) == 7
+    assert result.counterfactual_sensitivity.critical_scenario_ids
 
 
 def test_reviewed_analysis_resolves_temporal_authority_before_formal_evaluation() -> None:

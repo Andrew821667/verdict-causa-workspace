@@ -20,6 +20,7 @@ class TranslationAssertionCode(str, Enum):
     LIMITATION_BAR = "limitation_bar"
     AUTHORITY_WINNER = "authority_winner"
     HUMAN_RESOLUTION_REQUIRED = "human_resolution_required"
+    COUNTERFACTUAL_SENSITIVITY = "counterfactual_sensitivity"
 
 
 class TranslationAssertion(BaseModel):
