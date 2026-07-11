@@ -31,15 +31,16 @@
     {
       "id": "ws3-bootstrap",
       "title": "Neuro-symbolic bootstrap pipeline",
-      "status": "warning",
+      "status": "passed",
       "evidence_refs": [
         "src/causa/core/bootstrap.py",
-        "norm-supply-delivery-duty-v0"
+        "src/causa/institutional/contracts/reviewed_analysis.py",
+        "examples/synthetic_reviewed_contract_analysis.json",
+        "norm-supply-delivery-duty-v0",
+        "contracts-reviewed-evidence-to-facts-v0"
       ],
       "remaining_work": [
-        "Connect reviewed norm conditions and exceptions to typed formal inputs.",
-        "Connect reviewed case evidence to remedy, causation, and limitation facts.",
-        "Connect reviewed source representations to authority-resolution inputs."
+        "Expand reviewed mappings beyond the current narrow contractual boolean subset."
       ]
     },
     {
@@ -53,8 +54,9 @@
         "docs/contracts-ru-v0-compatibility.md",
         "src/causa/institutional/contracts/versioning.py",
         "src/causa/institutional/contracts/migrations.py",
-        "examples/migrations/contracts-ru-v0-0.1.0-to-0.3.0-migration-report.json",
-        "contracts-ru-v0@0.3.0"
+        "examples/migrations/contracts-ru-v0-0.1.0-to-0.4.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.3.0-to-0.4.0-migration-report.json",
+        "contracts-ru-v0@0.4.0"
       ],
       "remaining_work": [
         "Expand vocabulary, authority rules, temporal rules, legal operators, benchmarks, and red-team scenarios.",
@@ -121,6 +123,7 @@
       "status": "passed",
       "evidence_refs": [
         "examples/phase0_supply_dispute_trace.json",
+        "examples/synthetic_reviewed_contract_analysis.json",
         "phase0-supply-dispute-pipeline-v0"
       ],
       "remaining_work": [

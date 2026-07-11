@@ -8,6 +8,10 @@ from causa.core.bootstrap import (
     DEFAULT_TRANSLATOR_VERSION,
 )
 from causa.institutional.contracts.package import CONTRACTS_PACKAGE_MANIFEST
+from causa.institutional.contracts.reviewed_analysis import (
+    ANALYSIS_PIPELINE_VERSION,
+    CASE_EVIDENCE_SCHEMA_VERSION,
+)
 
 
 class CompatibilityStatus(str, Enum):
@@ -20,6 +24,8 @@ class PackageCompatibilityEntry(BaseModel):
     core_version: str
     bootstrap_schema_versions: list[str] = Field(default_factory=list)
     translator_versions: list[str] = Field(default_factory=list)
+    case_evidence_schema_versions: list[str] = Field(default_factory=list)
+    analysis_pipeline_versions: list[str] = Field(default_factory=list)
     status: CompatibilityStatus
     notes: list[str] = Field(default_factory=list)
 
@@ -30,11 +36,27 @@ class PackageCompatibilityCheck(BaseModel):
     core_version: str
     bootstrap_schema_version: str
     translator_version: str
+    case_evidence_schema_version: str
+    analysis_pipeline_version: str
     supported: bool
     reasons: list[str] = Field(default_factory=list)
 
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
+    PackageCompatibilityEntry(
+        package_version="0.4.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v0"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v0"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Synthetic Phase 0 analysis requires reviewed case, temporal, and authority inputs.",
+            "Every mapped formal fact retains assertion and source provenance.",
+            "No production or real-client-data compatibility claim is implied.",
+        ],
+    ),
     PackageCompatibilityEntry(
         package_version="0.3.0",
         core_version="0.1.0",
@@ -75,6 +97,8 @@ def evaluate_contracts_package_compatibility(
     core_version: str = CORE_VERSION,
     bootstrap_schema_version: str = DEFAULT_BOOTSTRAP_SCHEMA_VERSION,
     translator_version: str = DEFAULT_TRANSLATOR_VERSION,
+    case_evidence_schema_version: str = CASE_EVIDENCE_SCHEMA_VERSION,
+    analysis_pipeline_version: str = ANALYSIS_PIPELINE_VERSION,
 ) -> PackageCompatibilityCheck:
     matching_entries = [
         entry
@@ -83,11 +107,13 @@ def evaluate_contracts_package_compatibility(
         and entry.core_version == core_version
         and bootstrap_schema_version in entry.bootstrap_schema_versions
         and translator_version in entry.translator_versions
+        and case_evidence_schema_version in entry.case_evidence_schema_versions
+        and analysis_pipeline_version in entry.analysis_pipeline_versions
         and entry.status == CompatibilityStatus.SUPPORTED
     ]
     supported = bool(matching_entries)
     reasons = (
-        ["Package, core, bootstrap schema, and translator coordinates are supported."]
+        ["Package, core, schemas, translator, and analysis pipeline coordinates are supported."]
         if supported
         else ["No supported compatibility entry matches the supplied coordinates."]
     )
@@ -98,6 +124,8 @@ def evaluate_contracts_package_compatibility(
         core_version=core_version,
         bootstrap_schema_version=bootstrap_schema_version,
         translator_version=translator_version,
+        case_evidence_schema_version=case_evidence_schema_version,
+        analysis_pipeline_version=analysis_pipeline_version,
         supported=supported,
         reasons=reasons,
     )

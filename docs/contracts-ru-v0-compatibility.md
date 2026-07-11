@@ -2,15 +2,18 @@
 
 ## Compatibility Matrix
 
-| Package version | Core version | Bootstrap schema | Translator | Status |
-| --- | --- | --- | --- | --- |
-| `0.3.0` | `0.1.0` | `contracts.norm.v0` | `contracts-json-to-formal-v0` | supported for synthetic Phase 0 |
-| `0.2.0` | `0.1.0` | `contracts.norm.v0` | `contracts-json-to-formal-v0` | supported for synthetic Phase 0 |
-| `0.1.0` | `0.1.0` | `contracts.norm.v0` | `contracts-json-to-formal-v0` | supported for synthetic Phase 0 |
+| Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| `0.4.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v0` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v0` | supported for synthetic Phase 0 |
+| `0.3.0` | `0.1.0` | `contracts.norm.v0` | n/a | `contracts-json-to-formal-v0` | n/a | historical synthetic release |
+| `0.2.0` | `0.1.0` | `contracts.norm.v0` | n/a | `contracts-json-to-formal-v0` | n/a | historical synthetic release |
+| `0.1.0` | `0.1.0` | `contracts.norm.v0` | n/a | `contracts-json-to-formal-v0` | n/a | historical synthetic release |
 
-This matrix is intentionally exact rather than a claim that every `0.3.x` combination is compatible. It is checked by `src/causa/institutional/contracts/versioning.py`.
+This matrix is intentionally exact rather than a claim that every `0.4.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+For `0.3.0` to `0.4.0`, preserve the old trace as evidence and regenerate it through the reviewed analysis pipeline. Direct, unversioned `ObligationFactSet` input is not upgraded by inference. Case, temporal, and authority inputs must be explicitly reviewed under the new schema.
 
 For `0.2.0` to `0.3.0`, regenerate all synthetic reports and decision traces so their package coordinates and formal result shape are current. Reviewed norm JSON does not change; new formal result fields are additive.
 
@@ -30,4 +33,4 @@ A future release that changes the reviewed norm schema, formal predicates, autho
 
 ## Rollback Path
 
-If `0.3.0` proves unsafe or incompatible, pin `0.2.0` together with core `0.1.0`, schema `contracts.norm.v0`, and translator `contracts-json-to-formal-v0`, then regenerate the synthetic reports. No package version is production-approved in Phase 0.
+If `0.4.0` proves unsafe or incompatible, pin `0.3.0` together with core `0.1.0`, norm schema `contracts.norm.v0`, and translator `contracts-json-to-formal-v0`, then use the historical direct synthetic inputs and regenerate the `0.3.0` artifacts. Do not reinterpret `0.4.0` reviewed-evidence payloads as `0.3.0` direct facts. No package version is production-approved in Phase 0.

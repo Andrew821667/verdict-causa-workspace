@@ -98,6 +98,22 @@ SYNTHETIC_CONTRACT_SOURCES = [
         metadata={"synthetic": True, "topic": "delivery_duty"},
     ),
     LegalSource(
+        id="synthetic-case-supply-1-reviewed-evidence",
+        title="Synthetic reviewed supply case evidence record",
+        source_type=SourceType.FACT,
+        text=(
+            "Synthetic reviewed evidence record: the delivery dates and narrow boolean "
+            "case assertions are approved for the Phase 0 analysis demo."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-contract-supply-delivery-duty-v1",
         title="Synthetic supply delivery duty v1",
         source_type=SourceType.STATUTE,

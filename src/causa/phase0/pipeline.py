@@ -78,7 +78,7 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
         ),
         PipelineStepResult(
             id="review-bootstrap-json",
-            title="Validate reviewed bootstrap JSON",
+            title="Validate reviewed norm JSON",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[trace.reviewed_norm.id],
             notes=[f"Review status: {trace.reviewed_norm.review_status.value}."],
@@ -92,6 +92,43 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
                 "Current translation is deterministic and structured.",
                 "Structured output is narrow and limited to contractual obligation rules.",
             ],
+        ),
+        PipelineStepResult(
+            id="validate-reviewed-analysis-inputs",
+            title="Validate reviewed case, temporal, and authority inputs",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_request.case_evidence.id,
+                trace.analysis_request.temporal_evidence.id,
+                trace.analysis_request.authority_input.id,
+            ],
+            notes=[
+                f"Reviewers: {', '.join(trace.analysis_result.reviewer_ids)}.",
+                "Unknown source references and incomplete evidence are rejected.",
+            ],
+        ),
+        PipelineStepResult(
+            id="map-reviewed-evidence",
+            title="Map reviewed evidence to typed formal facts",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.evidence_mapping.mapping_version,
+                trace.analysis_result.evidence_mapping.formal_rule_id,
+            ],
+            notes=[
+                "Every formal input retains assertion and source provenance.",
+                "Duty and exception inputs retain links to reviewed formal atoms.",
+            ],
+        ),
+        PipelineStepResult(
+            id="resolve-reviewed-authority",
+            title="Resolve reviewed authority candidates",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.authority_evaluation.selected_source_id
+                or "human-resolution-required"
+            ],
+            notes=trace.analysis_result.authority_evaluation.reasons,
         ),
         PipelineStepResult(
             id="evaluate-obligation-constraints",
@@ -204,15 +241,16 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
         ReadinessItem(
             id="ws3-bootstrap",
             title="Neuro-symbolic bootstrap pipeline",
-            status=PipelineStepStatus.WARNING,
+            status=PipelineStepStatus.PASSED,
             evidence_refs=[
                 "src/causa/core/bootstrap.py",
+                "src/causa/institutional/contracts/reviewed_analysis.py",
+                "examples/synthetic_reviewed_contract_analysis.json",
                 pipeline.trace.reviewed_norm.id,
+                pipeline.trace.analysis_result.evidence_mapping.mapping_version,
             ],
             remaining_work=[
-                "Connect reviewed norm conditions and exceptions to typed formal inputs.",
-                "Connect reviewed case evidence to remedy, causation, and limitation facts.",
-                "Connect reviewed source representations to authority-resolution inputs.",
+                "Expand reviewed mappings beyond the current narrow contractual boolean subset.",
             ],
         ),
         ReadinessItem(
@@ -226,7 +264,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contracts-ru-v0-compatibility.md",
                 "src/causa/institutional/contracts/versioning.py",
                 "src/causa/institutional/contracts/migrations.py",
-                "examples/migrations/contracts-ru-v0-0.1.0-to-0.3.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.1.0-to-0.4.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.3.0-to-0.4.0-migration-report.json",
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
             ],
             remaining_work=[
@@ -290,6 +329,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
             status=PipelineStepStatus.PASSED,
             evidence_refs=[
                 "examples/phase0_supply_dispute_trace.json",
+                "examples/synthetic_reviewed_contract_analysis.json",
                 pipeline.id,
             ],
             remaining_work=["Add synthetic source set and pilot-style task list."],

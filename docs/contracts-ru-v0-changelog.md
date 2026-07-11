@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.4.0 - 2026-07-11
+
+- Adds reviewed case-evidence, temporal-evidence, and authority-input contracts.
+- Adds a fail-closed end-to-end analysis pipeline with source, case, date, schema, and review validation.
+- Maps every narrow formal fact from an explicit reviewed assertion and retains source provenance.
+- Links duty and exception facts to reviewed formal atoms.
+- Adds a standalone synthetic reviewed-analysis artifact and migrates the Phase 0 trace to it.
+- Adds replay-required migration fixtures from both `0.1.0` and `0.3.0`.
+
 ## 0.3.0 - 2026-07-11
 
 - Adds synthetic formal predicates for basic damages remedy availability, causation-evidence gaps, and stated limitation bars.

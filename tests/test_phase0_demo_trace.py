@@ -14,6 +14,12 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     assert trace.formal_translation.obligation_rule.creditor == "buyer"
     assert trace.temporal_evaluation.due_date_missed is True
     assert trace.source_applicability.applicable is True
+    assert trace.analysis_result.pipeline_version == "contracts-reviewed-analysis-v0"
+    assert len(trace.analysis_result.evidence_mapping.provenance) == 13
+    assert (
+        trace.analysis_result.authority_evaluation.selected_source_id
+        == trace.reviewed_norm.source_id
+    )
     assert trace.obligation_facts.due_date_missed is True
     assert trace.constraint_evaluation.breach_issue is True
     assert trace.constraint_evaluation.late_performance_issue is True
@@ -42,8 +48,8 @@ def test_exported_supply_dispute_trace_fixture_is_valid() -> None:
     trace = Phase0DemoTrace.model_validate(data)
 
     assert trace.disclaimer.startswith("Synthetic Phase 0 trace")
-    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.3.0"
+    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.4.0"
     assert trace.formal_translation.obligation_rule.id == "obligation-rule:norm-supply-delivery-duty-v0"
     assert trace.constraint_set.id == "constraint-set:obligation-rule:norm-supply-delivery-duty-v0"
     assert trace.temporal_facts.agreed_due_date.isoformat() == "2026-01-15"
-    assert trace.legal_source.valid_from == "2020-01-01"
+    assert trace.legal_source.valid_from == "2026-01-01"

@@ -117,6 +117,14 @@ python scripts/export_phase0_demo_trace.py
 
 The output is written to `examples/phase0_supply_dispute_trace.json`. It is a non-production architecture demo, not legal advice.
 
+Generate the standalone synthetic reviewed-input contract analysis:
+
+```bash
+python scripts/export_synthetic_reviewed_contract_analysis.py
+```
+
+The output is written to `examples/synthetic_reviewed_contract_analysis.json`.
+
 Generate the current Phase 0 readiness report:
 
 ```bash
@@ -163,8 +171,11 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-The output is written to
-`examples/migrations/contracts-ru-v0-0.1.0-to-0.3.0-migration-report.json`.
+The command writes replay reports for the legacy `0.1.0` benchmark artifact and the
+legacy `0.3.0` Phase 0 trace:
+
+- `examples/migrations/contracts-ru-v0-0.1.0-to-0.4.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.3.0-to-0.4.0-migration-report.json`.
 
 ## License
 

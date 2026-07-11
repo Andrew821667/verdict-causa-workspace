@@ -64,6 +64,19 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_synthetic_supply_red_team.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.3.0",
+        to_version="0.4.0",
+        reasons=[
+            "Analysis inputs gained reviewed case, temporal, and authority contracts.",
+            "Decision traces now retain fact provenance and the complete reviewed analysis result.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 
@@ -131,7 +144,7 @@ def build_contracts_package_migration_report(
         steps=steps,
         reasons=[
             "Legacy artifact is retained as input evidence only.",
-            "Replay is required because authority and formal semantics changed.",
+            "Replay is required because package analysis or artifact semantics changed.",
         ],
         payload_preserved_without_interpretation=True,
     )

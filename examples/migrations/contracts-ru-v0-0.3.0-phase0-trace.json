@@ -1,0 +1,12 @@
+{
+  "id": "legacy-phase0-supply-trace-v0.3.0",
+  "artifact_type": "phase0_demo_trace",
+  "package_id": "contracts-ru-v0",
+  "package_version": "0.3.0",
+  "payload": {
+    "decision_trace_id": "trace-phase0-supply-dispute-v0",
+    "formal_fact_input": "direct_unversioned_obligation_fact_set",
+    "reviewed_case_evidence_present": false,
+    "fact_provenance_present": false
+  }
+}
