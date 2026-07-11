@@ -3,6 +3,9 @@ from enum import Enum
 from pydantic import BaseModel, Field
 
 from causa.institutional.contracts.benchmark_runner import run_synthetic_supply_benchmark_suite
+from causa.institutional.contracts.practice_utility import (
+    build_synthetic_supply_practice_utility_report,
+)
 from causa.institutional.contracts.red_team_runner import run_synthetic_supply_red_team_suite
 from causa.phase0.demo_trace import Phase0DemoTrace, build_supply_dispute_demo_trace
 
@@ -168,6 +171,7 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
 def build_phase0_readiness_report() -> Phase0ReadinessReport:
     pipeline = run_supply_dispute_pipeline()
     benchmark_report = run_synthetic_supply_benchmark_suite()
+    practice_utility_report = build_synthetic_supply_practice_utility_report()
     red_team_report = run_synthetic_supply_red_team_suite()
 
     items = [
@@ -256,10 +260,11 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
             evidence_refs=[
                 pipeline.trace.red_team_scenario.id,
                 benchmark_report.id,
+                practice_utility_report.id,
                 red_team_report.id,
             ],
             remaining_work=[
-                "Separate benchmark quality and practice utility metrics.",
+                "Collect non-synthetic pilot observations with privacy controls.",
                 "Replace deterministic guardrail checks with adversarial model-driven attack attempts.",
             ],
         ),

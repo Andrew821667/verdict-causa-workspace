@@ -131,6 +131,14 @@ python scripts/export_synthetic_supply_benchmarks.py
 
 The output is written to `examples/synthetic_supply_benchmark_report.json`.
 
+Generate the synthetic supply practice-utility report:
+
+```bash
+python scripts/export_synthetic_supply_practice_utility.py
+```
+
+The output is written to `examples/synthetic_supply_practice_utility_report.json`.
+
 Generate the synthetic supply red-team report:
 
 ```bash

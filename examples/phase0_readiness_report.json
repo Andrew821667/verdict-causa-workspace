@@ -99,10 +99,11 @@
       "evidence_refs": [
         "red-team-supply-delay-excuse-overreach",
         "synthetic-supply-benchmark-suite-v0",
+        "synthetic-supply-practice-utility-report-v0",
         "synthetic-supply-red-team-suite-v0"
       ],
       "remaining_work": [
-        "Separate benchmark quality and practice utility metrics.",
+        "Collect non-synthetic pilot observations with privacy controls.",
         "Replace deterministic guardrail checks with adversarial model-driven attack attempts."
       ]
     },

@@ -55,6 +55,30 @@ class BenchmarkSuiteReport(BaseModel):
         return self.passed / self.total
 
 
+class PracticeUtilityObservation(BaseModel):
+    id: str
+    task_id: str
+    time_to_useful_draft_minutes: float = Field(ge=0)
+    accepted_argument_count: int = Field(ge=0)
+    human_correction_count: int = Field(ge=0)
+    reviewer_usefulness_rating: float = Field(ge=1, le=5)
+    formally_smart_but_practically_useless: bool = False
+    notes: list[str] = Field(default_factory=list)
+
+
+class PracticeUtilityReport(BaseModel):
+    id: str
+    institutional_package_id: str
+    baseline_kind: str
+    total_observations: int
+    average_time_to_useful_draft_minutes: float
+    total_accepted_argument_count: int
+    total_human_correction_count: int
+    average_reviewer_usefulness_rating: float
+    formally_smart_but_practically_useless_count: int
+    observations: list[PracticeUtilityObservation] = Field(default_factory=list)
+
+
 class RedTeamScenario(BaseModel):
     id: str
     title: str

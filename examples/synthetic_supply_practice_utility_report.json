@@ -1,0 +1,49 @@
+{
+  "id": "synthetic-supply-practice-utility-report-v0",
+  "institutional_package_id": "contracts-ru-v0",
+  "baseline_kind": "synthetic_phase0_baseline",
+  "total_observations": 3,
+  "average_time_to_useful_draft_minutes": 24.0,
+  "total_accepted_argument_count": 3,
+  "total_human_correction_count": 6,
+  "average_reviewer_usefulness_rating": 3.1666666666666665,
+  "formally_smart_but_practically_useless_count": 1,
+  "observations": [
+    {
+      "id": "utility-supply-late-delivery-v0",
+      "task_id": "bench-supply-late-no-excuse",
+      "time_to_useful_draft_minutes": 18.0,
+      "accepted_argument_count": 2,
+      "human_correction_count": 1,
+      "reviewer_usefulness_rating": 4.0,
+      "formally_smart_but_practically_useless": false,
+      "notes": [
+        "Synthetic baseline: reviewer retained the source-grounded delay analysis."
+      ]
+    },
+    {
+      "id": "utility-supply-defect-separation-v0",
+      "task_id": "bench-confirmed-defect-after-timely-performance",
+      "time_to_useful_draft_minutes": 24.0,
+      "accepted_argument_count": 1,
+      "human_correction_count": 2,
+      "reviewer_usefulness_rating": 3.5,
+      "formally_smart_but_practically_useless": false,
+      "notes": [
+        "Synthetic baseline: reviewer corrected the scope of the defect remedy."
+      ]
+    },
+    {
+      "id": "utility-supply-authority-trace-v0",
+      "task_id": "bench-statutory-source-prevails-over-contract-specific",
+      "time_to_useful_draft_minutes": 30.0,
+      "accepted_argument_count": 0,
+      "human_correction_count": 3,
+      "reviewer_usefulness_rating": 2.0,
+      "formally_smart_but_practically_useless": true,
+      "notes": [
+        "Synthetic baseline: the authority trace was correct but did not answer the requested remedy question."
+      ]
+    }
+  ]
+}
