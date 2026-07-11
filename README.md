@@ -66,6 +66,8 @@ For Phase 0 implementation detail, see:
 - [Management Plane specification](docs/management-plane-spec.md);
 - [Translation Layer specification](docs/translation-layer-spec.md);
 - [Evaluation and Red Team specification](docs/evaluation-and-red-team-spec.md);
+- [Contracts RU v0 changelog](docs/contracts-ru-v0-changelog.md);
+- [Contracts RU v0 compatibility matrix](docs/contracts-ru-v0-compatibility.md);
 - [Phase 0 backlog](docs/phase-0-backlog.md).
 
 ## Governance and auditability

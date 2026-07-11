@@ -222,11 +222,11 @@ Phase 0 is not done when the repository looks polished. It is done when the syst
 
 ## Immediate next milestones
 
-1. Add Phase 0 package version changelog and compatibility matrix.
-2. Extend authority resolution to regulatory and constitutional contexts after a package-specific policy is reviewed.
-3. Add formal patterns for remedies, causation, and limitation periods after domain review.
-4. Collect privacy-safe pilot observations for practice-utility metrics.
-5. Integrate a reviewed external model provider for attack wording under tenant and privacy controls.
+1. Extend authority resolution to regulatory and constitutional contexts after a package-specific policy is reviewed.
+2. Add formal patterns for remedies, causation, and limitation periods after domain review.
+3. Collect privacy-safe pilot observations for practice-utility metrics.
+4. Integrate a reviewed external model provider for attack wording under tenant and privacy controls.
+5. Add migration fixtures once a second package release exists.
 
 ## Current synthetic trace
 

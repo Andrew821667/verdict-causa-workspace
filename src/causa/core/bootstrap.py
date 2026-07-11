@@ -3,6 +3,10 @@ from enum import Enum
 from pydantic import BaseModel, Field
 
 
+DEFAULT_BOOTSTRAP_SCHEMA_VERSION = "contracts.norm.v0"
+DEFAULT_TRANSLATOR_VERSION = "contracts-json-to-formal-v0"
+
+
 class BootstrapReviewStatus(str, Enum):
     DRAFT = "draft"
     NEEDS_REVISION = "needs_revision"
@@ -39,7 +43,7 @@ class FormalObligationRule(BaseModel):
 
 class ReviewedNormJSON(BaseModel):
     id: str
-    schema_version: str = "contracts.norm.v0"
+    schema_version: str = DEFAULT_BOOTSTRAP_SCHEMA_VERSION
     source_id: str
     subjects: list[str] = Field(default_factory=list)
     actions: list[str] = Field(default_factory=list)
@@ -79,7 +83,7 @@ def _to_formal_atoms(items: list[NormCondition] | list[NormConsequence], source_
 
 def translate_reviewed_norm(
     norm: ReviewedNormJSON,
-    translator_version: str = "contracts-json-to-formal-v0",
+    translator_version: str = DEFAULT_TRANSLATOR_VERSION,
 ) -> FormalTranslationResult:
     if not norm.is_reviewed:
         msg = "Only reviewed norm JSON can be translated."

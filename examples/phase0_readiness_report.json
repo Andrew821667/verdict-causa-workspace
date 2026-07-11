@@ -48,10 +48,15 @@
       "status": "warning",
       "evidence_refs": [
         "src/causa/institutional/contracts/package.py",
-        "docs/first-institution-contracts.md"
+        "docs/first-institution-contracts.md",
+        "docs/contracts-ru-v0-changelog.md",
+        "docs/contracts-ru-v0-compatibility.md",
+        "src/causa/institutional/contracts/versioning.py",
+        "contracts-ru-v0@0.1.0"
       ],
       "remaining_work": [
-        "Expand vocabulary, authority rules, temporal rules, legal operators, benchmarks, and red-team scenarios."
+        "Expand vocabulary, authority rules, temporal rules, legal operators, benchmarks, and red-team scenarios.",
+        "Add compatibility entries and migration notes for each package release."
       ]
     },
     {

@@ -18,6 +18,10 @@ class InstitutionalPackageManifest(BaseModel):
     confidence_policy_refs: list[str] = Field(default_factory=list)
     activation_policy_refs: list[str] = Field(default_factory=list)
     domain_owner_responsibilities_ref: str | None = None
+    changelog_ref: str | None = None
+    compatibility_matrix_ref: str | None = None
+    migration_guide_ref: str | None = None
+    rollback_ref: str | None = None
 
     def missing_required_sections(self) -> list[str]:
         required = {
@@ -36,6 +40,13 @@ class InstitutionalPackageManifest(BaseModel):
         missing = [name for name, value in required.items() if not value]
         if not self.domain_owner_responsibilities_ref:
             missing.append("domain_owner_responsibilities_ref")
+        lifecycle_refs = {
+            "changelog_ref": self.changelog_ref,
+            "compatibility_matrix_ref": self.compatibility_matrix_ref,
+            "migration_guide_ref": self.migration_guide_ref,
+            "rollback_ref": self.rollback_ref,
+        }
+        missing.extend(name for name, value in lifecycle_refs.items() if not value)
         return missing
 
     @property

@@ -24,6 +24,9 @@ The first package is contractual relations. It covers general obligations and co
 
 The package lives under `src/causa/institutional/contracts`.
 
+Its current [changelog](contracts-ru-v0-changelog.md) and
+[compatibility matrix](contracts-ru-v0-compatibility.md) are Phase 0 artifacts.
+
 ## Package lifecycle
 
 Each institutional package should have a version tag, changelog, compatibility matrix with the universal core, migration guide, and rollback path.

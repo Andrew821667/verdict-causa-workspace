@@ -18,4 +18,8 @@ CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
     confidence_policy_refs=["docs/management-plane-spec.md#confidence-and-activation-policies"],
     activation_policy_refs=["docs/management-plane-spec.md#confidence-and-activation-policies"],
     domain_owner_responsibilities_ref="docs/institutional-packages.md#each-package-should-define",
+    changelog_ref="docs/contracts-ru-v0-changelog.md",
+    compatibility_matrix_ref="docs/contracts-ru-v0-compatibility.md#compatibility-matrix",
+    migration_guide_ref="docs/contracts-ru-v0-compatibility.md#migration-guide",
+    rollback_ref="docs/contracts-ru-v0-compatibility.md#rollback-path",
 )

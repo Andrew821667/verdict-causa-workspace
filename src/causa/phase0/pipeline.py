@@ -7,6 +7,9 @@ from causa.institutional.contracts.practice_utility import (
     build_synthetic_supply_practice_utility_report,
 )
 from causa.institutional.contracts.red_team_runner import run_synthetic_supply_red_team_suite
+from causa.institutional.contracts.versioning import (
+    evaluate_contracts_package_compatibility,
+)
 from causa.phase0.demo_trace import Phase0DemoTrace, build_supply_dispute_demo_trace
 
 
@@ -173,6 +176,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     benchmark_report = run_synthetic_supply_benchmark_suite()
     practice_utility_report = build_synthetic_supply_practice_utility_report()
     red_team_report = run_synthetic_supply_red_team_suite()
+    compatibility_check = evaluate_contracts_package_compatibility()
 
     items = [
         ReadinessItem(
@@ -214,9 +218,14 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
             evidence_refs=[
                 "src/causa/institutional/contracts/package.py",
                 "docs/first-institution-contracts.md",
+                "docs/contracts-ru-v0-changelog.md",
+                "docs/contracts-ru-v0-compatibility.md",
+                "src/causa/institutional/contracts/versioning.py",
+                f"{compatibility_check.package_id}@{compatibility_check.package_version}",
             ],
             remaining_work=[
                 "Expand vocabulary, authority rules, temporal rules, legal operators, benchmarks, and red-team scenarios.",
+                "Add compatibility entries and migration notes for each package release.",
             ],
         ),
         ReadinessItem(
