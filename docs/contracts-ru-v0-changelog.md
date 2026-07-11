@@ -1,5 +1,11 @@
 # Contracts RU v0 Changelog
 
+## 0.2.0 - 2026-07-11
+
+- Adds a synthetic-reviewed authority policy with constitutional and regulatory levels.
+- Adds benchmark and adversarial checks for constitutional/statutory/regulatory ordering.
+- Adds migration and rollback guidance for the preceding package release.
+
 ## 0.1.0 - 2026-07-11
 
 - Initial Phase 0 contractual package release.

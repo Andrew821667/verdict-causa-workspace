@@ -340,4 +340,54 @@ SYNTHETIC_SUPPLY_BENCHMARKS = [
         expected_breach_issue=False,
         expected_payment_default_issue=False,
     ),
+    BenchmarkTask(
+        id="bench-constitutional-source-prevails-over-special-statute",
+        title="Constitutional source prevails over special statutory source",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=[
+            "synthetic-ru-constitutional-contract-guarantee",
+            "synthetic-ru-contract-supply-specific-delivery-duty",
+        ],
+        authority_candidate_source_refs=[
+            "synthetic-ru-contract-supply-specific-delivery-duty",
+            "synthetic-ru-constitutional-contract-guarantee",
+        ],
+        expected_authority_winner="synthetic-ru-constitutional-contract-guarantee",
+        expected_authority_rules=["higher_authority"],
+        facts={
+            "duty_exists": True,
+            "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-20",
+            "evaluation_date": "2026-01-21",
+        },
+        expected_breach_issue=True,
+    ),
+    BenchmarkTask(
+        id="bench-statutory-source-prevails-over-special-regulation",
+        title="Statutory source prevails over special regulatory source",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=[
+            "synthetic-ru-contract-general-performance-duty",
+            "synthetic-ru-regulatory-supply-delivery-record",
+        ],
+        authority_candidate_source_refs=[
+            "synthetic-ru-regulatory-supply-delivery-record",
+            "synthetic-ru-contract-general-performance-duty",
+        ],
+        expected_authority_winner="synthetic-ru-contract-general-performance-duty",
+        expected_authority_rules=["higher_authority"],
+        facts={
+            "duty_exists": True,
+            "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-20",
+            "evaluation_date": "2026-01-21",
+        },
+        expected_breach_issue=True,
+    ),
 ]

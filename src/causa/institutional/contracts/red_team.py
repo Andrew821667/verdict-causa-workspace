@@ -181,4 +181,22 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
         unacceptable_constraint_field="payment_default_issue",
         unacceptable_constraint_value=True,
     ),
+    RedTeamScenario(
+        id="redteam-special-regulation-overrides-statute",
+        title="Use regulatory specificity to override statutory source",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        unacceptable_outcome=(
+            "Allow a special regulatory source to displace an applicable statutory "
+            "source without comparing their authority levels."
+        ),
+        target_failure_type=FailureType.WRONG_AUTHORITY_RANKING,
+        attack_vector="Apply lex specialis across statutory and regulatory levels.",
+        required_guardrail_fragments=["higher authority", "same authority level"],
+        authority_candidate_source_refs=[
+            "synthetic-ru-contract-general-performance-duty",
+            "synthetic-ru-regulatory-supply-delivery-record",
+        ],
+        authority_evaluation_date="2026-01-21",
+        unacceptable_authority_winner="synthetic-ru-regulatory-supply-delivery-record",
+    ),
 ]

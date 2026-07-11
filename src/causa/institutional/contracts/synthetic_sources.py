@@ -3,6 +3,22 @@ from causa.core.models import LegalSource, SourceType
 
 SYNTHETIC_CONTRACT_SOURCES = [
     LegalSource(
+        id="synthetic-ru-constitutional-contract-guarantee",
+        title="Synthetic constitutional contract guarantee",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Synthetic constitutional-level source: contractual analysis must remain "
+            "within the protected legal framework."
+        ),
+        valid_from="2020-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "authority_framework",
+            "authority_level": "constitutional",
+            "specificity": "general",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-contract-supply-delivery-duty",
         title="Synthetic supply delivery duty",
         source_type=SourceType.STATUTE,
@@ -45,6 +61,22 @@ SYNTHETIC_CONTRACT_SOURCES = [
         ),
         valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "delivery_duty", "specificity": "special"},
+    ),
+    LegalSource(
+        id="synthetic-ru-regulatory-supply-delivery-record",
+        title="Synthetic regulatory supply delivery record",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Synthetic regulatory-level source: supply delivery records use a "
+            "special reporting format."
+        ),
+        valid_from="2020-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "delivery_duty",
+            "authority_level": "regulatory",
+            "specificity": "special",
+        },
     ),
     LegalSource(
         id="synthetic-ru-contract-supply-delivery-term",

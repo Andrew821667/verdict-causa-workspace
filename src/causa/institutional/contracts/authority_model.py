@@ -8,18 +8,6 @@ from causa.core.source_hierarchy import AuthorityLevel
 from causa.core.temporal_validity import evaluate_source_applicability
 
 
-CONTRACT_AUTHORITY_ORDER = [
-    AuthorityLevel.STATUTORY,
-    AuthorityLevel.JUDICIAL,
-    AuthorityLevel.CONTRACTUAL,
-    AuthorityLevel.FACTUAL,
-]
-
-AUTHORITY_RANK = {
-    authority_level: len(CONTRACT_AUTHORITY_ORDER) - position
-    for position, authority_level in enumerate(CONTRACT_AUTHORITY_ORDER)
-}
-
 SOURCE_TYPE_AUTHORITY_LEVEL = {
     SourceType.STATUTE: AuthorityLevel.STATUTORY,
     SourceType.CASE_LAW: AuthorityLevel.JUDICIAL,
@@ -30,6 +18,42 @@ SOURCE_TYPE_AUTHORITY_LEVEL = {
 SPECIFICITY_RANK = {
     "general": 0,
     "special": 1,
+}
+
+
+class AuthorityPolicyReviewStatus(str, Enum):
+    SYNTHETIC_REVIEWED = "synthetic_reviewed"
+
+
+class ContractAuthorityPolicy(BaseModel):
+    id: str
+    review_status: AuthorityPolicyReviewStatus
+    authority_order: list[AuthorityLevel] = Field(default_factory=list)
+    scope_note: str
+
+
+CONTRACT_AUTHORITY_POLICY = ContractAuthorityPolicy(
+    id="contracts-ru-authority-policy-v0",
+    review_status=AuthorityPolicyReviewStatus.SYNTHETIC_REVIEWED,
+    authority_order=[
+        AuthorityLevel.CONSTITUTIONAL,
+        AuthorityLevel.STATUTORY,
+        AuthorityLevel.REGULATORY,
+        AuthorityLevel.JUDICIAL,
+        AuthorityLevel.CONTRACTUAL,
+        AuthorityLevel.FACTUAL,
+    ],
+    scope_note=(
+        "Synthetic Phase 0 ordering for test sources only; it is not a complete "
+        "jurisdiction-specific authority policy."
+    ),
+)
+
+CONTRACT_AUTHORITY_ORDER = CONTRACT_AUTHORITY_POLICY.authority_order
+
+AUTHORITY_RANK = {
+    authority_level: len(CONTRACT_AUTHORITY_ORDER) - position
+    for position, authority_level in enumerate(CONTRACT_AUTHORITY_ORDER)
 }
 
 

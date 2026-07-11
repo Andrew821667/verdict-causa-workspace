@@ -20,5 +20,6 @@ def test_unknown_core_version_is_not_supported() -> None:
 
 
 def test_compatibility_matrix_marks_current_entry_supported() -> None:
-    assert len(CONTRACTS_PACKAGE_COMPATIBILITY) == 1
+    assert len(CONTRACTS_PACKAGE_COMPATIBILITY) == 2
     assert CONTRACTS_PACKAGE_COMPATIBILITY[0].status == CompatibilityStatus.SUPPORTED
+    assert CONTRACTS_PACKAGE_COMPATIBILITY[0].package_version == "0.2.0"

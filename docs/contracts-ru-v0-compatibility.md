@@ -4,13 +4,16 @@
 
 | Package version | Core version | Bootstrap schema | Translator | Status |
 | --- | --- | --- | --- | --- |
+| `0.2.0` | `0.1.0` | `contracts.norm.v0` | `contracts-json-to-formal-v0` | supported for synthetic Phase 0 |
 | `0.1.0` | `0.1.0` | `contracts.norm.v0` | `contracts-json-to-formal-v0` | supported for synthetic Phase 0 |
 
-This matrix is intentionally exact rather than a claim that every `0.1.x` combination is compatible. It is checked by `src/causa/institutional/contracts/versioning.py`.
+This matrix is intentionally exact rather than a claim that every `0.2.x` combination is compatible. It is checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
 
-There is no earlier public package release to migrate from. A future release that changes the reviewed norm schema, formal predicates, authority order, or benchmark result shape must provide:
+For `0.1.0` to `0.2.0`, regenerate all synthetic reports and decision traces so their package coordinates and authority outcomes are current. Reviewed norm JSON and formal predicate names do not change in this release.
+
+A future release that changes the reviewed norm schema, formal predicates, authority order, or benchmark result shape must provide:
 
 1. a migration note for persisted reviewed JSON and exported traces;
 2. a compatibility entry for the prior release;
@@ -19,4 +22,4 @@ There is no earlier public package release to migrate from. A future release tha
 
 ## Rollback Path
 
-If a package release proves unsafe or incompatible, pin the previous package version together with its matching core, schema, and translator coordinates. Re-run the synthetic benchmark, practice-utility, and red-team reports before restoring activation. No package version is production-approved in Phase 0.
+If `0.2.0` proves unsafe or incompatible, pin `0.1.0` together with core `0.1.0`, schema `contracts.norm.v0`, and translator `contracts-json-to-formal-v0`, then regenerate the synthetic reports. No package version is production-approved in Phase 0.

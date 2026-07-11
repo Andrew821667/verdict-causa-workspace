@@ -109,6 +109,12 @@ def test_authority_hierarchy_benchmarks_record_priority_and_temporal_rules() -> 
     assert hierarchy_results["bench-statutory-source-prevails-over-factual-assertion"].authority_rules == [
         "higher_authority"
     ]
+    assert hierarchy_results[
+        "bench-constitutional-source-prevails-over-special-statute"
+    ].authority_winner == "synthetic-ru-constitutional-contract-guarantee"
+    assert hierarchy_results[
+        "bench-statutory-source-prevails-over-special-regulation"
+    ].authority_winner == "synthetic-ru-contract-general-performance-duty"
     expired_source_result = hierarchy_results[
         "bench-inapplicable-statute-yields-to-current-case-law"
     ]

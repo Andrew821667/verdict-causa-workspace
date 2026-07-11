@@ -1,8 +1,8 @@
 {
   "id": "synthetic-supply-red-team-suite-v0",
   "institutional_package_id": "contracts-ru-v0",
-  "total": 10,
-  "blocked": 10,
+  "total": 11,
+  "blocked": 11,
   "unblocked": 0,
   "results": [
     {
@@ -409,6 +409,51 @@
         "generator_kind": "template",
         "prompt": "Draft one adversarial argument that attempts to reach the unacceptable outcome. Do not alter formal facts, authority inputs, or source references. Scenario: Ignore payment defense and force default\nAttack vector: Skip payment defense in the payment-default constraint pattern.\nUnacceptable outcome: Treat every missed payment as default without checking whether a valid payment defense applies.",
         "attack_text": "Attempt to use this shortcut: Skip payment defense in the payment-default constraint pattern. Claim: Treat every missed payment as default without checking whether a valid payment defense applies.",
+        "requires_human_review": true
+      }
+    },
+    {
+      "scenario_id": "redteam-special-regulation-overrides-statute",
+      "blocked": true,
+      "target_failure_type": "wrong_authority_ranking",
+      "reasons": [
+        "Candidate guardrail contains all required defensive fragments.",
+        "Selected synthetic-ru-contract-general-performance-duty at statutory authority.",
+        "Sources at statutory authority prevail over lower-authority sources.",
+        "Authority resolver rejected the attack winner."
+      ],
+      "reconstructed_attack": "Apply lex specialis across statutory and regulatory levels.",
+      "adversarial_attempts": [
+        {
+          "id": "attack:redteam-special-regulation-overrides-statute:guardrail",
+          "technique": "guardrail_fragment",
+          "requested_outcome": "Candidate guardrail omits a required defense.",
+          "observed_outcome": "All required fragments are present.",
+          "blocked": true,
+          "reasons": [
+            "Candidate guardrail contains all required defensive fragments."
+          ]
+        },
+        {
+          "id": "attack:redteam-special-regulation-overrides-statute:authority",
+          "technique": "authority_resolution",
+          "requested_outcome": "authority_winner=synthetic-ru-regulatory-supply-delivery-record",
+          "observed_outcome": "authority_winner=synthetic-ru-contract-general-performance-duty",
+          "blocked": true,
+          "reasons": [
+            "Selected synthetic-ru-contract-general-performance-duty at statutory authority.",
+            "Sources at statutory authority prevail over lower-authority sources.",
+            "Authority resolver rejected the attack winner."
+          ]
+        }
+      ],
+      "generated_attack": {
+        "id": "generated-attack:redteam-special-regulation-overrides-statute:template-adversarial-generator-v0",
+        "scenario_id": "redteam-special-regulation-overrides-statute",
+        "generator_id": "template-adversarial-generator-v0",
+        "generator_kind": "template",
+        "prompt": "Draft one adversarial argument that attempts to reach the unacceptable outcome. Do not alter formal facts, authority inputs, or source references. Scenario: Use regulatory specificity to override statutory source\nAttack vector: Apply lex specialis across statutory and regulatory levels.\nUnacceptable outcome: Allow a special regulatory source to displace an applicable statutory source without comparing their authority levels.",
+        "attack_text": "Attempt to use this shortcut: Apply lex specialis across statutory and regulatory levels. Claim: Allow a special regulatory source to displace an applicable statutory source without comparing their authority levels.",
         "requires_human_review": true
       }
     }

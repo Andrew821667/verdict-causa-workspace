@@ -5,7 +5,9 @@ import pytest
 from causa.core.models import LegalSource, SourceType
 from causa.core.source_hierarchy import AuthorityLevel
 from causa.institutional.contracts.authority_model import (
+    CONTRACT_AUTHORITY_POLICY,
     AuthorityResolutionRule,
+    AuthorityPolicyReviewStatus,
     authority_level_for_source,
     evaluate_lex_specialis,
     evaluate_source_authority,
@@ -81,6 +83,29 @@ def test_authority_level_is_derived_from_supported_source_types() -> None:
     assert {
         authority_level_for_source(source) for source in sources_by_level.values()
     } == set(sources_by_level)
+
+
+def test_synthetic_authority_policy_includes_constitutional_and_regulatory_levels() -> None:
+    assert CONTRACT_AUTHORITY_POLICY.review_status == AuthorityPolicyReviewStatus.SYNTHETIC_REVIEWED
+    assert CONTRACT_AUTHORITY_POLICY.authority_order[:3] == [
+        AuthorityLevel.CONSTITUTIONAL,
+        AuthorityLevel.STATUTORY,
+        AuthorityLevel.REGULATORY,
+    ]
+
+
+def test_constitutional_source_prevails_over_special_statutory_source() -> None:
+    constitutional_source = get_synthetic_contract_source(
+        "synthetic-ru-constitutional-contract-guarantee"
+    )
+    statutory_source = get_synthetic_contract_source(
+        "synthetic-ru-contract-supply-specific-delivery-duty"
+    )
+
+    evaluation = evaluate_source_authority([statutory_source, constitutional_source])
+
+    assert evaluation.selected_source_id == constitutional_source.id
+    assert evaluation.selected_authority_level == AuthorityLevel.CONSTITUTIONAL
 
 
 def test_higher_authority_prevails_over_more_specific_lower_source() -> None:

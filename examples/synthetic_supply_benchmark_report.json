@@ -1,8 +1,8 @@
 {
   "id": "synthetic-supply-benchmark-suite-v0",
   "institutional_package_id": "contracts-ru-v0",
-  "total": 17,
-  "passed": 17,
+  "total": 19,
+  "passed": 19,
   "failed": 0,
   "results": [
     {
@@ -471,6 +471,70 @@
       "authority_winner": null,
       "authority_reasons": [],
       "authority_rules": [],
+      "authority_excluded_source_refs": []
+    },
+    {
+      "task_id": "bench-constitutional-source-prevails-over-special-statute",
+      "passed": true,
+      "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
+      "source_refs": [
+        "synthetic-ru-constitutional-contract-guarantee",
+        "synthetic-ru-contract-supply-specific-delivery-duty"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-constitutional-contract-guarantee: Source is applicable at the evaluation date.",
+        "synthetic-ru-contract-supply-specific-delivery-duty: Source is applicable at the evaluation date."
+      ],
+      "authority_winner": "synthetic-ru-constitutional-contract-guarantee",
+      "authority_reasons": [
+        "Selected synthetic-ru-constitutional-contract-guarantee at constitutional authority.",
+        "Sources at constitutional authority prevail over lower-authority sources."
+      ],
+      "authority_rules": [
+        "higher_authority"
+      ],
+      "authority_excluded_source_refs": []
+    },
+    {
+      "task_id": "bench-statutory-source-prevails-over-special-regulation",
+      "passed": true,
+      "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
+      "source_refs": [
+        "synthetic-ru-contract-general-performance-duty",
+        "synthetic-ru-regulatory-supply-delivery-record"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-general-performance-duty: Source is applicable at the evaluation date.",
+        "synthetic-ru-regulatory-supply-delivery-record: Source is applicable at the evaluation date."
+      ],
+      "authority_winner": "synthetic-ru-contract-general-performance-duty",
+      "authority_reasons": [
+        "Selected synthetic-ru-contract-general-performance-duty at statutory authority.",
+        "Sources at statutory authority prevail over lower-authority sources."
+      ],
+      "authority_rules": [
+        "higher_authority"
+      ],
       "authority_excluded_source_refs": []
     }
   ]

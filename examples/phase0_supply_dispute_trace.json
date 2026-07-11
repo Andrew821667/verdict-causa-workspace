@@ -227,7 +227,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.1.0",
+      "institutional_package_version": "contracts-ru-v0@0.2.0",
       "policy_version": "policy-demo-v0",
       "translation_template_version": "translation-template-v0",
       "model_profile": "no-llm-synthetic-demo"

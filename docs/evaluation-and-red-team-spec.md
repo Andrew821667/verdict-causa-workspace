@@ -83,4 +83,4 @@ The current practice-utility report is exported to
 `examples/synthetic_supply_practice_utility_report.json`.
 The current red-team report is exported to `examples/synthetic_supply_red_team_report.json`.
 
-For the contractual package, authority benchmarks record the rule used to resolve a candidate set: temporal applicability, higher authority, `lex specialis`, or unresolved equal authority. The initial resolver applies temporal validity before the package hierarchy `statutory > judicial > contractual > factual`; it does not use `lex specialis` across those levels.
+For the contractual package, authority benchmarks record the rule used to resolve a candidate set: temporal applicability, higher authority, `lex specialis`, or unresolved equal authority. The synthetic Phase 0 resolver applies temporal validity before the policy `constitutional > statutory > regulatory > judicial > contractual > factual`; it does not use `lex specialis` across those levels.
