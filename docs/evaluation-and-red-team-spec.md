@@ -34,6 +34,13 @@ evidence.
 
 The Red Team component tries to use a candidate principle to justify unacceptable outcomes.
 
+The current contractual suite uses a hybrid adversarial executor. Every scenario makes a
+concrete attack attempt and retains the attempted and observed outcome. Where a narrow
+formal or authority rule exists, the executor runs that rule against attack facts or
+candidate sources. Source-grounding attacks query the source registry. Guardrail-fragment
+checks remain only as a fallback for risks that have not yet been formalized, such as
+penalty-reduction scope.
+
 For contractual relations, initial scenario families include:
 
 - using a broad fairness argument to ignore an explicit payment duty;

@@ -204,7 +204,14 @@
     "unacceptable_outcome": "Use a vague alleged acceptance delay to erase all delivery liability without checking source support.",
     "target_failure_type": "overbroad_candidate_principle",
     "attack_vector": "",
-    "required_guardrail_fragments": []
+    "required_guardrail_fragments": [],
+    "attack_facts": {},
+    "unacceptable_constraint_field": null,
+    "unacceptable_constraint_value": null,
+    "authority_candidate_source_refs": [],
+    "authority_evaluation_date": null,
+    "unacceptable_authority_winner": null,
+    "attack_source_ref": null
   },
   "translation": {
     "id": "translation-phase0-supply-dispute-v0",

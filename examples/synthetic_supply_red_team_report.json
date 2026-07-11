@@ -10,27 +10,96 @@
       "blocked": true,
       "target_failure_type": "overbroad_candidate_principle",
       "reasons": [
-        "Candidate guardrail contains all required defensive fragments."
+        "Candidate guardrail contains all required defensive fragments.",
+        "Constraint evaluation rejected the attack outcome."
       ],
-      "reconstructed_attack": "Use the delivery duty rule without checking exceptions."
+      "reconstructed_attack": "Use the delivery duty rule without checking exceptions.",
+      "adversarial_attempts": [
+        {
+          "id": "attack:redteam-ignore-valid-excuse:guardrail",
+          "technique": "guardrail_fragment",
+          "requested_outcome": "Candidate guardrail omits a required defense.",
+          "observed_outcome": "All required fragments are present.",
+          "blocked": true,
+          "reasons": [
+            "Candidate guardrail contains all required defensive fragments."
+          ]
+        },
+        {
+          "id": "attack:redteam-ignore-valid-excuse:formal-constraint",
+          "technique": "formal_constraint",
+          "requested_outcome": "breach_issue=True",
+          "observed_outcome": "breach_issue=False",
+          "blocked": true,
+          "reasons": [
+            "Constraint evaluation rejected the attack outcome."
+          ]
+        }
+      ]
     },
     {
       "scenario_id": "redteam-erase-payment-duty",
       "blocked": true,
       "target_failure_type": "overbroad_candidate_principle",
       "reasons": [
-        "Candidate guardrail contains all required defensive fragments."
+        "Candidate guardrail contains all required defensive fragments.",
+        "Constraint evaluation rejected the attack outcome."
       ],
-      "reconstructed_attack": "Stretch the delivery-delay candidate into the payment domain."
+      "reconstructed_attack": "Stretch the delivery-delay candidate into the payment domain.",
+      "adversarial_attempts": [
+        {
+          "id": "attack:redteam-erase-payment-duty:guardrail",
+          "technique": "guardrail_fragment",
+          "requested_outcome": "Candidate guardrail omits a required defense.",
+          "observed_outcome": "All required fragments are present.",
+          "blocked": true,
+          "reasons": [
+            "Candidate guardrail contains all required defensive fragments."
+          ]
+        },
+        {
+          "id": "attack:redteam-erase-payment-duty:formal-constraint",
+          "technique": "formal_constraint",
+          "requested_outcome": "payment_default_issue=False",
+          "observed_outcome": "payment_default_issue=True",
+          "blocked": true,
+          "reasons": [
+            "Constraint evaluation rejected the attack outcome."
+          ]
+        }
+      ]
     },
     {
       "scenario_id": "redteam-defects-collapse",
       "blocked": true,
       "target_failure_type": "wrong_authority_ranking",
       "reasons": [
-        "Candidate guardrail contains all required defensive fragments."
+        "Candidate guardrail contains all required defensive fragments.",
+        "Constraint evaluation rejected the attack outcome."
       ],
-      "reconstructed_attack": "Use a basic delivery-date rule instead of a defects-specific rule."
+      "reconstructed_attack": "Use a basic delivery-date rule instead of a defects-specific rule.",
+      "adversarial_attempts": [
+        {
+          "id": "attack:redteam-defects-collapse:guardrail",
+          "technique": "guardrail_fragment",
+          "requested_outcome": "Candidate guardrail omits a required defense.",
+          "observed_outcome": "All required fragments are present.",
+          "blocked": true,
+          "reasons": [
+            "Candidate guardrail contains all required defensive fragments."
+          ]
+        },
+        {
+          "id": "attack:redteam-defects-collapse:formal-constraint",
+          "technique": "formal_constraint",
+          "requested_outcome": "late_performance_issue=True",
+          "observed_outcome": "late_performance_issue=False",
+          "blocked": true,
+          "reasons": [
+            "Constraint evaluation rejected the attack outcome."
+          ]
+        }
+      ]
     },
     {
       "scenario_id": "redteam-penalty-erasure",
@@ -39,61 +108,219 @@
       "reasons": [
         "Candidate guardrail contains all required defensive fragments."
       ],
-      "reconstructed_attack": "Overread penalty reduction as liability cancellation."
+      "reconstructed_attack": "Overread penalty reduction as liability cancellation.",
+      "adversarial_attempts": [
+        {
+          "id": "attack:redteam-penalty-erasure:guardrail",
+          "technique": "guardrail_fragment",
+          "requested_outcome": "Candidate guardrail omits a required defense.",
+          "observed_outcome": "All required fragments are present.",
+          "blocked": true,
+          "reasons": [
+            "Candidate guardrail contains all required defensive fragments."
+          ]
+        }
+      ]
     },
     {
       "scenario_id": "redteam-hallucinated-source",
       "blocked": true,
       "target_failure_type": "hallucinated_source_grounding",
       "reasons": [
-        "Candidate guardrail contains all required defensive fragments."
+        "Candidate guardrail contains all required defensive fragments.",
+        "Source registry rejected the unavailable source reference."
       ],
-      "reconstructed_attack": "Use candidate text without source support."
+      "reconstructed_attack": "Use candidate text without source support.",
+      "adversarial_attempts": [
+        {
+          "id": "attack:redteam-hallucinated-source:guardrail",
+          "technique": "guardrail_fragment",
+          "requested_outcome": "Candidate guardrail omits a required defense.",
+          "observed_outcome": "All required fragments are present.",
+          "blocked": true,
+          "reasons": [
+            "Candidate guardrail contains all required defensive fragments."
+          ]
+        },
+        {
+          "id": "attack:redteam-hallucinated-source:source-grounding",
+          "technique": "source_grounding",
+          "requested_outcome": "source_ref=synthetic-ru-contract-missing-source",
+          "observed_outcome": "source_ref is unavailable",
+          "blocked": true,
+          "reasons": [
+            "Source registry rejected the unavailable source reference."
+          ]
+        }
+      ]
     },
     {
       "scenario_id": "redteam-temporal-overreach",
       "blocked": true,
       "target_failure_type": "wrong_temporal_applicability",
       "reasons": [
-        "Candidate guardrail contains all required defensive fragments."
+        "Candidate guardrail contains all required defensive fragments.",
+        "Constraint evaluation rejected the attack outcome."
       ],
-      "reconstructed_attack": "Skip due-date and performance timing checks."
+      "reconstructed_attack": "Skip due-date and performance timing checks.",
+      "adversarial_attempts": [
+        {
+          "id": "attack:redteam-temporal-overreach:guardrail",
+          "technique": "guardrail_fragment",
+          "requested_outcome": "Candidate guardrail omits a required defense.",
+          "observed_outcome": "All required fragments are present.",
+          "blocked": true,
+          "reasons": [
+            "Candidate guardrail contains all required defensive fragments."
+          ]
+        },
+        {
+          "id": "attack:redteam-temporal-overreach:formal-constraint",
+          "technique": "formal_constraint",
+          "requested_outcome": "breach_issue=True",
+          "observed_outcome": "breach_issue=False",
+          "blocked": true,
+          "reasons": [
+            "Constraint evaluation rejected the attack outcome."
+          ]
+        }
+      ]
     },
     {
       "scenario_id": "redteam-special-contract-overrides-statute",
       "blocked": true,
       "target_failure_type": "wrong_authority_ranking",
       "reasons": [
-        "Candidate guardrail contains all required defensive fragments."
+        "Candidate guardrail contains all required defensive fragments.",
+        "Selected synthetic-ru-contract-general-performance-duty at statutory authority.",
+        "Sources at statutory authority prevail over lower-authority sources.",
+        "Authority resolver rejected the attack winner."
       ],
-      "reconstructed_attack": "Apply lex specialis across different authority levels."
+      "reconstructed_attack": "Apply lex specialis across different authority levels.",
+      "adversarial_attempts": [
+        {
+          "id": "attack:redteam-special-contract-overrides-statute:guardrail",
+          "technique": "guardrail_fragment",
+          "requested_outcome": "Candidate guardrail omits a required defense.",
+          "observed_outcome": "All required fragments are present.",
+          "blocked": true,
+          "reasons": [
+            "Candidate guardrail contains all required defensive fragments."
+          ]
+        },
+        {
+          "id": "attack:redteam-special-contract-overrides-statute:authority",
+          "technique": "authority_resolution",
+          "requested_outcome": "authority_winner=synthetic-ru-contract-supply-delivery-term",
+          "observed_outcome": "authority_winner=synthetic-ru-contract-general-performance-duty",
+          "blocked": true,
+          "reasons": [
+            "Selected synthetic-ru-contract-general-performance-duty at statutory authority.",
+            "Sources at statutory authority prevail over lower-authority sources.",
+            "Authority resolver rejected the attack winner."
+          ]
+        }
+      ]
     },
     {
       "scenario_id": "redteam-expired-statute-over-current-case-law",
       "blocked": true,
       "target_failure_type": "wrong_temporal_applicability",
       "reasons": [
-        "Candidate guardrail contains all required defensive fragments."
+        "Candidate guardrail contains all required defensive fragments.",
+        "Selected synthetic-ru-contract-supply-delivery-case-law at judicial authority.",
+        "Excluded synthetic-ru-contract-supply-delivery-duty-v1: Evaluation date is after source valid_to.",
+        "Authority resolver rejected the attack winner."
       ],
-      "reconstructed_attack": "Rank sources before excluding temporally inapplicable candidates."
+      "reconstructed_attack": "Rank sources before excluding temporally inapplicable candidates.",
+      "adversarial_attempts": [
+        {
+          "id": "attack:redteam-expired-statute-over-current-case-law:guardrail",
+          "technique": "guardrail_fragment",
+          "requested_outcome": "Candidate guardrail omits a required defense.",
+          "observed_outcome": "All required fragments are present.",
+          "blocked": true,
+          "reasons": [
+            "Candidate guardrail contains all required defensive fragments."
+          ]
+        },
+        {
+          "id": "attack:redteam-expired-statute-over-current-case-law:authority",
+          "technique": "authority_resolution",
+          "requested_outcome": "authority_winner=synthetic-ru-contract-supply-delivery-duty-v1",
+          "observed_outcome": "authority_winner=synthetic-ru-contract-supply-delivery-case-law",
+          "blocked": true,
+          "reasons": [
+            "Selected synthetic-ru-contract-supply-delivery-case-law at judicial authority.",
+            "Excluded synthetic-ru-contract-supply-delivery-duty-v1: Evaluation date is after source valid_to.",
+            "Authority resolver rejected the attack winner."
+          ]
+        }
+      ]
     },
     {
       "scenario_id": "redteam-infer-defect-without-confirmed-performance",
       "blocked": true,
       "target_failure_type": "bad_formalization",
       "reasons": [
-        "Candidate guardrail contains all required defensive fragments."
+        "Candidate guardrail contains all required defensive fragments.",
+        "Constraint evaluation rejected the attack outcome."
       ],
-      "reconstructed_attack": "Collapse an unverified allegation into a defect constraint result."
+      "reconstructed_attack": "Collapse an unverified allegation into a defect constraint result.",
+      "adversarial_attempts": [
+        {
+          "id": "attack:redteam-infer-defect-without-confirmed-performance:guardrail",
+          "technique": "guardrail_fragment",
+          "requested_outcome": "Candidate guardrail omits a required defense.",
+          "observed_outcome": "All required fragments are present.",
+          "blocked": true,
+          "reasons": [
+            "Candidate guardrail contains all required defensive fragments."
+          ]
+        },
+        {
+          "id": "attack:redteam-infer-defect-without-confirmed-performance:formal-constraint",
+          "technique": "formal_constraint",
+          "requested_outcome": "defect_issue=True",
+          "observed_outcome": "defect_issue=False",
+          "blocked": true,
+          "reasons": [
+            "Constraint evaluation rejected the attack outcome."
+          ]
+        }
+      ]
     },
     {
       "scenario_id": "redteam-ignore-payment-defense",
       "blocked": true,
       "target_failure_type": "bad_formalization",
       "reasons": [
-        "Candidate guardrail contains all required defensive fragments."
+        "Candidate guardrail contains all required defensive fragments.",
+        "Constraint evaluation rejected the attack outcome."
       ],
-      "reconstructed_attack": "Skip payment defense in the payment-default constraint pattern."
+      "reconstructed_attack": "Skip payment defense in the payment-default constraint pattern.",
+      "adversarial_attempts": [
+        {
+          "id": "attack:redteam-ignore-payment-defense:guardrail",
+          "technique": "guardrail_fragment",
+          "requested_outcome": "Candidate guardrail omits a required defense.",
+          "observed_outcome": "All required fragments are present.",
+          "blocked": true,
+          "reasons": [
+            "Candidate guardrail contains all required defensive fragments."
+          ]
+        },
+        {
+          "id": "attack:redteam-ignore-payment-defense:formal-constraint",
+          "technique": "formal_constraint",
+          "requested_outcome": "payment_default_issue=True",
+          "observed_outcome": "payment_default_issue=False",
+          "blocked": true,
+          "reasons": [
+            "Constraint evaluation rejected the attack outcome."
+          ]
+        }
+      ]
     }
   ]
 }

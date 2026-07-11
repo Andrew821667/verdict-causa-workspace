@@ -222,7 +222,7 @@ Phase 0 is not done when the repository looks polished. It is done when the syst
 
 ## Immediate next milestones
 
-1. Replace deterministic red-team guardrail checks with adversarial model-driven attack attempts.
+1. Add a model-mediated attack generator behind the reproducible adversarial executor.
 2. Add Phase 0 package version changelog and compatibility matrix.
 3. Extend authority resolution to regulatory and constitutional contexts after a package-specific policy is reviewed.
 4. Add formal patterns for remedies, causation, and limitation periods after domain review.

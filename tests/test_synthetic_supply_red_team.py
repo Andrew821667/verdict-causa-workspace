@@ -35,6 +35,17 @@ def test_default_guardrail_blocks_current_red_team_suite() -> None:
     assert report.total == len(SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS)
     assert report.unblocked == 0
     assert report.block_rate == 1.0
+    assert all(result.adversarial_attempts for result in report.results)
+    assert any(
+        attempt.technique == "formal_constraint"
+        for result in report.results
+        for attempt in result.adversarial_attempts
+    )
+    assert any(
+        attempt.technique == "authority_resolution"
+        for result in report.results
+        for attempt in result.adversarial_attempts
+    )
 
 
 def test_missing_guardrail_fragment_leaves_attack_unblocked() -> None:
@@ -52,6 +63,45 @@ def test_missing_guardrail_fragment_leaves_attack_unblocked() -> None:
 
     assert result.blocked is False
     assert any("payment" in reason for reason in result.reasons)
+
+
+def test_formal_attack_attempt_rejects_forced_breach_when_valid_excuse_applies() -> None:
+    scenario = next(
+        scenario
+        for scenario in SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS
+        if scenario.id == "redteam-ignore-valid-excuse"
+    )
+
+    result = run_red_team_scenario(scenario)
+    formal_attempt = next(
+        attempt
+        for attempt in result.adversarial_attempts
+        if attempt.technique == "formal_constraint"
+    )
+
+    assert formal_attempt.blocked is True
+    assert formal_attempt.requested_outcome == "breach_issue=True"
+    assert formal_attempt.observed_outcome == "breach_issue=False"
+
+
+def test_authority_attack_attempt_rejects_special_contract_over_statute() -> None:
+    scenario = next(
+        scenario
+        for scenario in SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS
+        if scenario.id == "redteam-special-contract-overrides-statute"
+    )
+
+    result = run_red_team_scenario(scenario)
+    authority_attempt = next(
+        attempt
+        for attempt in result.adversarial_attempts
+        if attempt.technique == "authority_resolution"
+    )
+
+    assert authority_attempt.blocked is True
+    assert authority_attempt.observed_outcome.endswith(
+        "synthetic-ru-contract-general-performance-duty"
+    )
 
 
 def test_exported_synthetic_supply_red_team_report_fixture_is_valid() -> None:

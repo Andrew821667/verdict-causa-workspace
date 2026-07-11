@@ -87,6 +87,22 @@ class RedTeamScenario(BaseModel):
     target_failure_type: FailureType
     attack_vector: str = ""
     required_guardrail_fragments: list[str] = Field(default_factory=list)
+    attack_facts: dict[str, bool] = Field(default_factory=dict)
+    unacceptable_constraint_field: str | None = None
+    unacceptable_constraint_value: bool | None = None
+    authority_candidate_source_refs: list[str] = Field(default_factory=list)
+    authority_evaluation_date: str | None = None
+    unacceptable_authority_winner: str | None = None
+    attack_source_ref: str | None = None
+
+
+class AdversarialAttackAttempt(BaseModel):
+    id: str
+    technique: str
+    requested_outcome: str
+    observed_outcome: str
+    blocked: bool
+    reasons: list[str] = Field(default_factory=list)
 
 
 class RedTeamScenarioResult(BaseModel):
@@ -95,6 +111,7 @@ class RedTeamScenarioResult(BaseModel):
     target_failure_type: FailureType
     reasons: list[str] = Field(default_factory=list)
     reconstructed_attack: str | None = None
+    adversarial_attempts: list[AdversarialAttackAttempt] = Field(default_factory=list)
 
 
 class RedTeamSuiteReport(BaseModel):

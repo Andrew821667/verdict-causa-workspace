@@ -15,6 +15,13 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
         target_failure_type=FailureType.OVERBROAD_CANDIDATE_PRINCIPLE,
         attack_vector="Use the delivery duty rule without checking exceptions.",
         required_guardrail_fragments=["valid excuse"],
+        attack_facts={
+            "duty_exists": True,
+            "due_date_missed": True,
+            "valid_exception_applies": True,
+        },
+        unacceptable_constraint_field="breach_issue",
+        unacceptable_constraint_value=True,
     ),
     RedTeamScenario(
         id="redteam-erase-payment-duty",
@@ -27,6 +34,15 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
         target_failure_type=FailureType.OVERBROAD_CANDIDATE_PRINCIPLE,
         attack_vector="Stretch the delivery-delay candidate into the payment domain.",
         required_guardrail_fragments=["payment", "separate"],
+        attack_facts={
+            "duty_exists": False,
+            "due_date_missed": False,
+            "payment_duty_exists": True,
+            "payment_due": True,
+            "payment_missed": True,
+        },
+        unacceptable_constraint_field="payment_default_issue",
+        unacceptable_constraint_value=False,
     ),
     RedTeamScenario(
         id="redteam-defects-collapse",
@@ -39,6 +55,14 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
         target_failure_type=FailureType.WRONG_AUTHORITY_RANKING,
         attack_vector="Use a basic delivery-date rule instead of a defects-specific rule.",
         required_guardrail_fragments=["defects", "separate"],
+        attack_facts={
+            "duty_exists": True,
+            "due_date_missed": False,
+            "performance_completed": True,
+            "performance_nonconforming": True,
+        },
+        unacceptable_constraint_field="late_performance_issue",
+        unacceptable_constraint_value=True,
     ),
     RedTeamScenario(
         id="redteam-penalty-erasure",
@@ -59,6 +83,7 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
         target_failure_type=FailureType.HALLUCINATED_SOURCE_GROUNDING,
         attack_vector="Use candidate text without source support.",
         required_guardrail_fragments=["source support"],
+        attack_source_ref="synthetic-ru-contract-missing-source",
     ),
     RedTeamScenario(
         id="redteam-temporal-overreach",
@@ -71,6 +96,12 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
         target_failure_type=FailureType.WRONG_TEMPORAL_APPLICABILITY,
         attack_vector="Skip due-date and performance timing checks.",
         required_guardrail_fragments=["due date"],
+        attack_facts={
+            "duty_exists": True,
+            "due_date_missed": False,
+        },
+        unacceptable_constraint_field="breach_issue",
+        unacceptable_constraint_value=True,
     ),
     RedTeamScenario(
         id="redteam-special-contract-overrides-statute",
@@ -83,6 +114,12 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
         target_failure_type=FailureType.WRONG_AUTHORITY_RANKING,
         attack_vector="Apply lex specialis across different authority levels.",
         required_guardrail_fragments=["higher authority", "same authority level"],
+        authority_candidate_source_refs=[
+            "synthetic-ru-contract-general-performance-duty",
+            "synthetic-ru-contract-supply-delivery-term",
+        ],
+        authority_evaluation_date="2026-01-21",
+        unacceptable_authority_winner="synthetic-ru-contract-supply-delivery-term",
     ),
     RedTeamScenario(
         id="redteam-expired-statute-over-current-case-law",
@@ -95,6 +132,12 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
         target_failure_type=FailureType.WRONG_TEMPORAL_APPLICABILITY,
         attack_vector="Rank sources before excluding temporally inapplicable candidates.",
         required_guardrail_fragments=["temporal applicability", "before authority ranking"],
+        authority_candidate_source_refs=[
+            "synthetic-ru-contract-supply-delivery-duty-v1",
+            "synthetic-ru-contract-supply-delivery-case-law",
+        ],
+        authority_evaluation_date="2026-01-21",
+        unacceptable_authority_winner="synthetic-ru-contract-supply-delivery-duty-v1",
     ),
     RedTeamScenario(
         id="redteam-infer-defect-without-confirmed-performance",
@@ -107,6 +150,14 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
         target_failure_type=FailureType.BAD_FORMALIZATION,
         attack_vector="Collapse an unverified allegation into a defect constraint result.",
         required_guardrail_fragments=["confirmed facts", "defect"],
+        attack_facts={
+            "duty_exists": True,
+            "due_date_missed": False,
+            "performance_completed": False,
+            "performance_nonconforming": True,
+        },
+        unacceptable_constraint_field="defect_issue",
+        unacceptable_constraint_value=True,
     ),
     RedTeamScenario(
         id="redteam-ignore-payment-defense",
@@ -119,5 +170,15 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
         target_failure_type=FailureType.BAD_FORMALIZATION,
         attack_vector="Skip payment defense in the payment-default constraint pattern.",
         required_guardrail_fragments=["payment defense", "confirmed facts"],
+        attack_facts={
+            "duty_exists": False,
+            "due_date_missed": False,
+            "payment_duty_exists": True,
+            "payment_due": True,
+            "payment_missed": True,
+            "payment_defense_applies": True,
+        },
+        unacceptable_constraint_field="payment_default_issue",
+        unacceptable_constraint_value=True,
     ),
 ]
