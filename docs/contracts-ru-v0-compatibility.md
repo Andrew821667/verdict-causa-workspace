@@ -16,6 +16,11 @@ For `0.2.0` to `0.3.0`, regenerate all synthetic reports and decision traces so 
 
 For `0.1.0` to `0.2.0`, regenerate all synthetic reports and decision traces so their package coordinates and authority outcomes are current. Reviewed norm JSON and formal predicate names do not change in that release.
 
+The replay-required path is exercised by the legacy fixture in
+`examples/migrations/contracts-ru-v0-0.1.0-benchmark-report.json` and its
+generated migration report. The migration preserves legacy payloads as evidence;
+it never infers new authority or formal results from old output.
+
 A future release that changes the reviewed norm schema, formal predicates, authority order, or benchmark result shape must provide:
 
 1. a migration note for persisted reviewed JSON and exported traces;

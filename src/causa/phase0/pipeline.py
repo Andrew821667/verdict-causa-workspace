@@ -221,11 +221,13 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contracts-ru-v0-changelog.md",
                 "docs/contracts-ru-v0-compatibility.md",
                 "src/causa/institutional/contracts/versioning.py",
+                "src/causa/institutional/contracts/migrations.py",
+                "examples/migrations/contracts-ru-v0-0.1.0-to-0.3.0-migration-report.json",
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
             ],
             remaining_work=[
                 "Expand vocabulary, authority rules, temporal rules, legal operators, benchmarks, and red-team scenarios.",
-                "Add compatibility entries and migration notes for each package release.",
+                "Add replay-required migration fixtures for each semantic package release.",
             ],
         ),
         ReadinessItem(

@@ -1,0 +1,19 @@
+{
+  "id": "legacy-synthetic-supply-benchmark-report-v0.1.0",
+  "artifact_type": "benchmark_suite_report",
+  "package_id": "contracts-ru-v0",
+  "package_version": "0.1.0",
+  "payload": {
+    "id": "synthetic-supply-benchmark-suite-v0",
+    "total": 9,
+    "passed": 9,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "bench-supply-late-no-excuse",
+        "passed": true,
+        "breach_issue": true
+      }
+    ]
+  }
+}

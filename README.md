@@ -149,6 +149,15 @@ python scripts/export_synthetic_supply_red_team.py
 
 The output is written to `examples/synthetic_supply_red_team_report.json`.
 
+Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixture:
+
+```bash
+python scripts/export_contracts_package_migration_report.py
+```
+
+The output is written to
+`examples/migrations/contracts-ru-v0-0.1.0-to-0.3.0-migration-report.json`.
+
 ## License
 
 Apache-2.0. See [LICENSE](LICENSE).
