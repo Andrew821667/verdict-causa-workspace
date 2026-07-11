@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.7.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v0"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v0"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Russian legal explanations are rendered at executive, professional, and forensic levels.",
+            "Template and policy hashes support deterministic faithfulness checks.",
+            "Human usability still requires a lawyer pilot.",
+        ],
+        notes_ru=[
+            "Русские юридические объяснения формируются на кратком, профессиональном и forensic-уровнях.",
+            "Hash шаблонов и политики обеспечивает детерминированную проверку верности.",
+            "Практическая понятность по-прежнему требует пилотной проверки юристами.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.6.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

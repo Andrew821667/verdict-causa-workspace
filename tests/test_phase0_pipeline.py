@@ -32,11 +32,13 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
     }
 
 
-def test_supply_dispute_pipeline_keeps_solver_readiness_warnings() -> None:
+def test_supply_dispute_pipeline_passes_translation_layer() -> None:
     result = run_supply_dispute_pipeline()
     warning_steps = {step.id for step in result.steps if step.status == PipelineStepStatus.WARNING}
 
-    assert "produce-translation" in warning_steps
+    assert "produce-translation" not in warning_steps
+    translation_step = next(step for step in result.steps if step.id == "produce-translation")
+    assert translation_step.status == PipelineStepStatus.PASSED
 
 
 def test_phase0_readiness_report_is_not_production_ready() -> None:
@@ -50,8 +52,10 @@ def test_phase0_readiness_report_is_not_production_ready() -> None:
     assert report.failed_count == 0
     bootstrap_item = next(item for item in report.items if item.id == "ws3-bootstrap")
     governance_item = next(item for item in report.items if item.id == "ws6-governance")
+    translation_item = next(item for item in report.items if item.id == "ws7-translation")
     assert bootstrap_item.status == PipelineStepStatus.PASSED
     assert governance_item.status == PipelineStepStatus.PASSED
+    assert translation_item.status == PipelineStepStatus.PASSED
 
 
 def test_exported_phase0_readiness_report_fixture_is_valid() -> None:

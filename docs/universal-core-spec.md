@@ -67,8 +67,8 @@ Every decision trace must identify:
 
 - knowledge graph version;
 - institutional package version;
-- policy version;
-- translation template version;
+- policy snapshot ID and content hash;
+- translation template version and content hash;
 - model/provider profile if applicable.
 
 ## Source hierarchy

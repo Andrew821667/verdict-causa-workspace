@@ -38,6 +38,7 @@ from causa.management.synthetic_registry import (
 from causa.localization.ru import GOVERNANCE_STAGE_LABELS_RU, label_ru
 from causa.reasoning.formal_checks import check_basic_contradiction
 from causa.translation import TranslationArtifact, TranslationLevel
+from causa.translation_pipeline import TranslationBundle, build_translation_bundle
 
 
 class Phase0DemoTrace(BaseModel):
@@ -56,8 +57,12 @@ class Phase0DemoTrace(BaseModel):
     policy_snapshot: PolicySnapshot
     policy_registry: PolicyRegistryState
     red_team_scenario: RedTeamScenario
-    translation: TranslationArtifact
+    translation_bundle: TranslationBundle
     decision_trace: DecisionTrace
+
+    @property
+    def translation(self) -> TranslationArtifact:
+        return self.translation_bundle.artifact_for(TranslationLevel.PROFESSIONAL)
 
     @property
     def legal_source(self) -> LegalSource:
@@ -148,20 +153,14 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
     )
     policy = policy_matrix_entry_from_payload(policy_snapshot.payload)
     trace_id = "trace-phase0-supply-dispute-v0"
-    translation = TranslationArtifact(
-        id="translation-phase0-supply-dispute-v0",
+    translation_bundle = build_translation_bundle(
         trace_id=trace_id,
-        level=TranslationLevel.PROFESSIONAL,
-        template_version=policy_snapshot.payload.translation_template_version,
-        text=(
-            "Синтетическое профессиональное объяснение: текущая трассировка выявляет "
-            "возможную просрочку поставки, поскольку обязанность существовала, срок "
-            "исполнения пропущен, а применимое основание освобождения не установлено. "
-            "Это демонстрационный вывод, а не юридическая консультация."
-        ),
-        faithfulness_checked=False,
-        usability_checked=False,
+        request=analysis_request,
+        result=analysis_result,
+        governance=governance_record,
+        policy_snapshot=policy_snapshot,
     )
+    translation = translation_bundle.artifact_for(TranslationLevel.PROFESSIONAL)
     red_team_scenario = RedTeamScenario(
         id="red-team-supply-delay-excuse-overreach",
         title="Чрезмерно широкое оправдание просрочки поставки",
@@ -218,6 +217,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
             policy_version=policy_snapshot.id,
             policy_content_hash=policy_snapshot.content_hash,
             translation_template_version=translation.template_version,
+            translation_template_hash=translation.template_content_hash,
             model_profile=policy_snapshot.payload.model_profile,
         ),
         nodes=[
@@ -242,6 +242,13 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     "policy_snapshot_id": policy_snapshot.id,
                     "policy_content_hash": policy_snapshot.content_hash,
                     "policy_registry_revision": policy_registry.revision,
+                    "translation_bundle_id": translation_bundle.id,
+                    "translation_faithfulness_report_id": (
+                        translation_bundle.faithfulness_report.id
+                    ),
+                    "translation_usability_report_id": (
+                        translation_bundle.usability_report.id
+                    ),
                     "formal_rule_id": formal_translation.obligation_rule.id,
                     "constraint_set_id": constraint_set.id,
                     "source_applicable": source_applicability.applicable,
@@ -342,6 +349,6 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         policy_snapshot=policy_snapshot,
         policy_registry=policy_registry,
         red_team_scenario=red_team_scenario,
-        translation=translation,
+        translation_bundle=translation_bundle,
         decision_trace=decision_trace,
     )

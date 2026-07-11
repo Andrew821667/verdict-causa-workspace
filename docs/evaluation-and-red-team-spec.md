@@ -75,6 +75,8 @@ Operational failures should be classified as:
 - privacy leakage risk;
 - benchmark overfitting.
 
+Translation distortion is checked by rebuilding the shared structured assertions and exactly re-rendering all three Russian representation levels from the reviewed trace. Structural usability is evaluated separately; actual reviewer comprehension requires a lawyer pilot and cannot be inferred from deterministic faithfulness.
+
 ## Phase 0 artifacts
 
 - benchmark task schema;

@@ -130,6 +130,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.6.0",
+        to_version="0.7.0",
+        reasons=[
+            "Translation policy coordinates now bind the template version and content hash.",
+            "A three-level Russian translation bundle and its checks must be regenerated from the trace.",
+        ],
+        reasons_ru=[
+            "Координаты Translation Layer теперь связывают версию шаблонов и hash их содержимого.",
+            "Трехуровневый русский bundle и его проверки должны быть повторно сформированы из трассировки.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_management_policy_registry.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_synthetic_governance_lifecycle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

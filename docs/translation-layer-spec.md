@@ -1,71 +1,78 @@
-# Translation and Explainability Layer Specification
+# Спецификация Translation Layer
 
-The Translation Layer is not cosmetic UI. It is the bridge that lets a legal reviewer understand and govern machine-produced structures.
+Translation Layer не является косметическим интерфейсом. Он преобразует проверенные машинные структуры в русское юридическое объяснение, не меняя их смысл, и оставляет достаточно координат для полного аудита.
 
-## Core function
+## Входной контракт
 
-Translate internal reasoning artifacts into faithful legal explanations without changing their meaning.
+Объяснение строится только из:
 
-## Representation levels
+- проверенного `ReviewedContractAnalysisResult` с provenance фактов;
+- governance-журнала кандидата;
+- активного неизменяемого `PolicySnapshot`;
+- версионированного набора русских шаблонов;
+- идентификатора decision trace.
 
-### Executive
+Произвольный текст модели не считается источником юридических утверждений Translation Layer.
 
-Short version for quick orientation:
+## Три уровня представления
 
-- essential conclusion;
-- main risk;
-- key source;
-- next action.
+### Краткий (`executive`)
 
-### Professional
+Предназначен для первичной ориентации. Содержит вывод, ключевое основание, основной риск и следующий шаг. Машинные hash, булевы значения и формальные выражения в этот уровень не выводятся.
 
-Normal legal working explanation:
+### Профессиональный (`professional`)
 
-- legal terminology;
-- source references;
-- argument structure;
-- caveats;
-- disputed points.
+Предназначен для рабочей проверки юристом. Содержит установленные обстоятельства, применимую норму и юридическую силу, результаты формальной проверки, ограничения и необходимые действия эксперта.
 
-### Forensic
+### Аудиторский (`forensic`)
 
-Deep audit view:
+Предназначен для воспроизведения и расследования. Содержит координаты версий и hash, provenance каждого факта, constraint set, разрешение юридической силы, governance-журнал, структурированные утверждения и сравнение активного пути с отклоненным shortcut.
 
-- full provenance;
-- rejected alternatives;
-- formal constraints;
-- graph references;
-- policy version;
-- candidate history;
-- reasoning path comparison.
+## Структурированные утверждения
 
-## Compare reasoning paths
+До рендеринга формируется единый набор `TranslationAssertion`. Каждое утверждение содержит стабильный код, типизированное значение, русский текст и ссылки на источники. Один и тот же набор без изменений включается во все три артефакта.
 
-The layer should compare:
+Текущий набор покрывает применимость источника, пропуск срока, виды возможного нарушения, формальные предпосылки убытков, пробел причинной связи, барьер исковой давности, результат разрешения юридической силы и необходимость экспертного решения.
 
-- active logic vs candidate logic;
-- standard profile vs conservative profile;
-- without conflict resolution vs with conflict resolution;
-- without counterfactual operator vs with counterfactual operator.
+## Версионирование шаблонов
 
-## Dual testing
+`TranslationTemplateSet` содержит ровно один шаблон каждого уровня, локаль `ru-RU`, версию и SHA-256 hash канонического JSON. Активная политика хранит одновременно:
 
-### Faithfulness testing
+- `translation_template_version`;
+- `translation_template_hash`.
 
-Checks whether the explanation preserves the meaning of the underlying structure.
+Несовпадение любой координаты блокирует построение bundle. Изменение текста шаблона без нового hash делает набор невалидным.
 
-### Usability testing
+## Проверка верности
 
-Checks whether reviewers understand the candidate quickly and correctly.
+`TranslationFaithfulnessReport` заново строит ожидаемые утверждения и повторно рендерит каждый уровень из исходной трассировки. Проверка требует точного совпадения:
 
-Both are required. A faithful but unusable explanation fails. A usable but distorted explanation also fails.
+- всех трех уровней без дубликатов;
+- trace ID;
+- версии и hash шаблонов;
+- ID и hash политики;
+- структурированных утверждений;
+- ссылок на источники;
+- полного текста и обязательного предупреждения.
 
-## Phase 0 scope
+Таким образом проверяется детерминированная воспроизводимость, а не сходство строк по эвристической метрике.
 
-Phase 0 should define:
+## Проверка удобства
 
-- translation representation enum;
-- translation artifact model;
-- template version field;
-- review note field;
-- acceptance-test placeholders for faithfulness and usability.
+`TranslationUsabilityReport` автоматически проверяет обязательные разделы, границы длины, достаточную долю русского текста, возрастание глубины уровней и отсутствие машинных деталей в кратком и профессиональном представлениях.
+
+Эти проверки подтверждают структурную пригодность, но не доказывают, что юрист правильно и быстро понимает текст. Поэтому отчет всегда содержит `requires_human_pilot=true`. Практическая понятность должна отдельно оцениваться российскими юристами на разрешенных пилотных материалах.
+
+## Сравнение путей
+
+Forensic-уровень фиксирует активный проверенный путь и отклоненный shortcut. В текущем сценарии shortcut считает просрочку нарушением без проверки применимости источника, юридической силы и исключений. Сравнение объясняет, почему выбран воспроизводимый путь, даже если итоговый булев результат совпал бы.
+
+## Артефакты Этапа 0
+
+- реализация: `src/causa/translation_pipeline.py`;
+- шаблоны: `src/causa/translation_templates.py`;
+- синтетический отчет: `examples/synthetic_translation_bundle_report.json`;
+- генератор: `scripts/export_synthetic_translation_bundle.py`;
+- интеграция: `examples/phase0_supply_dispute_trace.json`.
+
+Синтетический результат не является юридической консультацией и не подтверждает готовность к промышленной эксплуатации.

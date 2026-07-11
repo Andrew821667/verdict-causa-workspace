@@ -64,6 +64,7 @@ POLICY_FIELD_LABELS_RU = {
     "complete_provenance": "Обязательное полное происхождение данных",
     "escalate_on_low_confidence": "Эскалация при низкой уверенности",
     "translation_template_version": "Версия шаблона юридического объяснения",
+    "translation_template_hash": "Hash шаблонов юридического объяснения",
     "model_profile": "Профиль модели",
 }
 
@@ -87,6 +88,7 @@ class BehaviorPolicyPayload(BaseModel):
     complete_provenance: bool
     escalate_on_low_confidence: bool
     translation_template_version: str
+    translation_template_hash: str
     model_profile: str
 
     @model_validator(mode="after")

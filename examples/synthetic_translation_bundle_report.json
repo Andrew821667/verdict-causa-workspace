@@ -1,0 +1,424 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетический результат. Не является юридической консультацией и требует проверки юристом.",
+  "bundle": {
+    "id": "translation-bundle:trace-phase0-supply-dispute-v0",
+    "trace_id": "trace-phase0-supply-dispute-v0",
+    "locale": "ru-RU",
+    "pipeline_version": "translation-pipeline-ru-v0",
+    "template_set_id": "translation-template-set:translation-template-ru-v1",
+    "template_version": "translation-template-ru-v1",
+    "template_content_hash": "sha256:174561204b65ca3a2c11299cea03444e233189e9a74ee5e9fe6766c11ca5bc66",
+    "policy_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
+    "policy_content_hash": "sha256:669298f02b6d73e5357eb5962c95c071d666a2f60f7918f0bb99732b1370bb79",
+    "artifacts": [
+      {
+        "id": "translation:trace-phase0-supply-dispute-v0:executive",
+        "trace_id": "trace-phase0-supply-dispute-v0",
+        "level": "executive",
+        "locale": "ru-RU",
+        "template_version": "translation-template-ru-v1",
+        "template_content_hash": "sha256:174561204b65ca3a2c11299cea03444e233189e9a74ee5e9fe6766c11ca5bc66",
+        "policy_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
+        "policy_content_hash": "sha256:669298f02b6d73e5357eb5962c95c071d666a2f60f7918f0bb99732b1370bb79",
+        "text": "КРАТКОЕ ПРАВОВОЕ РЕЗЮМЕ\n\nВывод\nФормальная модель выявила вопрос о нарушении обязательства. Основной выявленный паттерн — просрочка поставки.\n\nКлючевое основание\nФактическая дата исполнения наступила после согласованного срока. По модели юридической силы выбран источник synthetic-ru-contract-supply-delivery-duty-v2.\n\nРиск и следующий шаг\nСодержательная квалификация, расчет последствий и выбор способа защиты остаются за юристом; необходимо проверить первичные документы и актуальные источники.\n\nСинтетический результат. Не является юридической консультацией и требует проверки юристом.",
+        "assertions": [
+          {
+            "code": "source_applicable",
+            "value": true,
+            "text_ru": "Источник проверенной нормы применим на дату оценки.",
+            "source_refs": [
+              "synthetic-ru-contract-supply-delivery-duty-v2"
+            ]
+          },
+          {
+            "code": "due_date_missed",
+            "value": true,
+            "text_ru": "Фактическая дата исполнения наступила после согласованного срока.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence",
+              "synthetic-ru-contract-supply-delivery-term"
+            ]
+          },
+          {
+            "code": "breach_issue",
+            "value": true,
+            "text_ru": "Формальная модель выявила вопрос о нарушении обязательства.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence",
+              "synthetic-ru-contract-supply-delivery-term"
+            ]
+          },
+          {
+            "code": "late_performance_issue",
+            "value": true,
+            "text_ru": "Установлены формальные признаки просрочки исполнения.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence",
+              "synthetic-ru-contract-supply-delivery-term"
+            ]
+          },
+          {
+            "code": "defect_issue",
+            "value": false,
+            "text_ru": "Формальные признаки ненадлежащего исполнения не установлены.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "payment_default_issue",
+            "value": false,
+            "text_ru": "Формальные признаки просрочки платежа не установлены.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "damages_remedy_available",
+            "value": false,
+            "text_ru": "Текущий набор фактов не подтверждает все формальные предпосылки требования убытков.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "causation_evidence_gap",
+            "value": false,
+            "text_ru": "Формальный пробел причинной связи для заявленного требования не выявлен.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "limitation_bar",
+            "value": false,
+            "text_ru": "Формальный барьер исковой давности не установлен.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "authority_winner",
+            "value": "synthetic-ru-contract-supply-delivery-duty-v2",
+            "text_ru": "По модели юридической силы выбран источник synthetic-ru-contract-supply-delivery-duty-v2.",
+            "source_refs": [
+              "synthetic-ru-contract-supply-delivery-duty-v1",
+              "synthetic-ru-contract-supply-delivery-duty-v2"
+            ]
+          },
+          {
+            "code": "human_resolution_required",
+            "value": false,
+            "text_ru": "Конкуренция источников разрешена текущей синтетической моделью.",
+            "source_refs": [
+              "synthetic-ru-contract-supply-delivery-duty-v1",
+              "synthetic-ru-contract-supply-delivery-duty-v2"
+            ]
+          }
+        ],
+        "source_refs": [
+          "synthetic-case-supply-1-reviewed-evidence",
+          "synthetic-ru-contract-supply-delivery-duty-v1",
+          "synthetic-ru-contract-supply-delivery-duty-v2",
+          "synthetic-ru-contract-supply-delivery-term"
+        ],
+        "faithfulness_checked": true,
+        "faithfulness_passed": true,
+        "usability_checked": true,
+        "usability_passed": true
+      },
+      {
+        "id": "translation:trace-phase0-supply-dispute-v0:professional",
+        "trace_id": "trace-phase0-supply-dispute-v0",
+        "level": "professional",
+        "locale": "ru-RU",
+        "template_version": "translation-template-ru-v1",
+        "template_content_hash": "sha256:174561204b65ca3a2c11299cea03444e233189e9a74ee5e9fe6766c11ca5bc66",
+        "policy_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
+        "policy_content_hash": "sha256:669298f02b6d73e5357eb5962c95c071d666a2f60f7918f0bb99732b1370bb79",
+        "text": "ПРОФЕССИОНАЛЬНОЕ ЮРИДИЧЕСКОЕ ОБЪЯСНЕНИЕ\n\nПравовой вывод\nФормальная модель выявила вопрос о нарушении обязательства. Основной выявленный паттерн — просрочка поставки.\n\nУстановленные обстоятельства\n- Согласованный срок: 2026-01-15.\n- Фактическое исполнение: 2026-01-20.\n- Дата оценки: 2026-01-21.\n- Срок пропущен: Да.\n- Применимое исключение: Нет.\n\nПрименимая норма и юридическая сила\n- Норма: norm-supply-delivery-duty-v0; действие: поставить товар в согласованный срок.\n- Источник нормы: synthetic-ru-contract-supply-delivery-duty-v2.\n- Выбран источник synthetic-ru-contract-supply-delivery-duty-v2: уровень закона.\n- Источник synthetic-ru-contract-supply-delivery-duty-v1 исключен: Дата оценки наступила после окончания действия источника.\n\nФормальная проверка\n- Источник проверенной нормы применим на дату оценки.\n- Фактическая дата исполнения наступила после согласованного срока.\n- Формальная модель выявила вопрос о нарушении обязательства.\n- Установлены формальные признаки просрочки исполнения.\n- Формальные признаки ненадлежащего исполнения не установлены.\n- Формальные признаки просрочки платежа не установлены.\n- Текущий набор фактов не подтверждает все формальные предпосылки требования убытков.\n- Формальный пробел причинной связи для заявленного требования не выявлен.\n- Формальный барьер исковой давности не установлен.\n\nОграничения и действия эксперта\n- Используются только синтетические проверенные входные данные.\n- Детерминированный анализ ограничен узким набором правил; содержательная правовая оценка остается за экспертом.\n- Не является юридической консультацией.\n\nСинтетический результат. Не является юридической консультацией и требует проверки юристом.",
+        "assertions": [
+          {
+            "code": "source_applicable",
+            "value": true,
+            "text_ru": "Источник проверенной нормы применим на дату оценки.",
+            "source_refs": [
+              "synthetic-ru-contract-supply-delivery-duty-v2"
+            ]
+          },
+          {
+            "code": "due_date_missed",
+            "value": true,
+            "text_ru": "Фактическая дата исполнения наступила после согласованного срока.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence",
+              "synthetic-ru-contract-supply-delivery-term"
+            ]
+          },
+          {
+            "code": "breach_issue",
+            "value": true,
+            "text_ru": "Формальная модель выявила вопрос о нарушении обязательства.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence",
+              "synthetic-ru-contract-supply-delivery-term"
+            ]
+          },
+          {
+            "code": "late_performance_issue",
+            "value": true,
+            "text_ru": "Установлены формальные признаки просрочки исполнения.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence",
+              "synthetic-ru-contract-supply-delivery-term"
+            ]
+          },
+          {
+            "code": "defect_issue",
+            "value": false,
+            "text_ru": "Формальные признаки ненадлежащего исполнения не установлены.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "payment_default_issue",
+            "value": false,
+            "text_ru": "Формальные признаки просрочки платежа не установлены.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "damages_remedy_available",
+            "value": false,
+            "text_ru": "Текущий набор фактов не подтверждает все формальные предпосылки требования убытков.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "causation_evidence_gap",
+            "value": false,
+            "text_ru": "Формальный пробел причинной связи для заявленного требования не выявлен.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "limitation_bar",
+            "value": false,
+            "text_ru": "Формальный барьер исковой давности не установлен.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "authority_winner",
+            "value": "synthetic-ru-contract-supply-delivery-duty-v2",
+            "text_ru": "По модели юридической силы выбран источник synthetic-ru-contract-supply-delivery-duty-v2.",
+            "source_refs": [
+              "synthetic-ru-contract-supply-delivery-duty-v1",
+              "synthetic-ru-contract-supply-delivery-duty-v2"
+            ]
+          },
+          {
+            "code": "human_resolution_required",
+            "value": false,
+            "text_ru": "Конкуренция источников разрешена текущей синтетической моделью.",
+            "source_refs": [
+              "synthetic-ru-contract-supply-delivery-duty-v1",
+              "synthetic-ru-contract-supply-delivery-duty-v2"
+            ]
+          }
+        ],
+        "source_refs": [
+          "synthetic-case-supply-1-reviewed-evidence",
+          "synthetic-ru-contract-supply-delivery-duty-v1",
+          "synthetic-ru-contract-supply-delivery-duty-v2",
+          "synthetic-ru-contract-supply-delivery-term"
+        ],
+        "faithfulness_checked": true,
+        "faithfulness_passed": true,
+        "usability_checked": true,
+        "usability_passed": true
+      },
+      {
+        "id": "translation:trace-phase0-supply-dispute-v0:forensic",
+        "trace_id": "trace-phase0-supply-dispute-v0",
+        "level": "forensic",
+        "locale": "ru-RU",
+        "template_version": "translation-template-ru-v1",
+        "template_content_hash": "sha256:174561204b65ca3a2c11299cea03444e233189e9a74ee5e9fe6766c11ca5bc66",
+        "policy_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
+        "policy_content_hash": "sha256:669298f02b6d73e5357eb5962c95c071d666a2f60f7918f0bb99732b1370bb79",
+        "text": "FORENSIC-ТРАССИРОВКА ЮРИДИЧЕСКОГО ВЫВОДА\n\nКоординаты воспроизведения\n- Trace: trace-phase0-supply-dispute-v0.\n- Дело: case-supply-1.\n- Analysis pipeline: contracts-reviewed-analysis-v0.\n- Policy snapshot: policy-snapshot:phase0-standard-t3@1.\n- Policy hash: sha256:669298f02b6d73e5357eb5962c95c071d666a2f60f7918f0bb99732b1370bb79.\n- Translation template: translation-template-ru-v1.\n- Translation template hash: sha256:174561204b65ca3a2c11299cea03444e233189e9a74ee5e9fe6766c11ca5bc66.\n\nПроверенные факты и provenance\n- due_date_missed: assertion=reviewed-temporal-evidence-supply-1-v0; sources=synthetic-ru-contract-supply-delivery-term, synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- causation_established: assertion=evidence-causation_established; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- duty_exists: assertion=evidence-duty_exists; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=condition-supply-relation, condition-agreed-date.\n- limitation_period_expired: assertion=evidence-limitation_period_expired; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- loss_claimed: assertion=evidence-loss_claimed; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- payment_defense_applies: assertion=evidence-payment_defense_applies; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- payment_due: assertion=evidence-payment_due; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- payment_duty_exists: assertion=evidence-payment_duty_exists; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- payment_missed: assertion=evidence-payment_missed; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- performance_completed: assertion=evidence-performance_completed; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- performance_nonconforming: assertion=evidence-performance_nonconforming; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- remedy_requested: assertion=evidence-remedy_requested; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- valid_exception_applies: assertion=evidence-valid_exception_applies; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=exception-valid-excuse.\n\nФормальная норма и constraint set\n- Formal rule: obligation-rule:norm-supply-delivery-duty-v0.\n- Constraint set: constraint-set:obligation-rule:norm-supply-delivery-duty-v0.\n- duty_exists.\n- due_date_missed.\n- valid_exception_applies.\n- late_performance_issue == duty_exists AND due_date_missed AND NOT valid_exception_applies.\n- performance_completed.\n- performance_nonconforming.\n- defect_issue == duty_exists AND performance_completed AND performance_nonconforming.\n- payment_duty_exists.\n- payment_due.\n- payment_missed.\n- payment_defense_applies.\n- payment_default_issue == payment_duty_exists AND payment_due AND payment_missed AND NOT payment_defense_applies.\n- breach_issue == late_performance_issue OR defect_issue OR payment_default_issue.\n- loss_claimed.\n- causation_established.\n- remedy_requested.\n- limitation_period_expired.\n- causation_evidence_gap == remedy_requested AND loss_claimed AND NOT causation_established.\n- limitation_bar == remedy_requested AND limitation_period_expired.\n- damages_remedy_available == breach_issue AND remedy_requested AND loss_claimed AND causation_established AND NOT limitation_period_expired.\n\nРазрешение юридической силы\n- Кандидаты: synthetic-ru-contract-supply-delivery-duty-v1, synthetic-ru-contract-supply-delivery-duty-v2.\n- Исключены: synthetic-ru-contract-supply-delivery-duty-v1.\n- Выбран источник synthetic-ru-contract-supply-delivery-duty-v2: уровень закона.\n- Источник synthetic-ru-contract-supply-delivery-duty-v1 исключен: Дата оценки наступила после окончания действия источника.\n\nРезультаты формальной проверки\n- source_applicable=True: Источник проверенной нормы применим на дату оценки. [sources: synthetic-ru-contract-supply-delivery-duty-v2]\n- due_date_missed=True: Фактическая дата исполнения наступила после согласованного срока. [sources: synthetic-case-supply-1-reviewed-evidence, synthetic-ru-contract-supply-delivery-term]\n- breach_issue=True: Формальная модель выявила вопрос о нарушении обязательства. [sources: synthetic-case-supply-1-reviewed-evidence, synthetic-ru-contract-supply-delivery-term]\n- late_performance_issue=True: Установлены формальные признаки просрочки исполнения. [sources: synthetic-case-supply-1-reviewed-evidence, synthetic-ru-contract-supply-delivery-term]\n- defect_issue=False: Формальные признаки ненадлежащего исполнения не установлены. [sources: synthetic-case-supply-1-reviewed-evidence]\n- payment_default_issue=False: Формальные признаки просрочки платежа не установлены. [sources: synthetic-case-supply-1-reviewed-evidence]\n- damages_remedy_available=False: Текущий набор фактов не подтверждает все формальные предпосылки требования убытков. [sources: synthetic-case-supply-1-reviewed-evidence]\n- causation_evidence_gap=False: Формальный пробел причинной связи для заявленного требования не выявлен. [sources: synthetic-case-supply-1-reviewed-evidence]\n- limitation_bar=False: Формальный барьер исковой давности не установлен. [sources: synthetic-case-supply-1-reviewed-evidence]\n- authority_winner=synthetic-ru-contract-supply-delivery-duty-v2: По модели юридической силы выбран источник synthetic-ru-contract-supply-delivery-duty-v2. [sources: synthetic-ru-contract-supply-delivery-duty-v1, synthetic-ru-contract-supply-delivery-duty-v2]\n- human_resolution_required=False: Конкуренция источников разрешена текущей синтетической моделью. [sources: synthetic-ru-contract-supply-delivery-duty-v1, synthetic-ru-contract-supply-delivery-duty-v2]\n\nGovernance-журнал кандидата\n- Предложено → Классификация типа: Стадия «Предложено» успешно пройдена на синтетических проверочных данных. [policy=policy-snapshot:phase0-standard-t3@1; hash=sha256:669298f02b6d73e5357eb5962c95c071d666a2f60f7918f0bb99732b1370bb79]\n- Классификация типа → Экспертная проверка: Стадия «Классификация типа» успешно пройдена на синтетических проверочных данных. [policy=policy-snapshot:phase0-standard-t3@1; hash=sha256:669298f02b6d73e5357eb5962c95c071d666a2f60f7918f0bb99732b1370bb79]\n- Экспертная проверка → Активно: Стадия «Экспертная проверка» успешно пройдена на синтетических проверочных данных. [policy=policy-snapshot:phase0-standard-t3@1; hash=sha256:669298f02b6d73e5357eb5962c95c071d666a2f60f7918f0bb99732b1370bb79]\n\nСравнение путей рассуждения\n- Активный путь: Проверить временную применимость источников.\n- Активный путь: Разрешить юридическую силу источников-кандидатов.\n- Активный путь: Преобразовать только проверенные факты в формальные предикаты.\n- Активный путь: Проверить обязанность, срок и применимое исключение в constraint set.\n- Отклоненный путь: Считать любую просрочку нарушением без проверки источника и исключений.\n- Различие: Альтернативный путь не сохраняет provenance фактов.\n- Различие: Альтернативный путь не проверяет применимость и юридическую силу источника.\n- Различие: Альтернативный путь способен необоснованно исключить основание освобождения.\n- Причина выбора: Выбран воспроизводимый путь с проверенными входами; shortcut отклонен независимо от совпадения итогового breach_issue=Да.\n\nОграничения\n- Используются только синтетические проверенные входные данные.\n- Детерминированный анализ ограничен узким набором правил; содержательная правовая оценка остается за экспертом.\n- Не является юридической консультацией.\n\nСинтетический результат. Не является юридической консультацией и требует проверки юристом.",
+        "assertions": [
+          {
+            "code": "source_applicable",
+            "value": true,
+            "text_ru": "Источник проверенной нормы применим на дату оценки.",
+            "source_refs": [
+              "synthetic-ru-contract-supply-delivery-duty-v2"
+            ]
+          },
+          {
+            "code": "due_date_missed",
+            "value": true,
+            "text_ru": "Фактическая дата исполнения наступила после согласованного срока.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence",
+              "synthetic-ru-contract-supply-delivery-term"
+            ]
+          },
+          {
+            "code": "breach_issue",
+            "value": true,
+            "text_ru": "Формальная модель выявила вопрос о нарушении обязательства.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence",
+              "synthetic-ru-contract-supply-delivery-term"
+            ]
+          },
+          {
+            "code": "late_performance_issue",
+            "value": true,
+            "text_ru": "Установлены формальные признаки просрочки исполнения.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence",
+              "synthetic-ru-contract-supply-delivery-term"
+            ]
+          },
+          {
+            "code": "defect_issue",
+            "value": false,
+            "text_ru": "Формальные признаки ненадлежащего исполнения не установлены.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "payment_default_issue",
+            "value": false,
+            "text_ru": "Формальные признаки просрочки платежа не установлены.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "damages_remedy_available",
+            "value": false,
+            "text_ru": "Текущий набор фактов не подтверждает все формальные предпосылки требования убытков.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "causation_evidence_gap",
+            "value": false,
+            "text_ru": "Формальный пробел причинной связи для заявленного требования не выявлен.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "limitation_bar",
+            "value": false,
+            "text_ru": "Формальный барьер исковой давности не установлен.",
+            "source_refs": [
+              "synthetic-case-supply-1-reviewed-evidence"
+            ]
+          },
+          {
+            "code": "authority_winner",
+            "value": "synthetic-ru-contract-supply-delivery-duty-v2",
+            "text_ru": "По модели юридической силы выбран источник synthetic-ru-contract-supply-delivery-duty-v2.",
+            "source_refs": [
+              "synthetic-ru-contract-supply-delivery-duty-v1",
+              "synthetic-ru-contract-supply-delivery-duty-v2"
+            ]
+          },
+          {
+            "code": "human_resolution_required",
+            "value": false,
+            "text_ru": "Конкуренция источников разрешена текущей синтетической моделью.",
+            "source_refs": [
+              "synthetic-ru-contract-supply-delivery-duty-v1",
+              "synthetic-ru-contract-supply-delivery-duty-v2"
+            ]
+          }
+        ],
+        "source_refs": [
+          "synthetic-case-supply-1-reviewed-evidence",
+          "synthetic-ru-contract-supply-delivery-duty-v1",
+          "synthetic-ru-contract-supply-delivery-duty-v2",
+          "synthetic-ru-contract-supply-delivery-term"
+        ],
+        "faithfulness_checked": true,
+        "faithfulness_passed": true,
+        "usability_checked": true,
+        "usability_passed": true
+      }
+    ],
+    "path_comparisons": [
+      {
+        "id": "path-comparison:case-supply-1:active-vs-shortcut",
+        "active_path_ru": [
+          "Проверить временную применимость источников.",
+          "Разрешить юридическую силу источников-кандидатов.",
+          "Преобразовать только проверенные факты в формальные предикаты.",
+          "Проверить обязанность, срок и применимое исключение в constraint set."
+        ],
+        "alternative_path_ru": [
+          "Считать любую просрочку нарушением без проверки источника и исключений."
+        ],
+        "material_differences_ru": [
+          "Альтернативный путь не сохраняет provenance фактов.",
+          "Альтернативный путь не проверяет применимость и юридическую силу источника.",
+          "Альтернативный путь способен необоснованно исключить основание освобождения."
+        ],
+        "selected_path": "active_reviewed_path",
+        "selection_reason_ru": "Выбран воспроизводимый путь с проверенными входами; shortcut отклонен независимо от совпадения итогового breach_issue=Да."
+      }
+    ],
+    "faithfulness_report": {
+      "id": "translation-faithfulness:trace-phase0-supply-dispute-v0",
+      "trace_id": "trace-phase0-supply-dispute-v0",
+      "passed": true,
+      "checked_levels": [
+        "executive",
+        "professional",
+        "forensic"
+      ],
+      "issues": [],
+      "summary_ru": [
+        "Все три уровня точно воспроизводятся из проверенного trace и шаблонов."
+      ]
+    },
+    "usability_report": {
+      "id": "translation-usability:trace-phase0-supply-dispute-v0",
+      "trace_id": "trace-phase0-supply-dispute-v0",
+      "structural_checks_passed": true,
+      "requires_human_pilot": true,
+      "checked_levels": [
+        "executive",
+        "professional",
+        "forensic"
+      ],
+      "issues": [
+        {
+          "code": "line_too_long",
+          "severity": "warning",
+          "level": "forensic",
+          "message_ru": "Отдельная строка слишком длинна для удобного аудита."
+        }
+      ],
+      "scope_ru": "Автоматическая проверка оценивает структуру, русский язык, глубину уровней и отсутствие машинных деталей. Она не доказывает понимание текста юристом.",
+      "summary_ru": [
+        "Структурные usability-проверки пройдены; требуется пилотная оценка юристом."
+      ]
+    },
+    "ready_for_human_review": true
+  }
+}

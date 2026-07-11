@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.7.0 - 2026-07-11
+
+- Adds versioned Russian templates for executive, professional, and forensic legal explanations.
+- Adds shared structured legal assertions with exact source references across all three levels.
+- Adds deterministic faithfulness checks by exact re-rendering from the reviewed trace.
+- Adds structural usability checks while explicitly retaining the requirement for a lawyer pilot.
+- Binds the translation template version and SHA-256 hash to the active policy and decision trace.
+- Adds reasoning-path comparison, a standalone translation bundle, and replay migration from `0.6.0`.
+
 ## 0.6.0 - 2026-07-11
 
 - Adds immutable Management Plane policy snapshots with canonical SHA-256 content hashes.

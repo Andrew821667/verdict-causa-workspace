@@ -208,12 +208,18 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
         ),
         PipelineStepResult(
             id="produce-translation",
-            title="Формирование профессионального юридического объяснения",
-            status=PipelineStepStatus.WARNING,
-            artifact_refs=[trace.translation.id],
+            title="Формирование трехуровневого русского юридического объяснения",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.translation_bundle.id,
+                *[artifact.id for artifact in trace.translation_bundle.artifacts],
+                trace.translation_bundle.faithfulness_report.id,
+                trace.translation_bundle.usability_report.id,
+            ],
             notes=[
-                "Профессиональное объяснение сформировано на русском языке.",
-                "Проверки верности и практической полезности еще не реализованы.",
+                "Сформированы краткий, профессиональный и forensic-уровни на русском языке.",
+                "Детерминированная проверка верности трассировке пройдена.",
+                "Структурные usability-проверки пройдены; понимание требует пилота с юристами.",
             ],
         ),
         PipelineStepResult(
@@ -289,10 +295,11 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contracts-ru-v0-compatibility.md",
                 "src/causa/institutional/contracts/versioning.py",
                 "src/causa/institutional/contracts/migrations.py",
-                "examples/migrations/contracts-ru-v0-0.1.0-to-0.6.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.3.0-to-0.6.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.4.0-to-0.6.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.5.0-to-0.6.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.1.0-to-0.7.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.3.0-to-0.7.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.4.0-to-0.7.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.5.0-to-0.7.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.6.0-to-0.7.0-migration-report.json",
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
             ],
             remaining_work=[
@@ -333,12 +340,16 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
         ReadinessItem(
             id="ws7-translation",
             title="Слой юридического объяснения и интерпретируемости",
-            status=PipelineStepStatus.WARNING,
-            evidence_refs=[pipeline.trace.translation.id],
+            status=PipelineStepStatus.PASSED,
+            evidence_refs=[
+                "src/causa/translation_pipeline.py",
+                "examples/synthetic_translation_bundle_report.json",
+                pipeline.trace.translation_bundle.id,
+                pipeline.trace.translation_bundle.faithfulness_report.id,
+                pipeline.trace.translation_bundle.usability_report.id,
+            ],
             remaining_work=[
-                "Реализовать проверку верности объяснения трассировке.",
-                "Реализовать проверку практической полезности.",
-                "Добавить краткий и forensic-уровни представления.",
+                "Провести пилотную оценку понятности и практической полезности с российскими юристами.",
             ],
         ),
         ReadinessItem(
@@ -364,6 +375,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
             evidence_refs=[
                 "examples/phase0_supply_dispute_trace.json",
                 "examples/synthetic_reviewed_contract_analysis.json",
+                "examples/synthetic_translation_bundle_report.json",
                 pipeline.id,
             ],
             remaining_work=["Расширить синтетический набор источников и перечень пилотных задач."],
@@ -377,7 +389,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
         ready_for_production=False,
         summary=(
             "Этап 0 содержит работающий синтетический путь и исполняемый governance-цикл, "
-            "но глубина институционального пакета, тестирование юридических объяснений "
+            "но глубина институционального пакета, несинтетическая пилотная проверка "
             "и полнота оценки качества остаются недостаточными для промышленной эксплуатации."
         ),
         items=items,

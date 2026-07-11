@@ -149,6 +149,14 @@ python scripts/export_synthetic_management_policy_registry.py
 
 The output is written to `examples/synthetic_management_policy_registry_report.json`.
 
+Generate the three-level Russian legal explanation with faithfulness and structural usability reports:
+
+```bash
+python scripts/export_synthetic_translation_bundle.py
+```
+
+The output is written to `examples/synthetic_translation_bundle_report.json`. Human usability still requires a lawyer pilot.
+
 Generate the current Phase 0 readiness report:
 
 ```bash
@@ -195,12 +203,13 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-The command writes replay reports for legacy `0.1.0`, `0.3.0`, `0.4.0`, and `0.5.0` artifacts:
+The command writes replay reports for legacy `0.1.0`, `0.3.0`, `0.4.0`, `0.5.0`, and `0.6.0` artifacts:
 
-- `examples/migrations/contracts-ru-v0-0.1.0-to-0.6.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.3.0-to-0.6.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.4.0-to-0.6.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.5.0-to-0.6.0-migration-report.json`.
+- `examples/migrations/contracts-ru-v0-0.1.0-to-0.7.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.3.0-to-0.7.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.4.0-to-0.7.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.5.0-to-0.7.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.6.0-to-0.7.0-migration-report.json`.
 
 ## License
 

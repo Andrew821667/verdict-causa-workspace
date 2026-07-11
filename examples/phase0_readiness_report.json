@@ -4,7 +4,7 @@
   "project_stage": "architectural_prototype",
   "project_stage_label_ru": "Архитектурный прототип",
   "ready_for_production": false,
-  "summary": "Этап 0 содержит работающий синтетический путь и исполняемый governance-цикл, но глубина институционального пакета, тестирование юридических объяснений и полнота оценки качества остаются недостаточными для промышленной эксплуатации.",
+  "summary": "Этап 0 содержит работающий синтетический путь и исполняемый governance-цикл, но глубина институционального пакета, несинтетическая пилотная проверка и полнота оценки качества остаются недостаточными для промышленной эксплуатации.",
   "items": [
     {
       "id": "ws1-universal-core",
@@ -56,11 +56,12 @@
         "docs/contracts-ru-v0-compatibility.md",
         "src/causa/institutional/contracts/versioning.py",
         "src/causa/institutional/contracts/migrations.py",
-        "examples/migrations/contracts-ru-v0-0.1.0-to-0.6.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.3.0-to-0.6.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.4.0-to-0.6.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.5.0-to-0.6.0-migration-report.json",
-        "contracts-ru-v0@0.6.0"
+        "examples/migrations/contracts-ru-v0-0.1.0-to-0.7.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.3.0-to-0.7.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.4.0-to-0.7.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.5.0-to-0.7.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.6.0-to-0.7.0-migration-report.json",
+        "contracts-ru-v0@0.7.0"
       ],
       "remaining_work": [
         "Расширить словарь, правила юридической силы, временные правила, правовые операторы и контрольные сценарии.",
@@ -76,7 +77,7 @@
         "src/causa/management/policy_registry.py",
         "examples/synthetic_management_policy_registry_report.json",
         "policy-snapshot:phase0-standard-t3@1",
-        "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
+        "sha256:669298f02b6d73e5357eb5962c95c071d666a2f60f7918f0bb99732b1370bb79"
       ],
       "remaining_work": [
         "Заменить локальное атомарное JSON-хранилище транзакционным production backend."
@@ -100,14 +101,16 @@
     {
       "id": "ws7-translation",
       "title": "Слой юридического объяснения и интерпретируемости",
-      "status": "warning",
+      "status": "passed",
       "evidence_refs": [
-        "translation-phase0-supply-dispute-v0"
+        "src/causa/translation_pipeline.py",
+        "examples/synthetic_translation_bundle_report.json",
+        "translation-bundle:trace-phase0-supply-dispute-v0",
+        "translation-faithfulness:trace-phase0-supply-dispute-v0",
+        "translation-usability:trace-phase0-supply-dispute-v0"
       ],
       "remaining_work": [
-        "Реализовать проверку верности объяснения трассировке.",
-        "Реализовать проверку практической полезности.",
-        "Добавить краткий и forensic-уровни представления."
+        "Провести пилотную оценку понятности и практической полезности с российскими юристами."
       ]
     },
     {
@@ -133,6 +136,7 @@
       "evidence_refs": [
         "examples/phase0_supply_dispute_trace.json",
         "examples/synthetic_reviewed_contract_analysis.json",
+        "examples/synthetic_translation_bundle_report.json",
         "phase0-supply-dispute-pipeline-v0"
       ],
       "remaining_work": [

@@ -12,6 +12,7 @@ from causa.management.policy_registry import (
 )
 from causa.management.risk_tiers import RiskTier
 from causa.management.sla_modes import SLAMode
+from causa.translation_templates import build_russian_translation_template_set
 
 
 SYNTHETIC_POLICY_FAMILY_ID = "phase0-standard-t3"
@@ -22,6 +23,7 @@ SYNTHETIC_ACTIVE_POLICY_SNAPSHOT_ID = (
 
 def build_synthetic_management_policy_registry_artifact() -> PolicyRegistryArtifact:
     started_at = datetime.fromisoformat("2026-07-11T09:00:00+03:00")
+    translation_templates = build_russian_translation_template_set()
     baseline_payload = BehaviorPolicyPayload(
         mode=SLAMode.STANDARD,
         risk_tier=RiskTier.T3_DRAFT_LETTER,
@@ -38,7 +40,8 @@ def build_synthetic_management_policy_registry_artifact() -> PolicyRegistryArtif
         replayable_trace=True,
         complete_provenance=False,
         escalate_on_low_confidence=True,
-        translation_template_version="translation-template-v0",
+        translation_template_version=translation_templates.version,
+        translation_template_hash=translation_templates.content_hash,
         model_profile="no-llm-synthetic-demo",
     )
     strengthened_payload = baseline_payload.model_copy(

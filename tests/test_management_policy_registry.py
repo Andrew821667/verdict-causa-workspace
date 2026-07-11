@@ -27,12 +27,14 @@ from causa.management.synthetic_registry import (
     SYNTHETIC_POLICY_FAMILY_ID,
     build_synthetic_management_policy_registry_artifact,
 )
+from causa.translation_templates import build_russian_translation_template_set
 
 
 STARTED_AT = datetime.fromisoformat("2026-07-11T09:00:00+03:00")
 
 
 def _baseline_payload() -> BehaviorPolicyPayload:
+    translation_templates = build_russian_translation_template_set()
     return BehaviorPolicyPayload(
         mode=SLAMode.STANDARD,
         risk_tier=RiskTier.T3_DRAFT_LETTER,
@@ -49,7 +51,8 @@ def _baseline_payload() -> BehaviorPolicyPayload:
         replayable_trace=True,
         complete_provenance=False,
         escalate_on_low_confidence=True,
-        translation_template_version="translation-template-v0",
+        translation_template_version=translation_templates.version,
+        translation_template_hash=translation_templates.content_hash,
         model_profile="no-llm-synthetic-demo",
     )
 

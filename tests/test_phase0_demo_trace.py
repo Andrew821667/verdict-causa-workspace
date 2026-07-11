@@ -3,6 +3,7 @@ from pathlib import Path
 
 from causa.governance.candidate_types import CandidateType
 from causa.phase0.demo_trace import Phase0DemoTrace, build_supply_dispute_demo_trace
+from causa.translation import TranslationLevel
 
 
 def test_supply_dispute_demo_trace_has_phase0_path() -> None:
@@ -34,6 +35,18 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     assert trace.governance_record.current_stage.value == "active"
     assert trace.governance_record.current_stage_label_ru == "Активно"
     assert trace.translation.template_version == trace.decision_trace.versions.translation_template_version
+    assert len(trace.translation_bundle.artifacts) == 3
+    assert {artifact.level for artifact in trace.translation_bundle.artifacts} == set(
+        TranslationLevel
+    )
+    assert trace.translation_bundle.faithfulness_report.passed is True
+    assert trace.translation_bundle.usability_report.structural_checks_passed is True
+    assert trace.translation_bundle.usability_report.requires_human_pilot is True
+    assert trace.translation_bundle.ready_for_human_review is True
+    assert (
+        trace.translation_bundle.template_content_hash
+        == trace.decision_trace.versions.translation_template_hash
+    )
     assert "Не является юридической консультацией." in trace.decision_trace.warnings
 
 
@@ -51,7 +64,7 @@ def test_exported_supply_dispute_trace_fixture_is_valid() -> None:
 
     assert trace.locale == "ru-RU"
     assert trace.disclaimer.startswith("Синтетическая трассировка Этапа 0")
-    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.6.0"
+    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.7.0"
     assert trace.decision_trace.versions.policy_version == trace.policy_snapshot.id
     assert (
         trace.decision_trace.versions.policy_content_hash

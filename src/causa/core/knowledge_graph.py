@@ -17,6 +17,7 @@ class VersionCoordinates(BaseModel):
     policy_version: str
     policy_content_hash: str | None = None
     translation_template_version: str | None = None
+    translation_template_hash: str | None = None
     model_profile: str | None = None
 
 
