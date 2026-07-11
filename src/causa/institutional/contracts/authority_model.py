@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 from causa.core.models import LegalSource, SourceType
 from causa.core.source_hierarchy import AuthorityLevel
 from causa.core.temporal_validity import evaluate_source_applicability
+from causa.localization.ru import AUTHORITY_LEVEL_LABELS_RU, label_ru
 
 
 SOURCE_TYPE_AUTHORITY_LEVEL = {
@@ -30,6 +31,7 @@ class ContractAuthorityPolicy(BaseModel):
     review_status: AuthorityPolicyReviewStatus
     authority_order: list[AuthorityLevel] = Field(default_factory=list)
     scope_note: str
+    scope_note_ru: str
 
 
 CONTRACT_AUTHORITY_POLICY = ContractAuthorityPolicy(
@@ -46,6 +48,10 @@ CONTRACT_AUTHORITY_POLICY = ContractAuthorityPolicy(
     scope_note=(
         "Synthetic Phase 0 ordering for test sources only; it is not a complete "
         "jurisdiction-specific authority policy."
+    ),
+    scope_note_ru=(
+        "Синтетический порядок юридической силы используется только для тестов Этапа 0 "
+        "и не является полной моделью системы источников российского права."
     ),
 )
 
@@ -72,6 +78,7 @@ class AuthorityEvaluation(BaseModel):
     excluded_source_ids: list[str] = Field(default_factory=list)
     applied_rules: list[AuthorityResolutionRule] = Field(default_factory=list)
     reasons: list[str] = Field(default_factory=list)
+    reasons_ru: list[str] = Field(default_factory=list)
 
 
 def authority_level_for_source(source: LegalSource) -> AuthorityLevel:
@@ -110,6 +117,7 @@ def evaluate_source_authority(
     applicable_sources: list[LegalSource] = []
     excluded_source_ids: list[str] = []
     reasons: list[str] = []
+    reasons_ru: list[str] = []
     applied_rules: list[AuthorityResolutionRule] = []
 
     for source in sources:
@@ -126,17 +134,23 @@ def evaluate_source_authority(
         reasons.extend(
             f"Excluded {source.id}: {reason}" for reason in applicability.reasons
         )
+        reasons_ru.extend(
+            f"Источник {source.id} исключен: {reason}"
+            for reason in applicability.reasons_ru
+        )
 
     if excluded_source_ids:
         applied_rules.append(AuthorityResolutionRule.TEMPORAL_APPLICABILITY)
 
     if not applicable_sources:
         reasons.append("No candidate source is applicable at the evaluation date.")
+        reasons_ru.append("На дату оценки отсутствуют применимые источники-кандидаты.")
         return AuthorityEvaluation(
             candidate_source_ids=candidate_source_ids,
             excluded_source_ids=excluded_source_ids,
             applied_rules=applied_rules,
             reasons=reasons,
+            reasons_ru=reasons_ru,
         )
 
     authority_levels = {
@@ -156,6 +170,11 @@ def evaluate_source_authority(
         reasons.append(
             f"Sources at {highest_level.value} authority prevail over lower-authority sources."
         )
+        reasons_ru.append(
+            "Источники уровня «"
+            f"{label_ru(highest_level, AUTHORITY_LEVEL_LABELS_RU)}"
+            "» имеют приоритет перед источниками меньшей юридической силы."
+        )
 
     highest_specificity = max(
         SPECIFICITY_RANK.get(str(source.metadata.get("specificity", "general")), 0)
@@ -173,6 +192,10 @@ def evaluate_source_authority(
         reasons.append(
             "Candidate sources remain equal in authority and specificity; human resolution is required."
         )
+        reasons_ru.append(
+            "Источники-кандидаты равны по юридической силе и степени специальности; "
+            "требуется разрешение экспертом."
+        )
         return AuthorityEvaluation(
             selected_authority_level=highest_level,
             candidate_source_ids=candidate_source_ids,
@@ -180,14 +203,23 @@ def evaluate_source_authority(
             excluded_source_ids=excluded_source_ids,
             applied_rules=applied_rules,
             reasons=reasons,
+            reasons_ru=reasons_ru,
         )
 
     selected = preferred_sources[0]
     if len(highest_sources) > 1:
         applied_rules.append(AuthorityResolutionRule.LEX_SPECIALIS)
         reasons.append("Special source prevails over general source at the same authority level.")
+        reasons_ru.append(
+            "Специальный источник имеет приоритет перед общим источником "
+            "того же уровня юридической силы."
+        )
 
     reasons.insert(0, f"Selected {selected.id} at {highest_level.value} authority.")
+    reasons_ru.insert(
+        0,
+        f"Выбран источник {selected.id}: {label_ru(highest_level, AUTHORITY_LEVEL_LABELS_RU)}.",
+    )
     return AuthorityEvaluation(
         selected_source_id=selected.id,
         selected_authority_level=highest_level,
@@ -196,6 +228,7 @@ def evaluate_source_authority(
         excluded_source_ids=excluded_source_ids,
         applied_rules=applied_rules,
         reasons=reasons,
+        reasons_ru=reasons_ru,
     )
 
 

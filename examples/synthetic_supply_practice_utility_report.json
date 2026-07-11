@@ -18,7 +18,7 @@
       "reviewer_usefulness_rating": 4.0,
       "formally_smart_but_practically_useless": false,
       "notes": [
-        "Synthetic baseline: reviewer retained the source-grounded delay analysis."
+        "Синтетическая оценка: эксперт сохранил анализ просрочки с привязкой к источнику."
       ]
     },
     {
@@ -30,7 +30,7 @@
       "reviewer_usefulness_rating": 3.5,
       "formally_smart_but_practically_useless": false,
       "notes": [
-        "Synthetic baseline: reviewer corrected the scope of the defect remedy."
+        "Синтетическая оценка: эксперт скорректировал пределы требования из-за недостатков."
       ]
     },
     {
@@ -42,7 +42,7 @@
       "reviewer_usefulness_rating": 2.0,
       "formally_smart_but_practically_useless": true,
       "notes": [
-        "Synthetic baseline: the authority trace was correct but did not answer the requested remedy question."
+        "Синтетическая оценка: трассировка юридической силы была верной, но не ответила на вопрос о заявленном способе защиты."
       ]
     }
   ]

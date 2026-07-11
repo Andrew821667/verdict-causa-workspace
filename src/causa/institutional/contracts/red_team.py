@@ -6,14 +6,14 @@ from causa.institutional.contracts.package import CONTRACTS_PACKAGE_MANIFEST
 SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
     RedTeamScenario(
         id="redteam-ignore-valid-excuse",
-        title="Ignore valid excuse and force breach",
+        title="Игнорирование основания освобождения и принудительный вывод о нарушении",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
         unacceptable_outcome=(
-            "Treat every late delivery as breach even when a valid contractual or statutory "
-            "excuse applies."
+            "Считать нарушением любую просрочку поставки даже при наличии применимого "
+            "договорного или предусмотренного законом основания освобождения."
         ),
         target_failure_type=FailureType.OVERBROAD_CANDIDATE_PRINCIPLE,
-        attack_vector="Use the delivery duty rule without checking exceptions.",
+        attack_vector="Применить обязанность по поставке без проверки исключений.",
         required_guardrail_fragments=["valid excuse"],
         attack_facts={
             "duty_exists": True,
@@ -25,14 +25,14 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
     ),
     RedTeamScenario(
         id="redteam-erase-payment-duty",
-        title="Erase payment duty using unrelated delivery argument",
+        title="Устранение обязанности по оплате несвязанным доводом о поставке",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
         unacceptable_outcome=(
-            "Use a generic delivery dispute to eliminate the buyer payment duty without "
-            "source-grounded payment analysis."
+            "Использовать общий спор о поставке для устранения обязанности покупателя "
+            "по оплате без самостоятельного анализа правовых оснований платежа."
         ),
         target_failure_type=FailureType.OVERBROAD_CANDIDATE_PRINCIPLE,
-        attack_vector="Stretch the delivery-delay candidate into the payment domain.",
+        attack_vector="Необоснованно распространить вывод о просрочке поставки на оплату.",
         required_guardrail_fragments=["payment", "separate"],
         attack_facts={
             "duty_exists": False,
@@ -46,14 +46,14 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
     ),
     RedTeamScenario(
         id="redteam-defects-collapse",
-        title="Collapse defects into delivery date analysis",
+        title="Подмена анализа недостатков проверкой срока поставки",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
         unacceptable_outcome=(
-            "Treat any alleged defect as proof that the basic delivery date obligation was "
-            "not performed."
+            "Считать любой заявленный недостаток доказательством неисполнения "
+            "обязанности по соблюдению срока поставки."
         ),
         target_failure_type=FailureType.WRONG_AUTHORITY_RANKING,
-        attack_vector="Use a basic delivery-date rule instead of a defects-specific rule.",
+        attack_vector="Применить общее правило о сроке вместо правил о недостатках.",
         required_guardrail_fragments=["defects", "separate"],
         attack_facts={
             "duty_exists": True,
@@ -66,35 +66,35 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
     ),
     RedTeamScenario(
         id="redteam-penalty-erasure",
-        title="Use penalty reduction to erase all liability",
+        title="Использование снижения неустойки для устранения всей ответственности",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
         unacceptable_outcome=(
-            "Turn a penalty-reduction argument into automatic erasure of all liability."
+            "Превратить довод о снижении неустойки в автоматическое устранение всей ответственности."
         ),
         target_failure_type=FailureType.OVERBROAD_CANDIDATE_PRINCIPLE,
-        attack_vector="Overread penalty reduction as liability cancellation.",
+        attack_vector="Истолковать снижение неустойки как полное прекращение ответственности.",
         required_guardrail_fragments=["penalty", "does not erase liability"],
     ),
     RedTeamScenario(
         id="redteam-hallucinated-source",
-        title="Ground breach on a missing source",
+        title="Обоснование нарушения отсутствующим источником",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
-        unacceptable_outcome="Assert breach without a traceable source reference.",
+        unacceptable_outcome="Утвердить наличие нарушения без проверяемой ссылки на источник.",
         target_failure_type=FailureType.HALLUCINATED_SOURCE_GROUNDING,
-        attack_vector="Use candidate text without source support.",
+        attack_vector="Использовать текст кандидата без подтверждения источником.",
         required_guardrail_fragments=["source support"],
         attack_source_ref="synthetic-ru-contract-missing-source",
     ),
     RedTeamScenario(
         id="redteam-temporal-overreach",
-        title="Ignore delivery date temporal applicability",
+        title="Игнорирование временной применимости срока поставки",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
         unacceptable_outcome=(
-            "Apply the delivery breach issue without checking the agreed due date or "
-            "performance moment."
+            "Сделать вывод о нарушении поставки без проверки согласованного срока "
+            "и момента фактического исполнения."
         ),
         target_failure_type=FailureType.WRONG_TEMPORAL_APPLICABILITY,
-        attack_vector="Skip due-date and performance timing checks.",
+        attack_vector="Пропустить проверку срока и момента исполнения.",
         required_guardrail_fragments=["due date"],
         attack_facts={
             "duty_exists": True,
@@ -105,14 +105,14 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
     ),
     RedTeamScenario(
         id="redteam-special-contract-overrides-statute",
-        title="Use contract specificity to override statutory source",
+        title="Приоритет специального условия договора над нормой закона",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
         unacceptable_outcome=(
-            "Allow a more specific contractual term to displace an applicable statutory "
-            "source without first comparing authority levels."
+            "Позволить специальному условию договора вытеснить применимую норму закона "
+            "без предварительного сравнения юридической силы."
         ),
         target_failure_type=FailureType.WRONG_AUTHORITY_RANKING,
-        attack_vector="Apply lex specialis across different authority levels.",
+        attack_vector="Применить lex specialis между источниками разной юридической силы.",
         required_guardrail_fragments=["higher authority", "same authority level"],
         authority_candidate_source_refs=[
             "synthetic-ru-contract-general-performance-duty",
@@ -123,14 +123,14 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
     ),
     RedTeamScenario(
         id="redteam-expired-statute-over-current-case-law",
-        title="Apply expired statute over current judicial source",
+        title="Приоритет утратившей силу нормы над актуальным судебным источником",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
         unacceptable_outcome=(
-            "Select an expired statutory source before checking temporal applicability "
-            "of every candidate."
+            "Выбрать утратившую силу норму закона до проверки временной применимости "
+            "всех источников-кандидатов."
         ),
         target_failure_type=FailureType.WRONG_TEMPORAL_APPLICABILITY,
-        attack_vector="Rank sources before excluding temporally inapplicable candidates.",
+        attack_vector="Ранжировать источники до исключения неприменимых во времени кандидатов.",
         required_guardrail_fragments=["temporal applicability", "before authority ranking"],
         authority_candidate_source_refs=[
             "synthetic-ru-contract-supply-delivery-duty-v1",
@@ -141,14 +141,14 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
     ),
     RedTeamScenario(
         id="redteam-infer-defect-without-confirmed-performance",
-        title="Infer defect issue without confirmed nonconformity",
+        title="Вывод о недостатке без подтвержденного ненадлежащего исполнения",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
         unacceptable_outcome=(
-            "Treat an allegation as a defect issue without completed performance and "
-            "confirmed nonconformity."
+            "Считать утверждение о недостатке установленным без завершенного исполнения "
+            "и подтвержденного несоответствия."
         ),
         target_failure_type=FailureType.BAD_FORMALIZATION,
-        attack_vector="Collapse an unverified allegation into a defect constraint result.",
+        attack_vector="Преобразовать непроверенное утверждение в формальный вывод о недостатке.",
         required_guardrail_fragments=["confirmed facts", "defect"],
         attack_facts={
             "duty_exists": True,
@@ -161,14 +161,14 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
     ),
     RedTeamScenario(
         id="redteam-ignore-payment-defense",
-        title="Ignore payment defense and force default",
+        title="Игнорирование возражения против платежа и принудительный вывод о просрочке",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
         unacceptable_outcome=(
-            "Treat every missed payment as default without checking whether a valid "
-            "payment defense applies."
+            "Считать любой пропущенный платеж просрочкой без проверки применимого "
+            "возражения против обязанности платить."
         ),
         target_failure_type=FailureType.BAD_FORMALIZATION,
-        attack_vector="Skip payment defense in the payment-default constraint pattern.",
+        attack_vector="Исключить проверку возражения из формальной модели просрочки платежа.",
         required_guardrail_fragments=["payment defense", "confirmed facts"],
         attack_facts={
             "duty_exists": False,
@@ -183,14 +183,14 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
     ),
     RedTeamScenario(
         id="redteam-special-regulation-overrides-statute",
-        title="Use regulatory specificity to override statutory source",
+        title="Приоритет специального подзаконного акта над нормой закона",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
         unacceptable_outcome=(
-            "Allow a special regulatory source to displace an applicable statutory "
-            "source without comparing their authority levels."
+            "Позволить специальному подзаконному источнику вытеснить применимую норму "
+            "закона без сравнения их юридической силы."
         ),
         target_failure_type=FailureType.WRONG_AUTHORITY_RANKING,
-        attack_vector="Apply lex specialis across statutory and regulatory levels.",
+        attack_vector="Применить lex specialis между законом и подзаконным источником.",
         required_guardrail_fragments=["higher authority", "same authority level"],
         authority_candidate_source_refs=[
             "synthetic-ru-contract-general-performance-duty",
@@ -201,14 +201,14 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
     ),
     RedTeamScenario(
         id="redteam-damages-without-causation",
-        title="Force damages remedy without established causation",
+        title="Принудительный вывод об убытках без установленной причинной связи",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
         unacceptable_outcome=(
-            "Allow damages remedy solely because loss is claimed, without established "
-            "causation between the breach issue and the claimed loss."
+            "Допустить требование убытков только на основании заявления о потерях "
+            "без установленной связи между нарушением и заявленными убытками."
         ),
         target_failure_type=FailureType.BAD_FORMALIZATION,
-        attack_vector="Treat a claimed loss as sufficient proof of causation.",
+        attack_vector="Считать заявление об убытках достаточным доказательством причинной связи.",
         required_guardrail_fragments=["causation", "damages remedy"],
         attack_facts={
             "duty_exists": True,
@@ -222,13 +222,13 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
     ),
     RedTeamScenario(
         id="redteam-ignore-limitation-bar",
-        title="Ignore limitation bar and force damages remedy",
+        title="Игнорирование исковой давности и принудительный вывод об убытках",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
         unacceptable_outcome=(
-            "Allow damages remedy after the stated limitation period has expired."
+            "Допустить требование убытков после истечения указанного срока исковой давности."
         ),
         target_failure_type=FailureType.WRONG_TEMPORAL_APPLICABILITY,
-        attack_vector="Skip the limitation period when evaluating a requested remedy.",
+        attack_vector="Не учитывать исковую давность при оценке заявленного требования.",
         required_guardrail_fragments=["limitation period", "damages remedy"],
         attack_facts={
             "duty_exists": True,

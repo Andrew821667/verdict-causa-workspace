@@ -4,11 +4,11 @@ from causa.core.models import LegalSource, SourceType
 SYNTHETIC_CONTRACT_SOURCES = [
     LegalSource(
         id="synthetic-ru-constitutional-contract-guarantee",
-        title="Synthetic constitutional contract guarantee",
+        title="Синтетическая конституционная гарантия договорных отношений",
         source_type=SourceType.STATUTE,
         text=(
-            "Synthetic constitutional-level source: contractual analysis must remain "
-            "within the protected legal framework."
+            "Синтетический источник конституционного уровня: анализ договорных отношений "
+            "должен осуществляться в пределах конституционно защищаемого правового порядка."
         ),
         valid_from="2020-01-01",
         metadata={
@@ -20,55 +20,55 @@ SYNTHETIC_CONTRACT_SOURCES = [
     ),
     LegalSource(
         id="synthetic-ru-contract-supply-delivery-duty",
-        title="Synthetic supply delivery duty",
+        title="Синтетическая норма об обязанности поставить товар",
         source_type=SourceType.STATUTE,
         text=(
-            "Synthetic source: in a supply relation, the supplier must deliver goods "
-            "by the agreed date unless a valid excuse applies."
+            "Синтетическая норма: в отношениях поставки поставщик обязан передать товар "
+            "в согласованный срок, если отсутствует применимое основание освобождения."
         ),
         valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "delivery_duty"},
     ),
     LegalSource(
         id="synthetic-ru-contract-general-performance-duty",
-        title="Synthetic general contractual performance duty",
+        title="Синтетическая общая норма о надлежащем исполнении обязательств",
         source_type=SourceType.STATUTE,
         text=(
-            "Synthetic general source: contractual obligations should be performed "
-            "properly according to the agreement."
+            "Синтетическая общая норма: договорные обязательства должны исполняться "
+            "надлежащим образом в соответствии с условиями обязательства."
         ),
         valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "performance_duty", "specificity": "general"},
     ),
     LegalSource(
         id="synthetic-ru-contract-supply-specific-delivery-duty",
-        title="Synthetic supply-specific delivery duty",
+        title="Синтетическая специальная норма о сроке поставки",
         source_type=SourceType.STATUTE,
         text=(
-            "Synthetic special source: in supply contracts, delivery timing is assessed "
-            "under supply-specific delivery rules."
+            "Синтетическая специальная норма: срок исполнения договора поставки "
+            "оценивается с учетом специальных правил о поставке."
         ),
         valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "delivery_duty", "specificity": "special"},
     ),
     LegalSource(
         id="synthetic-ru-contract-supply-delivery-case-law",
-        title="Synthetic supply delivery judicial interpretation",
+        title="Синтетическое судебное толкование правил о поставке",
         source_type=SourceType.CASE_LAW,
         text=(
-            "Synthetic case law: a current judicial interpretation may guide delivery "
-            "analysis when no applicable statutory source is available."
+            "Синтетическая судебная позиция: актуальное судебное толкование может "
+            "учитываться при анализе поставки в отсутствие применимой нормы закона."
         ),
         valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "delivery_duty", "specificity": "special"},
     ),
     LegalSource(
         id="synthetic-ru-regulatory-supply-delivery-record",
-        title="Synthetic regulatory supply delivery record",
+        title="Синтетическое подзаконное правило об оформлении поставки",
         source_type=SourceType.STATUTE,
         text=(
-            "Synthetic regulatory-level source: supply delivery records use a "
-            "special reporting format."
+            "Синтетический подзаконный источник: документы о поставке оформляются "
+            "по специальной форме учета."
         ),
         valid_from="2020-01-01",
         metadata={
@@ -80,30 +80,30 @@ SYNTHETIC_CONTRACT_SOURCES = [
     ),
     LegalSource(
         id="synthetic-ru-contract-supply-delivery-term",
-        title="Synthetic supply delivery contract term",
+        title="Синтетическое договорное условие о графике поставки",
         source_type=SourceType.CONTRACT,
         text=(
-            "Synthetic contract term: the parties set a supply-specific delivery "
-            "schedule for their contract."
+            "Синтетическое условие договора: стороны согласовали специальный "
+            "график поставки товара."
         ),
         valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "delivery_duty", "specificity": "special"},
     ),
     LegalSource(
         id="synthetic-ru-contract-supplier-delivery-fact",
-        title="Synthetic supplier delivery fact",
+        title="Синтетический факт исполнения поставки",
         source_type=SourceType.FACT,
-        text="Synthetic fact: the supplier recorded a delivery event.",
+        text="Синтетический факт: поставщик зафиксировал событие передачи товара.",
         valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "delivery_duty"},
     ),
     LegalSource(
         id="synthetic-case-supply-1-reviewed-evidence",
-        title="Synthetic reviewed supply case evidence record",
+        title="Синтетическая проверенная запись доказательств по делу о поставке",
         source_type=SourceType.FACT,
         text=(
-            "Synthetic reviewed evidence record: the delivery dates and narrow boolean "
-            "case assertions are approved for the Phase 0 analysis demo."
+            "Синтетическая проверенная запись: даты поставки и узкий набор утверждений "
+            "о фактах одобрены для демонстрационного анализа Этапа 0."
         ),
         valid_from="2026-01-01",
         metadata={
@@ -115,11 +115,11 @@ SYNTHETIC_CONTRACT_SOURCES = [
     ),
     LegalSource(
         id="synthetic-ru-contract-supply-delivery-duty-v1",
-        title="Synthetic supply delivery duty v1",
+        title="Синтетическая норма о сроке поставки, редакция 1",
         source_type=SourceType.STATUTE,
         text=(
-            "Synthetic source v1: in a supply relation, the supplier must deliver goods "
-            "by the agreed date unless a valid excuse applies."
+            "Синтетическая редакция 1: поставщик обязан передать товар в согласованный "
+            "срок, если отсутствует применимое основание освобождения."
         ),
         valid_from="2020-01-01",
         valid_to="2025-12-31",
@@ -127,66 +127,66 @@ SYNTHETIC_CONTRACT_SOURCES = [
     ),
     LegalSource(
         id="synthetic-ru-contract-supply-delivery-duty-v2",
-        title="Synthetic supply delivery duty v2",
+        title="Синтетическая норма о сроке поставки, редакция 2",
         source_type=SourceType.STATUTE,
         text=(
-            "Synthetic source v2: for supply relations evaluated from 2026 onward, "
-            "delivery duty analysis must check agreed date, actual performance, and valid excuse."
+            "Синтетическая редакция 2: для отношений, оцениваемых с 2026 года, необходимо "
+            "проверить согласованный срок, фактическое исполнение и основание освобождения."
         ),
         valid_from="2026-01-01",
         metadata={"synthetic": True, "topic": "delivery_duty", "revision": "v2"},
     ),
     LegalSource(
         id="synthetic-ru-contract-delivery-term",
-        title="Synthetic agreed delivery term",
+        title="Синтетическое правило о согласованном сроке поставки",
         source_type=SourceType.STATUTE,
         text=(
-            "Synthetic source: when parties agree a delivery date, performance is "
-            "assessed against that date."
+            "Синтетическая норма: если стороны согласовали дату поставки, исполнение "
+            "оценивается применительно к этой дате."
         ),
         valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "delivery_term"},
     ),
     LegalSource(
         id="synthetic-ru-contract-valid-excuse",
-        title="Synthetic valid excuse rule",
+        title="Синтетическое правило об основании освобождения от ответственности",
         source_type=SourceType.STATUTE,
         text=(
-            "Synthetic source: a valid contractual or statutory excuse can prevent "
-            "a late delivery issue from becoming a breach issue."
+            "Синтетическая норма: применимое договорное или законное основание "
+            "освобождения может исключить вывод о нарушении при просрочке."
         ),
         valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "valid_excuse"},
     ),
     LegalSource(
         id="synthetic-ru-contract-acceptance-defects",
-        title="Synthetic acceptance and defects rule",
+        title="Синтетическое правило о приемке и недостатках товара",
         source_type=SourceType.STATUTE,
         text=(
-            "Synthetic source: acceptance and defects should be evaluated separately "
-            "from the basic delivery date question."
+            "Синтетическая норма: приемка и недостатки товара оцениваются отдельно "
+            "от вопроса о соблюдении срока поставки."
         ),
         valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "acceptance_defects"},
     ),
     LegalSource(
         id="synthetic-ru-contract-payment-duty",
-        title="Synthetic buyer payment duty",
+        title="Синтетическая норма об обязанности покупателя оплатить товар",
         source_type=SourceType.STATUTE,
         text=(
-            "Synthetic source: the buyer payment duty should not be erased by an "
-            "unrelated delivery argument without source-grounded analysis."
+            "Синтетическая норма: обязанность покупателя по оплате не прекращается "
+            "из-за несвязанного довода о поставке без правового анализа оснований."
         ),
         valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "payment_duty"},
     ),
     LegalSource(
         id="synthetic-ru-contract-penalty-reduction",
-        title="Synthetic penalty reduction boundary",
+        title="Синтетическая граница применения снижения неустойки",
         source_type=SourceType.STATUTE,
         text=(
-            "Synthetic source: penalty reduction analysis should not erase all "
-            "liability automatically."
+            "Синтетическая норма: снижение неустойки не должно автоматически "
+            "устранять всю ответственность за нарушение обязательства."
         ),
         valid_from="2020-01-01",
         metadata={"synthetic": True, "topic": "penalty_reduction"},

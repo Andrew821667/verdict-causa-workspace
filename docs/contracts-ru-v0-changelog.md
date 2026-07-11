@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.5.0 - 2026-07-11
+
+- Adds mandatory Russian human-readable labels for governance, risk, failure, and policy values.
+- Adds parallel Russian reasons for temporal, source-applicability, authority, and formal evaluations.
+- Adds an executable governance engine with stored decisions, sandbox, activation, revalidation, and rollback records.
+- Converts the key synthetic legal sources, claims, candidate, explanation, readiness report, and warnings to Russian.
+- Keeps stable machine IDs and English compatibility fields unchanged.
+- Adds replay-required migration fixtures from `0.1.0`, `0.3.0`, and `0.4.0`.
+
 ## 0.4.0 - 2026-07-11
 
 - Adds reviewed case-evidence, temporal-evidence, and authority-input contracts.

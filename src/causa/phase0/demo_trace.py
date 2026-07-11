@@ -11,7 +11,12 @@ from causa.core.models import CandidateHypothesis, LegalClaim, LegalSource
 from causa.evaluation import RedTeamScenario
 from causa.governance.candidate_types import CandidateType
 from causa.governance.failure_taxonomy import FailureType
+from causa.governance.engine import GovernanceRecord
 from causa.governance.profiles import GovernanceProfile, get_governance_profile
+from causa.governance.synthetic_lifecycle import (
+    SYNTHETIC_POLICY_VERSION,
+    build_synthetic_gap_governance_record,
+)
 from causa.institutional.contracts.package import CONTRACTS_PACKAGE_MANIFEST
 from causa.institutional.contracts.reviewed_analysis import (
     ReviewedContractAnalysisRequest,
@@ -23,11 +28,13 @@ from causa.institutional.contracts.synthetic_reviewed_analysis import (
 from causa.management.policy_matrix import PolicyMatrixEntry, build_policy_matrix_entry
 from causa.management.risk_tiers import RiskTier
 from causa.management.sla_modes import SLAMode
+from causa.localization.ru import GOVERNANCE_STAGE_LABELS_RU, label_ru
 from causa.reasoning.formal_checks import check_basic_contradiction
 from causa.translation import TranslationArtifact, TranslationLevel
 
 
 class Phase0DemoTrace(BaseModel):
+    locale: str = "ru-RU"
     disclaimer: str
     legal_sources: list[LegalSource]
     analysis_request: ReviewedContractAnalysisRequest
@@ -37,6 +44,7 @@ class Phase0DemoTrace(BaseModel):
     candidate: CandidateHypothesis
     candidate_type: CandidateType
     governance_profile: GovernanceProfile
+    governance_record: GovernanceRecord
     policy: PolicyMatrixEntry
     red_team_scenario: RedTeamScenario
     translation: TranslationArtifact
@@ -100,8 +108,8 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
     claim = LegalClaim(
         id="claim-supply-late-delivery",
         text=(
-            "The supplier may have breached the delivery obligation if the agreed "
-            "delivery date was missed and no valid excuse applies."
+            "Поставщик мог нарушить обязательство по поставке, если согласованный "
+            "срок был пропущен и применимое основание освобождения не установлено."
         ),
         sources=[source.id],
         confidence=0.62,
@@ -109,15 +117,16 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
     candidate = CandidateHypothesis(
         id="candidate-supply-excuse-scope",
         statement=(
-            "When delivery is late, the system should ask whether the supplier "
-            "has a contractual or statutory excuse before treating delay as breach."
+            "При просрочке поставки система должна проверить наличие договорного "
+            "или предусмотренного законом основания освобождения до вывода о нарушении."
         ),
         supporting_sources=[source.id],
         risk_level="medium",
-        status="proposed",
+        status="active",
     )
     candidate_type = CandidateType.GAP_HEURISTIC
     governance_profile = get_governance_profile(candidate_type)
+    governance_record = build_synthetic_gap_governance_record(candidate.id)
     policy = build_policy_matrix_entry(SLAMode.STANDARD, RiskTier.T3_DRAFT_LETTER)
     trace_id = "trace-phase0-supply-dispute-v0"
     translation = TranslationArtifact(
@@ -126,21 +135,21 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         level=TranslationLevel.PROFESSIONAL,
         template_version="translation-template-v0",
         text=(
-            "Synthetic professional explanation: the current trace treats late "
-            "delivery as a candidate breach issue, but the reasoning must first "
-            "check whether a valid excuse exists. This is a non-production demo "
-            "and not legal advice."
+            "Синтетическое профессиональное объяснение: текущая трассировка выявляет "
+            "возможную просрочку поставки, поскольку обязанность существовала, срок "
+            "исполнения пропущен, а применимое основание освобождения не установлено. "
+            "Это демонстрационный вывод, а не юридическая консультация."
         ),
         faithfulness_checked=False,
         usability_checked=False,
     )
     red_team_scenario = RedTeamScenario(
         id="red-team-supply-delay-excuse-overreach",
-        title="Overbroad excuse for late delivery",
+        title="Чрезмерно широкое оправдание просрочки поставки",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
         unacceptable_outcome=(
-            "Use a vague alleged acceptance delay to erase all delivery liability "
-            "without checking source support."
+            "Использовать неопределенную ссылку на задержку приемки для полного "
+            "исключения ответственности без проверки правовых и фактических оснований."
         ),
         target_failure_type=FailureType.OVERBROAD_CANDIDATE_PRINCIPLE,
     )
@@ -187,7 +196,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
             institutional_package_version=(
                 f"{CONTRACTS_PACKAGE_MANIFEST.id}@{CONTRACTS_PACKAGE_MANIFEST.version}"
             ),
-            policy_version="policy-demo-v0",
+            policy_version=SYNTHETIC_POLICY_VERSION,
             translation_template_version=translation.template_version,
             model_profile="no-llm-synthetic-demo",
         ),
@@ -196,7 +205,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
             KnowledgeNode(
                 id=reviewed_norm.id,
                 layer=KnowledgeLayer.FORMAL_NORM,
-                label="Structured supply delivery obligation rule",
+                label="Формализованное обязательство по сроку поставки",
                 source_refs=[source.id],
                 metadata={
                     "review_status": reviewed_norm.review_status.value,
@@ -209,6 +218,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                         analysis_result.evidence_mapping.mapping_version
                     ),
                     "reviewer_ids": analysis_result.reviewer_ids,
+                    "governance_record_id": governance_record.id,
                     "formal_rule_id": formal_translation.obligation_rule.id,
                     "constraint_set_id": constraint_set.id,
                     "source_applicable": source_applicability.applicable,
@@ -235,7 +245,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
             KnowledgeNode(
                 id="case-supply-1",
                 layer=KnowledgeLayer.CASE,
-                label="Synthetic disputed supply delivery case",
+                label="Синтетический спор о сроке поставки",
                 source_refs=evidence_source_refs,
                 metadata={
                     "relation_type": "supply",
@@ -253,13 +263,24 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
             KnowledgeNode(
                 id=candidate.id,
                 layer=KnowledgeLayer.DOCTRINE,
-                label="Candidate gap heuristic for valid excuse check",
+                label="Эвристика проверки основания освобождения при просрочке",
                 source_refs=[source.id],
                 metadata={
                     "candidate_type": candidate_type.value,
                     "status": candidate.status,
+                    "governance_stage": governance_record.current_stage.value,
+                    "governance_stage_label_ru": (
+                        governance_record.current_stage_label_ru
+                    ),
+                    "governance_decision_ids": [
+                        decision.id for decision in governance_record.decisions
+                    ],
                     "required_stages": [
                         stage.value for stage in governance_profile.required_stages
+                    ],
+                    "required_stage_labels_ru": [
+                        label_ru(stage, GOVERNANCE_STAGE_LABELS_RU)
+                        for stage in governance_profile.required_stages
                     ],
                 },
             ),
@@ -274,13 +295,17 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         ],
         claims=[claim.id],
         warnings=[
-            *analysis_result.warnings,
-            "Constraint set covers only narrow delay, defect, payment-default, and remedy patterns.",
+            *analysis_result.warnings_ru,
+            "Формальная модель покрывает только узкие сценарии просрочки, недостатков, "
+            "неисполнения платежа и отдельных предпосылок требования убытков.",
         ],
     )
 
     return Phase0DemoTrace(
-        disclaimer="Synthetic Phase 0 trace. Not production-ready and not legal advice.",
+        disclaimer=(
+            "Синтетическая трассировка Этапа 0. Не готова к промышленной эксплуатации "
+            "и не является юридической консультацией."
+        ),
         legal_sources=sources,
         analysis_request=analysis_request,
         analysis_result=analysis_result,
@@ -289,6 +314,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         candidate=candidate,
         candidate_type=candidate_type,
         governance_profile=governance_profile,
+        governance_record=governance_record,
         policy=policy,
         red_team_scenario=red_team_scenario,
         translation=translation,

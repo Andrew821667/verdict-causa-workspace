@@ -10,6 +10,7 @@ def test_current_contracts_package_coordinates_are_supported() -> None:
 
     assert check.supported is True
     assert "supported" in check.reasons[0]
+    assert "поддерживаются" in check.reasons_ru[0]
 
 
 def test_unknown_core_version_is_not_supported() -> None:
@@ -17,15 +18,17 @@ def test_unknown_core_version_is_not_supported() -> None:
 
     assert check.supported is False
     assert "No supported compatibility entry" in check.reasons[0]
+    assert "отсутствует" in check.reasons_ru[0]
 
 
 def test_compatibility_matrix_marks_current_entry_supported() -> None:
-    assert len(CONTRACTS_PACKAGE_COMPATIBILITY) == 4
+    assert len(CONTRACTS_PACKAGE_COMPATIBILITY) == 5
     assert CONTRACTS_PACKAGE_COMPATIBILITY[0].status == CompatibilityStatus.SUPPORTED
-    assert CONTRACTS_PACKAGE_COMPATIBILITY[0].package_version == "0.4.0"
+    assert CONTRACTS_PACKAGE_COMPATIBILITY[0].package_version == "0.5.0"
     assert CONTRACTS_PACKAGE_COMPATIBILITY[0].case_evidence_schema_versions == [
         "contracts.case-evidence.v0"
     ]
+    assert CONTRACTS_PACKAGE_COMPATIBILITY[0].notes_ru
 
 
 def test_unknown_analysis_pipeline_version_is_not_supported() -> None:

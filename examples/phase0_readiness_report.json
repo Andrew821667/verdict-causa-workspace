@@ -1,12 +1,14 @@
 {
   "id": "phase0-readiness-report-v0",
+  "locale": "ru-RU",
   "project_stage": "architectural_prototype",
+  "project_stage_label_ru": "Архитектурный прототип",
   "ready_for_production": false,
-  "summary": "Phase 0 has a working synthetic path, but formal translation, package depth, governance execution, translation testing, and evaluation coverage remain incomplete.",
+  "summary": "Этап 0 содержит работающий синтетический путь и исполняемый governance-цикл, но глубина институционального пакета, тестирование юридических объяснений и полнота оценки качества остаются недостаточными для промышленной эксплуатации.",
   "items": [
     {
       "id": "ws1-universal-core",
-      "title": "Universal core data model",
+      "title": "Универсальная модель данных ядра",
       "status": "passed",
       "evidence_refs": [
         "src/causa/core/models.py",
@@ -14,23 +16,23 @@
         "trace-phase0-supply-dispute-v0"
       ],
       "remaining_work": [
-        "Expand provenance and audit metadata."
+        "Расширить метаданные происхождения и аудита."
       ]
     },
     {
       "id": "ws2-knowledge-plane",
-      "title": "Knowledge Plane skeleton",
+      "title": "Базовый контур Knowledge Plane",
       "status": "passed",
       "evidence_refs": [
         "trace-phase0-supply-dispute-v0"
       ],
       "remaining_work": [
-        "Add graph persistence and retrieval behavior."
+        "Добавить хранение графа и механизмы извлечения."
       ]
     },
     {
       "id": "ws3-bootstrap",
-      "title": "Neuro-symbolic bootstrap pipeline",
+      "title": "Нейросимвольный bootstrap-конвейер",
       "status": "passed",
       "evidence_refs": [
         "src/causa/core/bootstrap.py",
@@ -40,12 +42,12 @@
         "contracts-reviewed-evidence-to-facts-v0"
       ],
       "remaining_work": [
-        "Expand reviewed mappings beyond the current narrow contractual boolean subset."
+        "Расширить проверенные отображения за пределы текущего узкого набора договорных фактов."
       ]
     },
     {
       "id": "ws4-contracts-package",
-      "title": "Contractual institutional package",
+      "title": "Институциональный пакет договорного права",
       "status": "warning",
       "evidence_refs": [
         "src/causa/institutional/contracts/package.py",
@@ -54,56 +56,59 @@
         "docs/contracts-ru-v0-compatibility.md",
         "src/causa/institutional/contracts/versioning.py",
         "src/causa/institutional/contracts/migrations.py",
-        "examples/migrations/contracts-ru-v0-0.1.0-to-0.4.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.3.0-to-0.4.0-migration-report.json",
-        "contracts-ru-v0@0.4.0"
+        "examples/migrations/contracts-ru-v0-0.1.0-to-0.5.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.3.0-to-0.5.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.4.0-to-0.5.0-migration-report.json",
+        "contracts-ru-v0@0.5.0"
       ],
       "remaining_work": [
-        "Expand vocabulary, authority rules, temporal rules, legal operators, benchmarks, and red-team scenarios.",
-        "Add replay-required migration fixtures for each semantic package release."
+        "Расширить словарь, правила юридической силы, временные правила, правовые операторы и контрольные сценарии.",
+        "Добавлять replay-миграцию для каждого семантического релиза пакета."
       ]
     },
     {
       "id": "ws5-management-plane",
-      "title": "Management Plane",
+      "title": "Контур управления Management Plane",
       "status": "passed",
       "evidence_refs": [
         "src/causa/management/policy_matrix.py",
-        "policy-demo-v0"
+        "governance-policy-ru-v0"
       ],
       "remaining_work": [
-        "Add policy version persistence and rollback records."
+        "Добавить постоянное хранение версий политики и журнал их отката."
       ]
     },
     {
       "id": "ws6-governance",
-      "title": "Governance pipeline",
-      "status": "warning",
+      "title": "Governance-жизненный цикл кандидатов",
+      "status": "passed",
       "evidence_refs": [
+        "src/causa/governance/engine.py",
         "src/causa/governance/profiles.py",
-        "candidate-supply-excuse-scope"
+        "examples/synthetic_governance_lifecycle_report.json",
+        "candidate-supply-excuse-scope",
+        "governance-record:candidate-supply-excuse-scope"
       ],
       "remaining_work": [
-        "Execute stage transitions with stored decisions.",
-        "Add sandbox and revalidation records."
+        "Подключить постоянное хранилище governance-записей и конкурентный контроль версий."
       ]
     },
     {
       "id": "ws7-translation",
-      "title": "Translation and explainability layer",
+      "title": "Слой юридического объяснения и интерпретируемости",
       "status": "warning",
       "evidence_refs": [
         "translation-phase0-supply-dispute-v0"
       ],
       "remaining_work": [
-        "Implement faithfulness checks.",
-        "Implement usability checks.",
-        "Add executive and forensic examples."
+        "Реализовать проверку верности объяснения трассировке.",
+        "Реализовать проверку практической полезности.",
+        "Добавить краткий и forensic-уровни представления."
       ]
     },
     {
       "id": "ws8-evaluation-red-team",
-      "title": "Evaluation and Red Team",
+      "title": "Оценка качества и Red Team",
       "status": "warning",
       "evidence_refs": [
         "red-team-supply-delay-excuse-overreach",
@@ -113,13 +118,13 @@
         "synthetic-supply-red-team-suite-v0"
       ],
       "remaining_work": [
-        "Obtain privacy and human-review approval before collecting non-synthetic pilot observations.",
-        "Integrate a reviewed external model provider for attack wording under privacy controls."
+        "Получить privacy- и экспертное одобрение до сбора несинтетических пилотных наблюдений.",
+        "Подключить проверенного модельного провайдера для формулировки атак с учетом privacy-контролей."
       ]
     },
     {
       "id": "ws9-zero-to-value",
-      "title": "Zero-to-Value synthetic path",
+      "title": "Синтетический путь Zero-to-Value",
       "status": "passed",
       "evidence_refs": [
         "examples/phase0_supply_dispute_trace.json",
@@ -127,7 +132,7 @@
         "phase0-supply-dispute-pipeline-v0"
       ],
       "remaining_work": [
-        "Add synthetic source set and pilot-style task list."
+        "Расширить синтетический набор источников и перечень пилотных задач."
       ]
     }
   ]

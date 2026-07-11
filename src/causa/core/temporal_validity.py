@@ -24,6 +24,7 @@ class SourceApplicabilityEvaluation(BaseModel):
     moment: date
     applicable: bool
     reasons: list[str] = Field(default_factory=list)
+    reasons_ru: list[str] = Field(default_factory=list)
 
 
 def _parse_date(value: str | None) -> date | None:
@@ -46,18 +47,23 @@ def evaluate_source_applicability(
             moment=moment,
             applicable=True,
             reasons=["Source is applicable at the evaluation date."],
+            reasons_ru=["Источник применим на дату оценки."],
         )
 
     if valid_from and moment < valid_from:
         reason = "Evaluation date is before source valid_from."
+        reason_ru = "Дата оценки предшествует дате начала действия источника."
     elif valid_to and moment > valid_to:
         reason = "Evaluation date is after source valid_to."
+        reason_ru = "Дата оценки наступила после окончания действия источника."
     else:
         reason = "Source is not applicable at the evaluation date."
+        reason_ru = "Источник не применим на дату оценки."
 
     return SourceApplicabilityEvaluation(
         source_id=source.id,
         moment=moment,
         applicable=False,
         reasons=[reason],
+        reasons_ru=[reason_ru],
     )

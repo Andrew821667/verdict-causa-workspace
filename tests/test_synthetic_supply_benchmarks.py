@@ -63,6 +63,8 @@ def test_synthetic_supply_benchmark_suite_passes_current_narrow_expectations() -
     assert report.total == len(SYNTHETIC_SUPPLY_BENCHMARKS)
     assert report.failed == 0
     assert report.success_rate == 1.0
+    assert report.locale == "ru-RU"
+    assert all(result.reasons_ru for result in report.results)
     assert any(result.temporal_reasons for result in report.results)
     assert any(result.source_applicability_reasons for result in report.results)
     assert any(result.authority_winner for result in report.results)

@@ -1,5 +1,11 @@
 # Verdict / Causa Workspace
 
+## Русскоязычный правовой контур
+
+Вердикт — инфраструктура эволюционирующего юридического интеллекта, первое полноценное приложение которой создается для российской правовой системы на институте договорных отношений. Юридически значимые объяснения, причины выводов, предупреждения, governance-решения и audit-артефакты первого пакета формируются на русском языке. Английские machine IDs и поля API сохраняются только там, где это необходимо для совместимости и воспроизводимости.
+
+Правило закреплено в [политике русского языка](docs/russian-language-policy.md).
+
 Verdict / Causa Workspace is an early-stage open-source infrastructure project for auditable legal AI. It explores an evolving legal intelligence: a universal legal core, institutional packages, legal ontology, GraphRAG/RAG, governance workflows, a Management Plane, and formal consistency checks.
 
 ## What this project is
@@ -21,6 +27,8 @@ Verdict / Causa Workspace separates legal AI infrastructure into a universal cor
 Institutional packages provide vocabulary, authority model, temporal model, JSON schema, deterministic JSON-to-Z3 mapping rules, contradiction taxonomy, benchmark cases, red-team scenarios, confidence policies, and activation policies for specific legal institutes.
 
 The governing concept is preserved in [docs/verdict-concept-v2-5.md](docs/verdict-concept-v2-5.md).
+
+The first institutional package targets the Russian legal system. Stable machine IDs and API fields remain in English, while legally significant explanations, reasons, warnings, governance decisions, and audit artifacts are produced in Russian. See [docs/russian-language-policy.md](docs/russian-language-policy.md).
 
 ## Universal core and institutional packages
 
@@ -125,6 +133,14 @@ python scripts/export_synthetic_reviewed_contract_analysis.py
 
 The output is written to `examples/synthetic_reviewed_contract_analysis.json`.
 
+Generate the synthetic Russian-language governance lifecycle report:
+
+```bash
+python scripts/export_synthetic_governance_lifecycle.py
+```
+
+The output is written to `examples/synthetic_governance_lifecycle_report.json`.
+
 Generate the current Phase 0 readiness report:
 
 ```bash
@@ -171,11 +187,11 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-The command writes replay reports for the legacy `0.1.0` benchmark artifact and the
-legacy `0.3.0` Phase 0 trace:
+The command writes replay reports for legacy `0.1.0`, `0.3.0`, and `0.4.0` artifacts:
 
-- `examples/migrations/contracts-ru-v0-0.1.0-to-0.4.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.3.0-to-0.4.0-migration-report.json`.
+- `examples/migrations/contracts-ru-v0-0.1.0-to-0.5.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.3.0-to-0.5.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.4.0-to-0.5.0-migration-report.json`.
 
 ## License
 

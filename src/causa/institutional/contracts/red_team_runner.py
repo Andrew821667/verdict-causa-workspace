@@ -62,17 +62,32 @@ def _guardrail_attack_attempt(
         if blocked
         else [f"Missing guardrail fragment: {fragment}" for fragment in missing_fragments]
     )
+    reasons_ru = (
+        ["Защитное правило содержит все обязательные ограничивающие условия."]
+        if blocked
+        else [
+            f"Отсутствует обязательный защитный фрагмент: {fragment}"
+            for fragment in missing_fragments
+        ]
+    )
     return AdversarialAttackAttempt(
         id=f"attack:{scenario.id}:guardrail",
         technique="guardrail_fragment",
         requested_outcome="Candidate guardrail omits a required defense.",
+        requested_outcome_ru="В защитном правиле отсутствует обязательное ограничение.",
         observed_outcome=(
             "All required fragments are present."
             if blocked
             else f"Missing fragments: {', '.join(missing_fragments)}."
         ),
+        observed_outcome_ru=(
+            "Все обязательные защитные фрагменты присутствуют."
+            if blocked
+            else f"Отсутствуют фрагменты: {', '.join(missing_fragments)}."
+        ),
         blocked=blocked,
         reasons=reasons,
+        reasons_ru=reasons_ru,
     )
 
 
@@ -109,12 +124,19 @@ def _formal_constraint_attack_attempt(
         id=f"attack:{scenario.id}:formal-constraint",
         technique="formal_constraint",
         requested_outcome=requested_outcome,
+        requested_outcome_ru=f"Атака требует формальный результат: {requested_outcome}.",
         observed_outcome=observed_outcome,
+        observed_outcome_ru=f"Формальная проверка получила результат: {observed_outcome}.",
         blocked=blocked,
         reasons=(
             ["Constraint evaluation rejected the attack outcome."]
             if blocked
             else ["Constraint evaluation allowed the attack outcome."]
+        ),
+        reasons_ru=(
+            ["Формальная проверка отклонила требуемый атакой результат."]
+            if blocked
+            else ["Формальная проверка допустила требуемый атакой результат."]
         ),
     )
 
@@ -145,12 +167,19 @@ def _authority_attack_attempt(
         id=f"attack:{scenario.id}:authority",
         technique="authority_resolution",
         requested_outcome=requested_outcome,
+        requested_outcome_ru=f"Атака требует выбрать источник: {requested_outcome}.",
         observed_outcome=observed_outcome,
+        observed_outcome_ru=f"Механизм юридической силы получил результат: {observed_outcome}.",
         blocked=blocked,
         reasons=(
             [*evaluation.reasons, "Authority resolver rejected the attack winner."]
             if blocked
             else [*evaluation.reasons, "Authority resolver allowed the attack winner."]
+        ),
+        reasons_ru=(
+            [*evaluation.reasons_ru, "Механизм юридической силы отклонил выбор атаки."]
+            if blocked
+            else [*evaluation.reasons_ru, "Механизм юридической силы допустил выбор атаки."]
         ),
     )
 
@@ -168,18 +197,28 @@ def _source_grounding_attack_attempt(
             id=f"attack:{scenario.id}:source-grounding",
             technique="source_grounding",
             requested_outcome=f"source_ref={scenario.attack_source_ref}",
+            requested_outcome_ru=(
+                f"Атака требует использовать источник: {scenario.attack_source_ref}."
+            ),
             observed_outcome="source_ref is unavailable",
+            observed_outcome_ru="Ссылка на источник отсутствует в реестре.",
             blocked=True,
             reasons=["Source registry rejected the unavailable source reference."],
+            reasons_ru=["Реестр источников отклонил отсутствующую ссылку."],
         )
 
     return AdversarialAttackAttempt(
         id=f"attack:{scenario.id}:source-grounding",
         technique="source_grounding",
         requested_outcome=f"source_ref={scenario.attack_source_ref}",
+        requested_outcome_ru=(
+            f"Атака требует использовать источник: {scenario.attack_source_ref}."
+        ),
         observed_outcome="source_ref is available",
+        observed_outcome_ru="Ссылка на источник присутствует в реестре.",
         blocked=False,
         reasons=["Source registry allowed the attack source reference."],
+        reasons_ru=["Реестр источников допустил ссылку, использованную атакой."],
     )
 
 
@@ -207,6 +246,7 @@ def run_red_team_scenario(
     attempts = _adversarial_attack_attempts(scenario, candidate_guardrail)
     blocked = all(attempt.blocked for attempt in attempts)
     reasons = [reason for attempt in attempts for reason in attempt.reasons]
+    reasons_ru = [reason for attempt in attempts for reason in attempt.reasons_ru]
     generated_attack = attack_generator.generate(scenario)
 
     return RedTeamScenarioResult(
@@ -214,6 +254,7 @@ def run_red_team_scenario(
         blocked=blocked,
         target_failure_type=scenario.target_failure_type,
         reasons=reasons,
+        reasons_ru=reasons_ru,
         reconstructed_attack=scenario.attack_vector,
         adversarial_attempts=attempts,
         generated_attack=generated_attack,

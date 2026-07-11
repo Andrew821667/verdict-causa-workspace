@@ -23,6 +23,7 @@ class PackageMigrationStep(BaseModel):
     from_version: str
     to_version: str
     reasons: list[str] = Field(default_factory=list)
+    reasons_ru: list[str] = Field(default_factory=list)
     replay_commands: list[str] = Field(default_factory=list)
 
 
@@ -33,8 +34,10 @@ class PackageMigrationReport(BaseModel):
     source_package_version: str
     target_package_version: str
     disposition: MigrationDisposition
+    disposition_label_ru: str = ""
     steps: list[PackageMigrationStep] = Field(default_factory=list)
     reasons: list[str] = Field(default_factory=list)
+    reasons_ru: list[str] = Field(default_factory=list)
     payload_preserved_without_interpretation: bool
 
 
@@ -45,6 +48,10 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
         reasons=[
             "Authority policy gained constitutional and regulatory levels.",
             "Authority outcomes must be replayed against the expanded candidate model.",
+        ],
+        reasons_ru=[
+            "Модель юридической силы дополнена конституционным и подзаконным уровнями.",
+            "Выводы о приоритете источников должны быть повторно получены на расширенной модели.",
         ],
         replay_commands=[
             "python scripts/export_synthetic_supply_benchmarks.py",
@@ -57,6 +64,10 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
         reasons=[
             "Constraint results gained remedy, causation, and limitation fields.",
             "Formal outcomes must be regenerated instead of inferred from prior output.",
+        ],
+        reasons_ru=[
+            "Результаты формальной проверки дополнены полями убытков, причинной связи и исковой давности.",
+            "Формальные выводы должны быть пересчитаны, а не выведены из прежнего результата.",
         ],
         replay_commands=[
             "python scripts/export_phase0_demo_trace.py",
@@ -71,13 +82,44 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "Analysis inputs gained reviewed case, temporal, and authority contracts.",
             "Decision traces now retain fact provenance and the complete reviewed analysis result.",
         ],
+        reasons_ru=[
+            "Входы анализа дополнены проверенными фактами дела, временными данными и источниками-кандидатами.",
+            "Трассировка теперь сохраняет происхождение фактов и полный результат проверенного анализа.",
+        ],
         replay_commands=[
             "python scripts/export_synthetic_reviewed_contract_analysis.py",
             "python scripts/export_phase0_demo_trace.py",
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.4.0",
+        to_version="0.5.0",
+        reasons=[
+            "Russian human-readable legal reasons were added to exported evaluations.",
+            "Phase 0 traces now include an executed governance record and ru-RU audit text.",
+        ],
+        reasons_ru=[
+            "В экспортируемые результаты добавлены русские юридически значимые причины.",
+            "Трассировка Этапа 0 теперь содержит исполненный governance-журнал и аудит на русском языке.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_governance_lifecycle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_supply_benchmarks.py",
+            "python scripts/export_synthetic_supply_red_team.py",
+        ],
+    ),
 ]
+
+
+MIGRATION_DISPOSITION_LABELS_RU = {
+    MigrationDisposition.NOT_REQUIRED: "Миграция не требуется",
+    MigrationDisposition.REQUIRES_REGENERATION: "Требуется повторное формирование",
+    MigrationDisposition.UNSUPPORTED: "Миграция не поддерживается",
+}
 
 
 def build_contracts_package_migration_report(
@@ -92,7 +134,11 @@ def build_contracts_package_migration_report(
             source_package_version=artifact.package_version,
             target_package_version=target_version,
             disposition=MigrationDisposition.UNSUPPORTED,
+            disposition_label_ru=MIGRATION_DISPOSITION_LABELS_RU[
+                MigrationDisposition.UNSUPPORTED
+            ],
             reasons=["Artifact package id does not match contracts-ru-v0."],
+            reasons_ru=["Идентификатор пакета артефакта не соответствует contracts-ru-v0."],
             payload_preserved_without_interpretation=True,
         )
 
@@ -104,7 +150,11 @@ def build_contracts_package_migration_report(
             source_package_version=artifact.package_version,
             target_package_version=target_version,
             disposition=MigrationDisposition.NOT_REQUIRED,
+            disposition_label_ru=MIGRATION_DISPOSITION_LABELS_RU[
+                MigrationDisposition.NOT_REQUIRED
+            ],
             reasons=["Artifact already uses the current package version."],
+            reasons_ru=["Артефакт уже использует текущую версию пакета."],
             payload_preserved_without_interpretation=True,
         )
 
@@ -127,8 +177,14 @@ def build_contracts_package_migration_report(
                 source_package_version=artifact.package_version,
                 target_package_version=target_version,
                 disposition=MigrationDisposition.UNSUPPORTED,
+                disposition_label_ru=MIGRATION_DISPOSITION_LABELS_RU[
+                    MigrationDisposition.UNSUPPORTED
+                ],
                 steps=steps,
                 reasons=["No ordered migration path reaches the current package version."],
+                reasons_ru=[
+                    "Отсутствует последовательный путь миграции к текущей версии пакета."
+                ],
                 payload_preserved_without_interpretation=True,
             )
         steps.append(step)
@@ -141,10 +197,17 @@ def build_contracts_package_migration_report(
         source_package_version=artifact.package_version,
         target_package_version=target_version,
         disposition=MigrationDisposition.REQUIRES_REGENERATION,
+        disposition_label_ru=MIGRATION_DISPOSITION_LABELS_RU[
+            MigrationDisposition.REQUIRES_REGENERATION
+        ],
         steps=steps,
         reasons=[
             "Legacy artifact is retained as input evidence only.",
             "Replay is required because package analysis or artifact semantics changed.",
+        ],
+        reasons_ru=[
+            "Прежний артефакт сохраняется только как входное доказательство.",
+            "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта.",
         ],
         payload_preserved_without_interpretation=True,
     )

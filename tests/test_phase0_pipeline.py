@@ -24,6 +24,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "build-case-graph",
         "ground-claim",
         "classify-candidate",
+        "execute-governance-lifecycle",
         "record-policy",
         "attach-red-team",
         "produce-translation",
@@ -43,10 +44,14 @@ def test_phase0_readiness_report_is_not_production_ready() -> None:
 
     assert report.ready_for_production is False
     assert report.project_stage == "architectural_prototype"
+    assert report.project_stage_label_ru == "Архитектурный прототип"
+    assert report.locale == "ru-RU"
     assert report.warning_count > 0
     assert report.failed_count == 0
     bootstrap_item = next(item for item in report.items if item.id == "ws3-bootstrap")
+    governance_item = next(item for item in report.items if item.id == "ws6-governance")
     assert bootstrap_item.status == PipelineStepStatus.PASSED
+    assert governance_item.status == PipelineStepStatus.PASSED
 
 
 def test_exported_phase0_readiness_report_fixture_is_valid() -> None:

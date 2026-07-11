@@ -41,31 +41,31 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
         reviewed_norm=ReviewedNormJSON(
             id="norm-supply-delivery-duty-v0",
             source_id=norm_source_id,
-            subjects=["supplier", "buyer"],
-            actions=["deliver goods by the agreed date"],
+            subjects=["поставщик", "покупатель"],
+            actions=["поставить товар в согласованный срок"],
             conditions=[
                 NormCondition(
                     id="condition-supply-relation",
-                    text="A supply relation exists between supplier and buyer.",
+                    text="Между поставщиком и покупателем существуют отношения поставки.",
                 ),
                 NormCondition(
                     id="condition-agreed-date",
-                    text="The parties agreed on a delivery date.",
+                    text="Стороны согласовали срок поставки.",
                 ),
             ],
             exceptions=[
                 NormCondition(
                     id="exception-valid-excuse",
-                    text="A valid contractual or statutory excuse applies.",
+                    text="Применяется договорное или предусмотренное законом основание освобождения.",
                 )
             ],
             consequences=[
                 NormConsequence(
                     id="consequence-breach-risk",
-                    text="Missing the agreed date creates a candidate breach issue.",
+                    text="Пропуск согласованного срока создает вопрос о нарушении обязательства.",
                 )
             ],
-            temporal_notes=["Assess performance against the agreed delivery date."],
+            temporal_notes=["Оценить исполнение относительно согласованного срока поставки."],
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-norm-reviewer",
         ),
@@ -128,7 +128,8 @@ def build_synthetic_supply_analysis_artifact() -> ReviewedContractAnalysisArtifa
     request = build_synthetic_supply_analysis_request()
     return ReviewedContractAnalysisArtifact(
         disclaimer=(
-            "Synthetic reviewed-input analysis artifact. Not production-ready and not legal advice."
+            "Синтетический артефакт анализа проверенных входных данных. "
+            "Не готов к промышленной эксплуатации и не является юридической консультацией."
         ),
         sources=sources,
         request=request,

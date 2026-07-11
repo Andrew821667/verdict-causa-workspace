@@ -1,12 +1,13 @@
 {
-  "disclaimer": "Synthetic reviewed-input analysis artifact. Not production-ready and not legal advice.",
+  "locale": "ru-RU",
+  "disclaimer": "Синтетический артефакт анализа проверенных входных данных. Не готов к промышленной эксплуатации и не является юридической консультацией.",
   "sources": [
     {
       "id": "synthetic-ru-contract-supply-delivery-duty-v1",
-      "title": "Synthetic supply delivery duty v1",
+      "title": "Синтетическая норма о сроке поставки, редакция 1",
       "source_type": "statute",
       "jurisdiction": "RU",
-      "text": "Synthetic source v1: in a supply relation, the supplier must deliver goods by the agreed date unless a valid excuse applies.",
+      "text": "Синтетическая редакция 1: поставщик обязан передать товар в согласованный срок, если отсутствует применимое основание освобождения.",
       "valid_from": "2020-01-01",
       "valid_to": "2025-12-31",
       "metadata": {
@@ -17,10 +18,10 @@
     },
     {
       "id": "synthetic-ru-contract-supply-delivery-duty-v2",
-      "title": "Synthetic supply delivery duty v2",
+      "title": "Синтетическая норма о сроке поставки, редакция 2",
       "source_type": "statute",
       "jurisdiction": "RU",
-      "text": "Synthetic source v2: for supply relations evaluated from 2026 onward, delivery duty analysis must check agreed date, actual performance, and valid excuse.",
+      "text": "Синтетическая редакция 2: для отношений, оцениваемых с 2026 года, необходимо проверить согласованный срок, фактическое исполнение и основание освобождения.",
       "valid_from": "2026-01-01",
       "valid_to": null,
       "metadata": {
@@ -31,10 +32,10 @@
     },
     {
       "id": "synthetic-ru-contract-supply-delivery-term",
-      "title": "Synthetic supply delivery contract term",
+      "title": "Синтетическое договорное условие о графике поставки",
       "source_type": "contract",
       "jurisdiction": "RU",
-      "text": "Synthetic contract term: the parties set a supply-specific delivery schedule for their contract.",
+      "text": "Синтетическое условие договора: стороны согласовали специальный график поставки товара.",
       "valid_from": "2020-01-01",
       "valid_to": null,
       "metadata": {
@@ -45,10 +46,10 @@
     },
     {
       "id": "synthetic-case-supply-1-reviewed-evidence",
-      "title": "Synthetic reviewed supply case evidence record",
+      "title": "Синтетическая проверенная запись доказательств по делу о поставке",
       "source_type": "fact",
       "jurisdiction": "RU",
-      "text": "Synthetic reviewed evidence record: the delivery dates and narrow boolean case assertions are approved for the Phase 0 analysis demo.",
+      "text": "Синтетическая проверенная запись: даты поставки и узкий набор утверждений о фактах одобрены для демонстрационного анализа Этапа 0.",
       "valid_from": "2026-01-01",
       "valid_to": null,
       "metadata": {
@@ -67,36 +68,36 @@
       "schema_version": "contracts.norm.v0",
       "source_id": "synthetic-ru-contract-supply-delivery-duty-v2",
       "subjects": [
-        "supplier",
-        "buyer"
+        "поставщик",
+        "покупатель"
       ],
       "actions": [
-        "deliver goods by the agreed date"
+        "поставить товар в согласованный срок"
       ],
       "conditions": [
         {
           "id": "condition-supply-relation",
-          "text": "A supply relation exists between supplier and buyer."
+          "text": "Между поставщиком и покупателем существуют отношения поставки."
         },
         {
           "id": "condition-agreed-date",
-          "text": "The parties agreed on a delivery date."
+          "text": "Стороны согласовали срок поставки."
         }
       ],
       "exceptions": [
         {
           "id": "exception-valid-excuse",
-          "text": "A valid contractual or statutory excuse applies."
+          "text": "Применяется договорное или предусмотренное законом основание освобождения."
         }
       ],
       "consequences": [
         {
           "id": "consequence-breach-risk",
-          "text": "Missing the agreed date creates a candidate breach issue."
+          "text": "Пропуск согласованного срока создает вопрос о нарушении обязательства."
         }
       ],
       "temporal_notes": [
-        "Assess performance against the agreed delivery date."
+        "Оценить исполнение относительно согласованного срока поставки."
       ],
       "related_norms": [],
       "review_status": "reviewed",
@@ -255,32 +256,32 @@
       "obligation_rule": {
         "id": "obligation-rule:norm-supply-delivery-duty-v0",
         "source_id": "synthetic-ru-contract-supply-delivery-duty-v2",
-        "debtor": "supplier",
-        "creditor": "buyer",
-        "action": "deliver goods by the agreed date",
+        "debtor": "поставщик",
+        "creditor": "покупатель",
+        "action": "поставить товар в согласованный срок",
         "conditions": [
           {
             "id": "condition-supply-relation",
-            "text": "A supply relation exists between supplier and buyer.",
+            "text": "Между поставщиком и покупателем существуют отношения поставки.",
             "source_ref": "synthetic-ru-contract-supply-delivery-duty-v2"
           },
           {
             "id": "condition-agreed-date",
-            "text": "The parties agreed on a delivery date.",
+            "text": "Стороны согласовали срок поставки.",
             "source_ref": "synthetic-ru-contract-supply-delivery-duty-v2"
           }
         ],
         "exceptions": [
           {
             "id": "exception-valid-excuse",
-            "text": "A valid contractual or statutory excuse applies.",
+            "text": "Применяется договорное или предусмотренное законом основание освобождения.",
             "source_ref": "synthetic-ru-contract-supply-delivery-duty-v2"
           }
         ],
         "consequences": [
           {
             "id": "consequence-breach-risk",
-            "text": "Missing the agreed date creates a candidate breach issue.",
+            "text": "Пропуск согласованного срока создает вопрос о нарушении обязательства.",
             "source_ref": "synthetic-ru-contract-supply-delivery-duty-v2"
           }
         ]
@@ -295,6 +296,9 @@
       "due_date_missed": true,
       "reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ]
     },
     "source_applicability": {
@@ -303,6 +307,9 @@
       "applicable": true,
       "reasons": [
         "Source is applicable at the evaluation date."
+      ],
+      "reasons_ru": [
+        "Источник применим на дату оценки."
       ]
     },
     "evidence_mapping": {
@@ -477,6 +484,9 @@
       "limitation_bar": false,
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
       ]
     },
     "authority_evaluation": {
@@ -498,6 +508,10 @@
       "reasons": [
         "Selected synthetic-ru-contract-supply-delivery-duty-v2 at statutory authority.",
         "Excluded synthetic-ru-contract-supply-delivery-duty-v1: Evaluation date is after source valid_to."
+      ],
+      "reasons_ru": [
+        "Выбран источник synthetic-ru-contract-supply-delivery-duty-v2: уровень закона.",
+        "Источник synthetic-ru-contract-supply-delivery-duty-v1 исключен: Дата оценки наступила после окончания действия источника."
       ]
     },
     "requires_human_resolution": false,
@@ -505,6 +519,11 @@
       "Synthetic reviewed inputs only.",
       "Narrow deterministic analysis; substantive legal assessment remains human-reviewed.",
       "Not legal advice."
+    ],
+    "warnings_ru": [
+      "Используются только синтетические проверенные входные данные.",
+      "Детерминированный анализ ограничен узким набором правил; содержательная правовая оценка остается за экспертом.",
+      "Не является юридической консультацией."
     ]
   }
 }

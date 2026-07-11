@@ -1,12 +1,13 @@
 {
-  "disclaimer": "Synthetic Phase 0 trace. Not production-ready and not legal advice.",
+  "locale": "ru-RU",
+  "disclaimer": "Синтетическая трассировка Этапа 0. Не готова к промышленной эксплуатации и не является юридической консультацией.",
   "legal_sources": [
     {
       "id": "synthetic-ru-contract-supply-delivery-duty-v1",
-      "title": "Synthetic supply delivery duty v1",
+      "title": "Синтетическая норма о сроке поставки, редакция 1",
       "source_type": "statute",
       "jurisdiction": "RU",
-      "text": "Synthetic source v1: in a supply relation, the supplier must deliver goods by the agreed date unless a valid excuse applies.",
+      "text": "Синтетическая редакция 1: поставщик обязан передать товар в согласованный срок, если отсутствует применимое основание освобождения.",
       "valid_from": "2020-01-01",
       "valid_to": "2025-12-31",
       "metadata": {
@@ -17,10 +18,10 @@
     },
     {
       "id": "synthetic-ru-contract-supply-delivery-duty-v2",
-      "title": "Synthetic supply delivery duty v2",
+      "title": "Синтетическая норма о сроке поставки, редакция 2",
       "source_type": "statute",
       "jurisdiction": "RU",
-      "text": "Synthetic source v2: for supply relations evaluated from 2026 onward, delivery duty analysis must check agreed date, actual performance, and valid excuse.",
+      "text": "Синтетическая редакция 2: для отношений, оцениваемых с 2026 года, необходимо проверить согласованный срок, фактическое исполнение и основание освобождения.",
       "valid_from": "2026-01-01",
       "valid_to": null,
       "metadata": {
@@ -31,10 +32,10 @@
     },
     {
       "id": "synthetic-ru-contract-supply-delivery-term",
-      "title": "Synthetic supply delivery contract term",
+      "title": "Синтетическое договорное условие о графике поставки",
       "source_type": "contract",
       "jurisdiction": "RU",
-      "text": "Synthetic contract term: the parties set a supply-specific delivery schedule for their contract.",
+      "text": "Синтетическое условие договора: стороны согласовали специальный график поставки товара.",
       "valid_from": "2020-01-01",
       "valid_to": null,
       "metadata": {
@@ -45,10 +46,10 @@
     },
     {
       "id": "synthetic-case-supply-1-reviewed-evidence",
-      "title": "Synthetic reviewed supply case evidence record",
+      "title": "Синтетическая проверенная запись доказательств по делу о поставке",
       "source_type": "fact",
       "jurisdiction": "RU",
-      "text": "Synthetic reviewed evidence record: the delivery dates and narrow boolean case assertions are approved for the Phase 0 analysis demo.",
+      "text": "Синтетическая проверенная запись: даты поставки и узкий набор утверждений о фактах одобрены для демонстрационного анализа Этапа 0.",
       "valid_from": "2026-01-01",
       "valid_to": null,
       "metadata": {
@@ -67,36 +68,36 @@
       "schema_version": "contracts.norm.v0",
       "source_id": "synthetic-ru-contract-supply-delivery-duty-v2",
       "subjects": [
-        "supplier",
-        "buyer"
+        "поставщик",
+        "покупатель"
       ],
       "actions": [
-        "deliver goods by the agreed date"
+        "поставить товар в согласованный срок"
       ],
       "conditions": [
         {
           "id": "condition-supply-relation",
-          "text": "A supply relation exists between supplier and buyer."
+          "text": "Между поставщиком и покупателем существуют отношения поставки."
         },
         {
           "id": "condition-agreed-date",
-          "text": "The parties agreed on a delivery date."
+          "text": "Стороны согласовали срок поставки."
         }
       ],
       "exceptions": [
         {
           "id": "exception-valid-excuse",
-          "text": "A valid contractual or statutory excuse applies."
+          "text": "Применяется договорное или предусмотренное законом основание освобождения."
         }
       ],
       "consequences": [
         {
           "id": "consequence-breach-risk",
-          "text": "Missing the agreed date creates a candidate breach issue."
+          "text": "Пропуск согласованного срока создает вопрос о нарушении обязательства."
         }
       ],
       "temporal_notes": [
-        "Assess performance against the agreed delivery date."
+        "Оценить исполнение относительно согласованного срока поставки."
       ],
       "related_norms": [],
       "review_status": "reviewed",
@@ -255,32 +256,32 @@
       "obligation_rule": {
         "id": "obligation-rule:norm-supply-delivery-duty-v0",
         "source_id": "synthetic-ru-contract-supply-delivery-duty-v2",
-        "debtor": "supplier",
-        "creditor": "buyer",
-        "action": "deliver goods by the agreed date",
+        "debtor": "поставщик",
+        "creditor": "покупатель",
+        "action": "поставить товар в согласованный срок",
         "conditions": [
           {
             "id": "condition-supply-relation",
-            "text": "A supply relation exists between supplier and buyer.",
+            "text": "Между поставщиком и покупателем существуют отношения поставки.",
             "source_ref": "synthetic-ru-contract-supply-delivery-duty-v2"
           },
           {
             "id": "condition-agreed-date",
-            "text": "The parties agreed on a delivery date.",
+            "text": "Стороны согласовали срок поставки.",
             "source_ref": "synthetic-ru-contract-supply-delivery-duty-v2"
           }
         ],
         "exceptions": [
           {
             "id": "exception-valid-excuse",
-            "text": "A valid contractual or statutory excuse applies.",
+            "text": "Применяется договорное или предусмотренное законом основание освобождения.",
             "source_ref": "synthetic-ru-contract-supply-delivery-duty-v2"
           }
         ],
         "consequences": [
           {
             "id": "consequence-breach-risk",
-            "text": "Missing the agreed date creates a candidate breach issue.",
+            "text": "Пропуск согласованного срока создает вопрос о нарушении обязательства.",
             "source_ref": "synthetic-ru-contract-supply-delivery-duty-v2"
           }
         ]
@@ -295,6 +296,9 @@
       "due_date_missed": true,
       "reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ]
     },
     "source_applicability": {
@@ -303,6 +307,9 @@
       "applicable": true,
       "reasons": [
         "Source is applicable at the evaluation date."
+      ],
+      "reasons_ru": [
+        "Источник применим на дату оценки."
       ]
     },
     "evidence_mapping": {
@@ -477,6 +484,9 @@
       "limitation_bar": false,
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
       ]
     },
     "authority_evaluation": {
@@ -498,6 +508,10 @@
       "reasons": [
         "Selected synthetic-ru-contract-supply-delivery-duty-v2 at statutory authority.",
         "Excluded synthetic-ru-contract-supply-delivery-duty-v1: Evaluation date is after source valid_to."
+      ],
+      "reasons_ru": [
+        "Выбран источник synthetic-ru-contract-supply-delivery-duty-v2: уровень закона.",
+        "Источник synthetic-ru-contract-supply-delivery-duty-v1 исключен: Дата оценки наступила после окончания действия источника."
       ]
     },
     "requires_human_resolution": false,
@@ -505,12 +519,17 @@
       "Synthetic reviewed inputs only.",
       "Narrow deterministic analysis; substantive legal assessment remains human-reviewed.",
       "Not legal advice."
+    ],
+    "warnings_ru": [
+      "Используются только синтетические проверенные входные данные.",
+      "Детерминированный анализ ограничен узким набором правил; содержательная правовая оценка остается за экспертом.",
+      "Не является юридической консультацией."
     ]
   },
   "formal_contradiction_detected": true,
   "claim": {
     "id": "claim-supply-late-delivery",
-    "text": "The supplier may have breached the delivery obligation if the agreed delivery date was missed and no valid excuse applies.",
+    "text": "Поставщик мог нарушить обязательство по поставке, если согласованный срок был пропущен и применимое основание освобождения не установлено.",
     "sources": [
       "synthetic-ru-contract-supply-delivery-duty-v2"
     ],
@@ -518,13 +537,13 @@
   },
   "candidate": {
     "id": "candidate-supply-excuse-scope",
-    "statement": "When delivery is late, the system should ask whether the supplier has a contractual or statutory excuse before treating delay as breach.",
+    "statement": "При просрочке поставки система должна проверить наличие договорного или предусмотренного законом основания освобождения до вывода о нарушении.",
     "supporting_sources": [
       "synthetic-ru-contract-supply-delivery-duty-v2"
     ],
     "contradicting_sources": [],
     "risk_level": "medium",
-    "status": "proposed"
+    "status": "active"
   },
   "candidate_type": "gap_heuristic",
   "governance_profile": {
@@ -536,6 +555,94 @@
     "requires_sandbox": false,
     "requires_cross_review": false,
     "expiration_days": 365
+  },
+  "governance_record": {
+    "id": "governance-record:candidate-supply-excuse-scope",
+    "candidate_id": "candidate-supply-excuse-scope",
+    "candidate_type": "gap_heuristic",
+    "candidate_type_label_ru": "Эвристика пробела",
+    "locale": "ru-RU",
+    "engine_version": "governance-engine-v0",
+    "policy_version": "governance-policy-ru-v0",
+    "current_stage": "active",
+    "current_stage_label_ru": "Активно",
+    "created_at": "2026-07-11T10:00:00+03:00",
+    "decisions": [
+      {
+        "id": "governance-decision:candidate-supply-excuse-scope:1",
+        "sequence": 1,
+        "candidate_id": "candidate-supply-excuse-scope",
+        "from_stage": "proposed",
+        "from_stage_label_ru": "Предложено",
+        "to_stage": "type_classification",
+        "to_stage_label_ru": "Классификация типа",
+        "outcome": "approved",
+        "actor_id": "synthetic-domain-owner",
+        "decided_at": "2026-07-11T10:01:00+03:00",
+        "reasons_ru": [
+          "Стадия «Предложено» успешно пройдена на синтетических проверочных данных."
+        ],
+        "evidence_refs": [
+          "synthetic-governance-evidence:proposed"
+        ],
+        "policy_version": "governance-policy-ru-v0"
+      },
+      {
+        "id": "governance-decision:candidate-supply-excuse-scope:2",
+        "sequence": 2,
+        "candidate_id": "candidate-supply-excuse-scope",
+        "from_stage": "type_classification",
+        "from_stage_label_ru": "Классификация типа",
+        "to_stage": "expert_review",
+        "to_stage_label_ru": "Экспертная проверка",
+        "outcome": "approved",
+        "actor_id": "synthetic-domain-owner",
+        "decided_at": "2026-07-11T10:02:00+03:00",
+        "reasons_ru": [
+          "Стадия «Классификация типа» успешно пройдена на синтетических проверочных данных."
+        ],
+        "evidence_refs": [
+          "synthetic-governance-evidence:type_classification"
+        ],
+        "policy_version": "governance-policy-ru-v0"
+      },
+      {
+        "id": "governance-decision:candidate-supply-excuse-scope:3",
+        "sequence": 3,
+        "candidate_id": "candidate-supply-excuse-scope",
+        "from_stage": "expert_review",
+        "from_stage_label_ru": "Экспертная проверка",
+        "to_stage": "active",
+        "to_stage_label_ru": "Активно",
+        "outcome": "approved",
+        "actor_id": "synthetic-domain-owner",
+        "decided_at": "2026-07-11T10:03:00+03:00",
+        "reasons_ru": [
+          "Стадия «Экспертная проверка» успешно пройдена на синтетических проверочных данных."
+        ],
+        "evidence_refs": [
+          "synthetic-governance-evidence:expert_review"
+        ],
+        "policy_version": "governance-policy-ru-v0"
+      }
+    ],
+    "activations": [
+      {
+        "id": "activation:candidate-supply-excuse-scope:1",
+        "candidate_id": "candidate-supply-excuse-scope",
+        "candidate_version": "candidate-supply-excuse-scope@1",
+        "activated_at": "2026-07-11T10:03:00+03:00",
+        "expires_at": "2027-07-11T10:03:00+03:00",
+        "actor_id": "synthetic-domain-owner",
+        "policy_version": "governance-policy-ru-v0",
+        "decision_id": "governance-decision:candidate-supply-excuse-scope:3"
+      }
+    ],
+    "sandbox_evaluations": [],
+    "revalidations": [],
+    "rollbacks": [],
+    "active_candidate_version": "candidate-supply-excuse-scope@1",
+    "expires_at": "2027-07-11T10:03:00+03:00"
   },
   "policy": {
     "mode": "standard",
@@ -552,9 +659,9 @@
   },
   "red_team_scenario": {
     "id": "red-team-supply-delay-excuse-overreach",
-    "title": "Overbroad excuse for late delivery",
+    "title": "Чрезмерно широкое оправдание просрочки поставки",
     "institutional_package_id": "contracts-ru-v0",
-    "unacceptable_outcome": "Use a vague alleged acceptance delay to erase all delivery liability without checking source support.",
+    "unacceptable_outcome": "Использовать неопределенную ссылку на задержку приемки для полного исключения ответственности без проверки правовых и фактических оснований.",
     "target_failure_type": "overbroad_candidate_principle",
     "attack_vector": "",
     "required_guardrail_fragments": [],
@@ -571,7 +678,7 @@
     "trace_id": "trace-phase0-supply-dispute-v0",
     "level": "professional",
     "template_version": "translation-template-v0",
-    "text": "Synthetic professional explanation: the current trace treats late delivery as a candidate breach issue, but the reasoning must first check whether a valid excuse exists. This is a non-production demo and not legal advice.",
+    "text": "Синтетическое профессиональное объяснение: текущая трассировка выявляет возможную просрочку поставки, поскольку обязанность существовала, срок исполнения пропущен, а применимое основание освобождения не установлено. Это демонстрационный вывод, а не юридическая консультация.",
     "faithfulness_checked": false,
     "usability_checked": false
   },
@@ -580,8 +687,8 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.4.0",
-      "policy_version": "policy-demo-v0",
+      "institutional_package_version": "contracts-ru-v0@0.5.0",
+      "policy_version": "governance-policy-ru-v0",
       "translation_template_version": "translation-template-v0",
       "model_profile": "no-llm-synthetic-demo"
     },
@@ -589,7 +696,7 @@
       {
         "id": "synthetic-ru-contract-supply-delivery-duty-v1",
         "layer": "source",
-        "label": "Synthetic supply delivery duty v1",
+        "label": "Синтетическая норма о сроке поставки, редакция 1",
         "source_refs": [],
         "metadata": {
           "synthetic": true,
@@ -600,7 +707,7 @@
       {
         "id": "synthetic-ru-contract-supply-delivery-duty-v2",
         "layer": "source",
-        "label": "Synthetic supply delivery duty v2",
+        "label": "Синтетическая норма о сроке поставки, редакция 2",
         "source_refs": [],
         "metadata": {
           "synthetic": true,
@@ -611,7 +718,7 @@
       {
         "id": "synthetic-ru-contract-supply-delivery-term",
         "layer": "source",
-        "label": "Synthetic supply delivery contract term",
+        "label": "Синтетическое договорное условие о графике поставки",
         "source_refs": [],
         "metadata": {
           "synthetic": true,
@@ -622,7 +729,7 @@
       {
         "id": "synthetic-case-supply-1-reviewed-evidence",
         "layer": "source",
-        "label": "Synthetic reviewed supply case evidence record",
+        "label": "Синтетическая проверенная запись доказательств по делу о поставке",
         "source_refs": [],
         "metadata": {
           "synthetic": true,
@@ -634,7 +741,7 @@
       {
         "id": "norm-supply-delivery-duty-v0",
         "layer": "formal_norm",
-        "label": "Structured supply delivery obligation rule",
+        "label": "Формализованное обязательство по сроку поставки",
         "source_refs": [
           "synthetic-ru-contract-supply-delivery-duty-v2"
         ],
@@ -650,6 +757,7 @@
             "synthetic-norm-reviewer",
             "synthetic-temporal-reviewer"
           ],
+          "governance_record_id": "governance-record:candidate-supply-excuse-scope",
           "formal_rule_id": "obligation-rule:norm-supply-delivery-duty-v0",
           "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
           "source_applicable": true,
@@ -671,7 +779,7 @@
       {
         "id": "case-supply-1",
         "layer": "case",
-        "label": "Synthetic disputed supply delivery case",
+        "label": "Синтетический спор о сроке поставки",
         "source_refs": [
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-ru-contract-supply-delivery-term"
@@ -688,16 +796,27 @@
       {
         "id": "candidate-supply-excuse-scope",
         "layer": "doctrine",
-        "label": "Candidate gap heuristic for valid excuse check",
+        "label": "Эвристика проверки основания освобождения при просрочке",
         "source_refs": [
           "synthetic-ru-contract-supply-delivery-duty-v2"
         ],
         "metadata": {
           "candidate_type": "gap_heuristic",
-          "status": "proposed",
+          "status": "active",
+          "governance_stage": "active",
+          "governance_stage_label_ru": "Активно",
+          "governance_decision_ids": [
+            "governance-decision:candidate-supply-excuse-scope:1",
+            "governance-decision:candidate-supply-excuse-scope:2",
+            "governance-decision:candidate-supply-excuse-scope:3"
+          ],
           "required_stages": [
             "type_classification",
             "expert_review"
+          ],
+          "required_stage_labels_ru": [
+            "Классификация типа",
+            "Экспертная проверка"
           ]
         }
       }
@@ -756,10 +875,10 @@
       "claim-supply-late-delivery"
     ],
     "warnings": [
-      "Synthetic reviewed inputs only.",
-      "Narrow deterministic analysis; substantive legal assessment remains human-reviewed.",
-      "Not legal advice.",
-      "Constraint set covers only narrow delay, defect, payment-default, and remedy patterns."
+      "Используются только синтетические проверенные входные данные.",
+      "Детерминированный анализ ограничен узким набором правил; содержательная правовая оценка остается за экспертом.",
+      "Не является юридической консультацией.",
+      "Формальная модель покрывает только узкие сценарии просрочки, недостатков, неисполнения платежа и отдельных предпосылок требования убытков."
     ]
   }
 }

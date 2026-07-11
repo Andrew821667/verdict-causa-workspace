@@ -41,10 +41,16 @@ def test_default_guardrail_blocks_current_red_team_suite() -> None:
     assert report.total == len(SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS)
     assert report.unblocked == 0
     assert report.block_rate == 1.0
+    assert report.locale == "ru-RU"
+    assert all(result.reasons_ru for result in report.results)
     assert all(result.adversarial_attempts for result in report.results)
     assert all(result.generated_attack is not None for result in report.results)
     assert all(
         result.generated_attack.generator_kind == "template" for result in report.results
+    )
+    assert all(
+        result.generated_attack.attack_text.startswith("Попытка")
+        for result in report.results
     )
     assert any(
         attempt.technique == "formal_constraint"
@@ -92,6 +98,7 @@ def test_formal_attack_attempt_rejects_forced_breach_when_valid_excuse_applies()
     assert formal_attempt.blocked is True
     assert formal_attempt.requested_outcome == "breach_issue=True"
     assert formal_attempt.observed_outcome == "breach_issue=False"
+    assert "Формальная проверка" in formal_attempt.observed_outcome_ru
 
 
 def test_authority_attack_attempt_rejects_special_contract_over_statute() -> None:

@@ -32,6 +32,7 @@ class PipelineStepResult(BaseModel):
 
 class Phase0PipelineResult(BaseModel):
     id: str
+    locale: str = "ru-RU"
     scenario: str
     trace: Phase0DemoTrace
     steps: list[PipelineStepResult]
@@ -51,7 +52,9 @@ class ReadinessItem(BaseModel):
 
 class Phase0ReadinessReport(BaseModel):
     id: str
+    locale: str = "ru-RU"
     project_stage: str
+    project_stage_label_ru: str
     ready_for_production: bool
     summary: str
     items: list[ReadinessItem]
@@ -71,31 +74,31 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
     steps = [
         PipelineStepResult(
             id="select-source",
-            title="Select synthetic legal source",
+            title="Выбор синтетического правового источника",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[trace.legal_source.id],
-            notes=["Synthetic source is explicitly marked non-authoritative."],
+            notes=["Источник явно помечен как синтетический и неофициальный."],
         ),
         PipelineStepResult(
             id="review-bootstrap-json",
-            title="Validate reviewed norm JSON",
+            title="Проверка структурированного представления нормы",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[trace.reviewed_norm.id],
-            notes=[f"Review status: {trace.reviewed_norm.review_status.value}."],
+            notes=[f"Статус проверки: {trace.reviewed_norm.review_status.value}."],
         ),
         PipelineStepResult(
             id="translate-structured-formal-output",
-            title="Translate reviewed JSON to structured obligation rule",
+            title="Детерминированный перевод проверенной нормы в формальное правило",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[trace.formal_translation.obligation_rule.id],
             notes=[
-                "Current translation is deterministic and structured.",
-                "Structured output is narrow and limited to contractual obligation rules.",
+                "Перевод детерминирован и воспроизводим.",
+                "Формальный результат ограничен узким набором правил об обязательствах.",
             ],
         ),
         PipelineStepResult(
             id="validate-reviewed-analysis-inputs",
-            title="Validate reviewed case, temporal, and authority inputs",
+            title="Проверка фактов дела, временных данных и источников-кандидатов",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[
                 trace.analysis_request.case_evidence.id,
@@ -103,109 +106,123 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
                 trace.analysis_request.authority_input.id,
             ],
             notes=[
-                f"Reviewers: {', '.join(trace.analysis_result.reviewer_ids)}.",
-                "Unknown source references and incomplete evidence are rejected.",
+                f"Проверяющие: {', '.join(trace.analysis_result.reviewer_ids)}.",
+                "Неизвестные источники и неполный набор доказательственных утверждений отклоняются.",
             ],
         ),
         PipelineStepResult(
             id="map-reviewed-evidence",
-            title="Map reviewed evidence to typed formal facts",
+            title="Преобразование проверенных доказательств в типизированные формальные факты",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[
                 trace.analysis_result.evidence_mapping.mapping_version,
                 trace.analysis_result.evidence_mapping.formal_rule_id,
             ],
             notes=[
-                "Every formal input retains assertion and source provenance.",
-                "Duty and exception inputs retain links to reviewed formal atoms.",
+                "Каждый формальный факт связан с утверждением и его источниками.",
+                "Факты об обязанности и исключении связаны с атомами проверенной нормы.",
             ],
         ),
         PipelineStepResult(
             id="resolve-reviewed-authority",
-            title="Resolve reviewed authority candidates",
+            title="Разрешение конкуренции проверенных источников",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[
                 trace.analysis_result.authority_evaluation.selected_source_id
                 or "human-resolution-required"
             ],
-            notes=trace.analysis_result.authority_evaluation.reasons,
+            notes=trace.analysis_result.authority_evaluation.reasons_ru,
         ),
         PipelineStepResult(
             id="evaluate-obligation-constraints",
-            title="Evaluate narrow obligation constraints",
+            title="Формальная проверка узкого набора правил об обязательстве",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[trace.constraint_set.id],
             notes=[
-                *trace.temporal_evaluation.reasons,
-                *trace.constraint_evaluation.reasons,
-                "This is solver-backed, but only for a narrow Phase 0 subset.",
+                *trace.temporal_evaluation.reasons_ru,
+                *trace.constraint_evaluation.reasons_ru,
+                "Используется формальный решатель, но только для узкого подмножества Этапа 0.",
             ],
         ),
         PipelineStepResult(
             id="build-case-graph",
-            title="Build four-layer decision trace",
+            title="Построение четырехслойной трассировки решения",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[trace.decision_trace.id],
             notes=[
-                "Trace includes source, formal_norm, case, and doctrine layers.",
+                "Трассировка включает источник, формальную норму, дело и доктринальный слой.",
             ],
         ),
         PipelineStepResult(
             id="ground-claim",
-            title="Create source-grounded claim",
+            title="Формирование правового утверждения с привязкой к источнику",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[trace.claim.id, *trace.claim.sources],
-            notes=["Claim references the synthetic source."],
+            notes=["Правовое утверждение содержит ссылку на синтетический источник."],
         ),
         PipelineStepResult(
             id="classify-candidate",
-            title="Apply candidate type and governance profile",
+            title="Классификация кандидата и выбор governance-профиля",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[trace.candidate.id, trace.candidate_type.value],
             notes=[
-                "Candidate is a gap heuristic.",
-                "Profile requires type classification and expert review.",
+                "Кандидат классифицирован как эвристика пробела.",
+                "Профиль требует классификации типа и экспертной проверки.",
+            ],
+        ),
+        PipelineStepResult(
+            id="execute-governance-lifecycle",
+            title="Исполнение governance-жизненного цикла кандидата",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.governance_record.id,
+                *[decision.id for decision in trace.governance_record.decisions],
+            ],
+            notes=[
+                f"Текущая стадия: {trace.governance_record.current_stage_label_ru}.",
+                f"Активная версия: {trace.governance_record.active_candidate_version}.",
+                "Каждый переход содержит русские причины, доказательства и версию политики.",
             ],
         ),
         PipelineStepResult(
             id="record-policy",
-            title="Record Management Plane policy",
+            title="Фиксация политики Management Plane",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[trace.policy.mode.value, trace.policy.risk_tier.value],
-            notes=["Policy matrix entry is standard x T3."],
+            notes=["Применена матрица политики: стандартный режим × уровень риска T3."],
         ),
         PipelineStepResult(
             id="attach-red-team",
-            title="Attach red-team scenario",
+            title="Подключение сценария Red Team",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[trace.red_team_scenario.id],
-            notes=["Scenario targets overbroad candidate principle risk."],
+            notes=["Сценарий проверяет риск чрезмерно широкого принципа-кандидата."],
         ),
         PipelineStepResult(
             id="produce-translation",
-            title="Produce professional translation artifact",
+            title="Формирование профессионального юридического объяснения",
             status=PipelineStepStatus.WARNING,
             artifact_refs=[trace.translation.id],
             notes=[
-                "Translation artifact exists.",
-                "Faithfulness and usability checks are not implemented yet.",
+                "Профессиональное объяснение сформировано на русском языке.",
+                "Проверки верности и практической полезности еще не реализованы.",
             ],
         ),
         PipelineStepResult(
             id="export-decision-trace",
-            title="Export decision trace with version coordinates",
+            title="Экспорт трассировки с координатами версий",
             status=PipelineStepStatus.PASSED,
             artifact_refs=[trace.decision_trace.id],
             notes=[
-                f"Knowledge version: {trace.decision_trace.versions.knowledge_version}.",
-                f"Policy version: {trace.decision_trace.versions.policy_version}.",
+                f"Версия знаний: {trace.decision_trace.versions.knowledge_version}.",
+                f"Версия политики: {trace.decision_trace.versions.policy_version}.",
             ],
         ),
     ]
 
     return Phase0PipelineResult(
         id="phase0-supply-dispute-pipeline-v0",
-        scenario="Synthetic supply delivery dispute",
+        scenario="Синтетический спор о просрочке поставки",
         trace=trace,
         steps=steps,
     )
@@ -222,25 +239,25 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     items = [
         ReadinessItem(
             id="ws1-universal-core",
-            title="Universal core data model",
+            title="Универсальная модель данных ядра",
             status=PipelineStepStatus.PASSED,
             evidence_refs=[
                 "src/causa/core/models.py",
                 "src/causa/core/knowledge_graph.py",
                 pipeline.trace.decision_trace.id,
             ],
-            remaining_work=["Expand provenance and audit metadata."],
+            remaining_work=["Расширить метаданные происхождения и аудита."],
         ),
         ReadinessItem(
             id="ws2-knowledge-plane",
-            title="Knowledge Plane skeleton",
+            title="Базовый контур Knowledge Plane",
             status=PipelineStepStatus.PASSED,
             evidence_refs=[pipeline.trace.decision_trace.id],
-            remaining_work=["Add graph persistence and retrieval behavior."],
+            remaining_work=["Добавить хранение графа и механизмы извлечения."],
         ),
         ReadinessItem(
             id="ws3-bootstrap",
-            title="Neuro-symbolic bootstrap pipeline",
+            title="Нейросимвольный bootstrap-конвейер",
             status=PipelineStepStatus.PASSED,
             evidence_refs=[
                 "src/causa/core/bootstrap.py",
@@ -250,12 +267,12 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 pipeline.trace.analysis_result.evidence_mapping.mapping_version,
             ],
             remaining_work=[
-                "Expand reviewed mappings beyond the current narrow contractual boolean subset.",
+                "Расширить проверенные отображения за пределы текущего узкого набора договорных фактов.",
             ],
         ),
         ReadinessItem(
             id="ws4-contracts-package",
-            title="Contractual institutional package",
+            title="Институциональный пакет договорного права",
             status=PipelineStepStatus.WARNING,
             evidence_refs=[
                 "src/causa/institutional/contracts/package.py",
@@ -264,52 +281,55 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contracts-ru-v0-compatibility.md",
                 "src/causa/institutional/contracts/versioning.py",
                 "src/causa/institutional/contracts/migrations.py",
-                "examples/migrations/contracts-ru-v0-0.1.0-to-0.4.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.3.0-to-0.4.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.1.0-to-0.5.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.3.0-to-0.5.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.4.0-to-0.5.0-migration-report.json",
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
             ],
             remaining_work=[
-                "Expand vocabulary, authority rules, temporal rules, legal operators, benchmarks, and red-team scenarios.",
-                "Add replay-required migration fixtures for each semantic package release.",
+                "Расширить словарь, правила юридической силы, временные правила, правовые операторы и контрольные сценарии.",
+                "Добавлять replay-миграцию для каждого семантического релиза пакета.",
             ],
         ),
         ReadinessItem(
             id="ws5-management-plane",
-            title="Management Plane",
+            title="Контур управления Management Plane",
             status=PipelineStepStatus.PASSED,
             evidence_refs=[
                 "src/causa/management/policy_matrix.py",
                 pipeline.trace.decision_trace.versions.policy_version,
             ],
-            remaining_work=["Add policy version persistence and rollback records."],
+            remaining_work=["Добавить постоянное хранение версий политики и журнал их отката."],
         ),
         ReadinessItem(
             id="ws6-governance",
-            title="Governance pipeline",
-            status=PipelineStepStatus.WARNING,
+            title="Governance-жизненный цикл кандидатов",
+            status=PipelineStepStatus.PASSED,
             evidence_refs=[
+                "src/causa/governance/engine.py",
                 "src/causa/governance/profiles.py",
+                "examples/synthetic_governance_lifecycle_report.json",
                 pipeline.trace.candidate.id,
+                pipeline.trace.governance_record.id,
             ],
             remaining_work=[
-                "Execute stage transitions with stored decisions.",
-                "Add sandbox and revalidation records.",
+                "Подключить постоянное хранилище governance-записей и конкурентный контроль версий.",
             ],
         ),
         ReadinessItem(
             id="ws7-translation",
-            title="Translation and explainability layer",
+            title="Слой юридического объяснения и интерпретируемости",
             status=PipelineStepStatus.WARNING,
             evidence_refs=[pipeline.trace.translation.id],
             remaining_work=[
-                "Implement faithfulness checks.",
-                "Implement usability checks.",
-                "Add executive and forensic examples.",
+                "Реализовать проверку верности объяснения трассировке.",
+                "Реализовать проверку практической полезности.",
+                "Добавить краткий и forensic-уровни представления.",
             ],
         ),
         ReadinessItem(
             id="ws8-evaluation-red-team",
-            title="Evaluation and Red Team",
+            title="Оценка качества и Red Team",
             status=PipelineStepStatus.WARNING,
             evidence_refs=[
                 pipeline.trace.red_team_scenario.id,
@@ -319,30 +339,32 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 red_team_report.id,
             ],
             remaining_work=[
-                "Obtain privacy and human-review approval before collecting non-synthetic pilot observations.",
-                "Integrate a reviewed external model provider for attack wording under privacy controls.",
+                "Получить privacy- и экспертное одобрение до сбора несинтетических пилотных наблюдений.",
+                "Подключить проверенного модельного провайдера для формулировки атак с учетом privacy-контролей.",
             ],
         ),
         ReadinessItem(
             id="ws9-zero-to-value",
-            title="Zero-to-Value synthetic path",
+            title="Синтетический путь Zero-to-Value",
             status=PipelineStepStatus.PASSED,
             evidence_refs=[
                 "examples/phase0_supply_dispute_trace.json",
                 "examples/synthetic_reviewed_contract_analysis.json",
                 pipeline.id,
             ],
-            remaining_work=["Add synthetic source set and pilot-style task list."],
+            remaining_work=["Расширить синтетический набор источников и перечень пилотных задач."],
         ),
     ]
 
     return Phase0ReadinessReport(
         id="phase0-readiness-report-v0",
         project_stage="architectural_prototype",
+        project_stage_label_ru="Архитектурный прототип",
         ready_for_production=False,
         summary=(
-            "Phase 0 has a working synthetic path, but formal translation, package depth, "
-            "governance execution, translation testing, and evaluation coverage remain incomplete."
+            "Этап 0 содержит работающий синтетический путь и исполняемый governance-цикл, "
+            "но глубина институционального пакета, тестирование юридических объяснений "
+            "и полнота оценки качества остаются недостаточными для промышленной эксплуатации."
         ),
         items=items,
     )

@@ -10,8 +10,8 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
 
     assert trace.reviewed_norm.is_reviewed is True
     assert trace.formal_translation.translator_version == "contracts-json-to-formal-v0"
-    assert trace.formal_translation.obligation_rule.debtor == "supplier"
-    assert trace.formal_translation.obligation_rule.creditor == "buyer"
+    assert trace.formal_translation.obligation_rule.debtor == "поставщик"
+    assert trace.formal_translation.obligation_rule.creditor == "покупатель"
     assert trace.temporal_evaluation.due_date_missed is True
     assert trace.source_applicability.applicable is True
     assert trace.analysis_result.pipeline_version == "contracts-reviewed-analysis-v0"
@@ -31,8 +31,10 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     assert trace.claim.sources == [trace.legal_source.id]
     assert trace.candidate_type == CandidateType.GAP_HEURISTIC
     assert trace.policy.mode.value == "standard"
+    assert trace.governance_record.current_stage.value == "active"
+    assert trace.governance_record.current_stage_label_ru == "Активно"
     assert trace.translation.template_version == trace.decision_trace.versions.translation_template_version
-    assert "Not legal advice." in trace.decision_trace.warnings
+    assert "Не является юридической консультацией." in trace.decision_trace.warnings
 
 
 def test_supply_dispute_demo_trace_covers_all_knowledge_layers() -> None:
@@ -47,8 +49,9 @@ def test_exported_supply_dispute_trace_fixture_is_valid() -> None:
     data = json.loads(fixture_path.read_text(encoding="utf-8"))
     trace = Phase0DemoTrace.model_validate(data)
 
-    assert trace.disclaimer.startswith("Synthetic Phase 0 trace")
-    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.4.0"
+    assert trace.locale == "ru-RU"
+    assert trace.disclaimer.startswith("Синтетическая трассировка Этапа 0")
+    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.5.0"
     assert trace.formal_translation.obligation_rule.id == "obligation-rule:norm-supply-delivery-duty-v0"
     assert trace.constraint_set.id == "constraint-set:obligation-rule:norm-supply-delivery-duty-v0"
     assert trace.temporal_facts.agreed_due_date.isoformat() == "2026-01-15"

@@ -13,11 +13,15 @@ def main() -> None:
     fixture_pairs = [
         (
             migrations_path / "contracts-ru-v0-0.1.0-benchmark-report.json",
-            migrations_path / "contracts-ru-v0-0.1.0-to-0.4.0-migration-report.json",
+            migrations_path / "contracts-ru-v0-0.1.0-to-0.5.0-migration-report.json",
         ),
         (
             migrations_path / "contracts-ru-v0-0.3.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.3.0-to-0.4.0-migration-report.json",
+            migrations_path / "contracts-ru-v0-0.3.0-to-0.5.0-migration-report.json",
+        ),
+        (
+            migrations_path / "contracts-ru-v0-0.4.0-reviewed-analysis.json",
+            migrations_path / "contracts-ru-v0-0.4.0-to-0.5.0-migration-report.json",
         ),
     ]
     for input_path, output_path in fixture_pairs:

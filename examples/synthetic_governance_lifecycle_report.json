@@ -1,0 +1,395 @@
+{
+  "id": "synthetic-governance-lifecycle-report-v0",
+  "locale": "ru-RU",
+  "engine_version": "governance-engine-v0",
+  "title_ru": "Синтетический журнал governance-жизненного цикла",
+  "summary_ru": [
+    "Эвристика пробела активирована и успешно прошла плановую повторную валидацию.",
+    "Паттерн разрешения противоречий прошел песочницу и затем был явно откачен.",
+    "Все решения содержат русские причины, доказательства, исполнителя и версию политики."
+  ],
+  "records": [
+    {
+      "id": "governance-record:candidate-supply-excuse-scope",
+      "candidate_id": "candidate-supply-excuse-scope",
+      "candidate_type": "gap_heuristic",
+      "candidate_type_label_ru": "Эвристика пробела",
+      "locale": "ru-RU",
+      "engine_version": "governance-engine-v0",
+      "policy_version": "governance-policy-ru-v0",
+      "current_stage": "active",
+      "current_stage_label_ru": "Активно",
+      "created_at": "2026-07-11T10:00:00+03:00",
+      "decisions": [
+        {
+          "id": "governance-decision:candidate-supply-excuse-scope:1",
+          "sequence": 1,
+          "candidate_id": "candidate-supply-excuse-scope",
+          "from_stage": "proposed",
+          "from_stage_label_ru": "Предложено",
+          "to_stage": "type_classification",
+          "to_stage_label_ru": "Классификация типа",
+          "outcome": "approved",
+          "actor_id": "synthetic-domain-owner",
+          "decided_at": "2026-07-11T10:01:00+03:00",
+          "reasons_ru": [
+            "Стадия «Предложено» успешно пройдена на синтетических проверочных данных."
+          ],
+          "evidence_refs": [
+            "synthetic-governance-evidence:proposed"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        },
+        {
+          "id": "governance-decision:candidate-supply-excuse-scope:2",
+          "sequence": 2,
+          "candidate_id": "candidate-supply-excuse-scope",
+          "from_stage": "type_classification",
+          "from_stage_label_ru": "Классификация типа",
+          "to_stage": "expert_review",
+          "to_stage_label_ru": "Экспертная проверка",
+          "outcome": "approved",
+          "actor_id": "synthetic-domain-owner",
+          "decided_at": "2026-07-11T10:02:00+03:00",
+          "reasons_ru": [
+            "Стадия «Классификация типа» успешно пройдена на синтетических проверочных данных."
+          ],
+          "evidence_refs": [
+            "synthetic-governance-evidence:type_classification"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        },
+        {
+          "id": "governance-decision:candidate-supply-excuse-scope:3",
+          "sequence": 3,
+          "candidate_id": "candidate-supply-excuse-scope",
+          "from_stage": "expert_review",
+          "from_stage_label_ru": "Экспертная проверка",
+          "to_stage": "active",
+          "to_stage_label_ru": "Активно",
+          "outcome": "approved",
+          "actor_id": "synthetic-domain-owner",
+          "decided_at": "2026-07-11T10:03:00+03:00",
+          "reasons_ru": [
+            "Стадия «Экспертная проверка» успешно пройдена на синтетических проверочных данных."
+          ],
+          "evidence_refs": [
+            "synthetic-governance-evidence:expert_review"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        },
+        {
+          "id": "governance-decision:candidate-supply-excuse-scope:4",
+          "sequence": 4,
+          "candidate_id": "candidate-supply-excuse-scope",
+          "from_stage": "active",
+          "from_stage_label_ru": "Активно",
+          "to_stage": "revalidation",
+          "to_stage_label_ru": "Повторная валидация",
+          "outcome": "approved",
+          "actor_id": "synthetic-governance-controller",
+          "decided_at": "2027-07-11T10:03:00+03:00",
+          "reasons_ru": [
+            "Наступил плановый срок повторной валидации кандидата."
+          ],
+          "evidence_refs": [
+            "synthetic-monitoring-report:gap-heuristic-v0"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        },
+        {
+          "id": "governance-decision:candidate-supply-excuse-scope:5",
+          "sequence": 5,
+          "candidate_id": "candidate-supply-excuse-scope",
+          "from_stage": "revalidation",
+          "from_stage_label_ru": "Повторная валидация",
+          "to_stage": "active",
+          "to_stage_label_ru": "Активно",
+          "outcome": "approved",
+          "actor_id": "synthetic-domain-owner",
+          "decided_at": "2027-07-11T10:08:00+03:00",
+          "reasons_ru": [
+            "Повторная проверка источников и контрольных задач не выявила оснований для отката."
+          ],
+          "evidence_refs": [
+            "synthetic-supply-benchmark-suite-v0",
+            "synthetic-supply-red-team-suite-v0"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        }
+      ],
+      "activations": [
+        {
+          "id": "activation:candidate-supply-excuse-scope:1",
+          "candidate_id": "candidate-supply-excuse-scope",
+          "candidate_version": "candidate-supply-excuse-scope@1",
+          "activated_at": "2026-07-11T10:03:00+03:00",
+          "expires_at": "2027-07-11T10:03:00+03:00",
+          "actor_id": "synthetic-domain-owner",
+          "policy_version": "governance-policy-ru-v0",
+          "decision_id": "governance-decision:candidate-supply-excuse-scope:3"
+        }
+      ],
+      "sandbox_evaluations": [],
+      "revalidations": [
+        {
+          "id": "revalidation:candidate-supply-excuse-scope:1",
+          "candidate_id": "candidate-supply-excuse-scope",
+          "candidate_version": "candidate-supply-excuse-scope@1",
+          "due_at": "2027-07-11T10:03:00+03:00",
+          "completed_at": "2027-07-11T10:08:00+03:00",
+          "reviewer_id": "synthetic-domain-owner",
+          "passed": true,
+          "next_due_at": "2028-07-10T10:08:00+03:00",
+          "reasons_ru": [
+            "Повторная проверка источников и контрольных задач не выявила оснований для отката."
+          ],
+          "evidence_refs": [
+            "synthetic-supply-benchmark-suite-v0",
+            "synthetic-supply-red-team-suite-v0"
+          ],
+          "decision_id": "governance-decision:candidate-supply-excuse-scope:5"
+        }
+      ],
+      "rollbacks": [],
+      "active_candidate_version": "candidate-supply-excuse-scope@1",
+      "expires_at": "2028-07-10T10:08:00+03:00"
+    },
+    {
+      "id": "governance-record:candidate-conflict-resolution-sandbox-v0",
+      "candidate_id": "candidate-conflict-resolution-sandbox-v0",
+      "candidate_type": "conflict_resolution_pattern",
+      "candidate_type_label_ru": "Паттерн разрешения противоречий",
+      "locale": "ru-RU",
+      "engine_version": "governance-engine-v0",
+      "policy_version": "governance-policy-ru-v0",
+      "current_stage": "rolled_back",
+      "current_stage_label_ru": "Откачено",
+      "created_at": "2026-07-11T11:00:00+03:00",
+      "decisions": [
+        {
+          "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:1",
+          "sequence": 1,
+          "candidate_id": "candidate-conflict-resolution-sandbox-v0",
+          "from_stage": "proposed",
+          "from_stage_label_ru": "Предложено",
+          "to_stage": "type_classification",
+          "to_stage_label_ru": "Классификация типа",
+          "outcome": "approved",
+          "actor_id": "synthetic-domain-owner",
+          "decided_at": "2026-07-11T11:01:00+03:00",
+          "reasons_ru": [
+            "Стадия «Предложено» успешно пройдена на синтетических проверочных данных."
+          ],
+          "evidence_refs": [
+            "synthetic-governance-evidence:proposed"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        },
+        {
+          "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:2",
+          "sequence": 2,
+          "candidate_id": "candidate-conflict-resolution-sandbox-v0",
+          "from_stage": "type_classification",
+          "from_stage_label_ru": "Классификация типа",
+          "to_stage": "formal_check",
+          "to_stage_label_ru": "Формальная проверка",
+          "outcome": "approved",
+          "actor_id": "synthetic-domain-owner",
+          "decided_at": "2026-07-11T11:02:00+03:00",
+          "reasons_ru": [
+            "Стадия «Классификация типа» успешно пройдена на синтетических проверочных данных."
+          ],
+          "evidence_refs": [
+            "synthetic-governance-evidence:type_classification"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        },
+        {
+          "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:3",
+          "sequence": 3,
+          "candidate_id": "candidate-conflict-resolution-sandbox-v0",
+          "from_stage": "formal_check",
+          "from_stage_label_ru": "Формальная проверка",
+          "to_stage": "source_check",
+          "to_stage_label_ru": "Проверка источников",
+          "outcome": "approved",
+          "actor_id": "synthetic-domain-owner",
+          "decided_at": "2026-07-11T11:03:00+03:00",
+          "reasons_ru": [
+            "Стадия «Формальная проверка» успешно пройдена на синтетических проверочных данных."
+          ],
+          "evidence_refs": [
+            "synthetic-governance-evidence:formal_check"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        },
+        {
+          "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:4",
+          "sequence": 4,
+          "candidate_id": "candidate-conflict-resolution-sandbox-v0",
+          "from_stage": "source_check",
+          "from_stage_label_ru": "Проверка источников",
+          "to_stage": "benchmark_check",
+          "to_stage_label_ru": "Проверка на контрольных задачах",
+          "outcome": "approved",
+          "actor_id": "synthetic-domain-owner",
+          "decided_at": "2026-07-11T11:04:00+03:00",
+          "reasons_ru": [
+            "Стадия «Проверка источников» успешно пройдена на синтетических проверочных данных."
+          ],
+          "evidence_refs": [
+            "synthetic-governance-evidence:source_check"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        },
+        {
+          "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:5",
+          "sequence": 5,
+          "candidate_id": "candidate-conflict-resolution-sandbox-v0",
+          "from_stage": "benchmark_check",
+          "from_stage_label_ru": "Проверка на контрольных задачах",
+          "to_stage": "red_team_check",
+          "to_stage_label_ru": "Проверка Red Team",
+          "outcome": "approved",
+          "actor_id": "synthetic-domain-owner",
+          "decided_at": "2026-07-11T11:05:00+03:00",
+          "reasons_ru": [
+            "Стадия «Проверка на контрольных задачах» успешно пройдена на синтетических проверочных данных."
+          ],
+          "evidence_refs": [
+            "synthetic-governance-evidence:benchmark_check"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        },
+        {
+          "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:6",
+          "sequence": 6,
+          "candidate_id": "candidate-conflict-resolution-sandbox-v0",
+          "from_stage": "red_team_check",
+          "from_stage_label_ru": "Проверка Red Team",
+          "to_stage": "expert_review",
+          "to_stage_label_ru": "Экспертная проверка",
+          "outcome": "approved",
+          "actor_id": "synthetic-domain-owner",
+          "decided_at": "2026-07-11T11:06:00+03:00",
+          "reasons_ru": [
+            "Стадия «Проверка Red Team» успешно пройдена на синтетических проверочных данных."
+          ],
+          "evidence_refs": [
+            "synthetic-governance-evidence:red_team_check"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        },
+        {
+          "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:7",
+          "sequence": 7,
+          "candidate_id": "candidate-conflict-resolution-sandbox-v0",
+          "from_stage": "expert_review",
+          "from_stage_label_ru": "Экспертная проверка",
+          "to_stage": "sandbox",
+          "to_stage_label_ru": "Предактивационная песочница",
+          "outcome": "approved",
+          "actor_id": "synthetic-domain-owner",
+          "decided_at": "2026-07-11T11:07:00+03:00",
+          "reasons_ru": [
+            "Стадия «Экспертная проверка» успешно пройдена на синтетических проверочных данных."
+          ],
+          "evidence_refs": [
+            "synthetic-governance-evidence:expert_review"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        },
+        {
+          "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:8",
+          "sequence": 8,
+          "candidate_id": "candidate-conflict-resolution-sandbox-v0",
+          "from_stage": "sandbox",
+          "from_stage_label_ru": "Предактивационная песочница",
+          "to_stage": "active",
+          "to_stage_label_ru": "Активно",
+          "outcome": "approved",
+          "actor_id": "synthetic-red-team-reviewer",
+          "decided_at": "2026-07-11T11:20:00+03:00",
+          "reasons_ru": [
+            "Кандидат не привел к запрещенным результатам в изолированном наборе сценариев."
+          ],
+          "evidence_refs": [
+            "synthetic-supply-red-team-suite-v0"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        },
+        {
+          "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:9",
+          "sequence": 9,
+          "candidate_id": "candidate-conflict-resolution-sandbox-v0",
+          "from_stage": "active",
+          "from_stage_label_ru": "Активно",
+          "to_stage": "rolled_back",
+          "to_stage_label_ru": "Откачено",
+          "outcome": "rolled_back",
+          "actor_id": "synthetic-governance-controller",
+          "decided_at": "2026-07-11T11:30:00+03:00",
+          "reasons_ru": [
+            "Синтетический откат демонстрирует обратимость активации; инцидент не моделируется."
+          ],
+          "evidence_refs": [
+            "synthetic-rollback-drill:conflict-resolution-v0"
+          ],
+          "policy_version": "governance-policy-ru-v0"
+        }
+      ],
+      "activations": [
+        {
+          "id": "activation:candidate-conflict-resolution-sandbox-v0:1",
+          "candidate_id": "candidate-conflict-resolution-sandbox-v0",
+          "candidate_version": "candidate-conflict-resolution-sandbox-v0@1",
+          "activated_at": "2026-07-11T11:20:00+03:00",
+          "expires_at": "2028-01-02T11:20:00+03:00",
+          "actor_id": "synthetic-red-team-reviewer",
+          "policy_version": "governance-policy-ru-v0",
+          "decision_id": "governance-decision:candidate-conflict-resolution-sandbox-v0:8"
+        }
+      ],
+      "sandbox_evaluations": [
+        {
+          "id": "sandbox-evaluation-conflict-resolution-v0",
+          "candidate_id": "candidate-conflict-resolution-sandbox-v0",
+          "started_at": "2026-07-11T11:08:00+03:00",
+          "completed_at": "2026-07-11T11:20:00+03:00",
+          "evaluator_id": "synthetic-red-team-reviewer",
+          "isolation_scope_ru": "Только синтетические договорные задачи; доступ к активному знанию и клиентским данным закрыт.",
+          "scenario_count": 13,
+          "failed_scenario_count": 0,
+          "passed": true,
+          "reasons_ru": [
+            "Кандидат не привел к запрещенным результатам в изолированном наборе сценариев."
+          ],
+          "evidence_refs": [
+            "synthetic-supply-red-team-suite-v0"
+          ]
+        }
+      ],
+      "revalidations": [],
+      "rollbacks": [
+        {
+          "id": "rollback:candidate-conflict-resolution-sandbox-v0:1",
+          "candidate_id": "candidate-conflict-resolution-sandbox-v0",
+          "rolled_back_candidate_version": "candidate-conflict-resolution-sandbox-v0@1",
+          "restored_candidate_version": null,
+          "rolled_back_at": "2026-07-11T11:30:00+03:00",
+          "actor_id": "synthetic-governance-controller",
+          "reasons_ru": [
+            "Синтетический откат демонстрирует обратимость активации; инцидент не моделируется."
+          ],
+          "evidence_refs": [
+            "synthetic-rollback-drill:conflict-resolution-v0"
+          ],
+          "decision_id": "governance-decision:candidate-conflict-resolution-sandbox-v0:9"
+        }
+      ],
+      "active_candidate_version": null,
+      "expires_at": null
+    }
+  ]
+}

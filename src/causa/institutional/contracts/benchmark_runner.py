@@ -20,15 +20,19 @@ from causa.reasoning.formal_checks import (
 )
 
 
-def _warnings_for_task(task: BenchmarkTask) -> list[str]:
+def _warnings_for_task(task: BenchmarkTask) -> tuple[list[str], list[str]]:
     warnings: list[str] = []
+    warnings_ru: list[str] = []
     if "payment" in task.id:
         warnings.append("payment duty requires separate analysis")
+        warnings_ru.append("Обязанность по оплате требует самостоятельного анализа.")
     if "defects" in task.id:
         warnings.append("defects require separate analysis")
+        warnings_ru.append("Недостатки исполнения требуют самостоятельного анализа.")
     if "penalty" in task.id:
         warnings.append("penalty reduction does not erase liability")
-    return warnings
+        warnings_ru.append("Снижение неустойки не устраняет ответственность автоматически.")
+    return warnings, warnings_ru
 
 
 def _temporal_evaluation_for_task(task: BenchmarkTask) -> TemporalEvaluation | None:
@@ -38,19 +42,25 @@ def _temporal_evaluation_for_task(task: BenchmarkTask) -> TemporalEvaluation | N
     return evaluate_delivery_due_date(facts)
 
 
-def _source_applicability_reasons(task: BenchmarkTask) -> tuple[bool, list[str]]:
+def _source_applicability_reasons(
+    task: BenchmarkTask,
+) -> tuple[bool, list[str], list[str]]:
     if not task.temporal_facts:
-        return True, []
+        return True, [], []
     temporal_facts = ContractTemporalFacts.model_validate(task.temporal_facts)
     applicable = True
     reasons: list[str] = []
+    reasons_ru: list[str] = []
     for source_ref in task.expected_source_refs:
         source = get_synthetic_contract_source(source_ref)
         evaluation = evaluate_source_applicability(source, temporal_facts.evaluation_date)
         expected = task.expected_source_applicability.get(source_ref, True)
         applicable = applicable and evaluation.applicable == expected
         reasons.extend(f"{source_ref}: {reason}" for reason in evaluation.reasons)
-    return applicable, reasons
+        reasons_ru.extend(
+            f"{source_ref}: {reason}" for reason in evaluation.reasons_ru
+        )
+    return applicable, reasons, reasons_ru
 
 
 def _authority_evaluation_for_task(
@@ -101,9 +111,14 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
     fact_values["due_date_missed"] = due_date_missed
     facts = ObligationFactSet.model_validate(fact_values)
     evaluation = evaluate_obligation_constraints(constraint_set, facts)
-    sources_applicable, source_applicability_reasons = _source_applicability_reasons(task)
-    warnings = _warnings_for_task(task)
+    (
+        sources_applicable,
+        source_applicability_reasons,
+        source_applicability_reasons_ru,
+    ) = _source_applicability_reasons(task)
+    warnings, warnings_ru = _warnings_for_task(task)
     reasons = list(evaluation.reasons)
+    reasons_ru = list(evaluation.reasons_ru)
 
     passed = True
     if task.expected_breach_issue is not None:
@@ -156,6 +171,7 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
 
     if not passed:
         reasons.append("Benchmark expectations were not met.")
+        reasons_ru.append("Ожидаемый результат контрольной задачи не достигнут.")
 
     return BenchmarkTaskResult(
         task_id=task.id,
@@ -169,13 +185,22 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
         limitation_bar=evaluation.limitation_bar,
         source_refs=task.expected_source_refs,
         warnings=warnings,
+        warnings_ru=warnings_ru,
         reasons=reasons,
+        reasons_ru=reasons_ru,
         temporal_reasons=temporal_evaluation.reasons if temporal_evaluation else [],
+        temporal_reasons_ru=(
+            temporal_evaluation.reasons_ru if temporal_evaluation else []
+        ),
         source_applicability_reasons=source_applicability_reasons,
+        source_applicability_reasons_ru=source_applicability_reasons_ru,
         authority_winner=(
             authority_evaluation.selected_source_id if authority_evaluation else None
         ),
         authority_reasons=authority_evaluation.reasons if authority_evaluation else [],
+        authority_reasons_ru=(
+            authority_evaluation.reasons_ru if authority_evaluation else []
+        ),
         authority_rules=(
             [rule.value for rule in authority_evaluation.applied_rules]
             if authority_evaluation

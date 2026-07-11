@@ -1,0 +1,12 @@
+{
+  "id": "legacy-reviewed-contract-analysis-v0.4.0",
+  "artifact_type": "reviewed_contract_analysis",
+  "package_id": "contracts-ru-v0",
+  "package_version": "0.4.0",
+  "payload": {
+    "analysis_pipeline_version": "contracts-reviewed-analysis-v0",
+    "locale": null,
+    "russian_legal_reasons_present": false,
+    "executed_governance_record_present": false
+  }
+}

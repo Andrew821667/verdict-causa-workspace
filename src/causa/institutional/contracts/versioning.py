@@ -28,6 +28,7 @@ class PackageCompatibilityEntry(BaseModel):
     analysis_pipeline_versions: list[str] = Field(default_factory=list)
     status: CompatibilityStatus
     notes: list[str] = Field(default_factory=list)
+    notes_ru: list[str] = Field(default_factory=list)
 
 
 class PackageCompatibilityCheck(BaseModel):
@@ -40,9 +41,29 @@ class PackageCompatibilityCheck(BaseModel):
     analysis_pipeline_version: str
     supported: bool
     reasons: list[str] = Field(default_factory=list)
+    reasons_ru: list[str] = Field(default_factory=list)
 
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
+    PackageCompatibilityEntry(
+        package_version="0.5.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v0"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v0"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Russian human-readable reasons are additive to stable machine contracts.",
+            "Governance execution records are exported in ru-RU for the Russian-law package.",
+            "No production or real-client-data compatibility claim is implied.",
+        ],
+        notes_ru=[
+            "Русские человекочитаемые причины добавлены без изменения стабильных машинных контрактов.",
+            "Governance-записи экспортируются с локалью ru-RU для российского правового пакета.",
+            "Совместимость с промышленной эксплуатацией и реальными клиентскими данными не заявляется.",
+        ],
+    ),
     PackageCompatibilityEntry(
         package_version="0.4.0",
         core_version="0.1.0",
@@ -117,6 +138,11 @@ def evaluate_contracts_package_compatibility(
         if supported
         else ["No supported compatibility entry matches the supplied coordinates."]
     )
+    reasons_ru = (
+        ["Координаты пакета, ядра, схем, транслятора и analysis pipeline поддерживаются."]
+        if supported
+        else ["Для переданных координат отсутствует поддерживаемая запись совместимости."]
+    )
 
     return PackageCompatibilityCheck(
         package_id=CONTRACTS_PACKAGE_MANIFEST.id,
@@ -128,4 +154,5 @@ def evaluate_contracts_package_compatibility(
         analysis_pipeline_version=analysis_pipeline_version,
         supported=supported,
         reasons=reasons,
+        reasons_ru=reasons_ru,
     )

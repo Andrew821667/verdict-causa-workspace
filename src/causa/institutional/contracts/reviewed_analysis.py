@@ -156,9 +156,11 @@ class ReviewedContractAnalysisResult(BaseModel):
     authority_evaluation: AuthorityEvaluation
     requires_human_resolution: bool
     warnings: list[str] = Field(default_factory=list)
+    warnings_ru: list[str] = Field(default_factory=list)
 
 
 class ReviewedContractAnalysisArtifact(BaseModel):
+    locale: str = "ru-RU"
     disclaimer: str
     sources: list[LegalSource] = Field(default_factory=list)
     request: ReviewedContractAnalysisRequest
@@ -384,5 +386,11 @@ def run_reviewed_contract_analysis(
             "Synthetic reviewed inputs only.",
             "Narrow deterministic analysis; substantive legal assessment remains human-reviewed.",
             "Not legal advice.",
+        ],
+        warnings_ru=[
+            "Используются только синтетические проверенные входные данные.",
+            "Детерминированный анализ ограничен узким набором правил; "
+            "содержательная правовая оценка остается за экспертом.",
+            "Не является юридической консультацией.",
         ],
     )

@@ -62,6 +62,8 @@ The current bootstrap translator emits a deterministic structured `FormalObligat
 
 Reviewed case evidence uses `contracts.case-evidence.v0`. The deterministic `contracts-reviewed-evidence-to-facts-v0` mapper produces the complete narrow `ObligationFactSet`: no absent predicate is silently treated as false. Every mapped fact retains its evidence assertion and source references. Duty and exception facts also retain links to the relevant formal condition or exception atoms from the reviewed norm.
 
+For the Russian-law package, every expert-facing temporal, source-applicability, authority, and formal result includes Russian reasons in `reasons_ru`. Stable English `reasons` remain as a compatibility layer and are not the primary legal-audit presentation.
+
 The reasoning layer builds a solver-backed `ConstraintSet` for six distinct patterns: late performance, confirmed nonconforming performance, payment default, basic damages remedy availability, causation-evidence gap, and limitation bar. Each pattern has its own required facts; the aggregate breach flag is only a traceable disjunction of the three breach patterns. The remedy patterns do not calculate loss, establish causation, or compute limitation dates; they consume explicitly supplied, reviewed facts.
 
 This is still not complete legal formalization. It is a deliberately narrow Phase 0 solver-ready layer.

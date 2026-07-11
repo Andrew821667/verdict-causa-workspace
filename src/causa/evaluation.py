@@ -40,17 +40,23 @@ class BenchmarkTaskResult(BaseModel):
     limitation_bar: bool | None = None
     source_refs: list[str] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
+    warnings_ru: list[str] = Field(default_factory=list)
     reasons: list[str] = Field(default_factory=list)
+    reasons_ru: list[str] = Field(default_factory=list)
     temporal_reasons: list[str] = Field(default_factory=list)
+    temporal_reasons_ru: list[str] = Field(default_factory=list)
     source_applicability_reasons: list[str] = Field(default_factory=list)
+    source_applicability_reasons_ru: list[str] = Field(default_factory=list)
     authority_winner: str | None = None
     authority_reasons: list[str] = Field(default_factory=list)
+    authority_reasons_ru: list[str] = Field(default_factory=list)
     authority_rules: list[str] = Field(default_factory=list)
     authority_excluded_source_refs: list[str] = Field(default_factory=list)
 
 
 class BenchmarkSuiteReport(BaseModel):
     id: str
+    locale: str = "ru-RU"
     institutional_package_id: str
     total: int
     passed: int
@@ -159,9 +165,12 @@ class AdversarialAttackAttempt(BaseModel):
     id: str
     technique: str
     requested_outcome: str
+    requested_outcome_ru: str
     observed_outcome: str
+    observed_outcome_ru: str
     blocked: bool
     reasons: list[str] = Field(default_factory=list)
+    reasons_ru: list[str] = Field(default_factory=list)
 
 
 class GeneratedAdversarialAttack(BaseModel):
@@ -179,6 +188,7 @@ class RedTeamScenarioResult(BaseModel):
     blocked: bool
     target_failure_type: FailureType
     reasons: list[str] = Field(default_factory=list)
+    reasons_ru: list[str] = Field(default_factory=list)
     reconstructed_attack: str | None = None
     adversarial_attempts: list[AdversarialAttackAttempt] = Field(default_factory=list)
     generated_attack: GeneratedAdversarialAttack | None = None
@@ -186,6 +196,7 @@ class RedTeamScenarioResult(BaseModel):
 
 class RedTeamSuiteReport(BaseModel):
     id: str
+    locale: str = "ru-RU"
     institutional_package_id: str
     total: int
     blocked: int

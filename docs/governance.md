@@ -1,55 +1,63 @@
-# Governance
+# Governance-контур
 
-Verdict / Causa Workspace treats legal hypotheses as governed artifacts. A hypothesis is not active knowledge merely because a model proposed it.
+Verdict / Causa Workspace рассматривает новые юридические гипотезы как управляемые артефакты. Гипотеза не становится активным знанием только потому, что ее предложила модель или эксперт.
 
-## Candidate types
+## Типы кандидатов
 
-Candidate principle types:
+Стабильные машинные значения типов сохраняются на английском, а юридический аудит использует русские наименования:
 
-- `meta_principle`;
-- `calibration_rule`;
-- `gap_heuristic`;
-- `conflict_resolution_pattern`;
-- `counterfactual_sensitivity_pattern`;
-- `argument_template`;
-- `translation_pattern`.
+- `meta_principle` — мета-принцип;
+- `calibration_rule` — правило калибровки;
+- `gap_heuristic` — эвристика пробела;
+- `conflict_resolution_pattern` — паттерн разрешения противоречий;
+- `counterfactual_sensitivity_pattern` — паттерн контрфактической чувствительности;
+- `argument_template` — аргументационный шаблон;
+- `translation_pattern` — паттерн юридического объяснения.
 
-Each type has a governance profile: required checks, optional checks, expiration period, sandbox requirement, and cross-review requirement.
+Каждый тип имеет governance-профиль: обязательные проверки, срок действия, необходимость перекрестной проверки и предактивационной песочницы.
 
-## Candidate lifecycle
+## Жизненный цикл
 
-The initial lifecycle is:
+Исполняемый жизненный цикл включает:
 
-1. proposed;
-2. type classification;
-3. formal compatibility check;
-4. source grounding check;
-5. benchmark evaluation;
-6. red-team adversarial testing;
-7. expert review;
-8. cross-review when required;
-9. pre-activation sandbox;
-10. controlled activation;
-11. post-activation monitoring;
-12. periodic revalidation;
-13. rollback when needed.
+1. предложение кандидата;
+2. классификацию типа;
+3. формальную проверку, если она предусмотрена профилем;
+4. проверку источников;
+5. контрольные задачи;
+6. Red Team;
+7. экспертную и при необходимости перекрестную проверку;
+8. изолированную предактивационную песочницу;
+9. версионированную активацию;
+10. повторную валидацию по истечении срока;
+11. откат при регрессии или инциденте.
 
-## Design principles
+Переходы исполняются только по стадиям конкретного профиля. Команда содержит ожидаемую текущую стадию: устаревшее решение не может перезаписать более новое состояние.
 
-- Every candidate should be source-grounded.
-- Every promotion should be auditable.
-- Failed checks should produce explicit reasons.
-- Active knowledge should be reversible.
-- Sandbox behavior should be separate from active production knowledge.
-- Benchmark quality and practice utility should be measured separately.
-- Quiet evolution should be architecturally impossible.
+## Обязательная запись решения
 
-## Red Team and failure taxonomy
+Каждый переход сохраняет:
 
-Red Team testing attempts to use a candidate to justify absurd, unlawful, or professionally unacceptable outcomes. A successful attack blocks normal activation and creates a structured review item.
+- кандидата и последовательный номер решения;
+- исходную и следующую стадии с русскими наименованиями;
+- результат проверки;
+- исполнителя и время;
+- обязательные причины на русском языке;
+- ссылки на проверяемые доказательства;
+- версию примененной политики.
 
-Failure taxonomy should classify incidents by type: hallucinated source grounding, bad formalization, wrong temporal applicability, wrong authority ranking, overbroad candidate principle, translation distortion, escalation failure, false confidence inflation, privacy leakage risk, and benchmark overfitting.
+Отклоненный или откаченный кандидат сохраняет всю историю. Терминальная запись не может быть тихо возвращена в активное состояние.
 
-## Current implementation
+## Песочница
 
-The repository contains only a minimal state-transition skeleton in `src/causa/governance/pipeline.py`.
+Кандидаты высокого воздействия не могут обойти стадию `sandbox` обычным переходом. Запись песочницы содержит границы изоляции, число сценариев, число провалов, результат, русские причины и ссылки на benchmark/Red Team. Успешный результат несовместим с наличием проваленных сценариев.
+
+## Активация, повторная валидация и откат
+
+Активация создает отдельную версию кандидата и срок следующей проверки. Успешная повторная валидация продлевает срок той же активной версии. Неуспешная повторная валидация или ручной откат создают `RollbackRecord`, очищают активную версию и сохраняют причины и доказательства.
+
+## Текущая реализация
+
+Исполняемая модель находится в `src/causa/governance/engine.py`. Синтетический журнал `examples/synthetic_governance_lifecycle_report.json` демонстрирует два полных пути: активацию с повторной валидацией и sandbox-активацию с последующим откатом.
+
+Текущая реализация хранит записи в JSON-артефактах. Постоянное транзакционное хранилище и межпроцессный контроль версий остаются следующим инфраструктурным этапом.

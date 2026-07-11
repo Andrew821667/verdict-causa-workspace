@@ -54,6 +54,7 @@ class ConstraintEvaluation(BaseModel):
     causation_evidence_gap: bool = False
     limitation_bar: bool = False
     reasons: list[str] = Field(default_factory=list)
+    reasons_ru: list[str] = Field(default_factory=list)
 
 
 def build_obligation_constraint_set(rule: FormalObligationRule) -> ConstraintSet:
@@ -172,6 +173,7 @@ def evaluate_obligation_constraints(
     causation_gap_detected = False
     limitation_bar_detected = False
     reasons: list[str] = []
+    reasons_ru: list[str] = []
     if satisfiable:
         model = solver.model()
         breach_detected = bool(model.eval(breach_issue))
@@ -185,28 +187,54 @@ def evaluate_obligation_constraints(
             reasons.append(
                 "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
             )
+            reasons_ru.append(
+                "Выявлена просрочка: обязанность существует, срок пропущен, "
+                "применимое исключение не установлено."
+            )
         if defect_detected:
             reasons.append(
                 "Defect issue: completed performance is confirmed nonconforming."
+            )
+            reasons_ru.append(
+                "Выявлен недостаток исполнения: завершенное исполнение признано ненадлежащим."
             )
         if payment_default_detected:
             reasons.append(
                 "Payment default issue: payment duty is due, missed, and has no valid defense."
             )
+            reasons_ru.append(
+                "Выявлена просрочка платежа: обязанность наступила, платеж пропущен, "
+                "применимое возражение не установлено."
+            )
         if damages_remedy_detected:
             reasons.append(
                 "Damages remedy is available under the current narrow facts."
+            )
+            reasons_ru.append(
+                "По текущему узкому набору фактов имеются формальные предпосылки "
+                "для требования убытков."
             )
         if causation_gap_detected:
             reasons.append(
                 "Causation evidence gap: a remedy is requested for claimed loss without established causation."
             )
+            reasons_ru.append(
+                "Пробел в доказательствах причинной связи: заявлены убытки, "
+                "но причинная связь не подтверждена."
+            )
         if limitation_bar_detected:
             reasons.append("Limitation bar: the requested remedy is time-barred.")
+            reasons_ru.append(
+                "Установлен формальный барьер исковой давности для заявленного требования."
+            )
         if not breach_detected:
             reasons.append("No contractual issue under the current narrow constraint set.")
+            reasons_ru.append(
+                "Текущий узкий набор ограничений не выявил нарушения обязательства."
+            )
     else:
         reasons.append("Constraint set is unsatisfiable.")
+        reasons_ru.append("Набор формальных ограничений противоречив и не имеет решения.")
 
     return ConstraintEvaluation(
         constraint_set_id=constraint_set.id,
@@ -219,4 +247,5 @@ def evaluate_obligation_constraints(
         causation_evidence_gap=causation_gap_detected,
         limitation_bar=limitation_bar_detected,
         reasons=reasons,
+        reasons_ru=reasons_ru,
     )

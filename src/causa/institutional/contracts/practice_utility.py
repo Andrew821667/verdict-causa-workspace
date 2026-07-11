@@ -10,7 +10,7 @@ SYNTHETIC_SUPPLY_PRACTICE_UTILITY_OBSERVATIONS = [
         accepted_argument_count=2,
         human_correction_count=1,
         reviewer_usefulness_rating=4,
-        notes=["Synthetic baseline: reviewer retained the source-grounded delay analysis."],
+        notes=["Синтетическая оценка: эксперт сохранил анализ просрочки с привязкой к источнику."],
     ),
     PracticeUtilityObservation(
         id="utility-supply-defect-separation-v0",
@@ -19,7 +19,7 @@ SYNTHETIC_SUPPLY_PRACTICE_UTILITY_OBSERVATIONS = [
         accepted_argument_count=1,
         human_correction_count=2,
         reviewer_usefulness_rating=3.5,
-        notes=["Synthetic baseline: reviewer corrected the scope of the defect remedy."],
+        notes=["Синтетическая оценка: эксперт скорректировал пределы требования из-за недостатков."],
     ),
     PracticeUtilityObservation(
         id="utility-supply-authority-trace-v0",
@@ -30,7 +30,8 @@ SYNTHETIC_SUPPLY_PRACTICE_UTILITY_OBSERVATIONS = [
         reviewer_usefulness_rating=2,
         formally_smart_but_practically_useless=True,
         notes=[
-            "Synthetic baseline: the authority trace was correct but did not answer the requested remedy question."
+            "Синтетическая оценка: трассировка юридической силы была верной, "
+            "но не ответила на вопрос о заявленном способе защиты."
         ],
     ),
 ]

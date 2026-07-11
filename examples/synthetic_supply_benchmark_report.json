@@ -1,5 +1,6 @@
 {
   "id": "synthetic-supply-benchmark-suite-v0",
+  "locale": "ru-RU",
   "institutional_package_id": "contracts-ru-v0",
   "total": 22,
   "passed": 22,
@@ -20,18 +21,30 @@
         "synthetic-ru-contract-delivery-term"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
+      ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date.",
         "synthetic-ru-contract-delivery-term: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-supply-delivery-duty: Источник применим на дату оценки.",
+        "synthetic-ru-contract-delivery-term: Источник применим на дату оценки."
+      ],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -50,18 +63,30 @@
         "synthetic-ru-contract-valid-excuse"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "No contractual issue under the current narrow constraint set."
       ],
+      "reasons_ru": [
+        "Текущий узкий набор ограничений не выявил нарушения обязательства."
+      ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date.",
         "synthetic-ru-contract-valid-excuse: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-supply-delivery-duty: Источник применим на дату оценки.",
+        "synthetic-ru-contract-valid-excuse: Источник применим на дату оценки."
+      ],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -79,17 +104,28 @@
         "synthetic-ru-contract-supply-delivery-duty"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "No contractual issue under the current narrow constraint set."
+      ],
+      "reasons_ru": [
+        "Текущий узкий набор ограничений не выявил нарушения обязательства."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
       ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
+      ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-supply-delivery-duty: Источник применим на дату оценки."
+      ],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -109,17 +145,30 @@
       "warnings": [
         "payment duty requires separate analysis"
       ],
+      "warnings_ru": [
+        "Обязанность по оплате требует самостоятельного анализа."
+      ],
       "reasons": [
         "No contractual issue under the current narrow constraint set."
+      ],
+      "reasons_ru": [
+        "Текущий узкий набор ограничений не выявил нарушения обязательства."
       ],
       "temporal_reasons": [
         "Actual performance date is on or before the agreed due date."
       ],
+      "temporal_reasons_ru": [
+        "Обязательство исполнено не позднее согласованного срока."
+      ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-payment-duty: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-payment-duty: Источник применим на дату оценки."
+      ],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -139,17 +188,30 @@
       "warnings": [
         "defects require separate analysis"
       ],
+      "warnings_ru": [
+        "Недостатки исполнения требуют самостоятельного анализа."
+      ],
       "reasons": [
         "No contractual issue under the current narrow constraint set."
+      ],
+      "reasons_ru": [
+        "Текущий узкий набор ограничений не выявил нарушения обязательства."
       ],
       "temporal_reasons": [
         "Actual performance date is on or before the agreed due date."
       ],
+      "temporal_reasons_ru": [
+        "Обязательство исполнено не позднее согласованного срока."
+      ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-acceptance-defects: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-acceptance-defects: Источник применим на дату оценки."
+      ],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -169,17 +231,30 @@
       "warnings": [
         "penalty reduction does not erase liability"
       ],
+      "warnings_ru": [
+        "Снижение неустойки не устраняет ответственность автоматически."
+      ],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
       ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
+      ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-penalty-reduction: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-penalty-reduction: Источник применим на дату оценки."
+      ],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -197,17 +272,28 @@
         "synthetic-ru-contract-supply-delivery-duty-v1"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
       ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
+      ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty-v1: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-supply-delivery-duty-v1: Источник применим на дату оценки."
+      ],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -225,17 +311,28 @@
         "synthetic-ru-contract-supply-delivery-duty-v2"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
       ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
+      ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty-v2: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-supply-delivery-duty-v2: Источник применим на дату оценки."
+      ],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -253,17 +350,28 @@
         "synthetic-ru-contract-supply-delivery-duty-v1"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
       ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
+      ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty-v1: Evaluation date is after source valid_to."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-supply-delivery-duty-v1: Дата оценки наступила после окончания действия источника."
+      ],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -282,20 +390,35 @@
         "synthetic-ru-contract-supply-specific-delivery-duty"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
+      ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-general-performance-duty: Source is applicable at the evaluation date.",
         "synthetic-ru-contract-supply-specific-delivery-duty: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-general-performance-duty: Источник применим на дату оценки.",
+        "synthetic-ru-contract-supply-specific-delivery-duty: Источник применим на дату оценки."
+      ],
       "authority_winner": "synthetic-ru-contract-supply-specific-delivery-duty",
       "authority_reasons": [
         "Selected synthetic-ru-contract-supply-specific-delivery-duty at statutory authority.",
         "Special source prevails over general source at the same authority level."
+      ],
+      "authority_reasons_ru": [
+        "Выбран источник synthetic-ru-contract-supply-specific-delivery-duty: уровень закона.",
+        "Специальный источник имеет приоритет перед общим источником того же уровня юридической силы."
       ],
       "authority_rules": [
         "lex_specialis"
@@ -317,20 +440,35 @@
         "synthetic-ru-contract-supply-specific-delivery-duty"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
+      ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-general-performance-duty: Source is applicable at the evaluation date.",
         "synthetic-ru-contract-supply-specific-delivery-duty: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-general-performance-duty: Источник применим на дату оценки.",
+        "synthetic-ru-contract-supply-specific-delivery-duty: Источник применим на дату оценки."
+      ],
       "authority_winner": "synthetic-ru-contract-supply-specific-delivery-duty",
       "authority_reasons": [
         "Selected synthetic-ru-contract-supply-specific-delivery-duty at statutory authority.",
         "Special source prevails over general source at the same authority level."
+      ],
+      "authority_reasons_ru": [
+        "Выбран источник synthetic-ru-contract-supply-specific-delivery-duty: уровень закона.",
+        "Специальный источник имеет приоритет перед общим источником того же уровня юридической силы."
       ],
       "authority_rules": [
         "lex_specialis"
@@ -352,20 +490,35 @@
         "synthetic-ru-contract-supply-delivery-term"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
+      ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-general-performance-duty: Source is applicable at the evaluation date.",
         "synthetic-ru-contract-supply-delivery-term: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-general-performance-duty: Источник применим на дату оценки.",
+        "synthetic-ru-contract-supply-delivery-term: Источник применим на дату оценки."
+      ],
       "authority_winner": "synthetic-ru-contract-general-performance-duty",
       "authority_reasons": [
         "Selected synthetic-ru-contract-general-performance-duty at statutory authority.",
         "Sources at statutory authority prevail over lower-authority sources."
+      ],
+      "authority_reasons_ru": [
+        "Выбран источник synthetic-ru-contract-general-performance-duty: уровень закона.",
+        "Источники уровня «уровень закона» имеют приоритет перед источниками меньшей юридической силы."
       ],
       "authority_rules": [
         "higher_authority"
@@ -387,20 +540,35 @@
         "synthetic-ru-contract-supply-delivery-case-law"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
+      ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty-v1: Evaluation date is after source valid_to.",
         "synthetic-ru-contract-supply-delivery-case-law: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-supply-delivery-duty-v1: Дата оценки наступила после окончания действия источника.",
+        "synthetic-ru-contract-supply-delivery-case-law: Источник применим на дату оценки."
+      ],
       "authority_winner": "synthetic-ru-contract-supply-delivery-case-law",
       "authority_reasons": [
         "Selected synthetic-ru-contract-supply-delivery-case-law at judicial authority.",
         "Excluded synthetic-ru-contract-supply-delivery-duty-v1: Evaluation date is after source valid_to."
+      ],
+      "authority_reasons_ru": [
+        "Выбран источник synthetic-ru-contract-supply-delivery-case-law: уровень судебного толкования.",
+        "Источник synthetic-ru-contract-supply-delivery-duty-v1 исключен: Дата оценки наступила после окончания действия источника."
       ],
       "authority_rules": [
         "temporal_applicability"
@@ -424,20 +592,35 @@
         "synthetic-ru-contract-supplier-delivery-fact"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
+      ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-general-performance-duty: Source is applicable at the evaluation date.",
         "synthetic-ru-contract-supplier-delivery-fact: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-general-performance-duty: Источник применим на дату оценки.",
+        "synthetic-ru-contract-supplier-delivery-fact: Источник применим на дату оценки."
+      ],
       "authority_winner": "synthetic-ru-contract-general-performance-duty",
       "authority_reasons": [
         "Selected synthetic-ru-contract-general-performance-duty at statutory authority.",
         "Sources at statutory authority prevail over lower-authority sources."
+      ],
+      "authority_reasons_ru": [
+        "Выбран источник synthetic-ru-contract-general-performance-duty: уровень закона.",
+        "Источники уровня «уровень закона» имеют приоритет перед источниками меньшей юридической силы."
       ],
       "authority_rules": [
         "higher_authority"
@@ -458,17 +641,28 @@
         "synthetic-ru-contract-acceptance-defects"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Defect issue: completed performance is confirmed nonconforming."
+      ],
+      "reasons_ru": [
+        "Выявлен недостаток исполнения: завершенное исполнение признано ненадлежащим."
       ],
       "temporal_reasons": [
         "Actual performance date is on or before the agreed due date."
       ],
+      "temporal_reasons_ru": [
+        "Обязательство исполнено не позднее согласованного срока."
+      ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-acceptance-defects: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-acceptance-defects: Источник применим на дату оценки."
+      ],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -488,13 +682,22 @@
       "warnings": [
         "payment duty requires separate analysis"
       ],
+      "warnings_ru": [
+        "Обязанность по оплате требует самостоятельного анализа."
+      ],
       "reasons": [
         "Payment default issue: payment duty is due, missed, and has no valid defense."
       ],
+      "reasons_ru": [
+        "Выявлена просрочка платежа: обязанность наступила, платеж пропущен, применимое возражение не установлено."
+      ],
       "temporal_reasons": [],
+      "temporal_reasons_ru": [],
       "source_applicability_reasons": [],
+      "source_applicability_reasons_ru": [],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -514,13 +717,22 @@
       "warnings": [
         "payment duty requires separate analysis"
       ],
+      "warnings_ru": [
+        "Обязанность по оплате требует самостоятельного анализа."
+      ],
       "reasons": [
         "No contractual issue under the current narrow constraint set."
       ],
+      "reasons_ru": [
+        "Текущий узкий набор ограничений не выявил нарушения обязательства."
+      ],
       "temporal_reasons": [],
+      "temporal_reasons_ru": [],
       "source_applicability_reasons": [],
+      "source_applicability_reasons_ru": [],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -539,20 +751,35 @@
         "synthetic-ru-contract-supply-specific-delivery-duty"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
+      ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ],
       "source_applicability_reasons": [
         "synthetic-ru-constitutional-contract-guarantee: Source is applicable at the evaluation date.",
         "synthetic-ru-contract-supply-specific-delivery-duty: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-constitutional-contract-guarantee: Источник применим на дату оценки.",
+        "synthetic-ru-contract-supply-specific-delivery-duty: Источник применим на дату оценки."
+      ],
       "authority_winner": "synthetic-ru-constitutional-contract-guarantee",
       "authority_reasons": [
         "Selected synthetic-ru-constitutional-contract-guarantee at constitutional authority.",
         "Sources at constitutional authority prevail over lower-authority sources."
+      ],
+      "authority_reasons_ru": [
+        "Выбран источник synthetic-ru-constitutional-contract-guarantee: конституционный уровень.",
+        "Источники уровня «конституционный уровень» имеют приоритет перед источниками меньшей юридической силы."
       ],
       "authority_rules": [
         "higher_authority"
@@ -574,20 +801,35 @@
         "synthetic-ru-regulatory-supply-delivery-record"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
+      ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-general-performance-duty: Source is applicable at the evaluation date.",
         "synthetic-ru-regulatory-supply-delivery-record: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-general-performance-duty: Источник применим на дату оценки.",
+        "synthetic-ru-regulatory-supply-delivery-record: Источник применим на дату оценки."
+      ],
       "authority_winner": "synthetic-ru-contract-general-performance-duty",
       "authority_reasons": [
         "Selected synthetic-ru-contract-general-performance-duty at statutory authority.",
         "Sources at statutory authority prevail over lower-authority sources."
+      ],
+      "authority_reasons_ru": [
+        "Выбран источник synthetic-ru-contract-general-performance-duty: уровень закона.",
+        "Источники уровня «уровень закона» имеют приоритет перед источниками меньшей юридической силы."
       ],
       "authority_rules": [
         "higher_authority"
@@ -608,18 +850,30 @@
         "synthetic-ru-contract-supply-delivery-duty"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies.",
         "Damages remedy is available under the current narrow facts."
       ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено.",
+        "По текущему узкому набору фактов имеются формальные предпосылки для требования убытков."
+      ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-supply-delivery-duty: Источник применим на дату оценки."
+      ],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -637,18 +891,30 @@
         "synthetic-ru-contract-supply-delivery-duty"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies.",
         "Causation evidence gap: a remedy is requested for claimed loss without established causation."
       ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено.",
+        "Пробел в доказательствах причинной связи: заявлены убытки, но причинная связь не подтверждена."
+      ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-supply-delivery-duty: Источник применим на дату оценки."
+      ],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     },
@@ -666,18 +932,30 @@
         "synthetic-ru-contract-supply-delivery-duty"
       ],
       "warnings": [],
+      "warnings_ru": [],
       "reasons": [
         "Late performance issue: Duty exists, due date is missed, and no valid exception applies.",
         "Limitation bar: the requested remedy is time-barred."
       ],
+      "reasons_ru": [
+        "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено.",
+        "Установлен формальный барьер исковой давности для заявленного требования."
+      ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
+      ],
+      "temporal_reasons_ru": [
+        "Фактическая дата исполнения наступила после согласованного срока."
       ],
       "source_applicability_reasons": [
         "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date."
       ],
+      "source_applicability_reasons_ru": [
+        "synthetic-ru-contract-supply-delivery-duty: Источник применим на дату оценки."
+      ],
       "authority_winner": null,
       "authority_reasons": [],
+      "authority_reasons_ru": [],
       "authority_rules": [],
       "authority_excluded_source_refs": []
     }
