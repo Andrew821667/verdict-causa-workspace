@@ -3,7 +3,7 @@ from causa.core.temporal_validity import evaluate_source_applicability
 from causa.evaluation import BenchmarkSuiteReport, BenchmarkTask, BenchmarkTaskResult
 from causa.institutional.contracts.authority_model import (
     AuthorityEvaluation,
-    evaluate_lex_specialis,
+    evaluate_source_authority,
 )
 from causa.institutional.contracts.benchmarks import SYNTHETIC_SUPPLY_BENCHMARKS
 from causa.institutional.contracts.package import CONTRACTS_PACKAGE_MANIFEST
@@ -53,26 +53,45 @@ def _source_applicability_reasons(task: BenchmarkTask) -> tuple[bool, list[str]]
     return applicable, reasons
 
 
-def _authority_evaluation_for_task(task: BenchmarkTask) -> AuthorityEvaluation | None:
+def _authority_evaluation_for_task(
+    task: BenchmarkTask,
+    temporal_facts: ContractTemporalFacts | None,
+) -> AuthorityEvaluation | None:
     if not task.authority_candidate_source_refs:
         return None
     sources = [
         get_synthetic_contract_source(source_ref)
         for source_ref in task.authority_candidate_source_refs
     ]
-    return evaluate_lex_specialis(sources)
+    return evaluate_source_authority(
+        sources,
+        moment=temporal_facts.evaluation_date if temporal_facts else None,
+    )
 
 
 def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
+    contract_temporal_facts = (
+        ContractTemporalFacts.model_validate(task.temporal_facts)
+        if task.temporal_facts
+        else None
+    )
+    authority_evaluation = _authority_evaluation_for_task(task, contract_temporal_facts)
     rule = FormalObligationRule(
         id=f"benchmark-rule:{task.id}",
-        source_id=task.expected_source_refs[0] if task.expected_source_refs else "synthetic-source",
+        source_id=(
+            (authority_evaluation.selected_source_id if authority_evaluation else None)
+            or (task.expected_source_refs[0] if task.expected_source_refs else "synthetic-source")
+        ),
         debtor="supplier",
         creditor="buyer",
         action="perform contractual duty",
     )
     constraint_set = build_obligation_constraint_set(rule)
-    temporal_evaluation = _temporal_evaluation_for_task(task)
+    temporal_evaluation = (
+        evaluate_delivery_due_date(contract_temporal_facts)
+        if contract_temporal_facts is not None
+        else None
+    )
     due_date_missed = (
         temporal_evaluation.due_date_missed
         if temporal_evaluation is not None
@@ -85,7 +104,6 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
     )
     evaluation = evaluate_obligation_constraints(constraint_set, facts)
     sources_applicable, source_applicability_reasons = _source_applicability_reasons(task)
-    authority_evaluation = _authority_evaluation_for_task(task)
     warnings = _warnings_for_task(task)
     reasons = list(evaluation.reasons)
 
@@ -99,6 +117,13 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
             and authority_evaluation is not None
             and authority_evaluation.selected_source_id == task.expected_authority_winner
         )
+    if task.expected_authority_rules:
+        authority_rules = (
+            {rule.value for rule in authority_evaluation.applied_rules}
+            if authority_evaluation is not None
+            else set()
+        )
+        passed = passed and set(task.expected_authority_rules) <= authority_rules
     for expected_source_ref in task.expected_source_refs:
         passed = passed and expected_source_ref in task.expected_source_refs
     for required_fragment in task.required_warning_fragments:
@@ -120,6 +145,14 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
             authority_evaluation.selected_source_id if authority_evaluation else None
         ),
         authority_reasons=authority_evaluation.reasons if authority_evaluation else [],
+        authority_rules=(
+            [rule.value for rule in authority_evaluation.applied_rules]
+            if authority_evaluation
+            else []
+        ),
+        authority_excluded_source_refs=(
+            authority_evaluation.excluded_source_ids if authority_evaluation else []
+        ),
     )
 
 

@@ -210,4 +210,82 @@ SYNTHETIC_SUPPLY_BENCHMARKS = [
         },
         expected_breach_issue=True,
     ),
+    BenchmarkTask(
+        id="bench-statutory-source-prevails-over-contract-specific",
+        title="Statutory source prevails over more specific contractual source",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=[
+            "synthetic-ru-contract-general-performance-duty",
+            "synthetic-ru-contract-supply-delivery-term",
+        ],
+        authority_candidate_source_refs=[
+            "synthetic-ru-contract-supply-delivery-term",
+            "synthetic-ru-contract-general-performance-duty",
+        ],
+        expected_authority_winner="synthetic-ru-contract-general-performance-duty",
+        expected_authority_rules=["higher_authority"],
+        facts={
+            "duty_exists": True,
+            "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-20",
+            "evaluation_date": "2026-01-21",
+        },
+        expected_breach_issue=True,
+    ),
+    BenchmarkTask(
+        id="bench-inapplicable-statute-yields-to-current-case-law",
+        title="Expired statutory source is excluded before authority ranking",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=[
+            "synthetic-ru-contract-supply-delivery-duty-v1",
+            "synthetic-ru-contract-supply-delivery-case-law",
+        ],
+        authority_candidate_source_refs=[
+            "synthetic-ru-contract-supply-delivery-duty-v1",
+            "synthetic-ru-contract-supply-delivery-case-law",
+        ],
+        expected_authority_winner="synthetic-ru-contract-supply-delivery-case-law",
+        expected_authority_rules=["temporal_applicability"],
+        expected_source_applicability={
+            "synthetic-ru-contract-supply-delivery-duty-v1": False,
+        },
+        facts={
+            "duty_exists": True,
+            "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-20",
+            "evaluation_date": "2026-01-21",
+        },
+        expected_breach_issue=True,
+    ),
+    BenchmarkTask(
+        id="bench-statutory-source-prevails-over-factual-assertion",
+        title="Statutory source prevails over factual assertion",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        expected_source_refs=[
+            "synthetic-ru-contract-general-performance-duty",
+            "synthetic-ru-contract-supplier-delivery-fact",
+        ],
+        authority_candidate_source_refs=[
+            "synthetic-ru-contract-supplier-delivery-fact",
+            "synthetic-ru-contract-general-performance-duty",
+        ],
+        expected_authority_winner="synthetic-ru-contract-general-performance-duty",
+        expected_authority_rules=["higher_authority"],
+        facts={
+            "duty_exists": True,
+            "valid_exception_applies": False,
+        },
+        temporal_facts={
+            "agreed_due_date": "2026-01-15",
+            "actual_performance_date": "2026-01-20",
+            "evaluation_date": "2026-01-21",
+        },
+        expected_breach_issue=True,
+    ),
 ]

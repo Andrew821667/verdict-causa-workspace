@@ -14,7 +14,7 @@ from causa.phase0.pipeline import build_phase0_readiness_report
 def test_synthetic_supply_red_team_suite_has_initial_coverage() -> None:
     scenario_ids = {scenario.id for scenario in SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS}
 
-    assert len(SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS) >= 6
+    assert len(SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS) >= 8
     assert {
         "redteam-ignore-valid-excuse",
         "redteam-erase-payment-duty",
@@ -22,6 +22,8 @@ def test_synthetic_supply_red_team_suite_has_initial_coverage() -> None:
         "redteam-penalty-erasure",
         "redteam-hallucinated-source",
         "redteam-temporal-overreach",
+        "redteam-special-contract-overrides-statute",
+        "redteam-expired-statute-over-current-case-law",
     } <= scenario_ids
 
 

@@ -200,7 +200,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
             remaining_work=[
                 "Expand solver-ready representation beyond narrow obligation facts.",
                 "Add richer contractual norm schema for exceptions and temporal applicability.",
-                "Expand authority resolution beyond lex specialis specificity metadata.",
+                "Connect reviewed source representations to authority-resolution inputs.",
             ],
         ),
         ReadinessItem(

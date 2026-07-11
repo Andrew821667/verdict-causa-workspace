@@ -66,6 +66,7 @@ def test_synthetic_supply_benchmark_suite_passes_current_narrow_expectations() -
     assert any(result.temporal_reasons for result in report.results)
     assert any(result.source_applicability_reasons for result in report.results)
     assert any(result.authority_winner for result in report.results)
+    assert any(result.authority_rules for result in report.results)
 
 
 def test_revision_benchmark_records_old_source_not_applicable() -> None:
@@ -89,9 +90,32 @@ def test_lex_specialis_benchmarks_select_supply_specific_source() -> None:
         result.authority_winner for result in authority_results
     } == {"synthetic-ru-contract-supply-specific-delivery-duty"}
     assert all(
-        "Special source prevails over general source." in result.authority_reasons
+        "Special source prevails over general source at the same authority level."
+        in result.authority_reasons
         for result in authority_results
     )
+
+
+def test_authority_hierarchy_benchmarks_record_priority_and_temporal_rules() -> None:
+    hierarchy_results = {
+        task.id: run_benchmark_task(task)
+        for task in SYNTHETIC_SUPPLY_BENCHMARKS
+        if task.expected_authority_rules
+    }
+
+    assert hierarchy_results["bench-statutory-source-prevails-over-contract-specific"].authority_rules == [
+        "higher_authority"
+    ]
+    assert hierarchy_results["bench-statutory-source-prevails-over-factual-assertion"].authority_rules == [
+        "higher_authority"
+    ]
+    expired_source_result = hierarchy_results[
+        "bench-inapplicable-statute-yields-to-current-case-law"
+    ]
+    assert expired_source_result.authority_rules == ["temporal_applicability"]
+    assert expired_source_result.authority_excluded_source_refs == [
+        "synthetic-ru-contract-supply-delivery-duty-v1"
+    ]
 
 
 def test_payment_benchmark_records_separate_analysis_warning() -> None:

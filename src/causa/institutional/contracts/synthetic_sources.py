@@ -36,6 +36,36 @@ SYNTHETIC_CONTRACT_SOURCES = [
         metadata={"synthetic": True, "topic": "delivery_duty", "specificity": "special"},
     ),
     LegalSource(
+        id="synthetic-ru-contract-supply-delivery-case-law",
+        title="Synthetic supply delivery judicial interpretation",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Synthetic case law: a current judicial interpretation may guide delivery "
+            "analysis when no applicable statutory source is available."
+        ),
+        valid_from="2020-01-01",
+        metadata={"synthetic": True, "topic": "delivery_duty", "specificity": "special"},
+    ),
+    LegalSource(
+        id="synthetic-ru-contract-supply-delivery-term",
+        title="Synthetic supply delivery contract term",
+        source_type=SourceType.CONTRACT,
+        text=(
+            "Synthetic contract term: the parties set a supply-specific delivery "
+            "schedule for their contract."
+        ),
+        valid_from="2020-01-01",
+        metadata={"synthetic": True, "topic": "delivery_duty", "specificity": "special"},
+    ),
+    LegalSource(
+        id="synthetic-ru-contract-supplier-delivery-fact",
+        title="Synthetic supplier delivery fact",
+        source_type=SourceType.FACT,
+        text="Synthetic fact: the supplier recorded a delivery event.",
+        valid_from="2020-01-01",
+        metadata={"synthetic": True, "topic": "delivery_duty"},
+    ),
+    LegalSource(
         id="synthetic-ru-contract-supply-delivery-duty-v1",
         title="Synthetic supply delivery duty v1",
         source_type=SourceType.STATUTE,

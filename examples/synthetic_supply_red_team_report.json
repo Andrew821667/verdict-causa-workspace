@@ -1,8 +1,8 @@
 {
   "id": "synthetic-supply-red-team-suite-v0",
   "institutional_package_id": "contracts-ru-v0",
-  "total": 6,
-  "blocked": 6,
+  "total": 8,
+  "blocked": 8,
   "unblocked": 0,
   "results": [
     {
@@ -58,6 +58,24 @@
         "Candidate guardrail contains all required defensive fragments."
       ],
       "reconstructed_attack": "Skip due-date and performance timing checks."
+    },
+    {
+      "scenario_id": "redteam-special-contract-overrides-statute",
+      "blocked": true,
+      "target_failure_type": "wrong_authority_ranking",
+      "reasons": [
+        "Candidate guardrail contains all required defensive fragments."
+      ],
+      "reconstructed_attack": "Apply lex specialis across different authority levels."
+    },
+    {
+      "scenario_id": "redteam-expired-statute-over-current-case-law",
+      "blocked": true,
+      "target_failure_type": "wrong_temporal_applicability",
+      "reasons": [
+        "Candidate guardrail contains all required defensive fragments."
+      ],
+      "reconstructed_attack": "Rank sources before excluding temporally inapplicable candidates."
     }
   ]
 }

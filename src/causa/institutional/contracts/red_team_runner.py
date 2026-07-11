@@ -7,7 +7,9 @@ DEFAULT_SUPPLY_CANDIDATE_GUARDRAIL = (
     "Late delivery can raise a breach issue only when source support exists, "
     "the due date was missed, and no valid excuse applies. Payment issues, "
     "defects, and penalty reduction require separate analysis. Penalty reduction "
-    "does not erase liability automatically."
+    "does not erase liability automatically. Check temporal applicability before "
+    "authority ranking: higher authority prevails, and lex specialis applies only "
+    "at the same authority level."
 )
 
 

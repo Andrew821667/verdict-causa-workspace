@@ -1,8 +1,8 @@
 {
   "id": "synthetic-supply-benchmark-suite-v0",
   "institutional_package_id": "contracts-ru-v0",
-  "total": 11,
-  "passed": 11,
+  "total": 14,
+  "passed": 14,
   "failed": 0,
   "results": [
     {
@@ -25,7 +25,9 @@
         "synthetic-ru-contract-delivery-term: Source is applicable at the evaluation date."
       ],
       "authority_winner": null,
-      "authority_reasons": []
+      "authority_reasons": [],
+      "authority_rules": [],
+      "authority_excluded_source_refs": []
     },
     {
       "task_id": "bench-supply-late-valid-excuse",
@@ -47,7 +49,9 @@
         "synthetic-ru-contract-valid-excuse: Source is applicable at the evaluation date."
       ],
       "authority_winner": null,
-      "authority_reasons": []
+      "authority_reasons": [],
+      "authority_rules": [],
+      "authority_excluded_source_refs": []
     },
     {
       "task_id": "bench-no-duty-no-breach",
@@ -67,7 +71,9 @@
         "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date."
       ],
       "authority_winner": null,
-      "authority_reasons": []
+      "authority_reasons": [],
+      "authority_rules": [],
+      "authority_excluded_source_refs": []
     },
     {
       "task_id": "bench-payment-duty-needs-separate-analysis",
@@ -89,7 +95,9 @@
         "synthetic-ru-contract-payment-duty: Source is applicable at the evaluation date."
       ],
       "authority_winner": null,
-      "authority_reasons": []
+      "authority_reasons": [],
+      "authority_rules": [],
+      "authority_excluded_source_refs": []
     },
     {
       "task_id": "bench-defects-not-basic-delivery-date",
@@ -111,7 +119,9 @@
         "synthetic-ru-contract-acceptance-defects: Source is applicable at the evaluation date."
       ],
       "authority_winner": null,
-      "authority_reasons": []
+      "authority_reasons": [],
+      "authority_rules": [],
+      "authority_excluded_source_refs": []
     },
     {
       "task_id": "bench-penalty-reduction-boundary",
@@ -133,7 +143,9 @@
         "synthetic-ru-contract-penalty-reduction: Source is applicable at the evaluation date."
       ],
       "authority_winner": null,
-      "authority_reasons": []
+      "authority_reasons": [],
+      "authority_rules": [],
+      "authority_excluded_source_refs": []
     },
     {
       "task_id": "bench-delivery-duty-v1-applies-before-2026",
@@ -153,7 +165,9 @@
         "synthetic-ru-contract-supply-delivery-duty-v1: Source is applicable at the evaluation date."
       ],
       "authority_winner": null,
-      "authority_reasons": []
+      "authority_reasons": [],
+      "authority_rules": [],
+      "authority_excluded_source_refs": []
     },
     {
       "task_id": "bench-delivery-duty-v2-applies-from-2026",
@@ -173,7 +187,9 @@
         "synthetic-ru-contract-supply-delivery-duty-v2: Source is applicable at the evaluation date."
       ],
       "authority_winner": null,
-      "authority_reasons": []
+      "authority_reasons": [],
+      "authority_rules": [],
+      "authority_excluded_source_refs": []
     },
     {
       "task_id": "bench-delivery-duty-v1-not-applicable-in-2026",
@@ -193,7 +209,9 @@
         "synthetic-ru-contract-supply-delivery-duty-v1: Evaluation date is after source valid_to."
       ],
       "authority_winner": null,
-      "authority_reasons": []
+      "authority_reasons": [],
+      "authority_rules": [],
+      "authority_excluded_source_refs": []
     },
     {
       "task_id": "bench-lex-specialis-supply-over-general",
@@ -216,9 +234,13 @@
       ],
       "authority_winner": "synthetic-ru-contract-supply-specific-delivery-duty",
       "authority_reasons": [
-        "Selected synthetic-ru-contract-supply-specific-delivery-duty.",
-        "Special source prevails over general source."
-      ]
+        "Selected synthetic-ru-contract-supply-specific-delivery-duty at statutory authority.",
+        "Special source prevails over general source at the same authority level."
+      ],
+      "authority_rules": [
+        "lex_specialis"
+      ],
+      "authority_excluded_source_refs": []
     },
     {
       "task_id": "bench-general-does-not-override-supply-special",
@@ -241,9 +263,102 @@
       ],
       "authority_winner": "synthetic-ru-contract-supply-specific-delivery-duty",
       "authority_reasons": [
-        "Selected synthetic-ru-contract-supply-specific-delivery-duty.",
-        "Special source prevails over general source."
+        "Selected synthetic-ru-contract-supply-specific-delivery-duty at statutory authority.",
+        "Special source prevails over general source at the same authority level."
+      ],
+      "authority_rules": [
+        "lex_specialis"
+      ],
+      "authority_excluded_source_refs": []
+    },
+    {
+      "task_id": "bench-statutory-source-prevails-over-contract-specific",
+      "passed": true,
+      "breach_issue": true,
+      "source_refs": [
+        "synthetic-ru-contract-general-performance-duty",
+        "synthetic-ru-contract-supply-delivery-term"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-general-performance-duty: Source is applicable at the evaluation date.",
+        "synthetic-ru-contract-supply-delivery-term: Source is applicable at the evaluation date."
+      ],
+      "authority_winner": "synthetic-ru-contract-general-performance-duty",
+      "authority_reasons": [
+        "Selected synthetic-ru-contract-general-performance-duty at statutory authority.",
+        "Sources at statutory authority prevail over lower-authority sources."
+      ],
+      "authority_rules": [
+        "higher_authority"
+      ],
+      "authority_excluded_source_refs": []
+    },
+    {
+      "task_id": "bench-inapplicable-statute-yields-to-current-case-law",
+      "passed": true,
+      "breach_issue": true,
+      "source_refs": [
+        "synthetic-ru-contract-supply-delivery-duty-v1",
+        "synthetic-ru-contract-supply-delivery-case-law"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-supply-delivery-duty-v1: Evaluation date is after source valid_to.",
+        "synthetic-ru-contract-supply-delivery-case-law: Source is applicable at the evaluation date."
+      ],
+      "authority_winner": "synthetic-ru-contract-supply-delivery-case-law",
+      "authority_reasons": [
+        "Selected synthetic-ru-contract-supply-delivery-case-law at judicial authority.",
+        "Excluded synthetic-ru-contract-supply-delivery-duty-v1: Evaluation date is after source valid_to."
+      ],
+      "authority_rules": [
+        "temporal_applicability"
+      ],
+      "authority_excluded_source_refs": [
+        "synthetic-ru-contract-supply-delivery-duty-v1"
       ]
+    },
+    {
+      "task_id": "bench-statutory-source-prevails-over-factual-assertion",
+      "passed": true,
+      "breach_issue": true,
+      "source_refs": [
+        "synthetic-ru-contract-general-performance-duty",
+        "synthetic-ru-contract-supplier-delivery-fact"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Duty exists, due date is missed, and no valid exception applies."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-general-performance-duty: Source is applicable at the evaluation date.",
+        "synthetic-ru-contract-supplier-delivery-fact: Source is applicable at the evaluation date."
+      ],
+      "authority_winner": "synthetic-ru-contract-general-performance-duty",
+      "authority_reasons": [
+        "Selected synthetic-ru-contract-general-performance-duty at statutory authority.",
+        "Sources at statutory authority prevail over lower-authority sources."
+      ],
+      "authority_rules": [
+        "higher_authority"
+      ],
+      "authority_excluded_source_refs": []
     }
   ]
 }
