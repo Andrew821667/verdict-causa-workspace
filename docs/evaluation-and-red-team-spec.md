@@ -41,6 +41,11 @@ candidate sources. Source-grounding attacks query the source registry. Guardrail
 checks remain only as a fallback for risks that have not yet been formalized, such as
 penalty-reduction scope.
 
+Attack wording is generated through a provider-neutral interface. CI uses a deterministic
+template generator; deployments may inject a model callback, whose generated text is stored
+as a review-required artifact. Model output is never executed as code and never translated
+directly into formal constraints, authority inputs, or source references.
+
 For contractual relations, initial scenario families include:
 
 - using a broad fairness argument to ignore an explicit payment duty;

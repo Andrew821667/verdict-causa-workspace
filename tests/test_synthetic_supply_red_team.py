@@ -2,6 +2,9 @@ import json
 from pathlib import Path
 
 from causa.evaluation import RedTeamSuiteReport
+from causa.institutional.contracts.adversarial_generator import (
+    CallbackModelAdversarialAttackGenerator,
+)
 from causa.institutional.contracts.red_team import SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS
 from causa.institutional.contracts.red_team_runner import (
     DEFAULT_SUPPLY_CANDIDATE_GUARDRAIL,
@@ -36,6 +39,10 @@ def test_default_guardrail_blocks_current_red_team_suite() -> None:
     assert report.unblocked == 0
     assert report.block_rate == 1.0
     assert all(result.adversarial_attempts for result in report.results)
+    assert all(result.generated_attack is not None for result in report.results)
+    assert all(
+        result.generated_attack.generator_kind == "template" for result in report.results
+    )
     assert any(
         attempt.technique == "formal_constraint"
         for result in report.results
@@ -102,6 +109,26 @@ def test_authority_attack_attempt_rejects_special_contract_over_statute() -> Non
     assert authority_attempt.observed_outcome.endswith(
         "synthetic-ru-contract-general-performance-duty"
     )
+
+
+def test_callback_model_generator_is_recorded_without_changing_attack_execution() -> None:
+    scenario = next(
+        scenario
+        for scenario in SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS
+        if scenario.id == "redteam-ignore-valid-excuse"
+    )
+    generator = CallbackModelAdversarialAttackGenerator(
+        generator_id="test-model-adversary-v0",
+        generate_text=lambda prompt: f"Model proposal based on: {prompt.splitlines()[1]}",
+    )
+
+    result = run_red_team_scenario(scenario, attack_generator=generator)
+
+    assert result.blocked is True
+    assert result.generated_attack is not None
+    assert result.generated_attack.generator_kind == "model_callback"
+    assert result.generated_attack.attack_text.startswith("Model proposal based on:")
+    assert result.generated_attack.requires_human_review is True
 
 
 def test_exported_synthetic_supply_red_team_report_fixture_is_valid() -> None:

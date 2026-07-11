@@ -26,3 +26,9 @@ Future implementations should provide:
 ## Secrets
 
 Secrets should be provided through environment variables or secret stores and never committed.
+
+## Model-mediated attack generation
+
+Any external model provider used for adversarial attack wording must receive only data that is
+permitted for that provider and tenant. Generated wording is review-required evidence, not an
+instruction to mutate formal constraints, source references, or authority inputs.

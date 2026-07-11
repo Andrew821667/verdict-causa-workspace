@@ -7,6 +7,10 @@ from causa.evaluation import (
     RedTeamScenarioResult,
     RedTeamSuiteReport,
 )
+from causa.institutional.contracts.adversarial_generator import (
+    AdversarialAttackGenerator,
+    TemplatedAdversarialAttackGenerator,
+)
 from causa.institutional.contracts.authority_model import evaluate_source_authority
 from causa.institutional.contracts.package import CONTRACTS_PACKAGE_MANIFEST
 from causa.institutional.contracts.red_team import SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS
@@ -34,6 +38,8 @@ CONSTRAINT_RESULT_FIELDS = {
     "defect_issue",
     "payment_default_issue",
 }
+
+DEFAULT_ADVERSARIAL_ATTACK_GENERATOR = TemplatedAdversarialAttackGenerator()
 
 
 def _guardrail_attack_attempt(
@@ -192,10 +198,12 @@ def _adversarial_attack_attempts(
 def run_red_team_scenario(
     scenario: RedTeamScenario,
     candidate_guardrail: str = DEFAULT_SUPPLY_CANDIDATE_GUARDRAIL,
+    attack_generator: AdversarialAttackGenerator = DEFAULT_ADVERSARIAL_ATTACK_GENERATOR,
 ) -> RedTeamScenarioResult:
     attempts = _adversarial_attack_attempts(scenario, candidate_guardrail)
     blocked = all(attempt.blocked for attempt in attempts)
     reasons = [reason for attempt in attempts for reason in attempt.reasons]
+    generated_attack = attack_generator.generate(scenario)
 
     return RedTeamScenarioResult(
         scenario_id=scenario.id,
@@ -204,16 +212,18 @@ def run_red_team_scenario(
         reasons=reasons,
         reconstructed_attack=scenario.attack_vector,
         adversarial_attempts=attempts,
+        generated_attack=generated_attack,
     )
 
 
 def run_synthetic_supply_red_team_suite(
     scenarios: list[RedTeamScenario] | None = None,
     candidate_guardrail: str = DEFAULT_SUPPLY_CANDIDATE_GUARDRAIL,
+    attack_generator: AdversarialAttackGenerator = DEFAULT_ADVERSARIAL_ATTACK_GENERATOR,
 ) -> RedTeamSuiteReport:
     selected_scenarios = scenarios or SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS
     results = [
-        run_red_team_scenario(scenario, candidate_guardrail)
+        run_red_team_scenario(scenario, candidate_guardrail, attack_generator)
         for scenario in selected_scenarios
     ]
     blocked = sum(result.blocked for result in results)

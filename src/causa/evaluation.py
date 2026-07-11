@@ -105,6 +105,16 @@ class AdversarialAttackAttempt(BaseModel):
     reasons: list[str] = Field(default_factory=list)
 
 
+class GeneratedAdversarialAttack(BaseModel):
+    id: str
+    scenario_id: str
+    generator_id: str
+    generator_kind: str
+    prompt: str
+    attack_text: str
+    requires_human_review: bool = True
+
+
 class RedTeamScenarioResult(BaseModel):
     scenario_id: str
     blocked: bool
@@ -112,6 +122,7 @@ class RedTeamScenarioResult(BaseModel):
     reasons: list[str] = Field(default_factory=list)
     reconstructed_attack: str | None = None
     adversarial_attempts: list[AdversarialAttackAttempt] = Field(default_factory=list)
+    generated_attack: GeneratedAdversarialAttack | None = None
 
 
 class RedTeamSuiteReport(BaseModel):

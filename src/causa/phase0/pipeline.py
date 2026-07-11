@@ -265,7 +265,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
             ],
             remaining_work=[
                 "Collect non-synthetic pilot observations with privacy controls.",
-                "Add a model-mediated attack generator behind the reproducible adversarial executor.",
+                "Integrate a reviewed external model provider for attack wording under privacy controls.",
             ],
         ),
         ReadinessItem(
