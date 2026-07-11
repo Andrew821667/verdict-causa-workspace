@@ -216,6 +216,9 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     "source_applicable": source_applicability.applicable,
                     "due_date_missed": temporal_evaluation.due_date_missed,
                     "breach_issue": constraint_evaluation.breach_issue,
+                    "late_performance_issue": constraint_evaluation.late_performance_issue,
+                    "defect_issue": constraint_evaluation.defect_issue,
+                    "payment_default_issue": constraint_evaluation.payment_default_issue,
                 },
             ),
             KnowledgeNode(
@@ -249,7 +252,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         warnings=[
             "Synthetic demo only.",
             "Not legal advice.",
-            "Constraint set covers only a narrow contractual obligation pattern.",
+            "Constraint set covers only narrow delay, defect, and payment-default patterns.",
         ],
     )
 

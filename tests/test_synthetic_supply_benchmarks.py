@@ -118,6 +118,29 @@ def test_authority_hierarchy_benchmarks_record_priority_and_temporal_rules() -> 
     ]
 
 
+def test_extended_constraint_benchmarks_keep_delay_defect_and_payment_distinct() -> None:
+    extended_results = {
+        task.id: run_benchmark_task(task)
+        for task in SYNTHETIC_SUPPLY_BENCHMARKS
+        if "defect" in task.id or "payment-default" in task.id or "payment-defense" in task.id
+    }
+
+    defect_result = extended_results["bench-confirmed-defect-after-timely-performance"]
+    assert defect_result.breach_issue is True
+    assert defect_result.late_performance_issue is False
+    assert defect_result.defect_issue is True
+
+    payment_default_result = extended_results["bench-payment-default-without-defense"]
+    assert payment_default_result.breach_issue is True
+    assert payment_default_result.payment_default_issue is True
+
+    payment_defense_result = extended_results[
+        "bench-payment-defense-prevents-payment-default-issue"
+    ]
+    assert payment_defense_result.breach_issue is False
+    assert payment_defense_result.payment_default_issue is False
+
+
 def test_payment_benchmark_records_separate_analysis_warning() -> None:
     task = next(task for task in SYNTHETIC_SUPPLY_BENCHMARKS if "payment" in task.id)
     result = run_benchmark_task(task)

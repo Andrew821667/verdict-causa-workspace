@@ -16,6 +16,9 @@ class BenchmarkTask(BaseModel):
     temporal_facts: dict[str, str] = Field(default_factory=dict)
     expected_source_applicability: dict[str, bool] = Field(default_factory=dict)
     expected_breach_issue: bool | None = None
+    expected_late_performance_issue: bool | None = None
+    expected_defect_issue: bool | None = None
+    expected_payment_default_issue: bool | None = None
     required_warning_fragments: list[str] = Field(default_factory=list)
 
 
@@ -23,6 +26,9 @@ class BenchmarkTaskResult(BaseModel):
     task_id: str
     passed: bool
     breach_issue: bool | None = None
+    late_performance_issue: bool | None = None
+    defect_issue: bool | None = None
+    payment_default_issue: bool | None = None
     source_refs: list[str] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
     reasons: list[str] = Field(default_factory=list)

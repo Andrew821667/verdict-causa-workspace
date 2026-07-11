@@ -97,11 +97,9 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
         if temporal_evaluation is not None
         else task.facts.get("due_date_missed", False)
     )
-    facts = ObligationFactSet(
-        duty_exists=task.facts.get("duty_exists", False),
-        due_date_missed=due_date_missed,
-        valid_exception_applies=task.facts.get("valid_exception_applies", False),
-    )
+    fact_values = dict(task.facts)
+    fact_values["due_date_missed"] = due_date_missed
+    facts = ObligationFactSet.model_validate(fact_values)
     evaluation = evaluate_obligation_constraints(constraint_set, facts)
     sources_applicable, source_applicability_reasons = _source_applicability_reasons(task)
     warnings = _warnings_for_task(task)
@@ -110,6 +108,19 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
     passed = True
     if task.expected_breach_issue is not None:
         passed = passed and evaluation.breach_issue == task.expected_breach_issue
+    if task.expected_late_performance_issue is not None:
+        passed = (
+            passed
+            and evaluation.late_performance_issue
+            == task.expected_late_performance_issue
+        )
+    if task.expected_defect_issue is not None:
+        passed = passed and evaluation.defect_issue == task.expected_defect_issue
+    if task.expected_payment_default_issue is not None:
+        passed = (
+            passed
+            and evaluation.payment_default_issue == task.expected_payment_default_issue
+        )
     passed = passed and sources_applicable
     if task.expected_authority_winner is not None:
         passed = (
@@ -136,6 +147,9 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
         task_id=task.id,
         passed=passed,
         breach_issue=evaluation.breach_issue,
+        late_performance_issue=evaluation.late_performance_issue,
+        defect_issue=evaluation.defect_issue,
+        payment_default_issue=evaluation.payment_default_issue,
         source_refs=task.expected_source_refs,
         warnings=warnings,
         reasons=reasons,

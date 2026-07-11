@@ -115,7 +115,13 @@
   "obligation_facts": {
     "duty_exists": true,
     "due_date_missed": true,
-    "valid_exception_applies": false
+    "valid_exception_applies": false,
+    "performance_completed": false,
+    "performance_nonconforming": false,
+    "payment_duty_exists": false,
+    "payment_due": false,
+    "payment_missed": false,
+    "payment_defense_applies": false
   },
   "constraint_set": {
     "id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
@@ -125,15 +131,27 @@
       "duty_exists",
       "due_date_missed",
       "valid_exception_applies",
-      "breach_issue == duty_exists AND due_date_missed AND NOT valid_exception_applies"
+      "late_performance_issue == duty_exists AND due_date_missed AND NOT valid_exception_applies",
+      "performance_completed",
+      "performance_nonconforming",
+      "defect_issue == duty_exists AND performance_completed AND performance_nonconforming",
+      "payment_duty_exists",
+      "payment_due",
+      "payment_missed",
+      "payment_defense_applies",
+      "payment_default_issue == payment_duty_exists AND payment_due AND payment_missed AND NOT payment_defense_applies",
+      "breach_issue == late_performance_issue OR defect_issue OR payment_default_issue"
     ]
   },
   "constraint_evaluation": {
     "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
     "satisfiable": true,
     "breach_issue": true,
+    "late_performance_issue": true,
+    "defect_issue": false,
+    "payment_default_issue": false,
     "reasons": [
-      "Duty exists, due date is missed, and no valid exception applies."
+      "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
     ]
   },
   "formal_contradiction_detected": true,
@@ -233,7 +251,10 @@
           "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
           "source_applicable": true,
           "due_date_missed": true,
-          "breach_issue": true
+          "breach_issue": true,
+          "late_performance_issue": true,
+          "defect_issue": false,
+          "payment_default_issue": false
         }
       },
       {
@@ -297,7 +318,7 @@
     "warnings": [
       "Synthetic demo only.",
       "Not legal advice.",
-      "Constraint set covers only a narrow contractual obligation pattern."
+      "Constraint set covers only narrow delay, defect, and payment-default patterns."
     ]
   }
 }

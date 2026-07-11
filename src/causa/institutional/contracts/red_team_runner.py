@@ -9,7 +9,8 @@ DEFAULT_SUPPLY_CANDIDATE_GUARDRAIL = (
     "defects, and penalty reduction require separate analysis. Penalty reduction "
     "does not erase liability automatically. Check temporal applicability before "
     "authority ranking: higher authority prevails, and lex specialis applies only "
-    "at the same authority level."
+    "at the same authority level. Defect and payment-default checks require their "
+    "own confirmed facts, and a payment defense must be considered."
 )
 
 

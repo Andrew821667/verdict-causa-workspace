@@ -1,8 +1,8 @@
 {
   "id": "synthetic-supply-red-team-suite-v0",
   "institutional_package_id": "contracts-ru-v0",
-  "total": 8,
-  "blocked": 8,
+  "total": 10,
+  "blocked": 10,
   "unblocked": 0,
   "results": [
     {
@@ -76,6 +76,24 @@
         "Candidate guardrail contains all required defensive fragments."
       ],
       "reconstructed_attack": "Rank sources before excluding temporally inapplicable candidates."
+    },
+    {
+      "scenario_id": "redteam-infer-defect-without-confirmed-performance",
+      "blocked": true,
+      "target_failure_type": "bad_formalization",
+      "reasons": [
+        "Candidate guardrail contains all required defensive fragments."
+      ],
+      "reconstructed_attack": "Collapse an unverified allegation into a defect constraint result."
+    },
+    {
+      "scenario_id": "redteam-ignore-payment-defense",
+      "blocked": true,
+      "target_failure_type": "bad_formalization",
+      "reasons": [
+        "Candidate guardrail contains all required defensive fragments."
+      ],
+      "reconstructed_attack": "Skip payment defense in the payment-default constraint pattern."
     }
   ]
 }

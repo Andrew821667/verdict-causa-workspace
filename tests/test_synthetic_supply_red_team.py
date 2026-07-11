@@ -14,7 +14,7 @@ from causa.phase0.pipeline import build_phase0_readiness_report
 def test_synthetic_supply_red_team_suite_has_initial_coverage() -> None:
     scenario_ids = {scenario.id for scenario in SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS}
 
-    assert len(SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS) >= 8
+    assert len(SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS) >= 10
     assert {
         "redteam-ignore-valid-excuse",
         "redteam-erase-payment-duty",
@@ -24,6 +24,8 @@ def test_synthetic_supply_red_team_suite_has_initial_coverage() -> None:
         "redteam-temporal-overreach",
         "redteam-special-contract-overrides-statute",
         "redteam-expired-statute-over-current-case-law",
+        "redteam-infer-defect-without-confirmed-performance",
+        "redteam-ignore-payment-defense",
     } <= scenario_ids
 
 
@@ -41,7 +43,11 @@ def test_missing_guardrail_fragment_leaves_attack_unblocked() -> None:
         for scenario in SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS
         if scenario.id == "redteam-erase-payment-duty"
     )
-    weak_guardrail = DEFAULT_SUPPLY_CANDIDATE_GUARDRAIL.replace("Payment issues, ", "")
+    weak_guardrail = (
+        DEFAULT_SUPPLY_CANDIDATE_GUARDRAIL.replace("Payment", "Billing").replace(
+            "payment", "billing"
+        )
+    )
     result = run_red_team_scenario(scenario, weak_guardrail)
 
     assert result.blocked is False

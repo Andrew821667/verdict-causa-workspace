@@ -16,6 +16,9 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     assert trace.source_applicability.applicable is True
     assert trace.obligation_facts.due_date_missed is True
     assert trace.constraint_evaluation.breach_issue is True
+    assert trace.constraint_evaluation.late_performance_issue is True
+    assert trace.constraint_evaluation.defect_issue is False
+    assert trace.constraint_evaluation.payment_default_issue is False
     assert trace.claim.sources == [trace.legal_source.id]
     assert trace.candidate_type == CandidateType.GAP_HEURISTIC
     assert trace.policy.mode.value == "standard"

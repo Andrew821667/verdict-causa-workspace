@@ -1,21 +1,24 @@
 {
   "id": "synthetic-supply-benchmark-suite-v0",
   "institutional_package_id": "contracts-ru-v0",
-  "total": 14,
-  "passed": 14,
+  "total": 17,
+  "passed": 17,
   "failed": 0,
   "results": [
     {
       "task_id": "bench-supply-late-no-excuse",
       "passed": true,
       "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty",
         "synthetic-ru-contract-delivery-term"
       ],
       "warnings": [],
       "reasons": [
-        "Duty exists, due date is missed, and no valid exception applies."
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
@@ -33,13 +36,16 @@
       "task_id": "bench-supply-late-valid-excuse",
       "passed": true,
       "breach_issue": false,
+      "late_performance_issue": false,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty",
         "synthetic-ru-contract-valid-excuse"
       ],
       "warnings": [],
       "reasons": [
-        "No breach issue under the current narrow obligation constraints."
+        "No contractual issue under the current narrow constraint set."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
@@ -57,12 +63,15 @@
       "task_id": "bench-no-duty-no-breach",
       "passed": true,
       "breach_issue": false,
+      "late_performance_issue": false,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty"
       ],
       "warnings": [],
       "reasons": [
-        "No breach issue under the current narrow obligation constraints."
+        "No contractual issue under the current narrow constraint set."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
@@ -79,6 +88,9 @@
       "task_id": "bench-payment-duty-needs-separate-analysis",
       "passed": true,
       "breach_issue": false,
+      "late_performance_issue": false,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-payment-duty"
       ],
@@ -86,7 +98,7 @@
         "payment duty requires separate analysis"
       ],
       "reasons": [
-        "No breach issue under the current narrow obligation constraints."
+        "No contractual issue under the current narrow constraint set."
       ],
       "temporal_reasons": [
         "Actual performance date is on or before the agreed due date."
@@ -103,6 +115,9 @@
       "task_id": "bench-defects-not-basic-delivery-date",
       "passed": true,
       "breach_issue": false,
+      "late_performance_issue": false,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-acceptance-defects"
       ],
@@ -110,7 +125,7 @@
         "defects require separate analysis"
       ],
       "reasons": [
-        "No breach issue under the current narrow obligation constraints."
+        "No contractual issue under the current narrow constraint set."
       ],
       "temporal_reasons": [
         "Actual performance date is on or before the agreed due date."
@@ -127,6 +142,9 @@
       "task_id": "bench-penalty-reduction-boundary",
       "passed": true,
       "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-penalty-reduction"
       ],
@@ -134,7 +152,7 @@
         "penalty reduction does not erase liability"
       ],
       "reasons": [
-        "Duty exists, due date is missed, and no valid exception applies."
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
@@ -151,12 +169,15 @@
       "task_id": "bench-delivery-duty-v1-applies-before-2026",
       "passed": true,
       "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty-v1"
       ],
       "warnings": [],
       "reasons": [
-        "Duty exists, due date is missed, and no valid exception applies."
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
@@ -173,12 +194,15 @@
       "task_id": "bench-delivery-duty-v2-applies-from-2026",
       "passed": true,
       "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty-v2"
       ],
       "warnings": [],
       "reasons": [
-        "Duty exists, due date is missed, and no valid exception applies."
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
@@ -195,12 +219,15 @@
       "task_id": "bench-delivery-duty-v1-not-applicable-in-2026",
       "passed": true,
       "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty-v1"
       ],
       "warnings": [],
       "reasons": [
-        "Duty exists, due date is missed, and no valid exception applies."
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
@@ -217,13 +244,16 @@
       "task_id": "bench-lex-specialis-supply-over-general",
       "passed": true,
       "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-general-performance-duty",
         "synthetic-ru-contract-supply-specific-delivery-duty"
       ],
       "warnings": [],
       "reasons": [
-        "Duty exists, due date is missed, and no valid exception applies."
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
@@ -246,13 +276,16 @@
       "task_id": "bench-general-does-not-override-supply-special",
       "passed": true,
       "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-general-performance-duty",
         "synthetic-ru-contract-supply-specific-delivery-duty"
       ],
       "warnings": [],
       "reasons": [
-        "Duty exists, due date is missed, and no valid exception applies."
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
@@ -275,13 +308,16 @@
       "task_id": "bench-statutory-source-prevails-over-contract-specific",
       "passed": true,
       "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-general-performance-duty",
         "synthetic-ru-contract-supply-delivery-term"
       ],
       "warnings": [],
       "reasons": [
-        "Duty exists, due date is missed, and no valid exception applies."
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
@@ -304,13 +340,16 @@
       "task_id": "bench-inapplicable-statute-yields-to-current-case-law",
       "passed": true,
       "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty-v1",
         "synthetic-ru-contract-supply-delivery-case-law"
       ],
       "warnings": [],
       "reasons": [
-        "Duty exists, due date is missed, and no valid exception applies."
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
@@ -335,13 +374,16 @@
       "task_id": "bench-statutory-source-prevails-over-factual-assertion",
       "passed": true,
       "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
       "source_refs": [
         "synthetic-ru-contract-general-performance-duty",
         "synthetic-ru-contract-supplier-delivery-fact"
       ],
       "warnings": [],
       "reasons": [
-        "Duty exists, due date is missed, and no valid exception applies."
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
       ],
       "temporal_reasons": [
         "Actual performance date is later than the agreed due date."
@@ -358,6 +400,77 @@
       "authority_rules": [
         "higher_authority"
       ],
+      "authority_excluded_source_refs": []
+    },
+    {
+      "task_id": "bench-confirmed-defect-after-timely-performance",
+      "passed": true,
+      "breach_issue": true,
+      "late_performance_issue": false,
+      "defect_issue": true,
+      "payment_default_issue": false,
+      "source_refs": [
+        "synthetic-ru-contract-acceptance-defects"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Defect issue: completed performance is confirmed nonconforming."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is on or before the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-acceptance-defects: Source is applicable at the evaluation date."
+      ],
+      "authority_winner": null,
+      "authority_reasons": [],
+      "authority_rules": [],
+      "authority_excluded_source_refs": []
+    },
+    {
+      "task_id": "bench-payment-default-without-defense",
+      "passed": true,
+      "breach_issue": true,
+      "late_performance_issue": false,
+      "defect_issue": false,
+      "payment_default_issue": true,
+      "source_refs": [
+        "synthetic-ru-contract-payment-duty"
+      ],
+      "warnings": [
+        "payment duty requires separate analysis"
+      ],
+      "reasons": [
+        "Payment default issue: payment duty is due, missed, and has no valid defense."
+      ],
+      "temporal_reasons": [],
+      "source_applicability_reasons": [],
+      "authority_winner": null,
+      "authority_reasons": [],
+      "authority_rules": [],
+      "authority_excluded_source_refs": []
+    },
+    {
+      "task_id": "bench-payment-defense-prevents-payment-default-issue",
+      "passed": true,
+      "breach_issue": false,
+      "late_performance_issue": false,
+      "defect_issue": false,
+      "payment_default_issue": false,
+      "source_refs": [
+        "synthetic-ru-contract-payment-duty"
+      ],
+      "warnings": [
+        "payment duty requires separate analysis"
+      ],
+      "reasons": [
+        "No contractual issue under the current narrow constraint set."
+      ],
+      "temporal_reasons": [],
+      "source_applicability_reasons": [],
+      "authority_winner": null,
+      "authority_reasons": [],
+      "authority_rules": [],
       "authority_excluded_source_refs": []
     }
   ]

@@ -198,8 +198,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 pipeline.trace.reviewed_norm.id,
             ],
             remaining_work=[
-                "Expand solver-ready representation beyond narrow obligation facts.",
-                "Add richer contractual norm schema for exceptions and temporal applicability.",
+                "Connect reviewed norm conditions and exceptions to typed formal inputs.",
+                "Add formal patterns for remedies, causation, and limitation periods.",
                 "Connect reviewed source representations to authority-resolution inputs.",
             ],
         ),
