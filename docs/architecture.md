@@ -31,7 +31,7 @@ It should make legal reasoning reproducible by preserving references, versions, 
 
 ## 4. Management Plane
 
-The Management Plane controls how the system behaves. It includes confidence policies, activation rules, autonomy boundaries, routing rules, escalation rules, cost budgets, SLA/depth modes, risk tiers, prompt templates, translation templates, and rollback classes.
+The Management Plane controls how the system behaves. It includes confidence policies, activation rules, autonomy boundaries, routing rules, escalation rules, cost budgets, SLA/depth modes, risk tiers, prompt templates, translation templates, and rollback classes. The current Phase 0 implementation stores immutable hash-addressed policy snapshots, semantic diffs, activation events, and explicit rollback events.
 
 Knowledge Plane evolution and Management Plane evolution are separate. Both require explicit versions and audit trails.
 

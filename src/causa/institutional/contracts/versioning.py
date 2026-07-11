@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.6.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v0"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v0"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Decision traces bind policy snapshot id and SHA-256 content hash.",
+            "Management Plane policy registration, activation, diff, and rollback are auditable.",
+            "No production or real-client-data compatibility claim is implied.",
+        ],
+        notes_ru=[
+            "Трассировка связывает ID снимка политики и SHA-256 hash его содержимого.",
+            "Регистрация, активация, semantic diff и откат политик Management Plane аудируемы.",
+            "Совместимость с промышленной эксплуатацией и реальными клиентскими данными не заявляется.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.5.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

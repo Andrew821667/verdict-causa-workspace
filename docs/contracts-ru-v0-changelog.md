@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.6.0 - 2026-07-11
+
+- Adds immutable Management Plane policy snapshots with canonical SHA-256 content hashes.
+- Adds typed Russian semantic diffs for policy tightening, relaxation, and behavioral changes.
+- Adds append-only registration, activation, and rollback events with optimistic revision checks.
+- Adds an atomic JSON persistence backend with stale-write protection for local replay.
+- Binds Phase 0 decision traces and governance records to the active snapshot ID and content hash.
+- Adds replay-required migration fixtures from `0.1.0`, `0.3.0`, `0.4.0`, and `0.5.0`.
+
 ## 0.5.0 - 2026-07-11
 
 - Adds mandatory Russian human-readable labels for governance, risk, failure, and policy values.

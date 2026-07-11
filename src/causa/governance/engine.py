@@ -39,6 +39,7 @@ class GovernanceStageDecision(BaseModel):
     reasons_ru: tuple[str, ...] = Field(min_length=1)
     evidence_refs: tuple[str, ...] = Field(min_length=1)
     policy_version: str
+    policy_content_hash: str | None = None
 
 
 class CandidateActivationRecord(BaseModel):
@@ -51,6 +52,7 @@ class CandidateActivationRecord(BaseModel):
     expires_at: datetime | None = None
     actor_id: str
     policy_version: str
+    policy_content_hash: str | None = None
     decision_id: str
 
 
@@ -122,6 +124,7 @@ class GovernanceRecord(BaseModel):
     locale: str = LOCALE_RU
     engine_version: str = GOVERNANCE_ENGINE_VERSION
     policy_version: str
+    policy_content_hash: str | None = None
     current_stage: GovernanceStage = GovernanceStage.PROPOSED
     current_stage_label_ru: str = GOVERNANCE_STAGE_LABELS_RU[GovernanceStage.PROPOSED.value]
     created_at: datetime
@@ -147,6 +150,8 @@ class GovernanceRecord(BaseModel):
                 raise ValueError("Governance-решение относится к другому кандидату.")
             if decision.policy_version != self.policy_version:
                 raise ValueError("Governance-решение использует другую версию политики.")
+            if decision.policy_content_hash != self.policy_content_hash:
+                raise ValueError("Governance-решение использует другой hash политики.")
             if decision.from_stage != previous_stage:
                 raise ValueError("Нарушена цепочка стадий governance-решений.")
             if decision.decided_at < previous_time:
@@ -173,6 +178,8 @@ class GovernanceLifecycleArtifact(BaseModel):
     locale: str = LOCALE_RU
     engine_version: str = GOVERNANCE_ENGINE_VERSION
     title_ru: str
+    policy_snapshot_id: str | None = None
+    policy_content_hash: str | None = None
     summary_ru: list[str] = Field(default_factory=list)
     records: list[GovernanceRecord] = Field(default_factory=list)
 
@@ -182,6 +189,7 @@ def create_governance_record(
     candidate_id: str,
     candidate_type: CandidateType,
     policy_version: str,
+    policy_content_hash: str | None = None,
     created_at: datetime,
 ) -> GovernanceRecord:
     return GovernanceRecord(
@@ -190,6 +198,7 @@ def create_governance_record(
         candidate_type=candidate_type,
         candidate_type_label_ru=label_ru(candidate_type, CANDIDATE_TYPE_LABELS_RU),
         policy_version=policy_version,
+        policy_content_hash=policy_content_hash,
         created_at=created_at,
     )
 
@@ -238,6 +247,7 @@ def _build_decision(
         reasons_ru=reasons_ru,
         evidence_refs=evidence_refs,
         policy_version=record.policy_version,
+        policy_content_hash=record.policy_content_hash,
     )
 
 
@@ -274,6 +284,7 @@ def _apply_decision(
                 expires_at=expires_at,
                 actor_id=decision.actor_id,
                 policy_version=record.policy_version,
+                policy_content_hash=record.policy_content_hash,
                 decision_id=decision.id,
             )
         )

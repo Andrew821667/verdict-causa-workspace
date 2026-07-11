@@ -141,6 +141,14 @@ python scripts/export_synthetic_governance_lifecycle.py
 
 The output is written to `examples/synthetic_governance_lifecycle_report.json`.
 
+Generate the synthetic Russian-language Management Plane policy registry:
+
+```bash
+python scripts/export_synthetic_management_policy_registry.py
+```
+
+The output is written to `examples/synthetic_management_policy_registry_report.json`.
+
 Generate the current Phase 0 readiness report:
 
 ```bash
@@ -187,11 +195,12 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-The command writes replay reports for legacy `0.1.0`, `0.3.0`, and `0.4.0` artifacts:
+The command writes replay reports for legacy `0.1.0`, `0.3.0`, `0.4.0`, and `0.5.0` artifacts:
 
-- `examples/migrations/contracts-ru-v0-0.1.0-to-0.5.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.3.0-to-0.5.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.4.0-to-0.5.0-migration-report.json`.
+- `examples/migrations/contracts-ru-v0-0.1.0-to-0.6.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.3.0-to-0.6.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.4.0-to-0.6.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.5.0-to-0.6.0-migration-report.json`.
 
 ## License
 

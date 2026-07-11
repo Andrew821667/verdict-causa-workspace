@@ -1,81 +1,70 @@
-# Management Plane Specification
+# Спецификация Management Plane
 
-The Management Plane stores how the system acts. It is separate from the Knowledge Plane, which stores what the system knows.
+Management Plane определяет, как система действует. Он отделен от Knowledge Plane, который определяет, что система знает.
 
-## Why this matters
+Изменение порога уверенности, допустимой автономности, глубины извлечения, обязательности Red Team или экспертной проверки может изменить юридический результат без изменения единой нормы. Поэтому политика поведения является самостоятельным версионируемым и откатываемым артефактом.
 
-Policy changes can alter behavior as much as knowledge changes. Changing a confidence threshold, prompt template, escalation rule, or translation template can change legal outputs without changing a single source or formal norm.
+<a id="confidence-and-activation-policies"></a>
 
-Therefore Management Plane artifacts are versioned, audited, governed, and rollback-capable.
+## Поведенческий контракт
 
-## Required sublayers
+Снимок политики фиксирует:
 
-### Confidence and activation policies
+- SLA/depth mode и уровень риска T1-T6;
+- число агентных проходов, запросов и токенный бюджет;
+- глубину извлечения источников;
+- минимальный порог уверенности и правило эскалации;
+- допустимость принципов-кандидатов;
+- обязательность formal check, Red Team, expert review и cross-review;
+- требования воспроизводимой трассировки и полного provenance;
+- версию шаблона юридического объяснения;
+- профиль модели.
 
-Define:
+Для T4-T6 обязательны expert review, Red Team и полный provenance. Для T5-T6 обязательна cross-review. Любая правовая политика требует replayable trace.
 
-- confidence thresholds;
-- whether candidate principles can be used;
-- expiration checks;
-- activation requirements by candidate type.
+## Неизменяемый snapshot
 
-### Autonomy boundaries
+`PolicySnapshot` содержит family ID, последовательную версию, родительский snapshot, полный payload, автора, проверяющих, доказательства, русское описание изменения и SHA-256 hash канонического JSON payload.
 
-Define what the system may do without human review by mode and risk tier.
+Hash пересчитывается при загрузке. Изменение любого поведенческого поля без изменения hash делает snapshot невалидным. Новая версия обязана продолжать последнюю версию семьи и не может повторять прежнее содержимое.
 
-### Routing and escalation rules
+## Реестр и события
 
-Define:
+Реестр хранит snapshots, активный snapshot для каждой policy family и append-only события:
 
-- when to use heavier reasoning;
-- when to run Red Team;
-- when to trigger cross-review;
-- when to stop due to budget.
+- `registered` — snapshot зарегистрирован;
+- `activated` — snapshot стал активным;
+- `rolled_back` — выполнен явный возврат к более ранней версии.
 
-### Cost and SLA policies
+Каждое событие содержит последовательный номер, исполнителя, время, русские причины, доказательства, предыдущий и новый snapshot. Ревизия реестра равна числу событий. Команды регистрации, активации и rollback содержат ожидаемую ревизию; устаревшая команда отклоняется.
 
-Define mode-level budgets:
+Возврат к старой версии через обычную активацию запрещен. Для него требуется отдельное событие rollback с ожидаемой текущей версией.
 
-- `draft`;
-- `standard`;
-- `deep`;
-- `research`.
+## Semantic diff
 
-Each mode should specify expected depth, latency tolerance, allowed agent passes, retrieval depth, formal-check usage, red-team usage, and review requirements.
+Сравнение snapshots выполняется по типизированным полям payload, а не по строкам JSON. Каждое изменение получает русское название и классификацию:
 
-### Risk tier policies
+- усиление контроля;
+- ослабление контроля;
+- изменение поведения или бюджета.
 
-Risk tiers:
+Повышение порога уверенности, включение review/Red Team/provenance и запрет принципов-кандидатов считаются усилением. Изменение бюджетов и глубины reasoning фиксируется как изменение поведения.
 
-- T1 reference / orientation;
-- T2 internal memo;
-- T3 draft letter or legal position;
-- T4 procedural draft;
-- T5 high-stakes recommendation;
-- T6 ready-to-file document.
+## Привязка к правовой трассировке
 
-The `mode x tier` matrix determines the actual behavior.
+Decision trace сохраняет одновременно:
 
-### Prompt and translation templates
+- `policy_version` — ID активного snapshot;
+- `policy_content_hash` — SHA-256 payload;
+- версию шаблона объяснения;
+- профиль модели.
 
-Prompt templates and translation templates are policy artifacts. They must be versioned and reviewable.
+Phase 0 trace также содержит активный snapshot и состояние реестра, поэтому строка версии может быть проверена против фактического поведения. Governance-решения кандидата ссылаются на те же snapshot ID и content hash.
 
-## Rollback classes
+## Локальная персистентность
 
-- candidate rollback;
-- activation decision rollback;
-- policy rollback;
-- translation template rollback;
-- institutional package version rollback.
+`JSONPolicyRegistryStore` обеспечивает проверяемую загрузку и атомарную замену JSON-файла с контролем ожидаемой сохраненной ревизии. Это воспроизводимый локальный backend и fixture-формат, но не полноценная межпроцессная транзакционная база. Production deployment должен заменить его хранилищем с транзакцией или compare-and-swap на стороне базы данных.
 
-## Phase 0 implementation scope
+## Текущая реализация
 
-The initial implementation should provide:
-
-- `SLAMode`;
-- `RiskTier`;
-- `CasePolicy`;
-- `PolicyMatrixEntry`;
-- cost budget model;
-- review requirements model;
-- tests showing that T4-T6 require stronger review than T1-T3.
+Код находится в `src/causa/management/policy_registry.py`. Синтетический артефакт `examples/synthetic_management_policy_registry_report.json` демонстрирует регистрацию двух версий, русский semantic diff, активацию усиленной версии и явный rollback к исходной политике.

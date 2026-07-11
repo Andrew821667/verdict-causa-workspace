@@ -1,0 +1,12 @@
+{
+  "id": "legacy-phase0-supply-trace-v0.5.0",
+  "artifact_type": "phase0_demo_trace",
+  "package_id": "contracts-ru-v0",
+  "package_version": "0.5.0",
+  "payload": {
+    "policy_version": "governance-policy-ru-v0",
+    "policy_content_hash": null,
+    "policy_snapshot_present": false,
+    "policy_registry_revision": null
+  }
+}

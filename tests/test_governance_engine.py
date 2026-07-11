@@ -304,6 +304,13 @@ def test_synthetic_governance_artifact_is_deterministic() -> None:
     second = build_synthetic_governance_lifecycle_artifact()
 
     assert first.model_dump(mode="json") == second.model_dump(mode="json")
+    assert first.policy_snapshot_id
+    assert first.policy_content_hash
+    assert all(
+        decision.policy_content_hash == first.policy_content_hash
+        for record in first.records
+        for decision in record.decisions
+    )
 
 
 def test_exported_governance_lifecycle_fixture_is_valid() -> None:

@@ -13,9 +13,12 @@ from causa.governance.engine import (
     submit_stage_decision,
 )
 from causa.governance.pipeline import GovernanceStage
-
-
-SYNTHETIC_POLICY_VERSION = "governance-policy-ru-v0"
+from causa.management.policy_registry import active_policy_snapshot
+from causa.management.synthetic_registry import (
+    SYNTHETIC_ACTIVE_POLICY_SNAPSHOT_ID,
+    SYNTHETIC_POLICY_FAMILY_ID,
+    build_synthetic_management_policy_registry_artifact,
+)
 
 
 def _approve_until(
@@ -50,12 +53,21 @@ def build_synthetic_gap_governance_record(
     candidate_id: str,
     *,
     include_revalidation: bool = False,
+    policy_version: str = SYNTHETIC_ACTIVE_POLICY_SNAPSHOT_ID,
+    policy_content_hash: str | None = None,
 ) -> GovernanceRecord:
+    if policy_content_hash is None:
+        registry = build_synthetic_management_policy_registry_artifact().registry
+        policy_content_hash = active_policy_snapshot(
+            registry,
+            SYNTHETIC_POLICY_FAMILY_ID,
+        ).content_hash
     created_at = datetime.fromisoformat("2026-07-11T10:00:00+03:00")
     record = create_governance_record(
         candidate_id=candidate_id,
         candidate_type=CandidateType.GAP_HEURISTIC,
-        policy_version=SYNTHETIC_POLICY_VERSION,
+        policy_version=policy_version,
+        policy_content_hash=policy_content_hash,
         created_at=created_at,
     )
     record = _approve_until(
@@ -93,10 +105,16 @@ def build_synthetic_gap_governance_record(
 def build_synthetic_sandbox_and_rollback_record() -> GovernanceRecord:
     candidate_id = "candidate-conflict-resolution-sandbox-v0"
     created_at = datetime.fromisoformat("2026-07-11T11:00:00+03:00")
+    policy_registry = build_synthetic_management_policy_registry_artifact().registry
+    policy_snapshot = active_policy_snapshot(
+        policy_registry,
+        SYNTHETIC_POLICY_FAMILY_ID,
+    )
     record = create_governance_record(
         candidate_id=candidate_id,
         candidate_type=CandidateType.CONFLICT_RESOLUTION_PATTERN,
-        policy_version=SYNTHETIC_POLICY_VERSION,
+        policy_version=SYNTHETIC_ACTIVE_POLICY_SNAPSHOT_ID,
+        policy_content_hash=policy_snapshot.content_hash,
         created_at=created_at,
     )
     record = _approve_until(
@@ -135,6 +153,11 @@ def build_synthetic_sandbox_and_rollback_record() -> GovernanceRecord:
 
 
 def build_synthetic_governance_lifecycle_artifact() -> GovernanceLifecycleArtifact:
+    policy_registry = build_synthetic_management_policy_registry_artifact().registry
+    policy_snapshot = active_policy_snapshot(
+        policy_registry,
+        SYNTHETIC_POLICY_FAMILY_ID,
+    )
     gap_record = build_synthetic_gap_governance_record(
         "candidate-supply-excuse-scope",
         include_revalidation=True,
@@ -143,6 +166,8 @@ def build_synthetic_governance_lifecycle_artifact() -> GovernanceLifecycleArtifa
     return GovernanceLifecycleArtifact(
         id="synthetic-governance-lifecycle-report-v0",
         title_ru="Синтетический журнал governance-жизненного цикла",
+        policy_snapshot_id=policy_snapshot.id,
+        policy_content_hash=policy_snapshot.content_hash,
         summary_ru=[
             "Эвристика пробела активирована и успешно прошла плановую повторную валидацию.",
             "Паттерн разрешения противоречий прошел песочницу и затем был явно откачен.",

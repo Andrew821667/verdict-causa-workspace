@@ -14,7 +14,6 @@ from causa.governance.failure_taxonomy import FailureType
 from causa.governance.engine import GovernanceRecord
 from causa.governance.profiles import GovernanceProfile, get_governance_profile
 from causa.governance.synthetic_lifecycle import (
-    SYNTHETIC_POLICY_VERSION,
     build_synthetic_gap_governance_record,
 )
 from causa.institutional.contracts.package import CONTRACTS_PACKAGE_MANIFEST
@@ -25,9 +24,17 @@ from causa.institutional.contracts.reviewed_analysis import (
 from causa.institutional.contracts.synthetic_reviewed_analysis import (
     build_synthetic_supply_analysis_artifact,
 )
-from causa.management.policy_matrix import PolicyMatrixEntry, build_policy_matrix_entry
-from causa.management.risk_tiers import RiskTier
-from causa.management.sla_modes import SLAMode
+from causa.management.policy_matrix import PolicyMatrixEntry
+from causa.management.policy_registry import (
+    PolicyRegistryState,
+    PolicySnapshot,
+    active_policy_snapshot,
+    policy_matrix_entry_from_payload,
+)
+from causa.management.synthetic_registry import (
+    SYNTHETIC_POLICY_FAMILY_ID,
+    build_synthetic_management_policy_registry_artifact,
+)
 from causa.localization.ru import GOVERNANCE_STAGE_LABELS_RU, label_ru
 from causa.reasoning.formal_checks import check_basic_contradiction
 from causa.translation import TranslationArtifact, TranslationLevel
@@ -46,6 +53,8 @@ class Phase0DemoTrace(BaseModel):
     governance_profile: GovernanceProfile
     governance_record: GovernanceRecord
     policy: PolicyMatrixEntry
+    policy_snapshot: PolicySnapshot
+    policy_registry: PolicyRegistryState
     red_team_scenario: RedTeamScenario
     translation: TranslationArtifact
     decision_trace: DecisionTrace
@@ -93,6 +102,12 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
     sources = analysis_artifact.sources
     analysis_request = analysis_artifact.request
     analysis_result = analysis_artifact.result
+    policy_registry_artifact = build_synthetic_management_policy_registry_artifact()
+    policy_registry = policy_registry_artifact.registry
+    policy_snapshot = active_policy_snapshot(
+        policy_registry,
+        SYNTHETIC_POLICY_FAMILY_ID,
+    )
     source = next(
         source
         for source in sources
@@ -126,14 +141,18 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
     )
     candidate_type = CandidateType.GAP_HEURISTIC
     governance_profile = get_governance_profile(candidate_type)
-    governance_record = build_synthetic_gap_governance_record(candidate.id)
-    policy = build_policy_matrix_entry(SLAMode.STANDARD, RiskTier.T3_DRAFT_LETTER)
+    governance_record = build_synthetic_gap_governance_record(
+        candidate.id,
+        policy_version=policy_snapshot.id,
+        policy_content_hash=policy_snapshot.content_hash,
+    )
+    policy = policy_matrix_entry_from_payload(policy_snapshot.payload)
     trace_id = "trace-phase0-supply-dispute-v0"
     translation = TranslationArtifact(
         id="translation-phase0-supply-dispute-v0",
         trace_id=trace_id,
         level=TranslationLevel.PROFESSIONAL,
-        template_version="translation-template-v0",
+        template_version=policy_snapshot.payload.translation_template_version,
         text=(
             "Синтетическое профессиональное объяснение: текущая трассировка выявляет "
             "возможную просрочку поставки, поскольку обязанность существовала, срок "
@@ -196,9 +215,10 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
             institutional_package_version=(
                 f"{CONTRACTS_PACKAGE_MANIFEST.id}@{CONTRACTS_PACKAGE_MANIFEST.version}"
             ),
-            policy_version=SYNTHETIC_POLICY_VERSION,
+            policy_version=policy_snapshot.id,
+            policy_content_hash=policy_snapshot.content_hash,
             translation_template_version=translation.template_version,
-            model_profile="no-llm-synthetic-demo",
+            model_profile=policy_snapshot.payload.model_profile,
         ),
         nodes=[
             *source_nodes,
@@ -219,6 +239,9 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     ),
                     "reviewer_ids": analysis_result.reviewer_ids,
                     "governance_record_id": governance_record.id,
+                    "policy_snapshot_id": policy_snapshot.id,
+                    "policy_content_hash": policy_snapshot.content_hash,
+                    "policy_registry_revision": policy_registry.revision,
                     "formal_rule_id": formal_translation.obligation_rule.id,
                     "constraint_set_id": constraint_set.id,
                     "source_applicable": source_applicability.applicable,
@@ -316,6 +339,8 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         governance_profile=governance_profile,
         governance_record=governance_record,
         policy=policy,
+        policy_snapshot=policy_snapshot,
+        policy_registry=policy_registry,
         red_team_scenario=red_team_scenario,
         translation=translation,
         decision_trace=decision_trace,

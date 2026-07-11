@@ -4,15 +4,18 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.6.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v0` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v0` | supported synthetic release with immutable policy coordinates |
 | `0.5.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v0` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v0` | supported synthetic release with ru-RU audit layer |
 | `0.4.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v0` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v0` | supported for synthetic Phase 0 |
 | `0.3.0` | `0.1.0` | `contracts.norm.v0` | n/a | `contracts-json-to-formal-v0` | n/a | historical synthetic release |
 | `0.2.0` | `0.1.0` | `contracts.norm.v0` | n/a | `contracts-json-to-formal-v0` | n/a | historical synthetic release |
 | `0.1.0` | `0.1.0` | `contracts.norm.v0` | n/a | `contracts-json-to-formal-v0` | n/a | historical synthetic release |
 
-This matrix is intentionally exact rather than a claim that every `0.5.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
+This matrix is intentionally exact rather than a claim that every `0.6.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+For `0.5.0` to `0.6.0`, preserve the old trace and regenerate it through the Management Plane registry. A historical policy version string does not prove the policy payload and cannot be assigned a content hash retrospectively. The current trace must obtain its snapshot ID and hash from a replayed registry state.
 
 For `0.4.0` to `0.5.0`, preserve the old reviewed-analysis artifact and regenerate all expert-facing reports. Russian reasons and governance decisions must be produced by the current code; they must not be inferred by translating historical English text. Machine IDs, norm schema, evidence schema, and translator coordinates remain compatible.
 
@@ -36,4 +39,4 @@ A future release that changes the reviewed norm schema, formal predicates, autho
 
 ## Rollback Path
 
-If `0.5.0` proves unsafe or incompatible, pin `0.4.0` together with core `0.1.0`, norm schema `contracts.norm.v0`, evidence schema `contracts.case-evidence.v0`, translator `contracts-json-to-formal-v0`, and pipeline `contracts-reviewed-analysis-v0`. Russian audit fields and governance records from `0.5.0` must not be silently imported into `0.4.0`. No package version is production-approved in Phase 0.
+If `0.6.0` proves unsafe or incompatible, pin `0.5.0` together with core `0.1.0`, norm schema `contracts.norm.v0`, evidence schema `contracts.case-evidence.v0`, translator `contracts-json-to-formal-v0`, and pipeline `contracts-reviewed-analysis-v0`. Preserve `0.6.0` policy registries as audit evidence, but do not synthesize their hash-backed coordinates inside `0.5.0`. No package version is production-approved in Phase 0.

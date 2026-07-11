@@ -563,7 +563,8 @@
     "candidate_type_label_ru": "Эвристика пробела",
     "locale": "ru-RU",
     "engine_version": "governance-engine-v0",
-    "policy_version": "governance-policy-ru-v0",
+    "policy_version": "policy-snapshot:phase0-standard-t3@1",
+    "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd",
     "current_stage": "active",
     "current_stage_label_ru": "Активно",
     "created_at": "2026-07-11T10:00:00+03:00",
@@ -585,7 +586,8 @@
         "evidence_refs": [
           "synthetic-governance-evidence:proposed"
         ],
-        "policy_version": "governance-policy-ru-v0"
+        "policy_version": "policy-snapshot:phase0-standard-t3@1",
+        "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
       },
       {
         "id": "governance-decision:candidate-supply-excuse-scope:2",
@@ -604,7 +606,8 @@
         "evidence_refs": [
           "synthetic-governance-evidence:type_classification"
         ],
-        "policy_version": "governance-policy-ru-v0"
+        "policy_version": "policy-snapshot:phase0-standard-t3@1",
+        "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
       },
       {
         "id": "governance-decision:candidate-supply-excuse-scope:3",
@@ -623,7 +626,8 @@
         "evidence_refs": [
           "synthetic-governance-evidence:expert_review"
         ],
-        "policy_version": "governance-policy-ru-v0"
+        "policy_version": "policy-snapshot:phase0-standard-t3@1",
+        "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
       }
     ],
     "activations": [
@@ -634,7 +638,8 @@
         "activated_at": "2026-07-11T10:03:00+03:00",
         "expires_at": "2027-07-11T10:03:00+03:00",
         "actor_id": "synthetic-domain-owner",
-        "policy_version": "governance-policy-ru-v0",
+        "policy_version": "policy-snapshot:phase0-standard-t3@1",
+        "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd",
         "decision_id": "governance-decision:candidate-supply-excuse-scope:3"
       }
     ],
@@ -656,6 +661,219 @@
       "replayable_trace": true,
       "complete_provenance": false
     }
+  },
+  "policy_snapshot": {
+    "id": "policy-snapshot:phase0-standard-t3@1",
+    "family_id": "phase0-standard-t3",
+    "version": 1,
+    "locale": "ru-RU",
+    "parent_snapshot_id": null,
+    "payload": {
+      "mode": "standard",
+      "risk_tier": "t3_draft_letter",
+      "max_agent_passes": 3,
+      "max_requests": 6,
+      "max_tokens": 12000,
+      "retrieval_depth": 4,
+      "confidence_threshold": 0.62,
+      "allow_candidate_principles": true,
+      "require_formal_check": true,
+      "require_red_team": false,
+      "human_review": false,
+      "cross_review": false,
+      "replayable_trace": true,
+      "complete_provenance": false,
+      "escalate_on_low_confidence": true,
+      "translation_template_version": "translation-template-v0",
+      "model_profile": "no-llm-synthetic-demo"
+    },
+    "content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd",
+    "created_at": "2026-07-11T09:00:00+03:00",
+    "created_by": "synthetic-policy-owner",
+    "reviewer_ids": [
+      "synthetic-domain-owner"
+    ],
+    "evidence_refs": [
+      "policy-matrix:standard:t3"
+    ],
+    "change_summary_ru": "Базовая политика стандартного режима для уровня риска T3."
+  },
+  "policy_registry": {
+    "id": "management-policy-registry",
+    "locale": "ru-RU",
+    "registry_version": "policy-registry-v0",
+    "revision": 5,
+    "snapshots": [
+      {
+        "id": "policy-snapshot:phase0-standard-t3@1",
+        "family_id": "phase0-standard-t3",
+        "version": 1,
+        "locale": "ru-RU",
+        "parent_snapshot_id": null,
+        "payload": {
+          "mode": "standard",
+          "risk_tier": "t3_draft_letter",
+          "max_agent_passes": 3,
+          "max_requests": 6,
+          "max_tokens": 12000,
+          "retrieval_depth": 4,
+          "confidence_threshold": 0.62,
+          "allow_candidate_principles": true,
+          "require_formal_check": true,
+          "require_red_team": false,
+          "human_review": false,
+          "cross_review": false,
+          "replayable_trace": true,
+          "complete_provenance": false,
+          "escalate_on_low_confidence": true,
+          "translation_template_version": "translation-template-v0",
+          "model_profile": "no-llm-synthetic-demo"
+        },
+        "content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd",
+        "created_at": "2026-07-11T09:00:00+03:00",
+        "created_by": "synthetic-policy-owner",
+        "reviewer_ids": [
+          "synthetic-domain-owner"
+        ],
+        "evidence_refs": [
+          "policy-matrix:standard:t3"
+        ],
+        "change_summary_ru": "Базовая политика стандартного режима для уровня риска T3."
+      },
+      {
+        "id": "policy-snapshot:phase0-standard-t3@2",
+        "family_id": "phase0-standard-t3",
+        "version": 2,
+        "locale": "ru-RU",
+        "parent_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
+        "payload": {
+          "mode": "standard",
+          "risk_tier": "t3_draft_letter",
+          "max_agent_passes": 4,
+          "max_requests": 8,
+          "max_tokens": 18000,
+          "retrieval_depth": 6,
+          "confidence_threshold": 0.75,
+          "allow_candidate_principles": false,
+          "require_formal_check": true,
+          "require_red_team": true,
+          "human_review": true,
+          "cross_review": false,
+          "replayable_trace": true,
+          "complete_provenance": true,
+          "escalate_on_low_confidence": true,
+          "translation_template_version": "translation-template-v0",
+          "model_profile": "no-llm-synthetic-demo"
+        },
+        "content_hash": "sha256:5560c74904269cd2563f7a0438220ac40ff9320d9a3680259ee2d277ffa0bfd9",
+        "created_at": "2026-07-11T09:08:00+03:00",
+        "created_by": "synthetic-policy-owner",
+        "reviewer_ids": [
+          "synthetic-domain-owner",
+          "synthetic-cross-reviewer"
+        ],
+        "evidence_refs": [
+          "synthetic-supply-benchmark-suite-v0",
+          "synthetic-supply-red-team-suite-v0"
+        ],
+        "change_summary_ru": "Усилены экспертный контроль, Red Team, provenance и порог уверенности."
+      }
+    ],
+    "active_snapshot_ids": {
+      "phase0-standard-t3": "policy-snapshot:phase0-standard-t3@1"
+    },
+    "events": [
+      {
+        "id": "policy-event:1",
+        "sequence": 1,
+        "event_type": "registered",
+        "event_type_label_ru": "Снимок политики зарегистрирован",
+        "family_id": "phase0-standard-t3",
+        "snapshot_id": "policy-snapshot:phase0-standard-t3@1",
+        "previous_snapshot_id": null,
+        "actor_id": "synthetic-policy-owner",
+        "occurred_at": "2026-07-11T09:00:00+03:00",
+        "reasons_ru": [
+          "Зарегистрирована исходная воспроизводимая политика Этапа 0."
+        ],
+        "evidence_refs": [
+          "policy-matrix:standard:t3"
+        ],
+        "resulting_revision": 1
+      },
+      {
+        "id": "policy-event:2",
+        "sequence": 2,
+        "event_type": "activated",
+        "event_type_label_ru": "Снимок политики активирован",
+        "family_id": "phase0-standard-t3",
+        "snapshot_id": "policy-snapshot:phase0-standard-t3@1",
+        "previous_snapshot_id": null,
+        "actor_id": "synthetic-governance-controller",
+        "occurred_at": "2026-07-11T09:05:00+03:00",
+        "reasons_ru": [
+          "Исходная политика одобрена для синтетического пути Этапа 0."
+        ],
+        "evidence_refs": [
+          "policy-approval:baseline-v1"
+        ],
+        "resulting_revision": 2
+      },
+      {
+        "id": "policy-event:3",
+        "sequence": 3,
+        "event_type": "registered",
+        "event_type_label_ru": "Снимок политики зарегистрирован",
+        "family_id": "phase0-standard-t3",
+        "snapshot_id": "policy-snapshot:phase0-standard-t3@2",
+        "previous_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
+        "actor_id": "synthetic-policy-owner",
+        "occurred_at": "2026-07-11T09:10:00+03:00",
+        "reasons_ru": [
+          "Зарегистрирован снимок с усиленными контрольными требованиями."
+        ],
+        "evidence_refs": [
+          "policy-review:strengthened-v2"
+        ],
+        "resulting_revision": 3
+      },
+      {
+        "id": "policy-event:4",
+        "sequence": 4,
+        "event_type": "activated",
+        "event_type_label_ru": "Снимок политики активирован",
+        "family_id": "phase0-standard-t3",
+        "snapshot_id": "policy-snapshot:phase0-standard-t3@2",
+        "previous_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
+        "actor_id": "synthetic-governance-controller",
+        "occurred_at": "2026-07-11T09:15:00+03:00",
+        "reasons_ru": [
+          "Усиленная политика допущена к синтетической проверке."
+        ],
+        "evidence_refs": [
+          "policy-activation:strengthened-v2"
+        ],
+        "resulting_revision": 4
+      },
+      {
+        "id": "policy-event:5",
+        "sequence": 5,
+        "event_type": "rolled_back",
+        "event_type_label_ru": "Выполнен откат политики",
+        "family_id": "phase0-standard-t3",
+        "snapshot_id": "policy-snapshot:phase0-standard-t3@1",
+        "previous_snapshot_id": "policy-snapshot:phase0-standard-t3@2",
+        "actor_id": "synthetic-governance-controller",
+        "occurred_at": "2026-07-11T09:20:00+03:00",
+        "reasons_ru": [
+          "Синтетическая тренировка отката возвращает исходную политику; инцидент не моделируется."
+        ],
+        "evidence_refs": [
+          "policy-rollback-drill:v2-to-v1"
+        ],
+        "resulting_revision": 5
+      }
+    ]
   },
   "red_team_scenario": {
     "id": "red-team-supply-delay-excuse-overreach",
@@ -687,8 +905,9 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.5.0",
-      "policy_version": "governance-policy-ru-v0",
+      "institutional_package_version": "contracts-ru-v0@0.6.0",
+      "policy_version": "policy-snapshot:phase0-standard-t3@1",
+      "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd",
       "translation_template_version": "translation-template-v0",
       "model_profile": "no-llm-synthetic-demo"
     },
@@ -758,6 +977,9 @@
             "synthetic-temporal-reviewer"
           ],
           "governance_record_id": "governance-record:candidate-supply-excuse-scope",
+          "policy_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd",
+          "policy_registry_revision": 5,
           "formal_rule_id": "obligation-rule:norm-supply-delivery-duty-v0",
           "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
           "source_applicable": true,

@@ -186,10 +186,18 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
         ),
         PipelineStepResult(
             id="record-policy",
-            title="Фиксация политики Management Plane",
+            title="Фиксация активного снимка политики Management Plane",
             status=PipelineStepStatus.PASSED,
-            artifact_refs=[trace.policy.mode.value, trace.policy.risk_tier.value],
-            notes=["Применена матрица политики: стандартный режим × уровень риска T3."],
+            artifact_refs=[
+                trace.policy_snapshot.id,
+                trace.policy_snapshot.content_hash,
+                *[event.id for event in trace.policy_registry.events],
+            ],
+            notes=[
+                "Применена активная политика: стандартный режим × уровень риска T3.",
+                f"Ревизия реестра политик: {trace.policy_registry.revision}.",
+                "ID и content hash снимка сохранены в координатах трассировки.",
+            ],
         ),
         PipelineStepResult(
             id="attach-red-team",
@@ -281,9 +289,10 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contracts-ru-v0-compatibility.md",
                 "src/causa/institutional/contracts/versioning.py",
                 "src/causa/institutional/contracts/migrations.py",
-                "examples/migrations/contracts-ru-v0-0.1.0-to-0.5.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.3.0-to-0.5.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.4.0-to-0.5.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.1.0-to-0.6.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.3.0-to-0.6.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.4.0-to-0.6.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.5.0-to-0.6.0-migration-report.json",
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
             ],
             remaining_work=[
@@ -297,9 +306,14 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
             status=PipelineStepStatus.PASSED,
             evidence_refs=[
                 "src/causa/management/policy_matrix.py",
+                "src/causa/management/policy_registry.py",
+                "examples/synthetic_management_policy_registry_report.json",
                 pipeline.trace.decision_trace.versions.policy_version,
+                pipeline.trace.policy_snapshot.content_hash,
             ],
-            remaining_work=["Добавить постоянное хранение версий политики и журнал их отката."],
+            remaining_work=[
+                "Заменить локальное атомарное JSON-хранилище транзакционным production backend.",
+            ],
         ),
         ReadinessItem(
             id="ws6-governance",

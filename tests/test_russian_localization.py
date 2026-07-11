@@ -10,6 +10,12 @@ from causa.localization.ru import (
 )
 from causa.management.risk_tiers import RiskTier
 from causa.management.sla_modes import SLAMode
+from causa.management.policy_registry import (
+    POLICY_EVENT_LABELS_RU,
+    POLICY_FIELD_LABELS_RU,
+    BehaviorPolicyPayload,
+    PolicyEventType,
+)
 from causa.institutional.contracts.red_team import SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS
 from causa.institutional.contracts.synthetic_sources import SYNTHETIC_CONTRACT_SOURCES
 
@@ -31,6 +37,8 @@ def test_russian_labels_cover_all_governance_machine_values() -> None:
 def test_russian_labels_cover_all_management_plane_values() -> None:
     assert set(SLA_MODE_LABELS_RU) == {mode.value for mode in SLAMode}
     assert set(RISK_TIER_LABELS_RU) == {risk_tier.value for risk_tier in RiskTier}
+    assert set(POLICY_FIELD_LABELS_RU) == set(BehaviorPolicyPayload.model_fields)
+    assert set(POLICY_EVENT_LABELS_RU) == set(PolicyEventType)
 
 
 def test_formal_and_authority_results_include_russian_reasons() -> None:

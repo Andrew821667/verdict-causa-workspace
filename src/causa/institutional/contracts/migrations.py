@@ -112,6 +112,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_synthetic_supply_red_team.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.5.0",
+        to_version="0.6.0",
+        reasons=[
+            "Policy coordinates now require an immutable snapshot id and content hash.",
+            "Phase 0 traces embed the active registry state and replayable policy lifecycle.",
+        ],
+        reasons_ru=[
+            "Координаты политики теперь требуют ID неизменяемого снимка и hash содержимого.",
+            "Трассировка Этапа 0 включает активное состояние реестра и воспроизводимый жизненный цикл политики.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_management_policy_registry.py",
+            "python scripts/export_synthetic_governance_lifecycle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

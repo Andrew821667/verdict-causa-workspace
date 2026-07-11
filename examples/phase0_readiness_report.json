@@ -56,10 +56,11 @@
         "docs/contracts-ru-v0-compatibility.md",
         "src/causa/institutional/contracts/versioning.py",
         "src/causa/institutional/contracts/migrations.py",
-        "examples/migrations/contracts-ru-v0-0.1.0-to-0.5.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.3.0-to-0.5.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.4.0-to-0.5.0-migration-report.json",
-        "contracts-ru-v0@0.5.0"
+        "examples/migrations/contracts-ru-v0-0.1.0-to-0.6.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.3.0-to-0.6.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.4.0-to-0.6.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.5.0-to-0.6.0-migration-report.json",
+        "contracts-ru-v0@0.6.0"
       ],
       "remaining_work": [
         "Расширить словарь, правила юридической силы, временные правила, правовые операторы и контрольные сценарии.",
@@ -72,10 +73,13 @@
       "status": "passed",
       "evidence_refs": [
         "src/causa/management/policy_matrix.py",
-        "governance-policy-ru-v0"
+        "src/causa/management/policy_registry.py",
+        "examples/synthetic_management_policy_registry_report.json",
+        "policy-snapshot:phase0-standard-t3@1",
+        "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
       ],
       "remaining_work": [
-        "Добавить постоянное хранение версий политики и журнал их отката."
+        "Заменить локальное атомарное JSON-хранилище транзакционным production backend."
       ]
     },
     {

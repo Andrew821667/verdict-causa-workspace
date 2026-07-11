@@ -51,7 +51,17 @@ def test_exported_supply_dispute_trace_fixture_is_valid() -> None:
 
     assert trace.locale == "ru-RU"
     assert trace.disclaimer.startswith("Синтетическая трассировка Этапа 0")
-    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.5.0"
+    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.6.0"
+    assert trace.decision_trace.versions.policy_version == trace.policy_snapshot.id
+    assert (
+        trace.decision_trace.versions.policy_content_hash
+        == trace.policy_snapshot.content_hash
+    )
+    assert trace.governance_record.policy_version == trace.policy_snapshot.id
+    assert (
+        trace.governance_record.policy_content_hash
+        == trace.policy_snapshot.content_hash
+    )
     assert trace.formal_translation.obligation_rule.id == "obligation-rule:norm-supply-delivery-duty-v0"
     assert trace.constraint_set.id == "constraint-set:obligation-rule:norm-supply-delivery-duty-v0"
     assert trace.temporal_facts.agreed_due_date.isoformat() == "2026-01-15"

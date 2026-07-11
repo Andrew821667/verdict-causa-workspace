@@ -3,6 +3,8 @@
   "locale": "ru-RU",
   "engine_version": "governance-engine-v0",
   "title_ru": "Синтетический журнал governance-жизненного цикла",
+  "policy_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
+  "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd",
   "summary_ru": [
     "Эвристика пробела активирована и успешно прошла плановую повторную валидацию.",
     "Паттерн разрешения противоречий прошел песочницу и затем был явно откачен.",
@@ -16,7 +18,8 @@
       "candidate_type_label_ru": "Эвристика пробела",
       "locale": "ru-RU",
       "engine_version": "governance-engine-v0",
-      "policy_version": "governance-policy-ru-v0",
+      "policy_version": "policy-snapshot:phase0-standard-t3@1",
+      "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd",
       "current_stage": "active",
       "current_stage_label_ru": "Активно",
       "created_at": "2026-07-11T10:00:00+03:00",
@@ -38,7 +41,8 @@
           "evidence_refs": [
             "synthetic-governance-evidence:proposed"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         },
         {
           "id": "governance-decision:candidate-supply-excuse-scope:2",
@@ -57,7 +61,8 @@
           "evidence_refs": [
             "synthetic-governance-evidence:type_classification"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         },
         {
           "id": "governance-decision:candidate-supply-excuse-scope:3",
@@ -76,7 +81,8 @@
           "evidence_refs": [
             "synthetic-governance-evidence:expert_review"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         },
         {
           "id": "governance-decision:candidate-supply-excuse-scope:4",
@@ -95,7 +101,8 @@
           "evidence_refs": [
             "synthetic-monitoring-report:gap-heuristic-v0"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         },
         {
           "id": "governance-decision:candidate-supply-excuse-scope:5",
@@ -115,7 +122,8 @@
             "synthetic-supply-benchmark-suite-v0",
             "synthetic-supply-red-team-suite-v0"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         }
       ],
       "activations": [
@@ -126,7 +134,8 @@
           "activated_at": "2026-07-11T10:03:00+03:00",
           "expires_at": "2027-07-11T10:03:00+03:00",
           "actor_id": "synthetic-domain-owner",
-          "policy_version": "governance-policy-ru-v0",
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd",
           "decision_id": "governance-decision:candidate-supply-excuse-scope:3"
         }
       ],
@@ -162,7 +171,8 @@
       "candidate_type_label_ru": "Паттерн разрешения противоречий",
       "locale": "ru-RU",
       "engine_version": "governance-engine-v0",
-      "policy_version": "governance-policy-ru-v0",
+      "policy_version": "policy-snapshot:phase0-standard-t3@1",
+      "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd",
       "current_stage": "rolled_back",
       "current_stage_label_ru": "Откачено",
       "created_at": "2026-07-11T11:00:00+03:00",
@@ -184,7 +194,8 @@
           "evidence_refs": [
             "synthetic-governance-evidence:proposed"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:2",
@@ -203,7 +214,8 @@
           "evidence_refs": [
             "synthetic-governance-evidence:type_classification"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:3",
@@ -222,7 +234,8 @@
           "evidence_refs": [
             "synthetic-governance-evidence:formal_check"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:4",
@@ -241,7 +254,8 @@
           "evidence_refs": [
             "synthetic-governance-evidence:source_check"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:5",
@@ -260,7 +274,8 @@
           "evidence_refs": [
             "synthetic-governance-evidence:benchmark_check"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:6",
@@ -279,7 +294,8 @@
           "evidence_refs": [
             "synthetic-governance-evidence:red_team_check"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:7",
@@ -298,7 +314,8 @@
           "evidence_refs": [
             "synthetic-governance-evidence:expert_review"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:8",
@@ -317,7 +334,8 @@
           "evidence_refs": [
             "synthetic-supply-red-team-suite-v0"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:9",
@@ -336,7 +354,8 @@
           "evidence_refs": [
             "synthetic-rollback-drill:conflict-resolution-v0"
           ],
-          "policy_version": "governance-policy-ru-v0"
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd"
         }
       ],
       "activations": [
@@ -347,7 +366,8 @@
           "activated_at": "2026-07-11T11:20:00+03:00",
           "expires_at": "2028-01-02T11:20:00+03:00",
           "actor_id": "synthetic-red-team-reviewer",
-          "policy_version": "governance-policy-ru-v0",
+          "policy_version": "policy-snapshot:phase0-standard-t3@1",
+          "policy_content_hash": "sha256:09b15d0498d9028117d6c29accf186c5fe63d587898da68eb6239ad0712030fd",
           "decision_id": "governance-decision:candidate-conflict-resolution-sandbox-v0:8"
         }
       ],
