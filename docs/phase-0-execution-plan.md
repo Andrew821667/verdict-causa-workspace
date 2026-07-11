@@ -222,11 +222,11 @@ Phase 0 is not done when the repository looks polished. It is done when the syst
 
 ## Immediate next milestones
 
-1. Add formal patterns for remedies, causation, and limitation periods after domain review.
-2. Collect privacy-safe pilot observations for practice-utility metrics.
-3. Integrate a reviewed external model provider for attack wording under tenant and privacy controls.
-4. Add migration fixtures for the `0.1.0` to `0.2.0` package transition.
-5. Replace the synthetic authority policy with a jurisdiction-reviewed policy before using non-synthetic sources.
+1. Collect privacy-safe pilot observations for practice-utility metrics.
+2. Integrate a reviewed external model provider for attack wording under tenant and privacy controls.
+3. Add migration fixtures for the `0.1.0` to `0.3.0` package transitions.
+4. Replace the synthetic authority policy with a jurisdiction-reviewed policy before using non-synthetic sources.
+5. Replace synthetic remedy, causation, and limitation facts with reviewed case-evidence mappings.
 
 ## Current synthetic trace
 

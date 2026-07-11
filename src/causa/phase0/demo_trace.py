@@ -219,6 +219,9 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     "late_performance_issue": constraint_evaluation.late_performance_issue,
                     "defect_issue": constraint_evaluation.defect_issue,
                     "payment_default_issue": constraint_evaluation.payment_default_issue,
+                    "damages_remedy_available": constraint_evaluation.damages_remedy_available,
+                    "causation_evidence_gap": constraint_evaluation.causation_evidence_gap,
+                    "limitation_bar": constraint_evaluation.limitation_bar,
                 },
             ),
             KnowledgeNode(
@@ -252,7 +255,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         warnings=[
             "Synthetic demo only.",
             "Not legal advice.",
-            "Constraint set covers only narrow delay, defect, and payment-default patterns.",
+            "Constraint set covers only narrow delay, defect, payment-default, and remedy patterns.",
         ],
     )
 

@@ -36,6 +36,17 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.3.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Synthetic Phase 0 formal checks add damages remedy, causation, and limitation predicates.",
+            "No production or real-client-data compatibility claim is implied.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.2.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -38,7 +38,7 @@
       ],
       "remaining_work": [
         "Connect reviewed norm conditions and exceptions to typed formal inputs.",
-        "Add formal patterns for remedies, causation, and limitation periods.",
+        "Connect reviewed case evidence to remedy, causation, and limitation facts.",
         "Connect reviewed source representations to authority-resolution inputs."
       ]
     },
@@ -52,7 +52,7 @@
         "docs/contracts-ru-v0-changelog.md",
         "docs/contracts-ru-v0-compatibility.md",
         "src/causa/institutional/contracts/versioning.py",
-        "contracts-ru-v0@0.2.0"
+        "contracts-ru-v0@0.3.0"
       ],
       "remaining_work": [
         "Expand vocabulary, authority rules, temporal rules, legal operators, benchmarks, and red-team scenarios.",

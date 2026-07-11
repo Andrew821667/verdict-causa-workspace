@@ -19,6 +19,9 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     assert trace.constraint_evaluation.late_performance_issue is True
     assert trace.constraint_evaluation.defect_issue is False
     assert trace.constraint_evaluation.payment_default_issue is False
+    assert trace.constraint_evaluation.damages_remedy_available is False
+    assert trace.constraint_evaluation.causation_evidence_gap is False
+    assert trace.constraint_evaluation.limitation_bar is False
     assert trace.claim.sources == [trace.legal_source.id]
     assert trace.candidate_type == CandidateType.GAP_HEURISTIC
     assert trace.policy.mode.value == "standard"
@@ -39,7 +42,7 @@ def test_exported_supply_dispute_trace_fixture_is_valid() -> None:
     trace = Phase0DemoTrace.model_validate(data)
 
     assert trace.disclaimer.startswith("Synthetic Phase 0 trace")
-    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.2.0"
+    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.3.0"
     assert trace.formal_translation.obligation_rule.id == "obligation-rule:norm-supply-delivery-duty-v0"
     assert trace.constraint_set.id == "constraint-set:obligation-rule:norm-supply-delivery-duty-v0"
     assert trace.temporal_facts.agreed_due_date.isoformat() == "2026-01-15"

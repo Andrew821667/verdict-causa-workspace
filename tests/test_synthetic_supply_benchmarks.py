@@ -147,6 +147,27 @@ def test_extended_constraint_benchmarks_keep_delay_defect_and_payment_distinct()
     assert payment_defense_result.payment_default_issue is False
 
 
+def test_remedy_constraint_benchmarks_keep_causation_and_limitation_distinct() -> None:
+    remedy_results = {
+        task.id: run_benchmark_task(task)
+        for task in SYNTHETIC_SUPPLY_BENCHMARKS
+        if "damages-remedy" in task.id or "limitation-period" in task.id
+    }
+
+    available_result = remedy_results["bench-damages-remedy-available-after-late-delivery"]
+    assert available_result.damages_remedy_available is True
+    assert available_result.causation_evidence_gap is False
+    assert available_result.limitation_bar is False
+
+    causation_result = remedy_results["bench-damages-remedy-needs-causation"]
+    assert causation_result.damages_remedy_available is False
+    assert causation_result.causation_evidence_gap is True
+
+    limitation_result = remedy_results["bench-limitation-period-bars-damages-remedy"]
+    assert limitation_result.damages_remedy_available is False
+    assert limitation_result.limitation_bar is True
+
+
 def test_payment_benchmark_records_separate_analysis_warning() -> None:
     task = next(task for task in SYNTHETIC_SUPPLY_BENCHMARKS if "payment" in task.id)
     result = run_benchmark_task(task)

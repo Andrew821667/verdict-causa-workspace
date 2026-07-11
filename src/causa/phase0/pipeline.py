@@ -207,7 +207,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
             ],
             remaining_work=[
                 "Connect reviewed norm conditions and exceptions to typed formal inputs.",
-                "Add formal patterns for remedies, causation, and limitation periods.",
+                "Connect reviewed case evidence to remedy, causation, and limitation facts.",
                 "Connect reviewed source representations to authority-resolution inputs.",
             ],
         ),

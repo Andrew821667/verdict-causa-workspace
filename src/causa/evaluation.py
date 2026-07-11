@@ -19,6 +19,9 @@ class BenchmarkTask(BaseModel):
     expected_late_performance_issue: bool | None = None
     expected_defect_issue: bool | None = None
     expected_payment_default_issue: bool | None = None
+    expected_damages_remedy_available: bool | None = None
+    expected_causation_evidence_gap: bool | None = None
+    expected_limitation_bar: bool | None = None
     required_warning_fragments: list[str] = Field(default_factory=list)
 
 
@@ -29,6 +32,9 @@ class BenchmarkTaskResult(BaseModel):
     late_performance_issue: bool | None = None
     defect_issue: bool | None = None
     payment_default_issue: bool | None = None
+    damages_remedy_available: bool | None = None
+    causation_evidence_gap: bool | None = None
+    limitation_bar: bool | None = None
     source_refs: list[str] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
     reasons: list[str] = Field(default_factory=list)

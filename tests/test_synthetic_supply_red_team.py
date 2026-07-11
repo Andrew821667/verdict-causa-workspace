@@ -17,7 +17,7 @@ from causa.phase0.pipeline import build_phase0_readiness_report
 def test_synthetic_supply_red_team_suite_has_initial_coverage() -> None:
     scenario_ids = {scenario.id for scenario in SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS}
 
-    assert len(SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS) >= 11
+    assert len(SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS) >= 13
     assert {
         "redteam-ignore-valid-excuse",
         "redteam-erase-payment-duty",
@@ -30,6 +30,8 @@ def test_synthetic_supply_red_team_suite_has_initial_coverage() -> None:
         "redteam-infer-defect-without-confirmed-performance",
         "redteam-ignore-payment-defense",
         "redteam-special-regulation-overrides-statute",
+        "redteam-damages-without-causation",
+        "redteam-ignore-limitation-bar",
     } <= scenario_ids
 
 
@@ -130,6 +132,24 @@ def test_authority_attack_attempt_rejects_special_regulation_over_statute() -> N
     assert authority_attempt.observed_outcome.endswith(
         "synthetic-ru-contract-general-performance-duty"
     )
+
+
+def test_formal_attack_attempt_rejects_damages_without_causation() -> None:
+    scenario = next(
+        scenario
+        for scenario in SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS
+        if scenario.id == "redteam-damages-without-causation"
+    )
+
+    result = run_red_team_scenario(scenario)
+    formal_attempt = next(
+        attempt
+        for attempt in result.adversarial_attempts
+        if attempt.technique == "formal_constraint"
+    )
+
+    assert formal_attempt.blocked is True
+    assert formal_attempt.observed_outcome == "damages_remedy_available=False"
 
 
 def test_callback_model_generator_is_recorded_without_changing_attack_execution() -> None:

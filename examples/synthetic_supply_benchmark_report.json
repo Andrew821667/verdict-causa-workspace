@@ -1,8 +1,8 @@
 {
   "id": "synthetic-supply-benchmark-suite-v0",
   "institutional_package_id": "contracts-ru-v0",
-  "total": 19,
-  "passed": 19,
+  "total": 22,
+  "passed": 22,
   "failed": 0,
   "results": [
     {
@@ -12,6 +12,9 @@
       "late_performance_issue": true,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty",
         "synthetic-ru-contract-delivery-term"
@@ -39,6 +42,9 @@
       "late_performance_issue": false,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty",
         "synthetic-ru-contract-valid-excuse"
@@ -66,6 +72,9 @@
       "late_performance_issue": false,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty"
       ],
@@ -91,6 +100,9 @@
       "late_performance_issue": false,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-payment-duty"
       ],
@@ -118,6 +130,9 @@
       "late_performance_issue": false,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-acceptance-defects"
       ],
@@ -145,6 +160,9 @@
       "late_performance_issue": true,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-penalty-reduction"
       ],
@@ -172,6 +190,9 @@
       "late_performance_issue": true,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty-v1"
       ],
@@ -197,6 +218,9 @@
       "late_performance_issue": true,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty-v2"
       ],
@@ -222,6 +246,9 @@
       "late_performance_issue": true,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty-v1"
       ],
@@ -247,6 +274,9 @@
       "late_performance_issue": true,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-general-performance-duty",
         "synthetic-ru-contract-supply-specific-delivery-duty"
@@ -279,6 +309,9 @@
       "late_performance_issue": true,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-general-performance-duty",
         "synthetic-ru-contract-supply-specific-delivery-duty"
@@ -311,6 +344,9 @@
       "late_performance_issue": true,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-general-performance-duty",
         "synthetic-ru-contract-supply-delivery-term"
@@ -343,6 +379,9 @@
       "late_performance_issue": true,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-supply-delivery-duty-v1",
         "synthetic-ru-contract-supply-delivery-case-law"
@@ -377,6 +416,9 @@
       "late_performance_issue": true,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-general-performance-duty",
         "synthetic-ru-contract-supplier-delivery-fact"
@@ -409,6 +451,9 @@
       "late_performance_issue": false,
       "defect_issue": true,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-acceptance-defects"
       ],
@@ -434,6 +479,9 @@
       "late_performance_issue": false,
       "defect_issue": false,
       "payment_default_issue": true,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-payment-duty"
       ],
@@ -457,6 +505,9 @@
       "late_performance_issue": false,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-payment-duty"
       ],
@@ -480,6 +531,9 @@
       "late_performance_issue": true,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-constitutional-contract-guarantee",
         "synthetic-ru-contract-supply-specific-delivery-duty"
@@ -512,6 +566,9 @@
       "late_performance_issue": true,
       "defect_issue": false,
       "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
       "source_refs": [
         "synthetic-ru-contract-general-performance-duty",
         "synthetic-ru-regulatory-supply-delivery-record"
@@ -535,6 +592,93 @@
       "authority_rules": [
         "higher_authority"
       ],
+      "authority_excluded_source_refs": []
+    },
+    {
+      "task_id": "bench-damages-remedy-available-after-late-delivery",
+      "passed": true,
+      "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
+      "damages_remedy_available": true,
+      "causation_evidence_gap": false,
+      "limitation_bar": false,
+      "source_refs": [
+        "synthetic-ru-contract-supply-delivery-duty"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies.",
+        "Damages remedy is available under the current narrow facts."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date."
+      ],
+      "authority_winner": null,
+      "authority_reasons": [],
+      "authority_rules": [],
+      "authority_excluded_source_refs": []
+    },
+    {
+      "task_id": "bench-damages-remedy-needs-causation",
+      "passed": true,
+      "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": true,
+      "limitation_bar": false,
+      "source_refs": [
+        "synthetic-ru-contract-supply-delivery-duty"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies.",
+        "Causation evidence gap: a remedy is requested for claimed loss without established causation."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date."
+      ],
+      "authority_winner": null,
+      "authority_reasons": [],
+      "authority_rules": [],
+      "authority_excluded_source_refs": []
+    },
+    {
+      "task_id": "bench-limitation-period-bars-damages-remedy",
+      "passed": true,
+      "breach_issue": true,
+      "late_performance_issue": true,
+      "defect_issue": false,
+      "payment_default_issue": false,
+      "damages_remedy_available": false,
+      "causation_evidence_gap": false,
+      "limitation_bar": true,
+      "source_refs": [
+        "synthetic-ru-contract-supply-delivery-duty"
+      ],
+      "warnings": [],
+      "reasons": [
+        "Late performance issue: Duty exists, due date is missed, and no valid exception applies.",
+        "Limitation bar: the requested remedy is time-barred."
+      ],
+      "temporal_reasons": [
+        "Actual performance date is later than the agreed due date."
+      ],
+      "source_applicability_reasons": [
+        "synthetic-ru-contract-supply-delivery-duty: Source is applicable at the evaluation date."
+      ],
+      "authority_winner": null,
+      "authority_reasons": [],
+      "authority_rules": [],
       "authority_excluded_source_refs": []
     }
   ]

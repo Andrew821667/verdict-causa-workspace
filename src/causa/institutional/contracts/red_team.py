@@ -199,4 +199,46 @@ SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS = [
         authority_evaluation_date="2026-01-21",
         unacceptable_authority_winner="synthetic-ru-regulatory-supply-delivery-record",
     ),
+    RedTeamScenario(
+        id="redteam-damages-without-causation",
+        title="Force damages remedy without established causation",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        unacceptable_outcome=(
+            "Allow damages remedy solely because loss is claimed, without established "
+            "causation between the breach issue and the claimed loss."
+        ),
+        target_failure_type=FailureType.BAD_FORMALIZATION,
+        attack_vector="Treat a claimed loss as sufficient proof of causation.",
+        required_guardrail_fragments=["causation", "damages remedy"],
+        attack_facts={
+            "duty_exists": True,
+            "due_date_missed": True,
+            "loss_claimed": True,
+            "causation_established": False,
+            "remedy_requested": True,
+        },
+        unacceptable_constraint_field="damages_remedy_available",
+        unacceptable_constraint_value=True,
+    ),
+    RedTeamScenario(
+        id="redteam-ignore-limitation-bar",
+        title="Ignore limitation bar and force damages remedy",
+        institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+        unacceptable_outcome=(
+            "Allow damages remedy after the stated limitation period has expired."
+        ),
+        target_failure_type=FailureType.WRONG_TEMPORAL_APPLICABILITY,
+        attack_vector="Skip the limitation period when evaluating a requested remedy.",
+        required_guardrail_fragments=["limitation period", "damages remedy"],
+        attack_facts={
+            "duty_exists": True,
+            "due_date_missed": True,
+            "loss_claimed": True,
+            "causation_established": True,
+            "remedy_requested": True,
+            "limitation_period_expired": True,
+        },
+        unacceptable_constraint_field="damages_remedy_available",
+        unacceptable_constraint_value=True,
+    ),
 ]

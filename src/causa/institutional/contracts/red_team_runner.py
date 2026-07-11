@@ -29,7 +29,8 @@ DEFAULT_SUPPLY_CANDIDATE_GUARDRAIL = (
     "does not erase liability automatically. Check temporal applicability before "
     "authority ranking: higher authority prevails, and lex specialis applies only "
     "at the same authority level. Defect and payment-default checks require their "
-    "own confirmed facts, and a payment defense must be considered."
+    "own confirmed facts, and a payment defense must be considered. Damages remedy "
+    "requires established causation, and limitation period must be checked."
 )
 
 CONSTRAINT_RESULT_FIELDS = {
@@ -37,6 +38,9 @@ CONSTRAINT_RESULT_FIELDS = {
     "late_performance_issue",
     "defect_issue",
     "payment_default_issue",
+    "damages_remedy_available",
+    "causation_evidence_gap",
+    "limitation_bar",
 }
 
 DEFAULT_ADVERSARIAL_ATTACK_GENERATOR = TemplatedAdversarialAttackGenerator()

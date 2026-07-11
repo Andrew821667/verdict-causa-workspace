@@ -121,7 +121,11 @@
     "payment_duty_exists": false,
     "payment_due": false,
     "payment_missed": false,
-    "payment_defense_applies": false
+    "payment_defense_applies": false,
+    "loss_claimed": false,
+    "causation_established": false,
+    "remedy_requested": false,
+    "limitation_period_expired": false
   },
   "constraint_set": {
     "id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
@@ -140,7 +144,14 @@
       "payment_missed",
       "payment_defense_applies",
       "payment_default_issue == payment_duty_exists AND payment_due AND payment_missed AND NOT payment_defense_applies",
-      "breach_issue == late_performance_issue OR defect_issue OR payment_default_issue"
+      "breach_issue == late_performance_issue OR defect_issue OR payment_default_issue",
+      "loss_claimed",
+      "causation_established",
+      "remedy_requested",
+      "limitation_period_expired",
+      "causation_evidence_gap == remedy_requested AND loss_claimed AND NOT causation_established",
+      "limitation_bar == remedy_requested AND limitation_period_expired",
+      "damages_remedy_available == breach_issue AND remedy_requested AND loss_claimed AND causation_established AND NOT limitation_period_expired"
     ]
   },
   "constraint_evaluation": {
@@ -150,6 +161,9 @@
     "late_performance_issue": true,
     "defect_issue": false,
     "payment_default_issue": false,
+    "damages_remedy_available": false,
+    "causation_evidence_gap": false,
+    "limitation_bar": false,
     "reasons": [
       "Late performance issue: Duty exists, due date is missed, and no valid exception applies."
     ]
@@ -227,7 +241,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.2.0",
+      "institutional_package_version": "contracts-ru-v0@0.3.0",
       "policy_version": "policy-demo-v0",
       "translation_template_version": "translation-template-v0",
       "model_profile": "no-llm-synthetic-demo"
@@ -261,7 +275,10 @@
           "breach_issue": true,
           "late_performance_issue": true,
           "defect_issue": false,
-          "payment_default_issue": false
+          "payment_default_issue": false,
+          "damages_remedy_available": false,
+          "causation_evidence_gap": false,
+          "limitation_bar": false
         }
       },
       {
@@ -325,7 +342,7 @@
     "warnings": [
       "Synthetic demo only.",
       "Not legal advice.",
-      "Constraint set covers only narrow delay, defect, and payment-default patterns."
+      "Constraint set covers only narrow delay, defect, payment-default, and remedy patterns."
     ]
   }
 }

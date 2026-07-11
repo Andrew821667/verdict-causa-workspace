@@ -4,7 +4,7 @@ from causa.institutional.package import InstitutionalPackageManifest
 CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
     id="contracts-ru-v0",
     legal_institute="Contractual relations: obligations, sale, supply, and breach liability",
-    version="0.2.0",
+    version="0.3.0",
     core_compatibility=">=0.1,<0.2",
     vocabulary_refs=["src/causa/institutional/contracts/vocabulary.py"],
     authority_model_refs=["src/causa/institutional/contracts/authority_model.py"],

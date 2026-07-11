@@ -1,5 +1,11 @@
 # Contracts RU v0 Changelog
 
+## 0.3.0 - 2026-07-11
+
+- Adds synthetic formal predicates for basic damages remedy availability, causation-evidence gaps, and stated limitation bars.
+- Adds benchmark and adversarial checks that reject remedies without causation or despite a stated limitation bar.
+- Does not calculate loss, establish causation, or compute limitation dates.
+
 ## 0.2.0 - 2026-07-11
 
 - Adds a synthetic-reviewed authority policy with constitutional and regulatory levels.

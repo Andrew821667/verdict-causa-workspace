@@ -121,6 +121,20 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
             passed
             and evaluation.payment_default_issue == task.expected_payment_default_issue
         )
+    if task.expected_damages_remedy_available is not None:
+        passed = (
+            passed
+            and evaluation.damages_remedy_available
+            == task.expected_damages_remedy_available
+        )
+    if task.expected_causation_evidence_gap is not None:
+        passed = (
+            passed
+            and evaluation.causation_evidence_gap
+            == task.expected_causation_evidence_gap
+        )
+    if task.expected_limitation_bar is not None:
+        passed = passed and evaluation.limitation_bar == task.expected_limitation_bar
     passed = passed and sources_applicable
     if task.expected_authority_winner is not None:
         passed = (
@@ -150,6 +164,9 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
         late_performance_issue=evaluation.late_performance_issue,
         defect_issue=evaluation.defect_issue,
         payment_default_issue=evaluation.payment_default_issue,
+        damages_remedy_available=evaluation.damages_remedy_available,
+        causation_evidence_gap=evaluation.causation_evidence_gap,
+        limitation_bar=evaluation.limitation_bar,
         source_refs=task.expected_source_refs,
         warnings=warnings,
         reasons=reasons,
