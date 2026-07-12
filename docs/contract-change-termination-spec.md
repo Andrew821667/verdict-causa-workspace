@@ -60,8 +60,8 @@
 - `contracts.termination-evidence.v0`;
 - `contracts-reviewed-termination-to-facts-v0`;
 - `contracts-change-termination-articles-450-453-v0`;
-- `contracts.case-evidence.v5`;
-- `contracts-reviewed-analysis-v5`.
+- `contracts.case-evidence.v6`;
+- `contracts-reviewed-analysis-v6`.
 
 ## Проверки качества
 

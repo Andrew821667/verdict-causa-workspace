@@ -226,6 +226,22 @@ def _security_refs(
     return sorted(references)
 
 
+def _dynamics_refs(
+    result: ReviewedContractAnalysisResult,
+    *fact_names: str,
+) -> list[str]:
+    references = {
+        *result.obligation_dynamics_evidence_mapping.legal_source_refs,
+        *(
+            source_ref
+            for item in result.obligation_dynamics_evidence_mapping.provenance
+            if item.fact_name in fact_names
+            for source_ref in item.source_refs
+        ),
+    }
+    return sorted(references)
+
+
 def build_translation_assertions(
     request: ReviewedContractAnalysisRequest,
     result: ReviewedContractAnalysisResult,
@@ -238,6 +254,7 @@ def build_translation_assertions(
     formation = result.formation_evaluation
     invalidity = result.invalidity_evaluation
     security = result.security_evaluation
+    dynamics = result.obligation_dynamics_evaluation
     termination = result.termination_evaluation
     critical_scenario = (
         next(
@@ -567,6 +584,202 @@ def build_translation_assertions(
                 "security_payment_funded",
                 "secured_circumstance_occurred",
                 "security_payment_credited",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.ASSIGNMENT_EFFECTIVE,
+            value=dynamics.assignment_effective,
+            text_ru=(
+                "Формальные условия перехода требования к новому кредитору подтверждены."
+                if dynamics.assignment_effective
+                else "Полный набор условий действительной уступки требования не подтвержден."
+            ),
+            source_refs=_dynamics_refs(
+                result,
+                "assignment_agreement_concluded",
+                "assignment_form_observed",
+                "assigned_claim_exists",
+                "assigned_claim_identified",
+                "future_claim_determinable",
+                "claim_personal_to_creditor",
+                "assignment_prohibited_by_law",
+                "debtor_consent_required",
+                "debtor_consent_obtained",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.DEBT_TRANSFER_EFFECTIVE,
+            value=dynamics.debt_transfer_effective,
+            text_ru=(
+                "Формальные условия перевода долга подтверждены."
+                if dynamics.debt_transfer_effective
+                else "Перевод долга с требуемым согласием кредитора не подтвержден."
+            ),
+            source_refs=_dynamics_refs(
+                result,
+                "debt_transfer_agreement_concluded",
+                "debt_transfer_form_observed",
+                "new_debtor_identified",
+                "creditor_consented_debt_transfer",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.CONTRACT_TRANSFER_EFFECTIVE,
+            value=dynamics.contract_transfer_effective,
+            text_ru=(
+                "Передача договора с согласованной заменой сторон формально подтверждена."
+                if dynamics.contract_transfer_effective
+                else "Передача договора с согласием всех сторон не подтверждена."
+            ),
+            source_refs=_dynamics_refs(
+                result,
+                "contract_transfer_agreed",
+                "all_parties_consented_contract_transfer",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.PARTIES_CHANGED_NOT_DISCHARGED,
+            value=dynamics.parties_changed_not_discharged,
+            text_ru=(
+                "Состав участников изменился, но само обязательство не прекратилось."
+                if dynamics.parties_changed_not_discharged
+                else "Перемена лица без прекращения обязательства не установлена."
+            ),
+            source_refs=_dynamics_refs(
+                result,
+                *[
+                    item.fact_name
+                    for item in result.obligation_dynamics_evidence_mapping.provenance
+                ],
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.PROPER_PERFORMANCE_DISCHARGE,
+            value=dynamics.proper_performance_discharge,
+            text_ru=(
+                "Основная обязанность прекращена надлежащим полным исполнением."
+                if dynamics.proper_performance_discharge
+                else "Полное прекращение надлежащим исполнением не подтверждено."
+            ),
+            source_refs=_dynamics_refs(
+                result,
+                "performance_rendered",
+                "performance_accepted_as_proper",
+                "performance_partial",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.ACCORD_DISCHARGE,
+            value=dynamics.accord_discharge,
+            text_ru=(
+                "Первоначальное обязательство прекращено предоставленным отступным."
+                if dynamics.accord_discharge
+                else "Предоставление отступного, прекращающее первоначальный долг, не подтверждено."
+            ),
+            source_refs=_dynamics_refs(
+                result,
+                "accord_agreed",
+                "accord_form_observed",
+                "accord_performance_provided",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SETOFF_EFFECTIVE,
+            value=dynamics.setoff_effective,
+            text_ru=(
+                "Встречные требования формально прекращены зачетом."
+                if dynamics.setoff_effective
+                else "Полный набор условий и доставленное заявление о зачете не подтверждены."
+            ),
+            source_refs=_dynamics_refs(
+                result,
+                "set_off_declared",
+                "set_off_notice_delivered",
+                "counterclaims_mutual",
+                "counterclaims_homogeneous",
+                "active_claim_due",
+                "set_off_prohibited",
+                "active_claim_limitation_expired",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.NOVATION_EFFECTIVE,
+            value=dynamics.novation_effective,
+            text_ru=(
+                "Подтверждена ясная замена первоначального обязательства новым."
+                if dynamics.novation_effective
+                else "Формальные признаки новации не подтверждены полностью."
+            ),
+            source_refs=_dynamics_refs(
+                result,
+                "novation_agreed",
+                "novation_intent_clear",
+                "new_subject_or_basis",
+                "new_obligation_terms_agreed",
+                "novation_form_observed",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.DEBT_FORGIVENESS_EFFECTIVE,
+            value=dynamics.debt_forgiveness_effective,
+            text_ru=(
+                "Прощение долга формально прекратило обязательство."
+                if dynamics.debt_forgiveness_effective
+                else "Действующее прощение долга без возражений и нарушения чужих прав не подтверждено."
+            ),
+            source_refs=_dynamics_refs(
+                result,
+                "debt_forgiveness_declared",
+                "debt_forgiveness_notice_delivered",
+                "debtor_objected_forgiveness",
+                "third_party_rights_prejudiced",
+                "forgiveness_gift_intent",
+                "commercial_parties",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.IMPOSSIBILITY_DISCHARGE,
+            value=dynamics.impossibility_discharge,
+            text_ru=(
+                "Обязательство прекращено объективной постоянной невозможностью исполнения."
+                if dynamics.impossibility_discharge
+                else "Основание прекращения объективной невозможностью не подтверждено."
+            ),
+            source_refs=_dynamics_refs(
+                result,
+                "objective_permanent_impossibility",
+                "impossibility_risk_on_debtor",
+                "debtor_in_delay_at_impossibility",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.OBLIGATION_DISCHARGED_FULL,
+            value=dynamics.obligation_discharged_full,
+            text_ru=(
+                "Выявлено формальное основание полного прекращения основной обязанности."
+                if dynamics.obligation_discharged_full
+                else "Полное прекращение основной обязанности не подтверждено."
+            ),
+            source_refs=_dynamics_refs(
+                result,
+                *[
+                    item.fact_name
+                    for item in result.obligation_dynamics_evidence_mapping.provenance
+                ],
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.DYNAMICS_ACCRUED_CLAIMS_PRESERVED,
+            value=dynamics.accrued_claims_preserved,
+            text_ru=(
+                "Прекращение основной обязанности не устранило ранее возникшие требования из нарушения."
+                if dynamics.accrued_claims_preserved
+                else "Сохранение ранее возникших требований текущим путем прекращения не подтверждено."
+            ),
+            source_refs=_dynamics_refs(
+                result,
+                "obligation_breached",
+                "accrued_claims_exist",
             ),
         ),
         TranslationAssertion(
@@ -1107,6 +1320,7 @@ def _render_context(
     formation = result.formation_evaluation
     invalidity = result.invalidity_evaluation
     security = result.security_evaluation
+    dynamics = result.obligation_dynamics_evaluation
     termination = result.termination_evaluation
     formation_professional_ru = "\n".join(
         [
@@ -1186,6 +1400,34 @@ def _render_context(
             *[f"- Ограничение: {warning}" for warning in security.warnings_ru],
         ]
     )
+    dynamics_professional_ru = "\n".join(
+        [
+            *[f"- {reason}" for reason in dynamics.reasons_ru],
+            "- Уступка, перевод долга и передача договора меняют участников, но сами по себе не прекращают обязательство.",
+            "- Исполнение, отступное, зачет, новация, прощение долга и объективные основания прекращения проверены раздельно.",
+            "- Размер остатка, толкование соглашений и специальные последствия требуют оценки юриста.",
+        ]
+    )
+    dynamics_forensic_ru = "\n".join(
+        [
+            f"- Набор ограничений: {result.obligation_dynamics_constraint_set.id}.",
+            f"- Версия модели: {result.obligation_dynamics_constraint_set.model_version}.",
+            f"- Отображение доказательств: {result.obligation_dynamics_evidence_mapping.mapping_version}.",
+            f"- Правовые источники: {', '.join(result.obligation_dynamics_evidence_mapping.legal_source_refs)}.",
+            *[
+                f"- Правило формальной модели динамики обязательства: {expression}."
+                for expression in result.obligation_dynamics_constraint_set.expressions
+            ],
+            *[
+                f"- Проверенный факт {item.fact_name}: исходное утверждение="
+                f"{item.assertion_id}; доказательственные источники="
+                f"{', '.join(item.source_refs)}."
+                for item in result.obligation_dynamics_evidence_mapping.provenance
+            ],
+            *[f"- Результат: {reason}" for reason in dynamics.reasons_ru],
+            *[f"- Ограничение: {warning}" for warning in dynamics.warnings_ru],
+        ]
+    )
     termination_professional_ru = "\n".join(
         [
             *[f"- {reason}" for reason in termination.reasons_ru],
@@ -1261,6 +1503,8 @@ def _render_context(
         "invalidity_forensic_ru": invalidity_forensic_ru,
         "security_professional_ru": security_professional_ru,
         "security_forensic_ru": security_forensic_ru,
+        "dynamics_professional_ru": dynamics_professional_ru,
+        "dynamics_forensic_ru": dynamics_forensic_ru,
         "termination_professional_ru": termination_professional_ru,
         "termination_forensic_ru": termination_forensic_ru,
         "liability_professional_ru": liability_professional_ru,

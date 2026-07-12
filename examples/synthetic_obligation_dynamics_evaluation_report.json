@@ -1,0 +1,1402 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка перемены лиц и прекращения обязательств. Не устанавливает судебный результат и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-obligation-dynamics-evidence-supply-1-v0",
+    "schema_version": "contracts.obligation-dynamics-evidence.v0",
+    "mapping_version": "contracts-reviewed-obligation-dynamics-to-facts-v0",
+    "facts": {
+      "obligation_exists": true,
+      "obligation_breached": true,
+      "accrued_claims_exist": true,
+      "partial_termination_intended": false,
+      "assignment_agreement_concluded": false,
+      "assignment_form_observed": false,
+      "assigned_claim_exists": false,
+      "assigned_claim_identified": false,
+      "future_claim_determinable": false,
+      "claim_personal_to_creditor": false,
+      "assignment_prohibited_by_law": false,
+      "contract_restricts_assignment": false,
+      "debtor_consent_required": false,
+      "debtor_consent_obtained": false,
+      "debtor_notified": false,
+      "proof_of_transfer_provided": false,
+      "debtor_performed_original_before_notice": false,
+      "debtor_defense_existed_at_notice": false,
+      "debtor_counterclaim_existed_at_notice": false,
+      "cedent_transferred_documents": false,
+      "claim_invalid": false,
+      "cedent_knew_claim_invalid": false,
+      "cedent_guaranteed_debtor_performance": false,
+      "debtor_failed_after_assignment": false,
+      "debt_transfer_agreement_concluded": false,
+      "debt_transfer_form_observed": false,
+      "new_debtor_identified": false,
+      "creditor_consented_debt_transfer": false,
+      "original_debtor_released": false,
+      "cumulative_debt_assumption_agreed": false,
+      "business_debt_assumption": false,
+      "new_debtor_defense_exists": false,
+      "security_provider_consented_new_debtor": false,
+      "contract_transfer_agreed": false,
+      "all_parties_consented_contract_transfer": false,
+      "performance_rendered": true,
+      "performance_accepted_as_proper": true,
+      "performance_partial": false,
+      "creditor_issued_receipt": true,
+      "creditor_returned_debt_instrument": false,
+      "creditor_refused_confirmation": false,
+      "notary_or_court_deposit_made": false,
+      "deposit_ground_creditor_absent_or_evasive": false,
+      "deposit_notice_sent": false,
+      "accord_agreed": false,
+      "accord_form_observed": false,
+      "accord_performance_provided": false,
+      "set_off_declared": false,
+      "set_off_notice_delivered": false,
+      "counterclaims_mutual": false,
+      "counterclaims_homogeneous": false,
+      "active_claim_due": false,
+      "passive_claim_due_or_early_allowed": false,
+      "set_off_prohibited": false,
+      "active_claim_limitation_expired": false,
+      "set_off_amount_proven": false,
+      "claims_equal_amount": false,
+      "novation_agreed": false,
+      "novation_intent_clear": false,
+      "new_subject_or_basis": false,
+      "new_obligation_terms_agreed": false,
+      "novation_form_observed": false,
+      "third_party_security_exists": false,
+      "third_party_security_consented_novation": false,
+      "debt_forgiveness_declared": false,
+      "debt_forgiveness_notice_delivered": false,
+      "debtor_objected_forgiveness": false,
+      "third_party_rights_prejudiced": false,
+      "forgiveness_gift_intent": false,
+      "commercial_parties": false,
+      "merger_creditor_and_debtor": false,
+      "objective_permanent_impossibility": false,
+      "impossibility_risk_on_debtor": false,
+      "debtor_in_delay_at_impossibility": false,
+      "creditor_caused_impossibility": false,
+      "government_act_prevents_performance": false,
+      "government_act_invalidated": false,
+      "personal_debtor_died": false,
+      "personal_creditor_died": false,
+      "obligation_personal_to_deceased": false,
+      "legal_entity_liquidated": false,
+      "statutory_successor_exists": false,
+      "other_discharge_ground_proven": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk382-390-assignment-v1",
+      "synthetic-ru-gk391-3923-debt-transfer-v1",
+      "synthetic-ru-gk407-413-discharge-v1",
+      "synthetic-ru-gk414-419-discharge-v1",
+      "synthetic-ru-plenum54-party-change-guidance-v1",
+      "synthetic-ru-plenum6-discharge-guidance-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "accord_agreed",
+        "assertion_id": "obligation-dynamics-evidence-accord_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "accord_form_observed",
+        "assertion_id": "obligation-dynamics-evidence-accord_form_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "accord_performance_provided",
+        "assertion_id": "obligation-dynamics-evidence-accord_performance_provided",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "accrued_claims_exist",
+        "assertion_id": "obligation-dynamics-evidence-accrued_claims_exist",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "active_claim_due",
+        "assertion_id": "obligation-dynamics-evidence-active_claim_due",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "active_claim_limitation_expired",
+        "assertion_id": "obligation-dynamics-evidence-active_claim_limitation_expired",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "all_parties_consented_contract_transfer",
+        "assertion_id": "obligation-dynamics-evidence-all_parties_consented_contract_transfer",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "assigned_claim_exists",
+        "assertion_id": "obligation-dynamics-evidence-assigned_claim_exists",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "assigned_claim_identified",
+        "assertion_id": "obligation-dynamics-evidence-assigned_claim_identified",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "assignment_agreement_concluded",
+        "assertion_id": "obligation-dynamics-evidence-assignment_agreement_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "assignment_form_observed",
+        "assertion_id": "obligation-dynamics-evidence-assignment_form_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "assignment_prohibited_by_law",
+        "assertion_id": "obligation-dynamics-evidence-assignment_prohibited_by_law",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "business_debt_assumption",
+        "assertion_id": "obligation-dynamics-evidence-business_debt_assumption",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "cedent_guaranteed_debtor_performance",
+        "assertion_id": "obligation-dynamics-evidence-cedent_guaranteed_debtor_performance",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "cedent_knew_claim_invalid",
+        "assertion_id": "obligation-dynamics-evidence-cedent_knew_claim_invalid",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "cedent_transferred_documents",
+        "assertion_id": "obligation-dynamics-evidence-cedent_transferred_documents",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "claim_invalid",
+        "assertion_id": "obligation-dynamics-evidence-claim_invalid",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "claim_personal_to_creditor",
+        "assertion_id": "obligation-dynamics-evidence-claim_personal_to_creditor",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "claims_equal_amount",
+        "assertion_id": "obligation-dynamics-evidence-claims_equal_amount",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "commercial_parties",
+        "assertion_id": "obligation-dynamics-evidence-commercial_parties",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_restricts_assignment",
+        "assertion_id": "obligation-dynamics-evidence-contract_restricts_assignment",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_transfer_agreed",
+        "assertion_id": "obligation-dynamics-evidence-contract_transfer_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "counterclaims_homogeneous",
+        "assertion_id": "obligation-dynamics-evidence-counterclaims_homogeneous",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "counterclaims_mutual",
+        "assertion_id": "obligation-dynamics-evidence-counterclaims_mutual",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "creditor_caused_impossibility",
+        "assertion_id": "obligation-dynamics-evidence-creditor_caused_impossibility",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "creditor_consented_debt_transfer",
+        "assertion_id": "obligation-dynamics-evidence-creditor_consented_debt_transfer",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "creditor_issued_receipt",
+        "assertion_id": "obligation-dynamics-evidence-creditor_issued_receipt",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "creditor_refused_confirmation",
+        "assertion_id": "obligation-dynamics-evidence-creditor_refused_confirmation",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "creditor_returned_debt_instrument",
+        "assertion_id": "obligation-dynamics-evidence-creditor_returned_debt_instrument",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "cumulative_debt_assumption_agreed",
+        "assertion_id": "obligation-dynamics-evidence-cumulative_debt_assumption_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "debt_forgiveness_declared",
+        "assertion_id": "obligation-dynamics-evidence-debt_forgiveness_declared",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "debt_forgiveness_notice_delivered",
+        "assertion_id": "obligation-dynamics-evidence-debt_forgiveness_notice_delivered",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "debt_transfer_agreement_concluded",
+        "assertion_id": "obligation-dynamics-evidence-debt_transfer_agreement_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "debt_transfer_form_observed",
+        "assertion_id": "obligation-dynamics-evidence-debt_transfer_form_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_consent_obtained",
+        "assertion_id": "obligation-dynamics-evidence-debtor_consent_obtained",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_consent_required",
+        "assertion_id": "obligation-dynamics-evidence-debtor_consent_required",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_counterclaim_existed_at_notice",
+        "assertion_id": "obligation-dynamics-evidence-debtor_counterclaim_existed_at_notice",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_defense_existed_at_notice",
+        "assertion_id": "obligation-dynamics-evidence-debtor_defense_existed_at_notice",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_failed_after_assignment",
+        "assertion_id": "obligation-dynamics-evidence-debtor_failed_after_assignment",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_in_delay_at_impossibility",
+        "assertion_id": "obligation-dynamics-evidence-debtor_in_delay_at_impossibility",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_notified",
+        "assertion_id": "obligation-dynamics-evidence-debtor_notified",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_objected_forgiveness",
+        "assertion_id": "obligation-dynamics-evidence-debtor_objected_forgiveness",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_performed_original_before_notice",
+        "assertion_id": "obligation-dynamics-evidence-debtor_performed_original_before_notice",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "deposit_ground_creditor_absent_or_evasive",
+        "assertion_id": "obligation-dynamics-evidence-deposit_ground_creditor_absent_or_evasive",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "deposit_notice_sent",
+        "assertion_id": "obligation-dynamics-evidence-deposit_notice_sent",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "forgiveness_gift_intent",
+        "assertion_id": "obligation-dynamics-evidence-forgiveness_gift_intent",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "future_claim_determinable",
+        "assertion_id": "obligation-dynamics-evidence-future_claim_determinable",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "government_act_invalidated",
+        "assertion_id": "obligation-dynamics-evidence-government_act_invalidated",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "government_act_prevents_performance",
+        "assertion_id": "obligation-dynamics-evidence-government_act_prevents_performance",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "impossibility_risk_on_debtor",
+        "assertion_id": "obligation-dynamics-evidence-impossibility_risk_on_debtor",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "legal_entity_liquidated",
+        "assertion_id": "obligation-dynamics-evidence-legal_entity_liquidated",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "merger_creditor_and_debtor",
+        "assertion_id": "obligation-dynamics-evidence-merger_creditor_and_debtor",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "new_debtor_defense_exists",
+        "assertion_id": "obligation-dynamics-evidence-new_debtor_defense_exists",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "new_debtor_identified",
+        "assertion_id": "obligation-dynamics-evidence-new_debtor_identified",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "new_obligation_terms_agreed",
+        "assertion_id": "obligation-dynamics-evidence-new_obligation_terms_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "new_subject_or_basis",
+        "assertion_id": "obligation-dynamics-evidence-new_subject_or_basis",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "notary_or_court_deposit_made",
+        "assertion_id": "obligation-dynamics-evidence-notary_or_court_deposit_made",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "novation_agreed",
+        "assertion_id": "obligation-dynamics-evidence-novation_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "novation_form_observed",
+        "assertion_id": "obligation-dynamics-evidence-novation_form_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "novation_intent_clear",
+        "assertion_id": "obligation-dynamics-evidence-novation_intent_clear",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "objective_permanent_impossibility",
+        "assertion_id": "obligation-dynamics-evidence-objective_permanent_impossibility",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "obligation_breached",
+        "assertion_id": "obligation-dynamics-evidence-obligation_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "obligation_exists",
+        "assertion_id": "obligation-dynamics-evidence-obligation_exists",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "obligation_personal_to_deceased",
+        "assertion_id": "obligation-dynamics-evidence-obligation_personal_to_deceased",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "original_debtor_released",
+        "assertion_id": "obligation-dynamics-evidence-original_debtor_released",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "other_discharge_ground_proven",
+        "assertion_id": "obligation-dynamics-evidence-other_discharge_ground_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "partial_termination_intended",
+        "assertion_id": "obligation-dynamics-evidence-partial_termination_intended",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "passive_claim_due_or_early_allowed",
+        "assertion_id": "obligation-dynamics-evidence-passive_claim_due_or_early_allowed",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "performance_accepted_as_proper",
+        "assertion_id": "obligation-dynamics-evidence-performance_accepted_as_proper",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "performance_partial",
+        "assertion_id": "obligation-dynamics-evidence-performance_partial",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "performance_rendered",
+        "assertion_id": "obligation-dynamics-evidence-performance_rendered",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "personal_creditor_died",
+        "assertion_id": "obligation-dynamics-evidence-personal_creditor_died",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "personal_debtor_died",
+        "assertion_id": "obligation-dynamics-evidence-personal_debtor_died",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "proof_of_transfer_provided",
+        "assertion_id": "obligation-dynamics-evidence-proof_of_transfer_provided",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "security_provider_consented_new_debtor",
+        "assertion_id": "obligation-dynamics-evidence-security_provider_consented_new_debtor",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "set_off_amount_proven",
+        "assertion_id": "obligation-dynamics-evidence-set_off_amount_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "set_off_declared",
+        "assertion_id": "obligation-dynamics-evidence-set_off_declared",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "set_off_notice_delivered",
+        "assertion_id": "obligation-dynamics-evidence-set_off_notice_delivered",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "set_off_prohibited",
+        "assertion_id": "obligation-dynamics-evidence-set_off_prohibited",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "statutory_successor_exists",
+        "assertion_id": "obligation-dynamics-evidence-statutory_successor_exists",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_rights_prejudiced",
+        "assertion_id": "obligation-dynamics-evidence-third_party_rights_prejudiced",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_security_consented_novation",
+        "assertion_id": "obligation-dynamics-evidence-third_party_security_consented_novation",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_security_exists",
+        "assertion_id": "obligation-dynamics-evidence-third_party_security_exists",
+        "source_refs": [
+          "synthetic-case-supply-1-obligation-dynamics-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "obligation-dynamics-constraint-set:reviewed-obligation-dynamics-evidence-supply-1-v0",
+    "model_version": "contracts-obligation-dynamics-articles-382-419-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk382-390-assignment-v1",
+      "synthetic-ru-gk391-3923-debt-transfer-v1",
+      "synthetic-ru-gk407-413-discharge-v1",
+      "synthetic-ru-gk414-419-discharge-v1",
+      "synthetic-ru-plenum54-party-change-guidance-v1",
+      "synthetic-ru-plenum6-discharge-guidance-v1"
+    ],
+    "expressions": [
+      "assignment_effective == obligation_exists AND assignment_agreement AND form AND identifiable_claim AND transferable_claim AND required_consent",
+      "debt_transfer_effective == obligation_exists AND debt_transfer_agreement AND form AND new_debtor AND creditor_consent",
+      "contract_transfer_effective == obligation_exists AND contract_transfer_agreed AND all_parties_consent AND required_forms",
+      "proper_performance_discharge == obligation_exists AND rendered AND accepted_proper AND NOT partial",
+      "notary_deposit_discharge == obligation_exists AND deposit_made AND statutory_deposit_ground",
+      "accord_discharge == obligation_exists AND accord_agreed AND form AND accord_performance_provided",
+      "setoff_effective == obligation_exists AND declaration_delivered AND mutual_homogeneous_due_claims AND amount_proven AND NOT bar",
+      "novation_effective == obligation_exists AND agreement AND clear_replacement_intent AND new_subject_or_basis AND new_terms AND form",
+      "debt_forgiveness_effective == obligation_exists AND forgiveness_notice AND NOT objection AND NOT third_party_prejudice AND NOT commercial_gift_bar",
+      "impossibility_discharge == obligation_exists AND objective_permanent_impossibility AND NOT risk_on_debtor AND NOT debtor_delay",
+      "obligation_discharged_full == OR(full discharge paths) AND NOT partial_termination_intended"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "obligation-dynamics-constraint-set:reviewed-obligation-dynamics-evidence-supply-1-v0",
+    "satisfiable": true,
+    "assignment_effective": false,
+    "assignment_enforceable_against_debtor": false,
+    "assignment_contract_breach_issue": false,
+    "debtor_original_performance_discharges": false,
+    "debtor_defenses_preserved": false,
+    "debtor_setoff_against_assignee_issue": false,
+    "cedent_document_transfer_issue": false,
+    "cedent_invalid_claim_warranty_issue": false,
+    "cedent_performance_guarantee_issue": false,
+    "debt_transfer_effective": false,
+    "original_debtor_released_effective": false,
+    "cumulative_debtors": false,
+    "new_debtor_defenses_preserved": false,
+    "third_party_security_terminated_on_transfer": false,
+    "contract_transfer_effective": false,
+    "parties_changed_not_discharged": false,
+    "proper_performance_discharge": true,
+    "partial_performance_discharge": false,
+    "creditor_confirmation_issue": false,
+    "notary_deposit_discharge": false,
+    "notary_deposit_notice_issue": false,
+    "accord_agreement_only": false,
+    "accord_discharge": false,
+    "setoff_bar": false,
+    "setoff_prerequisites": false,
+    "setoff_effective": false,
+    "setoff_full_discharge": false,
+    "setoff_partial_discharge": false,
+    "novation_effective": false,
+    "new_obligation_created_by_novation": false,
+    "original_accessories_terminated_by_novation": false,
+    "third_party_security_survives_novation": false,
+    "forgiveness_gift_bar": false,
+    "debt_forgiveness_effective": false,
+    "merger_discharge": false,
+    "impossibility_discharge": false,
+    "creditor_caused_impossibility_issue": false,
+    "government_act_discharge": false,
+    "government_act_losses_issue": false,
+    "government_act_restoration_issue": false,
+    "death_discharge": false,
+    "liquidation_discharge": false,
+    "other_discharge_effective": false,
+    "obligation_discharged_full": true,
+    "obligation_partially_remaining": false,
+    "accrued_claims_preserved": true,
+    "competing_discharge_paths": false,
+    "requires_human_dynamics_assessment": false,
+    "reasons_ru": [
+      "Выявлено формальное основание полного прекращения обязательства.",
+      "Ранее возникшие требования из нарушения сохранены отдельно."
+    ],
+    "warnings_ru": [
+      "Модель не определяет размер уступленного требования, зачета или остатка долга.",
+      "Толкование воли на новацию, отступное и прощение долга требует оценки юриста.",
+      "Специальные правила банкротства, исполнительного производства и отдельных обязательств проверяются отдельно."
+    ]
+  },
+  "benchmark_report": {
+    "id": "obligation-dynamics-benchmark-report-v0",
+    "total": 21,
+    "passed": 21,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "dynamics-bench-continuing",
+        "passed": true,
+        "expected_outcomes": {
+          "obligation_discharged_full": false,
+          "parties_changed_not_discharged": false
+        },
+        "observed_outcomes": {
+          "obligation_discharged_full": false,
+          "parties_changed_not_discharged": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-assignment",
+        "passed": true,
+        "expected_outcomes": {
+          "assignment_effective": true,
+          "assignment_enforceable_against_debtor": true,
+          "parties_changed_not_discharged": true
+        },
+        "observed_outcomes": {
+          "assignment_effective": true,
+          "assignment_enforceable_against_debtor": true,
+          "parties_changed_not_discharged": true
+        },
+        "reasons_ru": [
+          "Состав участников изменен без прекращения обязательства.",
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-future-assignment",
+        "passed": true,
+        "expected_outcomes": {
+          "assignment_effective": true
+        },
+        "observed_outcomes": {
+          "assignment_effective": true
+        },
+        "reasons_ru": [
+          "Состав участников изменен без прекращения обязательства.",
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-assignment-restriction",
+        "passed": true,
+        "expected_outcomes": {
+          "assignment_effective": true,
+          "assignment_contract_breach_issue": true
+        },
+        "observed_outcomes": {
+          "assignment_effective": true,
+          "assignment_contract_breach_issue": true
+        },
+        "reasons_ru": [
+          "Состав участников изменен без прекращения обязательства.",
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-original-performance",
+        "passed": true,
+        "expected_outcomes": {
+          "debtor_original_performance_discharges": true
+        },
+        "observed_outcomes": {
+          "debtor_original_performance_discharges": true
+        },
+        "reasons_ru": [
+          "Состав участников изменен без прекращения обязательства.",
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-debt-release",
+        "passed": true,
+        "expected_outcomes": {
+          "debt_transfer_effective": true,
+          "original_debtor_released_effective": true
+        },
+        "observed_outcomes": {
+          "debt_transfer_effective": true,
+          "original_debtor_released_effective": true
+        },
+        "reasons_ru": [
+          "Состав участников изменен без прекращения обязательства.",
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-cumulative",
+        "passed": true,
+        "expected_outcomes": {
+          "cumulative_debtors": true
+        },
+        "observed_outcomes": {
+          "cumulative_debtors": true
+        },
+        "reasons_ru": [
+          "Состав участников изменен без прекращения обязательства.",
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-contract-transfer",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_transfer_effective": true,
+          "parties_changed_not_discharged": true
+        },
+        "observed_outcomes": {
+          "contract_transfer_effective": true,
+          "parties_changed_not_discharged": true
+        },
+        "reasons_ru": [
+          "Состав участников изменен без прекращения обязательства.",
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-performance",
+        "passed": true,
+        "expected_outcomes": {
+          "proper_performance_discharge": true,
+          "obligation_discharged_full": true,
+          "accrued_claims_preserved": true
+        },
+        "observed_outcomes": {
+          "proper_performance_discharge": true,
+          "obligation_discharged_full": true,
+          "accrued_claims_preserved": true
+        },
+        "reasons_ru": [
+          "Выявлено формальное основание полного прекращения обязательства.",
+          "Ранее возникшие требования из нарушения сохранены отдельно."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-partial-performance",
+        "passed": true,
+        "expected_outcomes": {
+          "partial_performance_discharge": true,
+          "obligation_partially_remaining": true
+        },
+        "observed_outcomes": {
+          "partial_performance_discharge": true,
+          "obligation_partially_remaining": true
+        },
+        "reasons_ru": [
+          "Обязательство прекращено только в части и сохраняется в остатке."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-deposit",
+        "passed": true,
+        "expected_outcomes": {
+          "notary_deposit_discharge": true,
+          "obligation_discharged_full": true
+        },
+        "observed_outcomes": {
+          "notary_deposit_discharge": true,
+          "obligation_discharged_full": true
+        },
+        "reasons_ru": [
+          "Выявлено формальное основание полного прекращения обязательства."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-accord-pending",
+        "passed": true,
+        "expected_outcomes": {
+          "accord_agreement_only": true,
+          "accord_discharge": false
+        },
+        "observed_outcomes": {
+          "accord_agreement_only": true,
+          "accord_discharge": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-accord",
+        "passed": true,
+        "expected_outcomes": {
+          "accord_discharge": true,
+          "obligation_discharged_full": true
+        },
+        "observed_outcomes": {
+          "accord_discharge": true,
+          "obligation_discharged_full": true
+        },
+        "reasons_ru": [
+          "Выявлено формальное основание полного прекращения обязательства."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-setoff-full",
+        "passed": true,
+        "expected_outcomes": {
+          "setoff_effective": true,
+          "setoff_full_discharge": true,
+          "obligation_discharged_full": true
+        },
+        "observed_outcomes": {
+          "setoff_effective": true,
+          "setoff_full_discharge": true,
+          "obligation_discharged_full": true
+        },
+        "reasons_ru": [
+          "Выявлено формальное основание полного прекращения обязательства."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-setoff-partial",
+        "passed": true,
+        "expected_outcomes": {
+          "setoff_partial_discharge": true,
+          "obligation_partially_remaining": true
+        },
+        "observed_outcomes": {
+          "setoff_partial_discharge": true,
+          "obligation_partially_remaining": true
+        },
+        "reasons_ru": [
+          "Обязательство прекращено только в части и сохраняется в остатке."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-novation",
+        "passed": true,
+        "expected_outcomes": {
+          "novation_effective": true,
+          "new_obligation_created_by_novation": true,
+          "third_party_security_survives_novation": true
+        },
+        "observed_outcomes": {
+          "novation_effective": true,
+          "new_obligation_created_by_novation": true,
+          "third_party_security_survives_novation": true
+        },
+        "reasons_ru": [
+          "Выявлено формальное основание полного прекращения обязательства."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-forgiveness",
+        "passed": true,
+        "expected_outcomes": {
+          "debt_forgiveness_effective": true,
+          "obligation_discharged_full": true
+        },
+        "observed_outcomes": {
+          "debt_forgiveness_effective": true,
+          "obligation_discharged_full": true
+        },
+        "reasons_ru": [
+          "Выявлено формальное основание полного прекращения обязательства."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-merger",
+        "passed": true,
+        "expected_outcomes": {
+          "merger_discharge": true
+        },
+        "observed_outcomes": {
+          "merger_discharge": true
+        },
+        "reasons_ru": [
+          "Выявлено формальное основание полного прекращения обязательства."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-impossibility",
+        "passed": true,
+        "expected_outcomes": {
+          "impossibility_discharge": true
+        },
+        "observed_outcomes": {
+          "impossibility_discharge": true
+        },
+        "reasons_ru": [
+          "Выявлено формальное основание полного прекращения обязательства."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-government-act",
+        "passed": true,
+        "expected_outcomes": {
+          "government_act_discharge": true,
+          "government_act_losses_issue": true
+        },
+        "observed_outcomes": {
+          "government_act_discharge": true,
+          "government_act_losses_issue": true
+        },
+        "reasons_ru": [
+          "Выявлено формальное основание полного прекращения обязательства."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-death-liquidation",
+        "passed": true,
+        "expected_outcomes": {
+          "death_discharge": true,
+          "liquidation_discharge": true,
+          "competing_discharge_paths": true
+        },
+        "observed_outcomes": {
+          "death_discharge": true,
+          "liquidation_discharge": true,
+          "competing_discharge_paths": true
+        },
+        "reasons_ru": [
+          "Выявлено формальное основание полного прекращения обязательства."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "obligation-dynamics-red-team-report-v0",
+    "total": 22,
+    "blocked": 22,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "dynamics-red-assignment-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "assignment_effective": true
+        },
+        "observed_outcomes": {
+          "assignment_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-personal-claim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "assignment_effective": true
+        },
+        "observed_outcomes": {
+          "assignment_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-consent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "assignment_effective": true
+        },
+        "observed_outcomes": {
+          "assignment_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "assignment_enforceable_against_debtor": true
+        },
+        "observed_outcomes": {
+          "assignment_enforceable_against_debtor": false
+        },
+        "reasons_ru": [
+          "Состав участников изменен без прекращения обязательства.",
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-invalid-claim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "assignment_effective": true
+        },
+        "observed_outcomes": {
+          "assignment_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-debt-consent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "debt_transfer_effective": true
+        },
+        "observed_outcomes": {
+          "debt_transfer_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-contract-transfer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_transfer_effective": true
+        },
+        "observed_outcomes": {
+          "contract_transfer_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-improper-performance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "proper_performance_discharge": true
+        },
+        "observed_outcomes": {
+          "proper_performance_discharge": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-deposit-ground",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "notary_deposit_discharge": true
+        },
+        "observed_outcomes": {
+          "notary_deposit_discharge": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-accord-agreement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "accord_discharge": true
+        },
+        "observed_outcomes": {
+          "accord_discharge": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-setoff-no-declaration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "setoff_effective": true
+        },
+        "observed_outcomes": {
+          "setoff_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-setoff-mutual",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "setoff_effective": true
+        },
+        "observed_outcomes": {
+          "setoff_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-setoff-limit",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "setoff_effective": true
+        },
+        "observed_outcomes": {
+          "setoff_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-novation-intent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "novation_effective": true
+        },
+        "observed_outcomes": {
+          "novation_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-novation-term",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "novation_effective": true
+        },
+        "observed_outcomes": {
+          "novation_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-forgiveness-objection",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "debt_forgiveness_effective": true
+        },
+        "observed_outcomes": {
+          "debt_forgiveness_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-forgiveness-third",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "debt_forgiveness_effective": true
+        },
+        "observed_outcomes": {
+          "debt_forgiveness_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-commercial-gift",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "debt_forgiveness_effective": true
+        },
+        "observed_outcomes": {
+          "debt_forgiveness_effective": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-impossibility-risk",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "impossibility_discharge": true
+        },
+        "observed_outcomes": {
+          "impossibility_discharge": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-impossibility-delay",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "impossibility_discharge": true
+        },
+        "observed_outcomes": {
+          "impossibility_discharge": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-government-restored",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "government_act_discharge": true
+        },
+        "observed_outcomes": {
+          "government_act_discharge": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-liquidation-successor",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liquidation_discharge": true
+        },
+        "observed_outcomes": {
+          "liquidation_discharge": false
+        },
+        "reasons_ru": [
+          "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/",
+    "https://vsrf.ru/documents/own/26276/",
+    "https://www.vsrf.ru/documents/own/29023/"
+  ]
+}

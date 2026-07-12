@@ -63,6 +63,8 @@
         "docs/contract-invalidity-spec.md",
         "src/causa/institutional/contracts/security.py",
         "docs/contract-security-spec.md",
+        "src/causa/institutional/contracts/obligation_dynamics.py",
+        "docs/contract-obligation-dynamics-spec.md",
         "src/causa/institutional/contracts/termination.py",
         "docs/contract-change-termination-spec.md",
         "src/causa/institutional/contracts/liability.py",
@@ -72,19 +74,21 @@
         "examples/synthetic_formation_evaluation_report.json",
         "examples/synthetic_invalidity_evaluation_report.json",
         "examples/synthetic_security_evaluation_report.json",
+        "examples/synthetic_obligation_dynamics_evaluation_report.json",
         "examples/synthetic_termination_evaluation_report.json",
-        "examples/migrations/contracts-ru-v0-0.1.0-to-0.13.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.3.0-to-0.13.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.4.0-to-0.13.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.5.0-to-0.13.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.6.0-to-0.13.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.7.0-to-0.13.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.8.0-to-0.13.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.9.0-to-0.13.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.10.0-to-0.13.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.11.0-to-0.13.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.12.0-to-0.13.0-migration-report.json",
-        "contracts-ru-v0@0.13.0"
+        "examples/migrations/contracts-ru-v0-0.1.0-to-0.14.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.3.0-to-0.14.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.4.0-to-0.14.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.5.0-to-0.14.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.6.0-to-0.14.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.7.0-to-0.14.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.8.0-to-0.14.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.9.0-to-0.14.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.10.0-to-0.14.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.11.0-to-0.14.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.12.0-to-0.14.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.13.0-to-0.14.0-migration-report.json",
+        "contracts-ru-v0@0.14.0"
       ],
       "remaining_work": [
         "Расширить правила юридической силы и временные правила за пределы поставки.",
@@ -101,7 +105,7 @@
         "src/causa/management/policy_registry.py",
         "examples/synthetic_management_policy_registry_report.json",
         "policy-snapshot:phase0-standard-t3@1",
-        "sha256:affda706e3ba736f5d547e411ee6ea58adf3f0f9d737f5cb8e19a58830b8487a"
+        "sha256:028d11490d43801f8e65d267fd26fc58b7e6754a4b8b77f4418e516c91e89830"
       ],
       "remaining_work": [
         "Заменить локальное атомарное JSON-хранилище транзакционным production backend."
@@ -157,6 +161,8 @@
         "invalidity-red-team-report-v0",
         "security-benchmark-report-v0",
         "security-red-team-report-v0",
+        "obligation-dynamics-benchmark-report-v0",
+        "obligation-dynamics-red-team-report-v0",
         "termination-benchmark-report-v0",
         "termination-red-team-report-v0"
       ],
@@ -178,6 +184,7 @@
         "examples/synthetic_formation_evaluation_report.json",
         "examples/synthetic_invalidity_evaluation_report.json",
         "examples/synthetic_security_evaluation_report.json",
+        "examples/synthetic_obligation_dynamics_evaluation_report.json",
         "examples/synthetic_termination_evaluation_report.json",
         "phase0-supply-dispute-pipeline-v0"
       ],

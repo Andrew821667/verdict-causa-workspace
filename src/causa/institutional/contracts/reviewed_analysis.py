@@ -74,6 +74,16 @@ from causa.institutional.contracts.security import (
     evaluate_security_constraints,
     map_reviewed_security_evidence,
 )
+from causa.institutional.contracts.obligation_dynamics import (
+    OBLIGATION_DYNAMICS_EVIDENCE_SCHEMA_VERSION,
+    ObligationDynamicsConstraintSet,
+    ObligationDynamicsEvaluation,
+    ObligationDynamicsEvidenceMappingResult,
+    ReviewedObligationDynamicsEvidence,
+    build_obligation_dynamics_constraint_set,
+    evaluate_obligation_dynamics_constraints,
+    map_reviewed_obligation_dynamics_evidence,
+)
 from causa.institutional.contracts.temporal import (
     ContractTemporalFacts,
     TemporalEvaluation,
@@ -89,9 +99,9 @@ from causa.reasoning.formal_checks import (
 from causa.reasoning.counterfactual import CounterfactualBudget
 
 
-CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v5"
+CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v6"
 EVIDENCE_MAPPING_VERSION = "contracts-reviewed-evidence-to-facts-v0"
-ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v5"
+ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v6"
 
 
 class ContractEvidencePredicate(str, Enum):
@@ -180,6 +190,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     formation_evidence: ReviewedFormationEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
+    obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
     termination_evidence: ReviewedTerminationEvidence
     liability_evidence: ReviewedLiabilityEvidence
 
@@ -222,6 +233,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     security_evidence_mapping: SecurityEvidenceMappingResult
     security_constraint_set: SecurityConstraintSet
     security_evaluation: SecurityEvaluation
+    obligation_dynamics_evidence_mapping: ObligationDynamicsEvidenceMappingResult
+    obligation_dynamics_constraint_set: ObligationDynamicsConstraintSet
+    obligation_dynamics_evaluation: ObligationDynamicsEvaluation
     termination_evidence_mapping: TerminationEvidenceMappingResult
     termination_constraint_set: TerminationConstraintSet
     termination_evaluation: TerminationEvaluation
@@ -291,6 +305,51 @@ class ReviewedContractAnalysisResult(BaseModel):
             != self.constraint_evaluation.breach_issue
         ):
             raise ValueError("Security breach status does not match obligation evaluation.")
+        expected_dynamics_set = build_obligation_dynamics_constraint_set(
+            self.obligation_dynamics_evidence_mapping
+        )
+        if self.obligation_dynamics_constraint_set != expected_dynamics_set:
+            raise ValueError(
+                "Obligation-dynamics constraint set does not replay from reviewed evidence."
+            )
+        expected_dynamics_evaluation = evaluate_obligation_dynamics_constraints(
+            expected_dynamics_set,
+            self.obligation_dynamics_evidence_mapping.facts,
+        )
+        if self.obligation_dynamics_evaluation != expected_dynamics_evaluation:
+            raise ValueError(
+                "Obligation-dynamics evaluation does not replay from reviewed evidence."
+            )
+        if (
+            self.obligation_dynamics_evidence_mapping.facts.obligation_exists
+            != self.evidence_mapping.facts.duty_exists
+        ):
+            raise ValueError("Obligation-dynamics obligation status does not match duty evidence.")
+        if (
+            self.obligation_dynamics_evidence_mapping.facts.obligation_breached
+            != self.constraint_evaluation.breach_issue
+        ):
+            raise ValueError(
+                "Obligation-dynamics breach status does not match obligation evaluation."
+            )
+        if (
+            self.obligation_dynamics_evidence_mapping.facts.performance_rendered
+            != self.evidence_mapping.facts.performance_completed
+        ):
+            raise ValueError(
+                "Obligation-dynamics performance status does not match performance evidence."
+            )
+        expected_proper_performance = (
+            self.evidence_mapping.facts.performance_completed
+            and not self.evidence_mapping.facts.performance_nonconforming
+        )
+        if (
+            self.obligation_dynamics_evidence_mapping.facts.performance_accepted_as_proper
+            != expected_proper_performance
+        ):
+            raise ValueError(
+                "Obligation-dynamics proper-performance status does not match case evidence."
+            )
         expected_termination_set = build_termination_constraint_set(
             self.termination_evidence_mapping
         )
@@ -371,6 +430,10 @@ def _validate_request_integrity(
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
         raise ValueError("Security evidence case_id does not match the analysis request.")
+    if request.obligation_dynamics_evidence.case_id != request.case_id:
+        raise ValueError(
+            "Obligation-dynamics evidence case_id does not match the analysis request."
+        )
     if request.termination_evidence.case_id != request.case_id:
         raise ValueError("Termination evidence case_id does not match the analysis request.")
     if request.liability_evidence.case_id != request.case_id:
@@ -387,6 +450,11 @@ def _validate_request_integrity(
         raise ValueError("Invalidity evidence uses an unsupported schema version.")
     if request.security_evidence.schema_version != SECURITY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Security evidence uses an unsupported schema version.")
+    if (
+        request.obligation_dynamics_evidence.schema_version
+        != OBLIGATION_DYNAMICS_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Obligation-dynamics evidence uses an unsupported schema version.")
     if request.termination_evidence.schema_version != TERMINATION_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Termination evidence uses an unsupported schema version.")
     if request.liability_evidence.schema_version != LIABILITY_EVIDENCE_SCHEMA_VERSION:
@@ -401,6 +469,7 @@ def _validate_request_integrity(
         *request.formation_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
+        *request.obligation_dynamics_evidence.legal_source_refs,
         *request.termination_evidence.legal_source_refs,
         *request.liability_evidence.legal_source_refs,
     }
@@ -411,6 +480,8 @@ def _validate_request_integrity(
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.security_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.obligation_dynamics_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.termination_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -463,6 +534,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Security legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_security_legal_sources))
+        )
+    invalid_dynamics_legal_sources = [
+        source_id
+        for source_id in request.obligation_dynamics_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_dynamics_legal_sources:
+        raise ValueError(
+            "Obligation-dynamics legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_dynamics_legal_sources))
         )
     invalid_termination_legal_sources = [
         source_id
@@ -595,6 +677,11 @@ def run_reviewed_contract_analysis(
         review_status=request.security_evidence.review_status,
         reviewer_id=request.security_evidence.reviewer_id,
     )
+    dynamics_reviewer_id = _require_reviewed(
+        artifact_name="Obligation-dynamics evidence",
+        review_status=request.obligation_dynamics_evidence.review_status,
+        reviewer_id=request.obligation_dynamics_evidence.reviewer_id,
+    )
     termination_reviewer_id = _require_reviewed(
         artifact_name="Termination evidence",
         review_status=request.termination_evidence.review_status,
@@ -666,6 +753,36 @@ def run_reviewed_contract_analysis(
         constraint_set,
         evidence_mapping.facts,
     )
+    dynamics_evidence_mapping = map_reviewed_obligation_dynamics_evidence(
+        request.obligation_dynamics_evidence
+    )
+    if dynamics_evidence_mapping.facts.obligation_exists != evidence_mapping.facts.duty_exists:
+        raise ValueError("Obligation-dynamics obligation status does not match duty evidence.")
+    if dynamics_evidence_mapping.facts.obligation_breached != constraint_evaluation.breach_issue:
+        raise ValueError("Obligation-dynamics breach status does not match obligation evaluation.")
+    if (
+        dynamics_evidence_mapping.facts.performance_rendered
+        != evidence_mapping.facts.performance_completed
+    ):
+        raise ValueError(
+            "Obligation-dynamics performance status does not match performance evidence."
+        )
+    expected_proper_performance = (
+        evidence_mapping.facts.performance_completed
+        and not evidence_mapping.facts.performance_nonconforming
+    )
+    if (
+        dynamics_evidence_mapping.facts.performance_accepted_as_proper
+        != expected_proper_performance
+    ):
+        raise ValueError(
+            "Obligation-dynamics proper-performance status does not match case evidence."
+        )
+    dynamics_constraint_set = build_obligation_dynamics_constraint_set(dynamics_evidence_mapping)
+    dynamics_evaluation = evaluate_obligation_dynamics_constraints(
+        dynamics_constraint_set,
+        dynamics_evidence_mapping.facts,
+    )
     security_evidence_mapping = map_reviewed_security_evidence(request.security_evidence)
     if (
         security_evidence_mapping.facts.main_obligation_exists
@@ -722,6 +839,7 @@ def run_reviewed_contract_analysis(
         or formation_evaluation.requires_human_formation_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
+        or dynamics_evaluation.requires_human_dynamics_assessment
         or termination_evaluation.requires_human_termination_assessment
     )
 
@@ -738,6 +856,7 @@ def run_reviewed_contract_analysis(
                 formation_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
+                dynamics_reviewer_id,
                 termination_reviewer_id,
                 liability_reviewer_id,
             }
@@ -759,6 +878,9 @@ def run_reviewed_contract_analysis(
         security_evidence_mapping=security_evidence_mapping,
         security_constraint_set=security_constraint_set,
         security_evaluation=security_evaluation,
+        obligation_dynamics_evidence_mapping=dynamics_evidence_mapping,
+        obligation_dynamics_constraint_set=dynamics_constraint_set,
+        obligation_dynamics_evaluation=dynamics_evaluation,
         termination_evidence_mapping=termination_evidence_mapping,
         termination_constraint_set=termination_constraint_set,
         termination_evaluation=termination_evaluation,
@@ -780,6 +902,7 @@ def run_reviewed_contract_analysis(
             *formation_evaluation.warnings_ru,
             *invalidity_evaluation.warnings_ru,
             *security_evaluation.warnings_ru,
+            *dynamics_evaluation.warnings_ru,
             *termination_evaluation.warnings_ru,
             *liability_evaluation.warnings_ru,
             "Не является юридической консультацией.",

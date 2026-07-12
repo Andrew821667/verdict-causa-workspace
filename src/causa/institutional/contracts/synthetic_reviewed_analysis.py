@@ -40,6 +40,11 @@ from causa.institutional.contracts.security import (
     SecurityEvidenceAssertion,
     SecurityEvidencePredicate,
 )
+from causa.institutional.contracts.obligation_dynamics import (
+    ObligationDynamicsEvidenceAssertion,
+    ObligationDynamicsEvidencePredicate,
+    ReviewedObligationDynamicsEvidence,
+)
 from causa.institutional.contracts.synthetic_sources import (
     get_synthetic_contract_source,
 )
@@ -71,6 +76,13 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-plenum23-pledge-guidance-v1",
     "synthetic-ru-plenum45-suretyship-guidance-v1",
     "synthetic-case-supply-1-security-evidence",
+    "synthetic-ru-gk382-390-assignment-v1",
+    "synthetic-ru-gk391-3923-debt-transfer-v1",
+    "synthetic-ru-gk407-413-discharge-v1",
+    "synthetic-ru-gk414-419-discharge-v1",
+    "synthetic-ru-plenum54-party-change-guidance-v1",
+    "synthetic-ru-plenum6-discharge-guidance-v1",
+    "synthetic-case-supply-1-obligation-dynamics-evidence",
     "synthetic-ru-gk450-453-termination-model-v1",
     "synthetic-ru-gk310-4501-unilateral-model-v1",
     "synthetic-ru-plenum54-unilateral-guidance-v1",
@@ -99,6 +111,13 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
     security_values[SecurityEvidencePredicate.MAIN_OBLIGATION_EXISTS] = True
     security_values[SecurityEvidencePredicate.MAIN_OBLIGATION_BREACHED] = True
     security_values[SecurityEvidencePredicate.CREDITOR_GOOD_FAITH] = True
+    dynamics_values = {predicate: False for predicate in ObligationDynamicsEvidencePredicate}
+    dynamics_values[ObligationDynamicsEvidencePredicate.OBLIGATION_EXISTS] = True
+    dynamics_values[ObligationDynamicsEvidencePredicate.OBLIGATION_BREACHED] = True
+    dynamics_values[ObligationDynamicsEvidencePredicate.ACCRUED_CLAIMS_EXIST] = True
+    dynamics_values[ObligationDynamicsEvidencePredicate.PERFORMANCE_RENDERED] = True
+    dynamics_values[ObligationDynamicsEvidencePredicate.PERFORMANCE_ACCEPTED_AS_PROPER] = True
+    dynamics_values[ObligationDynamicsEvidencePredicate.CREDITOR_ISSUED_RECEIPT] = True
     return ReviewedContractAnalysisRequest(
         id="analysis-request-case-supply-1-v0",
         case_id="case-supply-1",
@@ -272,6 +291,29 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-security-reviewer",
+        ),
+        obligation_dynamics_evidence=ReviewedObligationDynamicsEvidence(
+            id="reviewed-obligation-dynamics-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                ObligationDynamicsEvidenceAssertion(
+                    id=f"obligation-dynamics-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=dynamics_values[predicate],
+                    source_refs=("synthetic-case-supply-1-obligation-dynamics-evidence",),
+                )
+                for predicate in ObligationDynamicsEvidencePredicate
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk382-390-assignment-v1",
+                "synthetic-ru-gk391-3923-debt-transfer-v1",
+                "synthetic-ru-gk407-413-discharge-v1",
+                "synthetic-ru-gk414-419-discharge-v1",
+                "synthetic-ru-plenum54-party-change-guidance-v1",
+                "synthetic-ru-plenum6-discharge-guidance-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-obligation-dynamics-reviewer",
         ),
         termination_evidence=ReviewedTerminationEvidence(
             id="reviewed-termination-evidence-supply-1-v0",

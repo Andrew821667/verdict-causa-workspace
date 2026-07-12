@@ -58,7 +58,7 @@ Phase 0 should define a small reviewed JSON subset for contractual norms:
 
 ## Translation status
 
-The current bootstrap translator emits a deterministic structured `FormalObligationRule` for a narrow contractual subset. The contracts package now accepts separate reviewed case, temporal, authority, formation, invalidity, security, change-and-termination, and liability inputs. It rejects draft inputs, missing reviewer coordinates, incomplete or duplicate predicates, unknown source references, mismatched case/date coordinates, unsupported schema versions, inapplicable norm sources, and a different authority winner.
+The current bootstrap translator emits a deterministic structured `FormalObligationRule` for a narrow contractual subset. The contracts package now accepts separate reviewed case, temporal, authority, formation, invalidity, security, obligation-dynamics, change-and-termination, and liability inputs. It rejects draft inputs, missing reviewer coordinates, incomplete or duplicate predicates, unknown source references, mismatched case/date coordinates, unsupported schema versions, inapplicable norm sources, and a different authority winner.
 
 Reviewed formation evidence uses `contracts.formation-evidence.v0` and contains all 17 predicates required by the narrow articles 432/435/438/443 model. It establishes whether a transaction was concluded, not whether invalidity later displaces its ordinary effects.
 
@@ -66,9 +66,11 @@ Reviewed invalidity evidence uses `contracts.invalidity-evidence.v0` with 51 man
 
 Reviewed security evidence uses `contracts.security-evidence.v0` with 60 mandatory predicates. Main-obligation existence, invalidity, and breach must replay from the formation, invalidity, and obligation stages. Security evidence cannot create or erase the underlying obligation.
 
+Reviewed obligation-dynamics evidence uses `contracts.obligation-dynamics-evidence.v0` with 83 mandatory predicates. Obligation, breach, rendered performance, and proper-performance facts must replay from the general evidence and constraint stages. A party change is not treated as a discharge.
+
 Reviewed change-and-termination evidence uses `contracts.termination-evidence.v0` and contains all 36 predicates required by the narrow articles 310/450–453 model. Contract status must match the formation result, while proven substantial breach requires a breach in the obligation model.
 
-Reviewed case evidence uses `contracts.case-evidence.v5`. The deterministic `contracts-reviewed-evidence-to-facts-v0` mapper produces the complete narrow `ObligationFactSet`: no absent predicate is silently treated as false. Every mapped fact retains its evidence assertion and source references. Duty and exception facts also retain links to the relevant formal condition or exception atoms from the reviewed norm.
+Reviewed case evidence uses `contracts.case-evidence.v6`. The deterministic `contracts-reviewed-evidence-to-facts-v0` mapper produces the complete narrow `ObligationFactSet`: no absent predicate is silently treated as false. Every mapped fact retains its evidence assertion and source references. Duty and exception facts also retain links to the relevant formal condition or exception atoms from the reviewed norm.
 
 Reviewed liability evidence uses `contracts.liability-evidence.v0` and contains all 20 predicates required by the narrow articles 333/401 model. Its facts and legal source references are validated independently and mapped by `contracts-reviewed-liability-to-facts-v0`. Missing liability predicates are never inferred from the general breach result.
 
@@ -85,7 +87,7 @@ This is still not complete legal formalization. It is a deliberately narrow Phas
 - Invalid JSON fails schema validation.
 - Translation output includes source id and schema version.
 - Translation is deterministic.
-- Draft case, temporal, authority, formation, invalidity, security, change-and-termination, or liability inputs cannot be analyzed.
+- Draft case, temporal, authority, formation, invalidity, security, obligation-dynamics, change-and-termination, or liability inputs cannot be analyzed.
 - Every required formal fact has assertion and source provenance.
 - Unknown sources, incomplete evidence, and coordinate mismatches fail closed.
 - Authority resolution runs before formal constraint evaluation.

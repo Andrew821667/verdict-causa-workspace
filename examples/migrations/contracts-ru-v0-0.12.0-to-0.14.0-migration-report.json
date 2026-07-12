@@ -1,0 +1,58 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.12.0:to-0.14.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.12.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.12.0",
+  "target_package_version": "0.14.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.12.0",
+      "to_version": "0.13.0",
+      "reasons": [
+        "Reviewed inputs now require a separate performance-security evidence contract.",
+        "Analysis and Russian translation distinguish the security mechanisms and enforcement paths under articles 329 through 381.2."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об обеспечении исполнения обязательств.",
+        "Анализ и русское объяснение разделяют способы обеспечения и маршруты их реализации по статьям 329–381.2 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_security_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.13.0",
+      "to_version": "0.14.0",
+      "reasons": [
+        "Reviewed inputs now require a separate obligation-dynamics evidence contract.",
+        "Analysis and Russian translation distinguish party changes and discharge paths under articles 382 through 419."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о перемене лиц и прекращении обязательств.",
+        "Анализ и русское объяснение разделяют перемену лиц и основания прекращения по статьям 382–419 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_obligation_dynamics_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

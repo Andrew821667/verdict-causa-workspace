@@ -1,0 +1,14 @@
+{
+  "id": "legacy-phase0-trace-contracts-ru-v0-0.13.0",
+  "artifact_type": "phase0_decision_trace",
+  "package_id": "contracts-ru-v0",
+  "package_version": "0.13.0",
+  "payload": {
+    "case_evidence_schema_version": "contracts.case-evidence.v5",
+    "analysis_pipeline_version": "contracts-reviewed-analysis-v5",
+    "security_evidence_present": true,
+    "obligation_dynamics_evidence_present": false,
+    "obligation_dynamics_model_version": null,
+    "translation_template_version": "translation-template-ru-v7"
+  }
+}

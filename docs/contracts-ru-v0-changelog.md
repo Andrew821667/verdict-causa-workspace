@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.14.0 - 2026-07-12
+
+- Adds mandatory reviewed obligation-dynamics evidence with 83 provenance-backed predicates.
+- Covers assignment, debt transfer, contract transfer, performance, notary deposit, accord and satisfaction, set-off, novation, forgiveness, merger, impossibility, government act, death, and liquidation under articles 382–419.
+- Keeps a party change distinct from discharge and separates full discharge, partial discharge, remaining debt, and accrued claims.
+- Preserves debtor defenses, original-creditor performance before notice, cedent warranty issues, and third-party security effects.
+- Adds 21 benchmarks, 22 adversarial checks, official-source metadata, and Russian professional/forensic explanation sections.
+- Upgrades evidence to `contracts.case-evidence.v6`, analysis to `contracts-reviewed-analysis-v6`, and Russian templates to `ru-v8`.
+
 ## 0.13.0 - 2026-07-12
 
 - Adds mandatory reviewed performance-security evidence with 60 provenance-backed predicates.

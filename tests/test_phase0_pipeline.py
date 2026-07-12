@@ -23,6 +23,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "evaluate-contract-formation",
         "evaluate-transaction-invalidity",
         "evaluate-obligation-constraints",
+        "evaluate-obligation-dynamics",
         "evaluate-performance-security",
         "evaluate-contract-change-and-termination",
         "evaluate-counterfactual-sensitivity",

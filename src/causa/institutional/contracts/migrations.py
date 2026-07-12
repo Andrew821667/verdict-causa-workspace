@@ -265,6 +265,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.13.0",
+        to_version="0.14.0",
+        reasons=[
+            "Reviewed inputs now require a separate obligation-dynamics evidence contract.",
+            "Analysis and Russian translation distinguish party changes and discharge paths under articles 382 through 419.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о перемене лиц и прекращении обязательств.",
+            "Анализ и русское объяснение разделяют перемену лиц и основания прекращения по статьям 382–419 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_obligation_dynamics_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

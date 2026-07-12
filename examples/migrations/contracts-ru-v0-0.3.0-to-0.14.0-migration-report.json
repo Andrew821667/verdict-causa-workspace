@@ -1,12 +1,29 @@
 {
-  "id": "migration:legacy-reviewed-contract-analysis-v0.4.0:to-0.13.0",
-  "artifact_id": "legacy-reviewed-contract-analysis-v0.4.0",
-  "artifact_type": "reviewed_contract_analysis",
-  "source_package_version": "0.4.0",
-  "target_package_version": "0.13.0",
+  "id": "migration:legacy-phase0-supply-trace-v0.3.0:to-0.14.0",
+  "artifact_id": "legacy-phase0-supply-trace-v0.3.0",
+  "artifact_type": "phase0_demo_trace",
+  "source_package_version": "0.3.0",
+  "target_package_version": "0.14.0",
   "disposition": "requires_regeneration",
   "disposition_label_ru": "Требуется повторное формирование",
   "steps": [
+    {
+      "from_version": "0.3.0",
+      "to_version": "0.4.0",
+      "reasons": [
+        "Analysis inputs gained reviewed case, temporal, and authority contracts.",
+        "Decision traces now retain fact provenance and the complete reviewed analysis result."
+      ],
+      "reasons_ru": [
+        "Входы анализа дополнены проверенными фактами дела, временными данными и источниками-кандидатами.",
+        "Трассировка теперь сохраняет происхождение фактов и полный результат проверенного анализа."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
     {
       "from_version": "0.4.0",
       "to_version": "0.5.0",
@@ -174,6 +191,25 @@
       ],
       "replay_commands": [
         "python scripts/export_synthetic_security_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.13.0",
+      "to_version": "0.14.0",
+      "reasons": [
+        "Reviewed inputs now require a separate obligation-dynamics evidence contract.",
+        "Analysis and Russian translation distinguish party changes and discharge paths under articles 382 through 419."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о перемене лиц и прекращении обязательств.",
+        "Анализ и русское объяснение разделяют перемену лиц и основания прекращения по статьям 382–419 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_obligation_dynamics_evaluation.py",
         "python scripts/export_synthetic_reviewed_contract_analysis.py",
         "python scripts/export_synthetic_translation_bundle.py",
         "python scripts/export_phase0_demo_trace.py",

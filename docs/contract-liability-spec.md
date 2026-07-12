@@ -47,9 +47,9 @@
 
 Версии контрактов:
 
-- `contracts.case-evidence.v5`;
+- `contracts.case-evidence.v6`;
 - `contracts.liability-evidence.v0`;
-- `contracts-reviewed-analysis-v5`;
+- `contracts-reviewed-analysis-v6`;
 - `contracts-liability-articles-333-401-v0`.
 
 ## Проверки качества

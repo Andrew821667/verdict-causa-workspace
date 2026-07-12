@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.14.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v6"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v6"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed obligation-dynamics evidence is mandatory after obligation evaluation.",
+            "Formal boundaries cover Civil Code articles 382 through 419.",
+            "Party changes remain distinct from full and partial obligation discharge paths.",
+        ],
+        notes_ru=[
+            "Проверенные данные о динамике обязательства обязательны после проверки исполнения.",
+            "Формальные границы охватывают статьи 382–419 ГК РФ.",
+            "Перемена лиц отделена от полного и частичного прекращения обязательства.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.13.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

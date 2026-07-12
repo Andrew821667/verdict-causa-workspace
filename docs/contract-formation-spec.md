@@ -40,8 +40,8 @@
 - `contracts.formation-evidence.v0`;
 - `contracts-reviewed-formation-to-facts-v0`;
 - `contracts-formation-articles-432-443-v0`;
-- `contracts.case-evidence.v5`;
-- `contracts-reviewed-analysis-v5`.
+- `contracts.case-evidence.v6`;
+- `contracts-reviewed-analysis-v6`.
 
 ## Проверки качества
 

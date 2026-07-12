@@ -619,6 +619,131 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk382-390-assignment-v1",
+        title="Синтетическая проверенная модель уступки требования",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: существование и определимость требования, "
+            "запреты, форма, согласие, уведомление, возражения должника и ответственность "
+            "цедента проверяются раздельно."
+        ),
+        valid_from="2014-07-01",
+        metadata={
+            "synthetic": True,
+            "topic": "obligation_dynamics_articles_382_390",
+            "legal_reference": "ГК РФ, статьи 382–390",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk391-3923-debt-transfer-v1",
+        title="Синтетическая проверенная модель перевода долга и передачи договора",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: согласие кредитора, форма, освобождение "
+            "первоначального должника, кумулятивное принятие долга и передача договора "
+            "не смешиваются."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "obligation_dynamics_articles_391_3923",
+            "legal_reference": "ГК РФ, статьи 391–392.3",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk407-413-discharge-v1",
+        title="Синтетическая проверенная модель исполнения, отступного и зачета",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: надлежащее исполнение, депозит нотариуса, "
+            "предоставление отступного и условия зачета являются самостоятельными "
+            "основаниями прекращения."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "obligation_dynamics_articles_407_413",
+            "legal_reference": "ГК РФ, статьи 407–413",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk414-419-discharge-v1",
+        title="Синтетическая проверенная модель иных оснований прекращения",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: новация, прощение долга, совпадение сторон, "
+            "невозможность исполнения, акт органа власти, смерть и ликвидация проверяются "
+            "по разным формальным путям."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "obligation_dynamics_articles_414_419",
+            "legal_reference": "ГК РФ, статьи 414–419",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-plenum54-party-change-guidance-v1",
+        title="Синтетическая модель разъяснений Пленума ВС РФ о перемене лиц",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление разъяснений: распорядительный эффект уступки, "
+            "положение должника, договорные ограничения и процессуальное правопреемство "
+            "требуют самостоятельной проверки."
+        ),
+        valid_from="2017-12-21",
+        metadata={
+            "synthetic": True,
+            "topic": "obligation_dynamics_party_change_guidance",
+            "legal_reference": "Постановление Пленума ВС РФ от 21.12.2017 № 54",
+            "basis_url": "https://vsrf.ru/documents/own/26276/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-plenum6-discharge-guidance-v1",
+        title="Синтетическая модель разъяснений Пленума ВС РФ о прекращении обязательств",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление разъяснений: соглашение об отступном и его "
+            "предоставление, заявление о зачете, ясная воля на новацию и объективная "
+            "невозможность исполнения не подменяют друг друга."
+        ),
+        valid_from="2020-06-11",
+        metadata={
+            "synthetic": True,
+            "topic": "obligation_dynamics_discharge_guidance",
+            "legal_reference": "Постановление Пленума ВС РФ от 11.06.2020 № 6",
+            "basis_url": "https://www.vsrf.ru/documents/own/29023/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-obligation-dynamics-evidence",
+        title="Синтетическая проверенная запись перемены лиц и прекращения обязательства",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: состав сторон не изменялся, поставка исполнена после "
+            "просрочки, основная обязанность исполнена, а ранее возникший вопрос "
+            "ответственности сохраняется."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "obligation_dynamics_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk401-liability-model-v1",
         title="Синтетическая проверенная модель оснований ответственности по статье 401 ГК РФ",
         source_type=SourceType.STATUTE,

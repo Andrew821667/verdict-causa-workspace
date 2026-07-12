@@ -204,6 +204,11 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                 for assertion in analysis_request.security_evidence.assertions
                 for source_ref in assertion.source_refs
             ),
+            *(
+                source_ref
+                for assertion in analysis_request.obligation_dynamics_evidence.assertions
+                for source_ref in assertion.source_refs
+            ),
         }
     )
     source_nodes = [
@@ -318,6 +323,21 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     ),
                     "security_enforcement_available": (
                         analysis_result.security_evaluation.security_enforcement_available
+                    ),
+                    "obligation_dynamics_evidence_mapping_id": (
+                        analysis_result.obligation_dynamics_evidence_mapping.evidence_id
+                    ),
+                    "obligation_dynamics_constraint_set_id": (
+                        analysis_result.obligation_dynamics_constraint_set.id
+                    ),
+                    "obligation_dynamics_model_version": (
+                        analysis_result.obligation_dynamics_constraint_set.model_version
+                    ),
+                    "obligation_discharged_full": (
+                        analysis_result.obligation_dynamics_evaluation.obligation_discharged_full
+                    ),
+                    "accrued_claims_preserved_by_dynamics": (
+                        analysis_result.obligation_dynamics_evaluation.accrued_claims_preserved
                     ),
                     "termination_evidence_mapping_id": (
                         analysis_result.termination_evidence_mapping.evidence_id

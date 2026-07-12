@@ -44,3 +44,5 @@ Release `0.11.0` adds separately reviewed evidence and formal paths for agreemen
 Release `0.12.0` adds reviewed transaction-invalidity evidence and formal boundaries for articles 166–181 of the Russian Civil Code. It separates void and voidable grounds, standing, limitation, judgment, estoppel, partial invalidity, restitution, and additional damages before ordinary contractual effects are evaluated.
 
 Release `0.13.0` adds reviewed performance-security evidence and formal boundaries for articles 329–381.2 of the Russian Civil Code. It separates penalty, pledge, retention, suretyship, independent guarantee, deposit, and security payment, including accessory effects, third-party opposability, enforcement routes, termination, regress, credit, and return issues.
+
+Release `0.14.0` adds reviewed obligation-dynamics evidence and formal boundaries for articles 382–419 of the Russian Civil Code. It separates assignment, debt and contract transfer from performance, notary deposit, accord, set-off, novation, forgiveness, merger, impossibility, government act, death, and liquidation discharge paths.

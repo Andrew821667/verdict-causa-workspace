@@ -65,8 +65,8 @@
 - `contracts.security-evidence.v0`;
 - `contracts-reviewed-security-to-facts-v0`;
 - `contracts-performance-security-articles-329-3812-v0`;
-- `contracts.case-evidence.v5`;
-- `contracts-reviewed-analysis-v5`;
+- `contracts.case-evidence.v6`;
+- `contracts-reviewed-analysis-v6`;
 - 16 benchmark- и 16 Red Team-сценариев.
 
 Артефакт формируется командой `python scripts/export_synthetic_security_evaluation.py` и сохраняется в `examples/synthetic_security_evaluation_report.json`.
