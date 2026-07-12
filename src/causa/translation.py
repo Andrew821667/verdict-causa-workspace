@@ -10,6 +10,11 @@ class TranslationLevel(str, Enum):
 
 class TranslationAssertionCode(str, Enum):
     SOURCE_APPLICABLE = "source_applicable"
+    VALID_OFFER = "valid_offer"
+    CONTRACT_CONCLUDED_PREREQUISITES = "contract_concluded_prerequisites"
+    CONDUCT_ACCEPTANCE_VALID = "conduct_acceptance_valid"
+    COUNTEROFFER_DETECTED = "counteroffer_detected"
+    NON_CONCLUSION_OBJECTION_BARRED = "non_conclusion_objection_barred"
     DUE_DATE_MISSED = "due_date_missed"
     BREACH_ISSUE = "breach_issue"
     LATE_PERFORMANCE_ISSUE = "late_performance_issue"

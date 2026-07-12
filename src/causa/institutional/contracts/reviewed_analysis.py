@@ -34,6 +34,16 @@ from causa.institutional.contracts.liability import (
     evaluate_liability_constraints,
     map_reviewed_liability_evidence,
 )
+from causa.institutional.contracts.formation import (
+    FORMATION_EVIDENCE_SCHEMA_VERSION,
+    FormationConstraintSet,
+    FormationEvaluation,
+    FormationEvidenceMappingResult,
+    ReviewedFormationEvidence,
+    build_formation_constraint_set,
+    evaluate_formation_constraints,
+    map_reviewed_formation_evidence,
+)
 from causa.institutional.contracts.temporal import (
     ContractTemporalFacts,
     TemporalEvaluation,
@@ -49,9 +59,9 @@ from causa.reasoning.formal_checks import (
 from causa.reasoning.counterfactual import CounterfactualBudget
 
 
-CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v1"
+CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v2"
 EVIDENCE_MAPPING_VERSION = "contracts-reviewed-evidence-to-facts-v0"
-ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v1"
+ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v2"
 
 
 class ContractEvidencePredicate(str, Enum):
@@ -137,6 +147,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     case_evidence: ReviewedCaseEvidence
     temporal_evidence: ReviewedTemporalEvidence
     authority_input: ReviewedAuthorityInput
+    formation_evidence: ReviewedFormationEvidence
     liability_evidence: ReviewedLiabilityEvidence
 
 
@@ -169,6 +180,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     evidence_mapping: CaseEvidenceMappingResult
     constraint_set: ConstraintSet
     constraint_evaluation: ConstraintEvaluation
+    formation_evidence_mapping: FormationEvidenceMappingResult
+    formation_constraint_set: FormationConstraintSet
+    formation_evaluation: FormationEvaluation
     liability_evidence_mapping: LiabilityEvidenceMappingResult
     liability_constraint_set: LiabilityConstraintSet
     liability_evaluation: LiabilityEvaluation
@@ -180,9 +194,21 @@ class ReviewedContractAnalysisResult(BaseModel):
 
     @model_validator(mode="after")
     def validate_liability_replay(self) -> "ReviewedContractAnalysisResult":
-        expected_constraint_set = build_liability_constraint_set(
-            self.liability_evidence_mapping
+        expected_formation_set = build_formation_constraint_set(self.formation_evidence_mapping)
+        if self.formation_constraint_set != expected_formation_set:
+            raise ValueError("Formation constraint set does not replay from reviewed evidence.")
+        expected_formation_evaluation = evaluate_formation_constraints(
+            expected_formation_set,
+            self.formation_evidence_mapping.facts,
         )
+        if self.formation_evaluation != expected_formation_evaluation:
+            raise ValueError("Formation evaluation does not replay from reviewed evidence.")
+        if (
+            self.formation_evaluation.contract_concluded_prerequisites
+            != self.evidence_mapping.facts.duty_exists
+        ):
+            raise ValueError("Formation result does not match contractual duty evidence.")
+        expected_constraint_set = build_liability_constraint_set(self.liability_evidence_mapping)
         if self.liability_constraint_set != expected_constraint_set:
             raise ValueError("Liability constraint set does not replay from reviewed evidence.")
         if (
@@ -235,6 +261,8 @@ def _validate_request_integrity(
         raise ValueError("Case evidence case_id does not match the analysis request.")
     if request.temporal_evidence.case_id != request.case_id:
         raise ValueError("Temporal evidence case_id does not match the analysis request.")
+    if request.formation_evidence.case_id != request.case_id:
+        raise ValueError("Formation evidence case_id does not match the analysis request.")
     if request.liability_evidence.case_id != request.case_id:
         raise ValueError("Liability evidence case_id does not match the analysis request.")
     if request.authority_input.evaluation_date != request.temporal_evidence.evaluation_date:
@@ -243,6 +271,8 @@ def _validate_request_integrity(
         raise ValueError("Reviewed norm uses an unsupported bootstrap schema version.")
     if request.case_evidence.schema_version != CASE_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Case evidence uses an unsupported schema version.")
+    if request.formation_evidence.schema_version != FORMATION_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Formation evidence uses an unsupported schema version.")
     if request.liability_evidence.schema_version != LIABILITY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Liability evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
@@ -252,9 +282,12 @@ def _validate_request_integrity(
         request.reviewed_norm.source_id,
         *request.temporal_evidence.source_refs,
         *request.authority_input.candidate_source_ids,
+        *request.formation_evidence.legal_source_refs,
         *request.liability_evidence.legal_source_refs,
     }
     for assertion in request.case_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.formation_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.liability_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -272,6 +305,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Liability legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_liability_legal_sources))
+        )
+    invalid_formation_legal_sources = [
+        source_id
+        for source_id in request.formation_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_formation_legal_sources:
+        raise ValueError(
+            "Formation legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_formation_legal_sources))
         )
     return sorted(referenced_source_ids)
 
@@ -292,11 +336,10 @@ def map_reviewed_case_evidence_to_facts(
         reviewer_id=temporal_evidence.reviewer_id,
     )
 
-    assertions_by_predicate = {
-        assertion.predicate: assertion for assertion in evidence.assertions
-    }
+    assertions_by_predicate = {assertion.predicate: assertion for assertion in evidence.assertions}
     missing_predicates = sorted(
-        predicate.value for predicate in REQUIRED_EVIDENCE_PREDICATES - assertions_by_predicate.keys()
+        predicate.value
+        for predicate in REQUIRED_EVIDENCE_PREDICATES - assertions_by_predicate.keys()
     )
     if missing_predicates:
         raise ValueError(
@@ -379,6 +422,11 @@ def run_reviewed_contract_analysis(
         review_status=request.authority_input.review_status,
         reviewer_id=request.authority_input.reviewer_id,
     )
+    formation_reviewer_id = _require_reviewed(
+        artifact_name="Formation evidence",
+        review_status=request.formation_evidence.review_status,
+        reviewer_id=request.formation_evidence.reviewer_id,
+    )
     liability_reviewer_id = _require_reviewed(
         artifact_name="Liability evidence",
         review_status=request.liability_evidence.review_status,
@@ -393,8 +441,7 @@ def run_reviewed_contract_analysis(
         evaluation_date=request.temporal_evidence.evaluation_date,
     )
     authority_sources = [
-        source_registry[source_id]
-        for source_id in request.authority_input.candidate_source_ids
+        source_registry[source_id] for source_id in request.authority_input.candidate_source_ids
     ]
     authority_evaluation = evaluate_source_authority(
         authority_sources,
@@ -418,22 +465,23 @@ def run_reviewed_contract_analysis(
         request.temporal_evidence,
         formal_translation.obligation_rule,
     )
+    formation_evidence_mapping = map_reviewed_formation_evidence(request.formation_evidence)
+    formation_constraint_set = build_formation_constraint_set(formation_evidence_mapping)
+    formation_evaluation = evaluate_formation_constraints(
+        formation_constraint_set,
+        formation_evidence_mapping.facts,
+    )
+    if formation_evaluation.contract_concluded_prerequisites != evidence_mapping.facts.duty_exists:
+        raise ValueError("Formation result does not match contractual duty evidence.")
     constraint_set = build_obligation_constraint_set(formal_translation.obligation_rule)
     constraint_evaluation = evaluate_obligation_constraints(
         constraint_set,
         evidence_mapping.facts,
     )
-    liability_evidence_mapping = map_reviewed_liability_evidence(
-        request.liability_evidence
-    )
-    if (
-        liability_evidence_mapping.facts.breach_established
-        != constraint_evaluation.breach_issue
-    ):
+    liability_evidence_mapping = map_reviewed_liability_evidence(request.liability_evidence)
+    if liability_evidence_mapping.facts.breach_established != constraint_evaluation.breach_issue:
         raise ValueError("Liability breach fact does not match obligation evaluation.")
-    liability_constraint_set = build_liability_constraint_set(
-        liability_evidence_mapping
-    )
+    liability_constraint_set = build_liability_constraint_set(liability_evidence_mapping)
     liability_evaluation = evaluate_liability_constraints(
         liability_constraint_set,
         liability_evidence_mapping.facts,
@@ -444,7 +492,10 @@ def run_reviewed_contract_analysis(
         baseline_facts=evidence_mapping.facts,
         budget=counterfactual_budget,
     )
-    requires_human_resolution = authority_evaluation.selected_source_id is None
+    requires_human_resolution = (
+        authority_evaluation.selected_source_id is None
+        or formation_evaluation.requires_human_formation_assessment
+    )
 
     return ReviewedContractAnalysisResult(
         request_id=request.id,
@@ -456,6 +507,7 @@ def run_reviewed_contract_analysis(
                 case_reviewer_id,
                 temporal_reviewer_id,
                 authority_reviewer_id,
+                formation_reviewer_id,
                 liability_reviewer_id,
             }
         ),
@@ -467,6 +519,9 @@ def run_reviewed_contract_analysis(
         evidence_mapping=evidence_mapping,
         constraint_set=constraint_set,
         constraint_evaluation=constraint_evaluation,
+        formation_evidence_mapping=formation_evidence_mapping,
+        formation_constraint_set=formation_constraint_set,
+        formation_evaluation=formation_evaluation,
         liability_evidence_mapping=liability_evidence_mapping,
         liability_constraint_set=liability_constraint_set,
         liability_evaluation=liability_evaluation,
@@ -482,6 +537,7 @@ def run_reviewed_contract_analysis(
             "Используются только синтетические проверенные входные данные.",
             "Детерминированный анализ ограничен узким набором правил; "
             "содержательная правовая оценка остается за экспертом.",
+            *formation_evaluation.warnings_ru,
             *liability_evaluation.warnings_ru,
             "Не является юридической консультацией.",
         ],

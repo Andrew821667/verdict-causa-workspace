@@ -20,6 +20,11 @@ from causa.institutional.contracts.liability import (
     LiabilityEvidencePredicate,
     ReviewedLiabilityEvidence,
 )
+from causa.institutional.contracts.formation import (
+    FormationEvidenceAssertion,
+    FormationEvidencePredicate,
+    ReviewedFormationEvidence,
+)
 from causa.institutional.contracts.synthetic_sources import (
     get_synthetic_contract_source,
 )
@@ -31,6 +36,11 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-contract-supply-delivery-duty-v2",
     "synthetic-ru-contract-supply-delivery-term",
     "synthetic-case-supply-1-reviewed-evidence",
+    "synthetic-ru-gk432-contract-formation-model-v1",
+    "synthetic-ru-gk435-offer-model-v1",
+    "synthetic-ru-gk438-443-acceptance-model-v1",
+    "synthetic-ru-plenum49-formation-guidance-v1",
+    "synthetic-case-supply-1-formation-evidence",
     "synthetic-ru-gk401-liability-model-v1",
     "synthetic-ru-gk333-penalty-model-v1",
     "synthetic-ru-plenum7-liability-guidance-v1",
@@ -129,6 +139,48 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             evaluation_date="2026-01-21",
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-authority-reviewer",
+        ),
+        formation_evidence=ReviewedFormationEvidence(
+            id="reviewed-formation-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                FormationEvidenceAssertion(
+                    id=f"formation-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-formation-evidence",),
+                )
+                for predicate, value in (
+                    (FormationEvidencePredicate.PROPOSAL_MADE, True),
+                    (FormationEvidencePredicate.PROPOSAL_ADDRESSED_TO_COUNTERPARTY, True),
+                    (FormationEvidencePredicate.INTENT_TO_BE_BOUND, True),
+                    (FormationEvidencePredicate.SUBJECT_MATTER_DEFINED_IN_OFFER, True),
+                    (FormationEvidencePredicate.STATUTORY_ESSENTIAL_TERMS_DEFINED_IN_OFFER, True),
+                    (
+                        FormationEvidencePredicate.PARTY_DECLARED_ESSENTIAL_TERMS_DEFINED_IN_OFFER,
+                        True,
+                    ),
+                    (FormationEvidencePredicate.REQUIRED_FORM_OBSERVED, True),
+                    (FormationEvidencePredicate.ACCEPTANCE_RECEIVED, False),
+                    (FormationEvidencePredicate.ACCEPTANCE_FULL_AND_UNCONDITIONAL, False),
+                    (FormationEvidencePredicate.ACCEPTANCE_WITHIN_PERIOD, True),
+                    (FormationEvidencePredicate.ACCEPTANCE_BY_CONDUCT, True),
+                    (FormationEvidencePredicate.PERFORMANCE_CONDUCT_STARTED_IN_TIME, True),
+                    (FormationEvidencePredicate.SILENCE_ONLY, False),
+                    (FormationEvidencePredicate.SILENCE_ACCEPTANCE_BASIS_EXISTS, False),
+                    (FormationEvidencePredicate.ACCEPTANCE_ON_OTHER_TERMS, False),
+                    (FormationEvidencePredicate.PERFORMANCE_ACCEPTED_WITHOUT_OBJECTION, True),
+                    (FormationEvidencePredicate.BAD_FAITH_NON_CONCLUSION_OBJECTION, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk432-contract-formation-model-v1",
+                "synthetic-ru-gk435-offer-model-v1",
+                "synthetic-ru-gk438-443-acceptance-model-v1",
+                "synthetic-ru-plenum49-formation-guidance-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-formation-reviewer",
         ),
         liability_evidence=ReviewedLiabilityEvidence(
             id="reviewed-liability-evidence-supply-1-v0",

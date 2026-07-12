@@ -16,6 +16,9 @@ from causa.institutional.contracts.synthetic_counterfactual import (
 from causa.institutional.contracts.synthetic_liability import (
     build_synthetic_liability_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_formation import (
+    build_synthetic_formation_evaluation_artifact,
+)
 from causa.institutional.contracts.versioning import (
     evaluate_contracts_package_compatibility,
 )
@@ -138,6 +141,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
                 or "human-resolution-required"
             ],
             notes=trace.analysis_result.authority_evaluation.reasons_ru,
+        ),
+        PipelineStepResult(
+            id="evaluate-contract-formation",
+            title="Проверка формальных предпосылок заключения договора",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.formation_evidence_mapping.evidence_id,
+                trace.analysis_result.formation_constraint_set.id,
+                *trace.analysis_result.formation_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.formation_evaluation.reasons_ru,
+                "Проверяются оферта, существенные условия, форма и допустимый способ акцепта.",
+                "Судебная квалификация доказательств не автоматизируется.",
+            ],
         ),
         PipelineStepResult(
             id="evaluate-obligation-constraints",
@@ -289,6 +307,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     compatibility_check = evaluate_contracts_package_compatibility()
     counterfactual_artifact = build_synthetic_counterfactual_evaluation_artifact()
     liability_artifact = build_synthetic_liability_evaluation_artifact()
+    formation_artifact = build_synthetic_formation_evaluation_artifact()
 
     items = [
         ReadinessItem(
@@ -336,22 +355,26 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "src/causa/institutional/contracts/versioning.py",
                 "src/causa/institutional/contracts/migrations.py",
                 "src/causa/institutional/contracts/legal_operators.py",
+                "src/causa/institutional/contracts/formation.py",
+                "docs/contract-formation-spec.md",
                 "src/causa/institutional/contracts/liability.py",
                 "docs/contract-liability-spec.md",
                 "examples/synthetic_counterfactual_evaluation_report.json",
                 "examples/synthetic_liability_evaluation_report.json",
-                "examples/migrations/contracts-ru-v0-0.1.0-to-0.9.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.3.0-to-0.9.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.4.0-to-0.9.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.5.0-to-0.9.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.6.0-to-0.9.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.7.0-to-0.9.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.8.0-to-0.9.0-migration-report.json",
+                "examples/synthetic_formation_evaluation_report.json",
+                "examples/migrations/contracts-ru-v0-0.1.0-to-0.10.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.3.0-to-0.10.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.4.0-to-0.10.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.5.0-to-0.10.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.6.0-to-0.10.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.7.0-to-0.10.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.8.0-to-0.10.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.9.0-to-0.10.0-migration-report.json",
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
             ],
             remaining_work=[
-                "Расширить словарь, правила юридической силы и временные правила за пределы поставки и текущей модели ответственности.",
-                "Расширить legal operators на заключение, изменение и расторжение договора.",
+                "Расширить правила юридической силы и временные правила за пределы поставки.",
+                "Расширить legal operators на изменение и расторжение договора.",
                 "Добавлять replay-миграцию для каждого семантического релиза пакета.",
             ],
         ),
@@ -414,6 +437,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 counterfactual_artifact.red_team_report.id,
                 liability_artifact.benchmark_report.id,
                 liability_artifact.red_team_report.id,
+                formation_artifact.benchmark_report.id,
+                formation_artifact.red_team_report.id,
             ],
             remaining_work=[
                 "Получить privacy- и экспертное одобрение до сбора несинтетических пилотных наблюдений.",
@@ -430,6 +455,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_translation_bundle_report.json",
                 "examples/synthetic_counterfactual_evaluation_report.json",
                 "examples/synthetic_liability_evaluation_report.json",
+                "examples/synthetic_formation_evaluation_report.json",
                 pipeline.id,
             ],
             remaining_work=["Расширить синтетический набор источников и перечень пилотных задач."],

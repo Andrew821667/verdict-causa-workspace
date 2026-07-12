@@ -3,8 +3,8 @@ from causa.institutional.package import InstitutionalPackageManifest
 
 CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
     id="contracts-ru-v0",
-    legal_institute="Contractual relations: obligations, sale, supply, and breach liability",
-    version="0.9.0",
+    legal_institute="Договорные отношения: заключение, обязательства, купля-продажа, поставка и ответственность",
+    version="0.10.0",
     core_compatibility=">=0.1,<0.2",
     vocabulary_refs=["src/causa/institutional/contracts/vocabulary.py"],
     authority_model_refs=["src/causa/institutional/contracts/authority_model.py"],
@@ -12,11 +12,13 @@ CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
     bootstrap_schema_refs=[
         "docs/bootstrap-pipeline-spec.md#phase-0-scope",
         "src/causa/institutional/contracts/reviewed_analysis.py",
+        "src/causa/institutional/contracts/formation.py",
         "src/causa/institutional/contracts/liability.py",
     ],
     mapping_rule_refs=[
         "docs/bootstrap-pipeline-spec.md#translation-status",
         "src/causa/institutional/contracts/reviewed_analysis.py",
+        "src/causa/institutional/contracts/formation.py",
         "src/causa/institutional/contracts/liability.py",
     ],
     contradiction_taxonomy_refs=["src/causa/institutional/contracts/contradiction_taxonomy.py"],
@@ -24,11 +26,13 @@ CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
     benchmark_refs=[
         "docs/evaluation-and-red-team-spec.md#phase-0-artifacts",
         "src/causa/institutional/contracts/counterfactual_evaluation.py",
+        "src/causa/institutional/contracts/formation_evaluation.py",
         "src/causa/institutional/contracts/liability_evaluation.py",
     ],
     red_team_refs=[
         "docs/evaluation-and-red-team-spec.md#red-team",
         "src/causa/institutional/contracts/counterfactual_evaluation.py",
+        "src/causa/institutional/contracts/formation_evaluation.py",
         "src/causa/institutional/contracts/liability_evaluation.py",
     ],
     confidence_policy_refs=["docs/management-plane-spec.md#confidence-and-activation-policies"],

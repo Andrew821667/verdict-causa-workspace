@@ -13,31 +13,35 @@ def main() -> None:
     fixture_pairs = [
         (
             migrations_path / "contracts-ru-v0-0.1.0-benchmark-report.json",
-            migrations_path / "contracts-ru-v0-0.1.0-to-0.9.0-migration-report.json",
+            migrations_path / "contracts-ru-v0-0.1.0-to-0.10.0-migration-report.json",
         ),
         (
             migrations_path / "contracts-ru-v0-0.3.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.3.0-to-0.9.0-migration-report.json",
+            migrations_path / "contracts-ru-v0-0.3.0-to-0.10.0-migration-report.json",
         ),
         (
             migrations_path / "contracts-ru-v0-0.4.0-reviewed-analysis.json",
-            migrations_path / "contracts-ru-v0-0.4.0-to-0.9.0-migration-report.json",
+            migrations_path / "contracts-ru-v0-0.4.0-to-0.10.0-migration-report.json",
         ),
         (
             migrations_path / "contracts-ru-v0-0.5.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.5.0-to-0.9.0-migration-report.json",
+            migrations_path / "contracts-ru-v0-0.5.0-to-0.10.0-migration-report.json",
         ),
         (
             migrations_path / "contracts-ru-v0-0.6.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.6.0-to-0.9.0-migration-report.json",
+            migrations_path / "contracts-ru-v0-0.6.0-to-0.10.0-migration-report.json",
         ),
         (
             migrations_path / "contracts-ru-v0-0.7.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.7.0-to-0.9.0-migration-report.json",
+            migrations_path / "contracts-ru-v0-0.7.0-to-0.10.0-migration-report.json",
         ),
         (
             migrations_path / "contracts-ru-v0-0.8.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.8.0-to-0.9.0-migration-report.json",
+            migrations_path / "contracts-ru-v0-0.8.0-to-0.10.0-migration-report.json",
+        ),
+        (
+            migrations_path / "contracts-ru-v0-0.9.0-phase0-trace.json",
+            migrations_path / "contracts-ru-v0-0.9.0-to-0.10.0-migration-report.json",
         ),
     ]
     for input_path, output_path in fixture_pairs:

@@ -192,6 +192,91 @@ SYNTHETIC_CONTRACT_SOURCES = [
         metadata={"synthetic": True, "topic": "penalty_reduction"},
     ),
     LegalSource(
+        id="synthetic-ru-gk432-contract-formation-model-v1",
+        title="Синтетическая проверенная модель заключения договора по статье 432 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: договорное основание проверяется через "
+            "согласование предмета, обязательных и заявленных сторонами существенных условий."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "formation_article_432",
+            "legal_reference": "ГК РФ, статья 432",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk435-offer-model-v1",
+        title="Синтетическая проверенная модель оферты по статье 435 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: оферта должна быть адресована контрагенту, "
+            "быть достаточно определенной и выражать намерение оферента быть связанным."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "formation_article_435",
+            "legal_reference": "ГК РФ, статья 435",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk438-443-acceptance-model-v1",
+        title="Синтетическая проверенная модель акцепта по статьям 438 и 443 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: полный безоговорочный ответ, своевременные "
+            "действия по исполнению и ответ на иных условиях проверяются раздельно."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "formation_articles_438_443",
+            "legal_reference": "ГК РФ, статьи 438 и 443",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-plenum49-formation-guidance-v1",
+        title="Синтетическая модель разъяснений Пленума ВС РФ о заключении договора",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление разъяснений: воля сторон может следовать из "
+            "поведения, а принятое исполнение ограничивает недобросовестные возражения "
+            "о незаключенности договора."
+        ),
+        valid_from="2018-12-25",
+        metadata={
+            "synthetic": True,
+            "topic": "formation_plenum_guidance",
+            "legal_reference": "Постановление Пленума ВС РФ от 25.12.2018 № 49",
+            "basis_url": "https://vsrf.ru/documents/own/27540/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-formation-evidence",
+        title="Синтетическая проверенная запись фактов о заключении договора поставки",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: согласование условий и своевременное начало "
+            "исполнения адресатом оферты одобрены для демонстрационного анализа Этапа 0."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "formation_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk401-liability-model-v1",
         title="Синтетическая проверенная модель оснований ответственности по статье 401 ГК РФ",
         source_type=SourceType.STATUTE,

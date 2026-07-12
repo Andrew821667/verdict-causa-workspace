@@ -73,7 +73,7 @@ def compute_translation_template_hash(
 
 
 def build_russian_translation_template_set() -> TranslationTemplateSet:
-    version = "translation-template-ru-v3"
+    version = "translation-template-ru-v4"
     templates = (
         TranslationTemplateDefinition(
             level=TranslationLevel.EXECUTIVE,
@@ -103,6 +103,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Установленные обстоятельства\n{facts_ru}\n\n"
                 "Применимая норма и юридическая сила\n{rule_and_authority_ru}\n\n"
                 "Формальная проверка\n{formal_result_ru}\n\n"
+                "Заключение договора\n{formation_professional_ru}\n\n"
                 "Контрфактическая чувствительность\n{counterfactual_professional_ru}\n\n"
                 "Ответственность и неустойка\n{liability_professional_ru}\n\n"
                 "Ограничения и действия эксперта\n{limitations_ru}\n\n"
@@ -114,6 +115,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Установленные обстоятельства",
                 "Применимая норма и юридическая сила",
                 "Формальная проверка",
+                "Заключение договора",
                 "Контрфактическая чувствительность",
                 "Ответственность и неустойка",
                 "Ограничения и действия эксперта",
@@ -130,6 +132,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Проверенные факты и provenance\n{provenance_ru}\n\n"
                 "Формальная норма и constraint set\n{formal_rule_ru}\n\n"
                 "Разрешение юридической силы\n{authority_trace_ru}\n\n"
+                "Модель заключения договора (статьи 432, 435, 438 и 443 ГК РФ)\n{formation_forensic_ru}\n\n"
                 "Результаты формальной проверки\n{all_assertions_ru}\n\n"
                 "Governance-журнал кандидата\n{governance_ru}\n\n"
                 "Сравнение путей рассуждения\n{path_comparison_ru}\n\n"
@@ -144,6 +147,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Проверенные факты и provenance",
                 "Формальная норма и constraint set",
                 "Разрешение юридической силы",
+                "Модель заключения договора (статьи 432, 435, 438 и 443 ГК РФ)",
                 "Результаты формальной проверки",
                 "Governance-журнал кандидата",
                 "Сравнение путей рассуждения",
@@ -152,7 +156,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Ограничения",
             ),
             min_characters=1_600,
-            max_characters=22_000,
+            max_characters=26_000,
         ),
     )
     return TranslationTemplateSet(

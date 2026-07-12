@@ -74,6 +74,7 @@ For Phase 0 implementation detail, see:
 - [Management Plane specification](docs/management-plane-spec.md);
 - [Translation Layer specification](docs/translation-layer-spec.md);
 - [Bounded contractual counterfactual specification](docs/contract-counterfactual-spec.md);
+- [Contract-formation prerequisite specification](docs/contract-formation-spec.md);
 - [Contractual liability and penalty prerequisite specification](docs/contract-liability-spec.md);
 - [Evaluation and Red Team specification](docs/evaluation-and-red-team-spec.md);
 - [Contracts RU v0 changelog](docs/contracts-ru-v0-changelog.md);
@@ -175,6 +176,14 @@ python scripts/export_synthetic_liability_evaluation.py
 
 The output is written to `examples/synthetic_liability_evaluation_report.json`. It does not calculate a penalty reduction or predict a court outcome.
 
+Generate the reviewed contract-formation prerequisite report:
+
+```bash
+python scripts/export_synthetic_formation_evaluation.py
+```
+
+The output is written to `examples/synthetic_formation_evaluation_report.json`. It checks offer, essential terms, form, and acceptance boundaries without deciding a court outcome.
+
 Generate the current Phase 0 readiness report:
 
 ```bash
@@ -221,15 +230,16 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-The command writes replay reports for legacy `0.1.0`, `0.3.0`, `0.4.0`, `0.5.0`, `0.6.0`, `0.7.0`, and `0.8.0` artifacts:
+The command writes replay reports for legacy `0.1.0`, `0.3.0`, `0.4.0`, `0.5.0`, `0.6.0`, `0.7.0`, `0.8.0`, and `0.9.0` artifacts:
 
-- `examples/migrations/contracts-ru-v0-0.1.0-to-0.9.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.3.0-to-0.9.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.4.0-to-0.9.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.5.0-to-0.9.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.6.0-to-0.9.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.7.0-to-0.9.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.8.0-to-0.9.0-migration-report.json`.
+- `examples/migrations/contracts-ru-v0-0.1.0-to-0.10.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.3.0-to-0.10.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.4.0-to-0.10.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.5.0-to-0.10.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.6.0-to-0.10.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.7.0-to-0.10.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.8.0-to-0.10.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.9.0-to-0.10.0-migration-report.json`.
 
 ## License
 

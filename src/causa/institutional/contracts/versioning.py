@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.10.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v2"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v2"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed contract-formation evidence is mandatory before obligation analysis.",
+            "Formal boundaries cover Civil Code articles 432, 435, 438, and 443.",
+            "The model does not determine evidence weight or a court outcome.",
+        ],
+        notes_ru=[
+            "Проверенные данные о заключении договора обязательны до анализа обязательства.",
+            "Формальные границы охватывают статьи 432, 435, 438 и 443 ГК РФ.",
+            "Модель не определяет вес доказательств и результат суда.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.9.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],
@@ -186,7 +205,7 @@ CONTRACTS_PACKAGE_COMPATIBILITY = [
             "Phase 0 synthetic contractual package only.",
             "No production or real-client-data compatibility claim is implied.",
         ],
-    )
+    ),
 ]
 
 

@@ -60,6 +60,85 @@
       }
     },
     {
+      "id": "synthetic-ru-gk432-contract-formation-model-v1",
+      "title": "Синтетическая проверенная модель заключения договора по статье 432 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: договорное основание проверяется через согласование предмета, обязательных и заявленных сторонами существенных условий.",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "formation_article_432",
+        "legal_reference": "ГК РФ, статья 432",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk435-offer-model-v1",
+      "title": "Синтетическая проверенная модель оферты по статье 435 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: оферта должна быть адресована контрагенту, быть достаточно определенной и выражать намерение оферента быть связанным.",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "formation_article_435",
+        "legal_reference": "ГК РФ, статья 435",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk438-443-acceptance-model-v1",
+      "title": "Синтетическая проверенная модель акцепта по статьям 438 и 443 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: полный безоговорочный ответ, своевременные действия по исполнению и ответ на иных условиях проверяются раздельно.",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "formation_articles_438_443",
+        "legal_reference": "ГК РФ, статьи 438 и 443",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-plenum49-formation-guidance-v1",
+      "title": "Синтетическая модель разъяснений Пленума ВС РФ о заключении договора",
+      "source_type": "case_law",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление разъяснений: воля сторон может следовать из поведения, а принятое исполнение ограничивает недобросовестные возражения о незаключенности договора.",
+      "valid_from": "2018-12-25",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "formation_plenum_guidance",
+        "legal_reference": "Постановление Пленума ВС РФ от 25.12.2018 № 49",
+        "basis_url": "https://vsrf.ru/documents/own/27540/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-formation-evidence",
+      "title": "Синтетическая проверенная запись фактов о заключении договора поставки",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: согласование условий и своевременное начало исполнения адресатом оферты одобрены для демонстрационного анализа Этапа 0.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "formation_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk401-liability-model-v1",
       "title": "Синтетическая проверенная модель оснований ответственности по статье 401 ГК РФ",
       "source_type": "statute",
@@ -169,7 +248,7 @@
     "case_evidence": {
       "id": "reviewed-case-evidence-supply-1-v0",
       "case_id": "case-supply-1",
-      "schema_version": "contracts.case-evidence.v1",
+      "schema_version": "contracts.case-evidence.v2",
       "assertions": [
         {
           "id": "evidence-duty_exists",
@@ -293,6 +372,157 @@
       "evaluation_date": "2026-01-21",
       "review_status": "reviewed",
       "reviewer_id": "synthetic-authority-reviewer"
+    },
+    "formation_evidence": {
+      "id": "reviewed-formation-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.formation-evidence.v0",
+      "assertions": [
+        {
+          "id": "formation-evidence-proposal_made",
+          "predicate": "proposal_made",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-proposal_addressed_to_counterparty",
+          "predicate": "proposal_addressed_to_counterparty",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-intent_to_be_bound",
+          "predicate": "intent_to_be_bound",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-subject_matter_defined_in_offer",
+          "predicate": "subject_matter_defined_in_offer",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-statutory_essential_terms_defined_in_offer",
+          "predicate": "statutory_essential_terms_defined_in_offer",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-party_declared_essential_terms_defined_in_offer",
+          "predicate": "party_declared_essential_terms_defined_in_offer",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-required_form_observed",
+          "predicate": "required_form_observed",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-acceptance_received",
+          "predicate": "acceptance_received",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-acceptance_full_and_unconditional",
+          "predicate": "acceptance_full_and_unconditional",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-acceptance_within_period",
+          "predicate": "acceptance_within_period",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-acceptance_by_conduct",
+          "predicate": "acceptance_by_conduct",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-performance_conduct_started_in_time",
+          "predicate": "performance_conduct_started_in_time",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-silence_only",
+          "predicate": "silence_only",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-silence_acceptance_basis_exists",
+          "predicate": "silence_acceptance_basis_exists",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-acceptance_on_other_terms",
+          "predicate": "acceptance_on_other_terms",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-performance_accepted_without_objection",
+          "predicate": "performance_accepted_without_objection",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "id": "formation-evidence-bad_faith_non_conclusion_objection",
+          "predicate": "bad_faith_non_conclusion_objection",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk432-contract-formation-model-v1",
+        "synthetic-ru-gk435-offer-model-v1",
+        "synthetic-ru-gk438-443-acceptance-model-v1",
+        "synthetic-ru-plenum49-formation-guidance-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-formation-reviewer"
     },
     "liability_evidence": {
       "id": "reviewed-liability-evidence-supply-1-v0",
@@ -472,15 +702,17 @@
   "analysis_result": {
     "request_id": "analysis-request-case-supply-1-v0",
     "case_id": "case-supply-1",
-    "pipeline_version": "contracts-reviewed-analysis-v1",
+    "pipeline_version": "contracts-reviewed-analysis-v2",
     "reviewer_ids": [
       "synthetic-authority-reviewer",
       "synthetic-case-evidence-reviewer",
+      "synthetic-formation-reviewer",
       "synthetic-liability-reviewer",
       "synthetic-norm-reviewer",
       "synthetic-temporal-reviewer"
     ],
     "source_ids": [
+      "synthetic-case-supply-1-formation-evidence",
       "synthetic-case-supply-1-liability-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
       "synthetic-ru-contract-supply-delivery-duty-v1",
@@ -488,6 +720,10 @@
       "synthetic-ru-contract-supply-delivery-term",
       "synthetic-ru-gk333-penalty-model-v1",
       "synthetic-ru-gk401-liability-model-v1",
+      "synthetic-ru-gk432-contract-formation-model-v1",
+      "synthetic-ru-gk435-offer-model-v1",
+      "synthetic-ru-gk438-443-acceptance-model-v1",
+      "synthetic-ru-plenum49-formation-guidance-v1",
       "synthetic-ru-plenum7-liability-guidance-v1"
     ],
     "formal_translation": {
@@ -556,7 +792,7 @@
     },
     "evidence_mapping": {
       "evidence_id": "reviewed-case-evidence-supply-1-v0",
-      "schema_version": "contracts.case-evidence.v1",
+      "schema_version": "contracts.case-evidence.v2",
       "mapping_version": "contracts-reviewed-evidence-to-facts-v0",
       "formal_rule_id": "obligation-rule:norm-supply-delivery-duty-v0",
       "facts": {
@@ -729,6 +965,201 @@
       ],
       "reasons_ru": [
         "Выявлена просрочка: обязанность существует, срок пропущен, применимое исключение не установлено."
+      ]
+    },
+    "formation_evidence_mapping": {
+      "evidence_id": "reviewed-formation-evidence-supply-1-v0",
+      "schema_version": "contracts.formation-evidence.v0",
+      "mapping_version": "contracts-reviewed-formation-to-facts-v0",
+      "facts": {
+        "proposal_made": true,
+        "proposal_addressed_to_counterparty": true,
+        "intent_to_be_bound": true,
+        "subject_matter_defined_in_offer": true,
+        "statutory_essential_terms_defined_in_offer": true,
+        "party_declared_essential_terms_defined_in_offer": true,
+        "required_form_observed": true,
+        "acceptance_received": false,
+        "acceptance_full_and_unconditional": false,
+        "acceptance_within_period": true,
+        "acceptance_by_conduct": true,
+        "performance_conduct_started_in_time": true,
+        "silence_only": false,
+        "silence_acceptance_basis_exists": false,
+        "acceptance_on_other_terms": false,
+        "performance_accepted_without_objection": true,
+        "bad_faith_non_conclusion_objection": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk432-contract-formation-model-v1",
+        "synthetic-ru-gk435-offer-model-v1",
+        "synthetic-ru-gk438-443-acceptance-model-v1",
+        "synthetic-ru-plenum49-formation-guidance-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "acceptance_by_conduct",
+          "assertion_id": "formation-evidence-acceptance_by_conduct",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "acceptance_full_and_unconditional",
+          "assertion_id": "formation-evidence-acceptance_full_and_unconditional",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "acceptance_on_other_terms",
+          "assertion_id": "formation-evidence-acceptance_on_other_terms",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "acceptance_received",
+          "assertion_id": "formation-evidence-acceptance_received",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "acceptance_within_period",
+          "assertion_id": "formation-evidence-acceptance_within_period",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "bad_faith_non_conclusion_objection",
+          "assertion_id": "formation-evidence-bad_faith_non_conclusion_objection",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "intent_to_be_bound",
+          "assertion_id": "formation-evidence-intent_to_be_bound",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "party_declared_essential_terms_defined_in_offer",
+          "assertion_id": "formation-evidence-party_declared_essential_terms_defined_in_offer",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_accepted_without_objection",
+          "assertion_id": "formation-evidence-performance_accepted_without_objection",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_conduct_started_in_time",
+          "assertion_id": "formation-evidence-performance_conduct_started_in_time",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "proposal_addressed_to_counterparty",
+          "assertion_id": "formation-evidence-proposal_addressed_to_counterparty",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "proposal_made",
+          "assertion_id": "formation-evidence-proposal_made",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "required_form_observed",
+          "assertion_id": "formation-evidence-required_form_observed",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "silence_acceptance_basis_exists",
+          "assertion_id": "formation-evidence-silence_acceptance_basis_exists",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "silence_only",
+          "assertion_id": "formation-evidence-silence_only",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "statutory_essential_terms_defined_in_offer",
+          "assertion_id": "formation-evidence-statutory_essential_terms_defined_in_offer",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        },
+        {
+          "fact_name": "subject_matter_defined_in_offer",
+          "assertion_id": "formation-evidence-subject_matter_defined_in_offer",
+          "source_refs": [
+            "synthetic-case-supply-1-formation-evidence"
+          ]
+        }
+      ]
+    },
+    "formation_constraint_set": {
+      "id": "formation-constraint-set:reviewed-formation-evidence-supply-1-v0",
+      "model_version": "contracts-formation-articles-432-443-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk432-contract-formation-model-v1",
+        "synthetic-ru-gk435-offer-model-v1",
+        "synthetic-ru-gk438-443-acceptance-model-v1",
+        "synthetic-ru-plenum49-formation-guidance-v1"
+      ],
+      "expressions": [
+        "essential_terms_defined_in_offer == subject_matter_defined_in_offer AND statutory_essential_terms_defined_in_offer AND party_declared_essential_terms_defined_in_offer",
+        "valid_offer == proposal_made AND proposal_addressed_to_counterparty AND intent_to_be_bound AND essential_terms_defined_in_offer",
+        "express_acceptance_valid == valid_offer AND acceptance_received AND acceptance_full_and_unconditional AND acceptance_within_period AND NOT acceptance_on_other_terms",
+        "conduct_acceptance_valid == valid_offer AND acceptance_by_conduct AND performance_conduct_started_in_time AND NOT acceptance_on_other_terms",
+        "silence_acceptance_valid == valid_offer AND silence_only AND silence_acceptance_basis_exists AND acceptance_within_period",
+        "counteroffer_detected == acceptance_on_other_terms",
+        "essential_terms_agreed == valid_offer AND (express_acceptance_valid OR conduct_acceptance_valid OR silence_acceptance_valid)",
+        "contract_concluded_prerequisites == required_form_observed AND essential_terms_agreed",
+        "non_conclusion_objection_barred == performance_accepted_without_objection AND bad_faith_non_conclusion_objection"
+      ]
+    },
+    "formation_evaluation": {
+      "constraint_set_id": "formation-constraint-set:reviewed-formation-evidence-supply-1-v0",
+      "satisfiable": true,
+      "essential_terms_defined_in_offer": true,
+      "essential_terms_agreed": true,
+      "valid_offer": true,
+      "express_acceptance_valid": false,
+      "conduct_acceptance_valid": true,
+      "silence_acceptance_valid": false,
+      "counteroffer_detected": false,
+      "contract_concluded_prerequisites": true,
+      "formation_evidence_gap": false,
+      "non_conclusion_objection_barred": false,
+      "requires_human_formation_assessment": false,
+      "reasons_ru": [
+        "Формальные предпосылки заключения договора подтверждены.",
+        "Акцепт подтвержден действиями по исполнению в установленный срок."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные предпосылки и не устанавливает судебный факт заключения договора.",
+        "Содержание переписки, поведение сторон и соблюдение формы оцениваются экспертом."
       ]
     },
     "liability_evidence_mapping": {
@@ -956,7 +1387,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.9.0",
+      "institutional_package_version": "contracts-ru-v0@0.10.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -1548,6 +1979,8 @@
     "warnings_ru": [
       "Используются только синтетические проверенные входные данные.",
       "Детерминированный анализ ограничен узким набором правил; содержательная правовая оценка остается за экспертом.",
+      "Модель проверяет только формальные предпосылки и не устанавливает судебный факт заключения договора.",
+      "Содержание переписки, поведение сторон и соблюдение формы оцениваются экспертом.",
       "Модель проверяет только формальные предпосылки статей 333 и 401 ГК РФ.",
       "Квалификация доказательств, исключительность случая и размер снижения относятся к суду.",
       "Результат не является юридической консультацией.",
@@ -1592,7 +2025,7 @@
     "locale": "ru-RU",
     "engine_version": "governance-engine-v0",
     "policy_version": "policy-snapshot:phase0-standard-t3@1",
-    "policy_content_hash": "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff",
+    "policy_content_hash": "sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e",
     "current_stage": "active",
     "current_stage_label_ru": "Активно",
     "created_at": "2026-07-11T10:00:00+03:00",
@@ -1615,7 +2048,7 @@
           "synthetic-governance-evidence:proposed"
         ],
         "policy_version": "policy-snapshot:phase0-standard-t3@1",
-        "policy_content_hash": "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff"
+        "policy_content_hash": "sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e"
       },
       {
         "id": "governance-decision:candidate-supply-excuse-scope:2",
@@ -1635,7 +2068,7 @@
           "synthetic-governance-evidence:type_classification"
         ],
         "policy_version": "policy-snapshot:phase0-standard-t3@1",
-        "policy_content_hash": "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff"
+        "policy_content_hash": "sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e"
       },
       {
         "id": "governance-decision:candidate-supply-excuse-scope:3",
@@ -1655,7 +2088,7 @@
           "synthetic-governance-evidence:expert_review"
         ],
         "policy_version": "policy-snapshot:phase0-standard-t3@1",
-        "policy_content_hash": "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff"
+        "policy_content_hash": "sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e"
       }
     ],
     "activations": [
@@ -1667,7 +2100,7 @@
         "expires_at": "2027-07-11T10:03:00+03:00",
         "actor_id": "synthetic-domain-owner",
         "policy_version": "policy-snapshot:phase0-standard-t3@1",
-        "policy_content_hash": "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff",
+        "policy_content_hash": "sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e",
         "decision_id": "governance-decision:candidate-supply-excuse-scope:3"
       }
     ],
@@ -1715,11 +2148,11 @@
       "allow_counterfactual": true,
       "counterfactual_max_scenarios": 8,
       "counterfactual_max_changed_facts": 4,
-      "translation_template_version": "translation-template-ru-v3",
-      "translation_template_hash": "sha256:e329d68f773325dce6022e0f1bdf65604484bb1572c11c09bc4a1ccf23317e4f",
+      "translation_template_version": "translation-template-ru-v4",
+      "translation_template_hash": "sha256:58d4ef2c2b20f4c38f26210c07121af079efd305ab58a8f7dba1554e1214664f",
       "model_profile": "no-llm-synthetic-demo"
     },
-    "content_hash": "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff",
+    "content_hash": "sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e",
     "created_at": "2026-07-11T09:00:00+03:00",
     "created_by": "synthetic-policy-owner",
     "reviewer_ids": [
@@ -1761,11 +2194,11 @@
           "allow_counterfactual": true,
           "counterfactual_max_scenarios": 8,
           "counterfactual_max_changed_facts": 4,
-          "translation_template_version": "translation-template-ru-v3",
-          "translation_template_hash": "sha256:e329d68f773325dce6022e0f1bdf65604484bb1572c11c09bc4a1ccf23317e4f",
+          "translation_template_version": "translation-template-ru-v4",
+          "translation_template_hash": "sha256:58d4ef2c2b20f4c38f26210c07121af079efd305ab58a8f7dba1554e1214664f",
           "model_profile": "no-llm-synthetic-demo"
         },
-        "content_hash": "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff",
+        "content_hash": "sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e",
         "created_at": "2026-07-11T09:00:00+03:00",
         "created_by": "synthetic-policy-owner",
         "reviewer_ids": [
@@ -1801,11 +2234,11 @@
           "allow_counterfactual": true,
           "counterfactual_max_scenarios": 8,
           "counterfactual_max_changed_facts": 4,
-          "translation_template_version": "translation-template-ru-v3",
-          "translation_template_hash": "sha256:e329d68f773325dce6022e0f1bdf65604484bb1572c11c09bc4a1ccf23317e4f",
+          "translation_template_version": "translation-template-ru-v4",
+          "translation_template_hash": "sha256:58d4ef2c2b20f4c38f26210c07121af079efd305ab58a8f7dba1554e1214664f",
           "model_profile": "no-llm-synthetic-demo"
         },
-        "content_hash": "sha256:bad438aff037162dad7f75d1233d57d71557b559acabe53bd669718b7321e861",
+        "content_hash": "sha256:3c82f19ffa80fd255bff4535a572c40e65283c691c3c20412551667c62ebc883",
         "created_at": "2026-07-11T09:08:00+03:00",
         "created_by": "synthetic-policy-owner",
         "reviewer_ids": [
@@ -1936,21 +2369,21 @@
     "trace_id": "trace-phase0-supply-dispute-v0",
     "locale": "ru-RU",
     "pipeline_version": "translation-pipeline-ru-v0",
-    "template_set_id": "translation-template-set:translation-template-ru-v3",
-    "template_version": "translation-template-ru-v3",
-    "template_content_hash": "sha256:e329d68f773325dce6022e0f1bdf65604484bb1572c11c09bc4a1ccf23317e4f",
+    "template_set_id": "translation-template-set:translation-template-ru-v4",
+    "template_version": "translation-template-ru-v4",
+    "template_content_hash": "sha256:58d4ef2c2b20f4c38f26210c07121af079efd305ab58a8f7dba1554e1214664f",
     "policy_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
-    "policy_content_hash": "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff",
+    "policy_content_hash": "sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e",
     "artifacts": [
       {
         "id": "translation:trace-phase0-supply-dispute-v0:executive",
         "trace_id": "trace-phase0-supply-dispute-v0",
         "level": "executive",
         "locale": "ru-RU",
-        "template_version": "translation-template-ru-v3",
-        "template_content_hash": "sha256:e329d68f773325dce6022e0f1bdf65604484bb1572c11c09bc4a1ccf23317e4f",
+        "template_version": "translation-template-ru-v4",
+        "template_content_hash": "sha256:58d4ef2c2b20f4c38f26210c07121af079efd305ab58a8f7dba1554e1214664f",
         "policy_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
-        "policy_content_hash": "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff",
+        "policy_content_hash": "sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e",
         "text": "КРАТКОЕ ПРАВОВОЕ РЕЗЮМЕ\n\nВывод\nФормальная модель выявила вопрос о нарушении обязательства. Основной выявленный паттерн — просрочка поставки.\n\nКлючевое основание\nФактическая дата исполнения наступила после согласованного срока. По модели юридической силы выбран источник synthetic-ru-contract-supply-delivery-duty-v2.\n\nРиск и следующий шаг\nСодержательная квалификация, расчет последствий и выбор способа защиты остаются за юристом; необходимо проверить первичные документы и актуальные источники.\n\nСинтетический результат. Не является юридической консультацией и требует проверки юристом.",
         "assertions": [
           {
@@ -1959,6 +2392,66 @@
             "text_ru": "Источник проверенной нормы применим на дату оценки.",
             "source_refs": [
               "synthetic-ru-contract-supply-delivery-duty-v2"
+            ]
+          },
+          {
+            "code": "valid_offer",
+            "value": true,
+            "text_ru": "Формальные признаки оферты подтверждены.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
+            ]
+          },
+          {
+            "code": "contract_concluded_prerequisites",
+            "value": true,
+            "text_ru": "Формальные предпосылки заключения договора подтверждены.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
+            ]
+          },
+          {
+            "code": "conduct_acceptance_valid",
+            "value": true,
+            "text_ru": "Акцепт подтвержден своевременными действиями по исполнению.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
+            ]
+          },
+          {
+            "code": "counteroffer_detected",
+            "value": false,
+            "text_ru": "Ответ на иных условиях не выявлен.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
+            ]
+          },
+          {
+            "code": "non_conclusion_objection_barred",
+            "value": false,
+            "text_ru": "Формальный запрет возражения о незаключенности не установлен.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
             ]
           },
           {
@@ -2040,7 +2533,7 @@
           {
             "code": "human_resolution_required",
             "value": false,
-            "text_ru": "Конкуренция источников разрешена текущей синтетической моделью.",
+            "text_ru": "Вопросы источников и формальных предпосылок заключения разрешены текущей синтетической моделью.",
             "source_refs": [
               "synthetic-ru-contract-supply-delivery-duty-v1",
               "synthetic-ru-contract-supply-delivery-duty-v2"
@@ -2120,6 +2613,7 @@
           }
         ],
         "source_refs": [
+          "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-ru-contract-supply-delivery-duty-v1",
@@ -2127,6 +2621,10 @@
           "synthetic-ru-contract-supply-delivery-term",
           "synthetic-ru-gk333-penalty-model-v1",
           "synthetic-ru-gk401-liability-model-v1",
+          "synthetic-ru-gk432-contract-formation-model-v1",
+          "synthetic-ru-gk435-offer-model-v1",
+          "synthetic-ru-gk438-443-acceptance-model-v1",
+          "synthetic-ru-plenum49-formation-guidance-v1",
           "synthetic-ru-plenum7-liability-guidance-v1"
         ],
         "faithfulness_checked": true,
@@ -2139,11 +2637,11 @@
         "trace_id": "trace-phase0-supply-dispute-v0",
         "level": "professional",
         "locale": "ru-RU",
-        "template_version": "translation-template-ru-v3",
-        "template_content_hash": "sha256:e329d68f773325dce6022e0f1bdf65604484bb1572c11c09bc4a1ccf23317e4f",
+        "template_version": "translation-template-ru-v4",
+        "template_content_hash": "sha256:58d4ef2c2b20f4c38f26210c07121af079efd305ab58a8f7dba1554e1214664f",
         "policy_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
-        "policy_content_hash": "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff",
-        "text": "ПРОФЕССИОНАЛЬНОЕ ЮРИДИЧЕСКОЕ ОБЪЯСНЕНИЕ\n\nПравовой вывод\nФормальная модель выявила вопрос о нарушении обязательства. Основной выявленный паттерн — просрочка поставки.\n\nУстановленные обстоятельства\n- Согласованный срок: 2026-01-15.\n- Фактическое исполнение: 2026-01-20.\n- Дата оценки: 2026-01-21.\n- Срок пропущен: Да.\n- Применимое исключение: Нет.\n\nПрименимая норма и юридическая сила\n- Норма: norm-supply-delivery-duty-v0; действие: поставить товар в согласованный срок.\n- Источник нормы: synthetic-ru-contract-supply-delivery-duty-v2.\n- Выбран источник synthetic-ru-contract-supply-delivery-duty-v2: уровень закона.\n- Источник synthetic-ru-contract-supply-delivery-duty-v1 исключен: Дата оценки наступила после окончания действия источника.\n\nФормальная проверка\n- Источник проверенной нормы применим на дату оценки.\n- Фактическая дата исполнения наступила после согласованного срока.\n- Формальная модель выявила вопрос о нарушении обязательства.\n- Установлены формальные признаки просрочки исполнения.\n- Формальные признаки ненадлежащего исполнения не установлены.\n- Формальные признаки просрочки платежа не установлены.\n- Текущий набор фактов не подтверждает все формальные предпосылки требования убытков.\n- Формальный пробел причинной связи для заявленного требования не выявлен.\n- Формальный барьер исковой давности не установлен.\n\nКонтрфактическая чувствительность\n- Активировать основание освобождения: меняются выводы — Вопрос о нарушении обязательства, Просрочка исполнения.\n- Квалифицировать исполнение как ненадлежащее: меняются выводы — Ненадлежащее исполнение.\n- Изменить временную привязку исполнения: меняются выводы — Вопрос о нарушении обязательства, Просрочка исполнения.\n\nОтветственность и неустойка\n- Указано только исключенное коммерческое обстоятельство; оно не признано непреодолимой силой в текущей модели.\n- Нарушение установлено, а формальные предпосылки освобождения от ответственности не подтверждены.\n- Снижение неустойки не рассчитывается автоматически и не устраняет ответственность.\n- Оценка доказательств и размер возможного снижения относятся к компетенции суда.\n\nОграничения и действия эксперта\n- Используются только синтетические проверенные входные данные.\n- Детерминированный анализ ограничен узким набором правил; содержательная правовая оценка остается за экспертом.\n- Модель проверяет только формальные предпосылки статей 333 и 401 ГК РФ.\n- Квалификация доказательств, исключительность случая и размер снижения относятся к суду.\n- Результат не является юридической консультацией.\n- Не является юридической консультацией.\n\nСинтетический результат. Не является юридической консультацией и требует проверки юристом.",
+        "policy_content_hash": "sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e",
+        "text": "ПРОФЕССИОНАЛЬНОЕ ЮРИДИЧЕСКОЕ ОБЪЯСНЕНИЕ\n\nПравовой вывод\nФормальная модель выявила вопрос о нарушении обязательства. Основной выявленный паттерн — просрочка поставки.\n\nУстановленные обстоятельства\n- Согласованный срок: 2026-01-15.\n- Фактическое исполнение: 2026-01-20.\n- Дата оценки: 2026-01-21.\n- Срок пропущен: Да.\n- Применимое исключение: Нет.\n\nПрименимая норма и юридическая сила\n- Норма: norm-supply-delivery-duty-v0; действие: поставить товар в согласованный срок.\n- Источник нормы: synthetic-ru-contract-supply-delivery-duty-v2.\n- Выбран источник synthetic-ru-contract-supply-delivery-duty-v2: уровень закона.\n- Источник synthetic-ru-contract-supply-delivery-duty-v1 исключен: Дата оценки наступила после окончания действия источника.\n\nФормальная проверка\n- Источник проверенной нормы применим на дату оценки.\n- Формальные признаки оферты подтверждены.\n- Формальные предпосылки заключения договора подтверждены.\n- Акцепт подтвержден своевременными действиями по исполнению.\n- Ответ на иных условиях не выявлен.\n- Формальный запрет возражения о незаключенности не установлен.\n- Фактическая дата исполнения наступила после согласованного срока.\n- Формальная модель выявила вопрос о нарушении обязательства.\n- Установлены формальные признаки просрочки исполнения.\n\nЗаключение договора\n- Формальные предпосылки заключения договора подтверждены.\n- Акцепт подтвержден действиями по исполнению в установленный срок.\n- Судебная квалификация переписки, поведения сторон и формы договора остается за юристом.\n\nКонтрфактическая чувствительность\n- Активировать основание освобождения: меняются выводы — Вопрос о нарушении обязательства, Просрочка исполнения.\n- Квалифицировать исполнение как ненадлежащее: меняются выводы — Ненадлежащее исполнение.\n- Изменить временную привязку исполнения: меняются выводы — Вопрос о нарушении обязательства, Просрочка исполнения.\n\nОтветственность и неустойка\n- Указано только исключенное коммерческое обстоятельство; оно не признано непреодолимой силой в текущей модели.\n- Нарушение установлено, а формальные предпосылки освобождения от ответственности не подтверждены.\n- Снижение неустойки не рассчитывается автоматически и не устраняет ответственность.\n- Оценка доказательств и размер возможного снижения относятся к компетенции суда.\n\nОграничения и действия эксперта\n- Используются только синтетические проверенные входные данные.\n- Детерминированный анализ ограничен узким набором правил; содержательная правовая оценка остается за экспертом.\n- Модель проверяет только формальные предпосылки и не устанавливает судебный факт заключения договора.\n- Содержание переписки, поведение сторон и соблюдение формы оцениваются экспертом.\n- Модель проверяет только формальные предпосылки статей 333 и 401 ГК РФ.\n- Квалификация доказательств, исключительность случая и размер снижения относятся к суду.\n- Результат не является юридической консультацией.\n- Не является юридической консультацией.\n\nСинтетический результат. Не является юридической консультацией и требует проверки юристом.",
         "assertions": [
           {
             "code": "source_applicable",
@@ -2151,6 +2649,66 @@
             "text_ru": "Источник проверенной нормы применим на дату оценки.",
             "source_refs": [
               "synthetic-ru-contract-supply-delivery-duty-v2"
+            ]
+          },
+          {
+            "code": "valid_offer",
+            "value": true,
+            "text_ru": "Формальные признаки оферты подтверждены.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
+            ]
+          },
+          {
+            "code": "contract_concluded_prerequisites",
+            "value": true,
+            "text_ru": "Формальные предпосылки заключения договора подтверждены.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
+            ]
+          },
+          {
+            "code": "conduct_acceptance_valid",
+            "value": true,
+            "text_ru": "Акцепт подтвержден своевременными действиями по исполнению.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
+            ]
+          },
+          {
+            "code": "counteroffer_detected",
+            "value": false,
+            "text_ru": "Ответ на иных условиях не выявлен.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
+            ]
+          },
+          {
+            "code": "non_conclusion_objection_barred",
+            "value": false,
+            "text_ru": "Формальный запрет возражения о незаключенности не установлен.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
             ]
           },
           {
@@ -2232,7 +2790,7 @@
           {
             "code": "human_resolution_required",
             "value": false,
-            "text_ru": "Конкуренция источников разрешена текущей синтетической моделью.",
+            "text_ru": "Вопросы источников и формальных предпосылок заключения разрешены текущей синтетической моделью.",
             "source_refs": [
               "synthetic-ru-contract-supply-delivery-duty-v1",
               "synthetic-ru-contract-supply-delivery-duty-v2"
@@ -2312,6 +2870,7 @@
           }
         ],
         "source_refs": [
+          "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-ru-contract-supply-delivery-duty-v1",
@@ -2319,6 +2878,10 @@
           "synthetic-ru-contract-supply-delivery-term",
           "synthetic-ru-gk333-penalty-model-v1",
           "synthetic-ru-gk401-liability-model-v1",
+          "synthetic-ru-gk432-contract-formation-model-v1",
+          "synthetic-ru-gk435-offer-model-v1",
+          "synthetic-ru-gk438-443-acceptance-model-v1",
+          "synthetic-ru-plenum49-formation-guidance-v1",
           "synthetic-ru-plenum7-liability-guidance-v1"
         ],
         "faithfulness_checked": true,
@@ -2331,11 +2894,11 @@
         "trace_id": "trace-phase0-supply-dispute-v0",
         "level": "forensic",
         "locale": "ru-RU",
-        "template_version": "translation-template-ru-v3",
-        "template_content_hash": "sha256:e329d68f773325dce6022e0f1bdf65604484bb1572c11c09bc4a1ccf23317e4f",
+        "template_version": "translation-template-ru-v4",
+        "template_content_hash": "sha256:58d4ef2c2b20f4c38f26210c07121af079efd305ab58a8f7dba1554e1214664f",
         "policy_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
-        "policy_content_hash": "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff",
-        "text": "FORENSIC-ТРАССИРОВКА ЮРИДИЧЕСКОГО ВЫВОДА\n\nКоординаты воспроизведения\n- Trace: trace-phase0-supply-dispute-v0.\n- Дело: case-supply-1.\n- Analysis pipeline: contracts-reviewed-analysis-v1.\n- Policy snapshot: policy-snapshot:phase0-standard-t3@1.\n- Policy hash: sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff.\n- Translation template: translation-template-ru-v3.\n- Translation template hash: sha256:e329d68f773325dce6022e0f1bdf65604484bb1572c11c09bc4a1ccf23317e4f.\n\nПроверенные факты и provenance\n- due_date_missed: assertion=reviewed-temporal-evidence-supply-1-v0; sources=synthetic-ru-contract-supply-delivery-term, synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- causation_established: assertion=evidence-causation_established; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- duty_exists: assertion=evidence-duty_exists; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=condition-supply-relation, condition-agreed-date.\n- limitation_period_expired: assertion=evidence-limitation_period_expired; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- loss_claimed: assertion=evidence-loss_claimed; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- payment_defense_applies: assertion=evidence-payment_defense_applies; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- payment_due: assertion=evidence-payment_due; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- payment_duty_exists: assertion=evidence-payment_duty_exists; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- payment_missed: assertion=evidence-payment_missed; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- performance_completed: assertion=evidence-performance_completed; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- performance_nonconforming: assertion=evidence-performance_nonconforming; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- remedy_requested: assertion=evidence-remedy_requested; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- valid_exception_applies: assertion=evidence-valid_exception_applies; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=exception-valid-excuse.\n\nФормальная норма и constraint set\n- Formal rule: obligation-rule:norm-supply-delivery-duty-v0.\n- Constraint set: constraint-set:obligation-rule:norm-supply-delivery-duty-v0.\n- duty_exists.\n- due_date_missed.\n- valid_exception_applies.\n- late_performance_issue == duty_exists AND due_date_missed AND NOT valid_exception_applies.\n- performance_completed.\n- performance_nonconforming.\n- defect_issue == duty_exists AND performance_completed AND performance_nonconforming.\n- payment_duty_exists.\n- payment_due.\n- payment_missed.\n- payment_defense_applies.\n- payment_default_issue == payment_duty_exists AND payment_due AND payment_missed AND NOT payment_defense_applies.\n- breach_issue == late_performance_issue OR defect_issue OR payment_default_issue.\n- loss_claimed.\n- causation_established.\n- remedy_requested.\n- limitation_period_expired.\n- causation_evidence_gap == remedy_requested AND loss_claimed AND NOT causation_established.\n- limitation_bar == remedy_requested AND limitation_period_expired.\n- damages_remedy_available == breach_issue AND remedy_requested AND loss_claimed AND causation_established AND NOT limitation_period_expired.\n\nРазрешение юридической силы\n- Кандидаты: synthetic-ru-contract-supply-delivery-duty-v1, synthetic-ru-contract-supply-delivery-duty-v2.\n- Исключены: synthetic-ru-contract-supply-delivery-duty-v1.\n- Выбран источник synthetic-ru-contract-supply-delivery-duty-v2: уровень закона.\n- Источник synthetic-ru-contract-supply-delivery-duty-v1 исключен: Дата оценки наступила после окончания действия источника.\n\nРезультаты формальной проверки\n- source_applicable=True: Источник проверенной нормы применим на дату оценки. [sources: synthetic-ru-contract-supply-delivery-duty-v2]\n- due_date_missed=True: Фактическая дата исполнения наступила после согласованного срока. [sources: synthetic-case-supply-1-reviewed-evidence, synthetic-ru-contract-supply-delivery-term]\n- breach_issue=True: Формальная модель выявила вопрос о нарушении обязательства. [sources: synthetic-case-supply-1-reviewed-evidence, synthetic-ru-contract-supply-delivery-term]\n- late_performance_issue=True: Установлены формальные признаки просрочки исполнения. [sources: synthetic-case-supply-1-reviewed-evidence, synthetic-ru-contract-supply-delivery-term]\n- defect_issue=False: Формальные признаки ненадлежащего исполнения не установлены. [sources: synthetic-case-supply-1-reviewed-evidence]\n- payment_default_issue=False: Формальные признаки просрочки платежа не установлены. [sources: synthetic-case-supply-1-reviewed-evidence]\n- damages_remedy_available=False: Текущий набор фактов не подтверждает все формальные предпосылки требования убытков. [sources: synthetic-case-supply-1-reviewed-evidence]\n- causation_evidence_gap=False: Формальный пробел причинной связи для заявленного требования не выявлен. [sources: synthetic-case-supply-1-reviewed-evidence]\n- limitation_bar=False: Формальный барьер исковой давности не установлен. [sources: synthetic-case-supply-1-reviewed-evidence]\n- authority_winner=synthetic-ru-contract-supply-delivery-duty-v2: По модели юридической силы выбран источник synthetic-ru-contract-supply-delivery-duty-v2. [sources: synthetic-ru-contract-supply-delivery-duty-v1, synthetic-ru-contract-supply-delivery-duty-v2]\n- human_resolution_required=False: Конкуренция источников разрешена текущей синтетической моделью. [sources: synthetic-ru-contract-supply-delivery-duty-v1, synthetic-ru-contract-supply-delivery-duty-v2]\n- counterfactual_sensitivity=activate_valid_exception: Минимальная гипотеза чувствительности «Активировать основание освобождения» изменяет формальный результат. [sources: нет]\n- fault_rebutted=False: Формальные предпосылки опровержения вины не подтверждены. [sources: synthetic-case-supply-1-liability-evidence, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-gk401-liability-model-v1, synthetic-ru-plenum7-liability-guidance-v1]\n- force_majeure_qualified=False: Полный набор формальных признаков непреодолимой силы не подтвержден. [sources: synthetic-case-supply-1-liability-evidence, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-gk401-liability-model-v1, synthetic-ru-plenum7-liability-guidance-v1]\n- liability_exemption_prerequisites=False: Формальные предпосылки освобождения от ответственности не подтверждены. [sources: synthetic-case-supply-1-liability-evidence, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-gk401-liability-model-v1, synthetic-ru-plenum7-liability-guidance-v1]\n- liability_issue=True: Формальная модель сохраняет вопрос об ответственности за нарушение. [sources: synthetic-case-supply-1-liability-evidence, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-gk401-liability-model-v1, synthetic-ru-plenum7-liability-guidance-v1]\n- penalty_reduction_prerequisites=False: Полный набор формальных предпосылок снижения неустойки не подтвержден. [sources: synthetic-case-supply-1-liability-evidence, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-gk401-liability-model-v1, synthetic-ru-plenum7-liability-guidance-v1]\n- intentional_exclusion_invalid=False: Недопустимая оговорка об исключении умышленной ответственности не выявлена. [sources: synthetic-case-supply-1-liability-evidence, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-gk401-liability-model-v1, synthetic-ru-plenum7-liability-guidance-v1]\n\nGovernance-журнал кандидата\n- Предложено → Классификация типа: Стадия «Предложено» успешно пройдена на синтетических проверочных данных. [policy=policy-snapshot:phase0-standard-t3@1; hash=sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff]\n- Классификация типа → Экспертная проверка: Стадия «Классификация типа» успешно пройдена на синтетических проверочных данных. [policy=policy-snapshot:phase0-standard-t3@1; hash=sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff]\n- Экспертная проверка → Активно: Стадия «Экспертная проверка» успешно пройдена на синтетических проверочных данных. [policy=policy-snapshot:phase0-standard-t3@1; hash=sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff]\n\nСравнение путей рассуждения\n- Активный путь: Проверить временную применимость источников.\n- Активный путь: Разрешить юридическую силу источников-кандидатов.\n- Активный путь: Преобразовать только проверенные факты в формальные предикаты.\n- Активный путь: Проверить обязанность, срок и применимое исключение в constraint set.\n- Отклоненный путь: Считать любую просрочку нарушением без проверки источника и исключений.\n- Различие: Альтернативный путь не сохраняет provenance фактов.\n- Различие: Альтернативный путь не проверяет применимость и юридическую силу источника.\n- Различие: Альтернативный путь способен необоснованно исключить основание освобождения.\n- Причина выбора: Выбран воспроизводимый путь с проверенными входами; shortcut отклонен независимо от совпадения итогового breach_issue=Да.\n\nBounded counterfactual-анализ\n- Engine: bounded-counterfactual-engine-v0.\n- Operator library: contracts-legal-operators-ru-v1.\n- Operator library hash: sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8.\n- Baseline fact hash: sha256:43743656d2dacec4dac5a19a88fb60bd3169daa1b58986146345371792ff389d.\n- Budget: scenarios=8; changed_facts=4.\n- correct_performance_date: факты [due_date_missed=True->False]; выводы [breach_issue=True->False; late_performance_issue=True->False]; hypothetical_hash=sha256:935ea697b9fac3f67ac2f00cddd48ae1badbdab880d965fc16c0d13baa1ddcec.\n- activate_valid_exception: факты [valid_exception_applies=False->True]; выводы [breach_issue=True->False; late_performance_issue=True->False]; hypothetical_hash=sha256:e9bc343034edf7b1d28355399a0543de2bf24a8e4eb79cdacff91ab46f46ad9a.\n- confirm_nonconforming_performance: факты [performance_nonconforming=False->True]; выводы [defect_issue=False->True]; hypothetical_hash=sha256:e12c949325ff6db782ba029f48897d182c65af083b404addb6db35e7a3ea38e2.\n- establish_payment_default: факты [payment_duty_exists=False->True; payment_due=False->True; payment_missed=False->True]; выводы [payment_default_issue=False->True]; hypothetical_hash=sha256:3d912b1c0d1f7503cbf8fe9f1e8198fabff1d3a9afa7930776b060b291eac6c8.\n- request_damages_with_causation: факты [loss_claimed=False->True; causation_established=False->True; remedy_requested=False->True]; выводы [damages_remedy_available=False->True]; hypothetical_hash=sha256:49994a8bc9a15dbeb9c7e3e517a1ea07e63b6e104851dd1dbc627d75e77df3ab.\n- request_damages_without_causation: факты [loss_claimed=False->True; remedy_requested=False->True]; выводы [causation_evidence_gap=False->True]; hypothetical_hash=sha256:d6bb14fa493b7a2f0f81c771025456e05689b0b576aafe62d0dcb7c9faf6e5f5.\n- test_limitation_bar: факты [loss_claimed=False->True; causation_established=False->True; remedy_requested=False->True; limitation_period_expired=False->True]; выводы [limitation_bar=False->True]; hypothetical_hash=sha256:20f5acb484091d4a50cc668ae29bc640005b234fcf8533ab9bca4b21fad9a0e7.\n- Контрфактические сценарии являются гипотезами чувствительности формальной модели, не устанавливают факты и требуют проверки юристом.\n\nМодель ответственности (статьи 333 и 401 ГК РФ)\n- Constraint set: liability-constraint-set:reviewed-liability-evidence-supply-1-v0.\n- Model version: contracts-liability-articles-333-401-v0.\n- Evidence mapping: contracts-reviewed-liability-to-facts-v0.\n- Legal sources: synthetic-ru-gk401-liability-model-v1, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-plenum7-liability-guidance-v1.\n- Rule: fault_rebutted == fault_rebuttal_asserted AND reasonable_care_proven AND all_reasonable_measures_proven.\n- Rule: force_majeure_qualified == force_majeure_claimed AND extraordinary_event_proven AND unavoidable_event_proven AND beyond_debtor_control_proven AND force_majeure_causal_link_proven AND NOT excluded_commercial_risk_only AND NOT intentional_breach.\n- Rule: exemption_prerequisites_satisfied == breach_established AND ((NOT debtor_acting_in_business AND fault_rebutted) OR (debtor_acting_in_business AND force_majeure_qualified)).\n- Rule: liability_issue == breach_established AND NOT exemption_prerequisites_satisfied.\n- Rule: force_majeure_notice_gap == force_majeure_qualified AND NOT notice_and_mitigation_proven.\n- Rule: intentional_exclusion_invalid == intentional_breach AND advance_liability_exclusion_clause.\n- Rule: penalty_reduction_procedurally_available == penalty_claimed AND (NOT debtor_acting_in_business OR penalty_reduction_requested).\n- Rule: penalty_reduction_substantively_supported == penalty_claimed AND manifest_disproportionality_proven AND NOT only_excluded_reduction_reasons AND (NOT (debtor_acting_in_business AND contractual_penalty) OR unjustified_benefit_risk_proven).\n- Rule: penalty_reduction_prerequisites_satisfied == penalty_reduction_procedurally_available AND penalty_reduction_substantively_supported.\n- Rule: liability_survives_penalty_reduction == liability_issue AND penalty_reduction_prerequisites_satisfied.\n- Fact advance_liability_exclusion_clause: assertion=liability-evidence-advance_liability_exclusion_clause; sources=synthetic-case-supply-1-liability-evidence.\n- Fact all_reasonable_measures_proven: assertion=liability-evidence-all_reasonable_measures_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact beyond_debtor_control_proven: assertion=liability-evidence-beyond_debtor_control_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact breach_established: assertion=liability-evidence-breach_established; sources=synthetic-case-supply-1-liability-evidence.\n- Fact contractual_penalty: assertion=liability-evidence-contractual_penalty; sources=synthetic-case-supply-1-liability-evidence.\n- Fact debtor_acting_in_business: assertion=liability-evidence-debtor_acting_in_business; sources=synthetic-case-supply-1-liability-evidence.\n- Fact excluded_commercial_risk_only: assertion=liability-evidence-excluded_commercial_risk_only; sources=synthetic-case-supply-1-liability-evidence.\n- Fact extraordinary_event_proven: assertion=liability-evidence-extraordinary_event_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact fault_rebuttal_asserted: assertion=liability-evidence-fault_rebuttal_asserted; sources=synthetic-case-supply-1-liability-evidence.\n- Fact force_majeure_causal_link_proven: assertion=liability-evidence-force_majeure_causal_link_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact force_majeure_claimed: assertion=liability-evidence-force_majeure_claimed; sources=synthetic-case-supply-1-liability-evidence.\n- Fact intentional_breach: assertion=liability-evidence-intentional_breach; sources=synthetic-case-supply-1-liability-evidence.\n- Fact manifest_disproportionality_proven: assertion=liability-evidence-manifest_disproportionality_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact notice_and_mitigation_proven: assertion=liability-evidence-notice_and_mitigation_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact only_excluded_reduction_reasons: assertion=liability-evidence-only_excluded_reduction_reasons; sources=synthetic-case-supply-1-liability-evidence.\n- Fact penalty_claimed: assertion=liability-evidence-penalty_claimed; sources=synthetic-case-supply-1-liability-evidence.\n- Fact penalty_reduction_requested: assertion=liability-evidence-penalty_reduction_requested; sources=synthetic-case-supply-1-liability-evidence.\n- Fact reasonable_care_proven: assertion=liability-evidence-reasonable_care_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact unavoidable_event_proven: assertion=liability-evidence-unavoidable_event_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact unjustified_benefit_risk_proven: assertion=liability-evidence-unjustified_benefit_risk_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Результат: Указано только исключенное коммерческое обстоятельство; оно не признано непреодолимой силой в текущей модели.\n- Результат: Нарушение установлено, а формальные предпосылки освобождения от ответственности не подтверждены.\n- Ограничение: Модель проверяет только формальные предпосылки статей 333 и 401 ГК РФ.\n- Ограничение: Квалификация доказательств, исключительность случая и размер снижения относятся к суду.\n- Ограничение: Результат не является юридической консультацией.\n\nОграничения\n- Используются только синтетические проверенные входные данные.\n- Детерминированный анализ ограничен узким набором правил; содержательная правовая оценка остается за экспертом.\n- Модель проверяет только формальные предпосылки статей 333 и 401 ГК РФ.\n- Квалификация доказательств, исключительность случая и размер снижения относятся к суду.\n- Результат не является юридической консультацией.\n- Не является юридической консультацией.\n\nСинтетический результат. Не является юридической консультацией и требует проверки юристом.",
+        "policy_content_hash": "sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e",
+        "text": "FORENSIC-ТРАССИРОВКА ЮРИДИЧЕСКОГО ВЫВОДА\n\nКоординаты воспроизведения\n- Trace: trace-phase0-supply-dispute-v0.\n- Дело: case-supply-1.\n- Analysis pipeline: contracts-reviewed-analysis-v2.\n- Policy snapshot: policy-snapshot:phase0-standard-t3@1.\n- Policy hash: sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e.\n- Translation template: translation-template-ru-v4.\n- Translation template hash: sha256:58d4ef2c2b20f4c38f26210c07121af079efd305ab58a8f7dba1554e1214664f.\n\nПроверенные факты и provenance\n- due_date_missed: assertion=reviewed-temporal-evidence-supply-1-v0; sources=synthetic-ru-contract-supply-delivery-term, synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- causation_established: assertion=evidence-causation_established; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- duty_exists: assertion=evidence-duty_exists; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=condition-supply-relation, condition-agreed-date.\n- limitation_period_expired: assertion=evidence-limitation_period_expired; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- loss_claimed: assertion=evidence-loss_claimed; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- payment_defense_applies: assertion=evidence-payment_defense_applies; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- payment_due: assertion=evidence-payment_due; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- payment_duty_exists: assertion=evidence-payment_duty_exists; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- payment_missed: assertion=evidence-payment_missed; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- performance_completed: assertion=evidence-performance_completed; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- performance_nonconforming: assertion=evidence-performance_nonconforming; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- remedy_requested: assertion=evidence-remedy_requested; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=нет.\n- valid_exception_applies: assertion=evidence-valid_exception_applies; sources=synthetic-case-supply-1-reviewed-evidence; formal_atoms=exception-valid-excuse.\n\nФормальная норма и constraint set\n- Formal rule: obligation-rule:norm-supply-delivery-duty-v0.\n- Constraint set: constraint-set:obligation-rule:norm-supply-delivery-duty-v0.\n- duty_exists.\n- due_date_missed.\n- valid_exception_applies.\n- late_performance_issue == duty_exists AND due_date_missed AND NOT valid_exception_applies.\n- performance_completed.\n- performance_nonconforming.\n- defect_issue == duty_exists AND performance_completed AND performance_nonconforming.\n- payment_duty_exists.\n- payment_due.\n- payment_missed.\n- payment_defense_applies.\n- payment_default_issue == payment_duty_exists AND payment_due AND payment_missed AND NOT payment_defense_applies.\n- breach_issue == late_performance_issue OR defect_issue OR payment_default_issue.\n- loss_claimed.\n- causation_established.\n- remedy_requested.\n- limitation_period_expired.\n- causation_evidence_gap == remedy_requested AND loss_claimed AND NOT causation_established.\n- limitation_bar == remedy_requested AND limitation_period_expired.\n- damages_remedy_available == breach_issue AND remedy_requested AND loss_claimed AND causation_established AND NOT limitation_period_expired.\n\nРазрешение юридической силы\n- Кандидаты: synthetic-ru-contract-supply-delivery-duty-v1, synthetic-ru-contract-supply-delivery-duty-v2.\n- Исключены: synthetic-ru-contract-supply-delivery-duty-v1.\n- Выбран источник synthetic-ru-contract-supply-delivery-duty-v2: уровень закона.\n- Источник synthetic-ru-contract-supply-delivery-duty-v1 исключен: Дата оценки наступила после окончания действия источника.\n\nМодель заключения договора (статьи 432, 435, 438 и 443 ГК РФ)\n- Constraint set: formation-constraint-set:reviewed-formation-evidence-supply-1-v0.\n- Model version: contracts-formation-articles-432-443-v0.\n- Evidence mapping: contracts-reviewed-formation-to-facts-v0.\n- Legal sources: synthetic-ru-gk432-contract-formation-model-v1, synthetic-ru-gk435-offer-model-v1, synthetic-ru-gk438-443-acceptance-model-v1, synthetic-ru-plenum49-formation-guidance-v1.\n- Rule: essential_terms_defined_in_offer == subject_matter_defined_in_offer AND statutory_essential_terms_defined_in_offer AND party_declared_essential_terms_defined_in_offer.\n- Rule: valid_offer == proposal_made AND proposal_addressed_to_counterparty AND intent_to_be_bound AND essential_terms_defined_in_offer.\n- Rule: express_acceptance_valid == valid_offer AND acceptance_received AND acceptance_full_and_unconditional AND acceptance_within_period AND NOT acceptance_on_other_terms.\n- Rule: conduct_acceptance_valid == valid_offer AND acceptance_by_conduct AND performance_conduct_started_in_time AND NOT acceptance_on_other_terms.\n- Rule: silence_acceptance_valid == valid_offer AND silence_only AND silence_acceptance_basis_exists AND acceptance_within_period.\n- Rule: counteroffer_detected == acceptance_on_other_terms.\n- Rule: essential_terms_agreed == valid_offer AND (express_acceptance_valid OR conduct_acceptance_valid OR silence_acceptance_valid).\n- Rule: contract_concluded_prerequisites == required_form_observed AND essential_terms_agreed.\n- Rule: non_conclusion_objection_barred == performance_accepted_without_objection AND bad_faith_non_conclusion_objection.\n- Fact acceptance_by_conduct: assertion=formation-evidence-acceptance_by_conduct; sources=synthetic-case-supply-1-formation-evidence.\n- Fact acceptance_full_and_unconditional: assertion=formation-evidence-acceptance_full_and_unconditional; sources=synthetic-case-supply-1-formation-evidence.\n- Fact acceptance_on_other_terms: assertion=formation-evidence-acceptance_on_other_terms; sources=synthetic-case-supply-1-formation-evidence.\n- Fact acceptance_received: assertion=formation-evidence-acceptance_received; sources=synthetic-case-supply-1-formation-evidence.\n- Fact acceptance_within_period: assertion=formation-evidence-acceptance_within_period; sources=synthetic-case-supply-1-formation-evidence.\n- Fact bad_faith_non_conclusion_objection: assertion=formation-evidence-bad_faith_non_conclusion_objection; sources=synthetic-case-supply-1-formation-evidence.\n- Fact intent_to_be_bound: assertion=formation-evidence-intent_to_be_bound; sources=synthetic-case-supply-1-formation-evidence.\n- Fact party_declared_essential_terms_defined_in_offer: assertion=formation-evidence-party_declared_essential_terms_defined_in_offer; sources=synthetic-case-supply-1-formation-evidence.\n- Fact performance_accepted_without_objection: assertion=formation-evidence-performance_accepted_without_objection; sources=synthetic-case-supply-1-formation-evidence.\n- Fact performance_conduct_started_in_time: assertion=formation-evidence-performance_conduct_started_in_time; sources=synthetic-case-supply-1-formation-evidence.\n- Fact proposal_addressed_to_counterparty: assertion=formation-evidence-proposal_addressed_to_counterparty; sources=synthetic-case-supply-1-formation-evidence.\n- Fact proposal_made: assertion=formation-evidence-proposal_made; sources=synthetic-case-supply-1-formation-evidence.\n- Fact required_form_observed: assertion=formation-evidence-required_form_observed; sources=synthetic-case-supply-1-formation-evidence.\n- Fact silence_acceptance_basis_exists: assertion=formation-evidence-silence_acceptance_basis_exists; sources=synthetic-case-supply-1-formation-evidence.\n- Fact silence_only: assertion=formation-evidence-silence_only; sources=synthetic-case-supply-1-formation-evidence.\n- Fact statutory_essential_terms_defined_in_offer: assertion=formation-evidence-statutory_essential_terms_defined_in_offer; sources=synthetic-case-supply-1-formation-evidence.\n- Fact subject_matter_defined_in_offer: assertion=formation-evidence-subject_matter_defined_in_offer; sources=synthetic-case-supply-1-formation-evidence.\n- Результат: Формальные предпосылки заключения договора подтверждены.\n- Результат: Акцепт подтвержден действиями по исполнению в установленный срок.\n- Ограничение: Модель проверяет только формальные предпосылки и не устанавливает судебный факт заключения договора.\n- Ограничение: Содержание переписки, поведение сторон и соблюдение формы оцениваются экспертом.\n\nРезультаты формальной проверки\n- source_applicable=True: Источник проверенной нормы применим на дату оценки.\n  Источники: synthetic-ru-contract-supply-delivery-duty-v2.\n- valid_offer=True: Формальные признаки оферты подтверждены.\n  Источники: synthetic-case-supply-1-formation-evidence, synthetic-ru-gk432-contract-formation-model-v1, synthetic-ru-gk435-offer-model-v1, synthetic-ru-gk438-443-acceptance-model-v1, synthetic-ru-plenum49-formation-guidance-v1.\n- contract_concluded_prerequisites=True: Формальные предпосылки заключения договора подтверждены.\n  Источники: synthetic-case-supply-1-formation-evidence, synthetic-ru-gk432-contract-formation-model-v1, synthetic-ru-gk435-offer-model-v1, synthetic-ru-gk438-443-acceptance-model-v1, synthetic-ru-plenum49-formation-guidance-v1.\n- conduct_acceptance_valid=True: Акцепт подтвержден своевременными действиями по исполнению.\n  Источники: synthetic-case-supply-1-formation-evidence, synthetic-ru-gk432-contract-formation-model-v1, synthetic-ru-gk435-offer-model-v1, synthetic-ru-gk438-443-acceptance-model-v1, synthetic-ru-plenum49-formation-guidance-v1.\n- counteroffer_detected=False: Ответ на иных условиях не выявлен.\n  Источники: synthetic-case-supply-1-formation-evidence, synthetic-ru-gk432-contract-formation-model-v1, synthetic-ru-gk435-offer-model-v1, synthetic-ru-gk438-443-acceptance-model-v1, synthetic-ru-plenum49-formation-guidance-v1.\n- non_conclusion_objection_barred=False: Формальный запрет возражения о незаключенности не установлен.\n  Источники: synthetic-case-supply-1-formation-evidence, synthetic-ru-gk432-contract-formation-model-v1, synthetic-ru-gk435-offer-model-v1, synthetic-ru-gk438-443-acceptance-model-v1, synthetic-ru-plenum49-formation-guidance-v1.\n- due_date_missed=True: Фактическая дата исполнения наступила после согласованного срока.\n  Источники: synthetic-case-supply-1-reviewed-evidence, synthetic-ru-contract-supply-delivery-term.\n- breach_issue=True: Формальная модель выявила вопрос о нарушении обязательства.\n  Источники: synthetic-case-supply-1-reviewed-evidence, synthetic-ru-contract-supply-delivery-term.\n- late_performance_issue=True: Установлены формальные признаки просрочки исполнения.\n  Источники: synthetic-case-supply-1-reviewed-evidence, synthetic-ru-contract-supply-delivery-term.\n- defect_issue=False: Формальные признаки ненадлежащего исполнения не установлены.\n  Источники: synthetic-case-supply-1-reviewed-evidence.\n- payment_default_issue=False: Формальные признаки просрочки платежа не установлены.\n  Источники: synthetic-case-supply-1-reviewed-evidence.\n- damages_remedy_available=False: Текущий набор фактов не подтверждает все формальные предпосылки требования убытков.\n  Источники: synthetic-case-supply-1-reviewed-evidence.\n- causation_evidence_gap=False: Формальный пробел причинной связи для заявленного требования не выявлен.\n  Источники: synthetic-case-supply-1-reviewed-evidence.\n- limitation_bar=False: Формальный барьер исковой давности не установлен.\n  Источники: synthetic-case-supply-1-reviewed-evidence.\n- authority_winner=synthetic-ru-contract-supply-delivery-duty-v2: По модели юридической силы выбран источник synthetic-ru-contract-supply-delivery-duty-v2.\n  Источники: synthetic-ru-contract-supply-delivery-duty-v1, synthetic-ru-contract-supply-delivery-duty-v2.\n- human_resolution_required=False: Вопросы источников и формальных предпосылок заключения разрешены текущей синтетической моделью.\n  Источники: synthetic-ru-contract-supply-delivery-duty-v1, synthetic-ru-contract-supply-delivery-duty-v2.\n- counterfactual_sensitivity=activate_valid_exception: Минимальная гипотеза чувствительности «Активировать основание освобождения» изменяет формальный результат.\n  Источники: нет.\n- fault_rebutted=False: Формальные предпосылки опровержения вины не подтверждены.\n  Источники: synthetic-case-supply-1-liability-evidence, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-gk401-liability-model-v1, synthetic-ru-plenum7-liability-guidance-v1.\n- force_majeure_qualified=False: Полный набор формальных признаков непреодолимой силы не подтвержден.\n  Источники: synthetic-case-supply-1-liability-evidence, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-gk401-liability-model-v1, synthetic-ru-plenum7-liability-guidance-v1.\n- liability_exemption_prerequisites=False: Формальные предпосылки освобождения от ответственности не подтверждены.\n  Источники: synthetic-case-supply-1-liability-evidence, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-gk401-liability-model-v1, synthetic-ru-plenum7-liability-guidance-v1.\n- liability_issue=True: Формальная модель сохраняет вопрос об ответственности за нарушение.\n  Источники: synthetic-case-supply-1-liability-evidence, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-gk401-liability-model-v1, synthetic-ru-plenum7-liability-guidance-v1.\n- penalty_reduction_prerequisites=False: Полный набор формальных предпосылок снижения неустойки не подтвержден.\n  Источники: synthetic-case-supply-1-liability-evidence, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-gk401-liability-model-v1, synthetic-ru-plenum7-liability-guidance-v1.\n- intentional_exclusion_invalid=False: Недопустимая оговорка об исключении умышленной ответственности не выявлена.\n  Источники: synthetic-case-supply-1-liability-evidence, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-gk401-liability-model-v1, synthetic-ru-plenum7-liability-guidance-v1.\n\nGovernance-журнал кандидата\n- Предложено → Классификация типа: Стадия «Предложено» успешно пройдена на синтетических проверочных данных. [policy=policy-snapshot:phase0-standard-t3@1; hash=sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e]\n- Классификация типа → Экспертная проверка: Стадия «Классификация типа» успешно пройдена на синтетических проверочных данных. [policy=policy-snapshot:phase0-standard-t3@1; hash=sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e]\n- Экспертная проверка → Активно: Стадия «Экспертная проверка» успешно пройдена на синтетических проверочных данных. [policy=policy-snapshot:phase0-standard-t3@1; hash=sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e]\n\nСравнение путей рассуждения\n- Активный путь: Проверить временную применимость источников.\n- Активный путь: Разрешить юридическую силу источников-кандидатов.\n- Активный путь: Преобразовать только проверенные факты в формальные предикаты.\n- Активный путь: Проверить оферту, существенные условия, форму и способ акцепта.\n- Активный путь: Проверить обязанность, срок и применимое исключение в constraint set.\n- Отклоненный путь: Считать любую просрочку нарушением без проверки источника и исключений.\n- Различие: Альтернативный путь не сохраняет provenance фактов.\n- Различие: Альтернативный путь не проверяет применимость и юридическую силу источника.\n- Различие: Альтернативный путь способен необоснованно исключить основание освобождения.\n- Причина выбора: Выбран воспроизводимый путь с проверенными входами; shortcut отклонен независимо от совпадения итогового breach_issue=Да.\n\nBounded counterfactual-анализ\n- Engine: bounded-counterfactual-engine-v0.\n- Operator library: contracts-legal-operators-ru-v1.\n- Operator library hash: sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8.\n- Baseline fact hash: sha256:43743656d2dacec4dac5a19a88fb60bd3169daa1b58986146345371792ff389d.\n- Budget: scenarios=8; changed_facts=4.\n- correct_performance_date: факты [due_date_missed=True->False]; выводы [breach_issue=True->False; late_performance_issue=True->False]; hypothetical_hash=sha256:935ea697b9fac3f67ac2f00cddd48ae1badbdab880d965fc16c0d13baa1ddcec.\n- activate_valid_exception: факты [valid_exception_applies=False->True]; выводы [breach_issue=True->False; late_performance_issue=True->False]; hypothetical_hash=sha256:e9bc343034edf7b1d28355399a0543de2bf24a8e4eb79cdacff91ab46f46ad9a.\n- confirm_nonconforming_performance: факты [performance_nonconforming=False->True]; выводы [defect_issue=False->True]; hypothetical_hash=sha256:e12c949325ff6db782ba029f48897d182c65af083b404addb6db35e7a3ea38e2.\n- establish_payment_default: факты [payment_duty_exists=False->True; payment_due=False->True; payment_missed=False->True]; выводы [payment_default_issue=False->True]; hypothetical_hash=sha256:3d912b1c0d1f7503cbf8fe9f1e8198fabff1d3a9afa7930776b060b291eac6c8.\n- request_damages_with_causation: факты [loss_claimed=False->True; causation_established=False->True; remedy_requested=False->True]; выводы [damages_remedy_available=False->True]; hypothetical_hash=sha256:49994a8bc9a15dbeb9c7e3e517a1ea07e63b6e104851dd1dbc627d75e77df3ab.\n- request_damages_without_causation: факты [loss_claimed=False->True; remedy_requested=False->True]; выводы [causation_evidence_gap=False->True]; hypothetical_hash=sha256:d6bb14fa493b7a2f0f81c771025456e05689b0b576aafe62d0dcb7c9faf6e5f5.\n- test_limitation_bar: факты [loss_claimed=False->True; causation_established=False->True; remedy_requested=False->True; limitation_period_expired=False->True]; выводы [limitation_bar=False->True]; hypothetical_hash=sha256:20f5acb484091d4a50cc668ae29bc640005b234fcf8533ab9bca4b21fad9a0e7.\n- Контрфактические сценарии являются гипотезами чувствительности формальной модели, не устанавливают факты и требуют проверки юристом.\n\nМодель ответственности (статьи 333 и 401 ГК РФ)\n- Constraint set: liability-constraint-set:reviewed-liability-evidence-supply-1-v0.\n- Model version: contracts-liability-articles-333-401-v0.\n- Evidence mapping: contracts-reviewed-liability-to-facts-v0.\n- Legal sources: synthetic-ru-gk401-liability-model-v1, synthetic-ru-gk333-penalty-model-v1, synthetic-ru-plenum7-liability-guidance-v1.\n- Rule: fault_rebutted == fault_rebuttal_asserted AND reasonable_care_proven AND all_reasonable_measures_proven.\n- Rule: force_majeure_qualified == force_majeure_claimed AND extraordinary_event_proven AND unavoidable_event_proven AND beyond_debtor_control_proven AND force_majeure_causal_link_proven AND NOT excluded_commercial_risk_only AND NOT intentional_breach.\n- Rule: exemption_prerequisites_satisfied == breach_established AND ((NOT debtor_acting_in_business AND fault_rebutted) OR (debtor_acting_in_business AND force_majeure_qualified)).\n- Rule: liability_issue == breach_established AND NOT exemption_prerequisites_satisfied.\n- Rule: force_majeure_notice_gap == force_majeure_qualified AND NOT notice_and_mitigation_proven.\n- Rule: intentional_exclusion_invalid == intentional_breach AND advance_liability_exclusion_clause.\n- Rule: penalty_reduction_procedurally_available == penalty_claimed AND (NOT debtor_acting_in_business OR penalty_reduction_requested).\n- Rule: penalty_reduction_substantively_supported == penalty_claimed AND manifest_disproportionality_proven AND NOT only_excluded_reduction_reasons AND (NOT (debtor_acting_in_business AND contractual_penalty) OR unjustified_benefit_risk_proven).\n- Rule: penalty_reduction_prerequisites_satisfied == penalty_reduction_procedurally_available AND penalty_reduction_substantively_supported.\n- Rule: liability_survives_penalty_reduction == liability_issue AND penalty_reduction_prerequisites_satisfied.\n- Fact advance_liability_exclusion_clause: assertion=liability-evidence-advance_liability_exclusion_clause; sources=synthetic-case-supply-1-liability-evidence.\n- Fact all_reasonable_measures_proven: assertion=liability-evidence-all_reasonable_measures_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact beyond_debtor_control_proven: assertion=liability-evidence-beyond_debtor_control_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact breach_established: assertion=liability-evidence-breach_established; sources=synthetic-case-supply-1-liability-evidence.\n- Fact contractual_penalty: assertion=liability-evidence-contractual_penalty; sources=synthetic-case-supply-1-liability-evidence.\n- Fact debtor_acting_in_business: assertion=liability-evidence-debtor_acting_in_business; sources=synthetic-case-supply-1-liability-evidence.\n- Fact excluded_commercial_risk_only: assertion=liability-evidence-excluded_commercial_risk_only; sources=synthetic-case-supply-1-liability-evidence.\n- Fact extraordinary_event_proven: assertion=liability-evidence-extraordinary_event_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact fault_rebuttal_asserted: assertion=liability-evidence-fault_rebuttal_asserted; sources=synthetic-case-supply-1-liability-evidence.\n- Fact force_majeure_causal_link_proven: assertion=liability-evidence-force_majeure_causal_link_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact force_majeure_claimed: assertion=liability-evidence-force_majeure_claimed; sources=synthetic-case-supply-1-liability-evidence.\n- Fact intentional_breach: assertion=liability-evidence-intentional_breach; sources=synthetic-case-supply-1-liability-evidence.\n- Fact manifest_disproportionality_proven: assertion=liability-evidence-manifest_disproportionality_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact notice_and_mitigation_proven: assertion=liability-evidence-notice_and_mitigation_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact only_excluded_reduction_reasons: assertion=liability-evidence-only_excluded_reduction_reasons; sources=synthetic-case-supply-1-liability-evidence.\n- Fact penalty_claimed: assertion=liability-evidence-penalty_claimed; sources=synthetic-case-supply-1-liability-evidence.\n- Fact penalty_reduction_requested: assertion=liability-evidence-penalty_reduction_requested; sources=synthetic-case-supply-1-liability-evidence.\n- Fact reasonable_care_proven: assertion=liability-evidence-reasonable_care_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact unavoidable_event_proven: assertion=liability-evidence-unavoidable_event_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Fact unjustified_benefit_risk_proven: assertion=liability-evidence-unjustified_benefit_risk_proven; sources=synthetic-case-supply-1-liability-evidence.\n- Результат: Указано только исключенное коммерческое обстоятельство; оно не признано непреодолимой силой в текущей модели.\n- Результат: Нарушение установлено, а формальные предпосылки освобождения от ответственности не подтверждены.\n- Ограничение: Модель проверяет только формальные предпосылки статей 333 и 401 ГК РФ.\n- Ограничение: Квалификация доказательств, исключительность случая и размер снижения относятся к суду.\n- Ограничение: Результат не является юридической консультацией.\n\nОграничения\n- Используются только синтетические проверенные входные данные.\n- Детерминированный анализ ограничен узким набором правил; содержательная правовая оценка остается за экспертом.\n- Модель проверяет только формальные предпосылки и не устанавливает судебный факт заключения договора.\n- Содержание переписки, поведение сторон и соблюдение формы оцениваются экспертом.\n- Модель проверяет только формальные предпосылки статей 333 и 401 ГК РФ.\n- Квалификация доказательств, исключительность случая и размер снижения относятся к суду.\n- Результат не является юридической консультацией.\n- Не является юридической консультацией.\n\nСинтетический результат. Не является юридической консультацией и требует проверки юристом.",
         "assertions": [
           {
             "code": "source_applicable",
@@ -2343,6 +2906,66 @@
             "text_ru": "Источник проверенной нормы применим на дату оценки.",
             "source_refs": [
               "synthetic-ru-contract-supply-delivery-duty-v2"
+            ]
+          },
+          {
+            "code": "valid_offer",
+            "value": true,
+            "text_ru": "Формальные признаки оферты подтверждены.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
+            ]
+          },
+          {
+            "code": "contract_concluded_prerequisites",
+            "value": true,
+            "text_ru": "Формальные предпосылки заключения договора подтверждены.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
+            ]
+          },
+          {
+            "code": "conduct_acceptance_valid",
+            "value": true,
+            "text_ru": "Акцепт подтвержден своевременными действиями по исполнению.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
+            ]
+          },
+          {
+            "code": "counteroffer_detected",
+            "value": false,
+            "text_ru": "Ответ на иных условиях не выявлен.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
+            ]
+          },
+          {
+            "code": "non_conclusion_objection_barred",
+            "value": false,
+            "text_ru": "Формальный запрет возражения о незаключенности не установлен.",
+            "source_refs": [
+              "synthetic-case-supply-1-formation-evidence",
+              "synthetic-ru-gk432-contract-formation-model-v1",
+              "synthetic-ru-gk435-offer-model-v1",
+              "synthetic-ru-gk438-443-acceptance-model-v1",
+              "synthetic-ru-plenum49-formation-guidance-v1"
             ]
           },
           {
@@ -2424,7 +3047,7 @@
           {
             "code": "human_resolution_required",
             "value": false,
-            "text_ru": "Конкуренция источников разрешена текущей синтетической моделью.",
+            "text_ru": "Вопросы источников и формальных предпосылок заключения разрешены текущей синтетической моделью.",
             "source_refs": [
               "synthetic-ru-contract-supply-delivery-duty-v1",
               "synthetic-ru-contract-supply-delivery-duty-v2"
@@ -2504,6 +3127,7 @@
           }
         ],
         "source_refs": [
+          "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-ru-contract-supply-delivery-duty-v1",
@@ -2511,6 +3135,10 @@
           "synthetic-ru-contract-supply-delivery-term",
           "synthetic-ru-gk333-penalty-model-v1",
           "synthetic-ru-gk401-liability-model-v1",
+          "synthetic-ru-gk432-contract-formation-model-v1",
+          "synthetic-ru-gk435-offer-model-v1",
+          "synthetic-ru-gk438-443-acceptance-model-v1",
+          "synthetic-ru-plenum49-formation-guidance-v1",
           "synthetic-ru-plenum7-liability-guidance-v1"
         ],
         "faithfulness_checked": true,
@@ -2526,6 +3154,7 @@
           "Проверить временную применимость источников.",
           "Разрешить юридическую силу источников-кандидатов.",
           "Преобразовать только проверенные факты в формальные предикаты.",
+          "Проверить оферту, существенные условия, форму и способ акцепта.",
           "Проверить обязанность, срок и применимое исключение в constraint set."
         ],
         "alternative_path_ru": [
@@ -2584,11 +3213,11 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.9.0",
+      "institutional_package_version": "contracts-ru-v0@0.10.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
-      "policy_content_hash": "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff",
-      "translation_template_version": "translation-template-ru-v3",
-      "translation_template_hash": "sha256:e329d68f773325dce6022e0f1bdf65604484bb1572c11c09bc4a1ccf23317e4f",
+      "policy_content_hash": "sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e",
+      "translation_template_version": "translation-template-ru-v4",
+      "translation_template_hash": "sha256:58d4ef2c2b20f4c38f26210c07121af079efd305ab58a8f7dba1554e1214664f",
       "legal_operator_library_version": "contracts-legal-operators-ru-v1",
       "legal_operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
       "model_profile": "no-llm-synthetic-demo"
@@ -2636,6 +3265,70 @@
           "synthetic": true,
           "non_authoritative": true,
           "topic": "case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
+        "id": "synthetic-ru-gk432-contract-formation-model-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель заключения договора по статье 432 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "formation_article_432",
+          "legal_reference": "ГК РФ, статья 432",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk435-offer-model-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель оферты по статье 435 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "formation_article_435",
+          "legal_reference": "ГК РФ, статья 435",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk438-443-acceptance-model-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель акцепта по статьям 438 и 443 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "formation_articles_438_443",
+          "legal_reference": "ГК РФ, статьи 438 и 443",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-plenum49-formation-guidance-v1",
+        "layer": "source",
+        "label": "Синтетическая модель разъяснений Пленума ВС РФ о заключении договора",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "formation_plenum_guidance",
+          "legal_reference": "Постановление Пленума ВС РФ от 25.12.2018 № 49",
+          "basis_url": "https://vsrf.ru/documents/own/27540/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-formation-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о заключении договора поставки",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "formation_case_evidence",
           "case_id": "case-supply-1"
         }
       },
@@ -2700,24 +3393,30 @@
         "metadata": {
           "review_status": "reviewed",
           "translator_version": "contracts-json-to-formal-v0",
-          "analysis_pipeline_version": "contracts-reviewed-analysis-v1",
-          "case_evidence_schema_version": "contracts.case-evidence.v1",
+          "analysis_pipeline_version": "contracts-reviewed-analysis-v2",
+          "case_evidence_schema_version": "contracts.case-evidence.v2",
           "evidence_mapping_version": "contracts-reviewed-evidence-to-facts-v0",
           "reviewer_ids": [
             "synthetic-authority-reviewer",
             "synthetic-case-evidence-reviewer",
+            "synthetic-formation-reviewer",
             "synthetic-liability-reviewer",
             "synthetic-norm-reviewer",
             "synthetic-temporal-reviewer"
           ],
           "governance_record_id": "governance-record:candidate-supply-excuse-scope",
           "policy_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:700782e95ab31a549a5f8a8791edb011f18195ca1b4af6ee3e05f042dca8b5ff",
+          "policy_content_hash": "sha256:c0c04268b4472571ee7e0ff1cba09a7acdb14a5293ddd8ac473201c7b3dda18e",
           "policy_registry_revision": 5,
           "translation_bundle_id": "translation-bundle:trace-phase0-supply-dispute-v0",
           "translation_faithfulness_report_id": "translation-faithfulness:trace-phase0-supply-dispute-v0",
           "translation_usability_report_id": "translation-usability:trace-phase0-supply-dispute-v0",
           "formal_rule_id": "obligation-rule:norm-supply-delivery-duty-v0",
+          "formation_evidence_mapping_id": "reviewed-formation-evidence-supply-1-v0",
+          "formation_constraint_set_id": "formation-constraint-set:reviewed-formation-evidence-supply-1-v0",
+          "formation_model_version": "contracts-formation-articles-432-443-v0",
+          "contract_concluded_prerequisites": true,
+          "conduct_acceptance_valid": true,
           "constraint_set_id": "constraint-set:obligation-rule:norm-supply-delivery-duty-v0",
           "counterfactual_sensitivity_report_id": "counterfactual-sensitivity:analysis:analysis-request-case-supply-1-v0",
           "legal_operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -2748,6 +3447,7 @@
         "layer": "case",
         "label": "Синтетический спор о сроке поставки",
         "source_refs": [
+          "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-ru-contract-supply-delivery-term"
         ],
@@ -2802,6 +3502,12 @@
         "metadata": {}
       },
       {
+        "source_id": "synthetic-case-supply-1-formation-evidence",
+        "target_id": "case-supply-1",
+        "relation": "supports_reviewed_fact",
+        "metadata": {}
+      },
+      {
         "source_id": "synthetic-case-supply-1-reviewed-evidence",
         "target_id": "case-supply-1",
         "relation": "supports_reviewed_fact",
@@ -2844,6 +3550,8 @@
     "warnings": [
       "Используются только синтетические проверенные входные данные.",
       "Детерминированный анализ ограничен узким набором правил; содержательная правовая оценка остается за экспертом.",
+      "Модель проверяет только формальные предпосылки и не устанавливает судебный факт заключения договора.",
+      "Содержание переписки, поведение сторон и соблюдение формы оцениваются экспертом.",
       "Модель проверяет только формальные предпосылки статей 333 и 401 ГК РФ.",
       "Квалификация доказательств, исключительность случая и размер снижения относятся к суду.",
       "Результат не является юридической консультацией.",

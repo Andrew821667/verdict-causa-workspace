@@ -1,0 +1,525 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка формальных предпосылок заключения договора. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-formation-evidence-supply-1-v0",
+    "schema_version": "contracts.formation-evidence.v0",
+    "mapping_version": "contracts-reviewed-formation-to-facts-v0",
+    "facts": {
+      "proposal_made": true,
+      "proposal_addressed_to_counterparty": true,
+      "intent_to_be_bound": true,
+      "subject_matter_defined_in_offer": true,
+      "statutory_essential_terms_defined_in_offer": true,
+      "party_declared_essential_terms_defined_in_offer": true,
+      "required_form_observed": true,
+      "acceptance_received": false,
+      "acceptance_full_and_unconditional": false,
+      "acceptance_within_period": true,
+      "acceptance_by_conduct": true,
+      "performance_conduct_started_in_time": true,
+      "silence_only": false,
+      "silence_acceptance_basis_exists": false,
+      "acceptance_on_other_terms": false,
+      "performance_accepted_without_objection": true,
+      "bad_faith_non_conclusion_objection": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk432-contract-formation-model-v1",
+      "synthetic-ru-gk435-offer-model-v1",
+      "synthetic-ru-gk438-443-acceptance-model-v1",
+      "synthetic-ru-plenum49-formation-guidance-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "acceptance_by_conduct",
+        "assertion_id": "formation-evidence-acceptance_by_conduct",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "acceptance_full_and_unconditional",
+        "assertion_id": "formation-evidence-acceptance_full_and_unconditional",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "acceptance_on_other_terms",
+        "assertion_id": "formation-evidence-acceptance_on_other_terms",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "acceptance_received",
+        "assertion_id": "formation-evidence-acceptance_received",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "acceptance_within_period",
+        "assertion_id": "formation-evidence-acceptance_within_period",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "bad_faith_non_conclusion_objection",
+        "assertion_id": "formation-evidence-bad_faith_non_conclusion_objection",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "intent_to_be_bound",
+        "assertion_id": "formation-evidence-intent_to_be_bound",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "party_declared_essential_terms_defined_in_offer",
+        "assertion_id": "formation-evidence-party_declared_essential_terms_defined_in_offer",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "performance_accepted_without_objection",
+        "assertion_id": "formation-evidence-performance_accepted_without_objection",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "performance_conduct_started_in_time",
+        "assertion_id": "formation-evidence-performance_conduct_started_in_time",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "proposal_addressed_to_counterparty",
+        "assertion_id": "formation-evidence-proposal_addressed_to_counterparty",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "proposal_made",
+        "assertion_id": "formation-evidence-proposal_made",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "required_form_observed",
+        "assertion_id": "formation-evidence-required_form_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "silence_acceptance_basis_exists",
+        "assertion_id": "formation-evidence-silence_acceptance_basis_exists",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "silence_only",
+        "assertion_id": "formation-evidence-silence_only",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "statutory_essential_terms_defined_in_offer",
+        "assertion_id": "formation-evidence-statutory_essential_terms_defined_in_offer",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      },
+      {
+        "fact_name": "subject_matter_defined_in_offer",
+        "assertion_id": "formation-evidence-subject_matter_defined_in_offer",
+        "source_refs": [
+          "synthetic-case-supply-1-formation-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "formation-constraint-set:reviewed-formation-evidence-supply-1-v0",
+    "model_version": "contracts-formation-articles-432-443-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk432-contract-formation-model-v1",
+      "synthetic-ru-gk435-offer-model-v1",
+      "synthetic-ru-gk438-443-acceptance-model-v1",
+      "synthetic-ru-plenum49-formation-guidance-v1"
+    ],
+    "expressions": [
+      "essential_terms_defined_in_offer == subject_matter_defined_in_offer AND statutory_essential_terms_defined_in_offer AND party_declared_essential_terms_defined_in_offer",
+      "valid_offer == proposal_made AND proposal_addressed_to_counterparty AND intent_to_be_bound AND essential_terms_defined_in_offer",
+      "express_acceptance_valid == valid_offer AND acceptance_received AND acceptance_full_and_unconditional AND acceptance_within_period AND NOT acceptance_on_other_terms",
+      "conduct_acceptance_valid == valid_offer AND acceptance_by_conduct AND performance_conduct_started_in_time AND NOT acceptance_on_other_terms",
+      "silence_acceptance_valid == valid_offer AND silence_only AND silence_acceptance_basis_exists AND acceptance_within_period",
+      "counteroffer_detected == acceptance_on_other_terms",
+      "essential_terms_agreed == valid_offer AND (express_acceptance_valid OR conduct_acceptance_valid OR silence_acceptance_valid)",
+      "contract_concluded_prerequisites == required_form_observed AND essential_terms_agreed",
+      "non_conclusion_objection_barred == performance_accepted_without_objection AND bad_faith_non_conclusion_objection"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "formation-constraint-set:reviewed-formation-evidence-supply-1-v0",
+    "satisfiable": true,
+    "essential_terms_defined_in_offer": true,
+    "essential_terms_agreed": true,
+    "valid_offer": true,
+    "express_acceptance_valid": false,
+    "conduct_acceptance_valid": true,
+    "silence_acceptance_valid": false,
+    "counteroffer_detected": false,
+    "contract_concluded_prerequisites": true,
+    "formation_evidence_gap": false,
+    "non_conclusion_objection_barred": false,
+    "requires_human_formation_assessment": false,
+    "reasons_ru": [
+      "Формальные предпосылки заключения договора подтверждены.",
+      "Акцепт подтвержден действиями по исполнению в установленный срок."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные предпосылки и не устанавливает судебный факт заключения договора.",
+      "Содержание переписки, поведение сторон и соблюдение формы оцениваются экспертом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "formation-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "formation-bench-express",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_concluded_prerequisites": true,
+          "express_acceptance_valid": true
+        },
+        "observed_outcomes": {
+          "contract_concluded_prerequisites": true,
+          "express_acceptance_valid": true
+        },
+        "reasons_ru": [
+          "Формальные предпосылки заключения договора подтверждены.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "task_id": "formation-bench-conduct",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_concluded_prerequisites": true,
+          "conduct_acceptance_valid": true
+        },
+        "observed_outcomes": {
+          "contract_concluded_prerequisites": true,
+          "conduct_acceptance_valid": true
+        },
+        "reasons_ru": [
+          "Формальные предпосылки заключения договора подтверждены.",
+          "Акцепт подтвержден действиями по исполнению в установленный срок."
+        ]
+      },
+      {
+        "task_id": "formation-bench-silence-basis",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_concluded_prerequisites": true,
+          "silence_acceptance_valid": true
+        },
+        "observed_outcomes": {
+          "contract_concluded_prerequisites": true,
+          "silence_acceptance_valid": true
+        },
+        "reasons_ru": [
+          "Формальные предпосылки заключения договора подтверждены.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "task_id": "formation-bench-silence-no-basis",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_concluded_prerequisites": false,
+          "silence_acceptance_valid": false
+        },
+        "observed_outcomes": {
+          "contract_concluded_prerequisites": false,
+          "silence_acceptance_valid": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "task_id": "formation-bench-subject-gap",
+        "passed": true,
+        "expected_outcomes": {
+          "valid_offer": false,
+          "contract_concluded_prerequisites": false
+        },
+        "observed_outcomes": {
+          "valid_offer": false,
+          "contract_concluded_prerequisites": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "task_id": "formation-bench-declared-term-gap",
+        "passed": true,
+        "expected_outcomes": {
+          "essential_terms_agreed": false,
+          "contract_concluded_prerequisites": false
+        },
+        "observed_outcomes": {
+          "essential_terms_agreed": false,
+          "contract_concluded_prerequisites": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "task_id": "formation-bench-counteroffer",
+        "passed": true,
+        "expected_outcomes": {
+          "counteroffer_detected": true,
+          "contract_concluded_prerequisites": false
+        },
+        "observed_outcomes": {
+          "counteroffer_detected": true,
+          "contract_concluded_prerequisites": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден.",
+          "Ответ на иных условиях квалифицирован как встречная оферта."
+        ]
+      },
+      {
+        "task_id": "formation-bench-late",
+        "passed": true,
+        "expected_outcomes": {
+          "express_acceptance_valid": false,
+          "contract_concluded_prerequisites": false
+        },
+        "observed_outcomes": {
+          "express_acceptance_valid": false,
+          "contract_concluded_prerequisites": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "task_id": "formation-bench-form",
+        "passed": true,
+        "expected_outcomes": {
+          "express_acceptance_valid": true,
+          "contract_concluded_prerequisites": false
+        },
+        "observed_outcomes": {
+          "express_acceptance_valid": true,
+          "contract_concluded_prerequisites": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "task_id": "formation-bench-bad-faith-objection",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_concluded_prerequisites": true,
+          "non_conclusion_objection_barred": true,
+          "requires_human_formation_assessment": true
+        },
+        "observed_outcomes": {
+          "contract_concluded_prerequisites": true,
+          "non_conclusion_objection_barred": true,
+          "requires_human_formation_assessment": true
+        },
+        "reasons_ru": [
+          "Формальные предпосылки заключения договора подтверждены.",
+          "Акцепт подтвержден действиями по исполнению в установленный срок.",
+          "Зафиксированы формальные предпосылки для отклонения недобросовестного возражения о незаключенности."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "formation-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "formation-red-silence",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_concluded_prerequisites": true
+        },
+        "observed_outcomes": {
+          "contract_concluded_prerequisites": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "case_id": "formation-red-conditional",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "express_acceptance_valid": true
+        },
+        "observed_outcomes": {
+          "express_acceptance_valid": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "case_id": "formation-red-other-terms",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_concluded_prerequisites": true
+        },
+        "observed_outcomes": {
+          "contract_concluded_prerequisites": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден.",
+          "Ответ на иных условиях квалифицирован как встречная оферта."
+        ]
+      },
+      {
+        "case_id": "formation-red-no-subject",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "valid_offer": true
+        },
+        "observed_outcomes": {
+          "valid_offer": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "case_id": "formation-red-no-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_concluded_prerequisites": true
+        },
+        "observed_outcomes": {
+          "contract_concluded_prerequisites": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "case_id": "formation-red-no-intent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "valid_offer": true
+        },
+        "observed_outcomes": {
+          "valid_offer": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "case_id": "formation-red-late-conduct",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "conduct_acceptance_valid": true
+        },
+        "observed_outcomes": {
+          "conduct_acceptance_valid": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "case_id": "formation-red-unaddressed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "valid_offer": true
+        },
+        "observed_outcomes": {
+          "valid_offer": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "case_id": "formation-red-negotiations",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_concluded_prerequisites": true
+        },
+        "observed_outcomes": {
+          "contract_concluded_prerequisites": false
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден."
+        ]
+      },
+      {
+        "case_id": "formation-red-bad-faith",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "non_conclusion_objection_barred": false
+        },
+        "observed_outcomes": {
+          "non_conclusion_objection_barred": true
+        },
+        "reasons_ru": [
+          "Полный набор формальных предпосылок заключения договора не подтвержден.",
+          "Акцепт действиями в установленный срок не подтвержден.",
+          "Зафиксированы формальные предпосылки для отклонения недобросовестного возражения о незаключенности."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/",
+    "https://vsrf.ru/documents/own/27540/"
+  ]
+}

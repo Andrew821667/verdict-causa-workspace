@@ -113,8 +113,7 @@ class TranslationBundle(BaseModel):
         ):
             raise ValueError("Отчеты Translation Layer относятся к другой трассировке.")
         expected_ready = (
-            self.faithfulness_report.passed
-            and self.usability_report.structural_checks_passed
+            self.faithfulness_report.passed and self.usability_report.structural_checks_passed
         )
         if self.ready_for_human_review != expected_ready:
             raise ValueError("Готовность bundle не согласована с результатами проверок.")
@@ -163,6 +162,22 @@ def _liability_refs(
     return sorted(references)
 
 
+def _formation_refs(
+    result: ReviewedContractAnalysisResult,
+    *fact_names: str,
+) -> list[str]:
+    references = {
+        *result.formation_evidence_mapping.legal_source_refs,
+        *(
+            source_ref
+            for item in result.formation_evidence_mapping.provenance
+            if item.fact_name in fact_names
+            for source_ref in item.source_refs
+        ),
+    }
+    return sorted(references)
+
+
 def build_translation_assertions(
     request: ReviewedContractAnalysisRequest,
     result: ReviewedContractAnalysisResult,
@@ -172,6 +187,7 @@ def build_translation_assertions(
     authority_refs = list(request.authority_input.candidate_source_ids)
     counterfactual_report = result.counterfactual_sensitivity
     liability = result.liability_evaluation
+    formation = result.formation_evaluation
     critical_scenario = (
         next(
             scenario
@@ -191,6 +207,76 @@ def build_translation_assertions(
                 else "Источник проверенной нормы не применим на дату оценки."
             ),
             source_refs=[request.reviewed_norm.source_id],
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.VALID_OFFER,
+            value=formation.valid_offer,
+            text_ru=(
+                "Формальные признаки оферты подтверждены."
+                if formation.valid_offer
+                else "Полный набор формальных признаков оферты не подтвержден."
+            ),
+            source_refs=_formation_refs(
+                result,
+                "proposal_made",
+                "proposal_addressed_to_counterparty",
+                "intent_to_be_bound",
+                "subject_matter_defined_in_offer",
+                "statutory_essential_terms_defined_in_offer",
+                "party_declared_essential_terms_defined_in_offer",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.CONTRACT_CONCLUDED_PREREQUISITES,
+            value=formation.contract_concluded_prerequisites,
+            text_ru=(
+                "Формальные предпосылки заключения договора подтверждены."
+                if formation.contract_concluded_prerequisites
+                else "Формальные предпосылки заключения договора подтверждены не полностью."
+            ),
+            source_refs=_formation_refs(
+                result,
+                *[item.fact_name for item in result.formation_evidence_mapping.provenance],
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.CONDUCT_ACCEPTANCE_VALID,
+            value=formation.conduct_acceptance_valid,
+            text_ru=(
+                "Акцепт подтвержден своевременными действиями по исполнению."
+                if formation.conduct_acceptance_valid
+                else "Своевременный акцепт действиями не подтвержден."
+            ),
+            source_refs=_formation_refs(
+                result,
+                "acceptance_by_conduct",
+                "performance_conduct_started_in_time",
+                "acceptance_on_other_terms",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.COUNTEROFFER_DETECTED,
+            value=formation.counteroffer_detected,
+            text_ru=(
+                "Выявлен ответ на иных условиях, требующий оценки как встречной оферты."
+                if formation.counteroffer_detected
+                else "Ответ на иных условиях не выявлен."
+            ),
+            source_refs=_formation_refs(result, "acceptance_on_other_terms"),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.NON_CONCLUSION_OBJECTION_BARRED,
+            value=formation.non_conclusion_objection_barred,
+            text_ru=(
+                "Есть формальные предпосылки отклонить недобросовестное возражение о незаключенности."
+                if formation.non_conclusion_objection_barred
+                else "Формальный запрет возражения о незаключенности не установлен."
+            ),
+            source_refs=_formation_refs(
+                result,
+                "performance_accepted_without_objection",
+                "bad_faith_non_conclusion_objection",
+            ),
         ),
         TranslationAssertion(
             code=TranslationAssertionCode.DUE_DATE_MISSED,
@@ -324,9 +410,9 @@ def build_translation_assertions(
             code=TranslationAssertionCode.HUMAN_RESOLUTION_REQUIRED,
             value=result.requires_human_resolution,
             text_ru=(
-                "Для разрешения конкуренции источников требуется решение эксперта."
+                "Для разрешения вопроса об источниках или заключении договора требуется решение эксперта."
                 if result.requires_human_resolution
-                else "Конкуренция источников разрешена текущей синтетической моделью."
+                else "Вопросы источников и формальных предпосылок заключения разрешены текущей синтетической моделью."
             ),
             source_refs=authority_refs,
         ),
@@ -386,7 +472,9 @@ def build_translation_assertions(
                 if liability.exemption_prerequisites_satisfied
                 else "Формальные предпосылки освобождения от ответственности не подтверждены."
             ),
-            source_refs=_liability_refs(result, *[item.fact_name for item in result.liability_evidence_mapping.provenance]),
+            source_refs=_liability_refs(
+                result, *[item.fact_name for item in result.liability_evidence_mapping.provenance]
+            ),
         ),
         TranslationAssertion(
             code=TranslationAssertionCode.LIABILITY_ISSUE,
@@ -444,6 +532,7 @@ def build_reasoning_path_comparison(
             "Проверить временную применимость источников.",
             "Разрешить юридическую силу источников-кандидатов.",
             "Преобразовать только проверенные факты в формальные предикаты.",
+            "Проверить оферту, существенные условия, форму и способ акцепта.",
             "Проверить обязанность, срок и применимое исключение в constraint set.",
         ],
         alternative_path_ru=[
@@ -511,9 +600,7 @@ def _render_context(
             *[f"- {reason}" for reason in result.authority_evaluation.reasons_ru],
         ]
     )
-    formal_result_ru = "\n".join(
-        f"- {assertion.text_ru}" for assertion in assertions[:9]
-    )
+    formal_result_ru = "\n".join(f"- {assertion.text_ru}" for assertion in assertions[:9])
     limitations_ru = "\n".join(f"- {warning}" for warning in result.warnings_ru)
     coordinates_ru = "\n".join(
         [
@@ -550,8 +637,8 @@ def _render_context(
     )
     all_assertions_ru = "\n".join(
         (
-            f"- {assertion.code.value}={assertion.value}: {assertion.text_ru} "
-            f"[sources: {', '.join(assertion.source_refs) or 'нет'}]"
+            f"- {assertion.code.value}={assertion.value}: {assertion.text_ru}\n"
+            f"  Источники: {', '.join(assertion.source_refs) or 'нет'}."
         )
         for assertion in assertions
     )
@@ -578,14 +665,17 @@ def _render_context(
         for scenario in counterfactual_report.scenarios
         if scenario.id == scenario_id
     ]
-    counterfactual_professional_ru = "\n".join(
-        (
-            f"- {scenario.title_ru}: меняются выводы — "
-            + ", ".join(delta.field_label_ru for delta in scenario.outcome_deltas)
-            + "."
+    counterfactual_professional_ru = (
+        "\n".join(
+            (
+                f"- {scenario.title_ru}: меняются выводы — "
+                + ", ".join(delta.field_label_ru for delta in scenario.outcome_deltas)
+                + "."
+            )
+            for scenario in critical_scenarios[:3]
         )
-        for scenario in critical_scenarios[:3]
-    ) or "- В пределах установленного бюджета материальные изменения не выявлены."
+        or "- В пределах установленного бюджета материальные изменения не выявлены."
+    )
     counterfactual_forensic_ru = "\n".join(
         [
             f"- Engine: {counterfactual_report.engine_version}.",
@@ -614,6 +704,32 @@ def _render_context(
         ]
     )
     liability = result.liability_evaluation
+    formation = result.formation_evaluation
+    formation_professional_ru = "\n".join(
+        [
+            *[f"- {reason}" for reason in formation.reasons_ru],
+            "- Судебная квалификация переписки, поведения сторон и формы договора остается за юристом.",
+        ]
+    )
+    formation_forensic_ru = "\n".join(
+        [
+            f"- Constraint set: {result.formation_constraint_set.id}.",
+            f"- Model version: {result.formation_constraint_set.model_version}.",
+            f"- Evidence mapping: {result.formation_evidence_mapping.mapping_version}.",
+            f"- Legal sources: {', '.join(result.formation_evidence_mapping.legal_source_refs)}.",
+            *[
+                f"- Rule: {expression}."
+                for expression in result.formation_constraint_set.expressions
+            ],
+            *[
+                f"- Fact {item.fact_name}: assertion={item.assertion_id}; "
+                f"sources={', '.join(item.source_refs)}."
+                for item in result.formation_evidence_mapping.provenance
+            ],
+            *[f"- Результат: {reason}" for reason in formation.reasons_ru],
+            *[f"- Ограничение: {warning}" for warning in formation.warnings_ru],
+        ]
+    )
     liability_professional_ru = "\n".join(
         [
             *[f"- {reason}" for reason in liability.reasons_ru],
@@ -657,6 +773,8 @@ def _render_context(
         "path_comparison_ru": path_comparison_ru,
         "counterfactual_professional_ru": counterfactual_professional_ru,
         "counterfactual_forensic_ru": counterfactual_forensic_ru,
+        "formation_professional_ru": formation_professional_ru,
+        "formation_forensic_ru": formation_forensic_ru,
         "liability_professional_ru": liability_professional_ru,
         "liability_forensic_ru": liability_forensic_ru,
         "disclaimer_ru": TRANSLATION_DISCLAIMER_RU,
@@ -931,10 +1049,7 @@ def build_translation_bundle(
     selected_template_set = template_set or build_russian_translation_template_set()
     if policy_snapshot.payload.translation_template_version != selected_template_set.version:
         raise ValueError("Policy snapshot требует другую версию шаблонов Translation Layer.")
-    if (
-        policy_snapshot.payload.translation_template_hash
-        != selected_template_set.content_hash
-    ):
+    if policy_snapshot.payload.translation_template_hash != selected_template_set.content_hash:
         raise ValueError("Policy snapshot содержит другой hash шаблонов Translation Layer.")
     assertions = build_translation_assertions(request, result)
     comparison = build_reasoning_path_comparison(request, result)
@@ -997,7 +1112,5 @@ def build_translation_bundle(
         path_comparisons=[comparison],
         faithfulness_report=faithfulness,
         usability_report=usability,
-        ready_for_human_review=(
-            faithfulness.passed and usability.structural_checks_passed
-        ),
+        ready_for_human_review=(faithfulness.passed and usability.structural_checks_passed),
     )

@@ -22,11 +22,11 @@ def test_unknown_core_version_is_not_supported() -> None:
 
 
 def test_compatibility_matrix_marks_current_entry_supported() -> None:
-    assert len(CONTRACTS_PACKAGE_COMPATIBILITY) == 9
+    assert len(CONTRACTS_PACKAGE_COMPATIBILITY) == 10
     assert CONTRACTS_PACKAGE_COMPATIBILITY[0].status == CompatibilityStatus.SUPPORTED
-    assert CONTRACTS_PACKAGE_COMPATIBILITY[0].package_version == "0.9.0"
+    assert CONTRACTS_PACKAGE_COMPATIBILITY[0].package_version == "0.10.0"
     assert CONTRACTS_PACKAGE_COMPATIBILITY[0].case_evidence_schema_versions == [
-        "contracts.case-evidence.v1"
+        "contracts.case-evidence.v2"
     ]
     assert CONTRACTS_PACKAGE_COMPATIBILITY[0].notes_ru
 

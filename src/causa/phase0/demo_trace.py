@@ -114,18 +114,14 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
         raise ValueError("Активная политика запрещает контрфактический анализ Этапа 0.")
     counterfactual_budget = CounterfactualBudget(
         max_scenarios=policy_snapshot.payload.counterfactual_max_scenarios,
-        max_changed_facts_per_scenario=(
-            policy_snapshot.payload.counterfactual_max_changed_facts
-        ),
+        max_changed_facts_per_scenario=(policy_snapshot.payload.counterfactual_max_changed_facts),
     )
     analysis_artifact = build_synthetic_supply_analysis_artifact(counterfactual_budget)
     sources = analysis_artifact.sources
     analysis_request = analysis_artifact.request
     analysis_result = analysis_artifact.result
     source = next(
-        source
-        for source in sources
-        if source.id == analysis_request.reviewed_norm.source_id
+        source for source in sources if source.id == analysis_request.reviewed_norm.source_id
     )
     reviewed_norm = analysis_request.reviewed_norm
     formal_translation = analysis_result.formal_translation
@@ -186,6 +182,11 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
             *(
                 source_ref
                 for assertion in analysis_request.case_evidence.assertions
+                for source_ref in assertion.source_refs
+            ),
+            *(
+                source_ref
+                for assertion in analysis_request.formation_evidence.assertions
                 for source_ref in assertion.source_refs
             ),
         }
@@ -249,9 +250,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     "case_evidence_schema_version": (
                         analysis_result.evidence_mapping.schema_version
                     ),
-                    "evidence_mapping_version": (
-                        analysis_result.evidence_mapping.mapping_version
-                    ),
+                    "evidence_mapping_version": (analysis_result.evidence_mapping.mapping_version),
                     "reviewer_ids": analysis_result.reviewer_ids,
                     "governance_record_id": governance_record.id,
                     "policy_snapshot_id": policy_snapshot.id,
@@ -261,10 +260,21 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     "translation_faithfulness_report_id": (
                         translation_bundle.faithfulness_report.id
                     ),
-                    "translation_usability_report_id": (
-                        translation_bundle.usability_report.id
-                    ),
+                    "translation_usability_report_id": (translation_bundle.usability_report.id),
                     "formal_rule_id": formal_translation.obligation_rule.id,
+                    "formation_evidence_mapping_id": (
+                        analysis_result.formation_evidence_mapping.evidence_id
+                    ),
+                    "formation_constraint_set_id": (analysis_result.formation_constraint_set.id),
+                    "formation_model_version": (
+                        analysis_result.formation_constraint_set.model_version
+                    ),
+                    "contract_concluded_prerequisites": (
+                        analysis_result.formation_evaluation.contract_concluded_prerequisites
+                    ),
+                    "conduct_acceptance_valid": (
+                        analysis_result.formation_evaluation.conduct_acceptance_valid
+                    ),
                     "constraint_set_id": constraint_set.id,
                     "counterfactual_sensitivity_report_id": (
                         analysis_result.counterfactual_sensitivity.id
@@ -275,9 +285,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     "liability_evidence_mapping_id": (
                         analysis_result.liability_evidence_mapping.evidence_id
                     ),
-                    "liability_constraint_set_id": (
-                        analysis_result.liability_constraint_set.id
-                    ),
+                    "liability_constraint_set_id": (analysis_result.liability_constraint_set.id),
                     "liability_model_version": (
                         analysis_result.liability_constraint_set.model_version
                     ),
@@ -289,16 +297,11 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                         analysis_result.liability_evaluation.penalty_reduction_prerequisites_satisfied
                     ),
                     "source_applicable": source_applicability.applicable,
-                    "authority_winner": (
-                        analysis_result.authority_evaluation.selected_source_id
-                    ),
+                    "authority_winner": (analysis_result.authority_evaluation.selected_source_id),
                     "authority_rules": [
-                        rule.value
-                        for rule in analysis_result.authority_evaluation.applied_rules
+                        rule.value for rule in analysis_result.authority_evaluation.applied_rules
                     ],
-                    "requires_human_resolution": (
-                        analysis_result.requires_human_resolution
-                    ),
+                    "requires_human_resolution": (analysis_result.requires_human_resolution),
                     "due_date_missed": temporal_evaluation.due_date_missed,
                     "breach_issue": constraint_evaluation.breach_issue,
                     "late_performance_issue": constraint_evaluation.late_performance_issue,
@@ -336,9 +339,7 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     "candidate_type": candidate_type.value,
                     "status": candidate.status,
                     "governance_stage": governance_record.current_stage.value,
-                    "governance_stage_label_ru": (
-                        governance_record.current_stage_label_ru
-                    ),
+                    "governance_stage_label_ru": (governance_record.current_stage_label_ru),
                     "governance_decision_ids": [
                         decision.id for decision in governance_record.decisions
                     ],
@@ -356,7 +357,9 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
             *source_edges,
             *evidence_edges,
             KnowledgeEdge(source_id=source.id, target_id=reviewed_norm.id, relation="parsed_to"),
-            KnowledgeEdge(source_id=reviewed_norm.id, target_id="case-supply-1", relation="applies_to"),
+            KnowledgeEdge(
+                source_id=reviewed_norm.id, target_id="case-supply-1", relation="applies_to"
+            ),
             KnowledgeEdge(source_id="case-supply-1", target_id=claim.id, relation="supports_claim"),
             KnowledgeEdge(source_id=claim.id, target_id=candidate.id, relation="raises_candidate"),
         ],

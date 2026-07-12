@@ -7,7 +7,7 @@
     "trace_id": "analysis:analysis-request-case-supply-1-v0",
     "locale": "ru-RU",
     "engine_version": "bounded-counterfactual-engine-v0",
-    "institutional_package_version": "contracts-ru-v0@0.9.0",
+    "institutional_package_version": "contracts-ru-v0@0.10.0",
     "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
     "operator_library_version": "contracts-legal-operators-ru-v1",
     "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

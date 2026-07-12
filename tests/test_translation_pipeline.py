@@ -60,18 +60,20 @@ def test_bundle_has_three_increasing_russian_levels_with_identical_assertions() 
     artifacts = {artifact.level: artifact for artifact in bundle.artifacts}
 
     assert set(artifacts) == set(TranslationLevel)
-    assert len(artifacts[TranslationLevel.EXECUTIVE].text) < len(
-        artifacts[TranslationLevel.PROFESSIONAL].text
-    ) < len(artifacts[TranslationLevel.FORENSIC].text)
-    assert artifacts[TranslationLevel.EXECUTIVE].text.startswith(
-        "КРАТКОЕ ПРАВОВОЕ РЕЗЮМЕ"
+    assert (
+        len(artifacts[TranslationLevel.EXECUTIVE].text)
+        < len(artifacts[TranslationLevel.PROFESSIONAL].text)
+        < len(artifacts[TranslationLevel.FORENSIC].text)
     )
-    assert artifacts[TranslationLevel.PROFESSIONAL].assertions == artifacts[
-        TranslationLevel.FORENSIC
-    ].assertions
-    assert artifacts[TranslationLevel.EXECUTIVE].assertions == artifacts[
-        TranslationLevel.PROFESSIONAL
-    ].assertions
+    assert artifacts[TranslationLevel.EXECUTIVE].text.startswith("КРАТКОЕ ПРАВОВОЕ РЕЗЮМЕ")
+    assert (
+        artifacts[TranslationLevel.PROFESSIONAL].assertions
+        == artifacts[TranslationLevel.FORENSIC].assertions
+    )
+    assert (
+        artifacts[TranslationLevel.EXECUTIVE].assertions
+        == artifacts[TranslationLevel.PROFESSIONAL].assertions
+    )
 
 
 def test_bundle_passes_faithfulness_and_structural_usability_checks() -> None:
@@ -185,6 +187,8 @@ def test_forensic_level_contains_reproduction_governance_and_path_comparison() -
     professional = bundle.artifact_for(TranslationLevel.PROFESSIONAL).text
     assert "Контрфактическая чувствительность" in professional
     assert "Ответственность и неустойка" in professional
+    assert "Заключение договора" in professional
+    assert "Модель заключения договора (статьи 432, 435, 438 и 443 ГК РФ)" in forensic
     assert "Модель ответственности (статьи 333 и 401 ГК РФ)" in forensic
     assert bundle.path_comparisons[0].selected_path == "active_reviewed_path"
 

@@ -15,7 +15,7 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     assert trace.formal_translation.obligation_rule.creditor == "покупатель"
     assert trace.temporal_evaluation.due_date_missed is True
     assert trace.source_applicability.applicable is True
-    assert trace.analysis_result.pipeline_version == "contracts-reviewed-analysis-v1"
+    assert trace.analysis_result.pipeline_version == "contracts-reviewed-analysis-v2"
     assert len(trace.analysis_result.evidence_mapping.provenance) == 13
     assert (
         trace.analysis_result.authority_evaluation.selected_source_id
@@ -34,7 +34,10 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     assert trace.policy.mode.value == "standard"
     assert trace.governance_record.current_stage.value == "active"
     assert trace.governance_record.current_stage_label_ru == "Активно"
-    assert trace.translation.template_version == trace.decision_trace.versions.translation_template_version
+    assert (
+        trace.translation.template_version
+        == trace.decision_trace.versions.translation_template_version
+    )
     assert len(trace.translation_bundle.artifacts) == 3
     assert {artifact.level for artifact in trace.translation_bundle.artifacts} == set(
         TranslationLevel
@@ -47,6 +50,9 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     assert trace.analysis_result.counterfactual_sensitivity.budget.max_scenarios == 8
     assert trace.analysis_result.liability_evaluation.liability_issue is True
     assert trace.analysis_result.liability_evaluation.force_majeure_qualified is False
+    assert trace.analysis_result.formation_evaluation.valid_offer is True
+    assert trace.analysis_result.formation_evaluation.conduct_acceptance_valid is True
+    assert trace.analysis_result.formation_evaluation.contract_concluded_prerequisites is True
     assert (
         trace.decision_trace.versions.legal_operator_library_hash
         == trace.analysis_result.counterfactual_sensitivity.operator_library_hash
@@ -76,18 +82,15 @@ def test_exported_supply_dispute_trace_fixture_is_valid() -> None:
 
     assert trace.locale == "ru-RU"
     assert trace.disclaimer.startswith("Синтетическая трассировка Этапа 0")
-    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.9.0"
+    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.10.0"
     assert trace.decision_trace.versions.policy_version == trace.policy_snapshot.id
-    assert (
-        trace.decision_trace.versions.policy_content_hash
-        == trace.policy_snapshot.content_hash
-    )
+    assert trace.decision_trace.versions.policy_content_hash == trace.policy_snapshot.content_hash
     assert trace.governance_record.policy_version == trace.policy_snapshot.id
+    assert trace.governance_record.policy_content_hash == trace.policy_snapshot.content_hash
     assert (
-        trace.governance_record.policy_content_hash
-        == trace.policy_snapshot.content_hash
+        trace.formal_translation.obligation_rule.id
+        == "obligation-rule:norm-supply-delivery-duty-v0"
     )
-    assert trace.formal_translation.obligation_rule.id == "obligation-rule:norm-supply-delivery-duty-v0"
     assert trace.constraint_set.id == "constraint-set:obligation-rule:norm-supply-delivery-duty-v0"
     assert trace.temporal_facts.agreed_due_date.isoformat() == "2026-01-15"
     assert trace.legal_source.valid_from == "2026-01-01"

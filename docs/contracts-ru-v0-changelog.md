@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.10.0 - 2026-07-12
+
+- Adds mandatory reviewed contract-formation evidence with 17 provenance-backed predicates.
+- Adds narrow formal boundaries for Civil Code articles 432, 435, 438, and 443 and Supreme Court Plenum Resolution No. 49.
+- Separates essential terms, offer, express acceptance, acceptance by conduct, silence, counteroffer, required form, and bad-faith non-conclusion objections.
+- Enforces agreement between formation results and contractual-duty evidence before breach and liability analysis.
+- Adds ten formation benchmarks, ten adversarial checks, Russian vocabulary, and a Russian formation explanation section.
+- Upgrades evidence to `contracts.case-evidence.v2`, analysis to `contracts-reviewed-analysis-v2`, and Russian templates to `ru-v4`.
+
 ## 0.9.0 - 2026-07-11
 
 - Adds mandatory reviewed liability evidence with 20 provenance-backed predicates.

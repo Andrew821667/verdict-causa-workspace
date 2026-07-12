@@ -189,6 +189,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.9.0",
+        to_version="0.10.0",
+        reasons=[
+            "Reviewed inputs now require a separate contract-formation evidence contract.",
+            "Analysis and Russian translation outputs include formal articles 432, 435, 438, and 443 boundaries.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о заключении договора.",
+            "Анализ и русское объяснение включают формальные границы статей 432, 435, 438 и 443 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_formation_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 
@@ -211,9 +230,7 @@ def build_contracts_package_migration_report(
             source_package_version=artifact.package_version,
             target_package_version=target_version,
             disposition=MigrationDisposition.UNSUPPORTED,
-            disposition_label_ru=MIGRATION_DISPOSITION_LABELS_RU[
-                MigrationDisposition.UNSUPPORTED
-            ],
+            disposition_label_ru=MIGRATION_DISPOSITION_LABELS_RU[MigrationDisposition.UNSUPPORTED],
             reasons=["Artifact package id does not match contracts-ru-v0."],
             reasons_ru=["Идентификатор пакета артефакта не соответствует contracts-ru-v0."],
             payload_preserved_without_interpretation=True,
@@ -227,9 +244,7 @@ def build_contracts_package_migration_report(
             source_package_version=artifact.package_version,
             target_package_version=target_version,
             disposition=MigrationDisposition.NOT_REQUIRED,
-            disposition_label_ru=MIGRATION_DISPOSITION_LABELS_RU[
-                MigrationDisposition.NOT_REQUIRED
-            ],
+            disposition_label_ru=MIGRATION_DISPOSITION_LABELS_RU[MigrationDisposition.NOT_REQUIRED],
             reasons=["Artifact already uses the current package version."],
             reasons_ru=["Артефакт уже использует текущую версию пакета."],
             payload_preserved_without_interpretation=True,
@@ -259,9 +274,7 @@ def build_contracts_package_migration_report(
                 ],
                 steps=steps,
                 reasons=["No ordered migration path reaches the current package version."],
-                reasons_ru=[
-                    "Отсутствует последовательный путь миграции к текущей версии пакета."
-                ],
+                reasons_ru=["Отсутствует последовательный путь миграции к текущей версии пакета."],
                 payload_preserved_without_interpretation=True,
             )
         steps.append(step)

@@ -20,6 +20,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "validate-reviewed-analysis-inputs",
         "map-reviewed-evidence",
         "resolve-reviewed-authority",
+        "evaluate-contract-formation",
         "evaluate-obligation-constraints",
         "evaluate-counterfactual-sensitivity",
         "evaluate-liability-prerequisites",
