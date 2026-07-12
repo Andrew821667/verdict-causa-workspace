@@ -44,6 +44,16 @@ from causa.institutional.contracts.formation import (
     evaluate_formation_constraints,
     map_reviewed_formation_evidence,
 )
+from causa.institutional.contracts.termination import (
+    TERMINATION_EVIDENCE_SCHEMA_VERSION,
+    ReviewedTerminationEvidence,
+    TerminationConstraintSet,
+    TerminationEvaluation,
+    TerminationEvidenceMappingResult,
+    build_termination_constraint_set,
+    evaluate_termination_constraints,
+    map_reviewed_termination_evidence,
+)
 from causa.institutional.contracts.temporal import (
     ContractTemporalFacts,
     TemporalEvaluation,
@@ -59,9 +69,9 @@ from causa.reasoning.formal_checks import (
 from causa.reasoning.counterfactual import CounterfactualBudget
 
 
-CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v2"
+CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v3"
 EVIDENCE_MAPPING_VERSION = "contracts-reviewed-evidence-to-facts-v0"
-ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v2"
+ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v3"
 
 
 class ContractEvidencePredicate(str, Enum):
@@ -148,6 +158,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     temporal_evidence: ReviewedTemporalEvidence
     authority_input: ReviewedAuthorityInput
     formation_evidence: ReviewedFormationEvidence
+    termination_evidence: ReviewedTerminationEvidence
     liability_evidence: ReviewedLiabilityEvidence
 
 
@@ -183,6 +194,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     formation_evidence_mapping: FormationEvidenceMappingResult
     formation_constraint_set: FormationConstraintSet
     formation_evaluation: FormationEvaluation
+    termination_evidence_mapping: TerminationEvidenceMappingResult
+    termination_constraint_set: TerminationConstraintSet
+    termination_evaluation: TerminationEvaluation
     liability_evidence_mapping: LiabilityEvidenceMappingResult
     liability_constraint_set: LiabilityConstraintSet
     liability_evaluation: LiabilityEvaluation
@@ -208,6 +222,27 @@ class ReviewedContractAnalysisResult(BaseModel):
             != self.evidence_mapping.facts.duty_exists
         ):
             raise ValueError("Formation result does not match contractual duty evidence.")
+        expected_termination_set = build_termination_constraint_set(
+            self.termination_evidence_mapping
+        )
+        if self.termination_constraint_set != expected_termination_set:
+            raise ValueError("Termination constraint set does not replay from reviewed evidence.")
+        expected_termination_evaluation = evaluate_termination_constraints(
+            expected_termination_set,
+            self.termination_evidence_mapping.facts,
+        )
+        if self.termination_evaluation != expected_termination_evaluation:
+            raise ValueError("Termination evaluation does not replay from reviewed evidence.")
+        if (
+            self.termination_evidence_mapping.facts.contract_formed
+            != self.formation_evaluation.contract_concluded_prerequisites
+        ):
+            raise ValueError("Termination contract status does not match formation result.")
+        if (
+            self.termination_evidence_mapping.facts.substantial_breach_proven
+            and not self.constraint_evaluation.breach_issue
+        ):
+            raise ValueError("Substantial breach evidence requires an obligation breach.")
         expected_constraint_set = build_liability_constraint_set(self.liability_evidence_mapping)
         if self.liability_constraint_set != expected_constraint_set:
             raise ValueError("Liability constraint set does not replay from reviewed evidence.")
@@ -263,6 +298,8 @@ def _validate_request_integrity(
         raise ValueError("Temporal evidence case_id does not match the analysis request.")
     if request.formation_evidence.case_id != request.case_id:
         raise ValueError("Formation evidence case_id does not match the analysis request.")
+    if request.termination_evidence.case_id != request.case_id:
+        raise ValueError("Termination evidence case_id does not match the analysis request.")
     if request.liability_evidence.case_id != request.case_id:
         raise ValueError("Liability evidence case_id does not match the analysis request.")
     if request.authority_input.evaluation_date != request.temporal_evidence.evaluation_date:
@@ -273,6 +310,8 @@ def _validate_request_integrity(
         raise ValueError("Case evidence uses an unsupported schema version.")
     if request.formation_evidence.schema_version != FORMATION_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Formation evidence uses an unsupported schema version.")
+    if request.termination_evidence.schema_version != TERMINATION_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Termination evidence uses an unsupported schema version.")
     if request.liability_evidence.schema_version != LIABILITY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Liability evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
@@ -283,11 +322,14 @@ def _validate_request_integrity(
         *request.temporal_evidence.source_refs,
         *request.authority_input.candidate_source_ids,
         *request.formation_evidence.legal_source_refs,
+        *request.termination_evidence.legal_source_refs,
         *request.liability_evidence.legal_source_refs,
     }
     for assertion in request.case_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.formation_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.termination_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.liability_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -316,6 +358,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Formation legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_formation_legal_sources))
+        )
+    invalid_termination_legal_sources = [
+        source_id
+        for source_id in request.termination_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_termination_legal_sources:
+        raise ValueError(
+            "Termination legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_termination_legal_sources))
         )
     return sorted(referenced_source_ids)
 
@@ -427,6 +480,11 @@ def run_reviewed_contract_analysis(
         review_status=request.formation_evidence.review_status,
         reviewer_id=request.formation_evidence.reviewer_id,
     )
+    termination_reviewer_id = _require_reviewed(
+        artifact_name="Termination evidence",
+        review_status=request.termination_evidence.review_status,
+        reviewer_id=request.termination_evidence.reviewer_id,
+    )
     liability_reviewer_id = _require_reviewed(
         artifact_name="Liability evidence",
         review_status=request.liability_evidence.review_status,
@@ -478,6 +536,22 @@ def run_reviewed_contract_analysis(
         constraint_set,
         evidence_mapping.facts,
     )
+    termination_evidence_mapping = map_reviewed_termination_evidence(request.termination_evidence)
+    termination_constraint_set = build_termination_constraint_set(termination_evidence_mapping)
+    termination_evaluation = evaluate_termination_constraints(
+        termination_constraint_set,
+        termination_evidence_mapping.facts,
+    )
+    if (
+        termination_evidence_mapping.facts.contract_formed
+        != formation_evaluation.contract_concluded_prerequisites
+    ):
+        raise ValueError("Termination contract status does not match formation result.")
+    if (
+        termination_evidence_mapping.facts.substantial_breach_proven
+        and not constraint_evaluation.breach_issue
+    ):
+        raise ValueError("Substantial breach evidence requires an obligation breach.")
     liability_evidence_mapping = map_reviewed_liability_evidence(request.liability_evidence)
     if liability_evidence_mapping.facts.breach_established != constraint_evaluation.breach_issue:
         raise ValueError("Liability breach fact does not match obligation evaluation.")
@@ -495,6 +569,7 @@ def run_reviewed_contract_analysis(
     requires_human_resolution = (
         authority_evaluation.selected_source_id is None
         or formation_evaluation.requires_human_formation_assessment
+        or termination_evaluation.requires_human_termination_assessment
     )
 
     return ReviewedContractAnalysisResult(
@@ -508,6 +583,7 @@ def run_reviewed_contract_analysis(
                 temporal_reviewer_id,
                 authority_reviewer_id,
                 formation_reviewer_id,
+                termination_reviewer_id,
                 liability_reviewer_id,
             }
         ),
@@ -522,6 +598,9 @@ def run_reviewed_contract_analysis(
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,
+        termination_evidence_mapping=termination_evidence_mapping,
+        termination_constraint_set=termination_constraint_set,
+        termination_evaluation=termination_evaluation,
         liability_evidence_mapping=liability_evidence_mapping,
         liability_constraint_set=liability_constraint_set,
         liability_evaluation=liability_evaluation,
@@ -538,6 +617,7 @@ def run_reviewed_contract_analysis(
             "Детерминированный анализ ограничен узким набором правил; "
             "содержательная правовая оценка остается за экспертом.",
             *formation_evaluation.warnings_ru,
+            *termination_evaluation.warnings_ru,
             *liability_evaluation.warnings_ru,
             "Не является юридической консультацией.",
         ],

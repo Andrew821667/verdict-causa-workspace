@@ -189,6 +189,11 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                 for assertion in analysis_request.formation_evidence.assertions
                 for source_ref in assertion.source_refs
             ),
+            *(
+                source_ref
+                for assertion in analysis_request.termination_evidence.assertions
+                for source_ref in assertion.source_refs
+            ),
         }
     )
     source_nodes = [
@@ -274,6 +279,24 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     ),
                     "conduct_acceptance_valid": (
                         analysis_result.formation_evaluation.conduct_acceptance_valid
+                    ),
+                    "termination_evidence_mapping_id": (
+                        analysis_result.termination_evidence_mapping.evidence_id
+                    ),
+                    "termination_constraint_set_id": (
+                        analysis_result.termination_constraint_set.id
+                    ),
+                    "termination_model_version": (
+                        analysis_result.termination_constraint_set.model_version
+                    ),
+                    "contract_continues_unchanged": (
+                        analysis_result.termination_evaluation.contract_continues_unchanged
+                    ),
+                    "effective_modification": (
+                        analysis_result.termination_evaluation.effective_modification
+                    ),
+                    "effective_termination": (
+                        analysis_result.termination_evaluation.effective_termination
                     ),
                     "constraint_set_id": constraint_set.id,
                     "counterfactual_sensitivity_report_id": (

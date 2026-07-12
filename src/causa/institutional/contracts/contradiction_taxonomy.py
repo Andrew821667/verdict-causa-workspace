@@ -8,4 +8,8 @@ CONTRACT_CONTRADICTION_TYPES = [
     "essential_terms_conflict",
     "acceptance_scope_conflict",
     "contract_form_conflict",
+    "modification_termination_target_conflict",
+    "unilateral_right_conflict",
+    "termination_effective_date_conflict",
+    "accrued_claim_survival_conflict",
 ]

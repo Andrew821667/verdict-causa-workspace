@@ -178,6 +178,22 @@ def _formation_refs(
     return sorted(references)
 
 
+def _termination_refs(
+    result: ReviewedContractAnalysisResult,
+    *fact_names: str,
+) -> list[str]:
+    references = {
+        *result.termination_evidence_mapping.legal_source_refs,
+        *(
+            source_ref
+            for item in result.termination_evidence_mapping.provenance
+            if item.fact_name in fact_names
+            for source_ref in item.source_refs
+        ),
+    }
+    return sorted(references)
+
+
 def build_translation_assertions(
     request: ReviewedContractAnalysisRequest,
     result: ReviewedContractAnalysisResult,
@@ -188,6 +204,7 @@ def build_translation_assertions(
     counterfactual_report = result.counterfactual_sensitivity
     liability = result.liability_evaluation
     formation = result.formation_evaluation
+    termination = result.termination_evaluation
     critical_scenario = (
         next(
             scenario
@@ -277,6 +294,113 @@ def build_translation_assertions(
                 "performance_accepted_without_objection",
                 "bad_faith_non_conclusion_objection",
             ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.CONTRACT_CONTINUES_UNCHANGED,
+            value=termination.contract_continues_unchanged,
+            text_ru=(
+                "Договор продолжает действовать без подтвержденного изменения."
+                if termination.contract_continues_unchanged
+                else "Неизменное продолжение договора текущей моделью не подтверждено."
+            ),
+            source_refs=_termination_refs(
+                result,
+                "contract_formed",
+                "mutual_agreement_reached",
+                "judicial_request_made",
+                "unilateral_action_declared",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.EFFECTIVE_MODIFICATION,
+            value=termination.effective_modification,
+            text_ru=(
+                "Установлен формальный путь вступившего в силу изменения договора."
+                if termination.effective_modification
+                else "Вступившее в силу изменение договора не установлено."
+            ),
+            source_refs=_termination_refs(
+                result,
+                *[item.fact_name for item in result.termination_evidence_mapping.provenance],
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.EFFECTIVE_TERMINATION,
+            value=termination.effective_termination,
+            text_ru=(
+                "Установлен формальный путь состоявшегося прекращения договора."
+                if termination.effective_termination
+                else "Состоявшееся прекращение договора не установлено."
+            ),
+            source_refs=_termination_refs(
+                result,
+                *[item.fact_name for item in result.termination_evidence_mapping.provenance],
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.JUDICIAL_TERMINATION_PREREQUISITES,
+            value=termination.judicial_termination_prerequisites,
+            text_ru=(
+                "Формальные предпосылки судебного требования о расторжении подтверждены."
+                if termination.judicial_termination_prerequisites
+                else "Полный набор предпосылок судебного требования о расторжении не подтвержден."
+            ),
+            source_refs=_termination_refs(
+                result,
+                "judicial_request_made",
+                "substantial_breach_proven",
+                "expectation_deprivation_proven",
+                "other_legal_or_contractual_ground_proven",
+                "pretrial_proposal_delivered",
+                "pretrial_refusal_received",
+                "pretrial_response_period_expired",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.CHANGED_CIRCUMSTANCES_GROUND,
+            value=termination.changed_circumstances_ground_satisfied,
+            text_ru=(
+                "Формальные предпосылки существенного изменения обстоятельств подтверждены."
+                if termination.changed_circumstances_ground_satisfied
+                else "Полный набор предпосылок статьи 451 ГК РФ не подтвержден."
+            ),
+            source_refs=_termination_refs(
+                result,
+                "circumstances_substantially_changed",
+                "change_unforeseeable_at_conclusion",
+                "causes_not_overcome_with_due_care",
+                "continued_performance_upsets_balance",
+                "changed_circumstances_risk_not_assumed",
+                "adjustment_negotiations_failed",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.INVALID_UNILATERAL_ACTION,
+            value=termination.invalid_unilateral_action,
+            text_ru=(
+                "Одностороннее действие не прошло формальную проверку правомерности."
+                if termination.invalid_unilateral_action
+                else "Неправомерное одностороннее изменение или прекращение не выявлено."
+            ),
+            source_refs=_termination_refs(
+                result,
+                "unilateral_action_declared",
+                "unilateral_right_exists",
+                "unilateral_notice_delivered",
+                "unilateral_requirements_observed",
+                "unilateral_exercise_good_faith",
+                "same_ground_previously_waived",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.ACCRUED_CLAIMS_PRESERVED,
+            value=termination.accrued_claims_preserved,
+            text_ru=(
+                "Ранее возникшие требования сохранены после прекращения договора."
+                if termination.accrued_claims_preserved
+                else "Сохранение ранее возникших требований не активировано без прекращения договора."
+            ),
+            source_refs=_termination_refs(result, "accrued_claims_exist"),
         ),
         TranslationAssertion(
             code=TranslationAssertionCode.DUE_DATE_MISSED,
@@ -534,6 +658,7 @@ def build_reasoning_path_comparison(
             "Преобразовать только проверенные факты в формальные предикаты.",
             "Проверить оферту, существенные условия, форму и способ акцепта.",
             "Проверить обязанность, срок и применимое исключение в constraint set.",
+            "Разделить соглашение, судебный путь и односторонний отказ при проверке прекращения.",
         ],
         alternative_path_ru=[
             "Считать любую просрочку нарушением без проверки источника и исключений.",
@@ -542,6 +667,7 @@ def build_reasoning_path_comparison(
             "Альтернативный путь не сохраняет provenance фактов.",
             "Альтернативный путь не проверяет применимость и юридическую силу источника.",
             "Альтернативный путь способен необоснованно исключить основание освобождения.",
+            "Альтернативный путь способен принять заявление об отказе за состоявшееся расторжение.",
         ],
         selected_path="active_reviewed_path",
         selection_reason_ru=(
@@ -705,6 +831,7 @@ def _render_context(
     )
     liability = result.liability_evaluation
     formation = result.formation_evaluation
+    termination = result.termination_evaluation
     formation_professional_ru = "\n".join(
         [
             *[f"- {reason}" for reason in formation.reasons_ru],
@@ -728,6 +855,32 @@ def _render_context(
             ],
             *[f"- Результат: {reason}" for reason in formation.reasons_ru],
             *[f"- Ограничение: {warning}" for warning in formation.warnings_ru],
+        ]
+    )
+    termination_professional_ru = "\n".join(
+        [
+            *[f"- {reason}" for reason in termination.reasons_ru],
+            "- Наличие судебных предпосылок не означает расторжения до вступления решения в силу.",
+            "- Специальные основания для конкретного вида договора проверяются юристом отдельно.",
+        ]
+    )
+    termination_forensic_ru = "\n".join(
+        [
+            f"- Набор ограничений: {result.termination_constraint_set.id}.",
+            f"- Версия модели: {result.termination_constraint_set.model_version}.",
+            f"- Отображение доказательств: {result.termination_evidence_mapping.mapping_version}.",
+            f"- Правовые источники: {', '.join(result.termination_evidence_mapping.legal_source_refs)}.",
+            *[
+                f"- Правило: {expression}."
+                for expression in result.termination_constraint_set.expressions
+            ],
+            *[
+                f"- Факт {item.fact_name}: assertion={item.assertion_id}; "
+                f"источники={', '.join(item.source_refs)}."
+                for item in result.termination_evidence_mapping.provenance
+            ],
+            *[f"- Результат: {reason}" for reason in termination.reasons_ru],
+            *[f"- Ограничение: {warning}" for warning in termination.warnings_ru],
         ]
     )
     liability_professional_ru = "\n".join(
@@ -775,6 +928,8 @@ def _render_context(
         "counterfactual_forensic_ru": counterfactual_forensic_ru,
         "formation_professional_ru": formation_professional_ru,
         "formation_forensic_ru": formation_forensic_ru,
+        "termination_professional_ru": termination_professional_ru,
+        "termination_forensic_ru": termination_forensic_ru,
         "liability_professional_ru": liability_professional_ru,
         "liability_forensic_ru": liability_forensic_ru,
         "disclaimer_ru": TRANSLATION_DISCLAIMER_RU,

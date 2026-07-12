@@ -36,9 +36,7 @@ def test_reviewed_analysis_maps_every_fact_with_provenance() -> None:
         *(predicate.value for predicate in ContractEvidencePredicate),
     }
     assert result.evidence_mapping.facts.due_date_missed is True
-    provenance_by_fact = {
-        item.fact_name: item for item in result.evidence_mapping.provenance
-    }
+    provenance_by_fact = {item.fact_name: item for item in result.evidence_mapping.provenance}
     assert provenance_by_fact["duty_exists"].formal_atom_refs == [
         "condition-supply-relation",
         "condition-agreed-date",
@@ -63,8 +61,7 @@ def test_reviewed_analysis_resolves_temporal_authority_before_formal_evaluation(
         "synthetic-ru-contract-supply-delivery-duty-v1"
     ]
     assert (
-        AuthorityResolutionRule.TEMPORAL_APPLICABILITY
-        in result.authority_evaluation.applied_rules
+        AuthorityResolutionRule.TEMPORAL_APPLICABILITY in result.authority_evaluation.applied_rules
     )
     assert result.requires_human_resolution is False
 
@@ -76,6 +73,8 @@ def test_reviewed_analysis_resolves_temporal_authority_before_formal_evaluation(
         ("case_evidence", "Case evidence must be reviewed"),
         ("temporal_evidence", "Temporal evidence must be reviewed"),
         ("authority_input", "Authority input must be reviewed"),
+        ("formation_evidence", "Formation evidence must be reviewed"),
+        ("termination_evidence", "Termination evidence must be reviewed"),
         ("liability_evidence", "Liability evidence must be reviewed"),
     ],
 )
@@ -85,9 +84,7 @@ def test_analysis_rejects_each_unreviewed_input(
 ) -> None:
     request = build_synthetic_supply_analysis_request()
     artifact = getattr(request, artifact_field)
-    unreviewed_artifact = artifact.model_copy(
-        update={"review_status": BootstrapReviewStatus.DRAFT}
-    )
+    unreviewed_artifact = artifact.model_copy(update={"review_status": BootstrapReviewStatus.DRAFT})
     invalid_request = request.model_copy(update={artifact_field: unreviewed_artifact})
 
     with pytest.raises(ValueError, match=error_fragment):
@@ -195,11 +192,7 @@ def test_analysis_rejects_unsupported_norm_schema() -> None:
 def test_analysis_requires_norm_source_among_authority_candidates() -> None:
     request = build_synthetic_supply_analysis_request()
     authority_input = request.authority_input.model_copy(
-        update={
-            "candidate_source_ids": (
-                "synthetic-ru-contract-supply-delivery-duty-v1",
-            )
-        }
+        update={"candidate_source_ids": ("synthetic-ru-contract-supply-delivery-duty-v1",)}
     )
 
     with pytest.raises(ValueError, match="must be an authority candidate"):
@@ -260,9 +253,7 @@ def test_analysis_rejects_different_authority_winner() -> None:
 
 def test_analysis_marks_equal_authority_for_human_resolution() -> None:
     request = build_synthetic_supply_analysis_request()
-    equal_source = get_synthetic_contract_source(
-        "synthetic-ru-contract-supply-delivery-duty"
-    )
+    equal_source = get_synthetic_contract_source("synthetic-ru-contract-supply-delivery-duty")
     authority_input = request.authority_input.model_copy(
         update={"candidate_source_ids": (request.reviewed_norm.source_id, equal_source.id)}
     )

@@ -15,7 +15,7 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     assert trace.formal_translation.obligation_rule.creditor == "покупатель"
     assert trace.temporal_evaluation.due_date_missed is True
     assert trace.source_applicability.applicable is True
-    assert trace.analysis_result.pipeline_version == "contracts-reviewed-analysis-v2"
+    assert trace.analysis_result.pipeline_version == "contracts-reviewed-analysis-v3"
     assert len(trace.analysis_result.evidence_mapping.provenance) == 13
     assert (
         trace.analysis_result.authority_evaluation.selected_source_id
@@ -53,6 +53,9 @@ def test_supply_dispute_demo_trace_has_phase0_path() -> None:
     assert trace.analysis_result.formation_evaluation.valid_offer is True
     assert trace.analysis_result.formation_evaluation.conduct_acceptance_valid is True
     assert trace.analysis_result.formation_evaluation.contract_concluded_prerequisites is True
+    assert trace.analysis_result.termination_evaluation.contract_continues_unchanged is True
+    assert trace.analysis_result.termination_evaluation.effective_modification is False
+    assert trace.analysis_result.termination_evaluation.effective_termination is False
     assert (
         trace.decision_trace.versions.legal_operator_library_hash
         == trace.analysis_result.counterfactual_sensitivity.operator_library_hash
@@ -82,7 +85,7 @@ def test_exported_supply_dispute_trace_fixture_is_valid() -> None:
 
     assert trace.locale == "ru-RU"
     assert trace.disclaimer.startswith("Синтетическая трассировка Этапа 0")
-    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.10.0"
+    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.11.0"
     assert trace.decision_trace.versions.policy_version == trace.policy_snapshot.id
     assert trace.decision_trace.versions.policy_content_hash == trace.policy_snapshot.content_hash
     assert trace.governance_record.policy_version == trace.policy_snapshot.id

@@ -1,0 +1,778 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка изменения и расторжения договора. Не устанавливает судебный результат и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-termination-evidence-supply-1-v0",
+    "schema_version": "contracts.termination-evidence.v0",
+    "mapping_version": "contracts-reviewed-termination-to-facts-v0",
+    "facts": {
+      "contract_formed": true,
+      "mutual_agreement_reached": false,
+      "agreement_targets_modification": false,
+      "agreement_targets_termination": false,
+      "agreement_form_observed": false,
+      "agreement_effective_date_reached": false,
+      "judicial_request_made": false,
+      "judicial_request_targets_modification": false,
+      "judicial_request_targets_termination": false,
+      "substantial_breach_claimed": false,
+      "substantial_breach_proven": false,
+      "expectation_deprivation_proven": false,
+      "other_legal_or_contractual_ground_proven": false,
+      "pretrial_proposal_delivered": false,
+      "pretrial_refusal_received": false,
+      "pretrial_response_period_expired": false,
+      "court_decision_entered_into_force": false,
+      "unilateral_action_declared": false,
+      "unilateral_action_targets_modification": false,
+      "unilateral_action_targets_termination": false,
+      "unilateral_right_exists": false,
+      "unilateral_notice_delivered": false,
+      "unilateral_requirements_observed": false,
+      "unilateral_exercise_good_faith": false,
+      "same_ground_previously_waived": false,
+      "circumstances_substantially_changed": false,
+      "change_unforeseeable_at_conclusion": false,
+      "causes_not_overcome_with_due_care": false,
+      "continued_performance_upsets_balance": false,
+      "changed_circumstances_risk_not_assumed": false,
+      "adjustment_negotiations_failed": false,
+      "exceptional_modification_preferred": false,
+      "accrued_claims_exist": true,
+      "counterperformance_imbalance_proven": false,
+      "termination_losses_claimed": false,
+      "termination_losses_causally_linked": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk450-453-termination-model-v1",
+      "synthetic-ru-gk310-4501-unilateral-model-v1",
+      "synthetic-ru-plenum54-unilateral-guidance-v1",
+      "synthetic-ru-plenum18-pretrial-guidance-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "accrued_claims_exist",
+        "assertion_id": "termination-evidence-accrued_claims_exist",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "adjustment_negotiations_failed",
+        "assertion_id": "termination-evidence-adjustment_negotiations_failed",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "agreement_effective_date_reached",
+        "assertion_id": "termination-evidence-agreement_effective_date_reached",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "agreement_form_observed",
+        "assertion_id": "termination-evidence-agreement_form_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "agreement_targets_modification",
+        "assertion_id": "termination-evidence-agreement_targets_modification",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "agreement_targets_termination",
+        "assertion_id": "termination-evidence-agreement_targets_termination",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "causes_not_overcome_with_due_care",
+        "assertion_id": "termination-evidence-causes_not_overcome_with_due_care",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "change_unforeseeable_at_conclusion",
+        "assertion_id": "termination-evidence-change_unforeseeable_at_conclusion",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "changed_circumstances_risk_not_assumed",
+        "assertion_id": "termination-evidence-changed_circumstances_risk_not_assumed",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "circumstances_substantially_changed",
+        "assertion_id": "termination-evidence-circumstances_substantially_changed",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "continued_performance_upsets_balance",
+        "assertion_id": "termination-evidence-continued_performance_upsets_balance",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_formed",
+        "assertion_id": "termination-evidence-contract_formed",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "counterperformance_imbalance_proven",
+        "assertion_id": "termination-evidence-counterperformance_imbalance_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "court_decision_entered_into_force",
+        "assertion_id": "termination-evidence-court_decision_entered_into_force",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "exceptional_modification_preferred",
+        "assertion_id": "termination-evidence-exceptional_modification_preferred",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "expectation_deprivation_proven",
+        "assertion_id": "termination-evidence-expectation_deprivation_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "judicial_request_made",
+        "assertion_id": "termination-evidence-judicial_request_made",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "judicial_request_targets_modification",
+        "assertion_id": "termination-evidence-judicial_request_targets_modification",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "judicial_request_targets_termination",
+        "assertion_id": "termination-evidence-judicial_request_targets_termination",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "mutual_agreement_reached",
+        "assertion_id": "termination-evidence-mutual_agreement_reached",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "other_legal_or_contractual_ground_proven",
+        "assertion_id": "termination-evidence-other_legal_or_contractual_ground_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "pretrial_proposal_delivered",
+        "assertion_id": "termination-evidence-pretrial_proposal_delivered",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "pretrial_refusal_received",
+        "assertion_id": "termination-evidence-pretrial_refusal_received",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "pretrial_response_period_expired",
+        "assertion_id": "termination-evidence-pretrial_response_period_expired",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "same_ground_previously_waived",
+        "assertion_id": "termination-evidence-same_ground_previously_waived",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "substantial_breach_claimed",
+        "assertion_id": "termination-evidence-substantial_breach_claimed",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "substantial_breach_proven",
+        "assertion_id": "termination-evidence-substantial_breach_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "termination_losses_causally_linked",
+        "assertion_id": "termination-evidence-termination_losses_causally_linked",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "termination_losses_claimed",
+        "assertion_id": "termination-evidence-termination_losses_claimed",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "unilateral_action_declared",
+        "assertion_id": "termination-evidence-unilateral_action_declared",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "unilateral_action_targets_modification",
+        "assertion_id": "termination-evidence-unilateral_action_targets_modification",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "unilateral_action_targets_termination",
+        "assertion_id": "termination-evidence-unilateral_action_targets_termination",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "unilateral_exercise_good_faith",
+        "assertion_id": "termination-evidence-unilateral_exercise_good_faith",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "unilateral_notice_delivered",
+        "assertion_id": "termination-evidence-unilateral_notice_delivered",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "unilateral_requirements_observed",
+        "assertion_id": "termination-evidence-unilateral_requirements_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      },
+      {
+        "fact_name": "unilateral_right_exists",
+        "assertion_id": "termination-evidence-unilateral_right_exists",
+        "source_refs": [
+          "synthetic-case-supply-1-termination-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "termination-constraint-set:reviewed-termination-evidence-supply-1-v0",
+    "model_version": "contracts-change-termination-articles-450-453-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk450-453-termination-model-v1",
+      "synthetic-ru-gk310-4501-unilateral-model-v1",
+      "synthetic-ru-plenum54-unilateral-guidance-v1",
+      "synthetic-ru-plenum18-pretrial-guidance-v1"
+    ],
+    "expressions": [
+      "substantial_breach_ground_satisfied == substantial_breach_claimed AND substantial_breach_proven AND expectation_deprivation_proven",
+      "changed_circumstances_ground_satisfied == circumstances_substantially_changed AND change_unforeseeable_at_conclusion AND causes_not_overcome_with_due_care AND continued_performance_upsets_balance AND changed_circumstances_risk_not_assumed AND adjustment_negotiations_failed",
+      "pretrial_order_satisfied == pretrial_proposal_delivered AND (pretrial_refusal_received OR pretrial_response_period_expired)",
+      "mutual_effect == contract_formed AND mutual_agreement_reached AND agreement_form_observed AND agreement_effective_date_reached",
+      "judicial_ground == substantial_breach_ground_satisfied OR other_legal_or_contractual_ground_proven OR changed_circumstances_ground_satisfied",
+      "judicial_modification_prerequisites == contract_formed AND judicial_request_targets_modification AND pretrial_order_satisfied AND (substantial_breach_ground_satisfied OR other_legal_or_contractual_ground_proven OR (changed_circumstances_ground_satisfied AND exceptional_modification_preferred))",
+      "judicial_termination_prerequisites == contract_formed AND judicial_request_targets_termination AND pretrial_order_satisfied AND judicial_ground",
+      "judicial_effect == judicial_prerequisites AND court_decision_entered_into_force",
+      "unilateral_effect == contract_formed AND unilateral_right_exists AND unilateral_notice_delivered AND unilateral_requirements_observed AND unilateral_exercise_good_faith AND NOT same_ground_previously_waived",
+      "invalid_unilateral_action == unilateral_action_declared AND NOT (unilateral_modification_effective OR unilateral_termination_effective)",
+      "effective_modification == mutual_modification_effective OR judicial_modification_effective OR unilateral_modification_effective",
+      "effective_termination == mutual_termination_effective OR judicial_termination_effective OR unilateral_termination_effective",
+      "contract_continues_unchanged == contract_formed AND NOT effective_modification AND NOT effective_termination",
+      "accrued_claims_preserved == effective_termination AND accrued_claims_exist",
+      "restitution_issue == effective_termination AND counterperformance_imbalance_proven",
+      "termination_losses_issue == effective_termination AND substantial_breach_ground_satisfied AND termination_losses_claimed AND termination_losses_causally_linked"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "termination-constraint-set:reviewed-termination-evidence-supply-1-v0",
+    "satisfiable": true,
+    "substantial_breach_ground_satisfied": false,
+    "changed_circumstances_ground_satisfied": false,
+    "pretrial_order_satisfied": false,
+    "mutual_modification_effective": false,
+    "mutual_termination_effective": false,
+    "judicial_modification_prerequisites": false,
+    "judicial_termination_prerequisites": false,
+    "judicial_modification_effective": false,
+    "judicial_termination_effective": false,
+    "unilateral_modification_effective": false,
+    "unilateral_termination_effective": false,
+    "invalid_unilateral_action": false,
+    "effective_modification": false,
+    "effective_termination": false,
+    "competing_effective_paths": false,
+    "contract_continues_unchanged": true,
+    "future_obligations_terminated": false,
+    "accrued_claims_preserved": false,
+    "restitution_issue": false,
+    "termination_losses_issue": false,
+    "requires_human_termination_assessment": false,
+    "reasons_ru": [
+      "Состоявшееся прекращение договора формальной моделью не установлено.",
+      "Вступившее в силу изменение договора не установлено.",
+      "Договор продолжает действовать без подтвержденного изменения."
+    ],
+    "warnings_ru": [
+      "Модель не подменяет судебную оценку существенности нарушения и изменения обстоятельств.",
+      "Специальные правила отдельных видов договоров должны проверяться отдельно.",
+      "Момент доставки уведомления и вступления решения в силу устанавливается по доказательствам."
+    ]
+  },
+  "benchmark_report": {
+    "id": "termination-benchmark-report-v0",
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "termination-bench-continues",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_continues_unchanged": true,
+          "effective_termination": false
+        },
+        "observed_outcomes": {
+          "contract_continues_unchanged": true,
+          "effective_termination": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "task_id": "termination-bench-mutual-modification",
+        "passed": true,
+        "expected_outcomes": {
+          "mutual_modification_effective": true,
+          "effective_modification": true
+        },
+        "observed_outcomes": {
+          "mutual_modification_effective": true,
+          "effective_modification": true
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Установлено вступившее в силу изменение договора."
+        ]
+      },
+      {
+        "task_id": "termination-bench-mutual-termination",
+        "passed": true,
+        "expected_outcomes": {
+          "effective_termination": true,
+          "accrued_claims_preserved": true
+        },
+        "observed_outcomes": {
+          "effective_termination": true,
+          "accrued_claims_preserved": true
+        },
+        "reasons_ru": [
+          "Договор прекращен по подтвержденному формальному пути.",
+          "Вступившее в силу изменение договора не установлено."
+        ]
+      },
+      {
+        "task_id": "termination-bench-mutual-form-gap",
+        "passed": true,
+        "expected_outcomes": {
+          "mutual_termination_effective": false,
+          "requires_human_termination_assessment": true
+        },
+        "observed_outcomes": {
+          "mutual_termination_effective": false,
+          "requires_human_termination_assessment": true
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "task_id": "termination-bench-judicial-prerequisites",
+        "passed": true,
+        "expected_outcomes": {
+          "judicial_termination_prerequisites": true,
+          "judicial_termination_effective": false
+        },
+        "observed_outcomes": {
+          "judicial_termination_prerequisites": true,
+          "judicial_termination_effective": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Подтвержден узкий набор предпосылок для судебного требования о расторжении.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "task_id": "termination-bench-judicial-effective",
+        "passed": true,
+        "expected_outcomes": {
+          "effective_termination": true,
+          "termination_losses_issue": true
+        },
+        "observed_outcomes": {
+          "effective_termination": true,
+          "termination_losses_issue": true
+        },
+        "reasons_ru": [
+          "Договор прекращен по подтвержденному формальному пути.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Подтвержден узкий набор предпосылок для судебного требования о расторжении."
+        ]
+      },
+      {
+        "task_id": "termination-bench-pretrial-gap",
+        "passed": true,
+        "expected_outcomes": {
+          "pretrial_order_satisfied": false,
+          "judicial_termination_prerequisites": false
+        },
+        "observed_outcomes": {
+          "pretrial_order_satisfied": false,
+          "judicial_termination_prerequisites": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "task_id": "termination-bench-changed-circumstances",
+        "passed": true,
+        "expected_outcomes": {
+          "changed_circumstances_ground_satisfied": true,
+          "judicial_termination_prerequisites": true
+        },
+        "observed_outcomes": {
+          "changed_circumstances_ground_satisfied": true,
+          "judicial_termination_prerequisites": true
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Подтвержден узкий набор предпосылок для судебного требования о расторжении.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "task_id": "termination-bench-change-not-exceptional",
+        "passed": true,
+        "expected_outcomes": {
+          "changed_circumstances_ground_satisfied": true,
+          "judicial_modification_prerequisites": false
+        },
+        "observed_outcomes": {
+          "changed_circumstances_ground_satisfied": true,
+          "judicial_modification_prerequisites": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "task_id": "termination-bench-unilateral",
+        "passed": true,
+        "expected_outcomes": {
+          "unilateral_termination_effective": true,
+          "effective_termination": true
+        },
+        "observed_outcomes": {
+          "unilateral_termination_effective": true,
+          "effective_termination": true
+        },
+        "reasons_ru": [
+          "Договор прекращен по подтвержденному формальному пути.",
+          "Вступившее в силу изменение договора не установлено."
+        ]
+      },
+      {
+        "task_id": "termination-bench-waiver",
+        "passed": true,
+        "expected_outcomes": {
+          "unilateral_termination_effective": false,
+          "invalid_unilateral_action": true
+        },
+        "observed_outcomes": {
+          "unilateral_termination_effective": false,
+          "invalid_unilateral_action": true
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Одностороннее действие не прошло проверку права, уведомления, требований или добросовестности.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "task_id": "termination-bench-restitution",
+        "passed": true,
+        "expected_outcomes": {
+          "effective_termination": true,
+          "restitution_issue": true
+        },
+        "observed_outcomes": {
+          "effective_termination": true,
+          "restitution_issue": true
+        },
+        "reasons_ru": [
+          "Договор прекращен по подтвержденному формальному пути.",
+          "Вступившее в силу изменение договора не установлено."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "termination-red-team-report-v0",
+    "total": 12,
+    "blocked": 12,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "termination-red-ordinary-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "judicial_termination_prerequisites": true
+        },
+        "observed_outcomes": {
+          "judicial_termination_prerequisites": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "case_id": "termination-red-no-pretrial",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "judicial_termination_prerequisites": true
+        },
+        "observed_outcomes": {
+          "judicial_termination_prerequisites": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "case_id": "termination-red-no-decision",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "effective_termination": true
+        },
+        "observed_outcomes": {
+          "effective_termination": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Подтвержден узкий набор предпосылок для судебного требования о расторжении.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "case_id": "termination-red-no-right",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unilateral_termination_effective": true
+        },
+        "observed_outcomes": {
+          "unilateral_termination_effective": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Одностороннее действие не прошло проверку права, уведомления, требований или добросовестности.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "case_id": "termination-red-no-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unilateral_termination_effective": true
+        },
+        "observed_outcomes": {
+          "unilateral_termination_effective": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Одностороннее действие не прошло проверку права, уведомления, требований или добросовестности.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "case_id": "termination-red-bad-faith",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unilateral_termination_effective": true
+        },
+        "observed_outcomes": {
+          "unilateral_termination_effective": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Одностороннее действие не прошло проверку права, уведомления, требований или добросовестности.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "case_id": "termination-red-waiver",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unilateral_termination_effective": true
+        },
+        "observed_outcomes": {
+          "unilateral_termination_effective": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Одностороннее действие не прошло проверку права, уведомления, требований или добросовестности.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "case_id": "termination-red-mutual-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "mutual_termination_effective": true
+        },
+        "observed_outcomes": {
+          "mutual_termination_effective": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "case_id": "termination-red-change-partial",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "changed_circumstances_ground_satisfied": true
+        },
+        "observed_outcomes": {
+          "changed_circumstances_ground_satisfied": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "case_id": "termination-red-change-risk",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "judicial_termination_prerequisites": true
+        },
+        "observed_outcomes": {
+          "judicial_termination_prerequisites": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "case_id": "termination-red-modification-exception",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "judicial_modification_prerequisites": true
+        },
+        "observed_outcomes": {
+          "judicial_modification_prerequisites": false
+        },
+        "reasons_ru": [
+          "Состоявшееся прекращение договора формальной моделью не установлено.",
+          "Вступившее в силу изменение договора не установлено.",
+          "Договор продолжает действовать без подтвержденного изменения."
+        ]
+      },
+      {
+        "case_id": "termination-red-accrued",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "accrued_claims_preserved": false
+        },
+        "observed_outcomes": {
+          "accrued_claims_preserved": true
+        },
+        "reasons_ru": [
+          "Договор прекращен по подтвержденному формальному пути.",
+          "Вступившее в силу изменение договора не установлено."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/",
+    "https://vsrf.ru/documents/own/8524/",
+    "https://vsrf.ru/documents/own/30139/"
+  ]
+}

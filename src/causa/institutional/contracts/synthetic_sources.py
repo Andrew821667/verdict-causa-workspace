@@ -277,6 +277,93 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk450-453-termination-model-v1",
+        title="Синтетическая проверенная модель изменения и расторжения договора по статьям 450–453 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: соглашение сторон, судебные основания, "
+            "существенное изменение обстоятельств, форма, досудебный порядок и "
+            "последствия прекращения проверяются раздельно."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "change_termination_articles_450_453",
+            "legal_reference": "ГК РФ, статьи 450–453",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk310-4501-unilateral-model-v1",
+        title="Синтетическая проверенная модель одностороннего изменения и отказа",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: наличие права, направленность действия, "
+            "доставка уведомления, соблюдение требований и отказ от ранее подтвержденного "
+            "основания проверяются до признания юридического эффекта."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "unilateral_articles_310_450_1",
+            "legal_reference": "ГК РФ, статьи 310 и 450.1",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-plenum54-unilateral-guidance-v1",
+        title="Синтетическая модель разъяснений Пленума ВС РФ об одностороннем отказе",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление разъяснений: неправомерный отказ не создает "
+            "заявленного эффекта, уведомление должно быть доставлено, а право должно "
+            "осуществляться разумно и добросовестно."
+        ),
+        valid_from="2016-11-22",
+        metadata={
+            "synthetic": True,
+            "topic": "unilateral_plenum_guidance",
+            "legal_reference": "Постановление Пленума ВС РФ от 22.11.2016 № 54",
+            "basis_url": "https://vsrf.ru/documents/own/8524/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-plenum18-pretrial-guidance-v1",
+        title="Синтетическая модель разъяснений Пленума ВС РФ о досудебном порядке",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление разъяснений: предложение об изменении или "
+            "расторжении договора является обязательным досудебным этапом судебного пути."
+        ),
+        valid_from="2021-06-22",
+        metadata={
+            "synthetic": True,
+            "topic": "termination_pretrial_guidance",
+            "legal_reference": "Постановление Пленума ВС РФ от 22.06.2021 № 18",
+            "basis_url": "https://vsrf.ru/documents/own/30139/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-termination-evidence",
+        title="Синтетическая проверенная запись фактов об изменении и расторжении договора",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: договор заключен, но соглашение об изменении, судебное "
+            "требование и односторонний отказ в демонстрационном деле отсутствуют."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "termination_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk401-liability-model-v1",
         title="Синтетическая проверенная модель оснований ответственности по статье 401 ГК РФ",
         source_type=SourceType.STATUTE,

@@ -25,6 +25,11 @@ from causa.institutional.contracts.formation import (
     FormationEvidencePredicate,
     ReviewedFormationEvidence,
 )
+from causa.institutional.contracts.termination import (
+    ReviewedTerminationEvidence,
+    TerminationEvidenceAssertion,
+    TerminationEvidencePredicate,
+)
 from causa.institutional.contracts.synthetic_sources import (
     get_synthetic_contract_source,
 )
@@ -41,6 +46,11 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk438-443-acceptance-model-v1",
     "synthetic-ru-plenum49-formation-guidance-v1",
     "synthetic-case-supply-1-formation-evidence",
+    "synthetic-ru-gk450-453-termination-model-v1",
+    "synthetic-ru-gk310-4501-unilateral-model-v1",
+    "synthetic-ru-plenum54-unilateral-guidance-v1",
+    "synthetic-ru-plenum18-pretrial-guidance-v1",
+    "synthetic-case-supply-1-termination-evidence",
     "synthetic-ru-gk401-liability-model-v1",
     "synthetic-ru-gk333-penalty-model-v1",
     "synthetic-ru-plenum7-liability-guidance-v1",
@@ -55,6 +65,9 @@ def build_synthetic_supply_analysis_sources() -> list[LegalSource]:
 def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest:
     norm_source_id = "synthetic-ru-contract-supply-delivery-duty-v2"
     evidence_source_id = "synthetic-case-supply-1-reviewed-evidence"
+    termination_values = {predicate: False for predicate in TerminationEvidencePredicate}
+    termination_values[TerminationEvidencePredicate.CONTRACT_FORMED] = True
+    termination_values[TerminationEvidencePredicate.ACCRUED_CLAIMS_EXIST] = True
     return ReviewedContractAnalysisRequest(
         id="analysis-request-case-supply-1-v0",
         case_id="case-supply-1",
@@ -181,6 +194,27 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-formation-reviewer",
+        ),
+        termination_evidence=ReviewedTerminationEvidence(
+            id="reviewed-termination-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                TerminationEvidenceAssertion(
+                    id=f"termination-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=termination_values[predicate],
+                    source_refs=("synthetic-case-supply-1-termination-evidence",),
+                )
+                for predicate in TerminationEvidencePredicate
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk450-453-termination-model-v1",
+                "synthetic-ru-gk310-4501-unilateral-model-v1",
+                "synthetic-ru-plenum54-unilateral-guidance-v1",
+                "synthetic-ru-plenum18-pretrial-guidance-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-termination-reviewer",
         ),
         liability_evidence=ReviewedLiabilityEvidence(
             id="reviewed-liability-evidence-supply-1-v0",

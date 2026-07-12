@@ -46,7 +46,7 @@ Institutional packages extend the core with domain-specific schemas, vocabularie
 
 ## First institutional package: contractual relations
 
-The first institutional package focuses on contractual relations: the general part of obligations and contract law, sale, supply, and liability for breach of obligations.
+The first institutional package focuses on contractual relations: formation, change and termination, the general part of obligations, sale, supply, and liability for breach.
 
 This is the first proving ground for the infrastructure, not the full scope of the project.
 
@@ -75,6 +75,7 @@ For Phase 0 implementation detail, see:
 - [Translation Layer specification](docs/translation-layer-spec.md);
 - [Bounded contractual counterfactual specification](docs/contract-counterfactual-spec.md);
 - [Contract-formation prerequisite specification](docs/contract-formation-spec.md);
+- [Contract change-and-termination specification](docs/contract-change-termination-spec.md);
 - [Contractual liability and penalty prerequisite specification](docs/contract-liability-spec.md);
 - [Evaluation and Red Team specification](docs/evaluation-and-red-team-spec.md);
 - [Contracts RU v0 changelog](docs/contracts-ru-v0-changelog.md);
@@ -184,6 +185,14 @@ python scripts/export_synthetic_formation_evaluation.py
 
 The output is written to `examples/synthetic_formation_evaluation_report.json`. It checks offer, essential terms, form, and acceptance boundaries without deciding a court outcome.
 
+Generate the reviewed contract change-and-termination report:
+
+```bash
+python scripts/export_synthetic_termination_evaluation.py
+```
+
+The output is written to `examples/synthetic_termination_evaluation_report.json`. It keeps agreement, judicial, and unilateral paths separate and does not predict a court outcome.
+
 Generate the current Phase 0 readiness report:
 
 ```bash
@@ -230,16 +239,17 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-The command writes replay reports for legacy `0.1.0`, `0.3.0`, `0.4.0`, `0.5.0`, `0.6.0`, `0.7.0`, `0.8.0`, and `0.9.0` artifacts:
+The command writes replay reports for legacy `0.1.0`, `0.3.0`, `0.4.0`, `0.5.0`, `0.6.0`, `0.7.0`, `0.8.0`, `0.9.0`, and `0.10.0` artifacts:
 
-- `examples/migrations/contracts-ru-v0-0.1.0-to-0.10.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.3.0-to-0.10.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.4.0-to-0.10.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.5.0-to-0.10.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.6.0-to-0.10.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.7.0-to-0.10.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.8.0-to-0.10.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.9.0-to-0.10.0-migration-report.json`.
+- `examples/migrations/contracts-ru-v0-0.1.0-to-0.11.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.3.0-to-0.11.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.4.0-to-0.11.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.5.0-to-0.11.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.6.0-to-0.11.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.7.0-to-0.11.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.8.0-to-0.11.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.9.0-to-0.11.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.10.0-to-0.11.0-migration-report.json`.
 
 ## License
 

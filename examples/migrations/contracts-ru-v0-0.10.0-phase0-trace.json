@@ -1,0 +1,15 @@
+{
+  "id": "legacy-phase0-trace-contracts-ru-v0-0.10.0",
+  "artifact_type": "phase0_decision_trace",
+  "package_id": "contracts-ru-v0",
+  "package_version": "0.10.0",
+  "payload": {
+    "case_evidence_schema_version": "contracts.case-evidence.v2",
+    "analysis_pipeline_version": "contracts-reviewed-analysis-v2",
+    "formation_evidence_present": true,
+    "formation_model_version": "contracts-formation-articles-432-443-v0",
+    "termination_evidence_present": false,
+    "termination_model_version": null,
+    "translation_template_version": "translation-template-ru-v4"
+  }
+}

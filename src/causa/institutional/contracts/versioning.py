@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.11.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v3"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v3"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed change-and-termination evidence is mandatory for the Phase 0 path.",
+            "Formal boundaries cover Civil Code articles 450 through 453 and article 310.",
+            "Judicial prerequisites remain distinct from an effective court judgment.",
+        ],
+        notes_ru=[
+            "Проверенные данные об изменении и расторжении обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 450–453 и статью 310 ГК РФ.",
+            "Судебные предпосылки отделены от вступившего в силу решения суда.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.10.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

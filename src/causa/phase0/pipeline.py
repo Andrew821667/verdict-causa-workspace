@@ -19,6 +19,9 @@ from causa.institutional.contracts.synthetic_liability import (
 from causa.institutional.contracts.synthetic_formation import (
     build_synthetic_formation_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_termination import (
+    build_synthetic_termination_evaluation_artifact,
+)
 from causa.institutional.contracts.versioning import (
     evaluate_contracts_package_compatibility,
 )
@@ -169,6 +172,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-contract-change-and-termination",
+            title="Проверка изменения и расторжения договора",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.termination_evidence_mapping.evidence_id,
+                trace.analysis_result.termination_constraint_set.id,
+                *trace.analysis_result.termination_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.termination_evaluation.reasons_ru,
+                "Соглашение, судебный путь и односторонний отказ проверяются раздельно.",
+                "Судебные предпосылки не выдаются за вступившее в силу расторжение.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-counterfactual-sensitivity",
             title="Проверка контрфактической чувствительности договорного вывода",
             status=PipelineStepStatus.PASSED,
@@ -308,6 +326,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     counterfactual_artifact = build_synthetic_counterfactual_evaluation_artifact()
     liability_artifact = build_synthetic_liability_evaluation_artifact()
     formation_artifact = build_synthetic_formation_evaluation_artifact()
+    termination_artifact = build_synthetic_termination_evaluation_artifact()
 
     items = [
         ReadinessItem(
@@ -357,19 +376,23 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "src/causa/institutional/contracts/legal_operators.py",
                 "src/causa/institutional/contracts/formation.py",
                 "docs/contract-formation-spec.md",
+                "src/causa/institutional/contracts/termination.py",
+                "docs/contract-change-termination-spec.md",
                 "src/causa/institutional/contracts/liability.py",
                 "docs/contract-liability-spec.md",
                 "examples/synthetic_counterfactual_evaluation_report.json",
                 "examples/synthetic_liability_evaluation_report.json",
                 "examples/synthetic_formation_evaluation_report.json",
-                "examples/migrations/contracts-ru-v0-0.1.0-to-0.10.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.3.0-to-0.10.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.4.0-to-0.10.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.5.0-to-0.10.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.6.0-to-0.10.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.7.0-to-0.10.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.8.0-to-0.10.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.9.0-to-0.10.0-migration-report.json",
+                "examples/synthetic_termination_evaluation_report.json",
+                "examples/migrations/contracts-ru-v0-0.1.0-to-0.11.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.3.0-to-0.11.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.4.0-to-0.11.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.5.0-to-0.11.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.6.0-to-0.11.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.7.0-to-0.11.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.8.0-to-0.11.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.9.0-to-0.11.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.10.0-to-0.11.0-migration-report.json",
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
             ],
             remaining_work=[
@@ -439,6 +462,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 liability_artifact.red_team_report.id,
                 formation_artifact.benchmark_report.id,
                 formation_artifact.red_team_report.id,
+                termination_artifact.benchmark_report.id,
+                termination_artifact.red_team_report.id,
             ],
             remaining_work=[
                 "Получить privacy- и экспертное одобрение до сбора несинтетических пилотных наблюдений.",
@@ -456,6 +481,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_counterfactual_evaluation_report.json",
                 "examples/synthetic_liability_evaluation_report.json",
                 "examples/synthetic_formation_evaluation_report.json",
+                "examples/synthetic_termination_evaluation_report.json",
                 pipeline.id,
             ],
             remaining_work=["Расширить синтетический набор источников и перечень пилотных задач."],

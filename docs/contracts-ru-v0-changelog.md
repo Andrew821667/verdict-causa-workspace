@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.11.0 - 2026-07-12
+
+- Adds mandatory reviewed change-and-termination evidence with 36 provenance-backed predicates.
+- Separates mutual agreement, judicial relief, unilateral action, and changed-circumstances paths under Civil Code articles 310 and 450–453.
+- Keeps judicial prerequisites distinct from an effective judgment and validates delivery, pretrial procedure, form, good faith, and prior waiver.
+- Models future-obligation termination, accrued-claim preservation, restitution issues, and termination-loss issues without deciding a court outcome.
+- Adds 12 benchmarks, 12 adversarial checks, Russian vocabulary, and professional/forensic explanation sections.
+- Upgrades evidence to `contracts.case-evidence.v3`, analysis to `contracts-reviewed-analysis-v3`, and Russian templates to `ru-v5`.
+
 ## 0.10.0 - 2026-07-12
 
 - Adds mandatory reviewed contract-formation evidence with 17 provenance-backed predicates.
