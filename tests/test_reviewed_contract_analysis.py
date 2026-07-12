@@ -74,6 +74,7 @@ def test_reviewed_analysis_resolves_temporal_authority_before_formal_evaluation(
         ("temporal_evidence", "Temporal evidence must be reviewed"),
         ("authority_input", "Authority input must be reviewed"),
         ("formation_evidence", "Formation evidence must be reviewed"),
+        ("invalidity_evidence", "Invalidity evidence must be reviewed"),
         ("termination_evidence", "Termination evidence must be reviewed"),
         ("liability_evidence", "Liability evidence must be reviewed"),
     ],

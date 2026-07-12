@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.12.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v4"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v4"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed transaction-invalidity evidence is mandatory before contractual effects.",
+            "Formal boundaries cover Civil Code articles 166 through 181.",
+            "Void and voidable grounds, standing, judgment, limitation, and effects remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о недействительности обязательны до договорных последствий.",
+            "Формальные границы охватывают статьи 166–181 ГК РФ.",
+            "Ничтожность, оспоримость, заявитель, решение, срок и последствия разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.11.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

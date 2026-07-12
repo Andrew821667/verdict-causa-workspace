@@ -1,0 +1,967 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка недействительности сделки. Не признает сделку недействительной и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
+    "schema_version": "contracts.invalidity-evidence.v0",
+    "mapping_version": "contracts-reviewed-invalidity-to-facts-v0",
+    "facts": {
+      "transaction_concluded": true,
+      "invalidity_claim_made": false,
+      "claimant_is_transaction_party": false,
+      "claimant_legally_authorized": false,
+      "claimant_rights_or_interests_affected": false,
+      "court_decision_entered_into_force": false,
+      "nullity_consequences_requested": false,
+      "nullity_legal_interest_proven": false,
+      "good_faith_reliance_created": false,
+      "party_confirmed_voidable_transaction": false,
+      "ground_known_at_confirmation": false,
+      "violates_law": false,
+      "public_interests_or_third_rights_affected": false,
+      "law_expressly_makes_void": false,
+      "immoral_purpose_proven": false,
+      "both_parties_intentional_immoral_purpose": false,
+      "sham_intent_proven": false,
+      "feigned_intent_proven": false,
+      "disguised_transaction_identified": false,
+      "incapacitated_person_transaction": false,
+      "minor_under_14_transaction": false,
+      "benefit_to_incapacitated_or_minor_proven": false,
+      "required_consent_absent": false,
+      "counterparty_knew_consent_absent": false,
+      "authority_restriction_violated": false,
+      "counterparty_knew_authority_restriction": false,
+      "entity_beyond_statutory_purpose": false,
+      "counterparty_knew_beyond_purpose": false,
+      "obvious_entity_damage_proven": false,
+      "counterparty_knew_obvious_damage": false,
+      "material_mistake_proven": false,
+      "mistake_risk_assumed": false,
+      "deception_proven": false,
+      "violence_or_threat_proven": false,
+      "adverse_circumstances_proven": false,
+      "extremely_unfavorable_terms_proven": false,
+      "counterparty_exploited_circumstances": false,
+      "unable_to_understand_actions_proven": false,
+      "limited_capacity_without_consent": false,
+      "minor_14_18_without_consent": false,
+      "execution_started": false,
+      "void_limitation_period_expired": false,
+      "voidable_limitation_period_expired": false,
+      "invalid_part_separable": false,
+      "remainder_preserves_transaction_purpose": false,
+      "party_a_performed": false,
+      "party_b_performed": false,
+      "return_in_kind_possible": false,
+      "value_of_performance_proven": false,
+      "additional_damages_claimed": false,
+      "additional_damages_causally_linked": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk166-168-invalidity-framework-v1",
+      "synthetic-ru-gk169-172-void-transactions-v1",
+      "synthetic-ru-gk173-179-voidable-transactions-v1",
+      "synthetic-ru-gk180-181-invalidity-effects-v1",
+      "synthetic-ru-plenum25-invalidity-guidance-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "additional_damages_causally_linked",
+        "assertion_id": "invalidity-evidence-additional_damages_causally_linked",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "additional_damages_claimed",
+        "assertion_id": "invalidity-evidence-additional_damages_claimed",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "adverse_circumstances_proven",
+        "assertion_id": "invalidity-evidence-adverse_circumstances_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "authority_restriction_violated",
+        "assertion_id": "invalidity-evidence-authority_restriction_violated",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "benefit_to_incapacitated_or_minor_proven",
+        "assertion_id": "invalidity-evidence-benefit_to_incapacitated_or_minor_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "both_parties_intentional_immoral_purpose",
+        "assertion_id": "invalidity-evidence-both_parties_intentional_immoral_purpose",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "claimant_is_transaction_party",
+        "assertion_id": "invalidity-evidence-claimant_is_transaction_party",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "claimant_legally_authorized",
+        "assertion_id": "invalidity-evidence-claimant_legally_authorized",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "claimant_rights_or_interests_affected",
+        "assertion_id": "invalidity-evidence-claimant_rights_or_interests_affected",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "counterparty_exploited_circumstances",
+        "assertion_id": "invalidity-evidence-counterparty_exploited_circumstances",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "counterparty_knew_authority_restriction",
+        "assertion_id": "invalidity-evidence-counterparty_knew_authority_restriction",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "counterparty_knew_beyond_purpose",
+        "assertion_id": "invalidity-evidence-counterparty_knew_beyond_purpose",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "counterparty_knew_consent_absent",
+        "assertion_id": "invalidity-evidence-counterparty_knew_consent_absent",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "counterparty_knew_obvious_damage",
+        "assertion_id": "invalidity-evidence-counterparty_knew_obvious_damage",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "court_decision_entered_into_force",
+        "assertion_id": "invalidity-evidence-court_decision_entered_into_force",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "deception_proven",
+        "assertion_id": "invalidity-evidence-deception_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "disguised_transaction_identified",
+        "assertion_id": "invalidity-evidence-disguised_transaction_identified",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "entity_beyond_statutory_purpose",
+        "assertion_id": "invalidity-evidence-entity_beyond_statutory_purpose",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "execution_started",
+        "assertion_id": "invalidity-evidence-execution_started",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "extremely_unfavorable_terms_proven",
+        "assertion_id": "invalidity-evidence-extremely_unfavorable_terms_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "feigned_intent_proven",
+        "assertion_id": "invalidity-evidence-feigned_intent_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "good_faith_reliance_created",
+        "assertion_id": "invalidity-evidence-good_faith_reliance_created",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "ground_known_at_confirmation",
+        "assertion_id": "invalidity-evidence-ground_known_at_confirmation",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "immoral_purpose_proven",
+        "assertion_id": "invalidity-evidence-immoral_purpose_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "incapacitated_person_transaction",
+        "assertion_id": "invalidity-evidence-incapacitated_person_transaction",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "invalid_part_separable",
+        "assertion_id": "invalidity-evidence-invalid_part_separable",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "invalidity_claim_made",
+        "assertion_id": "invalidity-evidence-invalidity_claim_made",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "law_expressly_makes_void",
+        "assertion_id": "invalidity-evidence-law_expressly_makes_void",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "limited_capacity_without_consent",
+        "assertion_id": "invalidity-evidence-limited_capacity_without_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "material_mistake_proven",
+        "assertion_id": "invalidity-evidence-material_mistake_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "minor_14_18_without_consent",
+        "assertion_id": "invalidity-evidence-minor_14_18_without_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "minor_under_14_transaction",
+        "assertion_id": "invalidity-evidence-minor_under_14_transaction",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "mistake_risk_assumed",
+        "assertion_id": "invalidity-evidence-mistake_risk_assumed",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "nullity_consequences_requested",
+        "assertion_id": "invalidity-evidence-nullity_consequences_requested",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "nullity_legal_interest_proven",
+        "assertion_id": "invalidity-evidence-nullity_legal_interest_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "obvious_entity_damage_proven",
+        "assertion_id": "invalidity-evidence-obvious_entity_damage_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "party_a_performed",
+        "assertion_id": "invalidity-evidence-party_a_performed",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "party_b_performed",
+        "assertion_id": "invalidity-evidence-party_b_performed",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "party_confirmed_voidable_transaction",
+        "assertion_id": "invalidity-evidence-party_confirmed_voidable_transaction",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "public_interests_or_third_rights_affected",
+        "assertion_id": "invalidity-evidence-public_interests_or_third_rights_affected",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "remainder_preserves_transaction_purpose",
+        "assertion_id": "invalidity-evidence-remainder_preserves_transaction_purpose",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "required_consent_absent",
+        "assertion_id": "invalidity-evidence-required_consent_absent",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "return_in_kind_possible",
+        "assertion_id": "invalidity-evidence-return_in_kind_possible",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "sham_intent_proven",
+        "assertion_id": "invalidity-evidence-sham_intent_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "transaction_concluded",
+        "assertion_id": "invalidity-evidence-transaction_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "unable_to_understand_actions_proven",
+        "assertion_id": "invalidity-evidence-unable_to_understand_actions_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "value_of_performance_proven",
+        "assertion_id": "invalidity-evidence-value_of_performance_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "violates_law",
+        "assertion_id": "invalidity-evidence-violates_law",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "violence_or_threat_proven",
+        "assertion_id": "invalidity-evidence-violence_or_threat_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "void_limitation_period_expired",
+        "assertion_id": "invalidity-evidence-void_limitation_period_expired",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
+        "fact_name": "voidable_limitation_period_expired",
+        "assertion_id": "invalidity-evidence-voidable_limitation_period_expired",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "invalidity-constraint-set:reviewed-invalidity-evidence-supply-1-v0",
+    "model_version": "contracts-transaction-invalidity-articles-166-181-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk166-168-invalidity-framework-v1",
+      "synthetic-ru-gk169-172-void-transactions-v1",
+      "synthetic-ru-gk173-179-voidable-transactions-v1",
+      "synthetic-ru-gk180-181-invalidity-effects-v1",
+      "synthetic-ru-plenum25-invalidity-guidance-v1"
+    ],
+    "expressions": [
+      "estoppel_bar == good_faith_reliance_created OR (party_confirmed_voidable_transaction AND ground_known_at_confirmation)",
+      "unlawful_void_ground == violates_law AND (public_interests_or_third_rights_affected OR law_expressly_makes_void)",
+      "unlawful_voidable_ground == violates_law AND NOT unlawful_void_ground",
+      "void_ground_detected == unlawful_void_ground OR immoral_void_ground OR sham_void_ground OR feigned_void_ground OR capacity_void_ground",
+      "voidable_ground_detected == unlawful_voidable_ground OR consent_voidable_ground OR authority_voidable_ground OR entity_purpose_voidable_ground OR mistake_voidable_ground OR coercion_voidable_ground OR capacity_voidable_ground",
+      "voidable_invalidity_prerequisites == transaction_concluded AND voidable_ground_detected AND voidable_claimant_has_standing AND NOT estoppel_bar AND NOT voidable_limitation_period_expired",
+      "voidable_invalidity_effective == voidable_invalidity_prerequisites AND court_decision_entered_into_force",
+      "nullity_consequences_prerequisites == transaction_concluded AND void_ground_detected AND nullity_consequence_claimant_has_standing AND NOT void_limitation_period_expired",
+      "contractual_effect_displaced == transaction_concluded AND (void_ground_detected OR voidable_invalidity_effective)",
+      "partial_invalidity_only == contractual_effect_displaced AND invalid_part_separable AND remainder_preserves_transaction_purpose",
+      "restitution_required == contractual_effect_displaced AND (party_a_performed OR party_b_performed)",
+      "additional_damages_issue == contractual_effect_displaced AND additional_damages_claimed AND additional_damages_causally_linked"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "invalidity-constraint-set:reviewed-invalidity-evidence-supply-1-v0",
+    "satisfiable": true,
+    "estoppel_bar": false,
+    "unlawful_void_ground": false,
+    "unlawful_voidable_ground": false,
+    "immoral_void_ground": false,
+    "sham_void_ground": false,
+    "feigned_void_ground": false,
+    "capacity_void_ground": false,
+    "consent_voidable_ground": false,
+    "authority_voidable_ground": false,
+    "entity_purpose_voidable_ground": false,
+    "mistake_voidable_ground": false,
+    "coercion_voidable_ground": false,
+    "capacity_voidable_ground": false,
+    "void_ground_detected": false,
+    "voidable_ground_detected": false,
+    "voidable_claimant_has_standing": false,
+    "nullity_consequence_claimant_has_standing": false,
+    "voidable_invalidity_prerequisites": false,
+    "voidable_invalidity_effective": false,
+    "nullity_consequences_prerequisites": false,
+    "contractual_effect_displaced": false,
+    "transaction_presumed_effective": true,
+    "disguised_transaction_rules_required": false,
+    "partial_invalidity_only": false,
+    "entire_transaction_affected": false,
+    "restitution_required": false,
+    "restitution_in_kind": false,
+    "monetary_restitution_issue": false,
+    "public_recovery_issue": false,
+    "additional_damages_issue": false,
+    "requires_human_invalidity_assessment": false,
+    "reasons_ru": [
+      "Основание ничтожности сделки не выявлено.",
+      "Основание оспоримости сделки не выявлено.",
+      "Договорные последствия сделки текущей моделью не устранены."
+    ],
+    "warnings_ru": [
+      "Квалификация основания ничтожности или оспоримости требует правовой оценки.",
+      "Модель не признает сделку недействительной и не определяет размер реституции автоматически.",
+      "Специальные основания и последствия отдельных сделок проверяются отдельно."
+    ]
+  },
+  "benchmark_report": {
+    "id": "invalidity-benchmark-report-v0",
+    "total": 14,
+    "passed": 14,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "invalidity-bench-valid",
+        "passed": true,
+        "expected_outcomes": {
+          "transaction_presumed_effective": true,
+          "contractual_effect_displaced": false
+        },
+        "observed_outcomes": {
+          "transaction_presumed_effective": true,
+          "contractual_effect_displaced": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Основание оспоримости сделки не выявлено.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-law-default",
+        "passed": true,
+        "expected_outcomes": {
+          "unlawful_voidable_ground": true,
+          "unlawful_void_ground": false
+        },
+        "observed_outcomes": {
+          "unlawful_voidable_ground": true,
+          "unlawful_void_ground": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Формальная модель выявила основание оспоримости сделки.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-law-public",
+        "passed": true,
+        "expected_outcomes": {
+          "unlawful_void_ground": true,
+          "contractual_effect_displaced": true
+        },
+        "observed_outcomes": {
+          "unlawful_void_ground": true,
+          "contractual_effect_displaced": true
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-sham",
+        "passed": true,
+        "expected_outcomes": {
+          "sham_void_ground": true,
+          "void_ground_detected": true
+        },
+        "observed_outcomes": {
+          "sham_void_ground": true,
+          "void_ground_detected": true
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-feigned",
+        "passed": true,
+        "expected_outcomes": {
+          "feigned_void_ground": true,
+          "disguised_transaction_rules_required": true
+        },
+        "observed_outcomes": {
+          "feigned_void_ground": true,
+          "disguised_transaction_rules_required": true
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-consent",
+        "passed": true,
+        "expected_outcomes": {
+          "consent_voidable_ground": true,
+          "voidable_invalidity_effective": true
+        },
+        "observed_outcomes": {
+          "consent_voidable_ground": true,
+          "voidable_invalidity_effective": true
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Формальная модель выявила основание оспоримости сделки.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-authority",
+        "passed": true,
+        "expected_outcomes": {
+          "authority_voidable_ground": true,
+          "voidable_invalidity_effective": true
+        },
+        "observed_outcomes": {
+          "authority_voidable_ground": true,
+          "voidable_invalidity_effective": true
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Формальная модель выявила основание оспоримости сделки.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-mistake",
+        "passed": true,
+        "expected_outcomes": {
+          "mistake_voidable_ground": true,
+          "voidable_invalidity_effective": true
+        },
+        "observed_outcomes": {
+          "mistake_voidable_ground": true,
+          "voidable_invalidity_effective": true
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Формальная модель выявила основание оспоримости сделки.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-mistake-risk",
+        "passed": true,
+        "expected_outcomes": {
+          "mistake_voidable_ground": false,
+          "voidable_ground_detected": false
+        },
+        "observed_outcomes": {
+          "mistake_voidable_ground": false,
+          "voidable_ground_detected": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Основание оспоримости сделки не выявлено.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-deception",
+        "passed": true,
+        "expected_outcomes": {
+          "coercion_voidable_ground": true,
+          "contractual_effect_displaced": true
+        },
+        "observed_outcomes": {
+          "coercion_voidable_ground": true,
+          "contractual_effect_displaced": true
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Формальная модель выявила основание оспоримости сделки.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-adverse",
+        "passed": true,
+        "expected_outcomes": {
+          "coercion_voidable_ground": true,
+          "voidable_invalidity_effective": true
+        },
+        "observed_outcomes": {
+          "coercion_voidable_ground": true,
+          "voidable_invalidity_effective": true
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Формальная модель выявила основание оспоримости сделки.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-incapacity",
+        "passed": true,
+        "expected_outcomes": {
+          "capacity_void_ground": true,
+          "restitution_in_kind": true
+        },
+        "observed_outcomes": {
+          "capacity_void_ground": true,
+          "restitution_in_kind": true
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-partial",
+        "passed": true,
+        "expected_outcomes": {
+          "partial_invalidity_only": true,
+          "entire_transaction_affected": false
+        },
+        "observed_outcomes": {
+          "partial_invalidity_only": true,
+          "entire_transaction_affected": false
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-limitation",
+        "passed": true,
+        "expected_outcomes": {
+          "voidable_invalidity_prerequisites": false,
+          "voidable_invalidity_effective": false
+        },
+        "observed_outcomes": {
+          "voidable_invalidity_prerequisites": false,
+          "voidable_invalidity_effective": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Формальная модель выявила основание оспоримости сделки.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "invalidity-red-team-report-v0",
+    "total": 14,
+    "blocked": 14,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "invalidity-red-law-nullity",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unlawful_void_ground": true
+        },
+        "observed_outcomes": {
+          "unlawful_void_ground": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Формальная модель выявила основание оспоримости сделки.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-no-knowledge-consent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "consent_voidable_ground": true
+        },
+        "observed_outcomes": {
+          "consent_voidable_ground": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Основание оспоримости сделки не выявлено.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-no-knowledge-authority",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "authority_voidable_ground": true
+        },
+        "observed_outcomes": {
+          "authority_voidable_ground": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Основание оспоримости сделки не выявлено.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-no-standing",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "voidable_invalidity_prerequisites": true
+        },
+        "observed_outcomes": {
+          "voidable_invalidity_prerequisites": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Формальная модель выявила основание оспоримости сделки.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-no-judgment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "voidable_invalidity_effective": true
+        },
+        "observed_outcomes": {
+          "voidable_invalidity_effective": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Формальная модель выявила основание оспоримости сделки.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-estoppel",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "voidable_invalidity_effective": true
+        },
+        "observed_outcomes": {
+          "voidable_invalidity_effective": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Формальная модель выявила основание оспоримости сделки.",
+          "Выявлен запрет противоречивой или недобросовестной ссылки на недействительность.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-mistake-risk",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "mistake_voidable_ground": true
+        },
+        "observed_outcomes": {
+          "mistake_voidable_ground": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Основание оспоримости сделки не выявлено.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-adverse-incomplete",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "coercion_voidable_ground": true
+        },
+        "observed_outcomes": {
+          "coercion_voidable_ground": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Основание оспоримости сделки не выявлено.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-feigned-no-disguise",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "disguised_transaction_rules_required": true
+        },
+        "observed_outcomes": {
+          "disguised_transaction_rules_required": false
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-void-limit",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "nullity_consequences_prerequisites": true
+        },
+        "observed_outcomes": {
+          "nullity_consequences_prerequisites": false
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-entire",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "entire_transaction_affected": true
+        },
+        "observed_outcomes": {
+          "entire_transaction_affected": false
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-restitution-no-performance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "restitution_required": true
+        },
+        "observed_outcomes": {
+          "restitution_required": false
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-money-no-value",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "monetary_restitution_issue": true
+        },
+        "observed_outcomes": {
+          "monetary_restitution_issue": false
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-damages-no-causation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "additional_damages_issue": true
+        },
+        "observed_outcomes": {
+          "additional_damages_issue": false
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/",
+    "https://vsrf.ru/documents/own/8435/"
+  ]
+}

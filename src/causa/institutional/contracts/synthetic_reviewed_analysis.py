@@ -30,6 +30,11 @@ from causa.institutional.contracts.termination import (
     TerminationEvidenceAssertion,
     TerminationEvidencePredicate,
 )
+from causa.institutional.contracts.invalidity import (
+    InvalidityEvidenceAssertion,
+    InvalidityEvidencePredicate,
+    ReviewedInvalidityEvidence,
+)
 from causa.institutional.contracts.synthetic_sources import (
     get_synthetic_contract_source,
 )
@@ -46,6 +51,12 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk438-443-acceptance-model-v1",
     "synthetic-ru-plenum49-formation-guidance-v1",
     "synthetic-case-supply-1-formation-evidence",
+    "synthetic-ru-gk166-168-invalidity-framework-v1",
+    "synthetic-ru-gk169-172-void-transactions-v1",
+    "synthetic-ru-gk173-179-voidable-transactions-v1",
+    "synthetic-ru-gk180-181-invalidity-effects-v1",
+    "synthetic-ru-plenum25-invalidity-guidance-v1",
+    "synthetic-case-supply-1-invalidity-evidence",
     "synthetic-ru-gk450-453-termination-model-v1",
     "synthetic-ru-gk310-4501-unilateral-model-v1",
     "synthetic-ru-plenum54-unilateral-guidance-v1",
@@ -68,6 +79,8 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
     termination_values = {predicate: False for predicate in TerminationEvidencePredicate}
     termination_values[TerminationEvidencePredicate.CONTRACT_FORMED] = True
     termination_values[TerminationEvidencePredicate.ACCRUED_CLAIMS_EXIST] = True
+    invalidity_values = {predicate: False for predicate in InvalidityEvidencePredicate}
+    invalidity_values[InvalidityEvidencePredicate.TRANSACTION_CONCLUDED] = True
     return ReviewedContractAnalysisRequest(
         id="analysis-request-case-supply-1-v0",
         case_id="case-supply-1",
@@ -194,6 +207,28 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-formation-reviewer",
+        ),
+        invalidity_evidence=ReviewedInvalidityEvidence(
+            id="reviewed-invalidity-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                InvalidityEvidenceAssertion(
+                    id=f"invalidity-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=invalidity_values[predicate],
+                    source_refs=("synthetic-case-supply-1-invalidity-evidence",),
+                )
+                for predicate in InvalidityEvidencePredicate
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk166-168-invalidity-framework-v1",
+                "synthetic-ru-gk169-172-void-transactions-v1",
+                "synthetic-ru-gk173-179-voidable-transactions-v1",
+                "synthetic-ru-gk180-181-invalidity-effects-v1",
+                "synthetic-ru-plenum25-invalidity-guidance-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-invalidity-reviewer",
         ),
         termination_evidence=ReviewedTerminationEvidence(
             id="reviewed-termination-evidence-supply-1-v0",

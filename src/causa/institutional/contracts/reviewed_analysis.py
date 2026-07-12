@@ -54,6 +54,16 @@ from causa.institutional.contracts.termination import (
     evaluate_termination_constraints,
     map_reviewed_termination_evidence,
 )
+from causa.institutional.contracts.invalidity import (
+    INVALIDITY_EVIDENCE_SCHEMA_VERSION,
+    InvalidityConstraintSet,
+    InvalidityEvaluation,
+    InvalidityEvidenceMappingResult,
+    ReviewedInvalidityEvidence,
+    build_invalidity_constraint_set,
+    evaluate_invalidity_constraints,
+    map_reviewed_invalidity_evidence,
+)
 from causa.institutional.contracts.temporal import (
     ContractTemporalFacts,
     TemporalEvaluation,
@@ -69,9 +79,9 @@ from causa.reasoning.formal_checks import (
 from causa.reasoning.counterfactual import CounterfactualBudget
 
 
-CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v3"
+CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v4"
 EVIDENCE_MAPPING_VERSION = "contracts-reviewed-evidence-to-facts-v0"
-ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v3"
+ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v4"
 
 
 class ContractEvidencePredicate(str, Enum):
@@ -158,6 +168,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     temporal_evidence: ReviewedTemporalEvidence
     authority_input: ReviewedAuthorityInput
     formation_evidence: ReviewedFormationEvidence
+    invalidity_evidence: ReviewedInvalidityEvidence
     termination_evidence: ReviewedTerminationEvidence
     liability_evidence: ReviewedLiabilityEvidence
 
@@ -194,6 +205,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     formation_evidence_mapping: FormationEvidenceMappingResult
     formation_constraint_set: FormationConstraintSet
     formation_evaluation: FormationEvaluation
+    invalidity_evidence_mapping: InvalidityEvidenceMappingResult
+    invalidity_constraint_set: InvalidityConstraintSet
+    invalidity_evaluation: InvalidityEvaluation
     termination_evidence_mapping: TerminationEvidenceMappingResult
     termination_constraint_set: TerminationConstraintSet
     termination_evaluation: TerminationEvaluation
@@ -207,7 +221,7 @@ class ReviewedContractAnalysisResult(BaseModel):
     warnings_ru: list[str] = Field(default_factory=list)
 
     @model_validator(mode="after")
-    def validate_liability_replay(self) -> "ReviewedContractAnalysisResult":
+    def validate_analysis_replay(self) -> "ReviewedContractAnalysisResult":
         expected_formation_set = build_formation_constraint_set(self.formation_evidence_mapping)
         if self.formation_constraint_set != expected_formation_set:
             raise ValueError("Formation constraint set does not replay from reviewed evidence.")
@@ -217,11 +231,28 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.formation_evaluation != expected_formation_evaluation:
             raise ValueError("Formation evaluation does not replay from reviewed evidence.")
+        expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
+        if self.invalidity_constraint_set != expected_invalidity_set:
+            raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
+        expected_invalidity_evaluation = evaluate_invalidity_constraints(
+            expected_invalidity_set,
+            self.invalidity_evidence_mapping.facts,
+        )
+        if self.invalidity_evaluation != expected_invalidity_evaluation:
+            raise ValueError("Invalidity evaluation does not replay from reviewed evidence.")
         if (
-            self.formation_evaluation.contract_concluded_prerequisites
-            != self.evidence_mapping.facts.duty_exists
+            self.invalidity_evidence_mapping.facts.transaction_concluded
+            != self.formation_evaluation.contract_concluded_prerequisites
         ):
-            raise ValueError("Formation result does not match contractual duty evidence.")
+            raise ValueError("Invalidity transaction status does not match formation result.")
+        expected_contractual_duty = (
+            self.formation_evaluation.contract_concluded_prerequisites
+            and not self.invalidity_evaluation.contractual_effect_displaced
+        )
+        if expected_contractual_duty != self.evidence_mapping.facts.duty_exists:
+            raise ValueError(
+                "Formation and invalidity results do not match contractual duty evidence."
+            )
         expected_termination_set = build_termination_constraint_set(
             self.termination_evidence_mapping
         )
@@ -298,6 +329,8 @@ def _validate_request_integrity(
         raise ValueError("Temporal evidence case_id does not match the analysis request.")
     if request.formation_evidence.case_id != request.case_id:
         raise ValueError("Formation evidence case_id does not match the analysis request.")
+    if request.invalidity_evidence.case_id != request.case_id:
+        raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.termination_evidence.case_id != request.case_id:
         raise ValueError("Termination evidence case_id does not match the analysis request.")
     if request.liability_evidence.case_id != request.case_id:
@@ -310,6 +343,8 @@ def _validate_request_integrity(
         raise ValueError("Case evidence uses an unsupported schema version.")
     if request.formation_evidence.schema_version != FORMATION_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Formation evidence uses an unsupported schema version.")
+    if request.invalidity_evidence.schema_version != INVALIDITY_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Invalidity evidence uses an unsupported schema version.")
     if request.termination_evidence.schema_version != TERMINATION_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Termination evidence uses an unsupported schema version.")
     if request.liability_evidence.schema_version != LIABILITY_EVIDENCE_SCHEMA_VERSION:
@@ -322,12 +357,15 @@ def _validate_request_integrity(
         *request.temporal_evidence.source_refs,
         *request.authority_input.candidate_source_ids,
         *request.formation_evidence.legal_source_refs,
+        *request.invalidity_evidence.legal_source_refs,
         *request.termination_evidence.legal_source_refs,
         *request.liability_evidence.legal_source_refs,
     }
     for assertion in request.case_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.formation_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.termination_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -358,6 +396,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Formation legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_formation_legal_sources))
+        )
+    invalid_invalidity_legal_sources = [
+        source_id
+        for source_id in request.invalidity_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_invalidity_legal_sources:
+        raise ValueError(
+            "Invalidity legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_invalidity_legal_sources))
         )
     invalid_termination_legal_sources = [
         source_id
@@ -480,6 +529,11 @@ def run_reviewed_contract_analysis(
         review_status=request.formation_evidence.review_status,
         reviewer_id=request.formation_evidence.reviewer_id,
     )
+    invalidity_reviewer_id = _require_reviewed(
+        artifact_name="Invalidity evidence",
+        review_status=request.invalidity_evidence.review_status,
+        reviewer_id=request.invalidity_evidence.reviewer_id,
+    )
     termination_reviewer_id = _require_reviewed(
         artifact_name="Termination evidence",
         review_status=request.termination_evidence.review_status,
@@ -529,8 +583,23 @@ def run_reviewed_contract_analysis(
         formation_constraint_set,
         formation_evidence_mapping.facts,
     )
-    if formation_evaluation.contract_concluded_prerequisites != evidence_mapping.facts.duty_exists:
-        raise ValueError("Formation result does not match contractual duty evidence.")
+    invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
+    invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
+    invalidity_evaluation = evaluate_invalidity_constraints(
+        invalidity_constraint_set,
+        invalidity_evidence_mapping.facts,
+    )
+    if (
+        invalidity_evidence_mapping.facts.transaction_concluded
+        != formation_evaluation.contract_concluded_prerequisites
+    ):
+        raise ValueError("Invalidity transaction status does not match formation result.")
+    expected_contractual_duty = (
+        formation_evaluation.contract_concluded_prerequisites
+        and not invalidity_evaluation.contractual_effect_displaced
+    )
+    if expected_contractual_duty != evidence_mapping.facts.duty_exists:
+        raise ValueError("Formation and invalidity results do not match contractual duty evidence.")
     constraint_set = build_obligation_constraint_set(formal_translation.obligation_rule)
     constraint_evaluation = evaluate_obligation_constraints(
         constraint_set,
@@ -569,6 +638,7 @@ def run_reviewed_contract_analysis(
     requires_human_resolution = (
         authority_evaluation.selected_source_id is None
         or formation_evaluation.requires_human_formation_assessment
+        or invalidity_evaluation.requires_human_invalidity_assessment
         or termination_evaluation.requires_human_termination_assessment
     )
 
@@ -583,6 +653,7 @@ def run_reviewed_contract_analysis(
                 temporal_reviewer_id,
                 authority_reviewer_id,
                 formation_reviewer_id,
+                invalidity_reviewer_id,
                 termination_reviewer_id,
                 liability_reviewer_id,
             }
@@ -598,6 +669,9 @@ def run_reviewed_contract_analysis(
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,
+        invalidity_evidence_mapping=invalidity_evidence_mapping,
+        invalidity_constraint_set=invalidity_constraint_set,
+        invalidity_evaluation=invalidity_evaluation,
         termination_evidence_mapping=termination_evidence_mapping,
         termination_constraint_set=termination_constraint_set,
         termination_evaluation=termination_evaluation,
@@ -617,6 +691,7 @@ def run_reviewed_contract_analysis(
             "Детерминированный анализ ограничен узким набором правил; "
             "содержательная правовая оценка остается за экспертом.",
             *formation_evaluation.warnings_ru,
+            *invalidity_evaluation.warnings_ru,
             *termination_evaluation.warnings_ru,
             *liability_evaluation.warnings_ru,
             "Не является юридической консультацией.",

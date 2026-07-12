@@ -114,7 +114,7 @@ def test_analysis_rejects_formation_duty_mismatch() -> None:
     )
     evidence = request.formation_evidence.model_copy(update={"assertions": assertions})
 
-    with pytest.raises(ValueError, match="does not match contractual duty evidence"):
+    with pytest.raises(ValueError, match="does not match formation result"):
         run_reviewed_contract_analysis(
             request.model_copy(update={"formation_evidence": evidence}),
             build_synthetic_supply_analysis_sources(),

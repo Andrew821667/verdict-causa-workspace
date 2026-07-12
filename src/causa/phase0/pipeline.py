@@ -22,6 +22,9 @@ from causa.institutional.contracts.synthetic_formation import (
 from causa.institutional.contracts.synthetic_termination import (
     build_synthetic_termination_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_invalidity import (
+    build_synthetic_invalidity_evaluation_artifact,
+)
 from causa.institutional.contracts.versioning import (
     evaluate_contracts_package_compatibility,
 )
@@ -158,6 +161,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
                 *trace.analysis_result.formation_evaluation.reasons_ru,
                 "Проверяются оферта, существенные условия, форма и допустимый способ акцепта.",
                 "Судебная квалификация доказательств не автоматизируется.",
+            ],
+        ),
+        PipelineStepResult(
+            id="evaluate-transaction-invalidity",
+            title="Проверка действительности сделки",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.invalidity_evidence_mapping.evidence_id,
+                trace.analysis_result.invalidity_constraint_set.id,
+                *trace.analysis_result.invalidity_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.invalidity_evaluation.reasons_ru,
+                "Ничтожность и оспоримость проверяются раздельно до обычных договорных последствий.",
+                "Система не признает сделку недействительной без требуемого судебного эффекта.",
             ],
         ),
         PipelineStepResult(
@@ -327,6 +345,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     liability_artifact = build_synthetic_liability_evaluation_artifact()
     formation_artifact = build_synthetic_formation_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
+    invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
 
     items = [
         ReadinessItem(
@@ -376,6 +395,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "src/causa/institutional/contracts/legal_operators.py",
                 "src/causa/institutional/contracts/formation.py",
                 "docs/contract-formation-spec.md",
+                "src/causa/institutional/contracts/invalidity.py",
+                "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/termination.py",
                 "docs/contract-change-termination-spec.md",
                 "src/causa/institutional/contracts/liability.py",
@@ -383,16 +404,18 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_counterfactual_evaluation_report.json",
                 "examples/synthetic_liability_evaluation_report.json",
                 "examples/synthetic_formation_evaluation_report.json",
+                "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
-                "examples/migrations/contracts-ru-v0-0.1.0-to-0.11.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.3.0-to-0.11.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.4.0-to-0.11.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.5.0-to-0.11.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.6.0-to-0.11.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.7.0-to-0.11.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.8.0-to-0.11.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.9.0-to-0.11.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.10.0-to-0.11.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.1.0-to-0.12.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.3.0-to-0.12.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.4.0-to-0.12.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.5.0-to-0.12.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.6.0-to-0.12.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.7.0-to-0.12.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.8.0-to-0.12.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.9.0-to-0.12.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.10.0-to-0.12.0-migration-report.json",
+                "examples/migrations/contracts-ru-v0-0.11.0-to-0.12.0-migration-report.json",
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
             ],
             remaining_work=[
@@ -462,6 +485,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 liability_artifact.red_team_report.id,
                 formation_artifact.benchmark_report.id,
                 formation_artifact.red_team_report.id,
+                invalidity_artifact.benchmark_report.id,
+                invalidity_artifact.red_team_report.id,
                 termination_artifact.benchmark_report.id,
                 termination_artifact.red_team_report.id,
             ],
@@ -481,6 +506,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_counterfactual_evaluation_report.json",
                 "examples/synthetic_liability_evaluation_report.json",
                 "examples/synthetic_formation_evaluation_report.json",
+                "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 pipeline.id,
             ],

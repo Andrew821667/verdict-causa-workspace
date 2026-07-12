@@ -12,4 +12,8 @@ CONTRACT_CONTRADICTION_TYPES = [
     "unilateral_right_conflict",
     "termination_effective_date_conflict",
     "accrued_claim_survival_conflict",
+    "void_voidable_classification_conflict",
+    "invalidity_standing_conflict",
+    "invalidity_effect_conflict",
+    "restitution_scope_conflict",
 ]

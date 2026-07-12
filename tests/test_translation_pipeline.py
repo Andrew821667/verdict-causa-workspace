@@ -188,8 +188,10 @@ def test_forensic_level_contains_reproduction_governance_and_path_comparison() -
     assert "Контрфактическая чувствительность" in professional
     assert "Ответственность и неустойка" in professional
     assert "Заключение договора" in professional
+    assert "Действительность сделки" in professional
     assert "Изменение и расторжение договора" in professional
     assert "Модель заключения договора (статьи 432, 435, 438 и 443 ГК РФ)" in forensic
+    assert "Модель недействительности сделки (статьи 166–181 ГК РФ)" in forensic
     assert "Модель изменения и расторжения договора (статьи 450–453 ГК РФ)" in forensic
     assert "Модель ответственности (статьи 333 и 401 ГК РФ)" in forensic
     assert bundle.path_comparisons[0].selected_path == "active_reviewed_path"

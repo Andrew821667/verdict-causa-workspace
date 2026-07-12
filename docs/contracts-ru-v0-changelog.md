@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.12.0 - 2026-07-12
+
+- Adds mandatory reviewed transaction-invalidity evidence with 51 provenance-backed predicates.
+- Separates void and voidable grounds, standing, judgment, limitation, estoppel, and legal effects under Civil Code articles 166–181.
+- Covers qualified illegality, immoral purpose, sham and feigned transactions, consent, authority, capacity, mistake, deception, threat, and adverse circumstances.
+- Models partial invalidity, disguised-transaction rules, restitution, public-recovery issues, and additional damages without deciding a court outcome.
+- Adds 14 benchmarks, 14 adversarial checks, Russian vocabulary, and professional/forensic explanation sections.
+- Upgrades evidence to `contracts.case-evidence.v4`, analysis to `contracts-reviewed-analysis-v4`, and Russian templates to `ru-v6`.
+
 ## 0.11.0 - 2026-07-12
 
 - Adds mandatory reviewed change-and-termination evidence with 36 provenance-backed predicates.

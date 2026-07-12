@@ -194,6 +194,22 @@ def _termination_refs(
     return sorted(references)
 
 
+def _invalidity_refs(
+    result: ReviewedContractAnalysisResult,
+    *fact_names: str,
+) -> list[str]:
+    references = {
+        *result.invalidity_evidence_mapping.legal_source_refs,
+        *(
+            source_ref
+            for item in result.invalidity_evidence_mapping.provenance
+            if item.fact_name in fact_names
+            for source_ref in item.source_refs
+        ),
+    }
+    return sorted(references)
+
+
 def build_translation_assertions(
     request: ReviewedContractAnalysisRequest,
     result: ReviewedContractAnalysisResult,
@@ -204,6 +220,7 @@ def build_translation_assertions(
     counterfactual_report = result.counterfactual_sensitivity
     liability = result.liability_evaluation
     formation = result.formation_evaluation
+    invalidity = result.invalidity_evaluation
     termination = result.termination_evaluation
     critical_scenario = (
         next(
@@ -293,6 +310,124 @@ def build_translation_assertions(
                 result,
                 "performance_accepted_without_objection",
                 "bad_faith_non_conclusion_objection",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.TRANSACTION_PRESUMED_EFFECTIVE,
+            value=invalidity.transaction_presumed_effective,
+            text_ru=(
+                "Обычные договорные последствия сделки текущей моделью не устранены."
+                if invalidity.transaction_presumed_effective
+                else "Действие обычных договорных последствий поставлено под вопрос."
+            ),
+            source_refs=_invalidity_refs(result, "transaction_concluded"),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.VOID_GROUND_DETECTED,
+            value=invalidity.void_ground_detected,
+            text_ru=(
+                "Выявлено формальное основание ничтожности сделки."
+                if invalidity.void_ground_detected
+                else "Формальное основание ничтожности не выявлено."
+            ),
+            source_refs=_invalidity_refs(
+                result,
+                "violates_law",
+                "public_interests_or_third_rights_affected",
+                "law_expressly_makes_void",
+                "immoral_purpose_proven",
+                "sham_intent_proven",
+                "feigned_intent_proven",
+                "incapacitated_person_transaction",
+                "minor_under_14_transaction",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.VOIDABLE_GROUND_DETECTED,
+            value=invalidity.voidable_ground_detected,
+            text_ru=(
+                "Выявлено формальное основание оспоримости сделки."
+                if invalidity.voidable_ground_detected
+                else "Формальное основание оспоримости не выявлено."
+            ),
+            source_refs=_invalidity_refs(
+                result,
+                *[item.fact_name for item in result.invalidity_evidence_mapping.provenance],
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.VOIDABLE_INVALIDITY_EFFECTIVE,
+            value=invalidity.voidable_invalidity_effective,
+            text_ru=(
+                "Оспоримая сделка признана недействительной вступившим в силу решением."
+                if invalidity.voidable_invalidity_effective
+                else "Вступивший в силу судебный эффект оспоримости не установлен."
+            ),
+            source_refs=_invalidity_refs(
+                result,
+                "invalidity_claim_made",
+                "claimant_rights_or_interests_affected",
+                "court_decision_entered_into_force",
+                "voidable_limitation_period_expired",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.INVALIDITY_ESTOPPEL_BAR,
+            value=invalidity.estoppel_bar,
+            text_ru=(
+                "Выявлен запрет противоречивой ссылки на недействительность."
+                if invalidity.estoppel_bar
+                else "Запрет противоречивой ссылки на недействительность не активирован."
+            ),
+            source_refs=_invalidity_refs(
+                result,
+                "good_faith_reliance_created",
+                "party_confirmed_voidable_transaction",
+                "ground_known_at_confirmation",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.PARTIAL_INVALIDITY_ONLY,
+            value=invalidity.partial_invalidity_only,
+            text_ru=(
+                "Недействительность ограничена отделимой частью сделки."
+                if invalidity.partial_invalidity_only
+                else "Основание для сохранения сделки за вычетом отдельной части не установлено."
+            ),
+            source_refs=_invalidity_refs(
+                result,
+                "invalid_part_separable",
+                "remainder_preserves_transaction_purpose",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.DISGUISED_TRANSACTION_RULES,
+            value=invalidity.disguised_transaction_rules_required,
+            text_ru=(
+                "Требуется применить правила об идентифицированной прикрываемой сделке."
+                if invalidity.disguised_transaction_rules_required
+                else "Идентифицированная прикрываемая сделка не установлена."
+            ),
+            source_refs=_invalidity_refs(
+                result,
+                "feigned_intent_proven",
+                "disguised_transaction_identified",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.INVALIDITY_RESTITUTION_REQUIRED,
+            value=invalidity.restitution_required,
+            text_ru=(
+                "Исполнение по недействительной сделке формирует реституционный вопрос."
+                if invalidity.restitution_required
+                else "Реституционный вопрос по текущим фактам не активирован."
+            ),
+            source_refs=_invalidity_refs(
+                result,
+                "party_a_performed",
+                "party_b_performed",
+                "return_in_kind_possible",
+                "value_of_performance_proven",
             ),
         ),
         TranslationAssertion(
@@ -831,6 +966,7 @@ def _render_context(
     )
     liability = result.liability_evaluation
     formation = result.formation_evaluation
+    invalidity = result.invalidity_evaluation
     termination = result.termination_evaluation
     formation_professional_ru = "\n".join(
         [
@@ -855,6 +991,32 @@ def _render_context(
             ],
             *[f"- Результат: {reason}" for reason in formation.reasons_ru],
             *[f"- Ограничение: {warning}" for warning in formation.warnings_ru],
+        ]
+    )
+    invalidity_professional_ru = "\n".join(
+        [
+            *[f"- {reason}" for reason in invalidity.reasons_ru],
+            "- Ничтожность и оспоримость имеют разные основания, заявителей и момент эффекта.",
+            "- Реституция, убытки и судьба отделимой части требуют самостоятельной оценки.",
+        ]
+    )
+    invalidity_forensic_ru = "\n".join(
+        [
+            f"- Набор ограничений: {result.invalidity_constraint_set.id}.",
+            f"- Версия модели: {result.invalidity_constraint_set.model_version}.",
+            f"- Отображение доказательств: {result.invalidity_evidence_mapping.mapping_version}.",
+            f"- Правовые источники: {', '.join(result.invalidity_evidence_mapping.legal_source_refs)}.",
+            *[
+                f"- Правило: {expression}."
+                for expression in result.invalidity_constraint_set.expressions
+            ],
+            *[
+                f"- Факт {item.fact_name}: assertion={item.assertion_id}; "
+                f"источники={', '.join(item.source_refs)}."
+                for item in result.invalidity_evidence_mapping.provenance
+            ],
+            *[f"- Результат: {reason}" for reason in invalidity.reasons_ru],
+            *[f"- Ограничение: {warning}" for warning in invalidity.warnings_ru],
         ]
     )
     termination_professional_ru = "\n".join(
@@ -928,6 +1090,8 @@ def _render_context(
         "counterfactual_forensic_ru": counterfactual_forensic_ru,
         "formation_professional_ru": formation_professional_ru,
         "formation_forensic_ru": formation_forensic_ru,
+        "invalidity_professional_ru": invalidity_professional_ru,
+        "invalidity_forensic_ru": invalidity_forensic_ru,
         "termination_professional_ru": termination_professional_ru,
         "termination_forensic_ru": termination_forensic_ru,
         "liability_professional_ru": liability_professional_ru,

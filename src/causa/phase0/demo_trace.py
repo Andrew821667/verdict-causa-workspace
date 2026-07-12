@@ -194,6 +194,11 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                 for assertion in analysis_request.termination_evidence.assertions
                 for source_ref in assertion.source_refs
             ),
+            *(
+                source_ref
+                for assertion in analysis_request.invalidity_evidence.assertions
+                for source_ref in assertion.source_refs
+            ),
         }
     )
     source_nodes = [
@@ -279,6 +284,22 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     ),
                     "conduct_acceptance_valid": (
                         analysis_result.formation_evaluation.conduct_acceptance_valid
+                    ),
+                    "invalidity_evidence_mapping_id": (
+                        analysis_result.invalidity_evidence_mapping.evidence_id
+                    ),
+                    "invalidity_constraint_set_id": (analysis_result.invalidity_constraint_set.id),
+                    "invalidity_model_version": (
+                        analysis_result.invalidity_constraint_set.model_version
+                    ),
+                    "transaction_presumed_effective": (
+                        analysis_result.invalidity_evaluation.transaction_presumed_effective
+                    ),
+                    "void_ground_detected": (
+                        analysis_result.invalidity_evaluation.void_ground_detected
+                    ),
+                    "voidable_ground_detected": (
+                        analysis_result.invalidity_evaluation.voidable_ground_detected
                     ),
                     "termination_evidence_mapping_id": (
                         analysis_result.termination_evidence_mapping.evidence_id

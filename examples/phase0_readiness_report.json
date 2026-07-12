@@ -59,6 +59,8 @@
         "src/causa/institutional/contracts/legal_operators.py",
         "src/causa/institutional/contracts/formation.py",
         "docs/contract-formation-spec.md",
+        "src/causa/institutional/contracts/invalidity.py",
+        "docs/contract-invalidity-spec.md",
         "src/causa/institutional/contracts/termination.py",
         "docs/contract-change-termination-spec.md",
         "src/causa/institutional/contracts/liability.py",
@@ -66,17 +68,19 @@
         "examples/synthetic_counterfactual_evaluation_report.json",
         "examples/synthetic_liability_evaluation_report.json",
         "examples/synthetic_formation_evaluation_report.json",
+        "examples/synthetic_invalidity_evaluation_report.json",
         "examples/synthetic_termination_evaluation_report.json",
-        "examples/migrations/contracts-ru-v0-0.1.0-to-0.11.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.3.0-to-0.11.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.4.0-to-0.11.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.5.0-to-0.11.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.6.0-to-0.11.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.7.0-to-0.11.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.8.0-to-0.11.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.9.0-to-0.11.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.10.0-to-0.11.0-migration-report.json",
-        "contracts-ru-v0@0.11.0"
+        "examples/migrations/contracts-ru-v0-0.1.0-to-0.12.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.3.0-to-0.12.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.4.0-to-0.12.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.5.0-to-0.12.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.6.0-to-0.12.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.7.0-to-0.12.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.8.0-to-0.12.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.9.0-to-0.12.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.10.0-to-0.12.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.11.0-to-0.12.0-migration-report.json",
+        "contracts-ru-v0@0.12.0"
       ],
       "remaining_work": [
         "Расширить правила юридической силы и временные правила за пределы поставки.",
@@ -93,7 +97,7 @@
         "src/causa/management/policy_registry.py",
         "examples/synthetic_management_policy_registry_report.json",
         "policy-snapshot:phase0-standard-t3@1",
-        "sha256:bcf964e8811bdb5805675f399ba3b473f1f0a60e3324b6c64e69a17435cd2212"
+        "sha256:a824bcc3794d9b7fb846ae89105c7ea34ee7272b5566788a847ac66e69a2aabd"
       ],
       "remaining_work": [
         "Заменить локальное атомарное JSON-хранилище транзакционным production backend."
@@ -145,6 +149,8 @@
         "synthetic-contract-liability-red-team-suite-v0",
         "formation-benchmark-report-v0",
         "formation-red-team-report-v0",
+        "invalidity-benchmark-report-v0",
+        "invalidity-red-team-report-v0",
         "termination-benchmark-report-v0",
         "termination-red-team-report-v0"
       ],
@@ -164,6 +170,7 @@
         "examples/synthetic_counterfactual_evaluation_report.json",
         "examples/synthetic_liability_evaluation_report.json",
         "examples/synthetic_formation_evaluation_report.json",
+        "examples/synthetic_invalidity_evaluation_report.json",
         "examples/synthetic_termination_evaluation_report.json",
         "phase0-supply-dispute-pipeline-v0"
       ],

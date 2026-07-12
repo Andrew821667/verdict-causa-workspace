@@ -277,6 +277,108 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk166-168-invalidity-framework-v1",
+        title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: ничтожность, оспоримость, надлежащий заявитель, "
+            "законный интерес, недобросовестная ссылка и нарушение закона проверяются раздельно."
+        ),
+        valid_from="2013-09-01",
+        metadata={
+            "synthetic": True,
+            "topic": "invalidity_articles_166_168",
+            "legal_reference": "ГК РФ, статьи 166–168",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk169-172-void-transactions-v1",
+        title="Синтетическая проверенная модель ничтожных сделок по статьям 169–172 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: антисоциальная цель, мнимость, притворность, "
+            "сделки недееспособных и малолетних образуют самостоятельные основания."
+        ),
+        valid_from="2013-09-01",
+        metadata={
+            "synthetic": True,
+            "topic": "invalidity_articles_169_172",
+            "legal_reference": "ГК РФ, статьи 169–172",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk173-179-voidable-transactions-v1",
+        title="Синтетическая проверенная модель оспоримых сделок по статьям 173–179 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: согласие, полномочия, цели юридического лица, "
+            "дееспособность, заблуждение, обман, угроза и кабальность проверяются отдельно."
+        ),
+        valid_from="2013-09-01",
+        metadata={
+            "synthetic": True,
+            "topic": "invalidity_articles_173_179",
+            "legal_reference": "ГК РФ, статьи 173–179",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk180-181-invalidity-effects-v1",
+        title="Синтетическая проверенная модель частичной недействительности и сроков",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: отделимость части сделки, сохранение остатка, "
+            "исполнение, реституция и сроки требований не смешиваются с основанием."
+        ),
+        valid_from="2013-09-01",
+        metadata={
+            "synthetic": True,
+            "topic": "invalidity_articles_180_181",
+            "legal_reference": "ГК РФ, статьи 180–181",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-plenum25-invalidity-guidance-v1",
+        title="Синтетическая модель разъяснений Пленума ВС РФ о недействительности сделок",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление разъяснений: обычное нарушение закона не всегда "
+            "влечет ничтожность, оспоримость требует надлежащего требования, а противоречивое "
+            "недобросовестное поведение может блокировать ссылку на недействительность."
+        ),
+        valid_from="2015-06-23",
+        metadata={
+            "synthetic": True,
+            "topic": "invalidity_plenum_guidance",
+            "legal_reference": "Постановление Пленума ВС РФ от 23.06.2015 № 25",
+            "basis_url": "https://vsrf.ru/documents/own/8435/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-invalidity-evidence",
+        title="Синтетическая проверенная запись фактов о действительности сделки поставки",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: договор заключен, но основания ничтожности, оспоримости "
+            "и требования о применении последствий в демонстрационном деле отсутствуют."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "invalidity_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk450-453-termination-model-v1",
         title="Синтетическая проверенная модель изменения и расторжения договора по статьям 450–453 ГК РФ",
         source_type=SourceType.STATUTE,
