@@ -45,6 +45,11 @@ from causa.institutional.contracts.obligation_dynamics import (
     ObligationDynamicsEvidencePredicate,
     ReviewedObligationDynamicsEvidence,
 )
+from causa.institutional.contracts.performance_remedies import (
+    PerformanceRemediesEvidenceAssertion,
+    PerformanceRemediesEvidencePredicate,
+    ReviewedPerformanceRemediesEvidence,
+)
 from causa.institutional.contracts.synthetic_sources import (
     get_synthetic_contract_source,
 )
@@ -83,6 +88,11 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-plenum54-party-change-guidance-v1",
     "synthetic-ru-plenum6-discharge-guidance-v1",
     "synthetic-case-supply-1-obligation-dynamics-evidence",
+    "synthetic-ru-gk309-328-performance-v1",
+    "synthetic-ru-gk393-4061-remedies-v1",
+    "synthetic-ru-plenum54-performance-guidance-v1",
+    "synthetic-ru-plenum7-remedies-guidance-v1",
+    "synthetic-case-supply-1-performance-remedies-evidence",
     "synthetic-ru-gk450-453-termination-model-v1",
     "synthetic-ru-gk310-4501-unilateral-model-v1",
     "synthetic-ru-plenum54-unilateral-guidance-v1",
@@ -118,6 +128,26 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
     dynamics_values[ObligationDynamicsEvidencePredicate.PERFORMANCE_RENDERED] = True
     dynamics_values[ObligationDynamicsEvidencePredicate.PERFORMANCE_ACCEPTED_AS_PROPER] = True
     dynamics_values[ObligationDynamicsEvidencePredicate.CREDITOR_ISSUED_RECEIPT] = True
+    performance_remedies_values = {
+        predicate: False for predicate in PerformanceRemediesEvidencePredicate
+    }
+    performance_remedies_values[PerformanceRemediesEvidencePredicate.OBLIGATION_EXISTS] = True
+    performance_remedies_values[PerformanceRemediesEvidencePredicate.BREACH_ESTABLISHED] = True
+    performance_remedies_values[PerformanceRemediesEvidencePredicate.PERFORMANCE_TENDERED] = True
+    performance_remedies_values[PerformanceRemediesEvidencePredicate.SUBJECT_CONFORMS] = True
+    performance_remedies_values[PerformanceRemediesEvidencePredicate.QUALITY_QUANTITY_CONFORM] = (
+        True
+    )
+    performance_remedies_values[
+        PerformanceRemediesEvidencePredicate.PERFORMANCE_AT_PROPER_PLACE
+    ] = True
+    performance_remedies_values[
+        PerformanceRemediesEvidencePredicate.PERFORMANCE_TO_PROPER_RECIPIENT
+    ] = True
+    performance_remedies_values[PerformanceRemediesEvidencePredicate.CREDITOR_MITIGATION_TAKEN] = (
+        True
+    )
+    performance_remedies_values[PerformanceRemediesEvidencePredicate.DEBTOR_DELAY] = True
     return ReviewedContractAnalysisRequest(
         id="analysis-request-case-supply-1-v0",
         case_id="case-supply-1",
@@ -314,6 +344,27 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-obligation-dynamics-reviewer",
+        ),
+        performance_remedies_evidence=ReviewedPerformanceRemediesEvidence(
+            id="reviewed-performance-remedies-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                PerformanceRemediesEvidenceAssertion(
+                    id=f"performance-remedies-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=performance_remedies_values[predicate],
+                    source_refs=("synthetic-case-supply-1-performance-remedies-evidence",),
+                )
+                for predicate in PerformanceRemediesEvidencePredicate
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk309-328-performance-v1",
+                "synthetic-ru-gk393-4061-remedies-v1",
+                "synthetic-ru-plenum54-performance-guidance-v1",
+                "synthetic-ru-plenum7-remedies-guidance-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-performance-remedies-reviewer",
         ),
         termination_evidence=ReviewedTerminationEvidence(
             id="reviewed-termination-evidence-supply-1-v0",

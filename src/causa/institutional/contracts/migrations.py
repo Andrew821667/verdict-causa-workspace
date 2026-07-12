@@ -284,6 +284,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.14.0",
+        to_version="0.15.0",
+        reasons=[
+            "Reviewed inputs now require a separate performance-remedies evidence contract.",
+            "Analysis and Russian translation distinguish performance and remedy paths under articles 309 through 328 and 393 through 406.1.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных об исполнении обязательств и средствах защиты.",
+            "Анализ и русское объяснение разделяют исполнение и средства защиты по статьям 309–328 и 393–406.1 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_performance_remedies_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

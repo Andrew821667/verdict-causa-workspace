@@ -242,6 +242,22 @@ def _dynamics_refs(
     return sorted(references)
 
 
+def _performance_remedies_refs(
+    result: ReviewedContractAnalysisResult,
+    *fact_names: str,
+) -> list[str]:
+    references = {
+        *result.performance_remedies_evidence_mapping.legal_source_refs,
+        *(
+            source_ref
+            for item in result.performance_remedies_evidence_mapping.provenance
+            if item.fact_name in fact_names
+            for source_ref in item.source_refs
+        ),
+    }
+    return sorted(references)
+
+
 def build_translation_assertions(
     request: ReviewedContractAnalysisRequest,
     result: ReviewedContractAnalysisResult,
@@ -255,6 +271,7 @@ def build_translation_assertions(
     invalidity = result.invalidity_evaluation
     security = result.security_evaluation
     dynamics = result.obligation_dynamics_evaluation
+    performance_remedies = result.performance_remedies_evaluation
     termination = result.termination_evaluation
     critical_scenario = (
         next(
@@ -780,6 +797,189 @@ def build_translation_assertions(
                 result,
                 "obligation_breached",
                 "accrued_claims_exist",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.PERFORMANCE_PROPER,
+            value=performance_remedies.proper_performance,
+            text_ru=(
+                "Предмет, качество, количество, срок, место и получатель исполнения формально надлежащие."
+                if performance_remedies.proper_performance
+                else "Полный набор признаков надлежащего исполнения не подтвержден."
+            ),
+            source_refs=_performance_remedies_refs(
+                result,
+                "performance_tendered",
+                "subject_conforms",
+                "quality_quantity_conform",
+                "performance_at_due_time",
+                "performance_at_proper_place",
+                "performance_to_proper_recipient",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.PARTIAL_PERFORMANCE_ACCEPTANCE_REQUIRED,
+            value=performance_remedies.partial_performance_acceptance_required,
+            text_ru=(
+                "Выявлено основание, обязывающее кредитора принять частичное исполнение."
+                if performance_remedies.partial_performance_acceptance_required
+                else "Обязанность кредитора принять частичное исполнение не подтверждена."
+            ),
+            source_refs=_performance_remedies_refs(
+                result,
+                "partial_performance_tendered",
+                "partial_performance_allowed",
+                "monetary_obligation",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.THIRD_PARTY_PERFORMANCE_ACCEPTANCE_REQUIRED,
+            value=performance_remedies.third_party_performance_acceptance_required,
+            text_ru=(
+                "Кредитор формально обязан принять предложенное третьим лицом исполнение."
+                if performance_remedies.third_party_performance_acceptance_required
+                else "Полный набор оснований обязательного принятия исполнения третьего лица не установлен."
+            ),
+            source_refs=_performance_remedies_refs(
+                result,
+                "third_party_performance_tendered",
+                "debtor_assigned_third_party_performance",
+                "debtor_monetary_delay",
+                "third_party_property_right_at_risk",
+                "personal_performance_required",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SOLIDARY_OBLIGATION,
+            value=performance_remedies.solidary_obligation,
+            text_ru=(
+                "Множественность должников формально квалифицирована как солидарная."
+                if performance_remedies.solidary_obligation
+                else "Законное или договорное основание солидарности не подтверждено."
+            ),
+            source_refs=_performance_remedies_refs(
+                result,
+                "multiple_debtors",
+                "solidarity_by_law_or_contract",
+                "joint_business_obligation",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.COUNTERPERFORMANCE_SUSPENSION_AVAILABLE,
+            value=performance_remedies.counterperformance_suspension_available,
+            text_ru=(
+                "Подтверждены формальные предпосылки приостановления встречного исполнения."
+                if performance_remedies.counterperformance_suspension_available
+                else "Предпосылки приостановления встречного исполнения подтверждены не полностью."
+            ),
+            source_refs=_performance_remedies_refs(
+                result,
+                "reciprocal_obligations",
+                "counterperformance_due",
+                "counterparty_failed_due_performance",
+                "clear_future_nonperformance",
+                "suspension_notice_delivered",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.PERFORMANCE_DAMAGES_AVAILABLE,
+            value=performance_remedies.damages_prerequisites_satisfied,
+            text_ru=(
+                "Подтверждены нарушение, потери, причинная связь и разумная основа размера убытков."
+                if performance_remedies.damages_prerequisites_satisfied
+                else "Формальные предпосылки взыскания убытков подтверждены не полностью."
+            ),
+            source_refs=_performance_remedies_refs(
+                result,
+                "breach_established",
+                "loss_claimed",
+                "actual_loss_proven",
+                "lost_profit_claimed",
+                "causation_proven",
+                "reasonable_amount_basis",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SPECIFIC_PERFORMANCE_AVAILABLE,
+            value=performance_remedies.specific_performance_available,
+            text_ru=(
+                "Формальные предпосылки требования исполнения обязательства в натуре подтверждены."
+                if performance_remedies.specific_performance_available
+                else "Доступность исполнения в натуре не подтверждена полностью."
+            ),
+            source_refs=_performance_remedies_refs(
+                result,
+                "specific_performance_claimed",
+                "performance_objectively_possible",
+                "creditor_lost_interest_due_delay",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.ARTICLE_395_INTEREST_AVAILABLE,
+            value=performance_remedies.article_395_interest_available,
+            text_ru=(
+                "Подтверждены формальные предпосылки процентов по статье 395 ГК РФ."
+                if performance_remedies.article_395_interest_available
+                else "Проценты по статье 395 ГК РФ недоступны либо требуют дополнительных фактов."
+            ),
+            source_refs=_performance_remedies_refs(
+                result,
+                "monetary_delay",
+                "article_395_claimed",
+                "penalty_for_same_monetary_delay",
+                "article_395_contract_override",
+                "statutory_rate_basis_proven",
+                "interest_period_proven",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.CREDITOR_IN_DELAY,
+            value=performance_remedies.creditor_in_delay,
+            text_ru=(
+                "Выявлены формальные признаки просрочки кредитора."
+                if performance_remedies.creditor_in_delay
+                else "Просрочка кредитора не подтверждена."
+            ),
+            source_refs=_performance_remedies_refs(
+                result,
+                "creditor_refused_proper_performance",
+                "creditor_omitted_required_action",
+                "creditor_prerequisite_action_required",
+                "creditor_prerequisite_action_completed",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.INDEMNITY_PREREQUISITES,
+            value=performance_remedies.indemnity_prerequisites_satisfied,
+            text_ru=(
+                "Подтверждены формальные предпосылки предпринимательского возмещения потерь."
+                if performance_remedies.indemnity_prerequisites_satisfied
+                else "Предпосылки возмещения потерь по статье 406.1 ГК РФ подтверждены не полностью."
+            ),
+            source_refs=_performance_remedies_refs(
+                result,
+                "indemnity_agreement",
+                "indemnity_business_context",
+                "indemnity_clear",
+                "indemnity_trigger_unrelated_to_breach",
+                "indemnity_loss_occurred",
+                "indemnity_amount_or_method_agreed",
+                "indemnity_bad_faith_event_caused",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.INTENTIONAL_LIABILITY_EXCLUSION_INVALID,
+            value=performance_remedies.intentional_liability_exclusion_invalid,
+            text_ru=(
+                "Заранее установленное исключение ответственности за умышленное нарушение формально недействительно."
+                if performance_remedies.intentional_liability_exclusion_invalid
+                else "Недействительное исключение ответственности за умышленное нарушение не выявлено."
+            ),
+            source_refs=_performance_remedies_refs(
+                result,
+                "intentional_breach",
+                "liability_limit_clause_or_law",
+                "advance_intentional_liability_exclusion",
             ),
         ),
         TranslationAssertion(
@@ -1321,6 +1521,7 @@ def _render_context(
     invalidity = result.invalidity_evaluation
     security = result.security_evaluation
     dynamics = result.obligation_dynamics_evaluation
+    performance_remedies = result.performance_remedies_evaluation
     termination = result.termination_evaluation
     formation_professional_ru = "\n".join(
         [
@@ -1428,6 +1629,34 @@ def _render_context(
             *[f"- Ограничение: {warning}" for warning in dynamics.warnings_ru],
         ]
     )
+    performance_remedies_professional_ru = "\n".join(
+        [
+            *[f"- {reason}" for reason in performance_remedies.reasons_ru],
+            "- Надлежащее, частичное, досрочное, третьелицевое и встречное исполнение проверены раздельно.",
+            "- Убытки, проценты, исполнение в натуре, просрочка сторон и возмещение потерь не взаимозаменяемы.",
+            "- Размер денежных требований, разумность расходов и причинная связь требуют оценки доказательств юристом.",
+        ]
+    )
+    performance_remedies_forensic_ru = "\n".join(
+        [
+            f"- Набор ограничений: {result.performance_remedies_constraint_set.id}.",
+            f"- Версия модели: {result.performance_remedies_constraint_set.model_version}.",
+            f"- Отображение доказательств: {result.performance_remedies_evidence_mapping.mapping_version}.",
+            f"- Правовые источники: {', '.join(result.performance_remedies_evidence_mapping.legal_source_refs)}.",
+            *[
+                f"- Правило модели исполнения и средств защиты: {expression}."
+                for expression in result.performance_remedies_constraint_set.expressions
+            ],
+            *[
+                f"- Проверенный факт {item.fact_name}: исходное утверждение="
+                f"{item.assertion_id}; доказательственные источники="
+                f"{', '.join(item.source_refs)}."
+                for item in result.performance_remedies_evidence_mapping.provenance
+            ],
+            *[f"- Результат: {reason}" for reason in performance_remedies.reasons_ru],
+            *[f"- Ограничение: {warning}" for warning in performance_remedies.warnings_ru],
+        ]
+    )
     termination_professional_ru = "\n".join(
         [
             *[f"- {reason}" for reason in termination.reasons_ru],
@@ -1505,6 +1734,8 @@ def _render_context(
         "security_forensic_ru": security_forensic_ru,
         "dynamics_professional_ru": dynamics_professional_ru,
         "dynamics_forensic_ru": dynamics_forensic_ru,
+        "performance_remedies_professional_ru": performance_remedies_professional_ru,
+        "performance_remedies_forensic_ru": performance_remedies_forensic_ru,
         "termination_professional_ru": termination_professional_ru,
         "termination_forensic_ru": termination_forensic_ru,
         "liability_professional_ru": liability_professional_ru,

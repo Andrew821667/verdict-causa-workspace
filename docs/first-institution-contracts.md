@@ -46,3 +46,5 @@ Release `0.12.0` adds reviewed transaction-invalidity evidence and formal bounda
 Release `0.13.0` adds reviewed performance-security evidence and formal boundaries for articles 329–381.2 of the Russian Civil Code. It separates penalty, pledge, retention, suretyship, independent guarantee, deposit, and security payment, including accessory effects, third-party opposability, enforcement routes, termination, regress, credit, and return issues.
 
 Release `0.14.0` adds reviewed obligation-dynamics evidence and formal boundaries for articles 382–419 of the Russian Civil Code. It separates assignment, debt and contract transfer from performance, notary deposit, accord, set-off, novation, forgiveness, merger, impossibility, government act, death, and liquidation discharge paths.
+
+Release `0.15.0` adds reviewed performance-remedies evidence and formal boundaries for articles 309–328 and 393–406.1 of the Russian Civil Code. It separates proper, partial, early, third-party, solidary and reciprocal performance from damages, replacement transactions, article 395 interest, specific performance, debtor and creditor delay, and business indemnity.

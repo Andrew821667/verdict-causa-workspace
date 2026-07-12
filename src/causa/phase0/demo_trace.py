@@ -209,6 +209,11 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                 for assertion in analysis_request.obligation_dynamics_evidence.assertions
                 for source_ref in assertion.source_refs
             ),
+            *(
+                source_ref
+                for assertion in analysis_request.performance_remedies_evidence.assertions
+                for source_ref in assertion.source_refs
+            ),
         }
     )
     source_nodes = [
@@ -338,6 +343,21 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     ),
                     "accrued_claims_preserved_by_dynamics": (
                         analysis_result.obligation_dynamics_evaluation.accrued_claims_preserved
+                    ),
+                    "performance_remedies_evidence_mapping_id": (
+                        analysis_result.performance_remedies_evidence_mapping.evidence_id
+                    ),
+                    "performance_remedies_constraint_set_id": (
+                        analysis_result.performance_remedies_constraint_set.id
+                    ),
+                    "performance_remedies_model_version": (
+                        analysis_result.performance_remedies_constraint_set.model_version
+                    ),
+                    "proper_performance": (
+                        analysis_result.performance_remedies_evaluation.proper_performance
+                    ),
+                    "debtor_in_delay": (
+                        analysis_result.performance_remedies_evaluation.debtor_in_delay
                     ),
                     "termination_evidence_mapping_id": (
                         analysis_result.termination_evidence_mapping.evidence_id

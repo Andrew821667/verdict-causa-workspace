@@ -191,11 +191,13 @@ def test_forensic_level_contains_reproduction_governance_and_path_comparison() -
     assert "Действительность сделки" in professional
     assert "Обеспечение исполнения обязательств" in professional
     assert "Перемена лиц и прекращение обязательств" in professional
+    assert "Исполнение обязательств и средства защиты" in professional
     assert "Изменение и расторжение договора" in professional
     assert "Модель заключения договора (статьи 432, 435, 438 и 443 ГК РФ)" in forensic
     assert "Модель недействительности сделки (статьи 166–181 ГК РФ)" in forensic
     assert "Модель обеспечения исполнения (статьи 329–381.2 ГК РФ)" in forensic
     assert "Модель перемены лиц и прекращения обязательств (статьи 382–419 ГК РФ)" in forensic
+    assert "Модель исполнения и средств защиты (статьи 309–328 и 393–406.1 ГК РФ)" in forensic
     assert "Модель изменения и расторжения договора (статьи 450–453 ГК РФ)" in forensic
     assert "Модель ответственности (статьи 333 и 401 ГК РФ)" in forensic
     assert bundle.path_comparisons[0].selected_path == "active_reviewed_path"

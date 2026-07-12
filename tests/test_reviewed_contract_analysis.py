@@ -281,8 +281,22 @@ def test_reviewed_remedy_assertions_drive_remedy_constraints() -> None:
         for assertion in request.case_evidence.assertions
     )
     evidence = request.case_evidence.model_copy(update={"assertions": assertions})
+    performance_remedies_assertions = tuple(
+        assertion.model_copy(update={"value": True})
+        if assertion.predicate.value in {"loss_claimed", "causation_proven"}
+        else assertion
+        for assertion in request.performance_remedies_evidence.assertions
+    )
+    performance_remedies_evidence = request.performance_remedies_evidence.model_copy(
+        update={"assertions": performance_remedies_assertions}
+    )
     result = run_reviewed_contract_analysis(
-        request.model_copy(update={"case_evidence": evidence}),
+        request.model_copy(
+            update={
+                "case_evidence": evidence,
+                "performance_remedies_evidence": performance_remedies_evidence,
+            }
+        ),
         build_synthetic_supply_analysis_sources(),
     )
 

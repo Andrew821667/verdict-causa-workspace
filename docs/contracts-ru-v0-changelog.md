@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.15.0 - 2026-07-12
+
+- Adds mandatory reviewed performance-remedies evidence with 96 provenance-backed predicates.
+- Covers proper, partial, early, third-party, demand, alternative, facultative, solidary, and reciprocal performance under articles 309–328.
+- Separates damages, replacement transactions, specific performance, article 395 interest, subsidiary and limited liability, debtor and creditor delay, and article 406.1 indemnity.
+- Enforces cross-model agreement for obligation, breach, tender, loss, causation, and monetary-delay facts.
+- Adds 27 benchmarks, 30 adversarial checks, official-source metadata, and Russian professional/forensic explanation sections.
+- Upgrades evidence to `contracts.case-evidence.v7`, analysis to `contracts-reviewed-analysis-v7`, and Russian templates to `ru-v9`.
+
 ## 0.14.0 - 2026-07-12
 
 - Adds mandatory reviewed obligation-dynamics evidence with 83 provenance-backed predicates.

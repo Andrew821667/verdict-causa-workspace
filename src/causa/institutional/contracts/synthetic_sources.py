@@ -744,6 +744,94 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk309-328-performance-v1",
+        title="Синтетическая проверенная модель исполнения обязательств",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: надлежащий предмет, срок, место и получатель, "
+            "частичное, досрочное и третьелицевое исполнение, множественность лиц и "
+            "встречное исполнение проверяются раздельно."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "performance_articles_309_328",
+            "legal_reference": "ГК РФ, статьи 309–328",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk393-4061-remedies-v1",
+        title="Синтетическая проверенная модель последствий нарушения обязательств",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: убытки, замещающая сделка, проценты, "
+            "исполнение в натуре, субсидиарная ответственность, просрочка сторон и "
+            "возмещение потерь имеют самостоятельные предпосылки."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "remedies_articles_393_406_1",
+            "legal_reference": "ГК РФ, статьи 393–406.1",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-plenum54-performance-guidance-v1",
+        title="Синтетическая модель разъяснений Пленума ВС РФ об исполнении обязательств",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление разъяснений: принятие частичного и "
+            "третьелицевого исполнения, полномочия получателя, срок, платеж и встречное "
+            "исполнение требуют самостоятельной проверки."
+        ),
+        valid_from="2016-11-22",
+        metadata={
+            "synthetic": True,
+            "topic": "performance_plenum_54_guidance",
+            "legal_reference": "Постановление Пленума ВС РФ от 22.11.2016 № 54",
+            "basis_url": "https://vsrf.ru/documents/own/8524/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-plenum7-remedies-guidance-v1",
+        title="Синтетическая модель разъяснений Пленума ВС РФ о средствах защиты",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление разъяснений: реальный ущерб, упущенная выгода, "
+            "разумная достоверность, проценты, исполнение в натуре и возмещение потерь "
+            "не подменяют друг друга."
+        ),
+        valid_from="2016-03-24",
+        metadata={
+            "synthetic": True,
+            "topic": "remedies_plenum_7_guidance",
+            "legal_reference": "Постановление Пленума ВС РФ от 24.03.2016 № 7",
+            "basis_url": "https://www.vsrf.ru/documents/own/8478/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-performance-remedies-evidence",
+        title="Синтетическая проверенная запись исполнения и средств защиты",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: поставка произведена с просрочкой надлежащему "
+            "получателю, денежное требование и убытки в демонстрационном деле не заявлены."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "performance_remedies_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk401-liability-model-v1",
         title="Синтетическая проверенная модель оснований ответственности по статье 401 ГК РФ",
         source_type=SourceType.STATUTE,

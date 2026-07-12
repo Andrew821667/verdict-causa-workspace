@@ -488,6 +488,85 @@
       }
     },
     {
+      "id": "synthetic-ru-gk309-328-performance-v1",
+      "title": "Синтетическая проверенная модель исполнения обязательств",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: надлежащий предмет, срок, место и получатель, частичное, досрочное и третьелицевое исполнение, множественность лиц и встречное исполнение проверяются раздельно.",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "performance_articles_309_328",
+        "legal_reference": "ГК РФ, статьи 309–328",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk393-4061-remedies-v1",
+      "title": "Синтетическая проверенная модель последствий нарушения обязательств",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: убытки, замещающая сделка, проценты, исполнение в натуре, субсидиарная ответственность, просрочка сторон и возмещение потерь имеют самостоятельные предпосылки.",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "remedies_articles_393_406_1",
+        "legal_reference": "ГК РФ, статьи 393–406.1",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-plenum54-performance-guidance-v1",
+      "title": "Синтетическая модель разъяснений Пленума ВС РФ об исполнении обязательств",
+      "source_type": "case_law",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление разъяснений: принятие частичного и третьелицевого исполнения, полномочия получателя, срок, платеж и встречное исполнение требуют самостоятельной проверки.",
+      "valid_from": "2016-11-22",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "performance_plenum_54_guidance",
+        "legal_reference": "Постановление Пленума ВС РФ от 22.11.2016 № 54",
+        "basis_url": "https://vsrf.ru/documents/own/8524/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-plenum7-remedies-guidance-v1",
+      "title": "Синтетическая модель разъяснений Пленума ВС РФ о средствах защиты",
+      "source_type": "case_law",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление разъяснений: реальный ущерб, упущенная выгода, разумная достоверность, проценты, исполнение в натуре и возмещение потерь не подменяют друг друга.",
+      "valid_from": "2016-03-24",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "remedies_plenum_7_guidance",
+        "legal_reference": "Постановление Пленума ВС РФ от 24.03.2016 № 7",
+        "basis_url": "https://www.vsrf.ru/documents/own/8478/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-performance-remedies-evidence",
+      "title": "Синтетическая проверенная запись исполнения и средств защиты",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: поставка произведена с просрочкой надлежащему получателю, денежное требование и убытки в демонстрационном деле не заявлены.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "performance_remedies_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk450-453-termination-model-v1",
       "title": "Синтетическая проверенная модель изменения и расторжения договора по статьям 450–453 ГК РФ",
       "source_type": "statute",
@@ -676,7 +755,7 @@
     "case_evidence": {
       "id": "reviewed-case-evidence-supply-1-v0",
       "case_id": "case-supply-1",
-      "schema_version": "contracts.case-evidence.v6",
+      "schema_version": "contracts.case-evidence.v7",
       "assertions": [
         {
           "id": "evidence-duty_exists",
@@ -2556,6 +2635,789 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-obligation-dynamics-reviewer"
     },
+    "performance_remedies_evidence": {
+      "id": "reviewed-performance-remedies-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.performance-remedies-evidence.v0",
+      "assertions": [
+        {
+          "id": "performance-remedies-evidence-obligation_exists",
+          "predicate": "obligation_exists",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-breach_established",
+          "predicate": "breach_established",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-performance_tendered",
+          "predicate": "performance_tendered",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-subject_conforms",
+          "predicate": "subject_conforms",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-quality_quantity_conform",
+          "predicate": "quality_quantity_conform",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-performance_at_due_time",
+          "predicate": "performance_at_due_time",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-performance_at_proper_place",
+          "predicate": "performance_at_proper_place",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-performance_to_proper_recipient",
+          "predicate": "performance_to_proper_recipient",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-debtor_requested_authority_proof",
+          "predicate": "debtor_requested_authority_proof",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-authority_proof_provided",
+          "predicate": "authority_proof_provided",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-partial_performance_tendered",
+          "predicate": "partial_performance_tendered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-partial_performance_allowed",
+          "predicate": "partial_performance_allowed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-monetary_obligation",
+          "predicate": "monetary_obligation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-all_parties_acting_in_business",
+          "predicate": "all_parties_acting_in_business",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-early_performance_tendered",
+          "predicate": "early_performance_tendered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-early_performance_allowed",
+          "predicate": "early_performance_allowed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-third_party_performance_tendered",
+          "predicate": "third_party_performance_tendered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-debtor_assigned_third_party_performance",
+          "predicate": "debtor_assigned_third_party_performance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-debtor_monetary_delay",
+          "predicate": "debtor_monetary_delay",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-third_party_property_right_at_risk",
+          "predicate": "third_party_property_right_at_risk",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-personal_performance_required",
+          "predicate": "personal_performance_required",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-demand_obligation",
+          "predicate": "demand_obligation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-creditor_demand_delivered",
+          "predicate": "creditor_demand_delivered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-statutory_or_agreed_grace_elapsed",
+          "predicate": "statutory_or_agreed_grace_elapsed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-creditor_prerequisite_action_required",
+          "predicate": "creditor_prerequisite_action_required",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-creditor_prerequisite_action_completed",
+          "predicate": "creditor_prerequisite_action_completed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-payment_received_by_creditor_bank",
+          "predicate": "payment_received_by_creditor_bank",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-multiple_homogeneous_debts",
+          "predicate": "multiple_homogeneous_debts",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-debtor_designated_debt",
+          "predicate": "debtor_designated_debt",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-debt_designation_valid",
+          "predicate": "debt_designation_valid",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-payment_insufficient",
+          "predicate": "payment_insufficient",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-extra_expenses_caused_by_creditor",
+          "predicate": "extra_expenses_caused_by_creditor",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-alternative_obligation",
+          "predicate": "alternative_obligation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-choice_holder_selected",
+          "predicate": "choice_holder_selected",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-facultative_obligation",
+          "predicate": "facultative_obligation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-facultative_substitute_tendered",
+          "predicate": "facultative_substitute_tendered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-multiple_debtors",
+          "predicate": "multiple_debtors",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-solidarity_by_law_or_contract",
+          "predicate": "solidarity_by_law_or_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-joint_business_obligation",
+          "predicate": "joint_business_obligation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-one_solidary_debtor_performed_full",
+          "predicate": "one_solidary_debtor_performed_full",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-creditor_claimed_one_solidary_debtor",
+          "predicate": "creditor_claimed_one_solidary_debtor",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-internal_recourse_shares_proven",
+          "predicate": "internal_recourse_shares_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-reciprocal_obligations",
+          "predicate": "reciprocal_obligations",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-counterperformance_due",
+          "predicate": "counterperformance_due",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-counterparty_failed_due_performance",
+          "predicate": "counterparty_failed_due_performance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-clear_future_nonperformance",
+          "predicate": "clear_future_nonperformance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-suspension_notice_delivered",
+          "predicate": "suspension_notice_delivered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-refusal_notice_delivered",
+          "predicate": "refusal_notice_delivered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-own_counterperformance_tendered",
+          "predicate": "own_counterperformance_tendered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-specific_claim_override",
+          "predicate": "specific_claim_override",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-loss_claimed",
+          "predicate": "loss_claimed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-actual_loss_proven",
+          "predicate": "actual_loss_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-lost_profit_claimed",
+          "predicate": "lost_profit_claimed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-lost_profit_measures_proven",
+          "predicate": "lost_profit_measures_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-causation_proven",
+          "predicate": "causation_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-reasonable_amount_basis",
+          "predicate": "reasonable_amount_basis",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-exact_amount_not_established",
+          "predicate": "exact_amount_not_established",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-creditor_mitigation_taken",
+          "predicate": "creditor_mitigation_taken",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-creditor_contributed_to_loss",
+          "predicate": "creditor_contributed_to_loss",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-replacement_transaction_made",
+          "predicate": "replacement_transaction_made",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-replacement_transaction_reasonable",
+          "predicate": "replacement_transaction_reasonable",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-current_price_available",
+          "predicate": "current_price_available",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-specific_performance_claimed",
+          "predicate": "specific_performance_claimed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-performance_objectively_possible",
+          "predicate": "performance_objectively_possible",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-creditor_lost_interest_due_delay",
+          "predicate": "creditor_lost_interest_due_delay",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-substitute_performance_by_creditor",
+          "predicate": "substitute_performance_by_creditor",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-substitute_costs_reasonable_documented",
+          "predicate": "substitute_costs_reasonable_documented",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-individual_specific_thing_due",
+          "predicate": "individual_specific_thing_due",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-thing_transferred_to_protected_third_party",
+          "predicate": "thing_transferred_to_protected_third_party",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-monetary_delay",
+          "predicate": "monetary_delay",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-article_395_claimed",
+          "predicate": "article_395_claimed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-penalty_for_same_monetary_delay",
+          "predicate": "penalty_for_same_monetary_delay",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-article_395_contract_override",
+          "predicate": "article_395_contract_override",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-statutory_rate_basis_proven",
+          "predicate": "statutory_rate_basis_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-interest_period_proven",
+          "predicate": "interest_period_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-damages_above_interest_claimed",
+          "predicate": "damages_above_interest_claimed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-damages_above_interest_proven",
+          "predicate": "damages_above_interest_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-third_party_caused_breach",
+          "predicate": "third_party_caused_breach",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-debtor_responsible_for_third_party",
+          "predicate": "debtor_responsible_for_third_party",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-primary_debtor_claimed",
+          "predicate": "primary_debtor_claimed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-primary_refused_or_no_response",
+          "predicate": "primary_refused_or_no_response",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-subsidiary_debtor_claimed",
+          "predicate": "subsidiary_debtor_claimed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-liability_limit_clause_or_law",
+          "predicate": "liability_limit_clause_or_law",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-intentional_breach",
+          "predicate": "intentional_breach",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-advance_intentional_liability_exclusion",
+          "predicate": "advance_intentional_liability_exclusion",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-debtor_delay",
+          "predicate": "debtor_delay",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-creditor_refused_proper_performance",
+          "predicate": "creditor_refused_proper_performance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-creditor_omitted_required_action",
+          "predicate": "creditor_omitted_required_action",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-creditor_delay_loss_proven",
+          "predicate": "creditor_delay_loss_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-indemnity_agreement",
+          "predicate": "indemnity_agreement",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-indemnity_business_context",
+          "predicate": "indemnity_business_context",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-indemnity_clear",
+          "predicate": "indemnity_clear",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-indemnity_trigger_unrelated_to_breach",
+          "predicate": "indemnity_trigger_unrelated_to_breach",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-indemnity_loss_occurred",
+          "predicate": "indemnity_loss_occurred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-indemnity_amount_or_method_agreed",
+          "predicate": "indemnity_amount_or_method_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "id": "performance-remedies-evidence-indemnity_bad_faith_event_caused",
+          "predicate": "indemnity_bad_faith_event_caused",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk309-328-performance-v1",
+        "synthetic-ru-gk393-4061-remedies-v1",
+        "synthetic-ru-plenum54-performance-guidance-v1",
+        "synthetic-ru-plenum7-remedies-guidance-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-performance-remedies-reviewer"
+    },
     "termination_evidence": {
       "id": "reviewed-termination-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -3037,7 +3899,7 @@
   "result": {
     "request_id": "analysis-request-case-supply-1-v0",
     "case_id": "case-supply-1",
-    "pipeline_version": "contracts-reviewed-analysis-v6",
+    "pipeline_version": "contracts-reviewed-analysis-v7",
     "reviewer_ids": [
       "synthetic-authority-reviewer",
       "synthetic-case-evidence-reviewer",
@@ -3046,6 +3908,7 @@
       "synthetic-liability-reviewer",
       "synthetic-norm-reviewer",
       "synthetic-obligation-dynamics-reviewer",
+      "synthetic-performance-remedies-reviewer",
       "synthetic-security-reviewer",
       "synthetic-temporal-reviewer",
       "synthetic-termination-reviewer"
@@ -3055,6 +3918,7 @@
       "synthetic-case-supply-1-invalidity-evidence",
       "synthetic-case-supply-1-liability-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
+      "synthetic-case-supply-1-performance-remedies-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
       "synthetic-case-supply-1-security-evidence",
       "synthetic-case-supply-1-termination-evidence",
@@ -3065,6 +3929,7 @@
       "synthetic-ru-gk169-172-void-transactions-v1",
       "synthetic-ru-gk173-179-voidable-transactions-v1",
       "synthetic-ru-gk180-181-invalidity-effects-v1",
+      "synthetic-ru-gk309-328-performance-v1",
       "synthetic-ru-gk310-4501-unilateral-model-v1",
       "synthetic-ru-gk329-333-security-framework-v1",
       "synthetic-ru-gk333-penalty-model-v1",
@@ -3074,6 +3939,7 @@
       "synthetic-ru-gk380-3812-deposit-security-payment-v1",
       "synthetic-ru-gk382-390-assignment-v1",
       "synthetic-ru-gk391-3923-debt-transfer-v1",
+      "synthetic-ru-gk393-4061-remedies-v1",
       "synthetic-ru-gk401-liability-model-v1",
       "synthetic-ru-gk407-413-discharge-v1",
       "synthetic-ru-gk414-419-discharge-v1",
@@ -3087,10 +3953,12 @@
       "synthetic-ru-plenum45-suretyship-guidance-v1",
       "synthetic-ru-plenum49-formation-guidance-v1",
       "synthetic-ru-plenum54-party-change-guidance-v1",
+      "synthetic-ru-plenum54-performance-guidance-v1",
       "synthetic-ru-plenum54-security-guidance-v1",
       "synthetic-ru-plenum54-unilateral-guidance-v1",
       "synthetic-ru-plenum6-discharge-guidance-v1",
-      "synthetic-ru-plenum7-liability-guidance-v1"
+      "synthetic-ru-plenum7-liability-guidance-v1",
+      "synthetic-ru-plenum7-remedies-guidance-v1"
     ],
     "formal_translation": {
       "norm_id": "norm-supply-delivery-duty-v0",
@@ -3158,7 +4026,7 @@
     },
     "evidence_mapping": {
       "evidence_id": "reviewed-case-evidence-supply-1-v0",
-      "schema_version": "contracts.case-evidence.v6",
+      "schema_version": "contracts.case-evidence.v7",
       "mapping_version": "contracts-reviewed-evidence-to-facts-v0",
       "formal_rule_id": "obligation-rule:norm-supply-delivery-duty-v0",
       "facts": {
@@ -5364,6 +6232,866 @@
         "Специальные правила банкротства, исполнительного производства и отдельных обязательств проверяются отдельно."
       ]
     },
+    "performance_remedies_evidence_mapping": {
+      "evidence_id": "reviewed-performance-remedies-evidence-supply-1-v0",
+      "schema_version": "contracts.performance-remedies-evidence.v0",
+      "mapping_version": "contracts-reviewed-performance-remedies-to-facts-v0",
+      "facts": {
+        "obligation_exists": true,
+        "breach_established": true,
+        "performance_tendered": true,
+        "subject_conforms": true,
+        "quality_quantity_conform": true,
+        "performance_at_due_time": false,
+        "performance_at_proper_place": true,
+        "performance_to_proper_recipient": true,
+        "debtor_requested_authority_proof": false,
+        "authority_proof_provided": false,
+        "partial_performance_tendered": false,
+        "partial_performance_allowed": false,
+        "monetary_obligation": false,
+        "all_parties_acting_in_business": false,
+        "early_performance_tendered": false,
+        "early_performance_allowed": false,
+        "third_party_performance_tendered": false,
+        "debtor_assigned_third_party_performance": false,
+        "debtor_monetary_delay": false,
+        "third_party_property_right_at_risk": false,
+        "personal_performance_required": false,
+        "demand_obligation": false,
+        "creditor_demand_delivered": false,
+        "statutory_or_agreed_grace_elapsed": false,
+        "creditor_prerequisite_action_required": false,
+        "creditor_prerequisite_action_completed": false,
+        "payment_received_by_creditor_bank": false,
+        "multiple_homogeneous_debts": false,
+        "debtor_designated_debt": false,
+        "debt_designation_valid": false,
+        "payment_insufficient": false,
+        "extra_expenses_caused_by_creditor": false,
+        "alternative_obligation": false,
+        "choice_holder_selected": false,
+        "facultative_obligation": false,
+        "facultative_substitute_tendered": false,
+        "multiple_debtors": false,
+        "solidarity_by_law_or_contract": false,
+        "joint_business_obligation": false,
+        "one_solidary_debtor_performed_full": false,
+        "creditor_claimed_one_solidary_debtor": false,
+        "internal_recourse_shares_proven": false,
+        "reciprocal_obligations": false,
+        "counterperformance_due": false,
+        "counterparty_failed_due_performance": false,
+        "clear_future_nonperformance": false,
+        "suspension_notice_delivered": false,
+        "refusal_notice_delivered": false,
+        "own_counterperformance_tendered": false,
+        "specific_claim_override": false,
+        "loss_claimed": false,
+        "actual_loss_proven": false,
+        "lost_profit_claimed": false,
+        "lost_profit_measures_proven": false,
+        "causation_proven": false,
+        "reasonable_amount_basis": false,
+        "exact_amount_not_established": false,
+        "creditor_mitigation_taken": true,
+        "creditor_contributed_to_loss": false,
+        "replacement_transaction_made": false,
+        "replacement_transaction_reasonable": false,
+        "current_price_available": false,
+        "specific_performance_claimed": false,
+        "performance_objectively_possible": false,
+        "creditor_lost_interest_due_delay": false,
+        "substitute_performance_by_creditor": false,
+        "substitute_costs_reasonable_documented": false,
+        "individual_specific_thing_due": false,
+        "thing_transferred_to_protected_third_party": false,
+        "monetary_delay": false,
+        "article_395_claimed": false,
+        "penalty_for_same_monetary_delay": false,
+        "article_395_contract_override": false,
+        "statutory_rate_basis_proven": false,
+        "interest_period_proven": false,
+        "damages_above_interest_claimed": false,
+        "damages_above_interest_proven": false,
+        "third_party_caused_breach": false,
+        "debtor_responsible_for_third_party": false,
+        "primary_debtor_claimed": false,
+        "primary_refused_or_no_response": false,
+        "subsidiary_debtor_claimed": false,
+        "liability_limit_clause_or_law": false,
+        "intentional_breach": false,
+        "advance_intentional_liability_exclusion": false,
+        "debtor_delay": true,
+        "creditor_refused_proper_performance": false,
+        "creditor_omitted_required_action": false,
+        "creditor_delay_loss_proven": false,
+        "indemnity_agreement": false,
+        "indemnity_business_context": false,
+        "indemnity_clear": false,
+        "indemnity_trigger_unrelated_to_breach": false,
+        "indemnity_loss_occurred": false,
+        "indemnity_amount_or_method_agreed": false,
+        "indemnity_bad_faith_event_caused": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk309-328-performance-v1",
+        "synthetic-ru-gk393-4061-remedies-v1",
+        "synthetic-ru-plenum54-performance-guidance-v1",
+        "synthetic-ru-plenum7-remedies-guidance-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "actual_loss_proven",
+          "assertion_id": "performance-remedies-evidence-actual_loss_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "advance_intentional_liability_exclusion",
+          "assertion_id": "performance-remedies-evidence-advance_intentional_liability_exclusion",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "all_parties_acting_in_business",
+          "assertion_id": "performance-remedies-evidence-all_parties_acting_in_business",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "alternative_obligation",
+          "assertion_id": "performance-remedies-evidence-alternative_obligation",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "article_395_claimed",
+          "assertion_id": "performance-remedies-evidence-article_395_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "article_395_contract_override",
+          "assertion_id": "performance-remedies-evidence-article_395_contract_override",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "authority_proof_provided",
+          "assertion_id": "performance-remedies-evidence-authority_proof_provided",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "breach_established",
+          "assertion_id": "performance-remedies-evidence-breach_established",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "causation_proven",
+          "assertion_id": "performance-remedies-evidence-causation_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "choice_holder_selected",
+          "assertion_id": "performance-remedies-evidence-choice_holder_selected",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "clear_future_nonperformance",
+          "assertion_id": "performance-remedies-evidence-clear_future_nonperformance",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "counterparty_failed_due_performance",
+          "assertion_id": "performance-remedies-evidence-counterparty_failed_due_performance",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "counterperformance_due",
+          "assertion_id": "performance-remedies-evidence-counterperformance_due",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_claimed_one_solidary_debtor",
+          "assertion_id": "performance-remedies-evidence-creditor_claimed_one_solidary_debtor",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_contributed_to_loss",
+          "assertion_id": "performance-remedies-evidence-creditor_contributed_to_loss",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_delay_loss_proven",
+          "assertion_id": "performance-remedies-evidence-creditor_delay_loss_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_demand_delivered",
+          "assertion_id": "performance-remedies-evidence-creditor_demand_delivered",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_lost_interest_due_delay",
+          "assertion_id": "performance-remedies-evidence-creditor_lost_interest_due_delay",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_mitigation_taken",
+          "assertion_id": "performance-remedies-evidence-creditor_mitigation_taken",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_omitted_required_action",
+          "assertion_id": "performance-remedies-evidence-creditor_omitted_required_action",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_prerequisite_action_completed",
+          "assertion_id": "performance-remedies-evidence-creditor_prerequisite_action_completed",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_prerequisite_action_required",
+          "assertion_id": "performance-remedies-evidence-creditor_prerequisite_action_required",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_refused_proper_performance",
+          "assertion_id": "performance-remedies-evidence-creditor_refused_proper_performance",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "current_price_available",
+          "assertion_id": "performance-remedies-evidence-current_price_available",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "damages_above_interest_claimed",
+          "assertion_id": "performance-remedies-evidence-damages_above_interest_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "damages_above_interest_proven",
+          "assertion_id": "performance-remedies-evidence-damages_above_interest_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "debt_designation_valid",
+          "assertion_id": "performance-remedies-evidence-debt_designation_valid",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_assigned_third_party_performance",
+          "assertion_id": "performance-remedies-evidence-debtor_assigned_third_party_performance",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_delay",
+          "assertion_id": "performance-remedies-evidence-debtor_delay",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_designated_debt",
+          "assertion_id": "performance-remedies-evidence-debtor_designated_debt",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_monetary_delay",
+          "assertion_id": "performance-remedies-evidence-debtor_monetary_delay",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_requested_authority_proof",
+          "assertion_id": "performance-remedies-evidence-debtor_requested_authority_proof",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_responsible_for_third_party",
+          "assertion_id": "performance-remedies-evidence-debtor_responsible_for_third_party",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "demand_obligation",
+          "assertion_id": "performance-remedies-evidence-demand_obligation",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "early_performance_allowed",
+          "assertion_id": "performance-remedies-evidence-early_performance_allowed",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "early_performance_tendered",
+          "assertion_id": "performance-remedies-evidence-early_performance_tendered",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "exact_amount_not_established",
+          "assertion_id": "performance-remedies-evidence-exact_amount_not_established",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "extra_expenses_caused_by_creditor",
+          "assertion_id": "performance-remedies-evidence-extra_expenses_caused_by_creditor",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "facultative_obligation",
+          "assertion_id": "performance-remedies-evidence-facultative_obligation",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "facultative_substitute_tendered",
+          "assertion_id": "performance-remedies-evidence-facultative_substitute_tendered",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "indemnity_agreement",
+          "assertion_id": "performance-remedies-evidence-indemnity_agreement",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "indemnity_amount_or_method_agreed",
+          "assertion_id": "performance-remedies-evidence-indemnity_amount_or_method_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "indemnity_bad_faith_event_caused",
+          "assertion_id": "performance-remedies-evidence-indemnity_bad_faith_event_caused",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "indemnity_business_context",
+          "assertion_id": "performance-remedies-evidence-indemnity_business_context",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "indemnity_clear",
+          "assertion_id": "performance-remedies-evidence-indemnity_clear",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "indemnity_loss_occurred",
+          "assertion_id": "performance-remedies-evidence-indemnity_loss_occurred",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "indemnity_trigger_unrelated_to_breach",
+          "assertion_id": "performance-remedies-evidence-indemnity_trigger_unrelated_to_breach",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "individual_specific_thing_due",
+          "assertion_id": "performance-remedies-evidence-individual_specific_thing_due",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "intentional_breach",
+          "assertion_id": "performance-remedies-evidence-intentional_breach",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "interest_period_proven",
+          "assertion_id": "performance-remedies-evidence-interest_period_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "internal_recourse_shares_proven",
+          "assertion_id": "performance-remedies-evidence-internal_recourse_shares_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "joint_business_obligation",
+          "assertion_id": "performance-remedies-evidence-joint_business_obligation",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "liability_limit_clause_or_law",
+          "assertion_id": "performance-remedies-evidence-liability_limit_clause_or_law",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "loss_claimed",
+          "assertion_id": "performance-remedies-evidence-loss_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "lost_profit_claimed",
+          "assertion_id": "performance-remedies-evidence-lost_profit_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "lost_profit_measures_proven",
+          "assertion_id": "performance-remedies-evidence-lost_profit_measures_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "monetary_delay",
+          "assertion_id": "performance-remedies-evidence-monetary_delay",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "monetary_obligation",
+          "assertion_id": "performance-remedies-evidence-monetary_obligation",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "multiple_debtors",
+          "assertion_id": "performance-remedies-evidence-multiple_debtors",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "multiple_homogeneous_debts",
+          "assertion_id": "performance-remedies-evidence-multiple_homogeneous_debts",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "obligation_exists",
+          "assertion_id": "performance-remedies-evidence-obligation_exists",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "one_solidary_debtor_performed_full",
+          "assertion_id": "performance-remedies-evidence-one_solidary_debtor_performed_full",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "own_counterperformance_tendered",
+          "assertion_id": "performance-remedies-evidence-own_counterperformance_tendered",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "partial_performance_allowed",
+          "assertion_id": "performance-remedies-evidence-partial_performance_allowed",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "partial_performance_tendered",
+          "assertion_id": "performance-remedies-evidence-partial_performance_tendered",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "payment_insufficient",
+          "assertion_id": "performance-remedies-evidence-payment_insufficient",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "payment_received_by_creditor_bank",
+          "assertion_id": "performance-remedies-evidence-payment_received_by_creditor_bank",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "penalty_for_same_monetary_delay",
+          "assertion_id": "performance-remedies-evidence-penalty_for_same_monetary_delay",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_at_due_time",
+          "assertion_id": "performance-remedies-evidence-performance_at_due_time",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_at_proper_place",
+          "assertion_id": "performance-remedies-evidence-performance_at_proper_place",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_objectively_possible",
+          "assertion_id": "performance-remedies-evidence-performance_objectively_possible",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_tendered",
+          "assertion_id": "performance-remedies-evidence-performance_tendered",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_to_proper_recipient",
+          "assertion_id": "performance-remedies-evidence-performance_to_proper_recipient",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "personal_performance_required",
+          "assertion_id": "performance-remedies-evidence-personal_performance_required",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "primary_debtor_claimed",
+          "assertion_id": "performance-remedies-evidence-primary_debtor_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "primary_refused_or_no_response",
+          "assertion_id": "performance-remedies-evidence-primary_refused_or_no_response",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "quality_quantity_conform",
+          "assertion_id": "performance-remedies-evidence-quality_quantity_conform",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "reasonable_amount_basis",
+          "assertion_id": "performance-remedies-evidence-reasonable_amount_basis",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "reciprocal_obligations",
+          "assertion_id": "performance-remedies-evidence-reciprocal_obligations",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "refusal_notice_delivered",
+          "assertion_id": "performance-remedies-evidence-refusal_notice_delivered",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "replacement_transaction_made",
+          "assertion_id": "performance-remedies-evidence-replacement_transaction_made",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "replacement_transaction_reasonable",
+          "assertion_id": "performance-remedies-evidence-replacement_transaction_reasonable",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "solidarity_by_law_or_contract",
+          "assertion_id": "performance-remedies-evidence-solidarity_by_law_or_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "specific_claim_override",
+          "assertion_id": "performance-remedies-evidence-specific_claim_override",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "specific_performance_claimed",
+          "assertion_id": "performance-remedies-evidence-specific_performance_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "statutory_or_agreed_grace_elapsed",
+          "assertion_id": "performance-remedies-evidence-statutory_or_agreed_grace_elapsed",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "statutory_rate_basis_proven",
+          "assertion_id": "performance-remedies-evidence-statutory_rate_basis_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "subject_conforms",
+          "assertion_id": "performance-remedies-evidence-subject_conforms",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "subsidiary_debtor_claimed",
+          "assertion_id": "performance-remedies-evidence-subsidiary_debtor_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "substitute_costs_reasonable_documented",
+          "assertion_id": "performance-remedies-evidence-substitute_costs_reasonable_documented",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "substitute_performance_by_creditor",
+          "assertion_id": "performance-remedies-evidence-substitute_performance_by_creditor",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "suspension_notice_delivered",
+          "assertion_id": "performance-remedies-evidence-suspension_notice_delivered",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "thing_transferred_to_protected_third_party",
+          "assertion_id": "performance-remedies-evidence-thing_transferred_to_protected_third_party",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_caused_breach",
+          "assertion_id": "performance-remedies-evidence-third_party_caused_breach",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_performance_tendered",
+          "assertion_id": "performance-remedies-evidence-third_party_performance_tendered",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_property_right_at_risk",
+          "assertion_id": "performance-remedies-evidence-third_party_property_right_at_risk",
+          "source_refs": [
+            "synthetic-case-supply-1-performance-remedies-evidence"
+          ]
+        }
+      ]
+    },
+    "performance_remedies_constraint_set": {
+      "id": "performance-remedies-constraint-set:reviewed-performance-remedies-evidence-supply-1-v0",
+      "model_version": "contracts-performance-remedies-articles-309-328-393-4061-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk309-328-performance-v1",
+        "synthetic-ru-gk393-4061-remedies-v1",
+        "synthetic-ru-plenum54-performance-guidance-v1",
+        "synthetic-ru-plenum7-remedies-guidance-v1"
+      ],
+      "expressions": [
+        "proper_performance == obligation_exists AND tendered AND conforming_subject_quality_quantity_time_place_recipient",
+        "third_party_acceptance == third_party_tendered AND statutory_acceptance_ground AND NOT personal_performance",
+        "solidary_obligation == multiple_debtors AND (law_or_contract OR joint_business_obligation)",
+        "counterperformance_suspension == reciprocal_due AND nonperformance_risk AND delivered_notice",
+        "damages == breach AND claimed_loss AND proven_loss_type AND causation AND reasonable_amount_basis",
+        "article_395_interest == monetary_delay AND claim AND rate_period AND NOT same-delay-penalty-conflict",
+        "creditor_delay == refused_proper_performance OR omitted_required_action",
+        "indemnity == business_agreement AND clear_nonbreach_trigger AND occurred_loss AND amount_method AND NOT bad_faith"
+      ]
+    },
+    "performance_remedies_evaluation": {
+      "constraint_set_id": "performance-remedies-constraint-set:reviewed-performance-remedies-evidence-supply-1-v0",
+      "satisfiable": true,
+      "proper_performance": false,
+      "recipient_authority_gap": false,
+      "partial_performance_acceptance_required": false,
+      "partial_performance_refusal_available": false,
+      "early_performance_permitted": false,
+      "third_party_performance_acceptance_required": false,
+      "third_party_subrogation_issue": false,
+      "demand_obligation_due": false,
+      "creditor_prerequisite_delay": false,
+      "bank_payment_completed": false,
+      "debtor_allocation_effective": false,
+      "default_payment_allocation_issue": false,
+      "creditor_extra_expense_liability_issue": false,
+      "alternative_choice_effective": false,
+      "facultative_substitute_effective": false,
+      "solidary_obligation": false,
+      "solidary_external_discharge": false,
+      "solidary_internal_recourse": false,
+      "counterperformance_suspension_available": false,
+      "counterperformance_refusal_available": false,
+      "counterparty_specific_claim_barred": false,
+      "damages_prerequisites_satisfied": false,
+      "lost_profit_supported": false,
+      "judicial_loss_estimation_required": false,
+      "creditor_fault_reduction_issue": false,
+      "replacement_transaction_damages": false,
+      "current_price_damages": false,
+      "specific_performance_available": false,
+      "substitute_performance_cost_recovery": false,
+      "individual_thing_claim_available": false,
+      "article_395_interest_available": false,
+      "article_395_penalty_conflict": false,
+      "excess_monetary_damages_available": false,
+      "debtor_answers_for_third_party": false,
+      "subsidiary_liability_prerequisites": false,
+      "liability_limit_issue": false,
+      "intentional_liability_exclusion_invalid": false,
+      "debtor_in_delay": true,
+      "creditor_in_delay": false,
+      "debtor_delay_excluded_by_creditor": false,
+      "creditor_delay_damages_issue": false,
+      "indemnity_prerequisites_satisfied": false,
+      "indemnity_bad_faith_bar": false,
+      "competing_remedy_paths": false,
+      "requires_human_performance_remedies_assessment": false,
+      "reasons_ru": [
+        "Активный путь исполнения или средства защиты не подтвержден."
+      ],
+      "warnings_ru": [
+        "Модель не рассчитывает сумму долга, убытков, процентов, регресса или возмещения потерь.",
+        "Разумность расходов, причинная связь, упущенная выгода и снижение ответственности требуют оценки доказательств.",
+        "Специальные правила отдельных договоров, банкротства, потребительских и публичных отношений проверяются отдельно."
+      ]
+    },
     "termination_evidence_mapping": {
       "evidence_id": "reviewed-termination-evidence-supply-1-v0",
       "schema_version": "contracts.termination-evidence.v0",
@@ -5955,7 +7683,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.14.0",
+      "institutional_package_version": "contracts-ru-v0@0.15.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -6558,6 +8286,9 @@
       "Модель не определяет размер уступленного требования, зачета или остатка долга.",
       "Толкование воли на новацию, отступное и прощение долга требует оценки юриста.",
       "Специальные правила банкротства, исполнительного производства и отдельных обязательств проверяются отдельно.",
+      "Модель не рассчитывает сумму долга, убытков, процентов, регресса или возмещения потерь.",
+      "Разумность расходов, причинная связь, упущенная выгода и снижение ответственности требуют оценки доказательств.",
+      "Специальные правила отдельных договоров, банкротства, потребительских и публичных отношений проверяются отдельно.",
       "Модель не подменяет судебную оценку существенности нарушения и изменения обстоятельств.",
       "Специальные правила отдельных видов договоров должны проверяться отдельно.",
       "Момент доставки уведомления и вступления решения в силу устанавливается по доказательствам.",

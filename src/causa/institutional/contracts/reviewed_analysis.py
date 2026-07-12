@@ -84,6 +84,16 @@ from causa.institutional.contracts.obligation_dynamics import (
     evaluate_obligation_dynamics_constraints,
     map_reviewed_obligation_dynamics_evidence,
 )
+from causa.institutional.contracts.performance_remedies import (
+    PERFORMANCE_REMEDIES_EVIDENCE_SCHEMA_VERSION,
+    PerformanceRemediesConstraintSet,
+    PerformanceRemediesEvaluation,
+    PerformanceRemediesEvidenceMappingResult,
+    ReviewedPerformanceRemediesEvidence,
+    build_performance_remedies_constraint_set,
+    evaluate_performance_remedies_constraints,
+    map_reviewed_performance_remedies_evidence,
+)
 from causa.institutional.contracts.temporal import (
     ContractTemporalFacts,
     TemporalEvaluation,
@@ -99,9 +109,9 @@ from causa.reasoning.formal_checks import (
 from causa.reasoning.counterfactual import CounterfactualBudget
 
 
-CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v6"
+CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v7"
 EVIDENCE_MAPPING_VERSION = "contracts-reviewed-evidence-to-facts-v0"
-ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v6"
+ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v7"
 
 
 class ContractEvidencePredicate(str, Enum):
@@ -191,6 +201,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
+    performance_remedies_evidence: ReviewedPerformanceRemediesEvidence
     termination_evidence: ReviewedTerminationEvidence
     liability_evidence: ReviewedLiabilityEvidence
 
@@ -236,6 +247,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     obligation_dynamics_evidence_mapping: ObligationDynamicsEvidenceMappingResult
     obligation_dynamics_constraint_set: ObligationDynamicsConstraintSet
     obligation_dynamics_evaluation: ObligationDynamicsEvaluation
+    performance_remedies_evidence_mapping: PerformanceRemediesEvidenceMappingResult
+    performance_remedies_constraint_set: PerformanceRemediesConstraintSet
+    performance_remedies_evaluation: PerformanceRemediesEvaluation
     termination_evidence_mapping: TerminationEvidenceMappingResult
     termination_constraint_set: TerminationConstraintSet
     termination_evaluation: TerminationEvaluation
@@ -350,6 +364,49 @@ class ReviewedContractAnalysisResult(BaseModel):
             raise ValueError(
                 "Obligation-dynamics proper-performance status does not match case evidence."
             )
+        expected_performance_remedies_set = build_performance_remedies_constraint_set(
+            self.performance_remedies_evidence_mapping
+        )
+        if self.performance_remedies_constraint_set != expected_performance_remedies_set:
+            raise ValueError(
+                "Performance-remedies constraint set does not replay from reviewed evidence."
+            )
+        expected_performance_remedies_evaluation = evaluate_performance_remedies_constraints(
+            expected_performance_remedies_set,
+            self.performance_remedies_evidence_mapping.facts,
+        )
+        if self.performance_remedies_evaluation != expected_performance_remedies_evaluation:
+            raise ValueError(
+                "Performance-remedies evaluation does not replay from reviewed evidence."
+            )
+        performance_facts = self.performance_remedies_evidence_mapping.facts
+        if performance_facts.obligation_exists != self.evidence_mapping.facts.duty_exists:
+            raise ValueError("Performance-remedies obligation status does not match duty evidence.")
+        if performance_facts.breach_established != self.constraint_evaluation.breach_issue:
+            raise ValueError(
+                "Performance-remedies breach status does not match obligation evaluation."
+            )
+        if (
+            performance_facts.performance_tendered
+            != self.obligation_dynamics_evidence_mapping.facts.performance_rendered
+        ):
+            raise ValueError(
+                "Performance-remedies tender status does not match obligation-dynamics evidence."
+            )
+        if performance_facts.loss_claimed != self.evidence_mapping.facts.loss_claimed:
+            raise ValueError("Performance-remedies loss claim does not match case evidence.")
+        if performance_facts.causation_proven != self.evidence_mapping.facts.causation_established:
+            raise ValueError("Performance-remedies causation does not match case evidence.")
+        expected_monetary_delay = (
+            self.evidence_mapping.facts.payment_duty_exists
+            and self.evidence_mapping.facts.payment_due
+            and self.evidence_mapping.facts.payment_missed
+            and not self.evidence_mapping.facts.payment_defense_applies
+        )
+        if performance_facts.monetary_delay != expected_monetary_delay:
+            raise ValueError(
+                "Performance-remedies monetary-delay status does not match payment evidence."
+            )
         expected_termination_set = build_termination_constraint_set(
             self.termination_evidence_mapping
         )
@@ -434,6 +491,10 @@ def _validate_request_integrity(
         raise ValueError(
             "Obligation-dynamics evidence case_id does not match the analysis request."
         )
+    if request.performance_remedies_evidence.case_id != request.case_id:
+        raise ValueError(
+            "Performance-remedies evidence case_id does not match the analysis request."
+        )
     if request.termination_evidence.case_id != request.case_id:
         raise ValueError("Termination evidence case_id does not match the analysis request.")
     if request.liability_evidence.case_id != request.case_id:
@@ -455,6 +516,11 @@ def _validate_request_integrity(
         != OBLIGATION_DYNAMICS_EVIDENCE_SCHEMA_VERSION
     ):
         raise ValueError("Obligation-dynamics evidence uses an unsupported schema version.")
+    if (
+        request.performance_remedies_evidence.schema_version
+        != PERFORMANCE_REMEDIES_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Performance-remedies evidence uses an unsupported schema version.")
     if request.termination_evidence.schema_version != TERMINATION_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Termination evidence uses an unsupported schema version.")
     if request.liability_evidence.schema_version != LIABILITY_EVIDENCE_SCHEMA_VERSION:
@@ -470,6 +536,7 @@ def _validate_request_integrity(
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
+        *request.performance_remedies_evidence.legal_source_refs,
         *request.termination_evidence.legal_source_refs,
         *request.liability_evidence.legal_source_refs,
     }
@@ -482,6 +549,8 @@ def _validate_request_integrity(
     for assertion in request.security_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.obligation_dynamics_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.performance_remedies_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.termination_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -545,6 +614,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Obligation-dynamics legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_dynamics_legal_sources))
+        )
+    invalid_performance_remedies_legal_sources = [
+        source_id
+        for source_id in request.performance_remedies_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_performance_remedies_legal_sources:
+        raise ValueError(
+            "Performance-remedies legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_performance_remedies_legal_sources))
         )
     invalid_termination_legal_sources = [
         source_id
@@ -682,6 +762,11 @@ def run_reviewed_contract_analysis(
         review_status=request.obligation_dynamics_evidence.review_status,
         reviewer_id=request.obligation_dynamics_evidence.reviewer_id,
     )
+    performance_remedies_reviewer_id = _require_reviewed(
+        artifact_name="Performance-remedies evidence",
+        review_status=request.performance_remedies_evidence.review_status,
+        reviewer_id=request.performance_remedies_evidence.reviewer_id,
+    )
     termination_reviewer_id = _require_reviewed(
         artifact_name="Termination evidence",
         review_status=request.termination_evidence.review_status,
@@ -783,6 +868,42 @@ def run_reviewed_contract_analysis(
         dynamics_constraint_set,
         dynamics_evidence_mapping.facts,
     )
+    performance_remedies_evidence_mapping = map_reviewed_performance_remedies_evidence(
+        request.performance_remedies_evidence
+    )
+    performance_facts = performance_remedies_evidence_mapping.facts
+    if performance_facts.obligation_exists != evidence_mapping.facts.duty_exists:
+        raise ValueError("Performance-remedies obligation status does not match duty evidence.")
+    if performance_facts.breach_established != constraint_evaluation.breach_issue:
+        raise ValueError("Performance-remedies breach status does not match obligation evaluation.")
+    if (
+        performance_facts.performance_tendered
+        != dynamics_evidence_mapping.facts.performance_rendered
+    ):
+        raise ValueError(
+            "Performance-remedies tender status does not match obligation-dynamics evidence."
+        )
+    if performance_facts.loss_claimed != evidence_mapping.facts.loss_claimed:
+        raise ValueError("Performance-remedies loss claim does not match case evidence.")
+    if performance_facts.causation_proven != evidence_mapping.facts.causation_established:
+        raise ValueError("Performance-remedies causation does not match case evidence.")
+    expected_monetary_delay = (
+        evidence_mapping.facts.payment_duty_exists
+        and evidence_mapping.facts.payment_due
+        and evidence_mapping.facts.payment_missed
+        and not evidence_mapping.facts.payment_defense_applies
+    )
+    if performance_facts.monetary_delay != expected_monetary_delay:
+        raise ValueError(
+            "Performance-remedies monetary-delay status does not match payment evidence."
+        )
+    performance_remedies_constraint_set = build_performance_remedies_constraint_set(
+        performance_remedies_evidence_mapping
+    )
+    performance_remedies_evaluation = evaluate_performance_remedies_constraints(
+        performance_remedies_constraint_set,
+        performance_facts,
+    )
     security_evidence_mapping = map_reviewed_security_evidence(request.security_evidence)
     if (
         security_evidence_mapping.facts.main_obligation_exists
@@ -840,6 +961,7 @@ def run_reviewed_contract_analysis(
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
+        or performance_remedies_evaluation.requires_human_performance_remedies_assessment
         or termination_evaluation.requires_human_termination_assessment
     )
 
@@ -857,6 +979,7 @@ def run_reviewed_contract_analysis(
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
+                performance_remedies_reviewer_id,
                 termination_reviewer_id,
                 liability_reviewer_id,
             }
@@ -881,6 +1004,9 @@ def run_reviewed_contract_analysis(
         obligation_dynamics_evidence_mapping=dynamics_evidence_mapping,
         obligation_dynamics_constraint_set=dynamics_constraint_set,
         obligation_dynamics_evaluation=dynamics_evaluation,
+        performance_remedies_evidence_mapping=performance_remedies_evidence_mapping,
+        performance_remedies_constraint_set=performance_remedies_constraint_set,
+        performance_remedies_evaluation=performance_remedies_evaluation,
         termination_evidence_mapping=termination_evidence_mapping,
         termination_constraint_set=termination_constraint_set,
         termination_evaluation=termination_evaluation,
@@ -903,6 +1029,7 @@ def run_reviewed_contract_analysis(
             *invalidity_evaluation.warnings_ru,
             *security_evaluation.warnings_ru,
             *dynamics_evaluation.warnings_ru,
+            *performance_remedies_evaluation.warnings_ru,
             *termination_evaluation.warnings_ru,
             *liability_evaluation.warnings_ru,
             "Не является юридической консультацией.",

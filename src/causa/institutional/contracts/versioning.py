@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.15.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v7"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v7"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed performance-remedies evidence is mandatory after obligation evaluation.",
+            "Formal boundaries cover Civil Code articles 309 through 328 and 393 through 406.1.",
+            "Performance, delay, damages, interest, specific relief, and indemnity remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные об исполнении и средствах защиты обязательны после проверки обязательства.",
+            "Формальные границы охватывают статьи 309–328 и 393–406.1 ГК РФ.",
+            "Исполнение, просрочка, убытки, проценты, исполнение в натуре и возмещение потерь разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.14.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

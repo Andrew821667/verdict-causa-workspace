@@ -75,8 +75,8 @@
 - `contracts.obligation-dynamics-evidence.v0`;
 - `contracts-reviewed-obligation-dynamics-to-facts-v0`;
 - `contracts-obligation-dynamics-articles-382-419-v0`;
-- `contracts.case-evidence.v6`;
-- `contracts-reviewed-analysis-v6`;
+- `contracts.case-evidence.v7`;
+- `contracts-reviewed-analysis-v7`;
 - 21 benchmark- и 22 Red Team-сценария.
 
 Артефакт формируется командой `python scripts/export_synthetic_obligation_dynamics_evaluation.py` и сохраняется в `examples/synthetic_obligation_dynamics_evaluation_report.json`.

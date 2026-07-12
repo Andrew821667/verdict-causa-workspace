@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.15.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v7` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v7` | supported synthetic release with reviewed performance and remedies |
 | `0.14.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v6` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v6` | supported synthetic release with reviewed obligation dynamics |
 | `0.13.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v5` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v5` | supported synthetic release with reviewed performance-security paths |
 | `0.12.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v4` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v4` | supported synthetic release with reviewed transaction invalidity |
@@ -19,9 +20,11 @@
 | `0.2.0` | `0.1.0` | `contracts.norm.v0` | n/a | `contracts-json-to-formal-v0` | n/a | historical synthetic release |
 | `0.1.0` | `0.1.0` | `contracts.norm.v0` | n/a | `contracts-json-to-formal-v0` | n/a | historical synthetic release |
 
-This matrix is intentionally exact rather than a claim that every `0.14.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
+This matrix is intentionally exact rather than a claim that every `0.15.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+For `0.14.0` to `0.15.0`, preserve the old trace and collect separately reviewed `contracts.performance-remedies-evidence.v0` input. Do not infer proper performance, third-party acceptance, solidarity, suspension, damages, article 395 interest, creditor delay, or indemnity from former duty, breach, discharge, security, or liability outputs. Regenerate all current artifacts under evidence schema `v7`, pipeline `v7`, and Russian templates `ru-v9`.
 
 For `0.13.0` to `0.14.0`, preserve the old trace and collect separately reviewed `contracts.obligation-dynamics-evidence.v0` input. Do not infer assignment, debt transfer, performance discharge, set-off, novation, forgiveness, impossibility, or surviving claims from former duty, breach, security, or termination outputs. Regenerate all current artifacts under evidence schema `v6`, pipeline `v6`, and Russian templates `ru-v8`.
 
@@ -63,4 +66,4 @@ A future release that changes the reviewed norm schema, formal predicates, autho
 
 ## Rollback Path
 
-If `0.14.0` proves unsafe or incompatible, pin `0.13.0` together with core `0.1.0`, norm schema `contracts.norm.v0`, evidence schema `contracts.case-evidence.v5`, translator `contracts-json-to-formal-v0`, and pipeline `contracts-reviewed-analysis-v5`. Preserve `0.14.0` obligation-dynamics evidence as audit evidence without backfilling conclusions. No package version is production-approved in Phase 0.
+If `0.15.0` proves unsafe or incompatible, pin `0.14.0` together with core `0.1.0`, norm schema `contracts.norm.v0`, evidence schema `contracts.case-evidence.v6`, translator `contracts-json-to-formal-v0`, and pipeline `contracts-reviewed-analysis-v6`. Preserve `0.15.0` performance-remedies evidence as audit evidence without backfilling conclusions. No package version is production-approved in Phase 0.
