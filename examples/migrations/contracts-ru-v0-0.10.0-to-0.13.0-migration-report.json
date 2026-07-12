@@ -1,51 +1,12 @@
 {
-  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.8.0:to-0.12.0",
-  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.8.0",
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.10.0:to-0.13.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.10.0",
   "artifact_type": "phase0_decision_trace",
-  "source_package_version": "0.8.0",
-  "target_package_version": "0.12.0",
+  "source_package_version": "0.10.0",
+  "target_package_version": "0.13.0",
   "disposition": "requires_regeneration",
   "disposition_label_ru": "Требуется повторное формирование",
   "steps": [
-    {
-      "from_version": "0.8.0",
-      "to_version": "0.9.0",
-      "reasons": [
-        "Reviewed inputs now require a separate liability-evidence contract.",
-        "Analysis and translation outputs include formal article 333 and 401 prerequisites."
-      ],
-      "reasons_ru": [
-        "Проверенные входы теперь требуют отдельный контракт данных об ответственности.",
-        "Анализ и объяснение включают формальные предпосылки статей 333 и 401 ГК РФ."
-      ],
-      "replay_commands": [
-        "python scripts/export_synthetic_liability_evaluation.py",
-        "python scripts/export_synthetic_reviewed_contract_analysis.py",
-        "python scripts/export_synthetic_management_policy_registry.py",
-        "python scripts/export_synthetic_translation_bundle.py",
-        "python scripts/export_phase0_demo_trace.py",
-        "python scripts/export_phase0_readiness_report.py"
-      ]
-    },
-    {
-      "from_version": "0.9.0",
-      "to_version": "0.10.0",
-      "reasons": [
-        "Reviewed inputs now require a separate contract-formation evidence contract.",
-        "Analysis and Russian translation outputs include formal articles 432, 435, 438, and 443 boundaries."
-      ],
-      "reasons_ru": [
-        "Проверенные входы теперь требуют отдельный контракт данных о заключении договора.",
-        "Анализ и русское объяснение включают формальные границы статей 432, 435, 438 и 443 ГК РФ."
-      ],
-      "replay_commands": [
-        "python scripts/export_synthetic_formation_evaluation.py",
-        "python scripts/export_synthetic_reviewed_contract_analysis.py",
-        "python scripts/export_synthetic_translation_bundle.py",
-        "python scripts/export_phase0_demo_trace.py",
-        "python scripts/export_phase0_readiness_report.py"
-      ]
-    },
     {
       "from_version": "0.10.0",
       "to_version": "0.11.0",
@@ -78,6 +39,25 @@
       ],
       "replay_commands": [
         "python scripts/export_synthetic_invalidity_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.12.0",
+      "to_version": "0.13.0",
+      "reasons": [
+        "Reviewed inputs now require a separate performance-security evidence contract.",
+        "Analysis and Russian translation distinguish the security mechanisms and enforcement paths under articles 329 through 381.2."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об обеспечении исполнения обязательств.",
+        "Анализ и русское объяснение разделяют способы обеспечения и маршруты их реализации по статьям 329–381.2 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_security_evaluation.py",
         "python scripts/export_synthetic_reviewed_contract_analysis.py",
         "python scripts/export_synthetic_translation_bundle.py",
         "python scripts/export_phase0_demo_trace.py",

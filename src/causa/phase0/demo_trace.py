@@ -199,6 +199,11 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                 for assertion in analysis_request.invalidity_evidence.assertions
                 for source_ref in assertion.source_refs
             ),
+            *(
+                source_ref
+                for assertion in analysis_request.security_evidence.assertions
+                for source_ref in assertion.source_refs
+            ),
         }
     )
     source_nodes = [
@@ -300,6 +305,19 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     ),
                     "voidable_ground_detected": (
                         analysis_result.invalidity_evaluation.voidable_ground_detected
+                    ),
+                    "security_evidence_mapping_id": (
+                        analysis_result.security_evidence_mapping.evidence_id
+                    ),
+                    "security_constraint_set_id": analysis_result.security_constraint_set.id,
+                    "security_model_version": (
+                        analysis_result.security_constraint_set.model_version
+                    ),
+                    "security_mechanism_detected": (
+                        analysis_result.security_evaluation.security_mechanism_detected
+                    ),
+                    "security_enforcement_available": (
+                        analysis_result.security_evaluation.security_enforcement_available
                     ),
                     "termination_evidence_mapping_id": (
                         analysis_result.termination_evidence_mapping.evidence_id

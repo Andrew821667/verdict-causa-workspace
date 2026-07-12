@@ -1,12 +1,100 @@
 {
-  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.6.0:to-0.12.0",
-  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.6.0",
-  "artifact_type": "phase0_decision_trace",
-  "source_package_version": "0.6.0",
-  "target_package_version": "0.12.0",
+  "id": "migration:legacy-synthetic-supply-benchmark-report-v0.1.0:to-0.13.0",
+  "artifact_id": "legacy-synthetic-supply-benchmark-report-v0.1.0",
+  "artifact_type": "benchmark_suite_report",
+  "source_package_version": "0.1.0",
+  "target_package_version": "0.13.0",
   "disposition": "requires_regeneration",
   "disposition_label_ru": "Требуется повторное формирование",
   "steps": [
+    {
+      "from_version": "0.1.0",
+      "to_version": "0.2.0",
+      "reasons": [
+        "Authority policy gained constitutional and regulatory levels.",
+        "Authority outcomes must be replayed against the expanded candidate model."
+      ],
+      "reasons_ru": [
+        "Модель юридической силы дополнена конституционным и подзаконным уровнями.",
+        "Выводы о приоритете источников должны быть повторно получены на расширенной модели."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_supply_benchmarks.py",
+        "python scripts/export_synthetic_supply_red_team.py"
+      ]
+    },
+    {
+      "from_version": "0.2.0",
+      "to_version": "0.3.0",
+      "reasons": [
+        "Constraint results gained remedy, causation, and limitation fields.",
+        "Formal outcomes must be regenerated instead of inferred from prior output."
+      ],
+      "reasons_ru": [
+        "Результаты формальной проверки дополнены полями убытков, причинной связи и исковой давности.",
+        "Формальные выводы должны быть пересчитаны, а не выведены из прежнего результата."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_synthetic_supply_benchmarks.py",
+        "python scripts/export_synthetic_supply_red_team.py"
+      ]
+    },
+    {
+      "from_version": "0.3.0",
+      "to_version": "0.4.0",
+      "reasons": [
+        "Analysis inputs gained reviewed case, temporal, and authority contracts.",
+        "Decision traces now retain fact provenance and the complete reviewed analysis result."
+      ],
+      "reasons_ru": [
+        "Входы анализа дополнены проверенными фактами дела, временными данными и источниками-кандидатами.",
+        "Трассировка теперь сохраняет происхождение фактов и полный результат проверенного анализа."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.4.0",
+      "to_version": "0.5.0",
+      "reasons": [
+        "Russian human-readable legal reasons were added to exported evaluations.",
+        "Phase 0 traces now include an executed governance record and ru-RU audit text."
+      ],
+      "reasons_ru": [
+        "В экспортируемые результаты добавлены русские юридически значимые причины.",
+        "Трассировка Этапа 0 теперь содержит исполненный governance-журнал и аудит на русском языке."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_governance_lifecycle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_supply_benchmarks.py",
+        "python scripts/export_synthetic_supply_red_team.py"
+      ]
+    },
+    {
+      "from_version": "0.5.0",
+      "to_version": "0.6.0",
+      "reasons": [
+        "Policy coordinates now require an immutable snapshot id and content hash.",
+        "Phase 0 traces embed the active registry state and replayable policy lifecycle."
+      ],
+      "reasons_ru": [
+        "Координаты политики теперь требуют ID неизменяемого снимка и hash содержимого.",
+        "Трассировка Этапа 0 включает активное состояние реестра и воспроизводимый жизненный цикл политики."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_management_policy_registry.py",
+        "python scripts/export_synthetic_governance_lifecycle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
     {
       "from_version": "0.6.0",
       "to_version": "0.7.0",
@@ -117,6 +205,25 @@
       ],
       "replay_commands": [
         "python scripts/export_synthetic_invalidity_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.12.0",
+      "to_version": "0.13.0",
+      "reasons": [
+        "Reviewed inputs now require a separate performance-security evidence contract.",
+        "Analysis and Russian translation distinguish the security mechanisms and enforcement paths under articles 329 through 381.2."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об обеспечении исполнения обязательств.",
+        "Анализ и русское объяснение разделяют способы обеспечения и маршруты их реализации по статьям 329–381.2 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_security_evaluation.py",
         "python scripts/export_synthetic_reviewed_contract_analysis.py",
         "python scripts/export_synthetic_translation_bundle.py",
         "python scripts/export_phase0_demo_trace.py",

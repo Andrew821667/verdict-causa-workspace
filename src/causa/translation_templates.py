@@ -73,7 +73,7 @@ def compute_translation_template_hash(
 
 
 def build_russian_translation_template_set() -> TranslationTemplateSet:
-    version = "translation-template-ru-v6"
+    version = "translation-template-ru-v7"
     templates = (
         TranslationTemplateDefinition(
             level=TranslationLevel.EXECUTIVE,
@@ -105,6 +105,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Формальная проверка\n{formal_result_ru}\n\n"
                 "Заключение договора\n{formation_professional_ru}\n\n"
                 "Действительность сделки\n{invalidity_professional_ru}\n\n"
+                "Обеспечение исполнения обязательств\n{security_professional_ru}\n\n"
                 "Изменение и расторжение договора\n{termination_professional_ru}\n\n"
                 "Контрфактическая чувствительность\n{counterfactual_professional_ru}\n\n"
                 "Ответственность и неустойка\n{liability_professional_ru}\n\n"
@@ -119,13 +120,14 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Формальная проверка",
                 "Заключение договора",
                 "Действительность сделки",
+                "Обеспечение исполнения обязательств",
                 "Изменение и расторжение договора",
                 "Контрфактическая чувствительность",
                 "Ответственность и неустойка",
                 "Ограничения и действия эксперта",
             ),
             min_characters=800,
-            max_characters=5_500,
+            max_characters=7_000,
         ),
         TranslationTemplateDefinition(
             level=TranslationLevel.FORENSIC,
@@ -138,6 +140,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Разрешение юридической силы\n{authority_trace_ru}\n\n"
                 "Модель заключения договора (статьи 432, 435, 438 и 443 ГК РФ)\n{formation_forensic_ru}\n\n"
                 "Модель недействительности сделки (статьи 166–181 ГК РФ)\n{invalidity_forensic_ru}\n\n"
+                "Модель обеспечения исполнения (статьи 329–381.2 ГК РФ)\n{security_forensic_ru}\n\n"
                 "Модель изменения и расторжения договора (статьи 450–453 ГК РФ)\n{termination_forensic_ru}\n\n"
                 "Результаты формальной проверки\n{all_assertions_ru}\n\n"
                 "Governance-журнал кандидата\n{governance_ru}\n\n"
@@ -155,6 +158,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Разрешение юридической силы",
                 "Модель заключения договора (статьи 432, 435, 438 и 443 ГК РФ)",
                 "Модель недействительности сделки (статьи 166–181 ГК РФ)",
+                "Модель обеспечения исполнения (статьи 329–381.2 ГК РФ)",
                 "Модель изменения и расторжения договора (статьи 450–453 ГК РФ)",
                 "Результаты формальной проверки",
                 "Governance-журнал кандидата",
@@ -164,7 +168,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Ограничения",
             ),
             min_characters=1_600,
-            max_characters=52_000,
+            max_characters=70_000,
         ),
     )
     return TranslationTemplateSet(

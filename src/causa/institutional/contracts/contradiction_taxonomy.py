@@ -16,4 +16,11 @@ CONTRACT_CONTRADICTION_TYPES = [
     "invalidity_standing_conflict",
     "invalidity_effect_conflict",
     "restitution_scope_conflict",
+    "accessory_independent_security_conflict",
+    "pledge_opposability_conflict",
+    "pledge_enforcement_route_conflict",
+    "surety_scope_termination_conflict",
+    "guarantee_demand_compliance_conflict",
+    "deposit_advance_classification_conflict",
+    "security_payment_credit_return_conflict",
 ]

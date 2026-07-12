@@ -64,6 +64,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.security import (
+    SECURITY_EVIDENCE_SCHEMA_VERSION,
+    ReviewedSecurityEvidence,
+    SecurityConstraintSet,
+    SecurityEvaluation,
+    SecurityEvidenceMappingResult,
+    build_security_constraint_set,
+    evaluate_security_constraints,
+    map_reviewed_security_evidence,
+)
 from causa.institutional.contracts.temporal import (
     ContractTemporalFacts,
     TemporalEvaluation,
@@ -79,9 +89,9 @@ from causa.reasoning.formal_checks import (
 from causa.reasoning.counterfactual import CounterfactualBudget
 
 
-CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v4"
+CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v5"
 EVIDENCE_MAPPING_VERSION = "contracts-reviewed-evidence-to-facts-v0"
-ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v4"
+ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v5"
 
 
 class ContractEvidencePredicate(str, Enum):
@@ -169,6 +179,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     authority_input: ReviewedAuthorityInput
     formation_evidence: ReviewedFormationEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
+    security_evidence: ReviewedSecurityEvidence
     termination_evidence: ReviewedTerminationEvidence
     liability_evidence: ReviewedLiabilityEvidence
 
@@ -208,6 +219,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
+    security_evidence_mapping: SecurityEvidenceMappingResult
+    security_constraint_set: SecurityConstraintSet
+    security_evaluation: SecurityEvaluation
     termination_evidence_mapping: TerminationEvidenceMappingResult
     termination_constraint_set: TerminationConstraintSet
     termination_evaluation: TerminationEvaluation
@@ -253,6 +267,30 @@ class ReviewedContractAnalysisResult(BaseModel):
             raise ValueError(
                 "Formation and invalidity results do not match contractual duty evidence."
             )
+        expected_security_set = build_security_constraint_set(self.security_evidence_mapping)
+        if self.security_constraint_set != expected_security_set:
+            raise ValueError("Security constraint set does not replay from reviewed evidence.")
+        expected_security_evaluation = evaluate_security_constraints(
+            expected_security_set,
+            self.security_evidence_mapping.facts,
+        )
+        if self.security_evaluation != expected_security_evaluation:
+            raise ValueError("Security evaluation does not replay from reviewed evidence.")
+        if (
+            self.security_evidence_mapping.facts.main_obligation_exists
+            != self.formation_evaluation.contract_concluded_prerequisites
+        ):
+            raise ValueError("Security main obligation status does not match formation result.")
+        if (
+            self.security_evidence_mapping.facts.main_obligation_invalid
+            != self.invalidity_evaluation.contractual_effect_displaced
+        ):
+            raise ValueError("Security invalidity status does not match invalidity result.")
+        if (
+            self.security_evidence_mapping.facts.main_obligation_breached
+            != self.constraint_evaluation.breach_issue
+        ):
+            raise ValueError("Security breach status does not match obligation evaluation.")
         expected_termination_set = build_termination_constraint_set(
             self.termination_evidence_mapping
         )
@@ -331,6 +369,8 @@ def _validate_request_integrity(
         raise ValueError("Formation evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
+    if request.security_evidence.case_id != request.case_id:
+        raise ValueError("Security evidence case_id does not match the analysis request.")
     if request.termination_evidence.case_id != request.case_id:
         raise ValueError("Termination evidence case_id does not match the analysis request.")
     if request.liability_evidence.case_id != request.case_id:
@@ -345,6 +385,8 @@ def _validate_request_integrity(
         raise ValueError("Formation evidence uses an unsupported schema version.")
     if request.invalidity_evidence.schema_version != INVALIDITY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Invalidity evidence uses an unsupported schema version.")
+    if request.security_evidence.schema_version != SECURITY_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Security evidence uses an unsupported schema version.")
     if request.termination_evidence.schema_version != TERMINATION_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Termination evidence uses an unsupported schema version.")
     if request.liability_evidence.schema_version != LIABILITY_EVIDENCE_SCHEMA_VERSION:
@@ -358,6 +400,7 @@ def _validate_request_integrity(
         *request.authority_input.candidate_source_ids,
         *request.formation_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
+        *request.security_evidence.legal_source_refs,
         *request.termination_evidence.legal_source_refs,
         *request.liability_evidence.legal_source_refs,
     }
@@ -366,6 +409,8 @@ def _validate_request_integrity(
     for assertion in request.formation_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.security_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.termination_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -407,6 +452,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Invalidity legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_invalidity_legal_sources))
+        )
+    invalid_security_legal_sources = [
+        source_id
+        for source_id in request.security_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_security_legal_sources:
+        raise ValueError(
+            "Security legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_security_legal_sources))
         )
     invalid_termination_legal_sources = [
         source_id
@@ -534,6 +590,11 @@ def run_reviewed_contract_analysis(
         review_status=request.invalidity_evidence.review_status,
         reviewer_id=request.invalidity_evidence.reviewer_id,
     )
+    security_reviewer_id = _require_reviewed(
+        artifact_name="Security evidence",
+        review_status=request.security_evidence.review_status,
+        reviewer_id=request.security_evidence.reviewer_id,
+    )
     termination_reviewer_id = _require_reviewed(
         artifact_name="Termination evidence",
         review_status=request.termination_evidence.review_status,
@@ -605,6 +666,27 @@ def run_reviewed_contract_analysis(
         constraint_set,
         evidence_mapping.facts,
     )
+    security_evidence_mapping = map_reviewed_security_evidence(request.security_evidence)
+    if (
+        security_evidence_mapping.facts.main_obligation_exists
+        != formation_evaluation.contract_concluded_prerequisites
+    ):
+        raise ValueError("Security main obligation status does not match formation result.")
+    if (
+        security_evidence_mapping.facts.main_obligation_invalid
+        != invalidity_evaluation.contractual_effect_displaced
+    ):
+        raise ValueError("Security invalidity status does not match invalidity result.")
+    if (
+        security_evidence_mapping.facts.main_obligation_breached
+        != constraint_evaluation.breach_issue
+    ):
+        raise ValueError("Security breach status does not match obligation evaluation.")
+    security_constraint_set = build_security_constraint_set(security_evidence_mapping)
+    security_evaluation = evaluate_security_constraints(
+        security_constraint_set,
+        security_evidence_mapping.facts,
+    )
     termination_evidence_mapping = map_reviewed_termination_evidence(request.termination_evidence)
     termination_constraint_set = build_termination_constraint_set(termination_evidence_mapping)
     termination_evaluation = evaluate_termination_constraints(
@@ -639,6 +721,7 @@ def run_reviewed_contract_analysis(
         authority_evaluation.selected_source_id is None
         or formation_evaluation.requires_human_formation_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
+        or security_evaluation.requires_human_security_assessment
         or termination_evaluation.requires_human_termination_assessment
     )
 
@@ -654,6 +737,7 @@ def run_reviewed_contract_analysis(
                 authority_reviewer_id,
                 formation_reviewer_id,
                 invalidity_reviewer_id,
+                security_reviewer_id,
                 termination_reviewer_id,
                 liability_reviewer_id,
             }
@@ -672,6 +756,9 @@ def run_reviewed_contract_analysis(
         invalidity_evidence_mapping=invalidity_evidence_mapping,
         invalidity_constraint_set=invalidity_constraint_set,
         invalidity_evaluation=invalidity_evaluation,
+        security_evidence_mapping=security_evidence_mapping,
+        security_constraint_set=security_constraint_set,
+        security_evaluation=security_evaluation,
         termination_evidence_mapping=termination_evidence_mapping,
         termination_constraint_set=termination_constraint_set,
         termination_evaluation=termination_evaluation,
@@ -692,6 +779,7 @@ def run_reviewed_contract_analysis(
             "содержательная правовая оценка остается за экспертом.",
             *formation_evaluation.warnings_ru,
             *invalidity_evaluation.warnings_ru,
+            *security_evaluation.warnings_ru,
             *termination_evaluation.warnings_ru,
             *liability_evaluation.warnings_ru,
             "Не является юридической консультацией.",

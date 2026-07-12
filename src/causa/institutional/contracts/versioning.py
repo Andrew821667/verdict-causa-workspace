@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.13.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v5"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v5"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed performance-security evidence is mandatory after obligation evaluation.",
+            "Formal boundaries cover Civil Code articles 329 through 381.2.",
+            "Pledge, retention, suretyship, independent guarantee, deposit, and security payment remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные об обеспечении исполнения обязательны после проверки основного обязательства.",
+            "Формальные границы охватывают статьи 329–381.2 ГК РФ.",
+            "Залог, удержание, поручительство, независимая гарантия, задаток и обеспечительный платеж разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.12.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

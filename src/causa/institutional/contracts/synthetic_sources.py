@@ -466,6 +466,159 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk329-333-security-framework-v1",
+        title="Синтетическая проверенная модель общих правил обеспечения и неустойки",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: действительность основного обязательства, "
+            "акцессорность обеспечения и письменная форма неустойки проверяются раздельно."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "security_articles_329_333",
+            "legal_reference": "ГК РФ, статьи 329–333",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk334-360-pledge-retention-v1",
+        title="Синтетическая проверенная модель залога и удержания",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: возникновение и противопоставимость залога, "
+            "основания и порядок обращения взыскания, а также удержание вещи разделены."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "security_articles_334_360",
+            "legal_reference": "ГК РФ, статьи 334–360",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk361-367-suretyship-v1",
+        title="Синтетическая проверенная модель поручительства",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: форма, объем, характер ответственности, "
+            "изменение основного обязательства, перевод долга и прекращение поручительства "
+            "проверяются независимо."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "security_articles_361_367",
+            "legal_reference": "ГК РФ, статьи 361–367",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk368-379-independent-guarantee-v1",
+        title="Синтетическая проверенная модель независимой гарантии",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: независимость гарантии, допустимый гарант, "
+            "форма, содержание, срок и соответствие требования проверяются отдельно."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "security_articles_368_379",
+            "legal_reference": "ГК РФ, статьи 368–379",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk380-3812-deposit-security-payment-v1",
+        title="Синтетическая проверенная модель задатка и обеспечительного платежа",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: квалификация задатка, последствия "
+            "ответственности сторон, зачет и возврат обеспечительного платежа разделены."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "security_articles_380_3812",
+            "legal_reference": "ГК РФ, статьи 380–381.2",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-plenum54-security-guidance-v1",
+        title="Синтетическая модель разъяснений Пленума ВС РФ об обязательствах",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление разъяснений: способы обеспечения применяются "
+            "в составе проверяемой структуры обязательства и не подменяют основной долг."
+        ),
+        valid_from="2016-11-22",
+        metadata={
+            "synthetic": True,
+            "topic": "security_general_guidance",
+            "legal_reference": "Постановление Пленума ВС РФ от 22.11.2016 № 54",
+            "basis_url": "https://vsrf.ru/documents/own/8524/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-plenum23-pledge-guidance-v1",
+        title="Синтетическая модель разъяснений Пленума ВС РФ о залоге вещей",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление разъяснений: основания взыскания, запрет при "
+            "незначительном нарушении, судебный и внесудебный маршруты проверяются раздельно."
+        ),
+        valid_from="2023-06-27",
+        metadata={
+            "synthetic": True,
+            "topic": "security_pledge_guidance",
+            "legal_reference": "Постановление Пленума ВС РФ от 27.06.2023 № 23",
+            "basis_url": "https://www.vsrf.ru/documents/own/32601/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-plenum45-suretyship-guidance-v1",
+        title="Синтетическая модель разъяснений Пленума ВС РФ о поручительстве",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление разъяснений: поручитель исполняет собственную "
+            "обязанность, а объем, срок, возражения и переход прав требуют отдельной проверки."
+        ),
+        valid_from="2020-12-24",
+        metadata={
+            "synthetic": True,
+            "topic": "security_suretyship_guidance",
+            "legal_reference": "Постановление Пленума ВС РФ от 24.12.2020 № 45",
+            "basis_url": "https://www.vsrf.ru/documents/own/29544/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-security-evidence",
+        title="Синтетическая проверенная запись фактов об обеспечении исполнения",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: основное обязательство и нарушение подтверждены, "
+            "но отдельный способ обеспечения в демонстрационном деле не установлен."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "security_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk401-liability-model-v1",
         title="Синтетическая проверенная модель оснований ответственности по статье 401 ГК РФ",
         source_type=SourceType.STATUTE,

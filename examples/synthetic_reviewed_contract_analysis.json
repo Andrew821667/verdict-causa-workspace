@@ -234,6 +234,149 @@
       }
     },
     {
+      "id": "synthetic-ru-gk329-333-security-framework-v1",
+      "title": "Синтетическая проверенная модель общих правил обеспечения и неустойки",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: действительность основного обязательства, акцессорность обеспечения и письменная форма неустойки проверяются раздельно.",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "security_articles_329_333",
+        "legal_reference": "ГК РФ, статьи 329–333",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk334-360-pledge-retention-v1",
+      "title": "Синтетическая проверенная модель залога и удержания",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: возникновение и противопоставимость залога, основания и порядок обращения взыскания, а также удержание вещи разделены.",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "security_articles_334_360",
+        "legal_reference": "ГК РФ, статьи 334–360",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk361-367-suretyship-v1",
+      "title": "Синтетическая проверенная модель поручительства",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: форма, объем, характер ответственности, изменение основного обязательства, перевод долга и прекращение поручительства проверяются независимо.",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "security_articles_361_367",
+        "legal_reference": "ГК РФ, статьи 361–367",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk368-379-independent-guarantee-v1",
+      "title": "Синтетическая проверенная модель независимой гарантии",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: независимость гарантии, допустимый гарант, форма, содержание, срок и соответствие требования проверяются отдельно.",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "security_articles_368_379",
+        "legal_reference": "ГК РФ, статьи 368–379",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk380-3812-deposit-security-payment-v1",
+      "title": "Синтетическая проверенная модель задатка и обеспечительного платежа",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: квалификация задатка, последствия ответственности сторон, зачет и возврат обеспечительного платежа разделены.",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "security_articles_380_3812",
+        "legal_reference": "ГК РФ, статьи 380–381.2",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-plenum54-security-guidance-v1",
+      "title": "Синтетическая модель разъяснений Пленума ВС РФ об обязательствах",
+      "source_type": "case_law",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление разъяснений: способы обеспечения применяются в составе проверяемой структуры обязательства и не подменяют основной долг.",
+      "valid_from": "2016-11-22",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "security_general_guidance",
+        "legal_reference": "Постановление Пленума ВС РФ от 22.11.2016 № 54",
+        "basis_url": "https://vsrf.ru/documents/own/8524/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-plenum23-pledge-guidance-v1",
+      "title": "Синтетическая модель разъяснений Пленума ВС РФ о залоге вещей",
+      "source_type": "case_law",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление разъяснений: основания взыскания, запрет при незначительном нарушении, судебный и внесудебный маршруты проверяются раздельно.",
+      "valid_from": "2023-06-27",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "security_pledge_guidance",
+        "legal_reference": "Постановление Пленума ВС РФ от 27.06.2023 № 23",
+        "basis_url": "https://www.vsrf.ru/documents/own/32601/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-plenum45-suretyship-guidance-v1",
+      "title": "Синтетическая модель разъяснений Пленума ВС РФ о поручительстве",
+      "source_type": "case_law",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление разъяснений: поручитель исполняет собственную обязанность, а объем, срок, возражения и переход прав требуют отдельной проверки.",
+      "valid_from": "2020-12-24",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "security_suretyship_guidance",
+        "legal_reference": "Постановление Пленума ВС РФ от 24.12.2020 № 45",
+        "basis_url": "https://www.vsrf.ru/documents/own/29544/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-security-evidence",
+      "title": "Синтетическая проверенная запись фактов об обеспечении исполнения",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: основное обязательство и нарушение подтверждены, но отдельный способ обеспечения в демонстрационном деле не установлен.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "security_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk450-453-termination-model-v1",
       "title": "Синтетическая проверенная модель изменения и расторжения договора по статьям 450–453 ГК РФ",
       "source_type": "statute",
@@ -422,7 +565,7 @@
     "case_evidence": {
       "id": "reviewed-case-evidence-supply-1-v0",
       "case_id": "case-supply-1",
-      "schema_version": "contracts.case-evidence.v4",
+      "schema_version": "contracts.case-evidence.v5",
       "assertions": [
         {
           "id": "evidence-duty_exists",
@@ -1122,6 +1265,505 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-invalidity-reviewer"
     },
+    "security_evidence": {
+      "id": "reviewed-security-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.security-evidence.v0",
+      "assertions": [
+        {
+          "id": "security-evidence-main_obligation_exists",
+          "predicate": "main_obligation_exists",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-main_obligation_breached",
+          "predicate": "main_obligation_breached",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-main_obligation_invalid",
+          "predicate": "main_obligation_invalid",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-secured_amount_proven",
+          "predicate": "secured_amount_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-creditor_demand_made",
+          "predicate": "creditor_demand_made",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-creditor_good_faith",
+          "predicate": "creditor_good_faith",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-penalty_agreed",
+          "predicate": "penalty_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-penalty_writing_observed",
+          "predicate": "penalty_writing_observed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-penalty_trigger_occurred",
+          "predicate": "penalty_trigger_occurred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-pledge_created",
+          "predicate": "pledge_created",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-pledge_form_observed",
+          "predicate": "pledge_form_observed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-pledged_asset_identified",
+          "predicate": "pledged_asset_identified",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-pledgor_owns_or_authorized",
+          "predicate": "pledgor_owns_or_authorized",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-pledge_registration_required",
+          "predicate": "pledge_registration_required",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-pledge_registration_completed",
+          "predicate": "pledge_registration_completed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-third_party_knew_pledge",
+          "predicate": "third_party_knew_pledge",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-foreclosure_ground_exists",
+          "predicate": "foreclosure_ground_exists",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-breach_insignificant",
+          "predicate": "breach_insignificant",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-secured_claim_manifestly_disproportionate",
+          "predicate": "secured_claim_manifestly_disproportionate",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-extrajudicial_foreclosure_agreed",
+          "predicate": "extrajudicial_foreclosure_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-extrajudicial_form_observed",
+          "predicate": "extrajudicial_form_observed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-judicial_foreclosure_mandatory",
+          "predicate": "judicial_foreclosure_mandatory",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-foreclosure_notice_delivered",
+          "predicate": "foreclosure_notice_delivered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-asset_lawfully_in_creditor_possession",
+          "predicate": "asset_lawfully_in_creditor_possession",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-asset_return_due",
+          "predicate": "asset_return_due",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-retention_secured_claim_due",
+          "predicate": "retention_secured_claim_due",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-claim_related_to_asset",
+          "predicate": "claim_related_to_asset",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-parties_acting_in_business",
+          "predicate": "parties_acting_in_business",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-suretyship_created",
+          "predicate": "suretyship_created",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-suretyship_writing_observed",
+          "predicate": "suretyship_writing_observed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-surety_scope_proven",
+          "predicate": "surety_scope_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-surety_subsidiary_agreed",
+          "predicate": "surety_subsidiary_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-surety_term_expired",
+          "predicate": "surety_term_expired",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-obligation_changed_increases_surety",
+          "predicate": "obligation_changed_increases_surety",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-surety_consented_to_change",
+          "predicate": "surety_consented_to_change",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-debt_transferred",
+          "predicate": "debt_transferred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-surety_consented_to_new_debtor",
+          "predicate": "surety_consented_to_new_debtor",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-creditor_refused_proper_performance",
+          "predicate": "creditor_refused_proper_performance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-surety_performed",
+          "predicate": "surety_performed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-independent_guarantee_issued",
+          "predicate": "independent_guarantee_issued",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-guarantor_eligible",
+          "predicate": "guarantor_eligible",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-guarantee_reproducible_form",
+          "predicate": "guarantee_reproducible_form",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-guarantee_essential_terms_identifiable",
+          "predicate": "guarantee_essential_terms_identifiable",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-guarantee_demand_timely",
+          "predicate": "guarantee_demand_timely",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-guarantee_demand_complies",
+          "predicate": "guarantee_demand_complies",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-guarantee_expired",
+          "predicate": "guarantee_expired",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-guarantee_payment_made",
+          "predicate": "guarantee_payment_made",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-beneficiary_abuse_proven",
+          "predicate": "beneficiary_abuse_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-payment_transferred_at_conclusion",
+          "predicate": "payment_transferred_at_conclusion",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-payment_identified_as_deposit_in_writing",
+          "predicate": "payment_identified_as_deposit_in_writing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-deposit_nature_doubtful",
+          "predicate": "deposit_nature_doubtful",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-performance_impossible_without_fault",
+          "predicate": "performance_impossible_without_fault",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-agreement_terminated_before_performance",
+          "predicate": "agreement_terminated_before_performance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-deposit_giver_responsible",
+          "predicate": "deposit_giver_responsible",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-deposit_recipient_responsible",
+          "predicate": "deposit_recipient_responsible",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-security_payment_agreed",
+          "predicate": "security_payment_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-security_payment_funded",
+          "predicate": "security_payment_funded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-secured_circumstance_occurred",
+          "predicate": "secured_circumstance_occurred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-security_payment_credited",
+          "predicate": "security_payment_credited",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "id": "security-evidence-security_payment_return_condition_occurred",
+          "predicate": "security_payment_return_condition_occurred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk329-333-security-framework-v1",
+        "synthetic-ru-gk334-360-pledge-retention-v1",
+        "synthetic-ru-gk361-367-suretyship-v1",
+        "synthetic-ru-gk368-379-independent-guarantee-v1",
+        "synthetic-ru-gk380-3812-deposit-security-payment-v1",
+        "synthetic-ru-plenum54-security-guidance-v1",
+        "synthetic-ru-plenum23-pledge-guidance-v1",
+        "synthetic-ru-plenum45-suretyship-guidance-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-security-reviewer"
+    },
     "termination_evidence": {
       "id": "reviewed-termination-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -1603,7 +2245,7 @@
   "result": {
     "request_id": "analysis-request-case-supply-1-v0",
     "case_id": "case-supply-1",
-    "pipeline_version": "contracts-reviewed-analysis-v4",
+    "pipeline_version": "contracts-reviewed-analysis-v5",
     "reviewer_ids": [
       "synthetic-authority-reviewer",
       "synthetic-case-evidence-reviewer",
@@ -1611,6 +2253,7 @@
       "synthetic-invalidity-reviewer",
       "synthetic-liability-reviewer",
       "synthetic-norm-reviewer",
+      "synthetic-security-reviewer",
       "synthetic-temporal-reviewer",
       "synthetic-termination-reviewer"
     ],
@@ -1619,6 +2262,7 @@
       "synthetic-case-supply-1-invalidity-evidence",
       "synthetic-case-supply-1-liability-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
+      "synthetic-case-supply-1-security-evidence",
       "synthetic-case-supply-1-termination-evidence",
       "synthetic-ru-contract-supply-delivery-duty-v1",
       "synthetic-ru-contract-supply-delivery-duty-v2",
@@ -1628,15 +2272,23 @@
       "synthetic-ru-gk173-179-voidable-transactions-v1",
       "synthetic-ru-gk180-181-invalidity-effects-v1",
       "synthetic-ru-gk310-4501-unilateral-model-v1",
+      "synthetic-ru-gk329-333-security-framework-v1",
       "synthetic-ru-gk333-penalty-model-v1",
+      "synthetic-ru-gk334-360-pledge-retention-v1",
+      "synthetic-ru-gk361-367-suretyship-v1",
+      "synthetic-ru-gk368-379-independent-guarantee-v1",
+      "synthetic-ru-gk380-3812-deposit-security-payment-v1",
       "synthetic-ru-gk401-liability-model-v1",
       "synthetic-ru-gk432-contract-formation-model-v1",
       "synthetic-ru-gk435-offer-model-v1",
       "synthetic-ru-gk438-443-acceptance-model-v1",
       "synthetic-ru-gk450-453-termination-model-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
+      "synthetic-ru-plenum23-pledge-guidance-v1",
       "synthetic-ru-plenum25-invalidity-guidance-v1",
+      "synthetic-ru-plenum45-suretyship-guidance-v1",
       "synthetic-ru-plenum49-formation-guidance-v1",
+      "synthetic-ru-plenum54-security-guidance-v1",
       "synthetic-ru-plenum54-unilateral-guidance-v1",
       "synthetic-ru-plenum7-liability-guidance-v1"
     ],
@@ -1706,7 +2358,7 @@
     },
     "evidence_mapping": {
       "evidence_id": "reviewed-case-evidence-supply-1-v0",
-      "schema_version": "contracts.case-evidence.v4",
+      "schema_version": "contracts.case-evidence.v5",
       "mapping_version": "contracts-reviewed-evidence-to-facts-v0",
       "formal_rule_id": "obligation-rule:norm-supply-delivery-duty-v0",
       "facts": {
@@ -2570,6 +3222,581 @@
         "Специальные основания и последствия отдельных сделок проверяются отдельно."
       ]
     },
+    "security_evidence_mapping": {
+      "evidence_id": "reviewed-security-evidence-supply-1-v0",
+      "schema_version": "contracts.security-evidence.v0",
+      "mapping_version": "contracts-reviewed-security-to-facts-v0",
+      "facts": {
+        "main_obligation_exists": true,
+        "main_obligation_breached": true,
+        "main_obligation_invalid": false,
+        "secured_amount_proven": false,
+        "creditor_demand_made": false,
+        "creditor_good_faith": true,
+        "penalty_agreed": false,
+        "penalty_writing_observed": false,
+        "penalty_trigger_occurred": false,
+        "pledge_created": false,
+        "pledge_form_observed": false,
+        "pledged_asset_identified": false,
+        "pledgor_owns_or_authorized": false,
+        "pledge_registration_required": false,
+        "pledge_registration_completed": false,
+        "third_party_knew_pledge": false,
+        "foreclosure_ground_exists": false,
+        "breach_insignificant": false,
+        "secured_claim_manifestly_disproportionate": false,
+        "extrajudicial_foreclosure_agreed": false,
+        "extrajudicial_form_observed": false,
+        "judicial_foreclosure_mandatory": false,
+        "foreclosure_notice_delivered": false,
+        "asset_lawfully_in_creditor_possession": false,
+        "asset_return_due": false,
+        "retention_secured_claim_due": false,
+        "claim_related_to_asset": false,
+        "parties_acting_in_business": false,
+        "suretyship_created": false,
+        "suretyship_writing_observed": false,
+        "surety_scope_proven": false,
+        "surety_subsidiary_agreed": false,
+        "surety_term_expired": false,
+        "obligation_changed_increases_surety": false,
+        "surety_consented_to_change": false,
+        "debt_transferred": false,
+        "surety_consented_to_new_debtor": false,
+        "creditor_refused_proper_performance": false,
+        "surety_performed": false,
+        "independent_guarantee_issued": false,
+        "guarantor_eligible": false,
+        "guarantee_reproducible_form": false,
+        "guarantee_essential_terms_identifiable": false,
+        "guarantee_demand_timely": false,
+        "guarantee_demand_complies": false,
+        "guarantee_expired": false,
+        "guarantee_payment_made": false,
+        "beneficiary_abuse_proven": false,
+        "payment_transferred_at_conclusion": false,
+        "payment_identified_as_deposit_in_writing": false,
+        "deposit_nature_doubtful": false,
+        "performance_impossible_without_fault": false,
+        "agreement_terminated_before_performance": false,
+        "deposit_giver_responsible": false,
+        "deposit_recipient_responsible": false,
+        "security_payment_agreed": false,
+        "security_payment_funded": false,
+        "secured_circumstance_occurred": false,
+        "security_payment_credited": false,
+        "security_payment_return_condition_occurred": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk329-333-security-framework-v1",
+        "synthetic-ru-gk334-360-pledge-retention-v1",
+        "synthetic-ru-gk361-367-suretyship-v1",
+        "synthetic-ru-gk368-379-independent-guarantee-v1",
+        "synthetic-ru-gk380-3812-deposit-security-payment-v1",
+        "synthetic-ru-plenum54-security-guidance-v1",
+        "synthetic-ru-plenum23-pledge-guidance-v1",
+        "synthetic-ru-plenum45-suretyship-guidance-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "agreement_terminated_before_performance",
+          "assertion_id": "security-evidence-agreement_terminated_before_performance",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "asset_lawfully_in_creditor_possession",
+          "assertion_id": "security-evidence-asset_lawfully_in_creditor_possession",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "asset_return_due",
+          "assertion_id": "security-evidence-asset_return_due",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "beneficiary_abuse_proven",
+          "assertion_id": "security-evidence-beneficiary_abuse_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "breach_insignificant",
+          "assertion_id": "security-evidence-breach_insignificant",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "claim_related_to_asset",
+          "assertion_id": "security-evidence-claim_related_to_asset",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_demand_made",
+          "assertion_id": "security-evidence-creditor_demand_made",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_good_faith",
+          "assertion_id": "security-evidence-creditor_good_faith",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_refused_proper_performance",
+          "assertion_id": "security-evidence-creditor_refused_proper_performance",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "debt_transferred",
+          "assertion_id": "security-evidence-debt_transferred",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposit_giver_responsible",
+          "assertion_id": "security-evidence-deposit_giver_responsible",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposit_nature_doubtful",
+          "assertion_id": "security-evidence-deposit_nature_doubtful",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposit_recipient_responsible",
+          "assertion_id": "security-evidence-deposit_recipient_responsible",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "extrajudicial_foreclosure_agreed",
+          "assertion_id": "security-evidence-extrajudicial_foreclosure_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "extrajudicial_form_observed",
+          "assertion_id": "security-evidence-extrajudicial_form_observed",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "foreclosure_ground_exists",
+          "assertion_id": "security-evidence-foreclosure_ground_exists",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "foreclosure_notice_delivered",
+          "assertion_id": "security-evidence-foreclosure_notice_delivered",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "guarantee_demand_complies",
+          "assertion_id": "security-evidence-guarantee_demand_complies",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "guarantee_demand_timely",
+          "assertion_id": "security-evidence-guarantee_demand_timely",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "guarantee_essential_terms_identifiable",
+          "assertion_id": "security-evidence-guarantee_essential_terms_identifiable",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "guarantee_expired",
+          "assertion_id": "security-evidence-guarantee_expired",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "guarantee_payment_made",
+          "assertion_id": "security-evidence-guarantee_payment_made",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "guarantee_reproducible_form",
+          "assertion_id": "security-evidence-guarantee_reproducible_form",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "guarantor_eligible",
+          "assertion_id": "security-evidence-guarantor_eligible",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "independent_guarantee_issued",
+          "assertion_id": "security-evidence-independent_guarantee_issued",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "judicial_foreclosure_mandatory",
+          "assertion_id": "security-evidence-judicial_foreclosure_mandatory",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "main_obligation_breached",
+          "assertion_id": "security-evidence-main_obligation_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "main_obligation_exists",
+          "assertion_id": "security-evidence-main_obligation_exists",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "main_obligation_invalid",
+          "assertion_id": "security-evidence-main_obligation_invalid",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "obligation_changed_increases_surety",
+          "assertion_id": "security-evidence-obligation_changed_increases_surety",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "parties_acting_in_business",
+          "assertion_id": "security-evidence-parties_acting_in_business",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "payment_identified_as_deposit_in_writing",
+          "assertion_id": "security-evidence-payment_identified_as_deposit_in_writing",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "payment_transferred_at_conclusion",
+          "assertion_id": "security-evidence-payment_transferred_at_conclusion",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "penalty_agreed",
+          "assertion_id": "security-evidence-penalty_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "penalty_trigger_occurred",
+          "assertion_id": "security-evidence-penalty_trigger_occurred",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "penalty_writing_observed",
+          "assertion_id": "security-evidence-penalty_writing_observed",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_impossible_without_fault",
+          "assertion_id": "security-evidence-performance_impossible_without_fault",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "pledge_created",
+          "assertion_id": "security-evidence-pledge_created",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "pledge_form_observed",
+          "assertion_id": "security-evidence-pledge_form_observed",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "pledge_registration_completed",
+          "assertion_id": "security-evidence-pledge_registration_completed",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "pledge_registration_required",
+          "assertion_id": "security-evidence-pledge_registration_required",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "pledged_asset_identified",
+          "assertion_id": "security-evidence-pledged_asset_identified",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "pledgor_owns_or_authorized",
+          "assertion_id": "security-evidence-pledgor_owns_or_authorized",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "retention_secured_claim_due",
+          "assertion_id": "security-evidence-retention_secured_claim_due",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "secured_amount_proven",
+          "assertion_id": "security-evidence-secured_amount_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "secured_circumstance_occurred",
+          "assertion_id": "security-evidence-secured_circumstance_occurred",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "secured_claim_manifestly_disproportionate",
+          "assertion_id": "security-evidence-secured_claim_manifestly_disproportionate",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "security_payment_agreed",
+          "assertion_id": "security-evidence-security_payment_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "security_payment_credited",
+          "assertion_id": "security-evidence-security_payment_credited",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "security_payment_funded",
+          "assertion_id": "security-evidence-security_payment_funded",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "security_payment_return_condition_occurred",
+          "assertion_id": "security-evidence-security_payment_return_condition_occurred",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "surety_consented_to_change",
+          "assertion_id": "security-evidence-surety_consented_to_change",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "surety_consented_to_new_debtor",
+          "assertion_id": "security-evidence-surety_consented_to_new_debtor",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "surety_performed",
+          "assertion_id": "security-evidence-surety_performed",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "surety_scope_proven",
+          "assertion_id": "security-evidence-surety_scope_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "surety_subsidiary_agreed",
+          "assertion_id": "security-evidence-surety_subsidiary_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "surety_term_expired",
+          "assertion_id": "security-evidence-surety_term_expired",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "suretyship_created",
+          "assertion_id": "security-evidence-suretyship_created",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "suretyship_writing_observed",
+          "assertion_id": "security-evidence-suretyship_writing_observed",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_knew_pledge",
+          "assertion_id": "security-evidence-third_party_knew_pledge",
+          "source_refs": [
+            "synthetic-case-supply-1-security-evidence"
+          ]
+        }
+      ]
+    },
+    "security_constraint_set": {
+      "id": "security-constraint-set:reviewed-security-evidence-supply-1-v0",
+      "model_version": "contracts-performance-security-articles-329-3812-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk329-333-security-framework-v1",
+        "synthetic-ru-gk334-360-pledge-retention-v1",
+        "synthetic-ru-gk361-367-suretyship-v1",
+        "synthetic-ru-gk368-379-independent-guarantee-v1",
+        "synthetic-ru-gk380-3812-deposit-security-payment-v1",
+        "synthetic-ru-plenum54-security-guidance-v1",
+        "synthetic-ru-plenum23-pledge-guidance-v1",
+        "synthetic-ru-plenum45-suretyship-guidance-v1"
+      ],
+      "expressions": [
+        "accessory_security_displaced_by_main_invalidity == main_obligation_invalid AND accessory_security_created",
+        "penalty_security_enforceable == valid_main_obligation AND breach AND written_penalty AND trigger",
+        "pledge_valid_between_parties == valid_main_obligation AND pledge_created AND form AND asset AND authority",
+        "pledge_opposable_to_third_parties == pledge_valid_between_parties AND (NOT registration_required OR registration_completed OR third_party_knew)",
+        "pledge_foreclosure_bar == breach_insignificant AND secured_claim_manifestly_disproportionate",
+        "pledge_foreclosure_prerequisites == pledge_valid_between_parties AND breach AND foreclosure_ground AND amount_proven AND NOT bar",
+        "pledge_extrajudicial_route == foreclosure_prerequisites AND agreement AND form AND notice AND NOT judicial_mandatory",
+        "retention_available == lawful_possession AND return_due AND claim_due AND (claim_related_to_asset OR parties_acting_in_business)",
+        "surety_enforceable == valid_main_obligation AND written_surety AND scope AND NOT terminated",
+        "guarantee_demand_payable == effective_independent_guarantee AND timely_compliant_demand AND NOT abuse",
+        "deposit_proven == transferred_payment AND written_deposit AND NOT doubt",
+        "security_payment_credit_available == active_security_payment AND secured_event",
+        "security_enforcement_available == OR(enforceable mechanism outputs)"
+      ]
+    },
+    "security_evaluation": {
+      "constraint_set_id": "security-constraint-set:reviewed-security-evidence-supply-1-v0",
+      "satisfiable": true,
+      "accessory_security_displaced_by_main_invalidity": false,
+      "penalty_security_enforceable": false,
+      "pledge_valid_between_parties": false,
+      "pledge_opposable_to_third_parties": false,
+      "pledge_foreclosure_bar": false,
+      "pledge_foreclosure_prerequisites": false,
+      "pledge_judicial_route": false,
+      "pledge_extrajudicial_route": false,
+      "retention_available": false,
+      "retention_enforcement_issue": false,
+      "surety_enforceable": false,
+      "surety_terminated": false,
+      "surety_scope_change_excluded": false,
+      "surety_solidary_liability": false,
+      "surety_subsidiary_liability": false,
+      "surety_regress_issue": false,
+      "guarantee_formally_effective": false,
+      "guarantee_demand_payable": false,
+      "guarantee_refusal_ground": false,
+      "guarantee_survives_main_invalidity": false,
+      "guarantee_regress_issue": false,
+      "deposit_proven": false,
+      "payment_treated_as_advance": false,
+      "deposit_retained": false,
+      "deposit_return_single": false,
+      "deposit_return_double": false,
+      "deposit_losses_issue": false,
+      "security_payment_active": false,
+      "security_payment_credit_available": false,
+      "security_payment_return_issue": false,
+      "security_mechanism_detected": false,
+      "security_enforcement_available": false,
+      "competing_security_paths": false,
+      "main_obligation_unaffected_by_security_defect": false,
+      "requires_human_security_assessment": false,
+      "reasons_ru": [
+        "Активный способ обеспечения текущими фактами не подтвержден."
+      ],
+      "warnings_ru": [
+        "Модель не определяет стоимость предмета залога и размер обеспеченного требования.",
+        "Добросовестность, злоупотребление, несоразмерность и порядок реализации оценивает юрист.",
+        "Специальные правила ипотеки, банкротства и отдельных гарантий проверяются отдельно."
+      ]
+    },
     "termination_evidence_mapping": {
       "evidence_id": "reviewed-termination-evidence-supply-1-v0",
       "schema_version": "contracts.termination-evidence.v0",
@@ -3161,7 +4388,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.12.0",
+      "institutional_package_version": "contracts-ru-v0@0.13.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -3758,6 +4985,9 @@
       "Квалификация основания ничтожности или оспоримости требует правовой оценки.",
       "Модель не признает сделку недействительной и не определяет размер реституции автоматически.",
       "Специальные основания и последствия отдельных сделок проверяются отдельно.",
+      "Модель не определяет стоимость предмета залога и размер обеспеченного требования.",
+      "Добросовестность, злоупотребление, несоразмерность и порядок реализации оценивает юрист.",
+      "Специальные правила ипотеки, банкротства и отдельных гарантий проверяются отдельно.",
       "Модель не подменяет судебную оценку существенности нарушения и изменения обстоятельств.",
       "Специальные правила отдельных видов договоров должны проверяться отдельно.",
       "Момент доставки уведомления и вступления решения в силу устанавливается по доказательствам.",

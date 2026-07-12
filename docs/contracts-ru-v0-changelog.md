@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.13.0 - 2026-07-12
+
+- Adds mandatory reviewed performance-security evidence with 60 provenance-backed predicates.
+- Covers general accessory rules, penalty, pledge, retention, suretyship, independent guarantee, deposit, and security payment under Civil Code articles 329–381.2.
+- Separates creation, third-party opposability, enforcement prerequisites, judicial and extrajudicial pledge routes, termination, regress, credit, and return issues.
+- Preserves the independent nature of guarantees and the main obligation when a security instrument itself is defective.
+- Adds 16 benchmarks, 16 adversarial checks, official-source metadata, and Russian professional/forensic explanation sections.
+- Upgrades evidence to `contracts.case-evidence.v5`, analysis to `contracts-reviewed-analysis-v5`, and Russian templates to `ru-v7`.
+
 ## 0.12.0 - 2026-07-12
 
 - Adds mandatory reviewed transaction-invalidity evidence with 51 provenance-backed predicates.

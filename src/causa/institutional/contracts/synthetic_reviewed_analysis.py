@@ -35,6 +35,11 @@ from causa.institutional.contracts.invalidity import (
     InvalidityEvidencePredicate,
     ReviewedInvalidityEvidence,
 )
+from causa.institutional.contracts.security import (
+    ReviewedSecurityEvidence,
+    SecurityEvidenceAssertion,
+    SecurityEvidencePredicate,
+)
 from causa.institutional.contracts.synthetic_sources import (
     get_synthetic_contract_source,
 )
@@ -57,6 +62,15 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk180-181-invalidity-effects-v1",
     "synthetic-ru-plenum25-invalidity-guidance-v1",
     "synthetic-case-supply-1-invalidity-evidence",
+    "synthetic-ru-gk329-333-security-framework-v1",
+    "synthetic-ru-gk334-360-pledge-retention-v1",
+    "synthetic-ru-gk361-367-suretyship-v1",
+    "synthetic-ru-gk368-379-independent-guarantee-v1",
+    "synthetic-ru-gk380-3812-deposit-security-payment-v1",
+    "synthetic-ru-plenum54-security-guidance-v1",
+    "synthetic-ru-plenum23-pledge-guidance-v1",
+    "synthetic-ru-plenum45-suretyship-guidance-v1",
+    "synthetic-case-supply-1-security-evidence",
     "synthetic-ru-gk450-453-termination-model-v1",
     "synthetic-ru-gk310-4501-unilateral-model-v1",
     "synthetic-ru-plenum54-unilateral-guidance-v1",
@@ -81,6 +95,10 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
     termination_values[TerminationEvidencePredicate.ACCRUED_CLAIMS_EXIST] = True
     invalidity_values = {predicate: False for predicate in InvalidityEvidencePredicate}
     invalidity_values[InvalidityEvidencePredicate.TRANSACTION_CONCLUDED] = True
+    security_values = {predicate: False for predicate in SecurityEvidencePredicate}
+    security_values[SecurityEvidencePredicate.MAIN_OBLIGATION_EXISTS] = True
+    security_values[SecurityEvidencePredicate.MAIN_OBLIGATION_BREACHED] = True
+    security_values[SecurityEvidencePredicate.CREDITOR_GOOD_FAITH] = True
     return ReviewedContractAnalysisRequest(
         id="analysis-request-case-supply-1-v0",
         case_id="case-supply-1",
@@ -229,6 +247,31 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-invalidity-reviewer",
+        ),
+        security_evidence=ReviewedSecurityEvidence(
+            id="reviewed-security-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                SecurityEvidenceAssertion(
+                    id=f"security-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=security_values[predicate],
+                    source_refs=("synthetic-case-supply-1-security-evidence",),
+                )
+                for predicate in SecurityEvidencePredicate
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk329-333-security-framework-v1",
+                "synthetic-ru-gk334-360-pledge-retention-v1",
+                "synthetic-ru-gk361-367-suretyship-v1",
+                "synthetic-ru-gk368-379-independent-guarantee-v1",
+                "synthetic-ru-gk380-3812-deposit-security-payment-v1",
+                "synthetic-ru-plenum54-security-guidance-v1",
+                "synthetic-ru-plenum23-pledge-guidance-v1",
+                "synthetic-ru-plenum45-suretyship-guidance-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-security-reviewer",
         ),
         termination_evidence=ReviewedTerminationEvidence(
             id="reviewed-termination-evidence-supply-1-v0",

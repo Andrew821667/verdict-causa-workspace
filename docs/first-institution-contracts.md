@@ -18,7 +18,6 @@ They also exercise defeasible reasoning, principles and balancing, lex specialis
 
 ## Out of scope for Phase 0
 
-- Invalidity of transactions.
 - Unjust enrichment.
 - Tort liability.
 - Special contract types other than supply.
@@ -43,3 +42,5 @@ Release `0.10.0` adds a separately reviewed contract-formation evidence contract
 Release `0.11.0` adds separately reviewed evidence and formal paths for agreement-based, judicial, and unilateral change or termination under articles 310 and 450–453 of the Russian Civil Code. It keeps grounds, procedure, effective legal consequences, surviving accrued claims, restitution issues, and termination losses separate. Judicial prerequisites never substitute for an effective court judgment.
 
 Release `0.12.0` adds reviewed transaction-invalidity evidence and formal boundaries for articles 166–181 of the Russian Civil Code. It separates void and voidable grounds, standing, limitation, judgment, estoppel, partial invalidity, restitution, and additional damages before ordinary contractual effects are evaluated.
+
+Release `0.13.0` adds reviewed performance-security evidence and formal boundaries for articles 329–381.2 of the Russian Civil Code. It separates penalty, pledge, retention, suretyship, independent guarantee, deposit, and security payment, including accessory effects, third-party opposability, enforcement routes, termination, regress, credit, and return issues.

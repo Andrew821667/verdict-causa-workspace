@@ -210,6 +210,22 @@ def _invalidity_refs(
     return sorted(references)
 
 
+def _security_refs(
+    result: ReviewedContractAnalysisResult,
+    *fact_names: str,
+) -> list[str]:
+    references = {
+        *result.security_evidence_mapping.legal_source_refs,
+        *(
+            source_ref
+            for item in result.security_evidence_mapping.provenance
+            if item.fact_name in fact_names
+            for source_ref in item.source_refs
+        ),
+    }
+    return sorted(references)
+
+
 def build_translation_assertions(
     request: ReviewedContractAnalysisRequest,
     result: ReviewedContractAnalysisResult,
@@ -221,6 +237,7 @@ def build_translation_assertions(
     liability = result.liability_evaluation
     formation = result.formation_evaluation
     invalidity = result.invalidity_evaluation
+    security = result.security_evaluation
     termination = result.termination_evaluation
     critical_scenario = (
         next(
@@ -428,6 +445,128 @@ def build_translation_assertions(
                 "party_b_performed",
                 "return_in_kind_possible",
                 "value_of_performance_proven",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SECURITY_MECHANISM_DETECTED,
+            value=security.security_mechanism_detected,
+            text_ru=(
+                "В деле выявлен формально действующий способ обеспечения исполнения."
+                if security.security_mechanism_detected
+                else "Действующий способ обеспечения исполнения не подтвержден."
+            ),
+            source_refs=_security_refs(
+                result,
+                *[item.fact_name for item in result.security_evidence_mapping.provenance],
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SECURITY_ENFORCEMENT_AVAILABLE,
+            value=security.security_enforcement_available,
+            text_ru=(
+                "Подтвержден как минимум один формальный маршрут реализации обеспечения."
+                if security.security_enforcement_available
+                else "Полный набор условий реализации обеспечения не подтвержден."
+            ),
+            source_refs=_security_refs(result, "main_obligation_breached", "secured_amount_proven"),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.PLEDGE_FORECLOSURE_PREREQUISITES,
+            value=security.pledge_foreclosure_prerequisites,
+            text_ru=(
+                "Формальные предпосылки обращения взыскания на предмет залога подтверждены."
+                if security.pledge_foreclosure_prerequisites
+                else "Предпосылки обращения взыскания на предмет залога подтверждены не полностью."
+            ),
+            source_refs=_security_refs(
+                result,
+                "pledge_created",
+                "pledged_asset_identified",
+                "foreclosure_ground_exists",
+                "breach_insignificant",
+                "secured_claim_manifestly_disproportionate",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.RETENTION_AVAILABLE,
+            value=security.retention_available,
+            text_ru=(
+                "Формальные условия удержания вещи подтверждены."
+                if security.retention_available
+                else "Формальные условия удержания вещи не подтверждены."
+            ),
+            source_refs=_security_refs(
+                result,
+                "asset_lawfully_in_creditor_possession",
+                "asset_return_due",
+                "retention_secured_claim_due",
+                "claim_related_to_asset",
+                "parties_acting_in_business",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SURETY_ENFORCEABLE,
+            value=security.surety_enforceable,
+            text_ru=(
+                "Формальные условия требования к поручителю подтверждены."
+                if security.surety_enforceable
+                else "Требование к поручителю не прошло полный набор формальных условий."
+            ),
+            source_refs=_security_refs(
+                result,
+                "suretyship_created",
+                "suretyship_writing_observed",
+                "surety_scope_proven",
+                "surety_term_expired",
+                "debt_transferred",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.GUARANTEE_DEMAND_PAYABLE,
+            value=security.guarantee_demand_payable,
+            text_ru=(
+                "Требование по независимой гарантии формально соответствует условиям выплаты."
+                if security.guarantee_demand_payable
+                else "Условия выплаты по независимой гарантии подтверждены не полностью."
+            ),
+            source_refs=_security_refs(
+                result,
+                "independent_guarantee_issued",
+                "guarantee_demand_timely",
+                "guarantee_demand_complies",
+                "guarantee_expired",
+                "beneficiary_abuse_proven",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.DEPOSIT_PROVEN,
+            value=security.deposit_proven,
+            text_ru=(
+                "Платеж формально квалифицирован как задаток."
+                if security.deposit_proven
+                else "Квалификация платежа как задатка не подтверждена; возможна квалификация аванса."
+            ),
+            source_refs=_security_refs(
+                result,
+                "payment_transferred_at_conclusion",
+                "payment_identified_as_deposit_in_writing",
+                "deposit_nature_doubtful",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SECURITY_PAYMENT_CREDIT_AVAILABLE,
+            value=security.security_payment_credit_available,
+            text_ru=(
+                "Наступили формальные условия зачета обеспечительного платежа."
+                if security.security_payment_credit_available
+                else "Условия зачета обеспечительного платежа не подтверждены."
+            ),
+            source_refs=_security_refs(
+                result,
+                "security_payment_agreed",
+                "security_payment_funded",
+                "secured_circumstance_occurred",
+                "security_payment_credited",
             ),
         ),
         TranslationAssertion(
@@ -967,6 +1106,7 @@ def _render_context(
     liability = result.liability_evaluation
     formation = result.formation_evaluation
     invalidity = result.invalidity_evaluation
+    security = result.security_evaluation
     termination = result.termination_evaluation
     formation_professional_ru = "\n".join(
         [
@@ -1017,6 +1157,33 @@ def _render_context(
             ],
             *[f"- Результат: {reason}" for reason in invalidity.reasons_ru],
             *[f"- Ограничение: {warning}" for warning in invalidity.warnings_ru],
+        ]
+    )
+    security_professional_ru = "\n".join(
+        [
+            *[f"- {reason}" for reason in security.reasons_ru],
+            "- Неустойка, залог, удержание, поручительство, независимая гарантия, задаток и обеспечительный платеж проверены раздельно.",
+            "- Стоимость обеспечения, добросовестность и процессуальный порядок реализации требуют оценки юриста.",
+        ]
+    )
+    security_forensic_ru = "\n".join(
+        [
+            f"- Набор ограничений: {result.security_constraint_set.id}.",
+            f"- Версия модели: {result.security_constraint_set.model_version}.",
+            f"- Отображение доказательств: {result.security_evidence_mapping.mapping_version}.",
+            f"- Правовые источники: {', '.join(result.security_evidence_mapping.legal_source_refs)}.",
+            *[
+                f"- Правило формальной модели обеспечения: {expression}."
+                for expression in result.security_constraint_set.expressions
+            ],
+            *[
+                f"- Проверенный факт {item.fact_name}: исходное утверждение="
+                f"{item.assertion_id}; доказательственные источники="
+                f"{', '.join(item.source_refs)}."
+                for item in result.security_evidence_mapping.provenance
+            ],
+            *[f"- Результат: {reason}" for reason in security.reasons_ru],
+            *[f"- Ограничение: {warning}" for warning in security.warnings_ru],
         ]
     )
     termination_professional_ru = "\n".join(
@@ -1092,6 +1259,8 @@ def _render_context(
         "formation_forensic_ru": formation_forensic_ru,
         "invalidity_professional_ru": invalidity_professional_ru,
         "invalidity_forensic_ru": invalidity_forensic_ru,
+        "security_professional_ru": security_professional_ru,
+        "security_forensic_ru": security_forensic_ru,
         "termination_professional_ru": termination_professional_ru,
         "termination_forensic_ru": termination_forensic_ru,
         "liability_professional_ru": liability_professional_ru,
