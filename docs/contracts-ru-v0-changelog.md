@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.17.0 - 2026-07-13
+
+- Adds mandatory reviewed general-sale evidence with 152 provenance-backed predicates for articles 454–491 of the Russian Civil Code.
+- Separates qualification, future goods and property rights, transfer, documents, risk, third-party rights, eviction, quantity, assortment, quality, warranty, shelf life, completeness, packaging, notice, acceptance, price, payment, credit, installment, insurance, and retained title.
+- Enforces agreement between general sale, special supply, formation, temporal, performance, termination, payment, loss, and causation facts.
+- Preserves the warranty burden and post-repair remedy boundaries reflected in the 2024 Supreme Court reviews.
+- Adds 48 benchmarks, 51 adversarial checks, official-source metadata, and Russian professional/forensic explanation sections.
+- Upgrades evidence to `contracts.case-evidence.v9`, analysis to `contracts-reviewed-analysis-v9`, and Russian templates to `ru-v11`.
+
 ## 0.16.0 - 2026-07-13
 
 - Adds mandatory reviewed special-supply evidence with 82 provenance-backed predicates for articles 506–524 of the Russian Civil Code.

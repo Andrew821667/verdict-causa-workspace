@@ -38,11 +38,11 @@
           "allow_counterfactual": true,
           "counterfactual_max_scenarios": 8,
           "counterfactual_max_changed_facts": 4,
-          "translation_template_version": "translation-template-ru-v10",
-          "translation_template_hash": "sha256:e2de75047bbc16447ac5f2f0d42ceb7a35afc09069eda87f7e1b1a84a5acb592",
+          "translation_template_version": "translation-template-ru-v11",
+          "translation_template_hash": "sha256:ab3b79f57a60d300125387ce662154f63be1bd876356378c8781a05617cbd229",
           "model_profile": "no-llm-synthetic-demo"
         },
-        "content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222",
+        "content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
         "created_at": "2026-07-11T09:00:00+03:00",
         "created_by": "synthetic-policy-owner",
         "reviewer_ids": [
@@ -78,11 +78,11 @@
           "allow_counterfactual": true,
           "counterfactual_max_scenarios": 8,
           "counterfactual_max_changed_facts": 4,
-          "translation_template_version": "translation-template-ru-v10",
-          "translation_template_hash": "sha256:e2de75047bbc16447ac5f2f0d42ceb7a35afc09069eda87f7e1b1a84a5acb592",
+          "translation_template_version": "translation-template-ru-v11",
+          "translation_template_hash": "sha256:ab3b79f57a60d300125387ce662154f63be1bd876356378c8781a05617cbd229",
           "model_profile": "no-llm-synthetic-demo"
         },
-        "content_hash": "sha256:643787e51a099317449beb441ba75bbccbbca98653c3ab67ea939a114df3de17",
+        "content_hash": "sha256:461d515c3bda587b0a22664cbc1d3b48718f6ebf2b083d9bb46a5470515518fb",
         "created_at": "2026-07-11T09:08:00+03:00",
         "created_by": "synthetic-policy-owner",
         "reviewer_ids": [

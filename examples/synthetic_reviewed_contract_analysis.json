@@ -567,6 +567,85 @@
       }
     },
     {
+      "id": "synthetic-ru-gk454-464-sale-transfer-v1",
+      "title": "Синтетическая проверенная модель предмета и передачи товара",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: квалификация купли-продажи, предмет, количество, передача товара, принадлежностей и документов, срок, момент исполнения, риск, права третьих лиц и эвикция проверяются раздельно.",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "sale_articles_454_464",
+        "legal_reference": "ГК РФ, статьи 454–464",
+        "basis_url": "https://government.ru/docs/all/96096/?page=3",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk465-477-sale-conformity-v1",
+      "title": "Синтетическая проверенная модель соответствия товара",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: количество, ассортимент, качество, гарантия, срок годности, проверка качества, недостатки и сроки их обнаружения имеют самостоятельные предпосылки и распределение бремени доказывания.",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "sale_articles_465_477",
+        "legal_reference": "ГК РФ, статьи 465–477",
+        "basis_url": "https://government.ru/docs/all/96096/?page=3",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk478-491-sale-payment-v1",
+      "title": "Синтетическая проверенная модель комплектности, приемки и оплаты",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: комплектность, комплект, тара, извещение, принятие, цена, оплата, предоплата, кредит, рассрочка, страхование и сохранение права собственности проверяются отдельными юридическими путями.",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "sale_articles_478_491",
+        "legal_reference": "ГК РФ, статьи 478–491",
+        "basis_url": "https://government.ru/docs/all/96096/?page=3",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-vs-review2024-sale-quality-v1",
+      "title": "Синтетическая модель актуальных позиций ВС РФ о недостатках товара",
+      "source_type": "case_law",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление судебных позиций: гарантийный срок влияет на распределение бремени доказывания, а безрезультатный гарантийный ремонт не прекращает предусмотренные законом требования покупателя.",
+      "valid_from": "2024-10-09",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "sale_quality_supreme_court_review_2024",
+        "legal_reference": "Обзор судебной практики ВС РФ № 2, 3 (2024), определение № 301-ЭС23-10631",
+        "basis_url": "https://www.vsrf.ru/documents/reviews/34051/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-general-sale-evidence",
+      "title": "Синтетическая проверенная запись общих фактов купли-продажи",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: товар передан покупателю с просрочкой; предмет и цена согласованы, количество, качество, комплектность и упаковка соответствуют договору, требования об оплате и прекращении не заявлены.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "general_sale_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk506-512-supply-framework-v1",
       "title": "Синтетическая проверенная модель заключения и исполнения поставки",
       "source_type": "statute",
@@ -835,7 +914,7 @@
     "case_evidence": {
       "id": "reviewed-case-evidence-supply-1-v0",
       "case_id": "case-supply-1",
-      "schema_version": "contracts.case-evidence.v8",
+      "schema_version": "contracts.case-evidence.v9",
       "assertions": [
         {
           "id": "evidence-duty_exists",
@@ -3498,6 +3577,1237 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-performance-remedies-reviewer"
     },
+    "sale_evidence": {
+      "id": "reviewed-general-sale-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.sale-evidence.v0",
+      "assertions": [
+        {
+          "id": "general-sale-evidence-contract_concluded",
+          "predicate": "contract_concluded",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_transfer_ownership_duty",
+          "predicate": "seller_transfer_ownership_duty",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_acceptance_duty",
+          "predicate": "buyer_acceptance_duty",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_payment_duty",
+          "predicate": "buyer_payment_duty",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-goods_existing_or_future",
+          "predicate": "goods_existing_or_future",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-goods_name_agreed",
+          "predicate": "goods_name_agreed",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-quantity_determinable",
+          "predicate": "quantity_determinable",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-property_right_subject",
+          "predicate": "property_right_subject",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-property_right_nature_excludes_sale_rules",
+          "predicate": "property_right_nature_excludes_sale_rules",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-accessories_required",
+          "predicate": "accessories_required",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-accessories_transferred",
+          "predicate": "accessories_transferred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-documents_required",
+          "predicate": "documents_required",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-documents_transferred",
+          "predicate": "documents_transferred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-transfer_term_due",
+          "predicate": "transfer_term_due",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-delivery_late",
+          "predicate": "delivery_late",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-fixed_term_contract",
+          "predicate": "fixed_term_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_interest_lost_after_term",
+          "predicate": "buyer_interest_lost_after_term",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_consented_late_transfer",
+          "predicate": "buyer_consented_late_transfer",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-delivery_obligation",
+          "predicate": "delivery_obligation",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-goods_delivered_to_buyer",
+          "predicate": "goods_delivered_to_buyer",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-goods_made_available",
+          "predicate": "goods_made_available",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-shipment_contract",
+          "predicate": "shipment_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-goods_handed_to_carrier",
+          "predicate": "goods_handed_to_carrier",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-goods_transfer_completed",
+          "predicate": "goods_transfer_completed",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-risk_allocation_agreed",
+          "predicate": "risk_allocation_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-risk_passed_by_agreement",
+          "predicate": "risk_passed_by_agreement",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-goods_sold_in_transit",
+          "predicate": "goods_sold_in_transit",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_knew_transit_loss",
+          "predicate": "seller_knew_transit_loss",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_disclosed_transit_loss",
+          "predicate": "seller_disclosed_transit_loss",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-third_party_rights_exist",
+          "predicate": "third_party_rights_exist",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_consented_third_party_rights",
+          "predicate": "buyer_consented_third_party_rights",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-goods_withdrawn_by_third_party",
+          "predicate": "goods_withdrawn_by_third_party",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-withdrawal_ground_predates_transfer",
+          "predicate": "withdrawal_ground_predates_transfer",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_knew_withdrawal_ground",
+          "predicate": "buyer_knew_withdrawal_ground",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_eviction_exclusion_agreement",
+          "predicate": "seller_eviction_exclusion_agreement",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-third_party_eviction_claim_filed",
+          "predicate": "third_party_eviction_claim_filed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_joined_seller_to_eviction_case",
+          "predicate": "buyer_joined_seller_to_eviction_case",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_participated_in_eviction_case",
+          "predicate": "seller_participated_in_eviction_case",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_could_prevent_withdrawal",
+          "predicate": "seller_could_prevent_withdrawal",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_refused_goods_transfer",
+          "predicate": "seller_refused_goods_transfer",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_chose_contract_refusal_for_nontransfer",
+          "predicate": "buyer_chose_contract_refusal_for_nontransfer",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-individually_defined_goods",
+          "predicate": "individually_defined_goods",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-specific_performance_requested",
+          "predicate": "specific_performance_requested",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_set_reasonable_document_term",
+          "predicate": "buyer_set_reasonable_document_term",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_failed_document_term",
+          "predicate": "seller_failed_document_term",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_refused_goods_for_documents",
+          "predicate": "buyer_refused_goods_for_documents",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-quantity_shortfall",
+          "predicate": "quantity_shortfall",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-excess_quantity",
+          "predicate": "excess_quantity",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_notified_excess",
+          "predicate": "buyer_notified_excess",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_disposed_excess_reasonable_time",
+          "predicate": "seller_disposed_excess_reasonable_time",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_accepted_excess",
+          "predicate": "buyer_accepted_excess",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-different_excess_price_agreed",
+          "predicate": "different_excess_price_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-assortment_required",
+          "predicate": "assortment_required",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-assortment_agreed",
+          "predicate": "assortment_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-assortment_determinable_from_needs",
+          "predicate": "assortment_determinable_from_needs",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_selected_assortment",
+          "predicate": "seller_selected_assortment",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-assortment_nonconforming",
+          "predicate": "assortment_nonconforming",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-mixed_assortment_delivery",
+          "predicate": "mixed_assortment_delivery",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_rejected_nonconforming_assortment",
+          "predicate": "buyer_rejected_nonconforming_assortment",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_rejected_all_mixed_goods",
+          "predicate": "buyer_rejected_all_mixed_goods",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_required_assortment_replacement",
+          "predicate": "buyer_required_assortment_replacement",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_notified_assortment_refusal_reasonable_time",
+          "predicate": "buyer_notified_assortment_refusal_reasonable_time",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-quality_terms_agreed",
+          "predicate": "quality_terms_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-ordinary_purpose_known",
+          "predicate": "ordinary_purpose_known",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-special_purpose_disclosed",
+          "predicate": "special_purpose_disclosed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-sale_by_sample_or_description",
+          "predicate": "sale_by_sample_or_description",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-quality_defect",
+          "predicate": "quality_defect",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-mandatory_quality_requirements_apply",
+          "predicate": "mandatory_quality_requirements_apply",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-enhanced_quality_agreed",
+          "predicate": "enhanced_quality_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_warranty_given",
+          "predicate": "seller_warranty_given",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-warranty_period_active",
+          "predicate": "warranty_period_active",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-shelf_life_set",
+          "predicate": "shelf_life_set",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-goods_transferred_with_usable_shelf_life",
+          "predicate": "goods_transferred_with_usable_shelf_life",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-inspection_required",
+          "predicate": "inspection_required",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_received_goods",
+          "predicate": "buyer_received_goods",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-inspection_timely",
+          "predicate": "inspection_timely",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-inspection_method_complied",
+          "predicate": "inspection_method_complied",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_chose_price_reduction",
+          "predicate": "buyer_chose_price_reduction",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_chose_free_repair",
+          "predicate": "buyer_chose_free_repair",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_chose_repair_costs",
+          "predicate": "buyer_chose_repair_costs",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-defect_material",
+          "predicate": "defect_material",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_chose_replacement",
+          "predicate": "buyer_chose_replacement",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_chose_contract_refusal_for_defect",
+          "predicate": "buyer_chose_contract_refusal_for_defect",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_proved_pretransfer_defect_cause",
+          "predicate": "buyer_proved_pretransfer_defect_cause",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_proved_posttransfer_defect_cause",
+          "predicate": "seller_proved_posttransfer_defect_cause",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-defect_discovered_within_applicable_period",
+          "predicate": "defect_discovered_within_applicable_period",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-completeness_terms_agreed",
+          "predicate": "completeness_terms_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-incomplete_goods",
+          "predicate": "incomplete_goods",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_chose_incomplete_price_reduction",
+          "predicate": "buyer_chose_incomplete_price_reduction",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_requested_completion",
+          "predicate": "buyer_requested_completion",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_completed_reasonable_time",
+          "predicate": "seller_completed_reasonable_time",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_requested_complete_replacement",
+          "predicate": "buyer_requested_complete_replacement",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_chose_contract_refusal_for_incompleteness",
+          "predicate": "buyer_chose_contract_refusal_for_incompleteness",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-set_of_goods_agreed",
+          "predicate": "set_of_goods_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-set_transfer_complete",
+          "predicate": "set_transfer_complete",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-packaging_required",
+          "predicate": "packaging_required",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-packaging_transferred",
+          "predicate": "packaging_transferred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-packaging_conforming",
+          "predicate": "packaging_conforming",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_requested_packaging",
+          "predicate": "buyer_requested_packaging",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_requested_packaging_replacement",
+          "predicate": "buyer_requested_packaging_replacement",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_elected_other_packaging_remedy",
+          "predicate": "buyer_elected_other_packaging_remedy",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-discrepancy_found",
+          "predicate": "discrepancy_found",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-prompt_notice_given",
+          "predicate": "prompt_notice_given",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_knew_or_should_have_known_discrepancy",
+          "predicate": "seller_knew_or_should_have_known_discrepancy",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_proved_notice_prejudice",
+          "predicate": "seller_proved_notice_prejudice",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_acceptance_completed",
+          "predicate": "buyer_acceptance_completed",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_failed_acceptance",
+          "predicate": "buyer_failed_acceptance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_demanded_acceptance",
+          "predicate": "seller_demanded_acceptance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_chose_contract_refusal_for_nonacceptance",
+          "predicate": "seller_chose_contract_refusal_for_nonacceptance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-price_agreed",
+          "predicate": "price_agreed",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-price_determinable",
+          "predicate": "price_determinable",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-price_based_on_weight",
+          "predicate": "price_based_on_weight",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-net_weight_proven",
+          "predicate": "net_weight_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-price_revision_formula_agreed",
+          "predicate": "price_revision_formula_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-price_revision_inputs_proven",
+          "predicate": "price_revision_inputs_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-payment_due",
+          "predicate": "payment_due",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_paid",
+          "predicate": "buyer_paid",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_demanded_payment",
+          "predicate": "seller_demanded_payment",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-multiple_goods_transferred",
+          "predicate": "multiple_goods_transferred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_suspended_remaining_goods",
+          "predicate": "seller_suspended_remaining_goods",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-prepayment_required",
+          "predicate": "prepayment_required",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-prepayment_due",
+          "predicate": "prepayment_due",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-prepayment_made",
+          "predicate": "prepayment_made",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_failed_after_prepayment",
+          "predicate": "seller_failed_after_prepayment",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_requested_prepaid_delivery",
+          "predicate": "buyer_requested_prepaid_delivery",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_requested_prepayment_return",
+          "predicate": "buyer_requested_prepayment_return",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-credit_sale",
+          "predicate": "credit_sale",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-credit_payment_due",
+          "predicate": "credit_payment_due",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-credit_payment_made",
+          "predicate": "credit_payment_made",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_demanded_credit_payment_or_return",
+          "predicate": "seller_demanded_credit_payment_or_return",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_security_interest_applies",
+          "predicate": "seller_security_interest_applies",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-installment_sale",
+          "predicate": "installment_sale",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-installment_essential_terms_complete",
+          "predicate": "installment_essential_terms_complete",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-installment_payment_due",
+          "predicate": "installment_payment_due",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-installment_payment_made",
+          "predicate": "installment_payment_made",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-paid_amount_exceeds_half_price",
+          "predicate": "paid_amount_exceeds_half_price",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_chose_installment_refusal",
+          "predicate": "seller_chose_installment_refusal",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-insurance_duty_allocated",
+          "predicate": "insurance_duty_allocated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-insurance_duty_due",
+          "predicate": "insurance_duty_due",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-insurance_obtained",
+          "predicate": "insurance_obtained",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-counterparty_insured_goods",
+          "predicate": "counterparty_insured_goods",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-counterparty_chose_insurance_refusal",
+          "predicate": "counterparty_chose_insurance_refusal",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-title_retention_agreed",
+          "predicate": "title_retention_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-title_condition_met",
+          "predicate": "title_condition_met",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-buyer_disposed_before_title",
+          "predicate": "buyer_disposed_before_title",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-title_early_disposal_permitted",
+          "predicate": "title_early_disposal_permitted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-seller_required_goods_return",
+          "predicate": "seller_required_goods_return",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-title_return_contract_bar",
+          "predicate": "title_return_contract_bar",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-unilateral_refusal_notice_delivered",
+          "predicate": "unilateral_refusal_notice_delivered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-contract_terminated",
+          "predicate": "contract_terminated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-loss_claimed",
+          "predicate": "loss_claimed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "id": "general-sale-evidence-causation_proven",
+          "predicate": "causation_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk454-464-sale-transfer-v1",
+        "synthetic-ru-gk465-477-sale-conformity-v1",
+        "synthetic-ru-gk478-491-sale-payment-v1",
+        "synthetic-ru-vs-review2024-sale-quality-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-general-sale-reviewer"
+    },
     "supply_evidence": {
       "id": "reviewed-special-supply-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -4650,11 +5960,12 @@
   "result": {
     "request_id": "analysis-request-case-supply-1-v0",
     "case_id": "case-supply-1",
-    "pipeline_version": "contracts-reviewed-analysis-v8",
+    "pipeline_version": "contracts-reviewed-analysis-v9",
     "reviewer_ids": [
       "synthetic-authority-reviewer",
       "synthetic-case-evidence-reviewer",
       "synthetic-formation-reviewer",
+      "synthetic-general-sale-reviewer",
       "synthetic-invalidity-reviewer",
       "synthetic-liability-reviewer",
       "synthetic-norm-reviewer",
@@ -4667,6 +5978,7 @@
     ],
     "source_ids": [
       "synthetic-case-supply-1-formation-evidence",
+      "synthetic-case-supply-1-general-sale-evidence",
       "synthetic-case-supply-1-invalidity-evidence",
       "synthetic-case-supply-1-liability-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
@@ -4700,6 +6012,9 @@
       "synthetic-ru-gk435-offer-model-v1",
       "synthetic-ru-gk438-443-acceptance-model-v1",
       "synthetic-ru-gk450-453-termination-model-v1",
+      "synthetic-ru-gk454-464-sale-transfer-v1",
+      "synthetic-ru-gk465-477-sale-conformity-v1",
+      "synthetic-ru-gk478-491-sale-payment-v1",
       "synthetic-ru-gk506-512-supply-framework-v1",
       "synthetic-ru-gk513-517-supply-acceptance-v1",
       "synthetic-ru-gk518-524-supply-remedies-v1",
@@ -4715,7 +6030,8 @@
       "synthetic-ru-plenum54-unilateral-guidance-v1",
       "synthetic-ru-plenum6-discharge-guidance-v1",
       "synthetic-ru-plenum7-liability-guidance-v1",
-      "synthetic-ru-plenum7-remedies-guidance-v1"
+      "synthetic-ru-plenum7-remedies-guidance-v1",
+      "synthetic-ru-vs-review2024-sale-quality-v1"
     ],
     "formal_translation": {
       "norm_id": "norm-supply-delivery-duty-v0",
@@ -4783,7 +6099,7 @@
     },
     "evidence_mapping": {
       "evidence_id": "reviewed-case-evidence-supply-1-v0",
-      "schema_version": "contracts.case-evidence.v8",
+      "schema_version": "contracts.case-evidence.v9",
       "mapping_version": "contracts-reviewed-evidence-to-facts-v0",
       "formal_rule_id": "obligation-rule:norm-supply-delivery-duty-v0",
       "facts": {
@@ -7849,6 +9165,1335 @@
         "Специальные правила отдельных договоров, банкротства, потребительских и публичных отношений проверяются отдельно."
       ]
     },
+    "sale_evidence_mapping": {
+      "evidence_id": "reviewed-general-sale-evidence-supply-1-v0",
+      "schema_version": "contracts.sale-evidence.v0",
+      "mapping_version": "contracts-reviewed-sale-to-facts-v0",
+      "facts": {
+        "contract_concluded": true,
+        "seller_transfer_ownership_duty": true,
+        "buyer_acceptance_duty": true,
+        "buyer_payment_duty": true,
+        "goods_existing_or_future": true,
+        "goods_name_agreed": true,
+        "quantity_determinable": true,
+        "property_right_subject": false,
+        "property_right_nature_excludes_sale_rules": false,
+        "accessories_required": false,
+        "accessories_transferred": false,
+        "documents_required": false,
+        "documents_transferred": false,
+        "transfer_term_due": true,
+        "delivery_late": true,
+        "fixed_term_contract": false,
+        "buyer_interest_lost_after_term": false,
+        "buyer_consented_late_transfer": false,
+        "delivery_obligation": true,
+        "goods_delivered_to_buyer": true,
+        "goods_made_available": false,
+        "shipment_contract": false,
+        "goods_handed_to_carrier": false,
+        "goods_transfer_completed": true,
+        "risk_allocation_agreed": false,
+        "risk_passed_by_agreement": false,
+        "goods_sold_in_transit": false,
+        "seller_knew_transit_loss": false,
+        "seller_disclosed_transit_loss": false,
+        "third_party_rights_exist": false,
+        "buyer_consented_third_party_rights": false,
+        "goods_withdrawn_by_third_party": false,
+        "withdrawal_ground_predates_transfer": false,
+        "buyer_knew_withdrawal_ground": false,
+        "seller_eviction_exclusion_agreement": false,
+        "third_party_eviction_claim_filed": false,
+        "buyer_joined_seller_to_eviction_case": false,
+        "seller_participated_in_eviction_case": false,
+        "seller_could_prevent_withdrawal": false,
+        "seller_refused_goods_transfer": false,
+        "buyer_chose_contract_refusal_for_nontransfer": false,
+        "individually_defined_goods": false,
+        "specific_performance_requested": false,
+        "buyer_set_reasonable_document_term": false,
+        "seller_failed_document_term": false,
+        "buyer_refused_goods_for_documents": false,
+        "quantity_shortfall": false,
+        "excess_quantity": false,
+        "buyer_notified_excess": false,
+        "seller_disposed_excess_reasonable_time": false,
+        "buyer_accepted_excess": false,
+        "different_excess_price_agreed": false,
+        "assortment_required": false,
+        "assortment_agreed": false,
+        "assortment_determinable_from_needs": false,
+        "seller_selected_assortment": false,
+        "assortment_nonconforming": false,
+        "mixed_assortment_delivery": false,
+        "buyer_rejected_nonconforming_assortment": false,
+        "buyer_rejected_all_mixed_goods": false,
+        "buyer_required_assortment_replacement": false,
+        "buyer_notified_assortment_refusal_reasonable_time": false,
+        "quality_terms_agreed": false,
+        "ordinary_purpose_known": false,
+        "special_purpose_disclosed": false,
+        "sale_by_sample_or_description": false,
+        "quality_defect": false,
+        "mandatory_quality_requirements_apply": false,
+        "enhanced_quality_agreed": false,
+        "seller_warranty_given": false,
+        "warranty_period_active": false,
+        "shelf_life_set": false,
+        "goods_transferred_with_usable_shelf_life": false,
+        "inspection_required": true,
+        "buyer_received_goods": true,
+        "inspection_timely": true,
+        "inspection_method_complied": true,
+        "buyer_chose_price_reduction": false,
+        "buyer_chose_free_repair": false,
+        "buyer_chose_repair_costs": false,
+        "defect_material": false,
+        "buyer_chose_replacement": false,
+        "buyer_chose_contract_refusal_for_defect": false,
+        "buyer_proved_pretransfer_defect_cause": false,
+        "seller_proved_posttransfer_defect_cause": false,
+        "defect_discovered_within_applicable_period": false,
+        "completeness_terms_agreed": false,
+        "incomplete_goods": false,
+        "buyer_chose_incomplete_price_reduction": false,
+        "buyer_requested_completion": false,
+        "seller_completed_reasonable_time": false,
+        "buyer_requested_complete_replacement": false,
+        "buyer_chose_contract_refusal_for_incompleteness": false,
+        "set_of_goods_agreed": false,
+        "set_transfer_complete": false,
+        "packaging_required": false,
+        "packaging_transferred": false,
+        "packaging_conforming": false,
+        "buyer_requested_packaging": false,
+        "buyer_requested_packaging_replacement": false,
+        "buyer_elected_other_packaging_remedy": false,
+        "discrepancy_found": false,
+        "prompt_notice_given": false,
+        "seller_knew_or_should_have_known_discrepancy": false,
+        "seller_proved_notice_prejudice": false,
+        "buyer_acceptance_completed": true,
+        "buyer_failed_acceptance": false,
+        "seller_demanded_acceptance": false,
+        "seller_chose_contract_refusal_for_nonacceptance": false,
+        "price_agreed": true,
+        "price_determinable": false,
+        "price_based_on_weight": false,
+        "net_weight_proven": false,
+        "price_revision_formula_agreed": false,
+        "price_revision_inputs_proven": false,
+        "payment_due": false,
+        "buyer_paid": false,
+        "seller_demanded_payment": false,
+        "multiple_goods_transferred": false,
+        "seller_suspended_remaining_goods": false,
+        "prepayment_required": false,
+        "prepayment_due": false,
+        "prepayment_made": false,
+        "seller_failed_after_prepayment": false,
+        "buyer_requested_prepaid_delivery": false,
+        "buyer_requested_prepayment_return": false,
+        "credit_sale": false,
+        "credit_payment_due": false,
+        "credit_payment_made": false,
+        "seller_demanded_credit_payment_or_return": false,
+        "seller_security_interest_applies": false,
+        "installment_sale": false,
+        "installment_essential_terms_complete": false,
+        "installment_payment_due": false,
+        "installment_payment_made": false,
+        "paid_amount_exceeds_half_price": false,
+        "seller_chose_installment_refusal": false,
+        "insurance_duty_allocated": false,
+        "insurance_duty_due": false,
+        "insurance_obtained": false,
+        "counterparty_insured_goods": false,
+        "counterparty_chose_insurance_refusal": false,
+        "title_retention_agreed": false,
+        "title_condition_met": false,
+        "buyer_disposed_before_title": false,
+        "title_early_disposal_permitted": false,
+        "seller_required_goods_return": false,
+        "title_return_contract_bar": false,
+        "unilateral_refusal_notice_delivered": false,
+        "contract_terminated": false,
+        "loss_claimed": false,
+        "causation_proven": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk454-464-sale-transfer-v1",
+        "synthetic-ru-gk465-477-sale-conformity-v1",
+        "synthetic-ru-gk478-491-sale-payment-v1",
+        "synthetic-ru-vs-review2024-sale-quality-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "accessories_required",
+          "assertion_id": "general-sale-evidence-accessories_required",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "accessories_transferred",
+          "assertion_id": "general-sale-evidence-accessories_transferred",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "assortment_agreed",
+          "assertion_id": "general-sale-evidence-assortment_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "assortment_determinable_from_needs",
+          "assertion_id": "general-sale-evidence-assortment_determinable_from_needs",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "assortment_nonconforming",
+          "assertion_id": "general-sale-evidence-assortment_nonconforming",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "assortment_required",
+          "assertion_id": "general-sale-evidence-assortment_required",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_acceptance_completed",
+          "assertion_id": "general-sale-evidence-buyer_acceptance_completed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_acceptance_duty",
+          "assertion_id": "general-sale-evidence-buyer_acceptance_duty",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_accepted_excess",
+          "assertion_id": "general-sale-evidence-buyer_accepted_excess",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_chose_contract_refusal_for_defect",
+          "assertion_id": "general-sale-evidence-buyer_chose_contract_refusal_for_defect",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_chose_contract_refusal_for_incompleteness",
+          "assertion_id": "general-sale-evidence-buyer_chose_contract_refusal_for_incompleteness",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_chose_contract_refusal_for_nontransfer",
+          "assertion_id": "general-sale-evidence-buyer_chose_contract_refusal_for_nontransfer",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_chose_free_repair",
+          "assertion_id": "general-sale-evidence-buyer_chose_free_repair",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_chose_incomplete_price_reduction",
+          "assertion_id": "general-sale-evidence-buyer_chose_incomplete_price_reduction",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_chose_price_reduction",
+          "assertion_id": "general-sale-evidence-buyer_chose_price_reduction",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_chose_repair_costs",
+          "assertion_id": "general-sale-evidence-buyer_chose_repair_costs",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_chose_replacement",
+          "assertion_id": "general-sale-evidence-buyer_chose_replacement",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_consented_late_transfer",
+          "assertion_id": "general-sale-evidence-buyer_consented_late_transfer",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_consented_third_party_rights",
+          "assertion_id": "general-sale-evidence-buyer_consented_third_party_rights",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_disposed_before_title",
+          "assertion_id": "general-sale-evidence-buyer_disposed_before_title",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_elected_other_packaging_remedy",
+          "assertion_id": "general-sale-evidence-buyer_elected_other_packaging_remedy",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_failed_acceptance",
+          "assertion_id": "general-sale-evidence-buyer_failed_acceptance",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_interest_lost_after_term",
+          "assertion_id": "general-sale-evidence-buyer_interest_lost_after_term",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_joined_seller_to_eviction_case",
+          "assertion_id": "general-sale-evidence-buyer_joined_seller_to_eviction_case",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_knew_withdrawal_ground",
+          "assertion_id": "general-sale-evidence-buyer_knew_withdrawal_ground",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_notified_assortment_refusal_reasonable_time",
+          "assertion_id": "general-sale-evidence-buyer_notified_assortment_refusal_reasonable_time",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_notified_excess",
+          "assertion_id": "general-sale-evidence-buyer_notified_excess",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_paid",
+          "assertion_id": "general-sale-evidence-buyer_paid",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_payment_duty",
+          "assertion_id": "general-sale-evidence-buyer_payment_duty",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_proved_pretransfer_defect_cause",
+          "assertion_id": "general-sale-evidence-buyer_proved_pretransfer_defect_cause",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_received_goods",
+          "assertion_id": "general-sale-evidence-buyer_received_goods",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_refused_goods_for_documents",
+          "assertion_id": "general-sale-evidence-buyer_refused_goods_for_documents",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_rejected_all_mixed_goods",
+          "assertion_id": "general-sale-evidence-buyer_rejected_all_mixed_goods",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_rejected_nonconforming_assortment",
+          "assertion_id": "general-sale-evidence-buyer_rejected_nonconforming_assortment",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_requested_complete_replacement",
+          "assertion_id": "general-sale-evidence-buyer_requested_complete_replacement",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_requested_completion",
+          "assertion_id": "general-sale-evidence-buyer_requested_completion",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_requested_packaging",
+          "assertion_id": "general-sale-evidence-buyer_requested_packaging",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_requested_packaging_replacement",
+          "assertion_id": "general-sale-evidence-buyer_requested_packaging_replacement",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_requested_prepaid_delivery",
+          "assertion_id": "general-sale-evidence-buyer_requested_prepaid_delivery",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_requested_prepayment_return",
+          "assertion_id": "general-sale-evidence-buyer_requested_prepayment_return",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_required_assortment_replacement",
+          "assertion_id": "general-sale-evidence-buyer_required_assortment_replacement",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_set_reasonable_document_term",
+          "assertion_id": "general-sale-evidence-buyer_set_reasonable_document_term",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "causation_proven",
+          "assertion_id": "general-sale-evidence-causation_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "completeness_terms_agreed",
+          "assertion_id": "general-sale-evidence-completeness_terms_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_concluded",
+          "assertion_id": "general-sale-evidence-contract_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_terminated",
+          "assertion_id": "general-sale-evidence-contract_terminated",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "counterparty_chose_insurance_refusal",
+          "assertion_id": "general-sale-evidence-counterparty_chose_insurance_refusal",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "counterparty_insured_goods",
+          "assertion_id": "general-sale-evidence-counterparty_insured_goods",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "credit_payment_due",
+          "assertion_id": "general-sale-evidence-credit_payment_due",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "credit_payment_made",
+          "assertion_id": "general-sale-evidence-credit_payment_made",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "credit_sale",
+          "assertion_id": "general-sale-evidence-credit_sale",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "defect_discovered_within_applicable_period",
+          "assertion_id": "general-sale-evidence-defect_discovered_within_applicable_period",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "defect_material",
+          "assertion_id": "general-sale-evidence-defect_material",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "delivery_late",
+          "assertion_id": "general-sale-evidence-delivery_late",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "delivery_obligation",
+          "assertion_id": "general-sale-evidence-delivery_obligation",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "different_excess_price_agreed",
+          "assertion_id": "general-sale-evidence-different_excess_price_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "discrepancy_found",
+          "assertion_id": "general-sale-evidence-discrepancy_found",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "documents_required",
+          "assertion_id": "general-sale-evidence-documents_required",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "documents_transferred",
+          "assertion_id": "general-sale-evidence-documents_transferred",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "enhanced_quality_agreed",
+          "assertion_id": "general-sale-evidence-enhanced_quality_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "excess_quantity",
+          "assertion_id": "general-sale-evidence-excess_quantity",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "fixed_term_contract",
+          "assertion_id": "general-sale-evidence-fixed_term_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_delivered_to_buyer",
+          "assertion_id": "general-sale-evidence-goods_delivered_to_buyer",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_existing_or_future",
+          "assertion_id": "general-sale-evidence-goods_existing_or_future",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_handed_to_carrier",
+          "assertion_id": "general-sale-evidence-goods_handed_to_carrier",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_made_available",
+          "assertion_id": "general-sale-evidence-goods_made_available",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_name_agreed",
+          "assertion_id": "general-sale-evidence-goods_name_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_sold_in_transit",
+          "assertion_id": "general-sale-evidence-goods_sold_in_transit",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_transfer_completed",
+          "assertion_id": "general-sale-evidence-goods_transfer_completed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_transferred_with_usable_shelf_life",
+          "assertion_id": "general-sale-evidence-goods_transferred_with_usable_shelf_life",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_withdrawn_by_third_party",
+          "assertion_id": "general-sale-evidence-goods_withdrawn_by_third_party",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "incomplete_goods",
+          "assertion_id": "general-sale-evidence-incomplete_goods",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "individually_defined_goods",
+          "assertion_id": "general-sale-evidence-individually_defined_goods",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "inspection_method_complied",
+          "assertion_id": "general-sale-evidence-inspection_method_complied",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "inspection_required",
+          "assertion_id": "general-sale-evidence-inspection_required",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "inspection_timely",
+          "assertion_id": "general-sale-evidence-inspection_timely",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "installment_essential_terms_complete",
+          "assertion_id": "general-sale-evidence-installment_essential_terms_complete",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "installment_payment_due",
+          "assertion_id": "general-sale-evidence-installment_payment_due",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "installment_payment_made",
+          "assertion_id": "general-sale-evidence-installment_payment_made",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "installment_sale",
+          "assertion_id": "general-sale-evidence-installment_sale",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "insurance_duty_allocated",
+          "assertion_id": "general-sale-evidence-insurance_duty_allocated",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "insurance_duty_due",
+          "assertion_id": "general-sale-evidence-insurance_duty_due",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "insurance_obtained",
+          "assertion_id": "general-sale-evidence-insurance_obtained",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "loss_claimed",
+          "assertion_id": "general-sale-evidence-loss_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "mandatory_quality_requirements_apply",
+          "assertion_id": "general-sale-evidence-mandatory_quality_requirements_apply",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "mixed_assortment_delivery",
+          "assertion_id": "general-sale-evidence-mixed_assortment_delivery",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "multiple_goods_transferred",
+          "assertion_id": "general-sale-evidence-multiple_goods_transferred",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "net_weight_proven",
+          "assertion_id": "general-sale-evidence-net_weight_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "ordinary_purpose_known",
+          "assertion_id": "general-sale-evidence-ordinary_purpose_known",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "packaging_conforming",
+          "assertion_id": "general-sale-evidence-packaging_conforming",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "packaging_required",
+          "assertion_id": "general-sale-evidence-packaging_required",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "packaging_transferred",
+          "assertion_id": "general-sale-evidence-packaging_transferred",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "paid_amount_exceeds_half_price",
+          "assertion_id": "general-sale-evidence-paid_amount_exceeds_half_price",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "payment_due",
+          "assertion_id": "general-sale-evidence-payment_due",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "prepayment_due",
+          "assertion_id": "general-sale-evidence-prepayment_due",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "prepayment_made",
+          "assertion_id": "general-sale-evidence-prepayment_made",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "prepayment_required",
+          "assertion_id": "general-sale-evidence-prepayment_required",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "price_agreed",
+          "assertion_id": "general-sale-evidence-price_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "price_based_on_weight",
+          "assertion_id": "general-sale-evidence-price_based_on_weight",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "price_determinable",
+          "assertion_id": "general-sale-evidence-price_determinable",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "price_revision_formula_agreed",
+          "assertion_id": "general-sale-evidence-price_revision_formula_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "price_revision_inputs_proven",
+          "assertion_id": "general-sale-evidence-price_revision_inputs_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "prompt_notice_given",
+          "assertion_id": "general-sale-evidence-prompt_notice_given",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "property_right_nature_excludes_sale_rules",
+          "assertion_id": "general-sale-evidence-property_right_nature_excludes_sale_rules",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "property_right_subject",
+          "assertion_id": "general-sale-evidence-property_right_subject",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "quality_defect",
+          "assertion_id": "general-sale-evidence-quality_defect",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "quality_terms_agreed",
+          "assertion_id": "general-sale-evidence-quality_terms_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "quantity_determinable",
+          "assertion_id": "general-sale-evidence-quantity_determinable",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "quantity_shortfall",
+          "assertion_id": "general-sale-evidence-quantity_shortfall",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "risk_allocation_agreed",
+          "assertion_id": "general-sale-evidence-risk_allocation_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "risk_passed_by_agreement",
+          "assertion_id": "general-sale-evidence-risk_passed_by_agreement",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "sale_by_sample_or_description",
+          "assertion_id": "general-sale-evidence-sale_by_sample_or_description",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_chose_contract_refusal_for_nonacceptance",
+          "assertion_id": "general-sale-evidence-seller_chose_contract_refusal_for_nonacceptance",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_chose_installment_refusal",
+          "assertion_id": "general-sale-evidence-seller_chose_installment_refusal",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_completed_reasonable_time",
+          "assertion_id": "general-sale-evidence-seller_completed_reasonable_time",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_could_prevent_withdrawal",
+          "assertion_id": "general-sale-evidence-seller_could_prevent_withdrawal",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_demanded_acceptance",
+          "assertion_id": "general-sale-evidence-seller_demanded_acceptance",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_demanded_credit_payment_or_return",
+          "assertion_id": "general-sale-evidence-seller_demanded_credit_payment_or_return",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_demanded_payment",
+          "assertion_id": "general-sale-evidence-seller_demanded_payment",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_disclosed_transit_loss",
+          "assertion_id": "general-sale-evidence-seller_disclosed_transit_loss",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_disposed_excess_reasonable_time",
+          "assertion_id": "general-sale-evidence-seller_disposed_excess_reasonable_time",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_eviction_exclusion_agreement",
+          "assertion_id": "general-sale-evidence-seller_eviction_exclusion_agreement",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_failed_after_prepayment",
+          "assertion_id": "general-sale-evidence-seller_failed_after_prepayment",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_failed_document_term",
+          "assertion_id": "general-sale-evidence-seller_failed_document_term",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_knew_or_should_have_known_discrepancy",
+          "assertion_id": "general-sale-evidence-seller_knew_or_should_have_known_discrepancy",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_knew_transit_loss",
+          "assertion_id": "general-sale-evidence-seller_knew_transit_loss",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_participated_in_eviction_case",
+          "assertion_id": "general-sale-evidence-seller_participated_in_eviction_case",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_proved_notice_prejudice",
+          "assertion_id": "general-sale-evidence-seller_proved_notice_prejudice",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_proved_posttransfer_defect_cause",
+          "assertion_id": "general-sale-evidence-seller_proved_posttransfer_defect_cause",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_refused_goods_transfer",
+          "assertion_id": "general-sale-evidence-seller_refused_goods_transfer",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_required_goods_return",
+          "assertion_id": "general-sale-evidence-seller_required_goods_return",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_security_interest_applies",
+          "assertion_id": "general-sale-evidence-seller_security_interest_applies",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_selected_assortment",
+          "assertion_id": "general-sale-evidence-seller_selected_assortment",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_suspended_remaining_goods",
+          "assertion_id": "general-sale-evidence-seller_suspended_remaining_goods",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_transfer_ownership_duty",
+          "assertion_id": "general-sale-evidence-seller_transfer_ownership_duty",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_warranty_given",
+          "assertion_id": "general-sale-evidence-seller_warranty_given",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "set_of_goods_agreed",
+          "assertion_id": "general-sale-evidence-set_of_goods_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "set_transfer_complete",
+          "assertion_id": "general-sale-evidence-set_transfer_complete",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "shelf_life_set",
+          "assertion_id": "general-sale-evidence-shelf_life_set",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "shipment_contract",
+          "assertion_id": "general-sale-evidence-shipment_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "special_purpose_disclosed",
+          "assertion_id": "general-sale-evidence-special_purpose_disclosed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "specific_performance_requested",
+          "assertion_id": "general-sale-evidence-specific_performance_requested",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_eviction_claim_filed",
+          "assertion_id": "general-sale-evidence-third_party_eviction_claim_filed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_rights_exist",
+          "assertion_id": "general-sale-evidence-third_party_rights_exist",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "title_condition_met",
+          "assertion_id": "general-sale-evidence-title_condition_met",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "title_early_disposal_permitted",
+          "assertion_id": "general-sale-evidence-title_early_disposal_permitted",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "title_retention_agreed",
+          "assertion_id": "general-sale-evidence-title_retention_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "title_return_contract_bar",
+          "assertion_id": "general-sale-evidence-title_return_contract_bar",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "transfer_term_due",
+          "assertion_id": "general-sale-evidence-transfer_term_due",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "unilateral_refusal_notice_delivered",
+          "assertion_id": "general-sale-evidence-unilateral_refusal_notice_delivered",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "warranty_period_active",
+          "assertion_id": "general-sale-evidence-warranty_period_active",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "withdrawal_ground_predates_transfer",
+          "assertion_id": "general-sale-evidence-withdrawal_ground_predates_transfer",
+          "source_refs": [
+            "synthetic-case-supply-1-general-sale-evidence"
+          ]
+        }
+      ]
+    },
+    "sale_constraint_set": {
+      "id": "sale-constraint-set:reviewed-general-sale-evidence-supply-1-v0",
+      "model_version": "contracts-sale-articles-454-491-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk454-464-sale-transfer-v1",
+        "synthetic-ru-gk465-477-sale-conformity-v1",
+        "synthetic-ru-gk478-491-sale-payment-v1",
+        "synthetic-ru-vs-review2024-sale-quality-v1"
+      ],
+      "expressions": [
+        "sale_contract == concluded AND transfer_ownership_duty AND acceptance_duty AND payment_duty AND goods_subject AND name AND quantity",
+        "transfer_duty == completed AND (delivery OR availability OR carrier_handover)",
+        "default_risk_passage == transfer_duty AND NOT agreed_risk_allocation",
+        "eviction_remedy == withdrawal_on_pretransfer_ground AND NOT buyer_knowledge AND NOT preventable_procedure_gap",
+        "quality_remedy == defect AND timely_claim AND applicable_causation_burden",
+        "notice_defense == late_notice AND proven_prejudice AND NOT seller_knowledge",
+        "payment_default == payment_due AND NOT paid",
+        "installment_refusal == installment_default AND seller_refusal AND NOT more_than_half_paid",
+        "title_return == retained_title AND unmet_condition AND seller_return_demand",
+        "sale_refusal == statutory_refusal_ground AND delivered_notice"
+      ]
+    },
+    "sale_evaluation": {
+      "constraint_set_id": "sale-constraint-set:reviewed-general-sale-evidence-supply-1-v0",
+      "satisfiable": true,
+      "sale_contract_qualified": true,
+      "property_right_sale_rules_applicable": false,
+      "transfer_package_complete": true,
+      "transfer_package_gap": false,
+      "late_fixed_term_transfer_requires_consent": false,
+      "transfer_duty_performed": true,
+      "risk_passed_by_default": true,
+      "risk_passed_by_contract": false,
+      "transit_risk_passed_at_conclusion": false,
+      "transit_risk_clause_challenge": false,
+      "third_party_rights_breach": false,
+      "eviction_loss_remedy_available": false,
+      "eviction_exclusion_ineffective": false,
+      "buyer_eviction_procedure_gap": false,
+      "seller_eviction_defense_barred": false,
+      "goods_transfer_refusal_remedy_available": false,
+      "specific_performance_available": false,
+      "documents_remedy_available": false,
+      "documents_refusal_ground": false,
+      "quantity_shortfall_remedies": false,
+      "excess_quantity_deemed_accepted": false,
+      "excess_quantity_payment_due": false,
+      "seller_assortment_choice_default": false,
+      "assortment_remedies_available": false,
+      "mixed_assortment_total_refusal_available": false,
+      "assortment_deemed_accepted": false,
+      "quality_standard_requires_general_default": false,
+      "quality_remedies_available": false,
+      "material_defect_remedies_available": false,
+      "defect_causation_requirement_satisfied": false,
+      "warranty_seller_burden_applies": false,
+      "defect_claim_timely": false,
+      "shelf_life_transfer_breach": false,
+      "quality_inspection_gap": false,
+      "completeness_primary_remedies": false,
+      "completeness_secondary_remedies": false,
+      "set_delivery_breach": false,
+      "packaging_remedies_available": false,
+      "notice_defense_available": false,
+      "notice_defense_displaced_by_seller_knowledge": false,
+      "buyer_acceptance_breach": false,
+      "seller_nonacceptance_remedies": false,
+      "price_general_default_required": false,
+      "net_weight_price_controls": false,
+      "price_revision_requires_review": false,
+      "payment_default": false,
+      "seller_payment_remedies": false,
+      "prepayment_default": false,
+      "prepaid_buyer_remedies": false,
+      "credit_payment_default": false,
+      "credit_seller_remedies": false,
+      "credit_goods_security_active": false,
+      "installment_terms_gap": false,
+      "installment_refusal_available": false,
+      "installment_refusal_barred_by_half_payment": false,
+      "insurance_breach": false,
+      "insurance_self_help_available": false,
+      "insurance_refusal_available": false,
+      "title_disposal_bar": false,
+      "title_return_remedy": false,
+      "sale_contract_refusal_effective": false,
+      "sale_breach_established": true,
+      "requires_human_sale_assessment": false,
+      "reasons_ru": [
+        "Подтверждены формальные признаки договора купли-продажи.",
+        "Выявлено нарушение обязанности по общим правилам купли-продажи."
+      ],
+      "warnings_ru": [
+        "Модель проверяет формальные предпосылки статей 454–491 ГК РФ и не подменяет квалификацию суда.",
+        "Существенность недостатка, разумность срока, доказанность причин и толкование выбора средства защиты оценивает юрист.",
+        "Общие правила купли-продажи применяются к поставке постольку, поскольку специальные нормы не устанавливают иное."
+      ]
+    },
     "supply_evidence_mapping": {
       "evidence_id": "reviewed-special-supply-evidence-supply-1-v0",
       "schema_version": "contracts.supply-evidence.v0",
@@ -9195,7 +11840,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.16.0",
+      "institutional_package_version": "contracts-ru-v0@0.17.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -9801,6 +12446,9 @@
       "Модель не рассчитывает сумму долга, убытков, процентов, регресса или возмещения потерь.",
       "Разумность расходов, причинная связь, упущенная выгода и снижение ответственности требуют оценки доказательств.",
       "Специальные правила отдельных договоров, банкротства, потребительских и публичных отношений проверяются отдельно.",
+      "Модель проверяет формальные предпосылки статей 454–491 ГК РФ и не подменяет квалификацию суда.",
+      "Существенность недостатка, разумность срока, доказанность причин и толкование выбора средства защиты оценивает юрист.",
+      "Общие правила купли-продажи применяются к поставке постольку, поскольку специальные нормы не устанавливают иное.",
       "Модель проверяет формальные предпосылки статей 506–524 ГК РФ и не подменяет квалификацию суда.",
       "Разумный срок, существенность, повторность, качество уведомлений и доказанность цен оценивает юрист.",
       "Инструкции П-6 и П-7 учитываются как договорный порядок приемки только при соответствующей отсылке.",

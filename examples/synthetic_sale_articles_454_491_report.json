@@ -1,0 +1,2731 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка общих правил договора купли-продажи. Не устанавливает судебный результат, не рассчитывает суммы и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-general-sale-evidence-supply-1-v0",
+    "schema_version": "contracts.sale-evidence.v0",
+    "mapping_version": "contracts-reviewed-sale-to-facts-v0",
+    "facts": {
+      "contract_concluded": true,
+      "seller_transfer_ownership_duty": true,
+      "buyer_acceptance_duty": true,
+      "buyer_payment_duty": true,
+      "goods_existing_or_future": true,
+      "goods_name_agreed": true,
+      "quantity_determinable": true,
+      "property_right_subject": false,
+      "property_right_nature_excludes_sale_rules": false,
+      "accessories_required": false,
+      "accessories_transferred": false,
+      "documents_required": false,
+      "documents_transferred": false,
+      "transfer_term_due": true,
+      "delivery_late": true,
+      "fixed_term_contract": false,
+      "buyer_interest_lost_after_term": false,
+      "buyer_consented_late_transfer": false,
+      "delivery_obligation": true,
+      "goods_delivered_to_buyer": true,
+      "goods_made_available": false,
+      "shipment_contract": false,
+      "goods_handed_to_carrier": false,
+      "goods_transfer_completed": true,
+      "risk_allocation_agreed": false,
+      "risk_passed_by_agreement": false,
+      "goods_sold_in_transit": false,
+      "seller_knew_transit_loss": false,
+      "seller_disclosed_transit_loss": false,
+      "third_party_rights_exist": false,
+      "buyer_consented_third_party_rights": false,
+      "goods_withdrawn_by_third_party": false,
+      "withdrawal_ground_predates_transfer": false,
+      "buyer_knew_withdrawal_ground": false,
+      "seller_eviction_exclusion_agreement": false,
+      "third_party_eviction_claim_filed": false,
+      "buyer_joined_seller_to_eviction_case": false,
+      "seller_participated_in_eviction_case": false,
+      "seller_could_prevent_withdrawal": false,
+      "seller_refused_goods_transfer": false,
+      "buyer_chose_contract_refusal_for_nontransfer": false,
+      "individually_defined_goods": false,
+      "specific_performance_requested": false,
+      "buyer_set_reasonable_document_term": false,
+      "seller_failed_document_term": false,
+      "buyer_refused_goods_for_documents": false,
+      "quantity_shortfall": false,
+      "excess_quantity": false,
+      "buyer_notified_excess": false,
+      "seller_disposed_excess_reasonable_time": false,
+      "buyer_accepted_excess": false,
+      "different_excess_price_agreed": false,
+      "assortment_required": false,
+      "assortment_agreed": false,
+      "assortment_determinable_from_needs": false,
+      "seller_selected_assortment": false,
+      "assortment_nonconforming": false,
+      "mixed_assortment_delivery": false,
+      "buyer_rejected_nonconforming_assortment": false,
+      "buyer_rejected_all_mixed_goods": false,
+      "buyer_required_assortment_replacement": false,
+      "buyer_notified_assortment_refusal_reasonable_time": false,
+      "quality_terms_agreed": false,
+      "ordinary_purpose_known": false,
+      "special_purpose_disclosed": false,
+      "sale_by_sample_or_description": false,
+      "quality_defect": false,
+      "mandatory_quality_requirements_apply": false,
+      "enhanced_quality_agreed": false,
+      "seller_warranty_given": false,
+      "warranty_period_active": false,
+      "shelf_life_set": false,
+      "goods_transferred_with_usable_shelf_life": false,
+      "inspection_required": true,
+      "buyer_received_goods": true,
+      "inspection_timely": true,
+      "inspection_method_complied": true,
+      "buyer_chose_price_reduction": false,
+      "buyer_chose_free_repair": false,
+      "buyer_chose_repair_costs": false,
+      "defect_material": false,
+      "buyer_chose_replacement": false,
+      "buyer_chose_contract_refusal_for_defect": false,
+      "buyer_proved_pretransfer_defect_cause": false,
+      "seller_proved_posttransfer_defect_cause": false,
+      "defect_discovered_within_applicable_period": false,
+      "completeness_terms_agreed": false,
+      "incomplete_goods": false,
+      "buyer_chose_incomplete_price_reduction": false,
+      "buyer_requested_completion": false,
+      "seller_completed_reasonable_time": false,
+      "buyer_requested_complete_replacement": false,
+      "buyer_chose_contract_refusal_for_incompleteness": false,
+      "set_of_goods_agreed": false,
+      "set_transfer_complete": false,
+      "packaging_required": false,
+      "packaging_transferred": false,
+      "packaging_conforming": false,
+      "buyer_requested_packaging": false,
+      "buyer_requested_packaging_replacement": false,
+      "buyer_elected_other_packaging_remedy": false,
+      "discrepancy_found": false,
+      "prompt_notice_given": false,
+      "seller_knew_or_should_have_known_discrepancy": false,
+      "seller_proved_notice_prejudice": false,
+      "buyer_acceptance_completed": true,
+      "buyer_failed_acceptance": false,
+      "seller_demanded_acceptance": false,
+      "seller_chose_contract_refusal_for_nonacceptance": false,
+      "price_agreed": true,
+      "price_determinable": false,
+      "price_based_on_weight": false,
+      "net_weight_proven": false,
+      "price_revision_formula_agreed": false,
+      "price_revision_inputs_proven": false,
+      "payment_due": false,
+      "buyer_paid": false,
+      "seller_demanded_payment": false,
+      "multiple_goods_transferred": false,
+      "seller_suspended_remaining_goods": false,
+      "prepayment_required": false,
+      "prepayment_due": false,
+      "prepayment_made": false,
+      "seller_failed_after_prepayment": false,
+      "buyer_requested_prepaid_delivery": false,
+      "buyer_requested_prepayment_return": false,
+      "credit_sale": false,
+      "credit_payment_due": false,
+      "credit_payment_made": false,
+      "seller_demanded_credit_payment_or_return": false,
+      "seller_security_interest_applies": false,
+      "installment_sale": false,
+      "installment_essential_terms_complete": false,
+      "installment_payment_due": false,
+      "installment_payment_made": false,
+      "paid_amount_exceeds_half_price": false,
+      "seller_chose_installment_refusal": false,
+      "insurance_duty_allocated": false,
+      "insurance_duty_due": false,
+      "insurance_obtained": false,
+      "counterparty_insured_goods": false,
+      "counterparty_chose_insurance_refusal": false,
+      "title_retention_agreed": false,
+      "title_condition_met": false,
+      "buyer_disposed_before_title": false,
+      "title_early_disposal_permitted": false,
+      "seller_required_goods_return": false,
+      "title_return_contract_bar": false,
+      "unilateral_refusal_notice_delivered": false,
+      "contract_terminated": false,
+      "loss_claimed": false,
+      "causation_proven": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk454-464-sale-transfer-v1",
+      "synthetic-ru-gk465-477-sale-conformity-v1",
+      "synthetic-ru-gk478-491-sale-payment-v1",
+      "synthetic-ru-vs-review2024-sale-quality-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "accessories_required",
+        "assertion_id": "general-sale-evidence-accessories_required",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "accessories_transferred",
+        "assertion_id": "general-sale-evidence-accessories_transferred",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "assortment_agreed",
+        "assertion_id": "general-sale-evidence-assortment_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "assortment_determinable_from_needs",
+        "assertion_id": "general-sale-evidence-assortment_determinable_from_needs",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "assortment_nonconforming",
+        "assertion_id": "general-sale-evidence-assortment_nonconforming",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "assortment_required",
+        "assertion_id": "general-sale-evidence-assortment_required",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_acceptance_completed",
+        "assertion_id": "general-sale-evidence-buyer_acceptance_completed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_acceptance_duty",
+        "assertion_id": "general-sale-evidence-buyer_acceptance_duty",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_accepted_excess",
+        "assertion_id": "general-sale-evidence-buyer_accepted_excess",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_chose_contract_refusal_for_defect",
+        "assertion_id": "general-sale-evidence-buyer_chose_contract_refusal_for_defect",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_chose_contract_refusal_for_incompleteness",
+        "assertion_id": "general-sale-evidence-buyer_chose_contract_refusal_for_incompleteness",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_chose_contract_refusal_for_nontransfer",
+        "assertion_id": "general-sale-evidence-buyer_chose_contract_refusal_for_nontransfer",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_chose_free_repair",
+        "assertion_id": "general-sale-evidence-buyer_chose_free_repair",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_chose_incomplete_price_reduction",
+        "assertion_id": "general-sale-evidence-buyer_chose_incomplete_price_reduction",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_chose_price_reduction",
+        "assertion_id": "general-sale-evidence-buyer_chose_price_reduction",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_chose_repair_costs",
+        "assertion_id": "general-sale-evidence-buyer_chose_repair_costs",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_chose_replacement",
+        "assertion_id": "general-sale-evidence-buyer_chose_replacement",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_consented_late_transfer",
+        "assertion_id": "general-sale-evidence-buyer_consented_late_transfer",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_consented_third_party_rights",
+        "assertion_id": "general-sale-evidence-buyer_consented_third_party_rights",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_disposed_before_title",
+        "assertion_id": "general-sale-evidence-buyer_disposed_before_title",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_elected_other_packaging_remedy",
+        "assertion_id": "general-sale-evidence-buyer_elected_other_packaging_remedy",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_failed_acceptance",
+        "assertion_id": "general-sale-evidence-buyer_failed_acceptance",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_interest_lost_after_term",
+        "assertion_id": "general-sale-evidence-buyer_interest_lost_after_term",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_joined_seller_to_eviction_case",
+        "assertion_id": "general-sale-evidence-buyer_joined_seller_to_eviction_case",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_knew_withdrawal_ground",
+        "assertion_id": "general-sale-evidence-buyer_knew_withdrawal_ground",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_notified_assortment_refusal_reasonable_time",
+        "assertion_id": "general-sale-evidence-buyer_notified_assortment_refusal_reasonable_time",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_notified_excess",
+        "assertion_id": "general-sale-evidence-buyer_notified_excess",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_paid",
+        "assertion_id": "general-sale-evidence-buyer_paid",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_payment_duty",
+        "assertion_id": "general-sale-evidence-buyer_payment_duty",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_proved_pretransfer_defect_cause",
+        "assertion_id": "general-sale-evidence-buyer_proved_pretransfer_defect_cause",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_received_goods",
+        "assertion_id": "general-sale-evidence-buyer_received_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_refused_goods_for_documents",
+        "assertion_id": "general-sale-evidence-buyer_refused_goods_for_documents",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_rejected_all_mixed_goods",
+        "assertion_id": "general-sale-evidence-buyer_rejected_all_mixed_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_rejected_nonconforming_assortment",
+        "assertion_id": "general-sale-evidence-buyer_rejected_nonconforming_assortment",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_requested_complete_replacement",
+        "assertion_id": "general-sale-evidence-buyer_requested_complete_replacement",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_requested_completion",
+        "assertion_id": "general-sale-evidence-buyer_requested_completion",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_requested_packaging",
+        "assertion_id": "general-sale-evidence-buyer_requested_packaging",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_requested_packaging_replacement",
+        "assertion_id": "general-sale-evidence-buyer_requested_packaging_replacement",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_requested_prepaid_delivery",
+        "assertion_id": "general-sale-evidence-buyer_requested_prepaid_delivery",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_requested_prepayment_return",
+        "assertion_id": "general-sale-evidence-buyer_requested_prepayment_return",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_required_assortment_replacement",
+        "assertion_id": "general-sale-evidence-buyer_required_assortment_replacement",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_set_reasonable_document_term",
+        "assertion_id": "general-sale-evidence-buyer_set_reasonable_document_term",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "causation_proven",
+        "assertion_id": "general-sale-evidence-causation_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "completeness_terms_agreed",
+        "assertion_id": "general-sale-evidence-completeness_terms_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_concluded",
+        "assertion_id": "general-sale-evidence-contract_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_terminated",
+        "assertion_id": "general-sale-evidence-contract_terminated",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "counterparty_chose_insurance_refusal",
+        "assertion_id": "general-sale-evidence-counterparty_chose_insurance_refusal",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "counterparty_insured_goods",
+        "assertion_id": "general-sale-evidence-counterparty_insured_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "credit_payment_due",
+        "assertion_id": "general-sale-evidence-credit_payment_due",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "credit_payment_made",
+        "assertion_id": "general-sale-evidence-credit_payment_made",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "credit_sale",
+        "assertion_id": "general-sale-evidence-credit_sale",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "defect_discovered_within_applicable_period",
+        "assertion_id": "general-sale-evidence-defect_discovered_within_applicable_period",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "defect_material",
+        "assertion_id": "general-sale-evidence-defect_material",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "delivery_late",
+        "assertion_id": "general-sale-evidence-delivery_late",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "delivery_obligation",
+        "assertion_id": "general-sale-evidence-delivery_obligation",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "different_excess_price_agreed",
+        "assertion_id": "general-sale-evidence-different_excess_price_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "discrepancy_found",
+        "assertion_id": "general-sale-evidence-discrepancy_found",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "documents_required",
+        "assertion_id": "general-sale-evidence-documents_required",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "documents_transferred",
+        "assertion_id": "general-sale-evidence-documents_transferred",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "enhanced_quality_agreed",
+        "assertion_id": "general-sale-evidence-enhanced_quality_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "excess_quantity",
+        "assertion_id": "general-sale-evidence-excess_quantity",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "fixed_term_contract",
+        "assertion_id": "general-sale-evidence-fixed_term_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_delivered_to_buyer",
+        "assertion_id": "general-sale-evidence-goods_delivered_to_buyer",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_existing_or_future",
+        "assertion_id": "general-sale-evidence-goods_existing_or_future",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_handed_to_carrier",
+        "assertion_id": "general-sale-evidence-goods_handed_to_carrier",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_made_available",
+        "assertion_id": "general-sale-evidence-goods_made_available",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_name_agreed",
+        "assertion_id": "general-sale-evidence-goods_name_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_sold_in_transit",
+        "assertion_id": "general-sale-evidence-goods_sold_in_transit",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_transfer_completed",
+        "assertion_id": "general-sale-evidence-goods_transfer_completed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_transferred_with_usable_shelf_life",
+        "assertion_id": "general-sale-evidence-goods_transferred_with_usable_shelf_life",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_withdrawn_by_third_party",
+        "assertion_id": "general-sale-evidence-goods_withdrawn_by_third_party",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "incomplete_goods",
+        "assertion_id": "general-sale-evidence-incomplete_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "individually_defined_goods",
+        "assertion_id": "general-sale-evidence-individually_defined_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "inspection_method_complied",
+        "assertion_id": "general-sale-evidence-inspection_method_complied",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "inspection_required",
+        "assertion_id": "general-sale-evidence-inspection_required",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "inspection_timely",
+        "assertion_id": "general-sale-evidence-inspection_timely",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "installment_essential_terms_complete",
+        "assertion_id": "general-sale-evidence-installment_essential_terms_complete",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "installment_payment_due",
+        "assertion_id": "general-sale-evidence-installment_payment_due",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "installment_payment_made",
+        "assertion_id": "general-sale-evidence-installment_payment_made",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "installment_sale",
+        "assertion_id": "general-sale-evidence-installment_sale",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "insurance_duty_allocated",
+        "assertion_id": "general-sale-evidence-insurance_duty_allocated",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "insurance_duty_due",
+        "assertion_id": "general-sale-evidence-insurance_duty_due",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "insurance_obtained",
+        "assertion_id": "general-sale-evidence-insurance_obtained",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "loss_claimed",
+        "assertion_id": "general-sale-evidence-loss_claimed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "mandatory_quality_requirements_apply",
+        "assertion_id": "general-sale-evidence-mandatory_quality_requirements_apply",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "mixed_assortment_delivery",
+        "assertion_id": "general-sale-evidence-mixed_assortment_delivery",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "multiple_goods_transferred",
+        "assertion_id": "general-sale-evidence-multiple_goods_transferred",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "net_weight_proven",
+        "assertion_id": "general-sale-evidence-net_weight_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "ordinary_purpose_known",
+        "assertion_id": "general-sale-evidence-ordinary_purpose_known",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "packaging_conforming",
+        "assertion_id": "general-sale-evidence-packaging_conforming",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "packaging_required",
+        "assertion_id": "general-sale-evidence-packaging_required",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "packaging_transferred",
+        "assertion_id": "general-sale-evidence-packaging_transferred",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "paid_amount_exceeds_half_price",
+        "assertion_id": "general-sale-evidence-paid_amount_exceeds_half_price",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "payment_due",
+        "assertion_id": "general-sale-evidence-payment_due",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "prepayment_due",
+        "assertion_id": "general-sale-evidence-prepayment_due",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "prepayment_made",
+        "assertion_id": "general-sale-evidence-prepayment_made",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "prepayment_required",
+        "assertion_id": "general-sale-evidence-prepayment_required",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "price_agreed",
+        "assertion_id": "general-sale-evidence-price_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "price_based_on_weight",
+        "assertion_id": "general-sale-evidence-price_based_on_weight",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "price_determinable",
+        "assertion_id": "general-sale-evidence-price_determinable",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "price_revision_formula_agreed",
+        "assertion_id": "general-sale-evidence-price_revision_formula_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "price_revision_inputs_proven",
+        "assertion_id": "general-sale-evidence-price_revision_inputs_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "prompt_notice_given",
+        "assertion_id": "general-sale-evidence-prompt_notice_given",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_right_nature_excludes_sale_rules",
+        "assertion_id": "general-sale-evidence-property_right_nature_excludes_sale_rules",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_right_subject",
+        "assertion_id": "general-sale-evidence-property_right_subject",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "quality_defect",
+        "assertion_id": "general-sale-evidence-quality_defect",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "quality_terms_agreed",
+        "assertion_id": "general-sale-evidence-quality_terms_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "quantity_determinable",
+        "assertion_id": "general-sale-evidence-quantity_determinable",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "quantity_shortfall",
+        "assertion_id": "general-sale-evidence-quantity_shortfall",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "risk_allocation_agreed",
+        "assertion_id": "general-sale-evidence-risk_allocation_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "risk_passed_by_agreement",
+        "assertion_id": "general-sale-evidence-risk_passed_by_agreement",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "sale_by_sample_or_description",
+        "assertion_id": "general-sale-evidence-sale_by_sample_or_description",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_chose_contract_refusal_for_nonacceptance",
+        "assertion_id": "general-sale-evidence-seller_chose_contract_refusal_for_nonacceptance",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_chose_installment_refusal",
+        "assertion_id": "general-sale-evidence-seller_chose_installment_refusal",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_completed_reasonable_time",
+        "assertion_id": "general-sale-evidence-seller_completed_reasonable_time",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_could_prevent_withdrawal",
+        "assertion_id": "general-sale-evidence-seller_could_prevent_withdrawal",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_demanded_acceptance",
+        "assertion_id": "general-sale-evidence-seller_demanded_acceptance",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_demanded_credit_payment_or_return",
+        "assertion_id": "general-sale-evidence-seller_demanded_credit_payment_or_return",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_demanded_payment",
+        "assertion_id": "general-sale-evidence-seller_demanded_payment",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_disclosed_transit_loss",
+        "assertion_id": "general-sale-evidence-seller_disclosed_transit_loss",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_disposed_excess_reasonable_time",
+        "assertion_id": "general-sale-evidence-seller_disposed_excess_reasonable_time",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_eviction_exclusion_agreement",
+        "assertion_id": "general-sale-evidence-seller_eviction_exclusion_agreement",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_failed_after_prepayment",
+        "assertion_id": "general-sale-evidence-seller_failed_after_prepayment",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_failed_document_term",
+        "assertion_id": "general-sale-evidence-seller_failed_document_term",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_knew_or_should_have_known_discrepancy",
+        "assertion_id": "general-sale-evidence-seller_knew_or_should_have_known_discrepancy",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_knew_transit_loss",
+        "assertion_id": "general-sale-evidence-seller_knew_transit_loss",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_participated_in_eviction_case",
+        "assertion_id": "general-sale-evidence-seller_participated_in_eviction_case",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_proved_notice_prejudice",
+        "assertion_id": "general-sale-evidence-seller_proved_notice_prejudice",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_proved_posttransfer_defect_cause",
+        "assertion_id": "general-sale-evidence-seller_proved_posttransfer_defect_cause",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_refused_goods_transfer",
+        "assertion_id": "general-sale-evidence-seller_refused_goods_transfer",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_required_goods_return",
+        "assertion_id": "general-sale-evidence-seller_required_goods_return",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_security_interest_applies",
+        "assertion_id": "general-sale-evidence-seller_security_interest_applies",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_selected_assortment",
+        "assertion_id": "general-sale-evidence-seller_selected_assortment",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_suspended_remaining_goods",
+        "assertion_id": "general-sale-evidence-seller_suspended_remaining_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_transfer_ownership_duty",
+        "assertion_id": "general-sale-evidence-seller_transfer_ownership_duty",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_warranty_given",
+        "assertion_id": "general-sale-evidence-seller_warranty_given",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "set_of_goods_agreed",
+        "assertion_id": "general-sale-evidence-set_of_goods_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "set_transfer_complete",
+        "assertion_id": "general-sale-evidence-set_transfer_complete",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "shelf_life_set",
+        "assertion_id": "general-sale-evidence-shelf_life_set",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "shipment_contract",
+        "assertion_id": "general-sale-evidence-shipment_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "special_purpose_disclosed",
+        "assertion_id": "general-sale-evidence-special_purpose_disclosed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "specific_performance_requested",
+        "assertion_id": "general-sale-evidence-specific_performance_requested",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_eviction_claim_filed",
+        "assertion_id": "general-sale-evidence-third_party_eviction_claim_filed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_rights_exist",
+        "assertion_id": "general-sale-evidence-third_party_rights_exist",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "title_condition_met",
+        "assertion_id": "general-sale-evidence-title_condition_met",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "title_early_disposal_permitted",
+        "assertion_id": "general-sale-evidence-title_early_disposal_permitted",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "title_retention_agreed",
+        "assertion_id": "general-sale-evidence-title_retention_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "title_return_contract_bar",
+        "assertion_id": "general-sale-evidence-title_return_contract_bar",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "transfer_term_due",
+        "assertion_id": "general-sale-evidence-transfer_term_due",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "unilateral_refusal_notice_delivered",
+        "assertion_id": "general-sale-evidence-unilateral_refusal_notice_delivered",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "warranty_period_active",
+        "assertion_id": "general-sale-evidence-warranty_period_active",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "withdrawal_ground_predates_transfer",
+        "assertion_id": "general-sale-evidence-withdrawal_ground_predates_transfer",
+        "source_refs": [
+          "synthetic-case-supply-1-general-sale-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "sale-constraint-set:reviewed-general-sale-evidence-supply-1-v0",
+    "model_version": "contracts-sale-articles-454-491-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk454-464-sale-transfer-v1",
+      "synthetic-ru-gk465-477-sale-conformity-v1",
+      "synthetic-ru-gk478-491-sale-payment-v1",
+      "synthetic-ru-vs-review2024-sale-quality-v1"
+    ],
+    "expressions": [
+      "sale_contract == concluded AND transfer_ownership_duty AND acceptance_duty AND payment_duty AND goods_subject AND name AND quantity",
+      "transfer_duty == completed AND (delivery OR availability OR carrier_handover)",
+      "default_risk_passage == transfer_duty AND NOT agreed_risk_allocation",
+      "eviction_remedy == withdrawal_on_pretransfer_ground AND NOT buyer_knowledge AND NOT preventable_procedure_gap",
+      "quality_remedy == defect AND timely_claim AND applicable_causation_burden",
+      "notice_defense == late_notice AND proven_prejudice AND NOT seller_knowledge",
+      "payment_default == payment_due AND NOT paid",
+      "installment_refusal == installment_default AND seller_refusal AND NOT more_than_half_paid",
+      "title_return == retained_title AND unmet_condition AND seller_return_demand",
+      "sale_refusal == statutory_refusal_ground AND delivered_notice"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "sale-constraint-set:reviewed-general-sale-evidence-supply-1-v0",
+    "satisfiable": true,
+    "sale_contract_qualified": true,
+    "property_right_sale_rules_applicable": false,
+    "transfer_package_complete": true,
+    "transfer_package_gap": false,
+    "late_fixed_term_transfer_requires_consent": false,
+    "transfer_duty_performed": true,
+    "risk_passed_by_default": true,
+    "risk_passed_by_contract": false,
+    "transit_risk_passed_at_conclusion": false,
+    "transit_risk_clause_challenge": false,
+    "third_party_rights_breach": false,
+    "eviction_loss_remedy_available": false,
+    "eviction_exclusion_ineffective": false,
+    "buyer_eviction_procedure_gap": false,
+    "seller_eviction_defense_barred": false,
+    "goods_transfer_refusal_remedy_available": false,
+    "specific_performance_available": false,
+    "documents_remedy_available": false,
+    "documents_refusal_ground": false,
+    "quantity_shortfall_remedies": false,
+    "excess_quantity_deemed_accepted": false,
+    "excess_quantity_payment_due": false,
+    "seller_assortment_choice_default": false,
+    "assortment_remedies_available": false,
+    "mixed_assortment_total_refusal_available": false,
+    "assortment_deemed_accepted": false,
+    "quality_standard_requires_general_default": false,
+    "quality_remedies_available": false,
+    "material_defect_remedies_available": false,
+    "defect_causation_requirement_satisfied": false,
+    "warranty_seller_burden_applies": false,
+    "defect_claim_timely": false,
+    "shelf_life_transfer_breach": false,
+    "quality_inspection_gap": false,
+    "completeness_primary_remedies": false,
+    "completeness_secondary_remedies": false,
+    "set_delivery_breach": false,
+    "packaging_remedies_available": false,
+    "notice_defense_available": false,
+    "notice_defense_displaced_by_seller_knowledge": false,
+    "buyer_acceptance_breach": false,
+    "seller_nonacceptance_remedies": false,
+    "price_general_default_required": false,
+    "net_weight_price_controls": false,
+    "price_revision_requires_review": false,
+    "payment_default": false,
+    "seller_payment_remedies": false,
+    "prepayment_default": false,
+    "prepaid_buyer_remedies": false,
+    "credit_payment_default": false,
+    "credit_seller_remedies": false,
+    "credit_goods_security_active": false,
+    "installment_terms_gap": false,
+    "installment_refusal_available": false,
+    "installment_refusal_barred_by_half_payment": false,
+    "insurance_breach": false,
+    "insurance_self_help_available": false,
+    "insurance_refusal_available": false,
+    "title_disposal_bar": false,
+    "title_return_remedy": false,
+    "sale_contract_refusal_effective": false,
+    "sale_breach_established": true,
+    "requires_human_sale_assessment": false,
+    "reasons_ru": [
+      "Подтверждены формальные признаки договора купли-продажи.",
+      "Выявлено нарушение обязанности по общим правилам купли-продажи."
+    ],
+    "warnings_ru": [
+      "Модель проверяет формальные предпосылки статей 454–491 ГК РФ и не подменяет квалификацию суда.",
+      "Существенность недостатка, разумность срока, доказанность причин и толкование выбора средства защиты оценивает юрист.",
+      "Общие правила купли-продажи применяются к поставке постольку, поскольку специальные нормы не устанавливают иное."
+    ]
+  },
+  "benchmark_report": {
+    "id": "sale-articles-454-491-benchmark-report-v0",
+    "total": 48,
+    "passed": 48,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "sale-bench-454-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "sale_contract_qualified": true
+        },
+        "observed_outcomes": {
+          "sale_contract_qualified": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-454-property-right",
+        "passed": true,
+        "expected_outcomes": {
+          "property_right_sale_rules_applicable": true
+        },
+        "observed_outcomes": {
+          "property_right_sale_rules_applicable": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-456-transfer-package",
+        "passed": true,
+        "expected_outcomes": {
+          "transfer_package_complete": true,
+          "transfer_duty_performed": true
+        },
+        "observed_outcomes": {
+          "transfer_package_complete": true,
+          "transfer_duty_performed": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-457-fixed-term",
+        "passed": true,
+        "expected_outcomes": {
+          "late_fixed_term_transfer_requires_consent": true
+        },
+        "observed_outcomes": {
+          "late_fixed_term_transfer_requires_consent": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Просроченная передача по договору к определенному сроку требует согласия покупателя.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-458-availability",
+        "passed": true,
+        "expected_outcomes": {
+          "transfer_duty_performed": true
+        },
+        "observed_outcomes": {
+          "transfer_duty_performed": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-458-carrier",
+        "passed": true,
+        "expected_outcomes": {
+          "transfer_duty_performed": true
+        },
+        "observed_outcomes": {
+          "transfer_duty_performed": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-459-default-risk",
+        "passed": true,
+        "expected_outcomes": {
+          "risk_passed_by_default": true
+        },
+        "observed_outcomes": {
+          "risk_passed_by_default": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-459-contract-risk",
+        "passed": true,
+        "expected_outcomes": {
+          "risk_passed_by_contract": true
+        },
+        "observed_outcomes": {
+          "risk_passed_by_contract": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-459-transit-loss",
+        "passed": true,
+        "expected_outcomes": {
+          "transit_risk_clause_challenge": true
+        },
+        "observed_outcomes": {
+          "transit_risk_clause_challenge": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-459-transit-default",
+        "passed": true,
+        "expected_outcomes": {
+          "transit_risk_passed_at_conclusion": true
+        },
+        "observed_outcomes": {
+          "transit_risk_passed_at_conclusion": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-460-third-party-rights",
+        "passed": true,
+        "expected_outcomes": {
+          "third_party_rights_breach": true
+        },
+        "observed_outcomes": {
+          "third_party_rights_breach": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Товар передан с несогласованными правами третьих лиц.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-461-eviction",
+        "passed": true,
+        "expected_outcomes": {
+          "eviction_loss_remedy_available": true,
+          "eviction_exclusion_ineffective": true
+        },
+        "observed_outcomes": {
+          "eviction_loss_remedy_available": true,
+          "eviction_exclusion_ineffective": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Товар передан с несогласованными правами третьих лиц.",
+          "Подтверждены формальные предпосылки ответственности продавца при эвикции.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-462-procedure-gap",
+        "passed": true,
+        "expected_outcomes": {
+          "buyer_eviction_procedure_gap": true
+        },
+        "observed_outcomes": {
+          "buyer_eviction_procedure_gap": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-462-seller-default",
+        "passed": true,
+        "expected_outcomes": {
+          "seller_eviction_defense_barred": true
+        },
+        "observed_outcomes": {
+          "seller_eviction_defense_barred": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-463-specific-performance",
+        "passed": true,
+        "expected_outcomes": {
+          "goods_transfer_refusal_remedy_available": true,
+          "specific_performance_available": true
+        },
+        "observed_outcomes": {
+          "goods_transfer_refusal_remedy_available": true,
+          "specific_performance_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-463-contract-refusal",
+        "passed": true,
+        "expected_outcomes": {
+          "sale_contract_refusal_effective": true
+        },
+        "observed_outcomes": {
+          "sale_contract_refusal_effective": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Подтверждены формальные предпосылки специального отказа от договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-464-documents-refusal",
+        "passed": true,
+        "expected_outcomes": {
+          "documents_remedy_available": true,
+          "documents_refusal_ground": true
+        },
+        "observed_outcomes": {
+          "documents_remedy_available": true,
+          "documents_refusal_ground": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлен пробел в передаче товара, принадлежностей или документов.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-466-shortfall",
+        "passed": true,
+        "expected_outcomes": {
+          "quantity_shortfall_remedies": true
+        },
+        "observed_outcomes": {
+          "quantity_shortfall_remedies": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-466-excess",
+        "passed": true,
+        "expected_outcomes": {
+          "excess_quantity_deemed_accepted": true,
+          "excess_quantity_payment_due": true
+        },
+        "observed_outcomes": {
+          "excess_quantity_deemed_accepted": true,
+          "excess_quantity_payment_due": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-467-assortment-default",
+        "passed": true,
+        "expected_outcomes": {
+          "seller_assortment_choice_default": true
+        },
+        "observed_outcomes": {
+          "seller_assortment_choice_default": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-468-mixed-assortment",
+        "passed": true,
+        "expected_outcomes": {
+          "assortment_remedies_available": true,
+          "mixed_assortment_total_refusal_available": true
+        },
+        "observed_outcomes": {
+          "assortment_remedies_available": true,
+          "mixed_assortment_total_refusal_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-468-deemed-acceptance",
+        "passed": true,
+        "expected_outcomes": {
+          "assortment_deemed_accepted": true
+        },
+        "observed_outcomes": {
+          "assortment_deemed_accepted": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-469-quality-default",
+        "passed": true,
+        "expected_outcomes": {
+          "quality_standard_requires_general_default": true
+        },
+        "observed_outcomes": {
+          "quality_standard_requires_general_default": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-475-ordinary-defect",
+        "passed": true,
+        "expected_outcomes": {
+          "quality_remedies_available": true
+        },
+        "observed_outcomes": {
+          "quality_remedies_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Подтверждены формальные предпосылки требований из недостатков товара.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-475-material-defect",
+        "passed": true,
+        "expected_outcomes": {
+          "material_defect_remedies_available": true
+        },
+        "observed_outcomes": {
+          "material_defect_remedies_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Подтверждены формальные предпосылки требований из недостатков товара.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-476-warranty-burden",
+        "passed": true,
+        "expected_outcomes": {
+          "warranty_seller_burden_applies": true,
+          "quality_remedies_available": true
+        },
+        "observed_outcomes": {
+          "warranty_seller_burden_applies": true,
+          "quality_remedies_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Подтверждены формальные предпосылки требований из недостатков товара.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-472-shelf-life",
+        "passed": true,
+        "expected_outcomes": {
+          "shelf_life_transfer_breach": true
+        },
+        "observed_outcomes": {
+          "shelf_life_transfer_breach": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-474-inspection",
+        "passed": true,
+        "expected_outcomes": {
+          "quality_inspection_gap": true
+        },
+        "observed_outcomes": {
+          "quality_inspection_gap": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-480-completeness-primary",
+        "passed": true,
+        "expected_outcomes": {
+          "completeness_primary_remedies": true
+        },
+        "observed_outcomes": {
+          "completeness_primary_remedies": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-480-completeness-secondary",
+        "passed": true,
+        "expected_outcomes": {
+          "completeness_secondary_remedies": true
+        },
+        "observed_outcomes": {
+          "completeness_secondary_remedies": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Неустраненная некомплектность активирует вторичные средства защиты покупателя.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-479-set",
+        "passed": true,
+        "expected_outcomes": {
+          "set_delivery_breach": true
+        },
+        "observed_outcomes": {
+          "set_delivery_breach": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-482-packaging",
+        "passed": true,
+        "expected_outcomes": {
+          "packaging_remedies_available": true
+        },
+        "observed_outcomes": {
+          "packaging_remedies_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-483-notice-defense",
+        "passed": true,
+        "expected_outcomes": {
+          "notice_defense_available": true
+        },
+        "observed_outcomes": {
+          "notice_defense_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Продавец подтвердил формальную предпосылку возражения из несвоевременного извещения."
+        ]
+      },
+      {
+        "task_id": "sale-bench-483-seller-knowledge",
+        "passed": true,
+        "expected_outcomes": {
+          "notice_defense_displaced_by_seller_knowledge": true
+        },
+        "observed_outcomes": {
+          "notice_defense_displaced_by_seller_knowledge": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-484-acceptance",
+        "passed": true,
+        "expected_outcomes": {
+          "buyer_acceptance_breach": true,
+          "seller_nonacceptance_remedies": true
+        },
+        "observed_outcomes": {
+          "buyer_acceptance_breach": true,
+          "seller_nonacceptance_remedies": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-485-price-default",
+        "passed": true,
+        "expected_outcomes": {
+          "price_general_default_required": true
+        },
+        "observed_outcomes": {
+          "price_general_default_required": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-485-net-weight",
+        "passed": true,
+        "expected_outcomes": {
+          "net_weight_price_controls": true
+        },
+        "observed_outcomes": {
+          "net_weight_price_controls": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-485-price-revision",
+        "passed": true,
+        "expected_outcomes": {
+          "price_revision_requires_review": true
+        },
+        "observed_outcomes": {
+          "price_revision_requires_review": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-486-payment",
+        "passed": true,
+        "expected_outcomes": {
+          "payment_default": true,
+          "seller_payment_remedies": true
+        },
+        "observed_outcomes": {
+          "payment_default": true,
+          "seller_payment_remedies": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлена просрочка оплаты товара покупателем.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-487-prepayment-default",
+        "passed": true,
+        "expected_outcomes": {
+          "prepayment_default": true
+        },
+        "observed_outcomes": {
+          "prepayment_default": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-487-prepaid-buyer",
+        "passed": true,
+        "expected_outcomes": {
+          "prepaid_buyer_remedies": true
+        },
+        "observed_outcomes": {
+          "prepaid_buyer_remedies": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-488-credit",
+        "passed": true,
+        "expected_outcomes": {
+          "credit_payment_default": true,
+          "credit_seller_remedies": true,
+          "credit_goods_security_active": true
+        },
+        "observed_outcomes": {
+          "credit_payment_default": true,
+          "credit_seller_remedies": true,
+          "credit_goods_security_active": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлена просрочка оплаты товара покупателем.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-489-installment-terms",
+        "passed": true,
+        "expected_outcomes": {
+          "installment_terms_gap": true
+        },
+        "observed_outcomes": {
+          "installment_terms_gap": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-489-installment-refusal",
+        "passed": true,
+        "expected_outcomes": {
+          "installment_refusal_available": true
+        },
+        "observed_outcomes": {
+          "installment_refusal_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-489-half-payment",
+        "passed": true,
+        "expected_outcomes": {
+          "installment_refusal_barred_by_half_payment": true
+        },
+        "observed_outcomes": {
+          "installment_refusal_barred_by_half_payment": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-490-insurance",
+        "passed": true,
+        "expected_outcomes": {
+          "insurance_breach": true,
+          "insurance_self_help_available": true,
+          "insurance_refusal_available": true
+        },
+        "observed_outcomes": {
+          "insurance_breach": true,
+          "insurance_self_help_available": true,
+          "insurance_refusal_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-491-title-retention",
+        "passed": true,
+        "expected_outcomes": {
+          "title_disposal_bar": true,
+          "title_return_remedy": true
+        },
+        "observed_outcomes": {
+          "title_disposal_bar": true,
+          "title_return_remedy": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Распоряжение товаром совершено до перехода сохраненного за продавцом права собственности.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "task_id": "sale-bench-refusal-effective",
+        "passed": true,
+        "expected_outcomes": {
+          "sale_contract_refusal_effective": true
+        },
+        "observed_outcomes": {
+          "sale_contract_refusal_effective": true
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Подтверждены формальные предпосылки требований из недостатков товара.",
+          "Подтверждены формальные предпосылки специального отказа от договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "sale-articles-454-491-red-team-report-v0",
+    "total": 51,
+    "blocked": 51,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "sale-red-455-no-quantity",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "sale_contract_qualified": true
+        },
+        "observed_outcomes": {
+          "sale_contract_qualified": false
+        },
+        "reasons_ru": [
+          "Активное специальное последствие общих правил купли-продажи не подтверждено."
+        ]
+      },
+      {
+        "case_id": "sale-red-455-no-name",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "sale_contract_qualified": true
+        },
+        "observed_outcomes": {
+          "sale_contract_qualified": false
+        },
+        "reasons_ru": [
+          "Активное специальное последствие общих правил купли-продажи не подтверждено."
+        ]
+      },
+      {
+        "case_id": "sale-red-454-right-nature",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "property_right_sale_rules_applicable": true
+        },
+        "observed_outcomes": {
+          "property_right_sale_rules_applicable": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-456-missing-documents",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transfer_package_complete": true
+        },
+        "observed_outcomes": {
+          "transfer_package_complete": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлен пробел в передаче товара, принадлежностей или документов.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-457-buyer-consent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "late_fixed_term_transfer_requires_consent": true
+        },
+        "observed_outcomes": {
+          "late_fixed_term_transfer_requires_consent": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-458-no-route",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transfer_duty_performed": true
+        },
+        "observed_outcomes": {
+          "transfer_duty_performed": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-459-agreed-risk",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "risk_passed_by_default": true
+        },
+        "observed_outcomes": {
+          "risk_passed_by_default": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-459-risk-not-passed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "risk_passed_by_contract": true
+        },
+        "observed_outcomes": {
+          "risk_passed_by_contract": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-459-disclosed-loss",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transit_risk_clause_challenge": true
+        },
+        "observed_outcomes": {
+          "transit_risk_clause_challenge": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-459-transit-agreement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transit_risk_passed_at_conclusion": true
+        },
+        "observed_outcomes": {
+          "transit_risk_passed_at_conclusion": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-460-consented-rights",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "third_party_rights_breach": true
+        },
+        "observed_outcomes": {
+          "third_party_rights_breach": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-461-buyer-knew",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "eviction_loss_remedy_available": true
+        },
+        "observed_outcomes": {
+          "eviction_loss_remedy_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Товар передан с несогласованными правами третьих лиц.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-462-preventable-withdrawal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "eviction_loss_remedy_available": true
+        },
+        "observed_outcomes": {
+          "eviction_loss_remedy_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Товар передан с несогласованными правами третьих лиц.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-462-seller-participated",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "seller_eviction_defense_barred": true
+        },
+        "observed_outcomes": {
+          "seller_eviction_defense_barred": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-463-generic-goods",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "specific_performance_available": true
+        },
+        "observed_outcomes": {
+          "specific_performance_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-464-no-additional-term",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "documents_refusal_ground": true
+        },
+        "observed_outcomes": {
+          "documents_refusal_ground": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлен пробел в передаче товара, принадлежностей или документов.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-466-no-shortfall",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "quantity_shortfall_remedies": true
+        },
+        "observed_outcomes": {
+          "quantity_shortfall_remedies": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-466-seller-disposed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "excess_quantity_deemed_accepted": true
+        },
+        "observed_outcomes": {
+          "excess_quantity_deemed_accepted": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-467-agreed-assortment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "seller_assortment_choice_default": true
+        },
+        "observed_outcomes": {
+          "seller_assortment_choice_default": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-468-timely-refusal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "assortment_deemed_accepted": true
+        },
+        "observed_outcomes": {
+          "assortment_deemed_accepted": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-468-no-mixed-delivery",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "mixed_assortment_total_refusal_available": true
+        },
+        "observed_outcomes": {
+          "mixed_assortment_total_refusal_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-468-late-total-refusal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "mixed_assortment_total_refusal_available": true
+        },
+        "observed_outcomes": {
+          "mixed_assortment_total_refusal_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-475-no-causation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "quality_remedies_available": true
+        },
+        "observed_outcomes": {
+          "quality_remedies_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-476-post-transfer-cause",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "quality_remedies_available": true
+        },
+        "observed_outcomes": {
+          "quality_remedies_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-475-nonmaterial",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "material_defect_remedies_available": true
+        },
+        "observed_outcomes": {
+          "material_defect_remedies_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-477-out-of-time",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "quality_remedies_available": true
+        },
+        "observed_outcomes": {
+          "quality_remedies_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-472-usable-shelf-life",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "shelf_life_transfer_breach": true
+        },
+        "observed_outcomes": {
+          "shelf_life_transfer_breach": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-472-before-transfer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "shelf_life_transfer_breach": true
+        },
+        "observed_outcomes": {
+          "shelf_life_transfer_breach": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-474-compliant-inspection",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "quality_inspection_gap": true
+        },
+        "observed_outcomes": {
+          "quality_inspection_gap": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-480-completed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "completeness_secondary_remedies": true
+        },
+        "observed_outcomes": {
+          "completeness_secondary_remedies": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-479-complete-set",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "set_delivery_breach": true
+        },
+        "observed_outcomes": {
+          "set_delivery_breach": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-479-set-before-due",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "set_delivery_breach": true
+        },
+        "observed_outcomes": {
+          "set_delivery_breach": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-482-conforming-packaging",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "packaging_remedies_available": true
+        },
+        "observed_outcomes": {
+          "packaging_remedies_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-482-before-transfer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "packaging_remedies_available": true
+        },
+        "observed_outcomes": {
+          "packaging_remedies_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-483-prompt-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "notice_defense_available": true
+        },
+        "observed_outcomes": {
+          "notice_defense_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-483-seller-knowledge",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "notice_defense_available": true
+        },
+        "observed_outcomes": {
+          "notice_defense_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-484-accepted",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "buyer_acceptance_breach": true
+        },
+        "observed_outcomes": {
+          "buyer_acceptance_breach": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-485-determinable-price",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "price_general_default_required": true
+        },
+        "observed_outcomes": {
+          "price_general_default_required": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-485-no-net-proof",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "net_weight_price_controls": true
+        },
+        "observed_outcomes": {
+          "net_weight_price_controls": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-485-proven-revision",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "price_revision_requires_review": true
+        },
+        "observed_outcomes": {
+          "price_revision_requires_review": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-486-paid",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "payment_default": true
+        },
+        "observed_outcomes": {
+          "payment_default": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-487-prepaid",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "prepayment_default": true
+        },
+        "observed_outcomes": {
+          "prepayment_default": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-487-seller-performed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "prepaid_buyer_remedies": true
+        },
+        "observed_outcomes": {
+          "prepaid_buyer_remedies": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-488-credit-paid",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "credit_payment_default": true
+        },
+        "observed_outcomes": {
+          "credit_payment_default": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-489-half-paid",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "installment_refusal_available": true
+        },
+        "observed_outcomes": {
+          "installment_refusal_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-490-insured",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "insurance_breach": true
+        },
+        "observed_outcomes": {
+          "insurance_breach": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-490-not-due",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "insurance_breach": true
+        },
+        "observed_outcomes": {
+          "insurance_breach": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-491-title-passed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "title_disposal_bar": true
+        },
+        "observed_outcomes": {
+          "title_disposal_bar": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-491-disposal-permitted",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "title_disposal_bar": true
+        },
+        "observed_outcomes": {
+          "title_disposal_bar": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-491-return-contract-bar",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "title_return_remedy": true
+        },
+        "observed_outcomes": {
+          "title_return_remedy": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи."
+        ]
+      },
+      {
+        "case_id": "sale-red-refusal-no-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "sale_contract_refusal_effective": true
+        },
+        "observed_outcomes": {
+          "sale_contract_refusal_effective": false
+        },
+        "reasons_ru": [
+          "Подтверждены формальные признаки договора купли-продажи.",
+          "Подтверждены формальные предпосылки требований из недостатков товара.",
+          "Выявлено нарушение обязанности по общим правилам купли-продажи."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/96096/?page=3",
+    "https://www.vsrf.ru/files/27530/",
+    "https://www.vsrf.ru/documents/reviews/34051/",
+    "https://www.consultant.ru/document/cons_doc_LAW_17621/"
+  ]
+}

@@ -37,8 +37,8 @@
 - `contracts.invalidity-evidence.v0`;
 - `contracts-reviewed-invalidity-to-facts-v0`;
 - `contracts-transaction-invalidity-articles-166-181-v0`;
-- `contracts.case-evidence.v8`;
-- `contracts-reviewed-analysis-v8`;
+- `contracts.case-evidence.v9`;
+- `contracts-reviewed-analysis-v9`;
 - 14 benchmark и 14 Red Team-сценариев.
 
 Артефакт формируется командой `python scripts/export_synthetic_invalidity_evaluation.py` и сохраняется в `examples/synthetic_invalidity_evaluation_report.json`.

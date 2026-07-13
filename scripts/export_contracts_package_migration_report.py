@@ -10,63 +10,21 @@ from causa.institutional.contracts.migrations import (
 def main() -> None:
     root = Path(__file__).resolve().parents[1]
     migrations_path = root / "examples" / "migrations"
+    input_versions = [
+        ("contracts-ru-v0-0.1.0-benchmark-report.json", "0.1.0"),
+        ("contracts-ru-v0-0.3.0-phase0-trace.json", "0.3.0"),
+        ("contracts-ru-v0-0.4.0-reviewed-analysis.json", "0.4.0"),
+        *(
+            (f"contracts-ru-v0-0.{minor}.0-phase0-trace.json", f"0.{minor}.0")
+            for minor in range(5, 17)
+        ),
+    ]
     fixture_pairs = [
         (
-            migrations_path / "contracts-ru-v0-0.1.0-benchmark-report.json",
-            migrations_path / "contracts-ru-v0-0.1.0-to-0.16.0-migration-report.json",
-        ),
-        (
-            migrations_path / "contracts-ru-v0-0.3.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.3.0-to-0.16.0-migration-report.json",
-        ),
-        (
-            migrations_path / "contracts-ru-v0-0.4.0-reviewed-analysis.json",
-            migrations_path / "contracts-ru-v0-0.4.0-to-0.16.0-migration-report.json",
-        ),
-        (
-            migrations_path / "contracts-ru-v0-0.5.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.5.0-to-0.16.0-migration-report.json",
-        ),
-        (
-            migrations_path / "contracts-ru-v0-0.6.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.6.0-to-0.16.0-migration-report.json",
-        ),
-        (
-            migrations_path / "contracts-ru-v0-0.7.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.7.0-to-0.16.0-migration-report.json",
-        ),
-        (
-            migrations_path / "contracts-ru-v0-0.8.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.8.0-to-0.16.0-migration-report.json",
-        ),
-        (
-            migrations_path / "contracts-ru-v0-0.9.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.9.0-to-0.16.0-migration-report.json",
-        ),
-        (
-            migrations_path / "contracts-ru-v0-0.10.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.10.0-to-0.16.0-migration-report.json",
-        ),
-        (
-            migrations_path / "contracts-ru-v0-0.11.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.11.0-to-0.16.0-migration-report.json",
-        ),
-        (
-            migrations_path / "contracts-ru-v0-0.12.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.12.0-to-0.16.0-migration-report.json",
-        ),
-        (
-            migrations_path / "contracts-ru-v0-0.13.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.13.0-to-0.16.0-migration-report.json",
-        ),
-        (
-            migrations_path / "contracts-ru-v0-0.14.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.14.0-to-0.16.0-migration-report.json",
-        ),
-        (
-            migrations_path / "contracts-ru-v0-0.15.0-phase0-trace.json",
-            migrations_path / "contracts-ru-v0-0.15.0-to-0.16.0-migration-report.json",
-        ),
+            migrations_path / input_name,
+            migrations_path / f"contracts-ru-v0-{version}-to-0.17.0-migration-report.json",
+        )
+        for input_name, version in input_versions
     ]
     for input_path, output_path in fixture_pairs:
         artifact = PackageArtifactEnvelope.model_validate_json(

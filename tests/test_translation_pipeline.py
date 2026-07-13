@@ -17,7 +17,7 @@ from causa.management.synthetic_registry import (
     SYNTHETIC_POLICY_FAMILY_ID,
     build_synthetic_management_policy_registry_artifact,
 )
-from causa.translation import TranslationLevel
+from causa.translation import TranslationAssertionCode, TranslationLevel
 from causa.translation_pipeline import (
     TranslationBundle,
     TranslationBundleArtifact,
@@ -85,6 +85,23 @@ def test_bundle_passes_faithfulness_and_structural_usability_checks() -> None:
     assert bundle.ready_for_human_review is True
     assert all(artifact.faithfulness_passed for artifact in bundle.artifacts)
     assert all(artifact.usability_passed for artifact in bundle.artifacts)
+
+
+def test_bundle_contains_source_grounded_general_sale_assertions() -> None:
+    bundle = build_synthetic_translation_bundle_artifact().bundle
+    sale_codes = {
+        TranslationAssertionCode.SALE_CONTRACT_QUALIFIED,
+        TranslationAssertionCode.SALE_TRANSFER_DUTY_PERFORMED,
+        TranslationAssertionCode.SALE_THIRD_PARTY_OR_EVICTION_ISSUE,
+        TranslationAssertionCode.SALE_QUALITY_REMEDIES_AVAILABLE,
+        TranslationAssertionCode.SALE_PAYMENT_DEFAULT,
+        TranslationAssertionCode.SALE_TITLE_RETENTION_REMEDY,
+    }
+
+    for artifact in bundle.artifacts:
+        assertions = {assertion.code: assertion for assertion in artifact.assertions}
+        assert sale_codes <= assertions.keys()
+        assert all(assertions[code].source_refs for code in sale_codes)
 
 
 def test_bundle_contract_rejects_inconsistent_template_coordinates() -> None:
@@ -192,12 +209,14 @@ def test_forensic_level_contains_reproduction_governance_and_path_comparison() -
     assert "Обеспечение исполнения обязательств" in professional
     assert "Перемена лиц и прекращение обязательств" in professional
     assert "Исполнение обязательств и средства защиты" in professional
+    assert "Общие правила договора купли-продажи" in professional
     assert "Изменение и расторжение договора" in professional
     assert "Модель заключения договора (статьи 432, 435, 438 и 443 ГК РФ)" in forensic
     assert "Модель недействительности сделки (статьи 166–181 ГК РФ)" in forensic
     assert "Модель обеспечения исполнения (статьи 329–381.2 ГК РФ)" in forensic
     assert "Модель перемены лиц и прекращения обязательств (статьи 382–419 ГК РФ)" in forensic
     assert "Модель исполнения и средств защиты (статьи 309–328 и 393–406.1 ГК РФ)" in forensic
+    assert "Модель купли-продажи (статьи 454–491 ГК РФ)" in forensic
     assert "Модель изменения и расторжения договора (статьи 450–453 ГК РФ)" in forensic
     assert "Модель ответственности (статьи 333 и 401 ГК РФ)" in forensic
     assert bundle.path_comparisons[0].selected_path == "active_reviewed_path"

@@ -832,6 +832,97 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk454-464-sale-transfer-v1",
+        title="Синтетическая проверенная модель предмета и передачи товара",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: квалификация купли-продажи, предмет, количество, "
+            "передача товара, принадлежностей и документов, срок, момент исполнения, риск, "
+            "права третьих лиц и эвикция проверяются раздельно."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "sale_articles_454_464",
+            "legal_reference": "ГК РФ, статьи 454–464",
+            "basis_url": "https://government.ru/docs/all/96096/?page=3",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk465-477-sale-conformity-v1",
+        title="Синтетическая проверенная модель соответствия товара",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: количество, ассортимент, качество, гарантия, "
+            "срок годности, проверка качества, недостатки и сроки их обнаружения имеют "
+            "самостоятельные предпосылки и распределение бремени доказывания."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "sale_articles_465_477",
+            "legal_reference": "ГК РФ, статьи 465–477",
+            "basis_url": "https://government.ru/docs/all/96096/?page=3",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk478-491-sale-payment-v1",
+        title="Синтетическая проверенная модель комплектности, приемки и оплаты",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: комплектность, комплект, тара, извещение, "
+            "принятие, цена, оплата, предоплата, кредит, рассрочка, страхование и сохранение "
+            "права собственности проверяются отдельными юридическими путями."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "sale_articles_478_491",
+            "legal_reference": "ГК РФ, статьи 478–491",
+            "basis_url": "https://government.ru/docs/all/96096/?page=3",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-vs-review2024-sale-quality-v1",
+        title="Синтетическая модель актуальных позиций ВС РФ о недостатках товара",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление судебных позиций: гарантийный срок влияет на "
+            "распределение бремени доказывания, а безрезультатный гарантийный ремонт не "
+            "прекращает предусмотренные законом требования покупателя."
+        ),
+        valid_from="2024-10-09",
+        metadata={
+            "synthetic": True,
+            "topic": "sale_quality_supreme_court_review_2024",
+            "legal_reference": (
+                "Обзор судебной практики ВС РФ № 2, 3 (2024), определение № 301-ЭС23-10631"
+            ),
+            "basis_url": "https://www.vsrf.ru/documents/reviews/34051/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-general-sale-evidence",
+        title="Синтетическая проверенная запись общих фактов купли-продажи",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: товар передан покупателю с просрочкой; предмет и цена "
+            "согласованы, количество, качество, комплектность и упаковка соответствуют "
+            "договору, требования об оплате и прекращении не заявлены."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "general_sale_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk506-512-supply-framework-v1",
         title="Синтетическая проверенная модель заключения и исполнения поставки",
         source_type=SourceType.STATUTE,

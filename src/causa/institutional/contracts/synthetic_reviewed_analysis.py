@@ -50,6 +50,11 @@ from causa.institutional.contracts.performance_remedies import (
     PerformanceRemediesEvidencePredicate,
     ReviewedPerformanceRemediesEvidence,
 )
+from causa.institutional.contracts.sale import (
+    ReviewedSaleEvidence,
+    SaleEvidenceAssertion,
+    SaleEvidencePredicate,
+)
 from causa.institutional.contracts.supply import (
     ReviewedSupplyEvidence,
     SupplyEvidenceAssertion,
@@ -98,6 +103,11 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-plenum54-performance-guidance-v1",
     "synthetic-ru-plenum7-remedies-guidance-v1",
     "synthetic-case-supply-1-performance-remedies-evidence",
+    "synthetic-ru-gk454-464-sale-transfer-v1",
+    "synthetic-ru-gk465-477-sale-conformity-v1",
+    "synthetic-ru-gk478-491-sale-payment-v1",
+    "synthetic-ru-vs-review2024-sale-quality-v1",
+    "synthetic-case-supply-1-general-sale-evidence",
     "synthetic-ru-gk506-512-supply-framework-v1",
     "synthetic-ru-gk513-517-supply-acceptance-v1",
     "synthetic-ru-gk518-524-supply-remedies-v1",
@@ -158,6 +168,28 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
         True
     )
     performance_remedies_values[PerformanceRemediesEvidencePredicate.DEBTOR_DELAY] = True
+    sale_values = {predicate: False for predicate in SaleEvidencePredicate}
+    for predicate in (
+        SaleEvidencePredicate.CONTRACT_CONCLUDED,
+        SaleEvidencePredicate.SELLER_TRANSFER_OWNERSHIP_DUTY,
+        SaleEvidencePredicate.BUYER_ACCEPTANCE_DUTY,
+        SaleEvidencePredicate.BUYER_PAYMENT_DUTY,
+        SaleEvidencePredicate.GOODS_EXISTING_OR_FUTURE,
+        SaleEvidencePredicate.GOODS_NAME_AGREED,
+        SaleEvidencePredicate.QUANTITY_DETERMINABLE,
+        SaleEvidencePredicate.TRANSFER_TERM_DUE,
+        SaleEvidencePredicate.DELIVERY_LATE,
+        SaleEvidencePredicate.DELIVERY_OBLIGATION,
+        SaleEvidencePredicate.GOODS_DELIVERED_TO_BUYER,
+        SaleEvidencePredicate.GOODS_TRANSFER_COMPLETED,
+        SaleEvidencePredicate.BUYER_RECEIVED_GOODS,
+        SaleEvidencePredicate.INSPECTION_REQUIRED,
+        SaleEvidencePredicate.INSPECTION_TIMELY,
+        SaleEvidencePredicate.INSPECTION_METHOD_COMPLIED,
+        SaleEvidencePredicate.BUYER_ACCEPTANCE_COMPLETED,
+        SaleEvidencePredicate.PRICE_AGREED,
+    ):
+        sale_values[predicate] = True
     supply_values = {predicate: False for predicate in SupplyEvidencePredicate}
     supply_values[SupplyEvidencePredicate.CONTRACT_CONCLUDED] = True
     supply_values[SupplyEvidencePredicate.SUPPLIER_BUSINESS] = True
@@ -385,6 +417,27 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-performance-remedies-reviewer",
+        ),
+        sale_evidence=ReviewedSaleEvidence(
+            id="reviewed-general-sale-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                SaleEvidenceAssertion(
+                    id=f"general-sale-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=sale_values[predicate],
+                    source_refs=("synthetic-case-supply-1-general-sale-evidence",),
+                )
+                for predicate in SaleEvidencePredicate
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk454-464-sale-transfer-v1",
+                "synthetic-ru-gk465-477-sale-conformity-v1",
+                "synthetic-ru-gk478-491-sale-payment-v1",
+                "synthetic-ru-vs-review2024-sale-quality-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-general-sale-reviewer",
         ),
         supply_evidence=ReviewedSupplyEvidence(
             id="reviewed-special-supply-evidence-supply-1-v0",

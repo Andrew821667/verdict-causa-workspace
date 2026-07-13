@@ -216,6 +216,11 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
             ),
             *(
                 source_ref
+                for assertion in analysis_request.sale_evidence.assertions
+                for source_ref in assertion.source_refs
+            ),
+            *(
+                source_ref
                 for assertion in analysis_request.supply_evidence.assertions
                 for source_ref in assertion.source_refs
             ),
@@ -363,6 +368,15 @@ def build_supply_dispute_demo_trace() -> Phase0DemoTrace:
                     ),
                     "debtor_in_delay": (
                         analysis_result.performance_remedies_evaluation.debtor_in_delay
+                    ),
+                    "sale_evidence_mapping_id": (analysis_result.sale_evidence_mapping.evidence_id),
+                    "sale_constraint_set_id": analysis_result.sale_constraint_set.id,
+                    "sale_model_version": analysis_result.sale_constraint_set.model_version,
+                    "sale_contract_qualified": (
+                        analysis_result.sale_evaluation.sale_contract_qualified
+                    ),
+                    "sale_breach_established": (
+                        analysis_result.sale_evaluation.sale_breach_established
                     ),
                     "supply_evidence_mapping_id": (
                         analysis_result.supply_evidence_mapping.evidence_id

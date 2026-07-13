@@ -4,7 +4,7 @@
   "engine_version": "governance-engine-v0",
   "title_ru": "Синтетический журнал governance-жизненного цикла",
   "policy_snapshot_id": "policy-snapshot:phase0-standard-t3@1",
-  "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222",
+  "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
   "summary_ru": [
     "Эвристика пробела активирована и успешно прошла плановую повторную валидацию.",
     "Паттерн разрешения противоречий прошел песочницу и затем был явно откачен.",
@@ -19,7 +19,7 @@
       "locale": "ru-RU",
       "engine_version": "governance-engine-v0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
-      "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222",
+      "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "current_stage": "active",
       "current_stage_label_ru": "Активно",
       "created_at": "2026-07-11T10:00:00+03:00",
@@ -42,7 +42,7 @@
             "synthetic-governance-evidence:proposed"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         },
         {
           "id": "governance-decision:candidate-supply-excuse-scope:2",
@@ -62,7 +62,7 @@
             "synthetic-governance-evidence:type_classification"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         },
         {
           "id": "governance-decision:candidate-supply-excuse-scope:3",
@@ -82,7 +82,7 @@
             "synthetic-governance-evidence:expert_review"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         },
         {
           "id": "governance-decision:candidate-supply-excuse-scope:4",
@@ -102,7 +102,7 @@
             "synthetic-monitoring-report:gap-heuristic-v0"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         },
         {
           "id": "governance-decision:candidate-supply-excuse-scope:5",
@@ -123,7 +123,7 @@
             "synthetic-supply-red-team-suite-v0"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         }
       ],
       "activations": [
@@ -135,7 +135,7 @@
           "expires_at": "2027-07-11T10:03:00+03:00",
           "actor_id": "synthetic-domain-owner",
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222",
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
           "decision_id": "governance-decision:candidate-supply-excuse-scope:3"
         }
       ],
@@ -172,7 +172,7 @@
       "locale": "ru-RU",
       "engine_version": "governance-engine-v0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
-      "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222",
+      "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "current_stage": "rolled_back",
       "current_stage_label_ru": "Откачено",
       "created_at": "2026-07-11T11:00:00+03:00",
@@ -195,7 +195,7 @@
             "synthetic-governance-evidence:proposed"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:2",
@@ -215,7 +215,7 @@
             "synthetic-governance-evidence:type_classification"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:3",
@@ -235,7 +235,7 @@
             "synthetic-governance-evidence:formal_check"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:4",
@@ -255,7 +255,7 @@
             "synthetic-governance-evidence:source_check"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:5",
@@ -275,7 +275,7 @@
             "synthetic-governance-evidence:benchmark_check"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:6",
@@ -295,7 +295,7 @@
             "synthetic-governance-evidence:red_team_check"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:7",
@@ -315,7 +315,7 @@
             "synthetic-governance-evidence:expert_review"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:8",
@@ -335,7 +335,7 @@
             "synthetic-supply-red-team-suite-v0"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         },
         {
           "id": "governance-decision:candidate-conflict-resolution-sandbox-v0:9",
@@ -355,7 +355,7 @@
             "synthetic-rollback-drill:conflict-resolution-v0"
           ],
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222"
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
         }
       ],
       "activations": [
@@ -367,7 +367,7 @@
           "expires_at": "2028-01-02T11:20:00+03:00",
           "actor_id": "synthetic-red-team-reviewer",
           "policy_version": "policy-snapshot:phase0-standard-t3@1",
-          "policy_content_hash": "sha256:14bf5ef2902ae4ed85d7106aaccde52873a6167f24bd4f8f7b4e707b61bb7222",
+          "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
           "decision_id": "governance-decision:candidate-conflict-resolution-sandbox-v0:8"
         }
       ],

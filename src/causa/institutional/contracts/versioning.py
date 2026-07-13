@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.17.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed general-sale evidence is mandatory before special-supply evaluation.",
+            "Formal boundaries cover Civil Code articles 454 through 491.",
+            "Transfer, risk, title, conformity, acceptance, payment, and remedies remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные общие данные о купле-продаже обязательны до проверки специальных правил поставки.",
+            "Формальные границы охватывают статьи 454–491 ГК РФ.",
+            "Передача, риск, титул, соответствие, приемка, оплата и средства защиты разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.16.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

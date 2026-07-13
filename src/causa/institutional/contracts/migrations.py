@@ -322,6 +322,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.16.0",
+        to_version="0.17.0",
+        reasons=[
+            "Reviewed inputs now require a separate general-sale evidence contract.",
+            "Analysis and Russian translation distinguish the sale paths under articles 454 through 491.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт общих данных о купле-продаже.",
+            "Анализ и русское объяснение разделяют маршруты статей 454–491 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_sale_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

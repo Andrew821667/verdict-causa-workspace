@@ -75,6 +75,7 @@ def test_reviewed_analysis_resolves_temporal_authority_before_formal_evaluation(
         ("authority_input", "Authority input must be reviewed"),
         ("formation_evidence", "Formation evidence must be reviewed"),
         ("invalidity_evidence", "Invalidity evidence must be reviewed"),
+        ("sale_evidence", "Sale evidence must be reviewed"),
         ("supply_evidence", "Supply evidence must be reviewed"),
         ("termination_evidence", "Termination evidence must be reviewed"),
         ("liability_evidence", "Liability evidence must be reviewed"),
@@ -291,6 +292,13 @@ def test_reviewed_remedy_assertions_drive_remedy_constraints() -> None:
     performance_remedies_evidence = request.performance_remedies_evidence.model_copy(
         update={"assertions": performance_remedies_assertions}
     )
+    sale_assertions = tuple(
+        assertion.model_copy(update={"value": True})
+        if assertion.predicate.value in {"loss_claimed", "causation_proven"}
+        else assertion
+        for assertion in request.sale_evidence.assertions
+    )
+    sale_evidence = request.sale_evidence.model_copy(update={"assertions": sale_assertions})
     supply_assertions = tuple(
         assertion.model_copy(update={"value": True})
         if assertion.predicate.value in {"loss_claimed", "causation_proven"}
@@ -303,6 +311,7 @@ def test_reviewed_remedy_assertions_drive_remedy_constraints() -> None:
             update={
                 "case_evidence": evidence,
                 "performance_remedies_evidence": performance_remedies_evidence,
+                "sale_evidence": sale_evidence,
                 "supply_evidence": supply_evidence,
             }
         ),

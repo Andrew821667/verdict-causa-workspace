@@ -258,6 +258,22 @@ def _performance_remedies_refs(
     return sorted(references)
 
 
+def _sale_refs(
+    result: ReviewedContractAnalysisResult,
+    *fact_names: str,
+) -> list[str]:
+    references = {
+        *result.sale_evidence_mapping.legal_source_refs,
+        *(
+            source_ref
+            for item in result.sale_evidence_mapping.provenance
+            if item.fact_name in fact_names
+            for source_ref in item.source_refs
+        ),
+    }
+    return sorted(references)
+
+
 def _supply_refs(
     result: ReviewedContractAnalysisResult,
     *fact_names: str,
@@ -288,6 +304,7 @@ def build_translation_assertions(
     security = result.security_evaluation
     dynamics = result.obligation_dynamics_evaluation
     performance_remedies = result.performance_remedies_evaluation
+    sale = result.sale_evaluation
     supply = result.supply_evaluation
     termination = result.termination_evaluation
     critical_scenario = (
@@ -1000,6 +1017,138 @@ def build_translation_assertions(
             ),
         ),
         TranslationAssertion(
+            code=TranslationAssertionCode.SALE_CONTRACT_QUALIFIED,
+            value=sale.sale_contract_qualified,
+            text_ru=(
+                "Подтверждены формальные признаки договора купли-продажи по статье 454 ГК РФ."
+                if sale.sale_contract_qualified
+                else "Полный набор формальных признаков договора купли-продажи не подтвержден."
+            ),
+            source_refs=_sale_refs(
+                result,
+                "contract_concluded",
+                "seller_transfer_ownership_duty",
+                "buyer_acceptance_duty",
+                "buyer_payment_duty",
+                "goods_existing_or_future",
+                "goods_name_agreed",
+                "quantity_determinable",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SALE_TRANSFER_DUTY_PERFORMED,
+            value=sale.transfer_duty_performed,
+            text_ru=(
+                "Передача товара формально исполнена с учетом применимого способа вручения."
+                if sale.transfer_duty_performed
+                else "Надлежащее исполнение обязанности передать товар подтверждено не полностью."
+            ),
+            source_refs=_sale_refs(
+                result,
+                "goods_transfer_completed",
+                "delivery_obligation",
+                "goods_delivered_to_buyer",
+                "goods_made_available",
+                "shipment_contract",
+                "goods_handed_to_carrier",
+                "accessories_required",
+                "accessories_transferred",
+                "documents_required",
+                "documents_transferred",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SALE_THIRD_PARTY_OR_EVICTION_ISSUE,
+            value=(
+                sale.third_party_rights_breach
+                or sale.eviction_loss_remedy_available
+                or sale.buyer_eviction_procedure_gap
+            ),
+            text_ru=(
+                "Выявлен вопрос о правах третьих лиц, эвикции или процессуальном участии продавца."
+                if (
+                    sale.third_party_rights_breach
+                    or sale.eviction_loss_remedy_available
+                    or sale.buyer_eviction_procedure_gap
+                )
+                else "Проблема прав третьих лиц или эвикции текущими фактами не подтверждена."
+            ),
+            source_refs=_sale_refs(
+                result,
+                "third_party_rights_exist",
+                "buyer_consented_third_party_rights",
+                "goods_withdrawn_by_third_party",
+                "withdrawal_ground_predates_transfer",
+                "buyer_knew_withdrawal_ground",
+                "third_party_eviction_claim_filed",
+                "buyer_joined_seller_to_eviction_case",
+                "loss_claimed",
+                "causation_proven",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SALE_QUALITY_REMEDIES_AVAILABLE,
+            value=(sale.quality_remedies_available or sale.material_defect_remedies_available),
+            text_ru=(
+                "Подтверждены формальные предпосылки требований покупателя из недостатков товара."
+                if (sale.quality_remedies_available or sale.material_defect_remedies_available)
+                else "Средства защиты из недостатков товара текущими фактами не активированы."
+            ),
+            source_refs=_sale_refs(
+                result,
+                "quality_defect",
+                "defect_material",
+                "seller_warranty_given",
+                "warranty_period_active",
+                "buyer_proved_pretransfer_defect_cause",
+                "seller_proved_posttransfer_defect_cause",
+                "defect_discovered_within_applicable_period",
+                "buyer_chose_price_reduction",
+                "buyer_chose_free_repair",
+                "buyer_chose_repair_costs",
+                "buyer_chose_replacement",
+                "buyer_chose_contract_refusal_for_defect",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SALE_PAYMENT_DEFAULT,
+            value=(sale.payment_default or sale.prepayment_default or sale.credit_payment_default),
+            text_ru=(
+                "Выявлена просрочка оплаты, предварительной оплаты или платежа за товар в кредит."
+                if (sale.payment_default or sale.prepayment_default or sale.credit_payment_default)
+                else "Просрочка оплаты по общим правилам купли-продажи не подтверждена."
+            ),
+            source_refs=_sale_refs(
+                result,
+                "payment_due",
+                "buyer_paid",
+                "prepayment_required",
+                "prepayment_due",
+                "prepayment_made",
+                "credit_sale",
+                "credit_payment_due",
+                "credit_payment_made",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SALE_TITLE_RETENTION_REMEDY,
+            value=sale.title_return_remedy,
+            text_ru=(
+                "Подтверждена формальная предпосылка требования вернуть товар при сохранении права собственности."
+                if sale.title_return_remedy
+                else "Требование о возврате товара из сохранения права собственности не активировано."
+            ),
+            source_refs=_sale_refs(
+                result,
+                "title_retention_agreed",
+                "title_condition_met",
+                "buyer_disposed_before_title",
+                "title_early_disposal_permitted",
+                "seller_required_goods_return",
+                "title_return_contract_bar",
+            ),
+        ),
+        TranslationAssertion(
             code=TranslationAssertionCode.SUPPLY_CONTRACT_QUALIFIED,
             value=supply.supply_contract_qualified,
             text_ru=(
@@ -1634,6 +1783,7 @@ def _render_context(
     security = result.security_evaluation
     dynamics = result.obligation_dynamics_evaluation
     performance_remedies = result.performance_remedies_evaluation
+    sale = result.sale_evaluation
     supply = result.supply_evaluation
     termination = result.termination_evaluation
     formation_professional_ru = "\n".join(
@@ -1770,6 +1920,34 @@ def _render_context(
             *[f"- Ограничение: {warning}" for warning in performance_remedies.warnings_ru],
         ]
     )
+    sale_professional_ru = "\n".join(
+        [
+            *[f"- {reason}" for reason in sale.reasons_ru],
+            "- Предмет, передача, риск, права третьих лиц, количество, ассортимент, качество, комплектность, упаковка, приемка и оплата проверены раздельно.",
+            "- Для поставки общие правила купли-продажи действуют постольку, поскольку специальные нормы не устанавливают иное.",
+            "- Существенность недостатка, разумность срока, причинная связь и выбор средства защиты требуют оценки юриста.",
+        ]
+    )
+    sale_forensic_ru = "\n".join(
+        [
+            f"- Набор ограничений: {result.sale_constraint_set.id}.",
+            f"- Версия модели: {result.sale_constraint_set.model_version}.",
+            f"- Отображение доказательств: {result.sale_evidence_mapping.mapping_version}.",
+            f"- Правовые источники: {', '.join(result.sale_evidence_mapping.legal_source_refs)}.",
+            *[
+                f"- Правило общей модели купли-продажи: {expression}."
+                for expression in result.sale_constraint_set.expressions
+            ],
+            *[
+                f"- Проверенный факт {item.fact_name}: исходное утверждение="
+                f"{item.assertion_id}; доказательственные источники="
+                f"{', '.join(item.source_refs)}."
+                for item in result.sale_evidence_mapping.provenance
+            ],
+            *[f"- Результат: {reason}" for reason in sale.reasons_ru],
+            *[f"- Ограничение: {warning}" for warning in sale.warnings_ru],
+        ]
+    )
     supply_professional_ru = "\n".join(
         [
             *[f"- {reason}" for reason in supply.reasons_ru],
@@ -1877,6 +2055,8 @@ def _render_context(
         "dynamics_forensic_ru": dynamics_forensic_ru,
         "performance_remedies_professional_ru": performance_remedies_professional_ru,
         "performance_remedies_forensic_ru": performance_remedies_forensic_ru,
+        "sale_professional_ru": sale_professional_ru,
+        "sale_forensic_ru": sale_forensic_ru,
         "supply_professional_ru": supply_professional_ru,
         "supply_forensic_ru": supply_forensic_ru,
         "termination_professional_ru": termination_professional_ru,

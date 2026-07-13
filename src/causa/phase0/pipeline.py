@@ -34,6 +34,9 @@ from causa.institutional.contracts.synthetic_obligation_dynamics import (
 from causa.institutional.contracts.synthetic_performance_remedies import (
     build_synthetic_performance_remedies_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_sale import (
+    build_synthetic_sale_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_supply import (
     build_synthetic_supply_evaluation_artifact,
 )
@@ -232,6 +235,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-general-sale-rules",
+            title="Проверка общих правил договора купли-продажи",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.sale_evidence_mapping.evidence_id,
+                trace.analysis_result.sale_constraint_set.id,
+                *trace.analysis_result.sale_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.sale_evaluation.reasons_ru,
+                "Правила статей 454–491 ГК РФ проверяются до специальных правил поставки.",
+                "Передача, риск, права третьих лиц, соответствие товара, приемка и оплата не смешиваются.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-special-supply-rules",
             title="Проверка специальных правил договора поставки",
             status=PipelineStepStatus.PASSED,
@@ -421,6 +439,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     security_artifact = build_synthetic_security_evaluation_artifact()
     dynamics_artifact = build_synthetic_obligation_dynamics_evaluation_artifact()
     performance_remedies_artifact = build_synthetic_performance_remedies_evaluation_artifact()
+    sale_artifact = build_synthetic_sale_evaluation_artifact()
     supply_artifact = build_synthetic_supply_evaluation_artifact()
 
     items = [
@@ -479,6 +498,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-obligation-dynamics-spec.md",
                 "src/causa/institutional/contracts/performance_remedies.py",
                 "docs/contract-performance-remedies-spec.md",
+                "src/causa/institutional/contracts/sale.py",
+                "docs/contract-sale-spec.md",
                 "src/causa/institutional/contracts/supply.py",
                 "docs/contract-supply-spec.md",
                 "src/causa/institutional/contracts/termination.py",
@@ -492,22 +513,18 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
                 "examples/synthetic_performance_remedies_evaluation_report.json",
+                "examples/synthetic_sale_articles_454_491_report.json",
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
-                "examples/migrations/contracts-ru-v0-0.1.0-to-0.16.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.3.0-to-0.16.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.4.0-to-0.16.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.5.0-to-0.16.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.6.0-to-0.16.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.7.0-to-0.16.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.8.0-to-0.16.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.9.0-to-0.16.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.10.0-to-0.16.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.11.0-to-0.16.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.12.0-to-0.16.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.13.0-to-0.16.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.14.0-to-0.16.0-migration-report.json",
-                "examples/migrations/contracts-ru-v0-0.15.0-to-0.16.0-migration-report.json",
+                *(
+                    f"examples/migrations/contracts-ru-v0-{version}-to-0.17.0-migration-report.json"
+                    for version in (
+                        "0.1.0",
+                        "0.3.0",
+                        "0.4.0",
+                        *(f"0.{minor}.0" for minor in range(5, 17)),
+                    )
+                ),
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
             ],
             remaining_work=[
@@ -585,6 +602,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 dynamics_artifact.red_team_report.id,
                 performance_remedies_artifact.benchmark_report.id,
                 performance_remedies_artifact.red_team_report.id,
+                sale_artifact.benchmark_report.id,
+                sale_artifact.red_team_report.id,
                 supply_artifact.benchmark_report.id,
                 supply_artifact.red_team_report.id,
                 termination_artifact.benchmark_report.id,
@@ -610,6 +629,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
                 "examples/synthetic_performance_remedies_evaluation_report.json",
+                "examples/synthetic_sale_articles_454_491_report.json",
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 pipeline.id,
