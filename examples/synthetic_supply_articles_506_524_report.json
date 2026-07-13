@@ -1,0 +1,1682 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка специальных правил договора поставки. Не устанавливает судебный результат, не рассчитывает суммы и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-special-supply-evidence-supply-1-v0",
+    "schema_version": "contracts.supply-evidence.v0",
+    "mapping_version": "contracts-reviewed-supply-to-facts-v0",
+    "facts": {
+      "contract_concluded": true,
+      "supplier_business": true,
+      "supplier_produced_or_procured_goods": true,
+      "goods_nonpersonal_use": true,
+      "retail_sale_context": false,
+      "transfer_term_defined": true,
+      "disagreements_received": false,
+      "thirty_day_response_or_refusal": false,
+      "periodic_delivery": false,
+      "delivery_periods_agreed": false,
+      "delivery_schedule_agreed": false,
+      "early_delivery": false,
+      "buyer_consented_early_delivery": false,
+      "buyer_accepted_early_delivery": false,
+      "shipment_order_required": false,
+      "shipment_order_timely_complete": false,
+      "transport_method_agreed": false,
+      "supplier_selected_transport": false,
+      "delivery_completed": true,
+      "delivery_late": true,
+      "quantity_shortfall": false,
+      "contract_term_continues": false,
+      "buyer_refused_late_makeup_by_notice": false,
+      "cross_assortment_offset": false,
+      "buyer_consented_offset": false,
+      "makeup_assortment_agreed": false,
+      "prior_period_assortment_proven": false,
+      "buyer_received_goods": true,
+      "inspection_timely": true,
+      "discrepancy_found": false,
+      "prompt_written_notice": false,
+      "documents_mismatch": false,
+      "consignee_refused_goods": false,
+      "lawful_refusal": false,
+      "goods_preserved": false,
+      "supplier_notified": false,
+      "supplier_disposed_reasonable_time": false,
+      "custody_expenses_documented": false,
+      "buyer_realized_or_returned_goods": false,
+      "unlawful_refusal": false,
+      "supplier_demanded_payment_after_refusal": false,
+      "buyer_selection_required": false,
+      "selection_due": false,
+      "buyer_failed_selection": false,
+      "supplier_notified_readiness": false,
+      "payment_due": false,
+      "consignee_payment_duty": false,
+      "consignee_failed_payment": false,
+      "buyer_paid": false,
+      "returnable_container": false,
+      "container_return_due": false,
+      "container_returned": false,
+      "quality_defect": false,
+      "defect_promptly_cured_or_replaced": false,
+      "retail_purchaser_claim": false,
+      "incomplete_goods": false,
+      "incompleteness_promptly_cured_or_replaced": false,
+      "buyer_acquired_substitute": false,
+      "substitute_expenses_reasonable_documented": false,
+      "payment_withheld": false,
+      "penalty_applies_to_short_or_late": false,
+      "replenishment_duty_continues": false,
+      "actual_replenishment_completed": false,
+      "multiple_supply_contracts": false,
+      "performance_allocation_designated": false,
+      "repeated_late_delivery": false,
+      "irremediable_defect": false,
+      "repeated_payment_default": false,
+      "repeated_selection_failure": false,
+      "unilateral_refusal_notice_delivered": false,
+      "contract_terminated": false,
+      "replacement_transaction_made": false,
+      "replacement_transaction_reasonable": false,
+      "replacement_transaction_timely": false,
+      "contract_price_proven": false,
+      "replacement_price_proven": false,
+      "current_price_available": false,
+      "current_price_proven": false,
+      "current_price_time_place_adjusted": false,
+      "loss_claimed": false,
+      "causation_proven": false,
+      "other_loss_proven": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk506-512-supply-framework-v1",
+      "synthetic-ru-gk513-517-supply-acceptance-v1",
+      "synthetic-ru-gk518-524-supply-remedies-v1",
+      "synthetic-ru-plenum18-supply-guidance-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "actual_replenishment_completed",
+        "assertion_id": "special-supply-evidence-actual_replenishment_completed",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_accepted_early_delivery",
+        "assertion_id": "special-supply-evidence-buyer_accepted_early_delivery",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_acquired_substitute",
+        "assertion_id": "special-supply-evidence-buyer_acquired_substitute",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_consented_early_delivery",
+        "assertion_id": "special-supply-evidence-buyer_consented_early_delivery",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_consented_offset",
+        "assertion_id": "special-supply-evidence-buyer_consented_offset",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_failed_selection",
+        "assertion_id": "special-supply-evidence-buyer_failed_selection",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_paid",
+        "assertion_id": "special-supply-evidence-buyer_paid",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_realized_or_returned_goods",
+        "assertion_id": "special-supply-evidence-buyer_realized_or_returned_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_received_goods",
+        "assertion_id": "special-supply-evidence-buyer_received_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_refused_late_makeup_by_notice",
+        "assertion_id": "special-supply-evidence-buyer_refused_late_makeup_by_notice",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_selection_required",
+        "assertion_id": "special-supply-evidence-buyer_selection_required",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "causation_proven",
+        "assertion_id": "special-supply-evidence-causation_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "consignee_failed_payment",
+        "assertion_id": "special-supply-evidence-consignee_failed_payment",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "consignee_payment_duty",
+        "assertion_id": "special-supply-evidence-consignee_payment_duty",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "consignee_refused_goods",
+        "assertion_id": "special-supply-evidence-consignee_refused_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "container_return_due",
+        "assertion_id": "special-supply-evidence-container_return_due",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "container_returned",
+        "assertion_id": "special-supply-evidence-container_returned",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_concluded",
+        "assertion_id": "special-supply-evidence-contract_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_price_proven",
+        "assertion_id": "special-supply-evidence-contract_price_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_term_continues",
+        "assertion_id": "special-supply-evidence-contract_term_continues",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_terminated",
+        "assertion_id": "special-supply-evidence-contract_terminated",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "cross_assortment_offset",
+        "assertion_id": "special-supply-evidence-cross_assortment_offset",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "current_price_available",
+        "assertion_id": "special-supply-evidence-current_price_available",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "current_price_proven",
+        "assertion_id": "special-supply-evidence-current_price_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "current_price_time_place_adjusted",
+        "assertion_id": "special-supply-evidence-current_price_time_place_adjusted",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "custody_expenses_documented",
+        "assertion_id": "special-supply-evidence-custody_expenses_documented",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "defect_promptly_cured_or_replaced",
+        "assertion_id": "special-supply-evidence-defect_promptly_cured_or_replaced",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "delivery_completed",
+        "assertion_id": "special-supply-evidence-delivery_completed",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "delivery_late",
+        "assertion_id": "special-supply-evidence-delivery_late",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "delivery_periods_agreed",
+        "assertion_id": "special-supply-evidence-delivery_periods_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "delivery_schedule_agreed",
+        "assertion_id": "special-supply-evidence-delivery_schedule_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "disagreements_received",
+        "assertion_id": "special-supply-evidence-disagreements_received",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "discrepancy_found",
+        "assertion_id": "special-supply-evidence-discrepancy_found",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "documents_mismatch",
+        "assertion_id": "special-supply-evidence-documents_mismatch",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "early_delivery",
+        "assertion_id": "special-supply-evidence-early_delivery",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_nonpersonal_use",
+        "assertion_id": "special-supply-evidence-goods_nonpersonal_use",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_preserved",
+        "assertion_id": "special-supply-evidence-goods_preserved",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "incomplete_goods",
+        "assertion_id": "special-supply-evidence-incomplete_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "incompleteness_promptly_cured_or_replaced",
+        "assertion_id": "special-supply-evidence-incompleteness_promptly_cured_or_replaced",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "inspection_timely",
+        "assertion_id": "special-supply-evidence-inspection_timely",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "irremediable_defect",
+        "assertion_id": "special-supply-evidence-irremediable_defect",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "lawful_refusal",
+        "assertion_id": "special-supply-evidence-lawful_refusal",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "loss_claimed",
+        "assertion_id": "special-supply-evidence-loss_claimed",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "makeup_assortment_agreed",
+        "assertion_id": "special-supply-evidence-makeup_assortment_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "multiple_supply_contracts",
+        "assertion_id": "special-supply-evidence-multiple_supply_contracts",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "other_loss_proven",
+        "assertion_id": "special-supply-evidence-other_loss_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "payment_due",
+        "assertion_id": "special-supply-evidence-payment_due",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "payment_withheld",
+        "assertion_id": "special-supply-evidence-payment_withheld",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "penalty_applies_to_short_or_late",
+        "assertion_id": "special-supply-evidence-penalty_applies_to_short_or_late",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "performance_allocation_designated",
+        "assertion_id": "special-supply-evidence-performance_allocation_designated",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "periodic_delivery",
+        "assertion_id": "special-supply-evidence-periodic_delivery",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "prior_period_assortment_proven",
+        "assertion_id": "special-supply-evidence-prior_period_assortment_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "prompt_written_notice",
+        "assertion_id": "special-supply-evidence-prompt_written_notice",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "quality_defect",
+        "assertion_id": "special-supply-evidence-quality_defect",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "quantity_shortfall",
+        "assertion_id": "special-supply-evidence-quantity_shortfall",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "repeated_late_delivery",
+        "assertion_id": "special-supply-evidence-repeated_late_delivery",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "repeated_payment_default",
+        "assertion_id": "special-supply-evidence-repeated_payment_default",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "repeated_selection_failure",
+        "assertion_id": "special-supply-evidence-repeated_selection_failure",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "replacement_price_proven",
+        "assertion_id": "special-supply-evidence-replacement_price_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "replacement_transaction_made",
+        "assertion_id": "special-supply-evidence-replacement_transaction_made",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "replacement_transaction_reasonable",
+        "assertion_id": "special-supply-evidence-replacement_transaction_reasonable",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "replacement_transaction_timely",
+        "assertion_id": "special-supply-evidence-replacement_transaction_timely",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "replenishment_duty_continues",
+        "assertion_id": "special-supply-evidence-replenishment_duty_continues",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "retail_purchaser_claim",
+        "assertion_id": "special-supply-evidence-retail_purchaser_claim",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "retail_sale_context",
+        "assertion_id": "special-supply-evidence-retail_sale_context",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "returnable_container",
+        "assertion_id": "special-supply-evidence-returnable_container",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "selection_due",
+        "assertion_id": "special-supply-evidence-selection_due",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "shipment_order_required",
+        "assertion_id": "special-supply-evidence-shipment_order_required",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "shipment_order_timely_complete",
+        "assertion_id": "special-supply-evidence-shipment_order_timely_complete",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "substitute_expenses_reasonable_documented",
+        "assertion_id": "special-supply-evidence-substitute_expenses_reasonable_documented",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "supplier_business",
+        "assertion_id": "special-supply-evidence-supplier_business",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "supplier_demanded_payment_after_refusal",
+        "assertion_id": "special-supply-evidence-supplier_demanded_payment_after_refusal",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "supplier_disposed_reasonable_time",
+        "assertion_id": "special-supply-evidence-supplier_disposed_reasonable_time",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "supplier_notified",
+        "assertion_id": "special-supply-evidence-supplier_notified",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "supplier_notified_readiness",
+        "assertion_id": "special-supply-evidence-supplier_notified_readiness",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "supplier_produced_or_procured_goods",
+        "assertion_id": "special-supply-evidence-supplier_produced_or_procured_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "supplier_selected_transport",
+        "assertion_id": "special-supply-evidence-supplier_selected_transport",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "thirty_day_response_or_refusal",
+        "assertion_id": "special-supply-evidence-thirty_day_response_or_refusal",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "transfer_term_defined",
+        "assertion_id": "special-supply-evidence-transfer_term_defined",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "transport_method_agreed",
+        "assertion_id": "special-supply-evidence-transport_method_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "unilateral_refusal_notice_delivered",
+        "assertion_id": "special-supply-evidence-unilateral_refusal_notice_delivered",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "unlawful_refusal",
+        "assertion_id": "special-supply-evidence-unlawful_refusal",
+        "source_refs": [
+          "synthetic-case-supply-1-special-supply-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "supply-constraint-set:reviewed-special-supply-evidence-supply-1-v0",
+    "model_version": "contracts-supply-articles-506-524-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk506-512-supply-framework-v1",
+      "synthetic-ru-gk513-517-supply-acceptance-v1",
+      "synthetic-ru-gk518-524-supply-remedies-v1",
+      "synthetic-ru-plenum18-supply-guidance-v1"
+    ],
+    "expressions": [
+      "supply_contract == concluded AND supplier_business AND produced_or_procured_goods AND nonpersonal_goods_use AND NOT retail_sale_context",
+      "delivery_term_general_default == supply_contract AND NOT transfer_term AND NOT periodic_delivery",
+      "negotiation_response_breach == disagreements_received AND NOT timely_response_or_refusal",
+      "early_delivery_permitted == early_delivery AND buyer_consent",
+      "makeup_delivery == shortfall AND contract_term_continues AND NOT buyer_refusal_notice",
+      "makeup_assortment_default == shortfall AND no_assortment_agreement AND prior_period_assortment",
+      "acceptance_duties == received AND timely_inspection AND (no_discrepancy OR prompt_notice)",
+      "transport_acceptance_issue == documents_mismatch OR consignee_refused_goods",
+      "responsible_custody == lawful_refusal AND preserved AND supplier_notified",
+      "article_520_cover == unremedied_nonconformity AND substitute_purchase AND documented_expenses",
+      "article_520_withholding == unremedied_quality_or_completeness AND payment_withheld",
+      "article_523_refusal == material_breach AND delivered_notice",
+      "article_524_concrete_damages == termination AND reasonable_replacement AND proven_prices AND causation",
+      "article_524_abstract_damages == termination AND no_replacement AND current_price AND causation"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "supply-constraint-set:reviewed-special-supply-evidence-supply-1-v0",
+    "satisfiable": true,
+    "supply_contract_qualified": true,
+    "delivery_term_requires_general_default": false,
+    "negotiation_response_breach": false,
+    "negotiation_loss_issue": false,
+    "monthly_delivery_default": false,
+    "agreed_delivery_schedule_controls": false,
+    "early_delivery_permitted": false,
+    "unauthorized_early_delivery": false,
+    "early_delivery_counts_next_period": false,
+    "shipment_order_default": false,
+    "shipment_order_loss_issue": false,
+    "supplier_transport_choice": false,
+    "makeup_delivery_required": false,
+    "late_makeup_refusal_effective": false,
+    "cross_assortment_offset_barred": false,
+    "makeup_assortment_default_to_prior_period": false,
+    "acceptance_duties_satisfied": true,
+    "acceptance_inspection_gap": false,
+    "acceptance_notice_gap": false,
+    "transport_acceptance_issue": false,
+    "responsible_custody_duties_satisfied": false,
+    "responsible_custody_gap": false,
+    "supplier_custody_cost_liability": false,
+    "buyer_disposal_available": false,
+    "supplier_payment_claim_after_unlawful_refusal": false,
+    "selection_supplier_remedy_available": false,
+    "buyer_payment_claim_available": false,
+    "container_return_breach": false,
+    "quality_remedies_available": false,
+    "quality_remedies_displaced_by_prompt_cure": false,
+    "retail_purchaser_direct_demands": false,
+    "completeness_remedies_available": false,
+    "completeness_remedies_displaced_by_prompt_cure": false,
+    "cover_purchase_cost_recovery": false,
+    "payment_withholding_available": false,
+    "penalty_continues_until_replenishment": false,
+    "default_contract_allocation_required": false,
+    "supplier_material_breach": false,
+    "buyer_material_breach": false,
+    "supply_unilateral_refusal_effective": false,
+    "concrete_price_damages_available": false,
+    "abstract_current_price_damages_available": false,
+    "other_damages_preserved": false,
+    "supply_breach_established": true,
+    "requires_human_supply_assessment": false,
+    "reasons_ru": [
+      "Подтверждены квалифицирующие признаки договора поставки.",
+      "Выявлено нарушение специальной обязанности по договору поставки."
+    ],
+    "warnings_ru": [
+      "Модель проверяет формальные предпосылки статей 506–524 ГК РФ и не подменяет квалификацию суда.",
+      "Разумный срок, существенность, повторность, качество уведомлений и доказанность цен оценивает юрист.",
+      "Инструкции П-6 и П-7 учитываются как договорный порядок приемки только при соответствующей отсылке."
+    ]
+  },
+  "benchmark_report": {
+    "id": "supply-articles-506-524-benchmark-report-v0",
+    "total": 32,
+    "passed": 32,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "supply-bench-506-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "supply_contract_qualified": true
+        },
+        "observed_outcomes": {
+          "supply_contract_qualified": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-506-term-default",
+        "passed": true,
+        "expected_outcomes": {
+          "supply_contract_qualified": true,
+          "delivery_term_requires_general_default": true
+        },
+        "observed_outcomes": {
+          "supply_contract_qualified": true,
+          "delivery_term_requires_general_default": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Прямой срок поставки не указан; требуется определить его по общим правилам статей 314 и 457 ГК РФ."
+        ]
+      },
+      {
+        "task_id": "supply-bench-507-negotiation-loss",
+        "passed": true,
+        "expected_outcomes": {
+          "negotiation_response_breach": true,
+          "negotiation_loss_issue": true
+        },
+        "observed_outcomes": {
+          "negotiation_response_breach": true,
+          "negotiation_loss_issue": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение срока ответа на предложение о разногласиях."
+        ]
+      },
+      {
+        "task_id": "supply-bench-508-agreed-schedule",
+        "passed": true,
+        "expected_outcomes": {
+          "agreed_delivery_schedule_controls": true
+        },
+        "observed_outcomes": {
+          "agreed_delivery_schedule_controls": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-508-monthly-default",
+        "passed": true,
+        "expected_outcomes": {
+          "monthly_delivery_default": true
+        },
+        "observed_outcomes": {
+          "monthly_delivery_default": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-508-early-delivery",
+        "passed": true,
+        "expected_outcomes": {
+          "early_delivery_permitted": true,
+          "early_delivery_counts_next_period": true
+        },
+        "observed_outcomes": {
+          "early_delivery_permitted": true,
+          "early_delivery_counts_next_period": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-509-shipment-order",
+        "passed": true,
+        "expected_outcomes": {
+          "shipment_order_default": true,
+          "shipment_order_loss_issue": true
+        },
+        "observed_outcomes": {
+          "shipment_order_default": true,
+          "shipment_order_loss_issue": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Не подтверждена своевременная полная отгрузочная разнарядка.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-513-inspection-gap",
+        "passed": true,
+        "expected_outcomes": {
+          "acceptance_duties_satisfied": false,
+          "acceptance_inspection_gap": true
+        },
+        "observed_outcomes": {
+          "acceptance_duties_satisfied": false,
+          "acceptance_inspection_gap": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Не подтверждена своевременная проверка принятого товара."
+        ]
+      },
+      {
+        "task_id": "supply-bench-510-transport-choice",
+        "passed": true,
+        "expected_outcomes": {
+          "supplier_transport_choice": true
+        },
+        "observed_outcomes": {
+          "supplier_transport_choice": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-511-makeup",
+        "passed": true,
+        "expected_outcomes": {
+          "makeup_delivery_required": true
+        },
+        "observed_outcomes": {
+          "makeup_delivery_required": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Недопоставка подлежит восполнению в пределах срока договора.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-511-refusal",
+        "passed": true,
+        "expected_outcomes": {
+          "makeup_delivery_required": false,
+          "late_makeup_refusal_effective": true
+        },
+        "observed_outcomes": {
+          "makeup_delivery_required": false,
+          "late_makeup_refusal_effective": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-512-assortment-offset",
+        "passed": true,
+        "expected_outcomes": {
+          "cross_assortment_offset_barred": true
+        },
+        "observed_outcomes": {
+          "cross_assortment_offset_barred": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-513-acceptance",
+        "passed": true,
+        "expected_outcomes": {
+          "acceptance_duties_satisfied": true,
+          "acceptance_notice_gap": false
+        },
+        "observed_outcomes": {
+          "acceptance_duties_satisfied": true,
+          "acceptance_notice_gap": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-512-makeup-assortment",
+        "passed": true,
+        "expected_outcomes": {
+          "makeup_assortment_default_to_prior_period": true
+        },
+        "observed_outcomes": {
+          "makeup_assortment_default_to_prior_period": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Ассортимент восполнения определяется ассортиментом периода недопоставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-514-custody",
+        "passed": true,
+        "expected_outcomes": {
+          "responsible_custody_duties_satisfied": true,
+          "supplier_custody_cost_liability": true
+        },
+        "observed_outcomes": {
+          "responsible_custody_duties_satisfied": true,
+          "supplier_custody_cost_liability": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-514-disposal",
+        "passed": true,
+        "expected_outcomes": {
+          "buyer_disposal_available": true
+        },
+        "observed_outcomes": {
+          "buyer_disposal_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-514-unlawful-refusal",
+        "passed": true,
+        "expected_outcomes": {
+          "supplier_payment_claim_after_unlawful_refusal": true
+        },
+        "observed_outcomes": {
+          "supplier_payment_claim_after_unlawful_refusal": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Подтверждены предпосылки требования оплаты при неправомерном отказе от товара.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-515-selection",
+        "passed": true,
+        "expected_outcomes": {
+          "selection_supplier_remedy_available": true
+        },
+        "observed_outcomes": {
+          "selection_supplier_remedy_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-516-payment",
+        "passed": true,
+        "expected_outcomes": {
+          "buyer_payment_claim_available": true
+        },
+        "observed_outcomes": {
+          "buyer_payment_claim_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-517-container",
+        "passed": true,
+        "expected_outcomes": {
+          "container_return_breach": true
+        },
+        "observed_outcomes": {
+          "container_return_breach": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-518-quality",
+        "passed": true,
+        "expected_outcomes": {
+          "quality_remedies_available": true
+        },
+        "observed_outcomes": {
+          "quality_remedies_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-518-prompt-cure",
+        "passed": true,
+        "expected_outcomes": {
+          "quality_remedies_available": false,
+          "quality_remedies_displaced_by_prompt_cure": true
+        },
+        "observed_outcomes": {
+          "quality_remedies_available": false,
+          "quality_remedies_displaced_by_prompt_cure": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-519-completeness",
+        "passed": true,
+        "expected_outcomes": {
+          "completeness_remedies_available": true
+        },
+        "observed_outcomes": {
+          "completeness_remedies_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-520-cover",
+        "passed": true,
+        "expected_outcomes": {
+          "cover_purchase_cost_recovery": true
+        },
+        "observed_outcomes": {
+          "cover_purchase_cost_recovery": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-520-withholding",
+        "passed": true,
+        "expected_outcomes": {
+          "payment_withholding_available": true
+        },
+        "observed_outcomes": {
+          "payment_withholding_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-521-penalty",
+        "passed": true,
+        "expected_outcomes": {
+          "penalty_continues_until_replenishment": true
+        },
+        "observed_outcomes": {
+          "penalty_continues_until_replenishment": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-522-allocation",
+        "passed": true,
+        "expected_outcomes": {
+          "default_contract_allocation_required": true
+        },
+        "observed_outcomes": {
+          "default_contract_allocation_required": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-523-supplier-breach",
+        "passed": true,
+        "expected_outcomes": {
+          "supplier_material_breach": true,
+          "supply_unilateral_refusal_effective": true
+        },
+        "observed_outcomes": {
+          "supplier_material_breach": true,
+          "supply_unilateral_refusal_effective": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Подтверждены специальные предпосылки одностороннего отказа.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "task_id": "supply-bench-523-buyer-breach",
+        "passed": true,
+        "expected_outcomes": {
+          "buyer_material_breach": true,
+          "supply_unilateral_refusal_effective": true
+        },
+        "observed_outcomes": {
+          "buyer_material_breach": true,
+          "supply_unilateral_refusal_effective": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Подтверждены специальные предпосылки одностороннего отказа."
+        ]
+      },
+      {
+        "task_id": "supply-bench-524-concrete",
+        "passed": true,
+        "expected_outcomes": {
+          "concrete_price_damages_available": true
+        },
+        "observed_outcomes": {
+          "concrete_price_damages_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Подтвержден конкретный расчет убытков по заменяющей сделке."
+        ]
+      },
+      {
+        "task_id": "supply-bench-524-abstract",
+        "passed": true,
+        "expected_outcomes": {
+          "abstract_current_price_damages_available": true
+        },
+        "observed_outcomes": {
+          "abstract_current_price_damages_available": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Подтвержден абстрактный расчет убытков по текущей цене."
+        ]
+      },
+      {
+        "task_id": "supply-bench-524-other-loss",
+        "passed": true,
+        "expected_outcomes": {
+          "other_damages_preserved": true
+        },
+        "observed_outcomes": {
+          "other_damages_preserved": true
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "supply-articles-506-524-red-team-report-v0",
+    "total": 32,
+    "blocked": 32,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "supply-red-506-personal-use",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supply_contract_qualified": true
+        },
+        "observed_outcomes": {
+          "supply_contract_qualified": false
+        },
+        "reasons_ru": [
+          "Активное специальное последствие договора поставки не подтверждено."
+        ]
+      },
+      {
+        "case_id": "supply-red-506-nonbusiness-supplier",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supply_contract_qualified": true
+        },
+        "observed_outcomes": {
+          "supply_contract_qualified": false
+        },
+        "reasons_ru": [
+          "Активное специальное последствие договора поставки не подтверждено."
+        ]
+      },
+      {
+        "case_id": "supply-red-506-goods-origin",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supply_contract_qualified": true
+        },
+        "observed_outcomes": {
+          "supply_contract_qualified": false
+        },
+        "reasons_ru": [
+          "Активное специальное последствие договора поставки не подтверждено."
+        ]
+      },
+      {
+        "case_id": "supply-red-506-retail-context",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supply_contract_qualified": true
+        },
+        "observed_outcomes": {
+          "supply_contract_qualified": false
+        },
+        "reasons_ru": [
+          "Активное специальное последствие договора поставки не подтверждено."
+        ]
+      },
+      {
+        "case_id": "supply-red-507-timely-response",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "negotiation_loss_issue": true
+        },
+        "observed_outcomes": {
+          "negotiation_loss_issue": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-508-agreed-periods",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "monthly_delivery_default": true
+        },
+        "observed_outcomes": {
+          "monthly_delivery_default": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-508-early-no-consent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "early_delivery_permitted": true
+        },
+        "observed_outcomes": {
+          "early_delivery_permitted": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Досрочная поставка произведена без подтвержденного согласия покупателя.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-509-complete-order",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "shipment_order_loss_issue": true
+        },
+        "observed_outcomes": {
+          "shipment_order_loss_issue": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-511-no-term",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "makeup_delivery_required": true
+        },
+        "observed_outcomes": {
+          "makeup_delivery_required": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-512-consented-offset",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "cross_assortment_offset_barred": true
+        },
+        "observed_outcomes": {
+          "cross_assortment_offset_barred": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-513-no-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "acceptance_duties_satisfied": true
+        },
+        "observed_outcomes": {
+          "acceptance_duties_satisfied": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлен пробел в своевременном письменном извещении о расхождениях."
+        ]
+      },
+      {
+        "case_id": "supply-red-514-no-preservation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supplier_custody_cost_liability": true
+        },
+        "observed_outcomes": {
+          "supplier_custody_cost_liability": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Обязанности ответственного хранения подтверждены не полностью.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-514-supplier-acted",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "buyer_disposal_available": true
+        },
+        "observed_outcomes": {
+          "buyer_disposal_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-514-unlawful-no-demand",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supplier_payment_claim_after_unlawful_refusal": true
+        },
+        "observed_outcomes": {
+          "supplier_payment_claim_after_unlawful_refusal": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-515-no-readiness",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "selection_supplier_remedy_available": true
+        },
+        "observed_outcomes": {
+          "selection_supplier_remedy_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-516-buyer-paid",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "buyer_payment_claim_available": true
+        },
+        "observed_outcomes": {
+          "buyer_payment_claim_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-517-not-due",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "container_return_breach": true
+        },
+        "observed_outcomes": {
+          "container_return_breach": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-518-prompt-replacement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "quality_remedies_available": true
+        },
+        "observed_outcomes": {
+          "quality_remedies_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-519-prompt-completion",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "completeness_remedies_available": true
+        },
+        "observed_outcomes": {
+          "completeness_remedies_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-520-undocumented-cover",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "cover_purchase_cost_recovery": true
+        },
+        "observed_outcomes": {
+          "cover_purchase_cost_recovery": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-520-cured-quality",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "cover_purchase_cost_recovery": true,
+          "payment_withholding_available": true
+        },
+        "observed_outcomes": {
+          "cover_purchase_cost_recovery": false,
+          "payment_withholding_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-520-shortfall-withholding",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "payment_withholding_available": true
+        },
+        "observed_outcomes": {
+          "payment_withholding_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-521-replenished",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "penalty_continues_until_replenishment": true
+        },
+        "observed_outcomes": {
+          "penalty_continues_until_replenishment": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-522-designated",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "default_contract_allocation_required": true
+        },
+        "observed_outcomes": {
+          "default_contract_allocation_required": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-523-single-delay",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supply_unilateral_refusal_effective": true
+        },
+        "observed_outcomes": {
+          "supply_unilateral_refusal_effective": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-523-curable-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supplier_material_breach": true
+        },
+        "observed_outcomes": {
+          "supplier_material_breach": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-523-no-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supply_unilateral_refusal_effective": true
+        },
+        "observed_outcomes": {
+          "supply_unilateral_refusal_effective": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки.",
+          "Выявлено нарушение специальной обязанности по договору поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-524-no-termination",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "abstract_current_price_damages_available": true
+        },
+        "observed_outcomes": {
+          "abstract_current_price_damages_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-524-unreasonable-transaction",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "concrete_price_damages_available": true
+        },
+        "observed_outcomes": {
+          "concrete_price_damages_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-524-untimely-transaction",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "concrete_price_damages_available": true
+        },
+        "observed_outcomes": {
+          "concrete_price_damages_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-524-missing-current-price",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "abstract_current_price_damages_available": true
+        },
+        "observed_outcomes": {
+          "abstract_current_price_damages_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      },
+      {
+        "case_id": "supply-red-524-unadjusted-current-price",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "abstract_current_price_damages_available": true
+        },
+        "observed_outcomes": {
+          "abstract_current_price_damages_available": false
+        },
+        "reasons_ru": [
+          "Подтверждены квалифицирующие признаки договора поставки."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/96096/",
+    "https://www.consultant.ru/document/cons_doc_LAW_17621/",
+    "https://vsrf.ru/lk/practice/stor_pdf_ec/1655326"
+  ]
+}

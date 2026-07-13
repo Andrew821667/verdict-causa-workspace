@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.16.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v8"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v8"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed special-supply evidence is mandatory for the synthetic supply path.",
+            "Formal boundaries cover Civil Code articles 506 through 524.",
+            "Acceptance, short delivery, defects, refusal, and price damages remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные специальные данные о поставке обязательны для синтетического пути поставки.",
+            "Формальные границы охватывают статьи 506–524 ГК РФ.",
+            "Приемка, недопоставка, недостатки, отказ и ценовые убытки разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.15.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

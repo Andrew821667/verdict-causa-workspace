@@ -832,6 +832,98 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk506-512-supply-framework-v1",
+        title="Синтетическая проверенная модель заключения и исполнения поставки",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: признаки поставки, согласование разногласий, "
+            "периоды, отгрузочная разнарядка, транспорт, восполнение недопоставки и "
+            "ассортимент проверяются как самостоятельные юридические вопросы."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "supply_articles_506_512",
+            "legal_reference": "ГК РФ, статьи 506–512",
+            "basis_url": "https://government.ru/docs/all/96096/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk513-517-supply-acceptance-v1",
+        title="Синтетическая проверенная модель приемки товара по договору поставки",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: приемка, письменное извещение, ответственное "
+            "хранение, выборка, оплата получателем и возврат тары проверяются раздельно."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "supply_articles_513_517",
+            "legal_reference": "ГК РФ, статьи 513–517",
+            "basis_url": "https://government.ru/docs/all/96096/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk518-524-supply-remedies-v1",
+        title="Синтетическая проверенная модель специальных средств защиты по поставке",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: последствия недостатков и некомплектности, "
+            "заменяющая закупка, удержание оплаты, неустойка, распределение исполнения, "
+            "односторонний отказ и ценовые убытки проверяются отдельными путями."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "supply_articles_518_524",
+            "legal_reference": "ГК РФ, статьи 518–524",
+            "basis_url": "https://government.ru/docs/all/96096/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-plenum18-supply-guidance-v1",
+        title="Синтетическая модель разъяснений Пленума ВАС РФ о договоре поставки",
+        source_type=SourceType.CASE_LAW,
+        text=(
+            "Синтетическое представление разъяснений: квалификация определяется "
+            "признаками статьи 506 ГК РФ с учетом розничного контекста, неуказанный срок "
+            "определяется по общим правилам, а инструкции П-6 и П-7 применяются к приемке "
+            "только при договорной отсылке."
+        ),
+        valid_from="1997-10-22",
+        metadata={
+            "synthetic": True,
+            "topic": "supply_plenum_guidance",
+            "legal_reference": "Постановление Пленума ВАС РФ от 22.10.1997 № 18",
+            "basis_url": "https://www.consultant.ru/document/cons_doc_LAW_17621/",
+            "official_practice_confirmation_url": (
+                "https://vsrf.ru/lk/practice/stor_pdf_ec/1655326"
+            ),
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-special-supply-evidence",
+        title="Синтетическая проверенная запись специальных фактов поставки",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: предпринимательская поставка завершена с просрочкой; "
+            "количество, качество и комплектность соответствуют договору, специальные "
+            "требования из недопоставки и прекращения не заявлены."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "special_supply_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk401-liability-model-v1",
         title="Синтетическая проверенная модель оснований ответственности по статье 401 ГК РФ",
         source_type=SourceType.STATUTE,

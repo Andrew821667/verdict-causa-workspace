@@ -303,6 +303,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.15.0",
+        to_version="0.16.0",
+        reasons=[
+            "Reviewed inputs now require a separate special-supply evidence contract.",
+            "Analysis and Russian translation distinguish the supply paths under articles 506 through 524.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт специальных данных о поставке.",
+            "Анализ и русское объяснение разделяют специальные маршруты статей 506–524 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_supply_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

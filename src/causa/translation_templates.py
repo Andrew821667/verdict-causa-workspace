@@ -73,7 +73,7 @@ def compute_translation_template_hash(
 
 
 def build_russian_translation_template_set() -> TranslationTemplateSet:
-    version = "translation-template-ru-v9"
+    version = "translation-template-ru-v10"
     templates = (
         TranslationTemplateDefinition(
             level=TranslationLevel.EXECUTIVE,
@@ -108,6 +108,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Обеспечение исполнения обязательств\n{security_professional_ru}\n\n"
                 "Перемена лиц и прекращение обязательств\n{dynamics_professional_ru}\n\n"
                 "Исполнение обязательств и средства защиты\n{performance_remedies_professional_ru}\n\n"
+                "Специальные правила договора поставки\n{supply_professional_ru}\n\n"
                 "Изменение и расторжение договора\n{termination_professional_ru}\n\n"
                 "Контрфактическая чувствительность\n{counterfactual_professional_ru}\n\n"
                 "Ответственность и неустойка\n{liability_professional_ru}\n\n"
@@ -125,6 +126,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Обеспечение исполнения обязательств",
                 "Перемена лиц и прекращение обязательств",
                 "Исполнение обязательств и средства защиты",
+                "Специальные правила договора поставки",
                 "Изменение и расторжение договора",
                 "Контрфактическая чувствительность",
                 "Ответственность и неустойка",
@@ -147,6 +149,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Модель обеспечения исполнения (статьи 329–381.2 ГК РФ)\n{security_forensic_ru}\n\n"
                 "Модель перемены лиц и прекращения обязательств (статьи 382–419 ГК РФ)\n{dynamics_forensic_ru}\n\n"
                 "Модель исполнения и средств защиты (статьи 309–328 и 393–406.1 ГК РФ)\n{performance_remedies_forensic_ru}\n\n"
+                "Модель договора поставки (статьи 506–524 ГК РФ)\n{supply_forensic_ru}\n\n"
                 "Модель изменения и расторжения договора (статьи 450–453 ГК РФ)\n{termination_forensic_ru}\n\n"
                 "Результаты формальной проверки\n{all_assertions_ru}\n\n"
                 "Governance-журнал кандидата\n{governance_ru}\n\n"
@@ -167,6 +170,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Модель обеспечения исполнения (статьи 329–381.2 ГК РФ)",
                 "Модель перемены лиц и прекращения обязательств (статьи 382–419 ГК РФ)",
                 "Модель исполнения и средств защиты (статьи 309–328 и 393–406.1 ГК РФ)",
+                "Модель договора поставки (статьи 506–524 ГК РФ)",
                 "Модель изменения и расторжения договора (статьи 450–453 ГК РФ)",
                 "Результаты формальной проверки",
                 "Governance-журнал кандидата",
@@ -176,7 +180,7 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Ограничения",
             ),
             min_characters=1_600,
-            max_characters=140_000,
+            max_characters=145_000,
         ),
     )
     return TranslationTemplateSet(

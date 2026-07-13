@@ -94,6 +94,16 @@ from causa.institutional.contracts.performance_remedies import (
     evaluate_performance_remedies_constraints,
     map_reviewed_performance_remedies_evidence,
 )
+from causa.institutional.contracts.supply import (
+    SUPPLY_EVIDENCE_SCHEMA_VERSION,
+    ReviewedSupplyEvidence,
+    SupplyConstraintSet,
+    SupplyEvaluation,
+    SupplyEvidenceMappingResult,
+    build_supply_constraint_set,
+    evaluate_supply_constraints,
+    map_reviewed_supply_evidence,
+)
 from causa.institutional.contracts.temporal import (
     ContractTemporalFacts,
     TemporalEvaluation,
@@ -109,9 +119,9 @@ from causa.reasoning.formal_checks import (
 from causa.reasoning.counterfactual import CounterfactualBudget
 
 
-CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v7"
+CASE_EVIDENCE_SCHEMA_VERSION = "contracts.case-evidence.v8"
 EVIDENCE_MAPPING_VERSION = "contracts-reviewed-evidence-to-facts-v0"
-ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v7"
+ANALYSIS_PIPELINE_VERSION = "contracts-reviewed-analysis-v8"
 
 
 class ContractEvidencePredicate(str, Enum):
@@ -202,6 +212,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
     performance_remedies_evidence: ReviewedPerformanceRemediesEvidence
+    supply_evidence: ReviewedSupplyEvidence
     termination_evidence: ReviewedTerminationEvidence
     liability_evidence: ReviewedLiabilityEvidence
 
@@ -250,6 +261,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     performance_remedies_evidence_mapping: PerformanceRemediesEvidenceMappingResult
     performance_remedies_constraint_set: PerformanceRemediesConstraintSet
     performance_remedies_evaluation: PerformanceRemediesEvaluation
+    supply_evidence_mapping: SupplyEvidenceMappingResult
+    supply_constraint_set: SupplyConstraintSet
+    supply_evaluation: SupplyEvaluation
     termination_evidence_mapping: TerminationEvidenceMappingResult
     termination_constraint_set: TerminationConstraintSet
     termination_evaluation: TerminationEvaluation
@@ -407,6 +421,43 @@ class ReviewedContractAnalysisResult(BaseModel):
             raise ValueError(
                 "Performance-remedies monetary-delay status does not match payment evidence."
             )
+        expected_supply_set = build_supply_constraint_set(self.supply_evidence_mapping)
+        if self.supply_constraint_set != expected_supply_set:
+            raise ValueError("Supply constraint set does not replay from reviewed evidence.")
+        expected_supply_evaluation = evaluate_supply_constraints(
+            expected_supply_set,
+            self.supply_evidence_mapping.facts,
+        )
+        if self.supply_evaluation != expected_supply_evaluation:
+            raise ValueError("Supply evaluation does not replay from reviewed evidence.")
+        supply_facts = self.supply_evidence_mapping.facts
+        if (
+            supply_facts.contract_concluded
+            != self.formation_evaluation.contract_concluded_prerequisites
+        ):
+            raise ValueError("Supply contract status does not match formation result.")
+        if supply_facts.delivery_completed != self.evidence_mapping.facts.performance_completed:
+            raise ValueError("Supply delivery status does not match performance evidence.")
+        if supply_facts.delivery_late != self.temporal_evaluation.due_date_missed:
+            raise ValueError("Supply delay status does not match temporal evaluation.")
+        supply_nonconforming = (
+            supply_facts.quantity_shortfall
+            or supply_facts.quality_defect
+            or supply_facts.incomplete_goods
+        )
+        if supply_nonconforming != self.evidence_mapping.facts.performance_nonconforming:
+            raise ValueError("Supply nonconformity does not match performance evidence.")
+        if supply_facts.loss_claimed != self.evidence_mapping.facts.loss_claimed:
+            raise ValueError("Supply loss claim does not match case evidence.")
+        if supply_facts.causation_proven != self.evidence_mapping.facts.causation_established:
+            raise ValueError("Supply causation does not match case evidence.")
+        if supply_facts.payment_due != self.evidence_mapping.facts.payment_due:
+            raise ValueError("Supply payment due status does not match case evidence.")
+        if (
+            self.supply_evaluation.supply_breach_established
+            != self.constraint_evaluation.breach_issue
+        ):
+            raise ValueError("Supply breach status does not match obligation evaluation.")
         expected_termination_set = build_termination_constraint_set(
             self.termination_evidence_mapping
         )
@@ -428,6 +479,13 @@ class ReviewedContractAnalysisResult(BaseModel):
             and not self.constraint_evaluation.breach_issue
         ):
             raise ValueError("Substantial breach evidence requires an obligation breach.")
+        if supply_facts.contract_terminated != self.termination_evaluation.effective_termination:
+            raise ValueError("Supply termination status does not match termination evaluation.")
+        if (
+            self.supply_evaluation.supply_unilateral_refusal_effective
+            and not self.termination_evaluation.effective_termination
+        ):
+            raise ValueError("Effective supply refusal must be reflected in termination evidence.")
         expected_constraint_set = build_liability_constraint_set(self.liability_evidence_mapping)
         if self.liability_constraint_set != expected_constraint_set:
             raise ValueError("Liability constraint set does not replay from reviewed evidence.")
@@ -495,6 +553,8 @@ def _validate_request_integrity(
         raise ValueError(
             "Performance-remedies evidence case_id does not match the analysis request."
         )
+    if request.supply_evidence.case_id != request.case_id:
+        raise ValueError("Supply evidence case_id does not match the analysis request.")
     if request.termination_evidence.case_id != request.case_id:
         raise ValueError("Termination evidence case_id does not match the analysis request.")
     if request.liability_evidence.case_id != request.case_id:
@@ -521,6 +581,8 @@ def _validate_request_integrity(
         != PERFORMANCE_REMEDIES_EVIDENCE_SCHEMA_VERSION
     ):
         raise ValueError("Performance-remedies evidence uses an unsupported schema version.")
+    if request.supply_evidence.schema_version != SUPPLY_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Supply evidence uses an unsupported schema version.")
     if request.termination_evidence.schema_version != TERMINATION_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Termination evidence uses an unsupported schema version.")
     if request.liability_evidence.schema_version != LIABILITY_EVIDENCE_SCHEMA_VERSION:
@@ -537,6 +599,7 @@ def _validate_request_integrity(
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
         *request.performance_remedies_evidence.legal_source_refs,
+        *request.supply_evidence.legal_source_refs,
         *request.termination_evidence.legal_source_refs,
         *request.liability_evidence.legal_source_refs,
     }
@@ -551,6 +614,8 @@ def _validate_request_integrity(
     for assertion in request.obligation_dynamics_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.performance_remedies_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.supply_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.termination_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -625,6 +690,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Performance-remedies legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_performance_remedies_legal_sources))
+        )
+    invalid_supply_legal_sources = [
+        source_id
+        for source_id in request.supply_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_supply_legal_sources:
+        raise ValueError(
+            "Supply legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_supply_legal_sources))
         )
     invalid_termination_legal_sources = [
         source_id
@@ -767,6 +843,11 @@ def run_reviewed_contract_analysis(
         review_status=request.performance_remedies_evidence.review_status,
         reviewer_id=request.performance_remedies_evidence.reviewer_id,
     )
+    supply_reviewer_id = _require_reviewed(
+        artifact_name="Supply evidence",
+        review_status=request.supply_evidence.review_status,
+        reviewer_id=request.supply_evidence.reviewer_id,
+    )
     termination_reviewer_id = _require_reviewed(
         artifact_name="Termination evidence",
         review_status=request.termination_evidence.review_status,
@@ -904,6 +985,31 @@ def run_reviewed_contract_analysis(
         performance_remedies_constraint_set,
         performance_facts,
     )
+    supply_evidence_mapping = map_reviewed_supply_evidence(request.supply_evidence)
+    supply_facts = supply_evidence_mapping.facts
+    if supply_facts.contract_concluded != formation_evaluation.contract_concluded_prerequisites:
+        raise ValueError("Supply contract status does not match formation result.")
+    if supply_facts.delivery_completed != evidence_mapping.facts.performance_completed:
+        raise ValueError("Supply delivery status does not match performance evidence.")
+    if supply_facts.delivery_late != temporal_evaluation.due_date_missed:
+        raise ValueError("Supply delay status does not match temporal evaluation.")
+    supply_nonconforming = (
+        supply_facts.quantity_shortfall
+        or supply_facts.quality_defect
+        or supply_facts.incomplete_goods
+    )
+    if supply_nonconforming != evidence_mapping.facts.performance_nonconforming:
+        raise ValueError("Supply nonconformity does not match performance evidence.")
+    if supply_facts.loss_claimed != evidence_mapping.facts.loss_claimed:
+        raise ValueError("Supply loss claim does not match case evidence.")
+    if supply_facts.causation_proven != evidence_mapping.facts.causation_established:
+        raise ValueError("Supply causation does not match case evidence.")
+    if supply_facts.payment_due != evidence_mapping.facts.payment_due:
+        raise ValueError("Supply payment due status does not match case evidence.")
+    supply_constraint_set = build_supply_constraint_set(supply_evidence_mapping)
+    supply_evaluation = evaluate_supply_constraints(supply_constraint_set, supply_facts)
+    if supply_evaluation.supply_breach_established != constraint_evaluation.breach_issue:
+        raise ValueError("Supply breach status does not match obligation evaluation.")
     security_evidence_mapping = map_reviewed_security_evidence(request.security_evidence)
     if (
         security_evidence_mapping.facts.main_obligation_exists
@@ -941,6 +1047,13 @@ def run_reviewed_contract_analysis(
         and not constraint_evaluation.breach_issue
     ):
         raise ValueError("Substantial breach evidence requires an obligation breach.")
+    if supply_facts.contract_terminated != termination_evaluation.effective_termination:
+        raise ValueError("Supply termination status does not match termination evaluation.")
+    if (
+        supply_evaluation.supply_unilateral_refusal_effective
+        and not termination_evaluation.effective_termination
+    ):
+        raise ValueError("Effective supply refusal must be reflected in termination evidence.")
     liability_evidence_mapping = map_reviewed_liability_evidence(request.liability_evidence)
     if liability_evidence_mapping.facts.breach_established != constraint_evaluation.breach_issue:
         raise ValueError("Liability breach fact does not match obligation evaluation.")
@@ -962,6 +1075,7 @@ def run_reviewed_contract_analysis(
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
         or performance_remedies_evaluation.requires_human_performance_remedies_assessment
+        or supply_evaluation.requires_human_supply_assessment
         or termination_evaluation.requires_human_termination_assessment
     )
 
@@ -980,6 +1094,7 @@ def run_reviewed_contract_analysis(
                 security_reviewer_id,
                 dynamics_reviewer_id,
                 performance_remedies_reviewer_id,
+                supply_reviewer_id,
                 termination_reviewer_id,
                 liability_reviewer_id,
             }
@@ -1007,6 +1122,9 @@ def run_reviewed_contract_analysis(
         performance_remedies_evidence_mapping=performance_remedies_evidence_mapping,
         performance_remedies_constraint_set=performance_remedies_constraint_set,
         performance_remedies_evaluation=performance_remedies_evaluation,
+        supply_evidence_mapping=supply_evidence_mapping,
+        supply_constraint_set=supply_constraint_set,
+        supply_evaluation=supply_evaluation,
         termination_evidence_mapping=termination_evidence_mapping,
         termination_constraint_set=termination_constraint_set,
         termination_evaluation=termination_evaluation,
@@ -1030,6 +1148,7 @@ def run_reviewed_contract_analysis(
             *security_evaluation.warnings_ru,
             *dynamics_evaluation.warnings_ru,
             *performance_remedies_evaluation.warnings_ru,
+            *supply_evaluation.warnings_ru,
             *termination_evaluation.warnings_ru,
             *liability_evaluation.warnings_ru,
             "Не является юридической консультацией.",

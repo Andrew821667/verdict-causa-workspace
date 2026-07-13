@@ -79,6 +79,7 @@ For Phase 0 implementation detail, see:
 - [Performance-security specification](docs/contract-security-spec.md);
 - [Obligation-dynamics specification](docs/contract-obligation-dynamics-spec.md);
 - [Performance and remedies specification](docs/contract-performance-remedies-spec.md);
+- [Special supply-contract specification](docs/contract-supply-spec.md);
 - [Contract change-and-termination specification](docs/contract-change-termination-spec.md);
 - [Contractual liability and penalty prerequisite specification](docs/contract-liability-spec.md);
 - [Evaluation and Red Team specification](docs/evaluation-and-red-team-spec.md);
@@ -229,6 +230,14 @@ python scripts/export_synthetic_performance_remedies_evaluation.py
 
 The output is written to `examples/synthetic_performance_remedies_evaluation_report.json`. It separates performance, delay, damages, interest, specific relief, and indemnity without calculating a court award.
 
+Generate the reviewed special-supply report for articles 506–524 of the Russian Civil Code:
+
+```bash
+python scripts/export_synthetic_supply_evaluation.py
+```
+
+The output is written to `examples/synthetic_supply_articles_506_524_report.json`. It separates qualification, acceptance, short delivery, defects, unilateral refusal, and price damages without deciding a court outcome.
+
 Generate the current Phase 0 readiness report:
 
 ```bash
@@ -275,21 +284,22 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-The command writes replay reports for legacy releases through `0.14.0` and regenerates them against the current package coordinates.
+The command writes replay reports for legacy releases through `0.15.0` and regenerates them against the current package coordinates.
 
-- `examples/migrations/contracts-ru-v0-0.1.0-to-0.15.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.3.0-to-0.15.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.4.0-to-0.15.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.5.0-to-0.15.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.6.0-to-0.15.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.7.0-to-0.15.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.8.0-to-0.15.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.9.0-to-0.15.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.10.0-to-0.15.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.11.0-to-0.15.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.12.0-to-0.15.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.13.0-to-0.15.0-migration-report.json`;
-- `examples/migrations/contracts-ru-v0-0.14.0-to-0.15.0-migration-report.json`.
+- `examples/migrations/contracts-ru-v0-0.1.0-to-0.16.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.3.0-to-0.16.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.4.0-to-0.16.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.5.0-to-0.16.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.6.0-to-0.16.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.7.0-to-0.16.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.8.0-to-0.16.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.9.0-to-0.16.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.10.0-to-0.16.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.11.0-to-0.16.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.12.0-to-0.16.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.13.0-to-0.16.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.14.0-to-0.16.0-migration-report.json`;
+- `examples/migrations/contracts-ru-v0-0.15.0-to-0.16.0-migration-report.json`.
 
 ## License
 

@@ -1,5 +1,14 @@
 # Contracts RU v0 Changelog
 
+## 0.16.0 - 2026-07-13
+
+- Adds mandatory reviewed special-supply evidence with 82 provenance-backed predicates for articles 506–524 of the Russian Civil Code.
+- Separates qualification, disagreement handling, periods, shipment orders, transport, short delivery, acceptance, responsible custody, selection, payment, containers, defects, completeness, cover purchase, penalty, allocation, unilateral refusal, and price damages.
+- Enforces cross-model agreement for formation, delivery, delay, nonconformity, payment, breach, termination, loss, and causation.
+- Preserves the contractual-only status of Instructions P-6 and P-7 in accordance with Plenum of the Supreme Arbitration Court Resolution No. 18.
+- Adds 32 benchmarks, 32 adversarial checks, source metadata, and Russian professional/forensic explanation sections.
+- Upgrades evidence to `contracts.case-evidence.v8`, analysis to `contracts-reviewed-analysis-v8`, and Russian templates to `ru-v10`.
+
 ## 0.15.0 - 2026-07-12
 
 - Adds mandatory reviewed performance-remedies evidence with 96 provenance-backed predicates.

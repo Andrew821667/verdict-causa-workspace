@@ -1,0 +1,173 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.8.0:to-0.16.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.8.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.8.0",
+  "target_package_version": "0.16.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.8.0",
+      "to_version": "0.9.0",
+      "reasons": [
+        "Reviewed inputs now require a separate liability-evidence contract.",
+        "Analysis and translation outputs include formal article 333 and 401 prerequisites."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об ответственности.",
+        "Анализ и объяснение включают формальные предпосылки статей 333 и 401 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_liability_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_management_policy_registry.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.9.0",
+      "to_version": "0.10.0",
+      "reasons": [
+        "Reviewed inputs now require a separate contract-formation evidence contract.",
+        "Analysis and Russian translation outputs include formal articles 432, 435, 438, and 443 boundaries."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о заключении договора.",
+        "Анализ и русское объяснение включают формальные границы статей 432, 435, 438 и 443 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_formation_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.10.0",
+      "to_version": "0.11.0",
+      "reasons": [
+        "Reviewed inputs now require a separate change-and-termination evidence contract.",
+        "Analysis and Russian translation distinguish agreement, judicial, and unilateral paths under articles 450 through 453."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об изменении и расторжении.",
+        "Анализ и русское объяснение разделяют соглашение, судебный путь и односторонний отказ по статьям 450–453 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_termination_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.11.0",
+      "to_version": "0.12.0",
+      "reasons": [
+        "Reviewed inputs now require a separate transaction-invalidity evidence contract.",
+        "Analysis and Russian translation distinguish void and voidable grounds, procedure, and effects under articles 166 through 181."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о недействительности сделки.",
+        "Анализ и русское объяснение разделяют ничтожность, оспоримость, процедуру и последствия по статьям 166–181 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_invalidity_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.12.0",
+      "to_version": "0.13.0",
+      "reasons": [
+        "Reviewed inputs now require a separate performance-security evidence contract.",
+        "Analysis and Russian translation distinguish the security mechanisms and enforcement paths under articles 329 through 381.2."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об обеспечении исполнения обязательств.",
+        "Анализ и русское объяснение разделяют способы обеспечения и маршруты их реализации по статьям 329–381.2 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_security_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.13.0",
+      "to_version": "0.14.0",
+      "reasons": [
+        "Reviewed inputs now require a separate obligation-dynamics evidence contract.",
+        "Analysis and Russian translation distinguish party changes and discharge paths under articles 382 through 419."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о перемене лиц и прекращении обязательств.",
+        "Анализ и русское объяснение разделяют перемену лиц и основания прекращения по статьям 382–419 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_obligation_dynamics_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.14.0",
+      "to_version": "0.15.0",
+      "reasons": [
+        "Reviewed inputs now require a separate performance-remedies evidence contract.",
+        "Analysis and Russian translation distinguish performance and remedy paths under articles 309 through 328 and 393 through 406.1."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об исполнении обязательств и средствах защиты.",
+        "Анализ и русское объяснение разделяют исполнение и средства защиты по статьям 309–328 и 393–406.1 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_performance_remedies_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.15.0",
+      "to_version": "0.16.0",
+      "reasons": [
+        "Reviewed inputs now require a separate special-supply evidence contract.",
+        "Analysis and Russian translation distinguish the supply paths under articles 506 through 524."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт специальных данных о поставке.",
+        "Анализ и русское объяснение разделяют специальные маршруты статей 506–524 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_supply_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

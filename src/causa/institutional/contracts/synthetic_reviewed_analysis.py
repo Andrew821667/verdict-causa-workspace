@@ -50,6 +50,11 @@ from causa.institutional.contracts.performance_remedies import (
     PerformanceRemediesEvidencePredicate,
     ReviewedPerformanceRemediesEvidence,
 )
+from causa.institutional.contracts.supply import (
+    ReviewedSupplyEvidence,
+    SupplyEvidenceAssertion,
+    SupplyEvidencePredicate,
+)
 from causa.institutional.contracts.synthetic_sources import (
     get_synthetic_contract_source,
 )
@@ -93,6 +98,11 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-plenum54-performance-guidance-v1",
     "synthetic-ru-plenum7-remedies-guidance-v1",
     "synthetic-case-supply-1-performance-remedies-evidence",
+    "synthetic-ru-gk506-512-supply-framework-v1",
+    "synthetic-ru-gk513-517-supply-acceptance-v1",
+    "synthetic-ru-gk518-524-supply-remedies-v1",
+    "synthetic-ru-plenum18-supply-guidance-v1",
+    "synthetic-case-supply-1-special-supply-evidence",
     "synthetic-ru-gk450-453-termination-model-v1",
     "synthetic-ru-gk310-4501-unilateral-model-v1",
     "synthetic-ru-plenum54-unilateral-guidance-v1",
@@ -148,6 +158,16 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
         True
     )
     performance_remedies_values[PerformanceRemediesEvidencePredicate.DEBTOR_DELAY] = True
+    supply_values = {predicate: False for predicate in SupplyEvidencePredicate}
+    supply_values[SupplyEvidencePredicate.CONTRACT_CONCLUDED] = True
+    supply_values[SupplyEvidencePredicate.SUPPLIER_BUSINESS] = True
+    supply_values[SupplyEvidencePredicate.SUPPLIER_PRODUCED_OR_PROCURED_GOODS] = True
+    supply_values[SupplyEvidencePredicate.GOODS_NONPERSONAL_USE] = True
+    supply_values[SupplyEvidencePredicate.TRANSFER_TERM_DEFINED] = True
+    supply_values[SupplyEvidencePredicate.DELIVERY_COMPLETED] = True
+    supply_values[SupplyEvidencePredicate.DELIVERY_LATE] = True
+    supply_values[SupplyEvidencePredicate.BUYER_RECEIVED_GOODS] = True
+    supply_values[SupplyEvidencePredicate.INSPECTION_TIMELY] = True
     return ReviewedContractAnalysisRequest(
         id="analysis-request-case-supply-1-v0",
         case_id="case-supply-1",
@@ -365,6 +385,27 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-performance-remedies-reviewer",
+        ),
+        supply_evidence=ReviewedSupplyEvidence(
+            id="reviewed-special-supply-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                SupplyEvidenceAssertion(
+                    id=f"special-supply-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=supply_values[predicate],
+                    source_refs=("synthetic-case-supply-1-special-supply-evidence",),
+                )
+                for predicate in SupplyEvidencePredicate
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk506-512-supply-framework-v1",
+                "synthetic-ru-gk513-517-supply-acceptance-v1",
+                "synthetic-ru-gk518-524-supply-remedies-v1",
+                "synthetic-ru-plenum18-supply-guidance-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-special-supply-reviewer",
         ),
         termination_evidence=ReviewedTerminationEvidence(
             id="reviewed-termination-evidence-supply-1-v0",

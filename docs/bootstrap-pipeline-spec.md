@@ -72,7 +72,7 @@ Reviewed performance-remedies evidence uses `contracts.performance-remedies-evid
 
 Reviewed change-and-termination evidence uses `contracts.termination-evidence.v0` and contains all 36 predicates required by the narrow articles 310/450–453 model. Contract status must match the formation result, while proven substantial breach requires a breach in the obligation model.
 
-Reviewed case evidence uses `contracts.case-evidence.v7`. The deterministic `contracts-reviewed-evidence-to-facts-v0` mapper produces the complete narrow `ObligationFactSet`: no absent predicate is silently treated as false. Every mapped fact retains its evidence assertion and source references. Duty and exception facts also retain links to the relevant formal condition or exception atoms from the reviewed norm.
+Reviewed case evidence uses `contracts.case-evidence.v8`. The deterministic `contracts-reviewed-evidence-to-facts-v0` mapper produces the complete narrow `ObligationFactSet`: no absent predicate is silently treated as false. Every mapped fact retains its evidence assertion and source references. Duty and exception facts also retain links to the relevant formal condition or exception atoms from the reviewed norm.
 
 Reviewed liability evidence uses `contracts.liability-evidence.v0` and contains all 20 predicates required by the narrow articles 333/401 model. Its facts and legal source references are validated independently and mapped by `contracts-reviewed-liability-to-facts-v0`. Missing liability predicates are never inferred from the general breach result.
 

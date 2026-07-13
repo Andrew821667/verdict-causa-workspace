@@ -258,6 +258,22 @@ def _performance_remedies_refs(
     return sorted(references)
 
 
+def _supply_refs(
+    result: ReviewedContractAnalysisResult,
+    *fact_names: str,
+) -> list[str]:
+    references = {
+        *result.supply_evidence_mapping.legal_source_refs,
+        *(
+            source_ref
+            for item in result.supply_evidence_mapping.provenance
+            if item.fact_name in fact_names
+            for source_ref in item.source_refs
+        ),
+    }
+    return sorted(references)
+
+
 def build_translation_assertions(
     request: ReviewedContractAnalysisRequest,
     result: ReviewedContractAnalysisResult,
@@ -272,6 +288,7 @@ def build_translation_assertions(
     security = result.security_evaluation
     dynamics = result.obligation_dynamics_evaluation
     performance_remedies = result.performance_remedies_evaluation
+    supply = result.supply_evaluation
     termination = result.termination_evaluation
     critical_scenario = (
         next(
@@ -983,6 +1000,101 @@ def build_translation_assertions(
             ),
         ),
         TranslationAssertion(
+            code=TranslationAssertionCode.SUPPLY_CONTRACT_QUALIFIED,
+            value=supply.supply_contract_qualified,
+            text_ru=(
+                "Отношения формально квалифицированы как договор поставки по статье 506 ГК РФ."
+                if supply.supply_contract_qualified
+                else "Полный набор квалифицирующих признаков договора поставки не подтвержден."
+            ),
+            source_refs=_supply_refs(
+                result,
+                "contract_concluded",
+                "supplier_business",
+                "supplier_produced_or_procured_goods",
+                "goods_nonpersonal_use",
+                "retail_sale_context",
+                "transfer_term_defined",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SUPPLY_ACCEPTANCE_DUTIES_SATISFIED,
+            value=supply.acceptance_duties_satisfied,
+            text_ru=(
+                "Проверка товара и письменное извещение соответствуют формальной модели приемки."
+                if supply.acceptance_duties_satisfied
+                else "Исполнение обязанностей по приемке и извещению подтверждено не полностью."
+            ),
+            source_refs=_supply_refs(
+                result,
+                "buyer_received_goods",
+                "inspection_timely",
+                "discrepancy_found",
+                "prompt_written_notice",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SUPPLY_MAKEUP_DELIVERY_REQUIRED,
+            value=supply.makeup_delivery_required,
+            text_ru=(
+                "Недопоставка подлежит восполнению в пределах срока договора."
+                if supply.makeup_delivery_required
+                else "Специальная обязанность восполнить недопоставку текущими фактами не активирована."
+            ),
+            source_refs=_supply_refs(
+                result,
+                "quantity_shortfall",
+                "contract_term_continues",
+                "buyer_refused_late_makeup_by_notice",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SUPPLY_UNILATERAL_REFUSAL_EFFECTIVE,
+            value=supply.supply_unilateral_refusal_effective,
+            text_ru=(
+                "Подтверждены специальные предпосылки одностороннего отказа по статье 523 ГК РФ."
+                if supply.supply_unilateral_refusal_effective
+                else "Специальный односторонний отказ по статье 523 ГК РФ не подтвержден."
+            ),
+            source_refs=_supply_refs(
+                result,
+                "repeated_late_delivery",
+                "irremediable_defect",
+                "repeated_payment_default",
+                "repeated_selection_failure",
+                "unilateral_refusal_notice_delivered",
+            ),
+        ),
+        TranslationAssertion(
+            code=TranslationAssertionCode.SUPPLY_PRICE_DAMAGES_AVAILABLE,
+            value=(
+                supply.concrete_price_damages_available
+                or supply.abstract_current_price_damages_available
+            ),
+            text_ru=(
+                "Подтвержден специальный ценовой расчет убытков после прекращения поставки."
+                if (
+                    supply.concrete_price_damages_available
+                    or supply.abstract_current_price_damages_available
+                )
+                else "Специальный расчет убытков по статье 524 ГК РФ подтвержден не полностью."
+            ),
+            source_refs=_supply_refs(
+                result,
+                "contract_terminated",
+                "replacement_transaction_made",
+                "replacement_transaction_reasonable",
+                "replacement_transaction_timely",
+                "contract_price_proven",
+                "replacement_price_proven",
+                "current_price_available",
+                "current_price_proven",
+                "current_price_time_place_adjusted",
+                "loss_claimed",
+                "causation_proven",
+            ),
+        ),
+        TranslationAssertion(
             code=TranslationAssertionCode.CONTRACT_CONTINUES_UNCHANGED,
             value=termination.contract_continues_unchanged,
             text_ru=(
@@ -1522,6 +1634,7 @@ def _render_context(
     security = result.security_evaluation
     dynamics = result.obligation_dynamics_evaluation
     performance_remedies = result.performance_remedies_evaluation
+    supply = result.supply_evaluation
     termination = result.termination_evaluation
     formation_professional_ru = "\n".join(
         [
@@ -1657,6 +1770,34 @@ def _render_context(
             *[f"- Ограничение: {warning}" for warning in performance_remedies.warnings_ru],
         ]
     )
+    supply_professional_ru = "\n".join(
+        [
+            *[f"- {reason}" for reason in supply.reasons_ru],
+            "- Квалификация, периоды и порядок поставки, приемка, недопоставка, качество, комплектность и тара проверены раздельно.",
+            "- Односторонний отказ и ценовые убытки требуют доказательств повторности, существенности, доставки уведомления и рыночной цены.",
+            "- Инструкции П-6 и П-7 применяются как порядок приемки только при договорной отсылке.",
+        ]
+    )
+    supply_forensic_ru = "\n".join(
+        [
+            f"- Набор ограничений: {result.supply_constraint_set.id}.",
+            f"- Версия модели: {result.supply_constraint_set.model_version}.",
+            f"- Отображение доказательств: {result.supply_evidence_mapping.mapping_version}.",
+            f"- Правовые источники: {', '.join(result.supply_evidence_mapping.legal_source_refs)}.",
+            *[
+                f"- Правило специальной модели поставки: {expression}."
+                for expression in result.supply_constraint_set.expressions
+            ],
+            *[
+                f"- Проверенный факт {item.fact_name}: исходное утверждение="
+                f"{item.assertion_id}; доказательственные источники="
+                f"{', '.join(item.source_refs)}."
+                for item in result.supply_evidence_mapping.provenance
+            ],
+            *[f"- Результат: {reason}" for reason in supply.reasons_ru],
+            *[f"- Ограничение: {warning}" for warning in supply.warnings_ru],
+        ]
+    )
     termination_professional_ru = "\n".join(
         [
             *[f"- {reason}" for reason in termination.reasons_ru],
@@ -1736,6 +1877,8 @@ def _render_context(
         "dynamics_forensic_ru": dynamics_forensic_ru,
         "performance_remedies_professional_ru": performance_remedies_professional_ru,
         "performance_remedies_forensic_ru": performance_remedies_forensic_ru,
+        "supply_professional_ru": supply_professional_ru,
+        "supply_forensic_ru": supply_forensic_ru,
         "termination_professional_ru": termination_professional_ru,
         "termination_forensic_ru": termination_forensic_ru,
         "liability_professional_ru": liability_professional_ru,

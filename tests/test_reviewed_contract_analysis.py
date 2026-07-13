@@ -75,6 +75,7 @@ def test_reviewed_analysis_resolves_temporal_authority_before_formal_evaluation(
         ("authority_input", "Authority input must be reviewed"),
         ("formation_evidence", "Formation evidence must be reviewed"),
         ("invalidity_evidence", "Invalidity evidence must be reviewed"),
+        ("supply_evidence", "Supply evidence must be reviewed"),
         ("termination_evidence", "Termination evidence must be reviewed"),
         ("liability_evidence", "Liability evidence must be reviewed"),
     ],
@@ -290,11 +291,19 @@ def test_reviewed_remedy_assertions_drive_remedy_constraints() -> None:
     performance_remedies_evidence = request.performance_remedies_evidence.model_copy(
         update={"assertions": performance_remedies_assertions}
     )
+    supply_assertions = tuple(
+        assertion.model_copy(update={"value": True})
+        if assertion.predicate.value in {"loss_claimed", "causation_proven"}
+        else assertion
+        for assertion in request.supply_evidence.assertions
+    )
+    supply_evidence = request.supply_evidence.model_copy(update={"assertions": supply_assertions})
     result = run_reviewed_contract_analysis(
         request.model_copy(
             update={
                 "case_evidence": evidence,
                 "performance_remedies_evidence": performance_remedies_evidence,
+                "supply_evidence": supply_evidence,
             }
         ),
         build_synthetic_supply_analysis_sources(),
