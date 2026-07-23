@@ -7,16 +7,35 @@ from causa.evaluation import (
     PrivacySafePilotUtilityReport,
 )
 from causa.institutional.contracts.package import CONTRACTS_PACKAGE_MANIFEST
+from causa.institutional.contracts.pilot_fixtures import (
+    PILOT_REHEARSAL_DATE,
+    build_maximally_realistic_pilot_intake,
+)
+from causa.pilot import evaluate_pilot_intake
+
+
+_PILOT_INTAKE = build_maximally_realistic_pilot_intake()
+_PILOT_GATE = evaluate_pilot_intake(
+    _PILOT_INTAKE,
+    evaluated_on=PILOT_REHEARSAL_DATE,
+    expected_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
+    expected_package_version=CONTRACTS_PACKAGE_MANIFEST.version,
+)
 
 
 SYNTHETIC_PRIVACY_SAFE_PILOT_UTILITY_OBSERVATIONS = [
     PrivacySafePilotUtilityObservation(
         id="pilot-00000001",
         task_category=PilotTaskCategory.SUPPLY_DELIVERY,
-        collection_date=date(2026, 7, 11),
+        collection_date=date(2026, 7, 23),
         data_origin=PilotDataOrigin.SYNTHETIC_SCHEMA_DEMO,
         privacy_reviewed=True,
-        consent_recorded=True,
+        lawful_basis_recorded=True,
+        consent_required=False,
+        consent_recorded=None,
+        data_minimization_reviewed=True,
+        gate_decision_ref=_PILOT_GATE.id,
+        decision_trace_ref="trace-phase0-supply-dispute-v0",
         time_to_useful_draft_minutes=20,
         accepted_argument_count=1,
         human_correction_count=1,
@@ -25,10 +44,15 @@ SYNTHETIC_PRIVACY_SAFE_PILOT_UTILITY_OBSERVATIONS = [
     PrivacySafePilotUtilityObservation(
         id="pilot-00000002",
         task_category=PilotTaskCategory.AUTHORITY,
-        collection_date=date(2026, 7, 11),
+        collection_date=date(2026, 7, 23),
         data_origin=PilotDataOrigin.SYNTHETIC_SCHEMA_DEMO,
         privacy_reviewed=True,
-        consent_recorded=True,
+        lawful_basis_recorded=True,
+        consent_required=False,
+        consent_recorded=None,
+        data_minimization_reviewed=True,
+        gate_decision_ref=_PILOT_GATE.id,
+        decision_trace_ref="trace-phase0-supply-dispute-v0",
         time_to_useful_draft_minutes=28,
         accepted_argument_count=0,
         human_correction_count=2,
@@ -42,10 +66,12 @@ def build_privacy_safe_pilot_utility_report(
     observations: list[PrivacySafePilotUtilityObservation] | None = None,
 ) -> PrivacySafePilotUtilityReport:
     selected_observations = (
-        SYNTHETIC_PRIVACY_SAFE_PILOT_UTILITY_OBSERVATIONS
-        if observations is None
-        else observations
+        SYNTHETIC_PRIVACY_SAFE_PILOT_UTILITY_OBSERVATIONS if observations is None else observations
     )
+    origins = {observation.data_origin for observation in selected_observations}
+    if len(origins) > 1:
+        raise ValueError("Pilot utility observations cannot mix data origins.")
+    data_origin = next(iter(origins)) if origins else PilotDataOrigin.SYNTHETIC_SCHEMA_DEMO
     total_observations = len(selected_observations)
     total_time_to_useful_draft = sum(
         observation.time_to_useful_draft_minutes for observation in selected_observations
@@ -60,15 +86,14 @@ def build_privacy_safe_pilot_utility_report(
         observation.reviewer_usefulness_rating for observation in selected_observations
     )
     formally_smart_but_practically_useless_count = sum(
-        observation.formally_smart_but_practically_useless
-        for observation in selected_observations
+        observation.formally_smart_but_practically_useless for observation in selected_observations
     )
 
     return PrivacySafePilotUtilityReport(
-        id="synthetic-privacy-safe-pilot-utility-report-v0",
+        id="synthetic-privacy-safe-pilot-utility-report-v1",
         institutional_package_id=CONTRACTS_PACKAGE_MANIFEST.id,
-        data_origin=PilotDataOrigin.SYNTHETIC_SCHEMA_DEMO,
-        schema_version="privacy-safe-pilot-utility.v0",
+        data_origin=data_origin,
+        schema_version="privacy-safe-pilot-utility.v1",
         total_observations=total_observations,
         average_time_to_useful_draft_minutes=(
             total_time_to_useful_draft / total_observations if total_observations else 0.0
@@ -76,12 +101,8 @@ def build_privacy_safe_pilot_utility_report(
         total_accepted_argument_count=total_accepted_argument_count,
         total_human_correction_count=total_human_correction_count,
         average_reviewer_usefulness_rating=(
-            total_reviewer_usefulness_rating / total_observations
-            if total_observations
-            else 0.0
+            total_reviewer_usefulness_rating / total_observations if total_observations else 0.0
         ),
-        formally_smart_but_practically_useless_count=(
-            formally_smart_but_practically_useless_count
-        ),
+        formally_smart_but_practically_useless_count=(formally_smart_but_practically_useless_count),
         observations=selected_observations,
     )

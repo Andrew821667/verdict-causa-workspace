@@ -1,5 +1,6 @@
 from datetime import date
 from enum import Enum
+from math import isclose
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -107,14 +108,19 @@ class PilotDataOrigin(str, Enum):
 
 
 class PrivacySafePilotUtilityObservation(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     id: str = Field(pattern=r"^pilot-[a-f0-9]{8}$")
     task_category: PilotTaskCategory
     collection_date: date
     data_origin: PilotDataOrigin
     privacy_reviewed: bool
-    consent_recorded: bool
+    lawful_basis_recorded: bool
+    consent_required: bool
+    consent_recorded: bool | None
+    data_minimization_reviewed: bool
+    gate_decision_ref: str = Field(min_length=1)
+    decision_trace_ref: str = Field(min_length=1)
     time_to_useful_draft_minutes: float = Field(ge=0)
     accepted_argument_count: int = Field(ge=0)
     human_correction_count: int = Field(ge=0)
@@ -125,12 +131,20 @@ class PrivacySafePilotUtilityObservation(BaseModel):
     def require_privacy_controls(self) -> "PrivacySafePilotUtilityObservation":
         if not self.privacy_reviewed:
             raise ValueError("Privacy review is required for pilot utility observations.")
-        if not self.consent_recorded:
-            raise ValueError("Consent record is required for pilot utility observations.")
+        if not self.lawful_basis_recorded:
+            raise ValueError("Lawful basis record is required for pilot utility observations.")
+        if not self.data_minimization_reviewed:
+            raise ValueError("Data minimization review is required for pilot observations.")
+        if self.consent_required and self.consent_recorded is not True:
+            raise ValueError("Consent record is required when consent is the lawful basis.")
+        if not self.consent_required and self.consent_recorded is not None:
+            raise ValueError("Consent must not be presented as the basis when it is not required.")
         return self
 
 
 class PrivacySafePilotUtilityReport(BaseModel):
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
     id: str
     institutional_package_id: str
     data_origin: PilotDataOrigin
@@ -142,6 +156,43 @@ class PrivacySafePilotUtilityReport(BaseModel):
     average_reviewer_usefulness_rating: float
     formally_smart_but_practically_useless_count: int
     observations: list[PrivacySafePilotUtilityObservation] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def validate_aggregates(self) -> "PrivacySafePilotUtilityReport":
+        if self.total_observations != len(self.observations):
+            raise ValueError("Pilot utility observation count does not match report.")
+        if len({item.id for item in self.observations}) != len(self.observations):
+            raise ValueError("Pilot utility report contains duplicate observation ids.")
+        if any(item.data_origin != self.data_origin for item in self.observations):
+            raise ValueError("Pilot utility observations use inconsistent data origins.")
+        total = self.total_observations
+        expected_time = (
+            sum(item.time_to_useful_draft_minutes for item in self.observations) / total
+            if total
+            else 0.0
+        )
+        expected_rating = (
+            sum(item.reviewer_usefulness_rating for item in self.observations) / total
+            if total
+            else 0.0
+        )
+        if not isclose(self.average_time_to_useful_draft_minutes, expected_time):
+            raise ValueError("Pilot utility average time does not match observations.")
+        if not isclose(self.average_reviewer_usefulness_rating, expected_rating):
+            raise ValueError("Pilot utility average rating does not match observations.")
+        if self.total_accepted_argument_count != sum(
+            item.accepted_argument_count for item in self.observations
+        ):
+            raise ValueError("Pilot utility accepted-argument count does not match.")
+        if self.total_human_correction_count != sum(
+            item.human_correction_count for item in self.observations
+        ):
+            raise ValueError("Pilot utility correction count does not match.")
+        if self.formally_smart_but_practically_useless_count != sum(
+            item.formally_smart_but_practically_useless for item in self.observations
+        ):
+            raise ValueError("Pilot utility failure count does not match.")
+        return self
 
 
 class RedTeamScenario(BaseModel):

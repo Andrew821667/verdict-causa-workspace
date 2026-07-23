@@ -35,7 +35,12 @@ def test_privacy_safe_pilot_observation_requires_privacy_review() -> None:
             collection_date="2026-07-11",
             data_origin=PilotDataOrigin.SYNTHETIC_SCHEMA_DEMO,
             privacy_reviewed=False,
-            consent_recorded=True,
+            lawful_basis_recorded=True,
+            consent_required=False,
+            consent_recorded=None,
+            data_minimization_reviewed=True,
+            gate_decision_ref="pilot-gate:test",
+            decision_trace_ref="trace-test",
             time_to_useful_draft_minutes=1,
             accepted_argument_count=0,
             human_correction_count=0,
@@ -51,7 +56,12 @@ def test_privacy_safe_pilot_observation_requires_consent_record() -> None:
             collection_date="2026-07-11",
             data_origin=PilotDataOrigin.SYNTHETIC_SCHEMA_DEMO,
             privacy_reviewed=True,
+            lawful_basis_recorded=True,
+            consent_required=True,
             consent_recorded=False,
+            data_minimization_reviewed=True,
+            gate_decision_ref="pilot-gate:test",
+            decision_trace_ref="trace-test",
             time_to_useful_draft_minutes=1,
             accepted_argument_count=0,
             human_correction_count=0,
@@ -68,7 +78,12 @@ def test_privacy_safe_pilot_observation_forbids_free_text_fields() -> None:
                 "collection_date": "2026-07-11",
                 "data_origin": PilotDataOrigin.SYNTHETIC_SCHEMA_DEMO,
                 "privacy_reviewed": True,
-                "consent_recorded": True,
+                "lawful_basis_recorded": True,
+                "consent_required": False,
+                "consent_recorded": None,
+                "data_minimization_reviewed": True,
+                "gate_decision_ref": "pilot-gate:test",
+                "decision_trace_ref": "trace-test",
                 "time_to_useful_draft_minutes": 1,
                 "accepted_argument_count": 0,
                 "human_correction_count": 0,
@@ -83,12 +98,17 @@ def test_exported_privacy_safe_pilot_fixture_is_valid() -> None:
     data = json.loads(fixture_path.read_text(encoding="utf-8"))
     report = PrivacySafePilotUtilityReport.model_validate(data)
 
-    assert report.schema_version == "privacy-safe-pilot-utility.v0"
+    assert report.schema_version == "privacy-safe-pilot-utility.v1"
     assert all(observation.privacy_reviewed for observation in report.observations)
+    assert all(observation.lawful_basis_recorded for observation in report.observations)
+    assert all(
+        observation.data_minimization_reviewed
+        for observation in report.observations
+    )
 
 
 def test_readiness_report_references_privacy_safe_pilot_schema() -> None:
     report = build_phase0_readiness_report()
     evaluation_item = next(item for item in report.items if item.id == "ws8-evaluation-red-team")
 
-    assert "synthetic-privacy-safe-pilot-utility-report-v0" in evaluation_item.evidence_refs
+    assert "synthetic-privacy-safe-pilot-utility-report-v1" in evaluation_item.evidence_refs

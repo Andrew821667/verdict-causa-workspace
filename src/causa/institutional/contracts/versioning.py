@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.18.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Pilot observations require an approved v1 admission gate and replayable trace.",
+            "Pilot artifacts contain only pseudonymous manifests and content hashes.",
+            "External model access and cross-border transfer remain blocked in gate v1.",
+        ],
+        notes_ru=[
+            "Пилотные наблюдения требуют одобренного gate v1 и воспроизводимой трассировки.",
+            "Пилотные артефакты содержат только псевдонимные манифесты и hash содержимого.",
+            "Внешняя модель и трансграничная передача остаются запрещены gate v1.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.17.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

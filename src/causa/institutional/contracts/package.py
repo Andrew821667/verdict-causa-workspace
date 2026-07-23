@@ -4,7 +4,7 @@ from causa.institutional.package import InstitutionalPackageManifest
 CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
     id="contracts-ru-v0",
     legal_institute="Договорные отношения: заключение, действительность, обеспечение, перемена лиц, исполнение, купля-продажа, поставка, изменение, расторжение, прекращение и ответственность",
-    version="0.17.0",
+    version="0.18.0",
     core_compatibility=">=0.1,<0.2",
     vocabulary_refs=["src/causa/institutional/contracts/vocabulary.py"],
     authority_model_refs=["src/causa/institutional/contracts/authority_model.py"],
@@ -49,6 +49,7 @@ CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
         "src/causa/institutional/contracts/supply_evaluation.py",
         "src/causa/institutional/contracts/termination_evaluation.py",
         "src/causa/institutional/contracts/liability_evaluation.py",
+        "src/causa/institutional/contracts/pilot_evaluation.py",
     ],
     red_team_refs=[
         "docs/evaluation-and-red-team-spec.md#red-team",
@@ -62,6 +63,7 @@ CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
         "src/causa/institutional/contracts/supply_evaluation.py",
         "src/causa/institutional/contracts/termination_evaluation.py",
         "src/causa/institutional/contracts/liability_evaluation.py",
+        "src/causa/institutional/contracts/pilot_evaluation.py",
     ],
     confidence_policy_refs=["docs/management-plane-spec.md#confidence-and-activation-policies"],
     activation_policy_refs=["docs/management-plane-spec.md#confidence-and-activation-policies"],

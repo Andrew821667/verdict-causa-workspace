@@ -341,6 +341,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.17.0",
+        to_version="0.18.0",
+        reasons=[
+            "Pilot utility observations now require a linked v1 admission decision.",
+            "Pilot manifests record lawful basis, minimization, independent approvals, and replay coordinates.",
+        ],
+        reasons_ru=[
+            "Наблюдения о полезности пилота теперь требуют связанного решения gate v1.",
+            "Пилотный манифест фиксирует основание обработки, минимизацию, независимые согласования и координаты replay.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_pilot_rehearsal.py",
+            "python scripts/export_privacy_safe_pilot_utility.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 
