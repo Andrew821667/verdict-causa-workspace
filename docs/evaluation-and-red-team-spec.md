@@ -85,7 +85,8 @@ Translation distortion is checked by rebuilding the shared structured assertions
 - synthetic supply benchmark suite;
 - synthetic supply practice-utility report;
 - synthetic privacy-safe pilot utility schema demo;
-- synthetic supply red-team suite.
+- synthetic supply red-team suite;
+- benchmark и red-team контура допуска пилотных данных.
 
 The current suite is exported to `examples/synthetic_supply_benchmark_report.json`.
 The current practice-utility report is exported to
@@ -101,5 +102,7 @@ The current red-team report is exported to `examples/synthetic_supply_red_team_r
 Общая модель купли-продажи имеет отдельный benchmark из 48 задач и Red Team из 51 атаки. Они проверяют ключевые границы статей 454–491 ГК РФ: квалификацию, передачу, риск, права третьих лиц, эвикцию, количество, ассортимент, качество, гарантию, комплектность, упаковку, извещение, приемку, оплату, кредит, рассрочку, страхование и сохранение права собственности. Объединенный артефакт экспортируется в `examples/synthetic_sale_articles_454_491_report.json`.
 
 Специальная модель поставки имеет отдельный benchmark из 32 задач и Red Team из 32 атак. Они проверяют ключевые границы статей 506–524 ГК РФ: квалификацию, согласование разногласий, периоды и порядок доставки, недопоставку, приемку, ответственное хранение, выборку, оплату, тару, качество, комплектность, заменяющую закупку, неустойку, односторонний отказ и ценовые убытки. Объединенный артефакт экспортируется в `examples/synthetic_supply_articles_506_524_report.json`.
+
+Контур допуска пилотных данных (`pilot-admission-gate-v1`) имеет отдельный benchmark из 6 допустимых маршрутов и Red Team из 32 опасных сценариев. Benchmark проверяет синтетическую репетицию и обезличенные пилоты по разным законным основаниям обработки. Red Team блокирует подмену версии пакета, включение исходного текста, истекший и избыточный срок хранения, трансграничную передачу, внешнюю модель, отключение обязательных мер защиты, запрещенные категории данных, неполную минимизацию, межклиентское смешение и совмещение независимых ролей согласования. Репетиционный артефакт экспортируется в `examples/synthetic_pilot_rehearsal_report.json`; правила допуска описаны в [`docs/pilot-data-admission-spec.md`](pilot-data-admission-spec.md).
 
 For the contractual package, authority benchmarks record the rule used to resolve a candidate set: temporal applicability, higher authority, `lex specialis`, or unresolved equal authority. The synthetic Phase 0 resolver applies temporal validity before the policy `constitutional > statutory > regulatory > judicial > contractual > factual`; it does not use `lex specialis` across those levels.

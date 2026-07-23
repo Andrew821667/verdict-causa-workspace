@@ -193,6 +193,22 @@ Acceptance criteria:
 - the result is clearly marked non-production and non-legal-advice;
 - gaps are recorded as engineering backlog, not hidden.
 
+### WS10. Контур допуска пилотных данных
+
+Результаты:
+
+- псевдонимный intake пилота, admission gate v1 и связанный воспроизводимый run-манифест;
+- модель законных оснований с условным требованием согласия субъекта и проверками минимизации данных;
+- контроли запрещённых категорий, tenant isolation, срока хранения и четырёх независимых согласований;
+- privacy-safe наблюдения полезности пилота, связанные с решением gate и decision trace;
+- отдельный пункт readiness `ws10-pilot-admission` и русская [спецификация допуска пилотных данных](pilot-data-admission-spec.md).
+
+Критерии приёмки:
+
+- синтетическая репетиция допускается и воспроизводима, а несинтетические наблюдения требуют отдельного одобренного решения gate v1;
+- пилотные артефакты хранят только псевдонимные ссылки и хэши содержимого — никогда тексты документов, имена файлов и идентификаторы;
+- `ready_for_production` остаётся `false` до настоящего пилота на одобренных обезличенных клиентских данных.
+
 ## Phase 0 done means
 
 Phase 0 is not done when the repository looks polished. It is done when the system can run a representative contractual case through an auditable path:

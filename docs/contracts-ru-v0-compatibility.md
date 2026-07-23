@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.18.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с контуром допуска пилотных данных v1 |
 | `0.17.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | supported synthetic release with reviewed general-sale paths |
 | `0.16.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v8` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v8` | supported synthetic release with reviewed special-supply paths |
 | `0.15.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v7` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v7` | supported synthetic release with reviewed performance and remedies |
@@ -25,6 +26,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.17.0` → `0.18.0` изменение относится к допуску и полезности пилота, а не к юридическим выводам. Не допускай несинтетические пилотные наблюдения без отдельного одобренного решения gate v1 и не храни в пилотных артефактах тексты документов, имена файлов и идентификаторы. Зафиксируй проверенное законное основание для персональных данных, требуй `consent_ref` только для основания `subject_consent` и пересобери артефакты пилотной репетиции, privacy-safe utility, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 For `0.16.0` to `0.17.0`, preserve the old trace and collect separately reviewed `contracts.sale-evidence.v0` input. Do not infer transfer, risk, third-party rights, quality remedies, acceptance, payment, insurance, or retained-title consequences from former general performance or special-supply outputs. Regenerate all current artifacts under evidence schema `v9`, pipeline `v9`, and Russian templates `ru-v11`.
 

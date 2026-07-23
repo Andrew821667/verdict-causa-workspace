@@ -1,0 +1,639 @@
+{
+  "id": "contracts-max-realistic-pilot-rehearsal-v1",
+  "schema_version": "pilot.rehearsal.v1",
+  "locale": "ru-RU",
+  "disclaimer_ru": "Это синтетическая репетиция допуска максимально приближенного к реальности дела. Она не содержит клиентских документов, не доказывает промышленную готовность и не заменяет одобрение реального пилота.",
+  "intake": {
+    "id": "pilot-intake-5a1e0001",
+    "schema_version": "pilot.intake.v1",
+    "case_ref": "case-5a1e0001",
+    "tenant_ref": "tenant-5a1e0001",
+    "institutional_package_id": "contracts-ru-v0",
+    "institutional_package_version": "0.18.0",
+    "data_origin": "synthetic_schema_demo",
+    "task_category": "supply_delivery",
+    "purpose": "contract_dispute_evaluation",
+    "lawful_basis": "not_applicable",
+    "legal_basis_review_ref": null,
+    "consent_ref": null,
+    "processor_engaged": false,
+    "processor_instruction_ref": null,
+    "local_storage_confirmed": true,
+    "cross_border_transfer_requested": false,
+    "external_model_access_requested": false,
+    "encryption_at_rest": true,
+    "encryption_in_transit": true,
+    "role_based_access": true,
+    "audit_log_enabled": true,
+    "deletion_plan_approved": true,
+    "raw_content_embedded": false,
+    "retention_until": "2026-09-30",
+    "documents": [
+      {
+        "id": "pilot-doc-5a1e0001",
+        "tenant_ref": "tenant-5a1e0001",
+        "kind": "contract",
+        "content_sha256": "e19746496b6b76865dfec23ef34efc35ac8ec67838e7d573062c410a979393ec",
+        "page_count": 4,
+        "extracted_fact_count": 12,
+        "contains_personal_data": false,
+        "contains_special_category_data": false,
+        "contains_biometric_data": false,
+        "contains_minor_data": false,
+        "contains_credentials": false,
+        "contains_state_secret": false,
+        "contains_commercial_secret": false,
+        "direct_identifiers_removed": true,
+        "quasi_identifiers_generalized": true,
+        "irrelevant_content_removed": true,
+        "commercial_secret_owner_approval_ref": null
+      },
+      {
+        "id": "pilot-doc-5a1e0002",
+        "tenant_ref": "tenant-5a1e0001",
+        "kind": "specification",
+        "content_sha256": "2d2d48079ba008ba0058c4d4d171a1526e1f3f94b844c925ecf1b8785232edcf",
+        "page_count": 2,
+        "extracted_fact_count": 5,
+        "contains_personal_data": false,
+        "contains_special_category_data": false,
+        "contains_biometric_data": false,
+        "contains_minor_data": false,
+        "contains_credentials": false,
+        "contains_state_secret": false,
+        "contains_commercial_secret": false,
+        "direct_identifiers_removed": true,
+        "quasi_identifiers_generalized": true,
+        "irrelevant_content_removed": true,
+        "commercial_secret_owner_approval_ref": null
+      },
+      {
+        "id": "pilot-doc-5a1e0003",
+        "tenant_ref": "tenant-5a1e0001",
+        "kind": "delivery_document",
+        "content_sha256": "fa0741569841f337ff732858ab60319e9339f7b32cdea894ffc33ac2d25dfef0",
+        "page_count": 2,
+        "extracted_fact_count": 5,
+        "contains_personal_data": false,
+        "contains_special_category_data": false,
+        "contains_biometric_data": false,
+        "contains_minor_data": false,
+        "contains_credentials": false,
+        "contains_state_secret": false,
+        "contains_commercial_secret": false,
+        "direct_identifiers_removed": true,
+        "quasi_identifiers_generalized": true,
+        "irrelevant_content_removed": true,
+        "commercial_secret_owner_approval_ref": null
+      },
+      {
+        "id": "pilot-doc-5a1e0004",
+        "tenant_ref": "tenant-5a1e0001",
+        "kind": "claim",
+        "content_sha256": "8d93b1b9d84e2a75f4ef9c8c14973e7205be7724a945dc3361a9432a38609627",
+        "page_count": 2,
+        "extracted_fact_count": 5,
+        "contains_personal_data": false,
+        "contains_special_category_data": false,
+        "contains_biometric_data": false,
+        "contains_minor_data": false,
+        "contains_credentials": false,
+        "contains_state_secret": false,
+        "contains_commercial_secret": false,
+        "direct_identifiers_removed": true,
+        "quasi_identifiers_generalized": true,
+        "irrelevant_content_removed": true,
+        "commercial_secret_owner_approval_ref": null
+      },
+      {
+        "id": "pilot-doc-5a1e0005",
+        "tenant_ref": "tenant-5a1e0001",
+        "kind": "payment_document",
+        "content_sha256": "a46a58b9fc1f41c4b9e20791f0e0032ba5f960d687c355544c6d5e40931001c1",
+        "page_count": 2,
+        "extracted_fact_count": 5,
+        "contains_personal_data": false,
+        "contains_special_category_data": false,
+        "contains_biometric_data": false,
+        "contains_minor_data": false,
+        "contains_credentials": false,
+        "contains_state_secret": false,
+        "contains_commercial_secret": false,
+        "direct_identifiers_removed": true,
+        "quasi_identifiers_generalized": true,
+        "irrelevant_content_removed": true,
+        "commercial_secret_owner_approval_ref": null
+      }
+    ],
+    "signoffs": [
+      {
+        "role": "privacy",
+        "reviewer_ref": "reviewer-5a1e0001",
+        "approved": true,
+        "signed_on": "2026-07-23",
+        "record_ref": "synthetic-privacy-review-2026-07-23"
+      },
+      {
+        "role": "legal_basis",
+        "reviewer_ref": "reviewer-5a1e0002",
+        "approved": true,
+        "signed_on": "2026-07-23",
+        "record_ref": "synthetic-legal-basis-review-2026-07-23"
+      },
+      {
+        "role": "information_security",
+        "reviewer_ref": "reviewer-5a1e0003",
+        "approved": true,
+        "signed_on": "2026-07-23",
+        "record_ref": "synthetic-security-review-2026-07-23"
+      },
+      {
+        "role": "domain_owner",
+        "reviewer_ref": "reviewer-5a1e0004",
+        "approved": true,
+        "signed_on": "2026-07-23",
+        "record_ref": "synthetic-domain-review-2026-07-23"
+      }
+    ]
+  },
+  "gate_decision": {
+    "id": "pilot-gate:pilot-intake-5a1e0001:4f7f4a799f37",
+    "gate_version": "pilot-admission-gate-v1",
+    "intake_id": "pilot-intake-5a1e0001",
+    "intake_fingerprint": "4f7f4a799f3736bfd61ab59e3022f9c9dd6b0f621b144de1b25e1d4233cac956",
+    "evaluated_on": "2026-07-23",
+    "status": "approved",
+    "execution_allowed": true,
+    "reasons": [],
+    "reasons_ru": [],
+    "required_actions_ru": [],
+    "warnings_ru": [
+      "Синтетическая репетиция проверяет архитектуру допуска, но не подтверждает полезность на данных пилотного заказчика."
+    ],
+    "control_refs": [
+      "synthetic-domain-review-2026-07-23",
+      "synthetic-legal-basis-review-2026-07-23",
+      "synthetic-privacy-review-2026-07-23",
+      "synthetic-security-review-2026-07-23"
+    ]
+  },
+  "run_manifest": {
+    "id": "pilot-run-5a1e0001",
+    "intake_fingerprint": "4f7f4a799f3736bfd61ab59e3022f9c9dd6b0f621b144de1b25e1d4233cac956",
+    "gate_decision_id": "pilot-gate:pilot-intake-5a1e0001:4f7f4a799f37",
+    "institutional_package_id": "contracts-ru-v0",
+    "institutional_package_version": "0.18.0",
+    "decision_trace_ref": "trace-phase0-supply-dispute-v0",
+    "reviewed_analysis_ref": "analysis-request-case-supply-1-v0",
+    "translation_bundle_ref": "translation-bundle:trace-phase0-supply-dispute-v0",
+    "policy_snapshot_ref": "policy-snapshot:phase0-standard-t3@1",
+    "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
+    "source_hashes": [
+      "2d2d48079ba008ba0058c4d4d171a1526e1f3f94b844c925ecf1b8785232edcf",
+      "8d93b1b9d84e2a75f4ef9c8c14973e7205be7724a945dc3361a9432a38609627",
+      "a46a58b9fc1f41c4b9e20791f0e0032ba5f960d687c355544c6d5e40931001c1",
+      "e19746496b6b76865dfec23ef34efc35ac8ec67838e7d573062c410a979393ec",
+      "fa0741569841f337ff732858ab60319e9339f7b32cdea894ffc33ac2d25dfef0"
+    ],
+    "executed_on": "2026-07-23",
+    "raw_content_retained": false,
+    "human_review_required": true
+  },
+  "utility_report": {
+    "id": "synthetic-privacy-safe-pilot-utility-report-v1",
+    "institutional_package_id": "contracts-ru-v0",
+    "data_origin": "synthetic_schema_demo",
+    "schema_version": "privacy-safe-pilot-utility.v1",
+    "total_observations": 2,
+    "average_time_to_useful_draft_minutes": 24.0,
+    "total_accepted_argument_count": 1,
+    "total_human_correction_count": 3,
+    "average_reviewer_usefulness_rating": 3.25,
+    "formally_smart_but_practically_useless_count": 1,
+    "observations": [
+      {
+        "id": "pilot-00000001",
+        "task_category": "supply_delivery",
+        "collection_date": "2026-07-23",
+        "data_origin": "synthetic_schema_demo",
+        "privacy_reviewed": true,
+        "lawful_basis_recorded": true,
+        "consent_required": false,
+        "consent_recorded": null,
+        "data_minimization_reviewed": true,
+        "gate_decision_ref": "pilot-gate:pilot-intake-5a1e0001:4f7f4a799f37",
+        "decision_trace_ref": "trace-phase0-supply-dispute-v0",
+        "time_to_useful_draft_minutes": 20.0,
+        "accepted_argument_count": 1,
+        "human_correction_count": 1,
+        "reviewer_usefulness_rating": 4.0,
+        "formally_smart_but_practically_useless": false
+      },
+      {
+        "id": "pilot-00000002",
+        "task_category": "authority",
+        "collection_date": "2026-07-23",
+        "data_origin": "synthetic_schema_demo",
+        "privacy_reviewed": true,
+        "lawful_basis_recorded": true,
+        "consent_required": false,
+        "consent_recorded": null,
+        "data_minimization_reviewed": true,
+        "gate_decision_ref": "pilot-gate:pilot-intake-5a1e0001:4f7f4a799f37",
+        "decision_trace_ref": "trace-phase0-supply-dispute-v0",
+        "time_to_useful_draft_minutes": 28.0,
+        "accepted_argument_count": 0,
+        "human_correction_count": 2,
+        "reviewer_usefulness_rating": 2.5,
+        "formally_smart_but_practically_useless": true
+      }
+    ]
+  },
+  "benchmark_report": {
+    "id": "contracts-pilot-gate-benchmark-v1",
+    "suite_kind": "benchmark",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "results": [
+      {
+        "case_id": "pilot-benchmark-synthetic",
+        "expected_status": "approved",
+        "observed_status": "approved",
+        "passed": true,
+        "matched_reason_fragment_ru": null,
+        "reasons_ru": []
+      },
+      {
+        "case_id": "pilot-benchmark-consent",
+        "expected_status": "approved",
+        "observed_status": "approved",
+        "passed": true,
+        "matched_reason_fragment_ru": null,
+        "reasons_ru": []
+      },
+      {
+        "case_id": "pilot-benchmark-contract",
+        "expected_status": "approved",
+        "observed_status": "approved",
+        "passed": true,
+        "matched_reason_fragment_ru": null,
+        "reasons_ru": []
+      },
+      {
+        "case_id": "pilot-benchmark-statutory-duty",
+        "expected_status": "approved",
+        "observed_status": "approved",
+        "passed": true,
+        "matched_reason_fragment_ru": null,
+        "reasons_ru": []
+      },
+      {
+        "case_id": "pilot-benchmark-rights",
+        "expected_status": "approved",
+        "observed_status": "approved",
+        "passed": true,
+        "matched_reason_fragment_ru": null,
+        "reasons_ru": []
+      },
+      {
+        "case_id": "pilot-benchmark-commercial-secret",
+        "expected_status": "approved",
+        "observed_status": "approved",
+        "passed": true,
+        "matched_reason_fragment_ru": null,
+        "reasons_ru": []
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "contracts-pilot-gate-red-team-v1",
+    "suite_kind": "red_team",
+    "total": 32,
+    "passed": 32,
+    "failed": 0,
+    "results": [
+      {
+        "case_id": "pilot-red-package",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "Координаты институционального пакета",
+        "reasons_ru": [
+          "Координаты институционального пакета не совпадают с активной версией."
+        ]
+      },
+      {
+        "case_id": "pilot-red-raw-content",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "исходное содержимое документов",
+        "reasons_ru": [
+          "В пилотный артефакт включено исходное содержимое документов."
+        ]
+      },
+      {
+        "case_id": "pilot-red-expired",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "Срок хранения пилотных данных истек",
+        "reasons_ru": [
+          "Срок хранения пилотных данных истек."
+        ]
+      },
+      {
+        "case_id": "pilot-red-long-retention",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "превышает предельные 90 дней",
+        "reasons_ru": [
+          "Срок хранения превышает предельные 90 дней для пилотного контура v1."
+        ]
+      },
+      {
+        "case_id": "pilot-red-storage",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "Хранение данных в российском контуре",
+        "reasons_ru": [
+          "Хранение данных в российском контуре не подтверждено."
+        ]
+      },
+      {
+        "case_id": "pilot-red-cross-border",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "Трансграничная передача запрещена",
+        "reasons_ru": [
+          "Трансграничная передача запрещена пилотным контуром v1."
+        ]
+      },
+      {
+        "case_id": "pilot-red-external-model",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "внешнему модельному провайдеру запрещена",
+        "reasons_ru": [
+          "Передача пилотных данных внешнему модельному провайдеру запрещена."
+        ]
+      },
+      {
+        "case_id": "pilot-red-control-encryption_at_rest",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "шифрование при хранении",
+        "reasons_ru": [
+          "Не подтвержден обязательный контроль: шифрование при хранении."
+        ]
+      },
+      {
+        "case_id": "pilot-red-control-encryption_in_transit",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "шифрование при передаче",
+        "reasons_ru": [
+          "Не подтвержден обязательный контроль: шифрование при передаче."
+        ]
+      },
+      {
+        "case_id": "pilot-red-control-role_based_access",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "ролевой контроль доступа",
+        "reasons_ru": [
+          "Не подтвержден обязательный контроль: ролевой контроль доступа."
+        ]
+      },
+      {
+        "case_id": "pilot-red-control-audit_log_enabled",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "журналирование доступа",
+        "reasons_ru": [
+          "Не подтвержден обязательный контроль: журналирование доступа."
+        ]
+      },
+      {
+        "case_id": "pilot-red-control-deletion_plan_approved",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "утвержденный план удаления",
+        "reasons_ru": [
+          "Не подтвержден обязательный контроль: утвержденный план удаления."
+        ]
+      },
+      {
+        "case_id": "pilot-red-processor",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "не зафиксировано поручение",
+        "reasons_ru": [
+          "Для привлеченного обработчика не зафиксировано поручение на обработку."
+        ]
+      },
+      {
+        "case_id": "pilot-red-missing-privacy",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "privacy",
+        "reasons_ru": [
+          "Отсутствует обязательное согласование роли «privacy»."
+        ]
+      },
+      {
+        "case_id": "pilot-red-legal-rejected",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "не одобрила пилотный запуск",
+        "reasons_ru": [
+          "Роль «legal_basis» не одобрила пилотный запуск."
+        ]
+      },
+      {
+        "case_id": "pilot-red-future-signoff",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "датировано будущим числом",
+        "reasons_ru": [
+          "Согласование роли «information_security» датировано будущим числом."
+        ]
+      },
+      {
+        "case_id": "pilot-red-same-reviewer",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "назначены одному проверяющему",
+        "reasons_ru": [
+          "Независимые роли согласования назначены одному проверяющему."
+        ]
+      },
+      {
+        "case_id": "pilot-red-duplicate-content",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "повторяющееся содержимое",
+        "reasons_ru": [
+          "Манифест содержит повторяющееся содержимое документов."
+        ]
+      },
+      {
+        "case_id": "pilot-red-no-basis",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "не зафиксировано законное основание",
+        "reasons_ru": [
+          "Для персональных данных не зафиксировано законное основание обработки.",
+          "Отсутствует ссылка на юридическую проверку основания обработки."
+        ]
+      },
+      {
+        "case_id": "pilot-red-no-basis-review",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "юридическую проверку основания",
+        "reasons_ru": [
+          "Отсутствует ссылка на юридическую проверку основания обработки."
+        ]
+      },
+      {
+        "case_id": "pilot-red-no-consent",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "запись согласия отсутствует",
+        "reasons_ru": [
+          "Выбрано согласие субъекта, но запись согласия отсутствует."
+        ]
+      },
+      {
+        "case_id": "pilot-red-basis-without-personal-data",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "для набора без таких данных",
+        "reasons_ru": [
+          "Основание обработки персональных данных указано для набора без таких данных."
+        ]
+      },
+      {
+        "case_id": "pilot-red-cross-tenant",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "относится к другому tenant",
+        "reasons_ru": [
+          "Документ pilot-doc-5a1e0001 относится к другому tenant."
+        ]
+      },
+      {
+        "case_id": "pilot-red-prohibited-contains_special_category_data",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "специальные категории данных",
+        "reasons_ru": [
+          "Документ pilot-doc-5a1e0001 содержит запрещенную категорию: специальные категории данных."
+        ]
+      },
+      {
+        "case_id": "pilot-red-prohibited-contains_biometric_data",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "биометрические данные",
+        "reasons_ru": [
+          "Документ pilot-doc-5a1e0001 содержит запрещенную категорию: биометрические данные."
+        ]
+      },
+      {
+        "case_id": "pilot-red-prohibited-contains_minor_data",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "данные несовершеннолетних",
+        "reasons_ru": [
+          "Документ pilot-doc-5a1e0001 содержит запрещенную категорию: данные несовершеннолетних."
+        ]
+      },
+      {
+        "case_id": "pilot-red-prohibited-contains_credentials",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "учетные данные и секреты доступа",
+        "reasons_ru": [
+          "Документ pilot-doc-5a1e0001 содержит запрещенную категорию: учетные данные и секреты доступа."
+        ]
+      },
+      {
+        "case_id": "pilot-red-prohibited-contains_state_secret",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "сведения, составляющие государственную тайну",
+        "reasons_ru": [
+          "Документ pilot-doc-5a1e0001 содержит запрещенную категорию: сведения, составляющие государственную тайну."
+        ]
+      },
+      {
+        "case_id": "pilot-red-minimization-direct_identifiers_removed",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "удаление прямых идентификаторов",
+        "reasons_ru": [
+          "Для документа pilot-doc-5a1e0001 не подтверждено: удаление прямых идентификаторов."
+        ]
+      },
+      {
+        "case_id": "pilot-red-minimization-quasi_identifiers_generalized",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "обобщение косвенных идентификаторов",
+        "reasons_ru": [
+          "Для документа pilot-doc-5a1e0001 не подтверждено: обобщение косвенных идентификаторов."
+        ]
+      },
+      {
+        "case_id": "pilot-red-minimization-irrelevant_content_removed",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "удаление не относящихся к цели сведений",
+        "reasons_ru": [
+          "Для документа pilot-doc-5a1e0001 не подтверждено: удаление не относящихся к цели сведений."
+        ]
+      },
+      {
+        "case_id": "pilot-red-commercial-secret",
+        "expected_status": "blocked",
+        "observed_status": "blocked",
+        "passed": true,
+        "matched_reason_fragment_ru": "нет разрешения владельца коммерческой тайны",
+        "reasons_ru": [
+          "Для документа pilot-doc-5a1e0001 нет разрешения владельца коммерческой тайны."
+        ]
+      }
+    ]
+  }
+}

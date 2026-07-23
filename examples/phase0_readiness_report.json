@@ -85,22 +85,23 @@
         "examples/synthetic_sale_articles_454_491_report.json",
         "examples/synthetic_supply_articles_506_524_report.json",
         "examples/synthetic_termination_evaluation_report.json",
-        "examples/migrations/contracts-ru-v0-0.1.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.3.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.4.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.5.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.6.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.7.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.8.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.9.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.10.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.11.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.12.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.13.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.14.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.15.0-to-0.17.0-migration-report.json",
-        "examples/migrations/contracts-ru-v0-0.16.0-to-0.17.0-migration-report.json",
-        "contracts-ru-v0@0.17.0"
+        "examples/migrations/contracts-ru-v0-0.1.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.3.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.4.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.5.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.6.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.7.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.8.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.9.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.10.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.11.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.12.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.13.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.14.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.15.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.16.0-to-0.18.0-migration-report.json",
+        "examples/migrations/contracts-ru-v0-0.17.0-to-0.18.0-migration-report.json",
+        "contracts-ru-v0@0.18.0"
       ],
       "remaining_work": [
         "Расширить правила юридической силы и временные правила за пределы поставки.",
@@ -161,7 +162,7 @@
         "red-team-supply-delay-excuse-overreach",
         "synthetic-supply-benchmark-suite-v0",
         "synthetic-supply-practice-utility-report-v0",
-        "synthetic-privacy-safe-pilot-utility-report-v0",
+        "synthetic-privacy-safe-pilot-utility-report-v1",
         "synthetic-supply-red-team-suite-v0",
         "synthetic-contract-counterfactual-benchmark-suite-v0",
         "synthetic-contract-counterfactual-red-team-suite-v0",
@@ -211,6 +212,28 @@
       ],
       "remaining_work": [
         "Расширить синтетический набор источников и перечень пилотных задач."
+      ]
+    },
+    {
+      "id": "ws10-pilot-admission",
+      "title": "Контур допуска и минимизации пилотных данных",
+      "status": "warning",
+      "evidence_refs": [
+        "src/causa/pilot.py",
+        "src/causa/institutional/contracts/pilot_fixtures.py",
+        "src/causa/institutional/contracts/pilot_evaluation.py",
+        "src/causa/institutional/contracts/synthetic_pilot.py",
+        "docs/pilot-data-admission-spec.md",
+        "examples/synthetic_pilot_rehearsal_report.json",
+        "pilot-gate:pilot-intake-5a1e0001:4f7f4a799f37",
+        "contracts-pilot-gate-benchmark-v1",
+        "contracts-pilot-gate-red-team-v1",
+        "synthetic-privacy-safe-pilot-utility-report-v1"
+      ],
+      "remaining_work": [
+        "Получить независимые privacy, legal, security и domain-согласования реального кейса.",
+        "Собрать несинтетические наблюдения полезности только после одобренного gate v1.",
+        "Сохранять ready_for_production=false до подтвержденного пилота на данных заказчика."
       ]
     }
   ]

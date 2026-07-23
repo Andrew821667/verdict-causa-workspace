@@ -48,6 +48,8 @@ Institutional packages extend the core with domain-specific schemas, vocabularie
 
 The first institutional package focuses on contractual relations: formation, change and termination, the general part of obligations, sale, supply, and liability for breach.
 
+Релиз `contracts-ru-v0@0.18.0` добавляет контур допуска пилотных данных, который доказывает Этап 0 на максимально реалистичном споре о поставке, не обрабатывая реальные клиентские документы. Контур хранит только псевдонимные ссылки и хэши содержимого, фиксирует проверенное законное основание обработки и требует четырёх независимых согласований. Правила описаны в русской [спецификации допуска пилотных данных](docs/pilot-data-admission-spec.md).
+
 This is the first proving ground for the infrastructure, not the full scope of the project.
 
 ## Architecture
@@ -279,6 +281,14 @@ python scripts/export_privacy_safe_pilot_utility.py
 
 The output is written to `examples/synthetic_privacy_safe_pilot_utility_report.json`.
 
+Сформировать синтетическую репетицию допуска пилотных данных:
+
+```bash
+python scripts/export_synthetic_pilot_rehearsal.py
+```
+
+Результат записывается в `examples/synthetic_pilot_rehearsal_report.json`. Артефакт содержит только псевдонимный манифест и хэши содержимого; правила допуска описаны в [спецификации допуска пилотных данных](docs/pilot-data-admission-spec.md).
+
 Generate the synthetic supply red-team report:
 
 ```bash
@@ -293,7 +303,7 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-The command writes replay reports for legacy releases through `0.16.0` and regenerates them against `0.17.0`. Reports are stored as `examples/migrations/contracts-ru-v0-<source>-to-0.17.0-migration-report.json` for `0.1.0`, `0.3.0`, and every release from `0.4.0` through `0.16.0`.
+Команда формирует отчёты о необходимости replay для прежних релизов и пересобирает их относительно `0.18.0`. Отчёты сохраняются как `examples/migrations/contracts-ru-v0-<source>-to-0.18.0-migration-report.json` для `0.1.0`, `0.3.0` и каждого релиза с `0.4.0` по `0.17.0`. Прежние отчёты `*-to-0.17.0-migration-report.json` сохраняются как исторические артефакты.
 
 ## License
 

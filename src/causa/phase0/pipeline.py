@@ -34,6 +34,9 @@ from causa.institutional.contracts.synthetic_obligation_dynamics import (
 from causa.institutional.contracts.synthetic_performance_remedies import (
     build_synthetic_performance_remedies_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_pilot import (
+    build_synthetic_pilot_rehearsal_artifact,
+)
 from causa.institutional.contracts.synthetic_sale import (
     build_synthetic_sale_evaluation_artifact,
 )
@@ -441,6 +444,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     performance_remedies_artifact = build_synthetic_performance_remedies_evaluation_artifact()
     sale_artifact = build_synthetic_sale_evaluation_artifact()
     supply_artifact = build_synthetic_supply_evaluation_artifact()
+    pilot_rehearsal_artifact = build_synthetic_pilot_rehearsal_artifact()
 
     items = [
         ReadinessItem(
@@ -517,12 +521,12 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 *(
-                    f"examples/migrations/contracts-ru-v0-{version}-to-0.17.0-migration-report.json"
+                    f"examples/migrations/contracts-ru-v0-{version}-to-0.18.0-migration-report.json"
                     for version in (
                         "0.1.0",
                         "0.3.0",
                         "0.4.0",
-                        *(f"0.{minor}.0" for minor in range(5, 17)),
+                        *(f"0.{minor}.0" for minor in range(5, 18)),
                     )
                 ),
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
@@ -635,6 +639,30 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 pipeline.id,
             ],
             remaining_work=["Расширить синтетический набор источников и перечень пилотных задач."],
+        ),
+        ReadinessItem(
+            id="ws10-pilot-admission",
+            title="Контур допуска и минимизации пилотных данных",
+            status=PipelineStepStatus.WARNING,
+            evidence_refs=[
+                "src/causa/pilot.py",
+                "src/causa/institutional/contracts/pilot_fixtures.py",
+                "src/causa/institutional/contracts/pilot_evaluation.py",
+                "src/causa/institutional/contracts/synthetic_pilot.py",
+                "docs/pilot-data-admission-spec.md",
+                "examples/synthetic_pilot_rehearsal_report.json",
+                # Допуск связывает синтетическую репетицию, gate-решение и наблюдения полезности.
+                pilot_rehearsal_artifact.gate_decision.id,
+                pilot_rehearsal_artifact.benchmark_report.id,
+                pilot_rehearsal_artifact.red_team_report.id,
+                pilot_rehearsal_artifact.utility_report.id,
+            ],
+            remaining_work=[
+                # Синтетическая репетиция подтверждает архитектуру допуска, но не заменяет реальный пилот.
+                "Получить независимые privacy, legal, security и domain-согласования реального кейса.",
+                "Собрать несинтетические наблюдения полезности только после одобренного gate v1.",
+                "Сохранять ready_for_production=false до подтвержденного пилота на данных заказчика.",
+            ],
         ),
     ]
 
