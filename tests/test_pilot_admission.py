@@ -42,7 +42,7 @@ def test_synthetic_pilot_rehearsal_is_linked_and_replayable() -> None:
     assert artifact.run_manifest is not None
     assert artifact.run_manifest.human_review_required is True
     assert artifact.run_manifest.raw_content_retained is False
-    assert artifact.run_manifest.institutional_package_version == "0.19.0"
+    assert artifact.run_manifest.institutional_package_version == "0.20.0"
     assert artifact.utility_report.schema_version == "privacy-safe-pilot-utility.v1"
 
 

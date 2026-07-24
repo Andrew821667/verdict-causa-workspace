@@ -330,6 +330,59 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk195-200-limitation-framework-v1",
+        title="Синтетическая проверенная модель исковой давности по статьям 195–200 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: понятие исковой давности, общий трехлетний "
+            "и специальные сроки, предельный десятилетний срок и момент начала течения "
+            "проверяются раздельно."
+        ),
+        valid_from="2013-09-01",
+        metadata={
+            "synthetic": True,
+            "topic": "limitation_articles_195_200",
+            "legal_reference": "ГК РФ, статьи 195–200",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk202-208-limitation-effects-v1",
+        title="Синтетическая проверенная модель приостановления, перерыва и применения давности",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: приостановление и перерыв течения, период "
+            "судебной защиты, заявление стороны, восстановление срока, дополнительные "
+            "требования и исключения проверяются как самостоятельные вопросы."
+        ),
+        valid_from="2013-09-01",
+        metadata={
+            "synthetic": True,
+            "topic": "limitation_articles_202_208",
+            "legal_reference": "ГК РФ, статьи 199, 202–208",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-limitation-evidence",
+        title="Синтетическая проверенная запись фактов об исковой давности",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: требование о нарушении поставки подпадает под исковую "
+            "давность, нарушение и ответчик известны, но трехлетний срок в демонстрационном "
+            "деле еще не истек."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "limitation_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

@@ -30,6 +30,11 @@ from causa.institutional.contracts.temporal_effect import (
     TemporalEffectEvidenceAssertion,
     TemporalEffectEvidencePredicate,
 )
+from causa.institutional.contracts.limitation import (
+    LimitationEvidenceAssertion,
+    LimitationEvidencePredicate,
+    ReviewedLimitationEvidence,
+)
 from causa.institutional.contracts.termination import (
     ReviewedTerminationEvidence,
     TerminationEvidenceAssertion,
@@ -84,6 +89,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk425-contract-effect-model-v1",
     "synthetic-ru-gk433-conclusion-moment-model-v1",
     "synthetic-case-supply-1-temporal-effect-evidence",
+    "synthetic-ru-gk195-200-limitation-framework-v1",
+    "synthetic-ru-gk202-208-limitation-effects-v1",
+    "synthetic-case-supply-1-limitation-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -368,6 +376,43 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-temporal-effect-reviewer",
+        ),
+        limitation_evidence=ReviewedLimitationEvidence(
+            id="reviewed-limitation-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                LimitationEvidenceAssertion(
+                    id=f"limitation-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-limitation-evidence",),
+                )
+                for predicate, value in (
+                    (LimitationEvidencePredicate.CLAIM_SUBJECT_TO_LIMITATION, True),
+                    (LimitationEvidencePredicate.RIGHT_VIOLATION_AND_DEFENDANT_KNOWN, True),
+                    (LimitationEvidencePredicate.FIXED_PERFORMANCE_TERM_EXPIRED, False),
+                    (LimitationEvidencePredicate.GENERAL_THREE_YEAR_TERM_ELAPSED, False),
+                    (LimitationEvidencePredicate.SPECIAL_TERM_APPLIES, False),
+                    (LimitationEvidencePredicate.SPECIAL_TERM_ELAPSED, False),
+                    (LimitationEvidencePredicate.OBJECTIVE_TEN_YEAR_LIMIT_EXCEEDED, False),
+                    (LimitationEvidencePredicate.SUSPENSION_GROUND_IN_FINAL_SIX_MONTHS, False),
+                    (LimitationEvidencePredicate.DEBTOR_ACKNOWLEDGED_DEBT, False),
+                    (LimitationEvidencePredicate.JUDICIAL_PROTECTION_PERIOD_ONGOING, False),
+                    (
+                        LimitationEvidencePredicate.LIMITATION_PLEADED_BY_PARTY_BEFORE_JUDGMENT,
+                        False,
+                    ),
+                    (LimitationEvidencePredicate.CLAIMANT_IS_INDIVIDUAL_WITH_VALID_EXCUSE, False),
+                    (LimitationEvidencePredicate.IS_ADDITIONAL_CLAIM, False),
+                    (LimitationEvidencePredicate.MAIN_CLAIM_TIME_BARRED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk195-200-limitation-framework-v1",
+                "synthetic-ru-gk202-208-limitation-effects-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-limitation-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

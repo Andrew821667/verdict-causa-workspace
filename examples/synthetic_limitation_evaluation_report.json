@@ -1,0 +1,492 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил исковой давности по статьям 195–208 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-limitation-evidence-supply-1-v0",
+    "schema_version": "contracts.limitation-evidence.v0",
+    "mapping_version": "contracts-reviewed-limitation-to-facts-v0",
+    "facts": {
+      "claim_subject_to_limitation": true,
+      "right_violation_and_defendant_known": true,
+      "fixed_performance_term_expired": false,
+      "general_three_year_term_elapsed": false,
+      "special_term_applies": false,
+      "special_term_elapsed": false,
+      "objective_ten_year_limit_exceeded": false,
+      "suspension_ground_in_final_six_months": false,
+      "debtor_acknowledged_debt": false,
+      "judicial_protection_period_ongoing": false,
+      "limitation_pleaded_by_party_before_judgment": false,
+      "claimant_is_individual_with_valid_excuse": false,
+      "is_additional_claim": false,
+      "main_claim_time_barred": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk195-200-limitation-framework-v1",
+      "synthetic-ru-gk202-208-limitation-effects-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "claim_subject_to_limitation",
+        "assertion_id": "limitation-evidence-claim_subject_to_limitation",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      },
+      {
+        "fact_name": "claimant_is_individual_with_valid_excuse",
+        "assertion_id": "limitation-evidence-claimant_is_individual_with_valid_excuse",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_acknowledged_debt",
+        "assertion_id": "limitation-evidence-debtor_acknowledged_debt",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      },
+      {
+        "fact_name": "fixed_performance_term_expired",
+        "assertion_id": "limitation-evidence-fixed_performance_term_expired",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      },
+      {
+        "fact_name": "general_three_year_term_elapsed",
+        "assertion_id": "limitation-evidence-general_three_year_term_elapsed",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_additional_claim",
+        "assertion_id": "limitation-evidence-is_additional_claim",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      },
+      {
+        "fact_name": "judicial_protection_period_ongoing",
+        "assertion_id": "limitation-evidence-judicial_protection_period_ongoing",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      },
+      {
+        "fact_name": "limitation_pleaded_by_party_before_judgment",
+        "assertion_id": "limitation-evidence-limitation_pleaded_by_party_before_judgment",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      },
+      {
+        "fact_name": "main_claim_time_barred",
+        "assertion_id": "limitation-evidence-main_claim_time_barred",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      },
+      {
+        "fact_name": "objective_ten_year_limit_exceeded",
+        "assertion_id": "limitation-evidence-objective_ten_year_limit_exceeded",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      },
+      {
+        "fact_name": "right_violation_and_defendant_known",
+        "assertion_id": "limitation-evidence-right_violation_and_defendant_known",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      },
+      {
+        "fact_name": "special_term_applies",
+        "assertion_id": "limitation-evidence-special_term_applies",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      },
+      {
+        "fact_name": "special_term_elapsed",
+        "assertion_id": "limitation-evidence-special_term_elapsed",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      },
+      {
+        "fact_name": "suspension_ground_in_final_six_months",
+        "assertion_id": "limitation-evidence-suspension_ground_in_final_six_months",
+        "source_refs": [
+          "synthetic-case-supply-1-limitation-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "limitation-constraint-set:reviewed-limitation-evidence-supply-1-v0",
+    "model_version": "contracts-limitation-articles-195-208-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk195-200-limitation-framework-v1",
+      "synthetic-ru-gk202-208-limitation-effects-v1"
+    ],
+    "expressions": [
+      "limitation_period_started == right_violation_and_defendant_known OR fixed_performance_term_expired",
+      "basic_term_elapsed == (special_term_applies AND special_term_elapsed) OR (NOT special_term_applies AND general_three_year_term_elapsed)",
+      "limitation_running_paused == suspension_ground_in_final_six_months OR debtor_acknowledged_debt OR judicial_protection_period_ongoing",
+      "limitation_period_expired == claim_subject_to_limitation AND limitation_period_started AND ((basic_term_elapsed AND NOT limitation_running_paused) OR objective_ten_year_limit_exceeded)",
+      "objective_limit_barred == claim_subject_to_limitation AND objective_ten_year_limit_exceeded",
+      "limitation_reset_by_acknowledgement == debtor_acknowledged_debt",
+      "limitation_suspended == suspension_ground_in_final_six_months",
+      "limitation_defense_available == limitation_period_expired AND limitation_pleaded_by_party_before_judgment",
+      "limitation_restorable == limitation_period_expired AND claimant_is_individual_with_valid_excuse",
+      "additional_claim_barred_with_main == is_additional_claim AND main_claim_time_barred",
+      "claim_not_subject_to_limitation == NOT claim_subject_to_limitation",
+      "requires_human_limitation_assessment == limitation_restorable OR (limitation_period_expired AND NOT limitation_pleaded_by_party_before_judgment)"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "limitation-constraint-set:reviewed-limitation-evidence-supply-1-v0",
+    "satisfiable": true,
+    "limitation_period_started": true,
+    "basic_term_elapsed": false,
+    "limitation_running_paused": false,
+    "limitation_period_expired": false,
+    "objective_limit_barred": false,
+    "limitation_reset_by_acknowledgement": false,
+    "limitation_suspended": false,
+    "limitation_defense_available": false,
+    "limitation_restorable": false,
+    "additional_claim_barred_with_main": false,
+    "claim_not_subject_to_limitation": false,
+    "requires_human_limitation_assessment": false,
+    "reasons_ru": [
+      "Истечение срока исковой давности не подтверждено."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила исковой давности и не заменяет судебную оценку.",
+      "Момент начала течения, уважительность причин и применение давности судом оцениваются экспертом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "limitation-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "limitation-bench-expired-pleaded",
+        "passed": true,
+        "expected_outcomes": {
+          "limitation_period_expired": true,
+          "limitation_defense_available": true
+        },
+        "observed_outcomes": {
+          "limitation_period_expired": true,
+          "limitation_defense_available": true
+        },
+        "reasons_ru": [
+          "Срок исковой давности истек.",
+          "Истекшая давность заявлена стороной и является основанием к отказу в иске (статья 199 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "limitation-bench-expired-not-pleaded",
+        "passed": true,
+        "expected_outcomes": {
+          "limitation_period_expired": true,
+          "limitation_defense_available": false,
+          "requires_human_limitation_assessment": true
+        },
+        "observed_outcomes": {
+          "limitation_period_expired": true,
+          "limitation_defense_available": false,
+          "requires_human_limitation_assessment": true
+        },
+        "reasons_ru": [
+          "Срок исковой давности истек.",
+          "Давность истекла, но сторона не заявила о ее применении до вынесения решения."
+        ]
+      },
+      {
+        "task_id": "limitation-bench-acknowledged",
+        "passed": true,
+        "expected_outcomes": {
+          "limitation_reset_by_acknowledgement": true,
+          "limitation_period_expired": false
+        },
+        "observed_outcomes": {
+          "limitation_reset_by_acknowledgement": true,
+          "limitation_period_expired": false
+        },
+        "reasons_ru": [
+          "Истечение срока исковой давности не подтверждено.",
+          "Признание долга прерывает течение давности (статья 203 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "limitation-bench-suspended",
+        "passed": true,
+        "expected_outcomes": {
+          "limitation_suspended": true,
+          "limitation_period_expired": false
+        },
+        "observed_outcomes": {
+          "limitation_suspended": true,
+          "limitation_period_expired": false
+        },
+        "reasons_ru": [
+          "Истечение срока исковой давности не подтверждено.",
+          "Течение давности приостановлено (статья 202 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "limitation-bench-special-term",
+        "passed": true,
+        "expected_outcomes": {
+          "limitation_period_expired": true,
+          "limitation_defense_available": true
+        },
+        "observed_outcomes": {
+          "limitation_period_expired": true,
+          "limitation_defense_available": true
+        },
+        "reasons_ru": [
+          "Срок исковой давности истек.",
+          "Истекшая давность заявлена стороной и является основанием к отказу в иске (статья 199 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "limitation-bench-objective-limit",
+        "passed": true,
+        "expected_outcomes": {
+          "objective_limit_barred": true,
+          "limitation_period_expired": true
+        },
+        "observed_outcomes": {
+          "objective_limit_barred": true,
+          "limitation_period_expired": true
+        },
+        "reasons_ru": [
+          "Срок исковой давности истек.",
+          "Истекшая давность заявлена стороной и является основанием к отказу в иске (статья 199 ГК РФ).",
+          "Превышен предельный десятилетний срок (статья 196 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "limitation-bench-not-subject",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_not_subject_to_limitation": true,
+          "limitation_period_expired": false
+        },
+        "observed_outcomes": {
+          "claim_not_subject_to_limitation": true,
+          "limitation_period_expired": false
+        },
+        "reasons_ru": [
+          "Истечение срока исковой давности не подтверждено.",
+          "На требование исковая давность не распространяется (статья 208 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "limitation-bench-restorable",
+        "passed": true,
+        "expected_outcomes": {
+          "limitation_period_expired": true,
+          "limitation_restorable": true
+        },
+        "observed_outcomes": {
+          "limitation_period_expired": true,
+          "limitation_restorable": true
+        },
+        "reasons_ru": [
+          "Срок исковой давности истек.",
+          "Давность истекла, но сторона не заявила о ее применении до вынесения решения.",
+          "Для гражданина при уважительной причине возможно восстановление срока (статья 205 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "limitation-bench-additional-claim",
+        "passed": true,
+        "expected_outcomes": {
+          "additional_claim_barred_with_main": true
+        },
+        "observed_outcomes": {
+          "additional_claim_barred_with_main": true
+        },
+        "reasons_ru": [
+          "Истечение срока исковой давности не подтверждено.",
+          "Давность по дополнительному требованию истекает вместе с главным (статья 207 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "limitation-bench-not-started",
+        "passed": true,
+        "expected_outcomes": {
+          "limitation_period_started": false,
+          "limitation_period_expired": false
+        },
+        "observed_outcomes": {
+          "limitation_period_started": false,
+          "limitation_period_expired": false
+        },
+        "reasons_ru": [
+          "Истечение срока исковой давности не подтверждено."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "limitation-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "limitation-red-expired-not-started",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "limitation_period_expired": true
+        },
+        "observed_outcomes": {
+          "limitation_period_expired": false
+        },
+        "reasons_ru": [
+          "Истечение срока исковой давности не подтверждено."
+        ]
+      },
+      {
+        "case_id": "limitation-red-defense-without-plea",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "limitation_defense_available": true
+        },
+        "observed_outcomes": {
+          "limitation_defense_available": false
+        },
+        "reasons_ru": [
+          "Срок исковой давности истек.",
+          "Давность истекла, но сторона не заявила о ее применении до вынесения решения."
+        ]
+      },
+      {
+        "case_id": "limitation-red-ignore-acknowledgement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "limitation_period_expired": true
+        },
+        "observed_outcomes": {
+          "limitation_period_expired": false
+        },
+        "reasons_ru": [
+          "Истечение срока исковой давности не подтверждено.",
+          "Признание долга прерывает течение давности (статья 203 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "limitation-red-ignore-suspension",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "limitation_period_expired": true
+        },
+        "observed_outcomes": {
+          "limitation_period_expired": false
+        },
+        "reasons_ru": [
+          "Истечение срока исковой давности не подтверждено.",
+          "Течение давности приостановлено (статья 202 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "limitation-red-apply-to-exempt-claim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "limitation_period_expired": true
+        },
+        "observed_outcomes": {
+          "limitation_period_expired": false
+        },
+        "reasons_ru": [
+          "Истечение срока исковой давности не подтверждено.",
+          "На требование исковая давность не распространяется (статья 208 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "limitation-red-special-not-elapsed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "limitation_period_expired": true
+        },
+        "observed_outcomes": {
+          "limitation_period_expired": false
+        },
+        "reasons_ru": [
+          "Истечение срока исковой давности не подтверждено."
+        ]
+      },
+      {
+        "case_id": "limitation-red-deny-restoration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "limitation_restorable": false
+        },
+        "observed_outcomes": {
+          "limitation_restorable": true
+        },
+        "reasons_ru": [
+          "Срок исковой давности истек.",
+          "Давность истекла, но сторона не заявила о ее применении до вынесения решения.",
+          "Для гражданина при уважительной причине возможно восстановление срока (статья 205 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "limitation-red-keep-additional-claim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "additional_claim_barred_with_main": false
+        },
+        "observed_outcomes": {
+          "additional_claim_barred_with_main": true
+        },
+        "reasons_ru": [
+          "Истечение срока исковой давности не подтверждено.",
+          "Давность по дополнительному требованию истекает вместе с главным (статья 207 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "limitation-red-objective-without-excess",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "objective_limit_barred": true
+        },
+        "observed_outcomes": {
+          "objective_limit_barred": false
+        },
+        "reasons_ru": [
+          "Срок исковой давности истек.",
+          "Давность истекла, но сторона не заявила о ее применении до вынесения решения."
+        ]
+      },
+      {
+        "case_id": "limitation-red-start-without-ground",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "limitation_period_started": true
+        },
+        "observed_outcomes": {
+          "limitation_period_started": false
+        },
+        "reasons_ru": [
+          "Истечение срока исковой давности не подтверждено."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

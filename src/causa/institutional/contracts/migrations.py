@@ -378,6 +378,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.19.0",
+        to_version="0.20.0",
+        reasons=[
+            "Reviewed inputs now require a separate limitation-of-actions evidence contract.",
+            "Analysis and Russian translation distinguish the limitation paths under articles 195 through 208.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных об исковой давности.",
+            "Анализ и русское объяснение разделяют маршруты исковой давности по статьям 195–208 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_limitation_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

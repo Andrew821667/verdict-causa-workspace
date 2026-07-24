@@ -22,6 +22,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "resolve-reviewed-authority",
         "evaluate-contract-formation",
         "evaluate-contract-temporal-effect",
+        "evaluate-limitation-period",
         "evaluate-transaction-invalidity",
         "evaluate-obligation-constraints",
         "evaluate-performance-remedies",

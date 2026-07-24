@@ -1,0 +1,22 @@
+{
+  "id": "legacy-phase0-trace-contracts-ru-v0-0.19.0",
+  "artifact_type": "phase0_decision_trace",
+  "package_id": "contracts-ru-v0",
+  "package_version": "0.19.0",
+  "payload": {
+    "case_evidence_schema_version": "contracts.case-evidence.v9",
+    "analysis_pipeline_version": "contracts-reviewed-analysis-v9",
+    "sale_evidence_present": true,
+    "sale_model_version": "contracts-sale-articles-454-491-v0",
+    "supply_evidence_present": true,
+    "supply_model_version": "contracts-supply-articles-506-524-v0",
+    "temporal_effect_evidence_present": true,
+    "temporal_effect_model_version": "contracts-temporal-effect-articles-425-433-v0",
+    "limitation_evidence_present": false,
+    "limitation_model_version": null,
+    "pilot_intake_schema_version": "pilot.intake.v1",
+    "pilot_gate_decision_present": true,
+    "privacy_safe_pilot_utility_schema_version": "privacy-safe-pilot-utility.v1",
+    "translation_template_version": "translation-template-ru-v11"
+  }
+}

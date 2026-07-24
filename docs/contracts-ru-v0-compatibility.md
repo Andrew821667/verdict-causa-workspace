@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.20.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью исковой давности |
 | `0.19.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью действия договора во времени |
 | `0.18.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с контуром допуска пилотных данных v1 |
 | `0.17.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | supported synthetic release with reviewed general-sale paths |
@@ -27,6 +28,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.19.0` → `0.20.0` соберите отдельно проверенный контракт данных об исковой давности (`contracts.limitation-evidence.v0`). Не выводите начало течения, истечение срока, приостановление, перерыв и применение давности из прежних результатов о заключении, исполнении или расторжении. Пересоберите артефакты оценки исковой давности, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.18.0` → `0.19.0` соберите отдельно проверенный контракт данных о действии договора во времени (`contracts.temporal-effect-evidence.v0`). Не выводите момент заключения, вступление в силу, обратное действие и истечение срока из прежних результатов о заключении, исполнении или расторжении. Пересоберите артефакты оценки действия договора во времени, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

@@ -186,6 +186,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk195-200-limitation-framework-v1",
+      "title": "Синтетическая проверенная модель исковой давности по статьям 195–200 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: понятие исковой давности, общий трехлетний и специальные сроки, предельный десятилетний срок и момент начала течения проверяются раздельно.",
+      "valid_from": "2013-09-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "limitation_articles_195_200",
+        "legal_reference": "ГК РФ, статьи 195–200",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk202-208-limitation-effects-v1",
+      "title": "Синтетическая проверенная модель приостановления, перерыва и применения давности",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: приостановление и перерыв течения, период судебной защиты, заявление стороны, восстановление срока, дополнительные требования и исключения проверяются как самостоятельные вопросы.",
+      "valid_from": "2013-09-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "limitation_articles_202_208",
+        "legal_reference": "ГК РФ, статьи 199, 202–208",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-limitation-evidence",
+      "title": "Синтетическая проверенная запись фактов об исковой давности",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: требование о нарушении поставки подпадает под исковую давность, нарушение и ответчик известны, но трехлетний срок в демонстрационном деле еще не истек.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "limitation_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -1361,6 +1408,131 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-temporal-effect-reviewer"
+    },
+    "limitation_evidence": {
+      "id": "reviewed-limitation-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.limitation-evidence.v0",
+      "assertions": [
+        {
+          "id": "limitation-evidence-claim_subject_to_limitation",
+          "predicate": "claim_subject_to_limitation",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "id": "limitation-evidence-right_violation_and_defendant_known",
+          "predicate": "right_violation_and_defendant_known",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "id": "limitation-evidence-fixed_performance_term_expired",
+          "predicate": "fixed_performance_term_expired",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "id": "limitation-evidence-general_three_year_term_elapsed",
+          "predicate": "general_three_year_term_elapsed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "id": "limitation-evidence-special_term_applies",
+          "predicate": "special_term_applies",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "id": "limitation-evidence-special_term_elapsed",
+          "predicate": "special_term_elapsed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "id": "limitation-evidence-objective_ten_year_limit_exceeded",
+          "predicate": "objective_ten_year_limit_exceeded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "id": "limitation-evidence-suspension_ground_in_final_six_months",
+          "predicate": "suspension_ground_in_final_six_months",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "id": "limitation-evidence-debtor_acknowledged_debt",
+          "predicate": "debtor_acknowledged_debt",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "id": "limitation-evidence-judicial_protection_period_ongoing",
+          "predicate": "judicial_protection_period_ongoing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "id": "limitation-evidence-limitation_pleaded_by_party_before_judgment",
+          "predicate": "limitation_pleaded_by_party_before_judgment",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "id": "limitation-evidence-claimant_is_individual_with_valid_excuse",
+          "predicate": "claimant_is_individual_with_valid_excuse",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "id": "limitation-evidence-is_additional_claim",
+          "predicate": "is_additional_claim",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "id": "limitation-evidence-main_claim_time_barred",
+          "predicate": "main_claim_time_barred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk195-200-limitation-framework-v1",
+        "synthetic-ru-gk202-208-limitation-effects-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-limitation-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -6140,6 +6312,7 @@
       "synthetic-general-sale-reviewer",
       "synthetic-invalidity-reviewer",
       "synthetic-liability-reviewer",
+      "synthetic-limitation-reviewer",
       "synthetic-norm-reviewer",
       "synthetic-obligation-dynamics-reviewer",
       "synthetic-performance-remedies-reviewer",
@@ -6154,6 +6327,7 @@
       "synthetic-case-supply-1-general-sale-evidence",
       "synthetic-case-supply-1-invalidity-evidence",
       "synthetic-case-supply-1-liability-evidence",
+      "synthetic-case-supply-1-limitation-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
       "synthetic-case-supply-1-performance-remedies-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
@@ -6168,6 +6342,8 @@
       "synthetic-ru-gk169-172-void-transactions-v1",
       "synthetic-ru-gk173-179-voidable-transactions-v1",
       "synthetic-ru-gk180-181-invalidity-effects-v1",
+      "synthetic-ru-gk195-200-limitation-framework-v1",
+      "synthetic-ru-gk202-208-limitation-effects-v1",
       "synthetic-ru-gk309-328-performance-v1",
       "synthetic-ru-gk310-4501-unilateral-model-v1",
       "synthetic-ru-gk329-333-security-framework-v1",
@@ -6810,6 +6986,176 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила действия договора во времени и не заменяет судебную оценку.",
         "Момент заключения, срок действия и последствия его истечения оцениваются экспертом."
+      ]
+    },
+    "limitation_evidence_mapping": {
+      "evidence_id": "reviewed-limitation-evidence-supply-1-v0",
+      "schema_version": "contracts.limitation-evidence.v0",
+      "mapping_version": "contracts-reviewed-limitation-to-facts-v0",
+      "facts": {
+        "claim_subject_to_limitation": true,
+        "right_violation_and_defendant_known": true,
+        "fixed_performance_term_expired": false,
+        "general_three_year_term_elapsed": false,
+        "special_term_applies": false,
+        "special_term_elapsed": false,
+        "objective_ten_year_limit_exceeded": false,
+        "suspension_ground_in_final_six_months": false,
+        "debtor_acknowledged_debt": false,
+        "judicial_protection_period_ongoing": false,
+        "limitation_pleaded_by_party_before_judgment": false,
+        "claimant_is_individual_with_valid_excuse": false,
+        "is_additional_claim": false,
+        "main_claim_time_barred": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk195-200-limitation-framework-v1",
+        "synthetic-ru-gk202-208-limitation-effects-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "claim_subject_to_limitation",
+          "assertion_id": "limitation-evidence-claim_subject_to_limitation",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "fact_name": "claimant_is_individual_with_valid_excuse",
+          "assertion_id": "limitation-evidence-claimant_is_individual_with_valid_excuse",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_acknowledged_debt",
+          "assertion_id": "limitation-evidence-debtor_acknowledged_debt",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "fact_name": "fixed_performance_term_expired",
+          "assertion_id": "limitation-evidence-fixed_performance_term_expired",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "fact_name": "general_three_year_term_elapsed",
+          "assertion_id": "limitation-evidence-general_three_year_term_elapsed",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "fact_name": "is_additional_claim",
+          "assertion_id": "limitation-evidence-is_additional_claim",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "fact_name": "judicial_protection_period_ongoing",
+          "assertion_id": "limitation-evidence-judicial_protection_period_ongoing",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "fact_name": "limitation_pleaded_by_party_before_judgment",
+          "assertion_id": "limitation-evidence-limitation_pleaded_by_party_before_judgment",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "fact_name": "main_claim_time_barred",
+          "assertion_id": "limitation-evidence-main_claim_time_barred",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "fact_name": "objective_ten_year_limit_exceeded",
+          "assertion_id": "limitation-evidence-objective_ten_year_limit_exceeded",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "fact_name": "right_violation_and_defendant_known",
+          "assertion_id": "limitation-evidence-right_violation_and_defendant_known",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "fact_name": "special_term_applies",
+          "assertion_id": "limitation-evidence-special_term_applies",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "fact_name": "special_term_elapsed",
+          "assertion_id": "limitation-evidence-special_term_elapsed",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        },
+        {
+          "fact_name": "suspension_ground_in_final_six_months",
+          "assertion_id": "limitation-evidence-suspension_ground_in_final_six_months",
+          "source_refs": [
+            "synthetic-case-supply-1-limitation-evidence"
+          ]
+        }
+      ]
+    },
+    "limitation_constraint_set": {
+      "id": "limitation-constraint-set:reviewed-limitation-evidence-supply-1-v0",
+      "model_version": "contracts-limitation-articles-195-208-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk195-200-limitation-framework-v1",
+        "synthetic-ru-gk202-208-limitation-effects-v1"
+      ],
+      "expressions": [
+        "limitation_period_started == right_violation_and_defendant_known OR fixed_performance_term_expired",
+        "basic_term_elapsed == (special_term_applies AND special_term_elapsed) OR (NOT special_term_applies AND general_three_year_term_elapsed)",
+        "limitation_running_paused == suspension_ground_in_final_six_months OR debtor_acknowledged_debt OR judicial_protection_period_ongoing",
+        "limitation_period_expired == claim_subject_to_limitation AND limitation_period_started AND ((basic_term_elapsed AND NOT limitation_running_paused) OR objective_ten_year_limit_exceeded)",
+        "objective_limit_barred == claim_subject_to_limitation AND objective_ten_year_limit_exceeded",
+        "limitation_reset_by_acknowledgement == debtor_acknowledged_debt",
+        "limitation_suspended == suspension_ground_in_final_six_months",
+        "limitation_defense_available == limitation_period_expired AND limitation_pleaded_by_party_before_judgment",
+        "limitation_restorable == limitation_period_expired AND claimant_is_individual_with_valid_excuse",
+        "additional_claim_barred_with_main == is_additional_claim AND main_claim_time_barred",
+        "claim_not_subject_to_limitation == NOT claim_subject_to_limitation",
+        "requires_human_limitation_assessment == limitation_restorable OR (limitation_period_expired AND NOT limitation_pleaded_by_party_before_judgment)"
+      ]
+    },
+    "limitation_evaluation": {
+      "constraint_set_id": "limitation-constraint-set:reviewed-limitation-evidence-supply-1-v0",
+      "satisfiable": true,
+      "limitation_period_started": true,
+      "basic_term_elapsed": false,
+      "limitation_running_paused": false,
+      "limitation_period_expired": false,
+      "objective_limit_barred": false,
+      "limitation_reset_by_acknowledgement": false,
+      "limitation_suspended": false,
+      "limitation_defense_available": false,
+      "limitation_restorable": false,
+      "additional_claim_barred_with_main": false,
+      "claim_not_subject_to_limitation": false,
+      "requires_human_limitation_assessment": false,
+      "reasons_ru": [
+        "Истечение срока исковой давности не подтверждено."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила исковой давности и не заменяет судебную оценку.",
+        "Момент начала течения, уважительность причин и применение давности судом оцениваются экспертом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -12183,7 +12529,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.19.0",
+      "institutional_package_version": "contracts-ru-v0@0.20.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

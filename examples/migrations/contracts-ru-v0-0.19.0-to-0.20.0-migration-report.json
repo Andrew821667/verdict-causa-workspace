@@ -1,0 +1,39 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.19.0:to-0.20.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.19.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.19.0",
+  "target_package_version": "0.20.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.19.0",
+      "to_version": "0.20.0",
+      "reasons": [
+        "Reviewed inputs now require a separate limitation-of-actions evidence contract.",
+        "Analysis and Russian translation distinguish the limitation paths under articles 195 through 208."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об исковой давности.",
+        "Анализ и русское объяснение разделяют маршруты исковой давности по статьям 195–208 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_limitation_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

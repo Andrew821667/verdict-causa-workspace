@@ -100,7 +100,7 @@ def test_exported_supply_dispute_trace_fixture_is_valid() -> None:
 
     assert trace.locale == "ru-RU"
     assert trace.disclaimer.startswith("Синтетическая трассировка Этапа 0")
-    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.19.0"
+    assert trace.decision_trace.versions.institutional_package_version == "contracts-ru-v0@0.20.0"
     assert trace.analysis_result.security_constraint_set.model_version == (
         "contracts-performance-security-articles-329-3812-v0"
     )
