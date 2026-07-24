@@ -280,6 +280,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk158-165-form-framework-v1",
+      "title": "Синтетическая проверенная модель формы сделки по статьям 158–165 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: устная, простая письменная и нотариальная форма, требования к их совершению и последствия несоблюдения проверяются раздельно.",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "form_articles_158_165",
+        "legal_reference": "ГК РФ, статьи 158–165",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk160-434-written-form-model-v1",
+      "title": "Синтетическая проверенная модель способов соблюдения письменной формы",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: подписанный сторонами документ, обмен документами и действительная электронная подпись рассматриваются как допустимые способы соблюдения письменной формы.",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "form_articles_160_434",
+        "legal_reference": "ГК РФ, статьи 160 и 434",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-form-evidence",
+      "title": "Синтетическая проверенная запись фактов о форме сделки",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: для договора поставки требуется простая письменная форма; она соблюдена подписанным сторонами документом, нотариальная форма не требуется.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "form_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -1681,6 +1728,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-interpretation-reviewer"
+    },
+    "form_evidence": {
+      "id": "reviewed-form-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.form-evidence.v0",
+      "assertions": [
+        {
+          "id": "form-evidence-oral_form_permitted",
+          "predicate": "oral_form_permitted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "id": "form-evidence-simple_written_form_required",
+          "predicate": "simple_written_form_required",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "id": "form-evidence-notarial_form_required",
+          "predicate": "notarial_form_required",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "id": "form-evidence-simple_written_form_observed",
+          "predicate": "simple_written_form_observed",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "id": "form-evidence-document_signed_by_parties",
+          "predicate": "document_signed_by_parties",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "id": "form-evidence-exchange_of_documents",
+          "predicate": "exchange_of_documents",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "id": "form-evidence-electronic_signature_valid",
+          "predicate": "electronic_signature_valid",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "id": "form-evidence-notarial_form_observed",
+          "predicate": "notarial_form_observed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "id": "form-evidence-written_noncompliance_invalidates_by_law_or_agreement",
+          "predicate": "written_noncompliance_invalidates_by_law_or_agreement",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "id": "form-evidence-performance_or_written_proof_available",
+          "predicate": "performance_or_written_proof_available",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk158-165-form-framework-v1",
+        "synthetic-ru-gk160-434-written-form-model-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-form-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -6456,6 +6596,7 @@
     "reviewer_ids": [
       "synthetic-authority-reviewer",
       "synthetic-case-evidence-reviewer",
+      "synthetic-form-reviewer",
       "synthetic-formation-reviewer",
       "synthetic-general-sale-reviewer",
       "synthetic-interpretation-reviewer",
@@ -6472,6 +6613,7 @@
       "synthetic-termination-reviewer"
     ],
     "source_ids": [
+      "synthetic-case-supply-1-form-evidence",
       "synthetic-case-supply-1-formation-evidence",
       "synthetic-case-supply-1-general-sale-evidence",
       "synthetic-case-supply-1-interpretation-evidence",
@@ -6488,6 +6630,8 @@
       "synthetic-ru-contract-supply-delivery-duty-v1",
       "synthetic-ru-contract-supply-delivery-duty-v2",
       "synthetic-ru-contract-supply-delivery-term",
+      "synthetic-ru-gk158-165-form-framework-v1",
+      "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
       "synthetic-ru-gk169-172-void-transactions-v1",
       "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -7444,6 +7588,136 @@
       "warnings_ru": [
         "Модель проверяет только формальную последовательность толкования и не заменяет судебную оценку.",
         "Действительный смысл условия, воля сторон и оценка доказательств устанавливаются экспертом и судом."
+      ]
+    },
+    "form_evidence_mapping": {
+      "evidence_id": "reviewed-form-evidence-supply-1-v0",
+      "schema_version": "contracts.form-evidence.v0",
+      "mapping_version": "contracts-reviewed-form-to-facts-v0",
+      "facts": {
+        "oral_form_permitted": false,
+        "simple_written_form_required": true,
+        "notarial_form_required": false,
+        "simple_written_form_observed": true,
+        "document_signed_by_parties": true,
+        "exchange_of_documents": false,
+        "electronic_signature_valid": false,
+        "notarial_form_observed": false,
+        "written_noncompliance_invalidates_by_law_or_agreement": false,
+        "performance_or_written_proof_available": true
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk158-165-form-framework-v1",
+        "synthetic-ru-gk160-434-written-form-model-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "document_signed_by_parties",
+          "assertion_id": "form-evidence-document_signed_by_parties",
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "fact_name": "electronic_signature_valid",
+          "assertion_id": "form-evidence-electronic_signature_valid",
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "fact_name": "exchange_of_documents",
+          "assertion_id": "form-evidence-exchange_of_documents",
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "fact_name": "notarial_form_observed",
+          "assertion_id": "form-evidence-notarial_form_observed",
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "fact_name": "notarial_form_required",
+          "assertion_id": "form-evidence-notarial_form_required",
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "fact_name": "oral_form_permitted",
+          "assertion_id": "form-evidence-oral_form_permitted",
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_or_written_proof_available",
+          "assertion_id": "form-evidence-performance_or_written_proof_available",
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "fact_name": "simple_written_form_observed",
+          "assertion_id": "form-evidence-simple_written_form_observed",
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "fact_name": "simple_written_form_required",
+          "assertion_id": "form-evidence-simple_written_form_required",
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "fact_name": "written_noncompliance_invalidates_by_law_or_agreement",
+          "assertion_id": "form-evidence-written_noncompliance_invalidates_by_law_or_agreement",
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        }
+      ]
+    },
+    "form_constraint_set": {
+      "id": "form-constraint-set:reviewed-form-evidence-supply-1-v0",
+      "model_version": "contracts-form-articles-158-165-434-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk158-165-form-framework-v1",
+        "synthetic-ru-gk160-434-written-form-model-v1"
+      ],
+      "expressions": [
+        "written_form_method_valid == document_signed_by_parties OR exchange_of_documents OR electronic_signature_valid",
+        "written_form_satisfied == NOT simple_written_form_required OR (simple_written_form_observed AND written_form_method_valid)",
+        "notarial_form_satisfied == NOT notarial_form_required OR notarial_form_observed",
+        "form_requirement_satisfied == written_form_satisfied AND notarial_form_satisfied",
+        "witness_testimony_barred == simple_written_form_required AND NOT written_form_satisfied",
+        "transaction_void_for_form == (notarial_form_required AND NOT notarial_form_observed) OR (simple_written_form_required AND NOT written_form_satisfied AND written_noncompliance_invalidates_by_law_or_agreement)",
+        "oral_form_valid == oral_form_permitted AND NOT simple_written_form_required AND NOT notarial_form_required",
+        "requires_human_form_assessment == transaction_void_for_form OR (witness_testimony_barred AND NOT performance_or_written_proof_available)"
+      ]
+    },
+    "form_evaluation": {
+      "constraint_set_id": "form-constraint-set:reviewed-form-evidence-supply-1-v0",
+      "satisfiable": true,
+      "written_form_method_valid": true,
+      "written_form_satisfied": true,
+      "notarial_form_satisfied": true,
+      "form_requirement_satisfied": true,
+      "witness_testimony_barred": false,
+      "transaction_void_for_form": false,
+      "oral_form_valid": false,
+      "requires_human_form_assessment": false,
+      "reasons_ru": [
+        "Требования к форме сделки соблюдены."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о форме сделки и не заменяет судебную оценку.",
+        "Достаточность доказательств формы и соблюдение способа ее совершения оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -12817,7 +13091,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.21.0",
+      "institutional_package_version": "contracts-ru-v0@0.22.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

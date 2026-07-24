@@ -28,6 +28,9 @@ from causa.institutional.contracts.synthetic_limitation import (
 from causa.institutional.contracts.synthetic_interpretation import (
     build_synthetic_interpretation_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_form import (
+    build_synthetic_form_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_termination import (
     build_synthetic_termination_evaluation_artifact,
 )
@@ -233,6 +236,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
                 *trace.analysis_result.interpretation_evaluation.reasons_ru,
                 "Буквальное значение, сопоставление с договором в целом и действительная общая воля сторон проверяются последовательно по статье 431 ГК РФ.",
                 "Действительный смысл условия и воля сторон устанавливаются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
+            id="evaluate-transaction-form",
+            title="Проверка формы сделки",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.form_evidence_mapping.evidence_id,
+                trace.analysis_result.form_constraint_set.id,
+                *trace.analysis_result.form_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.form_evaluation.reasons_ru,
+                "Устная, простая письменная и нотариальная форма, способы её соблюдения и последствия несоблюдения проверяются раздельно по статьям 158–165 и 434 ГК РФ.",
+                "Достаточность доказательств формы и её последствия оцениваются экспертом и судом.",
             ],
         ),
         PipelineStepResult(
@@ -494,6 +512,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     temporal_effect_artifact = build_synthetic_temporal_effect_evaluation_artifact()
     limitation_artifact = build_synthetic_limitation_evaluation_artifact()
     interpretation_artifact = build_synthetic_interpretation_evaluation_artifact()
+    form_artifact = build_synthetic_form_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -557,6 +576,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-limitation-spec.md",
                 "src/causa/institutional/contracts/interpretation.py",
                 "docs/contract-interpretation-spec.md",
+                "src/causa/institutional/contracts/form.py",
+                "docs/contract-form-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -579,6 +600,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_temporal_effect_evaluation_report.json",
                 "examples/synthetic_limitation_evaluation_report.json",
                 "examples/synthetic_interpretation_evaluation_report.json",
+                "examples/synthetic_form_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -587,12 +609,12 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 *(
-                    f"examples/migrations/contracts-ru-v0-{version}-to-0.21.0-migration-report.json"
+                    f"examples/migrations/contracts-ru-v0-{version}-to-0.22.0-migration-report.json"
                     for version in (
                         "0.1.0",
                         "0.3.0",
                         "0.4.0",
-                        *(f"0.{minor}.0" for minor in range(5, 21)),
+                        *(f"0.{minor}.0" for minor in range(5, 22)),
                     )
                 ),
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
@@ -670,6 +692,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 limitation_artifact.red_team_report.id,
                 interpretation_artifact.benchmark_report.id,
                 interpretation_artifact.red_team_report.id,
+                form_artifact.benchmark_report.id,
+                form_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -704,6 +728,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_temporal_effect_evaluation_report.json",
                 "examples/synthetic_limitation_evaluation_report.json",
                 "examples/synthetic_interpretation_evaluation_report.json",
+                "examples/synthetic_form_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

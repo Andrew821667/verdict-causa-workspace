@@ -998,6 +998,7 @@
           }
         ],
         "source_refs": [
+          "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
           "synthetic-case-supply-1-interpretation-evidence",
@@ -1014,6 +1015,8 @@
           "synthetic-ru-contract-supply-delivery-duty-v1",
           "synthetic-ru-contract-supply-delivery-duty-v2",
           "synthetic-ru-contract-supply-delivery-term",
+          "synthetic-ru-gk158-165-form-framework-v1",
+          "synthetic-ru-gk160-434-written-form-model-v1",
           "synthetic-ru-gk166-168-invalidity-framework-v1",
           "synthetic-ru-gk169-172-void-transactions-v1",
           "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2054,6 +2057,7 @@
           }
         ],
         "source_refs": [
+          "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
           "synthetic-case-supply-1-interpretation-evidence",
@@ -2070,6 +2074,8 @@
           "synthetic-ru-contract-supply-delivery-duty-v1",
           "synthetic-ru-contract-supply-delivery-duty-v2",
           "synthetic-ru-contract-supply-delivery-term",
+          "synthetic-ru-gk158-165-form-framework-v1",
+          "synthetic-ru-gk160-434-written-form-model-v1",
           "synthetic-ru-gk166-168-invalidity-framework-v1",
           "synthetic-ru-gk169-172-void-transactions-v1",
           "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -3110,6 +3116,7 @@
           }
         ],
         "source_refs": [
+          "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
           "synthetic-case-supply-1-interpretation-evidence",
@@ -3126,6 +3133,8 @@
           "synthetic-ru-contract-supply-delivery-duty-v1",
           "synthetic-ru-contract-supply-delivery-duty-v2",
           "synthetic-ru-contract-supply-delivery-term",
+          "synthetic-ru-gk158-165-form-framework-v1",
+          "synthetic-ru-gk160-434-written-form-model-v1",
           "synthetic-ru-gk166-168-invalidity-framework-v1",
           "synthetic-ru-gk169-172-void-transactions-v1",
           "synthetic-ru-gk173-179-voidable-transactions-v1",

@@ -436,6 +436,59 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk158-165-form-framework-v1",
+        title="Синтетическая проверенная модель формы сделки по статьям 158–165 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: устная, простая письменная и нотариальная "
+            "форма, требования к их совершению и последствия несоблюдения проверяются "
+            "раздельно."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "form_articles_158_165",
+            "legal_reference": "ГК РФ, статьи 158–165",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk160-434-written-form-model-v1",
+        title="Синтетическая проверенная модель способов соблюдения письменной формы",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: подписанный сторонами документ, обмен "
+            "документами и действительная электронная подпись рассматриваются как "
+            "допустимые способы соблюдения письменной формы."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "form_articles_160_434",
+            "legal_reference": "ГК РФ, статьи 160 и 434",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-form-evidence",
+        title="Синтетическая проверенная запись фактов о форме сделки",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: для договора поставки требуется простая письменная "
+            "форма; она соблюдена подписанным сторонами документом, нотариальная форма "
+            "не требуется."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "form_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

@@ -40,6 +40,11 @@ from causa.institutional.contracts.interpretation import (
     InterpretationEvidencePredicate,
     ReviewedInterpretationEvidence,
 )
+from causa.institutional.contracts.form import (
+    FormEvidenceAssertion,
+    FormEvidencePredicate,
+    ReviewedFormEvidence,
+)
 from causa.institutional.contracts.termination import (
     ReviewedTerminationEvidence,
     TerminationEvidenceAssertion,
@@ -100,6 +105,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk431-interpretation-model-v1",
     "synthetic-ru-gk431-common-intent-model-v1",
     "synthetic-case-supply-1-interpretation-evidence",
+    "synthetic-ru-gk158-165-form-framework-v1",
+    "synthetic-ru-gk160-434-written-form-model-v1",
+    "synthetic-case-supply-1-form-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -452,6 +460,39 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-interpretation-reviewer",
+        ),
+        form_evidence=ReviewedFormEvidence(
+            id="reviewed-form-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                FormEvidenceAssertion(
+                    id=f"form-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-form-evidence",),
+                )
+                for predicate, value in (
+                    (FormEvidencePredicate.ORAL_FORM_PERMITTED, False),
+                    (FormEvidencePredicate.SIMPLE_WRITTEN_FORM_REQUIRED, True),
+                    (FormEvidencePredicate.NOTARIAL_FORM_REQUIRED, False),
+                    (FormEvidencePredicate.SIMPLE_WRITTEN_FORM_OBSERVED, True),
+                    (FormEvidencePredicate.DOCUMENT_SIGNED_BY_PARTIES, True),
+                    (FormEvidencePredicate.EXCHANGE_OF_DOCUMENTS, False),
+                    (FormEvidencePredicate.ELECTRONIC_SIGNATURE_VALID, False),
+                    (FormEvidencePredicate.NOTARIAL_FORM_OBSERVED, False),
+                    (
+                        FormEvidencePredicate.WRITTEN_NONCOMPLIANCE_INVALIDATES_BY_LAW_OR_AGREEMENT,
+                        False,
+                    ),
+                    (FormEvidencePredicate.PERFORMANCE_OR_WRITTEN_PROOF_AVAILABLE, True),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk158-165-form-framework-v1",
+                "synthetic-ru-gk160-434-written-form-model-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-form-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

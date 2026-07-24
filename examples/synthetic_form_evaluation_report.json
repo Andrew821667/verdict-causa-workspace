@@ -1,0 +1,441 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о форме сделки по статьям 158–165 и 434 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-form-evidence-supply-1-v0",
+    "schema_version": "contracts.form-evidence.v0",
+    "mapping_version": "contracts-reviewed-form-to-facts-v0",
+    "facts": {
+      "oral_form_permitted": false,
+      "simple_written_form_required": true,
+      "notarial_form_required": false,
+      "simple_written_form_observed": true,
+      "document_signed_by_parties": true,
+      "exchange_of_documents": false,
+      "electronic_signature_valid": false,
+      "notarial_form_observed": false,
+      "written_noncompliance_invalidates_by_law_or_agreement": false,
+      "performance_or_written_proof_available": true
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk158-165-form-framework-v1",
+      "synthetic-ru-gk160-434-written-form-model-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "document_signed_by_parties",
+        "assertion_id": "form-evidence-document_signed_by_parties",
+        "source_refs": [
+          "synthetic-case-supply-1-form-evidence"
+        ]
+      },
+      {
+        "fact_name": "electronic_signature_valid",
+        "assertion_id": "form-evidence-electronic_signature_valid",
+        "source_refs": [
+          "synthetic-case-supply-1-form-evidence"
+        ]
+      },
+      {
+        "fact_name": "exchange_of_documents",
+        "assertion_id": "form-evidence-exchange_of_documents",
+        "source_refs": [
+          "synthetic-case-supply-1-form-evidence"
+        ]
+      },
+      {
+        "fact_name": "notarial_form_observed",
+        "assertion_id": "form-evidence-notarial_form_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-form-evidence"
+        ]
+      },
+      {
+        "fact_name": "notarial_form_required",
+        "assertion_id": "form-evidence-notarial_form_required",
+        "source_refs": [
+          "synthetic-case-supply-1-form-evidence"
+        ]
+      },
+      {
+        "fact_name": "oral_form_permitted",
+        "assertion_id": "form-evidence-oral_form_permitted",
+        "source_refs": [
+          "synthetic-case-supply-1-form-evidence"
+        ]
+      },
+      {
+        "fact_name": "performance_or_written_proof_available",
+        "assertion_id": "form-evidence-performance_or_written_proof_available",
+        "source_refs": [
+          "synthetic-case-supply-1-form-evidence"
+        ]
+      },
+      {
+        "fact_name": "simple_written_form_observed",
+        "assertion_id": "form-evidence-simple_written_form_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-form-evidence"
+        ]
+      },
+      {
+        "fact_name": "simple_written_form_required",
+        "assertion_id": "form-evidence-simple_written_form_required",
+        "source_refs": [
+          "synthetic-case-supply-1-form-evidence"
+        ]
+      },
+      {
+        "fact_name": "written_noncompliance_invalidates_by_law_or_agreement",
+        "assertion_id": "form-evidence-written_noncompliance_invalidates_by_law_or_agreement",
+        "source_refs": [
+          "synthetic-case-supply-1-form-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "form-constraint-set:reviewed-form-evidence-supply-1-v0",
+    "model_version": "contracts-form-articles-158-165-434-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk158-165-form-framework-v1",
+      "synthetic-ru-gk160-434-written-form-model-v1"
+    ],
+    "expressions": [
+      "written_form_method_valid == document_signed_by_parties OR exchange_of_documents OR electronic_signature_valid",
+      "written_form_satisfied == NOT simple_written_form_required OR (simple_written_form_observed AND written_form_method_valid)",
+      "notarial_form_satisfied == NOT notarial_form_required OR notarial_form_observed",
+      "form_requirement_satisfied == written_form_satisfied AND notarial_form_satisfied",
+      "witness_testimony_barred == simple_written_form_required AND NOT written_form_satisfied",
+      "transaction_void_for_form == (notarial_form_required AND NOT notarial_form_observed) OR (simple_written_form_required AND NOT written_form_satisfied AND written_noncompliance_invalidates_by_law_or_agreement)",
+      "oral_form_valid == oral_form_permitted AND NOT simple_written_form_required AND NOT notarial_form_required",
+      "requires_human_form_assessment == transaction_void_for_form OR (witness_testimony_barred AND NOT performance_or_written_proof_available)"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "form-constraint-set:reviewed-form-evidence-supply-1-v0",
+    "satisfiable": true,
+    "written_form_method_valid": true,
+    "written_form_satisfied": true,
+    "notarial_form_satisfied": true,
+    "form_requirement_satisfied": true,
+    "witness_testimony_barred": false,
+    "transaction_void_for_form": false,
+    "oral_form_valid": false,
+    "requires_human_form_assessment": false,
+    "reasons_ru": [
+      "Требования к форме сделки соблюдены."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о форме сделки и не заменяет судебную оценку.",
+      "Достаточность доказательств формы и соблюдение способа ее совершения оцениваются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "form-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "form-bench-written-signed",
+        "passed": true,
+        "expected_outcomes": {
+          "form_requirement_satisfied": true,
+          "transaction_void_for_form": false
+        },
+        "observed_outcomes": {
+          "form_requirement_satisfied": true,
+          "transaction_void_for_form": false
+        },
+        "reasons_ru": [
+          "Требования к форме сделки соблюдены."
+        ]
+      },
+      {
+        "task_id": "form-bench-written-exchange",
+        "passed": true,
+        "expected_outcomes": {
+          "form_requirement_satisfied": true
+        },
+        "observed_outcomes": {
+          "form_requirement_satisfied": true
+        },
+        "reasons_ru": [
+          "Требования к форме сделки соблюдены."
+        ]
+      },
+      {
+        "task_id": "form-bench-written-electronic",
+        "passed": true,
+        "expected_outcomes": {
+          "form_requirement_satisfied": true
+        },
+        "observed_outcomes": {
+          "form_requirement_satisfied": true
+        },
+        "reasons_ru": [
+          "Требования к форме сделки соблюдены."
+        ]
+      },
+      {
+        "task_id": "form-bench-written-missing",
+        "passed": true,
+        "expected_outcomes": {
+          "witness_testimony_barred": true,
+          "transaction_void_for_form": false,
+          "form_requirement_satisfied": false
+        },
+        "observed_outcomes": {
+          "witness_testimony_barred": true,
+          "transaction_void_for_form": false,
+          "form_requirement_satisfied": false
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение простой письменной формы лишает права ссылаться на свидетельские показания, но само по себе не влечет недействительности (статья 162 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "form-bench-written-void",
+        "passed": true,
+        "expected_outcomes": {
+          "transaction_void_for_form": true
+        },
+        "observed_outcomes": {
+          "transaction_void_for_form": true
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение формы влечет недействительность сделки (статьи 162, 163 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "form-bench-notarial-observed",
+        "passed": true,
+        "expected_outcomes": {
+          "form_requirement_satisfied": true
+        },
+        "observed_outcomes": {
+          "form_requirement_satisfied": true
+        },
+        "reasons_ru": [
+          "Требования к форме сделки соблюдены."
+        ]
+      },
+      {
+        "task_id": "form-bench-notarial-missing",
+        "passed": true,
+        "expected_outcomes": {
+          "transaction_void_for_form": true
+        },
+        "observed_outcomes": {
+          "transaction_void_for_form": true
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение формы влечет недействительность сделки (статьи 162, 163 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "form-bench-oral",
+        "passed": true,
+        "expected_outcomes": {
+          "oral_form_valid": true,
+          "form_requirement_satisfied": true
+        },
+        "observed_outcomes": {
+          "oral_form_valid": true,
+          "form_requirement_satisfied": true
+        },
+        "reasons_ru": [
+          "Требования к форме сделки соблюдены.",
+          "Для сделки допустима устная форма (статья 159 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "form-bench-written-no-method",
+        "passed": true,
+        "expected_outcomes": {
+          "written_form_satisfied": false,
+          "form_requirement_satisfied": false
+        },
+        "observed_outcomes": {
+          "written_form_satisfied": false,
+          "form_requirement_satisfied": false
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение простой письменной формы лишает права ссылаться на свидетельские показания, но само по себе не влечет недействительности (статья 162 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "form-bench-written-proof",
+        "passed": true,
+        "expected_outcomes": {
+          "witness_testimony_barred": true,
+          "requires_human_form_assessment": false
+        },
+        "observed_outcomes": {
+          "witness_testimony_barred": true,
+          "requires_human_form_assessment": false
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение простой письменной формы лишает права ссылаться на свидетельские показания, но само по себе не влечет недействительности (статья 162 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "form-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "form-red-written-no-method",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "written_form_satisfied": true
+        },
+        "observed_outcomes": {
+          "written_form_satisfied": false
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение простой письменной формы лишает права ссылаться на свидетельские показания, но само по себе не влечет недействительности (статья 162 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "form-red-electronic-invalid",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "written_form_satisfied": true
+        },
+        "observed_outcomes": {
+          "written_form_satisfied": false
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение простой письменной формы лишает права ссылаться на свидетельские показания, но само по себе не влечет недействительности (статья 162 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "form-red-ignore-notarial",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_requirement_satisfied": true
+        },
+        "observed_outcomes": {
+          "form_requirement_satisfied": false
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение формы влечет недействительность сделки (статьи 162, 163 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "form-red-notarial-not-void",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transaction_void_for_form": false
+        },
+        "observed_outcomes": {
+          "transaction_void_for_form": true
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение формы влечет недействительность сделки (статьи 162, 163 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "form-red-ignore-witness-bar",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "witness_testimony_barred": false
+        },
+        "observed_outcomes": {
+          "witness_testimony_barred": true
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение простой письменной формы лишает права ссылаться на свидетельские показания, но само по себе не влечет недействительности (статья 162 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "form-red-void-without-ground",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transaction_void_for_form": true
+        },
+        "observed_outcomes": {
+          "transaction_void_for_form": false
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение простой письменной формы лишает права ссылаться на свидетельские показания, но само по себе не влечет недействительности (статья 162 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "form-red-satisfied-without-writing",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_requirement_satisfied": true
+        },
+        "observed_outcomes": {
+          "form_requirement_satisfied": false
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение простой письменной формы лишает права ссылаться на свидетельские показания, но само по себе не влечет недействительности (статья 162 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "form-red-skip-human-on-void",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_form_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_form_assessment": true
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение формы влечет недействительность сделки (статьи 162, 163 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "form-red-not-satisfied-without-requirement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_requirement_satisfied": false
+        },
+        "observed_outcomes": {
+          "form_requirement_satisfied": true
+        },
+        "reasons_ru": [
+          "Требования к форме сделки соблюдены.",
+          "Для сделки допустима устная форма (статья 159 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "form-red-oral-when-written-required",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "oral_form_valid": true
+        },
+        "observed_outcomes": {
+          "oral_form_valid": false
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение простой письменной формы лишает права ссылаться на свидетельские показания, но само по себе не влечет недействительности (статья 162 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}
