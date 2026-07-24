@@ -277,6 +277,59 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk425-contract-effect-model-v1",
+        title="Синтетическая проверенная модель действия договора во времени по статье 425 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: вступление договора в силу, распространение "
+            "условий на предшествующие отношения, окончание срока действия и сохранение "
+            "ответственности за нарушение проверяются раздельно."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "temporal_effect_article_425",
+            "legal_reference": "ГК РФ, статья 425",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk433-conclusion-moment-model-v1",
+        title="Синтетическая проверенная модель момента заключения договора по статье 433 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: момент заключения определяется получением "
+            "акцепта, а для реального и подлежащего регистрации договора — передачей "
+            "имущества и государственной регистрацией соответственно."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "temporal_effect_article_433",
+            "legal_reference": "ГК РФ, статья 433",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-temporal-effect-evidence",
+        title="Синтетическая проверенная запись фактов о действии договора во времени",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: консенсуальный договор поставки заключен получением "
+            "акцепта и вступил в силу, срок действия определен и истек, а нарушение "
+            "допущено в период действия договора."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "temporal_effect_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

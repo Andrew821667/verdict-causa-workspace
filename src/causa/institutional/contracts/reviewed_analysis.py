@@ -44,6 +44,16 @@ from causa.institutional.contracts.formation import (
     evaluate_formation_constraints,
     map_reviewed_formation_evidence,
 )
+from causa.institutional.contracts.temporal_effect import (
+    TEMPORAL_EFFECT_EVIDENCE_SCHEMA_VERSION,
+    ReviewedTemporalEffectEvidence,
+    TemporalEffectConstraintSet,
+    TemporalEffectEvaluation,
+    TemporalEffectEvidenceMappingResult,
+    build_temporal_effect_constraint_set,
+    evaluate_temporal_effect_constraints,
+    map_reviewed_temporal_effect_evidence,
+)
 from causa.institutional.contracts.termination import (
     TERMINATION_EVIDENCE_SCHEMA_VERSION,
     ReviewedTerminationEvidence,
@@ -218,6 +228,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     temporal_evidence: ReviewedTemporalEvidence
     authority_input: ReviewedAuthorityInput
     formation_evidence: ReviewedFormationEvidence
+    temporal_effect_evidence: ReviewedTemporalEffectEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -260,6 +271,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     formation_evidence_mapping: FormationEvidenceMappingResult
     formation_constraint_set: FormationConstraintSet
     formation_evaluation: FormationEvaluation
+    temporal_effect_evidence_mapping: TemporalEffectEvidenceMappingResult
+    temporal_effect_constraint_set: TemporalEffectConstraintSet
+    temporal_effect_evaluation: TemporalEffectEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -301,6 +315,26 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.formation_evaluation != expected_formation_evaluation:
             raise ValueError("Formation evaluation does not replay from reviewed evidence.")
+        expected_temporal_effect_set = build_temporal_effect_constraint_set(
+            self.temporal_effect_evidence_mapping
+        )
+        if self.temporal_effect_constraint_set != expected_temporal_effect_set:
+            raise ValueError(
+                "Temporal-effect constraint set does not replay from reviewed evidence."
+            )
+        expected_temporal_effect_evaluation = evaluate_temporal_effect_constraints(
+            expected_temporal_effect_set,
+            self.temporal_effect_evidence_mapping.facts,
+        )
+        if self.temporal_effect_evaluation != expected_temporal_effect_evaluation:
+            raise ValueError("Temporal-effect evaluation does not replay from reviewed evidence.")
+        # Момент заключения (статья 433) не может быть установлен, если formation не
+        # подтвердил формальные предпосылки заключения договора (статьи 432–443).
+        if (
+            self.temporal_effect_evaluation.conclusion_moment_established
+            and not self.formation_evaluation.contract_concluded_prerequisites
+        ):
+            raise ValueError("Temporal-effect conclusion moment does not match formation result.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -619,6 +653,8 @@ def _validate_request_integrity(
         raise ValueError("Temporal evidence case_id does not match the analysis request.")
     if request.formation_evidence.case_id != request.case_id:
         raise ValueError("Formation evidence case_id does not match the analysis request.")
+    if request.temporal_effect_evidence.case_id != request.case_id:
+        raise ValueError("Temporal-effect evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -669,6 +705,8 @@ def _validate_request_integrity(
         raise ValueError("Termination evidence uses an unsupported schema version.")
     if request.liability_evidence.schema_version != LIABILITY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Liability evidence uses an unsupported schema version.")
+    if request.temporal_effect_evidence.schema_version != TEMPORAL_EFFECT_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Temporal-effect evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -677,6 +715,7 @@ def _validate_request_integrity(
         *request.temporal_evidence.source_refs,
         *request.authority_input.candidate_source_ids,
         *request.formation_evidence.legal_source_refs,
+        *request.temporal_effect_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -689,6 +728,8 @@ def _validate_request_integrity(
     for assertion in request.case_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.formation_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.temporal_effect_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -731,6 +772,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Formation legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_formation_legal_sources))
+        )
+    invalid_temporal_effect_legal_sources = [
+        source_id
+        for source_id in request.temporal_effect_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_temporal_effect_legal_sources:
+        raise ValueError(
+            "Temporal-effect legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_temporal_effect_legal_sources))
         )
     invalid_invalidity_legal_sources = [
         source_id
@@ -919,6 +971,11 @@ def run_reviewed_contract_analysis(
         review_status=request.formation_evidence.review_status,
         reviewer_id=request.formation_evidence.reviewer_id,
     )
+    temporal_effect_reviewer_id = _require_reviewed(
+        artifact_name="Temporal-effect evidence",
+        review_status=request.temporal_effect_evidence.review_status,
+        reviewer_id=request.temporal_effect_evidence.reviewer_id,
+    )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
         review_status=request.invalidity_evidence.review_status,
@@ -998,6 +1055,21 @@ def run_reviewed_contract_analysis(
         formation_constraint_set,
         formation_evidence_mapping.facts,
     )
+    temporal_effect_evidence_mapping = map_reviewed_temporal_effect_evidence(
+        request.temporal_effect_evidence
+    )
+    temporal_effect_constraint_set = build_temporal_effect_constraint_set(
+        temporal_effect_evidence_mapping
+    )
+    temporal_effect_evaluation = evaluate_temporal_effect_constraints(
+        temporal_effect_constraint_set,
+        temporal_effect_evidence_mapping.facts,
+    )
+    if (
+        temporal_effect_evaluation.conclusion_moment_established
+        and not formation_evaluation.contract_concluded_prerequisites
+    ):
+        raise ValueError("Temporal-effect conclusion moment does not match formation result.")
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
     invalidity_evaluation = evaluate_invalidity_constraints(
@@ -1222,6 +1294,7 @@ def run_reviewed_contract_analysis(
     requires_human_resolution = (
         authority_evaluation.selected_source_id is None
         or formation_evaluation.requires_human_formation_assessment
+        or temporal_effect_evaluation.requires_human_temporal_effect_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -1242,6 +1315,7 @@ def run_reviewed_contract_analysis(
                 temporal_reviewer_id,
                 authority_reviewer_id,
                 formation_reviewer_id,
+                temporal_effect_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -1260,6 +1334,9 @@ def run_reviewed_contract_analysis(
         evidence_mapping=evidence_mapping,
         constraint_set=constraint_set,
         constraint_evaluation=constraint_evaluation,
+        temporal_effect_evidence_mapping=temporal_effect_evidence_mapping,
+        temporal_effect_constraint_set=temporal_effect_constraint_set,
+        temporal_effect_evaluation=temporal_effect_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

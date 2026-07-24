@@ -42,7 +42,7 @@ def test_synthetic_pilot_rehearsal_is_linked_and_replayable() -> None:
     assert artifact.run_manifest is not None
     assert artifact.run_manifest.human_review_required is True
     assert artifact.run_manifest.raw_content_retained is False
-    assert artifact.run_manifest.institutional_package_version == "0.18.0"
+    assert artifact.run_manifest.institutional_package_version == "0.19.0"
     assert artifact.utility_report.schema_version == "privacy-safe-pilot-utility.v1"
 
 
@@ -77,9 +77,7 @@ def test_approved_anonymized_pilot_records_a_reviewed_lawful_basis(
     )
 
     assert decision.status == PilotAdmissionStatus.APPROVED
-    assert (request.consent_ref is not None) == (
-        lawful_basis == PilotLawfulBasis.SUBJECT_CONSENT
-    )
+    assert (request.consent_ref is not None) == (lawful_basis == PilotLawfulBasis.SUBJECT_CONSENT)
 
 
 def test_pilot_intake_forbids_raw_free_text_fields() -> None:
@@ -107,9 +105,7 @@ def test_pilot_gate_blocks_expired_retention() -> None:
 
 def test_pilot_artifact_rejects_stale_gate_fingerprint() -> None:
     artifact = build_synthetic_pilot_rehearsal_artifact()
-    changed_intake = artifact.intake.model_copy(
-        update={"retention_until": date(2026, 9, 29)}
-    )
+    changed_intake = artifact.intake.model_copy(update={"retention_until": date(2026, 9, 29)})
 
     with pytest.raises(ValidationError, match="fingerprint is stale"):
         PilotRehearsalArtifact(
@@ -120,9 +116,7 @@ def test_pilot_artifact_rejects_stale_gate_fingerprint() -> None:
 
 def test_exported_pilot_rehearsal_is_reproducible() -> None:
     fixture = PilotRehearsalArtifact.model_validate_json(
-        Path("examples/synthetic_pilot_rehearsal_report.json").read_text(
-            encoding="utf-8"
-        )
+        Path("examples/synthetic_pilot_rehearsal_report.json").read_text(encoding="utf-8")
     )
 
     assert fixture == build_synthetic_pilot_rehearsal_artifact()

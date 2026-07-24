@@ -25,6 +25,11 @@ from causa.institutional.contracts.formation import (
     FormationEvidencePredicate,
     ReviewedFormationEvidence,
 )
+from causa.institutional.contracts.temporal_effect import (
+    ReviewedTemporalEffectEvidence,
+    TemporalEffectEvidenceAssertion,
+    TemporalEffectEvidencePredicate,
+)
 from causa.institutional.contracts.termination import (
     ReviewedTerminationEvidence,
     TerminationEvidenceAssertion,
@@ -76,6 +81,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk438-443-acceptance-model-v1",
     "synthetic-ru-plenum49-formation-guidance-v1",
     "synthetic-case-supply-1-formation-evidence",
+    "synthetic-ru-gk425-contract-effect-model-v1",
+    "synthetic-ru-gk433-conclusion-moment-model-v1",
+    "synthetic-case-supply-1-temporal-effect-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -326,6 +334,40 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-formation-reviewer",
+        ),
+        temporal_effect_evidence=ReviewedTemporalEffectEvidence(
+            id="reviewed-temporal-effect-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                TemporalEffectEvidenceAssertion(
+                    id=f"temporal-effect-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-temporal-effect-evidence",),
+                )
+                for predicate, value in (
+                    (TemporalEffectEvidencePredicate.ACCEPTANCE_RECEIVED_BY_OFFEROR, True),
+                    (TemporalEffectEvidencePredicate.CONTRACT_REQUIRES_PROPERTY_DELIVERY, False),
+                    (TemporalEffectEvidencePredicate.PROPERTY_DELIVERED, False),
+                    (TemporalEffectEvidencePredicate.CONTRACT_REQUIRES_STATE_REGISTRATION, False),
+                    (TemporalEffectEvidencePredicate.STATE_REGISTRATION_COMPLETED, False),
+                    (TemporalEffectEvidencePredicate.EFFECTIVENESS_DEFERRED_BY_TERMS, False),
+                    (TemporalEffectEvidencePredicate.DEFERRED_EFFECTIVENESS_CONDITION_MET, False),
+                    (TemporalEffectEvidencePredicate.RETROACTIVE_APPLICATION_AGREED, False),
+                    (TemporalEffectEvidencePredicate.PRIOR_RELATIONS_EXIST, False),
+                    (TemporalEffectEvidencePredicate.TERM_END_DEFINED, True),
+                    (TemporalEffectEvidencePredicate.TERM_END_REACHED, True),
+                    (TemporalEffectEvidencePredicate.TERMS_PROVIDE_OBLIGATIONS_END_ON_TERM, False),
+                    (TemporalEffectEvidencePredicate.PERFORMANCE_COMPLETED, True),
+                    (TemporalEffectEvidencePredicate.BREACH_COMMITTED_DURING_TERM, True),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk425-contract-effect-model-v1",
+                "synthetic-ru-gk433-conclusion-moment-model-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-temporal-effect-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

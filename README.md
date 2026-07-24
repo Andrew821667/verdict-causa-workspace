@@ -50,6 +50,8 @@ The first institutional package focuses on contractual relations: formation, cha
 
 Релиз `contracts-ru-v0@0.18.0` добавляет контур допуска пилотных данных, который доказывает Этап 0 на максимально реалистичном споре о поставке, не обрабатывая реальные клиентские документы. Контур хранит только псевдонимные ссылки и хэши содержимого, фиксирует проверенное законное основание обработки и требует четырёх независимых согласований. Правила описаны в русской [спецификации допуска пилотных данных](docs/pilot-data-admission-spec.md).
 
+Релиз `contracts-ru-v0@0.19.0` добавляет формальную модель действия договора во времени по статьям 425 и 433 ГК РФ: момент заключения, вступление в силу, обратное действие, истечение срока и сохранение ответственности за нарушение. Правила описаны в русской [спецификации действия договора во времени](docs/contract-temporal-effect-spec.md).
+
 This is the first proving ground for the infrastructure, not the full scope of the project.
 
 ## Architecture
@@ -193,6 +195,14 @@ python scripts/export_synthetic_formation_evaluation.py
 
 The output is written to `examples/synthetic_formation_evaluation_report.json`. It checks offer, essential terms, form, and acceptance boundaries without deciding a court outcome.
 
+Сформировать отчёт о действии договора во времени:
+
+```bash
+python scripts/export_synthetic_temporal_effect_evaluation.py
+```
+
+Результат записывается в `examples/synthetic_temporal_effect_evaluation_report.json`. Отчёт проверяет момент заключения, вступление в силу, обратное действие и окончание срока по статьям 425 и 433 ГК РФ и не подменяет судебную оценку.
+
 Generate the reviewed contract change-and-termination report:
 
 ```bash
@@ -303,7 +313,7 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-Команда формирует отчёты о необходимости replay для прежних релизов и пересобирает их относительно `0.18.0`. Отчёты сохраняются как `examples/migrations/contracts-ru-v0-<source>-to-0.18.0-migration-report.json` для `0.1.0`, `0.3.0` и каждого релиза с `0.4.0` по `0.17.0`. Прежние отчёты `*-to-0.17.0-migration-report.json` сохраняются как исторические артефакты.
+Команда формирует отчёты о необходимости replay для прежних релизов и пересобирает их относительно `0.19.0`. Отчёты сохраняются как `examples/migrations/contracts-ru-v0-<source>-to-0.19.0-migration-report.json` для `0.1.0`, `0.3.0` и каждого релиза с `0.4.0` по `0.18.0`. Прежние отчёты `*-to-0.17.0-migration-report.json` и `*-to-0.18.0-migration-report.json` сохраняются как исторические артефакты.
 
 ## License
 

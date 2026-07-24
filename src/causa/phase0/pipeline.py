@@ -19,6 +19,9 @@ from causa.institutional.contracts.synthetic_liability import (
 from causa.institutional.contracts.synthetic_formation import (
     build_synthetic_formation_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_temporal_effect import (
+    build_synthetic_temporal_effect_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_termination import (
     build_synthetic_termination_evaluation_artifact,
 )
@@ -179,6 +182,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
                 *trace.analysis_result.formation_evaluation.reasons_ru,
                 "Проверяются оферта, существенные условия, форма и допустимый способ акцепта.",
                 "Судебная квалификация доказательств не автоматизируется.",
+            ],
+        ),
+        PipelineStepResult(
+            id="evaluate-contract-temporal-effect",
+            title="Проверка действия договора во времени",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.temporal_effect_evidence_mapping.evidence_id,
+                trace.analysis_result.temporal_effect_constraint_set.id,
+                *trace.analysis_result.temporal_effect_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.temporal_effect_evaluation.reasons_ru,
+                "Момент заключения, вступление в силу, обратное действие и окончание срока проверяются раздельно по статьям 425 и 433 ГК РФ.",
+                "Окончание срока действия не отменяет ответственности за нарушение и не подменяет судебную оценку.",
             ],
         ),
         PipelineStepResult(
@@ -437,6 +455,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     counterfactual_artifact = build_synthetic_counterfactual_evaluation_artifact()
     liability_artifact = build_synthetic_liability_evaluation_artifact()
     formation_artifact = build_synthetic_formation_evaluation_artifact()
+    temporal_effect_artifact = build_synthetic_temporal_effect_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -494,6 +513,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "src/causa/institutional/contracts/legal_operators.py",
                 "src/causa/institutional/contracts/formation.py",
                 "docs/contract-formation-spec.md",
+                "src/causa/institutional/contracts/temporal_effect.py",
+                "docs/contract-temporal-effect-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -513,6 +534,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_counterfactual_evaluation_report.json",
                 "examples/synthetic_liability_evaluation_report.json",
                 "examples/synthetic_formation_evaluation_report.json",
+                "examples/synthetic_temporal_effect_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -521,12 +543,12 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 *(
-                    f"examples/migrations/contracts-ru-v0-{version}-to-0.18.0-migration-report.json"
+                    f"examples/migrations/contracts-ru-v0-{version}-to-0.19.0-migration-report.json"
                     for version in (
                         "0.1.0",
                         "0.3.0",
                         "0.4.0",
-                        *(f"0.{minor}.0" for minor in range(5, 18)),
+                        *(f"0.{minor}.0" for minor in range(5, 19)),
                     )
                 ),
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
@@ -598,6 +620,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 liability_artifact.red_team_report.id,
                 formation_artifact.benchmark_report.id,
                 formation_artifact.red_team_report.id,
+                temporal_effect_artifact.benchmark_report.id,
+                temporal_effect_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -629,6 +653,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_counterfactual_evaluation_report.json",
                 "examples/synthetic_liability_evaluation_report.json",
                 "examples/synthetic_formation_evaluation_report.json",
+                "examples/synthetic_temporal_effect_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

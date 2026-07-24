@@ -139,6 +139,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk425-contract-effect-model-v1",
+      "title": "Синтетическая проверенная модель действия договора во времени по статье 425 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: вступление договора в силу, распространение условий на предшествующие отношения, окончание срока действия и сохранение ответственности за нарушение проверяются раздельно.",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "temporal_effect_article_425",
+        "legal_reference": "ГК РФ, статья 425",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk433-conclusion-moment-model-v1",
+      "title": "Синтетическая проверенная модель момента заключения договора по статье 433 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: момент заключения определяется получением акцепта, а для реального и подлежащего регистрации договора — передачей имущества и государственной регистрацией соответственно.",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "temporal_effect_article_433",
+        "legal_reference": "ГК РФ, статья 433",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-temporal-effect-evidence",
+      "title": "Синтетическая проверенная запись фактов о действии договора во времени",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: консенсуальный договор поставки заключен получением акцепта и вступил в силу, срок действия определен и истек, а нарушение допущено в период действия договора.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "temporal_effect_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -1189,6 +1236,131 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-formation-reviewer"
+    },
+    "temporal_effect_evidence": {
+      "id": "reviewed-temporal-effect-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.temporal-effect-evidence.v0",
+      "assertions": [
+        {
+          "id": "temporal-effect-evidence-acceptance_received_by_offeror",
+          "predicate": "acceptance_received_by_offeror",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "id": "temporal-effect-evidence-contract_requires_property_delivery",
+          "predicate": "contract_requires_property_delivery",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "id": "temporal-effect-evidence-property_delivered",
+          "predicate": "property_delivered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "id": "temporal-effect-evidence-contract_requires_state_registration",
+          "predicate": "contract_requires_state_registration",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "id": "temporal-effect-evidence-state_registration_completed",
+          "predicate": "state_registration_completed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "id": "temporal-effect-evidence-effectiveness_deferred_by_terms",
+          "predicate": "effectiveness_deferred_by_terms",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "id": "temporal-effect-evidence-deferred_effectiveness_condition_met",
+          "predicate": "deferred_effectiveness_condition_met",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "id": "temporal-effect-evidence-retroactive_application_agreed",
+          "predicate": "retroactive_application_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "id": "temporal-effect-evidence-prior_relations_exist",
+          "predicate": "prior_relations_exist",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "id": "temporal-effect-evidence-term_end_defined",
+          "predicate": "term_end_defined",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "id": "temporal-effect-evidence-term_end_reached",
+          "predicate": "term_end_reached",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "id": "temporal-effect-evidence-terms_provide_obligations_end_on_term",
+          "predicate": "terms_provide_obligations_end_on_term",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "id": "temporal-effect-evidence-performance_completed",
+          "predicate": "performance_completed",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "id": "temporal-effect-evidence-breach_committed_during_term",
+          "predicate": "breach_committed_during_term",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk425-contract-effect-model-v1",
+        "synthetic-ru-gk433-conclusion-moment-model-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-temporal-effect-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -5973,6 +6145,7 @@
       "synthetic-performance-remedies-reviewer",
       "synthetic-security-reviewer",
       "synthetic-special-supply-reviewer",
+      "synthetic-temporal-effect-reviewer",
       "synthetic-temporal-reviewer",
       "synthetic-termination-reviewer"
     ],
@@ -5986,6 +6159,7 @@
       "synthetic-case-supply-1-reviewed-evidence",
       "synthetic-case-supply-1-security-evidence",
       "synthetic-case-supply-1-special-supply-evidence",
+      "synthetic-case-supply-1-temporal-effect-evidence",
       "synthetic-case-supply-1-termination-evidence",
       "synthetic-ru-contract-supply-delivery-duty-v1",
       "synthetic-ru-contract-supply-delivery-duty-v2",
@@ -6008,7 +6182,9 @@
       "synthetic-ru-gk401-liability-model-v1",
       "synthetic-ru-gk407-413-discharge-v1",
       "synthetic-ru-gk414-419-discharge-v1",
+      "synthetic-ru-gk425-contract-effect-model-v1",
       "synthetic-ru-gk432-contract-formation-model-v1",
+      "synthetic-ru-gk433-conclusion-moment-model-v1",
       "synthetic-ru-gk435-offer-model-v1",
       "synthetic-ru-gk438-443-acceptance-model-v1",
       "synthetic-ru-gk450-453-termination-model-v1",
@@ -6467,6 +6643,173 @@
       "warnings_ru": [
         "Модель проверяет только формальные предпосылки и не устанавливает судебный факт заключения договора.",
         "Содержание переписки, поведение сторон и соблюдение формы оцениваются экспертом."
+      ]
+    },
+    "temporal_effect_evidence_mapping": {
+      "evidence_id": "reviewed-temporal-effect-evidence-supply-1-v0",
+      "schema_version": "contracts.temporal-effect-evidence.v0",
+      "mapping_version": "contracts-reviewed-temporal-effect-to-facts-v0",
+      "facts": {
+        "acceptance_received_by_offeror": true,
+        "contract_requires_property_delivery": false,
+        "property_delivered": false,
+        "contract_requires_state_registration": false,
+        "state_registration_completed": false,
+        "effectiveness_deferred_by_terms": false,
+        "deferred_effectiveness_condition_met": false,
+        "retroactive_application_agreed": false,
+        "prior_relations_exist": false,
+        "term_end_defined": true,
+        "term_end_reached": true,
+        "terms_provide_obligations_end_on_term": false,
+        "performance_completed": true,
+        "breach_committed_during_term": true
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk425-contract-effect-model-v1",
+        "synthetic-ru-gk433-conclusion-moment-model-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "acceptance_received_by_offeror",
+          "assertion_id": "temporal-effect-evidence-acceptance_received_by_offeror",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "fact_name": "breach_committed_during_term",
+          "assertion_id": "temporal-effect-evidence-breach_committed_during_term",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_requires_property_delivery",
+          "assertion_id": "temporal-effect-evidence-contract_requires_property_delivery",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_requires_state_registration",
+          "assertion_id": "temporal-effect-evidence-contract_requires_state_registration",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "fact_name": "deferred_effectiveness_condition_met",
+          "assertion_id": "temporal-effect-evidence-deferred_effectiveness_condition_met",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "fact_name": "effectiveness_deferred_by_terms",
+          "assertion_id": "temporal-effect-evidence-effectiveness_deferred_by_terms",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_completed",
+          "assertion_id": "temporal-effect-evidence-performance_completed",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "fact_name": "prior_relations_exist",
+          "assertion_id": "temporal-effect-evidence-prior_relations_exist",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "fact_name": "property_delivered",
+          "assertion_id": "temporal-effect-evidence-property_delivered",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "fact_name": "retroactive_application_agreed",
+          "assertion_id": "temporal-effect-evidence-retroactive_application_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "fact_name": "state_registration_completed",
+          "assertion_id": "temporal-effect-evidence-state_registration_completed",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "fact_name": "term_end_defined",
+          "assertion_id": "temporal-effect-evidence-term_end_defined",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "fact_name": "term_end_reached",
+          "assertion_id": "temporal-effect-evidence-term_end_reached",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        },
+        {
+          "fact_name": "terms_provide_obligations_end_on_term",
+          "assertion_id": "temporal-effect-evidence-terms_provide_obligations_end_on_term",
+          "source_refs": [
+            "synthetic-case-supply-1-temporal-effect-evidence"
+          ]
+        }
+      ]
+    },
+    "temporal_effect_constraint_set": {
+      "id": "temporal-effect-constraint-set:reviewed-temporal-effect-evidence-supply-1-v0",
+      "model_version": "contracts-temporal-effect-articles-425-433-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk425-contract-effect-model-v1",
+        "synthetic-ru-gk433-conclusion-moment-model-v1"
+      ],
+      "expressions": [
+        "conclusion_moment_established == acceptance_received_by_offeror AND (NOT contract_requires_property_delivery OR property_delivered) AND (NOT contract_requires_state_registration OR state_registration_completed)",
+        "contract_in_force == conclusion_moment_established AND (NOT effectiveness_deferred_by_terms OR deferred_effectiveness_condition_met)",
+        "retroactive_effect_applies == contract_in_force AND retroactive_application_agreed AND prior_relations_exist",
+        "term_expired == term_end_defined AND term_end_reached",
+        "future_obligations_discharged_by_term_end == term_expired AND terms_provide_obligations_end_on_term AND NOT performance_completed",
+        "liability_preserved_after_term == term_expired AND breach_committed_during_term",
+        "registration_pending == contract_requires_state_registration AND NOT state_registration_completed",
+        "deferred_effect_pending == effectiveness_deferred_by_terms AND NOT deferred_effectiveness_condition_met",
+        "requires_human_temporal_effect_assessment == registration_pending OR deferred_effect_pending OR (retroactive_application_agreed AND NOT prior_relations_exist)"
+      ]
+    },
+    "temporal_effect_evaluation": {
+      "constraint_set_id": "temporal-effect-constraint-set:reviewed-temporal-effect-evidence-supply-1-v0",
+      "satisfiable": true,
+      "conclusion_moment_established": true,
+      "contract_in_force": true,
+      "retroactive_effect_applies": false,
+      "term_expired": true,
+      "future_obligations_discharged_by_term_end": false,
+      "liability_preserved_after_term": true,
+      "registration_pending": false,
+      "deferred_effect_pending": false,
+      "requires_human_temporal_effect_assessment": false,
+      "reasons_ru": [
+        "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+        "Договор вступил в силу и обязателен для сторон.",
+        "Срок действия договора истек.",
+        "Окончание срока действия не освобождает от ответственности за допущенное нарушение."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила действия договора во времени и не заменяет судебную оценку.",
+        "Момент заключения, срок действия и последствия его истечения оцениваются экспертом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -11840,7 +12183,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.18.0",
+      "institutional_package_version": "contracts-ru-v0@0.19.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

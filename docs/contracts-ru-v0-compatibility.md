@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.19.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью действия договора во времени |
 | `0.18.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с контуром допуска пилотных данных v1 |
 | `0.17.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | supported synthetic release with reviewed general-sale paths |
 | `0.16.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v8` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v8` | supported synthetic release with reviewed special-supply paths |
@@ -26,6 +27,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.18.0` → `0.19.0` соберите отдельно проверенный контракт данных о действии договора во времени (`contracts.temporal-effect-evidence.v0`). Не выводите момент заключения, вступление в силу, обратное действие и истечение срока из прежних результатов о заключении, исполнении или расторжении. Пересоберите артефакты оценки действия договора во времени, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.17.0` → `0.18.0` изменение относится к допуску и полезности пилота, а не к юридическим выводам. Не допускай несинтетические пилотные наблюдения без отдельного одобренного решения gate v1 и не храни в пилотных артефактах тексты документов, имена файлов и идентификаторы. Зафиксируй проверенное законное основание для персональных данных, требуй `consent_ref` только для основания `subject_consent` и пересобери артефакты пилотной репетиции, privacy-safe utility, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

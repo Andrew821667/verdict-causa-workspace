@@ -1,0 +1,503 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил действия договора во времени по статьям 425 и 433 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-temporal-effect-evidence-supply-1-v0",
+    "schema_version": "contracts.temporal-effect-evidence.v0",
+    "mapping_version": "contracts-reviewed-temporal-effect-to-facts-v0",
+    "facts": {
+      "acceptance_received_by_offeror": true,
+      "contract_requires_property_delivery": false,
+      "property_delivered": false,
+      "contract_requires_state_registration": false,
+      "state_registration_completed": false,
+      "effectiveness_deferred_by_terms": false,
+      "deferred_effectiveness_condition_met": false,
+      "retroactive_application_agreed": false,
+      "prior_relations_exist": false,
+      "term_end_defined": true,
+      "term_end_reached": true,
+      "terms_provide_obligations_end_on_term": false,
+      "performance_completed": true,
+      "breach_committed_during_term": true
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk425-contract-effect-model-v1",
+      "synthetic-ru-gk433-conclusion-moment-model-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "acceptance_received_by_offeror",
+        "assertion_id": "temporal-effect-evidence-acceptance_received_by_offeror",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      },
+      {
+        "fact_name": "breach_committed_during_term",
+        "assertion_id": "temporal-effect-evidence-breach_committed_during_term",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_requires_property_delivery",
+        "assertion_id": "temporal-effect-evidence-contract_requires_property_delivery",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_requires_state_registration",
+        "assertion_id": "temporal-effect-evidence-contract_requires_state_registration",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      },
+      {
+        "fact_name": "deferred_effectiveness_condition_met",
+        "assertion_id": "temporal-effect-evidence-deferred_effectiveness_condition_met",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      },
+      {
+        "fact_name": "effectiveness_deferred_by_terms",
+        "assertion_id": "temporal-effect-evidence-effectiveness_deferred_by_terms",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      },
+      {
+        "fact_name": "performance_completed",
+        "assertion_id": "temporal-effect-evidence-performance_completed",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      },
+      {
+        "fact_name": "prior_relations_exist",
+        "assertion_id": "temporal-effect-evidence-prior_relations_exist",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_delivered",
+        "assertion_id": "temporal-effect-evidence-property_delivered",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      },
+      {
+        "fact_name": "retroactive_application_agreed",
+        "assertion_id": "temporal-effect-evidence-retroactive_application_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      },
+      {
+        "fact_name": "state_registration_completed",
+        "assertion_id": "temporal-effect-evidence-state_registration_completed",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      },
+      {
+        "fact_name": "term_end_defined",
+        "assertion_id": "temporal-effect-evidence-term_end_defined",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      },
+      {
+        "fact_name": "term_end_reached",
+        "assertion_id": "temporal-effect-evidence-term_end_reached",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      },
+      {
+        "fact_name": "terms_provide_obligations_end_on_term",
+        "assertion_id": "temporal-effect-evidence-terms_provide_obligations_end_on_term",
+        "source_refs": [
+          "synthetic-case-supply-1-temporal-effect-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "temporal-effect-constraint-set:reviewed-temporal-effect-evidence-supply-1-v0",
+    "model_version": "contracts-temporal-effect-articles-425-433-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk425-contract-effect-model-v1",
+      "synthetic-ru-gk433-conclusion-moment-model-v1"
+    ],
+    "expressions": [
+      "conclusion_moment_established == acceptance_received_by_offeror AND (NOT contract_requires_property_delivery OR property_delivered) AND (NOT contract_requires_state_registration OR state_registration_completed)",
+      "contract_in_force == conclusion_moment_established AND (NOT effectiveness_deferred_by_terms OR deferred_effectiveness_condition_met)",
+      "retroactive_effect_applies == contract_in_force AND retroactive_application_agreed AND prior_relations_exist",
+      "term_expired == term_end_defined AND term_end_reached",
+      "future_obligations_discharged_by_term_end == term_expired AND terms_provide_obligations_end_on_term AND NOT performance_completed",
+      "liability_preserved_after_term == term_expired AND breach_committed_during_term",
+      "registration_pending == contract_requires_state_registration AND NOT state_registration_completed",
+      "deferred_effect_pending == effectiveness_deferred_by_terms AND NOT deferred_effectiveness_condition_met",
+      "requires_human_temporal_effect_assessment == registration_pending OR deferred_effect_pending OR (retroactive_application_agreed AND NOT prior_relations_exist)"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "temporal-effect-constraint-set:reviewed-temporal-effect-evidence-supply-1-v0",
+    "satisfiable": true,
+    "conclusion_moment_established": true,
+    "contract_in_force": true,
+    "retroactive_effect_applies": false,
+    "term_expired": true,
+    "future_obligations_discharged_by_term_end": false,
+    "liability_preserved_after_term": true,
+    "registration_pending": false,
+    "deferred_effect_pending": false,
+    "requires_human_temporal_effect_assessment": false,
+    "reasons_ru": [
+      "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+      "Договор вступил в силу и обязателен для сторон.",
+      "Срок действия договора истек.",
+      "Окончание срока действия не освобождает от ответственности за допущенное нарушение."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила действия договора во времени и не заменяет судебную оценку.",
+      "Момент заключения, срок действия и последствия его истечения оцениваются экспертом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "temporal-effect-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "temporal-effect-bench-consensual",
+        "passed": true,
+        "expected_outcomes": {
+          "conclusion_moment_established": true,
+          "contract_in_force": true
+        },
+        "observed_outcomes": {
+          "conclusion_moment_established": true,
+          "contract_in_force": true
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Договор вступил в силу и обязателен для сторон."
+        ]
+      },
+      {
+        "task_id": "temporal-effect-bench-real-delivered",
+        "passed": true,
+        "expected_outcomes": {
+          "conclusion_moment_established": true,
+          "contract_in_force": true
+        },
+        "observed_outcomes": {
+          "conclusion_moment_established": true,
+          "contract_in_force": true
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Договор вступил в силу и обязателен для сторон."
+        ]
+      },
+      {
+        "task_id": "temporal-effect-bench-real-not-delivered",
+        "passed": true,
+        "expected_outcomes": {
+          "conclusion_moment_established": false,
+          "contract_in_force": false
+        },
+        "observed_outcomes": {
+          "conclusion_moment_established": false,
+          "contract_in_force": false
+        },
+        "reasons_ru": [
+          "Момент заключения договора по статье 433 ГК РФ не установлен.",
+          "Вступление договора в силу не подтверждено."
+        ]
+      },
+      {
+        "task_id": "temporal-effect-bench-registered",
+        "passed": true,
+        "expected_outcomes": {
+          "conclusion_moment_established": true,
+          "registration_pending": false
+        },
+        "observed_outcomes": {
+          "conclusion_moment_established": true,
+          "registration_pending": false
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Договор вступил в силу и обязателен для сторон."
+        ]
+      },
+      {
+        "task_id": "temporal-effect-bench-registration-pending",
+        "passed": true,
+        "expected_outcomes": {
+          "conclusion_moment_established": false,
+          "registration_pending": true,
+          "requires_human_temporal_effect_assessment": true
+        },
+        "observed_outcomes": {
+          "conclusion_moment_established": false,
+          "registration_pending": true,
+          "requires_human_temporal_effect_assessment": true
+        },
+        "reasons_ru": [
+          "Момент заключения договора по статье 433 ГК РФ не установлен.",
+          "Вступление договора в силу не подтверждено.",
+          "Договор подлежит государственной регистрации, которая не завершена."
+        ]
+      },
+      {
+        "task_id": "temporal-effect-bench-deferred-met",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_in_force": true,
+          "deferred_effect_pending": false
+        },
+        "observed_outcomes": {
+          "contract_in_force": true,
+          "deferred_effect_pending": false
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Договор вступил в силу и обязателен для сторон."
+        ]
+      },
+      {
+        "task_id": "temporal-effect-bench-deferred-pending",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_in_force": false,
+          "deferred_effect_pending": true
+        },
+        "observed_outcomes": {
+          "contract_in_force": false,
+          "deferred_effect_pending": true
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Вступление договора в силу не подтверждено.",
+          "Отлагательное условие вступления договора в силу не наступило."
+        ]
+      },
+      {
+        "task_id": "temporal-effect-bench-retroactive",
+        "passed": true,
+        "expected_outcomes": {
+          "retroactive_effect_applies": true
+        },
+        "observed_outcomes": {
+          "retroactive_effect_applies": true
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Договор вступил в силу и обязателен для сторон.",
+          "Условия договора распространены на отношения, возникшие до его заключения."
+        ]
+      },
+      {
+        "task_id": "temporal-effect-bench-term-discharge",
+        "passed": true,
+        "expected_outcomes": {
+          "term_expired": true,
+          "future_obligations_discharged_by_term_end": true
+        },
+        "observed_outcomes": {
+          "term_expired": true,
+          "future_obligations_discharged_by_term_end": true
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Договор вступил в силу и обязателен для сторон.",
+          "Срок действия договора истек.",
+          "Окончание срока действия прекращает неисполненные обязательства сторон."
+        ]
+      },
+      {
+        "task_id": "temporal-effect-bench-liability-survives",
+        "passed": true,
+        "expected_outcomes": {
+          "term_expired": true,
+          "liability_preserved_after_term": true
+        },
+        "observed_outcomes": {
+          "term_expired": true,
+          "liability_preserved_after_term": true
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Договор вступил в силу и обязателен для сторон.",
+          "Срок действия договора истек.",
+          "Окончание срока действия не освобождает от ответственности за допущенное нарушение."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "temporal-effect-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "temporal-effect-red-real-no-delivery",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "conclusion_moment_established": true
+        },
+        "observed_outcomes": {
+          "conclusion_moment_established": false
+        },
+        "reasons_ru": [
+          "Момент заключения договора по статье 433 ГК РФ не установлен.",
+          "Вступление договора в силу не подтверждено."
+        ]
+      },
+      {
+        "case_id": "temporal-effect-red-no-registration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "conclusion_moment_established": true
+        },
+        "observed_outcomes": {
+          "conclusion_moment_established": false
+        },
+        "reasons_ru": [
+          "Момент заключения договора по статье 433 ГК РФ не установлен.",
+          "Вступление договора в силу не подтверждено.",
+          "Договор подлежит государственной регистрации, которая не завершена."
+        ]
+      },
+      {
+        "case_id": "temporal-effect-red-deferred",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_in_force": true
+        },
+        "observed_outcomes": {
+          "contract_in_force": false
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Вступление договора в силу не подтверждено.",
+          "Отлагательное условие вступления договора в силу не наступило."
+        ]
+      },
+      {
+        "case_id": "temporal-effect-red-retroactive-no-prior",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "retroactive_effect_applies": true
+        },
+        "observed_outcomes": {
+          "retroactive_effect_applies": false
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Договор вступил в силу и обязателен для сторон."
+        ]
+      },
+      {
+        "case_id": "temporal-effect-red-discharge-not-provided",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "future_obligations_discharged_by_term_end": true
+        },
+        "observed_outcomes": {
+          "future_obligations_discharged_by_term_end": false
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Договор вступил в силу и обязателен для сторон.",
+          "Срок действия договора истек."
+        ]
+      },
+      {
+        "case_id": "temporal-effect-red-discharge-term-not-expired",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "future_obligations_discharged_by_term_end": true
+        },
+        "observed_outcomes": {
+          "future_obligations_discharged_by_term_end": false
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Договор вступил в силу и обязателен для сторон."
+        ]
+      },
+      {
+        "case_id": "temporal-effect-red-liability-waived",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_preserved_after_term": false
+        },
+        "observed_outcomes": {
+          "liability_preserved_after_term": true
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Договор вступил в силу и обязателен для сторон.",
+          "Срок действия договора истек.",
+          "Окончание срока действия не освобождает от ответственности за допущенное нарушение."
+        ]
+      },
+      {
+        "case_id": "temporal-effect-red-no-acceptance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "conclusion_moment_established": true
+        },
+        "observed_outcomes": {
+          "conclusion_moment_established": false
+        },
+        "reasons_ru": [
+          "Момент заключения договора по статье 433 ГК РФ не установлен.",
+          "Вступление договора в силу не подтверждено."
+        ]
+      },
+      {
+        "case_id": "temporal-effect-red-term-without-end",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "term_expired": true
+        },
+        "observed_outcomes": {
+          "term_expired": false
+        },
+        "reasons_ru": [
+          "Момент заключения договора установлен по правилам статьи 433 ГК РФ.",
+          "Договор вступил в силу и обязателен для сторон."
+        ]
+      },
+      {
+        "case_id": "temporal-effect-red-registration-gap",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "registration_pending": false
+        },
+        "observed_outcomes": {
+          "registration_pending": true
+        },
+        "reasons_ru": [
+          "Момент заключения договора по статье 433 ГК РФ не установлен.",
+          "Вступление договора в силу не подтверждено.",
+          "Договор подлежит государственной регистрации, которая не завершена."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}
