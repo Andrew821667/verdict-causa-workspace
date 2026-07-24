@@ -54,6 +54,8 @@ The first institutional package focuses on contractual relations: formation, cha
 
 Релиз `contracts-ru-v0@0.20.0` добавляет формальную модель исковой давности по статьям 195–208 ГК РФ: начало течения, общий и специальный срок, предельный десятилетний срок, приостановление, перерыв, заявление стороны, восстановление и исключения. Правила описаны в русской [спецификации исковой давности](docs/contract-limitation-spec.md).
 
+Релиз `contracts-ru-v0@0.21.0` добавляет формальную модель толкования договора по статье 431 ГК РФ: буквальное значение, сопоставление с договором в целом, действительную общую волю сторон и толкование против составителя. Правила описаны в русской [спецификации толкования договора](docs/contract-interpretation-spec.md).
+
 This is the first proving ground for the infrastructure, not the full scope of the project.
 
 ## Architecture
@@ -213,6 +215,14 @@ python scripts/export_synthetic_limitation_evaluation.py
 
 Результат записывается в `examples/synthetic_limitation_evaluation_report.json`. Отчёт проверяет начало течения, срок, приостановление, перерыв и применение давности по статьям 195–208 ГК РФ и не подменяет судебную оценку.
 
+Сформировать отчёт о толковании договора:
+
+```bash
+python scripts/export_synthetic_interpretation_evaluation.py
+```
+
+Результат записывается в `examples/synthetic_interpretation_evaluation_report.json`. Отчёт проверяет буквальное значение, сопоставление с договором в целом и действительную общую волю сторон по статье 431 ГК РФ и не подменяет судебную оценку.
+
 Generate the reviewed contract change-and-termination report:
 
 ```bash
@@ -323,7 +333,7 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-Команда формирует отчёты о необходимости replay для прежних релизов и пересобирает их относительно `0.20.0`. Отчёты сохраняются как `examples/migrations/contracts-ru-v0-<source>-to-0.20.0-migration-report.json` для `0.1.0`, `0.3.0` и каждого релиза с `0.4.0` по `0.19.0`. Прежние отчёты `*-to-0.17.0`, `*-to-0.18.0` и `*-to-0.19.0` сохраняются как исторические артефакты.
+Команда формирует отчёты о необходимости replay для прежних релизов и пересобирает их относительно `0.21.0`. Отчёты сохраняются как `examples/migrations/contracts-ru-v0-<source>-to-0.21.0-migration-report.json` для `0.1.0`, `0.3.0` и каждого релиза с `0.4.0` по `0.20.0`. Прежние отчёты `*-to-0.17.0` … `*-to-0.20.0` сохраняются как исторические артефакты.
 
 ## License
 

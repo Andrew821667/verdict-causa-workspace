@@ -383,6 +383,59 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk431-interpretation-model-v1",
+        title="Синтетическая проверенная модель толкования договора по статье 431 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: сначала принимается во внимание буквальное "
+            "значение слов и выражений, при неясности оно сопоставляется с другими "
+            "условиями и смыслом договора в целом."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "interpretation_article_431_literal",
+            "legal_reference": "ГК РФ, статья 431",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk431-common-intent-model-v1",
+        title="Синтетическая проверенная модель установления общей воли сторон",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: если буквальное толкование не позволяет "
+            "определить содержание, выясняется действительная общая воля с учетом цели "
+            "договора, переговоров, практики, обычаев и последующего поведения сторон."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "interpretation_article_431_common_intent",
+            "legal_reference": "ГК РФ, статья 431",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-interpretation-evidence",
+        title="Синтетическая проверенная запись фактов о толковании условия договора",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: заявлен спор о толковании условия о сроке поставки; "
+            "буквальное значение ясно и согласуется с другими условиями и смыслом "
+            "договора в целом."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "interpretation_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

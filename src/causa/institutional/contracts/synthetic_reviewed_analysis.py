@@ -35,6 +35,11 @@ from causa.institutional.contracts.limitation import (
     LimitationEvidencePredicate,
     ReviewedLimitationEvidence,
 )
+from causa.institutional.contracts.interpretation import (
+    InterpretationEvidenceAssertion,
+    InterpretationEvidencePredicate,
+    ReviewedInterpretationEvidence,
+)
 from causa.institutional.contracts.termination import (
     ReviewedTerminationEvidence,
     TerminationEvidenceAssertion,
@@ -92,6 +97,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk195-200-limitation-framework-v1",
     "synthetic-ru-gk202-208-limitation-effects-v1",
     "synthetic-case-supply-1-limitation-evidence",
+    "synthetic-ru-gk431-interpretation-model-v1",
+    "synthetic-ru-gk431-common-intent-model-v1",
+    "synthetic-case-supply-1-interpretation-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -413,6 +421,37 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-limitation-reviewer",
+        ),
+        interpretation_evidence=ReviewedInterpretationEvidence(
+            id="reviewed-interpretation-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                InterpretationEvidenceAssertion(
+                    id=f"interpretation-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-interpretation-evidence",),
+                )
+                for predicate, value in (
+                    (InterpretationEvidencePredicate.DISPUTED_TERM_PRESENT, True),
+                    (InterpretationEvidencePredicate.LITERAL_MEANING_CLEAR, True),
+                    (InterpretationEvidencePredicate.CONSISTENT_WITH_OTHER_TERMS, True),
+                    (InterpretationEvidencePredicate.CONSISTENT_WITH_WHOLE_CONTRACT, True),
+                    (InterpretationEvidencePredicate.COMMON_INTENT_ESTABLISHED, False),
+                    (InterpretationEvidencePredicate.PURPOSE_CONSIDERED, False),
+                    (InterpretationEvidencePredicate.PRELIMINARY_NEGOTIATIONS_CONSIDERED, False),
+                    (InterpretationEvidencePredicate.ESTABLISHED_PRACTICE_CONSIDERED, False),
+                    (InterpretationEvidencePredicate.USAGES_CONSIDERED, False),
+                    (InterpretationEvidencePredicate.SUBSEQUENT_CONDUCT_CONSIDERED, False),
+                    (InterpretationEvidencePredicate.TERM_DRAFTED_BY_ONE_PARTY, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk431-interpretation-model-v1",
+                "synthetic-ru-gk431-common-intent-model-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-interpretation-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

@@ -1,0 +1,444 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил толкования договора по статье 431 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-interpretation-evidence-supply-1-v0",
+    "schema_version": "contracts.interpretation-evidence.v0",
+    "mapping_version": "contracts-reviewed-interpretation-to-facts-v0",
+    "facts": {
+      "disputed_term_present": true,
+      "literal_meaning_clear": true,
+      "consistent_with_other_terms": true,
+      "consistent_with_whole_contract": true,
+      "common_intent_established": false,
+      "purpose_considered": false,
+      "preliminary_negotiations_considered": false,
+      "established_practice_considered": false,
+      "usages_considered": false,
+      "subsequent_conduct_considered": false,
+      "term_drafted_by_one_party": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk431-interpretation-model-v1",
+      "synthetic-ru-gk431-common-intent-model-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "common_intent_established",
+        "assertion_id": "interpretation-evidence-common_intent_established",
+        "source_refs": [
+          "synthetic-case-supply-1-interpretation-evidence"
+        ]
+      },
+      {
+        "fact_name": "consistent_with_other_terms",
+        "assertion_id": "interpretation-evidence-consistent_with_other_terms",
+        "source_refs": [
+          "synthetic-case-supply-1-interpretation-evidence"
+        ]
+      },
+      {
+        "fact_name": "consistent_with_whole_contract",
+        "assertion_id": "interpretation-evidence-consistent_with_whole_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-interpretation-evidence"
+        ]
+      },
+      {
+        "fact_name": "disputed_term_present",
+        "assertion_id": "interpretation-evidence-disputed_term_present",
+        "source_refs": [
+          "synthetic-case-supply-1-interpretation-evidence"
+        ]
+      },
+      {
+        "fact_name": "established_practice_considered",
+        "assertion_id": "interpretation-evidence-established_practice_considered",
+        "source_refs": [
+          "synthetic-case-supply-1-interpretation-evidence"
+        ]
+      },
+      {
+        "fact_name": "literal_meaning_clear",
+        "assertion_id": "interpretation-evidence-literal_meaning_clear",
+        "source_refs": [
+          "synthetic-case-supply-1-interpretation-evidence"
+        ]
+      },
+      {
+        "fact_name": "preliminary_negotiations_considered",
+        "assertion_id": "interpretation-evidence-preliminary_negotiations_considered",
+        "source_refs": [
+          "synthetic-case-supply-1-interpretation-evidence"
+        ]
+      },
+      {
+        "fact_name": "purpose_considered",
+        "assertion_id": "interpretation-evidence-purpose_considered",
+        "source_refs": [
+          "synthetic-case-supply-1-interpretation-evidence"
+        ]
+      },
+      {
+        "fact_name": "subsequent_conduct_considered",
+        "assertion_id": "interpretation-evidence-subsequent_conduct_considered",
+        "source_refs": [
+          "synthetic-case-supply-1-interpretation-evidence"
+        ]
+      },
+      {
+        "fact_name": "term_drafted_by_one_party",
+        "assertion_id": "interpretation-evidence-term_drafted_by_one_party",
+        "source_refs": [
+          "synthetic-case-supply-1-interpretation-evidence"
+        ]
+      },
+      {
+        "fact_name": "usages_considered",
+        "assertion_id": "interpretation-evidence-usages_considered",
+        "source_refs": [
+          "synthetic-case-supply-1-interpretation-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "interpretation-constraint-set:reviewed-interpretation-evidence-supply-1-v0",
+    "model_version": "contracts-interpretation-article-431-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk431-interpretation-model-v1",
+      "synthetic-ru-gk431-common-intent-model-v1"
+    ],
+    "expressions": [
+      "literal_interpretation_controls == disputed_term_present AND literal_meaning_clear AND consistent_with_other_terms AND consistent_with_whole_contract",
+      "systematic_reading_required == disputed_term_present AND literal_meaning_clear AND NOT (consistent_with_other_terms AND consistent_with_whole_contract)",
+      "circumstances_considered == purpose_considered OR preliminary_negotiations_considered OR established_practice_considered OR usages_considered OR subsequent_conduct_considered",
+      "common_intent_interpretation_controls == disputed_term_present AND NOT literal_interpretation_controls AND common_intent_established AND circumstances_considered",
+      "interpretation_resolved == literal_interpretation_controls OR common_intent_interpretation_controls",
+      "contra_proferentem_available == disputed_term_present AND NOT interpretation_resolved AND term_drafted_by_one_party",
+      "requires_human_interpretation_assessment == disputed_term_present AND NOT interpretation_resolved"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "interpretation-constraint-set:reviewed-interpretation-evidence-supply-1-v0",
+    "satisfiable": true,
+    "literal_interpretation_controls": true,
+    "systematic_reading_required": false,
+    "circumstances_considered": false,
+    "common_intent_interpretation_controls": false,
+    "interpretation_resolved": true,
+    "contra_proferentem_available": false,
+    "requires_human_interpretation_assessment": false,
+    "reasons_ru": [
+      "Содержание условия определяется буквальным значением слов и выражений (абзац 1 статьи 431 ГК РФ)."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальную последовательность толкования и не заменяет судебную оценку.",
+      "Действительный смысл условия, воля сторон и оценка доказательств устанавливаются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "interpretation-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "interpretation-bench-literal",
+        "passed": true,
+        "expected_outcomes": {
+          "literal_interpretation_controls": true,
+          "interpretation_resolved": true
+        },
+        "observed_outcomes": {
+          "literal_interpretation_controls": true,
+          "interpretation_resolved": true
+        },
+        "reasons_ru": [
+          "Содержание условия определяется буквальным значением слов и выражений (абзац 1 статьи 431 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "interpretation-bench-systematic-other-terms",
+        "passed": true,
+        "expected_outcomes": {
+          "systematic_reading_required": true,
+          "interpretation_resolved": false
+        },
+        "observed_outcomes": {
+          "systematic_reading_required": true,
+          "interpretation_resolved": false
+        },
+        "reasons_ru": [
+          "Буквальное значение неясно; условие сопоставляется с другими условиями и смыслом договора в целом.",
+          "Содержание спорного условия не установлено формально и требует юриста."
+        ]
+      },
+      {
+        "task_id": "interpretation-bench-systematic-whole",
+        "passed": true,
+        "expected_outcomes": {
+          "systematic_reading_required": true,
+          "interpretation_resolved": false
+        },
+        "observed_outcomes": {
+          "systematic_reading_required": true,
+          "interpretation_resolved": false
+        },
+        "reasons_ru": [
+          "Буквальное значение неясно; условие сопоставляется с другими условиями и смыслом договора в целом.",
+          "Содержание спорного условия не установлено формально и требует юриста."
+        ]
+      },
+      {
+        "task_id": "interpretation-bench-common-intent-purpose",
+        "passed": true,
+        "expected_outcomes": {
+          "common_intent_interpretation_controls": true,
+          "interpretation_resolved": true
+        },
+        "observed_outcomes": {
+          "common_intent_interpretation_controls": true,
+          "interpretation_resolved": true
+        },
+        "reasons_ru": [
+          "Содержание условия определяется действительной общей волей сторон с учетом цели договора и иных обстоятельств (абзац 2 статьи 431 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "interpretation-bench-common-intent-negotiations",
+        "passed": true,
+        "expected_outcomes": {
+          "common_intent_interpretation_controls": true,
+          "interpretation_resolved": true
+        },
+        "observed_outcomes": {
+          "common_intent_interpretation_controls": true,
+          "interpretation_resolved": true
+        },
+        "reasons_ru": [
+          "Содержание условия определяется действительной общей волей сторон с учетом цели договора и иных обстоятельств (абзац 2 статьи 431 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "interpretation-bench-common-intent-conduct",
+        "passed": true,
+        "expected_outcomes": {
+          "common_intent_interpretation_controls": true,
+          "interpretation_resolved": true
+        },
+        "observed_outcomes": {
+          "common_intent_interpretation_controls": true,
+          "interpretation_resolved": true
+        },
+        "reasons_ru": [
+          "Содержание условия определяется действительной общей волей сторон с учетом цели договора и иных обстоятельств (абзац 2 статьи 431 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "interpretation-bench-intent-no-circumstances",
+        "passed": true,
+        "expected_outcomes": {
+          "common_intent_interpretation_controls": false,
+          "requires_human_interpretation_assessment": true
+        },
+        "observed_outcomes": {
+          "common_intent_interpretation_controls": false,
+          "requires_human_interpretation_assessment": true
+        },
+        "reasons_ru": [
+          "Содержание спорного условия не установлено формально и требует юриста."
+        ]
+      },
+      {
+        "task_id": "interpretation-bench-contra-proferentem",
+        "passed": true,
+        "expected_outcomes": {
+          "interpretation_resolved": false,
+          "contra_proferentem_available": true
+        },
+        "observed_outcomes": {
+          "interpretation_resolved": false,
+          "contra_proferentem_available": true
+        },
+        "reasons_ru": [
+          "Неустраненная неясность толкуется против стороны, подготовившей условие.",
+          "Содержание спорного условия не установлено формально и требует юриста."
+        ]
+      },
+      {
+        "task_id": "interpretation-bench-no-dispute",
+        "passed": true,
+        "expected_outcomes": {
+          "interpretation_resolved": false,
+          "requires_human_interpretation_assessment": false
+        },
+        "observed_outcomes": {
+          "interpretation_resolved": false,
+          "requires_human_interpretation_assessment": false
+        },
+        "reasons_ru": [
+          "Спор о толковании условия договора не заявлен."
+        ]
+      },
+      {
+        "task_id": "interpretation-bench-literal-over-drafting",
+        "passed": true,
+        "expected_outcomes": {
+          "literal_interpretation_controls": true,
+          "contra_proferentem_available": false
+        },
+        "observed_outcomes": {
+          "literal_interpretation_controls": true,
+          "contra_proferentem_available": false
+        },
+        "reasons_ru": [
+          "Содержание условия определяется буквальным значением слов и выражений (абзац 1 статьи 431 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "interpretation-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "interpretation-red-literal-unclear",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "literal_interpretation_controls": true
+        },
+        "observed_outcomes": {
+          "literal_interpretation_controls": false
+        },
+        "reasons_ru": [
+          "Содержание спорного условия не установлено формально и требует юриста."
+        ]
+      },
+      {
+        "case_id": "interpretation-red-literal-inconsistent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "literal_interpretation_controls": true
+        },
+        "observed_outcomes": {
+          "literal_interpretation_controls": false
+        },
+        "reasons_ru": [
+          "Буквальное значение неясно; условие сопоставляется с другими условиями и смыслом договора в целом.",
+          "Содержание спорного условия не установлено формально и требует юриста."
+        ]
+      },
+      {
+        "case_id": "interpretation-red-intent-no-circumstances",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "common_intent_interpretation_controls": true
+        },
+        "observed_outcomes": {
+          "common_intent_interpretation_controls": false
+        },
+        "reasons_ru": [
+          "Содержание спорного условия не установлено формально и требует юриста."
+        ]
+      },
+      {
+        "case_id": "interpretation-red-skip-systematic",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "systematic_reading_required": false
+        },
+        "observed_outcomes": {
+          "systematic_reading_required": true
+        },
+        "reasons_ru": [
+          "Буквальное значение неясно; условие сопоставляется с другими условиями и смыслом договора в целом.",
+          "Содержание спорного условия не установлено формально и требует юриста."
+        ]
+      },
+      {
+        "case_id": "interpretation-red-resolve-without-ground",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "interpretation_resolved": true
+        },
+        "observed_outcomes": {
+          "interpretation_resolved": false
+        },
+        "reasons_ru": [
+          "Содержание спорного условия не установлено формально и требует юриста."
+        ]
+      },
+      {
+        "case_id": "interpretation-red-contra-when-resolved",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contra_proferentem_available": true
+        },
+        "observed_outcomes": {
+          "contra_proferentem_available": false
+        },
+        "reasons_ru": [
+          "Содержание условия определяется буквальным значением слов и выражений (абзац 1 статьи 431 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "interpretation-red-interpret-absent-term",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "interpretation_resolved": true
+        },
+        "observed_outcomes": {
+          "interpretation_resolved": false
+        },
+        "reasons_ru": [
+          "Спор о толковании условия договора не заявлен."
+        ]
+      },
+      {
+        "case_id": "interpretation-red-intent-not-established",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "common_intent_interpretation_controls": true
+        },
+        "observed_outcomes": {
+          "common_intent_interpretation_controls": false
+        },
+        "reasons_ru": [
+          "Содержание спорного условия не установлено формально и требует юриста."
+        ]
+      },
+      {
+        "case_id": "interpretation-red-contra-without-drafting",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contra_proferentem_available": true
+        },
+        "observed_outcomes": {
+          "contra_proferentem_available": false
+        },
+        "reasons_ru": [
+          "Содержание спорного условия не установлено формально и требует юриста."
+        ]
+      },
+      {
+        "case_id": "interpretation-red-human-when-resolved",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_interpretation_assessment": true
+        },
+        "observed_outcomes": {
+          "requires_human_interpretation_assessment": false
+        },
+        "reasons_ru": [
+          "Содержание условия определяется буквальным значением слов и выражений (абзац 1 статьи 431 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

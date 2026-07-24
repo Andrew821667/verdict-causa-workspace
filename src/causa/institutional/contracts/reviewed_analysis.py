@@ -64,6 +64,16 @@ from causa.institutional.contracts.limitation import (
     evaluate_limitation_constraints,
     map_reviewed_limitation_evidence,
 )
+from causa.institutional.contracts.interpretation import (
+    INTERPRETATION_EVIDENCE_SCHEMA_VERSION,
+    InterpretationConstraintSet,
+    InterpretationEvaluation,
+    InterpretationEvidenceMappingResult,
+    ReviewedInterpretationEvidence,
+    build_interpretation_constraint_set,
+    evaluate_interpretation_constraints,
+    map_reviewed_interpretation_evidence,
+)
 from causa.institutional.contracts.termination import (
     TERMINATION_EVIDENCE_SCHEMA_VERSION,
     ReviewedTerminationEvidence,
@@ -240,6 +250,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     formation_evidence: ReviewedFormationEvidence
     temporal_effect_evidence: ReviewedTemporalEffectEvidence
     limitation_evidence: ReviewedLimitationEvidence
+    interpretation_evidence: ReviewedInterpretationEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -288,6 +299,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     limitation_evidence_mapping: LimitationEvidenceMappingResult
     limitation_constraint_set: LimitationConstraintSet
     limitation_evaluation: LimitationEvaluation
+    interpretation_evidence_mapping: InterpretationEvidenceMappingResult
+    interpretation_constraint_set: InterpretationConstraintSet
+    interpretation_evaluation: InterpretationEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -358,6 +372,19 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.limitation_evaluation != expected_limitation_evaluation:
             raise ValueError("Limitation evaluation does not replay from reviewed evidence.")
+        expected_interpretation_set = build_interpretation_constraint_set(
+            self.interpretation_evidence_mapping
+        )
+        if self.interpretation_constraint_set != expected_interpretation_set:
+            raise ValueError(
+                "Interpretation constraint set does not replay from reviewed evidence."
+            )
+        expected_interpretation_evaluation = evaluate_interpretation_constraints(
+            expected_interpretation_set,
+            self.interpretation_evidence_mapping.facts,
+        )
+        if self.interpretation_evaluation != expected_interpretation_evaluation:
+            raise ValueError("Interpretation evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -680,6 +707,8 @@ def _validate_request_integrity(
         raise ValueError("Temporal-effect evidence case_id does not match the analysis request.")
     if request.limitation_evidence.case_id != request.case_id:
         raise ValueError("Limitation evidence case_id does not match the analysis request.")
+    if request.interpretation_evidence.case_id != request.case_id:
+        raise ValueError("Interpretation evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -734,6 +763,8 @@ def _validate_request_integrity(
         raise ValueError("Temporal-effect evidence uses an unsupported schema version.")
     if request.limitation_evidence.schema_version != LIMITATION_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Limitation evidence uses an unsupported schema version.")
+    if request.interpretation_evidence.schema_version != INTERPRETATION_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Interpretation evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -744,6 +775,7 @@ def _validate_request_integrity(
         *request.formation_evidence.legal_source_refs,
         *request.temporal_effect_evidence.legal_source_refs,
         *request.limitation_evidence.legal_source_refs,
+        *request.interpretation_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -760,6 +792,8 @@ def _validate_request_integrity(
     for assertion in request.temporal_effect_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.limitation_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.interpretation_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -824,6 +858,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Limitation legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_limitation_legal_sources))
+        )
+    invalid_interpretation_legal_sources = [
+        source_id
+        for source_id in request.interpretation_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_interpretation_legal_sources:
+        raise ValueError(
+            "Interpretation legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_interpretation_legal_sources))
         )
     invalid_invalidity_legal_sources = [
         source_id
@@ -1022,6 +1067,11 @@ def run_reviewed_contract_analysis(
         review_status=request.limitation_evidence.review_status,
         reviewer_id=request.limitation_evidence.reviewer_id,
     )
+    interpretation_reviewer_id = _require_reviewed(
+        artifact_name="Interpretation evidence",
+        review_status=request.interpretation_evidence.review_status,
+        reviewer_id=request.interpretation_evidence.reviewer_id,
+    )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
         review_status=request.invalidity_evidence.review_status,
@@ -1121,6 +1171,16 @@ def run_reviewed_contract_analysis(
     limitation_evaluation = evaluate_limitation_constraints(
         limitation_constraint_set,
         limitation_evidence_mapping.facts,
+    )
+    interpretation_evidence_mapping = map_reviewed_interpretation_evidence(
+        request.interpretation_evidence
+    )
+    interpretation_constraint_set = build_interpretation_constraint_set(
+        interpretation_evidence_mapping
+    )
+    interpretation_evaluation = evaluate_interpretation_constraints(
+        interpretation_constraint_set,
+        interpretation_evidence_mapping.facts,
     )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
@@ -1348,6 +1408,7 @@ def run_reviewed_contract_analysis(
         or formation_evaluation.requires_human_formation_assessment
         or temporal_effect_evaluation.requires_human_temporal_effect_assessment
         or limitation_evaluation.requires_human_limitation_assessment
+        or interpretation_evaluation.requires_human_interpretation_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -1370,6 +1431,7 @@ def run_reviewed_contract_analysis(
                 formation_reviewer_id,
                 temporal_effect_reviewer_id,
                 limitation_reviewer_id,
+                interpretation_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -1394,6 +1456,9 @@ def run_reviewed_contract_analysis(
         limitation_evidence_mapping=limitation_evidence_mapping,
         limitation_constraint_set=limitation_constraint_set,
         limitation_evaluation=limitation_evaluation,
+        interpretation_evidence_mapping=interpretation_evidence_mapping,
+        interpretation_constraint_set=interpretation_constraint_set,
+        interpretation_evaluation=interpretation_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

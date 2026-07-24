@@ -1,5 +1,13 @@
 # Contracts RU v0 Changelog
 
+## 0.21.0 - 2026-07-24
+
+- Добавляет отдельный проверенный контракт данных о толковании договора и формальную модель статьи 431 ГК РФ (`src/causa/institutional/contracts/interpretation.py`).
+- Разделяет буквальное толкование, сопоставление с другими условиями и смыслом договора в целом, установление действительной общей воли сторон с учётом цели, переговоров, практики, обычаев и последующего поведения, а также толкование против стороны, подготовившей условие.
+- Интегрирует институт в reviewed analysis с проверками схемы, источников, `case_id` и воспроизводимости; добавляет шаг `evaluate-contract-interpretation` в Phase 0 и benchmark (`10/10`) и red-team (`10/10`).
+- Добавляет русскую спецификацию [`docs/contract-interpretation-spec.md`](contract-interpretation-spec.md) и синтетический артефакт `examples/synthetic_interpretation_evaluation_report.json`.
+- Сохраняет evidence `contracts.case-evidence.v9`, analysis `contracts-reviewed-analysis-v9` и русские шаблоны `ru-v11`; миграция `0.20.0 → 0.21.0` относится к допуску данных о толковании, а не к изменению прежних юридических выводов.
+
 ## 0.20.0 - 2026-07-24
 
 - Добавляет отдельный проверенный контракт данных об исковой давности и формальную модель статей 195–208 ГК РФ (`src/causa/institutional/contracts/limitation.py`).

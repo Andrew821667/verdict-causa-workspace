@@ -233,6 +233,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk431-interpretation-model-v1",
+      "title": "Синтетическая проверенная модель толкования договора по статье 431 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: сначала принимается во внимание буквальное значение слов и выражений, при неясности оно сопоставляется с другими условиями и смыслом договора в целом.",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "interpretation_article_431_literal",
+        "legal_reference": "ГК РФ, статья 431",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk431-common-intent-model-v1",
+      "title": "Синтетическая проверенная модель установления общей воли сторон",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: если буквальное толкование не позволяет определить содержание, выясняется действительная общая воля с учетом цели договора, переговоров, практики, обычаев и последующего поведения сторон.",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "interpretation_article_431_common_intent",
+        "legal_reference": "ГК РФ, статья 431",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-interpretation-evidence",
+      "title": "Синтетическая проверенная запись фактов о толковании условия договора",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: заявлен спор о толковании условия о сроке поставки; буквальное значение ясно и согласуется с другими условиями и смыслом договора в целом.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "interpretation_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -1533,6 +1580,107 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-limitation-reviewer"
+    },
+    "interpretation_evidence": {
+      "id": "reviewed-interpretation-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.interpretation-evidence.v0",
+      "assertions": [
+        {
+          "id": "interpretation-evidence-disputed_term_present",
+          "predicate": "disputed_term_present",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "id": "interpretation-evidence-literal_meaning_clear",
+          "predicate": "literal_meaning_clear",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "id": "interpretation-evidence-consistent_with_other_terms",
+          "predicate": "consistent_with_other_terms",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "id": "interpretation-evidence-consistent_with_whole_contract",
+          "predicate": "consistent_with_whole_contract",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "id": "interpretation-evidence-common_intent_established",
+          "predicate": "common_intent_established",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "id": "interpretation-evidence-purpose_considered",
+          "predicate": "purpose_considered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "id": "interpretation-evidence-preliminary_negotiations_considered",
+          "predicate": "preliminary_negotiations_considered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "id": "interpretation-evidence-established_practice_considered",
+          "predicate": "established_practice_considered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "id": "interpretation-evidence-usages_considered",
+          "predicate": "usages_considered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "id": "interpretation-evidence-subsequent_conduct_considered",
+          "predicate": "subsequent_conduct_considered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "id": "interpretation-evidence-term_drafted_by_one_party",
+          "predicate": "term_drafted_by_one_party",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk431-interpretation-model-v1",
+        "synthetic-ru-gk431-common-intent-model-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-interpretation-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -6310,6 +6458,7 @@
       "synthetic-case-evidence-reviewer",
       "synthetic-formation-reviewer",
       "synthetic-general-sale-reviewer",
+      "synthetic-interpretation-reviewer",
       "synthetic-invalidity-reviewer",
       "synthetic-liability-reviewer",
       "synthetic-limitation-reviewer",
@@ -6325,6 +6474,7 @@
     "source_ids": [
       "synthetic-case-supply-1-formation-evidence",
       "synthetic-case-supply-1-general-sale-evidence",
+      "synthetic-case-supply-1-interpretation-evidence",
       "synthetic-case-supply-1-invalidity-evidence",
       "synthetic-case-supply-1-liability-evidence",
       "synthetic-case-supply-1-limitation-evidence",
@@ -6359,6 +6509,8 @@
       "synthetic-ru-gk407-413-discharge-v1",
       "synthetic-ru-gk414-419-discharge-v1",
       "synthetic-ru-gk425-contract-effect-model-v1",
+      "synthetic-ru-gk431-common-intent-model-v1",
+      "synthetic-ru-gk431-interpretation-model-v1",
       "synthetic-ru-gk432-contract-formation-model-v1",
       "synthetic-ru-gk433-conclusion-moment-model-v1",
       "synthetic-ru-gk435-offer-model-v1",
@@ -7156,6 +7308,142 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила исковой давности и не заменяет судебную оценку.",
         "Момент начала течения, уважительность причин и применение давности судом оцениваются экспертом."
+      ]
+    },
+    "interpretation_evidence_mapping": {
+      "evidence_id": "reviewed-interpretation-evidence-supply-1-v0",
+      "schema_version": "contracts.interpretation-evidence.v0",
+      "mapping_version": "contracts-reviewed-interpretation-to-facts-v0",
+      "facts": {
+        "disputed_term_present": true,
+        "literal_meaning_clear": true,
+        "consistent_with_other_terms": true,
+        "consistent_with_whole_contract": true,
+        "common_intent_established": false,
+        "purpose_considered": false,
+        "preliminary_negotiations_considered": false,
+        "established_practice_considered": false,
+        "usages_considered": false,
+        "subsequent_conduct_considered": false,
+        "term_drafted_by_one_party": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk431-interpretation-model-v1",
+        "synthetic-ru-gk431-common-intent-model-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "common_intent_established",
+          "assertion_id": "interpretation-evidence-common_intent_established",
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "fact_name": "consistent_with_other_terms",
+          "assertion_id": "interpretation-evidence-consistent_with_other_terms",
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "fact_name": "consistent_with_whole_contract",
+          "assertion_id": "interpretation-evidence-consistent_with_whole_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "fact_name": "disputed_term_present",
+          "assertion_id": "interpretation-evidence-disputed_term_present",
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "fact_name": "established_practice_considered",
+          "assertion_id": "interpretation-evidence-established_practice_considered",
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "fact_name": "literal_meaning_clear",
+          "assertion_id": "interpretation-evidence-literal_meaning_clear",
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "fact_name": "preliminary_negotiations_considered",
+          "assertion_id": "interpretation-evidence-preliminary_negotiations_considered",
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "fact_name": "purpose_considered",
+          "assertion_id": "interpretation-evidence-purpose_considered",
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "fact_name": "subsequent_conduct_considered",
+          "assertion_id": "interpretation-evidence-subsequent_conduct_considered",
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "fact_name": "term_drafted_by_one_party",
+          "assertion_id": "interpretation-evidence-term_drafted_by_one_party",
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        },
+        {
+          "fact_name": "usages_considered",
+          "assertion_id": "interpretation-evidence-usages_considered",
+          "source_refs": [
+            "synthetic-case-supply-1-interpretation-evidence"
+          ]
+        }
+      ]
+    },
+    "interpretation_constraint_set": {
+      "id": "interpretation-constraint-set:reviewed-interpretation-evidence-supply-1-v0",
+      "model_version": "contracts-interpretation-article-431-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk431-interpretation-model-v1",
+        "synthetic-ru-gk431-common-intent-model-v1"
+      ],
+      "expressions": [
+        "literal_interpretation_controls == disputed_term_present AND literal_meaning_clear AND consistent_with_other_terms AND consistent_with_whole_contract",
+        "systematic_reading_required == disputed_term_present AND literal_meaning_clear AND NOT (consistent_with_other_terms AND consistent_with_whole_contract)",
+        "circumstances_considered == purpose_considered OR preliminary_negotiations_considered OR established_practice_considered OR usages_considered OR subsequent_conduct_considered",
+        "common_intent_interpretation_controls == disputed_term_present AND NOT literal_interpretation_controls AND common_intent_established AND circumstances_considered",
+        "interpretation_resolved == literal_interpretation_controls OR common_intent_interpretation_controls",
+        "contra_proferentem_available == disputed_term_present AND NOT interpretation_resolved AND term_drafted_by_one_party",
+        "requires_human_interpretation_assessment == disputed_term_present AND NOT interpretation_resolved"
+      ]
+    },
+    "interpretation_evaluation": {
+      "constraint_set_id": "interpretation-constraint-set:reviewed-interpretation-evidence-supply-1-v0",
+      "satisfiable": true,
+      "literal_interpretation_controls": true,
+      "systematic_reading_required": false,
+      "circumstances_considered": false,
+      "common_intent_interpretation_controls": false,
+      "interpretation_resolved": true,
+      "contra_proferentem_available": false,
+      "requires_human_interpretation_assessment": false,
+      "reasons_ru": [
+        "Содержание условия определяется буквальным значением слов и выражений (абзац 1 статьи 431 ГК РФ)."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальную последовательность толкования и не заменяет судебную оценку.",
+        "Действительный смысл условия, воля сторон и оценка доказательств устанавливаются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -12529,7 +12817,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.20.0",
+      "institutional_package_version": "contracts-ru-v0@0.21.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -14526,6 +14814,7 @@
         "source_refs": [
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
+          "synthetic-case-supply-1-interpretation-evidence",
           "synthetic-case-supply-1-invalidity-evidence",
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
@@ -14560,6 +14849,8 @@
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
           "synthetic-ru-gk425-contract-effect-model-v1",
+          "synthetic-ru-gk431-common-intent-model-v1",
+          "synthetic-ru-gk431-interpretation-model-v1",
           "synthetic-ru-gk432-contract-formation-model-v1",
           "synthetic-ru-gk433-conclusion-moment-model-v1",
           "synthetic-ru-gk435-offer-model-v1",
@@ -15579,6 +15870,7 @@
         "source_refs": [
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
+          "synthetic-case-supply-1-interpretation-evidence",
           "synthetic-case-supply-1-invalidity-evidence",
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
@@ -15613,6 +15905,8 @@
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
           "synthetic-ru-gk425-contract-effect-model-v1",
+          "synthetic-ru-gk431-common-intent-model-v1",
+          "synthetic-ru-gk431-interpretation-model-v1",
           "synthetic-ru-gk432-contract-formation-model-v1",
           "synthetic-ru-gk433-conclusion-moment-model-v1",
           "synthetic-ru-gk435-offer-model-v1",
@@ -16632,6 +16926,7 @@
         "source_refs": [
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
+          "synthetic-case-supply-1-interpretation-evidence",
           "synthetic-case-supply-1-invalidity-evidence",
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
@@ -16666,6 +16961,8 @@
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
           "synthetic-ru-gk425-contract-effect-model-v1",
+          "synthetic-ru-gk431-common-intent-model-v1",
+          "synthetic-ru-gk431-interpretation-model-v1",
           "synthetic-ru-gk432-contract-formation-model-v1",
           "synthetic-ru-gk433-conclusion-moment-model-v1",
           "synthetic-ru-gk435-offer-model-v1",
@@ -16766,7 +17063,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.20.0",
+      "institutional_package_version": "contracts-ru-v0@0.21.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -16958,6 +17255,44 @@
           "synthetic": true,
           "non_authoritative": true,
           "topic": "limitation_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
+        "id": "synthetic-ru-gk431-interpretation-model-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель толкования договора по статье 431 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "interpretation_article_431_literal",
+          "legal_reference": "ГК РФ, статья 431",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk431-common-intent-model-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель установления общей воли сторон",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "interpretation_article_431_common_intent",
+          "legal_reference": "ГК РФ, статья 431",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-interpretation-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о толковании условия договора",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "interpretation_case_evidence",
           "case_id": "case-supply-1"
         }
       },
@@ -17570,6 +17905,7 @@
             "synthetic-case-evidence-reviewer",
             "synthetic-formation-reviewer",
             "synthetic-general-sale-reviewer",
+            "synthetic-interpretation-reviewer",
             "synthetic-invalidity-reviewer",
             "synthetic-liability-reviewer",
             "synthetic-limitation-reviewer",
