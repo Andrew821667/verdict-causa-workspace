@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.24.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed third-party-beneficiary evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code article 430.",
+            "Right to demand, binding effect after intent, and creditor fallback remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о договоре в пользу третьего лица обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статью 430 ГК РФ.",
+            "Право требования, связанность после намерения и переход права к кредитору разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.23.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -454,6 +454,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.23.0",
+        to_version="0.24.0",
+        reasons=[
+            "Reviewed inputs now require a separate third-party-beneficiary evidence contract.",
+            "Analysis and Russian translation distinguish the third-party-beneficiary paths under article 430.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о договоре в пользу третьего лица.",
+            "Анализ и русское объяснение разделяют маршруты договора в пользу третьего лица по статье 430 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_third_party_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

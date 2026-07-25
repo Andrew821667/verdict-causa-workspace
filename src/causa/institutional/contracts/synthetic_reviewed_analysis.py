@@ -50,6 +50,11 @@ from causa.institutional.contracts.preliminary import (
     PreliminaryEvidencePredicate,
     ReviewedPreliminaryEvidence,
 )
+from causa.institutional.contracts.third_party import (
+    ReviewedThirdPartyEvidence,
+    ThirdPartyEvidenceAssertion,
+    ThirdPartyEvidencePredicate,
+)
 from causa.institutional.contracts.termination import (
     ReviewedTerminationEvidence,
     TerminationEvidenceAssertion,
@@ -116,6 +121,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk429-preliminary-framework-v1",
     "synthetic-ru-gk429-445-preliminary-compulsion-v1",
     "synthetic-case-supply-1-preliminary-evidence",
+    "synthetic-ru-gk430-third-party-framework-v1",
+    "synthetic-ru-gk430-third-party-change-v1",
+    "synthetic-case-supply-1-third-party-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -533,6 +541,41 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-preliminary-reviewer",
+        ),
+        third_party_evidence=ReviewedThirdPartyEvidence(
+            id="reviewed-third-party-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                ThirdPartyEvidenceAssertion(
+                    id=f"third-party-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-third-party-evidence",),
+                )
+                for predicate, value in (
+                    (ThirdPartyEvidencePredicate.THIRD_PARTY_BENEFICIARY_CONTRACT, True),
+                    (ThirdPartyEvidencePredicate.THIRD_PARTY_IDENTIFIED_OR_DETERMINABLE, True),
+                    (ThirdPartyEvidencePredicate.THIRD_PARTY_GRANTED_RIGHT_TO_DEMAND, True),
+                    (ThirdPartyEvidencePredicate.THIRD_PARTY_INTENT_EXPRESSED, False),
+                    (
+                        ThirdPartyEvidencePredicate.STATUTE_OR_CONTRACT_ALLOWS_CHANGE_WITHOUT_CONSENT,
+                        False,
+                    ),
+                    (
+                        ThirdPartyEvidencePredicate.PARTIES_SEEK_MODIFICATION_OR_TERMINATION,
+                        False,
+                    ),
+                    (ThirdPartyEvidencePredicate.THIRD_PARTY_CONSENTS_TO_CHANGE, False),
+                    (ThirdPartyEvidencePredicate.THIRD_PARTY_WAIVED_RIGHT, False),
+                    (ThirdPartyEvidencePredicate.CREDITOR_RECLAIMS_RIGHT, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk430-third-party-framework-v1",
+                "synthetic-ru-gk430-third-party-change-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-third-party-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

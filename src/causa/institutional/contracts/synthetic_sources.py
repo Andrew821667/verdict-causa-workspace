@@ -543,6 +543,60 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk430-third-party-framework-v1",
+        title="Синтетическая проверенная модель договора в пользу третьего лица по статье 430 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: заключение договора в пользу третьего лица, "
+            "определённость третьего лица и предоставленное ему право требовать "
+            "исполнения проверяются раздельно (пункт 1 статьи 430 ГК РФ)."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "third_party_article_430_right",
+            "legal_reference": "ГК РФ, статья 430, пункт 1",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk430-third-party-change-v1",
+        title="Синтетическая проверенная модель связанности сторон и отказа третьего лица",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: после выражения третьим лицом намерения "
+            "воспользоваться правом изменение и расторжение договора требуют его "
+            "согласия; при отказе третьего лица право может перейти к кредитору "
+            "(пункты 2 и 4 статьи 430 ГК РФ)."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "third_party_article_430_change",
+            "legal_reference": "ГК РФ, статья 430, пункты 2 и 4",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-third-party-evidence",
+        title="Синтетическая проверенная запись фактов о договоре в пользу третьего лица",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: договор поставки заключён в пользу определённого "
+            "грузополучателя, которому предоставлено право требовать исполнения; "
+            "намерения воспользоваться правом ещё не выражено."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "third_party_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

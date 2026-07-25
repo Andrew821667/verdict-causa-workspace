@@ -374,6 +374,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk430-third-party-framework-v1",
+      "title": "Синтетическая проверенная модель договора в пользу третьего лица по статье 430 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: заключение договора в пользу третьего лица, определённость третьего лица и предоставленное ему право требовать исполнения проверяются раздельно (пункт 1 статьи 430 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "third_party_article_430_right",
+        "legal_reference": "ГК РФ, статья 430, пункт 1",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk430-third-party-change-v1",
+      "title": "Синтетическая проверенная модель связанности сторон и отказа третьего лица",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: после выражения третьим лицом намерения воспользоваться правом изменение и расторжение договора требуют его согласия; при отказе третьего лица право может перейти к кредитору (пункты 2 и 4 статьи 430 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "third_party_article_430_change",
+        "legal_reference": "ГК РФ, статья 430, пункты 2 и 4",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-third-party-evidence",
+      "title": "Синтетическая проверенная запись фактов о договоре в пользу третьего лица",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: договор поставки заключён в пользу определённого грузополучателя, которому предоставлено право требовать исполнения; намерения воспользоваться правом ещё не выражено.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "third_party_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -1953,6 +2000,91 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-preliminary-reviewer"
+    },
+    "third_party_evidence": {
+      "id": "reviewed-third-party-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.third-party-evidence.v0",
+      "assertions": [
+        {
+          "id": "third-party-evidence-third_party_beneficiary_contract",
+          "predicate": "third_party_beneficiary_contract",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "id": "third-party-evidence-third_party_identified_or_determinable",
+          "predicate": "third_party_identified_or_determinable",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "id": "third-party-evidence-third_party_granted_right_to_demand",
+          "predicate": "third_party_granted_right_to_demand",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "id": "third-party-evidence-third_party_intent_expressed",
+          "predicate": "third_party_intent_expressed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "id": "third-party-evidence-statute_or_contract_allows_change_without_consent",
+          "predicate": "statute_or_contract_allows_change_without_consent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "id": "third-party-evidence-parties_seek_modification_or_termination",
+          "predicate": "parties_seek_modification_or_termination",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "id": "third-party-evidence-third_party_consents_to_change",
+          "predicate": "third_party_consents_to_change",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "id": "third-party-evidence-third_party_waived_right",
+          "predicate": "third_party_waived_right",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "id": "third-party-evidence-creditor_reclaims_right",
+          "predicate": "creditor_reclaims_right",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk430-third-party-framework-v1",
+        "synthetic-ru-gk430-third-party-change-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-third-party-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -6743,7 +6875,8 @@
       "synthetic-special-supply-reviewer",
       "synthetic-temporal-effect-reviewer",
       "synthetic-temporal-reviewer",
-      "synthetic-termination-reviewer"
+      "synthetic-termination-reviewer",
+      "synthetic-third-party-reviewer"
     ],
     "source_ids": [
       "synthetic-case-supply-1-form-evidence",
@@ -6761,6 +6894,7 @@
       "synthetic-case-supply-1-special-supply-evidence",
       "synthetic-case-supply-1-temporal-effect-evidence",
       "synthetic-case-supply-1-termination-evidence",
+      "synthetic-case-supply-1-third-party-evidence",
       "synthetic-ru-contract-supply-delivery-duty-v1",
       "synthetic-ru-contract-supply-delivery-duty-v2",
       "synthetic-ru-contract-supply-delivery-term",
@@ -6789,6 +6923,8 @@
       "synthetic-ru-gk425-contract-effect-model-v1",
       "synthetic-ru-gk429-445-preliminary-compulsion-v1",
       "synthetic-ru-gk429-preliminary-framework-v1",
+      "synthetic-ru-gk430-third-party-change-v1",
+      "synthetic-ru-gk430-third-party-framework-v1",
       "synthetic-ru-gk431-common-intent-model-v1",
       "synthetic-ru-gk431-interpretation-model-v1",
       "synthetic-ru-gk432-contract-formation-model-v1",
@@ -7975,6 +8111,125 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о предварительном договоре и не заменяет судебную оценку.",
         "Определенность предмета основного договора и добросовестность сторон оцениваются экспертом и судом."
+      ]
+    },
+    "third_party_evidence_mapping": {
+      "evidence_id": "reviewed-third-party-evidence-supply-1-v0",
+      "schema_version": "contracts.third-party-evidence.v0",
+      "mapping_version": "contracts-reviewed-third-party-to-facts-v0",
+      "facts": {
+        "third_party_beneficiary_contract": true,
+        "third_party_identified_or_determinable": true,
+        "third_party_granted_right_to_demand": true,
+        "third_party_intent_expressed": false,
+        "statute_or_contract_allows_change_without_consent": false,
+        "parties_seek_modification_or_termination": false,
+        "third_party_consents_to_change": false,
+        "third_party_waived_right": false,
+        "creditor_reclaims_right": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk430-third-party-framework-v1",
+        "synthetic-ru-gk430-third-party-change-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "creditor_reclaims_right",
+          "assertion_id": "third-party-evidence-creditor_reclaims_right",
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "fact_name": "parties_seek_modification_or_termination",
+          "assertion_id": "third-party-evidence-parties_seek_modification_or_termination",
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "fact_name": "statute_or_contract_allows_change_without_consent",
+          "assertion_id": "third-party-evidence-statute_or_contract_allows_change_without_consent",
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_beneficiary_contract",
+          "assertion_id": "third-party-evidence-third_party_beneficiary_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_consents_to_change",
+          "assertion_id": "third-party-evidence-third_party_consents_to_change",
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_granted_right_to_demand",
+          "assertion_id": "third-party-evidence-third_party_granted_right_to_demand",
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_identified_or_determinable",
+          "assertion_id": "third-party-evidence-third_party_identified_or_determinable",
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_intent_expressed",
+          "assertion_id": "third-party-evidence-third_party_intent_expressed",
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_waived_right",
+          "assertion_id": "third-party-evidence-third_party_waived_right",
+          "source_refs": [
+            "synthetic-case-supply-1-third-party-evidence"
+          ]
+        }
+      ]
+    },
+    "third_party_constraint_set": {
+      "id": "third-party-constraint-set:reviewed-third-party-evidence-supply-1-v0",
+      "model_version": "contracts-third-party-article-430-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk430-third-party-framework-v1",
+        "synthetic-ru-gk430-third-party-change-v1"
+      ],
+      "expressions": [
+        "beneficiary_contract_valid == third_party_beneficiary_contract AND third_party_identified_or_determinable",
+        "third_party_may_demand_performance == beneficiary_contract_valid AND third_party_granted_right_to_demand AND NOT third_party_waived_right",
+        "change_requires_third_party_consent == beneficiary_contract_valid AND third_party_intent_expressed AND NOT statute_or_contract_allows_change_without_consent",
+        "change_permitted == parties_seek_modification_or_termination AND (NOT change_requires_third_party_consent OR third_party_consents_to_change)",
+        "creditor_may_use_right == beneficiary_contract_valid AND third_party_waived_right AND creditor_reclaims_right",
+        "requires_human_third_party_assessment == (parties_seek_modification_or_termination AND change_requires_third_party_consent AND NOT third_party_consents_to_change) OR creditor_may_use_right"
+      ]
+    },
+    "third_party_evaluation": {
+      "constraint_set_id": "third-party-constraint-set:reviewed-third-party-evidence-supply-1-v0",
+      "satisfiable": true,
+      "beneficiary_contract_valid": true,
+      "third_party_may_demand_performance": true,
+      "change_requires_third_party_consent": false,
+      "change_permitted": false,
+      "creditor_may_use_right": false,
+      "requires_human_third_party_assessment": false,
+      "reasons_ru": [
+        "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+        "Третье лицо вправе требовать от должника исполнения обязательства (пункт 1 статьи 430 ГК РФ)."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о договоре в пользу третьего лица и не заменяет судебную оценку.",
+        "Возражения должника против требования третьего лица и пределы права оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -13348,7 +13603,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.23.0",
+      "institutional_package_version": "contracts-ru-v0@0.24.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

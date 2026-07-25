@@ -1,0 +1,450 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о договоре в пользу третьего лица по статье 430 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-third-party-evidence-supply-1-v0",
+    "schema_version": "contracts.third-party-evidence.v0",
+    "mapping_version": "contracts-reviewed-third-party-to-facts-v0",
+    "facts": {
+      "third_party_beneficiary_contract": true,
+      "third_party_identified_or_determinable": true,
+      "third_party_granted_right_to_demand": true,
+      "third_party_intent_expressed": false,
+      "statute_or_contract_allows_change_without_consent": false,
+      "parties_seek_modification_or_termination": false,
+      "third_party_consents_to_change": false,
+      "third_party_waived_right": false,
+      "creditor_reclaims_right": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk430-third-party-framework-v1",
+      "synthetic-ru-gk430-third-party-change-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "creditor_reclaims_right",
+        "assertion_id": "third-party-evidence-creditor_reclaims_right",
+        "source_refs": [
+          "synthetic-case-supply-1-third-party-evidence"
+        ]
+      },
+      {
+        "fact_name": "parties_seek_modification_or_termination",
+        "assertion_id": "third-party-evidence-parties_seek_modification_or_termination",
+        "source_refs": [
+          "synthetic-case-supply-1-third-party-evidence"
+        ]
+      },
+      {
+        "fact_name": "statute_or_contract_allows_change_without_consent",
+        "assertion_id": "third-party-evidence-statute_or_contract_allows_change_without_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-third-party-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_beneficiary_contract",
+        "assertion_id": "third-party-evidence-third_party_beneficiary_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-third-party-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_consents_to_change",
+        "assertion_id": "third-party-evidence-third_party_consents_to_change",
+        "source_refs": [
+          "synthetic-case-supply-1-third-party-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_granted_right_to_demand",
+        "assertion_id": "third-party-evidence-third_party_granted_right_to_demand",
+        "source_refs": [
+          "synthetic-case-supply-1-third-party-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_identified_or_determinable",
+        "assertion_id": "third-party-evidence-third_party_identified_or_determinable",
+        "source_refs": [
+          "synthetic-case-supply-1-third-party-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_intent_expressed",
+        "assertion_id": "third-party-evidence-third_party_intent_expressed",
+        "source_refs": [
+          "synthetic-case-supply-1-third-party-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_waived_right",
+        "assertion_id": "third-party-evidence-third_party_waived_right",
+        "source_refs": [
+          "synthetic-case-supply-1-third-party-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "third-party-constraint-set:reviewed-third-party-evidence-supply-1-v0",
+    "model_version": "contracts-third-party-article-430-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk430-third-party-framework-v1",
+      "synthetic-ru-gk430-third-party-change-v1"
+    ],
+    "expressions": [
+      "beneficiary_contract_valid == third_party_beneficiary_contract AND third_party_identified_or_determinable",
+      "third_party_may_demand_performance == beneficiary_contract_valid AND third_party_granted_right_to_demand AND NOT third_party_waived_right",
+      "change_requires_third_party_consent == beneficiary_contract_valid AND third_party_intent_expressed AND NOT statute_or_contract_allows_change_without_consent",
+      "change_permitted == parties_seek_modification_or_termination AND (NOT change_requires_third_party_consent OR third_party_consents_to_change)",
+      "creditor_may_use_right == beneficiary_contract_valid AND third_party_waived_right AND creditor_reclaims_right",
+      "requires_human_third_party_assessment == (parties_seek_modification_or_termination AND change_requires_third_party_consent AND NOT third_party_consents_to_change) OR creditor_may_use_right"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "third-party-constraint-set:reviewed-third-party-evidence-supply-1-v0",
+    "satisfiable": true,
+    "beneficiary_contract_valid": true,
+    "third_party_may_demand_performance": true,
+    "change_requires_third_party_consent": false,
+    "change_permitted": false,
+    "creditor_may_use_right": false,
+    "requires_human_third_party_assessment": false,
+    "reasons_ru": [
+      "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+      "Третье лицо вправе требовать от должника исполнения обязательства (пункт 1 статьи 430 ГК РФ)."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о договоре в пользу третьего лица и не заменяет судебную оценку.",
+      "Возражения должника против требования третьего лица и пределы права оцениваются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "third-party-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "third-party-bench-valid-demand",
+        "passed": true,
+        "expected_outcomes": {
+          "beneficiary_contract_valid": true,
+          "third_party_may_demand_performance": true,
+          "requires_human_third_party_assessment": false
+        },
+        "observed_outcomes": {
+          "beneficiary_contract_valid": true,
+          "third_party_may_demand_performance": true,
+          "requires_human_third_party_assessment": false
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+          "Третье лицо вправе требовать от должника исполнения обязательства (пункт 1 статьи 430 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "third-party-bench-not-identified",
+        "passed": true,
+        "expected_outcomes": {
+          "beneficiary_contract_valid": false,
+          "third_party_may_demand_performance": false
+        },
+        "observed_outcomes": {
+          "beneficiary_contract_valid": false,
+          "third_party_may_demand_performance": false
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица не признается действительным."
+        ]
+      },
+      {
+        "task_id": "third-party-bench-no-demand-right",
+        "passed": true,
+        "expected_outcomes": {
+          "beneficiary_contract_valid": true,
+          "third_party_may_demand_performance": false
+        },
+        "observed_outcomes": {
+          "beneficiary_contract_valid": true,
+          "third_party_may_demand_performance": false
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "third-party-bench-change-blocked",
+        "passed": true,
+        "expected_outcomes": {
+          "change_requires_third_party_consent": true,
+          "change_permitted": false,
+          "requires_human_third_party_assessment": true
+        },
+        "observed_outcomes": {
+          "change_requires_third_party_consent": true,
+          "change_permitted": false,
+          "requires_human_third_party_assessment": true
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+          "Третье лицо вправе требовать от должника исполнения обязательства (пункт 1 статьи 430 ГК РФ).",
+          "После выражения третьим лицом намерения воспользоваться правом изменение и расторжение договора без его согласия не допускаются (пункт 2 статьи 430 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "third-party-bench-change-with-consent",
+        "passed": true,
+        "expected_outcomes": {
+          "change_permitted": true,
+          "requires_human_third_party_assessment": false
+        },
+        "observed_outcomes": {
+          "change_permitted": true,
+          "requires_human_third_party_assessment": false
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+          "Третье лицо вправе требовать от должника исполнения обязательства (пункт 1 статьи 430 ГК РФ).",
+          "После выражения третьим лицом намерения воспользоваться правом изменение и расторжение договора без его согласия не допускаются (пункт 2 статьи 430 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "third-party-bench-change-statute-exception",
+        "passed": true,
+        "expected_outcomes": {
+          "change_requires_third_party_consent": false,
+          "change_permitted": true
+        },
+        "observed_outcomes": {
+          "change_requires_third_party_consent": false,
+          "change_permitted": true
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+          "Третье лицо вправе требовать от должника исполнения обязательства (пункт 1 статьи 430 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "third-party-bench-change-before-intent",
+        "passed": true,
+        "expected_outcomes": {
+          "change_requires_third_party_consent": false,
+          "change_permitted": true
+        },
+        "observed_outcomes": {
+          "change_requires_third_party_consent": false,
+          "change_permitted": true
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+          "Третье лицо вправе требовать от должника исполнения обязательства (пункт 1 статьи 430 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "third-party-bench-waiver-reclaim",
+        "passed": true,
+        "expected_outcomes": {
+          "creditor_may_use_right": true,
+          "third_party_may_demand_performance": false,
+          "requires_human_third_party_assessment": true
+        },
+        "observed_outcomes": {
+          "creditor_may_use_right": true,
+          "third_party_may_demand_performance": false,
+          "requires_human_third_party_assessment": true
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+          "При отказе третьего лица от права кредитор может воспользоваться им, если это не противоречит закону, иным правовым актам и договору (пункт 4 статьи 430 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "third-party-bench-waiver-no-reclaim",
+        "passed": true,
+        "expected_outcomes": {
+          "creditor_may_use_right": false,
+          "third_party_may_demand_performance": false
+        },
+        "observed_outcomes": {
+          "creditor_may_use_right": false,
+          "third_party_may_demand_performance": false
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "third-party-bench-intent-no-change",
+        "passed": true,
+        "expected_outcomes": {
+          "change_requires_third_party_consent": true,
+          "change_permitted": false,
+          "requires_human_third_party_assessment": false
+        },
+        "observed_outcomes": {
+          "change_requires_third_party_consent": true,
+          "change_permitted": false,
+          "requires_human_third_party_assessment": false
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+          "Третье лицо вправе требовать от должника исполнения обязательства (пункт 1 статьи 430 ГК РФ).",
+          "После выражения третьим лицом намерения воспользоваться правом изменение и расторжение договора без его согласия не допускаются (пункт 2 статьи 430 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "third-party-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "third-party-red-valid-without-identification",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "beneficiary_contract_valid": true
+        },
+        "observed_outcomes": {
+          "beneficiary_contract_valid": false
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица не признается действительным."
+        ]
+      },
+      {
+        "case_id": "third-party-red-demand-without-right",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "third_party_may_demand_performance": true
+        },
+        "observed_outcomes": {
+          "third_party_may_demand_performance": false
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "third-party-red-demand-after-waiver",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "third_party_may_demand_performance": true
+        },
+        "observed_outcomes": {
+          "third_party_may_demand_performance": false
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "third-party-red-change-without-consent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "change_permitted": true
+        },
+        "observed_outcomes": {
+          "change_permitted": false
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+          "Третье лицо вправе требовать от должника исполнения обязательства (пункт 1 статьи 430 ГК РФ).",
+          "После выражения третьим лицом намерения воспользоваться правом изменение и расторжение договора без его согласия не допускаются (пункт 2 статьи 430 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "third-party-red-ignore-consent-requirement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "change_requires_third_party_consent": false
+        },
+        "observed_outcomes": {
+          "change_requires_third_party_consent": true
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+          "Третье лицо вправе требовать от должника исполнения обязательства (пункт 1 статьи 430 ГК РФ).",
+          "После выражения третьим лицом намерения воспользоваться правом изменение и расторжение договора без его согласия не допускаются (пункт 2 статьи 430 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "third-party-red-skip-human-on-blocked-change",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_third_party_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_third_party_assessment": true
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+          "Третье лицо вправе требовать от должника исполнения обязательства (пункт 1 статьи 430 ГК РФ).",
+          "После выражения третьим лицом намерения воспользоваться правом изменение и расторжение договора без его согласия не допускаются (пункт 2 статьи 430 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "third-party-red-creditor-on-invalid-contract",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "creditor_may_use_right": true
+        },
+        "observed_outcomes": {
+          "creditor_may_use_right": false
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица не признается действительным."
+        ]
+      },
+      {
+        "case_id": "third-party-red-skip-human-on-creditor-claim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_third_party_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_third_party_assessment": true
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+          "При отказе третьего лица от права кредитор может воспользоваться им, если это не противоречит закону, иным правовым актам и договору (пункт 4 статьи 430 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "third-party-red-block-change-with-consent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "change_permitted": false
+        },
+        "observed_outcomes": {
+          "change_permitted": true
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+          "Третье лицо вправе требовать от должника исполнения обязательства (пункт 1 статьи 430 ГК РФ).",
+          "После выражения третьим лицом намерения воспользоваться правом изменение и расторжение договора без его согласия не допускаются (пункт 2 статьи 430 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "third-party-red-block-change-before-intent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "change_requires_third_party_consent": true
+        },
+        "observed_outcomes": {
+          "change_requires_third_party_consent": false
+        },
+        "reasons_ru": [
+          "Договор в пользу третьего лица действителен (статья 430 ГК РФ).",
+          "Третье лицо вправе требовать от должника исполнения обязательства (пункт 1 статьи 430 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

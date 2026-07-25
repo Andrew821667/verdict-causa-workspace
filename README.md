@@ -60,6 +60,8 @@ The first institutional package focuses on contractual relations: formation, cha
 
 Релиз `contracts-ru-v0@0.23.0` добавляет формальную модель предварительного договора по статье 429 и пункту 4 статьи 445 ГК РФ: заключение и форму, определённость предмета основного договора, срок его заключения, уклонение стороны, понуждение к заключению и возмещение убытков, а также прекращение обязательств. Правила описаны в русской [спецификации предварительного договора](docs/contract-preliminary-spec.md).
 
+Релиз `contracts-ru-v0@0.24.0` добавляет формальную модель договора в пользу третьего лица по статье 430 ГК РФ: право третьего лица требовать исполнения, связанность сторон после выражения намерения (необходимость согласия третьего лица на изменение и расторжение) и переход права к кредитору при отказе третьего лица. Правила описаны в русской [спецификации договора в пользу третьего лица](docs/contract-third-party-spec.md).
+
 This is the first proving ground for the infrastructure, not the full scope of the project.
 
 ## Architecture
@@ -243,6 +245,14 @@ python scripts/export_synthetic_preliminary_evaluation.py
 
 Результат записывается в `examples/synthetic_preliminary_evaluation_report.json`. Отчёт проверяет заключение и форму, определённость предмета основного договора, срок его заключения, понуждение к заключению и прекращение обязательств по статье 429 и пункту 4 статьи 445 ГК РФ и не подменяет судебную оценку.
 
+Сформировать отчёт о договоре в пользу третьего лица:
+
+```bash
+python scripts/export_synthetic_third_party_evaluation.py
+```
+
+Результат записывается в `examples/synthetic_third_party_evaluation_report.json`. Отчёт проверяет право третьего лица требовать исполнения, связанность сторон после выражения намерения и переход права к кредитору по статье 430 ГК РФ и не подменяет судебную оценку.
+
 Generate the reviewed contract change-and-termination report:
 
 ```bash
@@ -353,7 +363,7 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-Команда формирует отчёты о необходимости replay для прежних релизов и пересобирает их относительно `0.23.0`. Отчёты сохраняются как `examples/migrations/contracts-ru-v0-<source>-to-0.23.0-migration-report.json` для `0.1.0`, `0.3.0` и каждого релиза с `0.4.0` по `0.22.0`. Прежние отчёты `*-to-0.17.0` … `*-to-0.22.0` сохраняются как исторические артефакты.
+Команда формирует отчёты о необходимости replay для прежних релизов и пересобирает их относительно `0.24.0`. Отчёты сохраняются как `examples/migrations/contracts-ru-v0-<source>-to-0.24.0-migration-report.json` для `0.1.0`, `0.3.0` и каждого релиза с `0.4.0` по `0.23.0`. Прежние отчёты `*-to-0.17.0` … `*-to-0.23.0` сохраняются как исторические артефакты.
 
 ## License
 
