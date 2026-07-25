@@ -40,6 +40,9 @@ from causa.institutional.contracts.synthetic_adhesion import (
 from causa.institutional.contracts.synthetic_public_contract import (
     build_synthetic_public_contract_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_representations import (
+    build_synthetic_representations_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_third_party import (
     build_synthetic_third_party_evaluation_artifact,
 )
@@ -326,6 +329,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-representations",
+            title="Проверка заверений об обстоятельствах",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.representations_evidence_mapping.evidence_id,
+                trace.analysis_result.representations_constraint_set.id,
+                *trace.analysis_result.representations_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.representations_evaluation.reasons_ru,
+                "Недостоверность и значение заверения, основание ответственности, право на отказ от договора и оспаривание при обмане проверяются раздельно по статье 431.2 ГК РФ.",
+                "Существенность заверения и обоснованность доверия оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -589,6 +607,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     third_party_artifact = build_synthetic_third_party_evaluation_artifact()
     public_contract_artifact = build_synthetic_public_contract_evaluation_artifact()
     adhesion_artifact = build_synthetic_adhesion_evaluation_artifact()
+    representations_artifact = build_synthetic_representations_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -662,6 +681,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-public-spec.md",
                 "src/causa/institutional/contracts/adhesion.py",
                 "docs/contract-adhesion-spec.md",
+                "src/causa/institutional/contracts/representations.py",
+                "docs/contract-representations-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -689,6 +710,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_third_party_evaluation_report.json",
                 "examples/synthetic_public_contract_evaluation_report.json",
                 "examples/synthetic_adhesion_evaluation_report.json",
+                "examples/synthetic_representations_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -697,12 +719,12 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 *(
-                    f"examples/migrations/contracts-ru-v0-{version}-to-0.26.0-migration-report.json"
+                    f"examples/migrations/contracts-ru-v0-{version}-to-0.27.0-migration-report.json"
                     for version in (
                         "0.1.0",
                         "0.3.0",
                         "0.4.0",
-                        *(f"0.{minor}.0" for minor in range(5, 26)),
+                        *(f"0.{minor}.0" for minor in range(5, 27)),
                     )
                 ),
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
@@ -790,6 +812,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 public_contract_artifact.red_team_report.id,
                 adhesion_artifact.benchmark_report.id,
                 adhesion_artifact.red_team_report.id,
+                representations_artifact.benchmark_report.id,
+                representations_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -829,6 +853,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_third_party_evaluation_report.json",
                 "examples/synthetic_public_contract_evaluation_report.json",
                 "examples/synthetic_adhesion_evaluation_report.json",
+                "examples/synthetic_representations_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

@@ -1,0 +1,433 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о заверениях об обстоятельствах по статье 431.2 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-representations-evidence-supply-1-v0",
+    "schema_version": "contracts.representations-evidence.v0",
+    "mapping_version": "contracts-reviewed-representations-to-facts-v0",
+    "facts": {
+      "representation_given": true,
+      "representation_material": true,
+      "representation_false": false,
+      "reliance_by_other_party": true,
+      "given_in_business_or_corporate_context": true,
+      "representor_knew_or_should_have_known": false,
+      "damages_or_penalty_claimed": false,
+      "representation_significant": false,
+      "deception_by_false_representation": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk431-2-representations-framework-v1",
+      "synthetic-ru-gk431-2-representations-remedies-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "damages_or_penalty_claimed",
+        "assertion_id": "representations-evidence-damages_or_penalty_claimed",
+        "source_refs": [
+          "synthetic-case-supply-1-representations-evidence"
+        ]
+      },
+      {
+        "fact_name": "deception_by_false_representation",
+        "assertion_id": "representations-evidence-deception_by_false_representation",
+        "source_refs": [
+          "synthetic-case-supply-1-representations-evidence"
+        ]
+      },
+      {
+        "fact_name": "given_in_business_or_corporate_context",
+        "assertion_id": "representations-evidence-given_in_business_or_corporate_context",
+        "source_refs": [
+          "synthetic-case-supply-1-representations-evidence"
+        ]
+      },
+      {
+        "fact_name": "reliance_by_other_party",
+        "assertion_id": "representations-evidence-reliance_by_other_party",
+        "source_refs": [
+          "synthetic-case-supply-1-representations-evidence"
+        ]
+      },
+      {
+        "fact_name": "representation_false",
+        "assertion_id": "representations-evidence-representation_false",
+        "source_refs": [
+          "synthetic-case-supply-1-representations-evidence"
+        ]
+      },
+      {
+        "fact_name": "representation_given",
+        "assertion_id": "representations-evidence-representation_given",
+        "source_refs": [
+          "synthetic-case-supply-1-representations-evidence"
+        ]
+      },
+      {
+        "fact_name": "representation_material",
+        "assertion_id": "representations-evidence-representation_material",
+        "source_refs": [
+          "synthetic-case-supply-1-representations-evidence"
+        ]
+      },
+      {
+        "fact_name": "representation_significant",
+        "assertion_id": "representations-evidence-representation_significant",
+        "source_refs": [
+          "synthetic-case-supply-1-representations-evidence"
+        ]
+      },
+      {
+        "fact_name": "representor_knew_or_should_have_known",
+        "assertion_id": "representations-evidence-representor_knew_or_should_have_known",
+        "source_refs": [
+          "synthetic-case-supply-1-representations-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "representations-constraint-set:reviewed-representations-evidence-supply-1-v0",
+    "model_version": "contracts-representations-article-431-2-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk431-2-representations-framework-v1",
+      "synthetic-ru-gk431-2-representations-remedies-v1"
+    ],
+    "expressions": [
+      "material_false_representation == representation_given AND representation_material AND representation_false",
+      "liability_basis_present == material_false_representation AND reliance_by_other_party AND (given_in_business_or_corporate_context OR representor_knew_or_should_have_known)",
+      "damages_or_penalty_available == liability_basis_present AND damages_or_penalty_claimed",
+      "right_to_rescind == liability_basis_present AND representation_significant",
+      "avoidance_for_deception_available == material_false_representation AND reliance_by_other_party AND deception_by_false_representation",
+      "requires_human_representations_assessment == liability_basis_present OR avoidance_for_deception_available"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "representations-constraint-set:reviewed-representations-evidence-supply-1-v0",
+    "satisfiable": true,
+    "material_false_representation": false,
+    "liability_basis_present": false,
+    "damages_or_penalty_available": false,
+    "right_to_rescind": false,
+    "avoidance_for_deception_available": false,
+    "requires_human_representations_assessment": false,
+    "reasons_ru": [
+      "Недостоверное заверение, имеющее значение для договора, не установлено."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о заверениях об обстоятельствах и не заменяет судебную оценку.",
+      "Существенность заверения, добросовестность сторон и обоснованность доверия оцениваются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "representations-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "representations-bench-business-liability",
+        "passed": true,
+        "expected_outcomes": {
+          "material_false_representation": true,
+          "liability_basis_present": true,
+          "damages_or_penalty_available": true,
+          "requires_human_representations_assessment": true
+        },
+        "observed_outcomes": {
+          "material_false_representation": true,
+          "liability_basis_present": true,
+          "damages_or_penalty_available": true,
+          "requires_human_representations_assessment": true
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ).",
+          "Сторона, полагавшаяся на заверение, вправе требовать возмещения убытков или неустойки независимо от признания договора незаключённым или недействительным (пункт 1 статьи 431.2 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representations-bench-true-representation",
+        "passed": true,
+        "expected_outcomes": {
+          "material_false_representation": false,
+          "liability_basis_present": false
+        },
+        "observed_outcomes": {
+          "material_false_representation": false,
+          "liability_basis_present": false
+        },
+        "reasons_ru": [
+          "Недостоверное заверение, имеющее значение для договора, не установлено."
+        ]
+      },
+      {
+        "task_id": "representations-bench-no-reliance",
+        "passed": true,
+        "expected_outcomes": {
+          "material_false_representation": true,
+          "liability_basis_present": false
+        },
+        "observed_outcomes": {
+          "material_false_representation": true,
+          "liability_basis_present": false
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representations-bench-nonbusiness-unaware",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_basis_present": false,
+          "damages_or_penalty_available": false
+        },
+        "observed_outcomes": {
+          "liability_basis_present": false,
+          "damages_or_penalty_available": false
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representations-bench-nonbusiness-aware",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_basis_present": true,
+          "damages_or_penalty_available": true
+        },
+        "observed_outcomes": {
+          "liability_basis_present": true,
+          "damages_or_penalty_available": true
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ).",
+          "Сторона, полагавшаяся на заверение, вправе требовать возмещения убытков или неустойки независимо от признания договора незаключённым или недействительным (пункт 1 статьи 431.2 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representations-bench-rescission",
+        "passed": true,
+        "expected_outcomes": {
+          "right_to_rescind": true,
+          "requires_human_representations_assessment": true
+        },
+        "observed_outcomes": {
+          "right_to_rescind": true,
+          "requires_human_representations_assessment": true
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ).",
+          "При существенном значении недостоверного заверения сторона вправе отказаться от договора (пункт 2 статьи 431.2 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representations-bench-deception",
+        "passed": true,
+        "expected_outcomes": {
+          "avoidance_for_deception_available": true,
+          "requires_human_representations_assessment": true
+        },
+        "observed_outcomes": {
+          "avoidance_for_deception_available": true,
+          "requires_human_representations_assessment": true
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ).",
+          "Недостоверное заверение может служить основанием для оспаривания договора как совершённого под влиянием обмана (пункт 3 статьи 431.2, статья 179 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representations-bench-liability-no-claim",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_basis_present": true,
+          "damages_or_penalty_available": false
+        },
+        "observed_outcomes": {
+          "liability_basis_present": true,
+          "damages_or_penalty_available": false
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representations-bench-immaterial",
+        "passed": true,
+        "expected_outcomes": {
+          "material_false_representation": false,
+          "liability_basis_present": false
+        },
+        "observed_outcomes": {
+          "material_false_representation": false,
+          "liability_basis_present": false
+        },
+        "reasons_ru": [
+          "Недостоверное заверение, имеющее значение для договора, не установлено."
+        ]
+      },
+      {
+        "task_id": "representations-bench-no-representation",
+        "passed": true,
+        "expected_outcomes": {
+          "material_false_representation": false,
+          "liability_basis_present": false,
+          "requires_human_representations_assessment": false
+        },
+        "observed_outcomes": {
+          "material_false_representation": false,
+          "liability_basis_present": false,
+          "requires_human_representations_assessment": false
+        },
+        "reasons_ru": [
+          "Недостоверное заверение, имеющее значение для договора, не установлено."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "representations-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "representations-red-liability-true",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_basis_present": true
+        },
+        "observed_outcomes": {
+          "liability_basis_present": false
+        },
+        "reasons_ru": [
+          "Недостоверное заверение, имеющее значение для договора, не установлено."
+        ]
+      },
+      {
+        "case_id": "representations-red-liability-no-reliance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_basis_present": true
+        },
+        "observed_outcomes": {
+          "liability_basis_present": false
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representations-red-liability-nonbusiness-unaware",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_basis_present": true
+        },
+        "observed_outcomes": {
+          "liability_basis_present": false
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representations-red-damages-no-claim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "damages_or_penalty_available": true
+        },
+        "observed_outcomes": {
+          "damages_or_penalty_available": false
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representations-red-rescind-without-significance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "right_to_rescind": true
+        },
+        "observed_outcomes": {
+          "right_to_rescind": false
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representations-red-avoidance-without-deception",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "avoidance_for_deception_available": true
+        },
+        "observed_outcomes": {
+          "avoidance_for_deception_available": false
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representations-red-material-without-falsity",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "material_false_representation": true
+        },
+        "observed_outcomes": {
+          "material_false_representation": false
+        },
+        "reasons_ru": [
+          "Недостоверное заверение, имеющее значение для договора, не установлено."
+        ]
+      },
+      {
+        "case_id": "representations-red-material-immaterial",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "material_false_representation": true
+        },
+        "observed_outcomes": {
+          "material_false_representation": false
+        },
+        "reasons_ru": [
+          "Недостоверное заверение, имеющее значение для договора, не установлено."
+        ]
+      },
+      {
+        "case_id": "representations-red-skip-human-on-liability",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_representations_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_representations_assessment": true
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ).",
+          "Сторона, полагавшаяся на заверение, вправе требовать возмещения убытков или неустойки независимо от признания договора незаключённым или недействительным (пункт 1 статьи 431.2 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representations-red-skip-human-on-deception",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_representations_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_representations_assessment": true
+        },
+        "reasons_ru": [
+          "Дано недостоверное заверение, имеющее значение для договора (пункт 1 статьи 431.2 ГК РФ).",
+          "Недостоверное заверение может служить основанием для оспаривания договора как совершённого под влиянием обмана (пункт 3 статьи 431.2, статья 179 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

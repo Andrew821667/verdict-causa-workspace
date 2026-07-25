@@ -515,6 +515,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk431-2-representations-framework-v1",
+      "title": "Синтетическая проверенная модель заверений об обстоятельствах по статье 431.2 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: недостоверное заверение, имеющее значение для договора, доверие полагавшейся стороны и основание ответственности проверяются раздельно (пункт 1 статьи 431.2 ГК РФ).",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "representations_article_431_2_liability",
+        "legal_reference": "ГК РФ, статья 431.2, пункт 1",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk431-2-representations-remedies-v1",
+      "title": "Синтетическая проверенная модель последствий недостоверного заверения",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: возмещение убытков или неустойки независимо от действительности договора, отказ от договора при существенном значении заверения и оспаривание при обмане проверяются раздельно (пункты 2 и 3 статьи 431.2 ГК РФ).",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "representations_article_431_2_remedies",
+        "legal_reference": "ГК РФ, статья 431.2, пункты 2 и 3",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-representations-evidence",
+      "title": "Синтетическая проверенная запись фактов о заверениях об обстоятельствах",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: поставщик дал заверения о качестве и правовом положении товара, имеющие значение для покупателя; недостоверности заверений не установлено.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "representations_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -2349,6 +2396,91 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-adhesion-reviewer"
+    },
+    "representations_evidence": {
+      "id": "reviewed-representations-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.representations-evidence.v0",
+      "assertions": [
+        {
+          "id": "representations-evidence-representation_given",
+          "predicate": "representation_given",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "id": "representations-evidence-representation_material",
+          "predicate": "representation_material",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "id": "representations-evidence-representation_false",
+          "predicate": "representation_false",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "id": "representations-evidence-reliance_by_other_party",
+          "predicate": "reliance_by_other_party",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "id": "representations-evidence-given_in_business_or_corporate_context",
+          "predicate": "given_in_business_or_corporate_context",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "id": "representations-evidence-representor_knew_or_should_have_known",
+          "predicate": "representor_knew_or_should_have_known",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "id": "representations-evidence-damages_or_penalty_claimed",
+          "predicate": "damages_or_penalty_claimed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "id": "representations-evidence-representation_significant",
+          "predicate": "representation_significant",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "id": "representations-evidence-deception_by_false_representation",
+          "predicate": "deception_by_false_representation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk431-2-representations-framework-v1",
+        "synthetic-ru-gk431-2-representations-remedies-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-representations-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -7137,6 +7269,7 @@
       "synthetic-performance-remedies-reviewer",
       "synthetic-preliminary-reviewer",
       "synthetic-public-contract-reviewer",
+      "synthetic-representations-reviewer",
       "synthetic-security-reviewer",
       "synthetic-special-supply-reviewer",
       "synthetic-temporal-effect-reviewer",
@@ -7157,6 +7290,7 @@
       "synthetic-case-supply-1-performance-remedies-evidence",
       "synthetic-case-supply-1-preliminary-evidence",
       "synthetic-case-supply-1-public-contract-evidence",
+      "synthetic-case-supply-1-representations-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
       "synthetic-case-supply-1-security-evidence",
       "synthetic-case-supply-1-special-supply-evidence",
@@ -7197,6 +7331,8 @@
       "synthetic-ru-gk429-preliminary-framework-v1",
       "synthetic-ru-gk430-third-party-change-v1",
       "synthetic-ru-gk430-third-party-framework-v1",
+      "synthetic-ru-gk431-2-representations-framework-v1",
+      "synthetic-ru-gk431-2-representations-remedies-v1",
       "synthetic-ru-gk431-common-intent-model-v1",
       "synthetic-ru-gk431-interpretation-model-v1",
       "synthetic-ru-gk432-contract-formation-model-v1",
@@ -8738,6 +8874,124 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о договоре присоединения и не заменяет судебную оценку.",
         "Обременительность условий и неравенство переговорных возможностей оцениваются экспертом и судом."
+      ]
+    },
+    "representations_evidence_mapping": {
+      "evidence_id": "reviewed-representations-evidence-supply-1-v0",
+      "schema_version": "contracts.representations-evidence.v0",
+      "mapping_version": "contracts-reviewed-representations-to-facts-v0",
+      "facts": {
+        "representation_given": true,
+        "representation_material": true,
+        "representation_false": false,
+        "reliance_by_other_party": true,
+        "given_in_business_or_corporate_context": true,
+        "representor_knew_or_should_have_known": false,
+        "damages_or_penalty_claimed": false,
+        "representation_significant": false,
+        "deception_by_false_representation": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk431-2-representations-framework-v1",
+        "synthetic-ru-gk431-2-representations-remedies-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "damages_or_penalty_claimed",
+          "assertion_id": "representations-evidence-damages_or_penalty_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "fact_name": "deception_by_false_representation",
+          "assertion_id": "representations-evidence-deception_by_false_representation",
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "fact_name": "given_in_business_or_corporate_context",
+          "assertion_id": "representations-evidence-given_in_business_or_corporate_context",
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "fact_name": "reliance_by_other_party",
+          "assertion_id": "representations-evidence-reliance_by_other_party",
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "fact_name": "representation_false",
+          "assertion_id": "representations-evidence-representation_false",
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "fact_name": "representation_given",
+          "assertion_id": "representations-evidence-representation_given",
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "fact_name": "representation_material",
+          "assertion_id": "representations-evidence-representation_material",
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "fact_name": "representation_significant",
+          "assertion_id": "representations-evidence-representation_significant",
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        },
+        {
+          "fact_name": "representor_knew_or_should_have_known",
+          "assertion_id": "representations-evidence-representor_knew_or_should_have_known",
+          "source_refs": [
+            "synthetic-case-supply-1-representations-evidence"
+          ]
+        }
+      ]
+    },
+    "representations_constraint_set": {
+      "id": "representations-constraint-set:reviewed-representations-evidence-supply-1-v0",
+      "model_version": "contracts-representations-article-431-2-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk431-2-representations-framework-v1",
+        "synthetic-ru-gk431-2-representations-remedies-v1"
+      ],
+      "expressions": [
+        "material_false_representation == representation_given AND representation_material AND representation_false",
+        "liability_basis_present == material_false_representation AND reliance_by_other_party AND (given_in_business_or_corporate_context OR representor_knew_or_should_have_known)",
+        "damages_or_penalty_available == liability_basis_present AND damages_or_penalty_claimed",
+        "right_to_rescind == liability_basis_present AND representation_significant",
+        "avoidance_for_deception_available == material_false_representation AND reliance_by_other_party AND deception_by_false_representation",
+        "requires_human_representations_assessment == liability_basis_present OR avoidance_for_deception_available"
+      ]
+    },
+    "representations_evaluation": {
+      "constraint_set_id": "representations-constraint-set:reviewed-representations-evidence-supply-1-v0",
+      "satisfiable": true,
+      "material_false_representation": false,
+      "liability_basis_present": false,
+      "damages_or_penalty_available": false,
+      "right_to_rescind": false,
+      "avoidance_for_deception_available": false,
+      "requires_human_representations_assessment": false,
+      "reasons_ru": [
+        "Недостоверное заверение, имеющее значение для договора, не установлено."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о заверениях об обстоятельствах и не заменяет судебную оценку.",
+        "Существенность заверения, добросовестность сторон и обоснованность доверия оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -14111,7 +14365,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.26.0",
+      "institutional_package_version": "contracts-ru-v0@0.27.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -16118,6 +16372,7 @@
           "synthetic-case-supply-1-performance-remedies-evidence",
           "synthetic-case-supply-1-preliminary-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
+          "synthetic-case-supply-1-representations-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-case-supply-1-security-evidence",
           "synthetic-case-supply-1-special-supply-evidence",
@@ -16158,6 +16413,8 @@
           "synthetic-ru-gk429-preliminary-framework-v1",
           "synthetic-ru-gk430-third-party-change-v1",
           "synthetic-ru-gk430-third-party-framework-v1",
+          "synthetic-ru-gk431-2-representations-framework-v1",
+          "synthetic-ru-gk431-2-representations-remedies-v1",
           "synthetic-ru-gk431-common-intent-model-v1",
           "synthetic-ru-gk431-interpretation-model-v1",
           "synthetic-ru-gk432-contract-formation-model-v1",
@@ -17189,6 +17446,7 @@
           "synthetic-case-supply-1-performance-remedies-evidence",
           "synthetic-case-supply-1-preliminary-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
+          "synthetic-case-supply-1-representations-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-case-supply-1-security-evidence",
           "synthetic-case-supply-1-special-supply-evidence",
@@ -17229,6 +17487,8 @@
           "synthetic-ru-gk429-preliminary-framework-v1",
           "synthetic-ru-gk430-third-party-change-v1",
           "synthetic-ru-gk430-third-party-framework-v1",
+          "synthetic-ru-gk431-2-representations-framework-v1",
+          "synthetic-ru-gk431-2-representations-remedies-v1",
           "synthetic-ru-gk431-common-intent-model-v1",
           "synthetic-ru-gk431-interpretation-model-v1",
           "synthetic-ru-gk432-contract-formation-model-v1",
@@ -18260,6 +18520,7 @@
           "synthetic-case-supply-1-performance-remedies-evidence",
           "synthetic-case-supply-1-preliminary-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
+          "synthetic-case-supply-1-representations-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-case-supply-1-security-evidence",
           "synthetic-case-supply-1-special-supply-evidence",
@@ -18300,6 +18561,8 @@
           "synthetic-ru-gk429-preliminary-framework-v1",
           "synthetic-ru-gk430-third-party-change-v1",
           "synthetic-ru-gk430-third-party-framework-v1",
+          "synthetic-ru-gk431-2-representations-framework-v1",
+          "synthetic-ru-gk431-2-representations-remedies-v1",
           "synthetic-ru-gk431-common-intent-model-v1",
           "synthetic-ru-gk431-interpretation-model-v1",
           "synthetic-ru-gk432-contract-formation-model-v1",
@@ -18402,7 +18665,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.26.0",
+      "institutional_package_version": "contracts-ru-v0@0.27.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -18822,6 +19085,44 @@
           "synthetic": true,
           "non_authoritative": true,
           "topic": "adhesion_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
+        "id": "synthetic-ru-gk431-2-representations-framework-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель заверений об обстоятельствах по статье 431.2 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "representations_article_431_2_liability",
+          "legal_reference": "ГК РФ, статья 431.2, пункт 1",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk431-2-representations-remedies-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель последствий недостоверного заверения",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "representations_article_431_2_remedies",
+          "legal_reference": "ГК РФ, статья 431.2, пункты 2 и 3",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-representations-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о заверениях об обстоятельствах",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "representations_case_evidence",
           "case_id": "case-supply-1"
         }
       },
@@ -19445,6 +19746,7 @@
             "synthetic-performance-remedies-reviewer",
             "synthetic-preliminary-reviewer",
             "synthetic-public-contract-reviewer",
+            "synthetic-representations-reviewer",
             "synthetic-security-reviewer",
             "synthetic-special-supply-reviewer",
             "synthetic-temporal-effect-reviewer",

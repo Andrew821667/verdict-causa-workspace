@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.27.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed representations evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code article 431.2.",
+            "Liability, rescission, and avoidance-for-deception paths remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о заверениях об обстоятельствах обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статью 431.2 ГК РФ.",
+            "Ответственность, отказ от договора и оспаривание при обмане разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.26.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

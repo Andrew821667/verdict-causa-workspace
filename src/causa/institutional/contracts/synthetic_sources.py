@@ -707,6 +707,60 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk431-2-representations-framework-v1",
+        title="Синтетическая проверенная модель заверений об обстоятельствах по статье 431.2 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: недостоверное заверение, имеющее значение "
+            "для договора, доверие полагавшейся стороны и основание ответственности "
+            "проверяются раздельно (пункт 1 статьи 431.2 ГК РФ)."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "representations_article_431_2_liability",
+            "legal_reference": "ГК РФ, статья 431.2, пункт 1",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk431-2-representations-remedies-v1",
+        title="Синтетическая проверенная модель последствий недостоверного заверения",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: возмещение убытков или неустойки независимо "
+            "от действительности договора, отказ от договора при существенном значении "
+            "заверения и оспаривание при обмане проверяются раздельно "
+            "(пункты 2 и 3 статьи 431.2 ГК РФ)."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "representations_article_431_2_remedies",
+            "legal_reference": "ГК РФ, статья 431.2, пункты 2 и 3",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-representations-evidence",
+        title="Синтетическая проверенная запись фактов о заверениях об обстоятельствах",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: поставщик дал заверения о качестве и правовом "
+            "положении товара, имеющие значение для покупателя; недостоверности "
+            "заверений не установлено."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "representations_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

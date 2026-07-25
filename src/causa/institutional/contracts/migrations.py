@@ -511,6 +511,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.26.0",
+        to_version="0.27.0",
+        reasons=[
+            "Reviewed inputs now require a separate representations evidence contract.",
+            "Analysis and Russian translation distinguish the representations paths under article 431.2.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о заверениях об обстоятельствах.",
+            "Анализ и русское объяснение разделяют маршруты заверений об обстоятельствах по статье 431.2 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_representations_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

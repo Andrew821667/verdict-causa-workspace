@@ -55,6 +55,11 @@ from causa.institutional.contracts.adhesion import (
     AdhesionEvidencePredicate,
     ReviewedAdhesionEvidence,
 )
+from causa.institutional.contracts.representations import (
+    RepresentationsEvidenceAssertion,
+    RepresentationsEvidencePredicate,
+    ReviewedRepresentationsEvidence,
+)
 from causa.institutional.contracts.public_contract import (
     PublicContractEvidenceAssertion,
     PublicContractEvidencePredicate,
@@ -140,6 +145,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk428-adhesion-framework-v1",
     "synthetic-ru-gk428-adhesion-relief-v1",
     "synthetic-case-supply-1-adhesion-evidence",
+    "synthetic-ru-gk431-2-representations-framework-v1",
+    "synthetic-ru-gk431-2-representations-remedies-v1",
+    "synthetic-case-supply-1-representations-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -656,6 +664,44 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-adhesion-reviewer",
+        ),
+        representations_evidence=ReviewedRepresentationsEvidence(
+            id="reviewed-representations-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                RepresentationsEvidenceAssertion(
+                    id=f"representations-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-representations-evidence",),
+                )
+                for predicate, value in (
+                    (RepresentationsEvidencePredicate.REPRESENTATION_GIVEN, True),
+                    (RepresentationsEvidencePredicate.REPRESENTATION_MATERIAL, True),
+                    (RepresentationsEvidencePredicate.REPRESENTATION_FALSE, False),
+                    (RepresentationsEvidencePredicate.RELIANCE_BY_OTHER_PARTY, True),
+                    (
+                        RepresentationsEvidencePredicate.GIVEN_IN_BUSINESS_OR_CORPORATE_CONTEXT,
+                        True,
+                    ),
+                    (
+                        RepresentationsEvidencePredicate.REPRESENTOR_KNEW_OR_SHOULD_HAVE_KNOWN,
+                        False,
+                    ),
+                    (RepresentationsEvidencePredicate.DAMAGES_OR_PENALTY_CLAIMED, False),
+                    (RepresentationsEvidencePredicate.REPRESENTATION_SIGNIFICANT, False),
+                    (
+                        RepresentationsEvidencePredicate.DECEPTION_BY_FALSE_REPRESENTATION,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk431-2-representations-framework-v1",
+                "synthetic-ru-gk431-2-representations-remedies-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-representations-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
