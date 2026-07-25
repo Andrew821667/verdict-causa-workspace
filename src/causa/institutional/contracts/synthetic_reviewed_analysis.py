@@ -65,6 +65,11 @@ from causa.institutional.contracts.precontractual import (
     PrecontractualEvidencePredicate,
     ReviewedPrecontractualEvidence,
 )
+from causa.institutional.contracts.framework import (
+    FrameworkEvidenceAssertion,
+    FrameworkEvidencePredicate,
+    ReviewedFrameworkEvidence,
+)
 from causa.institutional.contracts.option import (
     OptionEvidenceAssertion,
     OptionEvidencePredicate,
@@ -164,6 +169,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk429-2-option-framework-v1",
     "synthetic-ru-gk429-3-option-contract-v1",
     "synthetic-case-supply-1-option-evidence",
+    "synthetic-ru-gk429-1-framework-agreement-v1",
+    "synthetic-ru-gk429-4-subscription-agreement-v1",
+    "synthetic-case-supply-1-framework-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -785,6 +793,34 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-option-reviewer",
+        ),
+        framework_evidence=ReviewedFrameworkEvidence(
+            id="reviewed-framework-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                FrameworkEvidenceAssertion(
+                    id=f"framework-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-framework-evidence",),
+                )
+                for predicate, value in (
+                    (FrameworkEvidencePredicate.FRAMEWORK_AGREEMENT_CONCLUDED, True),
+                    (FrameworkEvidencePredicate.FRAMEWORK_GENERAL_CONDITIONS_DEFINED, True),
+                    (FrameworkEvidencePredicate.SPECIFYING_AGREEMENT_CONCLUDED, True),
+                    (FrameworkEvidencePredicate.SPECIFYING_AGREEMENT_OVERRIDES, False),
+                    (FrameworkEvidencePredicate.SUBSCRIPTION_AGREEMENT_CONCLUDED, False),
+                    (FrameworkEvidencePredicate.SUBSCRIPTION_PAYMENT_AGREED, False),
+                    (FrameworkEvidencePredicate.SUBSCRIBER_DEMANDED_PERFORMANCE, False),
+                    (FrameworkEvidencePredicate.SUBSCRIPTION_PAYMENT_EXCUSED_BY_CONTRACT, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk429-1-framework-agreement-v1",
+                "synthetic-ru-gk429-4-subscription-agreement-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-framework-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

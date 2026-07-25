@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.30.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью рамочного и абонентского договора |
 | `0.29.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью опционных конструкций |
 | `0.28.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью преддоговорной ответственности |
 | `0.27.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью заверений об обстоятельствах |
@@ -37,6 +38,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.29.0` → `0.30.0` соберите отдельно проверенный контракт данных о рамочном и абонентском договоре (`contracts.framework-evidence.v0`). Не выводите действительность рамочного договора, применение его общих условий, право абонента требовать исполнение и его обязанность вносить плату из прежних результатов о заключении, предварительном договоре или опционных конструкциях. Пересоберите артефакты оценки рамочного и абонентского договора, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.28.0` → `0.29.0` соберите отдельно проверенный контракт данных об опционных конструкциях (`contracts.option-evidence.v0`). Не выводите действительность опциона, заключение основного договора акцептом, право по опционному договору и невозвратность платежа из прежних результатов о заключении, предварительном или публичном договоре. Пересоберите артефакты оценки опционных конструкций, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

@@ -568,6 +568,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.29.0",
+        to_version="0.30.0",
+        reasons=[
+            "Reviewed inputs now require a separate framework evidence contract.",
+            "Analysis and Russian translation distinguish the framework and subscription paths under articles 429.1 and 429.4.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о рамочном и абонентском договоре.",
+            "Анализ и русское объяснение разделяют маршруты рамочного и абонентского договора по статьям 429.1 и 429.4 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_framework_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

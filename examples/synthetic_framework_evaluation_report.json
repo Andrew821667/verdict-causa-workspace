@@ -1,0 +1,451 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о рамочном и абонентском договоре по статьям 429.1 и 429.4 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-framework-evidence-supply-1-v0",
+    "schema_version": "contracts.framework-evidence.v0",
+    "mapping_version": "contracts-reviewed-framework-to-facts-v0",
+    "facts": {
+      "framework_agreement_concluded": true,
+      "framework_general_conditions_defined": true,
+      "specifying_agreement_concluded": true,
+      "specifying_agreement_overrides": false,
+      "subscription_agreement_concluded": false,
+      "subscription_payment_agreed": false,
+      "subscriber_demanded_performance": false,
+      "subscription_payment_excused_by_contract": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk429-1-framework-agreement-v1",
+      "synthetic-ru-gk429-4-subscription-agreement-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "framework_agreement_concluded",
+        "assertion_id": "framework-evidence-framework_agreement_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-framework-evidence"
+        ]
+      },
+      {
+        "fact_name": "framework_general_conditions_defined",
+        "assertion_id": "framework-evidence-framework_general_conditions_defined",
+        "source_refs": [
+          "synthetic-case-supply-1-framework-evidence"
+        ]
+      },
+      {
+        "fact_name": "specifying_agreement_concluded",
+        "assertion_id": "framework-evidence-specifying_agreement_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-framework-evidence"
+        ]
+      },
+      {
+        "fact_name": "specifying_agreement_overrides",
+        "assertion_id": "framework-evidence-specifying_agreement_overrides",
+        "source_refs": [
+          "synthetic-case-supply-1-framework-evidence"
+        ]
+      },
+      {
+        "fact_name": "subscriber_demanded_performance",
+        "assertion_id": "framework-evidence-subscriber_demanded_performance",
+        "source_refs": [
+          "synthetic-case-supply-1-framework-evidence"
+        ]
+      },
+      {
+        "fact_name": "subscription_agreement_concluded",
+        "assertion_id": "framework-evidence-subscription_agreement_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-framework-evidence"
+        ]
+      },
+      {
+        "fact_name": "subscription_payment_agreed",
+        "assertion_id": "framework-evidence-subscription_payment_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-framework-evidence"
+        ]
+      },
+      {
+        "fact_name": "subscription_payment_excused_by_contract",
+        "assertion_id": "framework-evidence-subscription_payment_excused_by_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-framework-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "framework-constraint-set:reviewed-framework-evidence-supply-1-v0",
+    "model_version": "contracts-framework-subscription-articles-429-1-429-4-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk429-1-framework-agreement-v1",
+      "synthetic-ru-gk429-4-subscription-agreement-v1"
+    ],
+    "expressions": [
+      "framework_agreement_valid == framework_agreement_concluded AND framework_general_conditions_defined",
+      "framework_terms_apply_to_relations == framework_agreement_valid AND NOT specifying_agreement_overrides",
+      "specifying_agreement_on_framework == framework_agreement_valid AND specifying_agreement_concluded",
+      "subscription_agreement_valid == subscription_agreement_concluded AND subscription_payment_agreed",
+      "subscription_payment_due_without_demand == subscription_agreement_valid AND NOT subscriber_demanded_performance AND NOT subscription_payment_excused_by_contract",
+      "subscriber_entitled_to_demand == subscription_agreement_valid",
+      "requires_human_framework_assessment == subscription_payment_due_without_demand OR (framework_terms_apply_to_relations AND NOT specifying_agreement_concluded)"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "framework-constraint-set:reviewed-framework-evidence-supply-1-v0",
+    "satisfiable": true,
+    "framework_agreement_valid": true,
+    "framework_terms_apply_to_relations": true,
+    "specifying_agreement_on_framework": true,
+    "subscription_agreement_valid": false,
+    "subscription_payment_due_without_demand": false,
+    "subscriber_entitled_to_demand": false,
+    "requires_human_framework_assessment": false,
+    "reasons_ru": [
+      "Рамочный договор определяет общие условия обязательственных взаимоотношений сторон (пункт 1 статьи 429.1 ГК РФ).",
+      "Общие условия рамочного договора конкретизированы отдельным договором, заявкой или иным образом (пункт 1 статьи 429.1 ГК РФ).",
+      "К отношениям сторон, не урегулированным отдельными договорами, применяются общие условия рамочного договора (пункт 2 статьи 429.1 ГК РФ)."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о рамочном и абонентском договоре и не заменяет судебную оценку.",
+      "Существо обязательства, содержание общих условий и условия о плате оцениваются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "framework-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "framework-bench-valid",
+        "passed": true,
+        "expected_outcomes": {
+          "framework_agreement_valid": true,
+          "framework_terms_apply_to_relations": true,
+          "requires_human_framework_assessment": true
+        },
+        "observed_outcomes": {
+          "framework_agreement_valid": true,
+          "framework_terms_apply_to_relations": true,
+          "requires_human_framework_assessment": true
+        },
+        "reasons_ru": [
+          "Рамочный договор определяет общие условия обязательственных взаимоотношений сторон (пункт 1 статьи 429.1 ГК РФ).",
+          "К отношениям сторон, не урегулированным отдельными договорами, применяются общие условия рамочного договора (пункт 2 статьи 429.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "framework-bench-specified",
+        "passed": true,
+        "expected_outcomes": {
+          "specifying_agreement_on_framework": true,
+          "framework_terms_apply_to_relations": true,
+          "requires_human_framework_assessment": false
+        },
+        "observed_outcomes": {
+          "specifying_agreement_on_framework": true,
+          "framework_terms_apply_to_relations": true,
+          "requires_human_framework_assessment": false
+        },
+        "reasons_ru": [
+          "Рамочный договор определяет общие условия обязательственных взаимоотношений сторон (пункт 1 статьи 429.1 ГК РФ).",
+          "Общие условия рамочного договора конкретизированы отдельным договором, заявкой или иным образом (пункт 1 статьи 429.1 ГК РФ).",
+          "К отношениям сторон, не урегулированным отдельными договорами, применяются общие условия рамочного договора (пункт 2 статьи 429.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "framework-bench-override",
+        "passed": true,
+        "expected_outcomes": {
+          "framework_terms_apply_to_relations": false,
+          "specifying_agreement_on_framework": true
+        },
+        "observed_outcomes": {
+          "framework_terms_apply_to_relations": false,
+          "specifying_agreement_on_framework": true
+        },
+        "reasons_ru": [
+          "Рамочный договор определяет общие условия обязательственных взаимоотношений сторон (пункт 1 статьи 429.1 ГК РФ).",
+          "Общие условия рамочного договора конкретизированы отдельным договором, заявкой или иным образом (пункт 1 статьи 429.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "framework-bench-no-conditions",
+        "passed": true,
+        "expected_outcomes": {
+          "framework_agreement_valid": false,
+          "framework_terms_apply_to_relations": false
+        },
+        "observed_outcomes": {
+          "framework_agreement_valid": false,
+          "framework_terms_apply_to_relations": false
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями."
+        ]
+      },
+      {
+        "task_id": "framework-bench-no-framework",
+        "passed": true,
+        "expected_outcomes": {
+          "framework_agreement_valid": false,
+          "framework_terms_apply_to_relations": false,
+          "requires_human_framework_assessment": false
+        },
+        "observed_outcomes": {
+          "framework_agreement_valid": false,
+          "framework_terms_apply_to_relations": false,
+          "requires_human_framework_assessment": false
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями."
+        ]
+      },
+      {
+        "task_id": "framework-bench-subscription-valid",
+        "passed": true,
+        "expected_outcomes": {
+          "subscription_agreement_valid": true,
+          "subscriber_entitled_to_demand": true,
+          "subscription_payment_due_without_demand": false
+        },
+        "observed_outcomes": {
+          "subscription_agreement_valid": true,
+          "subscriber_entitled_to_demand": true,
+          "subscription_payment_due_without_demand": false
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями.",
+          "Абонентский договор предусматривает платежи за право требовать исполнение по требованию абонента (пункт 1 статьи 429.4 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "framework-bench-payment-without-demand",
+        "passed": true,
+        "expected_outcomes": {
+          "subscription_payment_due_without_demand": true,
+          "requires_human_framework_assessment": true
+        },
+        "observed_outcomes": {
+          "subscription_payment_due_without_demand": true,
+          "requires_human_framework_assessment": true
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями.",
+          "Абонентский договор предусматривает платежи за право требовать исполнение по требованию абонента (пункт 1 статьи 429.4 ГК РФ).",
+          "Абонент обязан вносить платежи независимо от того, было ли затребовано исполнение, если иное не предусмотрено законом или договором (пункт 2 статьи 429.4 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "framework-bench-payment-excused",
+        "passed": true,
+        "expected_outcomes": {
+          "subscription_payment_due_without_demand": false,
+          "subscription_agreement_valid": true,
+          "requires_human_framework_assessment": false
+        },
+        "observed_outcomes": {
+          "subscription_payment_due_without_demand": false,
+          "subscription_agreement_valid": true,
+          "requires_human_framework_assessment": false
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями.",
+          "Абонентский договор предусматривает платежи за право требовать исполнение по требованию абонента (пункт 1 статьи 429.4 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "framework-bench-subscription-no-payment",
+        "passed": true,
+        "expected_outcomes": {
+          "subscription_agreement_valid": false,
+          "subscriber_entitled_to_demand": false,
+          "subscription_payment_due_without_demand": false
+        },
+        "observed_outcomes": {
+          "subscription_agreement_valid": false,
+          "subscriber_entitled_to_demand": false,
+          "subscription_payment_due_without_demand": false
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями."
+        ]
+      },
+      {
+        "task_id": "framework-bench-both",
+        "passed": true,
+        "expected_outcomes": {
+          "specifying_agreement_on_framework": true,
+          "subscription_agreement_valid": true,
+          "subscription_payment_due_without_demand": false,
+          "requires_human_framework_assessment": false
+        },
+        "observed_outcomes": {
+          "specifying_agreement_on_framework": true,
+          "subscription_agreement_valid": true,
+          "subscription_payment_due_without_demand": false,
+          "requires_human_framework_assessment": false
+        },
+        "reasons_ru": [
+          "Рамочный договор определяет общие условия обязательственных взаимоотношений сторон (пункт 1 статьи 429.1 ГК РФ).",
+          "Общие условия рамочного договора конкретизированы отдельным договором, заявкой или иным образом (пункт 1 статьи 429.1 ГК РФ).",
+          "К отношениям сторон, не урегулированным отдельными договорами, применяются общие условия рамочного договора (пункт 2 статьи 429.1 ГК РФ).",
+          "Абонентский договор предусматривает платежи за право требовать исполнение по требованию абонента (пункт 1 статьи 429.4 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "framework-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "framework-red-valid-without-conditions",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "framework_agreement_valid": true
+        },
+        "observed_outcomes": {
+          "framework_agreement_valid": false
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями."
+        ]
+      },
+      {
+        "case_id": "framework-red-apply-when-overridden",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "framework_terms_apply_to_relations": true
+        },
+        "observed_outcomes": {
+          "framework_terms_apply_to_relations": false
+        },
+        "reasons_ru": [
+          "Рамочный договор определяет общие условия обязательственных взаимоотношений сторон (пункт 1 статьи 429.1 ГК РФ).",
+          "Общие условия рамочного договора конкретизированы отдельным договором, заявкой или иным образом (пункт 1 статьи 429.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "framework-red-specified-without-valid-framework",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "specifying_agreement_on_framework": true
+        },
+        "observed_outcomes": {
+          "specifying_agreement_on_framework": false
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями."
+        ]
+      },
+      {
+        "case_id": "framework-red-subscription-valid-without-payment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "subscription_agreement_valid": true
+        },
+        "observed_outcomes": {
+          "subscription_agreement_valid": false
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями."
+        ]
+      },
+      {
+        "case_id": "framework-red-skip-payment-without-demand",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "subscription_payment_due_without_demand": false
+        },
+        "observed_outcomes": {
+          "subscription_payment_due_without_demand": true
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями.",
+          "Абонентский договор предусматривает платежи за право требовать исполнение по требованию абонента (пункт 1 статьи 429.4 ГК РФ).",
+          "Абонент обязан вносить платежи независимо от того, было ли затребовано исполнение, если иное не предусмотрено законом или договором (пункт 2 статьи 429.4 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "framework-red-charge-when-excused",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "subscription_payment_due_without_demand": true
+        },
+        "observed_outcomes": {
+          "subscription_payment_due_without_demand": false
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями.",
+          "Абонентский договор предусматривает платежи за право требовать исполнение по требованию абонента (пункт 1 статьи 429.4 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "framework-red-entitle-without-agreement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "subscriber_entitled_to_demand": true
+        },
+        "observed_outcomes": {
+          "subscriber_entitled_to_demand": false
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями."
+        ]
+      },
+      {
+        "case_id": "framework-red-skip-human-on-payment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_framework_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_framework_assessment": true
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями.",
+          "Абонентский договор предусматривает платежи за право требовать исполнение по требованию абонента (пункт 1 статьи 429.4 ГК РФ).",
+          "Абонент обязан вносить платежи независимо от того, было ли затребовано исполнение, если иное не предусмотрено законом или договором (пункт 2 статьи 429.4 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "framework-red-skip-human-on-open-terms",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_framework_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_framework_assessment": true
+        },
+        "reasons_ru": [
+          "Рамочный договор определяет общие условия обязательственных взаимоотношений сторон (пункт 1 статьи 429.1 ГК РФ).",
+          "К отношениям сторон, не урегулированным отдельными договорами, применяются общие условия рамочного договора (пункт 2 статьи 429.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "framework-red-apply-without-valid-framework",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "framework_terms_apply_to_relations": true
+        },
+        "observed_outcomes": {
+          "framework_terms_apply_to_relations": false
+        },
+        "reasons_ru": [
+          "Рамочный договор не признаётся заключённым с определёнными общими условиями."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

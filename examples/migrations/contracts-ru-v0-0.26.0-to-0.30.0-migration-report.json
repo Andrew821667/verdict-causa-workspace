@@ -1,0 +1,96 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.26.0:to-0.30.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.26.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.26.0",
+  "target_package_version": "0.30.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.26.0",
+      "to_version": "0.27.0",
+      "reasons": [
+        "Reviewed inputs now require a separate representations evidence contract.",
+        "Analysis and Russian translation distinguish the representations paths under article 431.2."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о заверениях об обстоятельствах.",
+        "Анализ и русское объяснение разделяют маршруты заверений об обстоятельствах по статье 431.2 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_representations_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.27.0",
+      "to_version": "0.28.0",
+      "reasons": [
+        "Reviewed inputs now require a separate precontractual evidence contract.",
+        "Analysis and Russian translation distinguish the precontractual paths under article 434.1."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о преддоговорной ответственности.",
+        "Анализ и русское объяснение разделяют маршруты преддоговорной ответственности по статье 434.1 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_precontractual_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.28.0",
+      "to_version": "0.29.0",
+      "reasons": [
+        "Reviewed inputs now require a separate option evidence contract.",
+        "Analysis and Russian translation distinguish the option paths under articles 429.2 and 429.3."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об опционных конструкциях.",
+        "Анализ и русское объяснение разделяют маршруты опциона и опционного договора по статьям 429.2 и 429.3 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_option_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.29.0",
+      "to_version": "0.30.0",
+      "reasons": [
+        "Reviewed inputs now require a separate framework evidence contract.",
+        "Analysis and Russian translation distinguish the framework and subscription paths under articles 429.1 and 429.4."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о рамочном и абонентском договоре.",
+        "Анализ и русское объяснение разделяют маршруты рамочного и абонентского договора по статьям 429.1 и 429.4 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_framework_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

@@ -656,6 +656,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk429-1-framework-agreement-v1",
+      "title": "Синтетическая проверенная модель рамочного договора по статье 429.1 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: определение общих условий обязательственных взаимоотношений, их конкретизация отдельными договорами или заявками и применение общих условий к неурегулированным отношениям проверяются раздельно (статья 429.1 ГК РФ).",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "framework_article_429_1_agreement",
+        "legal_reference": "ГК РФ, статья 429.1",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk429-4-subscription-agreement-v1",
+      "title": "Синтетическая проверенная модель абонентского договора по статье 429.4 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: право требовать исполнение по требованию абонента за согласованные платежи и обязанность вносить плату независимо от затребования исполнения проверяются раздельно (статья 429.4 ГК РФ).",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "framework_article_429_4_subscription",
+        "legal_reference": "ГК РФ, статья 429.4",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-framework-evidence",
+      "title": "Синтетическая проверенная запись фактов о рамочном и абонентском договоре",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: стороны заключили рамочный договор поставки с определёнными общими условиями, конкретизированный отдельными заявками; абонентское обслуживание не согласовано.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "framework_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -2745,6 +2792,83 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-option-reviewer"
+    },
+    "framework_evidence": {
+      "id": "reviewed-framework-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.framework-evidence.v0",
+      "assertions": [
+        {
+          "id": "framework-evidence-framework_agreement_concluded",
+          "predicate": "framework_agreement_concluded",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "id": "framework-evidence-framework_general_conditions_defined",
+          "predicate": "framework_general_conditions_defined",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "id": "framework-evidence-specifying_agreement_concluded",
+          "predicate": "specifying_agreement_concluded",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "id": "framework-evidence-specifying_agreement_overrides",
+          "predicate": "specifying_agreement_overrides",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "id": "framework-evidence-subscription_agreement_concluded",
+          "predicate": "subscription_agreement_concluded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "id": "framework-evidence-subscription_payment_agreed",
+          "predicate": "subscription_payment_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "id": "framework-evidence-subscriber_demanded_performance",
+          "predicate": "subscriber_demanded_performance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "id": "framework-evidence-subscription_payment_excused_by_contract",
+          "predicate": "subscription_payment_excused_by_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk429-1-framework-agreement-v1",
+        "synthetic-ru-gk429-4-subscription-agreement-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-framework-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -7523,6 +7647,7 @@
       "synthetic-case-evidence-reviewer",
       "synthetic-form-reviewer",
       "synthetic-formation-reviewer",
+      "synthetic-framework-reviewer",
       "synthetic-general-sale-reviewer",
       "synthetic-interpretation-reviewer",
       "synthetic-invalidity-reviewer",
@@ -7547,6 +7672,7 @@
       "synthetic-case-supply-1-adhesion-evidence",
       "synthetic-case-supply-1-form-evidence",
       "synthetic-case-supply-1-formation-evidence",
+      "synthetic-case-supply-1-framework-evidence",
       "synthetic-case-supply-1-general-sale-evidence",
       "synthetic-case-supply-1-interpretation-evidence",
       "synthetic-case-supply-1-invalidity-evidence",
@@ -7595,8 +7721,10 @@
       "synthetic-ru-gk426-public-contract-terms-v1",
       "synthetic-ru-gk428-adhesion-framework-v1",
       "synthetic-ru-gk428-adhesion-relief-v1",
+      "synthetic-ru-gk429-1-framework-agreement-v1",
       "synthetic-ru-gk429-2-option-framework-v1",
       "synthetic-ru-gk429-3-option-contract-v1",
+      "synthetic-ru-gk429-4-subscription-agreement-v1",
       "synthetic-ru-gk429-445-preliminary-compulsion-v1",
       "synthetic-ru-gk429-preliminary-framework-v1",
       "synthetic-ru-gk430-third-party-change-v1",
@@ -9505,6 +9633,120 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила об опционе на заключение договора и опционном договоре и не заменяет судебную оценку.",
         "Определённость условий, возмездность и соблюдение сроков оцениваются экспертом и судом."
+      ]
+    },
+    "framework_evidence_mapping": {
+      "evidence_id": "reviewed-framework-evidence-supply-1-v0",
+      "schema_version": "contracts.framework-evidence.v0",
+      "mapping_version": "contracts-reviewed-framework-to-facts-v0",
+      "facts": {
+        "framework_agreement_concluded": true,
+        "framework_general_conditions_defined": true,
+        "specifying_agreement_concluded": true,
+        "specifying_agreement_overrides": false,
+        "subscription_agreement_concluded": false,
+        "subscription_payment_agreed": false,
+        "subscriber_demanded_performance": false,
+        "subscription_payment_excused_by_contract": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk429-1-framework-agreement-v1",
+        "synthetic-ru-gk429-4-subscription-agreement-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "framework_agreement_concluded",
+          "assertion_id": "framework-evidence-framework_agreement_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "fact_name": "framework_general_conditions_defined",
+          "assertion_id": "framework-evidence-framework_general_conditions_defined",
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "fact_name": "specifying_agreement_concluded",
+          "assertion_id": "framework-evidence-specifying_agreement_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "fact_name": "specifying_agreement_overrides",
+          "assertion_id": "framework-evidence-specifying_agreement_overrides",
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "fact_name": "subscriber_demanded_performance",
+          "assertion_id": "framework-evidence-subscriber_demanded_performance",
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "fact_name": "subscription_agreement_concluded",
+          "assertion_id": "framework-evidence-subscription_agreement_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "fact_name": "subscription_payment_agreed",
+          "assertion_id": "framework-evidence-subscription_payment_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        },
+        {
+          "fact_name": "subscription_payment_excused_by_contract",
+          "assertion_id": "framework-evidence-subscription_payment_excused_by_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-framework-evidence"
+          ]
+        }
+      ]
+    },
+    "framework_constraint_set": {
+      "id": "framework-constraint-set:reviewed-framework-evidence-supply-1-v0",
+      "model_version": "contracts-framework-subscription-articles-429-1-429-4-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk429-1-framework-agreement-v1",
+        "synthetic-ru-gk429-4-subscription-agreement-v1"
+      ],
+      "expressions": [
+        "framework_agreement_valid == framework_agreement_concluded AND framework_general_conditions_defined",
+        "framework_terms_apply_to_relations == framework_agreement_valid AND NOT specifying_agreement_overrides",
+        "specifying_agreement_on_framework == framework_agreement_valid AND specifying_agreement_concluded",
+        "subscription_agreement_valid == subscription_agreement_concluded AND subscription_payment_agreed",
+        "subscription_payment_due_without_demand == subscription_agreement_valid AND NOT subscriber_demanded_performance AND NOT subscription_payment_excused_by_contract",
+        "subscriber_entitled_to_demand == subscription_agreement_valid",
+        "requires_human_framework_assessment == subscription_payment_due_without_demand OR (framework_terms_apply_to_relations AND NOT specifying_agreement_concluded)"
+      ]
+    },
+    "framework_evaluation": {
+      "constraint_set_id": "framework-constraint-set:reviewed-framework-evidence-supply-1-v0",
+      "satisfiable": true,
+      "framework_agreement_valid": true,
+      "framework_terms_apply_to_relations": true,
+      "specifying_agreement_on_framework": true,
+      "subscription_agreement_valid": false,
+      "subscription_payment_due_without_demand": false,
+      "subscriber_entitled_to_demand": false,
+      "requires_human_framework_assessment": false,
+      "reasons_ru": [
+        "Рамочный договор определяет общие условия обязательственных взаимоотношений сторон (пункт 1 статьи 429.1 ГК РФ).",
+        "Общие условия рамочного договора конкретизированы отдельным договором, заявкой или иным образом (пункт 1 статьи 429.1 ГК РФ).",
+        "К отношениям сторон, не урегулированным отдельными договорами, применяются общие условия рамочного договора (пункт 2 статьи 429.1 ГК РФ)."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о рамочном и абонентском договоре и не заменяет судебную оценку.",
+        "Существо обязательства, содержание общих условий и условия о плате оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -14878,7 +15120,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.29.0",
+      "institutional_package_version": "contracts-ru-v0@0.30.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

@@ -869,6 +869,60 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk429-1-framework-agreement-v1",
+        title="Синтетическая проверенная модель рамочного договора по статье 429.1 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: определение общих условий обязательственных "
+            "взаимоотношений, их конкретизация отдельными договорами или заявками и "
+            "применение общих условий к неурегулированным отношениям проверяются "
+            "раздельно (статья 429.1 ГК РФ)."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "framework_article_429_1_agreement",
+            "legal_reference": "ГК РФ, статья 429.1",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk429-4-subscription-agreement-v1",
+        title="Синтетическая проверенная модель абонентского договора по статье 429.4 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: право требовать исполнение по требованию "
+            "абонента за согласованные платежи и обязанность вносить плату независимо "
+            "от затребования исполнения проверяются раздельно (статья 429.4 ГК РФ)."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "framework_article_429_4_subscription",
+            "legal_reference": "ГК РФ, статья 429.4",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-framework-evidence",
+        title="Синтетическая проверенная запись фактов о рамочном и абонентском договоре",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: стороны заключили рамочный договор поставки с "
+            "определёнными общими условиями, конкретизированный отдельными заявками; "
+            "абонентское обслуживание не согласовано."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "framework_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,
