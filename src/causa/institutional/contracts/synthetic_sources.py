@@ -1086,6 +1086,59 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk492-495-retail-sale-concept-v1",
+        title="Синтетическая проверенная модель понятия и информации в розничной купле-продаже по статьям 492–495 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: розничная купля-продажа как публичный договор, "
+            "заключение договора выдачей чека, публичная оферта и обязанность продавца "
+            "предоставить информацию о товаре проверяются раздельно (статьи 492–495 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "retail_sale_concept_articles_492_495",
+            "legal_reference": "ГК РФ, статьи 492–495",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk502-504-retail-exchange-and-quality-v1",
+        title="Синтетическая проверенная модель обмена и качества в розничной купле-продаже по статьям 502–504 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: обмен товара надлежащего качества, права "
+            "покупателя при продаже товара ненадлежащего качества и возмещение разницы в "
+            "цене при замене или возврате проверяются раздельно (статьи 502–504 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "retail_exchange_and_quality_articles_502_504",
+            "legal_reference": "ГК РФ, статьи 502–504",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-retail-sale-evidence",
+        title="Синтетическая проверенная запись фактов о розничной купле-продаже",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является оптовой поставкой между "
+            "предпринимателями и не является розничной куплей-продажей; требований об "
+            "обмене или по качеству в розничном режиме не заявлено."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "retail_sale_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

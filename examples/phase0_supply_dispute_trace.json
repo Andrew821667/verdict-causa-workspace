@@ -844,6 +844,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk492-495-retail-sale-concept-v1",
+      "title": "Синтетическая проверенная модель понятия и информации в розничной купле-продаже по статьям 492–495 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: розничная купля-продажа как публичный договор, заключение договора выдачей чека, публичная оферта и обязанность продавца предоставить информацию о товаре проверяются раздельно (статьи 492–495 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "retail_sale_concept_articles_492_495",
+        "legal_reference": "ГК РФ, статьи 492–495",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk502-504-retail-exchange-and-quality-v1",
+      "title": "Синтетическая проверенная модель обмена и качества в розничной купле-продаже по статьям 502–504 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обмен товара надлежащего качества, права покупателя при продаже товара ненадлежащего качества и возмещение разницы в цене при замене или возврате проверяются раздельно (статьи 502–504 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "retail_exchange_and_quality_articles_502_504",
+        "legal_reference": "ГК РФ, статьи 502–504",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-retail-sale-evidence",
+      "title": "Синтетическая проверенная запись фактов о розничной купле-продаже",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является оптовой поставкой между предпринимателями и не является розничной куплей-продажей; требований об обмене или по качеству в розничном режиме не заявлено.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "retail_sale_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -3305,6 +3352,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-general-obligations-reviewer"
+    },
+    "retail_sale_evidence": {
+      "id": "reviewed-retail-sale-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.retail-sale-evidence.v0",
+      "assertions": [
+        {
+          "id": "retail-sale-evidence-retail_consumer_sale",
+          "predicate": "retail_consumer_sale",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "id": "retail-sale-evidence-public_offer_made",
+          "predicate": "public_offer_made",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "id": "retail-sale-evidence-receipt_or_confirmation_issued",
+          "predicate": "receipt_or_confirmation_issued",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "id": "retail-sale-evidence-required_information_provided",
+          "predicate": "required_information_provided",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "id": "retail-sale-evidence-goods_defective",
+          "predicate": "goods_defective",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "id": "retail-sale-evidence-buyer_quality_remedy_demanded",
+          "predicate": "buyer_quality_remedy_demanded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "id": "retail-sale-evidence-quality_exchange_demanded_in_term",
+          "predicate": "quality_exchange_demanded_in_term",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "id": "retail-sale-evidence-goods_unused_and_documented",
+          "predicate": "goods_unused_and_documented",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "id": "retail-sale-evidence-similar_goods_available",
+          "predicate": "similar_goods_available",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "id": "retail-sale-evidence-price_increased_before_replacement",
+          "predicate": "price_increased_before_replacement",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk492-495-retail-sale-concept-v1",
+        "synthetic-ru-gk502-504-retail-exchange-and-quality-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-retail-sale-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -8100,6 +8240,7 @@
       "synthetic-procedure-reviewer",
       "synthetic-public-contract-reviewer",
       "synthetic-representations-reviewer",
+      "synthetic-retail-sale-reviewer",
       "synthetic-security-reviewer",
       "synthetic-special-supply-reviewer",
       "synthetic-temporal-effect-reviewer",
@@ -8127,6 +8268,7 @@
       "synthetic-case-supply-1-procedure-evidence",
       "synthetic-case-supply-1-public-contract-evidence",
       "synthetic-case-supply-1-representations-evidence",
+      "synthetic-case-supply-1-retail-sale-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
       "synthetic-case-supply-1-security-evidence",
       "synthetic-case-supply-1-special-supply-evidence",
@@ -8191,6 +8333,8 @@
       "synthetic-ru-gk454-464-sale-transfer-v1",
       "synthetic-ru-gk465-477-sale-conformity-v1",
       "synthetic-ru-gk478-491-sale-payment-v1",
+      "synthetic-ru-gk492-495-retail-sale-concept-v1",
+      "synthetic-ru-gk502-504-retail-exchange-and-quality-v1",
       "synthetic-ru-gk506-512-supply-framework-v1",
       "synthetic-ru-gk513-517-supply-acceptance-v1",
       "synthetic-ru-gk518-524-supply-remedies-v1",
@@ -10606,6 +10750,136 @@
       "warnings_ru": [
         "Модель проверяет только формальные общие положения об обязательствах и не заменяет судебную оценку.",
         "Добросовестность сторон, возможность исполнения в натуре и размер судебной неустойки оцениваются экспертом и судом."
+      ]
+    },
+    "retail_sale_evidence_mapping": {
+      "evidence_id": "reviewed-retail-sale-evidence-supply-1-v0",
+      "schema_version": "contracts.retail-sale-evidence.v0",
+      "mapping_version": "contracts-reviewed-retail-sale-to-facts-v0",
+      "facts": {
+        "retail_consumer_sale": false,
+        "public_offer_made": false,
+        "receipt_or_confirmation_issued": false,
+        "required_information_provided": false,
+        "goods_defective": false,
+        "buyer_quality_remedy_demanded": false,
+        "quality_exchange_demanded_in_term": false,
+        "goods_unused_and_documented": false,
+        "similar_goods_available": false,
+        "price_increased_before_replacement": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk492-495-retail-sale-concept-v1",
+        "synthetic-ru-gk502-504-retail-exchange-and-quality-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "buyer_quality_remedy_demanded",
+          "assertion_id": "retail-sale-evidence-buyer_quality_remedy_demanded",
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_defective",
+          "assertion_id": "retail-sale-evidence-goods_defective",
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_unused_and_documented",
+          "assertion_id": "retail-sale-evidence-goods_unused_and_documented",
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "price_increased_before_replacement",
+          "assertion_id": "retail-sale-evidence-price_increased_before_replacement",
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "public_offer_made",
+          "assertion_id": "retail-sale-evidence-public_offer_made",
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "quality_exchange_demanded_in_term",
+          "assertion_id": "retail-sale-evidence-quality_exchange_demanded_in_term",
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "receipt_or_confirmation_issued",
+          "assertion_id": "retail-sale-evidence-receipt_or_confirmation_issued",
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "required_information_provided",
+          "assertion_id": "retail-sale-evidence-required_information_provided",
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "retail_consumer_sale",
+          "assertion_id": "retail-sale-evidence-retail_consumer_sale",
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "similar_goods_available",
+          "assertion_id": "retail-sale-evidence-similar_goods_available",
+          "source_refs": [
+            "synthetic-case-supply-1-retail-sale-evidence"
+          ]
+        }
+      ]
+    },
+    "retail_sale_constraint_set": {
+      "id": "retail-sale-constraint-set:reviewed-retail-sale-evidence-supply-1-v0",
+      "model_version": "contracts-retail-sale-articles-492-505-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk492-495-retail-sale-concept-v1",
+        "synthetic-ru-gk502-504-retail-exchange-and-quality-v1"
+      ],
+      "expressions": [
+        "retail_contract_is_public == retail_consumer_sale",
+        "form_confirmed_by_receipt == retail_consumer_sale AND receipt_or_confirmation_issued",
+        "information_duty_breached == retail_consumer_sale AND NOT required_information_provided",
+        "quality_remedy_available == goods_defective AND buyer_quality_remedy_demanded",
+        "quality_exchange_available == quality_exchange_demanded_in_term AND goods_unused_and_documented AND similar_goods_available",
+        "exchange_refund_available == quality_exchange_demanded_in_term AND goods_unused_and_documented AND NOT similar_goods_available",
+        "price_difference_compensable == goods_defective AND buyer_quality_remedy_demanded AND price_increased_before_replacement",
+        "requires_human_retail_sale_assessment == (retail_consumer_sale AND NOT required_information_provided) OR (goods_defective AND buyer_quality_remedy_demanded) OR quality_exchange_demanded_in_term OR price_increased_before_replacement"
+      ]
+    },
+    "retail_sale_evaluation": {
+      "constraint_set_id": "retail-sale-constraint-set:reviewed-retail-sale-evidence-supply-1-v0",
+      "satisfiable": true,
+      "retail_contract_is_public": false,
+      "form_confirmed_by_receipt": false,
+      "information_duty_breached": false,
+      "quality_remedy_available": false,
+      "quality_exchange_available": false,
+      "exchange_refund_available": false,
+      "price_difference_compensable": false,
+      "requires_human_retail_sale_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как розничная купля-продажа."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о розничной купле-продаже и не заменяет судебную оценку.",
+        "Качество товара, достоверность информации и условия обмена оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -15979,7 +16253,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.33.0",
+      "institutional_package_version": "contracts-ru-v0@0.34.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -17993,6 +18267,7 @@
           "synthetic-case-supply-1-procedure-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-representations-evidence",
+          "synthetic-case-supply-1-retail-sale-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-case-supply-1-security-evidence",
           "synthetic-case-supply-1-special-supply-evidence",
@@ -18057,6 +18332,8 @@
           "synthetic-ru-gk454-464-sale-transfer-v1",
           "synthetic-ru-gk465-477-sale-conformity-v1",
           "synthetic-ru-gk478-491-sale-payment-v1",
+          "synthetic-ru-gk492-495-retail-sale-concept-v1",
+          "synthetic-ru-gk502-504-retail-exchange-and-quality-v1",
           "synthetic-ru-gk506-512-supply-framework-v1",
           "synthetic-ru-gk513-517-supply-acceptance-v1",
           "synthetic-ru-gk518-524-supply-remedies-v1",
@@ -19085,6 +19362,7 @@
           "synthetic-case-supply-1-procedure-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-representations-evidence",
+          "synthetic-case-supply-1-retail-sale-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-case-supply-1-security-evidence",
           "synthetic-case-supply-1-special-supply-evidence",
@@ -19149,6 +19427,8 @@
           "synthetic-ru-gk454-464-sale-transfer-v1",
           "synthetic-ru-gk465-477-sale-conformity-v1",
           "synthetic-ru-gk478-491-sale-payment-v1",
+          "synthetic-ru-gk492-495-retail-sale-concept-v1",
+          "synthetic-ru-gk502-504-retail-exchange-and-quality-v1",
           "synthetic-ru-gk506-512-supply-framework-v1",
           "synthetic-ru-gk513-517-supply-acceptance-v1",
           "synthetic-ru-gk518-524-supply-remedies-v1",
@@ -20177,6 +20457,7 @@
           "synthetic-case-supply-1-procedure-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-representations-evidence",
+          "synthetic-case-supply-1-retail-sale-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-case-supply-1-security-evidence",
           "synthetic-case-supply-1-special-supply-evidence",
@@ -20241,6 +20522,8 @@
           "synthetic-ru-gk454-464-sale-transfer-v1",
           "synthetic-ru-gk465-477-sale-conformity-v1",
           "synthetic-ru-gk478-491-sale-payment-v1",
+          "synthetic-ru-gk492-495-retail-sale-concept-v1",
+          "synthetic-ru-gk502-504-retail-exchange-and-quality-v1",
           "synthetic-ru-gk506-512-supply-framework-v1",
           "synthetic-ru-gk513-517-supply-acceptance-v1",
           "synthetic-ru-gk518-524-supply-remedies-v1",
@@ -20333,7 +20616,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.33.0",
+      "institutional_package_version": "contracts-ru-v0@0.34.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -21023,6 +21306,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk492-495-retail-sale-concept-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель понятия и информации в розничной купле-продаже по статьям 492–495 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "retail_sale_concept_articles_492_495",
+          "legal_reference": "ГК РФ, статьи 492–495",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk502-504-retail-exchange-and-quality-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель обмена и качества в розничной купле-продаже по статьям 502–504 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "retail_exchange_and_quality_articles_502_504",
+          "legal_reference": "ГК РФ, статьи 502–504",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-retail-sale-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о розничной купле-продаже",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "retail_sale_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -21649,6 +21970,7 @@
             "synthetic-procedure-reviewer",
             "synthetic-public-contract-reviewer",
             "synthetic-representations-reviewer",
+            "synthetic-retail-sale-reviewer",
             "synthetic-security-reviewer",
             "synthetic-special-supply-reviewer",
             "synthetic-temporal-effect-reviewer",

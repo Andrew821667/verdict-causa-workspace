@@ -80,6 +80,11 @@ from causa.institutional.contracts.general_obligations import (
     GeneralObligationsEvidencePredicate,
     ReviewedGeneralObligationsEvidence,
 )
+from causa.institutional.contracts.retail_sale import (
+    ReviewedRetailSaleEvidence,
+    RetailSaleEvidenceAssertion,
+    RetailSaleEvidencePredicate,
+)
 from causa.institutional.contracts.procedure import (
     ProcedureEvidenceAssertion,
     ProcedureEvidencePredicate,
@@ -196,6 +201,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk307-308-obligation-concept-v1",
     "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
     "synthetic-case-supply-1-general-obligations-evidence",
+    "synthetic-ru-gk492-495-retail-sale-concept-v1",
+    "synthetic-ru-gk502-504-retail-exchange-and-quality-v1",
+    "synthetic-case-supply-1-retail-sale-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -937,6 +945,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-general-obligations-reviewer",
+        ),
+        retail_sale_evidence=ReviewedRetailSaleEvidence(
+            id="reviewed-retail-sale-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                RetailSaleEvidenceAssertion(
+                    id=f"retail-sale-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-retail-sale-evidence",),
+                )
+                for predicate, value in (
+                    (RetailSaleEvidencePredicate.RETAIL_CONSUMER_SALE, False),
+                    (RetailSaleEvidencePredicate.PUBLIC_OFFER_MADE, False),
+                    (RetailSaleEvidencePredicate.RECEIPT_OR_CONFIRMATION_ISSUED, False),
+                    (RetailSaleEvidencePredicate.REQUIRED_INFORMATION_PROVIDED, False),
+                    (RetailSaleEvidencePredicate.GOODS_DEFECTIVE, False),
+                    (RetailSaleEvidencePredicate.BUYER_QUALITY_REMEDY_DEMANDED, False),
+                    (RetailSaleEvidencePredicate.QUALITY_EXCHANGE_DEMANDED_IN_TERM, False),
+                    (RetailSaleEvidencePredicate.GOODS_UNUSED_AND_DOCUMENTED, False),
+                    (RetailSaleEvidencePredicate.SIMILAR_GOODS_AVAILABLE, False),
+                    (RetailSaleEvidencePredicate.PRICE_INCREASED_BEFORE_REPLACEMENT, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk492-495-retail-sale-concept-v1",
+                "synthetic-ru-gk502-504-retail-exchange-and-quality-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-retail-sale-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

@@ -154,6 +154,16 @@ from causa.institutional.contracts.general_obligations import (
     evaluate_general_obligations_constraints,
     map_reviewed_general_obligations_evidence,
 )
+from causa.institutional.contracts.retail_sale import (
+    RETAIL_SALE_EVIDENCE_SCHEMA_VERSION,
+    ReviewedRetailSaleEvidence,
+    RetailSaleConstraintSet,
+    RetailSaleEvaluation,
+    RetailSaleEvidenceMappingResult,
+    build_retail_sale_constraint_set,
+    evaluate_retail_sale_constraints,
+    map_reviewed_retail_sale_evidence,
+)
 from causa.institutional.contracts.option import (
     OPTION_EVIDENCE_SCHEMA_VERSION,
     OptionConstraintSet,
@@ -383,6 +393,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     freedom_evidence: ReviewedFreedomEvidence
     procedure_evidence: ReviewedProcedureEvidence
     general_obligations_evidence: ReviewedGeneralObligationsEvidence
+    retail_sale_evidence: ReviewedRetailSaleEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -470,6 +481,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     general_obligations_evidence_mapping: GeneralObligationsEvidenceMappingResult
     general_obligations_constraint_set: GeneralObligationsConstraintSet
     general_obligations_evaluation: GeneralObligationsEvaluation
+    retail_sale_evidence_mapping: RetailSaleEvidenceMappingResult
+    retail_sale_constraint_set: RetailSaleConstraintSet
+    retail_sale_evaluation: RetailSaleEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -683,6 +697,17 @@ class ReviewedContractAnalysisResult(BaseModel):
             raise ValueError(
                 "General obligations evaluation does not replay from reviewed evidence."
             )
+        expected_retail_sale_set = build_retail_sale_constraint_set(
+            self.retail_sale_evidence_mapping
+        )
+        if self.retail_sale_constraint_set != expected_retail_sale_set:
+            raise ValueError("Retail sale constraint set does not replay from reviewed evidence.")
+        expected_retail_sale_evaluation = evaluate_retail_sale_constraints(
+            expected_retail_sale_set,
+            self.retail_sale_evidence_mapping.facts,
+        )
+        if self.retail_sale_evaluation != expected_retail_sale_evaluation:
+            raise ValueError("Retail sale evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -1033,6 +1058,8 @@ def _validate_request_integrity(
         raise ValueError(
             "General obligations evidence case_id does not match the analysis request."
         )
+    if request.retail_sale_evidence.case_id != request.case_id:
+        raise ValueError("Retail sale evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -1116,6 +1143,8 @@ def _validate_request_integrity(
         != GENERAL_OBLIGATIONS_EVIDENCE_SCHEMA_VERSION
     ):
         raise ValueError("General obligations evidence uses an unsupported schema version.")
+    if request.retail_sale_evidence.schema_version != RETAIL_SALE_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Retail sale evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -1139,6 +1168,7 @@ def _validate_request_integrity(
         *request.freedom_evidence.legal_source_refs,
         *request.procedure_evidence.legal_source_refs,
         *request.general_obligations_evidence.legal_source_refs,
+        *request.retail_sale_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -1181,6 +1211,8 @@ def _validate_request_integrity(
     for assertion in request.procedure_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.general_obligations_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.retail_sale_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -1388,6 +1420,17 @@ def _validate_request_integrity(
         raise ValueError(
             "General obligations legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_general_obligations_legal_sources))
+        )
+    invalid_retail_sale_legal_sources = [
+        source_id
+        for source_id in request.retail_sale_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_retail_sale_legal_sources:
+        raise ValueError(
+            "Retail sale legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_retail_sale_legal_sources))
         )
     invalid_invalidity_legal_sources = [
         source_id
@@ -1651,6 +1694,11 @@ def run_reviewed_contract_analysis(
         review_status=request.general_obligations_evidence.review_status,
         reviewer_id=request.general_obligations_evidence.reviewer_id,
     )
+    retail_sale_reviewer_id = _require_reviewed(
+        artifact_name="Retail sale evidence",
+        review_status=request.retail_sale_evidence.review_status,
+        reviewer_id=request.retail_sale_evidence.reviewer_id,
+    )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
         review_status=request.invalidity_evidence.review_status,
@@ -1848,6 +1896,12 @@ def run_reviewed_contract_analysis(
     general_obligations_evaluation = evaluate_general_obligations_constraints(
         general_obligations_constraint_set,
         general_obligations_evidence_mapping.facts,
+    )
+    retail_sale_evidence_mapping = map_reviewed_retail_sale_evidence(request.retail_sale_evidence)
+    retail_sale_constraint_set = build_retail_sale_constraint_set(retail_sale_evidence_mapping)
+    retail_sale_evaluation = evaluate_retail_sale_constraints(
+        retail_sale_constraint_set,
+        retail_sale_evidence_mapping.facts,
     )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
@@ -2088,6 +2142,7 @@ def run_reviewed_contract_analysis(
         or freedom_evaluation.requires_human_freedom_assessment
         or procedure_evaluation.requires_human_procedure_assessment
         or general_obligations_evaluation.requires_human_general_obligations_assessment
+        or retail_sale_evaluation.requires_human_retail_sale_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -2123,6 +2178,7 @@ def run_reviewed_contract_analysis(
                 freedom_reviewer_id,
                 procedure_reviewer_id,
                 general_obligations_reviewer_id,
+                retail_sale_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -2186,6 +2242,9 @@ def run_reviewed_contract_analysis(
         general_obligations_evidence_mapping=general_obligations_evidence_mapping,
         general_obligations_constraint_set=general_obligations_constraint_set,
         general_obligations_evaluation=general_obligations_evaluation,
+        retail_sale_evidence_mapping=retail_sale_evidence_mapping,
+        retail_sale_constraint_set=retail_sale_constraint_set,
+        retail_sale_evaluation=retail_sale_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

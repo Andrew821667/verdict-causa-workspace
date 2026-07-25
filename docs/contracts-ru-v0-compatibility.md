@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.34.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью розничной купли-продажи |
 | `0.33.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью общих положений об обязательствах |
 | `0.32.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью обязательного заключения и торгов |
 | `0.31.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью свободы договора и цены |
@@ -41,6 +42,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.33.0` → `0.34.0` соберите отдельно проверенный контракт данных о розничной купле-продаже (`contracts.retail-sale-evidence.v0`). Не выводите публичность договора, обязанность информирования, права по качеству и обмен товара из прежних результатов об общей купле-продаже или поставке. Пересоберите артефакты оценки розничной купли-продажи, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.32.0` → `0.33.0` соберите отдельно проверенный контракт данных об общих положениях об обязательствах (`contracts.general-obligations-evidence.v0`). Не выводите право требовать исполнения, добросовестность, альтернативные и факультативные обязательства и защиту кредитора из прежних результатов об исполнении, обеспечении или заключении договора. Пересоберите артефакты оценки общих положений об обязательствах, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

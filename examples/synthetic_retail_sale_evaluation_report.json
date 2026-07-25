@@ -1,0 +1,461 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о розничной купле-продаже по статьям 492–505 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-retail-sale-evidence-supply-1-v0",
+    "schema_version": "contracts.retail-sale-evidence.v0",
+    "mapping_version": "contracts-reviewed-retail-sale-to-facts-v0",
+    "facts": {
+      "retail_consumer_sale": false,
+      "public_offer_made": false,
+      "receipt_or_confirmation_issued": false,
+      "required_information_provided": false,
+      "goods_defective": false,
+      "buyer_quality_remedy_demanded": false,
+      "quality_exchange_demanded_in_term": false,
+      "goods_unused_and_documented": false,
+      "similar_goods_available": false,
+      "price_increased_before_replacement": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk492-495-retail-sale-concept-v1",
+      "synthetic-ru-gk502-504-retail-exchange-and-quality-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "buyer_quality_remedy_demanded",
+        "assertion_id": "retail-sale-evidence-buyer_quality_remedy_demanded",
+        "source_refs": [
+          "synthetic-case-supply-1-retail-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_defective",
+        "assertion_id": "retail-sale-evidence-goods_defective",
+        "source_refs": [
+          "synthetic-case-supply-1-retail-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_unused_and_documented",
+        "assertion_id": "retail-sale-evidence-goods_unused_and_documented",
+        "source_refs": [
+          "synthetic-case-supply-1-retail-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "price_increased_before_replacement",
+        "assertion_id": "retail-sale-evidence-price_increased_before_replacement",
+        "source_refs": [
+          "synthetic-case-supply-1-retail-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "public_offer_made",
+        "assertion_id": "retail-sale-evidence-public_offer_made",
+        "source_refs": [
+          "synthetic-case-supply-1-retail-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "quality_exchange_demanded_in_term",
+        "assertion_id": "retail-sale-evidence-quality_exchange_demanded_in_term",
+        "source_refs": [
+          "synthetic-case-supply-1-retail-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "receipt_or_confirmation_issued",
+        "assertion_id": "retail-sale-evidence-receipt_or_confirmation_issued",
+        "source_refs": [
+          "synthetic-case-supply-1-retail-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "required_information_provided",
+        "assertion_id": "retail-sale-evidence-required_information_provided",
+        "source_refs": [
+          "synthetic-case-supply-1-retail-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "retail_consumer_sale",
+        "assertion_id": "retail-sale-evidence-retail_consumer_sale",
+        "source_refs": [
+          "synthetic-case-supply-1-retail-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "similar_goods_available",
+        "assertion_id": "retail-sale-evidence-similar_goods_available",
+        "source_refs": [
+          "synthetic-case-supply-1-retail-sale-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "retail-sale-constraint-set:reviewed-retail-sale-evidence-supply-1-v0",
+    "model_version": "contracts-retail-sale-articles-492-505-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk492-495-retail-sale-concept-v1",
+      "synthetic-ru-gk502-504-retail-exchange-and-quality-v1"
+    ],
+    "expressions": [
+      "retail_contract_is_public == retail_consumer_sale",
+      "form_confirmed_by_receipt == retail_consumer_sale AND receipt_or_confirmation_issued",
+      "information_duty_breached == retail_consumer_sale AND NOT required_information_provided",
+      "quality_remedy_available == goods_defective AND buyer_quality_remedy_demanded",
+      "quality_exchange_available == quality_exchange_demanded_in_term AND goods_unused_and_documented AND similar_goods_available",
+      "exchange_refund_available == quality_exchange_demanded_in_term AND goods_unused_and_documented AND NOT similar_goods_available",
+      "price_difference_compensable == goods_defective AND buyer_quality_remedy_demanded AND price_increased_before_replacement",
+      "requires_human_retail_sale_assessment == (retail_consumer_sale AND NOT required_information_provided) OR (goods_defective AND buyer_quality_remedy_demanded) OR quality_exchange_demanded_in_term OR price_increased_before_replacement"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "retail-sale-constraint-set:reviewed-retail-sale-evidence-supply-1-v0",
+    "satisfiable": true,
+    "retail_contract_is_public": false,
+    "form_confirmed_by_receipt": false,
+    "information_duty_breached": false,
+    "quality_remedy_available": false,
+    "quality_exchange_available": false,
+    "exchange_refund_available": false,
+    "price_difference_compensable": false,
+    "requires_human_retail_sale_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как розничная купля-продажа."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о розничной купле-продаже и не заменяет судебную оценку.",
+      "Качество товара, достоверность информации и условия обмена оцениваются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "retail-sale-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "retail-bench-public",
+        "passed": true,
+        "expected_outcomes": {
+          "retail_contract_is_public": true,
+          "form_confirmed_by_receipt": true,
+          "information_duty_breached": false,
+          "requires_human_retail_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "retail_contract_is_public": true,
+          "form_confirmed_by_receipt": true,
+          "information_duty_breached": false,
+          "requires_human_retail_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ).",
+          "Договор подтверждён выдачей кассового или товарного чека (статья 493 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "retail-bench-no-info",
+        "passed": true,
+        "expected_outcomes": {
+          "information_duty_breached": true,
+          "requires_human_retail_sale_assessment": true
+        },
+        "observed_outcomes": {
+          "information_duty_breached": true,
+          "requires_human_retail_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ).",
+          "Продавец обязан предоставить покупателю необходимую и достоверную информацию о товаре; её непредоставление влечёт последствия (статья 495 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "retail-bench-defective-remedy",
+        "passed": true,
+        "expected_outcomes": {
+          "quality_remedy_available": true,
+          "requires_human_retail_sale_assessment": true
+        },
+        "observed_outcomes": {
+          "quality_remedy_available": true,
+          "requires_human_retail_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ).",
+          "При продаже товара ненадлежащего качества покупатель вправе требовать замены, соразмерного уменьшения цены, устранения недостатков или возврата уплаченной суммы (статья 503 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "retail-bench-defective-no-demand",
+        "passed": true,
+        "expected_outcomes": {
+          "quality_remedy_available": false,
+          "requires_human_retail_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "quality_remedy_available": false,
+          "requires_human_retail_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "retail-bench-exchange",
+        "passed": true,
+        "expected_outcomes": {
+          "quality_exchange_available": true,
+          "exchange_refund_available": false,
+          "requires_human_retail_sale_assessment": true
+        },
+        "observed_outcomes": {
+          "quality_exchange_available": true,
+          "exchange_refund_available": false,
+          "requires_human_retail_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ).",
+          "Покупатель вправе обменять непродовольственный товар надлежащего качества на аналогичный в установленный срок (статья 502 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "retail-bench-exchange-refund",
+        "passed": true,
+        "expected_outcomes": {
+          "quality_exchange_available": false,
+          "exchange_refund_available": true,
+          "requires_human_retail_sale_assessment": true
+        },
+        "observed_outcomes": {
+          "quality_exchange_available": false,
+          "exchange_refund_available": true,
+          "requires_human_retail_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ).",
+          "При отсутствии аналогичного товара покупатель вправе вернуть товар и получить уплаченную за него сумму (пункт 2 статьи 502 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "retail-bench-exchange-used",
+        "passed": true,
+        "expected_outcomes": {
+          "quality_exchange_available": false,
+          "exchange_refund_available": false
+        },
+        "observed_outcomes": {
+          "quality_exchange_available": false,
+          "exchange_refund_available": false
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "retail-bench-price-difference",
+        "passed": true,
+        "expected_outcomes": {
+          "price_difference_compensable": true,
+          "quality_remedy_available": true,
+          "requires_human_retail_sale_assessment": true
+        },
+        "observed_outcomes": {
+          "price_difference_compensable": true,
+          "quality_remedy_available": true,
+          "requires_human_retail_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ).",
+          "При продаже товара ненадлежащего качества покупатель вправе требовать замены, соразмерного уменьшения цены, устранения недостатков или возврата уплаченной суммы (статья 503 ГК РФ).",
+          "При замене или возврате товара ненадлежащего качества возмещается разница между ценой товара и его ценой на момент замены или возврата (статья 504 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "retail-bench-not-retail",
+        "passed": true,
+        "expected_outcomes": {
+          "retail_contract_is_public": false,
+          "information_duty_breached": false,
+          "requires_human_retail_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "retail_contract_is_public": false,
+          "information_duty_breached": false,
+          "requires_human_retail_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как розничная купля-продажа."
+        ]
+      },
+      {
+        "task_id": "retail-bench-public-offer",
+        "passed": true,
+        "expected_outcomes": {
+          "retail_contract_is_public": true,
+          "form_confirmed_by_receipt": true,
+          "requires_human_retail_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "retail_contract_is_public": true,
+          "form_confirmed_by_receipt": true,
+          "requires_human_retail_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ).",
+          "Договор подтверждён выдачей кассового или товарного чека (статья 493 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "retail-sale-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "retail-red-public-without-retail",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "retail_contract_is_public": true
+        },
+        "observed_outcomes": {
+          "retail_contract_is_public": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как розничная купля-продажа."
+        ]
+      },
+      {
+        "case_id": "retail-red-form-without-receipt",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_confirmed_by_receipt": true
+        },
+        "observed_outcomes": {
+          "form_confirmed_by_receipt": false
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ).",
+          "Продавец обязан предоставить покупателю необходимую и достоверную информацию о товаре; её непредоставление влечёт последствия (статья 495 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "retail-red-remedy-without-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "quality_remedy_available": true
+        },
+        "observed_outcomes": {
+          "quality_remedy_available": false
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "retail-red-exchange-when-used",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "quality_exchange_available": true
+        },
+        "observed_outcomes": {
+          "quality_exchange_available": false
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "retail-red-exchange-without-similar",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "quality_exchange_available": true
+        },
+        "observed_outcomes": {
+          "quality_exchange_available": false
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ).",
+          "При отсутствии аналогичного товара покупатель вправе вернуть товар и получить уплаченную за него сумму (пункт 2 статьи 502 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "retail-red-refund-when-similar-available",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "exchange_refund_available": true
+        },
+        "observed_outcomes": {
+          "exchange_refund_available": false
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ).",
+          "Покупатель вправе обменять непродовольственный товар надлежащего качества на аналогичный в установленный срок (статья 502 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "retail-red-price-diff-without-remedy",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "price_difference_compensable": true
+        },
+        "observed_outcomes": {
+          "price_difference_compensable": false
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "retail-red-skip-info-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "information_duty_breached": false
+        },
+        "observed_outcomes": {
+          "information_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ).",
+          "Продавец обязан предоставить покупателю необходимую и достоверную информацию о товаре; её непредоставление влечёт последствия (статья 495 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "retail-red-skip-human-on-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_retail_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_retail_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ).",
+          "При продаже товара ненадлежащего качества покупатель вправе требовать замены, соразмерного уменьшения цены, устранения недостатков или возврата уплаченной суммы (статья 503 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "retail-red-skip-human-on-exchange",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_retail_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_retail_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор розничной купли-продажи является публичным (статья 492 ГК РФ).",
+          "Покупатель вправе обменять непродовольственный товар надлежащего качества на аналогичный в установленный срок (статья 502 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}
