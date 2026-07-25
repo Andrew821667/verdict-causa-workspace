@@ -1,0 +1,444 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о преддоговорной ответственности по статье 434.1 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-precontractual-evidence-supply-1-v0",
+    "schema_version": "contracts.precontractual-evidence.v0",
+    "mapping_version": "contracts-reviewed-precontractual-to-facts-v0",
+    "facts": {
+      "negotiations_entered": true,
+      "incomplete_or_false_information_provided": false,
+      "abrupt_unjustified_breakoff": false,
+      "counterparty_could_not_reasonably_expect_breakoff": false,
+      "confidential_information_received": false,
+      "confidential_information_misused": false,
+      "losses_incurred": false,
+      "damages_claimed": false,
+      "liability_limitation_agreement_present": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk434-1-precontractual-framework-v1",
+      "synthetic-ru-gk434-1-precontractual-remedies-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "abrupt_unjustified_breakoff",
+        "assertion_id": "precontractual-evidence-abrupt_unjustified_breakoff",
+        "source_refs": [
+          "synthetic-case-supply-1-precontractual-evidence"
+        ]
+      },
+      {
+        "fact_name": "confidential_information_misused",
+        "assertion_id": "precontractual-evidence-confidential_information_misused",
+        "source_refs": [
+          "synthetic-case-supply-1-precontractual-evidence"
+        ]
+      },
+      {
+        "fact_name": "confidential_information_received",
+        "assertion_id": "precontractual-evidence-confidential_information_received",
+        "source_refs": [
+          "synthetic-case-supply-1-precontractual-evidence"
+        ]
+      },
+      {
+        "fact_name": "counterparty_could_not_reasonably_expect_breakoff",
+        "assertion_id": "precontractual-evidence-counterparty_could_not_reasonably_expect_breakoff",
+        "source_refs": [
+          "synthetic-case-supply-1-precontractual-evidence"
+        ]
+      },
+      {
+        "fact_name": "damages_claimed",
+        "assertion_id": "precontractual-evidence-damages_claimed",
+        "source_refs": [
+          "synthetic-case-supply-1-precontractual-evidence"
+        ]
+      },
+      {
+        "fact_name": "incomplete_or_false_information_provided",
+        "assertion_id": "precontractual-evidence-incomplete_or_false_information_provided",
+        "source_refs": [
+          "synthetic-case-supply-1-precontractual-evidence"
+        ]
+      },
+      {
+        "fact_name": "liability_limitation_agreement_present",
+        "assertion_id": "precontractual-evidence-liability_limitation_agreement_present",
+        "source_refs": [
+          "synthetic-case-supply-1-precontractual-evidence"
+        ]
+      },
+      {
+        "fact_name": "losses_incurred",
+        "assertion_id": "precontractual-evidence-losses_incurred",
+        "source_refs": [
+          "synthetic-case-supply-1-precontractual-evidence"
+        ]
+      },
+      {
+        "fact_name": "negotiations_entered",
+        "assertion_id": "precontractual-evidence-negotiations_entered",
+        "source_refs": [
+          "synthetic-case-supply-1-precontractual-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "precontractual-constraint-set:reviewed-precontractual-evidence-supply-1-v0",
+    "model_version": "contracts-precontractual-article-434-1-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk434-1-precontractual-framework-v1",
+      "synthetic-ru-gk434-1-precontractual-remedies-v1"
+    ],
+    "expressions": [
+      "bad_faith_negotiation == negotiations_entered AND (incomplete_or_false_information_provided OR (abrupt_unjustified_breakoff AND counterparty_could_not_reasonably_expect_breakoff))",
+      "confidentiality_breach == confidential_information_received AND confidential_information_misused",
+      "precontractual_liability_present == bad_faith_negotiation OR confidentiality_breach",
+      "damages_available == precontractual_liability_present AND losses_incurred AND damages_claimed",
+      "liability_limitation_void == liability_limitation_agreement_present",
+      "requires_human_precontractual_assessment == precontractual_liability_present OR liability_limitation_void"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "precontractual-constraint-set:reviewed-precontractual-evidence-supply-1-v0",
+    "satisfiable": true,
+    "bad_faith_negotiation": false,
+    "confidentiality_breach": false,
+    "precontractual_liability_present": false,
+    "damages_available": false,
+    "liability_limitation_void": false,
+    "requires_human_precontractual_assessment": false,
+    "reasons_ru": [
+      "Недобросовестность при ведении переговоров не установлена."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о преддоговорной ответственности и не заменяет судебную оценку.",
+      "Добросовестность сторон и оправданность прекращения переговоров оцениваются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "precontractual-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "precontractual-bench-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "bad_faith_negotiation": false,
+          "precontractual_liability_present": false,
+          "requires_human_precontractual_assessment": false
+        },
+        "observed_outcomes": {
+          "bad_faith_negotiation": false,
+          "precontractual_liability_present": false,
+          "requires_human_precontractual_assessment": false
+        },
+        "reasons_ru": [
+          "Недобросовестность при ведении переговоров не установлена."
+        ]
+      },
+      {
+        "task_id": "precontractual-bench-false-information",
+        "passed": true,
+        "expected_outcomes": {
+          "bad_faith_negotiation": true,
+          "damages_available": true,
+          "requires_human_precontractual_assessment": true
+        },
+        "observed_outcomes": {
+          "bad_faith_negotiation": true,
+          "damages_available": true,
+          "requires_human_precontractual_assessment": true
+        },
+        "reasons_ru": [
+          "Установлена недобросовестность при ведении переговоров или нарушение конфиденциальности (статья 434.1 ГК РФ).",
+          "Недобросовестное ведение или прекращение переговоров нарушает обязанность действовать добросовестно (пункт 2 статьи 434.1 ГК РФ).",
+          "Причинённые недобросовестным поведением убытки подлежат возмещению независимо от того, был ли заключён договор (пункты 3 и 7 статьи 434.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "precontractual-bench-expected-breakoff",
+        "passed": true,
+        "expected_outcomes": {
+          "bad_faith_negotiation": false
+        },
+        "observed_outcomes": {
+          "bad_faith_negotiation": false
+        },
+        "reasons_ru": [
+          "Недобросовестность при ведении переговоров не установлена."
+        ]
+      },
+      {
+        "task_id": "precontractual-bench-sudden-breakoff",
+        "passed": true,
+        "expected_outcomes": {
+          "bad_faith_negotiation": true,
+          "damages_available": true
+        },
+        "observed_outcomes": {
+          "bad_faith_negotiation": true,
+          "damages_available": true
+        },
+        "reasons_ru": [
+          "Установлена недобросовестность при ведении переговоров или нарушение конфиденциальности (статья 434.1 ГК РФ).",
+          "Недобросовестное ведение или прекращение переговоров нарушает обязанность действовать добросовестно (пункт 2 статьи 434.1 ГК РФ).",
+          "Причинённые недобросовестным поведением убытки подлежат возмещению независимо от того, был ли заключён договор (пункты 3 и 7 статьи 434.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "precontractual-bench-confidentiality",
+        "passed": true,
+        "expected_outcomes": {
+          "confidentiality_breach": true,
+          "precontractual_liability_present": true,
+          "damages_available": true
+        },
+        "observed_outcomes": {
+          "confidentiality_breach": true,
+          "precontractual_liability_present": true,
+          "damages_available": true
+        },
+        "reasons_ru": [
+          "Установлена недобросовестность при ведении переговоров или нарушение конфиденциальности (статья 434.1 ГК РФ).",
+          "Ненадлежащее раскрытие или использование конфиденциальной информации, полученной в ходе переговоров, влечёт ответственность (пункт 4 статьи 434.1 ГК РФ).",
+          "Причинённые недобросовестным поведением убытки подлежат возмещению независимо от того, был ли заключён договор (пункты 3 и 7 статьи 434.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "precontractual-bench-liability-no-claim",
+        "passed": true,
+        "expected_outcomes": {
+          "precontractual_liability_present": true,
+          "damages_available": false
+        },
+        "observed_outcomes": {
+          "precontractual_liability_present": true,
+          "damages_available": false
+        },
+        "reasons_ru": [
+          "Установлена недобросовестность при ведении переговоров или нарушение конфиденциальности (статья 434.1 ГК РФ).",
+          "Недобросовестное ведение или прекращение переговоров нарушает обязанность действовать добросовестно (пункт 2 статьи 434.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "precontractual-bench-liability-no-loss",
+        "passed": true,
+        "expected_outcomes": {
+          "precontractual_liability_present": true,
+          "damages_available": false
+        },
+        "observed_outcomes": {
+          "precontractual_liability_present": true,
+          "damages_available": false
+        },
+        "reasons_ru": [
+          "Установлена недобросовестность при ведении переговоров или нарушение конфиденциальности (статья 434.1 ГК РФ).",
+          "Недобросовестное ведение или прекращение переговоров нарушает обязанность действовать добросовестно (пункт 2 статьи 434.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "precontractual-bench-limitation-void",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_limitation_void": true,
+          "requires_human_precontractual_assessment": true
+        },
+        "observed_outcomes": {
+          "liability_limitation_void": true,
+          "requires_human_precontractual_assessment": true
+        },
+        "reasons_ru": [
+          "Недобросовестность при ведении переговоров не установлена.",
+          "Соглашение об ограничении ответственности за недобросовестные действия при переговорах ничтожно (пункт 5 статьи 434.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "precontractual-bench-confidential-not-misused",
+        "passed": true,
+        "expected_outcomes": {
+          "confidentiality_breach": false,
+          "precontractual_liability_present": false
+        },
+        "observed_outcomes": {
+          "confidentiality_breach": false,
+          "precontractual_liability_present": false
+        },
+        "reasons_ru": [
+          "Недобросовестность при ведении переговоров не установлена."
+        ]
+      },
+      {
+        "task_id": "precontractual-bench-no-negotiations",
+        "passed": true,
+        "expected_outcomes": {
+          "bad_faith_negotiation": false,
+          "confidentiality_breach": true
+        },
+        "observed_outcomes": {
+          "bad_faith_negotiation": false,
+          "confidentiality_breach": true
+        },
+        "reasons_ru": [
+          "Установлена недобросовестность при ведении переговоров или нарушение конфиденциальности (статья 434.1 ГК РФ).",
+          "Ненадлежащее раскрытие или использование конфиденциальной информации, полученной в ходе переговоров, влечёт ответственность (пункт 4 статьи 434.1 ГК РФ).",
+          "Причинённые недобросовестным поведением убытки подлежат возмещению независимо от того, был ли заключён договор (пункты 3 и 7 статьи 434.1 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "precontractual-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "precontractual-red-liability-clean",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "precontractual_liability_present": true
+        },
+        "observed_outcomes": {
+          "precontractual_liability_present": false
+        },
+        "reasons_ru": [
+          "Недобросовестность при ведении переговоров не установлена."
+        ]
+      },
+      {
+        "case_id": "precontractual-red-badfaith-expected-breakoff",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "bad_faith_negotiation": true
+        },
+        "observed_outcomes": {
+          "bad_faith_negotiation": false
+        },
+        "reasons_ru": [
+          "Недобросовестность при ведении переговоров не установлена."
+        ]
+      },
+      {
+        "case_id": "precontractual-red-damages-no-claim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "damages_available": true
+        },
+        "observed_outcomes": {
+          "damages_available": false
+        },
+        "reasons_ru": [
+          "Установлена недобросовестность при ведении переговоров или нарушение конфиденциальности (статья 434.1 ГК РФ).",
+          "Недобросовестное ведение или прекращение переговоров нарушает обязанность действовать добросовестно (пункт 2 статьи 434.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "precontractual-red-damages-no-loss",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "damages_available": true
+        },
+        "observed_outcomes": {
+          "damages_available": false
+        },
+        "reasons_ru": [
+          "Установлена недобросовестность при ведении переговоров или нарушение конфиденциальности (статья 434.1 ГК РФ).",
+          "Недобросовестное ведение или прекращение переговоров нарушает обязанность действовать добросовестно (пункт 2 статьи 434.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "precontractual-red-breach-not-misused",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "confidentiality_breach": true
+        },
+        "observed_outcomes": {
+          "confidentiality_breach": false
+        },
+        "reasons_ru": [
+          "Недобросовестность при ведении переговоров не установлена."
+        ]
+      },
+      {
+        "case_id": "precontractual-red-uphold-limitation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_limitation_void": false
+        },
+        "observed_outcomes": {
+          "liability_limitation_void": true
+        },
+        "reasons_ru": [
+          "Недобросовестность при ведении переговоров не установлена.",
+          "Соглашение об ограничении ответственности за недобросовестные действия при переговорах ничтожно (пункт 5 статьи 434.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "precontractual-red-skip-human-on-liability",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_precontractual_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_precontractual_assessment": true
+        },
+        "reasons_ru": [
+          "Установлена недобросовестность при ведении переговоров или нарушение конфиденциальности (статья 434.1 ГК РФ).",
+          "Недобросовестное ведение или прекращение переговоров нарушает обязанность действовать добросовестно (пункт 2 статьи 434.1 ГК РФ).",
+          "Причинённые недобросовестным поведением убытки подлежат возмещению независимо от того, был ли заключён договор (пункты 3 и 7 статьи 434.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "precontractual-red-skip-human-on-limitation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_precontractual_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_precontractual_assessment": true
+        },
+        "reasons_ru": [
+          "Недобросовестность при ведении переговоров не установлена.",
+          "Соглашение об ограничении ответственности за недобросовестные действия при переговорах ничтожно (пункт 5 статьи 434.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "precontractual-red-badfaith-without-negotiations",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "bad_faith_negotiation": true
+        },
+        "observed_outcomes": {
+          "bad_faith_negotiation": false
+        },
+        "reasons_ru": [
+          "Установлена недобросовестность при ведении переговоров или нарушение конфиденциальности (статья 434.1 ГК РФ).",
+          "Ненадлежащее раскрытие или использование конфиденциальной информации, полученной в ходе переговоров, влечёт ответственность (пункт 4 статьи 434.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "precontractual-red-ignore-confidentiality",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "precontractual_liability_present": false
+        },
+        "observed_outcomes": {
+          "precontractual_liability_present": true
+        },
+        "reasons_ru": [
+          "Установлена недобросовестность при ведении переговоров или нарушение конфиденциальности (статья 434.1 ГК РФ).",
+          "Ненадлежащее раскрытие или использование конфиденциальной информации, полученной в ходе переговоров, влечёт ответственность (пункт 4 статьи 434.1 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

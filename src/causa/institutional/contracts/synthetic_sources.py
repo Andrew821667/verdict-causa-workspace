@@ -761,6 +761,61 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk434-1-precontractual-framework-v1",
+        title="Синтетическая проверенная модель преддоговорной ответственности по статье 434.1 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: свобода переговоров, обязанность действовать "
+            "добросовестно, недобросовестное предоставление информации и внезапное "
+            "неоправданное прекращение переговоров проверяются раздельно "
+            "(пункты 1 и 2 статьи 434.1 ГК РФ)."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "precontractual_article_434_1_good_faith",
+            "legal_reference": "ГК РФ, статья 434.1, пункты 1 и 2",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk434-1-precontractual-remedies-v1",
+        title="Синтетическая проверенная модель последствий недобросовестных переговоров",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: нарушение конфиденциальности, возмещение "
+            "убытков независимо от заключения договора и ничтожность соглашения об "
+            "ограничении ответственности за недобросовестные действия проверяются "
+            "раздельно (пункты 3–5 и 7 статьи 434.1 ГК РФ)."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "precontractual_article_434_1_remedies",
+            "legal_reference": "ГК РФ, статья 434.1, пункты 3–5 и 7",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-precontractual-evidence",
+        title="Синтетическая проверенная запись фактов о преддоговорной ответственности",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: стороны вели переговоры о поставке добросовестно; "
+            "недостоверной информации, внезапного прекращения и нарушения "
+            "конфиденциальности не установлено."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "precontractual_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

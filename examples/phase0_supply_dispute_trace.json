@@ -562,6 +562,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk434-1-precontractual-framework-v1",
+      "title": "Синтетическая проверенная модель преддоговорной ответственности по статье 434.1 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: свобода переговоров, обязанность действовать добросовестно, недобросовестное предоставление информации и внезапное неоправданное прекращение переговоров проверяются раздельно (пункты 1 и 2 статьи 434.1 ГК РФ).",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "precontractual_article_434_1_good_faith",
+        "legal_reference": "ГК РФ, статья 434.1, пункты 1 и 2",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk434-1-precontractual-remedies-v1",
+      "title": "Синтетическая проверенная модель последствий недобросовестных переговоров",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: нарушение конфиденциальности, возмещение убытков независимо от заключения договора и ничтожность соглашения об ограничении ответственности за недобросовестные действия проверяются раздельно (пункты 3–5 и 7 статьи 434.1 ГК РФ).",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "precontractual_article_434_1_remedies",
+        "legal_reference": "ГК РФ, статья 434.1, пункты 3–5 и 7",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-precontractual-evidence",
+      "title": "Синтетическая проверенная запись фактов о преддоговорной ответственности",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: стороны вели переговоры о поставке добросовестно; недостоверной информации, внезапного прекращения и нарушения конфиденциальности не установлено.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "precontractual_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -2481,6 +2528,91 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-representations-reviewer"
+    },
+    "precontractual_evidence": {
+      "id": "reviewed-precontractual-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.precontractual-evidence.v0",
+      "assertions": [
+        {
+          "id": "precontractual-evidence-negotiations_entered",
+          "predicate": "negotiations_entered",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "id": "precontractual-evidence-incomplete_or_false_information_provided",
+          "predicate": "incomplete_or_false_information_provided",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "id": "precontractual-evidence-abrupt_unjustified_breakoff",
+          "predicate": "abrupt_unjustified_breakoff",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "id": "precontractual-evidence-counterparty_could_not_reasonably_expect_breakoff",
+          "predicate": "counterparty_could_not_reasonably_expect_breakoff",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "id": "precontractual-evidence-confidential_information_received",
+          "predicate": "confidential_information_received",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "id": "precontractual-evidence-confidential_information_misused",
+          "predicate": "confidential_information_misused",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "id": "precontractual-evidence-losses_incurred",
+          "predicate": "losses_incurred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "id": "precontractual-evidence-damages_claimed",
+          "predicate": "damages_claimed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "id": "precontractual-evidence-liability_limitation_agreement_present",
+          "predicate": "liability_limitation_agreement_present",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk434-1-precontractual-framework-v1",
+        "synthetic-ru-gk434-1-precontractual-remedies-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-precontractual-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -7267,6 +7399,7 @@
       "synthetic-norm-reviewer",
       "synthetic-obligation-dynamics-reviewer",
       "synthetic-performance-remedies-reviewer",
+      "synthetic-precontractual-reviewer",
       "synthetic-preliminary-reviewer",
       "synthetic-public-contract-reviewer",
       "synthetic-representations-reviewer",
@@ -7288,6 +7421,7 @@
       "synthetic-case-supply-1-limitation-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
       "synthetic-case-supply-1-performance-remedies-evidence",
+      "synthetic-case-supply-1-precontractual-evidence",
       "synthetic-case-supply-1-preliminary-evidence",
       "synthetic-case-supply-1-public-contract-evidence",
       "synthetic-case-supply-1-representations-evidence",
@@ -7337,6 +7471,8 @@
       "synthetic-ru-gk431-interpretation-model-v1",
       "synthetic-ru-gk432-contract-formation-model-v1",
       "synthetic-ru-gk433-conclusion-moment-model-v1",
+      "synthetic-ru-gk434-1-precontractual-framework-v1",
+      "synthetic-ru-gk434-1-precontractual-remedies-v1",
       "synthetic-ru-gk435-offer-model-v1",
       "synthetic-ru-gk438-443-acceptance-model-v1",
       "synthetic-ru-gk450-453-termination-model-v1",
@@ -8992,6 +9128,124 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о заверениях об обстоятельствах и не заменяет судебную оценку.",
         "Существенность заверения, добросовестность сторон и обоснованность доверия оцениваются экспертом и судом."
+      ]
+    },
+    "precontractual_evidence_mapping": {
+      "evidence_id": "reviewed-precontractual-evidence-supply-1-v0",
+      "schema_version": "contracts.precontractual-evidence.v0",
+      "mapping_version": "contracts-reviewed-precontractual-to-facts-v0",
+      "facts": {
+        "negotiations_entered": true,
+        "incomplete_or_false_information_provided": false,
+        "abrupt_unjustified_breakoff": false,
+        "counterparty_could_not_reasonably_expect_breakoff": false,
+        "confidential_information_received": false,
+        "confidential_information_misused": false,
+        "losses_incurred": false,
+        "damages_claimed": false,
+        "liability_limitation_agreement_present": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk434-1-precontractual-framework-v1",
+        "synthetic-ru-gk434-1-precontractual-remedies-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "abrupt_unjustified_breakoff",
+          "assertion_id": "precontractual-evidence-abrupt_unjustified_breakoff",
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "fact_name": "confidential_information_misused",
+          "assertion_id": "precontractual-evidence-confidential_information_misused",
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "fact_name": "confidential_information_received",
+          "assertion_id": "precontractual-evidence-confidential_information_received",
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "fact_name": "counterparty_could_not_reasonably_expect_breakoff",
+          "assertion_id": "precontractual-evidence-counterparty_could_not_reasonably_expect_breakoff",
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "fact_name": "damages_claimed",
+          "assertion_id": "precontractual-evidence-damages_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "fact_name": "incomplete_or_false_information_provided",
+          "assertion_id": "precontractual-evidence-incomplete_or_false_information_provided",
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "fact_name": "liability_limitation_agreement_present",
+          "assertion_id": "precontractual-evidence-liability_limitation_agreement_present",
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "fact_name": "losses_incurred",
+          "assertion_id": "precontractual-evidence-losses_incurred",
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        },
+        {
+          "fact_name": "negotiations_entered",
+          "assertion_id": "precontractual-evidence-negotiations_entered",
+          "source_refs": [
+            "synthetic-case-supply-1-precontractual-evidence"
+          ]
+        }
+      ]
+    },
+    "precontractual_constraint_set": {
+      "id": "precontractual-constraint-set:reviewed-precontractual-evidence-supply-1-v0",
+      "model_version": "contracts-precontractual-article-434-1-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk434-1-precontractual-framework-v1",
+        "synthetic-ru-gk434-1-precontractual-remedies-v1"
+      ],
+      "expressions": [
+        "bad_faith_negotiation == negotiations_entered AND (incomplete_or_false_information_provided OR (abrupt_unjustified_breakoff AND counterparty_could_not_reasonably_expect_breakoff))",
+        "confidentiality_breach == confidential_information_received AND confidential_information_misused",
+        "precontractual_liability_present == bad_faith_negotiation OR confidentiality_breach",
+        "damages_available == precontractual_liability_present AND losses_incurred AND damages_claimed",
+        "liability_limitation_void == liability_limitation_agreement_present",
+        "requires_human_precontractual_assessment == precontractual_liability_present OR liability_limitation_void"
+      ]
+    },
+    "precontractual_evaluation": {
+      "constraint_set_id": "precontractual-constraint-set:reviewed-precontractual-evidence-supply-1-v0",
+      "satisfiable": true,
+      "bad_faith_negotiation": false,
+      "confidentiality_breach": false,
+      "precontractual_liability_present": false,
+      "damages_available": false,
+      "liability_limitation_void": false,
+      "requires_human_precontractual_assessment": false,
+      "reasons_ru": [
+        "Недобросовестность при ведении переговоров не установлена."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о преддоговорной ответственности и не заменяет судебную оценку.",
+        "Добросовестность сторон и оправданность прекращения переговоров оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -14365,7 +14619,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.27.0",
+      "institutional_package_version": "contracts-ru-v0@0.28.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -16370,6 +16624,7 @@
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-performance-remedies-evidence",
+          "synthetic-case-supply-1-precontractual-evidence",
           "synthetic-case-supply-1-preliminary-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-representations-evidence",
@@ -16419,6 +16674,8 @@
           "synthetic-ru-gk431-interpretation-model-v1",
           "synthetic-ru-gk432-contract-formation-model-v1",
           "synthetic-ru-gk433-conclusion-moment-model-v1",
+          "synthetic-ru-gk434-1-precontractual-framework-v1",
+          "synthetic-ru-gk434-1-precontractual-remedies-v1",
           "synthetic-ru-gk435-offer-model-v1",
           "synthetic-ru-gk438-443-acceptance-model-v1",
           "synthetic-ru-gk450-453-termination-model-v1",
@@ -17444,6 +17701,7 @@
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-performance-remedies-evidence",
+          "synthetic-case-supply-1-precontractual-evidence",
           "synthetic-case-supply-1-preliminary-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-representations-evidence",
@@ -17493,6 +17751,8 @@
           "synthetic-ru-gk431-interpretation-model-v1",
           "synthetic-ru-gk432-contract-formation-model-v1",
           "synthetic-ru-gk433-conclusion-moment-model-v1",
+          "synthetic-ru-gk434-1-precontractual-framework-v1",
+          "synthetic-ru-gk434-1-precontractual-remedies-v1",
           "synthetic-ru-gk435-offer-model-v1",
           "synthetic-ru-gk438-443-acceptance-model-v1",
           "synthetic-ru-gk450-453-termination-model-v1",
@@ -18518,6 +18778,7 @@
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-performance-remedies-evidence",
+          "synthetic-case-supply-1-precontractual-evidence",
           "synthetic-case-supply-1-preliminary-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-representations-evidence",
@@ -18567,6 +18828,8 @@
           "synthetic-ru-gk431-interpretation-model-v1",
           "synthetic-ru-gk432-contract-formation-model-v1",
           "synthetic-ru-gk433-conclusion-moment-model-v1",
+          "synthetic-ru-gk434-1-precontractual-framework-v1",
+          "synthetic-ru-gk434-1-precontractual-remedies-v1",
           "synthetic-ru-gk435-offer-model-v1",
           "synthetic-ru-gk438-443-acceptance-model-v1",
           "synthetic-ru-gk450-453-termination-model-v1",
@@ -18665,7 +18928,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.27.0",
+      "institutional_package_version": "contracts-ru-v0@0.28.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -19123,6 +19386,44 @@
           "synthetic": true,
           "non_authoritative": true,
           "topic": "representations_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
+        "id": "synthetic-ru-gk434-1-precontractual-framework-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель преддоговорной ответственности по статье 434.1 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "precontractual_article_434_1_good_faith",
+          "legal_reference": "ГК РФ, статья 434.1, пункты 1 и 2",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk434-1-precontractual-remedies-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель последствий недобросовестных переговоров",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "precontractual_article_434_1_remedies",
+          "legal_reference": "ГК РФ, статья 434.1, пункты 3–5 и 7",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-precontractual-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о преддоговорной ответственности",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "precontractual_case_evidence",
           "case_id": "case-supply-1"
         }
       },
@@ -19744,6 +20045,7 @@
             "synthetic-norm-reviewer",
             "synthetic-obligation-dynamics-reviewer",
             "synthetic-performance-remedies-reviewer",
+            "synthetic-precontractual-reviewer",
             "synthetic-preliminary-reviewer",
             "synthetic-public-contract-reviewer",
             "synthetic-representations-reviewer",

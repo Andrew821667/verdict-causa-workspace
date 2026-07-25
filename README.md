@@ -68,6 +68,8 @@ The first institutional package focuses on contractual relations: formation, cha
 
 Релиз `contracts-ru-v0@0.27.0` добавляет формальную модель заверений об обстоятельствах по статье 431.2 ГК РФ: недостоверное заверение, имеющее значение, основание ответственности, возмещение убытков или неустойку, право на отказ от договора и оспаривание при обмане. Правила описаны в русской [спецификации заверений об обстоятельствах](docs/contract-representations-spec.md).
 
+Релиз `contracts-ru-v0@0.28.0` добавляет формальную модель преддоговорной ответственности по статье 434.1 ГК РФ: недобросовестное ведение и прекращение переговоров, нарушение конфиденциальности, возмещение убытков независимо от заключения договора и ничтожность соглашений об ограничении такой ответственности. Правила описаны в русской [спецификации преддоговорной ответственности](docs/contract-precontractual-spec.md).
+
 This is the first proving ground for the infrastructure, not the full scope of the project.
 
 ## Architecture
@@ -283,6 +285,14 @@ python scripts/export_synthetic_representations_evaluation.py
 
 Результат записывается в `examples/synthetic_representations_evaluation_report.json`. Отчёт проверяет недостоверное заверение, основание ответственности, возмещение убытков, право на отказ от договора и оспаривание при обмане по статье 431.2 ГК РФ и не подменяет судебную оценку.
 
+Сформировать отчёт о преддоговорной ответственности:
+
+```bash
+python scripts/export_synthetic_precontractual_evaluation.py
+```
+
+Результат записывается в `examples/synthetic_precontractual_evaluation_report.json`. Отчёт проверяет недобросовестное ведение переговоров, нарушение конфиденциальности, возмещение убытков и ничтожность ограничения ответственности по статье 434.1 ГК РФ и не подменяет судебную оценку.
+
 Generate the reviewed contract change-and-termination report:
 
 ```bash
@@ -393,7 +403,7 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-Команда формирует отчёты о необходимости replay для прежних релизов и пересобирает их относительно `0.27.0`. Отчёты сохраняются как `examples/migrations/contracts-ru-v0-<source>-to-0.27.0-migration-report.json` для `0.1.0`, `0.3.0` и каждого релиза с `0.4.0` по `0.26.0`. Прежние отчёты `*-to-0.17.0` … `*-to-0.26.0` сохраняются как исторические артефакты.
+Команда формирует отчёты о необходимости replay для прежних релизов и пересобирает их относительно `0.28.0`. Отчёты сохраняются как `examples/migrations/contracts-ru-v0-<source>-to-0.28.0-migration-report.json` для `0.1.0`, `0.3.0` и каждого релиза с `0.4.0` по `0.27.0`. Прежние отчёты `*-to-0.17.0` … `*-to-0.27.0` сохраняются как исторические артефакты.
 
 ## License
 

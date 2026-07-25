@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.28.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью преддоговорной ответственности |
 | `0.27.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью заверений об обстоятельствах |
 | `0.26.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью договора присоединения |
 | `0.25.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью публичного договора |
@@ -35,6 +36,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.27.0` → `0.28.0` соберите отдельно проверенный контракт данных о преддоговорной ответственности (`contracts.precontractual-evidence.v0`). Не выводите недобросовестность переговоров, нарушение конфиденциальности и последствия из прежних результатов о заключении, заверениях или действительности договора. Пересоберите артефакты оценки преддоговорной ответственности, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.26.0` → `0.27.0` соберите отдельно проверенный контракт данных о заверениях об обстоятельствах (`contracts.representations-evidence.v0`). Не выводите недостоверность и значение заверения, основание ответственности и последствия из прежних результатов о заключении, действительности или договоре присоединения. Пересоберите артефакты оценки заверений, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

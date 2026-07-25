@@ -530,6 +530,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.27.0",
+        to_version="0.28.0",
+        reasons=[
+            "Reviewed inputs now require a separate precontractual evidence contract.",
+            "Analysis and Russian translation distinguish the precontractual paths under article 434.1.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о преддоговорной ответственности.",
+            "Анализ и русское объяснение разделяют маршруты преддоговорной ответственности по статье 434.1 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_precontractual_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

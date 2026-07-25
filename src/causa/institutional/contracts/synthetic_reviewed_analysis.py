@@ -60,6 +60,11 @@ from causa.institutional.contracts.representations import (
     RepresentationsEvidencePredicate,
     ReviewedRepresentationsEvidence,
 )
+from causa.institutional.contracts.precontractual import (
+    PrecontractualEvidenceAssertion,
+    PrecontractualEvidencePredicate,
+    ReviewedPrecontractualEvidence,
+)
 from causa.institutional.contracts.public_contract import (
     PublicContractEvidenceAssertion,
     PublicContractEvidencePredicate,
@@ -148,6 +153,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk431-2-representations-framework-v1",
     "synthetic-ru-gk431-2-representations-remedies-v1",
     "synthetic-case-supply-1-representations-evidence",
+    "synthetic-ru-gk434-1-precontractual-framework-v1",
+    "synthetic-ru-gk434-1-precontractual-remedies-v1",
+    "synthetic-case-supply-1-precontractual-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -702,6 +710,44 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-representations-reviewer",
+        ),
+        precontractual_evidence=ReviewedPrecontractualEvidence(
+            id="reviewed-precontractual-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                PrecontractualEvidenceAssertion(
+                    id=f"precontractual-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-precontractual-evidence",),
+                )
+                for predicate, value in (
+                    (PrecontractualEvidencePredicate.NEGOTIATIONS_ENTERED, True),
+                    (
+                        PrecontractualEvidencePredicate.INCOMPLETE_OR_FALSE_INFORMATION_PROVIDED,
+                        False,
+                    ),
+                    (PrecontractualEvidencePredicate.ABRUPT_UNJUSTIFIED_BREAKOFF, False),
+                    (
+                        PrecontractualEvidencePredicate.COUNTERPARTY_COULD_NOT_REASONABLY_EXPECT_BREAKOFF,
+                        False,
+                    ),
+                    (PrecontractualEvidencePredicate.CONFIDENTIAL_INFORMATION_RECEIVED, False),
+                    (PrecontractualEvidencePredicate.CONFIDENTIAL_INFORMATION_MISUSED, False),
+                    (PrecontractualEvidencePredicate.LOSSES_INCURRED, False),
+                    (PrecontractualEvidencePredicate.DAMAGES_CLAIMED, False),
+                    (
+                        PrecontractualEvidencePredicate.LIABILITY_LIMITATION_AGREEMENT_PRESENT,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk434-1-precontractual-framework-v1",
+                "synthetic-ru-gk434-1-precontractual-remedies-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-precontractual-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
