@@ -663,6 +663,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.34.0",
+        to_version="0.35.0",
+        reasons=[
+            "Reviewed inputs now require a separate state-supply evidence contract.",
+            "Analysis and Russian translation distinguish the state contract conclusion, buyer attachment, payment, and loss compensation under articles 525 through 534.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о поставке для государственных нужд.",
+            "Анализ и русское объяснение разделяют заключение контракта, прикрепление покупателя, оплату и возмещение убытков по статьям 525–534 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_state_supply_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

@@ -1,0 +1,450 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о поставке товаров для государственных и муниципальных нужд по статьям 525–534 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-state-supply-evidence-supply-1-v0",
+    "schema_version": "contracts.state-supply-evidence.v0",
+    "mapping_version": "contracts-reviewed-state-supply-to-facts-v0",
+    "facts": {
+      "state_contract_concluded": false,
+      "order_placed_by_procedure": false,
+      "conclusion_mandatory_for_supplier": false,
+      "contract_causes_supplier_loss": false,
+      "supplier_evaded_conclusion": false,
+      "attachment_notice_issued": false,
+      "buyer_refused_goods": false,
+      "goods_delivered_to_buyer": false,
+      "buyer_paid_at_contract_price": false,
+      "state_customer_refused_goods": false,
+      "supplier_incurred_losses": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk525-528-state-contract-v1",
+      "synthetic-ru-gk529-534-state-supply-performance-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "attachment_notice_issued",
+        "assertion_id": "state-supply-evidence-attachment_notice_issued",
+        "source_refs": [
+          "synthetic-case-supply-1-state-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_paid_at_contract_price",
+        "assertion_id": "state-supply-evidence-buyer_paid_at_contract_price",
+        "source_refs": [
+          "synthetic-case-supply-1-state-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "buyer_refused_goods",
+        "assertion_id": "state-supply-evidence-buyer_refused_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-state-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "conclusion_mandatory_for_supplier",
+        "assertion_id": "state-supply-evidence-conclusion_mandatory_for_supplier",
+        "source_refs": [
+          "synthetic-case-supply-1-state-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_causes_supplier_loss",
+        "assertion_id": "state-supply-evidence-contract_causes_supplier_loss",
+        "source_refs": [
+          "synthetic-case-supply-1-state-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_delivered_to_buyer",
+        "assertion_id": "state-supply-evidence-goods_delivered_to_buyer",
+        "source_refs": [
+          "synthetic-case-supply-1-state-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "order_placed_by_procedure",
+        "assertion_id": "state-supply-evidence-order_placed_by_procedure",
+        "source_refs": [
+          "synthetic-case-supply-1-state-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "state_contract_concluded",
+        "assertion_id": "state-supply-evidence-state_contract_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-state-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "state_customer_refused_goods",
+        "assertion_id": "state-supply-evidence-state_customer_refused_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-state-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "supplier_evaded_conclusion",
+        "assertion_id": "state-supply-evidence-supplier_evaded_conclusion",
+        "source_refs": [
+          "synthetic-case-supply-1-state-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "supplier_incurred_losses",
+        "assertion_id": "state-supply-evidence-supplier_incurred_losses",
+        "source_refs": [
+          "synthetic-case-supply-1-state-supply-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "state-supply-constraint-set:reviewed-state-supply-evidence-supply-1-v0",
+    "model_version": "contracts-state-supply-articles-525-534-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk525-528-state-contract-v1",
+      "synthetic-ru-gk529-534-state-supply-performance-v1"
+    ],
+    "expressions": [
+      "supplier_conclusion_compellable == conclusion_mandatory_for_supplier AND order_placed_by_procedure AND supplier_evaded_conclusion AND NOT contract_causes_supplier_loss",
+      "buyer_attached_to_supplier == state_contract_concluded AND attachment_notice_issued",
+      "supplier_may_seek_reattachment == attachment_notice_issued AND buyer_refused_goods",
+      "buyer_pays_at_contract_price == goods_delivered_to_buyer AND buyer_paid_at_contract_price",
+      "customer_guarantees_buyer_payment == state_contract_concluded AND goods_delivered_to_buyer",
+      "customer_refusal_compensates_supplier == state_customer_refused_goods AND supplier_incurred_losses",
+      "supplier_losses_compensable == state_contract_concluded AND supplier_incurred_losses",
+      "requires_human_state_supply_assessment == (conclusion_mandatory_for_supplier AND supplier_evaded_conclusion) OR buyer_refused_goods OR state_customer_refused_goods OR supplier_incurred_losses"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "state-supply-constraint-set:reviewed-state-supply-evidence-supply-1-v0",
+    "satisfiable": true,
+    "supplier_conclusion_compellable": false,
+    "buyer_attached_to_supplier": false,
+    "supplier_may_seek_reattachment": false,
+    "buyer_pays_at_contract_price": false,
+    "customer_guarantees_buyer_payment": false,
+    "customer_refusal_compensates_supplier": false,
+    "supplier_losses_compensable": false,
+    "requires_human_state_supply_assessment": false,
+    "reasons_ru": [
+      "Формальные предпосылки поставки для государственных или муниципальных нужд не подтверждены."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о поставке для государственных и муниципальных нужд и не заменяет судебную оценку.",
+      "Обязательность заключения контракта, размер убытков и порядок размещения заказа оцениваются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "state-supply-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "statesupply-bench-compel",
+        "passed": true,
+        "expected_outcomes": {
+          "supplier_conclusion_compellable": true,
+          "requires_human_state_supply_assessment": true
+        },
+        "observed_outcomes": {
+          "supplier_conclusion_compellable": true,
+          "requires_human_state_supply_assessment": true
+        },
+        "reasons_ru": [
+          "Поставщик, для которого заключение государственного или муниципального контракта обязательно и который уклоняется, может быть понуждён к его заключению (статьи 527 и 528 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "statesupply-bench-loss-exception",
+        "passed": true,
+        "expected_outcomes": {
+          "supplier_conclusion_compellable": false,
+          "requires_human_state_supply_assessment": true
+        },
+        "observed_outcomes": {
+          "supplier_conclusion_compellable": false,
+          "requires_human_state_supply_assessment": true
+        },
+        "reasons_ru": [
+          "Формальные предпосылки поставки для государственных или муниципальных нужд не подтверждены."
+        ]
+      },
+      {
+        "task_id": "statesupply-bench-attachment",
+        "passed": true,
+        "expected_outcomes": {
+          "buyer_attached_to_supplier": true,
+          "requires_human_state_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "buyer_attached_to_supplier": true,
+          "requires_human_state_supply_assessment": false
+        },
+        "reasons_ru": [
+          "На основании контракта заказчик направил извещение о прикреплении покупателя к поставщику (статья 529 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "statesupply-bench-buyer-refusal",
+        "passed": true,
+        "expected_outcomes": {
+          "supplier_may_seek_reattachment": true,
+          "requires_human_state_supply_assessment": true
+        },
+        "observed_outcomes": {
+          "supplier_may_seek_reattachment": true,
+          "requires_human_state_supply_assessment": true
+        },
+        "reasons_ru": [
+          "На основании контракта заказчик направил извещение о прикреплении покупателя к поставщику (статья 529 ГК РФ).",
+          "При отказе покупателя от товаров поставщик вправе требовать прикрепления к другому покупателю (статья 530 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "statesupply-bench-buyer-payment",
+        "passed": true,
+        "expected_outcomes": {
+          "buyer_pays_at_contract_price": true,
+          "customer_guarantees_buyer_payment": true,
+          "requires_human_state_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "buyer_pays_at_contract_price": true,
+          "customer_guarantees_buyer_payment": true,
+          "requires_human_state_supply_assessment": false
+        },
+        "reasons_ru": [
+          "При поставке покупателю оплата производится по ценам, установленным контрактом (статья 532 ГК РФ).",
+          "Государственный заказчик признаётся поручителем по обязательству покупателя об оплате товаров (статья 532 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "statesupply-bench-customer-guarantor",
+        "passed": true,
+        "expected_outcomes": {
+          "customer_guarantees_buyer_payment": true,
+          "buyer_pays_at_contract_price": false
+        },
+        "observed_outcomes": {
+          "customer_guarantees_buyer_payment": true,
+          "buyer_pays_at_contract_price": false
+        },
+        "reasons_ru": [
+          "Государственный заказчик признаётся поручителем по обязательству покупателя об оплате товаров (статья 532 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "statesupply-bench-customer-refusal",
+        "passed": true,
+        "expected_outcomes": {
+          "customer_refusal_compensates_supplier": true,
+          "supplier_losses_compensable": true,
+          "requires_human_state_supply_assessment": true
+        },
+        "observed_outcomes": {
+          "customer_refusal_compensates_supplier": true,
+          "supplier_losses_compensable": true,
+          "requires_human_state_supply_assessment": true
+        },
+        "reasons_ru": [
+          "При отказе государственного заказчика от товаров заказчик возмещает поставщику причинённые этим убытки (статья 534 ГК РФ).",
+          "Убытки, причинённые поставщику в связи с выполнением контракта, подлежат возмещению заказчиком (статья 533 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "statesupply-bench-supplier-losses",
+        "passed": true,
+        "expected_outcomes": {
+          "supplier_losses_compensable": true,
+          "requires_human_state_supply_assessment": true
+        },
+        "observed_outcomes": {
+          "supplier_losses_compensable": true,
+          "requires_human_state_supply_assessment": true
+        },
+        "reasons_ru": [
+          "Убытки, причинённые поставщику в связи с выполнением контракта, подлежат возмещению заказчиком (статья 533 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "statesupply-bench-not-mandatory",
+        "passed": true,
+        "expected_outcomes": {
+          "supplier_conclusion_compellable": false
+        },
+        "observed_outcomes": {
+          "supplier_conclusion_compellable": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки поставки для государственных или муниципальных нужд не подтверждены."
+        ]
+      },
+      {
+        "task_id": "statesupply-bench-empty",
+        "passed": true,
+        "expected_outcomes": {
+          "buyer_attached_to_supplier": false,
+          "supplier_conclusion_compellable": false,
+          "requires_human_state_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "buyer_attached_to_supplier": false,
+          "supplier_conclusion_compellable": false,
+          "requires_human_state_supply_assessment": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки поставки для государственных или муниципальных нужд не подтверждены."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "state-supply-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "statesupply-red-compel-without-mandatory",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supplier_conclusion_compellable": true
+        },
+        "observed_outcomes": {
+          "supplier_conclusion_compellable": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки поставки для государственных или муниципальных нужд не подтверждены."
+        ]
+      },
+      {
+        "case_id": "statesupply-red-compel-when-loss",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supplier_conclusion_compellable": true
+        },
+        "observed_outcomes": {
+          "supplier_conclusion_compellable": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки поставки для государственных или муниципальных нужд не подтверждены."
+        ]
+      },
+      {
+        "case_id": "statesupply-red-attach-without-contract",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "buyer_attached_to_supplier": true
+        },
+        "observed_outcomes": {
+          "buyer_attached_to_supplier": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки поставки для государственных или муниципальных нужд не подтверждены."
+        ]
+      },
+      {
+        "case_id": "statesupply-red-reattach-without-refusal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supplier_may_seek_reattachment": true
+        },
+        "observed_outcomes": {
+          "supplier_may_seek_reattachment": false
+        },
+        "reasons_ru": [
+          "На основании контракта заказчик направил извещение о прикреплении покупателя к поставщику (статья 529 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "statesupply-red-buyer-pays-without-delivery",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "buyer_pays_at_contract_price": true
+        },
+        "observed_outcomes": {
+          "buyer_pays_at_contract_price": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки поставки для государственных или муниципальных нужд не подтверждены."
+        ]
+      },
+      {
+        "case_id": "statesupply-red-guarantor-without-delivery",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "customer_guarantees_buyer_payment": true
+        },
+        "observed_outcomes": {
+          "customer_guarantees_buyer_payment": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки поставки для государственных или муниципальных нужд не подтверждены."
+        ]
+      },
+      {
+        "case_id": "statesupply-red-compensate-without-losses",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "customer_refusal_compensates_supplier": true
+        },
+        "observed_outcomes": {
+          "customer_refusal_compensates_supplier": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки поставки для государственных или муниципальных нужд не подтверждены."
+        ]
+      },
+      {
+        "case_id": "statesupply-red-losses-without-contract",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supplier_losses_compensable": true
+        },
+        "observed_outcomes": {
+          "supplier_losses_compensable": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки поставки для государственных или муниципальных нужд не подтверждены."
+        ]
+      },
+      {
+        "case_id": "statesupply-red-skip-human-on-customer-refusal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_state_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_state_supply_assessment": true
+        },
+        "reasons_ru": [
+          "При отказе государственного заказчика от товаров заказчик возмещает поставщику причинённые этим убытки (статья 534 ГК РФ).",
+          "Убытки, причинённые поставщику в связи с выполнением контракта, подлежат возмещению заказчиком (статья 533 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "statesupply-red-skip-human-on-buyer-refusal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_state_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_state_supply_assessment": true
+        },
+        "reasons_ru": [
+          "На основании контракта заказчик направил извещение о прикреплении покупателя к поставщику (статья 529 ГК РФ).",
+          "При отказе покупателя от товаров поставщик вправе требовать прикрепления к другому покупателю (статья 530 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

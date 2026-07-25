@@ -85,6 +85,11 @@ from causa.institutional.contracts.retail_sale import (
     RetailSaleEvidenceAssertion,
     RetailSaleEvidencePredicate,
 )
+from causa.institutional.contracts.state_supply import (
+    ReviewedStateSupplyEvidence,
+    StateSupplyEvidenceAssertion,
+    StateSupplyEvidencePredicate,
+)
 from causa.institutional.contracts.procedure import (
     ProcedureEvidenceAssertion,
     ProcedureEvidencePredicate,
@@ -204,6 +209,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk492-495-retail-sale-concept-v1",
     "synthetic-ru-gk502-504-retail-exchange-and-quality-v1",
     "synthetic-case-supply-1-retail-sale-evidence",
+    "synthetic-ru-gk525-528-state-contract-v1",
+    "synthetic-ru-gk529-534-state-supply-performance-v1",
+    "synthetic-case-supply-1-state-supply-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -975,6 +983,37 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-retail-sale-reviewer",
+        ),
+        state_supply_evidence=ReviewedStateSupplyEvidence(
+            id="reviewed-state-supply-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                StateSupplyEvidenceAssertion(
+                    id=f"state-supply-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-state-supply-evidence",),
+                )
+                for predicate, value in (
+                    (StateSupplyEvidencePredicate.STATE_CONTRACT_CONCLUDED, False),
+                    (StateSupplyEvidencePredicate.ORDER_PLACED_BY_PROCEDURE, False),
+                    (StateSupplyEvidencePredicate.CONCLUSION_MANDATORY_FOR_SUPPLIER, False),
+                    (StateSupplyEvidencePredicate.CONTRACT_CAUSES_SUPPLIER_LOSS, False),
+                    (StateSupplyEvidencePredicate.SUPPLIER_EVADED_CONCLUSION, False),
+                    (StateSupplyEvidencePredicate.ATTACHMENT_NOTICE_ISSUED, False),
+                    (StateSupplyEvidencePredicate.BUYER_REFUSED_GOODS, False),
+                    (StateSupplyEvidencePredicate.GOODS_DELIVERED_TO_BUYER, False),
+                    (StateSupplyEvidencePredicate.BUYER_PAID_AT_CONTRACT_PRICE, False),
+                    (StateSupplyEvidencePredicate.STATE_CUSTOMER_REFUSED_GOODS, False),
+                    (StateSupplyEvidencePredicate.SUPPLIER_INCURRED_LOSSES, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk525-528-state-contract-v1",
+                "synthetic-ru-gk529-534-state-supply-performance-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-state-supply-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

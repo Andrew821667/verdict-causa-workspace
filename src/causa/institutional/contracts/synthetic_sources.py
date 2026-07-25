@@ -1139,6 +1139,60 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk525-528-state-contract-v1",
+        title="Синтетическая проверенная модель государственного контракта по статьям 525–528 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: поставка для государственных и муниципальных "
+            "нужд на основе государственного контракта, размещение заказа, обязательность "
+            "заключения для поставщика и понуждение к заключению проверяются раздельно "
+            "(статьи 525–528 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "state_contract_articles_525_528",
+            "legal_reference": "ГК РФ, статьи 525–528",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk529-534-state-supply-performance-v1",
+        title="Синтетическая проверенная модель исполнения поставки для госнужд по статьям 529–534 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: прикрепление покупателя, отказ покупателя от "
+            "товаров, оплата по ценам контракта, поручительство заказчика и возмещение "
+            "убытков поставщику проверяются раздельно (статьи 529–534 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "state_supply_performance_articles_529_534",
+            "legal_reference": "ГК РФ, статьи 529–534",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-state-supply-evidence",
+        title="Синтетическая проверенная запись фактов о поставке для государственных нужд",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является обычной коммерческой поставкой "
+            "между предпринимателями и не связан с государственным или муниципальным "
+            "контрактом; прикрепление покупателя и отказы заказчика отсутствуют."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "state_supply_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

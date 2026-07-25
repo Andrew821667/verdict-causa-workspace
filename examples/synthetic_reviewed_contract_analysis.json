@@ -891,6 +891,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk525-528-state-contract-v1",
+      "title": "Синтетическая проверенная модель государственного контракта по статьям 525–528 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: поставка для государственных и муниципальных нужд на основе государственного контракта, размещение заказа, обязательность заключения для поставщика и понуждение к заключению проверяются раздельно (статьи 525–528 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "state_contract_articles_525_528",
+        "legal_reference": "ГК РФ, статьи 525–528",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk529-534-state-supply-performance-v1",
+      "title": "Синтетическая проверенная модель исполнения поставки для госнужд по статьям 529–534 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: прикрепление покупателя, отказ покупателя от товаров, оплата по ценам контракта, поручительство заказчика и возмещение убытков поставщику проверяются раздельно (статьи 529–534 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "state_supply_performance_articles_529_534",
+        "legal_reference": "ГК РФ, статьи 529–534",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-state-supply-evidence",
+      "title": "Синтетическая проверенная запись фактов о поставке для государственных нужд",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является обычной коммерческой поставкой между предпринимателями и не связан с государственным или муниципальным контрактом; прикрепление покупателя и отказы заказчика отсутствуют.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "state_supply_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -3445,6 +3492,107 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-retail-sale-reviewer"
+    },
+    "state_supply_evidence": {
+      "id": "reviewed-state-supply-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.state-supply-evidence.v0",
+      "assertions": [
+        {
+          "id": "state-supply-evidence-state_contract_concluded",
+          "predicate": "state_contract_concluded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "id": "state-supply-evidence-order_placed_by_procedure",
+          "predicate": "order_placed_by_procedure",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "id": "state-supply-evidence-conclusion_mandatory_for_supplier",
+          "predicate": "conclusion_mandatory_for_supplier",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "id": "state-supply-evidence-contract_causes_supplier_loss",
+          "predicate": "contract_causes_supplier_loss",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "id": "state-supply-evidence-supplier_evaded_conclusion",
+          "predicate": "supplier_evaded_conclusion",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "id": "state-supply-evidence-attachment_notice_issued",
+          "predicate": "attachment_notice_issued",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "id": "state-supply-evidence-buyer_refused_goods",
+          "predicate": "buyer_refused_goods",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "id": "state-supply-evidence-goods_delivered_to_buyer",
+          "predicate": "goods_delivered_to_buyer",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "id": "state-supply-evidence-buyer_paid_at_contract_price",
+          "predicate": "buyer_paid_at_contract_price",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "id": "state-supply-evidence-state_customer_refused_goods",
+          "predicate": "state_customer_refused_goods",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "id": "state-supply-evidence-supplier_incurred_losses",
+          "predicate": "supplier_incurred_losses",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk525-528-state-contract-v1",
+        "synthetic-ru-gk529-534-state-supply-performance-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-state-supply-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -8243,6 +8391,7 @@
       "synthetic-retail-sale-reviewer",
       "synthetic-security-reviewer",
       "synthetic-special-supply-reviewer",
+      "synthetic-state-supply-reviewer",
       "synthetic-temporal-effect-reviewer",
       "synthetic-temporal-reviewer",
       "synthetic-termination-reviewer",
@@ -8272,6 +8421,7 @@
       "synthetic-case-supply-1-reviewed-evidence",
       "synthetic-case-supply-1-security-evidence",
       "synthetic-case-supply-1-special-supply-evidence",
+      "synthetic-case-supply-1-state-supply-evidence",
       "synthetic-case-supply-1-temporal-effect-evidence",
       "synthetic-case-supply-1-termination-evidence",
       "synthetic-case-supply-1-third-party-evidence",
@@ -8338,6 +8488,8 @@
       "synthetic-ru-gk506-512-supply-framework-v1",
       "synthetic-ru-gk513-517-supply-acceptance-v1",
       "synthetic-ru-gk518-524-supply-remedies-v1",
+      "synthetic-ru-gk525-528-state-contract-v1",
+      "synthetic-ru-gk529-534-state-supply-performance-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -10880,6 +11032,144 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о розничной купле-продаже и не заменяет судебную оценку.",
         "Качество товара, достоверность информации и условия обмена оцениваются экспертом и судом."
+      ]
+    },
+    "state_supply_evidence_mapping": {
+      "evidence_id": "reviewed-state-supply-evidence-supply-1-v0",
+      "schema_version": "contracts.state-supply-evidence.v0",
+      "mapping_version": "contracts-reviewed-state-supply-to-facts-v0",
+      "facts": {
+        "state_contract_concluded": false,
+        "order_placed_by_procedure": false,
+        "conclusion_mandatory_for_supplier": false,
+        "contract_causes_supplier_loss": false,
+        "supplier_evaded_conclusion": false,
+        "attachment_notice_issued": false,
+        "buyer_refused_goods": false,
+        "goods_delivered_to_buyer": false,
+        "buyer_paid_at_contract_price": false,
+        "state_customer_refused_goods": false,
+        "supplier_incurred_losses": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk525-528-state-contract-v1",
+        "synthetic-ru-gk529-534-state-supply-performance-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "attachment_notice_issued",
+          "assertion_id": "state-supply-evidence-attachment_notice_issued",
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_paid_at_contract_price",
+          "assertion_id": "state-supply-evidence-buyer_paid_at_contract_price",
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "buyer_refused_goods",
+          "assertion_id": "state-supply-evidence-buyer_refused_goods",
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "conclusion_mandatory_for_supplier",
+          "assertion_id": "state-supply-evidence-conclusion_mandatory_for_supplier",
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_causes_supplier_loss",
+          "assertion_id": "state-supply-evidence-contract_causes_supplier_loss",
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_delivered_to_buyer",
+          "assertion_id": "state-supply-evidence-goods_delivered_to_buyer",
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "order_placed_by_procedure",
+          "assertion_id": "state-supply-evidence-order_placed_by_procedure",
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "state_contract_concluded",
+          "assertion_id": "state-supply-evidence-state_contract_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "state_customer_refused_goods",
+          "assertion_id": "state-supply-evidence-state_customer_refused_goods",
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "supplier_evaded_conclusion",
+          "assertion_id": "state-supply-evidence-supplier_evaded_conclusion",
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "supplier_incurred_losses",
+          "assertion_id": "state-supply-evidence-supplier_incurred_losses",
+          "source_refs": [
+            "synthetic-case-supply-1-state-supply-evidence"
+          ]
+        }
+      ]
+    },
+    "state_supply_constraint_set": {
+      "id": "state-supply-constraint-set:reviewed-state-supply-evidence-supply-1-v0",
+      "model_version": "contracts-state-supply-articles-525-534-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk525-528-state-contract-v1",
+        "synthetic-ru-gk529-534-state-supply-performance-v1"
+      ],
+      "expressions": [
+        "supplier_conclusion_compellable == conclusion_mandatory_for_supplier AND order_placed_by_procedure AND supplier_evaded_conclusion AND NOT contract_causes_supplier_loss",
+        "buyer_attached_to_supplier == state_contract_concluded AND attachment_notice_issued",
+        "supplier_may_seek_reattachment == attachment_notice_issued AND buyer_refused_goods",
+        "buyer_pays_at_contract_price == goods_delivered_to_buyer AND buyer_paid_at_contract_price",
+        "customer_guarantees_buyer_payment == state_contract_concluded AND goods_delivered_to_buyer",
+        "customer_refusal_compensates_supplier == state_customer_refused_goods AND supplier_incurred_losses",
+        "supplier_losses_compensable == state_contract_concluded AND supplier_incurred_losses",
+        "requires_human_state_supply_assessment == (conclusion_mandatory_for_supplier AND supplier_evaded_conclusion) OR buyer_refused_goods OR state_customer_refused_goods OR supplier_incurred_losses"
+      ]
+    },
+    "state_supply_evaluation": {
+      "constraint_set_id": "state-supply-constraint-set:reviewed-state-supply-evidence-supply-1-v0",
+      "satisfiable": true,
+      "supplier_conclusion_compellable": false,
+      "buyer_attached_to_supplier": false,
+      "supplier_may_seek_reattachment": false,
+      "buyer_pays_at_contract_price": false,
+      "customer_guarantees_buyer_payment": false,
+      "customer_refusal_compensates_supplier": false,
+      "supplier_losses_compensable": false,
+      "requires_human_state_supply_assessment": false,
+      "reasons_ru": [
+        "Формальные предпосылки поставки для государственных или муниципальных нужд не подтверждены."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о поставке для государственных и муниципальных нужд и не заменяет судебную оценку.",
+        "Обязательность заключения контракта, размер убытков и порядок размещения заказа оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -16253,7 +16543,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.34.0",
+      "institutional_package_version": "contracts-ru-v0@0.35.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
