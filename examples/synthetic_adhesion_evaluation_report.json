@@ -1,0 +1,436 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о договоре присоединения по статье 428 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-adhesion-evidence-supply-1-v0",
+    "schema_version": "contracts.adhesion-evidence.v0",
+    "mapping_version": "contracts-reviewed-adhesion-to-facts-v0",
+    "facts": {
+      "adhesion_contract": true,
+      "unequal_bargaining_power": false,
+      "terms_individually_negotiated": false,
+      "deprives_usual_rights": false,
+      "excludes_or_limits_other_party_liability": false,
+      "manifestly_onerous_terms": false,
+      "adhering_party_business_actor": false,
+      "adhering_party_knew_terms": false,
+      "modification_or_termination_demanded": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk428-adhesion-framework-v1",
+      "synthetic-ru-gk428-adhesion-relief-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "adhering_party_business_actor",
+        "assertion_id": "adhesion-evidence-adhering_party_business_actor",
+        "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence"
+        ]
+      },
+      {
+        "fact_name": "adhering_party_knew_terms",
+        "assertion_id": "adhesion-evidence-adhering_party_knew_terms",
+        "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence"
+        ]
+      },
+      {
+        "fact_name": "adhesion_contract",
+        "assertion_id": "adhesion-evidence-adhesion_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence"
+        ]
+      },
+      {
+        "fact_name": "deprives_usual_rights",
+        "assertion_id": "adhesion-evidence-deprives_usual_rights",
+        "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence"
+        ]
+      },
+      {
+        "fact_name": "excludes_or_limits_other_party_liability",
+        "assertion_id": "adhesion-evidence-excludes_or_limits_other_party_liability",
+        "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence"
+        ]
+      },
+      {
+        "fact_name": "manifestly_onerous_terms",
+        "assertion_id": "adhesion-evidence-manifestly_onerous_terms",
+        "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence"
+        ]
+      },
+      {
+        "fact_name": "modification_or_termination_demanded",
+        "assertion_id": "adhesion-evidence-modification_or_termination_demanded",
+        "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence"
+        ]
+      },
+      {
+        "fact_name": "terms_individually_negotiated",
+        "assertion_id": "adhesion-evidence-terms_individually_negotiated",
+        "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence"
+        ]
+      },
+      {
+        "fact_name": "unequal_bargaining_power",
+        "assertion_id": "adhesion-evidence-unequal_bargaining_power",
+        "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "adhesion-constraint-set:reviewed-adhesion-evidence-supply-1-v0",
+    "model_version": "contracts-adhesion-article-428-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk428-adhesion-framework-v1",
+      "synthetic-ru-gk428-adhesion-relief-v1"
+    ],
+    "expressions": [
+      "adhesion_regime_applies == (adhesion_contract OR unequal_bargaining_power) AND NOT terms_individually_negotiated",
+      "grounds_for_relief_present == deprives_usual_rights OR excludes_or_limits_other_party_liability OR manifestly_onerous_terms",
+      "business_actor_bar == adhesion_regime_applies AND adhering_party_business_actor AND adhering_party_knew_terms",
+      "relief_available == adhesion_regime_applies AND grounds_for_relief_present AND modification_or_termination_demanded AND NOT business_actor_bar",
+      "requires_human_adhesion_assessment == relief_available OR (adhesion_regime_applies AND grounds_for_relief_present AND business_actor_bar)"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "adhesion-constraint-set:reviewed-adhesion-evidence-supply-1-v0",
+    "satisfiable": true,
+    "adhesion_regime_applies": true,
+    "grounds_for_relief_present": false,
+    "business_actor_bar": false,
+    "relief_available": false,
+    "requires_human_adhesion_assessment": false,
+    "reasons_ru": [
+      "Договор подчинён режиму договора присоединения (статья 428 ГК РФ)."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о договоре присоединения и не заменяет судебную оценку.",
+      "Обременительность условий и неравенство переговорных возможностей оцениваются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "adhesion-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "adhesion-bench-regime-no-grounds",
+        "passed": true,
+        "expected_outcomes": {
+          "adhesion_regime_applies": true,
+          "grounds_for_relief_present": false,
+          "relief_available": false,
+          "requires_human_adhesion_assessment": false
+        },
+        "observed_outcomes": {
+          "adhesion_regime_applies": true,
+          "grounds_for_relief_present": false,
+          "relief_available": false,
+          "requires_human_adhesion_assessment": false
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "adhesion-bench-onerous-relief",
+        "passed": true,
+        "expected_outcomes": {
+          "relief_available": true,
+          "requires_human_adhesion_assessment": true
+        },
+        "observed_outcomes": {
+          "relief_available": true,
+          "requires_human_adhesion_assessment": true
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ).",
+          "Присоединившаяся сторона вправе требовать изменения или расторжения договора (пункт 2 статьи 428 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "adhesion-bench-grounds-no-demand",
+        "passed": true,
+        "expected_outcomes": {
+          "grounds_for_relief_present": true,
+          "relief_available": false
+        },
+        "observed_outcomes": {
+          "grounds_for_relief_present": true,
+          "relief_available": false
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "adhesion-bench-liability-exclusion",
+        "passed": true,
+        "expected_outcomes": {
+          "relief_available": true
+        },
+        "observed_outcomes": {
+          "relief_available": true
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ).",
+          "Присоединившаяся сторона вправе требовать изменения или расторжения договора (пункт 2 статьи 428 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "adhesion-bench-business-bar",
+        "passed": true,
+        "expected_outcomes": {
+          "business_actor_bar": true,
+          "relief_available": false,
+          "requires_human_adhesion_assessment": true
+        },
+        "observed_outcomes": {
+          "business_actor_bar": true,
+          "relief_available": false,
+          "requires_human_adhesion_assessment": true
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ).",
+          "Присоединившаяся при осуществлении предпринимательской деятельности сторона, знавшая условия, не вправе требовать изменения или расторжения по пункту 2 статьи 428 ГК РФ."
+        ]
+      },
+      {
+        "task_id": "adhesion-bench-business-no-knowledge",
+        "passed": true,
+        "expected_outcomes": {
+          "business_actor_bar": false,
+          "relief_available": true
+        },
+        "observed_outcomes": {
+          "business_actor_bar": false,
+          "relief_available": true
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ).",
+          "Присоединившаяся сторона вправе требовать изменения или расторжения договора (пункт 2 статьи 428 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "adhesion-bench-unequal-power",
+        "passed": true,
+        "expected_outcomes": {
+          "adhesion_regime_applies": true,
+          "relief_available": true
+        },
+        "observed_outcomes": {
+          "adhesion_regime_applies": true,
+          "relief_available": true
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ).",
+          "Присоединившаяся сторона вправе требовать изменения или расторжения договора (пункт 2 статьи 428 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "adhesion-bench-individually-negotiated",
+        "passed": true,
+        "expected_outcomes": {
+          "adhesion_regime_applies": false,
+          "relief_available": false
+        },
+        "observed_outcomes": {
+          "adhesion_regime_applies": false,
+          "relief_available": false
+        },
+        "reasons_ru": [
+          "Режим договора присоединения к договору не применяется."
+        ]
+      },
+      {
+        "task_id": "adhesion-bench-not-adhesion",
+        "passed": true,
+        "expected_outcomes": {
+          "adhesion_regime_applies": false,
+          "relief_available": false,
+          "requires_human_adhesion_assessment": false
+        },
+        "observed_outcomes": {
+          "adhesion_regime_applies": false,
+          "relief_available": false,
+          "requires_human_adhesion_assessment": false
+        },
+        "reasons_ru": [
+          "Режим договора присоединения к договору не применяется."
+        ]
+      },
+      {
+        "task_id": "adhesion-bench-deprivation-demand",
+        "passed": true,
+        "expected_outcomes": {
+          "relief_available": true,
+          "requires_human_adhesion_assessment": true
+        },
+        "observed_outcomes": {
+          "relief_available": true,
+          "requires_human_adhesion_assessment": true
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ).",
+          "Присоединившаяся сторона вправе требовать изменения или расторжения договора (пункт 2 статьи 428 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "adhesion-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "adhesion-red-relief-without-grounds",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "relief_available": true
+        },
+        "observed_outcomes": {
+          "relief_available": false
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "adhesion-red-relief-without-demand",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "relief_available": true
+        },
+        "observed_outcomes": {
+          "relief_available": false
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "adhesion-red-relief-when-negotiated",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "relief_available": true
+        },
+        "observed_outcomes": {
+          "relief_available": false
+        },
+        "reasons_ru": [
+          "Режим договора присоединения к договору не применяется."
+        ]
+      },
+      {
+        "case_id": "adhesion-red-ignore-business-bar",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "relief_available": true
+        },
+        "observed_outcomes": {
+          "relief_available": false
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ).",
+          "Присоединившаяся при осуществлении предпринимательской деятельности сторона, знавшая условия, не вправе требовать изменения или расторжения по пункту 2 статьи 428 ГК РФ."
+        ]
+      },
+      {
+        "case_id": "adhesion-red-bar-uninformed-business",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "business_actor_bar": true
+        },
+        "observed_outcomes": {
+          "business_actor_bar": false
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ).",
+          "Присоединившаяся сторона вправе требовать изменения или расторжения договора (пункт 2 статьи 428 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "adhesion-red-regime-without-signs",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "adhesion_regime_applies": true
+        },
+        "observed_outcomes": {
+          "adhesion_regime_applies": false
+        },
+        "reasons_ru": [
+          "Режим договора присоединения к договору не применяется."
+        ]
+      },
+      {
+        "case_id": "adhesion-red-skip-human-on-relief",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_adhesion_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_adhesion_assessment": true
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ).",
+          "Присоединившаяся сторона вправе требовать изменения или расторжения договора (пункт 2 статьи 428 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "adhesion-red-ignore-liability-ground",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "grounds_for_relief_present": false
+        },
+        "observed_outcomes": {
+          "grounds_for_relief_present": true
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "adhesion-red-skip-human-on-business-bar",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_adhesion_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_adhesion_assessment": true
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ).",
+          "Присоединившаяся при осуществлении предпринимательской деятельности сторона, знавшая условия, не вправе требовать изменения или расторжения по пункту 2 статьи 428 ГК РФ."
+        ]
+      },
+      {
+        "case_id": "adhesion-red-block-unequal-power",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "adhesion_regime_applies": false
+        },
+        "observed_outcomes": {
+          "adhesion_regime_applies": true
+        },
+        "reasons_ru": [
+          "Договор подчинён режиму договора присоединения (статья 428 ГК РФ).",
+          "Присоединившаяся сторона вправе требовать изменения или расторжения договора (пункт 2 статьи 428 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

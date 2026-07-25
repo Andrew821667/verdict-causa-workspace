@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.26.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed adhesion-contract evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code article 428.",
+            "Adhesion regime, grounds for relief, and the business-actor bar remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о договоре присоединения обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статью 428 ГК РФ.",
+            "Режим присоединения, основания для изменения и ограничение для предпринимателя разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.25.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

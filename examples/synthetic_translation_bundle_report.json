@@ -998,6 +998,7 @@
           }
         ],
         "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
@@ -1043,6 +1044,8 @@
           "synthetic-ru-gk425-contract-effect-model-v1",
           "synthetic-ru-gk426-public-contract-framework-v1",
           "synthetic-ru-gk426-public-contract-terms-v1",
+          "synthetic-ru-gk428-adhesion-framework-v1",
+          "synthetic-ru-gk428-adhesion-relief-v1",
           "synthetic-ru-gk429-445-preliminary-compulsion-v1",
           "synthetic-ru-gk429-preliminary-framework-v1",
           "synthetic-ru-gk430-third-party-change-v1",
@@ -2066,6 +2069,7 @@
           }
         ],
         "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
@@ -2111,6 +2115,8 @@
           "synthetic-ru-gk425-contract-effect-model-v1",
           "synthetic-ru-gk426-public-contract-framework-v1",
           "synthetic-ru-gk426-public-contract-terms-v1",
+          "synthetic-ru-gk428-adhesion-framework-v1",
+          "synthetic-ru-gk428-adhesion-relief-v1",
           "synthetic-ru-gk429-445-preliminary-compulsion-v1",
           "synthetic-ru-gk429-preliminary-framework-v1",
           "synthetic-ru-gk430-third-party-change-v1",
@@ -3134,6 +3140,7 @@
           }
         ],
         "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
@@ -3179,6 +3186,8 @@
           "synthetic-ru-gk425-contract-effect-model-v1",
           "synthetic-ru-gk426-public-contract-framework-v1",
           "synthetic-ru-gk426-public-contract-terms-v1",
+          "synthetic-ru-gk428-adhesion-framework-v1",
+          "synthetic-ru-gk428-adhesion-relief-v1",
           "synthetic-ru-gk429-445-preliminary-compulsion-v1",
           "synthetic-ru-gk429-preliminary-framework-v1",
           "synthetic-ru-gk430-third-party-change-v1",

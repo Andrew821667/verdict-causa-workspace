@@ -652,6 +652,61 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk428-adhesion-framework-v1",
+        title="Синтетическая проверенная модель договора присоединения по статье 428 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: определение условий одной стороной в "
+            "стандартных формах и принятие их присоединением в целом, а также "
+            "распространение режима при явном неравенстве переговорных возможностей "
+            "проверяются раздельно (пункты 1 и 3 статьи 428 ГК РФ)."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "adhesion_article_428_regime",
+            "legal_reference": "ГК РФ, статья 428, пункты 1 и 3",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk428-adhesion-relief-v1",
+        title="Синтетическая проверенная модель изменения и расторжения договора присоединения",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: лишение обычных прав, исключение "
+            "ответственности другой стороны, явно обременительные условия и "
+            "ограничение для присоединившегося предпринимателя, знавшего условия, "
+            "проверяются раздельно (пункт 2 статьи 428 ГК РФ)."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "adhesion_article_428_relief",
+            "legal_reference": "ГК РФ, статья 428, пункт 2",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-adhesion-evidence",
+        title="Синтетическая проверенная запись фактов о договоре присоединения",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: условия поставки определены поставщиком в стандартной "
+            "форме и приняты присоединением; обременительных условий, лишения прав и "
+            "исключения ответственности нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "adhesion_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

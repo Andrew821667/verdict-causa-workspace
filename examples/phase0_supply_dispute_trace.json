@@ -468,6 +468,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk428-adhesion-framework-v1",
+      "title": "Синтетическая проверенная модель договора присоединения по статье 428 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: определение условий одной стороной в стандартных формах и принятие их присоединением в целом, а также распространение режима при явном неравенстве переговорных возможностей проверяются раздельно (пункты 1 и 3 статьи 428 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "adhesion_article_428_regime",
+        "legal_reference": "ГК РФ, статья 428, пункты 1 и 3",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk428-adhesion-relief-v1",
+      "title": "Синтетическая проверенная модель изменения и расторжения договора присоединения",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: лишение обычных прав, исключение ответственности другой стороны, явно обременительные условия и ограничение для присоединившегося предпринимателя, знавшего условия, проверяются раздельно (пункт 2 статьи 428 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "adhesion_article_428_relief",
+        "legal_reference": "ГК РФ, статья 428, пункт 2",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-adhesion-evidence",
+      "title": "Синтетическая проверенная запись фактов о договоре присоединения",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: условия поставки определены поставщиком в стандартной форме и приняты присоединением; обременительных условий, лишения прав и исключения ответственности нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "adhesion_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -2217,6 +2264,91 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-public-contract-reviewer"
+    },
+    "adhesion_evidence": {
+      "id": "reviewed-adhesion-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.adhesion-evidence.v0",
+      "assertions": [
+        {
+          "id": "adhesion-evidence-adhesion_contract",
+          "predicate": "adhesion_contract",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "id": "adhesion-evidence-unequal_bargaining_power",
+          "predicate": "unequal_bargaining_power",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "id": "adhesion-evidence-terms_individually_negotiated",
+          "predicate": "terms_individually_negotiated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "id": "adhesion-evidence-deprives_usual_rights",
+          "predicate": "deprives_usual_rights",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "id": "adhesion-evidence-excludes_or_limits_other_party_liability",
+          "predicate": "excludes_or_limits_other_party_liability",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "id": "adhesion-evidence-manifestly_onerous_terms",
+          "predicate": "manifestly_onerous_terms",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "id": "adhesion-evidence-adhering_party_business_actor",
+          "predicate": "adhering_party_business_actor",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "id": "adhesion-evidence-adhering_party_knew_terms",
+          "predicate": "adhering_party_knew_terms",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "id": "adhesion-evidence-modification_or_termination_demanded",
+          "predicate": "modification_or_termination_demanded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk428-adhesion-framework-v1",
+        "synthetic-ru-gk428-adhesion-relief-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-adhesion-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -6990,6 +7122,7 @@
     "case_id": "case-supply-1",
     "pipeline_version": "contracts-reviewed-analysis-v9",
     "reviewer_ids": [
+      "synthetic-adhesion-reviewer",
       "synthetic-authority-reviewer",
       "synthetic-case-evidence-reviewer",
       "synthetic-form-reviewer",
@@ -7012,6 +7145,7 @@
       "synthetic-third-party-reviewer"
     ],
     "source_ids": [
+      "synthetic-case-supply-1-adhesion-evidence",
       "synthetic-case-supply-1-form-evidence",
       "synthetic-case-supply-1-formation-evidence",
       "synthetic-case-supply-1-general-sale-evidence",
@@ -7057,6 +7191,8 @@
       "synthetic-ru-gk425-contract-effect-model-v1",
       "synthetic-ru-gk426-public-contract-framework-v1",
       "synthetic-ru-gk426-public-contract-terms-v1",
+      "synthetic-ru-gk428-adhesion-framework-v1",
+      "synthetic-ru-gk428-adhesion-relief-v1",
       "synthetic-ru-gk429-445-preliminary-compulsion-v1",
       "synthetic-ru-gk429-preliminary-framework-v1",
       "synthetic-ru-gk430-third-party-change-v1",
@@ -8486,6 +8622,122 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о публичном договоре и не заменяет судебную оценку.",
         "Наличие законных оснований для отказа и различия условий оценивается экспертом и судом."
+      ]
+    },
+    "adhesion_evidence_mapping": {
+      "evidence_id": "reviewed-adhesion-evidence-supply-1-v0",
+      "schema_version": "contracts.adhesion-evidence.v0",
+      "mapping_version": "contracts-reviewed-adhesion-to-facts-v0",
+      "facts": {
+        "adhesion_contract": true,
+        "unequal_bargaining_power": false,
+        "terms_individually_negotiated": false,
+        "deprives_usual_rights": false,
+        "excludes_or_limits_other_party_liability": false,
+        "manifestly_onerous_terms": false,
+        "adhering_party_business_actor": false,
+        "adhering_party_knew_terms": false,
+        "modification_or_termination_demanded": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk428-adhesion-framework-v1",
+        "synthetic-ru-gk428-adhesion-relief-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "adhering_party_business_actor",
+          "assertion_id": "adhesion-evidence-adhering_party_business_actor",
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "fact_name": "adhering_party_knew_terms",
+          "assertion_id": "adhesion-evidence-adhering_party_knew_terms",
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "fact_name": "adhesion_contract",
+          "assertion_id": "adhesion-evidence-adhesion_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "fact_name": "deprives_usual_rights",
+          "assertion_id": "adhesion-evidence-deprives_usual_rights",
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "fact_name": "excludes_or_limits_other_party_liability",
+          "assertion_id": "adhesion-evidence-excludes_or_limits_other_party_liability",
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "fact_name": "manifestly_onerous_terms",
+          "assertion_id": "adhesion-evidence-manifestly_onerous_terms",
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "fact_name": "modification_or_termination_demanded",
+          "assertion_id": "adhesion-evidence-modification_or_termination_demanded",
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "fact_name": "terms_individually_negotiated",
+          "assertion_id": "adhesion-evidence-terms_individually_negotiated",
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        },
+        {
+          "fact_name": "unequal_bargaining_power",
+          "assertion_id": "adhesion-evidence-unequal_bargaining_power",
+          "source_refs": [
+            "synthetic-case-supply-1-adhesion-evidence"
+          ]
+        }
+      ]
+    },
+    "adhesion_constraint_set": {
+      "id": "adhesion-constraint-set:reviewed-adhesion-evidence-supply-1-v0",
+      "model_version": "contracts-adhesion-article-428-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk428-adhesion-framework-v1",
+        "synthetic-ru-gk428-adhesion-relief-v1"
+      ],
+      "expressions": [
+        "adhesion_regime_applies == (adhesion_contract OR unequal_bargaining_power) AND NOT terms_individually_negotiated",
+        "grounds_for_relief_present == deprives_usual_rights OR excludes_or_limits_other_party_liability OR manifestly_onerous_terms",
+        "business_actor_bar == adhesion_regime_applies AND adhering_party_business_actor AND adhering_party_knew_terms",
+        "relief_available == adhesion_regime_applies AND grounds_for_relief_present AND modification_or_termination_demanded AND NOT business_actor_bar",
+        "requires_human_adhesion_assessment == relief_available OR (adhesion_regime_applies AND grounds_for_relief_present AND business_actor_bar)"
+      ]
+    },
+    "adhesion_evaluation": {
+      "constraint_set_id": "adhesion-constraint-set:reviewed-adhesion-evidence-supply-1-v0",
+      "satisfiable": true,
+      "adhesion_regime_applies": true,
+      "grounds_for_relief_present": false,
+      "business_actor_bar": false,
+      "relief_available": false,
+      "requires_human_adhesion_assessment": false,
+      "reasons_ru": [
+        "Договор подчинён режиму договора присоединения (статья 428 ГК РФ)."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о договоре присоединения и не заменяет судебную оценку.",
+        "Обременительность условий и неравенство переговорных возможностей оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -13859,7 +14111,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.25.0",
+      "institutional_package_version": "contracts-ru-v0@0.26.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -15854,6 +16106,7 @@
           }
         ],
         "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
@@ -15899,6 +16152,8 @@
           "synthetic-ru-gk425-contract-effect-model-v1",
           "synthetic-ru-gk426-public-contract-framework-v1",
           "synthetic-ru-gk426-public-contract-terms-v1",
+          "synthetic-ru-gk428-adhesion-framework-v1",
+          "synthetic-ru-gk428-adhesion-relief-v1",
           "synthetic-ru-gk429-445-preliminary-compulsion-v1",
           "synthetic-ru-gk429-preliminary-framework-v1",
           "synthetic-ru-gk430-third-party-change-v1",
@@ -16922,6 +17177,7 @@
           }
         ],
         "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
@@ -16967,6 +17223,8 @@
           "synthetic-ru-gk425-contract-effect-model-v1",
           "synthetic-ru-gk426-public-contract-framework-v1",
           "synthetic-ru-gk426-public-contract-terms-v1",
+          "synthetic-ru-gk428-adhesion-framework-v1",
+          "synthetic-ru-gk428-adhesion-relief-v1",
           "synthetic-ru-gk429-445-preliminary-compulsion-v1",
           "synthetic-ru-gk429-preliminary-framework-v1",
           "synthetic-ru-gk430-third-party-change-v1",
@@ -17990,6 +18248,7 @@
           }
         ],
         "source_refs": [
+          "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
@@ -18035,6 +18294,8 @@
           "synthetic-ru-gk425-contract-effect-model-v1",
           "synthetic-ru-gk426-public-contract-framework-v1",
           "synthetic-ru-gk426-public-contract-terms-v1",
+          "synthetic-ru-gk428-adhesion-framework-v1",
+          "synthetic-ru-gk428-adhesion-relief-v1",
           "synthetic-ru-gk429-445-preliminary-compulsion-v1",
           "synthetic-ru-gk429-preliminary-framework-v1",
           "synthetic-ru-gk430-third-party-change-v1",
@@ -18141,7 +18402,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.25.0",
+      "institutional_package_version": "contracts-ru-v0@0.26.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -18523,6 +18784,44 @@
           "synthetic": true,
           "non_authoritative": true,
           "topic": "public_contract_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
+        "id": "synthetic-ru-gk428-adhesion-framework-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель договора присоединения по статье 428 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "adhesion_article_428_regime",
+          "legal_reference": "ГК РФ, статья 428, пункты 1 и 3",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk428-adhesion-relief-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель изменения и расторжения договора присоединения",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "adhesion_article_428_relief",
+          "legal_reference": "ГК РФ, статья 428, пункт 2",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-adhesion-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о договоре присоединения",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "adhesion_case_evidence",
           "case_id": "case-supply-1"
         }
       },
@@ -19131,6 +19430,7 @@
           "case_evidence_schema_version": "contracts.case-evidence.v9",
           "evidence_mapping_version": "contracts-reviewed-evidence-to-facts-v0",
           "reviewer_ids": [
+            "synthetic-adhesion-reviewer",
             "synthetic-authority-reviewer",
             "synthetic-case-evidence-reviewer",
             "synthetic-form-reviewer",

@@ -50,6 +50,11 @@ from causa.institutional.contracts.preliminary import (
     PreliminaryEvidencePredicate,
     ReviewedPreliminaryEvidence,
 )
+from causa.institutional.contracts.adhesion import (
+    AdhesionEvidenceAssertion,
+    AdhesionEvidencePredicate,
+    ReviewedAdhesionEvidence,
+)
 from causa.institutional.contracts.public_contract import (
     PublicContractEvidenceAssertion,
     PublicContractEvidencePredicate,
@@ -132,6 +137,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk426-public-contract-framework-v1",
     "synthetic-ru-gk426-public-contract-terms-v1",
     "synthetic-case-supply-1-public-contract-evidence",
+    "synthetic-ru-gk428-adhesion-framework-v1",
+    "synthetic-ru-gk428-adhesion-relief-v1",
+    "synthetic-case-supply-1-adhesion-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -616,6 +624,38 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-public-contract-reviewer",
+        ),
+        adhesion_evidence=ReviewedAdhesionEvidence(
+            id="reviewed-adhesion-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                AdhesionEvidenceAssertion(
+                    id=f"adhesion-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-adhesion-evidence",),
+                )
+                for predicate, value in (
+                    (AdhesionEvidencePredicate.ADHESION_CONTRACT, True),
+                    (AdhesionEvidencePredicate.UNEQUAL_BARGAINING_POWER, False),
+                    (AdhesionEvidencePredicate.TERMS_INDIVIDUALLY_NEGOTIATED, False),
+                    (AdhesionEvidencePredicate.DEPRIVES_USUAL_RIGHTS, False),
+                    (
+                        AdhesionEvidencePredicate.EXCLUDES_OR_LIMITS_OTHER_PARTY_LIABILITY,
+                        False,
+                    ),
+                    (AdhesionEvidencePredicate.MANIFESTLY_ONEROUS_TERMS, False),
+                    (AdhesionEvidencePredicate.ADHERING_PARTY_BUSINESS_ACTOR, False),
+                    (AdhesionEvidencePredicate.ADHERING_PARTY_KNEW_TERMS, False),
+                    (AdhesionEvidencePredicate.MODIFICATION_OR_TERMINATION_DEMANDED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk428-adhesion-framework-v1",
+                "synthetic-ru-gk428-adhesion-relief-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-adhesion-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

@@ -492,6 +492,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.25.0",
+        to_version="0.26.0",
+        reasons=[
+            "Reviewed inputs now require a separate adhesion-contract evidence contract.",
+            "Analysis and Russian translation distinguish the adhesion-contract paths under article 428.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о договоре присоединения.",
+            "Анализ и русское объяснение разделяют маршруты договора присоединения по статье 428 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_adhesion_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

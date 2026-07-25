@@ -64,6 +64,8 @@ The first institutional package focuses on contractual relations: formation, cha
 
 Релиз `contracts-ru-v0@0.25.0` добавляет формальную модель публичного договора по статье 426 ГК РФ: обязанность заключить договор с каждым обратившимся, недопустимость необоснованного отказа и предпочтения, единство условий и ничтожность условий, противоречащих публичному режиму. Правила описаны в русской [спецификации публичного договора](docs/contract-public-spec.md).
 
+Релиз `contracts-ru-v0@0.26.0` добавляет формальную модель договора присоединения по статье 428 ГК РФ: режим присоединения, основания для изменения или расторжения (лишение обычных прав, исключение ответственности другой стороны, явно обременительные условия) и ограничение для присоединившегося предпринимателя. Правила описаны в русской [спецификации договора присоединения](docs/contract-adhesion-spec.md).
+
 This is the first proving ground for the infrastructure, not the full scope of the project.
 
 ## Architecture
@@ -263,6 +265,14 @@ python scripts/export_synthetic_public_contract_evaluation.py
 
 Результат записывается в `examples/synthetic_public_contract_evaluation_report.json`. Отчёт проверяет обязанность заключить договор, недопустимость отказа и предпочтения, единство условий и ничтожность противоречащих условий по статье 426 ГК РФ и не подменяет судебную оценку.
 
+Сформировать отчёт о договоре присоединения:
+
+```bash
+python scripts/export_synthetic_adhesion_evaluation.py
+```
+
+Результат записывается в `examples/synthetic_adhesion_evaluation_report.json`. Отчёт проверяет режим присоединения, основания для изменения или расторжения и ограничение для присоединившегося предпринимателя по статье 428 ГК РФ и не подменяет судебную оценку.
+
 Generate the reviewed contract change-and-termination report:
 
 ```bash
@@ -373,7 +383,7 @@ Generate the replay-required report for the legacy `contracts-ru-v0@0.1.0` fixtu
 python scripts/export_contracts_package_migration_report.py
 ```
 
-Команда формирует отчёты о необходимости replay для прежних релизов и пересобирает их относительно `0.25.0`. Отчёты сохраняются как `examples/migrations/contracts-ru-v0-<source>-to-0.25.0-migration-report.json` для `0.1.0`, `0.3.0` и каждого релиза с `0.4.0` по `0.24.0`. Прежние отчёты `*-to-0.17.0` … `*-to-0.24.0` сохраняются как исторические артефакты.
+Команда формирует отчёты о необходимости replay для прежних релизов и пересобирает их относительно `0.26.0`. Отчёты сохраняются как `examples/migrations/contracts-ru-v0-<source>-to-0.26.0-migration-report.json` для `0.1.0`, `0.3.0` и каждого релиза с `0.4.0` по `0.25.0`. Прежние отчёты `*-to-0.17.0` … `*-to-0.25.0` сохраняются как исторические артефакты.
 
 ## License
 
