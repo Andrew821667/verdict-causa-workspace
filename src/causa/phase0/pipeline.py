@@ -34,6 +34,9 @@ from causa.institutional.contracts.synthetic_form import (
 from causa.institutional.contracts.synthetic_preliminary import (
     build_synthetic_preliminary_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_public_contract import (
+    build_synthetic_public_contract_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_third_party import (
     build_synthetic_third_party_evaluation_artifact,
 )
@@ -287,6 +290,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
                 *trace.analysis_result.third_party_evaluation.reasons_ru,
                 "Право третьего лица требовать исполнения, связанность сторон после выражения намерения и последствия отказа третьего лица проверяются раздельно по статье 430 ГК РФ.",
                 "Возражения должника против требования третьего лица и пределы права оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
+            id="evaluate-public-contract",
+            title="Проверка публичного договора",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.public_contract_evidence_mapping.evidence_id,
+                trace.analysis_result.public_contract_constraint_set.id,
+                *trace.analysis_result.public_contract_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.public_contract_evaluation.reasons_ru,
+                "Обязанность заключить договор с каждым обратившимся, недопустимость предпочтения и различия условий без оснований и ничтожность противоречащих условий проверяются раздельно по статье 426 ГК РФ.",
+                "Наличие законных оснований для отказа и различия условий оценивается экспертом и судом.",
             ],
         ),
         PipelineStepResult(
@@ -551,6 +569,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     form_artifact = build_synthetic_form_evaluation_artifact()
     preliminary_artifact = build_synthetic_preliminary_evaluation_artifact()
     third_party_artifact = build_synthetic_third_party_evaluation_artifact()
+    public_contract_artifact = build_synthetic_public_contract_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -620,6 +639,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-preliminary-spec.md",
                 "src/causa/institutional/contracts/third_party.py",
                 "docs/contract-third-party-spec.md",
+                "src/causa/institutional/contracts/public_contract.py",
+                "docs/contract-public-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -645,6 +666,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_form_evaluation_report.json",
                 "examples/synthetic_preliminary_evaluation_report.json",
                 "examples/synthetic_third_party_evaluation_report.json",
+                "examples/synthetic_public_contract_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -653,12 +675,12 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 *(
-                    f"examples/migrations/contracts-ru-v0-{version}-to-0.24.0-migration-report.json"
+                    f"examples/migrations/contracts-ru-v0-{version}-to-0.25.0-migration-report.json"
                     for version in (
                         "0.1.0",
                         "0.3.0",
                         "0.4.0",
-                        *(f"0.{minor}.0" for minor in range(5, 24)),
+                        *(f"0.{minor}.0" for minor in range(5, 25)),
                     )
                 ),
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
@@ -742,6 +764,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 preliminary_artifact.red_team_report.id,
                 third_party_artifact.benchmark_report.id,
                 third_party_artifact.red_team_report.id,
+                public_contract_artifact.benchmark_report.id,
+                public_contract_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -779,6 +803,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_form_evaluation_report.json",
                 "examples/synthetic_preliminary_evaluation_report.json",
                 "examples/synthetic_third_party_evaluation_report.json",
+                "examples/synthetic_public_contract_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

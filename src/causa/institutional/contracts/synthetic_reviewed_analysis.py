@@ -50,6 +50,11 @@ from causa.institutional.contracts.preliminary import (
     PreliminaryEvidencePredicate,
     ReviewedPreliminaryEvidence,
 )
+from causa.institutional.contracts.public_contract import (
+    PublicContractEvidenceAssertion,
+    PublicContractEvidencePredicate,
+    ReviewedPublicContractEvidence,
+)
 from causa.institutional.contracts.third_party import (
     ReviewedThirdPartyEvidence,
     ThirdPartyEvidenceAssertion,
@@ -124,6 +129,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk430-third-party-framework-v1",
     "synthetic-ru-gk430-third-party-change-v1",
     "synthetic-case-supply-1-third-party-evidence",
+    "synthetic-ru-gk426-public-contract-framework-v1",
+    "synthetic-ru-gk426-public-contract-terms-v1",
+    "synthetic-case-supply-1-public-contract-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -576,6 +584,38 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-third-party-reviewer",
+        ),
+        public_contract_evidence=ReviewedPublicContractEvidence(
+            id="reviewed-public-contract-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                PublicContractEvidenceAssertion(
+                    id=f"public-contract-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-public-contract-evidence",),
+                )
+                for predicate, value in (
+                    (PublicContractEvidencePredicate.PUBLIC_CONTRACT_REGIME, True),
+                    (PublicContractEvidencePredicate.COUNTERPARTY_REQUESTED_CONTRACT, True),
+                    (PublicContractEvidencePredicate.PERFORMANCE_POSSIBLE, True),
+                    (PublicContractEvidencePredicate.REFUSAL_WITHOUT_LAWFUL_GROUND, False),
+                    (
+                        PublicContractEvidencePredicate.PREFERENCE_GIVEN_WITHOUT_LEGAL_BASIS,
+                        False,
+                    ),
+                    (PublicContractEvidencePredicate.LAWFUL_DIFFERENTIATION, False),
+                    (PublicContractEvidencePredicate.TERMS_UNIFORM_FOR_CATEGORY, True),
+                    (PublicContractEvidencePredicate.COMPULSION_DEMANDED, False),
+                    (PublicContractEvidencePredicate.TERMS_CONFLICT_WITH_PUBLIC_RULES, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk426-public-contract-framework-v1",
+                "synthetic-ru-gk426-public-contract-terms-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-public-contract-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

@@ -1,0 +1,436 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о публичном договоре по статье 426 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-public-contract-evidence-supply-1-v0",
+    "schema_version": "contracts.public-contract-evidence.v0",
+    "mapping_version": "contracts-reviewed-public-contract-to-facts-v0",
+    "facts": {
+      "public_contract_regime": true,
+      "counterparty_requested_contract": true,
+      "performance_possible": true,
+      "refusal_without_lawful_ground": false,
+      "preference_given_without_legal_basis": false,
+      "lawful_differentiation": false,
+      "terms_uniform_for_category": true,
+      "compulsion_demanded": false,
+      "terms_conflict_with_public_rules": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk426-public-contract-framework-v1",
+      "synthetic-ru-gk426-public-contract-terms-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "compulsion_demanded",
+        "assertion_id": "public-contract-evidence-compulsion_demanded",
+        "source_refs": [
+          "synthetic-case-supply-1-public-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "counterparty_requested_contract",
+        "assertion_id": "public-contract-evidence-counterparty_requested_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-public-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "lawful_differentiation",
+        "assertion_id": "public-contract-evidence-lawful_differentiation",
+        "source_refs": [
+          "synthetic-case-supply-1-public-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "performance_possible",
+        "assertion_id": "public-contract-evidence-performance_possible",
+        "source_refs": [
+          "synthetic-case-supply-1-public-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "preference_given_without_legal_basis",
+        "assertion_id": "public-contract-evidence-preference_given_without_legal_basis",
+        "source_refs": [
+          "synthetic-case-supply-1-public-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "public_contract_regime",
+        "assertion_id": "public-contract-evidence-public_contract_regime",
+        "source_refs": [
+          "synthetic-case-supply-1-public-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "refusal_without_lawful_ground",
+        "assertion_id": "public-contract-evidence-refusal_without_lawful_ground",
+        "source_refs": [
+          "synthetic-case-supply-1-public-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "terms_conflict_with_public_rules",
+        "assertion_id": "public-contract-evidence-terms_conflict_with_public_rules",
+        "source_refs": [
+          "synthetic-case-supply-1-public-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "terms_uniform_for_category",
+        "assertion_id": "public-contract-evidence-terms_uniform_for_category",
+        "source_refs": [
+          "synthetic-case-supply-1-public-contract-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "public-contract-constraint-set:reviewed-public-contract-evidence-supply-1-v0",
+    "model_version": "contracts-public-contract-article-426-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk426-public-contract-framework-v1",
+      "synthetic-ru-gk426-public-contract-terms-v1"
+    ],
+    "expressions": [
+      "duty_to_contract_applies == public_contract_regime AND counterparty_requested_contract",
+      "unlawful_refusal == duty_to_contract_applies AND performance_possible AND refusal_without_lawful_ground",
+      "unlawful_preference == public_contract_regime AND preference_given_without_legal_basis",
+      "uniform_terms_satisfied == lawful_differentiation OR NOT public_contract_regime OR terms_uniform_for_category",
+      "compulsion_available == unlawful_refusal AND compulsion_demanded",
+      "discriminatory_terms_void == public_contract_regime AND terms_conflict_with_public_rules",
+      "requires_human_public_contract_assessment == unlawful_refusal OR unlawful_preference OR NOT uniform_terms_satisfied OR discriminatory_terms_void"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "public-contract-constraint-set:reviewed-public-contract-evidence-supply-1-v0",
+    "satisfiable": true,
+    "duty_to_contract_applies": true,
+    "unlawful_refusal": false,
+    "unlawful_preference": false,
+    "uniform_terms_satisfied": true,
+    "compulsion_available": false,
+    "discriminatory_terms_void": false,
+    "requires_human_public_contract_assessment": false,
+    "reasons_ru": [
+      "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ)."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о публичном договоре и не заменяет судебную оценку.",
+      "Наличие законных оснований для отказа и различия условий оценивается экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "public-contract-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "public-bench-compliant",
+        "passed": true,
+        "expected_outcomes": {
+          "duty_to_contract_applies": true,
+          "unlawful_refusal": false,
+          "uniform_terms_satisfied": true,
+          "requires_human_public_contract_assessment": false
+        },
+        "observed_outcomes": {
+          "duty_to_contract_applies": true,
+          "unlawful_refusal": false,
+          "uniform_terms_satisfied": true,
+          "requires_human_public_contract_assessment": false
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-bench-unlawful-refusal",
+        "passed": true,
+        "expected_outcomes": {
+          "unlawful_refusal": true,
+          "requires_human_public_contract_assessment": true
+        },
+        "observed_outcomes": {
+          "unlawful_refusal": true,
+          "requires_human_public_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ).",
+          "Отказ от заключения договора при наличии возможности предоставить исполнение не допускается (пункт 3 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-bench-refusal-no-capacity",
+        "passed": true,
+        "expected_outcomes": {
+          "unlawful_refusal": false
+        },
+        "observed_outcomes": {
+          "unlawful_refusal": false
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-bench-compulsion",
+        "passed": true,
+        "expected_outcomes": {
+          "unlawful_refusal": true,
+          "compulsion_available": true
+        },
+        "observed_outcomes": {
+          "unlawful_refusal": true,
+          "compulsion_available": true
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ).",
+          "Отказ от заключения договора при наличии возможности предоставить исполнение не допускается (пункт 3 статьи 426 ГК РФ).",
+          "При необоснованном уклонении доступно понуждение к заключению договора и возмещение убытков (пункт 3 статьи 426, пункт 4 статьи 445 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-bench-unlawful-preference",
+        "passed": true,
+        "expected_outcomes": {
+          "unlawful_preference": true,
+          "requires_human_public_contract_assessment": true
+        },
+        "observed_outcomes": {
+          "unlawful_preference": true,
+          "requires_human_public_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ).",
+          "Оказание предпочтения одному лицу перед другим не допускается, кроме случаев, предусмотренных законом (пункт 1 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-bench-non-uniform-terms",
+        "passed": true,
+        "expected_outcomes": {
+          "uniform_terms_satisfied": false,
+          "requires_human_public_contract_assessment": true
+        },
+        "observed_outcomes": {
+          "uniform_terms_satisfied": false,
+          "requires_human_public_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-bench-lawful-differentiation",
+        "passed": true,
+        "expected_outcomes": {
+          "uniform_terms_satisfied": true,
+          "requires_human_public_contract_assessment": false
+        },
+        "observed_outcomes": {
+          "uniform_terms_satisfied": true,
+          "requires_human_public_contract_assessment": false
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-bench-void-terms",
+        "passed": true,
+        "expected_outcomes": {
+          "discriminatory_terms_void": true,
+          "requires_human_public_contract_assessment": true
+        },
+        "observed_outcomes": {
+          "discriminatory_terms_void": true,
+          "requires_human_public_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ).",
+          "Условия договора, не соответствующие требованиям публичного договора, ничтожны (пункт 5 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-bench-not-public",
+        "passed": true,
+        "expected_outcomes": {
+          "duty_to_contract_applies": false,
+          "unlawful_refusal": false,
+          "requires_human_public_contract_assessment": false
+        },
+        "observed_outcomes": {
+          "duty_to_contract_applies": false,
+          "unlawful_refusal": false,
+          "requires_human_public_contract_assessment": false
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор в данной ситуации не установлена."
+        ]
+      },
+      {
+        "task_id": "public-bench-no-request",
+        "passed": true,
+        "expected_outcomes": {
+          "duty_to_contract_applies": false,
+          "unlawful_refusal": false
+        },
+        "observed_outcomes": {
+          "duty_to_contract_applies": false,
+          "unlawful_refusal": false
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор в данной ситуации не установлена."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "public-contract-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "public-red-refusal-lawful",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unlawful_refusal": false
+        },
+        "observed_outcomes": {
+          "unlawful_refusal": true
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ).",
+          "Отказ от заключения договора при наличии возможности предоставить исполнение не допускается (пункт 3 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-red-duty-without-request",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "duty_to_contract_applies": true
+        },
+        "observed_outcomes": {
+          "duty_to_contract_applies": false
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор в данной ситуации не установлена."
+        ]
+      },
+      {
+        "case_id": "public-red-duty-without-regime",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unlawful_refusal": true
+        },
+        "observed_outcomes": {
+          "unlawful_refusal": false
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор в данной ситуации не установлена."
+        ]
+      },
+      {
+        "case_id": "public-red-compulsion-without-refusal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "compulsion_available": true
+        },
+        "observed_outcomes": {
+          "compulsion_available": false
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-red-preference-allowed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unlawful_preference": false
+        },
+        "observed_outcomes": {
+          "unlawful_preference": true
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ).",
+          "Оказание предпочтения одному лицу перед другим не допускается, кроме случаев, предусмотренных законом (пункт 1 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-red-uniform-ignored",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "uniform_terms_satisfied": true
+        },
+        "observed_outcomes": {
+          "uniform_terms_satisfied": false
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-red-void-terms-valid",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "discriminatory_terms_void": false
+        },
+        "observed_outcomes": {
+          "discriminatory_terms_void": true
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ).",
+          "Условия договора, не соответствующие требованиям публичного договора, ничтожны (пункт 5 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-red-skip-human-on-refusal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_public_contract_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_public_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ).",
+          "Отказ от заключения договора при наличии возможности предоставить исполнение не допускается (пункт 3 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-red-refusal-without-capacity",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unlawful_refusal": true
+        },
+        "observed_outcomes": {
+          "unlawful_refusal": false
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-red-block-lawful-differentiation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "uniform_terms_satisfied": false
+        },
+        "observed_outcomes": {
+          "uniform_terms_satisfied": true
+        },
+        "reasons_ru": [
+          "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

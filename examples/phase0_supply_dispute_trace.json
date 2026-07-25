@@ -421,6 +421,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk426-public-contract-framework-v1",
+      "title": "Синтетическая проверенная модель публичного договора по статье 426 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: публичный характер деятельности, обязанность заключить договор с каждым обратившимся при наличии возможности и недопустимость необоснованного отказа проверяются раздельно (пункты 1 и 3 статьи 426 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "public_contract_article_426_duty",
+        "legal_reference": "ГК РФ, статья 426, пункты 1 и 3",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk426-public-contract-terms-v1",
+      "title": "Синтетическая проверенная модель единых условий публичного договора",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: недопустимость предпочтения, единство цены и иных условий для потребителей соответствующей категории и ничтожность условий, не соответствующих публичному режиму, проверяются раздельно (пункты 2 и 5 статьи 426 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "public_contract_article_426_terms",
+        "legal_reference": "ГК РФ, статья 426, пункты 2 и 5",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-public-contract-evidence",
+      "title": "Синтетическая проверенная запись фактов о публичном договоре",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: поставщик действует в публичном режиме, контрагент обратился, исполнение возможно, условия едины для соответствующей категории, необоснованного отказа и предпочтения нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "public_contract_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -2085,6 +2132,91 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-third-party-reviewer"
+    },
+    "public_contract_evidence": {
+      "id": "reviewed-public-contract-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.public-contract-evidence.v0",
+      "assertions": [
+        {
+          "id": "public-contract-evidence-public_contract_regime",
+          "predicate": "public_contract_regime",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "id": "public-contract-evidence-counterparty_requested_contract",
+          "predicate": "counterparty_requested_contract",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "id": "public-contract-evidence-performance_possible",
+          "predicate": "performance_possible",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "id": "public-contract-evidence-refusal_without_lawful_ground",
+          "predicate": "refusal_without_lawful_ground",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "id": "public-contract-evidence-preference_given_without_legal_basis",
+          "predicate": "preference_given_without_legal_basis",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "id": "public-contract-evidence-lawful_differentiation",
+          "predicate": "lawful_differentiation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "id": "public-contract-evidence-terms_uniform_for_category",
+          "predicate": "terms_uniform_for_category",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "id": "public-contract-evidence-compulsion_demanded",
+          "predicate": "compulsion_demanded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "id": "public-contract-evidence-terms_conflict_with_public_rules",
+          "predicate": "terms_conflict_with_public_rules",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk426-public-contract-framework-v1",
+        "synthetic-ru-gk426-public-contract-terms-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-public-contract-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -6871,6 +7003,7 @@
       "synthetic-obligation-dynamics-reviewer",
       "synthetic-performance-remedies-reviewer",
       "synthetic-preliminary-reviewer",
+      "synthetic-public-contract-reviewer",
       "synthetic-security-reviewer",
       "synthetic-special-supply-reviewer",
       "synthetic-temporal-effect-reviewer",
@@ -6889,6 +7022,7 @@
       "synthetic-case-supply-1-obligation-dynamics-evidence",
       "synthetic-case-supply-1-performance-remedies-evidence",
       "synthetic-case-supply-1-preliminary-evidence",
+      "synthetic-case-supply-1-public-contract-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
       "synthetic-case-supply-1-security-evidence",
       "synthetic-case-supply-1-special-supply-evidence",
@@ -6921,6 +7055,8 @@
       "synthetic-ru-gk407-413-discharge-v1",
       "synthetic-ru-gk414-419-discharge-v1",
       "synthetic-ru-gk425-contract-effect-model-v1",
+      "synthetic-ru-gk426-public-contract-framework-v1",
+      "synthetic-ru-gk426-public-contract-terms-v1",
       "synthetic-ru-gk429-445-preliminary-compulsion-v1",
       "synthetic-ru-gk429-preliminary-framework-v1",
       "synthetic-ru-gk430-third-party-change-v1",
@@ -8230,6 +8366,126 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о договоре в пользу третьего лица и не заменяет судебную оценку.",
         "Возражения должника против требования третьего лица и пределы права оцениваются экспертом и судом."
+      ]
+    },
+    "public_contract_evidence_mapping": {
+      "evidence_id": "reviewed-public-contract-evidence-supply-1-v0",
+      "schema_version": "contracts.public-contract-evidence.v0",
+      "mapping_version": "contracts-reviewed-public-contract-to-facts-v0",
+      "facts": {
+        "public_contract_regime": true,
+        "counterparty_requested_contract": true,
+        "performance_possible": true,
+        "refusal_without_lawful_ground": false,
+        "preference_given_without_legal_basis": false,
+        "lawful_differentiation": false,
+        "terms_uniform_for_category": true,
+        "compulsion_demanded": false,
+        "terms_conflict_with_public_rules": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk426-public-contract-framework-v1",
+        "synthetic-ru-gk426-public-contract-terms-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "compulsion_demanded",
+          "assertion_id": "public-contract-evidence-compulsion_demanded",
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "counterparty_requested_contract",
+          "assertion_id": "public-contract-evidence-counterparty_requested_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "lawful_differentiation",
+          "assertion_id": "public-contract-evidence-lawful_differentiation",
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_possible",
+          "assertion_id": "public-contract-evidence-performance_possible",
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "preference_given_without_legal_basis",
+          "assertion_id": "public-contract-evidence-preference_given_without_legal_basis",
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "public_contract_regime",
+          "assertion_id": "public-contract-evidence-public_contract_regime",
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "refusal_without_lawful_ground",
+          "assertion_id": "public-contract-evidence-refusal_without_lawful_ground",
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "terms_conflict_with_public_rules",
+          "assertion_id": "public-contract-evidence-terms_conflict_with_public_rules",
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "terms_uniform_for_category",
+          "assertion_id": "public-contract-evidence-terms_uniform_for_category",
+          "source_refs": [
+            "synthetic-case-supply-1-public-contract-evidence"
+          ]
+        }
+      ]
+    },
+    "public_contract_constraint_set": {
+      "id": "public-contract-constraint-set:reviewed-public-contract-evidence-supply-1-v0",
+      "model_version": "contracts-public-contract-article-426-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk426-public-contract-framework-v1",
+        "synthetic-ru-gk426-public-contract-terms-v1"
+      ],
+      "expressions": [
+        "duty_to_contract_applies == public_contract_regime AND counterparty_requested_contract",
+        "unlawful_refusal == duty_to_contract_applies AND performance_possible AND refusal_without_lawful_ground",
+        "unlawful_preference == public_contract_regime AND preference_given_without_legal_basis",
+        "uniform_terms_satisfied == lawful_differentiation OR NOT public_contract_regime OR terms_uniform_for_category",
+        "compulsion_available == unlawful_refusal AND compulsion_demanded",
+        "discriminatory_terms_void == public_contract_regime AND terms_conflict_with_public_rules",
+        "requires_human_public_contract_assessment == unlawful_refusal OR unlawful_preference OR NOT uniform_terms_satisfied OR discriminatory_terms_void"
+      ]
+    },
+    "public_contract_evaluation": {
+      "constraint_set_id": "public-contract-constraint-set:reviewed-public-contract-evidence-supply-1-v0",
+      "satisfiable": true,
+      "duty_to_contract_applies": true,
+      "unlawful_refusal": false,
+      "unlawful_preference": false,
+      "uniform_terms_satisfied": true,
+      "compulsion_available": false,
+      "discriminatory_terms_void": false,
+      "requires_human_public_contract_assessment": false,
+      "reasons_ru": [
+        "Обязанность заключить публичный договор с обратившимся лицом действует (пункты 1 и 3 статьи 426 ГК РФ)."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о публичном договоре и не заменяет судебную оценку.",
+        "Наличие законных оснований для отказа и различия условий оценивается экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -13603,7 +13859,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.24.0",
+      "institutional_package_version": "contracts-ru-v0@0.25.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -15608,6 +15864,7 @@
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-performance-remedies-evidence",
           "synthetic-case-supply-1-preliminary-evidence",
+          "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-case-supply-1-security-evidence",
           "synthetic-case-supply-1-special-supply-evidence",
@@ -15640,6 +15897,8 @@
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
           "synthetic-ru-gk425-contract-effect-model-v1",
+          "synthetic-ru-gk426-public-contract-framework-v1",
+          "synthetic-ru-gk426-public-contract-terms-v1",
           "synthetic-ru-gk429-445-preliminary-compulsion-v1",
           "synthetic-ru-gk429-preliminary-framework-v1",
           "synthetic-ru-gk430-third-party-change-v1",
@@ -16673,6 +16932,7 @@
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-performance-remedies-evidence",
           "synthetic-case-supply-1-preliminary-evidence",
+          "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-case-supply-1-security-evidence",
           "synthetic-case-supply-1-special-supply-evidence",
@@ -16705,6 +16965,8 @@
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
           "synthetic-ru-gk425-contract-effect-model-v1",
+          "synthetic-ru-gk426-public-contract-framework-v1",
+          "synthetic-ru-gk426-public-contract-terms-v1",
           "synthetic-ru-gk429-445-preliminary-compulsion-v1",
           "synthetic-ru-gk429-preliminary-framework-v1",
           "synthetic-ru-gk430-third-party-change-v1",
@@ -17738,6 +18000,7 @@
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-performance-remedies-evidence",
           "synthetic-case-supply-1-preliminary-evidence",
+          "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-case-supply-1-security-evidence",
           "synthetic-case-supply-1-special-supply-evidence",
@@ -17770,6 +18033,8 @@
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
           "synthetic-ru-gk425-contract-effect-model-v1",
+          "synthetic-ru-gk426-public-contract-framework-v1",
+          "synthetic-ru-gk426-public-contract-terms-v1",
           "synthetic-ru-gk429-445-preliminary-compulsion-v1",
           "synthetic-ru-gk429-preliminary-framework-v1",
           "synthetic-ru-gk430-third-party-change-v1",
@@ -17876,7 +18141,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.24.0",
+      "institutional_package_version": "contracts-ru-v0@0.25.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -18220,6 +18485,44 @@
           "synthetic": true,
           "non_authoritative": true,
           "topic": "third_party_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
+        "id": "synthetic-ru-gk426-public-contract-framework-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель публичного договора по статье 426 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "public_contract_article_426_duty",
+          "legal_reference": "ГК РФ, статья 426, пункты 1 и 3",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk426-public-contract-terms-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель единых условий публичного договора",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "public_contract_article_426_terms",
+          "legal_reference": "ГК РФ, статья 426, пункты 2 и 5",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-public-contract-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о публичном договоре",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "public_contract_case_evidence",
           "case_id": "case-supply-1"
         }
       },
@@ -18841,6 +19144,7 @@
             "synthetic-obligation-dynamics-reviewer",
             "synthetic-performance-remedies-reviewer",
             "synthetic-preliminary-reviewer",
+            "synthetic-public-contract-reviewer",
             "synthetic-security-reviewer",
             "synthetic-special-supply-reviewer",
             "synthetic-temporal-effect-reviewer",

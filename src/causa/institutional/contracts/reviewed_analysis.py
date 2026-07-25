@@ -94,6 +94,16 @@ from causa.institutional.contracts.preliminary import (
     evaluate_preliminary_constraints,
     map_reviewed_preliminary_evidence,
 )
+from causa.institutional.contracts.public_contract import (
+    PUBLIC_CONTRACT_EVIDENCE_SCHEMA_VERSION,
+    PublicContractConstraintSet,
+    PublicContractEvaluation,
+    PublicContractEvidenceMappingResult,
+    ReviewedPublicContractEvidence,
+    build_public_contract_constraint_set,
+    evaluate_public_contract_constraints,
+    map_reviewed_public_contract_evidence,
+)
 from causa.institutional.contracts.third_party import (
     THIRD_PARTY_EVIDENCE_SCHEMA_VERSION,
     ReviewedThirdPartyEvidence,
@@ -284,6 +294,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     form_evidence: ReviewedFormEvidence
     preliminary_evidence: ReviewedPreliminaryEvidence
     third_party_evidence: ReviewedThirdPartyEvidence
+    public_contract_evidence: ReviewedPublicContractEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -344,6 +355,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     third_party_evidence_mapping: ThirdPartyEvidenceMappingResult
     third_party_constraint_set: ThirdPartyConstraintSet
     third_party_evaluation: ThirdPartyEvaluation
+    public_contract_evidence_mapping: PublicContractEvidenceMappingResult
+    public_contract_constraint_set: PublicContractConstraintSet
+    public_contract_evaluation: PublicContractEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -458,6 +472,19 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.third_party_evaluation != expected_third_party_evaluation:
             raise ValueError("Third-party evaluation does not replay from reviewed evidence.")
+        expected_public_contract_set = build_public_contract_constraint_set(
+            self.public_contract_evidence_mapping
+        )
+        if self.public_contract_constraint_set != expected_public_contract_set:
+            raise ValueError(
+                "Public-contract constraint set does not replay from reviewed evidence."
+            )
+        expected_public_contract_evaluation = evaluate_public_contract_constraints(
+            expected_public_contract_set,
+            self.public_contract_evidence_mapping.facts,
+        )
+        if self.public_contract_evaluation != expected_public_contract_evaluation:
+            raise ValueError("Public-contract evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -788,6 +815,8 @@ def _validate_request_integrity(
         raise ValueError("Preliminary evidence case_id does not match the analysis request.")
     if request.third_party_evidence.case_id != request.case_id:
         raise ValueError("Third-party evidence case_id does not match the analysis request.")
+    if request.public_contract_evidence.case_id != request.case_id:
+        raise ValueError("Public-contract evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -850,6 +879,8 @@ def _validate_request_integrity(
         raise ValueError("Preliminary evidence uses an unsupported schema version.")
     if request.third_party_evidence.schema_version != THIRD_PARTY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Third-party evidence uses an unsupported schema version.")
+    if request.public_contract_evidence.schema_version != PUBLIC_CONTRACT_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Public-contract evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -864,6 +895,7 @@ def _validate_request_integrity(
         *request.form_evidence.legal_source_refs,
         *request.preliminary_evidence.legal_source_refs,
         *request.third_party_evidence.legal_source_refs,
+        *request.public_contract_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -888,6 +920,8 @@ def _validate_request_integrity(
     for assertion in request.preliminary_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.third_party_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.public_contract_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -996,6 +1030,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Third-party legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_third_party_legal_sources))
+        )
+    invalid_public_contract_legal_sources = [
+        source_id
+        for source_id in request.public_contract_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_public_contract_legal_sources:
+        raise ValueError(
+            "Public-contract legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_public_contract_legal_sources))
         )
     invalid_invalidity_legal_sources = [
         source_id
@@ -1214,6 +1259,11 @@ def run_reviewed_contract_analysis(
         review_status=request.third_party_evidence.review_status,
         reviewer_id=request.third_party_evidence.reviewer_id,
     )
+    public_contract_reviewer_id = _require_reviewed(
+        artifact_name="Public-contract evidence",
+        review_status=request.public_contract_evidence.review_status,
+        reviewer_id=request.public_contract_evidence.reviewer_id,
+    )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
         review_status=request.invalidity_evidence.review_status,
@@ -1341,6 +1391,16 @@ def run_reviewed_contract_analysis(
     third_party_evaluation = evaluate_third_party_constraints(
         third_party_constraint_set,
         third_party_evidence_mapping.facts,
+    )
+    public_contract_evidence_mapping = map_reviewed_public_contract_evidence(
+        request.public_contract_evidence
+    )
+    public_contract_constraint_set = build_public_contract_constraint_set(
+        public_contract_evidence_mapping
+    )
+    public_contract_evaluation = evaluate_public_contract_constraints(
+        public_contract_constraint_set,
+        public_contract_evidence_mapping.facts,
     )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
@@ -1572,6 +1632,7 @@ def run_reviewed_contract_analysis(
         or form_evaluation.requires_human_form_assessment
         or preliminary_evaluation.requires_human_preliminary_assessment
         or third_party_evaluation.requires_human_third_party_assessment
+        or public_contract_evaluation.requires_human_public_contract_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -1598,6 +1659,7 @@ def run_reviewed_contract_analysis(
                 form_reviewer_id,
                 preliminary_reviewer_id,
                 third_party_reviewer_id,
+                public_contract_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -1634,6 +1696,9 @@ def run_reviewed_contract_analysis(
         third_party_evidence_mapping=third_party_evidence_mapping,
         third_party_constraint_set=third_party_constraint_set,
         third_party_evaluation=third_party_evaluation,
+        public_contract_evidence_mapping=public_contract_evidence_mapping,
+        public_contract_constraint_set=public_contract_constraint_set,
+        public_contract_evaluation=public_contract_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

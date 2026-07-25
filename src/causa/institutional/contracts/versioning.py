@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.25.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed public-contract evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code article 426.",
+            "Duty to contract, non-preference, uniform terms, and void terms remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о публичном договоре обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статью 426 ГК РФ.",
+            "Обязанность заключить, недопустимость предпочтения, единые условия и ничтожность разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.24.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

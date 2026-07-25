@@ -597,6 +597,61 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk426-public-contract-framework-v1",
+        title="Синтетическая проверенная модель публичного договора по статье 426 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: публичный характер деятельности, обязанность "
+            "заключить договор с каждым обратившимся при наличии возможности и "
+            "недопустимость необоснованного отказа проверяются раздельно "
+            "(пункты 1 и 3 статьи 426 ГК РФ)."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "public_contract_article_426_duty",
+            "legal_reference": "ГК РФ, статья 426, пункты 1 и 3",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk426-public-contract-terms-v1",
+        title="Синтетическая проверенная модель единых условий публичного договора",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: недопустимость предпочтения, единство цены и "
+            "иных условий для потребителей соответствующей категории и ничтожность "
+            "условий, не соответствующих публичному режиму, проверяются раздельно "
+            "(пункты 2 и 5 статьи 426 ГК РФ)."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "public_contract_article_426_terms",
+            "legal_reference": "ГК РФ, статья 426, пункты 2 и 5",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-public-contract-evidence",
+        title="Синтетическая проверенная запись фактов о публичном договоре",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: поставщик действует в публичном режиме, контрагент "
+            "обратился, исполнение возможно, условия едины для соответствующей "
+            "категории, необоснованного отказа и предпочтения нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "public_contract_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,
