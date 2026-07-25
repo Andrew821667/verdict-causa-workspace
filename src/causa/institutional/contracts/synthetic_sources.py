@@ -816,6 +816,59 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk429-2-option-framework-v1",
+        title="Синтетическая проверенная модель опциона на заключение договора по статье 429.2 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: предоставление безотзывной оферты, "
+            "определённость существенных условий, возмездность опциона, акцепт в срок "
+            "и передаваемость права проверяются раздельно (статья 429.2 ГК РФ)."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "option_article_429_2_offer",
+            "legal_reference": "ГК РФ, статья 429.2",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk429-3-option-contract-v1",
+        title="Синтетическая проверенная модель опционного договора по статье 429.3 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: право требовать совершения действий в срок, "
+            "прекращение договора при незаявлении требования и невозвратность платежа "
+            "проверяются раздельно (статья 429.3 ГК РФ)."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "option_article_429_3_contract",
+            "legal_reference": "ГК РФ, статья 429.3",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-option-evidence",
+        title="Синтетическая проверенная запись фактов об опционных конструкциях",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: покупателю предоставлен возмездный опцион на "
+            "заключение договора поставки с определёнными условиями; акцепт совершён "
+            "в установленный срок."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "option_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

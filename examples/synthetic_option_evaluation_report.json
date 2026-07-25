@@ -1,0 +1,443 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил об опционе на заключение договора и опционном договоре по статьям 429.2 и 429.3 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-option-evidence-supply-1-v0",
+    "schema_version": "contracts.option-evidence.v0",
+    "mapping_version": "contracts-reviewed-option-to-facts-v0",
+    "facts": {
+      "option_to_conclude_granted": true,
+      "option_essential_terms_defined": true,
+      "option_consideration_valid": true,
+      "option_acceptance_within_term": true,
+      "option_right_assigned": false,
+      "assignment_prohibited": false,
+      "option_contract_concluded": false,
+      "option_contract_demand_within_term": false,
+      "option_contract_payment_made": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk429-2-option-framework-v1",
+      "synthetic-ru-gk429-3-option-contract-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "assignment_prohibited",
+        "assertion_id": "option-evidence-assignment_prohibited",
+        "source_refs": [
+          "synthetic-case-supply-1-option-evidence"
+        ]
+      },
+      {
+        "fact_name": "option_acceptance_within_term",
+        "assertion_id": "option-evidence-option_acceptance_within_term",
+        "source_refs": [
+          "synthetic-case-supply-1-option-evidence"
+        ]
+      },
+      {
+        "fact_name": "option_consideration_valid",
+        "assertion_id": "option-evidence-option_consideration_valid",
+        "source_refs": [
+          "synthetic-case-supply-1-option-evidence"
+        ]
+      },
+      {
+        "fact_name": "option_contract_concluded",
+        "assertion_id": "option-evidence-option_contract_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-option-evidence"
+        ]
+      },
+      {
+        "fact_name": "option_contract_demand_within_term",
+        "assertion_id": "option-evidence-option_contract_demand_within_term",
+        "source_refs": [
+          "synthetic-case-supply-1-option-evidence"
+        ]
+      },
+      {
+        "fact_name": "option_contract_payment_made",
+        "assertion_id": "option-evidence-option_contract_payment_made",
+        "source_refs": [
+          "synthetic-case-supply-1-option-evidence"
+        ]
+      },
+      {
+        "fact_name": "option_essential_terms_defined",
+        "assertion_id": "option-evidence-option_essential_terms_defined",
+        "source_refs": [
+          "synthetic-case-supply-1-option-evidence"
+        ]
+      },
+      {
+        "fact_name": "option_right_assigned",
+        "assertion_id": "option-evidence-option_right_assigned",
+        "source_refs": [
+          "synthetic-case-supply-1-option-evidence"
+        ]
+      },
+      {
+        "fact_name": "option_to_conclude_granted",
+        "assertion_id": "option-evidence-option_to_conclude_granted",
+        "source_refs": [
+          "synthetic-case-supply-1-option-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "option-constraint-set:reviewed-option-evidence-supply-1-v0",
+    "model_version": "contracts-option-articles-429-2-429-3-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk429-2-option-framework-v1",
+      "synthetic-ru-gk429-3-option-contract-v1"
+    ],
+    "expressions": [
+      "option_offer_valid == option_to_conclude_granted AND option_essential_terms_defined AND option_consideration_valid",
+      "main_contract_formed_by_option == option_offer_valid AND option_acceptance_within_term",
+      "option_lapsed_unexercised == option_offer_valid AND NOT option_acceptance_within_term",
+      "option_contract_demand_enforceable == option_contract_concluded AND option_contract_demand_within_term",
+      "option_contract_terminated_by_expiry == option_contract_concluded AND NOT option_contract_demand_within_term",
+      "option_payment_non_refundable == option_contract_terminated_by_expiry AND option_contract_payment_made",
+      "option_right_transferable == option_right_assigned AND NOT assignment_prohibited",
+      "requires_human_option_assessment == option_lapsed_unexercised OR option_contract_terminated_by_expiry OR (option_right_assigned AND assignment_prohibited)"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "option-constraint-set:reviewed-option-evidence-supply-1-v0",
+    "satisfiable": true,
+    "option_offer_valid": true,
+    "main_contract_formed_by_option": true,
+    "option_lapsed_unexercised": false,
+    "option_contract_demand_enforceable": false,
+    "option_contract_terminated_by_expiry": false,
+    "option_payment_non_refundable": false,
+    "option_right_transferable": false,
+    "requires_human_option_assessment": false,
+    "reasons_ru": [
+      "Опцион на заключение договора действителен (статья 429.2 ГК РФ).",
+      "Акцепт безотзывной оферты в установленный срок влечёт заключение основного договора (пункты 1 и 2 статьи 429.2 ГК РФ)."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила об опционе на заключение договора и опционном договоре и не заменяет судебную оценку.",
+      "Определённость условий, возмездность и соблюдение сроков оцениваются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "option-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "option-bench-exercised",
+        "passed": true,
+        "expected_outcomes": {
+          "option_offer_valid": true,
+          "main_contract_formed_by_option": true,
+          "option_lapsed_unexercised": false
+        },
+        "observed_outcomes": {
+          "option_offer_valid": true,
+          "main_contract_formed_by_option": true,
+          "option_lapsed_unexercised": false
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора действителен (статья 429.2 ГК РФ).",
+          "Акцепт безотзывной оферты в установленный срок влечёт заключение основного договора (пункты 1 и 2 статьи 429.2 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "option-bench-lapsed",
+        "passed": true,
+        "expected_outcomes": {
+          "option_lapsed_unexercised": true,
+          "main_contract_formed_by_option": false,
+          "requires_human_option_assessment": true
+        },
+        "observed_outcomes": {
+          "option_lapsed_unexercised": true,
+          "main_contract_formed_by_option": false,
+          "requires_human_option_assessment": true
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора действителен (статья 429.2 ГК РФ).",
+          "Право на заключение договора по опциону прекращается, если акцепт не совершён в установленный срок (пункт 2 статьи 429.2 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "option-bench-no-consideration",
+        "passed": true,
+        "expected_outcomes": {
+          "option_offer_valid": false,
+          "main_contract_formed_by_option": false
+        },
+        "observed_outcomes": {
+          "option_offer_valid": false,
+          "main_contract_formed_by_option": false
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным."
+        ]
+      },
+      {
+        "task_id": "option-bench-terms-undefined",
+        "passed": true,
+        "expected_outcomes": {
+          "option_offer_valid": false
+        },
+        "observed_outcomes": {
+          "option_offer_valid": false
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным."
+        ]
+      },
+      {
+        "task_id": "option-bench-contract-enforceable",
+        "passed": true,
+        "expected_outcomes": {
+          "option_contract_demand_enforceable": true,
+          "option_contract_terminated_by_expiry": false
+        },
+        "observed_outcomes": {
+          "option_contract_demand_enforceable": true,
+          "option_contract_terminated_by_expiry": false
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным.",
+          "По опционному договору сторона вправе требовать совершения предусмотренных действий в установленный срок (статья 429.3 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "option-bench-contract-terminated",
+        "passed": true,
+        "expected_outcomes": {
+          "option_contract_terminated_by_expiry": true,
+          "requires_human_option_assessment": true
+        },
+        "observed_outcomes": {
+          "option_contract_terminated_by_expiry": true,
+          "requires_human_option_assessment": true
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным.",
+          "Опционный договор прекращается, если управомоченная сторона не заявит требование в установленный срок (пункт 2 статьи 429.3 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "option-bench-payment-nonrefundable",
+        "passed": true,
+        "expected_outcomes": {
+          "option_payment_non_refundable": true,
+          "option_contract_terminated_by_expiry": true
+        },
+        "observed_outcomes": {
+          "option_payment_non_refundable": true,
+          "option_contract_terminated_by_expiry": true
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным.",
+          "Опционный договор прекращается, если управомоченная сторона не заявит требование в установленный срок (пункт 2 статьи 429.3 ГК РФ).",
+          "Платёж по опционному договору по общему правилу не возвращается при прекращении договора (пункт 3 статьи 429.3 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "option-bench-right-transferable",
+        "passed": true,
+        "expected_outcomes": {
+          "option_right_transferable": true,
+          "requires_human_option_assessment": false
+        },
+        "observed_outcomes": {
+          "option_right_transferable": true,
+          "requires_human_option_assessment": false
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным."
+        ]
+      },
+      {
+        "task_id": "option-bench-assignment-prohibited",
+        "passed": true,
+        "expected_outcomes": {
+          "option_right_transferable": false,
+          "requires_human_option_assessment": true
+        },
+        "observed_outcomes": {
+          "option_right_transferable": false,
+          "requires_human_option_assessment": true
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным."
+        ]
+      },
+      {
+        "task_id": "option-bench-no-option",
+        "passed": true,
+        "expected_outcomes": {
+          "option_offer_valid": false,
+          "option_lapsed_unexercised": false,
+          "requires_human_option_assessment": false
+        },
+        "observed_outcomes": {
+          "option_offer_valid": false,
+          "option_lapsed_unexercised": false,
+          "requires_human_option_assessment": false
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "option-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "option-red-formed-without-acceptance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "main_contract_formed_by_option": true
+        },
+        "observed_outcomes": {
+          "main_contract_formed_by_option": false
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора действителен (статья 429.2 ГК РФ).",
+          "Право на заключение договора по опциону прекращается, если акцепт не совершён в установленный срок (пункт 2 статьи 429.2 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "option-red-valid-without-consideration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "option_offer_valid": true
+        },
+        "observed_outcomes": {
+          "option_offer_valid": false
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным."
+        ]
+      },
+      {
+        "case_id": "option-red-valid-without-terms",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "option_offer_valid": true
+        },
+        "observed_outcomes": {
+          "option_offer_valid": false
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным."
+        ]
+      },
+      {
+        "case_id": "option-red-skip-lapse",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "option_lapsed_unexercised": false
+        },
+        "observed_outcomes": {
+          "option_lapsed_unexercised": true
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора действителен (статья 429.2 ГК РФ).",
+          "Право на заключение договора по опциону прекращается, если акцепт не совершён в установленный срок (пункт 2 статьи 429.2 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "option-red-enforce-without-demand",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "option_contract_demand_enforceable": true
+        },
+        "observed_outcomes": {
+          "option_contract_demand_enforceable": false
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным.",
+          "Опционный договор прекращается, если управомоченная сторона не заявит требование в установленный срок (пункт 2 статьи 429.3 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "option-red-skip-termination",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "option_contract_terminated_by_expiry": false
+        },
+        "observed_outcomes": {
+          "option_contract_terminated_by_expiry": true
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным.",
+          "Опционный договор прекращается, если управомоченная сторона не заявит требование в установленный срок (пункт 2 статьи 429.3 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "option-red-refund-payment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "option_payment_non_refundable": false
+        },
+        "observed_outcomes": {
+          "option_payment_non_refundable": true
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным.",
+          "Опционный договор прекращается, если управомоченная сторона не заявит требование в установленный срок (пункт 2 статьи 429.3 ГК РФ).",
+          "Платёж по опционному договору по общему правилу не возвращается при прекращении договора (пункт 3 статьи 429.3 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "option-red-transfer-when-prohibited",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "option_right_transferable": true
+        },
+        "observed_outcomes": {
+          "option_right_transferable": false
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным."
+        ]
+      },
+      {
+        "case_id": "option-red-skip-human-on-lapse",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_option_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_option_assessment": true
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора действителен (статья 429.2 ГК РФ).",
+          "Право на заключение договора по опциону прекращается, если акцепт не совершён в установленный срок (пункт 2 статьи 429.2 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "option-red-block-transfer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "option_right_transferable": false
+        },
+        "observed_outcomes": {
+          "option_right_transferable": true
+        },
+        "reasons_ru": [
+          "Опцион на заключение договора не признаётся действительным."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

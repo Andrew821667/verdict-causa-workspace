@@ -609,6 +609,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk429-2-option-framework-v1",
+      "title": "Синтетическая проверенная модель опциона на заключение договора по статье 429.2 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: предоставление безотзывной оферты, определённость существенных условий, возмездность опциона, акцепт в срок и передаваемость права проверяются раздельно (статья 429.2 ГК РФ).",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "option_article_429_2_offer",
+        "legal_reference": "ГК РФ, статья 429.2",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk429-3-option-contract-v1",
+      "title": "Синтетическая проверенная модель опционного договора по статье 429.3 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: право требовать совершения действий в срок, прекращение договора при незаявлении требования и невозвратность платежа проверяются раздельно (статья 429.3 ГК РФ).",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "option_article_429_3_contract",
+        "legal_reference": "ГК РФ, статья 429.3",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-option-evidence",
+      "title": "Синтетическая проверенная запись фактов об опционных конструкциях",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: покупателю предоставлен возмездный опцион на заключение договора поставки с определёнными условиями; акцепт совершён в установленный срок.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "option_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -2613,6 +2660,91 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-precontractual-reviewer"
+    },
+    "option_evidence": {
+      "id": "reviewed-option-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.option-evidence.v0",
+      "assertions": [
+        {
+          "id": "option-evidence-option_to_conclude_granted",
+          "predicate": "option_to_conclude_granted",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "id": "option-evidence-option_essential_terms_defined",
+          "predicate": "option_essential_terms_defined",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "id": "option-evidence-option_consideration_valid",
+          "predicate": "option_consideration_valid",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "id": "option-evidence-option_acceptance_within_term",
+          "predicate": "option_acceptance_within_term",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "id": "option-evidence-option_right_assigned",
+          "predicate": "option_right_assigned",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "id": "option-evidence-assignment_prohibited",
+          "predicate": "assignment_prohibited",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "id": "option-evidence-option_contract_concluded",
+          "predicate": "option_contract_concluded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "id": "option-evidence-option_contract_demand_within_term",
+          "predicate": "option_contract_demand_within_term",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "id": "option-evidence-option_contract_payment_made",
+          "predicate": "option_contract_payment_made",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk429-2-option-framework-v1",
+        "synthetic-ru-gk429-3-option-contract-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-option-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -7398,6 +7530,7 @@
       "synthetic-limitation-reviewer",
       "synthetic-norm-reviewer",
       "synthetic-obligation-dynamics-reviewer",
+      "synthetic-option-reviewer",
       "synthetic-performance-remedies-reviewer",
       "synthetic-precontractual-reviewer",
       "synthetic-preliminary-reviewer",
@@ -7420,6 +7553,7 @@
       "synthetic-case-supply-1-liability-evidence",
       "synthetic-case-supply-1-limitation-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
+      "synthetic-case-supply-1-option-evidence",
       "synthetic-case-supply-1-performance-remedies-evidence",
       "synthetic-case-supply-1-precontractual-evidence",
       "synthetic-case-supply-1-preliminary-evidence",
@@ -7461,6 +7595,8 @@
       "synthetic-ru-gk426-public-contract-terms-v1",
       "synthetic-ru-gk428-adhesion-framework-v1",
       "synthetic-ru-gk428-adhesion-relief-v1",
+      "synthetic-ru-gk429-2-option-framework-v1",
+      "synthetic-ru-gk429-3-option-contract-v1",
       "synthetic-ru-gk429-445-preliminary-compulsion-v1",
       "synthetic-ru-gk429-preliminary-framework-v1",
       "synthetic-ru-gk430-third-party-change-v1",
@@ -9246,6 +9382,129 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о преддоговорной ответственности и не заменяет судебную оценку.",
         "Добросовестность сторон и оправданность прекращения переговоров оцениваются экспертом и судом."
+      ]
+    },
+    "option_evidence_mapping": {
+      "evidence_id": "reviewed-option-evidence-supply-1-v0",
+      "schema_version": "contracts.option-evidence.v0",
+      "mapping_version": "contracts-reviewed-option-to-facts-v0",
+      "facts": {
+        "option_to_conclude_granted": true,
+        "option_essential_terms_defined": true,
+        "option_consideration_valid": true,
+        "option_acceptance_within_term": true,
+        "option_right_assigned": false,
+        "assignment_prohibited": false,
+        "option_contract_concluded": false,
+        "option_contract_demand_within_term": false,
+        "option_contract_payment_made": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk429-2-option-framework-v1",
+        "synthetic-ru-gk429-3-option-contract-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "assignment_prohibited",
+          "assertion_id": "option-evidence-assignment_prohibited",
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "fact_name": "option_acceptance_within_term",
+          "assertion_id": "option-evidence-option_acceptance_within_term",
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "fact_name": "option_consideration_valid",
+          "assertion_id": "option-evidence-option_consideration_valid",
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "fact_name": "option_contract_concluded",
+          "assertion_id": "option-evidence-option_contract_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "fact_name": "option_contract_demand_within_term",
+          "assertion_id": "option-evidence-option_contract_demand_within_term",
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "fact_name": "option_contract_payment_made",
+          "assertion_id": "option-evidence-option_contract_payment_made",
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "fact_name": "option_essential_terms_defined",
+          "assertion_id": "option-evidence-option_essential_terms_defined",
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "fact_name": "option_right_assigned",
+          "assertion_id": "option-evidence-option_right_assigned",
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        },
+        {
+          "fact_name": "option_to_conclude_granted",
+          "assertion_id": "option-evidence-option_to_conclude_granted",
+          "source_refs": [
+            "synthetic-case-supply-1-option-evidence"
+          ]
+        }
+      ]
+    },
+    "option_constraint_set": {
+      "id": "option-constraint-set:reviewed-option-evidence-supply-1-v0",
+      "model_version": "contracts-option-articles-429-2-429-3-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk429-2-option-framework-v1",
+        "synthetic-ru-gk429-3-option-contract-v1"
+      ],
+      "expressions": [
+        "option_offer_valid == option_to_conclude_granted AND option_essential_terms_defined AND option_consideration_valid",
+        "main_contract_formed_by_option == option_offer_valid AND option_acceptance_within_term",
+        "option_lapsed_unexercised == option_offer_valid AND NOT option_acceptance_within_term",
+        "option_contract_demand_enforceable == option_contract_concluded AND option_contract_demand_within_term",
+        "option_contract_terminated_by_expiry == option_contract_concluded AND NOT option_contract_demand_within_term",
+        "option_payment_non_refundable == option_contract_terminated_by_expiry AND option_contract_payment_made",
+        "option_right_transferable == option_right_assigned AND NOT assignment_prohibited",
+        "requires_human_option_assessment == option_lapsed_unexercised OR option_contract_terminated_by_expiry OR (option_right_assigned AND assignment_prohibited)"
+      ]
+    },
+    "option_evaluation": {
+      "constraint_set_id": "option-constraint-set:reviewed-option-evidence-supply-1-v0",
+      "satisfiable": true,
+      "option_offer_valid": true,
+      "main_contract_formed_by_option": true,
+      "option_lapsed_unexercised": false,
+      "option_contract_demand_enforceable": false,
+      "option_contract_terminated_by_expiry": false,
+      "option_payment_non_refundable": false,
+      "option_right_transferable": false,
+      "requires_human_option_assessment": false,
+      "reasons_ru": [
+        "Опцион на заключение договора действителен (статья 429.2 ГК РФ).",
+        "Акцепт безотзывной оферты в установленный срок влечёт заключение основного договора (пункты 1 и 2 статьи 429.2 ГК РФ)."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила об опционе на заключение договора и опционном договоре и не заменяет судебную оценку.",
+        "Определённость условий, возмездность и соблюдение сроков оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -14619,7 +14878,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.28.0",
+      "institutional_package_version": "contracts-ru-v0@0.29.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

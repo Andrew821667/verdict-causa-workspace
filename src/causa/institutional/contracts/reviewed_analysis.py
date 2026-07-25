@@ -124,6 +124,16 @@ from causa.institutional.contracts.precontractual import (
     evaluate_precontractual_constraints,
     map_reviewed_precontractual_evidence,
 )
+from causa.institutional.contracts.option import (
+    OPTION_EVIDENCE_SCHEMA_VERSION,
+    OptionConstraintSet,
+    OptionEvaluation,
+    OptionEvidenceMappingResult,
+    ReviewedOptionEvidence,
+    build_option_constraint_set,
+    evaluate_option_constraints,
+    map_reviewed_option_evidence,
+)
 from causa.institutional.contracts.public_contract import (
     PUBLIC_CONTRACT_EVIDENCE_SCHEMA_VERSION,
     PublicContractConstraintSet,
@@ -328,6 +338,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     adhesion_evidence: ReviewedAdhesionEvidence
     representations_evidence: ReviewedRepresentationsEvidence
     precontractual_evidence: ReviewedPrecontractualEvidence
+    option_evidence: ReviewedOptionEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -400,6 +411,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     precontractual_evidence_mapping: PrecontractualEvidenceMappingResult
     precontractual_constraint_set: PrecontractualConstraintSet
     precontractual_evaluation: PrecontractualEvaluation
+    option_evidence_mapping: OptionEvidenceMappingResult
+    option_constraint_set: OptionConstraintSet
+    option_evaluation: OptionEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -562,6 +576,15 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.precontractual_evaluation != expected_precontractual_evaluation:
             raise ValueError("Precontractual evaluation does not replay from reviewed evidence.")
+        expected_option_set = build_option_constraint_set(self.option_evidence_mapping)
+        if self.option_constraint_set != expected_option_set:
+            raise ValueError("Option constraint set does not replay from reviewed evidence.")
+        expected_option_evaluation = evaluate_option_constraints(
+            expected_option_set,
+            self.option_evidence_mapping.facts,
+        )
+        if self.option_evaluation != expected_option_evaluation:
+            raise ValueError("Option evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -900,6 +923,8 @@ def _validate_request_integrity(
         raise ValueError("Representations evidence case_id does not match the analysis request.")
     if request.precontractual_evidence.case_id != request.case_id:
         raise ValueError("Precontractual evidence case_id does not match the analysis request.")
+    if request.option_evidence.case_id != request.case_id:
+        raise ValueError("Option evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -970,6 +995,8 @@ def _validate_request_integrity(
         raise ValueError("Representations evidence uses an unsupported schema version.")
     if request.precontractual_evidence.schema_version != PRECONTRACTUAL_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Precontractual evidence uses an unsupported schema version.")
+    if request.option_evidence.schema_version != OPTION_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Option evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -988,6 +1015,7 @@ def _validate_request_integrity(
         *request.adhesion_evidence.legal_source_refs,
         *request.representations_evidence.legal_source_refs,
         *request.precontractual_evidence.legal_source_refs,
+        *request.option_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -1020,6 +1048,8 @@ def _validate_request_integrity(
     for assertion in request.representations_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.precontractual_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.option_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -1172,6 +1202,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Precontractual legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_precontractual_legal_sources))
+        )
+    invalid_option_legal_sources = [
+        source_id
+        for source_id in request.option_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_option_legal_sources:
+        raise ValueError(
+            "Option legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_option_legal_sources))
         )
     invalid_invalidity_legal_sources = [
         source_id
@@ -1410,6 +1451,11 @@ def run_reviewed_contract_analysis(
         review_status=request.precontractual_evidence.review_status,
         reviewer_id=request.precontractual_evidence.reviewer_id,
     )
+    option_reviewer_id = _require_reviewed(
+        artifact_name="Option evidence",
+        review_status=request.option_evidence.review_status,
+        reviewer_id=request.option_evidence.reviewer_id,
+    )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
         review_status=request.invalidity_evidence.review_status,
@@ -1573,6 +1619,12 @@ def run_reviewed_contract_analysis(
     precontractual_evaluation = evaluate_precontractual_constraints(
         precontractual_constraint_set,
         precontractual_evidence_mapping.facts,
+    )
+    option_evidence_mapping = map_reviewed_option_evidence(request.option_evidence)
+    option_constraint_set = build_option_constraint_set(option_evidence_mapping)
+    option_evaluation = evaluate_option_constraints(
+        option_constraint_set,
+        option_evidence_mapping.facts,
     )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
@@ -1808,6 +1860,7 @@ def run_reviewed_contract_analysis(
         or adhesion_evaluation.requires_human_adhesion_assessment
         or representations_evaluation.requires_human_representations_assessment
         or precontractual_evaluation.requires_human_precontractual_assessment
+        or option_evaluation.requires_human_option_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -1838,6 +1891,7 @@ def run_reviewed_contract_analysis(
                 adhesion_reviewer_id,
                 representations_reviewer_id,
                 precontractual_reviewer_id,
+                option_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -1886,6 +1940,9 @@ def run_reviewed_contract_analysis(
         precontractual_evidence_mapping=precontractual_evidence_mapping,
         precontractual_constraint_set=precontractual_constraint_set,
         precontractual_evaluation=precontractual_evaluation,
+        option_evidence_mapping=option_evidence_mapping,
+        option_constraint_set=option_constraint_set,
+        option_evaluation=option_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

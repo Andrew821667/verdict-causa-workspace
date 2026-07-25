@@ -549,6 +549,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.28.0",
+        to_version="0.29.0",
+        reasons=[
+            "Reviewed inputs now require a separate option evidence contract.",
+            "Analysis and Russian translation distinguish the option paths under articles 429.2 and 429.3.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных об опционных конструкциях.",
+            "Анализ и русское объяснение разделяют маршруты опциона и опционного договора по статьям 429.2 и 429.3 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_option_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

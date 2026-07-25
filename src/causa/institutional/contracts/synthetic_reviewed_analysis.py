@@ -65,6 +65,11 @@ from causa.institutional.contracts.precontractual import (
     PrecontractualEvidencePredicate,
     ReviewedPrecontractualEvidence,
 )
+from causa.institutional.contracts.option import (
+    OptionEvidenceAssertion,
+    OptionEvidencePredicate,
+    ReviewedOptionEvidence,
+)
 from causa.institutional.contracts.public_contract import (
     PublicContractEvidenceAssertion,
     PublicContractEvidencePredicate,
@@ -156,6 +161,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk434-1-precontractual-framework-v1",
     "synthetic-ru-gk434-1-precontractual-remedies-v1",
     "synthetic-case-supply-1-precontractual-evidence",
+    "synthetic-ru-gk429-2-option-framework-v1",
+    "synthetic-ru-gk429-3-option-contract-v1",
+    "synthetic-case-supply-1-option-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -748,6 +756,35 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-precontractual-reviewer",
+        ),
+        option_evidence=ReviewedOptionEvidence(
+            id="reviewed-option-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                OptionEvidenceAssertion(
+                    id=f"option-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-option-evidence",),
+                )
+                for predicate, value in (
+                    (OptionEvidencePredicate.OPTION_TO_CONCLUDE_GRANTED, True),
+                    (OptionEvidencePredicate.OPTION_ESSENTIAL_TERMS_DEFINED, True),
+                    (OptionEvidencePredicate.OPTION_CONSIDERATION_VALID, True),
+                    (OptionEvidencePredicate.OPTION_ACCEPTANCE_WITHIN_TERM, True),
+                    (OptionEvidencePredicate.OPTION_RIGHT_ASSIGNED, False),
+                    (OptionEvidencePredicate.ASSIGNMENT_PROHIBITED, False),
+                    (OptionEvidencePredicate.OPTION_CONTRACT_CONCLUDED, False),
+                    (OptionEvidencePredicate.OPTION_CONTRACT_DEMAND_WITHIN_TERM, False),
+                    (OptionEvidencePredicate.OPTION_CONTRACT_PAYMENT_MADE, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk429-2-option-framework-v1",
+                "synthetic-ru-gk429-3-option-contract-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-option-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
