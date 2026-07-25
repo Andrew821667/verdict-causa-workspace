@@ -923,6 +923,59 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk421-422-freedom-of-contract-v1",
+        title="Синтетическая проверенная модель свободы договора по статьям 421 и 422 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: свобода заключения договора, непоименованный и "
+            "смешанный договор, определение условий по усмотрению сторон и соответствие "
+            "договора императивным нормам проверяются раздельно (статьи 421 и 422 ГК РФ)."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "freedom_articles_421_422",
+            "legal_reference": "ГК РФ, статьи 421 и 422",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk423-424-onerousness-and-price-v1",
+        title="Синтетическая проверенная модель возмездности и цены по статьям 423 и 424 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: презумпция возмездности договора, цена по "
+            "соглашению, применение регулируемых цен и определение цены за сопоставимые "
+            "товары, работы или услуги проверяются раздельно (статьи 423 и 424 ГК РФ)."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "onerousness_and_price_articles_423_424",
+            "legal_reference": "ГК РФ, статьи 423 и 424",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-freedom-evidence",
+        title="Синтетическая проверенная запись фактов о свободе договора и цене",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: договор поставки заключён свободно, является "
+            "поименованным и возмездным, цена согласована сторонами; понуждение к "
+            "заключению отсутствует."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "freedom_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

@@ -703,6 +703,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk421-422-freedom-of-contract-v1",
+      "title": "Синтетическая проверенная модель свободы договора по статьям 421 и 422 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: свобода заключения договора, непоименованный и смешанный договор, определение условий по усмотрению сторон и соответствие договора императивным нормам проверяются раздельно (статьи 421 и 422 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "freedom_articles_421_422",
+        "legal_reference": "ГК РФ, статьи 421 и 422",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk423-424-onerousness-and-price-v1",
+      "title": "Синтетическая проверенная модель возмездности и цены по статьям 423 и 424 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: презумпция возмездности договора, цена по соглашению, применение регулируемых цен и определение цены за сопоставимые товары, работы или услуги проверяются раздельно (статьи 423 и 424 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "onerousness_and_price_articles_423_424",
+        "legal_reference": "ГК РФ, статьи 423 и 424",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-freedom-evidence",
+      "title": "Синтетическая проверенная запись фактов о свободе договора и цене",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: договор поставки заключён свободно, является поименованным и возмездным, цена согласована сторонами; понуждение к заключению отсутствует.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "freedom_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -2869,6 +2916,107 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-framework-reviewer"
+    },
+    "freedom_evidence": {
+      "id": "reviewed-freedom-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.freedom-evidence.v0",
+      "assertions": [
+        {
+          "id": "freedom-evidence-contract_conclusion_compelled_by_law",
+          "predicate": "contract_conclusion_compelled_by_law",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "id": "freedom-evidence-contract_type_unnamed",
+          "predicate": "contract_type_unnamed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "id": "freedom-evidence-mixed_contract_elements",
+          "predicate": "mixed_contract_elements",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "id": "freedom-evidence-terms_prescribed_by_mandatory_norm",
+          "predicate": "terms_prescribed_by_mandatory_norm",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "id": "freedom-evidence-contract_conforms_mandatory_rules",
+          "predicate": "contract_conforms_mandatory_rules",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "id": "freedom-evidence-new_mandatory_law_after_conclusion",
+          "predicate": "new_mandatory_law_after_conclusion",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "id": "freedom-evidence-new_law_given_retroactive_effect",
+          "predicate": "new_law_given_retroactive_effect",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "id": "freedom-evidence-contract_gratuitous_by_nature",
+          "predicate": "contract_gratuitous_by_nature",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "id": "freedom-evidence-price_agreed_by_parties",
+          "predicate": "price_agreed_by_parties",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "id": "freedom-evidence-regulated_price_mandated",
+          "predicate": "regulated_price_mandated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "id": "freedom-evidence-comparable_price_available",
+          "predicate": "comparable_price_available",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk421-422-freedom-of-contract-v1",
+        "synthetic-ru-gk423-424-onerousness-and-price-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-freedom-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -7648,6 +7796,7 @@
       "synthetic-form-reviewer",
       "synthetic-formation-reviewer",
       "synthetic-framework-reviewer",
+      "synthetic-freedom-reviewer",
       "synthetic-general-sale-reviewer",
       "synthetic-interpretation-reviewer",
       "synthetic-invalidity-reviewer",
@@ -7673,6 +7822,7 @@
       "synthetic-case-supply-1-form-evidence",
       "synthetic-case-supply-1-formation-evidence",
       "synthetic-case-supply-1-framework-evidence",
+      "synthetic-case-supply-1-freedom-evidence",
       "synthetic-case-supply-1-general-sale-evidence",
       "synthetic-case-supply-1-interpretation-evidence",
       "synthetic-case-supply-1-invalidity-evidence",
@@ -7716,6 +7866,8 @@
       "synthetic-ru-gk401-liability-model-v1",
       "synthetic-ru-gk407-413-discharge-v1",
       "synthetic-ru-gk414-419-discharge-v1",
+      "synthetic-ru-gk421-422-freedom-of-contract-v1",
+      "synthetic-ru-gk423-424-onerousness-and-price-v1",
       "synthetic-ru-gk425-contract-effect-model-v1",
       "synthetic-ru-gk426-public-contract-framework-v1",
       "synthetic-ru-gk426-public-contract-terms-v1",
@@ -9747,6 +9899,148 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о рамочном и абонентском договоре и не заменяет судебную оценку.",
         "Существо обязательства, содержание общих условий и условия о плате оцениваются экспертом и судом."
+      ]
+    },
+    "freedom_evidence_mapping": {
+      "evidence_id": "reviewed-freedom-evidence-supply-1-v0",
+      "schema_version": "contracts.freedom-evidence.v0",
+      "mapping_version": "contracts-reviewed-freedom-to-facts-v0",
+      "facts": {
+        "contract_conclusion_compelled_by_law": false,
+        "contract_type_unnamed": false,
+        "mixed_contract_elements": false,
+        "terms_prescribed_by_mandatory_norm": false,
+        "contract_conforms_mandatory_rules": true,
+        "new_mandatory_law_after_conclusion": false,
+        "new_law_given_retroactive_effect": false,
+        "contract_gratuitous_by_nature": false,
+        "price_agreed_by_parties": true,
+        "regulated_price_mandated": false,
+        "comparable_price_available": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk421-422-freedom-of-contract-v1",
+        "synthetic-ru-gk423-424-onerousness-and-price-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "comparable_price_available",
+          "assertion_id": "freedom-evidence-comparable_price_available",
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_conclusion_compelled_by_law",
+          "assertion_id": "freedom-evidence-contract_conclusion_compelled_by_law",
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_conforms_mandatory_rules",
+          "assertion_id": "freedom-evidence-contract_conforms_mandatory_rules",
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_gratuitous_by_nature",
+          "assertion_id": "freedom-evidence-contract_gratuitous_by_nature",
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_type_unnamed",
+          "assertion_id": "freedom-evidence-contract_type_unnamed",
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "fact_name": "mixed_contract_elements",
+          "assertion_id": "freedom-evidence-mixed_contract_elements",
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "fact_name": "new_law_given_retroactive_effect",
+          "assertion_id": "freedom-evidence-new_law_given_retroactive_effect",
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "fact_name": "new_mandatory_law_after_conclusion",
+          "assertion_id": "freedom-evidence-new_mandatory_law_after_conclusion",
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "fact_name": "price_agreed_by_parties",
+          "assertion_id": "freedom-evidence-price_agreed_by_parties",
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "fact_name": "regulated_price_mandated",
+          "assertion_id": "freedom-evidence-regulated_price_mandated",
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "fact_name": "terms_prescribed_by_mandatory_norm",
+          "assertion_id": "freedom-evidence-terms_prescribed_by_mandatory_norm",
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        }
+      ]
+    },
+    "freedom_constraint_set": {
+      "id": "freedom-constraint-set:reviewed-freedom-evidence-supply-1-v0",
+      "model_version": "contracts-freedom-price-articles-421-424-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk421-422-freedom-of-contract-v1",
+        "synthetic-ru-gk423-424-onerousness-and-price-v1"
+      ],
+      "expressions": [
+        "contract_conclusion_free == NOT contract_conclusion_compelled_by_law",
+        "terms_by_party_discretion == NOT terms_prescribed_by_mandatory_norm",
+        "mixed_contract_rules_apply == mixed_contract_elements",
+        "contract_valid_against_mandatory_rules == contract_conforms_mandatory_rules",
+        "prior_terms_survive_new_law == new_mandatory_law_after_conclusion AND NOT new_law_given_retroactive_effect",
+        "contract_presumed_onerous == NOT contract_gratuitous_by_nature",
+        "price_determined == price_agreed_by_parties OR regulated_price_mandated OR (contract_presumed_onerous AND comparable_price_available)",
+        "requires_human_freedom_assessment == contract_type_unnamed OR mixed_contract_elements OR (new_mandatory_law_after_conclusion AND new_law_given_retroactive_effect) OR (contract_presumed_onerous AND NOT price_agreed_by_parties AND NOT regulated_price_mandated)"
+      ]
+    },
+    "freedom_evaluation": {
+      "constraint_set_id": "freedom-constraint-set:reviewed-freedom-evidence-supply-1-v0",
+      "satisfiable": true,
+      "contract_conclusion_free": true,
+      "terms_by_party_discretion": true,
+      "mixed_contract_rules_apply": false,
+      "contract_valid_against_mandatory_rules": true,
+      "prior_terms_survive_new_law": false,
+      "contract_presumed_onerous": true,
+      "price_determined": true,
+      "requires_human_freedom_assessment": false,
+      "reasons_ru": [
+        "Стороны свободны в заключении договора; понуждение не допускается (пункт 1 статьи 421 ГК РФ).",
+        "Условия договора определяются по усмотрению сторон, кроме случаев, когда содержание условия предписано законом (пункт 4 статьи 421 ГК РФ).",
+        "Договор соответствует обязательным для сторон правилам, действующим в момент его заключения (пункт 1 статьи 422 ГК РФ).",
+        "Договор предполагается возмездным, если из закона, содержания или существа договора не вытекает иное (пункт 3 статьи 423 ГК РФ).",
+        "Цена исполнения определена соглашением, регулируемой ценой либо ценой за сопоставимые товары, работы или услуги (статья 424 ГК РФ)."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о свободе договора, его соответствии закону и определении цены и не заменяет судебную оценку.",
+        "Квалификация непоименованного и смешанного договора, императивность норм и размер цены оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -15120,7 +15414,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.30.0",
+      "institutional_package_version": "contracts-ru-v0@0.31.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -17119,6 +17413,7 @@
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-framework-evidence",
+          "synthetic-case-supply-1-freedom-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
           "synthetic-case-supply-1-interpretation-evidence",
           "synthetic-case-supply-1-invalidity-evidence",
@@ -17162,6 +17457,8 @@
           "synthetic-ru-gk401-liability-model-v1",
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
+          "synthetic-ru-gk421-422-freedom-of-contract-v1",
+          "synthetic-ru-gk423-424-onerousness-and-price-v1",
           "synthetic-ru-gk425-contract-effect-model-v1",
           "synthetic-ru-gk426-public-contract-framework-v1",
           "synthetic-ru-gk426-public-contract-terms-v1",
@@ -18202,6 +18499,7 @@
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-framework-evidence",
+          "synthetic-case-supply-1-freedom-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
           "synthetic-case-supply-1-interpretation-evidence",
           "synthetic-case-supply-1-invalidity-evidence",
@@ -18245,6 +18543,8 @@
           "synthetic-ru-gk401-liability-model-v1",
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
+          "synthetic-ru-gk421-422-freedom-of-contract-v1",
+          "synthetic-ru-gk423-424-onerousness-and-price-v1",
           "synthetic-ru-gk425-contract-effect-model-v1",
           "synthetic-ru-gk426-public-contract-framework-v1",
           "synthetic-ru-gk426-public-contract-terms-v1",
@@ -19285,6 +19585,7 @@
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-framework-evidence",
+          "synthetic-case-supply-1-freedom-evidence",
           "synthetic-case-supply-1-general-sale-evidence",
           "synthetic-case-supply-1-interpretation-evidence",
           "synthetic-case-supply-1-invalidity-evidence",
@@ -19328,6 +19629,8 @@
           "synthetic-ru-gk401-liability-model-v1",
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
+          "synthetic-ru-gk421-422-freedom-of-contract-v1",
+          "synthetic-ru-gk423-424-onerousness-and-price-v1",
           "synthetic-ru-gk425-contract-effect-model-v1",
           "synthetic-ru-gk426-public-contract-framework-v1",
           "synthetic-ru-gk426-public-contract-terms-v1",
@@ -19447,7 +19750,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.30.0",
+      "institutional_package_version": "contracts-ru-v0@0.31.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -20019,6 +20322,44 @@
           "synthetic": true,
           "non_authoritative": true,
           "topic": "framework_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
+        "id": "synthetic-ru-gk421-422-freedom-of-contract-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель свободы договора по статьям 421 и 422 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "freedom_articles_421_422",
+          "legal_reference": "ГК РФ, статьи 421 и 422",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk423-424-onerousness-and-price-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель возмездности и цены по статьям 423 и 424 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "onerousness_and_price_articles_423_424",
+          "legal_reference": "ГК РФ, статьи 423 и 424",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-freedom-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о свободе договора и цене",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "freedom_case_evidence",
           "case_id": "case-supply-1"
         }
       },
@@ -20633,6 +20974,7 @@
             "synthetic-form-reviewer",
             "synthetic-formation-reviewer",
             "synthetic-framework-reviewer",
+            "synthetic-freedom-reviewer",
             "synthetic-general-sale-reviewer",
             "synthetic-interpretation-reviewer",
             "synthetic-invalidity-reviewer",

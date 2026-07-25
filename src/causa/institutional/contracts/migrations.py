@@ -587,6 +587,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.30.0",
+        to_version="0.31.0",
+        reasons=[
+            "Reviewed inputs now require a separate freedom-of-contract evidence contract.",
+            "Analysis and Russian translation distinguish the freedom, conformity, onerousness, and price paths under articles 421 through 424.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о свободе договора и цене.",
+            "Анализ и русское объяснение разделяют свободу договора, соответствие закону, возмездность и цену по статьям 421–424 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_freedom_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

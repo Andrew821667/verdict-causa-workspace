@@ -70,6 +70,11 @@ from causa.institutional.contracts.framework import (
     FrameworkEvidencePredicate,
     ReviewedFrameworkEvidence,
 )
+from causa.institutional.contracts.freedom import (
+    FreedomEvidenceAssertion,
+    FreedomEvidencePredicate,
+    ReviewedFreedomEvidence,
+)
 from causa.institutional.contracts.option import (
     OptionEvidenceAssertion,
     OptionEvidencePredicate,
@@ -172,6 +177,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk429-1-framework-agreement-v1",
     "synthetic-ru-gk429-4-subscription-agreement-v1",
     "synthetic-case-supply-1-framework-evidence",
+    "synthetic-ru-gk421-422-freedom-of-contract-v1",
+    "synthetic-ru-gk423-424-onerousness-and-price-v1",
+    "synthetic-case-supply-1-freedom-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -821,6 +829,37 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-framework-reviewer",
+        ),
+        freedom_evidence=ReviewedFreedomEvidence(
+            id="reviewed-freedom-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                FreedomEvidenceAssertion(
+                    id=f"freedom-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-freedom-evidence",),
+                )
+                for predicate, value in (
+                    (FreedomEvidencePredicate.CONTRACT_CONCLUSION_COMPELLED_BY_LAW, False),
+                    (FreedomEvidencePredicate.CONTRACT_TYPE_UNNAMED, False),
+                    (FreedomEvidencePredicate.MIXED_CONTRACT_ELEMENTS, False),
+                    (FreedomEvidencePredicate.TERMS_PRESCRIBED_BY_MANDATORY_NORM, False),
+                    (FreedomEvidencePredicate.CONTRACT_CONFORMS_MANDATORY_RULES, True),
+                    (FreedomEvidencePredicate.NEW_MANDATORY_LAW_AFTER_CONCLUSION, False),
+                    (FreedomEvidencePredicate.NEW_LAW_GIVEN_RETROACTIVE_EFFECT, False),
+                    (FreedomEvidencePredicate.CONTRACT_GRATUITOUS_BY_NATURE, False),
+                    (FreedomEvidencePredicate.PRICE_AGREED_BY_PARTIES, True),
+                    (FreedomEvidencePredicate.REGULATED_PRICE_MANDATED, False),
+                    (FreedomEvidencePredicate.COMPARABLE_PRICE_AVAILABLE, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk421-422-freedom-of-contract-v1",
+                "synthetic-ru-gk423-424-onerousness-and-price-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-freedom-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

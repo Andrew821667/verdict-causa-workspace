@@ -33,6 +33,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "evaluate-precontractual-liability",
         "evaluate-option-constructions",
         "evaluate-framework-constructions",
+        "evaluate-freedom-and-price",
         "evaluate-transaction-invalidity",
         "evaluate-obligation-constraints",
         "evaluate-performance-remedies",
