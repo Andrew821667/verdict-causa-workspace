@@ -489,6 +489,60 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk429-preliminary-framework-v1",
+        title="Синтетическая проверенная модель предварительного договора по статье 429 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: заключение и форма предварительного договора, "
+            "определенность предмета основного договора и согласование спорных условий "
+            "проверяются раздельно (пункты 1–3 статьи 429 ГК РФ)."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "preliminary_article_429_conclusion",
+            "legal_reference": "ГК РФ, статья 429, пункты 1–3",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk429-445-preliminary-compulsion-v1",
+        title="Синтетическая проверенная модель понуждения к заключению основного договора",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: срок заключения основного договора, уклонение "
+            "стороны, понуждение к заключению и шестимесячный срок требования, а также "
+            "прекращение обязательств проверяются раздельно (пункты 4–6 статьи 429, "
+            "пункт 4 статьи 445 ГК РФ)."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "preliminary_articles_429_445",
+            "legal_reference": "ГК РФ, статья 429, пункты 4–6; статья 445, пункт 4",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-preliminary-evidence",
+        title="Синтетическая проверенная запись фактов о предварительном договоре",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: заключен предварительный договор поставки в надлежащей "
+            "форме, предмет основного договора определен, спорные условия согласованы, "
+            "срок заключения не истек, уклонения нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "preliminary_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

@@ -84,6 +84,16 @@ from causa.institutional.contracts.form import (
     evaluate_form_constraints,
     map_reviewed_form_evidence,
 )
+from causa.institutional.contracts.preliminary import (
+    PRELIMINARY_EVIDENCE_SCHEMA_VERSION,
+    PreliminaryConstraintSet,
+    PreliminaryEvaluation,
+    PreliminaryEvidenceMappingResult,
+    ReviewedPreliminaryEvidence,
+    build_preliminary_constraint_set,
+    evaluate_preliminary_constraints,
+    map_reviewed_preliminary_evidence,
+)
 from causa.institutional.contracts.termination import (
     TERMINATION_EVIDENCE_SCHEMA_VERSION,
     ReviewedTerminationEvidence,
@@ -262,6 +272,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     limitation_evidence: ReviewedLimitationEvidence
     interpretation_evidence: ReviewedInterpretationEvidence
     form_evidence: ReviewedFormEvidence
+    preliminary_evidence: ReviewedPreliminaryEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -316,6 +327,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     form_evidence_mapping: FormEvidenceMappingResult
     form_constraint_set: FormConstraintSet
     form_evaluation: FormEvaluation
+    preliminary_evidence_mapping: PreliminaryEvidenceMappingResult
+    preliminary_constraint_set: PreliminaryConstraintSet
+    preliminary_evaluation: PreliminaryEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -408,6 +422,17 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.form_evaluation != expected_form_evaluation:
             raise ValueError("Form evaluation does not replay from reviewed evidence.")
+        expected_preliminary_set = build_preliminary_constraint_set(
+            self.preliminary_evidence_mapping
+        )
+        if self.preliminary_constraint_set != expected_preliminary_set:
+            raise ValueError("Preliminary constraint set does not replay from reviewed evidence.")
+        expected_preliminary_evaluation = evaluate_preliminary_constraints(
+            expected_preliminary_set,
+            self.preliminary_evidence_mapping.facts,
+        )
+        if self.preliminary_evaluation != expected_preliminary_evaluation:
+            raise ValueError("Preliminary evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -734,6 +759,8 @@ def _validate_request_integrity(
         raise ValueError("Interpretation evidence case_id does not match the analysis request.")
     if request.form_evidence.case_id != request.case_id:
         raise ValueError("Form evidence case_id does not match the analysis request.")
+    if request.preliminary_evidence.case_id != request.case_id:
+        raise ValueError("Preliminary evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -792,6 +819,8 @@ def _validate_request_integrity(
         raise ValueError("Interpretation evidence uses an unsupported schema version.")
     if request.form_evidence.schema_version != FORM_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Form evidence uses an unsupported schema version.")
+    if request.preliminary_evidence.schema_version != PRELIMINARY_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Preliminary evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -804,6 +833,7 @@ def _validate_request_integrity(
         *request.limitation_evidence.legal_source_refs,
         *request.interpretation_evidence.legal_source_refs,
         *request.form_evidence.legal_source_refs,
+        *request.preliminary_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -824,6 +854,8 @@ def _validate_request_integrity(
     for assertion in request.interpretation_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.form_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.preliminary_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -910,6 +942,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Form legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_form_legal_sources))
+        )
+    invalid_preliminary_legal_sources = [
+        source_id
+        for source_id in request.preliminary_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_preliminary_legal_sources:
+        raise ValueError(
+            "Preliminary legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_preliminary_legal_sources))
         )
     invalid_invalidity_legal_sources = [
         source_id
@@ -1118,6 +1161,11 @@ def run_reviewed_contract_analysis(
         review_status=request.form_evidence.review_status,
         reviewer_id=request.form_evidence.reviewer_id,
     )
+    preliminary_reviewer_id = _require_reviewed(
+        artifact_name="Preliminary evidence",
+        review_status=request.preliminary_evidence.review_status,
+        reviewer_id=request.preliminary_evidence.reviewer_id,
+    )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
         review_status=request.invalidity_evidence.review_status,
@@ -1233,6 +1281,12 @@ def run_reviewed_contract_analysis(
     form_evaluation = evaluate_form_constraints(
         form_constraint_set,
         form_evidence_mapping.facts,
+    )
+    preliminary_evidence_mapping = map_reviewed_preliminary_evidence(request.preliminary_evidence)
+    preliminary_constraint_set = build_preliminary_constraint_set(preliminary_evidence_mapping)
+    preliminary_evaluation = evaluate_preliminary_constraints(
+        preliminary_constraint_set,
+        preliminary_evidence_mapping.facts,
     )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
@@ -1462,6 +1516,7 @@ def run_reviewed_contract_analysis(
         or limitation_evaluation.requires_human_limitation_assessment
         or interpretation_evaluation.requires_human_interpretation_assessment
         or form_evaluation.requires_human_form_assessment
+        or preliminary_evaluation.requires_human_preliminary_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -1486,6 +1541,7 @@ def run_reviewed_contract_analysis(
                 limitation_reviewer_id,
                 interpretation_reviewer_id,
                 form_reviewer_id,
+                preliminary_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -1516,6 +1572,9 @@ def run_reviewed_contract_analysis(
         form_evidence_mapping=form_evidence_mapping,
         form_constraint_set=form_constraint_set,
         form_evaluation=form_evaluation,
+        preliminary_evidence_mapping=preliminary_evidence_mapping,
+        preliminary_constraint_set=preliminary_constraint_set,
+        preliminary_evaluation=preliminary_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

@@ -327,6 +327,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk429-preliminary-framework-v1",
+      "title": "Синтетическая проверенная модель предварительного договора по статье 429 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: заключение и форма предварительного договора, определенность предмета основного договора и согласование спорных условий проверяются раздельно (пункты 1–3 статьи 429 ГК РФ).",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "preliminary_article_429_conclusion",
+        "legal_reference": "ГК РФ, статья 429, пункты 1–3",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk429-445-preliminary-compulsion-v1",
+      "title": "Синтетическая проверенная модель понуждения к заключению основного договора",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: срок заключения основного договора, уклонение стороны, понуждение к заключению и шестимесячный срок требования, а также прекращение обязательств проверяются раздельно (пункты 4–6 статьи 429, пункт 4 статьи 445 ГК РФ).",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "preliminary_articles_429_445",
+        "legal_reference": "ГК РФ, статья 429, пункты 4–6; статья 445, пункт 4",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-preliminary-evidence",
+      "title": "Синтетическая проверенная запись фактов о предварительном договоре",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: заключен предварительный договор поставки в надлежащей форме, предмет основного договора определен, спорные условия согласованы, срок заключения не истек, уклонения нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "preliminary_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -1821,6 +1868,91 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-form-reviewer"
+    },
+    "preliminary_evidence": {
+      "id": "reviewed-preliminary-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.preliminary-evidence.v0",
+      "assertions": [
+        {
+          "id": "preliminary-evidence-preliminary_contract_concluded",
+          "predicate": "preliminary_contract_concluded",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "id": "preliminary-evidence-form_requirement_observed",
+          "predicate": "form_requirement_observed",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "id": "preliminary-evidence-main_contract_subject_defined",
+          "predicate": "main_contract_subject_defined",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "id": "preliminary-evidence-disputed_terms_agreed",
+          "predicate": "disputed_terms_agreed",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "id": "preliminary-evidence-within_conclusion_term",
+          "predicate": "within_conclusion_term",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "id": "preliminary-evidence-main_contract_concluded_or_proposal_made",
+          "predicate": "main_contract_concluded_or_proposal_made",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "id": "preliminary-evidence-party_evades_conclusion",
+          "predicate": "party_evades_conclusion",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "id": "preliminary-evidence-demand_to_conclude_made",
+          "predicate": "demand_to_conclude_made",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "id": "preliminary-evidence-demand_within_six_months",
+          "predicate": "demand_within_six_months",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk429-preliminary-framework-v1",
+        "synthetic-ru-gk429-445-preliminary-compulsion-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-preliminary-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -6606,6 +6738,7 @@
       "synthetic-norm-reviewer",
       "synthetic-obligation-dynamics-reviewer",
       "synthetic-performance-remedies-reviewer",
+      "synthetic-preliminary-reviewer",
       "synthetic-security-reviewer",
       "synthetic-special-supply-reviewer",
       "synthetic-temporal-effect-reviewer",
@@ -6622,6 +6755,7 @@
       "synthetic-case-supply-1-limitation-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
       "synthetic-case-supply-1-performance-remedies-evidence",
+      "synthetic-case-supply-1-preliminary-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
       "synthetic-case-supply-1-security-evidence",
       "synthetic-case-supply-1-special-supply-evidence",
@@ -6653,6 +6787,8 @@
       "synthetic-ru-gk407-413-discharge-v1",
       "synthetic-ru-gk414-419-discharge-v1",
       "synthetic-ru-gk425-contract-effect-model-v1",
+      "synthetic-ru-gk429-445-preliminary-compulsion-v1",
+      "synthetic-ru-gk429-preliminary-framework-v1",
       "synthetic-ru-gk431-common-intent-model-v1",
       "synthetic-ru-gk431-interpretation-model-v1",
       "synthetic-ru-gk432-contract-formation-model-v1",
@@ -7718,6 +7854,127 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о форме сделки и не заменяет судебную оценку.",
         "Достаточность доказательств формы и соблюдение способа ее совершения оцениваются экспертом и судом."
+      ]
+    },
+    "preliminary_evidence_mapping": {
+      "evidence_id": "reviewed-preliminary-evidence-supply-1-v0",
+      "schema_version": "contracts.preliminary-evidence.v0",
+      "mapping_version": "contracts-reviewed-preliminary-to-facts-v0",
+      "facts": {
+        "preliminary_contract_concluded": true,
+        "form_requirement_observed": true,
+        "main_contract_subject_defined": true,
+        "disputed_terms_agreed": true,
+        "within_conclusion_term": true,
+        "main_contract_concluded_or_proposal_made": false,
+        "party_evades_conclusion": false,
+        "demand_to_conclude_made": false,
+        "demand_within_six_months": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk429-preliminary-framework-v1",
+        "synthetic-ru-gk429-445-preliminary-compulsion-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "demand_to_conclude_made",
+          "assertion_id": "preliminary-evidence-demand_to_conclude_made",
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "fact_name": "demand_within_six_months",
+          "assertion_id": "preliminary-evidence-demand_within_six_months",
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "fact_name": "disputed_terms_agreed",
+          "assertion_id": "preliminary-evidence-disputed_terms_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "fact_name": "form_requirement_observed",
+          "assertion_id": "preliminary-evidence-form_requirement_observed",
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "fact_name": "main_contract_concluded_or_proposal_made",
+          "assertion_id": "preliminary-evidence-main_contract_concluded_or_proposal_made",
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "fact_name": "main_contract_subject_defined",
+          "assertion_id": "preliminary-evidence-main_contract_subject_defined",
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "fact_name": "party_evades_conclusion",
+          "assertion_id": "preliminary-evidence-party_evades_conclusion",
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "fact_name": "preliminary_contract_concluded",
+          "assertion_id": "preliminary-evidence-preliminary_contract_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        },
+        {
+          "fact_name": "within_conclusion_term",
+          "assertion_id": "preliminary-evidence-within_conclusion_term",
+          "source_refs": [
+            "synthetic-case-supply-1-preliminary-evidence"
+          ]
+        }
+      ]
+    },
+    "preliminary_constraint_set": {
+      "id": "preliminary-constraint-set:reviewed-preliminary-evidence-supply-1-v0",
+      "model_version": "contracts-preliminary-article-429-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk429-preliminary-framework-v1",
+        "synthetic-ru-gk429-445-preliminary-compulsion-v1"
+      ],
+      "expressions": [
+        "preliminary_contract_valid == preliminary_contract_concluded AND form_requirement_observed AND main_contract_subject_defined AND disputed_terms_agreed",
+        "preliminary_form_void == preliminary_contract_concluded AND NOT form_requirement_observed",
+        "conclusion_obligation_active == preliminary_contract_valid AND within_conclusion_term AND NOT main_contract_concluded_or_proposal_made",
+        "compulsion_to_conclude_available == preliminary_contract_valid AND party_evades_conclusion AND demand_to_conclude_made AND demand_within_six_months",
+        "damages_for_evasion_available == preliminary_contract_valid AND party_evades_conclusion AND demand_to_conclude_made AND demand_within_six_months",
+        "preliminary_obligations_terminated == preliminary_contract_valid AND NOT within_conclusion_term AND NOT main_contract_concluded_or_proposal_made",
+        "requires_human_preliminary_assessment == preliminary_form_void OR (party_evades_conclusion AND NOT compulsion_to_conclude_available)"
+      ]
+    },
+    "preliminary_evaluation": {
+      "constraint_set_id": "preliminary-constraint-set:reviewed-preliminary-evidence-supply-1-v0",
+      "satisfiable": true,
+      "preliminary_contract_valid": true,
+      "preliminary_form_void": false,
+      "conclusion_obligation_active": true,
+      "compulsion_to_conclude_available": false,
+      "damages_for_evasion_available": false,
+      "preliminary_obligations_terminated": false,
+      "requires_human_preliminary_assessment": false,
+      "reasons_ru": [
+        "Предварительный договор действителен (статья 429 ГК РФ).",
+        "Обязанность заключить основной договор в согласованный срок сохраняется (пункты 4 и 5 статьи 429 ГК РФ)."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о предварительном договоре и не заменяет судебную оценку.",
+        "Определенность предмета основного договора и добросовестность сторон оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -13091,7 +13348,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.22.0",
+      "institutional_package_version": "contracts-ru-v0@0.23.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

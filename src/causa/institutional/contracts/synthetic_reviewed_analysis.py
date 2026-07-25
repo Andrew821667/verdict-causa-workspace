@@ -45,6 +45,11 @@ from causa.institutional.contracts.form import (
     FormEvidencePredicate,
     ReviewedFormEvidence,
 )
+from causa.institutional.contracts.preliminary import (
+    PreliminaryEvidenceAssertion,
+    PreliminaryEvidencePredicate,
+    ReviewedPreliminaryEvidence,
+)
 from causa.institutional.contracts.termination import (
     ReviewedTerminationEvidence,
     TerminationEvidenceAssertion,
@@ -108,6 +113,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk158-165-form-framework-v1",
     "synthetic-ru-gk160-434-written-form-model-v1",
     "synthetic-case-supply-1-form-evidence",
+    "synthetic-ru-gk429-preliminary-framework-v1",
+    "synthetic-ru-gk429-445-preliminary-compulsion-v1",
+    "synthetic-case-supply-1-preliminary-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -493,6 +501,38 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-form-reviewer",
+        ),
+        preliminary_evidence=ReviewedPreliminaryEvidence(
+            id="reviewed-preliminary-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                PreliminaryEvidenceAssertion(
+                    id=f"preliminary-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-preliminary-evidence",),
+                )
+                for predicate, value in (
+                    (PreliminaryEvidencePredicate.PRELIMINARY_CONTRACT_CONCLUDED, True),
+                    (PreliminaryEvidencePredicate.FORM_REQUIREMENT_OBSERVED, True),
+                    (PreliminaryEvidencePredicate.MAIN_CONTRACT_SUBJECT_DEFINED, True),
+                    (PreliminaryEvidencePredicate.DISPUTED_TERMS_AGREED, True),
+                    (PreliminaryEvidencePredicate.WITHIN_CONCLUSION_TERM, True),
+                    (
+                        PreliminaryEvidencePredicate.MAIN_CONTRACT_CONCLUDED_OR_PROPOSAL_MADE,
+                        False,
+                    ),
+                    (PreliminaryEvidencePredicate.PARTY_EVADES_CONCLUSION, False),
+                    (PreliminaryEvidencePredicate.DEMAND_TO_CONCLUDE_MADE, False),
+                    (PreliminaryEvidencePredicate.DEMAND_WITHIN_SIX_MONTHS, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk429-preliminary-framework-v1",
+                "synthetic-ru-gk429-445-preliminary-compulsion-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-preliminary-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
