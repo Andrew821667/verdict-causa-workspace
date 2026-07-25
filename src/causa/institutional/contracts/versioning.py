@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.33.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed general obligations evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 307 through 308.3.",
+            "Obligation concept, alternative and facultative obligations, and creditor protection remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные об общих положениях об обязательствах обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 307–308.3 ГК РФ.",
+            "Понятие обязательства, альтернативные и факультативные обязательства и защита кредитора разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.32.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

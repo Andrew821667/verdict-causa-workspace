@@ -144,6 +144,16 @@ from causa.institutional.contracts.freedom import (
     evaluate_freedom_constraints,
     map_reviewed_freedom_evidence,
 )
+from causa.institutional.contracts.general_obligations import (
+    GENERAL_OBLIGATIONS_EVIDENCE_SCHEMA_VERSION,
+    GeneralObligationsConstraintSet,
+    GeneralObligationsEvaluation,
+    GeneralObligationsEvidenceMappingResult,
+    ReviewedGeneralObligationsEvidence,
+    build_general_obligations_constraint_set,
+    evaluate_general_obligations_constraints,
+    map_reviewed_general_obligations_evidence,
+)
 from causa.institutional.contracts.option import (
     OPTION_EVIDENCE_SCHEMA_VERSION,
     OptionConstraintSet,
@@ -372,6 +382,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     framework_evidence: ReviewedFrameworkEvidence
     freedom_evidence: ReviewedFreedomEvidence
     procedure_evidence: ReviewedProcedureEvidence
+    general_obligations_evidence: ReviewedGeneralObligationsEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -456,6 +467,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     procedure_evidence_mapping: ProcedureEvidenceMappingResult
     procedure_constraint_set: ProcedureConstraintSet
     procedure_evaluation: ProcedureEvaluation
+    general_obligations_evidence_mapping: GeneralObligationsEvidenceMappingResult
+    general_obligations_constraint_set: GeneralObligationsConstraintSet
+    general_obligations_evaluation: GeneralObligationsEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -654,6 +668,21 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.procedure_evaluation != expected_procedure_evaluation:
             raise ValueError("Procedure evaluation does not replay from reviewed evidence.")
+        expected_general_obligations_set = build_general_obligations_constraint_set(
+            self.general_obligations_evidence_mapping
+        )
+        if self.general_obligations_constraint_set != expected_general_obligations_set:
+            raise ValueError(
+                "General obligations constraint set does not replay from reviewed evidence."
+            )
+        expected_general_obligations_evaluation = evaluate_general_obligations_constraints(
+            expected_general_obligations_set,
+            self.general_obligations_evidence_mapping.facts,
+        )
+        if self.general_obligations_evaluation != expected_general_obligations_evaluation:
+            raise ValueError(
+                "General obligations evaluation does not replay from reviewed evidence."
+            )
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -1000,6 +1029,10 @@ def _validate_request_integrity(
         raise ValueError("Freedom evidence case_id does not match the analysis request.")
     if request.procedure_evidence.case_id != request.case_id:
         raise ValueError("Procedure evidence case_id does not match the analysis request.")
+    if request.general_obligations_evidence.case_id != request.case_id:
+        raise ValueError(
+            "General obligations evidence case_id does not match the analysis request."
+        )
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -1078,6 +1111,11 @@ def _validate_request_integrity(
         raise ValueError("Freedom evidence uses an unsupported schema version.")
     if request.procedure_evidence.schema_version != PROCEDURE_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Procedure evidence uses an unsupported schema version.")
+    if (
+        request.general_obligations_evidence.schema_version
+        != GENERAL_OBLIGATIONS_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("General obligations evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -1100,6 +1138,7 @@ def _validate_request_integrity(
         *request.framework_evidence.legal_source_refs,
         *request.freedom_evidence.legal_source_refs,
         *request.procedure_evidence.legal_source_refs,
+        *request.general_obligations_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -1140,6 +1179,8 @@ def _validate_request_integrity(
     for assertion in request.freedom_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.procedure_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.general_obligations_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -1336,6 +1377,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Procedure legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_procedure_legal_sources))
+        )
+    invalid_general_obligations_legal_sources = [
+        source_id
+        for source_id in request.general_obligations_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_general_obligations_legal_sources:
+        raise ValueError(
+            "General obligations legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_general_obligations_legal_sources))
         )
     invalid_invalidity_legal_sources = [
         source_id
@@ -1594,6 +1646,11 @@ def run_reviewed_contract_analysis(
         review_status=request.procedure_evidence.review_status,
         reviewer_id=request.procedure_evidence.reviewer_id,
     )
+    general_obligations_reviewer_id = _require_reviewed(
+        artifact_name="General obligations evidence",
+        review_status=request.general_obligations_evidence.review_status,
+        reviewer_id=request.general_obligations_evidence.reviewer_id,
+    )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
         review_status=request.invalidity_evidence.review_status,
@@ -1781,6 +1838,16 @@ def run_reviewed_contract_analysis(
     procedure_evaluation = evaluate_procedure_constraints(
         procedure_constraint_set,
         procedure_evidence_mapping.facts,
+    )
+    general_obligations_evidence_mapping = map_reviewed_general_obligations_evidence(
+        request.general_obligations_evidence
+    )
+    general_obligations_constraint_set = build_general_obligations_constraint_set(
+        general_obligations_evidence_mapping
+    )
+    general_obligations_evaluation = evaluate_general_obligations_constraints(
+        general_obligations_constraint_set,
+        general_obligations_evidence_mapping.facts,
     )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
@@ -2020,6 +2087,7 @@ def run_reviewed_contract_analysis(
         or framework_evaluation.requires_human_framework_assessment
         or freedom_evaluation.requires_human_freedom_assessment
         or procedure_evaluation.requires_human_procedure_assessment
+        or general_obligations_evaluation.requires_human_general_obligations_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -2054,6 +2122,7 @@ def run_reviewed_contract_analysis(
                 framework_reviewer_id,
                 freedom_reviewer_id,
                 procedure_reviewer_id,
+                general_obligations_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -2114,6 +2183,9 @@ def run_reviewed_contract_analysis(
         procedure_evidence_mapping=procedure_evidence_mapping,
         procedure_constraint_set=procedure_constraint_set,
         procedure_evaluation=procedure_evaluation,
+        general_obligations_evidence_mapping=general_obligations_evidence_mapping,
+        general_obligations_constraint_set=general_obligations_constraint_set,
+        general_obligations_evaluation=general_obligations_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

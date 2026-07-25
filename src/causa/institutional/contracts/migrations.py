@@ -625,6 +625,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.32.0",
+        to_version="0.33.0",
+        reasons=[
+            "Reviewed inputs now require a separate general-obligations evidence contract.",
+            "Analysis and Russian translation distinguish the obligation concept, alternative and facultative obligations, and creditor protection under articles 307 through 308.3.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных об общих положениях об обязательствах.",
+            "Анализ и русское объяснение разделяют понятие обязательства, альтернативные и факультативные обязательства и защиту кредитора по статьям 307–308.3 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_general_obligations_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

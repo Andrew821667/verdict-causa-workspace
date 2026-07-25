@@ -797,6 +797,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk307-308-obligation-concept-v1",
+      "title": "Синтетическая проверенная модель понятия и сторон обязательства по статьям 307 и 308 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: понятие обязательства и право кредитора требовать исполнения, добросовестность сторон и правило о том, что обязательство не создаёт обязанностей для не участвующих в нём лиц, проверяются раздельно (статьи 307 и 308 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "obligation_concept_articles_307_308",
+        "legal_reference": "ГК РФ, статьи 307 и 308",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
+      "title": "Синтетическая проверенная модель альтернативных, факультативных обязательств и защиты кредитора по статьям 308.1–308.3 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: альтернативное обязательство и выбор предмета, факультативное обязательство и право замены, а также защита прав кредитора — исполнение в натуре и судебная неустойка — проверяются раздельно (статьи 308.1, 308.2 и 308.3 ГК РФ).",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "obligation_types_and_protection_articles_3081_3083",
+        "legal_reference": "ГК РФ, статьи 308.1–308.3",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-general-obligations-evidence",
+      "title": "Синтетическая проверенная запись фактов об общих положениях об обязательствах",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: обязательство поставки установлено и исполняется добросовестно; покупатель требует исполнения в натуре; обязательство не является альтернативным или факультативным.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "general_obligations_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -3165,6 +3212,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-procedure-reviewer"
+    },
+    "general_obligations_evidence": {
+      "id": "reviewed-general-obligations-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.general-obligations-evidence.v0",
+      "assertions": [
+        {
+          "id": "general-obligations-evidence-obligation_established",
+          "predicate": "obligation_established",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "id": "general-obligations-evidence-good_faith_observed",
+          "predicate": "good_faith_observed",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "id": "general-obligations-evidence-obligation_binds_third_party_claimed",
+          "predicate": "obligation_binds_third_party_claimed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "id": "general-obligations-evidence-alternative_obligation",
+          "predicate": "alternative_obligation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "id": "general-obligations-evidence-choice_made_in_alternative",
+          "predicate": "choice_made_in_alternative",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "id": "general-obligations-evidence-facultative_obligation",
+          "predicate": "facultative_obligation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "id": "general-obligations-evidence-facultative_substitution_provided",
+          "predicate": "facultative_substitution_provided",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "id": "general-obligations-evidence-specific_performance_demanded",
+          "predicate": "specific_performance_demanded",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "id": "general-obligations-evidence-performance_uniquely_personal",
+          "predicate": "performance_uniquely_personal",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "id": "general-obligations-evidence-judicial_act_non_compliance",
+          "predicate": "judicial_act_non_compliance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk307-308-obligation-concept-v1",
+        "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-general-obligations-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -7945,6 +8085,7 @@
       "synthetic-formation-reviewer",
       "synthetic-framework-reviewer",
       "synthetic-freedom-reviewer",
+      "synthetic-general-obligations-reviewer",
       "synthetic-general-sale-reviewer",
       "synthetic-interpretation-reviewer",
       "synthetic-invalidity-reviewer",
@@ -7972,6 +8113,7 @@
       "synthetic-case-supply-1-formation-evidence",
       "synthetic-case-supply-1-framework-evidence",
       "synthetic-case-supply-1-freedom-evidence",
+      "synthetic-case-supply-1-general-obligations-evidence",
       "synthetic-case-supply-1-general-sale-evidence",
       "synthetic-case-supply-1-interpretation-evidence",
       "synthetic-case-supply-1-invalidity-evidence",
@@ -8002,6 +8144,8 @@
       "synthetic-ru-gk180-181-invalidity-effects-v1",
       "synthetic-ru-gk195-200-limitation-framework-v1",
       "synthetic-ru-gk202-208-limitation-effects-v1",
+      "synthetic-ru-gk307-308-obligation-concept-v1",
+      "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
       "synthetic-ru-gk309-328-performance-v1",
       "synthetic-ru-gk310-4501-unilateral-model-v1",
       "synthetic-ru-gk329-333-security-framework-v1",
@@ -10331,6 +10475,137 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о заключении договора в обязательном порядке и на торгах и не заменяет судебную оценку.",
         "Обязательность заключения, соблюдение правил торгов и размер убытков оцениваются экспертом и судом."
+      ]
+    },
+    "general_obligations_evidence_mapping": {
+      "evidence_id": "reviewed-general-obligations-evidence-supply-1-v0",
+      "schema_version": "contracts.general-obligations-evidence.v0",
+      "mapping_version": "contracts-reviewed-general-obligations-to-facts-v0",
+      "facts": {
+        "obligation_established": true,
+        "good_faith_observed": true,
+        "obligation_binds_third_party_claimed": false,
+        "alternative_obligation": false,
+        "choice_made_in_alternative": false,
+        "facultative_obligation": false,
+        "facultative_substitution_provided": false,
+        "specific_performance_demanded": true,
+        "performance_uniquely_personal": false,
+        "judicial_act_non_compliance": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk307-308-obligation-concept-v1",
+        "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "alternative_obligation",
+          "assertion_id": "general-obligations-evidence-alternative_obligation",
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "fact_name": "choice_made_in_alternative",
+          "assertion_id": "general-obligations-evidence-choice_made_in_alternative",
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "fact_name": "facultative_obligation",
+          "assertion_id": "general-obligations-evidence-facultative_obligation",
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "fact_name": "facultative_substitution_provided",
+          "assertion_id": "general-obligations-evidence-facultative_substitution_provided",
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "fact_name": "good_faith_observed",
+          "assertion_id": "general-obligations-evidence-good_faith_observed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "fact_name": "judicial_act_non_compliance",
+          "assertion_id": "general-obligations-evidence-judicial_act_non_compliance",
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "fact_name": "obligation_binds_third_party_claimed",
+          "assertion_id": "general-obligations-evidence-obligation_binds_third_party_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "fact_name": "obligation_established",
+          "assertion_id": "general-obligations-evidence-obligation_established",
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_uniquely_personal",
+          "assertion_id": "general-obligations-evidence-performance_uniquely_personal",
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        },
+        {
+          "fact_name": "specific_performance_demanded",
+          "assertion_id": "general-obligations-evidence-specific_performance_demanded",
+          "source_refs": [
+            "synthetic-case-supply-1-general-obligations-evidence"
+          ]
+        }
+      ]
+    },
+    "general_obligations_constraint_set": {
+      "id": "general-obligations-constraint-set:reviewed-general-obligations-evidence-supply-1-v0",
+      "model_version": "contracts-general-obligations-articles-307-3083-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk307-308-obligation-concept-v1",
+        "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1"
+      ],
+      "expressions": [
+        "creditor_may_demand_performance == obligation_established",
+        "third_party_binding_rejected == obligation_binds_third_party_claimed",
+        "alternative_obligation_fixed == alternative_obligation AND choice_made_in_alternative",
+        "creditor_limited_to_principal == facultative_obligation AND NOT facultative_substitution_provided",
+        "specific_performance_available == specific_performance_demanded AND obligation_established AND NOT performance_uniquely_personal",
+        "astreinte_available == judicial_act_non_compliance",
+        "good_faith_breach_flagged == obligation_established AND NOT good_faith_observed",
+        "requires_human_general_obligations_assessment == obligation_binds_third_party_claimed OR (obligation_established AND NOT good_faith_observed) OR (facultative_obligation AND NOT facultative_substitution_provided) OR judicial_act_non_compliance OR (alternative_obligation AND NOT choice_made_in_alternative) OR (specific_performance_demanded AND performance_uniquely_personal)"
+      ]
+    },
+    "general_obligations_evaluation": {
+      "constraint_set_id": "general-obligations-constraint-set:reviewed-general-obligations-evidence-supply-1-v0",
+      "satisfiable": true,
+      "creditor_may_demand_performance": true,
+      "third_party_binding_rejected": false,
+      "alternative_obligation_fixed": false,
+      "creditor_limited_to_principal": false,
+      "specific_performance_available": true,
+      "astreinte_available": false,
+      "good_faith_breach_flagged": false,
+      "requires_human_general_obligations_assessment": false,
+      "reasons_ru": [
+        "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+        "Кредитор вправе требовать исполнения обязательства в натуре, если иное не предусмотрено и исполнение объективно возможно (статья 308.3 ГК РФ)."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные общие положения об обязательствах и не заменяет судебную оценку.",
+        "Добросовестность сторон, возможность исполнения в натуре и размер судебной неустойки оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -15704,7 +15979,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.32.0",
+      "institutional_package_version": "contracts-ru-v0@0.33.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

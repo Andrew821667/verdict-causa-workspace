@@ -1,0 +1,453 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка общих положений об обязательствах по статьям 307–308.3 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-general-obligations-evidence-supply-1-v0",
+    "schema_version": "contracts.general-obligations-evidence.v0",
+    "mapping_version": "contracts-reviewed-general-obligations-to-facts-v0",
+    "facts": {
+      "obligation_established": true,
+      "good_faith_observed": true,
+      "obligation_binds_third_party_claimed": false,
+      "alternative_obligation": false,
+      "choice_made_in_alternative": false,
+      "facultative_obligation": false,
+      "facultative_substitution_provided": false,
+      "specific_performance_demanded": true,
+      "performance_uniquely_personal": false,
+      "judicial_act_non_compliance": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk307-308-obligation-concept-v1",
+      "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "alternative_obligation",
+        "assertion_id": "general-obligations-evidence-alternative_obligation",
+        "source_refs": [
+          "synthetic-case-supply-1-general-obligations-evidence"
+        ]
+      },
+      {
+        "fact_name": "choice_made_in_alternative",
+        "assertion_id": "general-obligations-evidence-choice_made_in_alternative",
+        "source_refs": [
+          "synthetic-case-supply-1-general-obligations-evidence"
+        ]
+      },
+      {
+        "fact_name": "facultative_obligation",
+        "assertion_id": "general-obligations-evidence-facultative_obligation",
+        "source_refs": [
+          "synthetic-case-supply-1-general-obligations-evidence"
+        ]
+      },
+      {
+        "fact_name": "facultative_substitution_provided",
+        "assertion_id": "general-obligations-evidence-facultative_substitution_provided",
+        "source_refs": [
+          "synthetic-case-supply-1-general-obligations-evidence"
+        ]
+      },
+      {
+        "fact_name": "good_faith_observed",
+        "assertion_id": "general-obligations-evidence-good_faith_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-obligations-evidence"
+        ]
+      },
+      {
+        "fact_name": "judicial_act_non_compliance",
+        "assertion_id": "general-obligations-evidence-judicial_act_non_compliance",
+        "source_refs": [
+          "synthetic-case-supply-1-general-obligations-evidence"
+        ]
+      },
+      {
+        "fact_name": "obligation_binds_third_party_claimed",
+        "assertion_id": "general-obligations-evidence-obligation_binds_third_party_claimed",
+        "source_refs": [
+          "synthetic-case-supply-1-general-obligations-evidence"
+        ]
+      },
+      {
+        "fact_name": "obligation_established",
+        "assertion_id": "general-obligations-evidence-obligation_established",
+        "source_refs": [
+          "synthetic-case-supply-1-general-obligations-evidence"
+        ]
+      },
+      {
+        "fact_name": "performance_uniquely_personal",
+        "assertion_id": "general-obligations-evidence-performance_uniquely_personal",
+        "source_refs": [
+          "synthetic-case-supply-1-general-obligations-evidence"
+        ]
+      },
+      {
+        "fact_name": "specific_performance_demanded",
+        "assertion_id": "general-obligations-evidence-specific_performance_demanded",
+        "source_refs": [
+          "synthetic-case-supply-1-general-obligations-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "general-obligations-constraint-set:reviewed-general-obligations-evidence-supply-1-v0",
+    "model_version": "contracts-general-obligations-articles-307-3083-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk307-308-obligation-concept-v1",
+      "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1"
+    ],
+    "expressions": [
+      "creditor_may_demand_performance == obligation_established",
+      "third_party_binding_rejected == obligation_binds_third_party_claimed",
+      "alternative_obligation_fixed == alternative_obligation AND choice_made_in_alternative",
+      "creditor_limited_to_principal == facultative_obligation AND NOT facultative_substitution_provided",
+      "specific_performance_available == specific_performance_demanded AND obligation_established AND NOT performance_uniquely_personal",
+      "astreinte_available == judicial_act_non_compliance",
+      "good_faith_breach_flagged == obligation_established AND NOT good_faith_observed",
+      "requires_human_general_obligations_assessment == obligation_binds_third_party_claimed OR (obligation_established AND NOT good_faith_observed) OR (facultative_obligation AND NOT facultative_substitution_provided) OR judicial_act_non_compliance OR (alternative_obligation AND NOT choice_made_in_alternative) OR (specific_performance_demanded AND performance_uniquely_personal)"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "general-obligations-constraint-set:reviewed-general-obligations-evidence-supply-1-v0",
+    "satisfiable": true,
+    "creditor_may_demand_performance": true,
+    "third_party_binding_rejected": false,
+    "alternative_obligation_fixed": false,
+    "creditor_limited_to_principal": false,
+    "specific_performance_available": true,
+    "astreinte_available": false,
+    "good_faith_breach_flagged": false,
+    "requires_human_general_obligations_assessment": false,
+    "reasons_ru": [
+      "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+      "Кредитор вправе требовать исполнения обязательства в натуре, если иное не предусмотрено и исполнение объективно возможно (статья 308.3 ГК РФ)."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные общие положения об обязательствах и не заменяет судебную оценку.",
+      "Добросовестность сторон, возможность исполнения в натуре и размер судебной неустойки оцениваются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "general-obligations-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "genobl-bench-established",
+        "passed": true,
+        "expected_outcomes": {
+          "creditor_may_demand_performance": true,
+          "good_faith_breach_flagged": false,
+          "requires_human_general_obligations_assessment": false
+        },
+        "observed_outcomes": {
+          "creditor_may_demand_performance": true,
+          "good_faith_breach_flagged": false,
+          "requires_human_general_obligations_assessment": false
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "genobl-bench-good-faith-breach",
+        "passed": true,
+        "expected_outcomes": {
+          "good_faith_breach_flagged": true,
+          "requires_human_general_obligations_assessment": true
+        },
+        "observed_outcomes": {
+          "good_faith_breach_flagged": true,
+          "requires_human_general_obligations_assessment": true
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "Установление, исполнение и прекращение обязательства должны отвечать требованию добросовестности (пункт 3 статьи 307 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "genobl-bench-third-party",
+        "passed": true,
+        "expected_outcomes": {
+          "third_party_binding_rejected": true,
+          "requires_human_general_obligations_assessment": true
+        },
+        "observed_outcomes": {
+          "third_party_binding_rejected": true,
+          "requires_human_general_obligations_assessment": true
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "Обязательство не создаёт обязанностей для лиц, не участвующих в нём в качестве сторон (пункт 3 статьи 308 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "genobl-bench-alternative-fixed",
+        "passed": true,
+        "expected_outcomes": {
+          "alternative_obligation_fixed": true,
+          "requires_human_general_obligations_assessment": false
+        },
+        "observed_outcomes": {
+          "alternative_obligation_fixed": true,
+          "requires_human_general_obligations_assessment": false
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "После выбора предмета исполнения альтернативное обязательство перестаёт быть альтернативным (статья 308.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "genobl-bench-alternative-open",
+        "passed": true,
+        "expected_outcomes": {
+          "alternative_obligation_fixed": false,
+          "requires_human_general_obligations_assessment": true
+        },
+        "observed_outcomes": {
+          "alternative_obligation_fixed": false,
+          "requires_human_general_obligations_assessment": true
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "genobl-bench-facultative-substituted",
+        "passed": true,
+        "expected_outcomes": {
+          "creditor_limited_to_principal": false,
+          "requires_human_general_obligations_assessment": false
+        },
+        "observed_outcomes": {
+          "creditor_limited_to_principal": false,
+          "requires_human_general_obligations_assessment": false
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "genobl-bench-facultative-not-substituted",
+        "passed": true,
+        "expected_outcomes": {
+          "creditor_limited_to_principal": true,
+          "requires_human_general_obligations_assessment": true
+        },
+        "observed_outcomes": {
+          "creditor_limited_to_principal": true,
+          "requires_human_general_obligations_assessment": true
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "При непредоставлении факультативного исполнения кредитор вправе требовать только основное исполнение (статья 308.2 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "genobl-bench-specific-performance",
+        "passed": true,
+        "expected_outcomes": {
+          "specific_performance_available": true,
+          "requires_human_general_obligations_assessment": false
+        },
+        "observed_outcomes": {
+          "specific_performance_available": true,
+          "requires_human_general_obligations_assessment": false
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "Кредитор вправе требовать исполнения обязательства в натуре, если иное не предусмотрено и исполнение объективно возможно (статья 308.3 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "genobl-bench-specific-performance-personal",
+        "passed": true,
+        "expected_outcomes": {
+          "specific_performance_available": false,
+          "requires_human_general_obligations_assessment": true
+        },
+        "observed_outcomes": {
+          "specific_performance_available": false,
+          "requires_human_general_obligations_assessment": true
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "genobl-bench-astreinte",
+        "passed": true,
+        "expected_outcomes": {
+          "astreinte_available": true,
+          "requires_human_general_obligations_assessment": true
+        },
+        "observed_outcomes": {
+          "astreinte_available": true,
+          "requires_human_general_obligations_assessment": true
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "На случай неисполнения судебного акта суд может присудить денежную сумму в пользу кредитора (пункт 1 статьи 308.3 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "general-obligations-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "genobl-red-demand-without-obligation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "creditor_may_demand_performance": true
+        },
+        "observed_outcomes": {
+          "creditor_may_demand_performance": false
+        },
+        "reasons_ru": [
+          "Обязательство не признаётся установленным."
+        ]
+      },
+      {
+        "case_id": "genobl-red-bind-third-party",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "third_party_binding_rejected": false
+        },
+        "observed_outcomes": {
+          "third_party_binding_rejected": true
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "Обязательство не создаёт обязанностей для лиц, не участвующих в нём в качестве сторон (пункт 3 статьи 308 ГК РФ).",
+          "Установление, исполнение и прекращение обязательства должны отвечать требованию добросовестности (пункт 3 статьи 307 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "genobl-red-alt-fixed-without-choice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "alternative_obligation_fixed": true
+        },
+        "observed_outcomes": {
+          "alternative_obligation_fixed": false
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "Установление, исполнение и прекращение обязательства должны отвечать требованию добросовестности (пункт 3 статьи 307 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "genobl-red-limit-when-substituted",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "creditor_limited_to_principal": true
+        },
+        "observed_outcomes": {
+          "creditor_limited_to_principal": false
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "Установление, исполнение и прекращение обязательства должны отвечать требованию добросовестности (пункт 3 статьи 307 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "genobl-red-specific-without-obligation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "specific_performance_available": true
+        },
+        "observed_outcomes": {
+          "specific_performance_available": false
+        },
+        "reasons_ru": [
+          "Обязательство не признаётся установленным."
+        ]
+      },
+      {
+        "case_id": "genobl-red-specific-when-personal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "specific_performance_available": true
+        },
+        "observed_outcomes": {
+          "specific_performance_available": false
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "Установление, исполнение и прекращение обязательства должны отвечать требованию добросовестности (пункт 3 статьи 307 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "genobl-red-astreinte-without-noncompliance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "astreinte_available": true
+        },
+        "observed_outcomes": {
+          "astreinte_available": false
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "Установление, исполнение и прекращение обязательства должны отвечать требованию добросовестности (пункт 3 статьи 307 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "genobl-red-skip-good-faith",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "good_faith_breach_flagged": false
+        },
+        "observed_outcomes": {
+          "good_faith_breach_flagged": true
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "Установление, исполнение и прекращение обязательства должны отвечать требованию добросовестности (пункт 3 статьи 307 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "genobl-red-skip-human-on-third-party",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_general_obligations_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_general_obligations_assessment": true
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "Обязательство не создаёт обязанностей для лиц, не участвующих в нём в качестве сторон (пункт 3 статьи 308 ГК РФ).",
+          "Установление, исполнение и прекращение обязательства должны отвечать требованию добросовестности (пункт 3 статьи 307 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "genobl-red-skip-human-on-astreinte",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_general_obligations_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_general_obligations_assessment": true
+        },
+        "reasons_ru": [
+          "Обязательство установлено; кредитор вправе требовать от должника исполнения обязанности (статья 307 ГК РФ).",
+          "На случай неисполнения судебного акта суд может присудить денежную сумму в пользу кредитора (пункт 1 статьи 308.3 ГК РФ).",
+          "Установление, исполнение и прекращение обязательства должны отвечать требованию добросовестности (пункт 3 статьи 307 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

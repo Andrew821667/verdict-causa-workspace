@@ -1031,6 +1031,61 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk307-308-obligation-concept-v1",
+        title="Синтетическая проверенная модель понятия и сторон обязательства по статьям 307 и 308 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: понятие обязательства и право кредитора "
+            "требовать исполнения, добросовестность сторон и правило о том, что "
+            "обязательство не создаёт обязанностей для не участвующих в нём лиц, "
+            "проверяются раздельно (статьи 307 и 308 ГК РФ)."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "obligation_concept_articles_307_308",
+            "legal_reference": "ГК РФ, статьи 307 и 308",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
+        title="Синтетическая проверенная модель альтернативных, факультативных обязательств и защиты кредитора по статьям 308.1–308.3 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: альтернативное обязательство и выбор предмета, "
+            "факультативное обязательство и право замены, а также защита прав кредитора — "
+            "исполнение в натуре и судебная неустойка — проверяются раздельно "
+            "(статьи 308.1, 308.2 и 308.3 ГК РФ)."
+        ),
+        valid_from="2015-06-01",
+        metadata={
+            "synthetic": True,
+            "topic": "obligation_types_and_protection_articles_3081_3083",
+            "legal_reference": "ГК РФ, статьи 308.1–308.3",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-general-obligations-evidence",
+        title="Синтетическая проверенная запись фактов об общих положениях об обязательствах",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: обязательство поставки установлено и исполняется "
+            "добросовестно; покупатель требует исполнения в натуре; обязательство не "
+            "является альтернативным или факультативным."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "general_obligations_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

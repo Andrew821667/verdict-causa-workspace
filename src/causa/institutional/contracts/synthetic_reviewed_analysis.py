@@ -75,6 +75,11 @@ from causa.institutional.contracts.freedom import (
     FreedomEvidencePredicate,
     ReviewedFreedomEvidence,
 )
+from causa.institutional.contracts.general_obligations import (
+    GeneralObligationsEvidenceAssertion,
+    GeneralObligationsEvidencePredicate,
+    ReviewedGeneralObligationsEvidence,
+)
 from causa.institutional.contracts.procedure import (
     ProcedureEvidenceAssertion,
     ProcedureEvidencePredicate,
@@ -188,6 +193,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk445-446-mandatory-conclusion-v1",
     "synthetic-ru-gk447-449-auction-v1",
     "synthetic-case-supply-1-procedure-evidence",
+    "synthetic-ru-gk307-308-obligation-concept-v1",
+    "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
+    "synthetic-case-supply-1-general-obligations-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -899,6 +907,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-procedure-reviewer",
+        ),
+        general_obligations_evidence=ReviewedGeneralObligationsEvidence(
+            id="reviewed-general-obligations-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                GeneralObligationsEvidenceAssertion(
+                    id=f"general-obligations-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-general-obligations-evidence",),
+                )
+                for predicate, value in (
+                    (GeneralObligationsEvidencePredicate.OBLIGATION_ESTABLISHED, True),
+                    (GeneralObligationsEvidencePredicate.GOOD_FAITH_OBSERVED, True),
+                    (GeneralObligationsEvidencePredicate.OBLIGATION_BINDS_THIRD_PARTY_CLAIMED, False),
+                    (GeneralObligationsEvidencePredicate.ALTERNATIVE_OBLIGATION, False),
+                    (GeneralObligationsEvidencePredicate.CHOICE_MADE_IN_ALTERNATIVE, False),
+                    (GeneralObligationsEvidencePredicate.FACULTATIVE_OBLIGATION, False),
+                    (GeneralObligationsEvidencePredicate.FACULTATIVE_SUBSTITUTION_PROVIDED, False),
+                    (GeneralObligationsEvidencePredicate.SPECIFIC_PERFORMANCE_DEMANDED, True),
+                    (GeneralObligationsEvidencePredicate.PERFORMANCE_UNIQUELY_PERSONAL, False),
+                    (GeneralObligationsEvidencePredicate.JUDICIAL_ACT_NON_COMPLIANCE, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk307-308-obligation-concept-v1",
+                "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-general-obligations-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
