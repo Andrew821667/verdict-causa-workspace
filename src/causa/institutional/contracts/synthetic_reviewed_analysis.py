@@ -75,6 +75,11 @@ from causa.institutional.contracts.freedom import (
     FreedomEvidencePredicate,
     ReviewedFreedomEvidence,
 )
+from causa.institutional.contracts.procedure import (
+    ProcedureEvidenceAssertion,
+    ProcedureEvidencePredicate,
+    ReviewedProcedureEvidence,
+)
 from causa.institutional.contracts.option import (
     OptionEvidenceAssertion,
     OptionEvidencePredicate,
@@ -180,6 +185,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk421-422-freedom-of-contract-v1",
     "synthetic-ru-gk423-424-onerousness-and-price-v1",
     "synthetic-case-supply-1-freedom-evidence",
+    "synthetic-ru-gk445-446-mandatory-conclusion-v1",
+    "synthetic-ru-gk447-449-auction-v1",
+    "synthetic-case-supply-1-procedure-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -860,6 +868,37 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-freedom-reviewer",
+        ),
+        procedure_evidence=ReviewedProcedureEvidence(
+            id="reviewed-procedure-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                ProcedureEvidenceAssertion(
+                    id=f"procedure-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-procedure-evidence",),
+                )
+                for predicate, value in (
+                    (ProcedureEvidencePredicate.CONCLUSION_MANDATORY_FOR_PARTY, False),
+                    (ProcedureEvidencePredicate.OFFER_OR_DRAFT_SENT, False),
+                    (ProcedureEvidencePredicate.OBLIGED_PARTY_EVADED, False),
+                    (ProcedureEvidencePredicate.PRECONTRACTUAL_DISPUTE_SUBMITTED_TO_COURT, False),
+                    (ProcedureEvidencePredicate.CONTRACT_CONCLUDED_AT_AUCTION, False),
+                    (ProcedureEvidencePredicate.AUCTION_NOTICE_TIMELY, False),
+                    (ProcedureEvidencePredicate.WINNER_DETERMINED, False),
+                    (ProcedureEvidencePredicate.RESULTS_PROTOCOL_SIGNED, False),
+                    (ProcedureEvidencePredicate.WINNER_EVADED_SIGNING, False),
+                    (ProcedureEvidencePredicate.AUCTION_RULES_VIOLATED, False),
+                    (ProcedureEvidencePredicate.INTERESTED_PARTY_CHALLENGE, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk445-446-mandatory-conclusion-v1",
+                "synthetic-ru-gk447-449-auction-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-procedure-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

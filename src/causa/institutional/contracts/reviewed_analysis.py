@@ -154,6 +154,16 @@ from causa.institutional.contracts.option import (
     evaluate_option_constraints,
     map_reviewed_option_evidence,
 )
+from causa.institutional.contracts.procedure import (
+    PROCEDURE_EVIDENCE_SCHEMA_VERSION,
+    ProcedureConstraintSet,
+    ProcedureEvaluation,
+    ProcedureEvidenceMappingResult,
+    ReviewedProcedureEvidence,
+    build_procedure_constraint_set,
+    evaluate_procedure_constraints,
+    map_reviewed_procedure_evidence,
+)
 from causa.institutional.contracts.public_contract import (
     PUBLIC_CONTRACT_EVIDENCE_SCHEMA_VERSION,
     PublicContractConstraintSet,
@@ -361,6 +371,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     option_evidence: ReviewedOptionEvidence
     framework_evidence: ReviewedFrameworkEvidence
     freedom_evidence: ReviewedFreedomEvidence
+    procedure_evidence: ReviewedProcedureEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -442,6 +453,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     freedom_evidence_mapping: FreedomEvidenceMappingResult
     freedom_constraint_set: FreedomConstraintSet
     freedom_evaluation: FreedomEvaluation
+    procedure_evidence_mapping: ProcedureEvidenceMappingResult
+    procedure_constraint_set: ProcedureConstraintSet
+    procedure_evaluation: ProcedureEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -631,6 +645,15 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.freedom_evaluation != expected_freedom_evaluation:
             raise ValueError("Freedom evaluation does not replay from reviewed evidence.")
+        expected_procedure_set = build_procedure_constraint_set(self.procedure_evidence_mapping)
+        if self.procedure_constraint_set != expected_procedure_set:
+            raise ValueError("Procedure constraint set does not replay from reviewed evidence.")
+        expected_procedure_evaluation = evaluate_procedure_constraints(
+            expected_procedure_set,
+            self.procedure_evidence_mapping.facts,
+        )
+        if self.procedure_evaluation != expected_procedure_evaluation:
+            raise ValueError("Procedure evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -975,6 +998,8 @@ def _validate_request_integrity(
         raise ValueError("Framework evidence case_id does not match the analysis request.")
     if request.freedom_evidence.case_id != request.case_id:
         raise ValueError("Freedom evidence case_id does not match the analysis request.")
+    if request.procedure_evidence.case_id != request.case_id:
+        raise ValueError("Procedure evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -1051,6 +1076,8 @@ def _validate_request_integrity(
         raise ValueError("Framework evidence uses an unsupported schema version.")
     if request.freedom_evidence.schema_version != FREEDOM_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Freedom evidence uses an unsupported schema version.")
+    if request.procedure_evidence.schema_version != PROCEDURE_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Procedure evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -1072,6 +1099,7 @@ def _validate_request_integrity(
         *request.option_evidence.legal_source_refs,
         *request.framework_evidence.legal_source_refs,
         *request.freedom_evidence.legal_source_refs,
+        *request.procedure_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -1110,6 +1138,8 @@ def _validate_request_integrity(
     for assertion in request.framework_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.freedom_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.procedure_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -1295,6 +1325,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Freedom legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_freedom_legal_sources))
+        )
+    invalid_procedure_legal_sources = [
+        source_id
+        for source_id in request.procedure_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_procedure_legal_sources:
+        raise ValueError(
+            "Procedure legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_procedure_legal_sources))
         )
     invalid_invalidity_legal_sources = [
         source_id
@@ -1548,6 +1589,11 @@ def run_reviewed_contract_analysis(
         review_status=request.freedom_evidence.review_status,
         reviewer_id=request.freedom_evidence.reviewer_id,
     )
+    procedure_reviewer_id = _require_reviewed(
+        artifact_name="Procedure evidence",
+        review_status=request.procedure_evidence.review_status,
+        reviewer_id=request.procedure_evidence.reviewer_id,
+    )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
         review_status=request.invalidity_evidence.review_status,
@@ -1729,6 +1775,12 @@ def run_reviewed_contract_analysis(
     freedom_evaluation = evaluate_freedom_constraints(
         freedom_constraint_set,
         freedom_evidence_mapping.facts,
+    )
+    procedure_evidence_mapping = map_reviewed_procedure_evidence(request.procedure_evidence)
+    procedure_constraint_set = build_procedure_constraint_set(procedure_evidence_mapping)
+    procedure_evaluation = evaluate_procedure_constraints(
+        procedure_constraint_set,
+        procedure_evidence_mapping.facts,
     )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
@@ -1967,6 +2019,7 @@ def run_reviewed_contract_analysis(
         or option_evaluation.requires_human_option_assessment
         or framework_evaluation.requires_human_framework_assessment
         or freedom_evaluation.requires_human_freedom_assessment
+        or procedure_evaluation.requires_human_procedure_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -2000,6 +2053,7 @@ def run_reviewed_contract_analysis(
                 option_reviewer_id,
                 framework_reviewer_id,
                 freedom_reviewer_id,
+                procedure_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -2057,6 +2111,9 @@ def run_reviewed_contract_analysis(
         freedom_evidence_mapping=freedom_evidence_mapping,
         freedom_constraint_set=freedom_constraint_set,
         freedom_evaluation=freedom_evaluation,
+        procedure_evidence_mapping=procedure_evidence_mapping,
+        procedure_constraint_set=procedure_constraint_set,
+        procedure_evaluation=procedure_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

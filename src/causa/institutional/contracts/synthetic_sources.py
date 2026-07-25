@@ -976,6 +976,61 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk445-446-mandatory-conclusion-v1",
+        title="Синтетическая проверенная модель обязательного заключения по статьям 445 и 446 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: обязанность заключить договор, направление "
+            "оферты или проекта, уклонение обязанной стороны, понуждение к заключению, "
+            "возмещение убытков и определение спорных условий судом проверяются "
+            "раздельно (статьи 445 и 446 ГК РФ)."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "mandatory_conclusion_articles_445_446",
+            "legal_reference": "ГК РФ, статьи 445 и 446",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk447-449-auction-v1",
+        title="Синтетическая проверенная модель заключения договора на торгах по статьям 447–449 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: заключение договора на торгах, определение "
+            "победителя, подписание протокола о результатах, уклонение победителя и "
+            "недействительность торгов, проведённых с нарушением правил, проверяются "
+            "раздельно (статьи 447–449 ГК РФ)."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "auction_articles_447_449",
+            "legal_reference": "ГК РФ, статьи 447–449",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-procedure-evidence",
+        title="Синтетическая проверенная запись фактов о порядке заключения договора",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: договор поставки заключён в обычном порядке без "
+            "обязательного заключения и без проведения торгов; понуждение и оспаривание "
+            "торгов отсутствуют."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "procedure_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

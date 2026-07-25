@@ -750,6 +750,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk445-446-mandatory-conclusion-v1",
+      "title": "Синтетическая проверенная модель обязательного заключения по статьям 445 и 446 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обязанность заключить договор, направление оферты или проекта, уклонение обязанной стороны, понуждение к заключению, возмещение убытков и определение спорных условий судом проверяются раздельно (статьи 445 и 446 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "mandatory_conclusion_articles_445_446",
+        "legal_reference": "ГК РФ, статьи 445 и 446",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk447-449-auction-v1",
+      "title": "Синтетическая проверенная модель заключения договора на торгах по статьям 447–449 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: заключение договора на торгах, определение победителя, подписание протокола о результатах, уклонение победителя и недействительность торгов, проведённых с нарушением правил, проверяются раздельно (статьи 447–449 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "auction_articles_447_449",
+        "legal_reference": "ГК РФ, статьи 447–449",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-procedure-evidence",
+      "title": "Синтетическая проверенная запись фактов о порядке заключения договора",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: договор поставки заключён в обычном порядке без обязательного заключения и без проведения торгов; понуждение и оспаривание торгов отсутствуют.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "procedure_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -3017,6 +3064,107 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-freedom-reviewer"
+    },
+    "procedure_evidence": {
+      "id": "reviewed-procedure-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.procedure-evidence.v0",
+      "assertions": [
+        {
+          "id": "procedure-evidence-conclusion_mandatory_for_party",
+          "predicate": "conclusion_mandatory_for_party",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-offer_or_draft_sent",
+          "predicate": "offer_or_draft_sent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-obliged_party_evaded",
+          "predicate": "obliged_party_evaded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-precontractual_dispute_submitted_to_court",
+          "predicate": "precontractual_dispute_submitted_to_court",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-contract_concluded_at_auction",
+          "predicate": "contract_concluded_at_auction",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-auction_notice_timely",
+          "predicate": "auction_notice_timely",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-winner_determined",
+          "predicate": "winner_determined",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-results_protocol_signed",
+          "predicate": "results_protocol_signed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-winner_evaded_signing",
+          "predicate": "winner_evaded_signing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-auction_rules_violated",
+          "predicate": "auction_rules_violated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-interested_party_challenge",
+          "predicate": "interested_party_challenge",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk445-446-mandatory-conclusion-v1",
+        "synthetic-ru-gk447-449-auction-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-procedure-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -7808,6 +7956,7 @@
       "synthetic-performance-remedies-reviewer",
       "synthetic-precontractual-reviewer",
       "synthetic-preliminary-reviewer",
+      "synthetic-procedure-reviewer",
       "synthetic-public-contract-reviewer",
       "synthetic-representations-reviewer",
       "synthetic-security-reviewer",
@@ -7833,6 +7982,7 @@
       "synthetic-case-supply-1-performance-remedies-evidence",
       "synthetic-case-supply-1-precontractual-evidence",
       "synthetic-case-supply-1-preliminary-evidence",
+      "synthetic-case-supply-1-procedure-evidence",
       "synthetic-case-supply-1-public-contract-evidence",
       "synthetic-case-supply-1-representations-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
@@ -7891,6 +8041,8 @@
       "synthetic-ru-gk434-1-precontractual-remedies-v1",
       "synthetic-ru-gk435-offer-model-v1",
       "synthetic-ru-gk438-443-acceptance-model-v1",
+      "synthetic-ru-gk445-446-mandatory-conclusion-v1",
+      "synthetic-ru-gk447-449-auction-v1",
       "synthetic-ru-gk450-453-termination-model-v1",
       "synthetic-ru-gk454-464-sale-transfer-v1",
       "synthetic-ru-gk465-477-sale-conformity-v1",
@@ -10041,6 +10193,144 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о свободе договора, его соответствии закону и определении цены и не заменяет судебную оценку.",
         "Квалификация непоименованного и смешанного договора, императивность норм и размер цены оцениваются экспертом и судом."
+      ]
+    },
+    "procedure_evidence_mapping": {
+      "evidence_id": "reviewed-procedure-evidence-supply-1-v0",
+      "schema_version": "contracts.procedure-evidence.v0",
+      "mapping_version": "contracts-reviewed-procedure-to-facts-v0",
+      "facts": {
+        "conclusion_mandatory_for_party": false,
+        "offer_or_draft_sent": false,
+        "obliged_party_evaded": false,
+        "precontractual_dispute_submitted_to_court": false,
+        "contract_concluded_at_auction": false,
+        "auction_notice_timely": false,
+        "winner_determined": false,
+        "results_protocol_signed": false,
+        "winner_evaded_signing": false,
+        "auction_rules_violated": false,
+        "interested_party_challenge": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk445-446-mandatory-conclusion-v1",
+        "synthetic-ru-gk447-449-auction-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "auction_notice_timely",
+          "assertion_id": "procedure-evidence-auction_notice_timely",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "auction_rules_violated",
+          "assertion_id": "procedure-evidence-auction_rules_violated",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "conclusion_mandatory_for_party",
+          "assertion_id": "procedure-evidence-conclusion_mandatory_for_party",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_concluded_at_auction",
+          "assertion_id": "procedure-evidence-contract_concluded_at_auction",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "interested_party_challenge",
+          "assertion_id": "procedure-evidence-interested_party_challenge",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "obliged_party_evaded",
+          "assertion_id": "procedure-evidence-obliged_party_evaded",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "offer_or_draft_sent",
+          "assertion_id": "procedure-evidence-offer_or_draft_sent",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "precontractual_dispute_submitted_to_court",
+          "assertion_id": "procedure-evidence-precontractual_dispute_submitted_to_court",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "results_protocol_signed",
+          "assertion_id": "procedure-evidence-results_protocol_signed",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "winner_determined",
+          "assertion_id": "procedure-evidence-winner_determined",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "winner_evaded_signing",
+          "assertion_id": "procedure-evidence-winner_evaded_signing",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        }
+      ]
+    },
+    "procedure_constraint_set": {
+      "id": "procedure-constraint-set:reviewed-procedure-evidence-supply-1-v0",
+      "model_version": "contracts-conclusion-procedure-articles-445-449-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk445-446-mandatory-conclusion-v1",
+        "synthetic-ru-gk447-449-auction-v1"
+      ],
+      "expressions": [
+        "conclusion_compellable == conclusion_mandatory_for_party AND offer_or_draft_sent AND obliged_party_evaded",
+        "precontractual_terms_set_by_court == precontractual_dispute_submitted_to_court",
+        "damages_for_mandatory_evasion == conclusion_mandatory_for_party AND obliged_party_evaded",
+        "auction_contract_formed == contract_concluded_at_auction AND winner_determined AND results_protocol_signed",
+        "winner_liable_for_evasion == winner_determined AND winner_evaded_signing",
+        "auction_voidable == auction_rules_violated AND interested_party_challenge",
+        "auction_contract_invalid == auction_rules_violated AND interested_party_challenge",
+        "requires_human_procedure_assessment == precontractual_dispute_submitted_to_court OR (conclusion_mandatory_for_party AND obliged_party_evaded) OR winner_evaded_signing OR (auction_rules_violated AND interested_party_challenge)"
+      ]
+    },
+    "procedure_evaluation": {
+      "constraint_set_id": "procedure-constraint-set:reviewed-procedure-evidence-supply-1-v0",
+      "satisfiable": true,
+      "conclusion_compellable": false,
+      "precontractual_terms_set_by_court": false,
+      "damages_for_mandatory_evasion": false,
+      "auction_contract_formed": false,
+      "winner_liable_for_evasion": false,
+      "auction_voidable": false,
+      "auction_contract_invalid": false,
+      "requires_human_procedure_assessment": false,
+      "reasons_ru": [
+        "Формальные предпосылки понуждения к заключению или недействительности торгов не подтверждены."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о заключении договора в обязательном порядке и на торгах и не заменяет судебную оценку.",
+        "Обязательность заключения, соблюдение правил торгов и размер убытков оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -15414,7 +15704,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.31.0",
+      "institutional_package_version": "contracts-ru-v0@0.32.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -17424,6 +17714,7 @@
           "synthetic-case-supply-1-performance-remedies-evidence",
           "synthetic-case-supply-1-precontractual-evidence",
           "synthetic-case-supply-1-preliminary-evidence",
+          "synthetic-case-supply-1-procedure-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-representations-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
@@ -17482,6 +17773,8 @@
           "synthetic-ru-gk434-1-precontractual-remedies-v1",
           "synthetic-ru-gk435-offer-model-v1",
           "synthetic-ru-gk438-443-acceptance-model-v1",
+          "synthetic-ru-gk445-446-mandatory-conclusion-v1",
+          "synthetic-ru-gk447-449-auction-v1",
           "synthetic-ru-gk450-453-termination-model-v1",
           "synthetic-ru-gk454-464-sale-transfer-v1",
           "synthetic-ru-gk465-477-sale-conformity-v1",
@@ -18510,6 +18803,7 @@
           "synthetic-case-supply-1-performance-remedies-evidence",
           "synthetic-case-supply-1-precontractual-evidence",
           "synthetic-case-supply-1-preliminary-evidence",
+          "synthetic-case-supply-1-procedure-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-representations-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
@@ -18568,6 +18862,8 @@
           "synthetic-ru-gk434-1-precontractual-remedies-v1",
           "synthetic-ru-gk435-offer-model-v1",
           "synthetic-ru-gk438-443-acceptance-model-v1",
+          "synthetic-ru-gk445-446-mandatory-conclusion-v1",
+          "synthetic-ru-gk447-449-auction-v1",
           "synthetic-ru-gk450-453-termination-model-v1",
           "synthetic-ru-gk454-464-sale-transfer-v1",
           "synthetic-ru-gk465-477-sale-conformity-v1",
@@ -19596,6 +19892,7 @@
           "synthetic-case-supply-1-performance-remedies-evidence",
           "synthetic-case-supply-1-precontractual-evidence",
           "synthetic-case-supply-1-preliminary-evidence",
+          "synthetic-case-supply-1-procedure-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-representations-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
@@ -19654,6 +19951,8 @@
           "synthetic-ru-gk434-1-precontractual-remedies-v1",
           "synthetic-ru-gk435-offer-model-v1",
           "synthetic-ru-gk438-443-acceptance-model-v1",
+          "synthetic-ru-gk445-446-mandatory-conclusion-v1",
+          "synthetic-ru-gk447-449-auction-v1",
           "synthetic-ru-gk450-453-termination-model-v1",
           "synthetic-ru-gk454-464-sale-transfer-v1",
           "synthetic-ru-gk465-477-sale-conformity-v1",
@@ -19750,7 +20049,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.31.0",
+      "institutional_package_version": "contracts-ru-v0@0.32.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -20360,6 +20659,44 @@
           "synthetic": true,
           "non_authoritative": true,
           "topic": "freedom_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
+        "id": "synthetic-ru-gk445-446-mandatory-conclusion-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель обязательного заключения по статьям 445 и 446 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "mandatory_conclusion_articles_445_446",
+          "legal_reference": "ГК РФ, статьи 445 и 446",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk447-449-auction-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель заключения договора на торгах по статьям 447–449 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "auction_articles_447_449",
+          "legal_reference": "ГК РФ, статьи 447–449",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-procedure-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о порядке заключения договора",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "procedure_case_evidence",
           "case_id": "case-supply-1"
         }
       },
@@ -20986,6 +21323,7 @@
             "synthetic-performance-remedies-reviewer",
             "synthetic-precontractual-reviewer",
             "synthetic-preliminary-reviewer",
+            "synthetic-procedure-reviewer",
             "synthetic-public-contract-reviewer",
             "synthetic-representations-reviewer",
             "synthetic-security-reviewer",

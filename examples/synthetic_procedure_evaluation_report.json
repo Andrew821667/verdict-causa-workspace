@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о заключении договора в обязательном порядке и на торгах по статьям 445–449 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-procedure-evidence-supply-1-v0",
+    "schema_version": "contracts.procedure-evidence.v0",
+    "mapping_version": "contracts-reviewed-procedure-to-facts-v0",
+    "facts": {
+      "conclusion_mandatory_for_party": false,
+      "offer_or_draft_sent": false,
+      "obliged_party_evaded": false,
+      "precontractual_dispute_submitted_to_court": false,
+      "contract_concluded_at_auction": false,
+      "auction_notice_timely": false,
+      "winner_determined": false,
+      "results_protocol_signed": false,
+      "winner_evaded_signing": false,
+      "auction_rules_violated": false,
+      "interested_party_challenge": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk445-446-mandatory-conclusion-v1",
+      "synthetic-ru-gk447-449-auction-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "auction_notice_timely",
+        "assertion_id": "procedure-evidence-auction_notice_timely",
+        "source_refs": [
+          "synthetic-case-supply-1-procedure-evidence"
+        ]
+      },
+      {
+        "fact_name": "auction_rules_violated",
+        "assertion_id": "procedure-evidence-auction_rules_violated",
+        "source_refs": [
+          "synthetic-case-supply-1-procedure-evidence"
+        ]
+      },
+      {
+        "fact_name": "conclusion_mandatory_for_party",
+        "assertion_id": "procedure-evidence-conclusion_mandatory_for_party",
+        "source_refs": [
+          "synthetic-case-supply-1-procedure-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_concluded_at_auction",
+        "assertion_id": "procedure-evidence-contract_concluded_at_auction",
+        "source_refs": [
+          "synthetic-case-supply-1-procedure-evidence"
+        ]
+      },
+      {
+        "fact_name": "interested_party_challenge",
+        "assertion_id": "procedure-evidence-interested_party_challenge",
+        "source_refs": [
+          "synthetic-case-supply-1-procedure-evidence"
+        ]
+      },
+      {
+        "fact_name": "obliged_party_evaded",
+        "assertion_id": "procedure-evidence-obliged_party_evaded",
+        "source_refs": [
+          "synthetic-case-supply-1-procedure-evidence"
+        ]
+      },
+      {
+        "fact_name": "offer_or_draft_sent",
+        "assertion_id": "procedure-evidence-offer_or_draft_sent",
+        "source_refs": [
+          "synthetic-case-supply-1-procedure-evidence"
+        ]
+      },
+      {
+        "fact_name": "precontractual_dispute_submitted_to_court",
+        "assertion_id": "procedure-evidence-precontractual_dispute_submitted_to_court",
+        "source_refs": [
+          "synthetic-case-supply-1-procedure-evidence"
+        ]
+      },
+      {
+        "fact_name": "results_protocol_signed",
+        "assertion_id": "procedure-evidence-results_protocol_signed",
+        "source_refs": [
+          "synthetic-case-supply-1-procedure-evidence"
+        ]
+      },
+      {
+        "fact_name": "winner_determined",
+        "assertion_id": "procedure-evidence-winner_determined",
+        "source_refs": [
+          "synthetic-case-supply-1-procedure-evidence"
+        ]
+      },
+      {
+        "fact_name": "winner_evaded_signing",
+        "assertion_id": "procedure-evidence-winner_evaded_signing",
+        "source_refs": [
+          "synthetic-case-supply-1-procedure-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "procedure-constraint-set:reviewed-procedure-evidence-supply-1-v0",
+    "model_version": "contracts-conclusion-procedure-articles-445-449-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk445-446-mandatory-conclusion-v1",
+      "synthetic-ru-gk447-449-auction-v1"
+    ],
+    "expressions": [
+      "conclusion_compellable == conclusion_mandatory_for_party AND offer_or_draft_sent AND obliged_party_evaded",
+      "precontractual_terms_set_by_court == precontractual_dispute_submitted_to_court",
+      "damages_for_mandatory_evasion == conclusion_mandatory_for_party AND obliged_party_evaded",
+      "auction_contract_formed == contract_concluded_at_auction AND winner_determined AND results_protocol_signed",
+      "winner_liable_for_evasion == winner_determined AND winner_evaded_signing",
+      "auction_voidable == auction_rules_violated AND interested_party_challenge",
+      "auction_contract_invalid == auction_rules_violated AND interested_party_challenge",
+      "requires_human_procedure_assessment == precontractual_dispute_submitted_to_court OR (conclusion_mandatory_for_party AND obliged_party_evaded) OR winner_evaded_signing OR (auction_rules_violated AND interested_party_challenge)"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "procedure-constraint-set:reviewed-procedure-evidence-supply-1-v0",
+    "satisfiable": true,
+    "conclusion_compellable": false,
+    "precontractual_terms_set_by_court": false,
+    "damages_for_mandatory_evasion": false,
+    "auction_contract_formed": false,
+    "winner_liable_for_evasion": false,
+    "auction_voidable": false,
+    "auction_contract_invalid": false,
+    "requires_human_procedure_assessment": false,
+    "reasons_ru": [
+      "Формальные предпосылки понуждения к заключению или недействительности торгов не подтверждены."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о заключении договора в обязательном порядке и на торгах и не заменяет судебную оценку.",
+      "Обязательность заключения, соблюдение правил торгов и размер убытков оцениваются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "procedure-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "procedure-bench-compel",
+        "passed": true,
+        "expected_outcomes": {
+          "conclusion_compellable": true,
+          "damages_for_mandatory_evasion": true,
+          "requires_human_procedure_assessment": true
+        },
+        "observed_outcomes": {
+          "conclusion_compellable": true,
+          "damages_for_mandatory_evasion": true,
+          "requires_human_procedure_assessment": true
+        },
+        "reasons_ru": [
+          "Сторона, для которой заключение договора обязательно и которая уклоняется, может быть понуждена к заключению по суду (пункт 4 статьи 445 ГК РФ).",
+          "Уклонение обязанной стороны от заключения договора влечёт возмещение причинённых этим убытков (пункт 4 статьи 445 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "procedure-bench-no-evasion",
+        "passed": true,
+        "expected_outcomes": {
+          "conclusion_compellable": false,
+          "damages_for_mandatory_evasion": false,
+          "requires_human_procedure_assessment": false
+        },
+        "observed_outcomes": {
+          "conclusion_compellable": false,
+          "damages_for_mandatory_evasion": false,
+          "requires_human_procedure_assessment": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки понуждения к заключению или недействительности торгов не подтверждены."
+        ]
+      },
+      {
+        "task_id": "procedure-bench-court-terms",
+        "passed": true,
+        "expected_outcomes": {
+          "precontractual_terms_set_by_court": true,
+          "requires_human_procedure_assessment": true
+        },
+        "observed_outcomes": {
+          "precontractual_terms_set_by_court": true,
+          "requires_human_procedure_assessment": true
+        },
+        "reasons_ru": [
+          "Разногласия по договору переданы на рассмотрение суда; спорные условия определяются решением суда (статья 446 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "procedure-bench-not-mandatory-evasion",
+        "passed": true,
+        "expected_outcomes": {
+          "conclusion_compellable": false,
+          "damages_for_mandatory_evasion": false
+        },
+        "observed_outcomes": {
+          "conclusion_compellable": false,
+          "damages_for_mandatory_evasion": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки понуждения к заключению или недействительности торгов не подтверждены."
+        ]
+      },
+      {
+        "task_id": "procedure-bench-auction-formed",
+        "passed": true,
+        "expected_outcomes": {
+          "auction_contract_formed": true,
+          "winner_liable_for_evasion": false,
+          "requires_human_procedure_assessment": false
+        },
+        "observed_outcomes": {
+          "auction_contract_formed": true,
+          "winner_liable_for_evasion": false,
+          "requires_human_procedure_assessment": false
+        },
+        "reasons_ru": [
+          "Договор на торгах заключается с лицом, выигравшим торги, путём подписания протокола о результатах (статьи 447 и 448 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "procedure-bench-winner-evaded",
+        "passed": true,
+        "expected_outcomes": {
+          "winner_liable_for_evasion": true,
+          "auction_contract_formed": false,
+          "requires_human_procedure_assessment": true
+        },
+        "observed_outcomes": {
+          "winner_liable_for_evasion": true,
+          "auction_contract_formed": false,
+          "requires_human_procedure_assessment": true
+        },
+        "reasons_ru": [
+          "Уклонение победителя от подписания протокола влечёт установленные последствия, включая утрату задатка (пункт 6 статьи 448 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "procedure-bench-auction-no-protocol",
+        "passed": true,
+        "expected_outcomes": {
+          "auction_contract_formed": false
+        },
+        "observed_outcomes": {
+          "auction_contract_formed": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки понуждения к заключению или недействительности торгов не подтверждены."
+        ]
+      },
+      {
+        "task_id": "procedure-bench-auction-voidable",
+        "passed": true,
+        "expected_outcomes": {
+          "auction_voidable": true,
+          "auction_contract_invalid": true,
+          "requires_human_procedure_assessment": true
+        },
+        "observed_outcomes": {
+          "auction_voidable": true,
+          "auction_contract_invalid": true,
+          "requires_human_procedure_assessment": true
+        },
+        "reasons_ru": [
+          "Договор на торгах заключается с лицом, выигравшим торги, путём подписания протокола о результатах (статьи 447 и 448 ГК РФ).",
+          "Торги, проведённые с нарушением установленных правил, могут быть признаны судом недействительными по иску заинтересованного лица; это влечёт недействительность договора (статья 449 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "procedure-bench-violation-without-challenge",
+        "passed": true,
+        "expected_outcomes": {
+          "auction_voidable": false,
+          "auction_contract_invalid": false,
+          "requires_human_procedure_assessment": false
+        },
+        "observed_outcomes": {
+          "auction_voidable": false,
+          "auction_contract_invalid": false,
+          "requires_human_procedure_assessment": false
+        },
+        "reasons_ru": [
+          "Договор на торгах заключается с лицом, выигравшим торги, путём подписания протокола о результатах (статьи 447 и 448 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "procedure-bench-empty",
+        "passed": true,
+        "expected_outcomes": {
+          "conclusion_compellable": false,
+          "auction_contract_formed": false,
+          "requires_human_procedure_assessment": false
+        },
+        "observed_outcomes": {
+          "conclusion_compellable": false,
+          "auction_contract_formed": false,
+          "requires_human_procedure_assessment": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки понуждения к заключению или недействительности торгов не подтверждены."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "procedure-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "procedure-red-compel-without-mandatory",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "conclusion_compellable": true
+        },
+        "observed_outcomes": {
+          "conclusion_compellable": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки понуждения к заключению или недействительности торгов не подтверждены."
+        ]
+      },
+      {
+        "case_id": "procedure-red-compel-without-evasion",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "conclusion_compellable": true
+        },
+        "observed_outcomes": {
+          "conclusion_compellable": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки понуждения к заключению или недействительности торгов не подтверждены."
+        ]
+      },
+      {
+        "case_id": "procedure-red-damages-without-mandatory",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "damages_for_mandatory_evasion": true
+        },
+        "observed_outcomes": {
+          "damages_for_mandatory_evasion": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки понуждения к заключению или недействительности торгов не подтверждены."
+        ]
+      },
+      {
+        "case_id": "procedure-red-auction-formed-without-protocol",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "auction_contract_formed": true
+        },
+        "observed_outcomes": {
+          "auction_contract_formed": false
+        },
+        "reasons_ru": [
+          "Формальные предпосылки понуждения к заключению или недействительности торгов не подтверждены."
+        ]
+      },
+      {
+        "case_id": "procedure-red-winner-liable-without-evasion",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "winner_liable_for_evasion": true
+        },
+        "observed_outcomes": {
+          "winner_liable_for_evasion": false
+        },
+        "reasons_ru": [
+          "Договор на торгах заключается с лицом, выигравшим торги, путём подписания протокола о результатах (статьи 447 и 448 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "procedure-red-void-without-challenge",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "auction_voidable": true
+        },
+        "observed_outcomes": {
+          "auction_voidable": false
+        },
+        "reasons_ru": [
+          "Договор на торгах заключается с лицом, выигравшим торги, путём подписания протокола о результатах (статьи 447 и 448 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "procedure-red-invalidate-without-void",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "auction_contract_invalid": true
+        },
+        "observed_outcomes": {
+          "auction_contract_invalid": false
+        },
+        "reasons_ru": [
+          "Договор на торгах заключается с лицом, выигравшим торги, путём подписания протокола о результатах (статьи 447 и 448 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "procedure-red-skip-court-terms",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "precontractual_terms_set_by_court": false
+        },
+        "observed_outcomes": {
+          "precontractual_terms_set_by_court": true
+        },
+        "reasons_ru": [
+          "Разногласия по договору переданы на рассмотрение суда; спорные условия определяются решением суда (статья 446 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "procedure-red-skip-human-on-winner-evasion",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_procedure_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_procedure_assessment": true
+        },
+        "reasons_ru": [
+          "Уклонение победителя от подписания протокола влечёт установленные последствия, включая утрату задатка (пункт 6 статьи 448 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "procedure-red-skip-human-on-voidable",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_procedure_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_procedure_assessment": true
+        },
+        "reasons_ru": [
+          "Договор на торгах заключается с лицом, выигравшим торги, путём подписания протокола о результатах (статьи 447 и 448 ГК РФ).",
+          "Торги, проведённые с нарушением установленных правил, могут быть признаны судом недействительными по иску заинтересованного лица; это влечёт недействительность договора (статья 449 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}
