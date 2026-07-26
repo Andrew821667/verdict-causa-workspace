@@ -90,6 +90,11 @@ from causa.institutional.contracts.contractation import (
     ContractationEvidencePredicate,
     ReviewedContractationEvidence,
 )
+from causa.institutional.contracts.energy_supply import (
+    EnergySupplyEvidenceAssertion,
+    EnergySupplyEvidencePredicate,
+    ReviewedEnergySupplyEvidence,
+)
 from causa.institutional.contracts.state_supply import (
     ReviewedStateSupplyEvidence,
     StateSupplyEvidenceAssertion,
@@ -220,6 +225,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk535-536-contractation-concept-v1",
     "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
     "synthetic-case-supply-1-contractation-evidence",
+    "synthetic-ru-gk539-542-energy-supply-concept-v1",
+    "synthetic-ru-gk543-547-energy-supply-duties-and-interruption-v1",
+    "synthetic-case-supply-1-energy-supply-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1058,6 +1066,51 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-contractation-reviewer",
+        ),
+        energy_supply_evidence=ReviewedEnergySupplyEvidence(
+            id="reviewed-energy-supply-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                EnergySupplyEvidenceAssertion(
+                    id=f"energy-supply-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-energy-supply-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        EnergySupplyEvidencePredicate.ENERGY_SUPPLIED_THROUGH_ATTACHED_NETWORK,
+                        False,
+                    ),
+                    (
+                        EnergySupplyEvidencePredicate.SUBSCRIBER_HAS_COMPLIANT_RECEIVING_DEVICE,
+                        False,
+                    ),
+                    (
+                        EnergySupplyEvidencePredicate.ENERGY_QUANTITY_CONFORMS_TO_CONTRACT,
+                        False,
+                    ),
+                    (EnergySupplyEvidencePredicate.ENERGY_QUALITY_DEFECTIVE, False),
+                    (EnergySupplyEvidencePredicate.SUBSCRIBER_IS_HOUSEHOLD_CONSUMER, False),
+                    (
+                        EnergySupplyEvidencePredicate.SUBSCRIBER_MAINTAINED_NETWORKS_AND_REGIME,
+                        False,
+                    ),
+                    (EnergySupplyEvidencePredicate.SUBSCRIBER_PAID_FOR_METERED_ENERGY, False),
+                    (EnergySupplyEvidencePredicate.SUPPLY_INTERRUPTED, False),
+                    (EnergySupplyEvidencePredicate.SUPPLY_INTERRUPTION_AGREED, False),
+                    (
+                        EnergySupplyEvidencePredicate.UNAGREED_INTERRUPTION_FOR_EMERGENCY_WITH_NOTICE,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk539-542-energy-supply-concept-v1",
+                "synthetic-ru-gk543-547-energy-supply-duties-and-interruption-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-energy-supply-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

@@ -1,0 +1,466 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил об энергоснабжении по статьям 539–548 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-energy-supply-evidence-supply-1-v0",
+    "schema_version": "contracts.energy-supply-evidence.v0",
+    "mapping_version": "contracts-reviewed-energy-supply-to-facts-v0",
+    "facts": {
+      "energy_supplied_through_attached_network": false,
+      "subscriber_has_compliant_receiving_device": false,
+      "energy_quantity_conforms_to_contract": false,
+      "energy_quality_defective": false,
+      "subscriber_is_household_consumer": false,
+      "subscriber_maintained_networks_and_regime": false,
+      "subscriber_paid_for_metered_energy": false,
+      "supply_interrupted": false,
+      "supply_interruption_agreed": false,
+      "unagreed_interruption_for_emergency_with_notice": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk539-542-energy-supply-concept-v1",
+      "synthetic-ru-gk543-547-energy-supply-duties-and-interruption-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "energy_quality_defective",
+        "assertion_id": "energy-supply-evidence-energy_quality_defective",
+        "source_refs": [
+          "synthetic-case-supply-1-energy-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "energy_quantity_conforms_to_contract",
+        "assertion_id": "energy-supply-evidence-energy_quantity_conforms_to_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-energy-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "energy_supplied_through_attached_network",
+        "assertion_id": "energy-supply-evidence-energy_supplied_through_attached_network",
+        "source_refs": [
+          "synthetic-case-supply-1-energy-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "subscriber_has_compliant_receiving_device",
+        "assertion_id": "energy-supply-evidence-subscriber_has_compliant_receiving_device",
+        "source_refs": [
+          "synthetic-case-supply-1-energy-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "subscriber_is_household_consumer",
+        "assertion_id": "energy-supply-evidence-subscriber_is_household_consumer",
+        "source_refs": [
+          "synthetic-case-supply-1-energy-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "subscriber_maintained_networks_and_regime",
+        "assertion_id": "energy-supply-evidence-subscriber_maintained_networks_and_regime",
+        "source_refs": [
+          "synthetic-case-supply-1-energy-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "subscriber_paid_for_metered_energy",
+        "assertion_id": "energy-supply-evidence-subscriber_paid_for_metered_energy",
+        "source_refs": [
+          "synthetic-case-supply-1-energy-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "supply_interrupted",
+        "assertion_id": "energy-supply-evidence-supply_interrupted",
+        "source_refs": [
+          "synthetic-case-supply-1-energy-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "supply_interruption_agreed",
+        "assertion_id": "energy-supply-evidence-supply_interruption_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-energy-supply-evidence"
+        ]
+      },
+      {
+        "fact_name": "unagreed_interruption_for_emergency_with_notice",
+        "assertion_id": "energy-supply-evidence-unagreed_interruption_for_emergency_with_notice",
+        "source_refs": [
+          "synthetic-case-supply-1-energy-supply-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "energy-supply-constraint-set:reviewed-energy-supply-evidence-supply-1-v0",
+    "model_version": "contracts-energy-supply-articles-539-548-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk539-542-energy-supply-concept-v1",
+      "synthetic-ru-gk543-547-energy-supply-duties-and-interruption-v1"
+    ],
+    "expressions": [
+      "energy_supply_qualified == energy_supplied_through_attached_network AND subscriber_has_compliant_receiving_device",
+      "energy_conforms_to_contract == energy_supply_qualified AND energy_quantity_conforms_to_contract AND NOT energy_quality_defective",
+      "subscriber_may_refuse_defective_payment == energy_supply_qualified AND energy_quality_defective",
+      "subscriber_network_duty_met == subscriber_is_household_consumer OR subscriber_maintained_networks_and_regime",
+      "payment_duty_met == subscriber_paid_for_metered_energy",
+      "supply_interruption_lawful == NOT supply_interrupted OR supply_interruption_agreed OR unagreed_interruption_for_emergency_with_notice",
+      "unlawful_supply_interruption == supply_interrupted AND NOT supply_interruption_agreed AND NOT unagreed_interruption_for_emergency_with_notice",
+      "requires_human_energy_supply_assessment == (energy_supply_qualified AND energy_quality_defective) OR unlawful_supply_interruption"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "energy-supply-constraint-set:reviewed-energy-supply-evidence-supply-1-v0",
+    "satisfiable": true,
+    "energy_supply_qualified": false,
+    "energy_conforms_to_contract": false,
+    "subscriber_may_refuse_defective_payment": false,
+    "subscriber_network_duty_met": false,
+    "payment_duty_met": false,
+    "supply_interruption_lawful": true,
+    "unlawful_supply_interruption": false,
+    "requires_human_energy_supply_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор энергоснабжения.",
+      "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила об энергоснабжении и не заменяет судебную оценку.",
+      "По договору энергоснабжения нарушившая сторона возмещает причинённый реальный ущерб; вина и размер убытков оцениваются экспертом и судом (статья 547 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "energy-supply-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "energy-supply-bench-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "energy_supply_qualified": true,
+          "requires_human_energy_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "energy_supply_qualified": true,
+          "requires_human_energy_supply_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "energy-supply-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "energy_supply_qualified": false
+        },
+        "observed_outcomes": {
+          "energy_supply_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор энергоснабжения.",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "energy-supply-bench-conforms",
+        "passed": true,
+        "expected_outcomes": {
+          "energy_conforms_to_contract": true,
+          "requires_human_energy_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "energy_conforms_to_contract": true,
+          "requires_human_energy_supply_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "Поданная энергия соответствует договору по количеству и качеству (статьи 541 и 542 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "energy-supply-bench-defective-quality",
+        "passed": true,
+        "expected_outcomes": {
+          "subscriber_may_refuse_defective_payment": true,
+          "energy_conforms_to_contract": false,
+          "requires_human_energy_supply_assessment": true
+        },
+        "observed_outcomes": {
+          "subscriber_may_refuse_defective_payment": true,
+          "energy_conforms_to_contract": false,
+          "requires_human_energy_supply_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "При нарушении требований к качеству энергии абонент вправе отказаться от оплаты такой энергии (статья 542 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "energy-supply-bench-household-duty",
+        "passed": true,
+        "expected_outcomes": {
+          "subscriber_network_duty_met": true,
+          "requires_human_energy_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "subscriber_network_duty_met": true,
+          "requires_human_energy_supply_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "Обязанность по содержанию сетей и соблюдению режима потребления исполнена; для гражданина-бытового потребителя она возлагается на энергоснабжающую организацию (статья 543 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "energy-supply-bench-maintained-duty",
+        "passed": true,
+        "expected_outcomes": {
+          "subscriber_network_duty_met": true,
+          "requires_human_energy_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "subscriber_network_duty_met": true,
+          "requires_human_energy_supply_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "Обязанность по содержанию сетей и соблюдению режима потребления исполнена; для гражданина-бытового потребителя она возлагается на энергоснабжающую организацию (статья 543 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "energy-supply-bench-payment-met",
+        "passed": true,
+        "expected_outcomes": {
+          "payment_duty_met": true,
+          "requires_human_energy_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "payment_duty_met": true,
+          "requires_human_energy_supply_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "Оплата произведена за фактически принятое количество энергии по данным учёта (статья 544 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "energy-supply-bench-unpaid",
+        "passed": true,
+        "expected_outcomes": {
+          "payment_duty_met": false,
+          "requires_human_energy_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "payment_duty_met": false,
+          "requires_human_energy_supply_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "energy-supply-bench-emergency-interruption",
+        "passed": true,
+        "expected_outcomes": {
+          "supply_interruption_lawful": true,
+          "unlawful_supply_interruption": false,
+          "requires_human_energy_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "supply_interruption_lawful": true,
+          "unlawful_supply_interruption": false,
+          "requires_human_energy_supply_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "energy-supply-bench-unlawful-interruption",
+        "passed": true,
+        "expected_outcomes": {
+          "unlawful_supply_interruption": true,
+          "supply_interruption_lawful": false,
+          "requires_human_energy_supply_assessment": true
+        },
+        "observed_outcomes": {
+          "unlawful_supply_interruption": true,
+          "supply_interruption_lawful": false,
+          "requires_human_energy_supply_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии произведены без согласования и без неотложной необходимости (статья 546 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "energy-supply-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "energy-supply-red-qualify-without-network",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "energy_supply_qualified": true
+        },
+        "observed_outcomes": {
+          "energy_supply_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор энергоснабжения.",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "energy-supply-red-qualify-without-device",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "energy_supply_qualified": true
+        },
+        "observed_outcomes": {
+          "energy_supply_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор энергоснабжения.",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "energy-supply-red-conforms-with-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "energy_conforms_to_contract": true
+        },
+        "observed_outcomes": {
+          "energy_conforms_to_contract": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "При нарушении требований к качеству энергии абонент вправе отказаться от оплаты такой энергии (статья 542 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "energy-supply-red-refuse-when-quality-ok",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "subscriber_may_refuse_defective_payment": true
+        },
+        "observed_outcomes": {
+          "subscriber_may_refuse_defective_payment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "Поданная энергия соответствует договору по количеству и качеству (статьи 541 и 542 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "energy-supply-red-refuse-without-contract",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "subscriber_may_refuse_defective_payment": true
+        },
+        "observed_outcomes": {
+          "subscriber_may_refuse_defective_payment": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор энергоснабжения.",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "energy-supply-red-network-duty-without-basis",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "subscriber_network_duty_met": true
+        },
+        "observed_outcomes": {
+          "subscriber_network_duty_met": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "energy-supply-red-interruption-lawful-without-basis",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "supply_interruption_lawful": true
+        },
+        "observed_outcomes": {
+          "supply_interruption_lawful": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии произведены без согласования и без неотложной необходимости (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "energy-supply-red-hide-unlawful-interruption",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unlawful_supply_interruption": false
+        },
+        "observed_outcomes": {
+          "unlawful_supply_interruption": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии произведены без согласования и без неотложной необходимости (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "energy-supply-red-skip-human-on-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_energy_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_energy_supply_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "При нарушении требований к качеству энергии абонент вправе отказаться от оплаты такой энергии (статья 542 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "energy-supply-red-skip-human-on-unlawful-interruption",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_energy_supply_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_energy_supply_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как энергоснабжение: энергоснабжающая организация подаёт энергию через присоединённую сеть, а у абонента имеется отвечающее требованиям энергопринимающее устройство и обеспечен учёт потребления (статья 539 ГК РФ).",
+          "Перерыв, прекращение или ограничение подачи энергии произведены без согласования и без неотложной необходимости (статья 546 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

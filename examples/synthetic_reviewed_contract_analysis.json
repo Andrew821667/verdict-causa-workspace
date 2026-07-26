@@ -985,6 +985,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk539-542-energy-supply-concept-v1",
+      "title": "Синтетическая проверенная модель понятия энергоснабжения, количества и качества энергии по статьям 539–542 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: подача энергии через присоединённую сеть при наличии у абонента отвечающего требованиям энергопринимающего устройства и учёта, соответствие энергии договору по количеству и качеству и право абонента отказаться от оплаты некачественной энергии проверяются раздельно (статьи 539–542 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "energy_supply_concept_articles_539_542",
+        "legal_reference": "ГК РФ, статьи 539–542",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk543-547-energy-supply-duties-and-interruption-v1",
+      "title": "Синтетическая проверенная модель содержания сетей, оплаты, перерыва подачи и ответственности по статьям 543–547 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обязанности по содержанию сетей и режиму потребления (для бытового потребителя — на организации), оплата по данным учёта, правомерность перерыва подачи только по соглашению или как неотложная мера при аварии с уведомлением и возмещение реального ущерба проверяются раздельно (статьи 543–547 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "energy_supply_duties_and_interruption_articles_543_547",
+        "legal_reference": "ГК РФ, статьи 543–547",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-energy-supply-evidence",
+      "title": "Синтетическая проверенная запись фактов об энергоснабжении",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой готовых товаров и не является договором энергоснабжения через присоединённую сеть; перерывов подачи и претензий к качеству энергии нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "energy_supply_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -3733,6 +3780,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-contractation-reviewer"
+    },
+    "energy_supply_evidence": {
+      "id": "reviewed-energy-supply-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.energy-supply-evidence.v0",
+      "assertions": [
+        {
+          "id": "energy-supply-evidence-energy_supplied_through_attached_network",
+          "predicate": "energy_supplied_through_attached_network",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "id": "energy-supply-evidence-subscriber_has_compliant_receiving_device",
+          "predicate": "subscriber_has_compliant_receiving_device",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "id": "energy-supply-evidence-energy_quantity_conforms_to_contract",
+          "predicate": "energy_quantity_conforms_to_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "id": "energy-supply-evidence-energy_quality_defective",
+          "predicate": "energy_quality_defective",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "id": "energy-supply-evidence-subscriber_is_household_consumer",
+          "predicate": "subscriber_is_household_consumer",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "id": "energy-supply-evidence-subscriber_maintained_networks_and_regime",
+          "predicate": "subscriber_maintained_networks_and_regime",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "id": "energy-supply-evidence-subscriber_paid_for_metered_energy",
+          "predicate": "subscriber_paid_for_metered_energy",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "id": "energy-supply-evidence-supply_interrupted",
+          "predicate": "supply_interrupted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "id": "energy-supply-evidence-supply_interruption_agreed",
+          "predicate": "supply_interruption_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "id": "energy-supply-evidence-unagreed_interruption_for_emergency_with_notice",
+          "predicate": "unagreed_interruption_for_emergency_with_notice",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk539-542-energy-supply-concept-v1",
+        "synthetic-ru-gk543-547-energy-supply-duties-and-interruption-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-energy-supply-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -8510,6 +8650,7 @@
       "synthetic-authority-reviewer",
       "synthetic-case-evidence-reviewer",
       "synthetic-contractation-reviewer",
+      "synthetic-energy-supply-reviewer",
       "synthetic-form-reviewer",
       "synthetic-formation-reviewer",
       "synthetic-framework-reviewer",
@@ -8541,6 +8682,7 @@
     "source_ids": [
       "synthetic-case-supply-1-adhesion-evidence",
       "synthetic-case-supply-1-contractation-evidence",
+      "synthetic-case-supply-1-energy-supply-evidence",
       "synthetic-case-supply-1-form-evidence",
       "synthetic-case-supply-1-formation-evidence",
       "synthetic-case-supply-1-framework-evidence",
@@ -8634,6 +8776,8 @@
       "synthetic-ru-gk529-534-state-supply-performance-v1",
       "synthetic-ru-gk535-536-contractation-concept-v1",
       "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
+      "synthetic-ru-gk539-542-energy-supply-concept-v1",
+      "synthetic-ru-gk543-547-energy-supply-duties-and-interruption-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -11444,6 +11588,137 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о контрактации и не заменяет судебную оценку.",
         "Соответствие продукции, вина производителя и условия возврата отходов оцениваются экспертом и судом."
+      ]
+    },
+    "energy_supply_evidence_mapping": {
+      "evidence_id": "reviewed-energy-supply-evidence-supply-1-v0",
+      "schema_version": "contracts.energy-supply-evidence.v0",
+      "mapping_version": "contracts-reviewed-energy-supply-to-facts-v0",
+      "facts": {
+        "energy_supplied_through_attached_network": false,
+        "subscriber_has_compliant_receiving_device": false,
+        "energy_quantity_conforms_to_contract": false,
+        "energy_quality_defective": false,
+        "subscriber_is_household_consumer": false,
+        "subscriber_maintained_networks_and_regime": false,
+        "subscriber_paid_for_metered_energy": false,
+        "supply_interrupted": false,
+        "supply_interruption_agreed": false,
+        "unagreed_interruption_for_emergency_with_notice": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk539-542-energy-supply-concept-v1",
+        "synthetic-ru-gk543-547-energy-supply-duties-and-interruption-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "energy_quality_defective",
+          "assertion_id": "energy-supply-evidence-energy_quality_defective",
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "energy_quantity_conforms_to_contract",
+          "assertion_id": "energy-supply-evidence-energy_quantity_conforms_to_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "energy_supplied_through_attached_network",
+          "assertion_id": "energy-supply-evidence-energy_supplied_through_attached_network",
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "subscriber_has_compliant_receiving_device",
+          "assertion_id": "energy-supply-evidence-subscriber_has_compliant_receiving_device",
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "subscriber_is_household_consumer",
+          "assertion_id": "energy-supply-evidence-subscriber_is_household_consumer",
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "subscriber_maintained_networks_and_regime",
+          "assertion_id": "energy-supply-evidence-subscriber_maintained_networks_and_regime",
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "subscriber_paid_for_metered_energy",
+          "assertion_id": "energy-supply-evidence-subscriber_paid_for_metered_energy",
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "supply_interrupted",
+          "assertion_id": "energy-supply-evidence-supply_interrupted",
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "supply_interruption_agreed",
+          "assertion_id": "energy-supply-evidence-supply_interruption_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        },
+        {
+          "fact_name": "unagreed_interruption_for_emergency_with_notice",
+          "assertion_id": "energy-supply-evidence-unagreed_interruption_for_emergency_with_notice",
+          "source_refs": [
+            "synthetic-case-supply-1-energy-supply-evidence"
+          ]
+        }
+      ]
+    },
+    "energy_supply_constraint_set": {
+      "id": "energy-supply-constraint-set:reviewed-energy-supply-evidence-supply-1-v0",
+      "model_version": "contracts-energy-supply-articles-539-548-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk539-542-energy-supply-concept-v1",
+        "synthetic-ru-gk543-547-energy-supply-duties-and-interruption-v1"
+      ],
+      "expressions": [
+        "energy_supply_qualified == energy_supplied_through_attached_network AND subscriber_has_compliant_receiving_device",
+        "energy_conforms_to_contract == energy_supply_qualified AND energy_quantity_conforms_to_contract AND NOT energy_quality_defective",
+        "subscriber_may_refuse_defective_payment == energy_supply_qualified AND energy_quality_defective",
+        "subscriber_network_duty_met == subscriber_is_household_consumer OR subscriber_maintained_networks_and_regime",
+        "payment_duty_met == subscriber_paid_for_metered_energy",
+        "supply_interruption_lawful == NOT supply_interrupted OR supply_interruption_agreed OR unagreed_interruption_for_emergency_with_notice",
+        "unlawful_supply_interruption == supply_interrupted AND NOT supply_interruption_agreed AND NOT unagreed_interruption_for_emergency_with_notice",
+        "requires_human_energy_supply_assessment == (energy_supply_qualified AND energy_quality_defective) OR unlawful_supply_interruption"
+      ]
+    },
+    "energy_supply_evaluation": {
+      "constraint_set_id": "energy-supply-constraint-set:reviewed-energy-supply-evidence-supply-1-v0",
+      "satisfiable": true,
+      "energy_supply_qualified": false,
+      "energy_conforms_to_contract": false,
+      "subscriber_may_refuse_defective_payment": false,
+      "subscriber_network_duty_met": false,
+      "payment_duty_met": false,
+      "supply_interruption_lawful": true,
+      "unlawful_supply_interruption": false,
+      "requires_human_energy_supply_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор энергоснабжения.",
+        "Перерыв, прекращение или ограничение подачи энергии правомерны: по соглашению сторон либо как неотложная мера при аварии с немедленным уведомлением абонента (статья 546 ГК РФ)."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила об энергоснабжении и не заменяет судебную оценку.",
+        "По договору энергоснабжения нарушившая сторона возмещает причинённый реальный ущерб; вина и размер убытков оцениваются экспертом и судом (статья 547 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -16817,7 +17092,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.36.0",
+      "institutional_package_version": "contracts-ru-v0@0.37.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

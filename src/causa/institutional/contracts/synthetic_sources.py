@@ -1247,6 +1247,63 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk539-542-energy-supply-concept-v1",
+        title="Синтетическая проверенная модель понятия энергоснабжения, количества и качества энергии по статьям 539–542 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: подача энергии через присоединённую сеть при "
+            "наличии у абонента отвечающего требованиям энергопринимающего устройства и "
+            "учёта, соответствие энергии договору по количеству и качеству и право абонента "
+            "отказаться от оплаты некачественной энергии проверяются раздельно "
+            "(статьи 539–542 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "energy_supply_concept_articles_539_542",
+            "legal_reference": "ГК РФ, статьи 539–542",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk543-547-energy-supply-duties-and-interruption-v1",
+        title="Синтетическая проверенная модель содержания сетей, оплаты, перерыва подачи и ответственности по статьям 543–547 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: обязанности по содержанию сетей и режиму "
+            "потребления (для бытового потребителя — на организации), оплата по данным "
+            "учёта, правомерность перерыва подачи только по соглашению или как неотложная "
+            "мера при аварии с уведомлением и возмещение реального ущерба проверяются "
+            "раздельно (статьи 543–547 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "energy_supply_duties_and_interruption_articles_543_547",
+            "legal_reference": "ГК РФ, статьи 543–547",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-energy-supply-evidence",
+        title="Синтетическая проверенная запись фактов об энергоснабжении",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой готовых товаров и не "
+            "является договором энергоснабжения через присоединённую сеть; перерывов подачи "
+            "и претензий к качеству энергии нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "energy_supply_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

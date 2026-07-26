@@ -174,6 +174,16 @@ from causa.institutional.contracts.contractation import (
     evaluate_contractation_constraints,
     map_reviewed_contractation_evidence,
 )
+from causa.institutional.contracts.energy_supply import (
+    ENERGY_SUPPLY_EVIDENCE_SCHEMA_VERSION,
+    EnergySupplyConstraintSet,
+    EnergySupplyEvaluation,
+    EnergySupplyEvidenceMappingResult,
+    ReviewedEnergySupplyEvidence,
+    build_energy_supply_constraint_set,
+    evaluate_energy_supply_constraints,
+    map_reviewed_energy_supply_evidence,
+)
 from causa.institutional.contracts.state_supply import (
     STATE_SUPPLY_EVIDENCE_SCHEMA_VERSION,
     ReviewedStateSupplyEvidence,
@@ -416,6 +426,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     retail_sale_evidence: ReviewedRetailSaleEvidence
     state_supply_evidence: ReviewedStateSupplyEvidence
     contractation_evidence: ReviewedContractationEvidence
+    energy_supply_evidence: ReviewedEnergySupplyEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -512,6 +523,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     contractation_evidence_mapping: ContractationEvidenceMappingResult
     contractation_constraint_set: ContractationConstraintSet
     contractation_evaluation: ContractationEvaluation
+    energy_supply_evidence_mapping: EnergySupplyEvidenceMappingResult
+    energy_supply_constraint_set: EnergySupplyConstraintSet
+    energy_supply_evaluation: EnergySupplyEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -760,6 +774,19 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.contractation_evaluation != expected_contractation_evaluation:
             raise ValueError("Contractation evaluation does not replay from reviewed evidence.")
+        expected_energy_supply_set = build_energy_supply_constraint_set(
+            self.energy_supply_evidence_mapping
+        )
+        if self.energy_supply_constraint_set != expected_energy_supply_set:
+            raise ValueError(
+                "Energy supply constraint set does not replay from reviewed evidence."
+            )
+        expected_energy_supply_evaluation = evaluate_energy_supply_constraints(
+            expected_energy_supply_set,
+            self.energy_supply_evidence_mapping.facts,
+        )
+        if self.energy_supply_evaluation != expected_energy_supply_evaluation:
+            raise ValueError("Energy supply evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -1116,6 +1143,8 @@ def _validate_request_integrity(
         raise ValueError("State supply evidence case_id does not match the analysis request.")
     if request.contractation_evidence.case_id != request.case_id:
         raise ValueError("Contractation evidence case_id does not match the analysis request.")
+    if request.energy_supply_evidence.case_id != request.case_id:
+        raise ValueError("Energy supply evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -1205,6 +1234,8 @@ def _validate_request_integrity(
         raise ValueError("State supply evidence uses an unsupported schema version.")
     if request.contractation_evidence.schema_version != CONTRACTATION_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Contractation evidence uses an unsupported schema version.")
+    if request.energy_supply_evidence.schema_version != ENERGY_SUPPLY_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Energy supply evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -1231,6 +1262,7 @@ def _validate_request_integrity(
         *request.retail_sale_evidence.legal_source_refs,
         *request.state_supply_evidence.legal_source_refs,
         *request.contractation_evidence.legal_source_refs,
+        *request.energy_supply_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -1279,6 +1311,8 @@ def _validate_request_integrity(
     for assertion in request.state_supply_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.contractation_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.energy_supply_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -1519,6 +1553,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Contractation legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_contractation_legal_sources))
+        )
+    invalid_energy_supply_legal_sources = [
+        source_id
+        for source_id in request.energy_supply_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_energy_supply_legal_sources:
+        raise ValueError(
+            "Energy supply legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_energy_supply_legal_sources))
         )
     invalid_invalidity_legal_sources = [
         source_id
@@ -1797,6 +1842,11 @@ def run_reviewed_contract_analysis(
         review_status=request.contractation_evidence.review_status,
         reviewer_id=request.contractation_evidence.reviewer_id,
     )
+    energy_supply_reviewer_id = _require_reviewed(
+        artifact_name="Energy supply evidence",
+        review_status=request.energy_supply_evidence.review_status,
+        reviewer_id=request.energy_supply_evidence.reviewer_id,
+    )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
         review_status=request.invalidity_evidence.review_status,
@@ -2018,6 +2068,16 @@ def run_reviewed_contract_analysis(
     contractation_evaluation = evaluate_contractation_constraints(
         contractation_constraint_set,
         contractation_evidence_mapping.facts,
+    )
+    energy_supply_evidence_mapping = map_reviewed_energy_supply_evidence(
+        request.energy_supply_evidence
+    )
+    energy_supply_constraint_set = build_energy_supply_constraint_set(
+        energy_supply_evidence_mapping
+    )
+    energy_supply_evaluation = evaluate_energy_supply_constraints(
+        energy_supply_constraint_set,
+        energy_supply_evidence_mapping.facts,
     )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
@@ -2261,6 +2321,7 @@ def run_reviewed_contract_analysis(
         or retail_sale_evaluation.requires_human_retail_sale_assessment
         or state_supply_evaluation.requires_human_state_supply_assessment
         or contractation_evaluation.requires_human_contractation_assessment
+        or energy_supply_evaluation.requires_human_energy_supply_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -2299,6 +2360,7 @@ def run_reviewed_contract_analysis(
                 retail_sale_reviewer_id,
                 state_supply_reviewer_id,
                 contractation_reviewer_id,
+                energy_supply_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -2371,6 +2433,9 @@ def run_reviewed_contract_analysis(
         contractation_evidence_mapping=contractation_evidence_mapping,
         contractation_constraint_set=contractation_constraint_set,
         contractation_evaluation=contractation_evaluation,
+        energy_supply_evidence_mapping=energy_supply_evidence_mapping,
+        energy_supply_constraint_set=energy_supply_constraint_set,
+        energy_supply_evaluation=energy_supply_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,
