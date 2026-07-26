@@ -1,0 +1,464 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о мене по статьям 567–571 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-barter-evidence-supply-1-v0",
+    "schema_version": "contracts.barter-evidence.v0",
+    "mapping_version": "contracts-reviewed-barter-to-facts-v0",
+    "facts": {
+      "mutual_goods_for_goods_exchange": false,
+      "contrary_to_barter_essence": false,
+      "goods_treated_as_equal_value": false,
+      "goods_unequal_value": false,
+      "lower_price_party_paid_difference": false,
+      "transfer_deadlines_differ": false,
+      "first_party_performed_its_transfer": false,
+      "both_parties_transferred_goods": false,
+      "received_good_evicted_by_third_party": false,
+      "eviction_ground_arose_before_performance": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk567-568-barter-concept-and-price-v1",
+      "synthetic-ru-gk569-571-barter-performance-and-eviction-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "both_parties_transferred_goods",
+        "assertion_id": "barter-evidence-both_parties_transferred_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-barter-evidence"
+        ]
+      },
+      {
+        "fact_name": "contrary_to_barter_essence",
+        "assertion_id": "barter-evidence-contrary_to_barter_essence",
+        "source_refs": [
+          "synthetic-case-supply-1-barter-evidence"
+        ]
+      },
+      {
+        "fact_name": "eviction_ground_arose_before_performance",
+        "assertion_id": "barter-evidence-eviction_ground_arose_before_performance",
+        "source_refs": [
+          "synthetic-case-supply-1-barter-evidence"
+        ]
+      },
+      {
+        "fact_name": "first_party_performed_its_transfer",
+        "assertion_id": "barter-evidence-first_party_performed_its_transfer",
+        "source_refs": [
+          "synthetic-case-supply-1-barter-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_treated_as_equal_value",
+        "assertion_id": "barter-evidence-goods_treated_as_equal_value",
+        "source_refs": [
+          "synthetic-case-supply-1-barter-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_unequal_value",
+        "assertion_id": "barter-evidence-goods_unequal_value",
+        "source_refs": [
+          "synthetic-case-supply-1-barter-evidence"
+        ]
+      },
+      {
+        "fact_name": "lower_price_party_paid_difference",
+        "assertion_id": "barter-evidence-lower_price_party_paid_difference",
+        "source_refs": [
+          "synthetic-case-supply-1-barter-evidence"
+        ]
+      },
+      {
+        "fact_name": "mutual_goods_for_goods_exchange",
+        "assertion_id": "barter-evidence-mutual_goods_for_goods_exchange",
+        "source_refs": [
+          "synthetic-case-supply-1-barter-evidence"
+        ]
+      },
+      {
+        "fact_name": "received_good_evicted_by_third_party",
+        "assertion_id": "barter-evidence-received_good_evicted_by_third_party",
+        "source_refs": [
+          "synthetic-case-supply-1-barter-evidence"
+        ]
+      },
+      {
+        "fact_name": "transfer_deadlines_differ",
+        "assertion_id": "barter-evidence-transfer_deadlines_differ",
+        "source_refs": [
+          "synthetic-case-supply-1-barter-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "barter-constraint-set:reviewed-barter-evidence-supply-1-v0",
+    "model_version": "contracts-barter-articles-567-571-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk567-568-barter-concept-and-price-v1",
+      "synthetic-ru-gk569-571-barter-performance-and-eviction-v1"
+    ],
+    "expressions": [
+      "barter_qualified == mutual_goods_for_goods_exchange",
+      "sale_rules_apply == barter_qualified AND NOT contrary_to_barter_essence",
+      "equal_value_presumption_applies == barter_qualified AND goods_treated_as_equal_value",
+      "price_difference_obligation == barter_qualified AND goods_unequal_value AND NOT lower_price_party_paid_difference",
+      "counter_performance_rules_apply == barter_qualified AND transfer_deadlines_differ",
+      "second_party_may_suspend_transfer == barter_qualified AND transfer_deadlines_differ AND NOT first_party_performed_its_transfer",
+      "ownership_transfers_simultaneously == barter_qualified AND both_parties_transferred_goods",
+      "eviction_remedy_available == barter_qualified AND received_good_evicted_by_third_party AND eviction_ground_arose_before_performance",
+      "requires_human_barter_assessment == price_difference_obligation OR second_party_may_suspend_transfer OR eviction_remedy_available OR (barter_qualified AND contrary_to_barter_essence)"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "barter-constraint-set:reviewed-barter-evidence-supply-1-v0",
+    "satisfiable": true,
+    "barter_qualified": false,
+    "sale_rules_apply": false,
+    "equal_value_presumption_applies": false,
+    "price_difference_obligation": false,
+    "counter_performance_rules_apply": false,
+    "second_party_may_suspend_transfer": false,
+    "ownership_transfers_simultaneously": false,
+    "eviction_remedy_available": false,
+    "requires_human_barter_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор мены."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о мене и не заменяет судебную оценку.",
+      "Равноценность товаров, размер разницы в цене и основания изъятия оцениваются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "barter-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "barter-bench-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "barter_qualified": true,
+          "sale_rules_apply": true,
+          "requires_human_barter_assessment": false
+        },
+        "observed_outcomes": {
+          "barter_qualified": true,
+          "sale_rules_apply": true,
+          "requires_human_barter_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "barter-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "barter_qualified": false
+        },
+        "observed_outcomes": {
+          "barter_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор мены."
+        ]
+      },
+      {
+        "task_id": "barter-bench-contrary-essence",
+        "passed": true,
+        "expected_outcomes": {
+          "sale_rules_apply": false,
+          "requires_human_barter_assessment": true
+        },
+        "observed_outcomes": {
+          "sale_rules_apply": false,
+          "requires_human_barter_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "barter-bench-equal-value",
+        "passed": true,
+        "expected_outcomes": {
+          "equal_value_presumption_applies": true,
+          "requires_human_barter_assessment": false
+        },
+        "observed_outcomes": {
+          "equal_value_presumption_applies": true,
+          "requires_human_barter_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ).",
+          "Обмениваемые товары признаются равноценными, если из договора не вытекает иное (статья 568 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "barter-bench-price-difference-unpaid",
+        "passed": true,
+        "expected_outcomes": {
+          "price_difference_obligation": true,
+          "requires_human_barter_assessment": true
+        },
+        "observed_outcomes": {
+          "price_difference_obligation": true,
+          "requires_human_barter_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ).",
+          "При неравноценности товаров сторона, передающая товар меньшей цены, обязана оплатить разницу в цене (статья 568 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "barter-bench-price-difference-paid",
+        "passed": true,
+        "expected_outcomes": {
+          "price_difference_obligation": false,
+          "requires_human_barter_assessment": false
+        },
+        "observed_outcomes": {
+          "price_difference_obligation": false,
+          "requires_human_barter_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "barter-bench-counter-performance-suspend",
+        "passed": true,
+        "expected_outcomes": {
+          "counter_performance_rules_apply": true,
+          "second_party_may_suspend_transfer": true,
+          "requires_human_barter_assessment": true
+        },
+        "observed_outcomes": {
+          "counter_performance_rules_apply": true,
+          "second_party_may_suspend_transfer": true,
+          "requires_human_barter_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ).",
+          "При несовпадении сроков передачи к передаче товара применяются правила о встречном исполнении обязательств (статья 569 ГК РФ, статья 328 ГК РФ).",
+          "Сторона, обязанная передать товар после другой стороны, вправе приостановить передачу или отказаться от исполнения, если первая сторона не передала товар (статья 569 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "barter-bench-counter-performance-performed",
+        "passed": true,
+        "expected_outcomes": {
+          "counter_performance_rules_apply": true,
+          "second_party_may_suspend_transfer": false,
+          "requires_human_barter_assessment": false
+        },
+        "observed_outcomes": {
+          "counter_performance_rules_apply": true,
+          "second_party_may_suspend_transfer": false,
+          "requires_human_barter_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ).",
+          "При несовпадении сроков передачи к передаче товара применяются правила о встречном исполнении обязательств (статья 569 ГК РФ, статья 328 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "barter-bench-ownership-simultaneous",
+        "passed": true,
+        "expected_outcomes": {
+          "ownership_transfers_simultaneously": true,
+          "requires_human_barter_assessment": false
+        },
+        "observed_outcomes": {
+          "ownership_transfers_simultaneously": true,
+          "requires_human_barter_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ).",
+          "Право собственности на обмениваемые товары переходит к сторонам одновременно после исполнения обязательств передать товары обеими сторонами (статья 570 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "barter-bench-eviction-remedy",
+        "passed": true,
+        "expected_outcomes": {
+          "eviction_remedy_available": true,
+          "requires_human_barter_assessment": true
+        },
+        "observed_outcomes": {
+          "eviction_remedy_available": true,
+          "requires_human_barter_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ).",
+          "При изъятии третьим лицом товара по основанию, возникшему до исполнения договора, сторона вправе требовать возврата полученного в обмен товара и (или) возмещения убытков (статья 571 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "barter-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "barter-red-qualify-without-exchange",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "barter_qualified": true
+        },
+        "observed_outcomes": {
+          "barter_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор мены."
+        ]
+      },
+      {
+        "case_id": "barter-red-sale-rules-despite-contrary-essence",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "sale_rules_apply": true
+        },
+        "observed_outcomes": {
+          "sale_rules_apply": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "barter-red-equal-value-without-qualification",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "equal_value_presumption_applies": true
+        },
+        "observed_outcomes": {
+          "equal_value_presumption_applies": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор мены."
+        ]
+      },
+      {
+        "case_id": "barter-red-price-difference-despite-payment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "price_difference_obligation": true
+        },
+        "observed_outcomes": {
+          "price_difference_obligation": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "barter-red-skip-price-difference-when-unpaid",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "price_difference_obligation": false
+        },
+        "observed_outcomes": {
+          "price_difference_obligation": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ).",
+          "При неравноценности товаров сторона, передающая товар меньшей цены, обязана оплатить разницу в цене (статья 568 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "barter-red-suspend-despite-first-performed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "second_party_may_suspend_transfer": true
+        },
+        "observed_outcomes": {
+          "second_party_may_suspend_transfer": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ).",
+          "При несовпадении сроков передачи к передаче товара применяются правила о встречном исполнении обязательств (статья 569 ГК РФ, статья 328 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "barter-red-ownership-without-both-transfers",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "ownership_transfers_simultaneously": true
+        },
+        "observed_outcomes": {
+          "ownership_transfers_simultaneously": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "barter-red-eviction-remedy-without-eviction",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "eviction_remedy_available": true
+        },
+        "observed_outcomes": {
+          "eviction_remedy_available": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "barter-red-eviction-remedy-when-ground-after",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "eviction_remedy_available": true
+        },
+        "observed_outcomes": {
+          "eviction_remedy_available": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "barter-red-skip-human-on-eviction",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_barter_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_barter_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как мена: каждая сторона обязуется передать в собственность другой стороны один товар в обмен на другой (статья 567 ГК РФ).",
+          "К договору мены применяются правила о купле-продаже; каждая сторона признаётся продавцом передаваемого и покупателем принимаемого товара (статья 567 ГК РФ).",
+          "При изъятии третьим лицом товара по основанию, возникшему до исполнения договора, сторона вправе требовать возврата полученного в обмен товара и (или) возмещения убытков (статья 571 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

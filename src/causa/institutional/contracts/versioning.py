@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.40.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed barter evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 567 through 571.",
+            "Qualification, subsidiary sale rules, price difference, counter-performance, simultaneous ownership transfer, and eviction remedy remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о мене обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 567–571 ГК РФ.",
+            "Квалификация, субсидиарные правила купли-продажи, разница в цене, встречное исполнение, одновременный переход права и средство защиты при изъятии разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.39.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

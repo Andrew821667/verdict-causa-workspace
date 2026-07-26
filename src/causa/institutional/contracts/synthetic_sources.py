@@ -1415,6 +1415,61 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk567-568-barter-concept-and-price-v1",
+        title="Синтетическая проверенная модель понятия мены, применения правил о купле-продаже и разницы в цене по статьям 567 и 568 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: мена как обмен товара на товар в собственность, "
+            "субсидиарное применение правил о купле-продаже, признание сторон продавцом и "
+            "покупателем, презумпция равноценности и оплата разницы в цене при "
+            "неравноценности проверяются раздельно (статьи 567 и 568 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "barter_concept_and_price_articles_567_568",
+            "legal_reference": "ГК РФ, статьи 567 и 568",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk569-571-barter-performance-and-eviction-v1",
+        title="Синтетическая проверенная модель встречного исполнения, перехода права и ответственности за изъятие по статьям 569–571 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: встречное исполнение обязанности передать товар при "
+            "несовпадении сроков, одновременный переход права собственности после исполнения "
+            "обеими сторонами и право требовать возврата товара и убытков при изъятии его "
+            "третьим лицом проверяются раздельно (статьи 569–571 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "barter_performance_and_eviction_articles_569_571",
+            "legal_reference": "ГК РФ, статьи 569–571",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-barter-evidence",
+        title="Синтетическая проверенная запись фактов о мене",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является возмездной поставкой товаров за "
+            "денежную оплату и не является меной товара на товар; разницы в цене, встречного "
+            "исполнения и изъятия товара третьим лицом нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "barter_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

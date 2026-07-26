@@ -1126,6 +1126,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk567-568-barter-concept-and-price-v1",
+      "title": "Синтетическая проверенная модель понятия мены, применения правил о купле-продаже и разницы в цене по статьям 567 и 568 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: мена как обмен товара на товар в собственность, субсидиарное применение правил о купле-продаже, признание сторон продавцом и покупателем, презумпция равноценности и оплата разницы в цене при неравноценности проверяются раздельно (статьи 567 и 568 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "barter_concept_and_price_articles_567_568",
+        "legal_reference": "ГК РФ, статьи 567 и 568",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk569-571-barter-performance-and-eviction-v1",
+      "title": "Синтетическая проверенная модель встречного исполнения, перехода права и ответственности за изъятие по статьям 569–571 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: встречное исполнение обязанности передать товар при несовпадении сроков, одновременный переход права собственности после исполнения обеими сторонами и право требовать возврата товара и убытков при изъятии его третьим лицом проверяются раздельно (статьи 569–571 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "barter_performance_and_eviction_articles_569_571",
+        "legal_reference": "ГК РФ, статьи 569–571",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-barter-evidence",
+      "title": "Синтетическая проверенная запись фактов о мене",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является возмездной поставкой товаров за денежную оплату и не является меной товара на товар; разницы в цене, встречного исполнения и изъятия товара третьим лицом нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "barter_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -4153,6 +4200,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-enterprise-sale-reviewer"
+    },
+    "barter_evidence": {
+      "id": "reviewed-barter-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.barter-evidence.v0",
+      "assertions": [
+        {
+          "id": "barter-evidence-mutual_goods_for_goods_exchange",
+          "predicate": "mutual_goods_for_goods_exchange",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "id": "barter-evidence-contrary_to_barter_essence",
+          "predicate": "contrary_to_barter_essence",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "id": "barter-evidence-goods_treated_as_equal_value",
+          "predicate": "goods_treated_as_equal_value",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "id": "barter-evidence-goods_unequal_value",
+          "predicate": "goods_unequal_value",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "id": "barter-evidence-lower_price_party_paid_difference",
+          "predicate": "lower_price_party_paid_difference",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "id": "barter-evidence-transfer_deadlines_differ",
+          "predicate": "transfer_deadlines_differ",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "id": "barter-evidence-first_party_performed_its_transfer",
+          "predicate": "first_party_performed_its_transfer",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "id": "barter-evidence-both_parties_transferred_goods",
+          "predicate": "both_parties_transferred_goods",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "id": "barter-evidence-received_good_evicted_by_third_party",
+          "predicate": "received_good_evicted_by_third_party",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "id": "barter-evidence-eviction_ground_arose_before_performance",
+          "predicate": "eviction_ground_arose_before_performance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk567-568-barter-concept-and-price-v1",
+        "synthetic-ru-gk569-571-barter-performance-and-eviction-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-barter-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -8928,6 +9068,7 @@
     "reviewer_ids": [
       "synthetic-adhesion-reviewer",
       "synthetic-authority-reviewer",
+      "synthetic-barter-reviewer",
       "synthetic-case-evidence-reviewer",
       "synthetic-contractation-reviewer",
       "synthetic-energy-supply-reviewer",
@@ -8963,6 +9104,7 @@
     ],
     "source_ids": [
       "synthetic-case-supply-1-adhesion-evidence",
+      "synthetic-case-supply-1-barter-evidence",
       "synthetic-case-supply-1-contractation-evidence",
       "synthetic-case-supply-1-energy-supply-evidence",
       "synthetic-case-supply-1-enterprise-sale-evidence",
@@ -9066,6 +9208,8 @@
       "synthetic-ru-gk554-558-real-estate-sale-terms-and-transfer-v1",
       "synthetic-ru-gk559-561-enterprise-sale-concept-v1",
       "synthetic-ru-gk562-566-enterprise-sale-creditors-and-transfer-v1",
+      "synthetic-ru-gk567-568-barter-concept-and-price-v1",
+      "synthetic-ru-gk569-571-barter-performance-and-eviction-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -12273,6 +12417,138 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о продаже предприятия и не заменяет судебную оценку.",
         "Состав предприятия, размер долгов и убытков и государственная регистрация оцениваются экспертом, аудитором и регистрирующим органом."
+      ]
+    },
+    "barter_evidence_mapping": {
+      "evidence_id": "reviewed-barter-evidence-supply-1-v0",
+      "schema_version": "contracts.barter-evidence.v0",
+      "mapping_version": "contracts-reviewed-barter-to-facts-v0",
+      "facts": {
+        "mutual_goods_for_goods_exchange": false,
+        "contrary_to_barter_essence": false,
+        "goods_treated_as_equal_value": false,
+        "goods_unequal_value": false,
+        "lower_price_party_paid_difference": false,
+        "transfer_deadlines_differ": false,
+        "first_party_performed_its_transfer": false,
+        "both_parties_transferred_goods": false,
+        "received_good_evicted_by_third_party": false,
+        "eviction_ground_arose_before_performance": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk567-568-barter-concept-and-price-v1",
+        "synthetic-ru-gk569-571-barter-performance-and-eviction-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "both_parties_transferred_goods",
+          "assertion_id": "barter-evidence-both_parties_transferred_goods",
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "fact_name": "contrary_to_barter_essence",
+          "assertion_id": "barter-evidence-contrary_to_barter_essence",
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "fact_name": "eviction_ground_arose_before_performance",
+          "assertion_id": "barter-evidence-eviction_ground_arose_before_performance",
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "fact_name": "first_party_performed_its_transfer",
+          "assertion_id": "barter-evidence-first_party_performed_its_transfer",
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_treated_as_equal_value",
+          "assertion_id": "barter-evidence-goods_treated_as_equal_value",
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_unequal_value",
+          "assertion_id": "barter-evidence-goods_unequal_value",
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "fact_name": "lower_price_party_paid_difference",
+          "assertion_id": "barter-evidence-lower_price_party_paid_difference",
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "fact_name": "mutual_goods_for_goods_exchange",
+          "assertion_id": "barter-evidence-mutual_goods_for_goods_exchange",
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "fact_name": "received_good_evicted_by_third_party",
+          "assertion_id": "barter-evidence-received_good_evicted_by_third_party",
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        },
+        {
+          "fact_name": "transfer_deadlines_differ",
+          "assertion_id": "barter-evidence-transfer_deadlines_differ",
+          "source_refs": [
+            "synthetic-case-supply-1-barter-evidence"
+          ]
+        }
+      ]
+    },
+    "barter_constraint_set": {
+      "id": "barter-constraint-set:reviewed-barter-evidence-supply-1-v0",
+      "model_version": "contracts-barter-articles-567-571-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk567-568-barter-concept-and-price-v1",
+        "synthetic-ru-gk569-571-barter-performance-and-eviction-v1"
+      ],
+      "expressions": [
+        "barter_qualified == mutual_goods_for_goods_exchange",
+        "sale_rules_apply == barter_qualified AND NOT contrary_to_barter_essence",
+        "equal_value_presumption_applies == barter_qualified AND goods_treated_as_equal_value",
+        "price_difference_obligation == barter_qualified AND goods_unequal_value AND NOT lower_price_party_paid_difference",
+        "counter_performance_rules_apply == barter_qualified AND transfer_deadlines_differ",
+        "second_party_may_suspend_transfer == barter_qualified AND transfer_deadlines_differ AND NOT first_party_performed_its_transfer",
+        "ownership_transfers_simultaneously == barter_qualified AND both_parties_transferred_goods",
+        "eviction_remedy_available == barter_qualified AND received_good_evicted_by_third_party AND eviction_ground_arose_before_performance",
+        "requires_human_barter_assessment == price_difference_obligation OR second_party_may_suspend_transfer OR eviction_remedy_available OR (barter_qualified AND contrary_to_barter_essence)"
+      ]
+    },
+    "barter_evaluation": {
+      "constraint_set_id": "barter-constraint-set:reviewed-barter-evidence-supply-1-v0",
+      "satisfiable": true,
+      "barter_qualified": false,
+      "sale_rules_apply": false,
+      "equal_value_presumption_applies": false,
+      "price_difference_obligation": false,
+      "counter_performance_rules_apply": false,
+      "second_party_may_suspend_transfer": false,
+      "ownership_transfers_simultaneously": false,
+      "eviction_remedy_available": false,
+      "requires_human_barter_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор мены."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о мене и не заменяет судебную оценку.",
+        "Равноценность товаров, размер разницы в цене и основания изъятия оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -17646,7 +17922,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.39.0",
+      "institutional_package_version": "contracts-ru-v0@0.40.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

@@ -95,6 +95,11 @@ from causa.institutional.contracts.energy_supply import (
     EnergySupplyEvidencePredicate,
     ReviewedEnergySupplyEvidence,
 )
+from causa.institutional.contracts.barter import (
+    BarterEvidenceAssertion,
+    BarterEvidencePredicate,
+    ReviewedBarterEvidence,
+)
 from causa.institutional.contracts.enterprise_sale import (
     EnterpriseSaleEvidenceAssertion,
     EnterpriseSaleEvidencePredicate,
@@ -244,6 +249,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk559-561-enterprise-sale-concept-v1",
     "synthetic-ru-gk562-566-enterprise-sale-creditors-and-transfer-v1",
     "synthetic-case-supply-1-enterprise-sale-evidence",
+    "synthetic-ru-gk567-568-barter-concept-and-price-v1",
+    "synthetic-ru-gk569-571-barter-performance-and-eviction-v1",
+    "synthetic-case-supply-1-barter-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1199,6 +1207,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-enterprise-sale-reviewer",
+        ),
+        barter_evidence=ReviewedBarterEvidence(
+            id="reviewed-barter-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                BarterEvidenceAssertion(
+                    id=f"barter-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-barter-evidence",),
+                )
+                for predicate, value in (
+                    (BarterEvidencePredicate.MUTUAL_GOODS_FOR_GOODS_EXCHANGE, False),
+                    (BarterEvidencePredicate.CONTRARY_TO_BARTER_ESSENCE, False),
+                    (BarterEvidencePredicate.GOODS_TREATED_AS_EQUAL_VALUE, False),
+                    (BarterEvidencePredicate.GOODS_UNEQUAL_VALUE, False),
+                    (BarterEvidencePredicate.LOWER_PRICE_PARTY_PAID_DIFFERENCE, False),
+                    (BarterEvidencePredicate.TRANSFER_DEADLINES_DIFFER, False),
+                    (BarterEvidencePredicate.FIRST_PARTY_PERFORMED_ITS_TRANSFER, False),
+                    (BarterEvidencePredicate.BOTH_PARTIES_TRANSFERRED_GOODS, False),
+                    (BarterEvidencePredicate.RECEIVED_GOOD_EVICTED_BY_THIRD_PARTY, False),
+                    (BarterEvidencePredicate.EVICTION_GROUND_AROSE_BEFORE_PERFORMANCE, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk567-568-barter-concept-and-price-v1",
+                "synthetic-ru-gk569-571-barter-performance-and-eviction-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-barter-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
