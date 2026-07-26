@@ -1,0 +1,455 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о продаже предприятия по статьям 559–566 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-enterprise-sale-evidence-supply-1-v0",
+    "schema_version": "contracts.enterprise-sale-evidence.v0",
+    "mapping_version": "contracts-reviewed-enterprise-sale-to-facts-v0",
+    "facts": {
+      "enterprise_as_going_concern_contract": false,
+      "written_single_document_with_annexes": false,
+      "sale_contract_registered": false,
+      "composition_documents_prepared": false,
+      "creditors_notified_in_writing": false,
+      "debt_transferred_without_creditor_consent": false,
+      "enterprise_transferred_by_deed": false,
+      "ownership_transfer_registered": false,
+      "undisclosed_debts_in_composition": false,
+      "rescission_harms_creditors_or_public": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk559-561-enterprise-sale-concept-v1",
+      "synthetic-ru-gk562-566-enterprise-sale-creditors-and-transfer-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "composition_documents_prepared",
+        "assertion_id": "enterprise-sale-evidence-composition_documents_prepared",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "creditors_notified_in_writing",
+        "assertion_id": "enterprise-sale-evidence-creditors_notified_in_writing",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "debt_transferred_without_creditor_consent",
+        "assertion_id": "enterprise-sale-evidence-debt_transferred_without_creditor_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "enterprise_as_going_concern_contract",
+        "assertion_id": "enterprise-sale-evidence-enterprise_as_going_concern_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "enterprise_transferred_by_deed",
+        "assertion_id": "enterprise-sale-evidence-enterprise_transferred_by_deed",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "ownership_transfer_registered",
+        "assertion_id": "enterprise-sale-evidence-ownership_transfer_registered",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "rescission_harms_creditors_or_public",
+        "assertion_id": "enterprise-sale-evidence-rescission_harms_creditors_or_public",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "sale_contract_registered",
+        "assertion_id": "enterprise-sale-evidence-sale_contract_registered",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "undisclosed_debts_in_composition",
+        "assertion_id": "enterprise-sale-evidence-undisclosed_debts_in_composition",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "written_single_document_with_annexes",
+        "assertion_id": "enterprise-sale-evidence-written_single_document_with_annexes",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-sale-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "enterprise-sale-constraint-set:reviewed-enterprise-sale-evidence-supply-1-v0",
+    "model_version": "contracts-enterprise-sale-articles-559-566-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk559-561-enterprise-sale-concept-v1",
+      "synthetic-ru-gk562-566-enterprise-sale-creditors-and-transfer-v1"
+    ],
+    "expressions": [
+      "enterprise_sale_qualified == enterprise_as_going_concern_contract",
+      "written_form_satisfied == enterprise_as_going_concern_contract AND written_single_document_with_annexes",
+      "sale_contract_concluded == written_form_satisfied AND sale_contract_registered",
+      "composition_duly_certified == enterprise_sale_qualified AND composition_documents_prepared",
+      "creditor_protection_met == enterprise_sale_qualified AND creditors_notified_in_writing AND NOT debt_transferred_without_creditor_consent",
+      "joint_liability_for_unconsented_debt == enterprise_sale_qualified AND debt_transferred_without_creditor_consent",
+      "enterprise_transfer_effective == enterprise_sale_qualified AND enterprise_transferred_by_deed",
+      "ownership_transfer_effective == enterprise_sale_qualified AND ownership_transfer_registered",
+      "price_reduction_available == enterprise_sale_qualified AND undisclosed_debts_in_composition",
+      "rescission_restricted_by_public_interest == rescission_harms_creditors_or_public",
+      "requires_human_enterprise_sale_assessment == (enterprise_sale_qualified AND debt_transferred_without_creditor_consent) OR (enterprise_sale_qualified AND undisclosed_debts_in_composition) OR rescission_harms_creditors_or_public"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "enterprise-sale-constraint-set:reviewed-enterprise-sale-evidence-supply-1-v0",
+    "satisfiable": true,
+    "enterprise_sale_qualified": false,
+    "written_form_satisfied": false,
+    "sale_contract_concluded": false,
+    "composition_duly_certified": false,
+    "creditor_protection_met": false,
+    "joint_liability_for_unconsented_debt": false,
+    "enterprise_transfer_effective": false,
+    "ownership_transfer_effective": false,
+    "price_reduction_available": false,
+    "rescission_restricted_by_public_interest": false,
+    "requires_human_enterprise_sale_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор продажи предприятия."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о продаже предприятия и не заменяет судебную оценку.",
+      "Состав предприятия, размер долгов и убытков и государственная регистрация оцениваются экспертом, аудитором и регистрирующим органом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "enterprise-sale-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "enterprise-sale-bench-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "enterprise_sale_qualified": true,
+          "requires_human_enterprise_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "enterprise_sale_qualified": true,
+          "requires_human_enterprise_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-sale-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "enterprise_sale_qualified": false
+        },
+        "observed_outcomes": {
+          "enterprise_sale_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор продажи предприятия."
+        ]
+      },
+      {
+        "task_id": "enterprise-sale-bench-written-form",
+        "passed": true,
+        "expected_outcomes": {
+          "written_form_satisfied": true,
+          "requires_human_enterprise_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "written_form_satisfied": true,
+          "requires_human_enterprise_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "Договор заключён в письменной форме одним документом с обязательными приложениями (статья 560 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-sale-bench-concluded",
+        "passed": true,
+        "expected_outcomes": {
+          "sale_contract_concluded": true,
+          "requires_human_enterprise_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "sale_contract_concluded": true,
+          "requires_human_enterprise_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "Договор заключён в письменной форме одним документом с обязательными приложениями (статья 560 ГК РФ).",
+          "Договор продажи предприятия прошёл государственную регистрацию и считается заключённым (статья 560 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-sale-bench-creditor-protection",
+        "passed": true,
+        "expected_outcomes": {
+          "creditor_protection_met": true,
+          "requires_human_enterprise_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "creditor_protection_met": true,
+          "requires_human_enterprise_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "Кредиторы по включённым обязательствам письменно уведомлены о продаже, перевод долга без согласия кредитора отсутствует (статья 562 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-sale-bench-joint-liability",
+        "passed": true,
+        "expected_outcomes": {
+          "joint_liability_for_unconsented_debt": true,
+          "creditor_protection_met": false,
+          "requires_human_enterprise_sale_assessment": true
+        },
+        "observed_outcomes": {
+          "joint_liability_for_unconsented_debt": true,
+          "creditor_protection_met": false,
+          "requires_human_enterprise_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "По долгам, переведённым без согласия кредитора, продавец и покупатель отвечают солидарно (статья 562 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-sale-bench-transfer-by-deed",
+        "passed": true,
+        "expected_outcomes": {
+          "enterprise_transfer_effective": true,
+          "requires_human_enterprise_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "enterprise_transfer_effective": true,
+          "requires_human_enterprise_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "Предприятие передано по передаточному акту, подписанному обеими сторонами (статья 563 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-sale-bench-ownership-registered",
+        "passed": true,
+        "expected_outcomes": {
+          "ownership_transfer_effective": true,
+          "requires_human_enterprise_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "ownership_transfer_effective": true,
+          "requires_human_enterprise_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "Переход права собственности на предприятие к покупателю зарегистрирован (статья 564 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-sale-bench-price-reduction",
+        "passed": true,
+        "expected_outcomes": {
+          "price_reduction_available": true,
+          "requires_human_enterprise_sale_assessment": true
+        },
+        "observed_outcomes": {
+          "price_reduction_available": true,
+          "requires_human_enterprise_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "Предприятие передано по передаточному акту, подписанному обеими сторонами (статья 563 ГК РФ).",
+          "При выявлении в составе переданного предприятия долгов, не указанных в договоре или передаточном акте, покупатель вправе требовать уменьшения цены (статья 565 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-sale-bench-rescission-restricted",
+        "passed": true,
+        "expected_outcomes": {
+          "rescission_restricted_by_public_interest": true,
+          "requires_human_enterprise_sale_assessment": true
+        },
+        "observed_outcomes": {
+          "rescission_restricted_by_public_interest": true,
+          "requires_human_enterprise_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "Применение последствий недействительности или изменения и расторжения ограничено, если существенно нарушает права кредиторов и других лиц либо противоречит публичным интересам (статья 566 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "enterprise-sale-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "enterprise-sale-red-qualify-without-going-concern",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "enterprise_sale_qualified": true
+        },
+        "observed_outcomes": {
+          "enterprise_sale_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор продажи предприятия."
+        ]
+      },
+      {
+        "case_id": "enterprise-sale-red-form-without-annexes",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "written_form_satisfied": true
+        },
+        "observed_outcomes": {
+          "written_form_satisfied": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-sale-red-concluded-without-registration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "sale_contract_concluded": true
+        },
+        "observed_outcomes": {
+          "sale_contract_concluded": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "Договор заключён в письменной форме одним документом с обязательными приложениями (статья 560 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-sale-red-composition-without-documents",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "composition_duly_certified": true
+        },
+        "observed_outcomes": {
+          "composition_duly_certified": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-sale-red-protection-despite-unconsented-transfer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "creditor_protection_met": true
+        },
+        "observed_outcomes": {
+          "creditor_protection_met": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "По долгам, переведённым без согласия кредитора, продавец и покупатель отвечают солидарно (статья 562 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-sale-red-hide-joint-liability",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "joint_liability_for_unconsented_debt": false
+        },
+        "observed_outcomes": {
+          "joint_liability_for_unconsented_debt": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "По долгам, переведённым без согласия кредитора, продавец и покупатель отвечают солидарно (статья 562 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-sale-red-transfer-without-deed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "enterprise_transfer_effective": true
+        },
+        "observed_outcomes": {
+          "enterprise_transfer_effective": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-sale-red-ownership-without-registration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "ownership_transfer_effective": true
+        },
+        "observed_outcomes": {
+          "ownership_transfer_effective": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "Предприятие передано по передаточному акту, подписанному обеими сторонами (статья 563 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-sale-red-price-reduction-without-debts",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "price_reduction_available": true
+        },
+        "observed_outcomes": {
+          "price_reduction_available": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "Предприятие передано по передаточному акту, подписанному обеими сторонами (статья 563 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-sale-red-ignore-public-interest",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "rescission_restricted_by_public_interest": false
+        },
+        "observed_outcomes": {
+          "rescission_restricted_by_public_interest": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа предприятия: продавец обязуется передать в собственность покупателя предприятие в целом как имущественный комплекс (статья 559 ГК РФ).",
+          "Применение последствий недействительности или изменения и расторжения ограничено, если существенно нарушает права кредиторов и других лиц либо противоречит публичным интересам (статья 566 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

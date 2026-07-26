@@ -1359,6 +1359,62 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk559-561-enterprise-sale-concept-v1",
+        title="Синтетическая проверенная модель понятия, формы и удостоверения состава продажи предприятия по статьям 559–561 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: продажа предприятия как передача имущественного "
+            "комплекса в целом, письменная форма одним документом с обязательными "
+            "приложениями, государственная регистрация договора и удостоверение состава "
+            "предприятия проверяются раздельно (статьи 559–561 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "enterprise_sale_concept_articles_559_561",
+            "legal_reference": "ГК РФ, статьи 559–561",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk562-566-enterprise-sale-creditors-and-transfer-v1",
+        title="Синтетическая проверенная модель прав кредиторов, передачи, недостатков и публичных интересов при продаже предприятия по статьям 562–566 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: письменное уведомление кредиторов и солидарная "
+            "ответственность за перевод долга без согласия, передача по передаточному акту "
+            "и регистрация перехода права, уменьшение цены при неуказанных долгах и "
+            "ограничение последствий недействительности публичными интересами проверяются "
+            "раздельно (статьи 562–566 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "enterprise_sale_creditors_and_transfer_articles_562_566",
+            "legal_reference": "ГК РФ, статьи 562–566",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-enterprise-sale-evidence",
+        title="Синтетическая проверенная запись фактов о продаже предприятия",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой отдельных товаров и не "
+            "является продажей предприятия как имущественного комплекса; передаточного акта, "
+            "уведомления кредиторов и регистрации перехода права нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "enterprise_sale_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

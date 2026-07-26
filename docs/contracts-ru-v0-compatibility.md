@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.39.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью продажи предприятия |
 | `0.38.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью продажи недвижимости |
 | `0.37.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью энергоснабжения |
 | `0.36.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью контрактации |
@@ -46,6 +47,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.38.0` → `0.39.0` соберите отдельно проверенный контракт данных о продаже предприятия (`contracts.enterprise-sale-evidence.v0`). Не выводите квалификацию продажи предприятия, письменную форму и регистрацию договора, удостоверение состава, права кредиторов, передачу и уменьшение цены из прежних результатов об общей купле-продаже или продаже недвижимости. Пересоберите артефакты оценки продажи предприятия, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.37.0` → `0.38.0` соберите отдельно проверенный контракт данных о продаже недвижимости (`contracts.real-estate-sale-evidence.v0`). Не выводите квалификацию продажи недвижимости, письменную форму, определённость предмета и цены, регистрацию перехода права, передачу по акту и средства защиты по качеству из прежних результатов об общей купле-продаже или поставке. Пересоберите артефакты оценки продажи недвижимости, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

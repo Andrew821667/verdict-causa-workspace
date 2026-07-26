@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.39.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed enterprise sale evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 559 through 566.",
+            "Qualification, form and registration, composition certification, creditor protection, transfer, and price reduction remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о продаже предприятия обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 559–566 ГК РФ.",
+            "Квалификация, форма и регистрация, удостоверение состава, права кредиторов, передача и уменьшение цены разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.38.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

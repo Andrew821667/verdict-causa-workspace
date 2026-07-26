@@ -95,6 +95,11 @@ from causa.institutional.contracts.energy_supply import (
     EnergySupplyEvidencePredicate,
     ReviewedEnergySupplyEvidence,
 )
+from causa.institutional.contracts.enterprise_sale import (
+    EnterpriseSaleEvidenceAssertion,
+    EnterpriseSaleEvidencePredicate,
+    ReviewedEnterpriseSaleEvidence,
+)
 from causa.institutional.contracts.real_estate_sale import (
     RealEstateSaleEvidenceAssertion,
     RealEstateSaleEvidencePredicate,
@@ -236,6 +241,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk549-552-real-estate-sale-concept-v1",
     "synthetic-ru-gk554-558-real-estate-sale-terms-and-transfer-v1",
     "synthetic-case-supply-1-real-estate-sale-evidence",
+    "synthetic-ru-gk559-561-enterprise-sale-concept-v1",
+    "synthetic-ru-gk562-566-enterprise-sale-creditors-and-transfer-v1",
+    "synthetic-case-supply-1-enterprise-sale-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1149,6 +1157,48 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-real-estate-sale-reviewer",
+        ),
+        enterprise_sale_evidence=ReviewedEnterpriseSaleEvidence(
+            id="reviewed-enterprise-sale-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                EnterpriseSaleEvidenceAssertion(
+                    id=f"enterprise-sale-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-enterprise-sale-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        EnterpriseSaleEvidencePredicate.ENTERPRISE_AS_GOING_CONCERN_CONTRACT,
+                        False,
+                    ),
+                    (
+                        EnterpriseSaleEvidencePredicate.WRITTEN_SINGLE_DOCUMENT_WITH_ANNEXES,
+                        False,
+                    ),
+                    (EnterpriseSaleEvidencePredicate.SALE_CONTRACT_REGISTERED, False),
+                    (EnterpriseSaleEvidencePredicate.COMPOSITION_DOCUMENTS_PREPARED, False),
+                    (EnterpriseSaleEvidencePredicate.CREDITORS_NOTIFIED_IN_WRITING, False),
+                    (
+                        EnterpriseSaleEvidencePredicate.DEBT_TRANSFERRED_WITHOUT_CREDITOR_CONSENT,
+                        False,
+                    ),
+                    (EnterpriseSaleEvidencePredicate.ENTERPRISE_TRANSFERRED_BY_DEED, False),
+                    (EnterpriseSaleEvidencePredicate.OWNERSHIP_TRANSFER_REGISTERED, False),
+                    (EnterpriseSaleEvidencePredicate.UNDISCLOSED_DEBTS_IN_COMPOSITION, False),
+                    (
+                        EnterpriseSaleEvidencePredicate.RESCISSION_HARMS_CREDITORS_OR_PUBLIC,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk559-561-enterprise-sale-concept-v1",
+                "synthetic-ru-gk562-566-enterprise-sale-creditors-and-transfer-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-enterprise-sale-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
