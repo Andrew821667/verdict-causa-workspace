@@ -1,0 +1,443 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о контрактации по статьям 535–538 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-contractation-evidence-supply-1-v0",
+    "schema_version": "contracts.contractation-evidence.v0",
+    "mapping_version": "contracts-reviewed-contractation-to-facts-v0",
+    "facts": {
+      "agricultural_producer_contract": false,
+      "goods_are_own_grown_produce": false,
+      "procurer_took_delivery_at_producer_location": false,
+      "goods_conform_and_timely": false,
+      "procurer_refused_conforming_goods": false,
+      "processing_waste_return_agreed": false,
+      "procurer_returned_waste": false,
+      "producer_delivered_quantity_and_assortment": false,
+      "producer_breached": false,
+      "producer_at_fault": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk535-536-contractation-concept-v1",
+      "synthetic-ru-gk537-538-contractation-duties-and-liability-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "agricultural_producer_contract",
+        "assertion_id": "contractation-evidence-agricultural_producer_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-contractation-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_are_own_grown_produce",
+        "assertion_id": "contractation-evidence-goods_are_own_grown_produce",
+        "source_refs": [
+          "synthetic-case-supply-1-contractation-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_conform_and_timely",
+        "assertion_id": "contractation-evidence-goods_conform_and_timely",
+        "source_refs": [
+          "synthetic-case-supply-1-contractation-evidence"
+        ]
+      },
+      {
+        "fact_name": "processing_waste_return_agreed",
+        "assertion_id": "contractation-evidence-processing_waste_return_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-contractation-evidence"
+        ]
+      },
+      {
+        "fact_name": "procurer_refused_conforming_goods",
+        "assertion_id": "contractation-evidence-procurer_refused_conforming_goods",
+        "source_refs": [
+          "synthetic-case-supply-1-contractation-evidence"
+        ]
+      },
+      {
+        "fact_name": "procurer_returned_waste",
+        "assertion_id": "contractation-evidence-procurer_returned_waste",
+        "source_refs": [
+          "synthetic-case-supply-1-contractation-evidence"
+        ]
+      },
+      {
+        "fact_name": "procurer_took_delivery_at_producer_location",
+        "assertion_id": "contractation-evidence-procurer_took_delivery_at_producer_location",
+        "source_refs": [
+          "synthetic-case-supply-1-contractation-evidence"
+        ]
+      },
+      {
+        "fact_name": "producer_at_fault",
+        "assertion_id": "contractation-evidence-producer_at_fault",
+        "source_refs": [
+          "synthetic-case-supply-1-contractation-evidence"
+        ]
+      },
+      {
+        "fact_name": "producer_breached",
+        "assertion_id": "contractation-evidence-producer_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-contractation-evidence"
+        ]
+      },
+      {
+        "fact_name": "producer_delivered_quantity_and_assortment",
+        "assertion_id": "contractation-evidence-producer_delivered_quantity_and_assortment",
+        "source_refs": [
+          "synthetic-case-supply-1-contractation-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "contractation-constraint-set:reviewed-contractation-evidence-supply-1-v0",
+    "model_version": "contracts-contractation-articles-535-538-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk535-536-contractation-concept-v1",
+      "synthetic-ru-gk537-538-contractation-duties-and-liability-v1"
+    ],
+    "expressions": [
+      "contractation_qualified == agricultural_producer_contract AND goods_are_own_grown_produce",
+      "procurer_acceptance_duty_met == procurer_took_delivery_at_producer_location",
+      "procurer_refusal_unlawful == procurer_refused_conforming_goods AND goods_conform_and_timely",
+      "waste_return_obligation == processing_waste_return_agreed",
+      "waste_return_performed == processing_waste_return_agreed AND procurer_returned_waste",
+      "producer_delivery_duty_met == producer_delivered_quantity_and_assortment",
+      "producer_liable_only_if_at_fault == producer_breached AND producer_at_fault",
+      "requires_human_contractation_assessment == procurer_refused_conforming_goods OR producer_breached OR (processing_waste_return_agreed AND NOT procurer_returned_waste)"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "contractation-constraint-set:reviewed-contractation-evidence-supply-1-v0",
+    "satisfiable": true,
+    "contractation_qualified": false,
+    "procurer_acceptance_duty_met": false,
+    "procurer_refusal_unlawful": false,
+    "waste_return_obligation": false,
+    "waste_return_performed": false,
+    "producer_delivery_duty_met": false,
+    "producer_liable_only_if_at_fault": false,
+    "requires_human_contractation_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор контрактации."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о контрактации и не заменяет судебную оценку.",
+      "Соответствие продукции, вина производителя и условия возврата отходов оцениваются экспертом и судом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "contractation-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "contractation-bench-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "contractation_qualified": true,
+          "requires_human_contractation_assessment": false
+        },
+        "observed_outcomes": {
+          "contractation_qualified": true,
+          "requires_human_contractation_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contractation-bench-not-own",
+        "passed": true,
+        "expected_outcomes": {
+          "contractation_qualified": false
+        },
+        "observed_outcomes": {
+          "contractation_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор контрактации."
+        ]
+      },
+      {
+        "task_id": "contractation-bench-procurer-accept",
+        "passed": true,
+        "expected_outcomes": {
+          "procurer_acceptance_duty_met": true,
+          "requires_human_contractation_assessment": false
+        },
+        "observed_outcomes": {
+          "procurer_acceptance_duty_met": true,
+          "requires_human_contractation_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ).",
+          "Заготовитель принял продукцию по месту нахождения производителя и обеспечил её вывоз (статья 536 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contractation-bench-refusal",
+        "passed": true,
+        "expected_outcomes": {
+          "procurer_refusal_unlawful": true,
+          "requires_human_contractation_assessment": true
+        },
+        "observed_outcomes": {
+          "procurer_refusal_unlawful": true,
+          "requires_human_contractation_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ).",
+          "Заготовитель не вправе отказаться от принятия сельскохозяйственной продукции, соответствующей условиям договора и переданной в срок (статья 536 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contractation-bench-refusal-nonconforming",
+        "passed": true,
+        "expected_outcomes": {
+          "procurer_refusal_unlawful": false,
+          "requires_human_contractation_assessment": true
+        },
+        "observed_outcomes": {
+          "procurer_refusal_unlawful": false,
+          "requires_human_contractation_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contractation-bench-waste-return",
+        "passed": true,
+        "expected_outcomes": {
+          "waste_return_obligation": true,
+          "waste_return_performed": true,
+          "requires_human_contractation_assessment": false
+        },
+        "observed_outcomes": {
+          "waste_return_obligation": true,
+          "waste_return_performed": true,
+          "requires_human_contractation_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ).",
+          "Договором предусмотрена обязанность заготовителя возвращать производителю отходы переработки с оплатой (статья 536 ГК РФ).",
+          "Отходы переработки возвращены производителю."
+        ]
+      },
+      {
+        "task_id": "contractation-bench-waste-not-returned",
+        "passed": true,
+        "expected_outcomes": {
+          "waste_return_obligation": true,
+          "waste_return_performed": false,
+          "requires_human_contractation_assessment": true
+        },
+        "observed_outcomes": {
+          "waste_return_obligation": true,
+          "waste_return_performed": false,
+          "requires_human_contractation_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ).",
+          "Договором предусмотрена обязанность заготовителя возвращать производителю отходы переработки с оплатой (статья 536 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contractation-bench-delivery",
+        "passed": true,
+        "expected_outcomes": {
+          "producer_delivery_duty_met": true,
+          "requires_human_contractation_assessment": false
+        },
+        "observed_outcomes": {
+          "producer_delivery_duty_met": true,
+          "requires_human_contractation_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ).",
+          "Производитель передал заготовителю продукцию в количестве и ассортименте, предусмотренных договором (статья 537 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contractation-bench-liable",
+        "passed": true,
+        "expected_outcomes": {
+          "producer_liable_only_if_at_fault": true,
+          "requires_human_contractation_assessment": true
+        },
+        "observed_outcomes": {
+          "producer_liable_only_if_at_fault": true,
+          "requires_human_contractation_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ).",
+          "Производитель, не исполнивший обязательство, несёт ответственность при наличии его вины (статья 538 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contractation-bench-not-liable",
+        "passed": true,
+        "expected_outcomes": {
+          "producer_liable_only_if_at_fault": false,
+          "requires_human_contractation_assessment": true
+        },
+        "observed_outcomes": {
+          "producer_liable_only_if_at_fault": false,
+          "requires_human_contractation_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "contractation-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "contractation-red-qualify-without-contract",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contractation_qualified": true
+        },
+        "observed_outcomes": {
+          "contractation_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор контрактации."
+        ]
+      },
+      {
+        "case_id": "contractation-red-qualify-without-own-produce",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contractation_qualified": true
+        },
+        "observed_outcomes": {
+          "contractation_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор контрактации."
+        ]
+      },
+      {
+        "case_id": "contractation-red-refusal-lawful-when-conforming",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "procurer_refusal_unlawful": false
+        },
+        "observed_outcomes": {
+          "procurer_refusal_unlawful": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ).",
+          "Заготовитель не вправе отказаться от принятия сельскохозяйственной продукции, соответствующей условиям договора и переданной в срок (статья 536 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "contractation-red-refusal-unlawful-when-nonconforming",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "procurer_refusal_unlawful": true
+        },
+        "observed_outcomes": {
+          "procurer_refusal_unlawful": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "contractation-red-waste-performed-without-agreement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "waste_return_performed": true
+        },
+        "observed_outcomes": {
+          "waste_return_performed": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "contractation-red-liable-without-fault",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "producer_liable_only_if_at_fault": true
+        },
+        "observed_outcomes": {
+          "producer_liable_only_if_at_fault": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "contractation-red-delivery-met-without-delivery",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "producer_delivery_duty_met": true
+        },
+        "observed_outcomes": {
+          "producer_delivery_duty_met": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "contractation-red-acceptance-without-delivery",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "procurer_acceptance_duty_met": true
+        },
+        "observed_outcomes": {
+          "procurer_acceptance_duty_met": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "contractation-red-skip-human-on-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_contractation_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_contractation_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "contractation-red-skip-human-on-refusal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_contractation_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_contractation_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как контрактация: производитель передаёт заготовителю выращенную (произведённую) им сельскохозяйственную продукцию (статья 535 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

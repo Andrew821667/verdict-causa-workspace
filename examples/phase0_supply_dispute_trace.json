@@ -938,6 +938,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk535-536-contractation-concept-v1",
+      "title": "Синтетическая проверенная модель понятия контрактации и обязанностей заготовителя по статьям 535 и 536 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: контрактация как передача производителем выращенной им сельскохозяйственной продукции заготовителю, приёмка по месту нахождения производителя, недопустимость отказа от соответствующей продукции и возврат отходов переработки проверяются раздельно (статьи 535 и 536 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "contractation_concept_articles_535_536",
+        "legal_reference": "ГК РФ, статьи 535 и 536",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
+      "title": "Синтетическая проверенная модель обязанностей и ответственности производителя по статьям 537 и 538 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обязанность производителя передать продукцию в количестве и ассортименте и его ответственность за нарушение только при наличии вины проверяются раздельно (статьи 537 и 538 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "contractation_duties_and_liability_articles_537_538",
+        "legal_reference": "ГК РФ, статьи 537 и 538",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-contractation-evidence",
+      "title": "Синтетическая проверенная запись фактов о контрактации",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является обычной поставкой готовых товаров и не является контрактацией сельскохозяйственной продукции; отказ заготовителя и нарушения производителя отсутствуют.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "contractation_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -3593,6 +3640,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-state-supply-reviewer"
+    },
+    "contractation_evidence": {
+      "id": "reviewed-contractation-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.contractation-evidence.v0",
+      "assertions": [
+        {
+          "id": "contractation-evidence-agricultural_producer_contract",
+          "predicate": "agricultural_producer_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "id": "contractation-evidence-goods_are_own_grown_produce",
+          "predicate": "goods_are_own_grown_produce",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "id": "contractation-evidence-procurer_took_delivery_at_producer_location",
+          "predicate": "procurer_took_delivery_at_producer_location",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "id": "contractation-evidence-goods_conform_and_timely",
+          "predicate": "goods_conform_and_timely",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "id": "contractation-evidence-procurer_refused_conforming_goods",
+          "predicate": "procurer_refused_conforming_goods",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "id": "contractation-evidence-processing_waste_return_agreed",
+          "predicate": "processing_waste_return_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "id": "contractation-evidence-procurer_returned_waste",
+          "predicate": "procurer_returned_waste",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "id": "contractation-evidence-producer_delivered_quantity_and_assortment",
+          "predicate": "producer_delivered_quantity_and_assortment",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "id": "contractation-evidence-producer_breached",
+          "predicate": "producer_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "id": "contractation-evidence-producer_at_fault",
+          "predicate": "producer_at_fault",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk535-536-contractation-concept-v1",
+        "synthetic-ru-gk537-538-contractation-duties-and-liability-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-contractation-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -8369,6 +8509,7 @@
       "synthetic-adhesion-reviewer",
       "synthetic-authority-reviewer",
       "synthetic-case-evidence-reviewer",
+      "synthetic-contractation-reviewer",
       "synthetic-form-reviewer",
       "synthetic-formation-reviewer",
       "synthetic-framework-reviewer",
@@ -8399,6 +8540,7 @@
     ],
     "source_ids": [
       "synthetic-case-supply-1-adhesion-evidence",
+      "synthetic-case-supply-1-contractation-evidence",
       "synthetic-case-supply-1-form-evidence",
       "synthetic-case-supply-1-formation-evidence",
       "synthetic-case-supply-1-framework-evidence",
@@ -8490,6 +8632,8 @@
       "synthetic-ru-gk518-524-supply-remedies-v1",
       "synthetic-ru-gk525-528-state-contract-v1",
       "synthetic-ru-gk529-534-state-supply-performance-v1",
+      "synthetic-ru-gk535-536-contractation-concept-v1",
+      "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -11170,6 +11314,136 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о поставке для государственных и муниципальных нужд и не заменяет судебную оценку.",
         "Обязательность заключения контракта, размер убытков и порядок размещения заказа оцениваются экспертом и судом."
+      ]
+    },
+    "contractation_evidence_mapping": {
+      "evidence_id": "reviewed-contractation-evidence-supply-1-v0",
+      "schema_version": "contracts.contractation-evidence.v0",
+      "mapping_version": "contracts-reviewed-contractation-to-facts-v0",
+      "facts": {
+        "agricultural_producer_contract": false,
+        "goods_are_own_grown_produce": false,
+        "procurer_took_delivery_at_producer_location": false,
+        "goods_conform_and_timely": false,
+        "procurer_refused_conforming_goods": false,
+        "processing_waste_return_agreed": false,
+        "procurer_returned_waste": false,
+        "producer_delivered_quantity_and_assortment": false,
+        "producer_breached": false,
+        "producer_at_fault": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk535-536-contractation-concept-v1",
+        "synthetic-ru-gk537-538-contractation-duties-and-liability-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "agricultural_producer_contract",
+          "assertion_id": "contractation-evidence-agricultural_producer_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_are_own_grown_produce",
+          "assertion_id": "contractation-evidence-goods_are_own_grown_produce",
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_conform_and_timely",
+          "assertion_id": "contractation-evidence-goods_conform_and_timely",
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "fact_name": "processing_waste_return_agreed",
+          "assertion_id": "contractation-evidence-processing_waste_return_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "fact_name": "procurer_refused_conforming_goods",
+          "assertion_id": "contractation-evidence-procurer_refused_conforming_goods",
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "fact_name": "procurer_returned_waste",
+          "assertion_id": "contractation-evidence-procurer_returned_waste",
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "fact_name": "procurer_took_delivery_at_producer_location",
+          "assertion_id": "contractation-evidence-procurer_took_delivery_at_producer_location",
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "fact_name": "producer_at_fault",
+          "assertion_id": "contractation-evidence-producer_at_fault",
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "fact_name": "producer_breached",
+          "assertion_id": "contractation-evidence-producer_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        },
+        {
+          "fact_name": "producer_delivered_quantity_and_assortment",
+          "assertion_id": "contractation-evidence-producer_delivered_quantity_and_assortment",
+          "source_refs": [
+            "synthetic-case-supply-1-contractation-evidence"
+          ]
+        }
+      ]
+    },
+    "contractation_constraint_set": {
+      "id": "contractation-constraint-set:reviewed-contractation-evidence-supply-1-v0",
+      "model_version": "contracts-contractation-articles-535-538-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk535-536-contractation-concept-v1",
+        "synthetic-ru-gk537-538-contractation-duties-and-liability-v1"
+      ],
+      "expressions": [
+        "contractation_qualified == agricultural_producer_contract AND goods_are_own_grown_produce",
+        "procurer_acceptance_duty_met == procurer_took_delivery_at_producer_location",
+        "procurer_refusal_unlawful == procurer_refused_conforming_goods AND goods_conform_and_timely",
+        "waste_return_obligation == processing_waste_return_agreed",
+        "waste_return_performed == processing_waste_return_agreed AND procurer_returned_waste",
+        "producer_delivery_duty_met == producer_delivered_quantity_and_assortment",
+        "producer_liable_only_if_at_fault == producer_breached AND producer_at_fault",
+        "requires_human_contractation_assessment == procurer_refused_conforming_goods OR producer_breached OR (processing_waste_return_agreed AND NOT procurer_returned_waste)"
+      ]
+    },
+    "contractation_evaluation": {
+      "constraint_set_id": "contractation-constraint-set:reviewed-contractation-evidence-supply-1-v0",
+      "satisfiable": true,
+      "contractation_qualified": false,
+      "procurer_acceptance_duty_met": false,
+      "procurer_refusal_unlawful": false,
+      "waste_return_obligation": false,
+      "waste_return_performed": false,
+      "producer_delivery_duty_met": false,
+      "producer_liable_only_if_at_fault": false,
+      "requires_human_contractation_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор контрактации."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о контрактации и не заменяет судебную оценку.",
+        "Соответствие продукции, вина производителя и условия возврата отходов оцениваются экспертом и судом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -16543,7 +16817,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.35.0",
+      "institutional_package_version": "contracts-ru-v0@0.36.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -18539,6 +18813,7 @@
         ],
         "source_refs": [
           "synthetic-case-supply-1-adhesion-evidence",
+          "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-framework-evidence",
@@ -18630,6 +18905,8 @@
           "synthetic-ru-gk518-524-supply-remedies-v1",
           "synthetic-ru-gk525-528-state-contract-v1",
           "synthetic-ru-gk529-534-state-supply-performance-v1",
+          "synthetic-ru-gk535-536-contractation-concept-v1",
+          "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -19637,6 +19914,7 @@
         ],
         "source_refs": [
           "synthetic-case-supply-1-adhesion-evidence",
+          "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-framework-evidence",
@@ -19728,6 +20006,8 @@
           "synthetic-ru-gk518-524-supply-remedies-v1",
           "synthetic-ru-gk525-528-state-contract-v1",
           "synthetic-ru-gk529-534-state-supply-performance-v1",
+          "synthetic-ru-gk535-536-contractation-concept-v1",
+          "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -20735,6 +21015,7 @@
         ],
         "source_refs": [
           "synthetic-case-supply-1-adhesion-evidence",
+          "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
           "synthetic-case-supply-1-framework-evidence",
@@ -20826,6 +21107,8 @@
           "synthetic-ru-gk518-524-supply-remedies-v1",
           "synthetic-ru-gk525-528-state-contract-v1",
           "synthetic-ru-gk529-534-state-supply-performance-v1",
+          "synthetic-ru-gk535-536-contractation-concept-v1",
+          "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -20915,7 +21198,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.35.0",
+      "institutional_package_version": "contracts-ru-v0@0.36.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -21681,6 +21964,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk535-536-contractation-concept-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель понятия контрактации и обязанностей заготовителя по статьям 535 и 536 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "contractation_concept_articles_535_536",
+          "legal_reference": "ГК РФ, статьи 535 и 536",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель обязанностей и ответственности производителя по статьям 537 и 538 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "contractation_duties_and_liability_articles_537_538",
+          "legal_reference": "ГК РФ, статьи 537 и 538",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-contractation-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о контрактации",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "contractation_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -22288,6 +22609,7 @@
             "synthetic-adhesion-reviewer",
             "synthetic-authority-reviewer",
             "synthetic-case-evidence-reviewer",
+            "synthetic-contractation-reviewer",
             "synthetic-form-reviewer",
             "synthetic-formation-reviewer",
             "synthetic-framework-reviewer",

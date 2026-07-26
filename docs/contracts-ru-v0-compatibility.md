@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.36.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью контрактации |
 | `0.35.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью поставки для государственных нужд |
 | `0.34.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью розничной купли-продажи |
 | `0.33.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью общих положений об обязательствах |
@@ -43,6 +44,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.35.0` → `0.36.0` соберите отдельно проверенный контракт данных о контрактации (`contracts.contractation-evidence.v0`). Не выводите квалификацию договора как контрактации, обязанность заготовителя принять продукцию, условие о возврате отходов переработки, обязанность производителя по количеству и ассортименту и ответственность производителя при наличии вины из прежних результатов об общей поставке или купле-продаже. Пересоберите артефакты оценки контрактации, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.34.0` → `0.35.0` соберите отдельно проверенный контракт данных о поставке для государственных нужд (`contracts.state-supply-evidence.v0`). Не выводите заключение государственного контракта, прикрепление покупателя, оплату по ценам контракта и возмещение убытков из прежних результатов об общей поставке или купле-продаже. Пересоберите артефакты оценки поставки для государственных нужд, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

@@ -682,6 +682,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.35.0",
+        to_version="0.36.0",
+        reasons=[
+            "Reviewed inputs now require a separate contractation evidence contract.",
+            "Analysis and Russian translation distinguish contractation qualification, procurer duties, and fault-based producer liability under articles 535 through 538.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о контрактации.",
+            "Анализ и русское объяснение разделяют квалификацию контрактации, обязанности заготовителя и виновную ответственность производителя по статьям 535–538 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_contractation_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

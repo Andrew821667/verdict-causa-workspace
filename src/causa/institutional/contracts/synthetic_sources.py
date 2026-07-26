@@ -1193,6 +1193,60 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk535-536-contractation-concept-v1",
+        title="Синтетическая проверенная модель понятия контрактации и обязанностей заготовителя по статьям 535 и 536 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: контрактация как передача производителем "
+            "выращенной им сельскохозяйственной продукции заготовителю, приёмка по месту "
+            "нахождения производителя, недопустимость отказа от соответствующей продукции "
+            "и возврат отходов переработки проверяются раздельно (статьи 535 и 536 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "contractation_concept_articles_535_536",
+            "legal_reference": "ГК РФ, статьи 535 и 536",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
+        title="Синтетическая проверенная модель обязанностей и ответственности производителя по статьям 537 и 538 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: обязанность производителя передать продукцию в "
+            "количестве и ассортименте и его ответственность за нарушение только при "
+            "наличии вины проверяются раздельно (статьи 537 и 538 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "contractation_duties_and_liability_articles_537_538",
+            "legal_reference": "ГК РФ, статьи 537 и 538",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-contractation-evidence",
+        title="Синтетическая проверенная запись фактов о контрактации",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является обычной поставкой готовых "
+            "товаров и не является контрактацией сельскохозяйственной продукции; отказ "
+            "заготовителя и нарушения производителя отсутствуют."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "contractation_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

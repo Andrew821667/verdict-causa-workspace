@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.36.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed contractation evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 535 through 538.",
+            "Contractation qualification, procurer duties, and fault-based producer liability remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о контрактации обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 535–538 ГК РФ.",
+            "Квалификация контрактации, обязанности заготовителя и виновная ответственность производителя разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.35.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

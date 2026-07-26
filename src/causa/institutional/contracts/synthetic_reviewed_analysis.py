@@ -85,6 +85,11 @@ from causa.institutional.contracts.retail_sale import (
     RetailSaleEvidenceAssertion,
     RetailSaleEvidencePredicate,
 )
+from causa.institutional.contracts.contractation import (
+    ContractationEvidenceAssertion,
+    ContractationEvidencePredicate,
+    ReviewedContractationEvidence,
+)
 from causa.institutional.contracts.state_supply import (
     ReviewedStateSupplyEvidence,
     StateSupplyEvidenceAssertion,
@@ -212,6 +217,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk525-528-state-contract-v1",
     "synthetic-ru-gk529-534-state-supply-performance-v1",
     "synthetic-case-supply-1-state-supply-evidence",
+    "synthetic-ru-gk535-536-contractation-concept-v1",
+    "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
+    "synthetic-case-supply-1-contractation-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1014,6 +1022,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-state-supply-reviewer",
+        ),
+        contractation_evidence=ReviewedContractationEvidence(
+            id="reviewed-contractation-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                ContractationEvidenceAssertion(
+                    id=f"contractation-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-contractation-evidence",),
+                )
+                for predicate, value in (
+                    (ContractationEvidencePredicate.AGRICULTURAL_PRODUCER_CONTRACT, False),
+                    (ContractationEvidencePredicate.GOODS_ARE_OWN_GROWN_PRODUCE, False),
+                    (
+                        ContractationEvidencePredicate.PROCURER_TOOK_DELIVERY_AT_PRODUCER_LOCATION,
+                        False,
+                    ),
+                    (ContractationEvidencePredicate.GOODS_CONFORM_AND_TIMELY, False),
+                    (ContractationEvidencePredicate.PROCURER_REFUSED_CONFORMING_GOODS, False),
+                    (ContractationEvidencePredicate.PROCESSING_WASTE_RETURN_AGREED, False),
+                    (ContractationEvidencePredicate.PROCURER_RETURNED_WASTE, False),
+                    (
+                        ContractationEvidencePredicate.PRODUCER_DELIVERED_QUANTITY_AND_ASSORTMENT,
+                        False,
+                    ),
+                    (ContractationEvidencePredicate.PRODUCER_BREACHED, False),
+                    (ContractationEvidencePredicate.PRODUCER_AT_FAULT, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk535-536-contractation-concept-v1",
+                "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-contractation-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
