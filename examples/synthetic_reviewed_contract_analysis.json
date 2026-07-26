@@ -1173,6 +1173,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk572-576-gift-concept-and-form-v1",
+      "title": "Синтетическая проверенная модель понятия, формы, запрещения и ограничений дарения по статьям 572–576 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: дарение как безвозмездная передача вещи или права либо освобождение от обязанности, притворность при встречном предоставлении, требуемая письменная форма, запрещение дарения и ограничения, требующие согласия, проверяются раздельно (статьи 572–576 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "gift_concept_and_form_articles_572_576",
+        "legal_reference": "ГК РФ, статьи 572–576",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
+      "title": "Синтетическая проверенная модель отказа одаряемого, отмены дарения и пожертвования по статьям 573 и 577–582 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: отказ одаряемого от дара до передачи, основания отказа дарителя от исполнения и отмены дарения, неприменение отмены к обычным подаркам небольшой стоимости и отмена пожертвования при нарушении назначения проверяются раздельно (статьи 573, 577–582 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "gift_refusal_revocation_and_donation_articles_573_582",
+        "legal_reference": "ГК РФ, статьи 573 и 577–582",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-gift-evidence",
+      "title": "Синтетическая проверенная запись фактов о дарении",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является возмездной поставкой товаров за оплату и не является безвозмездным дарением; встречного предоставления по нему нет только в смысле дарения, оснований отмены и пожертвования не заявлено.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "gift_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -4293,6 +4340,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-barter-reviewer"
+    },
+    "gift_evidence": {
+      "id": "reviewed-gift-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.gift-evidence.v0",
+      "assertions": [
+        {
+          "id": "gift-evidence-gratuitous_transfer_or_promise",
+          "predicate": "gratuitous_transfer_or_promise",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "id": "gift-evidence-counter_obligation_present",
+          "predicate": "counter_obligation_present",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "id": "gift-evidence-written_form_required",
+          "predicate": "written_form_required",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "id": "gift-evidence-written_form_satisfied",
+          "predicate": "written_form_satisfied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "id": "gift-evidence-donation_statutorily_prohibited",
+          "predicate": "donation_statutorily_prohibited",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "id": "gift-evidence-restriction_consent_missing",
+          "predicate": "restriction_consent_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "id": "gift-evidence-donee_refused_before_delivery",
+          "predicate": "donee_refused_before_delivery",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "id": "gift-evidence-donor_revocation_ground_present",
+          "predicate": "donor_revocation_ground_present",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "id": "gift-evidence-ordinary_low_value_gift",
+          "predicate": "ordinary_low_value_gift",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "id": "gift-evidence-charitable_donation_purpose_violated",
+          "predicate": "charitable_donation_purpose_violated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk572-576-gift-concept-and-form-v1",
+        "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-gift-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -9079,6 +9219,7 @@
       "synthetic-freedom-reviewer",
       "synthetic-general-obligations-reviewer",
       "synthetic-general-sale-reviewer",
+      "synthetic-gift-reviewer",
       "synthetic-interpretation-reviewer",
       "synthetic-invalidity-reviewer",
       "synthetic-liability-reviewer",
@@ -9114,6 +9255,7 @@
       "synthetic-case-supply-1-freedom-evidence",
       "synthetic-case-supply-1-general-obligations-evidence",
       "synthetic-case-supply-1-general-sale-evidence",
+      "synthetic-case-supply-1-gift-evidence",
       "synthetic-case-supply-1-interpretation-evidence",
       "synthetic-case-supply-1-invalidity-evidence",
       "synthetic-case-supply-1-liability-evidence",
@@ -9210,6 +9352,8 @@
       "synthetic-ru-gk562-566-enterprise-sale-creditors-and-transfer-v1",
       "synthetic-ru-gk567-568-barter-concept-and-price-v1",
       "synthetic-ru-gk569-571-barter-performance-and-eviction-v1",
+      "synthetic-ru-gk572-576-gift-concept-and-form-v1",
+      "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -12549,6 +12693,138 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о мене и не заменяет судебную оценку.",
         "Равноценность товаров, размер разницы в цене и основания изъятия оцениваются экспертом и судом."
+      ]
+    },
+    "gift_evidence_mapping": {
+      "evidence_id": "reviewed-gift-evidence-supply-1-v0",
+      "schema_version": "contracts.gift-evidence.v0",
+      "mapping_version": "contracts-reviewed-gift-to-facts-v0",
+      "facts": {
+        "gratuitous_transfer_or_promise": false,
+        "counter_obligation_present": false,
+        "written_form_required": false,
+        "written_form_satisfied": false,
+        "donation_statutorily_prohibited": false,
+        "restriction_consent_missing": false,
+        "donee_refused_before_delivery": false,
+        "donor_revocation_ground_present": false,
+        "ordinary_low_value_gift": false,
+        "charitable_donation_purpose_violated": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk572-576-gift-concept-and-form-v1",
+        "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "charitable_donation_purpose_violated",
+          "assertion_id": "gift-evidence-charitable_donation_purpose_violated",
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "fact_name": "counter_obligation_present",
+          "assertion_id": "gift-evidence-counter_obligation_present",
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "fact_name": "donation_statutorily_prohibited",
+          "assertion_id": "gift-evidence-donation_statutorily_prohibited",
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "fact_name": "donee_refused_before_delivery",
+          "assertion_id": "gift-evidence-donee_refused_before_delivery",
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "fact_name": "donor_revocation_ground_present",
+          "assertion_id": "gift-evidence-donor_revocation_ground_present",
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "fact_name": "gratuitous_transfer_or_promise",
+          "assertion_id": "gift-evidence-gratuitous_transfer_or_promise",
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "fact_name": "ordinary_low_value_gift",
+          "assertion_id": "gift-evidence-ordinary_low_value_gift",
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "fact_name": "restriction_consent_missing",
+          "assertion_id": "gift-evidence-restriction_consent_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "fact_name": "written_form_required",
+          "assertion_id": "gift-evidence-written_form_required",
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        },
+        {
+          "fact_name": "written_form_satisfied",
+          "assertion_id": "gift-evidence-written_form_satisfied",
+          "source_refs": [
+            "synthetic-case-supply-1-gift-evidence"
+          ]
+        }
+      ]
+    },
+    "gift_constraint_set": {
+      "id": "gift-constraint-set:reviewed-gift-evidence-supply-1-v0",
+      "model_version": "contracts-gift-articles-572-582-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk572-576-gift-concept-and-form-v1",
+        "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1"
+      ],
+      "expressions": [
+        "gift_qualified == gratuitous_transfer_or_promise AND NOT counter_obligation_present",
+        "sham_due_to_counter_obligation == gratuitous_transfer_or_promise AND counter_obligation_present",
+        "form_defect_makes_void == written_form_required AND NOT written_form_satisfied",
+        "donation_prohibited == gift_qualified AND donation_statutorily_prohibited AND NOT ordinary_low_value_gift",
+        "restriction_violated == gift_qualified AND restriction_consent_missing",
+        "donee_refusal_terminates == gift_qualified AND donee_refused_before_delivery",
+        "revocation_available == gift_qualified AND donor_revocation_ground_present AND NOT ordinary_low_value_gift",
+        "charitable_revocation_available == gift_qualified AND charitable_donation_purpose_violated",
+        "requires_human_gift_assessment == sham_due_to_counter_obligation OR form_defect_makes_void OR donation_prohibited OR restriction_violated OR revocation_available OR charitable_revocation_available"
+      ]
+    },
+    "gift_evaluation": {
+      "constraint_set_id": "gift-constraint-set:reviewed-gift-evidence-supply-1-v0",
+      "satisfiable": true,
+      "gift_qualified": false,
+      "sham_due_to_counter_obligation": false,
+      "form_defect_makes_void": false,
+      "donation_prohibited": false,
+      "restriction_violated": false,
+      "donee_refusal_terminates": false,
+      "revocation_available": false,
+      "charitable_revocation_available": false,
+      "requires_human_gift_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор дарения."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о дарении и не заменяет судебную оценку.",
+        "Стоимость дара, наличие оснований отмены и возмещение вреда от недостатков подаренной вещи оцениваются экспертом и судом (статьи 580–581 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -17922,7 +18198,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.40.0",
+      "institutional_package_version": "contracts-ru-v0@0.41.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

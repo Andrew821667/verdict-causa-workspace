@@ -1470,6 +1470,61 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk572-576-gift-concept-and-form-v1",
+        title="Синтетическая проверенная модель понятия, формы, запрещения и ограничений дарения по статьям 572–576 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: дарение как безвозмездная передача вещи или права "
+            "либо освобождение от обязанности, притворность при встречном предоставлении, "
+            "требуемая письменная форма, запрещение дарения и ограничения, требующие согласия, "
+            "проверяются раздельно (статьи 572–576 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "gift_concept_and_form_articles_572_576",
+            "legal_reference": "ГК РФ, статьи 572–576",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
+        title="Синтетическая проверенная модель отказа одаряемого, отмены дарения и пожертвования по статьям 573 и 577–582 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: отказ одаряемого от дара до передачи, основания "
+            "отказа дарителя от исполнения и отмены дарения, неприменение отмены к обычным "
+            "подаркам небольшой стоимости и отмена пожертвования при нарушении назначения "
+            "проверяются раздельно (статьи 573, 577–582 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "gift_refusal_revocation_and_donation_articles_573_582",
+            "legal_reference": "ГК РФ, статьи 573 и 577–582",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-gift-evidence",
+        title="Синтетическая проверенная запись фактов о дарении",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является возмездной поставкой товаров за "
+            "оплату и не является безвозмездным дарением; встречного предоставления по нему "
+            "нет только в смысле дарения, оснований отмены и пожертвования не заявлено."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "gift_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

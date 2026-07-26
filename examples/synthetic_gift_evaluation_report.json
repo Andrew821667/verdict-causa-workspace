@@ -1,0 +1,450 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о дарении по статьям 572–582 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-gift-evidence-supply-1-v0",
+    "schema_version": "contracts.gift-evidence.v0",
+    "mapping_version": "contracts-reviewed-gift-to-facts-v0",
+    "facts": {
+      "gratuitous_transfer_or_promise": false,
+      "counter_obligation_present": false,
+      "written_form_required": false,
+      "written_form_satisfied": false,
+      "donation_statutorily_prohibited": false,
+      "restriction_consent_missing": false,
+      "donee_refused_before_delivery": false,
+      "donor_revocation_ground_present": false,
+      "ordinary_low_value_gift": false,
+      "charitable_donation_purpose_violated": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk572-576-gift-concept-and-form-v1",
+      "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "charitable_donation_purpose_violated",
+        "assertion_id": "gift-evidence-charitable_donation_purpose_violated",
+        "source_refs": [
+          "synthetic-case-supply-1-gift-evidence"
+        ]
+      },
+      {
+        "fact_name": "counter_obligation_present",
+        "assertion_id": "gift-evidence-counter_obligation_present",
+        "source_refs": [
+          "synthetic-case-supply-1-gift-evidence"
+        ]
+      },
+      {
+        "fact_name": "donation_statutorily_prohibited",
+        "assertion_id": "gift-evidence-donation_statutorily_prohibited",
+        "source_refs": [
+          "synthetic-case-supply-1-gift-evidence"
+        ]
+      },
+      {
+        "fact_name": "donee_refused_before_delivery",
+        "assertion_id": "gift-evidence-donee_refused_before_delivery",
+        "source_refs": [
+          "synthetic-case-supply-1-gift-evidence"
+        ]
+      },
+      {
+        "fact_name": "donor_revocation_ground_present",
+        "assertion_id": "gift-evidence-donor_revocation_ground_present",
+        "source_refs": [
+          "synthetic-case-supply-1-gift-evidence"
+        ]
+      },
+      {
+        "fact_name": "gratuitous_transfer_or_promise",
+        "assertion_id": "gift-evidence-gratuitous_transfer_or_promise",
+        "source_refs": [
+          "synthetic-case-supply-1-gift-evidence"
+        ]
+      },
+      {
+        "fact_name": "ordinary_low_value_gift",
+        "assertion_id": "gift-evidence-ordinary_low_value_gift",
+        "source_refs": [
+          "synthetic-case-supply-1-gift-evidence"
+        ]
+      },
+      {
+        "fact_name": "restriction_consent_missing",
+        "assertion_id": "gift-evidence-restriction_consent_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-gift-evidence"
+        ]
+      },
+      {
+        "fact_name": "written_form_required",
+        "assertion_id": "gift-evidence-written_form_required",
+        "source_refs": [
+          "synthetic-case-supply-1-gift-evidence"
+        ]
+      },
+      {
+        "fact_name": "written_form_satisfied",
+        "assertion_id": "gift-evidence-written_form_satisfied",
+        "source_refs": [
+          "synthetic-case-supply-1-gift-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "gift-constraint-set:reviewed-gift-evidence-supply-1-v0",
+    "model_version": "contracts-gift-articles-572-582-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk572-576-gift-concept-and-form-v1",
+      "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1"
+    ],
+    "expressions": [
+      "gift_qualified == gratuitous_transfer_or_promise AND NOT counter_obligation_present",
+      "sham_due_to_counter_obligation == gratuitous_transfer_or_promise AND counter_obligation_present",
+      "form_defect_makes_void == written_form_required AND NOT written_form_satisfied",
+      "donation_prohibited == gift_qualified AND donation_statutorily_prohibited AND NOT ordinary_low_value_gift",
+      "restriction_violated == gift_qualified AND restriction_consent_missing",
+      "donee_refusal_terminates == gift_qualified AND donee_refused_before_delivery",
+      "revocation_available == gift_qualified AND donor_revocation_ground_present AND NOT ordinary_low_value_gift",
+      "charitable_revocation_available == gift_qualified AND charitable_donation_purpose_violated",
+      "requires_human_gift_assessment == sham_due_to_counter_obligation OR form_defect_makes_void OR donation_prohibited OR restriction_violated OR revocation_available OR charitable_revocation_available"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "gift-constraint-set:reviewed-gift-evidence-supply-1-v0",
+    "satisfiable": true,
+    "gift_qualified": false,
+    "sham_due_to_counter_obligation": false,
+    "form_defect_makes_void": false,
+    "donation_prohibited": false,
+    "restriction_violated": false,
+    "donee_refusal_terminates": false,
+    "revocation_available": false,
+    "charitable_revocation_available": false,
+    "requires_human_gift_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор дарения."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о дарении и не заменяет судебную оценку.",
+      "Стоимость дара, наличие оснований отмены и возмещение вреда от недостатков подаренной вещи оцениваются экспертом и судом (статьи 580–581 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "gift-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "gift-bench-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "gift_qualified": true,
+          "requires_human_gift_assessment": false
+        },
+        "observed_outcomes": {
+          "gift_qualified": true,
+          "requires_human_gift_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gift-bench-sham",
+        "passed": true,
+        "expected_outcomes": {
+          "sham_due_to_counter_obligation": true,
+          "gift_qualified": false,
+          "requires_human_gift_assessment": true
+        },
+        "observed_outcomes": {
+          "sham_due_to_counter_obligation": true,
+          "gift_qualified": false,
+          "requires_human_gift_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор дарения.",
+          "При наличии встречной передачи вещи или права либо встречного обязательства договор не признаётся дарением (притворная сделка) (статья 572 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gift-bench-form-defect",
+        "passed": true,
+        "expected_outcomes": {
+          "form_defect_makes_void": true,
+          "requires_human_gift_assessment": true
+        },
+        "observed_outcomes": {
+          "form_defect_makes_void": true,
+          "requires_human_gift_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ).",
+          "Несоблюдение требуемой письменной формы договора дарения влечёт его ничтожность (статья 574 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gift-bench-form-satisfied",
+        "passed": true,
+        "expected_outcomes": {
+          "form_defect_makes_void": false,
+          "requires_human_gift_assessment": false
+        },
+        "observed_outcomes": {
+          "form_defect_makes_void": false,
+          "requires_human_gift_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gift-bench-prohibited",
+        "passed": true,
+        "expected_outcomes": {
+          "donation_prohibited": true,
+          "requires_human_gift_assessment": true
+        },
+        "observed_outcomes": {
+          "donation_prohibited": true,
+          "requires_human_gift_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ).",
+          "Дарение запрещено по статье 575 ГК РФ и не относится к обычным подаркам небольшой стоимости."
+        ]
+      },
+      {
+        "task_id": "gift-bench-ordinary-small-gift",
+        "passed": true,
+        "expected_outcomes": {
+          "donation_prohibited": false,
+          "requires_human_gift_assessment": false
+        },
+        "observed_outcomes": {
+          "donation_prohibited": false,
+          "requires_human_gift_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gift-bench-restriction-violated",
+        "passed": true,
+        "expected_outcomes": {
+          "restriction_violated": true,
+          "requires_human_gift_assessment": true
+        },
+        "observed_outcomes": {
+          "restriction_violated": true,
+          "requires_human_gift_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ).",
+          "Ограничение дарения нарушено: не получено необходимое согласие собственника или участников общей собственности (статья 576 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gift-bench-donee-refusal",
+        "passed": true,
+        "expected_outcomes": {
+          "donee_refusal_terminates": true,
+          "requires_human_gift_assessment": false
+        },
+        "observed_outcomes": {
+          "donee_refusal_terminates": true,
+          "requires_human_gift_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ).",
+          "Одаряемый отказался принять дар до его передачи; договор считается расторгнутым (статья 573 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gift-bench-revocation",
+        "passed": true,
+        "expected_outcomes": {
+          "revocation_available": true,
+          "requires_human_gift_assessment": true
+        },
+        "observed_outcomes": {
+          "revocation_available": true,
+          "requires_human_gift_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ).",
+          "Имеется основание для отказа от исполнения или отмены дарения; к обычным подаркам небольшой стоимости эти правила не применяются (статьи 577–579 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gift-bench-charitable-revocation",
+        "passed": true,
+        "expected_outcomes": {
+          "charitable_revocation_available": true,
+          "requires_human_gift_assessment": true
+        },
+        "observed_outcomes": {
+          "charitable_revocation_available": true,
+          "requires_human_gift_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ).",
+          "При использовании пожертвованного имущества не по назначению жертвователь вправе требовать отмены пожертвования (статья 582 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "gift-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "gift-red-qualify-with-counter-obligation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "gift_qualified": true
+        },
+        "observed_outcomes": {
+          "gift_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор дарения.",
+          "При наличии встречной передачи вещи или права либо встречного обязательства договор не признаётся дарением (притворная сделка) (статья 572 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gift-red-deny-sham-with-counter-obligation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "sham_due_to_counter_obligation": false
+        },
+        "observed_outcomes": {
+          "sham_due_to_counter_obligation": true
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор дарения.",
+          "При наличии встречной передачи вещи или права либо встречного обязательства договор не признаётся дарением (притворная сделка) (статья 572 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gift-red-ignore-form-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_defect_makes_void": false
+        },
+        "observed_outcomes": {
+          "form_defect_makes_void": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ).",
+          "Несоблюдение требуемой письменной формы договора дарения влечёт его ничтожность (статья 574 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gift-red-form-defect-when-satisfied",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_defect_makes_void": true
+        },
+        "observed_outcomes": {
+          "form_defect_makes_void": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gift-red-prohibit-ordinary-small-gift",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "donation_prohibited": true
+        },
+        "observed_outcomes": {
+          "donation_prohibited": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gift-red-skip-prohibition",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "donation_prohibited": false
+        },
+        "observed_outcomes": {
+          "donation_prohibited": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ).",
+          "Дарение запрещено по статье 575 ГК РФ и не относится к обычным подаркам небольшой стоимости."
+        ]
+      },
+      {
+        "case_id": "gift-red-ignore-restriction-violation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "restriction_violated": false
+        },
+        "observed_outcomes": {
+          "restriction_violated": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ).",
+          "Ограничение дарения нарушено: не получено необходимое согласие собственника или участников общей собственности (статья 576 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gift-red-revocation-for-ordinary-gift",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "revocation_available": true
+        },
+        "observed_outcomes": {
+          "revocation_available": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gift-red-charitable-revocation-without-violation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "charitable_revocation_available": true
+        },
+        "observed_outcomes": {
+          "charitable_revocation_available": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gift-red-skip-human-on-revocation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_gift_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_gift_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как дарение: даритель безвозмездно передаёт или обязуется передать одаряемому вещь или имущественное право либо освобождает от обязанности (статья 572 ГК РФ).",
+          "Имеется основание для отказа от исполнения или отмены дарения; к обычным подаркам небольшой стоимости эти правила не применяются (статьи 577–579 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

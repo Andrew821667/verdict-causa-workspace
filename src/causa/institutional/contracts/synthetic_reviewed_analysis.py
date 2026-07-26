@@ -100,6 +100,11 @@ from causa.institutional.contracts.barter import (
     BarterEvidencePredicate,
     ReviewedBarterEvidence,
 )
+from causa.institutional.contracts.gift import (
+    GiftEvidenceAssertion,
+    GiftEvidencePredicate,
+    ReviewedGiftEvidence,
+)
 from causa.institutional.contracts.enterprise_sale import (
     EnterpriseSaleEvidenceAssertion,
     EnterpriseSaleEvidencePredicate,
@@ -252,6 +257,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk567-568-barter-concept-and-price-v1",
     "synthetic-ru-gk569-571-barter-performance-and-eviction-v1",
     "synthetic-case-supply-1-barter-evidence",
+    "synthetic-ru-gk572-576-gift-concept-and-form-v1",
+    "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
+    "synthetic-case-supply-1-gift-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1237,6 +1245,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-barter-reviewer",
+        ),
+        gift_evidence=ReviewedGiftEvidence(
+            id="reviewed-gift-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                GiftEvidenceAssertion(
+                    id=f"gift-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-gift-evidence",),
+                )
+                for predicate, value in (
+                    (GiftEvidencePredicate.GRATUITOUS_TRANSFER_OR_PROMISE, False),
+                    (GiftEvidencePredicate.COUNTER_OBLIGATION_PRESENT, False),
+                    (GiftEvidencePredicate.WRITTEN_FORM_REQUIRED, False),
+                    (GiftEvidencePredicate.WRITTEN_FORM_SATISFIED, False),
+                    (GiftEvidencePredicate.DONATION_STATUTORILY_PROHIBITED, False),
+                    (GiftEvidencePredicate.RESTRICTION_CONSENT_MISSING, False),
+                    (GiftEvidencePredicate.DONEE_REFUSED_BEFORE_DELIVERY, False),
+                    (GiftEvidencePredicate.DONOR_REVOCATION_GROUND_PRESENT, False),
+                    (GiftEvidencePredicate.ORDINARY_LOW_VALUE_GIFT, False),
+                    (GiftEvidencePredicate.CHARITABLE_DONATION_PURPOSE_VIOLATED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk572-576-gift-concept-and-form-v1",
+                "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-gift-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
