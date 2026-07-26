@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.42.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью ренты и пожизненного содержания |
 | `0.41.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью дарения |
 | `0.40.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью мены |
 | `0.39.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью продажи предприятия |
@@ -49,6 +50,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.41.0` → `0.42.0` соберите отдельно проверенный контракт данных о ренте (`contracts.annuity-evidence.v0`). Не выводите квалификацию ренты, нотариальную форму, обеспечение, проценты за просрочку, выкуп постоянной ренты, расторжение пожизненной ренты и обременение имущества из прежних результатов о купле-продаже или дарении. Пересоберите артефакты оценки ренты, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.40.0` → `0.41.0` соберите отдельно проверенный контракт данных о дарении (`contracts.gift-evidence.v0`). Не выводите квалификацию дарения, притворность, ничтожность формы, запрещение, ограничение, отказ одаряемого, отмену дарения и пожертвование из прежних результатов о купле-продаже или мене. Пересоберите артефакты оценки дарения, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

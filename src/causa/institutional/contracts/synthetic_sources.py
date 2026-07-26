@@ -1525,6 +1525,61 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+        title="Синтетическая проверенная модель общих положений о ренте, формы, обеспечения и постоянной ренты по статьям 583–593 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: рента как передача имущества под периодические "
+            "платежи, нотариальная форма и регистрация, обеспечение выплаты и проценты за "
+            "просрочку, а также ничтожность отказа от выкупа и выкуп постоянной ренты по "
+            "требованию получателя проверяются раздельно (статьи 583–593 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "annuity_general_and_permanent_articles_583_593",
+            "legal_reference": "ГК РФ, статьи 583–593",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
+        title="Синтетическая проверенная модель пожизненной ренты и пожизненного содержания с иждивением по статьям 596–605 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: пожизненная рента и пожизненное содержание с "
+            "иждивением, расторжение при существенном нарушении плательщиком и недопустимость "
+            "обременения имущества без согласия получателя проверяются раздельно "
+            "(статьи 596–605 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "annuity_life_and_maintenance_articles_596_605",
+            "legal_reference": "ГК РФ, статьи 596–605",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-annuity-evidence",
+        title="Синтетическая проверенная запись фактов о ренте",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой товаров за единовременную "
+            "оплату и не является рентой или пожизненным содержанием с иждивением; передачи "
+            "имущества под периодические рентные платежи нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "annuity_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

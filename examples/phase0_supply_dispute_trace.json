@@ -1220,6 +1220,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+      "title": "Синтетическая проверенная модель общих положений о ренте, формы, обеспечения и постоянной ренты по статьям 583–593 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: рента как передача имущества под периодические платежи, нотариальная форма и регистрация, обеспечение выплаты и проценты за просрочку, а также ничтожность отказа от выкупа и выкуп постоянной ренты по требованию получателя проверяются раздельно (статьи 583–593 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "annuity_general_and_permanent_articles_583_593",
+        "legal_reference": "ГК РФ, статьи 583–593",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
+      "title": "Синтетическая проверенная модель пожизненной ренты и пожизненного содержания с иждивением по статьям 596–605 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: пожизненная рента и пожизненное содержание с иждивением, расторжение при существенном нарушении плательщиком и недопустимость обременения имущества без согласия получателя проверяются раздельно (статьи 596–605 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "annuity_life_and_maintenance_articles_596_605",
+        "legal_reference": "ГК РФ, статьи 596–605",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-annuity-evidence",
+      "title": "Синтетическая проверенная запись фактов о ренте",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является рентой или пожизненным содержанием с иждивением; передачи имущества под периодические рентные платежи нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "annuity_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -4433,6 +4480,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-gift-reviewer"
+    },
+    "annuity_evidence": {
+      "id": "reviewed-annuity-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.annuity-evidence.v0",
+      "assertions": [
+        {
+          "id": "annuity-evidence-property_transferred_for_periodic_rent",
+          "predicate": "property_transferred_for_periodic_rent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "id": "annuity-evidence-notarization_missing",
+          "predicate": "notarization_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "id": "annuity-evidence-rent_security_missing",
+          "predicate": "rent_security_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "id": "annuity-evidence-rent_payment_overdue",
+          "predicate": "rent_payment_overdue",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "id": "annuity-evidence-permanent_rent",
+          "predicate": "permanent_rent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "id": "annuity-evidence-payer_waived_redemption_right",
+          "predicate": "payer_waived_redemption_right",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "id": "annuity-evidence-recipient_redemption_ground_present",
+          "predicate": "recipient_redemption_ground_present",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "id": "annuity-evidence-life_annuity_or_maintenance",
+          "predicate": "life_annuity_or_maintenance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "id": "annuity-evidence-payer_materially_breached",
+          "predicate": "payer_materially_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "id": "annuity-evidence-maintenance_property_encumbered_without_consent",
+          "predicate": "maintenance_property_encumbered_without_consent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+        "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-annuity-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -9207,6 +9347,7 @@
     "pipeline_version": "contracts-reviewed-analysis-v9",
     "reviewer_ids": [
       "synthetic-adhesion-reviewer",
+      "synthetic-annuity-reviewer",
       "synthetic-authority-reviewer",
       "synthetic-barter-reviewer",
       "synthetic-case-evidence-reviewer",
@@ -9245,6 +9386,7 @@
     ],
     "source_ids": [
       "synthetic-case-supply-1-adhesion-evidence",
+      "synthetic-case-supply-1-annuity-evidence",
       "synthetic-case-supply-1-barter-evidence",
       "synthetic-case-supply-1-contractation-evidence",
       "synthetic-case-supply-1-energy-supply-evidence",
@@ -9354,6 +9496,8 @@
       "synthetic-ru-gk569-571-barter-performance-and-eviction-v1",
       "synthetic-ru-gk572-576-gift-concept-and-form-v1",
       "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
+      "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+      "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -12825,6 +12969,138 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о дарении и не заменяет судебную оценку.",
         "Стоимость дара, наличие оснований отмены и возмещение вреда от недостатков подаренной вещи оцениваются экспертом и судом (статьи 580–581 ГК РФ)."
+      ]
+    },
+    "annuity_evidence_mapping": {
+      "evidence_id": "reviewed-annuity-evidence-supply-1-v0",
+      "schema_version": "contracts.annuity-evidence.v0",
+      "mapping_version": "contracts-reviewed-annuity-to-facts-v0",
+      "facts": {
+        "property_transferred_for_periodic_rent": false,
+        "notarization_missing": false,
+        "rent_security_missing": false,
+        "rent_payment_overdue": false,
+        "permanent_rent": false,
+        "payer_waived_redemption_right": false,
+        "recipient_redemption_ground_present": false,
+        "life_annuity_or_maintenance": false,
+        "payer_materially_breached": false,
+        "maintenance_property_encumbered_without_consent": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+        "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "life_annuity_or_maintenance",
+          "assertion_id": "annuity-evidence-life_annuity_or_maintenance",
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "fact_name": "maintenance_property_encumbered_without_consent",
+          "assertion_id": "annuity-evidence-maintenance_property_encumbered_without_consent",
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "fact_name": "notarization_missing",
+          "assertion_id": "annuity-evidence-notarization_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "fact_name": "payer_materially_breached",
+          "assertion_id": "annuity-evidence-payer_materially_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "fact_name": "payer_waived_redemption_right",
+          "assertion_id": "annuity-evidence-payer_waived_redemption_right",
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "fact_name": "permanent_rent",
+          "assertion_id": "annuity-evidence-permanent_rent",
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "fact_name": "property_transferred_for_periodic_rent",
+          "assertion_id": "annuity-evidence-property_transferred_for_periodic_rent",
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "fact_name": "recipient_redemption_ground_present",
+          "assertion_id": "annuity-evidence-recipient_redemption_ground_present",
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "fact_name": "rent_payment_overdue",
+          "assertion_id": "annuity-evidence-rent_payment_overdue",
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        },
+        {
+          "fact_name": "rent_security_missing",
+          "assertion_id": "annuity-evidence-rent_security_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-annuity-evidence"
+          ]
+        }
+      ]
+    },
+    "annuity_constraint_set": {
+      "id": "annuity-constraint-set:reviewed-annuity-evidence-supply-1-v0",
+      "model_version": "contracts-annuity-articles-583-605-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+        "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1"
+      ],
+      "expressions": [
+        "annuity_qualified == property_transferred_for_periodic_rent",
+        "form_defect_makes_void == annuity_qualified AND notarization_missing",
+        "rent_security_not_provided == annuity_qualified AND rent_security_missing",
+        "overdue_interest_due == annuity_qualified AND rent_payment_overdue",
+        "redemption_waiver_void == annuity_qualified AND permanent_rent AND payer_waived_redemption_right",
+        "recipient_may_demand_redemption == annuity_qualified AND permanent_rent AND recipient_redemption_ground_present",
+        "recipient_may_terminate_life_annuity == annuity_qualified AND life_annuity_or_maintenance AND payer_materially_breached",
+        "unauthorized_maintenance_encumbrance == annuity_qualified AND life_annuity_or_maintenance AND maintenance_property_encumbered_without_consent",
+        "requires_human_annuity_assessment == form_defect_makes_void OR rent_security_not_provided OR overdue_interest_due OR redemption_waiver_void OR recipient_may_demand_redemption OR recipient_may_terminate_life_annuity OR unauthorized_maintenance_encumbrance"
+      ]
+    },
+    "annuity_evaluation": {
+      "constraint_set_id": "annuity-constraint-set:reviewed-annuity-evidence-supply-1-v0",
+      "satisfiable": true,
+      "annuity_qualified": false,
+      "form_defect_makes_void": false,
+      "rent_security_not_provided": false,
+      "overdue_interest_due": false,
+      "redemption_waiver_void": false,
+      "recipient_may_demand_redemption": false,
+      "recipient_may_terminate_life_annuity": false,
+      "unauthorized_maintenance_encumbrance": false,
+      "requires_human_annuity_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор ренты."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о ренте и пожизненном содержании и не заменяет судебную оценку.",
+        "Размер ренты и содержания, выкупная цена и существенность нарушения оцениваются экспертом и судом (статьи 594, 597 и 602 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -18198,7 +18474,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.41.0",
+      "institutional_package_version": "contracts-ru-v0@0.42.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -20194,6 +20470,7 @@
         ],
         "source_refs": [
           "synthetic-case-supply-1-adhesion-evidence",
+          "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-energy-supply-evidence",
@@ -20303,6 +20580,8 @@
           "synthetic-ru-gk569-571-barter-performance-and-eviction-v1",
           "synthetic-ru-gk572-576-gift-concept-and-form-v1",
           "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
+          "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+          "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -21310,6 +21589,7 @@
         ],
         "source_refs": [
           "synthetic-case-supply-1-adhesion-evidence",
+          "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-energy-supply-evidence",
@@ -21419,6 +21699,8 @@
           "synthetic-ru-gk569-571-barter-performance-and-eviction-v1",
           "synthetic-ru-gk572-576-gift-concept-and-form-v1",
           "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
+          "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+          "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -22426,6 +22708,7 @@
         ],
         "source_refs": [
           "synthetic-case-supply-1-adhesion-evidence",
+          "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-energy-supply-evidence",
@@ -22535,6 +22818,8 @@
           "synthetic-ru-gk569-571-barter-performance-and-eviction-v1",
           "synthetic-ru-gk572-576-gift-concept-and-form-v1",
           "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
+          "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+          "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -22624,7 +22909,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.41.0",
+      "institutional_package_version": "contracts-ru-v0@0.42.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -23618,6 +23903,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель общих положений о ренте, формы, обеспечения и постоянной ренты по статьям 583–593 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "annuity_general_and_permanent_articles_583_593",
+          "legal_reference": "ГК РФ, статьи 583–593",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель пожизненной ренты и пожизненного содержания с иждивением по статьям 596–605 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "annuity_life_and_maintenance_articles_596_605",
+          "legal_reference": "ГК РФ, статьи 596–605",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-annuity-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о ренте",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "annuity_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -24223,6 +24546,7 @@
           "evidence_mapping_version": "contracts-reviewed-evidence-to-facts-v0",
           "reviewer_ids": [
             "synthetic-adhesion-reviewer",
+            "synthetic-annuity-reviewer",
             "synthetic-authority-reviewer",
             "synthetic-barter-reviewer",
             "synthetic-case-evidence-reviewer",

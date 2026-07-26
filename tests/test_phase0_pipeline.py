@@ -44,6 +44,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "evaluate-enterprise-sale",
         "evaluate-barter",
         "evaluate-gift",
+        "evaluate-annuity",
         "evaluate-transaction-invalidity",
         "evaluate-obligation-constraints",
         "evaluate-performance-remedies",

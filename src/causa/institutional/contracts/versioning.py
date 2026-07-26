@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.42.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed annuity evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 583 through 605.",
+            "Qualification, notarial form, security, overdue interest, permanent-rent redemption, life-annuity termination, and maintenance encumbrance remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о ренте обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 583–605 ГК РФ.",
+            "Квалификация, нотариальная форма, обеспечение, проценты за просрочку, выкуп постоянной ренты, расторжение пожизненной ренты и обременение имущества разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.41.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

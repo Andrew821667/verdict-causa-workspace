@@ -1,0 +1,447 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о ренте и пожизненном содержании с иждивением по статьям 583–605 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-annuity-evidence-supply-1-v0",
+    "schema_version": "contracts.annuity-evidence.v0",
+    "mapping_version": "contracts-reviewed-annuity-to-facts-v0",
+    "facts": {
+      "property_transferred_for_periodic_rent": false,
+      "notarization_missing": false,
+      "rent_security_missing": false,
+      "rent_payment_overdue": false,
+      "permanent_rent": false,
+      "payer_waived_redemption_right": false,
+      "recipient_redemption_ground_present": false,
+      "life_annuity_or_maintenance": false,
+      "payer_materially_breached": false,
+      "maintenance_property_encumbered_without_consent": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+      "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "life_annuity_or_maintenance",
+        "assertion_id": "annuity-evidence-life_annuity_or_maintenance",
+        "source_refs": [
+          "synthetic-case-supply-1-annuity-evidence"
+        ]
+      },
+      {
+        "fact_name": "maintenance_property_encumbered_without_consent",
+        "assertion_id": "annuity-evidence-maintenance_property_encumbered_without_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-annuity-evidence"
+        ]
+      },
+      {
+        "fact_name": "notarization_missing",
+        "assertion_id": "annuity-evidence-notarization_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-annuity-evidence"
+        ]
+      },
+      {
+        "fact_name": "payer_materially_breached",
+        "assertion_id": "annuity-evidence-payer_materially_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-annuity-evidence"
+        ]
+      },
+      {
+        "fact_name": "payer_waived_redemption_right",
+        "assertion_id": "annuity-evidence-payer_waived_redemption_right",
+        "source_refs": [
+          "synthetic-case-supply-1-annuity-evidence"
+        ]
+      },
+      {
+        "fact_name": "permanent_rent",
+        "assertion_id": "annuity-evidence-permanent_rent",
+        "source_refs": [
+          "synthetic-case-supply-1-annuity-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_transferred_for_periodic_rent",
+        "assertion_id": "annuity-evidence-property_transferred_for_periodic_rent",
+        "source_refs": [
+          "synthetic-case-supply-1-annuity-evidence"
+        ]
+      },
+      {
+        "fact_name": "recipient_redemption_ground_present",
+        "assertion_id": "annuity-evidence-recipient_redemption_ground_present",
+        "source_refs": [
+          "synthetic-case-supply-1-annuity-evidence"
+        ]
+      },
+      {
+        "fact_name": "rent_payment_overdue",
+        "assertion_id": "annuity-evidence-rent_payment_overdue",
+        "source_refs": [
+          "synthetic-case-supply-1-annuity-evidence"
+        ]
+      },
+      {
+        "fact_name": "rent_security_missing",
+        "assertion_id": "annuity-evidence-rent_security_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-annuity-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "annuity-constraint-set:reviewed-annuity-evidence-supply-1-v0",
+    "model_version": "contracts-annuity-articles-583-605-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+      "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1"
+    ],
+    "expressions": [
+      "annuity_qualified == property_transferred_for_periodic_rent",
+      "form_defect_makes_void == annuity_qualified AND notarization_missing",
+      "rent_security_not_provided == annuity_qualified AND rent_security_missing",
+      "overdue_interest_due == annuity_qualified AND rent_payment_overdue",
+      "redemption_waiver_void == annuity_qualified AND permanent_rent AND payer_waived_redemption_right",
+      "recipient_may_demand_redemption == annuity_qualified AND permanent_rent AND recipient_redemption_ground_present",
+      "recipient_may_terminate_life_annuity == annuity_qualified AND life_annuity_or_maintenance AND payer_materially_breached",
+      "unauthorized_maintenance_encumbrance == annuity_qualified AND life_annuity_or_maintenance AND maintenance_property_encumbered_without_consent",
+      "requires_human_annuity_assessment == form_defect_makes_void OR rent_security_not_provided OR overdue_interest_due OR redemption_waiver_void OR recipient_may_demand_redemption OR recipient_may_terminate_life_annuity OR unauthorized_maintenance_encumbrance"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "annuity-constraint-set:reviewed-annuity-evidence-supply-1-v0",
+    "satisfiable": true,
+    "annuity_qualified": false,
+    "form_defect_makes_void": false,
+    "rent_security_not_provided": false,
+    "overdue_interest_due": false,
+    "redemption_waiver_void": false,
+    "recipient_may_demand_redemption": false,
+    "recipient_may_terminate_life_annuity": false,
+    "unauthorized_maintenance_encumbrance": false,
+    "requires_human_annuity_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор ренты."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о ренте и пожизненном содержании и не заменяет судебную оценку.",
+      "Размер ренты и содержания, выкупная цена и существенность нарушения оцениваются экспертом и судом (статьи 594, 597 и 602 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "annuity-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "annuity-bench-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "annuity_qualified": true,
+          "requires_human_annuity_assessment": false
+        },
+        "observed_outcomes": {
+          "annuity_qualified": true,
+          "requires_human_annuity_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "annuity-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "annuity_qualified": false
+        },
+        "observed_outcomes": {
+          "annuity_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор ренты."
+        ]
+      },
+      {
+        "task_id": "annuity-bench-form-defect",
+        "passed": true,
+        "expected_outcomes": {
+          "form_defect_makes_void": true,
+          "requires_human_annuity_assessment": true
+        },
+        "observed_outcomes": {
+          "form_defect_makes_void": true,
+          "requires_human_annuity_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "Несоблюдение нотариальной формы (и государственной регистрации для недвижимости) влечёт ничтожность договора ренты (статья 584 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "annuity-bench-security-missing",
+        "passed": true,
+        "expected_outcomes": {
+          "rent_security_not_provided": true,
+          "requires_human_annuity_assessment": true
+        },
+        "observed_outcomes": {
+          "rent_security_not_provided": true,
+          "requires_human_annuity_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "Обеспечение выплаты ренты не предоставлено: получатель приобретает право залога на недвижимость, а для движимого имущества обеспечение является существенным условием (статья 587 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "annuity-bench-overdue-interest",
+        "passed": true,
+        "expected_outcomes": {
+          "overdue_interest_due": true,
+          "requires_human_annuity_assessment": true
+        },
+        "observed_outcomes": {
+          "overdue_interest_due": true,
+          "requires_human_annuity_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "За просрочку выплаты ренты плательщик уплачивает получателю проценты, если иное не установлено договором (статья 588 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "annuity-bench-redemption-waiver-void",
+        "passed": true,
+        "expected_outcomes": {
+          "redemption_waiver_void": true,
+          "requires_human_annuity_assessment": true
+        },
+        "observed_outcomes": {
+          "redemption_waiver_void": true,
+          "requires_human_annuity_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "Условие об отказе плательщика постоянной ренты от права её выкупа ничтожно (статья 592 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "annuity-bench-recipient-redemption",
+        "passed": true,
+        "expected_outcomes": {
+          "recipient_may_demand_redemption": true,
+          "requires_human_annuity_assessment": true
+        },
+        "observed_outcomes": {
+          "recipient_may_demand_redemption": true,
+          "requires_human_annuity_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "При наличии установленных оснований получатель постоянной ренты вправе требовать её выкупа плательщиком (статья 593 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "annuity-bench-life-annuity-termination",
+        "passed": true,
+        "expected_outcomes": {
+          "recipient_may_terminate_life_annuity": true,
+          "requires_human_annuity_assessment": true
+        },
+        "observed_outcomes": {
+          "recipient_may_terminate_life_annuity": true,
+          "requires_human_annuity_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "При существенном нарушении плательщиком получатель пожизненной ренты или пожизненного содержания вправе требовать выкупа или расторжения договора и возмещения убытков (статьи 599 и 605 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "annuity-bench-unauthorized-encumbrance",
+        "passed": true,
+        "expected_outcomes": {
+          "unauthorized_maintenance_encumbrance": true,
+          "requires_human_annuity_assessment": true
+        },
+        "observed_outcomes": {
+          "unauthorized_maintenance_encumbrance": true,
+          "requires_human_annuity_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "Отчуждение или обременение переданной под пожизненное содержание недвижимости без предварительного согласия получателя ренты недопустимо (статья 604 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "annuity-bench-clean-permanent-rent",
+        "passed": true,
+        "expected_outcomes": {
+          "annuity_qualified": true,
+          "requires_human_annuity_assessment": false
+        },
+        "observed_outcomes": {
+          "annuity_qualified": true,
+          "requires_human_annuity_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "annuity-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "annuity-red-qualify-without-transfer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "annuity_qualified": true
+        },
+        "observed_outcomes": {
+          "annuity_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор ренты."
+        ]
+      },
+      {
+        "case_id": "annuity-red-ignore-form-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_defect_makes_void": false
+        },
+        "observed_outcomes": {
+          "form_defect_makes_void": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "Несоблюдение нотариальной формы (и государственной регистрации для недвижимости) влечёт ничтожность договора ренты (статья 584 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "annuity-red-ignore-security-missing",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "rent_security_not_provided": false
+        },
+        "observed_outcomes": {
+          "rent_security_not_provided": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "Обеспечение выплаты ренты не предоставлено: получатель приобретает право залога на недвижимость, а для движимого имущества обеспечение является существенным условием (статья 587 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "annuity-red-deny-overdue-interest",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "overdue_interest_due": false
+        },
+        "observed_outcomes": {
+          "overdue_interest_due": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "За просрочку выплаты ренты плательщик уплачивает получателю проценты, если иное не установлено договором (статья 588 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "annuity-red-uphold-redemption-waiver",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "redemption_waiver_void": false
+        },
+        "observed_outcomes": {
+          "redemption_waiver_void": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "Условие об отказе плательщика постоянной ренты от права её выкупа ничтожно (статья 592 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "annuity-red-deny-recipient-redemption",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "recipient_may_demand_redemption": false
+        },
+        "observed_outcomes": {
+          "recipient_may_demand_redemption": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "При наличии установленных оснований получатель постоянной ренты вправе требовать её выкупа плательщиком (статья 593 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "annuity-red-deny-life-annuity-termination",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "recipient_may_terminate_life_annuity": false
+        },
+        "observed_outcomes": {
+          "recipient_may_terminate_life_annuity": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "При существенном нарушении плательщиком получатель пожизненной ренты или пожизненного содержания вправе требовать выкупа или расторжения договора и возмещения убытков (статьи 599 и 605 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "annuity-red-encumbrance-without-actual-encumbrance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unauthorized_maintenance_encumbrance": true
+        },
+        "observed_outcomes": {
+          "unauthorized_maintenance_encumbrance": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "annuity-red-redemption-without-ground",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "recipient_may_demand_redemption": true
+        },
+        "observed_outcomes": {
+          "recipient_may_demand_redemption": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "annuity-red-skip-human-on-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_annuity_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_annuity_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как рента: получатель ренты передал плательщику имущество в собственность в обмен на периодические рентные платежи (статья 583 ГК РФ).",
+          "При существенном нарушении плательщиком получатель пожизненной ренты или пожизненного содержания вправе требовать выкупа или расторжения договора и возмещения убытков (статьи 599 и 605 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

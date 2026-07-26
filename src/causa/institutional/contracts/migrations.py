@@ -796,6 +796,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.41.0",
+        to_version="0.42.0",
+        reasons=[
+            "Reviewed inputs now require a separate annuity evidence contract.",
+            "Analysis and Russian translation distinguish qualification, notarial form, security, overdue interest, permanent-rent redemption, life-annuity termination, and maintenance encumbrance under articles 583 through 605.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о ренте.",
+            "Анализ и русское объяснение разделяют квалификацию, нотариальную форму, обеспечение, проценты за просрочку, выкуп постоянной ренты, расторжение пожизненной ренты и обременение имущества по статьям 583–605 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_annuity_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

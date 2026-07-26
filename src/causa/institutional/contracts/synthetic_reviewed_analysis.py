@@ -95,6 +95,11 @@ from causa.institutional.contracts.energy_supply import (
     EnergySupplyEvidencePredicate,
     ReviewedEnergySupplyEvidence,
 )
+from causa.institutional.contracts.annuity import (
+    AnnuityEvidenceAssertion,
+    AnnuityEvidencePredicate,
+    ReviewedAnnuityEvidence,
+)
 from causa.institutional.contracts.barter import (
     BarterEvidenceAssertion,
     BarterEvidencePredicate,
@@ -260,6 +265,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk572-576-gift-concept-and-form-v1",
     "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
     "synthetic-case-supply-1-gift-evidence",
+    "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+    "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
+    "synthetic-case-supply-1-annuity-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1275,6 +1283,39 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-gift-reviewer",
+        ),
+        annuity_evidence=ReviewedAnnuityEvidence(
+            id="reviewed-annuity-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                AnnuityEvidenceAssertion(
+                    id=f"annuity-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-annuity-evidence",),
+                )
+                for predicate, value in (
+                    (AnnuityEvidencePredicate.PROPERTY_TRANSFERRED_FOR_PERIODIC_RENT, False),
+                    (AnnuityEvidencePredicate.NOTARIZATION_MISSING, False),
+                    (AnnuityEvidencePredicate.RENT_SECURITY_MISSING, False),
+                    (AnnuityEvidencePredicate.RENT_PAYMENT_OVERDUE, False),
+                    (AnnuityEvidencePredicate.PERMANENT_RENT, False),
+                    (AnnuityEvidencePredicate.PAYER_WAIVED_REDEMPTION_RIGHT, False),
+                    (AnnuityEvidencePredicate.RECIPIENT_REDEMPTION_GROUND_PRESENT, False),
+                    (AnnuityEvidencePredicate.LIFE_ANNUITY_OR_MAINTENANCE, False),
+                    (AnnuityEvidencePredicate.PAYER_MATERIALLY_BREACHED, False),
+                    (
+                        AnnuityEvidencePredicate.MAINTENANCE_PROPERTY_ENCUMBERED_WITHOUT_CONSENT,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
+                "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-annuity-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
