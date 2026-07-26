@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.38.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed real estate sale evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 549 through 558.",
+            "Qualification, written form, essential terms, ownership registration, deed transfer, and quality remedies remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о продаже недвижимости обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 549–558 ГК РФ.",
+            "Квалификация, письменная форма, существенные условия, регистрация перехода права, передача по акту и средства защиты по качеству разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.37.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

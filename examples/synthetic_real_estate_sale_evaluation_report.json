@@ -1,0 +1,447 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о продаже недвижимости по статьям 549–558 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-real-estate-sale-evidence-supply-1-v0",
+    "schema_version": "contracts.real-estate-sale-evidence.v0",
+    "mapping_version": "contracts-reviewed-real-estate-sale-to-facts-v0",
+    "facts": {
+      "real_estate_transfer_contract": false,
+      "written_single_document_signed": false,
+      "property_definitively_identified": false,
+      "price_agreed_in_contract": false,
+      "ownership_transfer_registered": false,
+      "property_handed_over_by_deed": false,
+      "party_evaded_transfer_deed": false,
+      "property_quality_defective": false,
+      "residential_premises": false,
+      "occupant_rights_list_included": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk549-552-real-estate-sale-concept-v1",
+      "synthetic-ru-gk554-558-real-estate-sale-terms-and-transfer-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "occupant_rights_list_included",
+        "assertion_id": "real-estate-sale-evidence-occupant_rights_list_included",
+        "source_refs": [
+          "synthetic-case-supply-1-real-estate-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "ownership_transfer_registered",
+        "assertion_id": "real-estate-sale-evidence-ownership_transfer_registered",
+        "source_refs": [
+          "synthetic-case-supply-1-real-estate-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "party_evaded_transfer_deed",
+        "assertion_id": "real-estate-sale-evidence-party_evaded_transfer_deed",
+        "source_refs": [
+          "synthetic-case-supply-1-real-estate-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "price_agreed_in_contract",
+        "assertion_id": "real-estate-sale-evidence-price_agreed_in_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-real-estate-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_definitively_identified",
+        "assertion_id": "real-estate-sale-evidence-property_definitively_identified",
+        "source_refs": [
+          "synthetic-case-supply-1-real-estate-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_handed_over_by_deed",
+        "assertion_id": "real-estate-sale-evidence-property_handed_over_by_deed",
+        "source_refs": [
+          "synthetic-case-supply-1-real-estate-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_quality_defective",
+        "assertion_id": "real-estate-sale-evidence-property_quality_defective",
+        "source_refs": [
+          "synthetic-case-supply-1-real-estate-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "real_estate_transfer_contract",
+        "assertion_id": "real-estate-sale-evidence-real_estate_transfer_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-real-estate-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "residential_premises",
+        "assertion_id": "real-estate-sale-evidence-residential_premises",
+        "source_refs": [
+          "synthetic-case-supply-1-real-estate-sale-evidence"
+        ]
+      },
+      {
+        "fact_name": "written_single_document_signed",
+        "assertion_id": "real-estate-sale-evidence-written_single_document_signed",
+        "source_refs": [
+          "synthetic-case-supply-1-real-estate-sale-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "real-estate-sale-constraint-set:reviewed-real-estate-sale-evidence-supply-1-v0",
+    "model_version": "contracts-real-estate-sale-articles-549-558-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk549-552-real-estate-sale-concept-v1",
+      "synthetic-ru-gk554-558-real-estate-sale-terms-and-transfer-v1"
+    ],
+    "expressions": [
+      "real_estate_sale_qualified == real_estate_transfer_contract",
+      "written_form_satisfied == real_estate_transfer_contract AND written_single_document_signed",
+      "contract_concluded == real_estate_sale_qualified AND property_definitively_identified AND price_agreed_in_contract AND (NOT residential_premises OR occupant_rights_list_included)",
+      "ownership_transfer_effective == real_estate_sale_qualified AND ownership_transfer_registered",
+      "transfer_obligation_met == real_estate_sale_qualified AND property_handed_over_by_deed",
+      "transfer_evasion_is_refusal == party_evaded_transfer_deed",
+      "buyer_quality_remedies_available == real_estate_sale_qualified AND property_quality_defective",
+      "requires_human_real_estate_sale_assessment == (real_estate_sale_qualified AND property_quality_defective) OR party_evaded_transfer_deed"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "real-estate-sale-constraint-set:reviewed-real-estate-sale-evidence-supply-1-v0",
+    "satisfiable": true,
+    "real_estate_sale_qualified": false,
+    "written_form_satisfied": false,
+    "contract_concluded": false,
+    "ownership_transfer_effective": false,
+    "transfer_obligation_met": false,
+    "transfer_evasion_is_refusal": false,
+    "buyer_quality_remedies_available": false,
+    "requires_human_real_estate_sale_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор продажи недвижимости."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о продаже недвижимости и не заменяет судебную оценку.",
+      "Определённость предмета, размер убытков и государственная регистрация оцениваются экспертом и регистрирующим органом."
+    ]
+  },
+  "benchmark_report": {
+    "id": "real-estate-sale-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "real-estate-sale-bench-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "real_estate_sale_qualified": true,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "real_estate_sale_qualified": true,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "real-estate-sale-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "real_estate_sale_qualified": false
+        },
+        "observed_outcomes": {
+          "real_estate_sale_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор продажи недвижимости."
+        ]
+      },
+      {
+        "task_id": "real-estate-sale-bench-written-form",
+        "passed": true,
+        "expected_outcomes": {
+          "written_form_satisfied": true,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "written_form_satisfied": true,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "Договор заключён в письменной форме путём составления одного документа, подписанного сторонами (статья 550 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "real-estate-sale-bench-concluded",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_concluded": true,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "contract_concluded": true,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "Договор заключён в письменной форме путём составления одного документа, подписанного сторонами (статья 550 ГК РФ).",
+          "Договор считается заключённым: предмет определён, цена согласована и для жилого помещения указан перечень лиц, сохраняющих право пользования (статьи 554, 555 и 558 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "real-estate-sale-bench-residential-concluded",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_concluded": true,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "contract_concluded": true,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "Договор заключён в письменной форме путём составления одного документа, подписанного сторонами (статья 550 ГК РФ).",
+          "Договор считается заключённым: предмет определён, цена согласована и для жилого помещения указан перечень лиц, сохраняющих право пользования (статьи 554, 555 и 558 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "real-estate-sale-bench-residential-not-concluded",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_concluded": false,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "contract_concluded": false,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "Договор заключён в письменной форме путём составления одного документа, подписанного сторонами (статья 550 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "real-estate-sale-bench-ownership-registered",
+        "passed": true,
+        "expected_outcomes": {
+          "ownership_transfer_effective": true,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "ownership_transfer_effective": true,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "Переход права собственности на недвижимость к покупателю зарегистрирован (статья 551 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "real-estate-sale-bench-transfer-by-deed",
+        "passed": true,
+        "expected_outcomes": {
+          "transfer_obligation_met": true,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "transfer_obligation_met": true,
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "Недвижимость передана по передаточному акту или иному документу о передаче (статья 556 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "real-estate-sale-bench-quality-defect",
+        "passed": true,
+        "expected_outcomes": {
+          "buyer_quality_remedies_available": true,
+          "requires_human_real_estate_sale_assessment": true
+        },
+        "observed_outcomes": {
+          "buyer_quality_remedies_available": true,
+          "requires_human_real_estate_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "При передаче недвижимости ненадлежащего качества покупатель вправе воспользоваться последствиями статьи 475 ГК РФ, кроме требования о замене (статья 557 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "real-estate-sale-bench-transfer-evasion",
+        "passed": true,
+        "expected_outcomes": {
+          "transfer_evasion_is_refusal": true,
+          "requires_human_real_estate_sale_assessment": true
+        },
+        "observed_outcomes": {
+          "transfer_evasion_is_refusal": true,
+          "requires_human_real_estate_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "Уклонение стороны от подписания передаточного акта считается отказом от исполнения обязанности по передаче или принятию недвижимости (статья 556 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "real-estate-sale-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "real-estate-sale-red-qualify-without-transfer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "real_estate_sale_qualified": true
+        },
+        "observed_outcomes": {
+          "real_estate_sale_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор продажи недвижимости."
+        ]
+      },
+      {
+        "case_id": "real-estate-sale-red-form-without-signed-document",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "written_form_satisfied": true
+        },
+        "observed_outcomes": {
+          "written_form_satisfied": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "real-estate-sale-red-concluded-without-identification",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_concluded": true
+        },
+        "observed_outcomes": {
+          "contract_concluded": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "Договор заключён в письменной форме путём составления одного документа, подписанного сторонами (статья 550 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "real-estate-sale-red-concluded-without-price",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_concluded": true
+        },
+        "observed_outcomes": {
+          "contract_concluded": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "Договор заключён в письменной форме путём составления одного документа, подписанного сторонами (статья 550 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "real-estate-sale-red-residential-concluded-without-occupants",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_concluded": true
+        },
+        "observed_outcomes": {
+          "contract_concluded": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "Договор заключён в письменной форме путём составления одного документа, подписанного сторонами (статья 550 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "real-estate-sale-red-ownership-without-registration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "ownership_transfer_effective": true
+        },
+        "observed_outcomes": {
+          "ownership_transfer_effective": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "Договор считается заключённым: предмет определён, цена согласована и для жилого помещения указан перечень лиц, сохраняющих право пользования (статьи 554, 555 и 558 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "real-estate-sale-red-transfer-without-deed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transfer_obligation_met": true
+        },
+        "observed_outcomes": {
+          "transfer_obligation_met": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "real-estate-sale-red-remedies-without-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "buyer_quality_remedies_available": true
+        },
+        "observed_outcomes": {
+          "buyer_quality_remedies_available": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "real-estate-sale-red-skip-human-on-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_real_estate_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "При передаче недвижимости ненадлежащего качества покупатель вправе воспользоваться последствиями статьи 475 ГК РФ, кроме требования о замене (статья 557 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "real-estate-sale-red-skip-human-on-evasion",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_real_estate_sale_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_real_estate_sale_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как продажа недвижимости: продавец обязуется передать в собственность покупателя недвижимое имущество (статья 549 ГК РФ).",
+          "Уклонение стороны от подписания передаточного акта считается отказом от исполнения обязанности по передаче или принятию недвижимости (статья 556 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

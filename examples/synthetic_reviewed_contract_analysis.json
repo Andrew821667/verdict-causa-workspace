@@ -1032,6 +1032,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk549-552-real-estate-sale-concept-v1",
+      "title": "Синтетическая проверенная модель понятия, формы и регистрации продажи недвижимости по статьям 549–552 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: продажа недвижимости как передача недвижимого имущества в собственность, письменная форма одним документом, подписанным сторонами, и государственная регистрация перехода права проверяются раздельно (статьи 549–552 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "real_estate_sale_concept_articles_549_552",
+        "legal_reference": "ГК РФ, статьи 549–552",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk554-558-real-estate-sale-terms-and-transfer-v1",
+      "title": "Синтетическая проверенная модель предмета, цены, передачи, качества и продажи жилых помещений по статьям 554–558 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: определённость предмета и согласованная цена как условия заключённости, передача по передаточному акту и уклонение как отказ, последствия ненадлежащего качества и перечень лиц при продаже жилого помещения проверяются раздельно (статьи 554–558 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "real_estate_sale_terms_and_transfer_articles_554_558",
+        "legal_reference": "ГК РФ, статьи 554–558",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-real-estate-sale-evidence",
+      "title": "Синтетическая проверенная запись фактов о продаже недвижимости",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой движимых товаров и не является продажей недвижимого имущества; передаточный акт, регистрация перехода права и претензии к качеству недвижимости отсутствуют.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "real_estate_sale_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -3873,6 +3920,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-energy-supply-reviewer"
+    },
+    "real_estate_sale_evidence": {
+      "id": "reviewed-real-estate-sale-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.real-estate-sale-evidence.v0",
+      "assertions": [
+        {
+          "id": "real-estate-sale-evidence-real_estate_transfer_contract",
+          "predicate": "real_estate_transfer_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "id": "real-estate-sale-evidence-written_single_document_signed",
+          "predicate": "written_single_document_signed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "id": "real-estate-sale-evidence-property_definitively_identified",
+          "predicate": "property_definitively_identified",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "id": "real-estate-sale-evidence-price_agreed_in_contract",
+          "predicate": "price_agreed_in_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "id": "real-estate-sale-evidence-ownership_transfer_registered",
+          "predicate": "ownership_transfer_registered",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "id": "real-estate-sale-evidence-property_handed_over_by_deed",
+          "predicate": "property_handed_over_by_deed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "id": "real-estate-sale-evidence-party_evaded_transfer_deed",
+          "predicate": "party_evaded_transfer_deed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "id": "real-estate-sale-evidence-property_quality_defective",
+          "predicate": "property_quality_defective",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "id": "real-estate-sale-evidence-residential_premises",
+          "predicate": "residential_premises",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "id": "real-estate-sale-evidence-occupant_rights_list_included",
+          "predicate": "occupant_rights_list_included",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk549-552-real-estate-sale-concept-v1",
+        "synthetic-ru-gk554-558-real-estate-sale-terms-and-transfer-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-real-estate-sale-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -8669,6 +8809,7 @@
       "synthetic-preliminary-reviewer",
       "synthetic-procedure-reviewer",
       "synthetic-public-contract-reviewer",
+      "synthetic-real-estate-sale-reviewer",
       "synthetic-representations-reviewer",
       "synthetic-retail-sale-reviewer",
       "synthetic-security-reviewer",
@@ -8700,6 +8841,7 @@
       "synthetic-case-supply-1-preliminary-evidence",
       "synthetic-case-supply-1-procedure-evidence",
       "synthetic-case-supply-1-public-contract-evidence",
+      "synthetic-case-supply-1-real-estate-sale-evidence",
       "synthetic-case-supply-1-representations-evidence",
       "synthetic-case-supply-1-retail-sale-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
@@ -8778,6 +8920,8 @@
       "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
       "synthetic-ru-gk539-542-energy-supply-concept-v1",
       "synthetic-ru-gk543-547-energy-supply-duties-and-interruption-v1",
+      "synthetic-ru-gk549-552-real-estate-sale-concept-v1",
+      "synthetic-ru-gk554-558-real-estate-sale-terms-and-transfer-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -11719,6 +11863,136 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила об энергоснабжении и не заменяет судебную оценку.",
         "По договору энергоснабжения нарушившая сторона возмещает причинённый реальный ущерб; вина и размер убытков оцениваются экспертом и судом (статья 547 ГК РФ)."
+      ]
+    },
+    "real_estate_sale_evidence_mapping": {
+      "evidence_id": "reviewed-real-estate-sale-evidence-supply-1-v0",
+      "schema_version": "contracts.real-estate-sale-evidence.v0",
+      "mapping_version": "contracts-reviewed-real-estate-sale-to-facts-v0",
+      "facts": {
+        "real_estate_transfer_contract": false,
+        "written_single_document_signed": false,
+        "property_definitively_identified": false,
+        "price_agreed_in_contract": false,
+        "ownership_transfer_registered": false,
+        "property_handed_over_by_deed": false,
+        "party_evaded_transfer_deed": false,
+        "property_quality_defective": false,
+        "residential_premises": false,
+        "occupant_rights_list_included": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk549-552-real-estate-sale-concept-v1",
+        "synthetic-ru-gk554-558-real-estate-sale-terms-and-transfer-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "occupant_rights_list_included",
+          "assertion_id": "real-estate-sale-evidence-occupant_rights_list_included",
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "ownership_transfer_registered",
+          "assertion_id": "real-estate-sale-evidence-ownership_transfer_registered",
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "party_evaded_transfer_deed",
+          "assertion_id": "real-estate-sale-evidence-party_evaded_transfer_deed",
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "price_agreed_in_contract",
+          "assertion_id": "real-estate-sale-evidence-price_agreed_in_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "property_definitively_identified",
+          "assertion_id": "real-estate-sale-evidence-property_definitively_identified",
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "property_handed_over_by_deed",
+          "assertion_id": "real-estate-sale-evidence-property_handed_over_by_deed",
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "property_quality_defective",
+          "assertion_id": "real-estate-sale-evidence-property_quality_defective",
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "real_estate_transfer_contract",
+          "assertion_id": "real-estate-sale-evidence-real_estate_transfer_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "residential_premises",
+          "assertion_id": "real-estate-sale-evidence-residential_premises",
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        },
+        {
+          "fact_name": "written_single_document_signed",
+          "assertion_id": "real-estate-sale-evidence-written_single_document_signed",
+          "source_refs": [
+            "synthetic-case-supply-1-real-estate-sale-evidence"
+          ]
+        }
+      ]
+    },
+    "real_estate_sale_constraint_set": {
+      "id": "real-estate-sale-constraint-set:reviewed-real-estate-sale-evidence-supply-1-v0",
+      "model_version": "contracts-real-estate-sale-articles-549-558-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk549-552-real-estate-sale-concept-v1",
+        "synthetic-ru-gk554-558-real-estate-sale-terms-and-transfer-v1"
+      ],
+      "expressions": [
+        "real_estate_sale_qualified == real_estate_transfer_contract",
+        "written_form_satisfied == real_estate_transfer_contract AND written_single_document_signed",
+        "contract_concluded == real_estate_sale_qualified AND property_definitively_identified AND price_agreed_in_contract AND (NOT residential_premises OR occupant_rights_list_included)",
+        "ownership_transfer_effective == real_estate_sale_qualified AND ownership_transfer_registered",
+        "transfer_obligation_met == real_estate_sale_qualified AND property_handed_over_by_deed",
+        "transfer_evasion_is_refusal == party_evaded_transfer_deed",
+        "buyer_quality_remedies_available == real_estate_sale_qualified AND property_quality_defective",
+        "requires_human_real_estate_sale_assessment == (real_estate_sale_qualified AND property_quality_defective) OR party_evaded_transfer_deed"
+      ]
+    },
+    "real_estate_sale_evaluation": {
+      "constraint_set_id": "real-estate-sale-constraint-set:reviewed-real-estate-sale-evidence-supply-1-v0",
+      "satisfiable": true,
+      "real_estate_sale_qualified": false,
+      "written_form_satisfied": false,
+      "contract_concluded": false,
+      "ownership_transfer_effective": false,
+      "transfer_obligation_met": false,
+      "transfer_evasion_is_refusal": false,
+      "buyer_quality_remedies_available": false,
+      "requires_human_real_estate_sale_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор продажи недвижимости."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о продаже недвижимости и не заменяет судебную оценку.",
+        "Определённость предмета, размер убытков и государственная регистрация оцениваются экспертом и регистрирующим органом."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -17092,7 +17366,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.37.0",
+      "institutional_package_version": "contracts-ru-v0@0.38.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

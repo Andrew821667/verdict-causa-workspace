@@ -1304,6 +1304,61 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk549-552-real-estate-sale-concept-v1",
+        title="Синтетическая проверенная модель понятия, формы и регистрации продажи недвижимости по статьям 549–552 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: продажа недвижимости как передача недвижимого "
+            "имущества в собственность, письменная форма одним документом, подписанным "
+            "сторонами, и государственная регистрация перехода права проверяются раздельно "
+            "(статьи 549–552 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "real_estate_sale_concept_articles_549_552",
+            "legal_reference": "ГК РФ, статьи 549–552",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk554-558-real-estate-sale-terms-and-transfer-v1",
+        title="Синтетическая проверенная модель предмета, цены, передачи, качества и продажи жилых помещений по статьям 554–558 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: определённость предмета и согласованная цена как "
+            "условия заключённости, передача по передаточному акту и уклонение как отказ, "
+            "последствия ненадлежащего качества и перечень лиц при продаже жилого помещения "
+            "проверяются раздельно (статьи 554–558 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "real_estate_sale_terms_and_transfer_articles_554_558",
+            "legal_reference": "ГК РФ, статьи 554–558",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-real-estate-sale-evidence",
+        title="Синтетическая проверенная запись фактов о продаже недвижимости",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой движимых товаров и не "
+            "является продажей недвижимого имущества; передаточный акт, регистрация перехода "
+            "права и претензии к качеству недвижимости отсутствуют."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "real_estate_sale_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

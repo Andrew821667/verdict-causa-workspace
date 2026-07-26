@@ -95,6 +95,11 @@ from causa.institutional.contracts.energy_supply import (
     EnergySupplyEvidencePredicate,
     ReviewedEnergySupplyEvidence,
 )
+from causa.institutional.contracts.real_estate_sale import (
+    RealEstateSaleEvidenceAssertion,
+    RealEstateSaleEvidencePredicate,
+    ReviewedRealEstateSaleEvidence,
+)
 from causa.institutional.contracts.state_supply import (
     ReviewedStateSupplyEvidence,
     StateSupplyEvidenceAssertion,
@@ -228,6 +233,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk539-542-energy-supply-concept-v1",
     "synthetic-ru-gk543-547-energy-supply-duties-and-interruption-v1",
     "synthetic-case-supply-1-energy-supply-evidence",
+    "synthetic-ru-gk549-552-real-estate-sale-concept-v1",
+    "synthetic-ru-gk554-558-real-estate-sale-terms-and-transfer-v1",
+    "synthetic-case-supply-1-real-estate-sale-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1111,6 +1119,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-energy-supply-reviewer",
+        ),
+        real_estate_sale_evidence=ReviewedRealEstateSaleEvidence(
+            id="reviewed-real-estate-sale-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                RealEstateSaleEvidenceAssertion(
+                    id=f"real-estate-sale-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-real-estate-sale-evidence",),
+                )
+                for predicate, value in (
+                    (RealEstateSaleEvidencePredicate.REAL_ESTATE_TRANSFER_CONTRACT, False),
+                    (RealEstateSaleEvidencePredicate.WRITTEN_SINGLE_DOCUMENT_SIGNED, False),
+                    (RealEstateSaleEvidencePredicate.PROPERTY_DEFINITIVELY_IDENTIFIED, False),
+                    (RealEstateSaleEvidencePredicate.PRICE_AGREED_IN_CONTRACT, False),
+                    (RealEstateSaleEvidencePredicate.OWNERSHIP_TRANSFER_REGISTERED, False),
+                    (RealEstateSaleEvidencePredicate.PROPERTY_HANDED_OVER_BY_DEED, False),
+                    (RealEstateSaleEvidencePredicate.PARTY_EVADED_TRANSFER_DEED, False),
+                    (RealEstateSaleEvidencePredicate.PROPERTY_QUALITY_DEFECTIVE, False),
+                    (RealEstateSaleEvidencePredicate.RESIDENTIAL_PREMISES, False),
+                    (RealEstateSaleEvidencePredicate.OCCUPANT_RIGHTS_LIST_INCLUDED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk549-552-real-estate-sale-concept-v1",
+                "synthetic-ru-gk554-558-real-estate-sale-terms-and-transfer-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-real-estate-sale-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

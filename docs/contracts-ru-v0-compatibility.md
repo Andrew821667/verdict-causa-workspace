@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.38.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью продажи недвижимости |
 | `0.37.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью энергоснабжения |
 | `0.36.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью контрактации |
 | `0.35.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью поставки для государственных нужд |
@@ -45,6 +46,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.37.0` → `0.38.0` соберите отдельно проверенный контракт данных о продаже недвижимости (`contracts.real-estate-sale-evidence.v0`). Не выводите квалификацию продажи недвижимости, письменную форму, определённость предмета и цены, регистрацию перехода права, передачу по акту и средства защиты по качеству из прежних результатов об общей купле-продаже или поставке. Пересоберите артефакты оценки продажи недвижимости, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.36.0` → `0.37.0` соберите отдельно проверенный контракт данных об энергоснабжении (`contracts.energy-supply-evidence.v0`). Не выводите квалификацию договора энергоснабжения, соответствие энергии по количеству и качеству, право на отказ от оплаты некачественной энергии, обязанности по содержанию сетей, оплату по учёту и правомерность перерыва подачи из прежних результатов об общей поставке или купле-продаже. Пересоберите артефакты оценки энергоснабжения, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

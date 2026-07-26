@@ -184,6 +184,16 @@ from causa.institutional.contracts.energy_supply import (
     evaluate_energy_supply_constraints,
     map_reviewed_energy_supply_evidence,
 )
+from causa.institutional.contracts.real_estate_sale import (
+    REAL_ESTATE_SALE_EVIDENCE_SCHEMA_VERSION,
+    RealEstateSaleConstraintSet,
+    RealEstateSaleEvaluation,
+    RealEstateSaleEvidenceMappingResult,
+    ReviewedRealEstateSaleEvidence,
+    build_real_estate_sale_constraint_set,
+    evaluate_real_estate_sale_constraints,
+    map_reviewed_real_estate_sale_evidence,
+)
 from causa.institutional.contracts.state_supply import (
     STATE_SUPPLY_EVIDENCE_SCHEMA_VERSION,
     ReviewedStateSupplyEvidence,
@@ -427,6 +437,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     state_supply_evidence: ReviewedStateSupplyEvidence
     contractation_evidence: ReviewedContractationEvidence
     energy_supply_evidence: ReviewedEnergySupplyEvidence
+    real_estate_sale_evidence: ReviewedRealEstateSaleEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -526,6 +537,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     energy_supply_evidence_mapping: EnergySupplyEvidenceMappingResult
     energy_supply_constraint_set: EnergySupplyConstraintSet
     energy_supply_evaluation: EnergySupplyEvaluation
+    real_estate_sale_evidence_mapping: RealEstateSaleEvidenceMappingResult
+    real_estate_sale_constraint_set: RealEstateSaleConstraintSet
+    real_estate_sale_evaluation: RealEstateSaleEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -787,6 +801,21 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.energy_supply_evaluation != expected_energy_supply_evaluation:
             raise ValueError("Energy supply evaluation does not replay from reviewed evidence.")
+        expected_real_estate_sale_set = build_real_estate_sale_constraint_set(
+            self.real_estate_sale_evidence_mapping
+        )
+        if self.real_estate_sale_constraint_set != expected_real_estate_sale_set:
+            raise ValueError(
+                "Real estate sale constraint set does not replay from reviewed evidence."
+            )
+        expected_real_estate_sale_evaluation = evaluate_real_estate_sale_constraints(
+            expected_real_estate_sale_set,
+            self.real_estate_sale_evidence_mapping.facts,
+        )
+        if self.real_estate_sale_evaluation != expected_real_estate_sale_evaluation:
+            raise ValueError(
+                "Real estate sale evaluation does not replay from reviewed evidence."
+            )
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -1145,6 +1174,8 @@ def _validate_request_integrity(
         raise ValueError("Contractation evidence case_id does not match the analysis request.")
     if request.energy_supply_evidence.case_id != request.case_id:
         raise ValueError("Energy supply evidence case_id does not match the analysis request.")
+    if request.real_estate_sale_evidence.case_id != request.case_id:
+        raise ValueError("Real estate sale evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -1236,6 +1267,11 @@ def _validate_request_integrity(
         raise ValueError("Contractation evidence uses an unsupported schema version.")
     if request.energy_supply_evidence.schema_version != ENERGY_SUPPLY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Energy supply evidence uses an unsupported schema version.")
+    if (
+        request.real_estate_sale_evidence.schema_version
+        != REAL_ESTATE_SALE_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Real estate sale evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -1263,6 +1299,7 @@ def _validate_request_integrity(
         *request.state_supply_evidence.legal_source_refs,
         *request.contractation_evidence.legal_source_refs,
         *request.energy_supply_evidence.legal_source_refs,
+        *request.real_estate_sale_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -1313,6 +1350,8 @@ def _validate_request_integrity(
     for assertion in request.contractation_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.energy_supply_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.real_estate_sale_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -1564,6 +1603,17 @@ def _validate_request_integrity(
         raise ValueError(
             "Energy supply legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_energy_supply_legal_sources))
+        )
+    invalid_real_estate_sale_legal_sources = [
+        source_id
+        for source_id in request.real_estate_sale_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_real_estate_sale_legal_sources:
+        raise ValueError(
+            "Real estate sale legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_real_estate_sale_legal_sources))
         )
     invalid_invalidity_legal_sources = [
         source_id
@@ -1847,6 +1897,11 @@ def run_reviewed_contract_analysis(
         review_status=request.energy_supply_evidence.review_status,
         reviewer_id=request.energy_supply_evidence.reviewer_id,
     )
+    real_estate_sale_reviewer_id = _require_reviewed(
+        artifact_name="Real estate sale evidence",
+        review_status=request.real_estate_sale_evidence.review_status,
+        reviewer_id=request.real_estate_sale_evidence.reviewer_id,
+    )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
         review_status=request.invalidity_evidence.review_status,
@@ -2078,6 +2133,16 @@ def run_reviewed_contract_analysis(
     energy_supply_evaluation = evaluate_energy_supply_constraints(
         energy_supply_constraint_set,
         energy_supply_evidence_mapping.facts,
+    )
+    real_estate_sale_evidence_mapping = map_reviewed_real_estate_sale_evidence(
+        request.real_estate_sale_evidence
+    )
+    real_estate_sale_constraint_set = build_real_estate_sale_constraint_set(
+        real_estate_sale_evidence_mapping
+    )
+    real_estate_sale_evaluation = evaluate_real_estate_sale_constraints(
+        real_estate_sale_constraint_set,
+        real_estate_sale_evidence_mapping.facts,
     )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
@@ -2322,6 +2387,7 @@ def run_reviewed_contract_analysis(
         or state_supply_evaluation.requires_human_state_supply_assessment
         or contractation_evaluation.requires_human_contractation_assessment
         or energy_supply_evaluation.requires_human_energy_supply_assessment
+        or real_estate_sale_evaluation.requires_human_real_estate_sale_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -2361,6 +2427,7 @@ def run_reviewed_contract_analysis(
                 state_supply_reviewer_id,
                 contractation_reviewer_id,
                 energy_supply_reviewer_id,
+                real_estate_sale_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -2436,6 +2503,9 @@ def run_reviewed_contract_analysis(
         energy_supply_evidence_mapping=energy_supply_evidence_mapping,
         energy_supply_constraint_set=energy_supply_constraint_set,
         energy_supply_evaluation=energy_supply_evaluation,
+        real_estate_sale_evidence_mapping=real_estate_sale_evidence_mapping,
+        real_estate_sale_constraint_set=real_estate_sale_constraint_set,
+        real_estate_sale_evaluation=real_estate_sale_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,
