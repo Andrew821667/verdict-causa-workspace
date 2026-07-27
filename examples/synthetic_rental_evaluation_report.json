@@ -1,0 +1,452 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о прокате по статьям 626–631 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-rental-evidence-supply-1-v0",
+    "schema_version": "contracts.rental-evidence.v0",
+    "mapping_version": "contracts-reviewed-rental-to-facts-v0",
+    "facts": {
+      "movable_property_rented_by_professional_lessor": false,
+      "written_form_missing": false,
+      "lease_term_exceeds_one_year": false,
+      "renewal_or_priority_right_claimed": false,
+      "defect_present": false,
+      "defect_from_tenant_misuse": false,
+      "lessor_failed_to_remedy_defect": false,
+      "early_return_refund_denied": false,
+      "repair_obligation_neglected": false,
+      "sublease_or_rights_transfer_attempted": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+      "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "defect_from_tenant_misuse",
+        "assertion_id": "rental-evidence-defect_from_tenant_misuse",
+        "source_refs": [
+          "synthetic-case-supply-1-rental-evidence"
+        ]
+      },
+      {
+        "fact_name": "defect_present",
+        "assertion_id": "rental-evidence-defect_present",
+        "source_refs": [
+          "synthetic-case-supply-1-rental-evidence"
+        ]
+      },
+      {
+        "fact_name": "early_return_refund_denied",
+        "assertion_id": "rental-evidence-early_return_refund_denied",
+        "source_refs": [
+          "synthetic-case-supply-1-rental-evidence"
+        ]
+      },
+      {
+        "fact_name": "lease_term_exceeds_one_year",
+        "assertion_id": "rental-evidence-lease_term_exceeds_one_year",
+        "source_refs": [
+          "synthetic-case-supply-1-rental-evidence"
+        ]
+      },
+      {
+        "fact_name": "lessor_failed_to_remedy_defect",
+        "assertion_id": "rental-evidence-lessor_failed_to_remedy_defect",
+        "source_refs": [
+          "synthetic-case-supply-1-rental-evidence"
+        ]
+      },
+      {
+        "fact_name": "movable_property_rented_by_professional_lessor",
+        "assertion_id": "rental-evidence-movable_property_rented_by_professional_lessor",
+        "source_refs": [
+          "synthetic-case-supply-1-rental-evidence"
+        ]
+      },
+      {
+        "fact_name": "renewal_or_priority_right_claimed",
+        "assertion_id": "rental-evidence-renewal_or_priority_right_claimed",
+        "source_refs": [
+          "synthetic-case-supply-1-rental-evidence"
+        ]
+      },
+      {
+        "fact_name": "repair_obligation_neglected",
+        "assertion_id": "rental-evidence-repair_obligation_neglected",
+        "source_refs": [
+          "synthetic-case-supply-1-rental-evidence"
+        ]
+      },
+      {
+        "fact_name": "sublease_or_rights_transfer_attempted",
+        "assertion_id": "rental-evidence-sublease_or_rights_transfer_attempted",
+        "source_refs": [
+          "synthetic-case-supply-1-rental-evidence"
+        ]
+      },
+      {
+        "fact_name": "written_form_missing",
+        "assertion_id": "rental-evidence-written_form_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-rental-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "rental-constraint-set:reviewed-rental-evidence-supply-1-v0",
+    "model_version": "contracts-rental-articles-626-631-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+      "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1"
+    ],
+    "expressions": [
+      "rental_qualified == movable_property_rented_by_professional_lessor",
+      "form_requirement_violated == rental_qualified AND written_form_missing",
+      "term_limit_exceeded == rental_qualified AND lease_term_exceeds_one_year",
+      "renewal_right_not_available == rental_qualified AND renewal_or_priority_right_claimed",
+      "tenant_bears_defect_cost == rental_qualified AND defect_present AND defect_from_tenant_misuse",
+      "defect_remedy_overdue == rental_qualified AND defect_present AND lessor_failed_to_remedy_defect",
+      "early_return_refund_due == rental_qualified AND early_return_refund_denied",
+      "repair_obligation_breached == rental_qualified AND repair_obligation_neglected",
+      "transfer_restriction_violated == rental_qualified AND sublease_or_rights_transfer_attempted",
+      "requires_human_rental_assessment == form_requirement_violated OR term_limit_exceeded OR renewal_right_not_available OR tenant_bears_defect_cost OR defect_remedy_overdue OR early_return_refund_due OR repair_obligation_breached OR transfer_restriction_violated"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "rental-constraint-set:reviewed-rental-evidence-supply-1-v0",
+    "satisfiable": true,
+    "rental_qualified": false,
+    "form_requirement_violated": false,
+    "term_limit_exceeded": false,
+    "renewal_right_not_available": false,
+    "tenant_bears_defect_cost": false,
+    "defect_remedy_overdue": false,
+    "early_return_refund_due": false,
+    "repair_obligation_breached": false,
+    "transfer_restriction_violated": false,
+    "requires_human_rental_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор проката."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о прокате и не заменяет судебную оценку.",
+      "Размер арендной платы, характер недостатков и объём возврата платы оцениваются экспертом и судом (статьи 629 и 630 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "rental-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "rental-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "rental_qualified": false
+        },
+        "observed_outcomes": {
+          "rental_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор проката."
+        ]
+      },
+      {
+        "task_id": "rental-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "rental_qualified": true,
+          "requires_human_rental_assessment": false
+        },
+        "observed_outcomes": {
+          "rental_qualified": true,
+          "requires_human_rental_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "rental-bench-form-violation",
+        "passed": true,
+        "expected_outcomes": {
+          "form_requirement_violated": true,
+          "requires_human_rental_assessment": true
+        },
+        "observed_outcomes": {
+          "form_requirement_violated": true,
+          "requires_human_rental_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "Договор проката должен быть заключён в письменной форме; требование формы нарушено (статья 626 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "rental-bench-term-limit",
+        "passed": true,
+        "expected_outcomes": {
+          "term_limit_exceeded": true,
+          "requires_human_rental_assessment": true
+        },
+        "observed_outcomes": {
+          "term_limit_exceeded": true,
+          "requires_human_rental_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "Договор проката заключается на срок до одного года; согласованный срок превышает предельный (статья 627 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "rental-bench-renewal-claim",
+        "passed": true,
+        "expected_outcomes": {
+          "renewal_right_not_available": true,
+          "requires_human_rental_assessment": true
+        },
+        "observed_outcomes": {
+          "renewal_right_not_available": true,
+          "requires_human_rental_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "К договору проката не применяются правила о преимущественном праве на возобновление и о возобновлении на неопределённый срок (статья 627 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "rental-bench-tenant-defect-cost",
+        "passed": true,
+        "expected_outcomes": {
+          "tenant_bears_defect_cost": true,
+          "requires_human_rental_assessment": true
+        },
+        "observed_outcomes": {
+          "tenant_bears_defect_cost": true,
+          "requires_human_rental_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "Недостатки возникли вследствие нарушения арендатором правил эксплуатации; арендатор оплачивает стоимость ремонта и транспортировки имущества (статья 629 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "rental-bench-defect-remedy-overdue",
+        "passed": true,
+        "expected_outcomes": {
+          "defect_remedy_overdue": true,
+          "requires_human_rental_assessment": true
+        },
+        "observed_outcomes": {
+          "defect_remedy_overdue": true,
+          "requires_human_rental_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "Арендодатель не устранил недостатки и не заменил имущество в десятидневный срок со дня заявления арендатора о недостатках (статья 629 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "rental-bench-early-return-refund",
+        "passed": true,
+        "expected_outcomes": {
+          "early_return_refund_due": true,
+          "requires_human_rental_assessment": true
+        },
+        "observed_outcomes": {
+          "early_return_refund_due": true,
+          "requires_human_rental_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "При досрочном возврате имущества арендодатель обязан возвратить арендатору соответствующую часть внесённой арендной платы (статья 630 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "rental-bench-repair-obligation",
+        "passed": true,
+        "expected_outcomes": {
+          "repair_obligation_breached": true,
+          "requires_human_rental_assessment": true
+        },
+        "observed_outcomes": {
+          "repair_obligation_breached": true,
+          "requires_human_rental_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "Капитальный и текущий ремонт сданного в прокат имущества являются обязанностью арендодателя (статья 631 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "rental-bench-transfer-restriction",
+        "passed": true,
+        "expected_outcomes": {
+          "transfer_restriction_violated": true,
+          "requires_human_rental_assessment": true
+        },
+        "observed_outcomes": {
+          "transfer_restriction_violated": true,
+          "requires_human_rental_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "Сдача имущества в субаренду, передача прав по договору проката, залог и внесение его в качестве вклада не допускаются (статья 631 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "rental-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "rental-red-qualify-without-rental",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "rental_qualified": true
+        },
+        "observed_outcomes": {
+          "rental_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор проката."
+        ]
+      },
+      {
+        "case_id": "rental-red-ignore-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_requirement_violated": false
+        },
+        "observed_outcomes": {
+          "form_requirement_violated": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "Договор проката должен быть заключён в письменной форме; требование формы нарушено (статья 626 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "rental-red-ignore-term-limit",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "term_limit_exceeded": false
+        },
+        "observed_outcomes": {
+          "term_limit_exceeded": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "Договор проката заключается на срок до одного года; согласованный срок превышает предельный (статья 627 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "rental-red-grant-renewal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "renewal_right_not_available": false
+        },
+        "observed_outcomes": {
+          "renewal_right_not_available": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "К договору проката не применяются правила о преимущественном праве на возобновление и о возобновлении на неопределённый срок (статья 627 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "rental-red-shift-defect-cost-to-lessor",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "tenant_bears_defect_cost": false
+        },
+        "observed_outcomes": {
+          "tenant_bears_defect_cost": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "Недостатки возникли вследствие нарушения арендатором правил эксплуатации; арендатор оплачивает стоимость ремонта и транспортировки имущества (статья 629 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "rental-red-ignore-defect-remedy",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "defect_remedy_overdue": false
+        },
+        "observed_outcomes": {
+          "defect_remedy_overdue": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "Арендодатель не устранил недостатки и не заменил имущество в десятидневный срок со дня заявления арендатора о недостатках (статья 629 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "rental-red-deny-early-return-refund",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "early_return_refund_due": false
+        },
+        "observed_outcomes": {
+          "early_return_refund_due": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "При досрочном возврате имущества арендодатель обязан возвратить арендатору соответствующую часть внесённой арендной платы (статья 630 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "rental-red-shift-repair-to-tenant",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "repair_obligation_breached": false
+        },
+        "observed_outcomes": {
+          "repair_obligation_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "Капитальный и текущий ремонт сданного в прокат имущества являются обязанностью арендодателя (статья 631 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "rental-red-allow-transfer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transfer_restriction_violated": false
+        },
+        "observed_outcomes": {
+          "transfer_restriction_violated": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "Сдача имущества в субаренду, передача прав по договору проката, залог и внесение его в качестве вклада не допускаются (статья 631 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "rental-red-skip-human-on-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_rental_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_rental_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как прокат: арендодатель, сдающий имущество в аренду как постоянную предпринимательскую деятельность, предоставил арендатору движимое имущество за плату во временное владение и пользование (статья 626 ГК РФ).",
+          "Арендодатель не устранил недостатки и не заменил имущество в десятидневный срок со дня заявления арендатора о недостатках (статья 629 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

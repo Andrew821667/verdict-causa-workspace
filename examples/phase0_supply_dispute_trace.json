@@ -1314,6 +1314,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+      "title": "Синтетическая проверенная модель понятия, формы, срока проката и обязанностей арендодателя по статьям 626–628 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: прокат как предоставление профессиональным арендодателем движимого имущества за плату во временное владение и пользование, письменная форма, предельный срок до одного года, неприменение правил о преимущественном праве и обязанность проверить исправность имущества проверяются раздельно (статьи 626–628 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "rental_concept_form_and_term_articles_626_628",
+        "legal_reference": "ГК РФ, статьи 626–628",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
+      "title": "Синтетическая проверенная модель недостатков, арендной платы, ремонта и распоряжения по статьям 629–631 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: устранение недостатков арендодателем в десятидневный срок, отнесение расходов на арендатора при нарушении им правил эксплуатации, возврат части платы при досрочном возврате, обязанность арендодателя по капитальному и текущему ремонту и запрет субаренды и передачи прав проверяются раздельно (статьи 629–631 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "rental_defects_payment_and_repair_articles_629_631",
+        "legal_reference": "ГК РФ, статьи 629–631",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-rental-evidence",
+      "title": "Синтетическая проверенная запись фактов о прокате",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является прокатом; предоставления движимого имущества профессиональным арендодателем во временное владение и пользование нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "rental_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -4713,6 +4760,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-lease-reviewer"
+    },
+    "rental_evidence": {
+      "id": "reviewed-rental-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.rental-evidence.v0",
+      "assertions": [
+        {
+          "id": "rental-evidence-movable_property_rented_by_professional_lessor",
+          "predicate": "movable_property_rented_by_professional_lessor",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "id": "rental-evidence-written_form_missing",
+          "predicate": "written_form_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "id": "rental-evidence-lease_term_exceeds_one_year",
+          "predicate": "lease_term_exceeds_one_year",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "id": "rental-evidence-renewal_or_priority_right_claimed",
+          "predicate": "renewal_or_priority_right_claimed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "id": "rental-evidence-defect_present",
+          "predicate": "defect_present",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "id": "rental-evidence-defect_from_tenant_misuse",
+          "predicate": "defect_from_tenant_misuse",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "id": "rental-evidence-lessor_failed_to_remedy_defect",
+          "predicate": "lessor_failed_to_remedy_defect",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "id": "rental-evidence-early_return_refund_denied",
+          "predicate": "early_return_refund_denied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "id": "rental-evidence-repair_obligation_neglected",
+          "predicate": "repair_obligation_neglected",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "id": "rental-evidence-sublease_or_rights_transfer_attempted",
+          "predicate": "sublease_or_rights_transfer_attempted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+        "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-rental-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -9515,6 +9655,7 @@
       "synthetic-procedure-reviewer",
       "synthetic-public-contract-reviewer",
       "synthetic-real-estate-sale-reviewer",
+      "synthetic-rental-reviewer",
       "synthetic-representations-reviewer",
       "synthetic-retail-sale-reviewer",
       "synthetic-security-reviewer",
@@ -9552,6 +9693,7 @@
       "synthetic-case-supply-1-procedure-evidence",
       "synthetic-case-supply-1-public-contract-evidence",
       "synthetic-case-supply-1-real-estate-sale-evidence",
+      "synthetic-case-supply-1-rental-evidence",
       "synthetic-case-supply-1-representations-evidence",
       "synthetic-case-supply-1-retail-sale-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
@@ -9642,6 +9784,8 @@
       "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
       "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
       "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
+      "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+      "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -13381,6 +13525,140 @@
       "warnings_ru": [
         "Модель проверяет только формальные общие положения об аренде и не заменяет судебную оценку.",
         "Размер арендной платы, существенность нарушения и стоимость улучшений оцениваются экспертом и судом (статьи 614, 619 и 623 ГК РФ)."
+      ]
+    },
+    "rental_evidence_mapping": {
+      "evidence_id": "reviewed-rental-evidence-supply-1-v0",
+      "schema_version": "contracts.rental-evidence.v0",
+      "mapping_version": "contracts-reviewed-rental-to-facts-v0",
+      "facts": {
+        "movable_property_rented_by_professional_lessor": false,
+        "written_form_missing": false,
+        "lease_term_exceeds_one_year": false,
+        "renewal_or_priority_right_claimed": false,
+        "defect_present": false,
+        "defect_from_tenant_misuse": false,
+        "lessor_failed_to_remedy_defect": false,
+        "early_return_refund_denied": false,
+        "repair_obligation_neglected": false,
+        "sublease_or_rights_transfer_attempted": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+        "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "defect_from_tenant_misuse",
+          "assertion_id": "rental-evidence-defect_from_tenant_misuse",
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "fact_name": "defect_present",
+          "assertion_id": "rental-evidence-defect_present",
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "fact_name": "early_return_refund_denied",
+          "assertion_id": "rental-evidence-early_return_refund_denied",
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "fact_name": "lease_term_exceeds_one_year",
+          "assertion_id": "rental-evidence-lease_term_exceeds_one_year",
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "fact_name": "lessor_failed_to_remedy_defect",
+          "assertion_id": "rental-evidence-lessor_failed_to_remedy_defect",
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "fact_name": "movable_property_rented_by_professional_lessor",
+          "assertion_id": "rental-evidence-movable_property_rented_by_professional_lessor",
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "fact_name": "renewal_or_priority_right_claimed",
+          "assertion_id": "rental-evidence-renewal_or_priority_right_claimed",
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "fact_name": "repair_obligation_neglected",
+          "assertion_id": "rental-evidence-repair_obligation_neglected",
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "fact_name": "sublease_or_rights_transfer_attempted",
+          "assertion_id": "rental-evidence-sublease_or_rights_transfer_attempted",
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        },
+        {
+          "fact_name": "written_form_missing",
+          "assertion_id": "rental-evidence-written_form_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-rental-evidence"
+          ]
+        }
+      ]
+    },
+    "rental_constraint_set": {
+      "id": "rental-constraint-set:reviewed-rental-evidence-supply-1-v0",
+      "model_version": "contracts-rental-articles-626-631-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+        "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1"
+      ],
+      "expressions": [
+        "rental_qualified == movable_property_rented_by_professional_lessor",
+        "form_requirement_violated == rental_qualified AND written_form_missing",
+        "term_limit_exceeded == rental_qualified AND lease_term_exceeds_one_year",
+        "renewal_right_not_available == rental_qualified AND renewal_or_priority_right_claimed",
+        "tenant_bears_defect_cost == rental_qualified AND defect_present AND defect_from_tenant_misuse",
+        "defect_remedy_overdue == rental_qualified AND defect_present AND lessor_failed_to_remedy_defect",
+        "early_return_refund_due == rental_qualified AND early_return_refund_denied",
+        "repair_obligation_breached == rental_qualified AND repair_obligation_neglected",
+        "transfer_restriction_violated == rental_qualified AND sublease_or_rights_transfer_attempted",
+        "requires_human_rental_assessment == form_requirement_violated OR term_limit_exceeded OR renewal_right_not_available OR tenant_bears_defect_cost OR defect_remedy_overdue OR early_return_refund_due OR repair_obligation_breached OR transfer_restriction_violated"
+      ]
+    },
+    "rental_evaluation": {
+      "constraint_set_id": "rental-constraint-set:reviewed-rental-evidence-supply-1-v0",
+      "satisfiable": true,
+      "rental_qualified": false,
+      "form_requirement_violated": false,
+      "term_limit_exceeded": false,
+      "renewal_right_not_available": false,
+      "tenant_bears_defect_cost": false,
+      "defect_remedy_overdue": false,
+      "early_return_refund_due": false,
+      "repair_obligation_breached": false,
+      "transfer_restriction_violated": false,
+      "requires_human_rental_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор проката."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о прокате и не заменяет судебную оценку.",
+        "Размер арендной платы, характер недостатков и объём возврата платы оцениваются экспертом и судом (статьи 629 и 630 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -18754,7 +19032,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.43.0",
+      "institutional_package_version": "contracts-ru-v0@0.44.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -20775,6 +21053,7 @@
           "synthetic-case-supply-1-procedure-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-real-estate-sale-evidence",
+          "synthetic-case-supply-1-rental-evidence",
           "synthetic-case-supply-1-representations-evidence",
           "synthetic-case-supply-1-retail-sale-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
@@ -20865,6 +21144,8 @@
           "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
           "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
           "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
+          "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+          "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -21897,6 +22178,7 @@
           "synthetic-case-supply-1-procedure-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-real-estate-sale-evidence",
+          "synthetic-case-supply-1-rental-evidence",
           "synthetic-case-supply-1-representations-evidence",
           "synthetic-case-supply-1-retail-sale-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
@@ -21987,6 +22269,8 @@
           "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
           "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
           "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
+          "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+          "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -23019,6 +23303,7 @@
           "synthetic-case-supply-1-procedure-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-real-estate-sale-evidence",
+          "synthetic-case-supply-1-rental-evidence",
           "synthetic-case-supply-1-representations-evidence",
           "synthetic-case-supply-1-retail-sale-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
@@ -23109,6 +23394,8 @@
           "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
           "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
           "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
+          "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+          "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -23198,7 +23485,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.43.0",
+      "institutional_package_version": "contracts-ru-v0@0.44.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -24268,6 +24555,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель понятия, формы, срока проката и обязанностей арендодателя по статьям 626–628 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "rental_concept_form_and_term_articles_626_628",
+          "legal_reference": "ГК РФ, статьи 626–628",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель недостатков, арендной платы, ремонта и распоряжения по статьям 629–631 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "rental_defects_payment_and_repair_articles_629_631",
+          "legal_reference": "ГК РФ, статьи 629–631",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-rental-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о прокате",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "rental_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -24901,6 +25226,7 @@
             "synthetic-procedure-reviewer",
             "synthetic-public-contract-reviewer",
             "synthetic-real-estate-sale-reviewer",
+            "synthetic-rental-reviewer",
             "synthetic-representations-reviewer",
             "synthetic-retail-sale-reviewer",
             "synthetic-security-reviewer",

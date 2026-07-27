@@ -834,6 +834,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.43.0",
+        to_version="0.44.0",
+        reasons=[
+            "Reviewed inputs now require a separate rental evidence contract.",
+            "Analysis and Russian translation distinguish qualification, written form, term limit, renewal unavailability, defect cost allocation, defect remedy deadline, early-return refund, repair duty, and transfer restriction under articles 626 through 631.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о прокате.",
+            "Анализ и русское объяснение разделяют квалификацию, письменную форму, предельный срок, неприменение преимущественного права, распределение расходов на недостатки, срок устранения недостатков, возврат части платы, обязанность по ремонту и запрет распоряжения по статьям 626–631 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_rental_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

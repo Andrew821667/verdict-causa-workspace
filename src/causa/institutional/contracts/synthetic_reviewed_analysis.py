@@ -105,6 +105,11 @@ from causa.institutional.contracts.lease import (
     LeaseEvidencePredicate,
     ReviewedLeaseEvidence,
 )
+from causa.institutional.contracts.rental import (
+    RentalEvidenceAssertion,
+    RentalEvidencePredicate,
+    ReviewedRentalEvidence,
+)
 from causa.institutional.contracts.barter import (
     BarterEvidenceAssertion,
     BarterEvidencePredicate,
@@ -276,6 +281,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
     "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
     "synthetic-case-supply-1-lease-evidence",
+    "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+    "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
+    "synthetic-case-supply-1-rental-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1354,6 +1362,39 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-lease-reviewer",
+        ),
+        rental_evidence=ReviewedRentalEvidence(
+            id="reviewed-rental-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                RentalEvidenceAssertion(
+                    id=f"rental-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-rental-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        RentalEvidencePredicate.MOVABLE_PROPERTY_RENTED_BY_PROFESSIONAL_LESSOR,
+                        False,
+                    ),
+                    (RentalEvidencePredicate.WRITTEN_FORM_MISSING, False),
+                    (RentalEvidencePredicate.LEASE_TERM_EXCEEDS_ONE_YEAR, False),
+                    (RentalEvidencePredicate.RENEWAL_OR_PRIORITY_RIGHT_CLAIMED, False),
+                    (RentalEvidencePredicate.DEFECT_PRESENT, False),
+                    (RentalEvidencePredicate.DEFECT_FROM_TENANT_MISUSE, False),
+                    (RentalEvidencePredicate.LESSOR_FAILED_TO_REMEDY_DEFECT, False),
+                    (RentalEvidencePredicate.EARLY_RETURN_REFUND_DENIED, False),
+                    (RentalEvidencePredicate.REPAIR_OBLIGATION_NEGLECTED, False),
+                    (RentalEvidencePredicate.SUBLEASE_OR_RIGHTS_TRANSFER_ATTEMPTED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+                "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-rental-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

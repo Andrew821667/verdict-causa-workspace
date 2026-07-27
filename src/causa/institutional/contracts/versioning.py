@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.44.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed rental evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 626 through 631.",
+            "Qualification, written form, term limit, renewal unavailability, defect cost allocation, defect remedy deadline, early-return refund, repair duty, and transfer restriction remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о прокате обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 626–631 ГК РФ.",
+            "Квалификация, письменная форма, предельный срок, неприменение преимущественного права, распределение расходов на недостатки, срок устранения недостатков, возврат части платы, обязанность по ремонту и запрет распоряжения разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.43.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

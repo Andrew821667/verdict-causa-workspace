@@ -1635,6 +1635,63 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
+        title="Синтетическая проверенная модель понятия, формы, срока проката и обязанностей арендодателя по статьям 626–628 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: прокат как предоставление профессиональным "
+            "арендодателем движимого имущества за плату во временное владение и пользование, "
+            "письменная форма, предельный срок до одного года, неприменение правил о "
+            "преимущественном праве и обязанность проверить исправность имущества проверяются "
+            "раздельно (статьи 626–628 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "rental_concept_form_and_term_articles_626_628",
+            "legal_reference": "ГК РФ, статьи 626–628",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
+        title="Синтетическая проверенная модель недостатков, арендной платы, ремонта и распоряжения по статьям 629–631 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: устранение недостатков арендодателем в десятидневный "
+            "срок, отнесение расходов на арендатора при нарушении им правил эксплуатации, "
+            "возврат части платы при досрочном возврате, обязанность арендодателя по капитальному "
+            "и текущему ремонту и запрет субаренды и передачи прав проверяются раздельно "
+            "(статьи 629–631 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "rental_defects_payment_and_repair_articles_629_631",
+            "legal_reference": "ГК РФ, статьи 629–631",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-rental-evidence",
+        title="Синтетическая проверенная запись фактов о прокате",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой товаров за единовременную "
+            "оплату и не является прокатом; предоставления движимого имущества профессиональным "
+            "арендодателем во временное владение и пользование нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "rental_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

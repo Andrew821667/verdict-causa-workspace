@@ -1,0 +1,39 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.43.0:to-0.44.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.43.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.43.0",
+  "target_package_version": "0.44.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.43.0",
+      "to_version": "0.44.0",
+      "reasons": [
+        "Reviewed inputs now require a separate rental evidence contract.",
+        "Analysis and Russian translation distinguish qualification, written form, term limit, renewal unavailability, defect cost allocation, defect remedy deadline, early-return refund, repair duty, and transfer restriction under articles 626 through 631."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о прокате.",
+        "Анализ и русское объяснение разделяют квалификацию, письменную форму, предельный срок, неприменение преимущественного права, распределение расходов на недостатки, срок устранения недостатков, возврат части платы, обязанность по ремонту и запрет распоряжения по статьям 626–631 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_rental_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

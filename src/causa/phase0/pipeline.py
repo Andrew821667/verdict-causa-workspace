@@ -67,6 +67,9 @@ from causa.institutional.contracts.synthetic_annuity import (
 from causa.institutional.contracts.synthetic_lease import (
     build_synthetic_lease_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_rental import (
+    build_synthetic_rental_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_gift import (
     build_synthetic_gift_evaluation_artifact,
 )
@@ -632,6 +635,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-rental",
+            title="Проверка проката",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.rental_evidence_mapping.evidence_id,
+                trace.analysis_result.rental_constraint_set.id,
+                *trace.analysis_result.rental_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.rental_evaluation.reasons_ru,
+                "Квалификация проката, письменная форма, предельный срок, неприменение преимущественного права, распределение расходов на недостатки, срок устранения недостатков, возврат части платы, ремонт и запрет распоряжения проверяются раздельно по статьям 626–631 ГК РФ.",
+                "Размер арендной платы, характер недостатков и объём возврата платы оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -912,6 +930,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     gift_artifact = build_synthetic_gift_evaluation_artifact()
     annuity_artifact = build_synthetic_annuity_evaluation_artifact()
     lease_artifact = build_synthetic_lease_evaluation_artifact()
+    rental_artifact = build_synthetic_rental_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -1019,6 +1038,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-annuity-spec.md",
                 "src/causa/institutional/contracts/lease.py",
                 "docs/contract-lease-spec.md",
+                "src/causa/institutional/contracts/rental.py",
+                "docs/contract-rental-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -1063,6 +1084,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_gift_evaluation_report.json",
                 "examples/synthetic_annuity_evaluation_report.json",
                 "examples/synthetic_lease_evaluation_report.json",
+                "examples/synthetic_rental_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -1071,12 +1093,12 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 *(
-                    f"examples/migrations/contracts-ru-v0-{version}-to-0.43.0-migration-report.json"
+                    f"examples/migrations/contracts-ru-v0-{version}-to-0.44.0-migration-report.json"
                     for version in (
                         "0.1.0",
                         "0.3.0",
                         "0.4.0",
-                        *(f"0.{minor}.0" for minor in range(5, 43)),
+                        *(f"0.{minor}.0" for minor in range(5, 44)),
                     )
                 ),
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
@@ -1198,6 +1220,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 annuity_artifact.red_team_report.id,
                 lease_artifact.benchmark_report.id,
                 lease_artifact.red_team_report.id,
+                rental_artifact.benchmark_report.id,
+                rental_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -1254,6 +1278,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_gift_evaluation_report.json",
                 "examples/synthetic_annuity_evaluation_report.json",
                 "examples/synthetic_lease_evaluation_report.json",
+                "examples/synthetic_rental_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
