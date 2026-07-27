@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.43.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed lease evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 606 through 625.",
+            "Qualification, object definiteness, form, defect liability, third-party rights, sublease consent, capital repair, termination, preferential renewal, and improvements remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные об аренде обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 606–625 ГК РФ.",
+            "Квалификация, определённость объекта, форма, ответственность за недостатки, права третьих лиц, согласие на субаренду, капитальный ремонт, расторжение, преимущественное право и улучшения разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.42.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

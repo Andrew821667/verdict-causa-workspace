@@ -100,6 +100,11 @@ from causa.institutional.contracts.annuity import (
     AnnuityEvidencePredicate,
     ReviewedAnnuityEvidence,
 )
+from causa.institutional.contracts.lease import (
+    LeaseEvidenceAssertion,
+    LeaseEvidencePredicate,
+    ReviewedLeaseEvidence,
+)
 from causa.institutional.contracts.barter import (
     BarterEvidenceAssertion,
     BarterEvidencePredicate,
@@ -268,6 +273,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
     "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
     "synthetic-case-supply-1-annuity-evidence",
+    "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+    "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
+    "synthetic-case-supply-1-lease-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1316,6 +1324,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-annuity-reviewer",
+        ),
+        lease_evidence=ReviewedLeaseEvidence(
+            id="reviewed-lease-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                LeaseEvidenceAssertion(
+                    id=f"lease-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-lease-evidence",),
+                )
+                for predicate, value in (
+                    (LeaseEvidencePredicate.PROPERTY_LEASED_FOR_TEMPORARY_USE, False),
+                    (LeaseEvidencePredicate.LEASE_OBJECT_NOT_IDENTIFIABLE, False),
+                    (LeaseEvidencePredicate.LEASE_FORM_OR_REGISTRATION_MISSING, False),
+                    (LeaseEvidencePredicate.LEASED_PROPERTY_DEFECTIVE_OR_INCOMPLETE, False),
+                    (LeaseEvidencePredicate.THIRD_PARTY_RIGHTS_NOT_DISCLOSED, False),
+                    (LeaseEvidencePredicate.SUBLEASE_WITHOUT_LESSOR_CONSENT, False),
+                    (LeaseEvidencePredicate.LESSOR_FAILED_CAPITAL_REPAIR, False),
+                    (LeaseEvidencePredicate.TENANT_MATERIALLY_BREACHED, False),
+                    (LeaseEvidencePredicate.TENANT_SEEKS_RENEWAL_WITH_PRIORITY, False),
+                    (LeaseEvidencePredicate.INSEPARABLE_IMPROVEMENTS_WITH_CONSENT, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+                "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-lease-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

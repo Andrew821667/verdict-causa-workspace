@@ -1267,6 +1267,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+      "title": "Синтетическая проверенная модель понятия, объектов, формы и предоставления имущества по договору аренды по статьям 606–614 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: аренда как предоставление имущества за плату во временное владение и пользование, определённость объекта, форма и регистрация, предоставление имущества со всеми принадлежностями, ответственность за недостатки и предупреждение о правах третьих лиц проверяются раздельно (статьи 606–614 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "lease_concept_object_and_rent_articles_606_614",
+        "legal_reference": "ГК РФ, статьи 606–614",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
+      "title": "Синтетическая проверенная модель пользования, содержания, расторжения, преимущественного права и улучшений по статьям 615–625 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: пользование имуществом по назначению и субаренда с согласия арендодателя, капитальный и текущий ремонт, досрочное расторжение, преимущественное право на новый срок и возмещение неотделимых улучшений проверяются раздельно (статьи 615–625 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "lease_use_repair_and_renewal_articles_615_625",
+        "legal_reference": "ГК РФ, статьи 615–625",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-lease-evidence",
+      "title": "Синтетическая проверенная запись фактов об аренде",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является арендой; предоставления имущества за плату во временное владение и пользование нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "lease_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -4573,6 +4620,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-annuity-reviewer"
+    },
+    "lease_evidence": {
+      "id": "reviewed-lease-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.lease-evidence.v0",
+      "assertions": [
+        {
+          "id": "lease-evidence-property_leased_for_temporary_use",
+          "predicate": "property_leased_for_temporary_use",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "id": "lease-evidence-lease_object_not_identifiable",
+          "predicate": "lease_object_not_identifiable",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "id": "lease-evidence-lease_form_or_registration_missing",
+          "predicate": "lease_form_or_registration_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "id": "lease-evidence-leased_property_defective_or_incomplete",
+          "predicate": "leased_property_defective_or_incomplete",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "id": "lease-evidence-third_party_rights_not_disclosed",
+          "predicate": "third_party_rights_not_disclosed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "id": "lease-evidence-sublease_without_lessor_consent",
+          "predicate": "sublease_without_lessor_consent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "id": "lease-evidence-lessor_failed_capital_repair",
+          "predicate": "lessor_failed_capital_repair",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "id": "lease-evidence-tenant_materially_breached",
+          "predicate": "tenant_materially_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "id": "lease-evidence-tenant_seeks_renewal_with_priority",
+          "predicate": "tenant_seeks_renewal_with_priority",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "id": "lease-evidence-inseparable_improvements_with_consent",
+          "predicate": "inseparable_improvements_with_consent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+        "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-lease-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -9363,6 +9503,7 @@
       "synthetic-gift-reviewer",
       "synthetic-interpretation-reviewer",
       "synthetic-invalidity-reviewer",
+      "synthetic-lease-reviewer",
       "synthetic-liability-reviewer",
       "synthetic-limitation-reviewer",
       "synthetic-norm-reviewer",
@@ -9400,6 +9541,7 @@
       "synthetic-case-supply-1-gift-evidence",
       "synthetic-case-supply-1-interpretation-evidence",
       "synthetic-case-supply-1-invalidity-evidence",
+      "synthetic-case-supply-1-lease-evidence",
       "synthetic-case-supply-1-liability-evidence",
       "synthetic-case-supply-1-limitation-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
@@ -9498,6 +9640,8 @@
       "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
       "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
       "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
+      "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+      "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -13101,6 +13245,142 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о ренте и пожизненном содержании и не заменяет судебную оценку.",
         "Размер ренты и содержания, выкупная цена и существенность нарушения оцениваются экспертом и судом (статьи 594, 597 и 602 ГК РФ)."
+      ]
+    },
+    "lease_evidence_mapping": {
+      "evidence_id": "reviewed-lease-evidence-supply-1-v0",
+      "schema_version": "contracts.lease-evidence.v0",
+      "mapping_version": "contracts-reviewed-lease-to-facts-v0",
+      "facts": {
+        "property_leased_for_temporary_use": false,
+        "lease_object_not_identifiable": false,
+        "lease_form_or_registration_missing": false,
+        "leased_property_defective_or_incomplete": false,
+        "third_party_rights_not_disclosed": false,
+        "sublease_without_lessor_consent": false,
+        "lessor_failed_capital_repair": false,
+        "tenant_materially_breached": false,
+        "tenant_seeks_renewal_with_priority": false,
+        "inseparable_improvements_with_consent": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+        "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "inseparable_improvements_with_consent",
+          "assertion_id": "lease-evidence-inseparable_improvements_with_consent",
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "lease_form_or_registration_missing",
+          "assertion_id": "lease-evidence-lease_form_or_registration_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "lease_object_not_identifiable",
+          "assertion_id": "lease-evidence-lease_object_not_identifiable",
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "leased_property_defective_or_incomplete",
+          "assertion_id": "lease-evidence-leased_property_defective_or_incomplete",
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "lessor_failed_capital_repair",
+          "assertion_id": "lease-evidence-lessor_failed_capital_repair",
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "property_leased_for_temporary_use",
+          "assertion_id": "lease-evidence-property_leased_for_temporary_use",
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "sublease_without_lessor_consent",
+          "assertion_id": "lease-evidence-sublease_without_lessor_consent",
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "tenant_materially_breached",
+          "assertion_id": "lease-evidence-tenant_materially_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "tenant_seeks_renewal_with_priority",
+          "assertion_id": "lease-evidence-tenant_seeks_renewal_with_priority",
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_rights_not_disclosed",
+          "assertion_id": "lease-evidence-third_party_rights_not_disclosed",
+          "source_refs": [
+            "synthetic-case-supply-1-lease-evidence"
+          ]
+        }
+      ]
+    },
+    "lease_constraint_set": {
+      "id": "lease-constraint-set:reviewed-lease-evidence-supply-1-v0",
+      "model_version": "contracts-lease-articles-606-625-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+        "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1"
+      ],
+      "expressions": [
+        "lease_qualified == property_leased_for_temporary_use",
+        "object_terms_not_agreed == lease_qualified AND lease_object_not_identifiable",
+        "form_requirement_violated == lease_qualified AND lease_form_or_registration_missing",
+        "lessor_liable_for_defects == lease_qualified AND leased_property_defective_or_incomplete",
+        "undisclosed_third_party_rights == lease_qualified AND third_party_rights_not_disclosed",
+        "unauthorized_sublease == lease_qualified AND sublease_without_lessor_consent",
+        "lessor_neglected_capital_repair == lease_qualified AND lessor_failed_capital_repair",
+        "lessor_may_terminate_for_breach == lease_qualified AND tenant_materially_breached",
+        "tenant_has_priority_renewal == lease_qualified AND tenant_seeks_renewal_with_priority",
+        "tenant_improvement_compensation_due == lease_qualified AND inseparable_improvements_with_consent",
+        "requires_human_lease_assessment == object_terms_not_agreed OR form_requirement_violated OR lessor_liable_for_defects OR undisclosed_third_party_rights OR unauthorized_sublease OR lessor_neglected_capital_repair OR lessor_may_terminate_for_breach OR tenant_improvement_compensation_due"
+      ]
+    },
+    "lease_evaluation": {
+      "constraint_set_id": "lease-constraint-set:reviewed-lease-evidence-supply-1-v0",
+      "satisfiable": true,
+      "lease_qualified": false,
+      "object_terms_not_agreed": false,
+      "form_requirement_violated": false,
+      "lessor_liable_for_defects": false,
+      "undisclosed_third_party_rights": false,
+      "unauthorized_sublease": false,
+      "lessor_neglected_capital_repair": false,
+      "lessor_may_terminate_for_breach": false,
+      "tenant_has_priority_renewal": false,
+      "tenant_improvement_compensation_due": false,
+      "requires_human_lease_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор аренды."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные общие положения об аренде и не заменяет судебную оценку.",
+        "Размер арендной платы, существенность нарушения и стоимость улучшений оцениваются экспертом и судом (статьи 614, 619 и 623 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -18474,7 +18754,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.42.0",
+      "institutional_package_version": "contracts-ru-v0@0.43.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -20484,6 +20764,7 @@
           "synthetic-case-supply-1-gift-evidence",
           "synthetic-case-supply-1-interpretation-evidence",
           "synthetic-case-supply-1-invalidity-evidence",
+          "synthetic-case-supply-1-lease-evidence",
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
@@ -20582,6 +20863,8 @@
           "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
           "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
           "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
+          "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+          "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -21603,6 +21886,7 @@
           "synthetic-case-supply-1-gift-evidence",
           "synthetic-case-supply-1-interpretation-evidence",
           "synthetic-case-supply-1-invalidity-evidence",
+          "synthetic-case-supply-1-lease-evidence",
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
@@ -21701,6 +21985,8 @@
           "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
           "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
           "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
+          "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+          "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -22722,6 +23008,7 @@
           "synthetic-case-supply-1-gift-evidence",
           "synthetic-case-supply-1-interpretation-evidence",
           "synthetic-case-supply-1-invalidity-evidence",
+          "synthetic-case-supply-1-lease-evidence",
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
@@ -22820,6 +23107,8 @@
           "synthetic-ru-gk573-582-gift-refusal-revocation-and-donation-v1",
           "synthetic-ru-gk583-593-annuity-general-and-permanent-v1",
           "synthetic-ru-gk596-605-annuity-life-and-maintenance-v1",
+          "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+          "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -22909,7 +23198,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.42.0",
+      "institutional_package_version": "contracts-ru-v0@0.43.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -23941,6 +24230,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель понятия, объектов, формы и предоставления имущества по договору аренды по статьям 606–614 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "lease_concept_object_and_rent_articles_606_614",
+          "legal_reference": "ГК РФ, статьи 606–614",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель пользования, содержания, расторжения, преимущественного права и улучшений по статьям 615–625 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "lease_use_repair_and_renewal_articles_615_625",
+          "legal_reference": "ГК РФ, статьи 615–625",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-lease-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов об аренде",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "lease_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -24562,6 +24889,7 @@
             "synthetic-gift-reviewer",
             "synthetic-interpretation-reviewer",
             "synthetic-invalidity-reviewer",
+            "synthetic-lease-reviewer",
             "synthetic-liability-reviewer",
             "synthetic-limitation-reviewer",
             "synthetic-norm-reviewer",

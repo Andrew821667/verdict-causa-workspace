@@ -1,0 +1,627 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.11.0:to-0.43.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.11.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.11.0",
+  "target_package_version": "0.43.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.11.0",
+      "to_version": "0.12.0",
+      "reasons": [
+        "Reviewed inputs now require a separate transaction-invalidity evidence contract.",
+        "Analysis and Russian translation distinguish void and voidable grounds, procedure, and effects under articles 166 through 181."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о недействительности сделки.",
+        "Анализ и русское объяснение разделяют ничтожность, оспоримость, процедуру и последствия по статьям 166–181 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_invalidity_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.12.0",
+      "to_version": "0.13.0",
+      "reasons": [
+        "Reviewed inputs now require a separate performance-security evidence contract.",
+        "Analysis and Russian translation distinguish the security mechanisms and enforcement paths under articles 329 through 381.2."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об обеспечении исполнения обязательств.",
+        "Анализ и русское объяснение разделяют способы обеспечения и маршруты их реализации по статьям 329–381.2 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_security_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.13.0",
+      "to_version": "0.14.0",
+      "reasons": [
+        "Reviewed inputs now require a separate obligation-dynamics evidence contract.",
+        "Analysis and Russian translation distinguish party changes and discharge paths under articles 382 through 419."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о перемене лиц и прекращении обязательств.",
+        "Анализ и русское объяснение разделяют перемену лиц и основания прекращения по статьям 382–419 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_obligation_dynamics_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.14.0",
+      "to_version": "0.15.0",
+      "reasons": [
+        "Reviewed inputs now require a separate performance-remedies evidence contract.",
+        "Analysis and Russian translation distinguish performance and remedy paths under articles 309 through 328 and 393 through 406.1."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об исполнении обязательств и средствах защиты.",
+        "Анализ и русское объяснение разделяют исполнение и средства защиты по статьям 309–328 и 393–406.1 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_performance_remedies_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.15.0",
+      "to_version": "0.16.0",
+      "reasons": [
+        "Reviewed inputs now require a separate special-supply evidence contract.",
+        "Analysis and Russian translation distinguish the supply paths under articles 506 through 524."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт специальных данных о поставке.",
+        "Анализ и русское объяснение разделяют специальные маршруты статей 506–524 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_supply_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.16.0",
+      "to_version": "0.17.0",
+      "reasons": [
+        "Reviewed inputs now require a separate general-sale evidence contract.",
+        "Analysis and Russian translation distinguish the sale paths under articles 454 through 491."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт общих данных о купле-продаже.",
+        "Анализ и русское объяснение разделяют маршруты статей 454–491 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_sale_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.17.0",
+      "to_version": "0.18.0",
+      "reasons": [
+        "Pilot utility observations now require a linked v1 admission decision.",
+        "Pilot manifests record lawful basis, minimization, independent approvals, and replay coordinates."
+      ],
+      "reasons_ru": [
+        "Наблюдения о полезности пилота теперь требуют связанного решения gate v1.",
+        "Пилотный манифест фиксирует основание обработки, минимизацию, независимые согласования и координаты replay."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_pilot_rehearsal.py",
+        "python scripts/export_privacy_safe_pilot_utility.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.18.0",
+      "to_version": "0.19.0",
+      "reasons": [
+        "Reviewed inputs now require a separate temporal-effect evidence contract.",
+        "Analysis and Russian translation distinguish the conclusion moment and term of the contract under articles 425 and 433."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о действии договора во времени.",
+        "Анализ и русское объяснение разделяют момент заключения и срок действия договора по статьям 425 и 433 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_temporal_effect_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.19.0",
+      "to_version": "0.20.0",
+      "reasons": [
+        "Reviewed inputs now require a separate limitation-of-actions evidence contract.",
+        "Analysis and Russian translation distinguish the limitation paths under articles 195 through 208."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об исковой давности.",
+        "Анализ и русское объяснение разделяют маршруты исковой давности по статьям 195–208 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_limitation_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.20.0",
+      "to_version": "0.21.0",
+      "reasons": [
+        "Reviewed inputs now require a separate contract-interpretation evidence contract.",
+        "Analysis and Russian translation distinguish the interpretation paths under article 431."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о толковании договора.",
+        "Анализ и русское объяснение разделяют маршруты толкования по статье 431 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_interpretation_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.21.0",
+      "to_version": "0.22.0",
+      "reasons": [
+        "Reviewed inputs now require a separate transaction-form evidence contract.",
+        "Analysis and Russian translation distinguish the form paths under articles 158 through 165 and 434."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о форме сделки.",
+        "Анализ и русское объяснение разделяют маршруты формы по статьям 158–165 и 434 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_form_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.22.0",
+      "to_version": "0.23.0",
+      "reasons": [
+        "Reviewed inputs now require a separate preliminary-contract evidence contract.",
+        "Analysis and Russian translation distinguish the preliminary-contract paths under article 429."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о предварительном договоре.",
+        "Анализ и русское объяснение разделяют маршруты предварительного договора по статье 429 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_preliminary_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.23.0",
+      "to_version": "0.24.0",
+      "reasons": [
+        "Reviewed inputs now require a separate third-party-beneficiary evidence contract.",
+        "Analysis and Russian translation distinguish the third-party-beneficiary paths under article 430."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о договоре в пользу третьего лица.",
+        "Анализ и русское объяснение разделяют маршруты договора в пользу третьего лица по статье 430 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_third_party_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.24.0",
+      "to_version": "0.25.0",
+      "reasons": [
+        "Reviewed inputs now require a separate public-contract evidence contract.",
+        "Analysis and Russian translation distinguish the public-contract paths under article 426."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о публичном договоре.",
+        "Анализ и русское объяснение разделяют маршруты публичного договора по статье 426 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_public_contract_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.25.0",
+      "to_version": "0.26.0",
+      "reasons": [
+        "Reviewed inputs now require a separate adhesion-contract evidence contract.",
+        "Analysis and Russian translation distinguish the adhesion-contract paths under article 428."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о договоре присоединения.",
+        "Анализ и русское объяснение разделяют маршруты договора присоединения по статье 428 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_adhesion_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.26.0",
+      "to_version": "0.27.0",
+      "reasons": [
+        "Reviewed inputs now require a separate representations evidence contract.",
+        "Analysis and Russian translation distinguish the representations paths under article 431.2."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о заверениях об обстоятельствах.",
+        "Анализ и русское объяснение разделяют маршруты заверений об обстоятельствах по статье 431.2 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_representations_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.27.0",
+      "to_version": "0.28.0",
+      "reasons": [
+        "Reviewed inputs now require a separate precontractual evidence contract.",
+        "Analysis and Russian translation distinguish the precontractual paths under article 434.1."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о преддоговорной ответственности.",
+        "Анализ и русское объяснение разделяют маршруты преддоговорной ответственности по статье 434.1 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_precontractual_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.28.0",
+      "to_version": "0.29.0",
+      "reasons": [
+        "Reviewed inputs now require a separate option evidence contract.",
+        "Analysis and Russian translation distinguish the option paths under articles 429.2 and 429.3."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об опционных конструкциях.",
+        "Анализ и русское объяснение разделяют маршруты опциона и опционного договора по статьям 429.2 и 429.3 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_option_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.29.0",
+      "to_version": "0.30.0",
+      "reasons": [
+        "Reviewed inputs now require a separate framework evidence contract.",
+        "Analysis and Russian translation distinguish the framework and subscription paths under articles 429.1 and 429.4."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о рамочном и абонентском договоре.",
+        "Анализ и русское объяснение разделяют маршруты рамочного и абонентского договора по статьям 429.1 и 429.4 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_framework_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.30.0",
+      "to_version": "0.31.0",
+      "reasons": [
+        "Reviewed inputs now require a separate freedom-of-contract evidence contract.",
+        "Analysis and Russian translation distinguish the freedom, conformity, onerousness, and price paths under articles 421 through 424."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о свободе договора и цене.",
+        "Анализ и русское объяснение разделяют свободу договора, соответствие закону, возмездность и цену по статьям 421–424 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_freedom_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.31.0",
+      "to_version": "0.32.0",
+      "reasons": [
+        "Reviewed inputs now require a separate conclusion-procedure evidence contract.",
+        "Analysis and Russian translation distinguish the mandatory-conclusion and auction paths under articles 445 through 449."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о порядке заключения договора.",
+        "Анализ и русское объяснение разделяют обязательное заключение и заключение на торгах по статьям 445–449 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_procedure_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.32.0",
+      "to_version": "0.33.0",
+      "reasons": [
+        "Reviewed inputs now require a separate general-obligations evidence contract.",
+        "Analysis and Russian translation distinguish the obligation concept, alternative and facultative obligations, and creditor protection under articles 307 through 308.3."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об общих положениях об обязательствах.",
+        "Анализ и русское объяснение разделяют понятие обязательства, альтернативные и факультативные обязательства и защиту кредитора по статьям 307–308.3 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_general_obligations_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.33.0",
+      "to_version": "0.34.0",
+      "reasons": [
+        "Reviewed inputs now require a separate retail-sale evidence contract.",
+        "Analysis and Russian translation distinguish the retail contract nature, information duty, quality remedies, and exchange under articles 492 through 505."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о розничной купле-продаже.",
+        "Анализ и русское объяснение разделяют публичность договора, информацию, права по качеству и обмен по статьям 492–505 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_retail_sale_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.34.0",
+      "to_version": "0.35.0",
+      "reasons": [
+        "Reviewed inputs now require a separate state-supply evidence contract.",
+        "Analysis and Russian translation distinguish the state contract conclusion, buyer attachment, payment, and loss compensation under articles 525 through 534."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о поставке для государственных нужд.",
+        "Анализ и русское объяснение разделяют заключение контракта, прикрепление покупателя, оплату и возмещение убытков по статьям 525–534 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_state_supply_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.35.0",
+      "to_version": "0.36.0",
+      "reasons": [
+        "Reviewed inputs now require a separate contractation evidence contract.",
+        "Analysis and Russian translation distinguish contractation qualification, procurer duties, and fault-based producer liability under articles 535 through 538."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о контрактации.",
+        "Анализ и русское объяснение разделяют квалификацию контрактации, обязанности заготовителя и виновную ответственность производителя по статьям 535–538 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_contractation_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.36.0",
+      "to_version": "0.37.0",
+      "reasons": [
+        "Reviewed inputs now require a separate energy supply evidence contract.",
+        "Analysis and Russian translation distinguish energy supply qualification, quantity and quality, network duties, metered payment, and interruption lawfulness under articles 539 through 548."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об энергоснабжении.",
+        "Анализ и русское объяснение разделяют квалификацию энергоснабжения, количество и качество энергии, содержание сетей, оплату по учёту и правомерность перерыва подачи по статьям 539–548 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_energy_supply_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.37.0",
+      "to_version": "0.38.0",
+      "reasons": [
+        "Reviewed inputs now require a separate real estate sale evidence contract.",
+        "Analysis and Russian translation distinguish qualification, written form, essential terms, ownership registration, deed transfer, and quality remedies under articles 549 through 558."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о продаже недвижимости.",
+        "Анализ и русское объяснение разделяют квалификацию, письменную форму, существенные условия, регистрацию перехода права, передачу по акту и средства защиты по качеству по статьям 549–558 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_real_estate_sale_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.38.0",
+      "to_version": "0.39.0",
+      "reasons": [
+        "Reviewed inputs now require a separate enterprise sale evidence contract.",
+        "Analysis and Russian translation distinguish qualification, form and registration, composition certification, creditor protection, transfer, and price reduction under articles 559 through 566."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о продаже предприятия.",
+        "Анализ и русское объяснение разделяют квалификацию, форму и регистрацию, удостоверение состава, права кредиторов, передачу и уменьшение цены по статьям 559–566 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_enterprise_sale_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.39.0",
+      "to_version": "0.40.0",
+      "reasons": [
+        "Reviewed inputs now require a separate barter evidence contract.",
+        "Analysis and Russian translation distinguish qualification, subsidiary sale rules, price difference, counter-performance, simultaneous ownership transfer, and eviction remedy under articles 567 through 571."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о мене.",
+        "Анализ и русское объяснение разделяют квалификацию, субсидиарные правила купли-продажи, разницу в цене, встречное исполнение, одновременный переход права и средство защиты при изъятии по статьям 567–571 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_barter_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.40.0",
+      "to_version": "0.41.0",
+      "reasons": [
+        "Reviewed inputs now require a separate gift evidence contract.",
+        "Analysis and Russian translation distinguish qualification, sham detection, form voidness, prohibition, restriction, donee refusal, revocation, and charitable donation under articles 572 through 582."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о дарении.",
+        "Анализ и русское объяснение разделяют квалификацию, притворность, ничтожность формы, запрещение, ограничение, отказ одаряемого, отмену и пожертвование по статьям 572–582 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_gift_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.41.0",
+      "to_version": "0.42.0",
+      "reasons": [
+        "Reviewed inputs now require a separate annuity evidence contract.",
+        "Analysis and Russian translation distinguish qualification, notarial form, security, overdue interest, permanent-rent redemption, life-annuity termination, and maintenance encumbrance under articles 583 through 605."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о ренте.",
+        "Анализ и русское объяснение разделяют квалификацию, нотариальную форму, обеспечение, проценты за просрочку, выкуп постоянной ренты, расторжение пожизненной ренты и обременение имущества по статьям 583–605 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_annuity_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.42.0",
+      "to_version": "0.43.0",
+      "reasons": [
+        "Reviewed inputs now require a separate lease evidence contract.",
+        "Analysis and Russian translation distinguish qualification, object definiteness, form, defect liability, third-party rights, sublease consent, capital repair, termination, preferential renewal, and improvements under articles 606 through 625."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об аренде.",
+        "Анализ и русское объяснение разделяют квалификацию, определённость объекта, форму, ответственность за недостатки, права третьих лиц, согласие на субаренду, капитальный ремонт, расторжение, преимущественное право и улучшения по статьям 606–625 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_lease_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

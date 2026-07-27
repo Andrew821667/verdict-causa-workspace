@@ -1580,6 +1580,61 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+        title="Синтетическая проверенная модель понятия, объектов, формы и предоставления имущества по договору аренды по статьям 606–614 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: аренда как предоставление имущества за плату во "
+            "временное владение и пользование, определённость объекта, форма и регистрация, "
+            "предоставление имущества со всеми принадлежностями, ответственность за недостатки "
+            "и предупреждение о правах третьих лиц проверяются раздельно (статьи 606–614 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "lease_concept_object_and_rent_articles_606_614",
+            "legal_reference": "ГК РФ, статьи 606–614",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1",
+        title="Синтетическая проверенная модель пользования, содержания, расторжения, преимущественного права и улучшений по статьям 615–625 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: пользование имуществом по назначению и субаренда с "
+            "согласия арендодателя, капитальный и текущий ремонт, досрочное расторжение, "
+            "преимущественное право на новый срок и возмещение неотделимых улучшений "
+            "проверяются раздельно (статьи 615–625 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "lease_use_repair_and_renewal_articles_615_625",
+            "legal_reference": "ГК РФ, статьи 615–625",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-lease-evidence",
+        title="Синтетическая проверенная запись фактов об аренде",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой товаров за единовременную "
+            "оплату и не является арендой; предоставления имущества за плату во временное "
+            "владение и пользование нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "lease_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

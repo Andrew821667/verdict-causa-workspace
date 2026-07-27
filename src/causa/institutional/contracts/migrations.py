@@ -815,6 +815,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.42.0",
+        to_version="0.43.0",
+        reasons=[
+            "Reviewed inputs now require a separate lease evidence contract.",
+            "Analysis and Russian translation distinguish qualification, object definiteness, form, defect liability, third-party rights, sublease consent, capital repair, termination, preferential renewal, and improvements under articles 606 through 625.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных об аренде.",
+            "Анализ и русское объяснение разделяют квалификацию, определённость объекта, форму, ответственность за недостатки, права третьих лиц, согласие на субаренду, капитальный ремонт, расторжение, преимущественное право и улучшения по статьям 606–625 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_lease_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

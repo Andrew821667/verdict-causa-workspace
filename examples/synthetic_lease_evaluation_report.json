@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка общих положений об аренде по статьям 606–625 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-lease-evidence-supply-1-v0",
+    "schema_version": "contracts.lease-evidence.v0",
+    "mapping_version": "contracts-reviewed-lease-to-facts-v0",
+    "facts": {
+      "property_leased_for_temporary_use": false,
+      "lease_object_not_identifiable": false,
+      "lease_form_or_registration_missing": false,
+      "leased_property_defective_or_incomplete": false,
+      "third_party_rights_not_disclosed": false,
+      "sublease_without_lessor_consent": false,
+      "lessor_failed_capital_repair": false,
+      "tenant_materially_breached": false,
+      "tenant_seeks_renewal_with_priority": false,
+      "inseparable_improvements_with_consent": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+      "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "inseparable_improvements_with_consent",
+        "assertion_id": "lease-evidence-inseparable_improvements_with_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "lease_form_or_registration_missing",
+        "assertion_id": "lease-evidence-lease_form_or_registration_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "lease_object_not_identifiable",
+        "assertion_id": "lease-evidence-lease_object_not_identifiable",
+        "source_refs": [
+          "synthetic-case-supply-1-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "leased_property_defective_or_incomplete",
+        "assertion_id": "lease-evidence-leased_property_defective_or_incomplete",
+        "source_refs": [
+          "synthetic-case-supply-1-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "lessor_failed_capital_repair",
+        "assertion_id": "lease-evidence-lessor_failed_capital_repair",
+        "source_refs": [
+          "synthetic-case-supply-1-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_leased_for_temporary_use",
+        "assertion_id": "lease-evidence-property_leased_for_temporary_use",
+        "source_refs": [
+          "synthetic-case-supply-1-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "sublease_without_lessor_consent",
+        "assertion_id": "lease-evidence-sublease_without_lessor_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "tenant_materially_breached",
+        "assertion_id": "lease-evidence-tenant_materially_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "tenant_seeks_renewal_with_priority",
+        "assertion_id": "lease-evidence-tenant_seeks_renewal_with_priority",
+        "source_refs": [
+          "synthetic-case-supply-1-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_rights_not_disclosed",
+        "assertion_id": "lease-evidence-third_party_rights_not_disclosed",
+        "source_refs": [
+          "synthetic-case-supply-1-lease-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "lease-constraint-set:reviewed-lease-evidence-supply-1-v0",
+    "model_version": "contracts-lease-articles-606-625-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk606-614-lease-concept-object-and-rent-v1",
+      "synthetic-ru-gk615-625-lease-use-repair-and-renewal-v1"
+    ],
+    "expressions": [
+      "lease_qualified == property_leased_for_temporary_use",
+      "object_terms_not_agreed == lease_qualified AND lease_object_not_identifiable",
+      "form_requirement_violated == lease_qualified AND lease_form_or_registration_missing",
+      "lessor_liable_for_defects == lease_qualified AND leased_property_defective_or_incomplete",
+      "undisclosed_third_party_rights == lease_qualified AND third_party_rights_not_disclosed",
+      "unauthorized_sublease == lease_qualified AND sublease_without_lessor_consent",
+      "lessor_neglected_capital_repair == lease_qualified AND lessor_failed_capital_repair",
+      "lessor_may_terminate_for_breach == lease_qualified AND tenant_materially_breached",
+      "tenant_has_priority_renewal == lease_qualified AND tenant_seeks_renewal_with_priority",
+      "tenant_improvement_compensation_due == lease_qualified AND inseparable_improvements_with_consent",
+      "requires_human_lease_assessment == object_terms_not_agreed OR form_requirement_violated OR lessor_liable_for_defects OR undisclosed_third_party_rights OR unauthorized_sublease OR lessor_neglected_capital_repair OR lessor_may_terminate_for_breach OR tenant_improvement_compensation_due"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "lease-constraint-set:reviewed-lease-evidence-supply-1-v0",
+    "satisfiable": true,
+    "lease_qualified": false,
+    "object_terms_not_agreed": false,
+    "form_requirement_violated": false,
+    "lessor_liable_for_defects": false,
+    "undisclosed_third_party_rights": false,
+    "unauthorized_sublease": false,
+    "lessor_neglected_capital_repair": false,
+    "lessor_may_terminate_for_breach": false,
+    "tenant_has_priority_renewal": false,
+    "tenant_improvement_compensation_due": false,
+    "requires_human_lease_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор аренды."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные общие положения об аренде и не заменяет судебную оценку.",
+      "Размер арендной платы, существенность нарушения и стоимость улучшений оцениваются экспертом и судом (статьи 614, 619 и 623 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "lease-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "lease-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "lease_qualified": false
+        },
+        "observed_outcomes": {
+          "lease_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор аренды."
+        ]
+      },
+      {
+        "task_id": "lease-bench-object-not-agreed",
+        "passed": true,
+        "expected_outcomes": {
+          "object_terms_not_agreed": true,
+          "requires_human_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "object_terms_not_agreed": true,
+          "requires_human_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "В договоре отсутствуют данные, позволяющие определённо установить передаваемое в аренду имущество: условие об объекте не согласовано, договор не считается заключённым (статья 607 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "lease-bench-form-violation",
+        "passed": true,
+        "expected_outcomes": {
+          "form_requirement_violated": true,
+          "requires_human_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "form_requirement_violated": true,
+          "requires_human_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "Не соблюдены требования к письменной форме или государственной регистрации договора аренды (статья 609 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "lease-bench-defects",
+        "passed": true,
+        "expected_outcomes": {
+          "lessor_liable_for_defects": true,
+          "requires_human_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "lessor_liable_for_defects": true,
+          "requires_human_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "Арендодатель предоставил имущество не в надлежащем состоянии, без принадлежностей и документов либо с недостатками и отвечает за них (статьи 611 и 612 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "lease-bench-third-party-rights",
+        "passed": true,
+        "expected_outcomes": {
+          "undisclosed_third_party_rights": true,
+          "requires_human_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "undisclosed_third_party_rights": true,
+          "requires_human_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "Арендодатель не предупредил арендатора о правах третьих лиц на сдаваемое в аренду имущество; такие права сохраняются, а арендатор вправе требовать уменьшения платы или расторжения (статья 613 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "lease-bench-sublease-without-consent",
+        "passed": true,
+        "expected_outcomes": {
+          "unauthorized_sublease": true,
+          "requires_human_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "unauthorized_sublease": true,
+          "requires_human_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "Сдача имущества в субаренду произведена без согласия арендодателя, что недопустимо (статья 615 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "lease-bench-capital-repair",
+        "passed": true,
+        "expected_outcomes": {
+          "lessor_neglected_capital_repair": true,
+          "requires_human_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "lessor_neglected_capital_repair": true,
+          "requires_human_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "Арендодатель не производит капитальный ремонт, отнесённый к его обязанностям; арендатор вправе применить установленные способы защиты (статья 616 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "lease-bench-termination-for-breach",
+        "passed": true,
+        "expected_outcomes": {
+          "lessor_may_terminate_for_breach": true,
+          "requires_human_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "lessor_may_terminate_for_breach": true,
+          "requires_human_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "При существенном нарушении арендатором условий договора или назначения имущества арендодатель вправе требовать досрочного расторжения договора (статья 619 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "lease-bench-improvement-compensation",
+        "passed": true,
+        "expected_outcomes": {
+          "tenant_improvement_compensation_due": true,
+          "requires_human_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "tenant_improvement_compensation_due": true,
+          "requires_human_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "Стоимость неотделимых улучшений, произведённых арендатором с согласия арендодателя, подлежит возмещению после прекращения договора, если иное не предусмотрено (статья 623 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "lease-bench-priority-renewal",
+        "passed": true,
+        "expected_outcomes": {
+          "lease_qualified": true,
+          "tenant_has_priority_renewal": true,
+          "requires_human_lease_assessment": false
+        },
+        "observed_outcomes": {
+          "lease_qualified": true,
+          "tenant_has_priority_renewal": true,
+          "requires_human_lease_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "Надлежаще исполнявший обязанности арендатор имеет при прочих равных условиях преимущественное право на заключение договора аренды на новый срок (статья 621 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "lease-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "lease-red-qualify-without-lease",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "lease_qualified": true
+        },
+        "observed_outcomes": {
+          "lease_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор аренды."
+        ]
+      },
+      {
+        "case_id": "lease-red-ignore-object",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "object_terms_not_agreed": false
+        },
+        "observed_outcomes": {
+          "object_terms_not_agreed": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "В договоре отсутствуют данные, позволяющие определённо установить передаваемое в аренду имущество: условие об объекте не согласовано, договор не считается заключённым (статья 607 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "lease-red-ignore-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_requirement_violated": false
+        },
+        "observed_outcomes": {
+          "form_requirement_violated": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "Не соблюдены требования к письменной форме или государственной регистрации договора аренды (статья 609 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "lease-red-ignore-defects",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "lessor_liable_for_defects": false
+        },
+        "observed_outcomes": {
+          "lessor_liable_for_defects": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "Арендодатель предоставил имущество не в надлежащем состоянии, без принадлежностей и документов либо с недостатками и отвечает за них (статьи 611 и 612 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "lease-red-ignore-third-party",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "undisclosed_third_party_rights": false
+        },
+        "observed_outcomes": {
+          "undisclosed_third_party_rights": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "Арендодатель не предупредил арендатора о правах третьих лиц на сдаваемое в аренду имущество; такие права сохраняются, а арендатор вправе требовать уменьшения платы или расторжения (статья 613 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "lease-red-allow-sublease",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unauthorized_sublease": false
+        },
+        "observed_outcomes": {
+          "unauthorized_sublease": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "Сдача имущества в субаренду произведена без согласия арендодателя, что недопустимо (статья 615 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "lease-red-ignore-capital-repair",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "lessor_neglected_capital_repair": false
+        },
+        "observed_outcomes": {
+          "lessor_neglected_capital_repair": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "Арендодатель не производит капитальный ремонт, отнесённый к его обязанностям; арендатор вправе применить установленные способы защиты (статья 616 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "lease-red-deny-termination",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "lessor_may_terminate_for_breach": false
+        },
+        "observed_outcomes": {
+          "lessor_may_terminate_for_breach": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "При существенном нарушении арендатором условий договора или назначения имущества арендодатель вправе требовать досрочного расторжения договора (статья 619 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "lease-red-compensation-without-improvements",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "tenant_improvement_compensation_due": true
+        },
+        "observed_outcomes": {
+          "tenant_improvement_compensation_due": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "lease-red-skip-human-on-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_lease_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда: арендодатель обязуется предоставить арендатору имущество за плату во временное владение и пользование (статья 606 ГК РФ).",
+          "При существенном нарушении арендатором условий договора или назначения имущества арендодатель вправе требовать досрочного расторжения договора (статья 619 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}
