@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.49.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью найма жилого помещения |
 | `0.48.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью финансовой аренды |
 | `0.47.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью аренды предприятий |
 | `0.46.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью аренды зданий и сооружений |
@@ -56,6 +57,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.48.0` → `0.49.0` соберите отдельно проверенный контракт данных о найме жилого помещения (`contracts.residential-lease-evidence.v0`). Не выводите квалификацию, письменную форму, пригодность помещения, обязанности наймодателя, нарушения нанимателя, одностороннее изменение платы, преимущественное право, судебный порядок расторжения и срок для устранения из прежних результатов об общей аренде или найме нежилых объектов. Пересоберите артефакты оценки найма жилого помещения, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.47.0` → `0.48.0` соберите отдельно проверенный контракт данных о финансовой аренде (`contracts.leasing-evidence.v0`). Не выводите квалификацию, допустимость предмета лизинга, уведомление продавца, непередачу по вине лизингодателя, переход риска, прямые требования к продавцу и солидарную ответственность из прежних результатов об общей аренде или купле-продаже. Пересоберите артефакты оценки финансовой аренды, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

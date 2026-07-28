@@ -1549,6 +1549,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
+      "title": "Синтетическая проверенная модель понятия, объекта, формы найма жилого помещения и обязанностей сторон по статьям 671–678 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: наём жилого помещения как предоставление его за плату во владение и пользование для проживания, требование изолированного и пригодного для постоянного проживания помещения, письменная форма договора и обязанности наймодателя по эксплуатации и нанимателя по пользованию проверяются раздельно (статьи 671–678 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "residential_lease_concept_form_and_duties_articles_671_678",
+        "legal_reference": "ГК РФ, статьи 671–678",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1",
+      "title": "Синтетическая проверенная модель платы, преимущественного права и расторжения найма жилого помещения по статьям 682–688 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: недопустимость одностороннего изменения платы, обязанность наймодателя предложить продление не позднее чем за три месяца до истечения срока, неприменение этого правила к краткосрочному найму, судебный порядок расторжения по требованию наймодателя и предоставление нанимателю срока для устранения нарушения проверяются раздельно (статьи 682–688 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "residential_lease_rent_renewal_and_termination_articles_682_688",
+        "legal_reference": "ГК РФ, статьи 682–688",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-residential-lease-evidence",
+      "title": "Синтетическая проверенная запись фактов о найме жилого помещения",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является наймом жилого помещения; предоставления жилого помещения для проживания за плату нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "residential_lease_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -5413,6 +5460,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-leasing-reviewer"
+    },
+    "residential_lease_evidence": {
+      "id": "reviewed-residential-lease-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.residential-lease-evidence.v0",
+      "assertions": [
+        {
+          "id": "residential-lease-evidence-dwelling_provided_for_residence_for_fee",
+          "predicate": "dwelling_provided_for_residence_for_fee",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "id": "residential-lease-evidence-written_form_missing",
+          "predicate": "written_form_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "id": "residential-lease-evidence-dwelling_not_isolated_or_unfit",
+          "predicate": "dwelling_not_isolated_or_unfit",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "id": "residential-lease-evidence-short_term_lease_up_to_one_year",
+          "predicate": "short_term_lease_up_to_one_year",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "id": "residential-lease-evidence-lessor_failed_operation_duties",
+          "predicate": "lessor_failed_operation_duties",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "id": "residential-lease-evidence-tenant_breached_use_or_payment",
+          "predicate": "tenant_breached_use_or_payment",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "id": "residential-lease-evidence-rent_unilaterally_changed",
+          "predicate": "rent_unilaterally_changed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "id": "residential-lease-evidence-renewal_offer_not_made_before_expiry",
+          "predicate": "renewal_offer_not_made_before_expiry",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "id": "residential-lease-evidence-lessor_terminated_without_court",
+          "predicate": "lessor_terminated_without_court",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "id": "residential-lease-evidence-tenant_denied_remedy_period",
+          "predicate": "tenant_denied_remedy_period",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
+        "synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-residential-lease-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -10220,6 +10360,7 @@
       "synthetic-real-estate-sale-reviewer",
       "synthetic-rental-reviewer",
       "synthetic-representations-reviewer",
+      "synthetic-residential-lease-reviewer",
       "synthetic-retail-sale-reviewer",
       "synthetic-security-reviewer",
       "synthetic-special-supply-reviewer",
@@ -10262,6 +10403,7 @@
       "synthetic-case-supply-1-real-estate-sale-evidence",
       "synthetic-case-supply-1-rental-evidence",
       "synthetic-case-supply-1-representations-evidence",
+      "synthetic-case-supply-1-residential-lease-evidence",
       "synthetic-case-supply-1-retail-sale-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
       "synthetic-case-supply-1-security-evidence",
@@ -10362,6 +10504,8 @@
       "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
       "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
       "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
+      "synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
+      "synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -14767,6 +14911,140 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о финансовой аренде и не заменяет судебную оценку.",
         "Размер лизинговых платежей, распределение конкретных рисков и объём требований к продавцу оцениваются экспертом и судом (статьи 665, 669 и 670 ГК РФ)."
+      ]
+    },
+    "residential_lease_evidence_mapping": {
+      "evidence_id": "reviewed-residential-lease-evidence-supply-1-v0",
+      "schema_version": "contracts.residential-lease-evidence.v0",
+      "mapping_version": "contracts-reviewed-residential-lease-to-facts-v0",
+      "facts": {
+        "dwelling_provided_for_residence_for_fee": false,
+        "written_form_missing": false,
+        "dwelling_not_isolated_or_unfit": false,
+        "short_term_lease_up_to_one_year": false,
+        "lessor_failed_operation_duties": false,
+        "tenant_breached_use_or_payment": false,
+        "rent_unilaterally_changed": false,
+        "renewal_offer_not_made_before_expiry": false,
+        "lessor_terminated_without_court": false,
+        "tenant_denied_remedy_period": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
+        "synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "dwelling_not_isolated_or_unfit",
+          "assertion_id": "residential-lease-evidence-dwelling_not_isolated_or_unfit",
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "dwelling_provided_for_residence_for_fee",
+          "assertion_id": "residential-lease-evidence-dwelling_provided_for_residence_for_fee",
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "lessor_failed_operation_duties",
+          "assertion_id": "residential-lease-evidence-lessor_failed_operation_duties",
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "lessor_terminated_without_court",
+          "assertion_id": "residential-lease-evidence-lessor_terminated_without_court",
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "renewal_offer_not_made_before_expiry",
+          "assertion_id": "residential-lease-evidence-renewal_offer_not_made_before_expiry",
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "rent_unilaterally_changed",
+          "assertion_id": "residential-lease-evidence-rent_unilaterally_changed",
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "short_term_lease_up_to_one_year",
+          "assertion_id": "residential-lease-evidence-short_term_lease_up_to_one_year",
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "tenant_breached_use_or_payment",
+          "assertion_id": "residential-lease-evidence-tenant_breached_use_or_payment",
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "tenant_denied_remedy_period",
+          "assertion_id": "residential-lease-evidence-tenant_denied_remedy_period",
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "written_form_missing",
+          "assertion_id": "residential-lease-evidence-written_form_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-residential-lease-evidence"
+          ]
+        }
+      ]
+    },
+    "residential_lease_constraint_set": {
+      "id": "residential-lease-constraint-set:reviewed-residential-lease-evidence-supply-1-v0",
+      "model_version": "contracts-residential-lease-articles-671-688-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
+        "synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1"
+      ],
+      "expressions": [
+        "residential_lease_qualified == dwelling_provided_for_residence_for_fee",
+        "form_requirement_violated == residential_lease_qualified AND written_form_missing",
+        "object_not_suitable_for_residence == residential_lease_qualified AND dwelling_not_isolated_or_unfit",
+        "lessor_operation_duties_breached == residential_lease_qualified AND lessor_failed_operation_duties",
+        "tenant_breach_established == residential_lease_qualified AND tenant_breached_use_or_payment",
+        "unilateral_rent_change_invalid == residential_lease_qualified AND rent_unilaterally_changed",
+        "renewal_priority_right_breached == residential_lease_qualified AND renewal_offer_not_made_before_expiry",
+        "extrajudicial_termination_invalid == residential_lease_qualified AND lessor_terminated_without_court",
+        "remedy_period_wrongly_denied == residential_lease_qualified AND tenant_breached_use_or_payment AND tenant_denied_remedy_period",
+        "requires_human_residential_lease_assessment == form_requirement_violated OR object_not_suitable_for_residence OR lessor_operation_duties_breached OR tenant_breach_established OR unilateral_rent_change_invalid OR renewal_priority_right_breached OR extrajudicial_termination_invalid OR remedy_period_wrongly_denied"
+      ]
+    },
+    "residential_lease_evaluation": {
+      "constraint_set_id": "residential-lease-constraint-set:reviewed-residential-lease-evidence-supply-1-v0",
+      "satisfiable": true,
+      "residential_lease_qualified": false,
+      "form_requirement_violated": false,
+      "object_not_suitable_for_residence": false,
+      "lessor_operation_duties_breached": false,
+      "tenant_breach_established": false,
+      "unilateral_rent_change_invalid": false,
+      "renewal_priority_right_breached": false,
+      "extrajudicial_termination_invalid": false,
+      "remedy_period_wrongly_denied": false,
+      "requires_human_residential_lease_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как наём жилого помещения."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о найме жилого помещения и не заменяет судебную оценку.",
+        "Размер платы, пригодность помещения, существенность нарушения и достаточность срока для его устранения оцениваются экспертом и судом (статьи 673, 682 и 687 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -20140,7 +20418,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.48.0",
+      "institutional_package_version": "contracts-ru-v0@0.49.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -22166,6 +22444,7 @@
           "synthetic-case-supply-1-real-estate-sale-evidence",
           "synthetic-case-supply-1-rental-evidence",
           "synthetic-case-supply-1-representations-evidence",
+          "synthetic-case-supply-1-residential-lease-evidence",
           "synthetic-case-supply-1-retail-sale-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-case-supply-1-security-evidence",
@@ -22266,6 +22545,8 @@
           "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
           "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
           "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
+          "synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
+          "synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -23303,6 +23584,7 @@
           "synthetic-case-supply-1-real-estate-sale-evidence",
           "synthetic-case-supply-1-rental-evidence",
           "synthetic-case-supply-1-representations-evidence",
+          "synthetic-case-supply-1-residential-lease-evidence",
           "synthetic-case-supply-1-retail-sale-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-case-supply-1-security-evidence",
@@ -23403,6 +23685,8 @@
           "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
           "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
           "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
+          "synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
+          "synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -24440,6 +24724,7 @@
           "synthetic-case-supply-1-real-estate-sale-evidence",
           "synthetic-case-supply-1-rental-evidence",
           "synthetic-case-supply-1-representations-evidence",
+          "synthetic-case-supply-1-residential-lease-evidence",
           "synthetic-case-supply-1-retail-sale-evidence",
           "synthetic-case-supply-1-reviewed-evidence",
           "synthetic-case-supply-1-security-evidence",
@@ -24540,6 +24825,8 @@
           "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
           "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
           "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
+          "synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
+          "synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -24629,7 +24916,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.48.0",
+      "institutional_package_version": "contracts-ru-v0@0.49.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -25889,6 +26176,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель понятия, объекта, формы найма жилого помещения и обязанностей сторон по статьям 671–678 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "residential_lease_concept_form_and_duties_articles_671_678",
+          "legal_reference": "ГК РФ, статьи 671–678",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель платы, преимущественного права и расторжения найма жилого помещения по статьям 682–688 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "residential_lease_rent_renewal_and_termination_articles_682_688",
+          "legal_reference": "ГК РФ, статьи 682–688",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-residential-lease-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о найме жилого помещения",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "residential_lease_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -26527,6 +26852,7 @@
             "synthetic-real-estate-sale-reviewer",
             "synthetic-rental-reviewer",
             "synthetic-representations-reviewer",
+            "synthetic-residential-lease-reviewer",
             "synthetic-retail-sale-reviewer",
             "synthetic-security-reviewer",
             "synthetic-special-supply-reviewer",

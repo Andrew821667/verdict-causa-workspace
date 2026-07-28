@@ -1918,6 +1918,63 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
+        title="Синтетическая проверенная модель понятия, объекта, формы найма жилого помещения и обязанностей сторон по статьям 671–678 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: наём жилого помещения как предоставление его за плату "
+            "во владение и пользование для проживания, требование изолированного и пригодного "
+            "для постоянного проживания помещения, письменная форма договора и обязанности "
+            "наймодателя по эксплуатации и нанимателя по пользованию проверяются раздельно "
+            "(статьи 671–678 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "residential_lease_concept_form_and_duties_articles_671_678",
+            "legal_reference": "ГК РФ, статьи 671–678",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1",
+        title="Синтетическая проверенная модель платы, преимущественного права и расторжения найма жилого помещения по статьям 682–688 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: недопустимость одностороннего изменения платы, "
+            "обязанность наймодателя предложить продление не позднее чем за три месяца до "
+            "истечения срока, неприменение этого правила к краткосрочному найму, судебный "
+            "порядок расторжения по требованию наймодателя и предоставление нанимателю срока "
+            "для устранения нарушения проверяются раздельно (статьи 682–688 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "residential_lease_rent_renewal_and_termination_articles_682_688",
+            "legal_reference": "ГК РФ, статьи 682–688",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-residential-lease-evidence",
+        title="Синтетическая проверенная запись фактов о найме жилого помещения",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой товаров за единовременную "
+            "оплату и не является наймом жилого помещения; предоставления жилого помещения для "
+            "проживания за плату нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "residential_lease_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

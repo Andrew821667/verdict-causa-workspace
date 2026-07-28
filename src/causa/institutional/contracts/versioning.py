@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.49.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed residential-lease evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 671 through 688.",
+            "Qualification, written form, dwelling suitability, lessor duties, tenant breach, unilateral rent change, renewal priority, judicial termination, and remedy period remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о найме жилого помещения обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 671–688 ГК РФ.",
+            "Квалификация, письменная форма, пригодность помещения, обязанности наймодателя, нарушения нанимателя, одностороннее изменение платы, преимущественное право, судебный порядок расторжения и срок для устранения разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.48.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

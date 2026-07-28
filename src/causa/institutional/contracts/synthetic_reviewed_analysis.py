@@ -130,6 +130,11 @@ from causa.institutional.contracts.leasing import (
     LeasingEvidencePredicate,
     ReviewedLeasingEvidence,
 )
+from causa.institutional.contracts.residential_lease import (
+    ResidentialLeaseEvidenceAssertion,
+    ResidentialLeaseEvidencePredicate,
+    ReviewedResidentialLeaseEvidence,
+)
 from causa.institutional.contracts.barter import (
     BarterEvidenceAssertion,
     BarterEvidencePredicate,
@@ -316,6 +321,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
     "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
     "synthetic-case-supply-1-leasing-evidence",
+    "synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
+    "synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1",
+    "synthetic-case-supply-1-residential-lease-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1559,6 +1567,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-leasing-reviewer",
+        ),
+        residential_lease_evidence=ReviewedResidentialLeaseEvidence(
+            id="reviewed-residential-lease-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                ResidentialLeaseEvidenceAssertion(
+                    id=f"residential-lease-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-residential-lease-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        ResidentialLeaseEvidencePredicate.DWELLING_PROVIDED_FOR_RESIDENCE_FOR_FEE,
+                        False,
+                    ),
+                    (ResidentialLeaseEvidencePredicate.WRITTEN_FORM_MISSING, False),
+                    (ResidentialLeaseEvidencePredicate.DWELLING_NOT_ISOLATED_OR_UNFIT, False),
+                    (ResidentialLeaseEvidencePredicate.SHORT_TERM_LEASE_UP_TO_ONE_YEAR, False),
+                    (ResidentialLeaseEvidencePredicate.LESSOR_FAILED_OPERATION_DUTIES, False),
+                    (ResidentialLeaseEvidencePredicate.TENANT_BREACHED_USE_OR_PAYMENT, False),
+                    (ResidentialLeaseEvidencePredicate.RENT_UNILATERALLY_CHANGED, False),
+                    (
+                        ResidentialLeaseEvidencePredicate.RENEWAL_OFFER_NOT_MADE_BEFORE_EXPIRY,
+                        False,
+                    ),
+                    (ResidentialLeaseEvidencePredicate.LESSOR_TERMINATED_WITHOUT_COURT, False),
+                    (ResidentialLeaseEvidencePredicate.TENANT_DENIED_REMEDY_PERIOD, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
+                "synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-residential-lease-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
