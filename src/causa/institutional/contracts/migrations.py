@@ -891,6 +891,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.46.0",
+        to_version="0.47.0",
+        reasons=[
+            "Reviewed inputs now require a separate enterprise-lease evidence contract.",
+            "Analysis and Russian translation distinguish qualification, single-document form, registration, creditor notice and consent, transfer deed and preparation, disposal right, maintenance duty, and return preparation under articles 656 through 664.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных об аренде предприятий.",
+            "Анализ и русское объяснение разделяют квалификацию, форму одного документа, регистрацию, уведомление кредиторов и согласие на перевод долгов, акт передачи и подготовку, право распоряжения, содержание и подготовку к возврату по статьям 656–664 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_enterprise_lease_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

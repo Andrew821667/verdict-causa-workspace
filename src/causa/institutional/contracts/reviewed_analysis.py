@@ -244,6 +244,16 @@ from causa.institutional.contracts.building_lease import (
     evaluate_building_lease_constraints,
     map_reviewed_building_lease_evidence,
 )
+from causa.institutional.contracts.enterprise_lease import (
+    ENTERPRISE_LEASE_EVIDENCE_SCHEMA_VERSION,
+    EnterpriseLeaseConstraintSet,
+    EnterpriseLeaseEvaluation,
+    EnterpriseLeaseEvidenceMappingResult,
+    ReviewedEnterpriseLeaseEvidence,
+    build_enterprise_lease_constraint_set,
+    evaluate_enterprise_lease_constraints,
+    map_reviewed_enterprise_lease_evidence,
+)
 from causa.institutional.contracts.gift import (
     GIFT_EVIDENCE_SCHEMA_VERSION,
     GiftConstraintSet,
@@ -526,6 +536,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     rental_evidence: ReviewedRentalEvidence
     vehicle_lease_evidence: ReviewedVehicleLeaseEvidence
     building_lease_evidence: ReviewedBuildingLeaseEvidence
+    enterprise_lease_evidence: ReviewedEnterpriseLeaseEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -652,6 +663,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     building_lease_evidence_mapping: BuildingLeaseEvidenceMappingResult
     building_lease_constraint_set: BuildingLeaseConstraintSet
     building_lease_evaluation: BuildingLeaseEvaluation
+    enterprise_lease_evidence_mapping: EnterpriseLeaseEvidenceMappingResult
+    enterprise_lease_constraint_set: EnterpriseLeaseConstraintSet
+    enterprise_lease_evaluation: EnterpriseLeaseEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -1014,6 +1028,19 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.building_lease_evaluation != expected_building_lease_evaluation:
             raise ValueError("Building-lease evaluation does not replay from reviewed evidence.")
+        expected_enterprise_lease_set = build_enterprise_lease_constraint_set(
+            self.enterprise_lease_evidence_mapping
+        )
+        if self.enterprise_lease_constraint_set != expected_enterprise_lease_set:
+            raise ValueError(
+                "Enterprise-lease constraint set does not replay from reviewed evidence."
+            )
+        expected_enterprise_lease_evaluation = evaluate_enterprise_lease_constraints(
+            expected_enterprise_lease_set,
+            self.enterprise_lease_evidence_mapping.facts,
+        )
+        if self.enterprise_lease_evaluation != expected_enterprise_lease_evaluation:
+            raise ValueError("Enterprise-lease evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -1390,6 +1417,8 @@ def _validate_request_integrity(
         raise ValueError("Vehicle-lease evidence case_id does not match the analysis request.")
     if request.building_lease_evidence.case_id != request.case_id:
         raise ValueError("Building-lease evidence case_id does not match the analysis request.")
+    if request.enterprise_lease_evidence.case_id != request.case_id:
+        raise ValueError("Enterprise-lease evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -1505,6 +1534,11 @@ def _validate_request_integrity(
         raise ValueError("Vehicle-lease evidence uses an unsupported schema version.")
     if request.building_lease_evidence.schema_version != BUILDING_LEASE_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Building-lease evidence uses an unsupported schema version.")
+    if (
+        request.enterprise_lease_evidence.schema_version
+        != ENTERPRISE_LEASE_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Enterprise-lease evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -1541,6 +1575,7 @@ def _validate_request_integrity(
         *request.rental_evidence.legal_source_refs,
         *request.vehicle_lease_evidence.legal_source_refs,
         *request.building_lease_evidence.legal_source_refs,
+        *request.enterprise_lease_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -1609,6 +1644,8 @@ def _validate_request_integrity(
     for assertion in request.vehicle_lease_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.building_lease_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.enterprise_lease_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -1960,6 +1997,17 @@ def _validate_request_integrity(
             "Building-lease legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_building_lease_legal_sources))
         )
+    invalid_enterprise_lease_legal_sources = [
+        source_id
+        for source_id in request.enterprise_lease_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_enterprise_lease_legal_sources:
+        raise ValueError(
+            "Enterprise-lease legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_enterprise_lease_legal_sources))
+        )
     invalid_invalidity_legal_sources = [
         source_id
         for source_id in request.invalidity_evidence.legal_source_refs
@@ -2287,6 +2335,11 @@ def run_reviewed_contract_analysis(
         review_status=request.building_lease_evidence.review_status,
         reviewer_id=request.building_lease_evidence.reviewer_id,
     )
+    enterprise_lease_reviewer_id = _require_reviewed(
+        artifact_name="Enterprise-lease evidence",
+        review_status=request.enterprise_lease_evidence.review_status,
+        reviewer_id=request.enterprise_lease_evidence.reviewer_id,
+    )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
         review_status=request.invalidity_evidence.review_status,
@@ -2589,6 +2642,16 @@ def run_reviewed_contract_analysis(
         building_lease_constraint_set,
         building_lease_evidence_mapping.facts,
     )
+    enterprise_lease_evidence_mapping = map_reviewed_enterprise_lease_evidence(
+        request.enterprise_lease_evidence
+    )
+    enterprise_lease_constraint_set = build_enterprise_lease_constraint_set(
+        enterprise_lease_evidence_mapping
+    )
+    enterprise_lease_evaluation = evaluate_enterprise_lease_constraints(
+        enterprise_lease_constraint_set,
+        enterprise_lease_evidence_mapping.facts,
+    )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
     invalidity_evaluation = evaluate_invalidity_constraints(
@@ -2841,6 +2904,7 @@ def run_reviewed_contract_analysis(
         or rental_evaluation.requires_human_rental_assessment
         or vehicle_lease_evaluation.requires_human_vehicle_lease_assessment
         or building_lease_evaluation.requires_human_building_lease_assessment
+        or enterprise_lease_evaluation.requires_human_enterprise_lease_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -2889,6 +2953,7 @@ def run_reviewed_contract_analysis(
                 rental_reviewer_id,
                 vehicle_lease_reviewer_id,
                 building_lease_reviewer_id,
+                enterprise_lease_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -2991,6 +3056,9 @@ def run_reviewed_contract_analysis(
         building_lease_evidence_mapping=building_lease_evidence_mapping,
         building_lease_constraint_set=building_lease_constraint_set,
         building_lease_evaluation=building_lease_evaluation,
+        enterprise_lease_evidence_mapping=enterprise_lease_evidence_mapping,
+        enterprise_lease_constraint_set=enterprise_lease_constraint_set,
+        enterprise_lease_evaluation=enterprise_lease_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

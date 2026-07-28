@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.47.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed enterprise-lease evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 656 through 664.",
+            "Qualification, single-document form, registration, creditor notice and consent, transfer deed and preparation, disposal right, maintenance duty, and return preparation remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные об аренде предприятий обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 656–664 ГК РФ.",
+            "Квалификация, форма одного документа, регистрация, уведомление кредиторов и согласие на перевод долгов, акт передачи и подготовка, право распоряжения, содержание и подготовка к возврату разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.46.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

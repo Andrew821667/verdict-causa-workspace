@@ -76,6 +76,9 @@ from causa.institutional.contracts.synthetic_vehicle_lease import (
 from causa.institutional.contracts.synthetic_building_lease import (
     build_synthetic_building_lease_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_enterprise_lease import (
+    build_synthetic_enterprise_lease_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_gift import (
     build_synthetic_gift_evaluation_artifact,
 )
@@ -686,6 +689,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-enterprise-lease",
+            title="Проверка аренды предприятий",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.enterprise_lease_evidence_mapping.evidence_id,
+                trace.analysis_result.enterprise_lease_constraint_set.id,
+                *trace.analysis_result.enterprise_lease_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.enterprise_lease_evaluation.reasons_ru,
+                "Квалификация аренды предприятия, форма одного документа и её недействительность, государственная регистрация, уведомление кредиторов и согласие на перевод долгов, передача по акту и подготовка за счёт арендодателя, право распоряжения ценностями, содержание предприятия и подготовка к возврату проверяются раздельно по статьям 656–664 ГК РФ.",
+                "Состав предприятия, стоимость передаваемых ценностей и объём обязанностей по содержанию оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -969,6 +987,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     rental_artifact = build_synthetic_rental_evaluation_artifact()
     vehicle_lease_artifact = build_synthetic_vehicle_lease_evaluation_artifact()
     building_lease_artifact = build_synthetic_building_lease_evaluation_artifact()
+    enterprise_lease_artifact = build_synthetic_enterprise_lease_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -1082,6 +1101,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-vehicle-lease-spec.md",
                 "src/causa/institutional/contracts/building_lease.py",
                 "docs/contract-building-lease-spec.md",
+                "src/causa/institutional/contracts/enterprise_lease.py",
+                "docs/contract-enterprise-lease-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -1129,6 +1150,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_rental_evaluation_report.json",
                 "examples/synthetic_vehicle_lease_evaluation_report.json",
                 "examples/synthetic_building_lease_evaluation_report.json",
+                "examples/synthetic_enterprise_lease_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -1137,12 +1159,12 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 *(
-                    f"examples/migrations/contracts-ru-v0-{version}-to-0.46.0-migration-report.json"
+                    f"examples/migrations/contracts-ru-v0-{version}-to-0.47.0-migration-report.json"
                     for version in (
                         "0.1.0",
                         "0.3.0",
                         "0.4.0",
-                        *(f"0.{minor}.0" for minor in range(5, 46)),
+                        *(f"0.{minor}.0" for minor in range(5, 47)),
                     )
                 ),
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
@@ -1270,6 +1292,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 vehicle_lease_artifact.red_team_report.id,
                 building_lease_artifact.benchmark_report.id,
                 building_lease_artifact.red_team_report.id,
+                enterprise_lease_artifact.benchmark_report.id,
+                enterprise_lease_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -1329,6 +1353,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_rental_evaluation_report.json",
                 "examples/synthetic_vehicle_lease_evaluation_report.json",
                 "examples/synthetic_building_lease_evaluation_report.json",
+                "examples/synthetic_enterprise_lease_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

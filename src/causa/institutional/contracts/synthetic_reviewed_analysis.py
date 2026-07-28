@@ -120,6 +120,11 @@ from causa.institutional.contracts.building_lease import (
     BuildingLeaseEvidencePredicate,
     ReviewedBuildingLeaseEvidence,
 )
+from causa.institutional.contracts.enterprise_lease import (
+    EnterpriseLeaseEvidenceAssertion,
+    EnterpriseLeaseEvidencePredicate,
+    ReviewedEnterpriseLeaseEvidence,
+)
 from causa.institutional.contracts.barter import (
     BarterEvidenceAssertion,
     BarterEvidencePredicate,
@@ -300,6 +305,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
     "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
     "synthetic-case-supply-1-building-lease-evidence",
+    "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+    "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
+    "synthetic-case-supply-1-enterprise-lease-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1474,6 +1482,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-building-lease-reviewer",
+        ),
+        enterprise_lease_evidence=ReviewedEnterpriseLeaseEvidence(
+            id="reviewed-enterprise-lease-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                EnterpriseLeaseEvidenceAssertion(
+                    id=f"enterprise-lease-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-enterprise-lease-evidence",),
+                )
+                for predicate, value in (
+                    (EnterpriseLeaseEvidencePredicate.ENTERPRISE_LEASED_AS_COMPLEX, False),
+                    (EnterpriseLeaseEvidencePredicate.SINGLE_WRITTEN_DOCUMENT_MISSING, False),
+                    (EnterpriseLeaseEvidencePredicate.STATE_REGISTRATION_MISSING, False),
+                    (EnterpriseLeaseEvidencePredicate.CREDITORS_NOT_NOTIFIED, False),
+                    (
+                        EnterpriseLeaseEvidencePredicate.DEBT_TRANSFERRED_WITHOUT_CREDITOR_CONSENT,
+                        False,
+                    ),
+                    (EnterpriseLeaseEvidencePredicate.TRANSFER_DEED_MISSING, False),
+                    (EnterpriseLeaseEvidencePredicate.LESSOR_FAILED_TRANSFER_PREPARATION, False),
+                    (
+                        EnterpriseLeaseEvidencePredicate.TENANT_DISPOSAL_RIGHT_WRONGLY_RESTRICTED,
+                        False,
+                    ),
+                    (EnterpriseLeaseEvidencePredicate.MAINTENANCE_OR_REPAIR_NEGLECTED, False),
+                    (EnterpriseLeaseEvidencePredicate.RETURN_PREPARATION_NEGLECTED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+                "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-enterprise-lease-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

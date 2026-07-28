@@ -1455,6 +1455,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+      "title": "Синтетическая проверенная модель понятия, формы, регистрации и прав кредиторов при аренде предприятия по статьям 656–659 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: аренда предприятия как имущественного комплекса, письменная форма путём составления одного документа и недействительность при её несоблюдении, государственная регистрация договора, письменное уведомление кредиторов, согласие кредитора на перевод долгов и передача предприятия по передаточному акту проверяются раздельно (статьи 656–659 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "enterprise_lease_concept_form_and_creditors_articles_656_659",
+        "legal_reference": "ГК РФ, статьи 656–659",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
+      "title": "Синтетическая проверенная модель пользования, содержания и возврата арендованного предприятия по статьям 660–664 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: право арендатора распоряжаться материальными ценностями в составе предприятия без согласия арендодателя, обязанность арендатора поддерживать предприятие в надлежащем техническом состоянии, включая текущий и капитальный ремонт, и возврат предприятия по передаточному акту за счёт арендатора проверяются раздельно (статьи 660–664 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "enterprise_lease_use_maintenance_and_return_articles_660_664",
+        "legal_reference": "ГК РФ, статьи 660–664",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-enterprise-lease-evidence",
+      "title": "Синтетическая проверенная запись фактов об аренде предприятия",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является арендой предприятия; передачи предприятия как имущественного комплекса во временное владение и пользование нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "enterprise_lease_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -5133,6 +5180,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-building-lease-reviewer"
+    },
+    "enterprise_lease_evidence": {
+      "id": "reviewed-enterprise-lease-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.enterprise-lease-evidence.v0",
+      "assertions": [
+        {
+          "id": "enterprise-lease-evidence-enterprise_leased_as_complex",
+          "predicate": "enterprise_leased_as_complex",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "id": "enterprise-lease-evidence-single_written_document_missing",
+          "predicate": "single_written_document_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "id": "enterprise-lease-evidence-state_registration_missing",
+          "predicate": "state_registration_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "id": "enterprise-lease-evidence-creditors_not_notified",
+          "predicate": "creditors_not_notified",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "id": "enterprise-lease-evidence-debt_transferred_without_creditor_consent",
+          "predicate": "debt_transferred_without_creditor_consent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "id": "enterprise-lease-evidence-transfer_deed_missing",
+          "predicate": "transfer_deed_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "id": "enterprise-lease-evidence-lessor_failed_transfer_preparation",
+          "predicate": "lessor_failed_transfer_preparation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "id": "enterprise-lease-evidence-tenant_disposal_right_wrongly_restricted",
+          "predicate": "tenant_disposal_right_wrongly_restricted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "id": "enterprise-lease-evidence-maintenance_or_repair_neglected",
+          "predicate": "maintenance_or_repair_neglected",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "id": "enterprise-lease-evidence-return_preparation_neglected",
+          "predicate": "return_preparation_neglected",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+        "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-enterprise-lease-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -9914,6 +10054,7 @@
       "synthetic-case-evidence-reviewer",
       "synthetic-contractation-reviewer",
       "synthetic-energy-supply-reviewer",
+      "synthetic-enterprise-lease-reviewer",
       "synthetic-enterprise-sale-reviewer",
       "synthetic-form-reviewer",
       "synthetic-formation-reviewer",
@@ -9955,6 +10096,7 @@
       "synthetic-case-supply-1-building-lease-evidence",
       "synthetic-case-supply-1-contractation-evidence",
       "synthetic-case-supply-1-energy-supply-evidence",
+      "synthetic-case-supply-1-enterprise-lease-evidence",
       "synthetic-case-supply-1-enterprise-sale-evidence",
       "synthetic-case-supply-1-form-evidence",
       "synthetic-case-supply-1-formation-evidence",
@@ -10074,6 +10216,8 @@
       "synthetic-ru-gk642-649-vehicle-lease-without-crew-v1",
       "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
       "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
+      "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+      "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -14213,6 +14357,142 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила об аренде зданий и сооружений и не заменяет судебную оценку.",
         "Размер арендной платы, состав передаваемых прав на земельный участок и последствия уклонения от подписания акта оцениваются экспертом и судом (статьи 652, 654 и 655 ГК РФ)."
+      ]
+    },
+    "enterprise_lease_evidence_mapping": {
+      "evidence_id": "reviewed-enterprise-lease-evidence-supply-1-v0",
+      "schema_version": "contracts.enterprise-lease-evidence.v0",
+      "mapping_version": "contracts-reviewed-enterprise-lease-to-facts-v0",
+      "facts": {
+        "enterprise_leased_as_complex": false,
+        "single_written_document_missing": false,
+        "state_registration_missing": false,
+        "creditors_not_notified": false,
+        "debt_transferred_without_creditor_consent": false,
+        "transfer_deed_missing": false,
+        "lessor_failed_transfer_preparation": false,
+        "tenant_disposal_right_wrongly_restricted": false,
+        "maintenance_or_repair_neglected": false,
+        "return_preparation_neglected": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+        "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "creditors_not_notified",
+          "assertion_id": "enterprise-lease-evidence-creditors_not_notified",
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "debt_transferred_without_creditor_consent",
+          "assertion_id": "enterprise-lease-evidence-debt_transferred_without_creditor_consent",
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "enterprise_leased_as_complex",
+          "assertion_id": "enterprise-lease-evidence-enterprise_leased_as_complex",
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "lessor_failed_transfer_preparation",
+          "assertion_id": "enterprise-lease-evidence-lessor_failed_transfer_preparation",
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "maintenance_or_repair_neglected",
+          "assertion_id": "enterprise-lease-evidence-maintenance_or_repair_neglected",
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "return_preparation_neglected",
+          "assertion_id": "enterprise-lease-evidence-return_preparation_neglected",
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "single_written_document_missing",
+          "assertion_id": "enterprise-lease-evidence-single_written_document_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "state_registration_missing",
+          "assertion_id": "enterprise-lease-evidence-state_registration_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "tenant_disposal_right_wrongly_restricted",
+          "assertion_id": "enterprise-lease-evidence-tenant_disposal_right_wrongly_restricted",
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "transfer_deed_missing",
+          "assertion_id": "enterprise-lease-evidence-transfer_deed_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-enterprise-lease-evidence"
+          ]
+        }
+      ]
+    },
+    "enterprise_lease_constraint_set": {
+      "id": "enterprise-lease-constraint-set:reviewed-enterprise-lease-evidence-supply-1-v0",
+      "model_version": "contracts-enterprise-lease-articles-656-664-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+        "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1"
+      ],
+      "expressions": [
+        "enterprise_lease_qualified == enterprise_leased_as_complex",
+        "form_defect_makes_void == enterprise_lease_qualified AND single_written_document_missing",
+        "registration_required_and_missing == enterprise_lease_qualified AND state_registration_missing",
+        "creditor_notice_not_given == enterprise_lease_qualified AND creditors_not_notified",
+        "creditor_consent_missing_for_debt == enterprise_lease_qualified AND debt_transferred_without_creditor_consent",
+        "transfer_not_documented == enterprise_lease_qualified AND transfer_deed_missing",
+        "transfer_preparation_breached == enterprise_lease_qualified AND lessor_failed_transfer_preparation",
+        "disposal_right_wrongly_restricted == enterprise_lease_qualified AND tenant_disposal_right_wrongly_restricted",
+        "maintenance_duty_breached == enterprise_lease_qualified AND maintenance_or_repair_neglected",
+        "return_preparation_breached == enterprise_lease_qualified AND return_preparation_neglected",
+        "requires_human_enterprise_lease_assessment == form_defect_makes_void OR registration_required_and_missing OR creditor_notice_not_given OR creditor_consent_missing_for_debt OR transfer_not_documented OR transfer_preparation_breached OR disposal_right_wrongly_restricted OR maintenance_duty_breached OR return_preparation_breached"
+      ]
+    },
+    "enterprise_lease_evaluation": {
+      "constraint_set_id": "enterprise-lease-constraint-set:reviewed-enterprise-lease-evidence-supply-1-v0",
+      "satisfiable": true,
+      "enterprise_lease_qualified": false,
+      "form_defect_makes_void": false,
+      "registration_required_and_missing": false,
+      "creditor_notice_not_given": false,
+      "creditor_consent_missing_for_debt": false,
+      "transfer_not_documented": false,
+      "transfer_preparation_breached": false,
+      "disposal_right_wrongly_restricted": false,
+      "maintenance_duty_breached": false,
+      "return_preparation_breached": false,
+      "requires_human_enterprise_lease_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как аренда предприятия."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила об аренде предприятий и не заменяет судебную оценку.",
+        "Состав предприятия, стоимость передаваемых ценностей и объём обязанностей по содержанию оцениваются экспертом и судом (статьи 656, 660 и 661 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -19586,7 +19866,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.46.0",
+      "institutional_package_version": "contracts-ru-v0@0.47.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -21587,6 +21867,7 @@
           "synthetic-case-supply-1-building-lease-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-energy-supply-evidence",
+          "synthetic-case-supply-1-enterprise-lease-evidence",
           "synthetic-case-supply-1-enterprise-sale-evidence",
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
@@ -21706,6 +21987,8 @@
           "synthetic-ru-gk642-649-vehicle-lease-without-crew-v1",
           "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
           "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
+          "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+          "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -22718,6 +23001,7 @@
           "synthetic-case-supply-1-building-lease-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-energy-supply-evidence",
+          "synthetic-case-supply-1-enterprise-lease-evidence",
           "synthetic-case-supply-1-enterprise-sale-evidence",
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
@@ -22837,6 +23121,8 @@
           "synthetic-ru-gk642-649-vehicle-lease-without-crew-v1",
           "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
           "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
+          "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+          "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -23849,6 +24135,7 @@
           "synthetic-case-supply-1-building-lease-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-energy-supply-evidence",
+          "synthetic-case-supply-1-enterprise-lease-evidence",
           "synthetic-case-supply-1-enterprise-sale-evidence",
           "synthetic-case-supply-1-form-evidence",
           "synthetic-case-supply-1-formation-evidence",
@@ -23968,6 +24255,8 @@
           "synthetic-ru-gk642-649-vehicle-lease-without-crew-v1",
           "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
           "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
+          "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+          "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -24057,7 +24346,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.46.0",
+      "institutional_package_version": "contracts-ru-v0@0.47.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -25241,6 +25530,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель понятия, формы, регистрации и прав кредиторов при аренде предприятия по статьям 656–659 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "enterprise_lease_concept_form_and_creditors_articles_656_659",
+          "legal_reference": "ГК РФ, статьи 656–659",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель пользования, содержания и возврата арендованного предприятия по статьям 660–664 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "enterprise_lease_use_maintenance_and_return_articles_660_664",
+          "legal_reference": "ГК РФ, статьи 660–664",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-enterprise-lease-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов об аренде предприятия",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "enterprise_lease_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -25853,6 +26180,7 @@
             "synthetic-case-evidence-reviewer",
             "synthetic-contractation-reviewer",
             "synthetic-energy-supply-reviewer",
+            "synthetic-enterprise-lease-reviewer",
             "synthetic-enterprise-sale-reviewer",
             "synthetic-form-reviewer",
             "synthetic-formation-reviewer",

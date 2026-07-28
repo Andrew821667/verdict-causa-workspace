@@ -1,0 +1,453 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил об аренде предприятий по статьям 656–664 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-enterprise-lease-evidence-supply-1-v0",
+    "schema_version": "contracts.enterprise-lease-evidence.v0",
+    "mapping_version": "contracts-reviewed-enterprise-lease-to-facts-v0",
+    "facts": {
+      "enterprise_leased_as_complex": false,
+      "single_written_document_missing": false,
+      "state_registration_missing": false,
+      "creditors_not_notified": false,
+      "debt_transferred_without_creditor_consent": false,
+      "transfer_deed_missing": false,
+      "lessor_failed_transfer_preparation": false,
+      "tenant_disposal_right_wrongly_restricted": false,
+      "maintenance_or_repair_neglected": false,
+      "return_preparation_neglected": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+      "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "creditors_not_notified",
+        "assertion_id": "enterprise-lease-evidence-creditors_not_notified",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "debt_transferred_without_creditor_consent",
+        "assertion_id": "enterprise-lease-evidence-debt_transferred_without_creditor_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "enterprise_leased_as_complex",
+        "assertion_id": "enterprise-lease-evidence-enterprise_leased_as_complex",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "lessor_failed_transfer_preparation",
+        "assertion_id": "enterprise-lease-evidence-lessor_failed_transfer_preparation",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "maintenance_or_repair_neglected",
+        "assertion_id": "enterprise-lease-evidence-maintenance_or_repair_neglected",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "return_preparation_neglected",
+        "assertion_id": "enterprise-lease-evidence-return_preparation_neglected",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "single_written_document_missing",
+        "assertion_id": "enterprise-lease-evidence-single_written_document_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "state_registration_missing",
+        "assertion_id": "enterprise-lease-evidence-state_registration_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "tenant_disposal_right_wrongly_restricted",
+        "assertion_id": "enterprise-lease-evidence-tenant_disposal_right_wrongly_restricted",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "transfer_deed_missing",
+        "assertion_id": "enterprise-lease-evidence-transfer_deed_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-enterprise-lease-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "enterprise-lease-constraint-set:reviewed-enterprise-lease-evidence-supply-1-v0",
+    "model_version": "contracts-enterprise-lease-articles-656-664-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+      "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1"
+    ],
+    "expressions": [
+      "enterprise_lease_qualified == enterprise_leased_as_complex",
+      "form_defect_makes_void == enterprise_lease_qualified AND single_written_document_missing",
+      "registration_required_and_missing == enterprise_lease_qualified AND state_registration_missing",
+      "creditor_notice_not_given == enterprise_lease_qualified AND creditors_not_notified",
+      "creditor_consent_missing_for_debt == enterprise_lease_qualified AND debt_transferred_without_creditor_consent",
+      "transfer_not_documented == enterprise_lease_qualified AND transfer_deed_missing",
+      "transfer_preparation_breached == enterprise_lease_qualified AND lessor_failed_transfer_preparation",
+      "disposal_right_wrongly_restricted == enterprise_lease_qualified AND tenant_disposal_right_wrongly_restricted",
+      "maintenance_duty_breached == enterprise_lease_qualified AND maintenance_or_repair_neglected",
+      "return_preparation_breached == enterprise_lease_qualified AND return_preparation_neglected",
+      "requires_human_enterprise_lease_assessment == form_defect_makes_void OR registration_required_and_missing OR creditor_notice_not_given OR creditor_consent_missing_for_debt OR transfer_not_documented OR transfer_preparation_breached OR disposal_right_wrongly_restricted OR maintenance_duty_breached OR return_preparation_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "enterprise-lease-constraint-set:reviewed-enterprise-lease-evidence-supply-1-v0",
+    "satisfiable": true,
+    "enterprise_lease_qualified": false,
+    "form_defect_makes_void": false,
+    "registration_required_and_missing": false,
+    "creditor_notice_not_given": false,
+    "creditor_consent_missing_for_debt": false,
+    "transfer_not_documented": false,
+    "transfer_preparation_breached": false,
+    "disposal_right_wrongly_restricted": false,
+    "maintenance_duty_breached": false,
+    "return_preparation_breached": false,
+    "requires_human_enterprise_lease_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как аренда предприятия."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила об аренде предприятий и не заменяет судебную оценку.",
+      "Состав предприятия, стоимость передаваемых ценностей и объём обязанностей по содержанию оцениваются экспертом и судом (статьи 656, 660 и 661 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "enterprise-lease-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "enterprise-lease-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "enterprise_lease_qualified": false
+        },
+        "observed_outcomes": {
+          "enterprise_lease_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как аренда предприятия."
+        ]
+      },
+      {
+        "task_id": "enterprise-lease-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "enterprise_lease_qualified": true,
+          "requires_human_enterprise_lease_assessment": false
+        },
+        "observed_outcomes": {
+          "enterprise_lease_qualified": true,
+          "requires_human_enterprise_lease_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-lease-bench-form-defect",
+        "passed": true,
+        "expected_outcomes": {
+          "form_defect_makes_void": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "form_defect_makes_void": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Договор аренды предприятия заключается в письменной форме путём составления одного документа, подписанного сторонами; несоблюдение формы влечёт недействительность договора (статья 658 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-lease-bench-registration-missing",
+        "passed": true,
+        "expected_outcomes": {
+          "registration_required_and_missing": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "registration_required_and_missing": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Договор аренды предприятия подлежит государственной регистрации и считается заключённым с момента такой регистрации (статья 658 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-lease-bench-creditors-not-notified",
+        "passed": true,
+        "expected_outcomes": {
+          "creditor_notice_not_given": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "creditor_notice_not_given": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Кредиторы по обязательствам, включённым в состав предприятия, должны быть письменно уведомлены о передаче предприятия в аренду до его передачи (статья 657 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-lease-bench-debt-without-consent",
+        "passed": true,
+        "expected_outcomes": {
+          "creditor_consent_missing_for_debt": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "creditor_consent_missing_for_debt": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Перевод на арендатора долгов, включённых в состав предприятия, без согласия кредитора недопустим; после передачи стороны несут солидарную ответственность по включённым в состав предприятия долгам, переведённым без согласия кредитора (статья 657 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-lease-bench-transfer-deed",
+        "passed": true,
+        "expected_outcomes": {
+          "transfer_not_documented": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "transfer_not_documented": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Передача предприятия арендатору осуществляется по передаточному акту (статья 659 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-lease-bench-transfer-preparation",
+        "passed": true,
+        "expected_outcomes": {
+          "transfer_preparation_breached": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "transfer_preparation_breached": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Подготовка предприятия к передаче, включая составление и представление на подписание передаточного акта, является обязанностью арендодателя и осуществляется за его счёт (статья 659 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-lease-bench-disposal-restriction",
+        "passed": true,
+        "expected_outcomes": {
+          "disposal_right_wrongly_restricted": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "disposal_right_wrongly_restricted": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Арендатор вправе без согласия арендодателя продавать, обменивать, предоставлять во временное пользование материальные ценности, входящие в состав имущества арендованного предприятия, если это не влечёт уменьшения его стоимости и не нарушает условий договора; ограничение неправомерно (статья 660 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "enterprise-lease-bench-return-preparation",
+        "passed": true,
+        "expected_outcomes": {
+          "return_preparation_breached": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "return_preparation_breached": true,
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "При прекращении договора арендованный имущественный комплекс возвращается арендодателю по передаточному акту; подготовка предприятия к передаче является обязанностью арендатора и осуществляется за его счёт (статья 664 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "enterprise-lease-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "enterprise-lease-red-qualify-without-complex",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "enterprise_lease_qualified": true
+        },
+        "observed_outcomes": {
+          "enterprise_lease_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как аренда предприятия."
+        ]
+      },
+      {
+        "case_id": "enterprise-lease-red-ignore-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_defect_makes_void": false
+        },
+        "observed_outcomes": {
+          "form_defect_makes_void": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Договор аренды предприятия заключается в письменной форме путём составления одного документа, подписанного сторонами; несоблюдение формы влечёт недействительность договора (статья 658 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-lease-red-ignore-registration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "registration_required_and_missing": false
+        },
+        "observed_outcomes": {
+          "registration_required_and_missing": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Договор аренды предприятия подлежит государственной регистрации и считается заключённым с момента такой регистрации (статья 658 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-lease-red-ignore-creditor-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "creditor_notice_not_given": false
+        },
+        "observed_outcomes": {
+          "creditor_notice_not_given": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Кредиторы по обязательствам, включённым в состав предприятия, должны быть письменно уведомлены о передаче предприятия в аренду до его передачи (статья 657 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-lease-red-allow-debt-without-consent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "creditor_consent_missing_for_debt": false
+        },
+        "observed_outcomes": {
+          "creditor_consent_missing_for_debt": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Перевод на арендатора долгов, включённых в состав предприятия, без согласия кредитора недопустим; после передачи стороны несут солидарную ответственность по включённым в состав предприятия долгам, переведённым без согласия кредитора (статья 657 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-lease-red-ignore-transfer-deed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transfer_not_documented": false
+        },
+        "observed_outcomes": {
+          "transfer_not_documented": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Передача предприятия арендатору осуществляется по передаточному акту (статья 659 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-lease-red-shift-preparation-to-tenant",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transfer_preparation_breached": false
+        },
+        "observed_outcomes": {
+          "transfer_preparation_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Подготовка предприятия к передаче, включая составление и представление на подписание передаточного акта, является обязанностью арендодателя и осуществляется за его счёт (статья 659 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-lease-red-uphold-disposal-restriction",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "disposal_right_wrongly_restricted": false
+        },
+        "observed_outcomes": {
+          "disposal_right_wrongly_restricted": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Арендатор вправе без согласия арендодателя продавать, обменивать, предоставлять во временное пользование материальные ценности, входящие в состав имущества арендованного предприятия, если это не влечёт уменьшения его стоимости и не нарушает условий договора; ограничение неправомерно (статья 660 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-lease-red-creditor-consent-without-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "creditor_consent_missing_for_debt": true
+        },
+        "observed_outcomes": {
+          "creditor_consent_missing_for_debt": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "enterprise-lease-red-skip-human-on-maintenance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_enterprise_lease_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_enterprise_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда предприятия: арендодатель обязуется предоставить арендатору за плату во временное владение и пользование предприятие в целом как имущественный комплекс, используемый для предпринимательской деятельности (статья 656 ГК РФ).",
+          "Арендатор обязан в течение всего срока действия договора поддерживать предприятие в надлежащем техническом состоянии, включая его текущий и капитальный ремонт (статья 661 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

@@ -1804,6 +1804,63 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
+        title="Синтетическая проверенная модель понятия, формы, регистрации и прав кредиторов при аренде предприятия по статьям 656–659 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: аренда предприятия как имущественного комплекса, "
+            "письменная форма путём составления одного документа и недействительность при её "
+            "несоблюдении, государственная регистрация договора, письменное уведомление "
+            "кредиторов, согласие кредитора на перевод долгов и передача предприятия по "
+            "передаточному акту проверяются раздельно (статьи 656–659 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "enterprise_lease_concept_form_and_creditors_articles_656_659",
+            "legal_reference": "ГК РФ, статьи 656–659",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
+        title="Синтетическая проверенная модель пользования, содержания и возврата арендованного предприятия по статьям 660–664 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: право арендатора распоряжаться материальными "
+            "ценностями в составе предприятия без согласия арендодателя, обязанность арендатора "
+            "поддерживать предприятие в надлежащем техническом состоянии, включая текущий и "
+            "капитальный ремонт, и возврат предприятия по передаточному акту за счёт арендатора "
+            "проверяются раздельно (статьи 660–664 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "enterprise_lease_use_maintenance_and_return_articles_660_664",
+            "legal_reference": "ГК РФ, статьи 660–664",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-enterprise-lease-evidence",
+        title="Синтетическая проверенная запись фактов об аренде предприятия",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой товаров за единовременную "
+            "оплату и не является арендой предприятия; передачи предприятия как имущественного "
+            "комплекса во временное владение и пользование нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "enterprise_lease_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,
