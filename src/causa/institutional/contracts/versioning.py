@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.45.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed vehicle-lease evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 632 through 649.",
+            "Qualification, written form, renewal unavailability, maintenance duty, crew service, operating costs, insurance, sublease freedom, and third-party liability remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные об аренде транспортных средств обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 632–649 ГК РФ.",
+            "Квалификация, письменная форма, неприменение преимущественного права, содержание и ремонт, услуги экипажа, расходы по эксплуатации, страхование, субаренда и ответственность за вред третьим лицам разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.44.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

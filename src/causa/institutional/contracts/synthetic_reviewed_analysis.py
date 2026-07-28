@@ -110,6 +110,11 @@ from causa.institutional.contracts.rental import (
     RentalEvidencePredicate,
     ReviewedRentalEvidence,
 )
+from causa.institutional.contracts.vehicle_lease import (
+    ReviewedVehicleLeaseEvidence,
+    VehicleLeaseEvidenceAssertion,
+    VehicleLeaseEvidencePredicate,
+)
 from causa.institutional.contracts.barter import (
     BarterEvidenceAssertion,
     BarterEvidencePredicate,
@@ -284,6 +289,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk626-628-rental-concept-form-and-term-v1",
     "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
     "synthetic-case-supply-1-rental-evidence",
+    "synthetic-ru-gk632-641-vehicle-lease-with-crew-v1",
+    "synthetic-ru-gk642-649-vehicle-lease-without-crew-v1",
+    "synthetic-case-supply-1-vehicle-lease-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1395,6 +1403,39 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-rental-reviewer",
+        ),
+        vehicle_lease_evidence=ReviewedVehicleLeaseEvidence(
+            id="reviewed-vehicle-lease-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                VehicleLeaseEvidenceAssertion(
+                    id=f"vehicle-lease-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-vehicle-lease-evidence",),
+                )
+                for predicate, value in (
+                    (VehicleLeaseEvidencePredicate.VEHICLE_LEASED_FOR_TEMPORARY_USE, False),
+                    (VehicleLeaseEvidencePredicate.LEASE_WITH_CREW, False),
+                    (VehicleLeaseEvidencePredicate.WRITTEN_FORM_MISSING, False),
+                    (VehicleLeaseEvidencePredicate.RENEWAL_OR_PRIORITY_RIGHT_CLAIMED, False),
+                    (VehicleLeaseEvidencePredicate.MAINTENANCE_OR_REPAIR_NEGLECTED, False),
+                    (VehicleLeaseEvidencePredicate.CREW_SERVICE_NOT_PROVIDED, False),
+                    (VehicleLeaseEvidencePredicate.OPERATING_COSTS_MISALLOCATED, False),
+                    (VehicleLeaseEvidencePredicate.INSURANCE_OBLIGATION_BREACHED, False),
+                    (VehicleLeaseEvidencePredicate.SUBLEASE_WRONGLY_RESTRICTED, False),
+                    (
+                        VehicleLeaseEvidencePredicate.THIRD_PARTY_HARM_LIABILITY_MISASSIGNED,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk632-641-vehicle-lease-with-crew-v1",
+                "synthetic-ru-gk642-649-vehicle-lease-without-crew-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-vehicle-lease-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

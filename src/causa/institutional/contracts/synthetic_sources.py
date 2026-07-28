@@ -1692,6 +1692,63 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk632-641-vehicle-lease-with-crew-v1",
+        title="Синтетическая проверенная модель аренды транспортного средства с экипажем по статьям 632–641 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: аренда транспортного средства с предоставлением услуг "
+            "по управлению и технической эксплуатации, письменная форма независимо от срока, "
+            "неприменение правил о преимущественном праве, обязанности арендодателя по "
+            "содержанию, экипажу и страхованию, распределение расходов и ответственность за вред "
+            "третьим лицам проверяются раздельно (статьи 632–641 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "vehicle_lease_with_crew_articles_632_641",
+            "legal_reference": "ГК РФ, статьи 632–641",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk642-649-vehicle-lease-without-crew-v1",
+        title="Синтетическая проверенная модель аренды транспортного средства без экипажа по статьям 642–649 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: аренда транспортного средства без предоставления услуг "
+            "по управлению и технической эксплуатации, письменная форма независимо от срока, "
+            "обязанности арендатора по содержанию, страхованию и расходам, право сдавать "
+            "транспортное средство в субаренду и ответственность арендатора за вред третьим "
+            "лицам проверяются раздельно (статьи 642–649 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "vehicle_lease_without_crew_articles_642_649",
+            "legal_reference": "ГК РФ, статьи 642–649",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-vehicle-lease-evidence",
+        title="Синтетическая проверенная запись фактов об аренде транспортного средства",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой товаров за единовременную "
+            "оплату и не является арендой транспортного средства; предоставления транспортного "
+            "средства во временное владение и пользование нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "vehicle_lease_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

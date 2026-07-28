@@ -1,0 +1,451 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил об аренде транспортных средств по статьям 632–649 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-vehicle-lease-evidence-supply-1-v0",
+    "schema_version": "contracts.vehicle-lease-evidence.v0",
+    "mapping_version": "contracts-reviewed-vehicle-lease-to-facts-v0",
+    "facts": {
+      "vehicle_leased_for_temporary_use": false,
+      "lease_with_crew": false,
+      "written_form_missing": false,
+      "renewal_or_priority_right_claimed": false,
+      "maintenance_or_repair_neglected": false,
+      "crew_service_not_provided": false,
+      "operating_costs_misallocated": false,
+      "insurance_obligation_breached": false,
+      "sublease_wrongly_restricted": false,
+      "third_party_harm_liability_misassigned": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk632-641-vehicle-lease-with-crew-v1",
+      "synthetic-ru-gk642-649-vehicle-lease-without-crew-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "crew_service_not_provided",
+        "assertion_id": "vehicle-lease-evidence-crew_service_not_provided",
+        "source_refs": [
+          "synthetic-case-supply-1-vehicle-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "insurance_obligation_breached",
+        "assertion_id": "vehicle-lease-evidence-insurance_obligation_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-vehicle-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "lease_with_crew",
+        "assertion_id": "vehicle-lease-evidence-lease_with_crew",
+        "source_refs": [
+          "synthetic-case-supply-1-vehicle-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "maintenance_or_repair_neglected",
+        "assertion_id": "vehicle-lease-evidence-maintenance_or_repair_neglected",
+        "source_refs": [
+          "synthetic-case-supply-1-vehicle-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "operating_costs_misallocated",
+        "assertion_id": "vehicle-lease-evidence-operating_costs_misallocated",
+        "source_refs": [
+          "synthetic-case-supply-1-vehicle-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "renewal_or_priority_right_claimed",
+        "assertion_id": "vehicle-lease-evidence-renewal_or_priority_right_claimed",
+        "source_refs": [
+          "synthetic-case-supply-1-vehicle-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "sublease_wrongly_restricted",
+        "assertion_id": "vehicle-lease-evidence-sublease_wrongly_restricted",
+        "source_refs": [
+          "synthetic-case-supply-1-vehicle-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_harm_liability_misassigned",
+        "assertion_id": "vehicle-lease-evidence-third_party_harm_liability_misassigned",
+        "source_refs": [
+          "synthetic-case-supply-1-vehicle-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "vehicle_leased_for_temporary_use",
+        "assertion_id": "vehicle-lease-evidence-vehicle_leased_for_temporary_use",
+        "source_refs": [
+          "synthetic-case-supply-1-vehicle-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "written_form_missing",
+        "assertion_id": "vehicle-lease-evidence-written_form_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-vehicle-lease-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "vehicle-lease-constraint-set:reviewed-vehicle-lease-evidence-supply-1-v0",
+    "model_version": "contracts-vehicle-lease-articles-632-649-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk632-641-vehicle-lease-with-crew-v1",
+      "synthetic-ru-gk642-649-vehicle-lease-without-crew-v1"
+    ],
+    "expressions": [
+      "vehicle_lease_qualified == vehicle_leased_for_temporary_use",
+      "form_requirement_violated == vehicle_lease_qualified AND written_form_missing",
+      "renewal_right_not_available == vehicle_lease_qualified AND renewal_or_priority_right_claimed",
+      "maintenance_duty_breached == vehicle_lease_qualified AND maintenance_or_repair_neglected",
+      "crew_service_shortfall == vehicle_lease_qualified AND lease_with_crew AND crew_service_not_provided",
+      "operating_cost_misallocation == vehicle_lease_qualified AND operating_costs_misallocated",
+      "insurance_duty_breached == vehicle_lease_qualified AND insurance_obligation_breached",
+      "sublease_restriction_invalid == vehicle_lease_qualified AND sublease_wrongly_restricted",
+      "third_party_liability_misassigned == vehicle_lease_qualified AND third_party_harm_liability_misassigned",
+      "requires_human_vehicle_lease_assessment == form_requirement_violated OR renewal_right_not_available OR maintenance_duty_breached OR crew_service_shortfall OR operating_cost_misallocation OR insurance_duty_breached OR sublease_restriction_invalid OR third_party_liability_misassigned"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "vehicle-lease-constraint-set:reviewed-vehicle-lease-evidence-supply-1-v0",
+    "satisfiable": true,
+    "vehicle_lease_qualified": false,
+    "form_requirement_violated": false,
+    "renewal_right_not_available": false,
+    "maintenance_duty_breached": false,
+    "crew_service_shortfall": false,
+    "operating_cost_misallocation": false,
+    "insurance_duty_breached": false,
+    "sublease_restriction_invalid": false,
+    "third_party_liability_misassigned": false,
+    "requires_human_vehicle_lease_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как аренда транспортного средства."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила об аренде транспортных средств и не заменяет судебную оценку.",
+      "Размер платы, распределение конкретных расходов и объём ответственности оцениваются экспертом и судом (статьи 636, 639 и 648 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "vehicle-lease-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "vehicle-lease-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "vehicle_lease_qualified": false
+        },
+        "observed_outcomes": {
+          "vehicle_lease_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как аренда транспортного средства."
+        ]
+      },
+      {
+        "task_id": "vehicle-lease-bench-qualified-with-crew",
+        "passed": true,
+        "expected_outcomes": {
+          "vehicle_lease_qualified": true,
+          "requires_human_vehicle_lease_assessment": false
+        },
+        "observed_outcomes": {
+          "vehicle_lease_qualified": true,
+          "requires_human_vehicle_lease_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "vehicle-lease-bench-form-violation",
+        "passed": true,
+        "expected_outcomes": {
+          "form_requirement_violated": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "form_requirement_violated": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "Договор аренды транспортного средства заключается в письменной форме независимо от срока; требование формы нарушено (статьи 633 и 643 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "vehicle-lease-bench-renewal-claim",
+        "passed": true,
+        "expected_outcomes": {
+          "renewal_right_not_available": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "renewal_right_not_available": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "К аренде транспортного средства не применяются правила о преимущественном праве на заключение договора на новый срок (статьи 632 и 642 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "vehicle-lease-bench-maintenance",
+        "passed": true,
+        "expected_outcomes": {
+          "maintenance_duty_breached": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "maintenance_duty_breached": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "Обязанность по поддержанию надлежащего состояния транспортного средства, включая текущий и капитальный ремонт, не исполнена: при аренде с экипажем она лежит на арендодателе, без экипажа — на арендаторе (статьи 634 и 644 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "vehicle-lease-bench-crew-shortfall",
+        "passed": true,
+        "expected_outcomes": {
+          "crew_service_shortfall": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "crew_service_shortfall": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "При аренде с экипажем арендодатель обязан обеспечить управление транспортным средством и его надлежащую техническую эксплуатацию силами экипажа; услуги экипажа не предоставлены надлежащим образом (статья 635 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "vehicle-lease-bench-operating-costs",
+        "passed": true,
+        "expected_outcomes": {
+          "operating_cost_misallocation": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "operating_cost_misallocation": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "Расходы по эксплуатации транспортного средства распределены неверно: коммерческая эксплуатация при аренде с экипажем и содержание при аренде без экипажа отнесены не на ту сторону (статьи 636 и 646 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "vehicle-lease-bench-insurance",
+        "passed": true,
+        "expected_outcomes": {
+          "insurance_duty_breached": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "insurance_duty_breached": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "Обязанность по страхованию транспортного средства и ответственности не исполнена: при аренде с экипажем она лежит на арендодателе, без экипажа — на арендаторе (статьи 637 и 646 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "vehicle-lease-bench-sublease-restriction",
+        "passed": true,
+        "expected_outcomes": {
+          "sublease_restriction_invalid": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "sublease_restriction_invalid": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "Арендатор вправе без согласия арендодателя сдавать транспортное средство в субаренду, если иное не предусмотрено договором; ограничение неправомерно (статьи 638 и 647 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "vehicle-lease-bench-third-party-liability",
+        "passed": true,
+        "expected_outcomes": {
+          "third_party_liability_misassigned": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "third_party_liability_misassigned": true,
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "Ответственность за вред, причинённый третьим лицам транспортным средством, распределена неверно: при аренде с экипажем её несёт арендодатель, без экипажа — арендатор (статьи 640 и 648 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "vehicle-lease-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "vehicle-lease-red-qualify-without-lease",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "vehicle_lease_qualified": true
+        },
+        "observed_outcomes": {
+          "vehicle_lease_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как аренда транспортного средства."
+        ]
+      },
+      {
+        "case_id": "vehicle-lease-red-ignore-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_requirement_violated": false
+        },
+        "observed_outcomes": {
+          "form_requirement_violated": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "Договор аренды транспортного средства заключается в письменной форме независимо от срока; требование формы нарушено (статьи 633 и 643 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "vehicle-lease-red-grant-renewal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "renewal_right_not_available": false
+        },
+        "observed_outcomes": {
+          "renewal_right_not_available": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "К аренде транспортного средства не применяются правила о преимущественном праве на заключение договора на новый срок (статьи 632 и 642 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "vehicle-lease-red-ignore-maintenance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "maintenance_duty_breached": false
+        },
+        "observed_outcomes": {
+          "maintenance_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "Обязанность по поддержанию надлежащего состояния транспортного средства, включая текущий и капитальный ремонт, не исполнена: при аренде с экипажем она лежит на арендодателе, без экипажа — на арендаторе (статьи 634 и 644 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "vehicle-lease-red-ignore-crew",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "crew_service_shortfall": false
+        },
+        "observed_outcomes": {
+          "crew_service_shortfall": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "При аренде с экипажем арендодатель обязан обеспечить управление транспортным средством и его надлежащую техническую эксплуатацию силами экипажа; услуги экипажа не предоставлены надлежащим образом (статья 635 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "vehicle-lease-red-crew-shortfall-without-crew-lease",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "crew_service_shortfall": true
+        },
+        "observed_outcomes": {
+          "crew_service_shortfall": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "vehicle-lease-red-ignore-operating-costs",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "operating_cost_misallocation": false
+        },
+        "observed_outcomes": {
+          "operating_cost_misallocation": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "Расходы по эксплуатации транспортного средства распределены неверно: коммерческая эксплуатация при аренде с экипажем и содержание при аренде без экипажа отнесены не на ту сторону (статьи 636 и 646 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "vehicle-lease-red-ignore-insurance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "insurance_duty_breached": false
+        },
+        "observed_outcomes": {
+          "insurance_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "Обязанность по страхованию транспортного средства и ответственности не исполнена: при аренде с экипажем она лежит на арендодателе, без экипажа — на арендаторе (статьи 637 и 646 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "vehicle-lease-red-uphold-sublease-restriction",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "sublease_restriction_invalid": false
+        },
+        "observed_outcomes": {
+          "sublease_restriction_invalid": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "Арендатор вправе без согласия арендодателя сдавать транспортное средство в субаренду, если иное не предусмотрено договором; ограничение неправомерно (статьи 638 и 647 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "vehicle-lease-red-skip-human-on-liability",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_vehicle_lease_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_vehicle_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда транспортного средства: арендодатель предоставил транспортное средство за плату во временное владение и пользование (статьи 632 и 642 ГК РФ).",
+          "Ответственность за вред, причинённый третьим лицам транспортным средством, распределена неверно: при аренде с экипажем её несёт арендодатель, без экипажа — арендатор (статьи 640 и 648 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}
