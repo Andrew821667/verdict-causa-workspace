@@ -1,0 +1,444 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о финансовой аренде (лизинге) по статьям 665–670 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-leasing-evidence-supply-1-v0",
+    "schema_version": "contracts.leasing-evidence.v0",
+    "mapping_version": "contracts-reviewed-leasing-to-facts-v0",
+    "facts": {
+      "property_acquired_for_lessee_and_leased": false,
+      "leased_object_is_non_consumable_thing": false,
+      "object_excluded_from_leasing": false,
+      "seller_not_notified_of_leasing_purpose": false,
+      "lessor_selected_seller": false,
+      "object_not_delivered_in_time": false,
+      "delay_attributable_to_lessor": false,
+      "risk_allocation_disputed_before_transfer": false,
+      "lessee_denied_direct_claim_against_seller": false,
+      "seller_breached_obligations": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+      "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "delay_attributable_to_lessor",
+        "assertion_id": "leasing-evidence-delay_attributable_to_lessor",
+        "source_refs": [
+          "synthetic-case-supply-1-leasing-evidence"
+        ]
+      },
+      {
+        "fact_name": "leased_object_is_non_consumable_thing",
+        "assertion_id": "leasing-evidence-leased_object_is_non_consumable_thing",
+        "source_refs": [
+          "synthetic-case-supply-1-leasing-evidence"
+        ]
+      },
+      {
+        "fact_name": "lessee_denied_direct_claim_against_seller",
+        "assertion_id": "leasing-evidence-lessee_denied_direct_claim_against_seller",
+        "source_refs": [
+          "synthetic-case-supply-1-leasing-evidence"
+        ]
+      },
+      {
+        "fact_name": "lessor_selected_seller",
+        "assertion_id": "leasing-evidence-lessor_selected_seller",
+        "source_refs": [
+          "synthetic-case-supply-1-leasing-evidence"
+        ]
+      },
+      {
+        "fact_name": "object_excluded_from_leasing",
+        "assertion_id": "leasing-evidence-object_excluded_from_leasing",
+        "source_refs": [
+          "synthetic-case-supply-1-leasing-evidence"
+        ]
+      },
+      {
+        "fact_name": "object_not_delivered_in_time",
+        "assertion_id": "leasing-evidence-object_not_delivered_in_time",
+        "source_refs": [
+          "synthetic-case-supply-1-leasing-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_acquired_for_lessee_and_leased",
+        "assertion_id": "leasing-evidence-property_acquired_for_lessee_and_leased",
+        "source_refs": [
+          "synthetic-case-supply-1-leasing-evidence"
+        ]
+      },
+      {
+        "fact_name": "risk_allocation_disputed_before_transfer",
+        "assertion_id": "leasing-evidence-risk_allocation_disputed_before_transfer",
+        "source_refs": [
+          "synthetic-case-supply-1-leasing-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_breached_obligations",
+        "assertion_id": "leasing-evidence-seller_breached_obligations",
+        "source_refs": [
+          "synthetic-case-supply-1-leasing-evidence"
+        ]
+      },
+      {
+        "fact_name": "seller_not_notified_of_leasing_purpose",
+        "assertion_id": "leasing-evidence-seller_not_notified_of_leasing_purpose",
+        "source_refs": [
+          "synthetic-case-supply-1-leasing-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "leasing-constraint-set:reviewed-leasing-evidence-supply-1-v0",
+    "model_version": "contracts-leasing-articles-665-670-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+      "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1"
+    ],
+    "expressions": [
+      "leasing_qualified == property_acquired_for_lessee_and_leased",
+      "object_not_eligible_for_leasing == leasing_qualified AND object_excluded_from_leasing",
+      "seller_notice_not_given == leasing_qualified AND seller_not_notified_of_leasing_purpose",
+      "delivery_default_attributable_to_lessor == leasing_qualified AND object_not_delivered_in_time AND delay_attributable_to_lessor",
+      "risk_transfer_rule_applies == leasing_qualified AND risk_allocation_disputed_before_transfer",
+      "lessee_direct_claim_wrongly_denied == leasing_qualified AND lessee_denied_direct_claim_against_seller",
+      "lessor_solidarily_liable_for_seller == leasing_qualified AND lessor_selected_seller AND seller_breached_obligations",
+      "requires_human_leasing_assessment == object_not_eligible_for_leasing OR seller_notice_not_given OR delivery_default_attributable_to_lessor OR risk_transfer_rule_applies OR lessee_direct_claim_wrongly_denied OR lessor_solidarily_liable_for_seller"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "leasing-constraint-set:reviewed-leasing-evidence-supply-1-v0",
+    "satisfiable": true,
+    "leasing_qualified": false,
+    "object_not_eligible_for_leasing": false,
+    "seller_notice_not_given": false,
+    "delivery_default_attributable_to_lessor": false,
+    "risk_transfer_rule_applies": false,
+    "lessee_direct_claim_wrongly_denied": false,
+    "lessor_solidarily_liable_for_seller": false,
+    "requires_human_leasing_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как финансовая аренда (лизинг)."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о финансовой аренде и не заменяет судебную оценку.",
+      "Размер лизинговых платежей, распределение конкретных рисков и объём требований к продавцу оцениваются экспертом и судом (статьи 665, 669 и 670 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "leasing-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "leasing-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "leasing_qualified": false
+        },
+        "observed_outcomes": {
+          "leasing_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как финансовая аренда (лизинг)."
+        ]
+      },
+      {
+        "task_id": "leasing-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "leasing_qualified": true,
+          "requires_human_leasing_assessment": false
+        },
+        "observed_outcomes": {
+          "leasing_qualified": true,
+          "requires_human_leasing_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "leasing-bench-object-excluded",
+        "passed": true,
+        "expected_outcomes": {
+          "object_not_eligible_for_leasing": true,
+          "requires_human_leasing_assessment": true
+        },
+        "observed_outcomes": {
+          "object_not_eligible_for_leasing": true,
+          "requires_human_leasing_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ).",
+          "Предметом договора финансовой аренды могут быть любые непотребляемые вещи, кроме земельных участков и других природных объектов; выбранный объект не может быть предметом лизинга (статья 666 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "leasing-bench-seller-not-notified",
+        "passed": true,
+        "expected_outcomes": {
+          "seller_notice_not_given": true,
+          "requires_human_leasing_assessment": true
+        },
+        "observed_outcomes": {
+          "seller_notice_not_given": true,
+          "requires_human_leasing_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ).",
+          "Арендодатель, приобретая имущество для арендатора, должен уведомить продавца о том, что имущество предназначено для передачи в аренду определённому лицу (статья 667 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "leasing-bench-delivery-default",
+        "passed": true,
+        "expected_outcomes": {
+          "delivery_default_attributable_to_lessor": true,
+          "requires_human_leasing_assessment": true
+        },
+        "observed_outcomes": {
+          "delivery_default_attributable_to_lessor": true,
+          "requires_human_leasing_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ).",
+          "Имущество не передано арендатору в указанный срок по обстоятельствам, за которые отвечает арендодатель; арендатор вправе потребовать расторжения договора и возмещения убытков (статья 668 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "leasing-bench-delay-not-attributable",
+        "passed": true,
+        "expected_outcomes": {
+          "delivery_default_attributable_to_lessor": false,
+          "requires_human_leasing_assessment": false
+        },
+        "observed_outcomes": {
+          "delivery_default_attributable_to_lessor": false,
+          "requires_human_leasing_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "leasing-bench-risk-transfer",
+        "passed": true,
+        "expected_outcomes": {
+          "risk_transfer_rule_applies": true,
+          "requires_human_leasing_assessment": true
+        },
+        "observed_outcomes": {
+          "risk_transfer_rule_applies": true,
+          "requires_human_leasing_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ).",
+          "Риск случайной гибели или порчи имущества переходит к арендатору в момент передачи ему предмета лизинга, если иное не предусмотрено договором (статья 669 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "leasing-bench-direct-claim-denied",
+        "passed": true,
+        "expected_outcomes": {
+          "lessee_direct_claim_wrongly_denied": true,
+          "requires_human_leasing_assessment": true
+        },
+        "observed_outcomes": {
+          "lessee_direct_claim_wrongly_denied": true,
+          "requires_human_leasing_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ).",
+          "Арендатор вправе предъявлять непосредственно продавцу требования, вытекающие из договора купли-продажи предмета лизинга, в отношении качества и комплектности имущества, сроков его поставки и в других случаях ненадлежащего исполнения (статья 670 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "leasing-bench-lessor-selected-seller",
+        "passed": true,
+        "expected_outcomes": {
+          "lessor_solidarily_liable_for_seller": true,
+          "requires_human_leasing_assessment": true
+        },
+        "observed_outcomes": {
+          "lessor_solidarily_liable_for_seller": true,
+          "requires_human_leasing_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ).",
+          "Если выбор продавца осуществлялся арендодателем, арендатор вправе предъявить требования, вытекающие из договора купли-продажи, как продавцу, так и арендодателю, которые несут солидарную ответственность (статья 670 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "leasing-bench-lessee-selected-seller",
+        "passed": true,
+        "expected_outcomes": {
+          "lessor_solidarily_liable_for_seller": false,
+          "requires_human_leasing_assessment": false
+        },
+        "observed_outcomes": {
+          "lessor_solidarily_liable_for_seller": false,
+          "requires_human_leasing_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "leasing-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "leasing-red-qualify-without-acquisition",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "leasing_qualified": true
+        },
+        "observed_outcomes": {
+          "leasing_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как финансовая аренда (лизинг)."
+        ]
+      },
+      {
+        "case_id": "leasing-red-allow-excluded-object",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "object_not_eligible_for_leasing": false
+        },
+        "observed_outcomes": {
+          "object_not_eligible_for_leasing": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ).",
+          "Предметом договора финансовой аренды могут быть любые непотребляемые вещи, кроме земельных участков и других природных объектов; выбранный объект не может быть предметом лизинга (статья 666 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "leasing-red-ignore-seller-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "seller_notice_not_given": false
+        },
+        "observed_outcomes": {
+          "seller_notice_not_given": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ).",
+          "Арендодатель, приобретая имущество для арендатора, должен уведомить продавца о том, что имущество предназначено для передачи в аренду определённому лицу (статья 667 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "leasing-red-ignore-delivery-default",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "delivery_default_attributable_to_lessor": false
+        },
+        "observed_outcomes": {
+          "delivery_default_attributable_to_lessor": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ).",
+          "Имущество не передано арендатору в указанный срок по обстоятельствам, за которые отвечает арендодатель; арендатор вправе потребовать расторжения договора и возмещения убытков (статья 668 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "leasing-red-blame-lessor-without-attribution",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "delivery_default_attributable_to_lessor": true
+        },
+        "observed_outcomes": {
+          "delivery_default_attributable_to_lessor": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "leasing-red-ignore-risk-rule",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "risk_transfer_rule_applies": false
+        },
+        "observed_outcomes": {
+          "risk_transfer_rule_applies": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ).",
+          "Риск случайной гибели или порчи имущества переходит к арендатору в момент передачи ему предмета лизинга, если иное не предусмотрено договором (статья 669 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "leasing-red-deny-direct-claim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "lessee_direct_claim_wrongly_denied": false
+        },
+        "observed_outcomes": {
+          "lessee_direct_claim_wrongly_denied": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ).",
+          "Арендатор вправе предъявлять непосредственно продавцу требования, вытекающие из договора купли-продажи предмета лизинга, в отношении качества и комплектности имущества, сроков его поставки и в других случаях ненадлежащего исполнения (статья 670 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "leasing-red-deny-solidary-liability",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "lessor_solidarily_liable_for_seller": false
+        },
+        "observed_outcomes": {
+          "lessor_solidarily_liable_for_seller": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ).",
+          "Если выбор продавца осуществлялся арендодателем, арендатор вправе предъявить требования, вытекающие из договора купли-продажи, как продавцу, так и арендодателю, которые несут солидарную ответственность (статья 670 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "leasing-red-solidary-without-lessor-selection",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "lessor_solidarily_liable_for_seller": true
+        },
+        "observed_outcomes": {
+          "lessor_solidarily_liable_for_seller": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "leasing-red-skip-human-on-excluded-object",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_leasing_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_leasing_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансовая аренда (лизинг): арендодатель обязуется приобрести в собственность указанное арендатором имущество у определённого им продавца и предоставить его арендатору за плату во временное владение и пользование (статья 665 ГК РФ).",
+          "Предметом договора финансовой аренды могут быть любые непотребляемые вещи, кроме земельных участков и других природных объектов; выбранный объект не может быть предметом лизинга (статья 666 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

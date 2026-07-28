@@ -910,6 +910,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.47.0",
+        to_version="0.48.0",
+        reasons=[
+            "Reviewed inputs now require a separate leasing evidence contract.",
+            "Analysis and Russian translation distinguish qualification, eligible object, seller notice, delivery default, risk transfer, direct claims against the seller, and solidary liability under articles 665 through 670.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о финансовой аренде.",
+            "Анализ и русское объяснение разделяют квалификацию, допустимость предмета лизинга, уведомление продавца, непередачу по вине лизингодателя, переход риска, прямые требования к продавцу и солидарную ответственность по статьям 665–670 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_leasing_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

@@ -1502,6 +1502,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+      "title": "Синтетическая проверенная модель понятия, предмета финансовой аренды и уведомления продавца по статьям 665–667 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: финансовая аренда как приобретение арендодателем указанного арендатором имущества у определённого продавца и передача его арендатору, допустимость только непотребляемых вещей кроме земельных участков и иных природных объектов и обязанность уведомить продавца о лизинговом назначении проверяются раздельно (статьи 665–667 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "leasing_concept_object_and_notice_articles_665_667",
+        "legal_reference": "ГК РФ, статьи 665–667",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
+      "title": "Синтетическая проверенная модель передачи предмета лизинга, перехода риска и требований к продавцу по статьям 668–670 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: передача предмета лизинга в установленный срок и последствия просрочки по обстоятельствам, за которые отвечает арендодатель, переход риска случайной гибели в момент передачи, прямые требования арендатора к продавцу и солидарная ответственность арендодателя при выборе им продавца проверяются раздельно (статьи 668–670 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "leasing_delivery_risk_and_seller_claims_articles_668_670",
+        "legal_reference": "ГК РФ, статьи 668–670",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-leasing-evidence",
+      "title": "Синтетическая проверенная запись фактов о финансовой аренде",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является финансовой арендой; приобретения имущества у определённого продавца для передачи арендатору нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "leasing_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -5273,6 +5320,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-enterprise-lease-reviewer"
+    },
+    "leasing_evidence": {
+      "id": "reviewed-leasing-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.leasing-evidence.v0",
+      "assertions": [
+        {
+          "id": "leasing-evidence-property_acquired_for_lessee_and_leased",
+          "predicate": "property_acquired_for_lessee_and_leased",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "id": "leasing-evidence-leased_object_is_non_consumable_thing",
+          "predicate": "leased_object_is_non_consumable_thing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "id": "leasing-evidence-object_excluded_from_leasing",
+          "predicate": "object_excluded_from_leasing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "id": "leasing-evidence-seller_not_notified_of_leasing_purpose",
+          "predicate": "seller_not_notified_of_leasing_purpose",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "id": "leasing-evidence-lessor_selected_seller",
+          "predicate": "lessor_selected_seller",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "id": "leasing-evidence-object_not_delivered_in_time",
+          "predicate": "object_not_delivered_in_time",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "id": "leasing-evidence-delay_attributable_to_lessor",
+          "predicate": "delay_attributable_to_lessor",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "id": "leasing-evidence-risk_allocation_disputed_before_transfer",
+          "predicate": "risk_allocation_disputed_before_transfer",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "id": "leasing-evidence-lessee_denied_direct_claim_against_seller",
+          "predicate": "lessee_denied_direct_claim_against_seller",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "id": "leasing-evidence-seller_breached_obligations",
+          "predicate": "seller_breached_obligations",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+        "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-leasing-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -10066,6 +10206,7 @@
       "synthetic-interpretation-reviewer",
       "synthetic-invalidity-reviewer",
       "synthetic-lease-reviewer",
+      "synthetic-leasing-reviewer",
       "synthetic-liability-reviewer",
       "synthetic-limitation-reviewer",
       "synthetic-norm-reviewer",
@@ -10108,6 +10249,7 @@
       "synthetic-case-supply-1-interpretation-evidence",
       "synthetic-case-supply-1-invalidity-evidence",
       "synthetic-case-supply-1-lease-evidence",
+      "synthetic-case-supply-1-leasing-evidence",
       "synthetic-case-supply-1-liability-evidence",
       "synthetic-case-supply-1-limitation-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
@@ -10218,6 +10360,8 @@
       "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
       "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
       "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
+      "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+      "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -14493,6 +14637,136 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила об аренде предприятий и не заменяет судебную оценку.",
         "Состав предприятия, стоимость передаваемых ценностей и объём обязанностей по содержанию оцениваются экспертом и судом (статьи 656, 660 и 661 ГК РФ)."
+      ]
+    },
+    "leasing_evidence_mapping": {
+      "evidence_id": "reviewed-leasing-evidence-supply-1-v0",
+      "schema_version": "contracts.leasing-evidence.v0",
+      "mapping_version": "contracts-reviewed-leasing-to-facts-v0",
+      "facts": {
+        "property_acquired_for_lessee_and_leased": false,
+        "leased_object_is_non_consumable_thing": false,
+        "object_excluded_from_leasing": false,
+        "seller_not_notified_of_leasing_purpose": false,
+        "lessor_selected_seller": false,
+        "object_not_delivered_in_time": false,
+        "delay_attributable_to_lessor": false,
+        "risk_allocation_disputed_before_transfer": false,
+        "lessee_denied_direct_claim_against_seller": false,
+        "seller_breached_obligations": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+        "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "delay_attributable_to_lessor",
+          "assertion_id": "leasing-evidence-delay_attributable_to_lessor",
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "fact_name": "leased_object_is_non_consumable_thing",
+          "assertion_id": "leasing-evidence-leased_object_is_non_consumable_thing",
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "fact_name": "lessee_denied_direct_claim_against_seller",
+          "assertion_id": "leasing-evidence-lessee_denied_direct_claim_against_seller",
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "fact_name": "lessor_selected_seller",
+          "assertion_id": "leasing-evidence-lessor_selected_seller",
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "fact_name": "object_excluded_from_leasing",
+          "assertion_id": "leasing-evidence-object_excluded_from_leasing",
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "fact_name": "object_not_delivered_in_time",
+          "assertion_id": "leasing-evidence-object_not_delivered_in_time",
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "fact_name": "property_acquired_for_lessee_and_leased",
+          "assertion_id": "leasing-evidence-property_acquired_for_lessee_and_leased",
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "fact_name": "risk_allocation_disputed_before_transfer",
+          "assertion_id": "leasing-evidence-risk_allocation_disputed_before_transfer",
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_breached_obligations",
+          "assertion_id": "leasing-evidence-seller_breached_obligations",
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        },
+        {
+          "fact_name": "seller_not_notified_of_leasing_purpose",
+          "assertion_id": "leasing-evidence-seller_not_notified_of_leasing_purpose",
+          "source_refs": [
+            "synthetic-case-supply-1-leasing-evidence"
+          ]
+        }
+      ]
+    },
+    "leasing_constraint_set": {
+      "id": "leasing-constraint-set:reviewed-leasing-evidence-supply-1-v0",
+      "model_version": "contracts-leasing-articles-665-670-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+        "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1"
+      ],
+      "expressions": [
+        "leasing_qualified == property_acquired_for_lessee_and_leased",
+        "object_not_eligible_for_leasing == leasing_qualified AND object_excluded_from_leasing",
+        "seller_notice_not_given == leasing_qualified AND seller_not_notified_of_leasing_purpose",
+        "delivery_default_attributable_to_lessor == leasing_qualified AND object_not_delivered_in_time AND delay_attributable_to_lessor",
+        "risk_transfer_rule_applies == leasing_qualified AND risk_allocation_disputed_before_transfer",
+        "lessee_direct_claim_wrongly_denied == leasing_qualified AND lessee_denied_direct_claim_against_seller",
+        "lessor_solidarily_liable_for_seller == leasing_qualified AND lessor_selected_seller AND seller_breached_obligations",
+        "requires_human_leasing_assessment == object_not_eligible_for_leasing OR seller_notice_not_given OR delivery_default_attributable_to_lessor OR risk_transfer_rule_applies OR lessee_direct_claim_wrongly_denied OR lessor_solidarily_liable_for_seller"
+      ]
+    },
+    "leasing_evaluation": {
+      "constraint_set_id": "leasing-constraint-set:reviewed-leasing-evidence-supply-1-v0",
+      "satisfiable": true,
+      "leasing_qualified": false,
+      "object_not_eligible_for_leasing": false,
+      "seller_notice_not_given": false,
+      "delivery_default_attributable_to_lessor": false,
+      "risk_transfer_rule_applies": false,
+      "lessee_direct_claim_wrongly_denied": false,
+      "lessor_solidarily_liable_for_seller": false,
+      "requires_human_leasing_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как финансовая аренда (лизинг)."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о финансовой аренде и не заменяет судебную оценку.",
+        "Размер лизинговых платежей, распределение конкретных рисков и объём требований к продавцу оцениваются экспертом и судом (статьи 665, 669 и 670 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -19866,7 +20140,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.47.0",
+      "institutional_package_version": "contracts-ru-v0@0.48.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -21879,6 +22153,7 @@
           "synthetic-case-supply-1-interpretation-evidence",
           "synthetic-case-supply-1-invalidity-evidence",
           "synthetic-case-supply-1-lease-evidence",
+          "synthetic-case-supply-1-leasing-evidence",
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
@@ -21989,6 +22264,8 @@
           "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
           "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
           "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
+          "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+          "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -23013,6 +23290,7 @@
           "synthetic-case-supply-1-interpretation-evidence",
           "synthetic-case-supply-1-invalidity-evidence",
           "synthetic-case-supply-1-lease-evidence",
+          "synthetic-case-supply-1-leasing-evidence",
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
@@ -23123,6 +23401,8 @@
           "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
           "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
           "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
+          "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+          "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -24147,6 +24427,7 @@
           "synthetic-case-supply-1-interpretation-evidence",
           "synthetic-case-supply-1-invalidity-evidence",
           "synthetic-case-supply-1-lease-evidence",
+          "synthetic-case-supply-1-leasing-evidence",
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
@@ -24257,6 +24538,8 @@
           "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
           "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
           "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
+          "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+          "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -24346,7 +24629,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.47.0",
+      "institutional_package_version": "contracts-ru-v0@0.48.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -25568,6 +25851,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель понятия, предмета финансовой аренды и уведомления продавца по статьям 665–667 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "leasing_concept_object_and_notice_articles_665_667",
+          "legal_reference": "ГК РФ, статьи 665–667",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель передачи предмета лизинга, перехода риска и требований к продавцу по статьям 668–670 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "leasing_delivery_risk_and_seller_claims_articles_668_670",
+          "legal_reference": "ГК РФ, статьи 668–670",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-leasing-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о финансовой аренде",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "leasing_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -26192,6 +26513,7 @@
             "synthetic-interpretation-reviewer",
             "synthetic-invalidity-reviewer",
             "synthetic-lease-reviewer",
+            "synthetic-leasing-reviewer",
             "synthetic-liability-reviewer",
             "synthetic-limitation-reviewer",
             "synthetic-norm-reviewer",

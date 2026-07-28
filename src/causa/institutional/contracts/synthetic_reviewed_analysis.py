@@ -125,6 +125,11 @@ from causa.institutional.contracts.enterprise_lease import (
     EnterpriseLeaseEvidencePredicate,
     ReviewedEnterpriseLeaseEvidence,
 )
+from causa.institutional.contracts.leasing import (
+    LeasingEvidenceAssertion,
+    LeasingEvidencePredicate,
+    ReviewedLeasingEvidence,
+)
 from causa.institutional.contracts.barter import (
     BarterEvidenceAssertion,
     BarterEvidencePredicate,
@@ -308,6 +313,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk656-659-enterprise-lease-concept-form-and-creditors-v1",
     "synthetic-ru-gk660-664-enterprise-lease-use-maintenance-and-return-v1",
     "synthetic-case-supply-1-enterprise-lease-evidence",
+    "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+    "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
+    "synthetic-case-supply-1-leasing-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1518,6 +1526,39 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-enterprise-lease-reviewer",
+        ),
+        leasing_evidence=ReviewedLeasingEvidence(
+            id="reviewed-leasing-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                LeasingEvidenceAssertion(
+                    id=f"leasing-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-leasing-evidence",),
+                )
+                for predicate, value in (
+                    (LeasingEvidencePredicate.PROPERTY_ACQUIRED_FOR_LESSEE_AND_LEASED, False),
+                    (LeasingEvidencePredicate.LEASED_OBJECT_IS_NON_CONSUMABLE_THING, False),
+                    (LeasingEvidencePredicate.OBJECT_EXCLUDED_FROM_LEASING, False),
+                    (LeasingEvidencePredicate.SELLER_NOT_NOTIFIED_OF_LEASING_PURPOSE, False),
+                    (LeasingEvidencePredicate.LESSOR_SELECTED_SELLER, False),
+                    (LeasingEvidencePredicate.OBJECT_NOT_DELIVERED_IN_TIME, False),
+                    (LeasingEvidencePredicate.DELAY_ATTRIBUTABLE_TO_LESSOR, False),
+                    (LeasingEvidencePredicate.RISK_ALLOCATION_DISPUTED_BEFORE_TRANSFER, False),
+                    (
+                        LeasingEvidencePredicate.LESSEE_DENIED_DIRECT_CLAIM_AGAINST_SELLER,
+                        False,
+                    ),
+                    (LeasingEvidencePredicate.SELLER_BREACHED_OBLIGATIONS, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+                "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-leasing-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

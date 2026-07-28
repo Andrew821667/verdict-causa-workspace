@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.48.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed leasing evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 665 through 670.",
+            "Qualification, eligible object, seller notice, delivery default, risk transfer, direct claims against the seller, and solidary liability remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о финансовой аренде обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 665–670 ГК РФ.",
+            "Квалификация, допустимость предмета лизинга, уведомление продавца, непередача по вине лизингодателя, переход риска, прямые требования к продавцу и солидарная ответственность разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.47.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

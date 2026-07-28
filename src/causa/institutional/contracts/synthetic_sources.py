@@ -1861,6 +1861,63 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk665-667-leasing-concept-object-and-notice-v1",
+        title="Синтетическая проверенная модель понятия, предмета финансовой аренды и уведомления продавца по статьям 665–667 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: финансовая аренда как приобретение арендодателем "
+            "указанного арендатором имущества у определённого продавца и передача его "
+            "арендатору, допустимость только непотребляемых вещей кроме земельных участков и "
+            "иных природных объектов и обязанность уведомить продавца о лизинговом назначении "
+            "проверяются раздельно (статьи 665–667 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "leasing_concept_object_and_notice_articles_665_667",
+            "legal_reference": "ГК РФ, статьи 665–667",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
+        title="Синтетическая проверенная модель передачи предмета лизинга, перехода риска и требований к продавцу по статьям 668–670 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: передача предмета лизинга в установленный срок и "
+            "последствия просрочки по обстоятельствам, за которые отвечает арендодатель, "
+            "переход риска случайной гибели в момент передачи, прямые требования арендатора к "
+            "продавцу и солидарная ответственность арендодателя при выборе им продавца "
+            "проверяются раздельно (статьи 668–670 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "leasing_delivery_risk_and_seller_claims_articles_668_670",
+            "legal_reference": "ГК РФ, статьи 668–670",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-leasing-evidence",
+        title="Синтетическая проверенная запись фактов о финансовой аренде",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой товаров за единовременную "
+            "оплату и не является финансовой арендой; приобретения имущества у определённого "
+            "продавца для передачи арендатору нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "leasing_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

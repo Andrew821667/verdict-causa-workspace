@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.48.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью финансовой аренды |
 | `0.47.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью аренды предприятий |
 | `0.46.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью аренды зданий и сооружений |
 | `0.45.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью аренды транспортных средств |
@@ -55,6 +56,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.47.0` → `0.48.0` соберите отдельно проверенный контракт данных о финансовой аренде (`contracts.leasing-evidence.v0`). Не выводите квалификацию, допустимость предмета лизинга, уведомление продавца, непередачу по вине лизингодателя, переход риска, прямые требования к продавцу и солидарную ответственность из прежних результатов об общей аренде или купле-продаже. Пересоберите артефакты оценки финансовой аренды, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.46.0` → `0.47.0` соберите отдельно проверенный контракт данных об аренде предприятий (`contracts.enterprise-lease-evidence.v0`). Не выводите квалификацию, форму одного документа, регистрацию, уведомление кредиторов и согласие на перевод долгов, акт передачи и подготовку, право распоряжения ценностями, содержание и подготовку к возврату из прежних результатов об аренде зданий или продаже предприятия. Пересоберите артефакты оценки аренды предприятий, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
