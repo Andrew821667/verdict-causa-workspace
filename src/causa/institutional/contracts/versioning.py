@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.46.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed building-lease evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 650 through 655.",
+            "Qualification, single-document form, registration for one-year terms, land rights, preserved land use, essential rent term, and transfer and return deeds remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные об аренде зданий и сооружений обязательны для пути Этапа 0.",
+            "Формальные границы охватывают статьи 650–655 ГК РФ.",
+            "Квалификация, форма одного документа, регистрация при сроке не менее года, права на земельный участок, сохранение права пользования, существенное условие о плате и акты передачи и возврата разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.45.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

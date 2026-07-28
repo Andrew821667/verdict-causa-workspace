@@ -115,6 +115,11 @@ from causa.institutional.contracts.vehicle_lease import (
     VehicleLeaseEvidenceAssertion,
     VehicleLeaseEvidencePredicate,
 )
+from causa.institutional.contracts.building_lease import (
+    BuildingLeaseEvidenceAssertion,
+    BuildingLeaseEvidencePredicate,
+    ReviewedBuildingLeaseEvidence,
+)
 from causa.institutional.contracts.barter import (
     BarterEvidenceAssertion,
     BarterEvidencePredicate,
@@ -292,6 +297,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk632-641-vehicle-lease-with-crew-v1",
     "synthetic-ru-gk642-649-vehicle-lease-without-crew-v1",
     "synthetic-case-supply-1-vehicle-lease-evidence",
+    "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+    "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
+    "synthetic-case-supply-1-building-lease-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1436,6 +1444,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-vehicle-lease-reviewer",
+        ),
+        building_lease_evidence=ReviewedBuildingLeaseEvidence(
+            id="reviewed-building-lease-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                BuildingLeaseEvidenceAssertion(
+                    id=f"building-lease-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-building-lease-evidence",),
+                )
+                for predicate, value in (
+                    (BuildingLeaseEvidencePredicate.BUILDING_LEASED_FOR_TEMPORARY_USE, False),
+                    (BuildingLeaseEvidencePredicate.SINGLE_WRITTEN_DOCUMENT_MISSING, False),
+                    (BuildingLeaseEvidencePredicate.LEASE_TERM_AT_LEAST_ONE_YEAR, False),
+                    (BuildingLeaseEvidencePredicate.STATE_REGISTRATION_MISSING, False),
+                    (BuildingLeaseEvidencePredicate.LAND_RIGHTS_NOT_TRANSFERRED, False),
+                    (BuildingLeaseEvidencePredicate.LAND_OWNERSHIP_CHANGED, False),
+                    (BuildingLeaseEvidencePredicate.LAND_USE_RIGHT_DENIED_AFTER_CHANGE, False),
+                    (BuildingLeaseEvidencePredicate.AGREED_RENT_AMOUNT_MISSING, False),
+                    (BuildingLeaseEvidencePredicate.TRANSFER_DEED_MISSING, False),
+                    (BuildingLeaseEvidencePredicate.RETURN_DEED_MISSING, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+                "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-building-lease-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

@@ -1,0 +1,447 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил об аренде зданий и сооружений по статьям 650–655 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-building-lease-evidence-supply-1-v0",
+    "schema_version": "contracts.building-lease-evidence.v0",
+    "mapping_version": "contracts-reviewed-building-lease-to-facts-v0",
+    "facts": {
+      "building_leased_for_temporary_use": false,
+      "single_written_document_missing": false,
+      "lease_term_at_least_one_year": false,
+      "state_registration_missing": false,
+      "land_rights_not_transferred": false,
+      "land_ownership_changed": false,
+      "land_use_right_denied_after_change": false,
+      "agreed_rent_amount_missing": false,
+      "transfer_deed_missing": false,
+      "return_deed_missing": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+      "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "agreed_rent_amount_missing",
+        "assertion_id": "building-lease-evidence-agreed_rent_amount_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-building-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "building_leased_for_temporary_use",
+        "assertion_id": "building-lease-evidence-building_leased_for_temporary_use",
+        "source_refs": [
+          "synthetic-case-supply-1-building-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "land_ownership_changed",
+        "assertion_id": "building-lease-evidence-land_ownership_changed",
+        "source_refs": [
+          "synthetic-case-supply-1-building-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "land_rights_not_transferred",
+        "assertion_id": "building-lease-evidence-land_rights_not_transferred",
+        "source_refs": [
+          "synthetic-case-supply-1-building-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "land_use_right_denied_after_change",
+        "assertion_id": "building-lease-evidence-land_use_right_denied_after_change",
+        "source_refs": [
+          "synthetic-case-supply-1-building-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "lease_term_at_least_one_year",
+        "assertion_id": "building-lease-evidence-lease_term_at_least_one_year",
+        "source_refs": [
+          "synthetic-case-supply-1-building-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "return_deed_missing",
+        "assertion_id": "building-lease-evidence-return_deed_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-building-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "single_written_document_missing",
+        "assertion_id": "building-lease-evidence-single_written_document_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-building-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "state_registration_missing",
+        "assertion_id": "building-lease-evidence-state_registration_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-building-lease-evidence"
+        ]
+      },
+      {
+        "fact_name": "transfer_deed_missing",
+        "assertion_id": "building-lease-evidence-transfer_deed_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-building-lease-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "building-lease-constraint-set:reviewed-building-lease-evidence-supply-1-v0",
+    "model_version": "contracts-building-lease-articles-650-655-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+      "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1"
+    ],
+    "expressions": [
+      "building_lease_qualified == building_leased_for_temporary_use",
+      "form_defect_makes_void == building_lease_qualified AND single_written_document_missing",
+      "registration_required_and_missing == building_lease_qualified AND lease_term_at_least_one_year AND state_registration_missing",
+      "land_rights_not_conveyed == building_lease_qualified AND land_rights_not_transferred",
+      "land_use_right_preserved == building_lease_qualified AND land_ownership_changed AND land_use_right_denied_after_change",
+      "rent_term_not_agreed == building_lease_qualified AND agreed_rent_amount_missing",
+      "transfer_not_documented == building_lease_qualified AND transfer_deed_missing",
+      "return_not_documented == building_lease_qualified AND return_deed_missing",
+      "requires_human_building_lease_assessment == form_defect_makes_void OR registration_required_and_missing OR land_rights_not_conveyed OR land_use_right_preserved OR rent_term_not_agreed OR transfer_not_documented OR return_not_documented"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "building-lease-constraint-set:reviewed-building-lease-evidence-supply-1-v0",
+    "satisfiable": true,
+    "building_lease_qualified": false,
+    "form_defect_makes_void": false,
+    "registration_required_and_missing": false,
+    "land_rights_not_conveyed": false,
+    "land_use_right_preserved": false,
+    "rent_term_not_agreed": false,
+    "transfer_not_documented": false,
+    "return_not_documented": false,
+    "requires_human_building_lease_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как аренда здания или сооружения."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила об аренде зданий и сооружений и не заменяет судебную оценку.",
+      "Размер арендной платы, состав передаваемых прав на земельный участок и последствия уклонения от подписания акта оцениваются экспертом и судом (статьи 652, 654 и 655 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "building-lease-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "building-lease-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "building_lease_qualified": false
+        },
+        "observed_outcomes": {
+          "building_lease_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как аренда здания или сооружения."
+        ]
+      },
+      {
+        "task_id": "building-lease-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "building_lease_qualified": true,
+          "requires_human_building_lease_assessment": false
+        },
+        "observed_outcomes": {
+          "building_lease_qualified": true,
+          "requires_human_building_lease_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "building-lease-bench-form-defect",
+        "passed": true,
+        "expected_outcomes": {
+          "form_defect_makes_void": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "form_defect_makes_void": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "Договор аренды здания или сооружения заключается в письменной форме путём составления одного документа, подписанного сторонами; несоблюдение формы влечёт недействительность договора (статья 651 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "building-lease-bench-registration-missing",
+        "passed": true,
+        "expected_outcomes": {
+          "registration_required_and_missing": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "registration_required_and_missing": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "Договор аренды здания или сооружения, заключённый на срок не менее года, подлежит государственной регистрации и считается заключённым с момента такой регистрации (статья 651 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "building-lease-bench-short-term-without-registration",
+        "passed": true,
+        "expected_outcomes": {
+          "registration_required_and_missing": false,
+          "requires_human_building_lease_assessment": false
+        },
+        "observed_outcomes": {
+          "registration_required_and_missing": false,
+          "requires_human_building_lease_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "building-lease-bench-land-rights",
+        "passed": true,
+        "expected_outcomes": {
+          "land_rights_not_conveyed": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "land_rights_not_conveyed": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "Одновременно с передачей прав владения и пользования зданием или сооружением арендатору передаются права на ту часть земельного участка, которая занята недвижимостью и необходима для её использования (статья 652 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "building-lease-bench-land-ownership-change",
+        "passed": true,
+        "expected_outcomes": {
+          "land_use_right_preserved": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "land_use_right_preserved": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "При переходе права собственности на земельный участок к другому лицу за арендатором здания или сооружения сохраняется право пользования частью участка на прежних условиях (статья 653 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "building-lease-bench-rent-not-agreed",
+        "passed": true,
+        "expected_outcomes": {
+          "rent_term_not_agreed": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "rent_term_not_agreed": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "Условие о размере арендной платы является существенным: при его отсутствии договор аренды здания или сооружения считается незаключённым, а правила определения цены по сравнимым обстоятельствам не применяются (статья 654 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "building-lease-bench-transfer-deed",
+        "passed": true,
+        "expected_outcomes": {
+          "transfer_not_documented": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "transfer_not_documented": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "Передача здания или сооружения осуществляется по передаточному акту или иному документу о передаче, подписанному сторонами; уклонение от подписания считается отказом от исполнения обязанности (статья 655 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "building-lease-bench-return-deed",
+        "passed": true,
+        "expected_outcomes": {
+          "return_not_documented": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "observed_outcomes": {
+          "return_not_documented": true,
+          "requires_human_building_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "При прекращении договора здание или сооружение возвращается арендодателю по передаточному акту или иному документу о передаче (статья 655 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "building-lease-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "building-lease-red-qualify-without-lease",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "building_lease_qualified": true
+        },
+        "observed_outcomes": {
+          "building_lease_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как аренда здания или сооружения."
+        ]
+      },
+      {
+        "case_id": "building-lease-red-ignore-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_defect_makes_void": false
+        },
+        "observed_outcomes": {
+          "form_defect_makes_void": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "Договор аренды здания или сооружения заключается в письменной форме путём составления одного документа, подписанного сторонами; несоблюдение формы влечёт недействительность договора (статья 651 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "building-lease-red-ignore-registration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "registration_required_and_missing": false
+        },
+        "observed_outcomes": {
+          "registration_required_and_missing": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "Договор аренды здания или сооружения, заключённый на срок не менее года, подлежит государственной регистрации и считается заключённым с момента такой регистрации (статья 651 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "building-lease-red-registration-for-short-term",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "registration_required_and_missing": true
+        },
+        "observed_outcomes": {
+          "registration_required_and_missing": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "building-lease-red-ignore-land-rights",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "land_rights_not_conveyed": false
+        },
+        "observed_outcomes": {
+          "land_rights_not_conveyed": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "Одновременно с передачей прав владения и пользования зданием или сооружением арендатору передаются права на ту часть земельного участка, которая занята недвижимостью и необходима для её использования (статья 652 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "building-lease-red-deny-land-use-after-change",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "land_use_right_preserved": false
+        },
+        "observed_outcomes": {
+          "land_use_right_preserved": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "При переходе права собственности на земельный участок к другому лицу за арендатором здания или сооружения сохраняется право пользования частью участка на прежних условиях (статья 653 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "building-lease-red-fill-rent-by-comparable-price",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "rent_term_not_agreed": false
+        },
+        "observed_outcomes": {
+          "rent_term_not_agreed": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "Условие о размере арендной платы является существенным: при его отсутствии договор аренды здания или сооружения считается незаключённым, а правила определения цены по сравнимым обстоятельствам не применяются (статья 654 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "building-lease-red-ignore-transfer-deed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transfer_not_documented": false
+        },
+        "observed_outcomes": {
+          "transfer_not_documented": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "Передача здания или сооружения осуществляется по передаточному акту или иному документу о передаче, подписанному сторонами; уклонение от подписания считается отказом от исполнения обязанности (статья 655 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "building-lease-red-land-use-without-ownership-change",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "land_use_right_preserved": true
+        },
+        "observed_outcomes": {
+          "land_use_right_preserved": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "building-lease-red-skip-human-on-return-deed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_building_lease_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_building_lease_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как аренда здания или сооружения: арендодатель обязуется передать арендатору во временное владение и пользование здание или сооружение (статья 650 ГК РФ).",
+          "При прекращении договора здание или сооружение возвращается арендодателю по передаточному акту или иному документу о передаче (статья 655 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

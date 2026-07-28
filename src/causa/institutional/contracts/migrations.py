@@ -872,6 +872,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.45.0",
+        to_version="0.46.0",
+        reasons=[
+            "Reviewed inputs now require a separate building-lease evidence contract.",
+            "Analysis and Russian translation distinguish qualification, single-document form, registration for one-year terms, land rights, preserved land use, essential rent term, and transfer and return deeds under articles 650 through 655.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных об аренде зданий и сооружений.",
+            "Анализ и русское объяснение разделяют квалификацию, форму одного документа, регистрацию при сроке не менее года, права на земельный участок, сохранение права пользования, существенное условие о плате и акты передачи и возврата по статьям 650–655 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_building_lease_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

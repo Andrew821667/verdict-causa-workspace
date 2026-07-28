@@ -1749,6 +1749,61 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+        title="Синтетическая проверенная модель понятия, формы и государственной регистрации аренды зданий и сооружений по статьям 650 и 651 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: аренда здания или сооружения как передача во временное "
+            "владение и пользование, письменная форма путём составления одного документа и "
+            "недействительность при её несоблюдении, государственная регистрация договора со "
+            "сроком не менее года проверяются раздельно (статьи 650 и 651 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "building_lease_concept_form_and_registration_articles_650_651",
+            "legal_reference": "ГК РФ, статьи 650 и 651",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
+        title="Синтетическая проверенная модель прав на земельный участок, арендной платы и передачи здания по статьям 652–655 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: передача прав на часть земельного участка, занятую "
+            "недвижимостью, сохранение права пользования участком при смене его собственника, "
+            "существенное условие о размере арендной платы и оформление передачи и возврата "
+            "здания передаточным актом проверяются раздельно (статьи 652–655 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "building_lease_land_rent_and_transfer_articles_652_655",
+            "legal_reference": "ГК РФ, статьи 652–655",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-building-lease-evidence",
+        title="Синтетическая проверенная запись фактов об аренде здания или сооружения",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой товаров за единовременную "
+            "оплату и не является арендой здания или сооружения; передачи здания во временное "
+            "владение и пользование нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "building_lease_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

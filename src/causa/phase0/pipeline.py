@@ -73,6 +73,9 @@ from causa.institutional.contracts.synthetic_rental import (
 from causa.institutional.contracts.synthetic_vehicle_lease import (
     build_synthetic_vehicle_lease_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_building_lease import (
+    build_synthetic_building_lease_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_gift import (
     build_synthetic_gift_evaluation_artifact,
 )
@@ -668,6 +671,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-building-lease",
+            title="Проверка аренды зданий и сооружений",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.building_lease_evidence_mapping.evidence_id,
+                trace.analysis_result.building_lease_constraint_set.id,
+                *trace.analysis_result.building_lease_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.building_lease_evaluation.reasons_ru,
+                "Квалификация аренды здания, форма одного документа и её недействительность, государственная регистрация при сроке не менее года, права на земельный участок, сохранение права пользования при смене собственника, существенное условие о плате и оформление передачи и возврата актом проверяются раздельно по статьям 650–655 ГК РФ.",
+                "Размер арендной платы, состав передаваемых прав на участок и последствия уклонения от подписания акта оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -950,6 +968,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     lease_artifact = build_synthetic_lease_evaluation_artifact()
     rental_artifact = build_synthetic_rental_evaluation_artifact()
     vehicle_lease_artifact = build_synthetic_vehicle_lease_evaluation_artifact()
+    building_lease_artifact = build_synthetic_building_lease_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -1061,6 +1080,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-rental-spec.md",
                 "src/causa/institutional/contracts/vehicle_lease.py",
                 "docs/contract-vehicle-lease-spec.md",
+                "src/causa/institutional/contracts/building_lease.py",
+                "docs/contract-building-lease-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -1107,6 +1128,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_lease_evaluation_report.json",
                 "examples/synthetic_rental_evaluation_report.json",
                 "examples/synthetic_vehicle_lease_evaluation_report.json",
+                "examples/synthetic_building_lease_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -1115,12 +1137,12 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 *(
-                    f"examples/migrations/contracts-ru-v0-{version}-to-0.45.0-migration-report.json"
+                    f"examples/migrations/contracts-ru-v0-{version}-to-0.46.0-migration-report.json"
                     for version in (
                         "0.1.0",
                         "0.3.0",
                         "0.4.0",
-                        *(f"0.{minor}.0" for minor in range(5, 45)),
+                        *(f"0.{minor}.0" for minor in range(5, 46)),
                     )
                 ),
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
@@ -1246,6 +1268,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 rental_artifact.red_team_report.id,
                 vehicle_lease_artifact.benchmark_report.id,
                 vehicle_lease_artifact.red_team_report.id,
+                building_lease_artifact.benchmark_report.id,
+                building_lease_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -1304,6 +1328,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_lease_evaluation_report.json",
                 "examples/synthetic_rental_evaluation_report.json",
                 "examples/synthetic_vehicle_lease_evaluation_report.json",
+                "examples/synthetic_building_lease_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

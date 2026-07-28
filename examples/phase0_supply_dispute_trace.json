@@ -1408,6 +1408,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+      "title": "Синтетическая проверенная модель понятия, формы и государственной регистрации аренды зданий и сооружений по статьям 650 и 651 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: аренда здания или сооружения как передача во временное владение и пользование, письменная форма путём составления одного документа и недействительность при её несоблюдении, государственная регистрация договора со сроком не менее года проверяются раздельно (статьи 650 и 651 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "building_lease_concept_form_and_registration_articles_650_651",
+        "legal_reference": "ГК РФ, статьи 650 и 651",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
+      "title": "Синтетическая проверенная модель прав на земельный участок, арендной платы и передачи здания по статьям 652–655 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: передача прав на часть земельного участка, занятую недвижимостью, сохранение права пользования участком при смене его собственника, существенное условие о размере арендной платы и оформление передачи и возврата здания передаточным актом проверяются раздельно (статьи 652–655 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "building_lease_land_rent_and_transfer_articles_652_655",
+        "legal_reference": "ГК РФ, статьи 652–655",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-building-lease-evidence",
+      "title": "Синтетическая проверенная запись фактов об аренде здания или сооружения",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является арендой здания или сооружения; передачи здания во временное владение и пользование нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "building_lease_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -4993,6 +5040,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-vehicle-lease-reviewer"
+    },
+    "building_lease_evidence": {
+      "id": "reviewed-building-lease-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.building-lease-evidence.v0",
+      "assertions": [
+        {
+          "id": "building-lease-evidence-building_leased_for_temporary_use",
+          "predicate": "building_leased_for_temporary_use",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "id": "building-lease-evidence-single_written_document_missing",
+          "predicate": "single_written_document_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "id": "building-lease-evidence-lease_term_at_least_one_year",
+          "predicate": "lease_term_at_least_one_year",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "id": "building-lease-evidence-state_registration_missing",
+          "predicate": "state_registration_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "id": "building-lease-evidence-land_rights_not_transferred",
+          "predicate": "land_rights_not_transferred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "id": "building-lease-evidence-land_ownership_changed",
+          "predicate": "land_ownership_changed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "id": "building-lease-evidence-land_use_right_denied_after_change",
+          "predicate": "land_use_right_denied_after_change",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "id": "building-lease-evidence-agreed_rent_amount_missing",
+          "predicate": "agreed_rent_amount_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "id": "building-lease-evidence-transfer_deed_missing",
+          "predicate": "transfer_deed_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "id": "building-lease-evidence-return_deed_missing",
+          "predicate": "return_deed_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+        "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-building-lease-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -9770,6 +9910,7 @@
       "synthetic-annuity-reviewer",
       "synthetic-authority-reviewer",
       "synthetic-barter-reviewer",
+      "synthetic-building-lease-reviewer",
       "synthetic-case-evidence-reviewer",
       "synthetic-contractation-reviewer",
       "synthetic-energy-supply-reviewer",
@@ -9811,6 +9952,7 @@
       "synthetic-case-supply-1-adhesion-evidence",
       "synthetic-case-supply-1-annuity-evidence",
       "synthetic-case-supply-1-barter-evidence",
+      "synthetic-case-supply-1-building-lease-evidence",
       "synthetic-case-supply-1-contractation-evidence",
       "synthetic-case-supply-1-energy-supply-evidence",
       "synthetic-case-supply-1-enterprise-sale-evidence",
@@ -9930,6 +10072,8 @@
       "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
       "synthetic-ru-gk632-641-vehicle-lease-with-crew-v1",
       "synthetic-ru-gk642-649-vehicle-lease-without-crew-v1",
+      "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+      "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -13937,6 +14081,138 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила об аренде транспортных средств и не заменяет судебную оценку.",
         "Размер платы, распределение конкретных расходов и объём ответственности оцениваются экспертом и судом (статьи 636, 639 и 648 ГК РФ)."
+      ]
+    },
+    "building_lease_evidence_mapping": {
+      "evidence_id": "reviewed-building-lease-evidence-supply-1-v0",
+      "schema_version": "contracts.building-lease-evidence.v0",
+      "mapping_version": "contracts-reviewed-building-lease-to-facts-v0",
+      "facts": {
+        "building_leased_for_temporary_use": false,
+        "single_written_document_missing": false,
+        "lease_term_at_least_one_year": false,
+        "state_registration_missing": false,
+        "land_rights_not_transferred": false,
+        "land_ownership_changed": false,
+        "land_use_right_denied_after_change": false,
+        "agreed_rent_amount_missing": false,
+        "transfer_deed_missing": false,
+        "return_deed_missing": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+        "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "agreed_rent_amount_missing",
+          "assertion_id": "building-lease-evidence-agreed_rent_amount_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "building_leased_for_temporary_use",
+          "assertion_id": "building-lease-evidence-building_leased_for_temporary_use",
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "land_ownership_changed",
+          "assertion_id": "building-lease-evidence-land_ownership_changed",
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "land_rights_not_transferred",
+          "assertion_id": "building-lease-evidence-land_rights_not_transferred",
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "land_use_right_denied_after_change",
+          "assertion_id": "building-lease-evidence-land_use_right_denied_after_change",
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "lease_term_at_least_one_year",
+          "assertion_id": "building-lease-evidence-lease_term_at_least_one_year",
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "return_deed_missing",
+          "assertion_id": "building-lease-evidence-return_deed_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "single_written_document_missing",
+          "assertion_id": "building-lease-evidence-single_written_document_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "state_registration_missing",
+          "assertion_id": "building-lease-evidence-state_registration_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        },
+        {
+          "fact_name": "transfer_deed_missing",
+          "assertion_id": "building-lease-evidence-transfer_deed_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-building-lease-evidence"
+          ]
+        }
+      ]
+    },
+    "building_lease_constraint_set": {
+      "id": "building-lease-constraint-set:reviewed-building-lease-evidence-supply-1-v0",
+      "model_version": "contracts-building-lease-articles-650-655-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+        "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1"
+      ],
+      "expressions": [
+        "building_lease_qualified == building_leased_for_temporary_use",
+        "form_defect_makes_void == building_lease_qualified AND single_written_document_missing",
+        "registration_required_and_missing == building_lease_qualified AND lease_term_at_least_one_year AND state_registration_missing",
+        "land_rights_not_conveyed == building_lease_qualified AND land_rights_not_transferred",
+        "land_use_right_preserved == building_lease_qualified AND land_ownership_changed AND land_use_right_denied_after_change",
+        "rent_term_not_agreed == building_lease_qualified AND agreed_rent_amount_missing",
+        "transfer_not_documented == building_lease_qualified AND transfer_deed_missing",
+        "return_not_documented == building_lease_qualified AND return_deed_missing",
+        "requires_human_building_lease_assessment == form_defect_makes_void OR registration_required_and_missing OR land_rights_not_conveyed OR land_use_right_preserved OR rent_term_not_agreed OR transfer_not_documented OR return_not_documented"
+      ]
+    },
+    "building_lease_evaluation": {
+      "constraint_set_id": "building-lease-constraint-set:reviewed-building-lease-evidence-supply-1-v0",
+      "satisfiable": true,
+      "building_lease_qualified": false,
+      "form_defect_makes_void": false,
+      "registration_required_and_missing": false,
+      "land_rights_not_conveyed": false,
+      "land_use_right_preserved": false,
+      "rent_term_not_agreed": false,
+      "transfer_not_documented": false,
+      "return_not_documented": false,
+      "requires_human_building_lease_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как аренда здания или сооружения."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила об аренде зданий и сооружений и не заменяет судебную оценку.",
+        "Размер арендной платы, состав передаваемых прав на земельный участок и последствия уклонения от подписания акта оцениваются экспертом и судом (статьи 652, 654 и 655 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -19310,7 +19586,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.45.0",
+      "institutional_package_version": "contracts-ru-v0@0.46.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -21308,6 +21584,7 @@
           "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-barter-evidence",
+          "synthetic-case-supply-1-building-lease-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-energy-supply-evidence",
           "synthetic-case-supply-1-enterprise-sale-evidence",
@@ -21427,6 +21704,8 @@
           "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
           "synthetic-ru-gk632-641-vehicle-lease-with-crew-v1",
           "synthetic-ru-gk642-649-vehicle-lease-without-crew-v1",
+          "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+          "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -22436,6 +22715,7 @@
           "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-barter-evidence",
+          "synthetic-case-supply-1-building-lease-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-energy-supply-evidence",
           "synthetic-case-supply-1-enterprise-sale-evidence",
@@ -22555,6 +22835,8 @@
           "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
           "synthetic-ru-gk632-641-vehicle-lease-with-crew-v1",
           "synthetic-ru-gk642-649-vehicle-lease-without-crew-v1",
+          "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+          "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -23564,6 +23846,7 @@
           "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-barter-evidence",
+          "synthetic-case-supply-1-building-lease-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-energy-supply-evidence",
           "synthetic-case-supply-1-enterprise-sale-evidence",
@@ -23683,6 +23966,8 @@
           "synthetic-ru-gk629-631-rental-defects-payment-and-repair-v1",
           "synthetic-ru-gk632-641-vehicle-lease-with-crew-v1",
           "synthetic-ru-gk642-649-vehicle-lease-without-crew-v1",
+          "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+          "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -23772,7 +24057,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.45.0",
+      "institutional_package_version": "contracts-ru-v0@0.46.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -24918,6 +25203,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk650-651-building-lease-concept-form-and-registration-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель понятия, формы и государственной регистрации аренды зданий и сооружений по статьям 650 и 651 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "building_lease_concept_form_and_registration_articles_650_651",
+          "legal_reference": "ГК РФ, статьи 650 и 651",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk652-655-building-lease-land-rent-and-transfer-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель прав на земельный участок, арендной платы и передачи здания по статьям 652–655 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "building_lease_land_rent_and_transfer_articles_652_655",
+          "legal_reference": "ГК РФ, статьи 652–655",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-building-lease-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов об аренде здания или сооружения",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "building_lease_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -25526,6 +25849,7 @@
             "synthetic-annuity-reviewer",
             "synthetic-authority-reviewer",
             "synthetic-barter-reviewer",
+            "synthetic-building-lease-reviewer",
             "synthetic-case-evidence-reviewer",
             "synthetic-contractation-reviewer",
             "synthetic-energy-supply-reviewer",
