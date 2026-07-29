@@ -1,0 +1,453 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о безвозмездном пользовании (ссуде) по статьям 689–701 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-gratuitous-use-evidence-supply-1-v0",
+    "schema_version": "contracts.gratuitous-use-evidence.v0",
+    "mapping_version": "contracts-reviewed-gratuitous-use-to-facts-v0",
+    "facts": {
+      "thing_provided_for_free_temporary_use": false,
+      "lender_is_organization_transferring_to_insider": false,
+      "thing_not_provided_or_incomplete": false,
+      "defect_intentionally_or_grossly_concealed": false,
+      "third_party_rights_not_disclosed": false,
+      "maintenance_duty_neglected": false,
+      "accidental_loss_risk_misallocated": false,
+      "early_termination_ground_present": false,
+      "withdrawal_notice_period_not_observed": false,
+      "thing_alienated_without_preserving_use": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk689-694-gratuitous-use-concept-limits-and-defects-v1",
+      "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "accidental_loss_risk_misallocated",
+        "assertion_id": "gratuitous-use-evidence-accidental_loss_risk_misallocated",
+        "source_refs": [
+          "synthetic-case-supply-1-gratuitous-use-evidence"
+        ]
+      },
+      {
+        "fact_name": "defect_intentionally_or_grossly_concealed",
+        "assertion_id": "gratuitous-use-evidence-defect_intentionally_or_grossly_concealed",
+        "source_refs": [
+          "synthetic-case-supply-1-gratuitous-use-evidence"
+        ]
+      },
+      {
+        "fact_name": "early_termination_ground_present",
+        "assertion_id": "gratuitous-use-evidence-early_termination_ground_present",
+        "source_refs": [
+          "synthetic-case-supply-1-gratuitous-use-evidence"
+        ]
+      },
+      {
+        "fact_name": "lender_is_organization_transferring_to_insider",
+        "assertion_id": "gratuitous-use-evidence-lender_is_organization_transferring_to_insider",
+        "source_refs": [
+          "synthetic-case-supply-1-gratuitous-use-evidence"
+        ]
+      },
+      {
+        "fact_name": "maintenance_duty_neglected",
+        "assertion_id": "gratuitous-use-evidence-maintenance_duty_neglected",
+        "source_refs": [
+          "synthetic-case-supply-1-gratuitous-use-evidence"
+        ]
+      },
+      {
+        "fact_name": "thing_alienated_without_preserving_use",
+        "assertion_id": "gratuitous-use-evidence-thing_alienated_without_preserving_use",
+        "source_refs": [
+          "synthetic-case-supply-1-gratuitous-use-evidence"
+        ]
+      },
+      {
+        "fact_name": "thing_not_provided_or_incomplete",
+        "assertion_id": "gratuitous-use-evidence-thing_not_provided_or_incomplete",
+        "source_refs": [
+          "synthetic-case-supply-1-gratuitous-use-evidence"
+        ]
+      },
+      {
+        "fact_name": "thing_provided_for_free_temporary_use",
+        "assertion_id": "gratuitous-use-evidence-thing_provided_for_free_temporary_use",
+        "source_refs": [
+          "synthetic-case-supply-1-gratuitous-use-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_rights_not_disclosed",
+        "assertion_id": "gratuitous-use-evidence-third_party_rights_not_disclosed",
+        "source_refs": [
+          "synthetic-case-supply-1-gratuitous-use-evidence"
+        ]
+      },
+      {
+        "fact_name": "withdrawal_notice_period_not_observed",
+        "assertion_id": "gratuitous-use-evidence-withdrawal_notice_period_not_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-gratuitous-use-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "gratuitous-use-constraint-set:reviewed-gratuitous-use-evidence-supply-1-v0",
+    "model_version": "contracts-gratuitous-use-articles-689-701-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk689-694-gratuitous-use-concept-limits-and-defects-v1",
+      "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1"
+    ],
+    "expressions": [
+      "gratuitous_use_qualified == thing_provided_for_free_temporary_use",
+      "prohibited_transfer_to_insider == gratuitous_use_qualified AND lender_is_organization_transferring_to_insider",
+      "delivery_obligation_breached == gratuitous_use_qualified AND thing_not_provided_or_incomplete",
+      "lender_liable_for_concealed_defect == gratuitous_use_qualified AND defect_intentionally_or_grossly_concealed",
+      "undisclosed_third_party_rights == gratuitous_use_qualified AND third_party_rights_not_disclosed",
+      "maintenance_duty_breached == gratuitous_use_qualified AND maintenance_duty_neglected",
+      "accidental_loss_risk_misassigned == gratuitous_use_qualified AND accidental_loss_risk_misallocated",
+      "early_termination_available == gratuitous_use_qualified AND early_termination_ground_present",
+      "withdrawal_notice_period_breached == gratuitous_use_qualified AND withdrawal_notice_period_not_observed",
+      "use_right_not_preserved_after_transfer == gratuitous_use_qualified AND thing_alienated_without_preserving_use",
+      "requires_human_gratuitous_use_assessment == prohibited_transfer_to_insider OR delivery_obligation_breached OR lender_liable_for_concealed_defect OR undisclosed_third_party_rights OR maintenance_duty_breached OR accidental_loss_risk_misassigned OR early_termination_available OR withdrawal_notice_period_breached OR use_right_not_preserved_after_transfer"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "gratuitous-use-constraint-set:reviewed-gratuitous-use-evidence-supply-1-v0",
+    "satisfiable": true,
+    "gratuitous_use_qualified": false,
+    "prohibited_transfer_to_insider": false,
+    "delivery_obligation_breached": false,
+    "lender_liable_for_concealed_defect": false,
+    "undisclosed_third_party_rights": false,
+    "maintenance_duty_breached": false,
+    "accidental_loss_risk_misassigned": false,
+    "early_termination_available": false,
+    "withdrawal_notice_period_breached": false,
+    "use_right_not_preserved_after_transfer": false,
+    "requires_human_gratuitous_use_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор безвозмездного пользования."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о безвозмездном пользовании и не заменяет судебную оценку.",
+      "Состояние вещи, характер недостатков, объём расходов на содержание и основания досрочного расторжения оцениваются экспертом и судом (статьи 691, 695 и 698 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "gratuitous-use-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "gratuitous-use-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "gratuitous_use_qualified": false
+        },
+        "observed_outcomes": {
+          "gratuitous_use_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор безвозмездного пользования."
+        ]
+      },
+      {
+        "task_id": "gratuitous-use-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "gratuitous_use_qualified": true,
+          "requires_human_gratuitous_use_assessment": false
+        },
+        "observed_outcomes": {
+          "gratuitous_use_qualified": true,
+          "requires_human_gratuitous_use_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gratuitous-use-bench-insider-transfer",
+        "passed": true,
+        "expected_outcomes": {
+          "prohibited_transfer_to_insider": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "observed_outcomes": {
+          "prohibited_transfer_to_insider": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Коммерческая организация не вправе передавать имущество в безвозмездное пользование своему учредителю, участнику, руководителю, члену её органов управления или контроля (статья 690 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gratuitous-use-bench-delivery-breach",
+        "passed": true,
+        "expected_outcomes": {
+          "delivery_obligation_breached": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "observed_outcomes": {
+          "delivery_obligation_breached": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Вещь не предоставлена в состоянии, соответствующем условиям договора и её назначению, либо предоставлена без принадлежностей и документов; ссудополучатель вправе потребовать расторжения договора и возмещения реального ущерба (статьи 691 и 692 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gratuitous-use-bench-concealed-defect",
+        "passed": true,
+        "expected_outcomes": {
+          "lender_liable_for_concealed_defect": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "observed_outcomes": {
+          "lender_liable_for_concealed_defect": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Ссудодатель отвечает за недостатки вещи, которые он умышленно или по грубой неосторожности не оговорил при заключении договора (статья 693 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gratuitous-use-bench-third-party-rights",
+        "passed": true,
+        "expected_outcomes": {
+          "undisclosed_third_party_rights": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "observed_outcomes": {
+          "undisclosed_third_party_rights": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Передача вещи в безвозмездное пользование не является основанием для изменения или прекращения прав третьих лиц на неё; ссудодатель обязан предупредить о таких правах (статья 694 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gratuitous-use-bench-maintenance",
+        "passed": true,
+        "expected_outcomes": {
+          "maintenance_duty_breached": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "observed_outcomes": {
+          "maintenance_duty_breached": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Ссудополучатель обязан поддерживать вещь в исправном состоянии, включая осуществление текущего и капитального ремонта, и нести все расходы на её содержание, если иное не предусмотрено договором (статья 695 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gratuitous-use-bench-risk-misallocation",
+        "passed": true,
+        "expected_outcomes": {
+          "accidental_loss_risk_misassigned": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "observed_outcomes": {
+          "accidental_loss_risk_misassigned": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Риск случайной гибели или повреждения вещи распределён неверно: он несётся ссудополучателем в установленных законом случаях, включая использование не в соответствии с договором или передачу третьему лицу без согласия ссудодателя (статья 696 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gratuitous-use-bench-early-termination",
+        "passed": true,
+        "expected_outcomes": {
+          "early_termination_available": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "observed_outcomes": {
+          "early_termination_available": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Имеется установленное основание для досрочного расторжения договора безвозмездного пользования по требованию стороны (статья 698 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "gratuitous-use-bench-transfer-preserves-use",
+        "passed": true,
+        "expected_outcomes": {
+          "use_right_not_preserved_after_transfer": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "observed_outcomes": {
+          "use_right_not_preserved_after_transfer": true,
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "При отчуждении вещи или передаче её в возмездное пользование третьему лицу к новому собственнику или пользователю переходят права по ранее заключённому договору безвозмездного пользования, а его права обременяются правами ссудополучателя (статья 700 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "gratuitous-use-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "gratuitous-use-red-qualify-without-transfer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "gratuitous_use_qualified": true
+        },
+        "observed_outcomes": {
+          "gratuitous_use_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор безвозмездного пользования."
+        ]
+      },
+      {
+        "case_id": "gratuitous-use-red-allow-insider-transfer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "prohibited_transfer_to_insider": false
+        },
+        "observed_outcomes": {
+          "prohibited_transfer_to_insider": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Коммерческая организация не вправе передавать имущество в безвозмездное пользование своему учредителю, участнику, руководителю, члену её органов управления или контроля (статья 690 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gratuitous-use-red-ignore-delivery-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "delivery_obligation_breached": false
+        },
+        "observed_outcomes": {
+          "delivery_obligation_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Вещь не предоставлена в состоянии, соответствующем условиям договора и её назначению, либо предоставлена без принадлежностей и документов; ссудополучатель вправе потребовать расторжения договора и возмещения реального ущерба (статьи 691 и 692 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gratuitous-use-red-excuse-concealed-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "lender_liable_for_concealed_defect": false
+        },
+        "observed_outcomes": {
+          "lender_liable_for_concealed_defect": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Ссудодатель отвечает за недостатки вещи, которые он умышленно или по грубой неосторожности не оговорил при заключении договора (статья 693 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gratuitous-use-red-ignore-third-party-rights",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "undisclosed_third_party_rights": false
+        },
+        "observed_outcomes": {
+          "undisclosed_third_party_rights": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Передача вещи в безвозмездное пользование не является основанием для изменения или прекращения прав третьих лиц на неё; ссудодатель обязан предупредить о таких правах (статья 694 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gratuitous-use-red-ignore-maintenance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "maintenance_duty_breached": false
+        },
+        "observed_outcomes": {
+          "maintenance_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Ссудополучатель обязан поддерживать вещь в исправном состоянии, включая осуществление текущего и капитального ремонта, и нести все расходы на её содержание, если иное не предусмотрено договором (статья 695 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gratuitous-use-red-ignore-risk-rule",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "accidental_loss_risk_misassigned": false
+        },
+        "observed_outcomes": {
+          "accidental_loss_risk_misassigned": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Риск случайной гибели или повреждения вещи распределён неверно: он несётся ссудополучателем в установленных законом случаях, включая использование не в соответствии с договором или передачу третьему лицу без согласия ссудодателя (статья 696 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gratuitous-use-red-ignore-notice-period",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "withdrawal_notice_period_breached": false
+        },
+        "observed_outcomes": {
+          "withdrawal_notice_period_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "Отказ от договора безвозмездного пользования требует извещения другой стороны за один месяц, если договором не предусмотрен иной срок (статья 699 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gratuitous-use-red-termination-without-ground",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "early_termination_available": true
+        },
+        "observed_outcomes": {
+          "early_termination_available": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "gratuitous-use-red-skip-human-on-transfer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_gratuitous_use_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_gratuitous_use_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как безвозмездное пользование (ссуда): ссудодатель обязуется передать или передаёт вещь в безвозмездное временное пользование ссудополучателю, который обязуется вернуть её в том состоянии, в каком получил, с учётом нормального износа (статья 689 ГК РФ).",
+          "При отчуждении вещи или передаче её в возмездное пользование третьему лицу к новому собственнику или пользователю переходят права по ранее заключённому договору безвозмездного пользования, а его права обременяются правами ссудополучателя (статья 700 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

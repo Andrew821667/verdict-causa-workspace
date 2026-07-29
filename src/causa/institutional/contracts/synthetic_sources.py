@@ -1975,6 +1975,64 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk689-694-gratuitous-use-concept-limits-and-defects-v1",
+        title="Синтетическая проверенная модель понятия ссуды, ограничений субъектного состава и недостатков вещи по статьям 689–694 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: безвозмездное пользование как передача вещи во "
+            "временное пользование с обязанностью вернуть её с учётом нормального износа, запрет "
+            "коммерческой организации передавать имущество своему учредителю и руководителю, "
+            "предоставление вещи с принадлежностями, ответственность за умышленно скрытые "
+            "недостатки и сохранение прав третьих лиц проверяются раздельно (статьи 689–694 "
+            "ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "gratuitous_use_concept_limits_and_defects_articles_689_694",
+            "legal_reference": "ГК РФ, статьи 689–694",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1",
+        title="Синтетическая проверенная модель содержания вещи, риска, расторжения и отказа от договора ссуды по статьям 695–701 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: обязанность ссудополучателя поддерживать вещь в "
+            "исправном состоянии и нести расходы на её содержание, распределение риска случайной "
+            "гибели, основания досрочного расторжения, месячный срок извещения при отказе от "
+            "договора и сохранение прав ссудополучателя при отчуждении вещи проверяются "
+            "раздельно (статьи 695–701 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "gratuitous_use_maintenance_risk_and_termination_articles_695_701",
+            "legal_reference": "ГК РФ, статьи 695–701",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-gratuitous-use-evidence",
+        title="Синтетическая проверенная запись фактов о безвозмездном пользовании",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой товаров за единовременную "
+            "оплату и не является договором безвозмездного пользования; передачи вещи в "
+            "безвозмездное временное пользование нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "gratuitous_use_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

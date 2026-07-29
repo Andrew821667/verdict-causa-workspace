@@ -948,6 +948,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.49.0",
+        to_version="0.50.0",
+        reasons=[
+            "Reviewed inputs now require a separate gratuitous-use evidence contract.",
+            "Analysis and Russian translation distinguish qualification, insider-transfer prohibition, delivery duty, concealed defects, third-party rights, maintenance duty, accidental-loss risk, early termination, notice period, and preserved use after transfer under articles 689 through 701.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о безвозмездном пользовании.",
+            "Анализ и русское объяснение разделяют квалификацию, запрет передачи инсайдеру, обязанность предоставить вещь, скрытые недостатки, права третьих лиц, содержание вещи, риск случайной гибели, досрочное расторжение, срок извещения и сохранение прав при отчуждении по статьям 689–701 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_gratuitous_use_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

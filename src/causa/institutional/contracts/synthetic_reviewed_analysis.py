@@ -135,6 +135,11 @@ from causa.institutional.contracts.residential_lease import (
     ResidentialLeaseEvidencePredicate,
     ReviewedResidentialLeaseEvidence,
 )
+from causa.institutional.contracts.gratuitous_use import (
+    GratuitousUseEvidenceAssertion,
+    GratuitousUseEvidencePredicate,
+    ReviewedGratuitousUseEvidence,
+)
 from causa.institutional.contracts.barter import (
     BarterEvidenceAssertion,
     BarterEvidencePredicate,
@@ -324,6 +329,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
     "synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1",
     "synthetic-case-supply-1-residential-lease-evidence",
+    "synthetic-ru-gk689-694-gratuitous-use-concept-limits-and-defects-v1",
+    "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1",
+    "synthetic-case-supply-1-gratuitous-use-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1603,6 +1611,51 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-residential-lease-reviewer",
+        ),
+        gratuitous_use_evidence=ReviewedGratuitousUseEvidence(
+            id="reviewed-gratuitous-use-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                GratuitousUseEvidenceAssertion(
+                    id=f"gratuitous-use-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-gratuitous-use-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        GratuitousUseEvidencePredicate.THING_PROVIDED_FOR_FREE_TEMPORARY_USE,
+                        False,
+                    ),
+                    (
+                        GratuitousUseEvidencePredicate.LENDER_IS_ORGANIZATION_TRANSFERRING_TO_INSIDER,
+                        False,
+                    ),
+                    (GratuitousUseEvidencePredicate.THING_NOT_PROVIDED_OR_INCOMPLETE, False),
+                    (
+                        GratuitousUseEvidencePredicate.DEFECT_INTENTIONALLY_OR_GROSSLY_CONCEALED,
+                        False,
+                    ),
+                    (GratuitousUseEvidencePredicate.THIRD_PARTY_RIGHTS_NOT_DISCLOSED, False),
+                    (GratuitousUseEvidencePredicate.MAINTENANCE_DUTY_NEGLECTED, False),
+                    (GratuitousUseEvidencePredicate.ACCIDENTAL_LOSS_RISK_MISALLOCATED, False),
+                    (GratuitousUseEvidencePredicate.EARLY_TERMINATION_GROUND_PRESENT, False),
+                    (
+                        GratuitousUseEvidencePredicate.WITHDRAWAL_NOTICE_PERIOD_NOT_OBSERVED,
+                        False,
+                    ),
+                    (
+                        GratuitousUseEvidencePredicate.THING_ALIENATED_WITHOUT_PRESERVING_USE,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk689-694-gratuitous-use-concept-limits-and-defects-v1",
+                "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-gratuitous-use-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

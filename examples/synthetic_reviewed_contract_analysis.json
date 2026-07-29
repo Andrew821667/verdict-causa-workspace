@@ -1596,6 +1596,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk689-694-gratuitous-use-concept-limits-and-defects-v1",
+      "title": "Синтетическая проверенная модель понятия ссуды, ограничений субъектного состава и недостатков вещи по статьям 689–694 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: безвозмездное пользование как передача вещи во временное пользование с обязанностью вернуть её с учётом нормального износа, запрет коммерческой организации передавать имущество своему учредителю и руководителю, предоставление вещи с принадлежностями, ответственность за умышленно скрытые недостатки и сохранение прав третьих лиц проверяются раздельно (статьи 689–694 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "gratuitous_use_concept_limits_and_defects_articles_689_694",
+        "legal_reference": "ГК РФ, статьи 689–694",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1",
+      "title": "Синтетическая проверенная модель содержания вещи, риска, расторжения и отказа от договора ссуды по статьям 695–701 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обязанность ссудополучателя поддерживать вещь в исправном состоянии и нести расходы на её содержание, распределение риска случайной гибели, основания досрочного расторжения, месячный срок извещения при отказе от договора и сохранение прав ссудополучателя при отчуждении вещи проверяются раздельно (статьи 695–701 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "gratuitous_use_maintenance_risk_and_termination_articles_695_701",
+        "legal_reference": "ГК РФ, статьи 695–701",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-gratuitous-use-evidence",
+      "title": "Синтетическая проверенная запись фактов о безвозмездном пользовании",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является договором безвозмездного пользования; передачи вещи в безвозмездное временное пользование нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "gratuitous_use_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -5553,6 +5600,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-residential-lease-reviewer"
+    },
+    "gratuitous_use_evidence": {
+      "id": "reviewed-gratuitous-use-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.gratuitous-use-evidence.v0",
+      "assertions": [
+        {
+          "id": "gratuitous-use-evidence-thing_provided_for_free_temporary_use",
+          "predicate": "thing_provided_for_free_temporary_use",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "id": "gratuitous-use-evidence-lender_is_organization_transferring_to_insider",
+          "predicate": "lender_is_organization_transferring_to_insider",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "id": "gratuitous-use-evidence-thing_not_provided_or_incomplete",
+          "predicate": "thing_not_provided_or_incomplete",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "id": "gratuitous-use-evidence-defect_intentionally_or_grossly_concealed",
+          "predicate": "defect_intentionally_or_grossly_concealed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "id": "gratuitous-use-evidence-third_party_rights_not_disclosed",
+          "predicate": "third_party_rights_not_disclosed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "id": "gratuitous-use-evidence-maintenance_duty_neglected",
+          "predicate": "maintenance_duty_neglected",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "id": "gratuitous-use-evidence-accidental_loss_risk_misallocated",
+          "predicate": "accidental_loss_risk_misallocated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "id": "gratuitous-use-evidence-early_termination_ground_present",
+          "predicate": "early_termination_ground_present",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "id": "gratuitous-use-evidence-withdrawal_notice_period_not_observed",
+          "predicate": "withdrawal_notice_period_not_observed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "id": "gratuitous-use-evidence-thing_alienated_without_preserving_use",
+          "predicate": "thing_alienated_without_preserving_use",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk689-694-gratuitous-use-concept-limits-and-defects-v1",
+        "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-gratuitous-use-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -10343,6 +10483,7 @@
       "synthetic-general-obligations-reviewer",
       "synthetic-general-sale-reviewer",
       "synthetic-gift-reviewer",
+      "synthetic-gratuitous-use-reviewer",
       "synthetic-interpretation-reviewer",
       "synthetic-invalidity-reviewer",
       "synthetic-lease-reviewer",
@@ -10387,6 +10528,7 @@
       "synthetic-case-supply-1-general-obligations-evidence",
       "synthetic-case-supply-1-general-sale-evidence",
       "synthetic-case-supply-1-gift-evidence",
+      "synthetic-case-supply-1-gratuitous-use-evidence",
       "synthetic-case-supply-1-interpretation-evidence",
       "synthetic-case-supply-1-invalidity-evidence",
       "synthetic-case-supply-1-lease-evidence",
@@ -10506,6 +10648,8 @@
       "synthetic-ru-gk668-670-leasing-delivery-risk-and-seller-claims-v1",
       "synthetic-ru-gk671-678-residential-lease-concept-form-and-duties-v1",
       "synthetic-ru-gk682-688-residential-lease-rent-renewal-and-termination-v1",
+      "synthetic-ru-gk689-694-gratuitous-use-concept-limits-and-defects-v1",
+      "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -15045,6 +15189,142 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о найме жилого помещения и не заменяет судебную оценку.",
         "Размер платы, пригодность помещения, существенность нарушения и достаточность срока для его устранения оцениваются экспертом и судом (статьи 673, 682 и 687 ГК РФ)."
+      ]
+    },
+    "gratuitous_use_evidence_mapping": {
+      "evidence_id": "reviewed-gratuitous-use-evidence-supply-1-v0",
+      "schema_version": "contracts.gratuitous-use-evidence.v0",
+      "mapping_version": "contracts-reviewed-gratuitous-use-to-facts-v0",
+      "facts": {
+        "thing_provided_for_free_temporary_use": false,
+        "lender_is_organization_transferring_to_insider": false,
+        "thing_not_provided_or_incomplete": false,
+        "defect_intentionally_or_grossly_concealed": false,
+        "third_party_rights_not_disclosed": false,
+        "maintenance_duty_neglected": false,
+        "accidental_loss_risk_misallocated": false,
+        "early_termination_ground_present": false,
+        "withdrawal_notice_period_not_observed": false,
+        "thing_alienated_without_preserving_use": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk689-694-gratuitous-use-concept-limits-and-defects-v1",
+        "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "accidental_loss_risk_misallocated",
+          "assertion_id": "gratuitous-use-evidence-accidental_loss_risk_misallocated",
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "fact_name": "defect_intentionally_or_grossly_concealed",
+          "assertion_id": "gratuitous-use-evidence-defect_intentionally_or_grossly_concealed",
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "fact_name": "early_termination_ground_present",
+          "assertion_id": "gratuitous-use-evidence-early_termination_ground_present",
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "fact_name": "lender_is_organization_transferring_to_insider",
+          "assertion_id": "gratuitous-use-evidence-lender_is_organization_transferring_to_insider",
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "fact_name": "maintenance_duty_neglected",
+          "assertion_id": "gratuitous-use-evidence-maintenance_duty_neglected",
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "fact_name": "thing_alienated_without_preserving_use",
+          "assertion_id": "gratuitous-use-evidence-thing_alienated_without_preserving_use",
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "fact_name": "thing_not_provided_or_incomplete",
+          "assertion_id": "gratuitous-use-evidence-thing_not_provided_or_incomplete",
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "fact_name": "thing_provided_for_free_temporary_use",
+          "assertion_id": "gratuitous-use-evidence-thing_provided_for_free_temporary_use",
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_rights_not_disclosed",
+          "assertion_id": "gratuitous-use-evidence-third_party_rights_not_disclosed",
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        },
+        {
+          "fact_name": "withdrawal_notice_period_not_observed",
+          "assertion_id": "gratuitous-use-evidence-withdrawal_notice_period_not_observed",
+          "source_refs": [
+            "synthetic-case-supply-1-gratuitous-use-evidence"
+          ]
+        }
+      ]
+    },
+    "gratuitous_use_constraint_set": {
+      "id": "gratuitous-use-constraint-set:reviewed-gratuitous-use-evidence-supply-1-v0",
+      "model_version": "contracts-gratuitous-use-articles-689-701-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk689-694-gratuitous-use-concept-limits-and-defects-v1",
+        "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1"
+      ],
+      "expressions": [
+        "gratuitous_use_qualified == thing_provided_for_free_temporary_use",
+        "prohibited_transfer_to_insider == gratuitous_use_qualified AND lender_is_organization_transferring_to_insider",
+        "delivery_obligation_breached == gratuitous_use_qualified AND thing_not_provided_or_incomplete",
+        "lender_liable_for_concealed_defect == gratuitous_use_qualified AND defect_intentionally_or_grossly_concealed",
+        "undisclosed_third_party_rights == gratuitous_use_qualified AND third_party_rights_not_disclosed",
+        "maintenance_duty_breached == gratuitous_use_qualified AND maintenance_duty_neglected",
+        "accidental_loss_risk_misassigned == gratuitous_use_qualified AND accidental_loss_risk_misallocated",
+        "early_termination_available == gratuitous_use_qualified AND early_termination_ground_present",
+        "withdrawal_notice_period_breached == gratuitous_use_qualified AND withdrawal_notice_period_not_observed",
+        "use_right_not_preserved_after_transfer == gratuitous_use_qualified AND thing_alienated_without_preserving_use",
+        "requires_human_gratuitous_use_assessment == prohibited_transfer_to_insider OR delivery_obligation_breached OR lender_liable_for_concealed_defect OR undisclosed_third_party_rights OR maintenance_duty_breached OR accidental_loss_risk_misassigned OR early_termination_available OR withdrawal_notice_period_breached OR use_right_not_preserved_after_transfer"
+      ]
+    },
+    "gratuitous_use_evaluation": {
+      "constraint_set_id": "gratuitous-use-constraint-set:reviewed-gratuitous-use-evidence-supply-1-v0",
+      "satisfiable": true,
+      "gratuitous_use_qualified": false,
+      "prohibited_transfer_to_insider": false,
+      "delivery_obligation_breached": false,
+      "lender_liable_for_concealed_defect": false,
+      "undisclosed_third_party_rights": false,
+      "maintenance_duty_breached": false,
+      "accidental_loss_risk_misassigned": false,
+      "early_termination_available": false,
+      "withdrawal_notice_period_breached": false,
+      "use_right_not_preserved_after_transfer": false,
+      "requires_human_gratuitous_use_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор безвозмездного пользования."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о безвозмездном пользовании и не заменяет судебную оценку.",
+        "Состояние вещи, характер недостатков, объём расходов на содержание и основания досрочного расторжения оцениваются экспертом и судом (статьи 691, 695 и 698 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -20418,7 +20698,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.49.0",
+      "institutional_package_version": "contracts-ru-v0@0.50.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
