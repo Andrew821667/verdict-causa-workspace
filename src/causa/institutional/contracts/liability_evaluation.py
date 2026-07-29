@@ -401,8 +401,7 @@ def run_liability_benchmark_suite() -> LiabilityBenchmarkReport:
     for task in SYNTHETIC_LIABILITY_BENCHMARKS:
         evaluation = _evaluate(task.id, task.facts)
         observed = {
-            field_name: getattr(evaluation, field_name)
-            for field_name in task.expected_outcomes
+            field_name: getattr(evaluation, field_name) for field_name in task.expected_outcomes
         }
         passed = observed == task.expected_outcomes
         results.append(
@@ -431,8 +430,7 @@ def run_liability_red_team_suite() -> LiabilityRedTeamReport:
     for case in SYNTHETIC_LIABILITY_RED_TEAM_CASES:
         evaluation = _evaluate(case.id, case.facts)
         observed = {
-            field_name: getattr(evaluation, field_name)
-            for field_name in case.forbidden_outcomes
+            field_name: getattr(evaluation, field_name) for field_name in case.forbidden_outcomes
         }
         blocked = observed != case.forbidden_outcomes
         results.append(

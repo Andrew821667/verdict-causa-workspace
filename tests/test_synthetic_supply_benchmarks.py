@@ -40,15 +40,11 @@ def test_synthetic_contract_source_set_has_delivery_duty_revisions() -> None:
 
 def test_synthetic_contract_source_set_has_general_and_special_sources() -> None:
     specificity_by_id = {
-        source.id: source.metadata.get("specificity")
-        for source in SYNTHETIC_CONTRACT_SOURCES
+        source.id: source.metadata.get("specificity") for source in SYNTHETIC_CONTRACT_SOURCES
     }
 
     assert specificity_by_id["synthetic-ru-contract-general-performance-duty"] == "general"
-    assert (
-        specificity_by_id["synthetic-ru-contract-supply-specific-delivery-duty"]
-        == "special"
-    )
+    assert specificity_by_id["synthetic-ru-contract-supply-specific-delivery-duty"] == "special"
 
 
 def test_get_synthetic_contract_source_by_id() -> None:
@@ -72,7 +68,9 @@ def test_synthetic_supply_benchmark_suite_passes_current_narrow_expectations() -
 
 
 def test_revision_benchmark_records_old_source_not_applicable() -> None:
-    task = next(task for task in SYNTHETIC_SUPPLY_BENCHMARKS if task.id.endswith("not-applicable-in-2026"))
+    task = next(
+        task for task in SYNTHETIC_SUPPLY_BENCHMARKS if task.id.endswith("not-applicable-in-2026")
+    )
     result = run_benchmark_task(task)
 
     assert result.passed is True
@@ -88,9 +86,9 @@ def test_lex_specialis_benchmarks_select_supply_specific_source() -> None:
 
     assert len(authority_results) == 2
     assert all(result.passed for result in authority_results)
-    assert {
-        result.authority_winner for result in authority_results
-    } == {"synthetic-ru-contract-supply-specific-delivery-duty"}
+    assert {result.authority_winner for result in authority_results} == {
+        "synthetic-ru-contract-supply-specific-delivery-duty"
+    }
     assert all(
         "Special source prevails over general source at the same authority level."
         in result.authority_reasons
@@ -105,18 +103,24 @@ def test_authority_hierarchy_benchmarks_record_priority_and_temporal_rules() -> 
         if task.expected_authority_rules
     }
 
-    assert hierarchy_results["bench-statutory-source-prevails-over-contract-specific"].authority_rules == [
-        "higher_authority"
-    ]
-    assert hierarchy_results["bench-statutory-source-prevails-over-factual-assertion"].authority_rules == [
-        "higher_authority"
-    ]
     assert hierarchy_results[
-        "bench-constitutional-source-prevails-over-special-statute"
-    ].authority_winner == "synthetic-ru-constitutional-contract-guarantee"
+        "bench-statutory-source-prevails-over-contract-specific"
+    ].authority_rules == ["higher_authority"]
     assert hierarchy_results[
-        "bench-statutory-source-prevails-over-special-regulation"
-    ].authority_winner == "synthetic-ru-contract-general-performance-duty"
+        "bench-statutory-source-prevails-over-factual-assertion"
+    ].authority_rules == ["higher_authority"]
+    assert (
+        hierarchy_results[
+            "bench-constitutional-source-prevails-over-special-statute"
+        ].authority_winner
+        == "synthetic-ru-constitutional-contract-guarantee"
+    )
+    assert (
+        hierarchy_results[
+            "bench-statutory-source-prevails-over-special-regulation"
+        ].authority_winner
+        == "synthetic-ru-contract-general-performance-duty"
+    )
     expired_source_result = hierarchy_results[
         "bench-inapplicable-statute-yields-to-current-case-law"
     ]

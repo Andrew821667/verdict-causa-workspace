@@ -8,8 +8,7 @@ from causa.institutional.contracts.synthetic_reviewed_analysis import (
 )
 
 
-def build_synthetic_liability_evaluation_artifact(
-) -> SyntheticLiabilityEvaluationArtifact:
+def build_synthetic_liability_evaluation_artifact() -> SyntheticLiabilityEvaluationArtifact:
     analysis = build_synthetic_supply_analysis_artifact()
     return SyntheticLiabilityEvaluationArtifact(
         reviewed_mapping=analysis.result.liability_evidence_mapping,

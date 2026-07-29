@@ -101,10 +101,7 @@ def test_exported_privacy_safe_pilot_fixture_is_valid() -> None:
     assert report.schema_version == "privacy-safe-pilot-utility.v1"
     assert all(observation.privacy_reviewed for observation in report.observations)
     assert all(observation.lawful_basis_recorded for observation in report.observations)
-    assert all(
-        observation.data_minimization_reviewed
-        for observation in report.observations
-    )
+    assert all(observation.data_minimization_reviewed for observation in report.observations)
 
 
 def test_readiness_report_references_privacy_safe_pilot_schema() -> None:

@@ -8,8 +8,9 @@ from causa.institutional.contracts.synthetic_reviewed_analysis import (
 )
 
 
-def build_synthetic_counterfactual_evaluation_artifact(
-) -> SyntheticCounterfactualEvaluationArtifact:
+def build_synthetic_counterfactual_evaluation_artifact() -> (
+    SyntheticCounterfactualEvaluationArtifact
+):
     analysis = build_synthetic_supply_analysis_artifact()
     return SyntheticCounterfactualEvaluationArtifact(
         sensitivity_report=analysis.result.counterfactual_sensitivity,

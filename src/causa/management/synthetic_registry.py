@@ -16,9 +16,7 @@ from causa.translation_templates import build_russian_translation_template_set
 
 
 SYNTHETIC_POLICY_FAMILY_ID = "phase0-standard-t3"
-SYNTHETIC_ACTIVE_POLICY_SNAPSHOT_ID = (
-    f"policy-snapshot:{SYNTHETIC_POLICY_FAMILY_ID}@1"
-)
+SYNTHETIC_ACTIVE_POLICY_SNAPSHOT_ID = f"policy-snapshot:{SYNTHETIC_POLICY_FAMILY_ID}@1"
 
 
 def build_synthetic_management_policy_registry_artifact() -> PolicyRegistryArtifact:

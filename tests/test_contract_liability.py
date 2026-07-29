@@ -66,9 +66,7 @@ def test_liability_evidence_rejects_duplicates_and_incomplete_input() -> None:
 
 
 def test_liability_facts_reject_reduction_request_without_claimed_penalty() -> None:
-    payload = {
-        field_name: False for field_name in LiabilityFactSet.model_fields
-    }
+    payload = {field_name: False for field_name in LiabilityFactSet.model_fields}
     payload.update(
         {
             "breach_established": True,
@@ -78,6 +76,7 @@ def test_liability_facts_reject_reduction_request_without_claimed_penalty() -> N
 
     with pytest.raises(ValidationError, match="without a claimed penalty"):
         LiabilityFactSet.model_validate(payload)
+
 
 def test_analysis_rejects_unreviewed_or_mismatched_liability_evidence() -> None:
     request = build_synthetic_supply_analysis_request()
@@ -126,11 +125,7 @@ def test_analysis_rejects_unsupported_liability_schema() -> None:
 def test_analysis_rejects_factual_source_as_liability_legal_model() -> None:
     request = build_synthetic_supply_analysis_request()
     evidence = request.liability_evidence.model_copy(
-        update={
-            "legal_source_refs": (
-                "synthetic-case-supply-1-liability-evidence",
-            )
-        }
+        update={"legal_source_refs": ("synthetic-case-supply-1-liability-evidence",)}
     )
 
     with pytest.raises(ValueError, match="reviewed legal models"):

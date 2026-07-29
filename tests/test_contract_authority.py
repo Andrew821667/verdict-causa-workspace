@@ -16,9 +16,7 @@ from causa.institutional.contracts.synthetic_sources import get_synthetic_contra
 
 
 def test_lex_specialis_selects_special_source_regardless_of_candidate_order() -> None:
-    general_source = get_synthetic_contract_source(
-        "synthetic-ru-contract-general-performance-duty"
-    )
+    general_source = get_synthetic_contract_source("synthetic-ru-contract-general-performance-duty")
     special_source = get_synthetic_contract_source(
         "synthetic-ru-contract-supply-specific-delivery-duty"
     )
@@ -34,9 +32,7 @@ def test_lex_specialis_selects_special_source_regardless_of_candidate_order() ->
 
 
 def test_lex_specialis_keeps_general_source_when_no_special_source_exists() -> None:
-    general_source = get_synthetic_contract_source(
-        "synthetic-ru-contract-general-performance-duty"
-    )
+    general_source = get_synthetic_contract_source("synthetic-ru-contract-general-performance-duty")
 
     evaluation = evaluate_lex_specialis([general_source])
 
@@ -80,9 +76,9 @@ def test_authority_level_is_derived_from_supported_source_types() -> None:
         ),
     }
 
-    assert {
-        authority_level_for_source(source) for source in sources_by_level.values()
-    } == set(sources_by_level)
+    assert {authority_level_for_source(source) for source in sources_by_level.values()} == set(
+        sources_by_level
+    )
 
 
 def test_synthetic_authority_policy_includes_constitutional_and_regulatory_levels() -> None:

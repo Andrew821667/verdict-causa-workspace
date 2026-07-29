@@ -271,7 +271,10 @@ def _apply_decision(
     activations = list(record.activations)
     active_candidate_version = record.active_candidate_version
     expires_at = record.expires_at
-    if decision.to_stage == GovernanceStage.ACTIVE and record.current_stage != GovernanceStage.REVALIDATION:
+    if (
+        decision.to_stage == GovernanceStage.ACTIVE
+        and record.current_stage != GovernanceStage.REVALIDATION
+    ):
         version_number = len(activations) + 1
         active_candidate_version = f"{record.candidate_id}@{version_number}"
         expires_at = _expiration_at(record, decision.decided_at)
@@ -330,11 +333,7 @@ def submit_stage_decision(
         raise ValueError("Для этой стадии используйте завершение проверки в песочнице.")
 
     to_stage = _next_required_stage(record) if passed else GovernanceStage.REJECTED
-    outcome = (
-        GovernanceDecisionOutcome.APPROVED
-        if passed
-        else GovernanceDecisionOutcome.REJECTED
-    )
+    outcome = GovernanceDecisionOutcome.APPROVED if passed else GovernanceDecisionOutcome.REJECTED
     decision = _build_decision(
         record,
         to_stage=to_stage,
@@ -358,9 +357,7 @@ def complete_sandbox(
     _require_chronological_time(record, sandbox.started_at)
     to_stage = GovernanceStage.ACTIVE if sandbox.passed else GovernanceStage.REJECTED
     outcome = (
-        GovernanceDecisionOutcome.APPROVED
-        if sandbox.passed
-        else GovernanceDecisionOutcome.REJECTED
+        GovernanceDecisionOutcome.APPROVED if sandbox.passed else GovernanceDecisionOutcome.REJECTED
     )
     decision = _build_decision(
         record,
@@ -419,9 +416,7 @@ def complete_revalidation(
 
     to_stage = GovernanceStage.ACTIVE if passed else GovernanceStage.ROLLED_BACK
     outcome = (
-        GovernanceDecisionOutcome.APPROVED
-        if passed
-        else GovernanceDecisionOutcome.ROLLED_BACK
+        GovernanceDecisionOutcome.APPROVED if passed else GovernanceDecisionOutcome.ROLLED_BACK
     )
     decision = _build_decision(
         record,

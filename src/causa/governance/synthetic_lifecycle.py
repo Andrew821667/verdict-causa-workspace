@@ -41,9 +41,7 @@ def _approve_until(
                 f"Стадия «{current.current_stage_label_ru}» успешно пройдена "
                 "на синтетических проверочных данных.",
             ),
-            evidence_refs=(
-                f"synthetic-governance-evidence:{current.current_stage.value}",
-            ),
+            evidence_refs=(f"synthetic-governance-evidence:{current.current_stage.value}",),
         )
         decided_at += timedelta(minutes=1)
     return current

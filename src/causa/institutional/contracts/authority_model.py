@@ -131,12 +131,9 @@ def evaluate_source_authority(
             continue
 
         excluded_source_ids.append(source.id)
-        reasons.extend(
-            f"Excluded {source.id}: {reason}" for reason in applicability.reasons
-        )
+        reasons.extend(f"Excluded {source.id}: {reason}" for reason in applicability.reasons)
         reasons_ru.extend(
-            f"Источник {source.id} исключен: {reason}"
-            for reason in applicability.reasons_ru
+            f"Источник {source.id} исключен: {reason}" for reason in applicability.reasons_ru
         )
 
     if excluded_source_ids:

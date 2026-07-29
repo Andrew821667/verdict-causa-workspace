@@ -114,10 +114,15 @@ class BehaviorPolicyPayload(BaseModel):
             raise ValueError("Политика уровней T4-T6 требует проверки Red Team.")
         if high_risk and not self.complete_provenance:
             raise ValueError("Политика уровней T4-T6 требует полного происхождения данных.")
-        if high_risk and self.allow_candidate_principles and self.mode not in {
-            SLAMode.DEEP,
-            SLAMode.RESEARCH,
-        }:
+        if (
+            high_risk
+            and self.allow_candidate_principles
+            and self.mode
+            not in {
+                SLAMode.DEEP,
+                SLAMode.RESEARCH,
+            }
+        ):
             raise ValueError(
                 "Принципы-кандидаты для T4-T6 допустимы только в углубленном "
                 "или исследовательском режиме."
@@ -423,9 +428,7 @@ def register_policy_snapshot(
 ) -> PolicyRegistryState:
     _require_revision(registry, expected_revision)
     family_snapshots = [
-        candidate
-        for candidate in registry.snapshots
-        if candidate.family_id == snapshot.family_id
+        candidate for candidate in registry.snapshots if candidate.family_id == snapshot.family_id
     ]
     if any(candidate.id == snapshot.id for candidate in registry.snapshots):
         raise ValueError("Снимок политики уже зарегистрирован.")
@@ -435,10 +438,7 @@ def register_policy_snapshot(
             raise ValueError("Версия политики должна последовательно продолжать семью.")
         if snapshot.parent_snapshot_id != latest.id:
             raise ValueError("Родитель должен быть последним снимком семьи политик.")
-        if any(
-            snapshot.content_hash == candidate.content_hash
-            for candidate in family_snapshots
-        ):
+        if any(snapshot.content_hash == candidate.content_hash for candidate in family_snapshots):
             raise ValueError("Новая версия политики повторяет существующее содержимое.")
     elif snapshot.version != 1:
         raise ValueError("Первая зарегистрированная версия семьи должна иметь номер 1.")
@@ -551,7 +551,9 @@ def active_policy_snapshot(
 
 def _boolean_safety_impact(field_name: str, before: bool, after: bool) -> PolicyChangeImpact:
     if field_name in {"allow_candidate_principles", "allow_counterfactual"}:
-        return PolicyChangeImpact.TIGHTENING if before and not after else PolicyChangeImpact.RELAXATION
+        return (
+            PolicyChangeImpact.TIGHTENING if before and not after else PolicyChangeImpact.RELAXATION
+        )
     return PolicyChangeImpact.TIGHTENING if not before and after else PolicyChangeImpact.RELAXATION
 
 

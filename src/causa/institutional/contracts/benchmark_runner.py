@@ -57,9 +57,7 @@ def _source_applicability_reasons(
         expected = task.expected_source_applicability.get(source_ref, True)
         applicable = applicable and evaluation.applicable == expected
         reasons.extend(f"{source_ref}: {reason}" for reason in evaluation.reasons)
-        reasons_ru.extend(
-            f"{source_ref}: {reason}" for reason in evaluation.reasons_ru
-        )
+        reasons_ru.extend(f"{source_ref}: {reason}" for reason in evaluation.reasons_ru)
     return applicable, reasons, reasons_ru
 
 
@@ -81,9 +79,7 @@ def _authority_evaluation_for_task(
 
 def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
     contract_temporal_facts = (
-        ContractTemporalFacts.model_validate(task.temporal_facts)
-        if task.temporal_facts
-        else None
+        ContractTemporalFacts.model_validate(task.temporal_facts) if task.temporal_facts else None
     )
     authority_evaluation = _authority_evaluation_for_task(task, contract_temporal_facts)
     rule = FormalObligationRule(
@@ -125,28 +121,19 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
         passed = passed and evaluation.breach_issue == task.expected_breach_issue
     if task.expected_late_performance_issue is not None:
         passed = (
-            passed
-            and evaluation.late_performance_issue
-            == task.expected_late_performance_issue
+            passed and evaluation.late_performance_issue == task.expected_late_performance_issue
         )
     if task.expected_defect_issue is not None:
         passed = passed and evaluation.defect_issue == task.expected_defect_issue
     if task.expected_payment_default_issue is not None:
-        passed = (
-            passed
-            and evaluation.payment_default_issue == task.expected_payment_default_issue
-        )
+        passed = passed and evaluation.payment_default_issue == task.expected_payment_default_issue
     if task.expected_damages_remedy_available is not None:
         passed = (
-            passed
-            and evaluation.damages_remedy_available
-            == task.expected_damages_remedy_available
+            passed and evaluation.damages_remedy_available == task.expected_damages_remedy_available
         )
     if task.expected_causation_evidence_gap is not None:
         passed = (
-            passed
-            and evaluation.causation_evidence_gap
-            == task.expected_causation_evidence_gap
+            passed and evaluation.causation_evidence_gap == task.expected_causation_evidence_gap
         )
     if task.expected_limitation_bar is not None:
         passed = passed and evaluation.limitation_bar == task.expected_limitation_bar
@@ -189,18 +176,14 @@ def run_benchmark_task(task: BenchmarkTask) -> BenchmarkTaskResult:
         reasons=reasons,
         reasons_ru=reasons_ru,
         temporal_reasons=temporal_evaluation.reasons if temporal_evaluation else [],
-        temporal_reasons_ru=(
-            temporal_evaluation.reasons_ru if temporal_evaluation else []
-        ),
+        temporal_reasons_ru=(temporal_evaluation.reasons_ru if temporal_evaluation else []),
         source_applicability_reasons=source_applicability_reasons,
         source_applicability_reasons_ru=source_applicability_reasons_ru,
         authority_winner=(
             authority_evaluation.selected_source_id if authority_evaluation else None
         ),
         authority_reasons=authority_evaluation.reasons if authority_evaluation else [],
-        authority_reasons_ru=(
-            authority_evaluation.reasons_ru if authority_evaluation else []
-        ),
+        authority_reasons_ru=(authority_evaluation.reasons_ru if authority_evaluation else []),
         authority_rules=(
             [rule.value for rule in authority_evaluation.applied_rules]
             if authority_evaluation

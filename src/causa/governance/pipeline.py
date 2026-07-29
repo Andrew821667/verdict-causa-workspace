@@ -39,9 +39,7 @@ def advance_candidate(
         return GovernanceDecision(
             accepted=False,
             next_stage=GovernanceStage.REJECTED,
-            next_stage_label_ru=label_ru(
-                GovernanceStage.REJECTED, GOVERNANCE_STAGE_LABELS_RU
-            ),
+            next_stage_label_ru=label_ru(GovernanceStage.REJECTED, GOVERNANCE_STAGE_LABELS_RU),
             reasons=reasons or ["Required checks failed."],
             reasons_ru=["Обязательные проверки не пройдены."],
         )

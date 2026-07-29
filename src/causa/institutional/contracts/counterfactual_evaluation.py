@@ -297,17 +297,14 @@ def run_counterfactual_red_team_suite() -> CounterfactualRedTeamReport:
     unmet_precondition = run_contract_counterfactual_sensitivity(
         trace_id="red-team-precondition",
         constraint_set=constraint_set,
-        baseline_facts=BASELINE_LATE_DELIVERY_FACTS.model_copy(
-            update={"due_date_missed": False}
-        ),
+        baseline_facts=BASELINE_LATE_DELIVERY_FACTS.model_copy(update={"due_date_missed": False}),
         operator_codes=[ContractLegalOperatorCode.ACTIVATE_VALID_EXCEPTION],
     )
     results.append(
         CounterfactualRedTeamResult(
             attack_kind=CounterfactualAttackKind.PRECONDITION_BYPASS,
             blocked=not unmet_precondition.scenarios
-            and unmet_precondition.skipped_operators[0].reason_code
-            == "precondition_not_met",
+            and unmet_precondition.skipped_operators[0].reason_code == "precondition_not_met",
             reasons_ru=["Оператор не применен при невыполненных исходных условиях."],
         )
     )

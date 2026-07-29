@@ -45,12 +45,9 @@ def test_default_guardrail_blocks_current_red_team_suite() -> None:
     assert all(result.reasons_ru for result in report.results)
     assert all(result.adversarial_attempts for result in report.results)
     assert all(result.generated_attack is not None for result in report.results)
+    assert all(result.generated_attack.generator_kind == "template" for result in report.results)
     assert all(
-        result.generated_attack.generator_kind == "template" for result in report.results
-    )
-    assert all(
-        result.generated_attack.attack_text.startswith("Попытка")
-        for result in report.results
+        result.generated_attack.attack_text.startswith("Попытка") for result in report.results
     )
     assert any(
         attempt.technique == "formal_constraint"
@@ -70,10 +67,8 @@ def test_missing_guardrail_fragment_leaves_attack_unblocked() -> None:
         for scenario in SYNTHETIC_SUPPLY_RED_TEAM_SCENARIOS
         if scenario.id == "redteam-erase-payment-duty"
     )
-    weak_guardrail = (
-        DEFAULT_SUPPLY_CANDIDATE_GUARDRAIL.replace("Payment", "Billing").replace(
-            "payment", "billing"
-        )
+    weak_guardrail = DEFAULT_SUPPLY_CANDIDATE_GUARDRAIL.replace("Payment", "Billing").replace(
+        "payment", "billing"
     )
     result = run_red_team_scenario(scenario, weak_guardrail)
 

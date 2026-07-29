@@ -99,9 +99,7 @@ def test_policy_hash_is_deterministic_and_sensitive_to_behavior() -> None:
     baseline = _baseline_payload()
     changed = baseline.model_copy(update={"confidence_threshold": 0.75})
 
-    assert compute_policy_content_hash(baseline) == compute_policy_content_hash(
-        _baseline_payload()
-    )
+    assert compute_policy_content_hash(baseline) == compute_policy_content_hash(_baseline_payload())
     assert compute_policy_content_hash(baseline) != compute_policy_content_hash(changed)
 
 
@@ -112,9 +110,7 @@ def test_counterfactual_permission_is_a_policy_relaxation() -> None:
     after = _snapshot(2, payload=enabled, parent_snapshot_id=before.id)
 
     diff = compare_policy_snapshots(before, after)
-    change = next(
-        item for item in diff.changes if item.field_name == "allow_counterfactual"
-    )
+    change = next(item for item in diff.changes if item.field_name == "allow_counterfactual")
 
     assert change.impact == PolicyChangeImpact.RELAXATION
     assert change.field_label_ru == "Допуск ограниченного контрфактического анализа"
@@ -257,8 +253,7 @@ def test_semantic_diff_classifies_tightening_and_russian_labels() -> None:
         for change in semantic_diff.changes
     )
     assert any(
-        change.field_name == "max_tokens"
-        and change.impact == PolicyChangeImpact.BEHAVIORAL
+        change.field_name == "max_tokens" and change.impact == PolicyChangeImpact.BEHAVIORAL
         for change in semantic_diff.changes
     )
 

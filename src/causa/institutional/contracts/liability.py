@@ -156,12 +156,10 @@ def map_reviewed_liability_evidence(
     )
     if missing:
         raise ValueError(
-            "Reviewed liability evidence is incomplete; missing predicates: "
-            + ", ".join(missing)
+            "Reviewed liability evidence is incomplete; missing predicates: " + ", ".join(missing)
         )
     values = {
-        predicate.value: assertions[predicate].value
-        for predicate in REQUIRED_LIABILITY_PREDICATES
+        predicate.value: assertions[predicate].value for predicate in REQUIRED_LIABILITY_PREDICATES
     }
     return LiabilityEvidenceMappingResult(
         evidence_id=evidence.id,
@@ -212,15 +210,9 @@ def evaluate_liability_constraints(
     liability_issue = Bool("liability_issue")
     force_majeure_notice_gap = Bool("force_majeure_notice_gap")
     intentional_exclusion_invalid = Bool("intentional_exclusion_invalid")
-    penalty_reduction_procedurally_available = Bool(
-        "penalty_reduction_procedurally_available"
-    )
-    penalty_reduction_substantively_supported = Bool(
-        "penalty_reduction_substantively_supported"
-    )
-    penalty_reduction_prerequisites_satisfied = Bool(
-        "penalty_reduction_prerequisites_satisfied"
-    )
+    penalty_reduction_procedurally_available = Bool("penalty_reduction_procedurally_available")
+    penalty_reduction_substantively_supported = Bool("penalty_reduction_substantively_supported")
+    penalty_reduction_prerequisites_satisfied = Bool("penalty_reduction_prerequisites_satisfied")
     invalid_penalty_reduction_basis = Bool("invalid_penalty_reduction_basis")
     liability_survives_penalty_reduction = Bool("liability_survives_penalty_reduction")
     requires_judicial_assessment = Bool("requires_judicial_assessment")
@@ -347,9 +339,7 @@ def evaluate_liability_constraints(
     values = {
         "fault_rebutted": bool(model.eval(fault_rebutted)),
         "force_majeure_qualified": bool(model.eval(force_majeure_qualified)),
-        "exemption_prerequisites_satisfied": bool(
-            model.eval(exemption_prerequisites_satisfied)
-        ),
+        "exemption_prerequisites_satisfied": bool(model.eval(exemption_prerequisites_satisfied)),
         "liability_issue": bool(model.eval(liability_issue)),
         "force_majeure_notice_gap": bool(model.eval(force_majeure_notice_gap)),
         "intentional_exclusion_invalid": bool(model.eval(intentional_exclusion_invalid)),
@@ -362,9 +352,7 @@ def evaluate_liability_constraints(
         "penalty_reduction_prerequisites_satisfied": bool(
             model.eval(penalty_reduction_prerequisites_satisfied)
         ),
-        "invalid_penalty_reduction_basis": bool(
-            model.eval(invalid_penalty_reduction_basis)
-        ),
+        "invalid_penalty_reduction_basis": bool(model.eval(invalid_penalty_reduction_basis)),
         "liability_survives_penalty_reduction": bool(
             model.eval(liability_survives_penalty_reduction)
         ),

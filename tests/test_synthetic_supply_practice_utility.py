@@ -36,8 +36,7 @@ def test_exported_synthetic_supply_practice_utility_report_fixture_is_valid() ->
 
     assert report.id == "synthetic-supply-practice-utility-report-v0"
     assert all(
-        isinstance(observation, PracticeUtilityObservation)
-        for observation in report.observations
+        isinstance(observation, PracticeUtilityObservation) for observation in report.observations
     )
 
 

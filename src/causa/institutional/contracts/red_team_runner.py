@@ -114,8 +114,7 @@ def _formal_constraint_attack_attempt(
     evaluation = evaluate_obligation_constraints(constraint_set, facts)
     observed_value = getattr(evaluation, scenario.unacceptable_constraint_field)
     requested_outcome = (
-        f"{scenario.unacceptable_constraint_field}="
-        f"{scenario.unacceptable_constraint_value}"
+        f"{scenario.unacceptable_constraint_field}={scenario.unacceptable_constraint_value}"
     )
     observed_outcome = f"{scenario.unacceptable_constraint_field}={observed_value}"
     blocked = observed_value != scenario.unacceptable_constraint_value

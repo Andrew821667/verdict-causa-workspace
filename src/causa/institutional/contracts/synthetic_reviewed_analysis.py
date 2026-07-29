@@ -1057,7 +1057,10 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
                 for predicate, value in (
                     (GeneralObligationsEvidencePredicate.OBLIGATION_ESTABLISHED, True),
                     (GeneralObligationsEvidencePredicate.GOOD_FAITH_OBSERVED, True),
-                    (GeneralObligationsEvidencePredicate.OBLIGATION_BINDS_THIRD_PARTY_CLAIMED, False),
+                    (
+                        GeneralObligationsEvidencePredicate.OBLIGATION_BINDS_THIRD_PARTY_CLAIMED,
+                        False,
+                    ),
                     (GeneralObligationsEvidencePredicate.ALTERNATIVE_OBLIGATION, False),
                     (GeneralObligationsEvidencePredicate.CHOICE_MADE_IN_ALTERNATIVE, False),
                     (GeneralObligationsEvidencePredicate.FACULTATIVE_OBLIGATION, False),

@@ -54,9 +54,7 @@ def _baseline_facts() -> ObligationFactSet:
 def test_operator_library_is_complete_deterministic_and_tamper_evident() -> None:
     library = build_contract_legal_operator_library()
 
-    assert {operator.code for operator in library.operators} == set(
-        ContractLegalOperatorCode
-    )
+    assert {operator.code for operator in library.operators} == set(ContractLegalOperatorCode)
     assert library == build_contract_legal_operator_library()
     assert library.content_hash.startswith("sha256:")
     assert all(operator.requires_human_review for operator in library.operators)
@@ -111,7 +109,9 @@ def test_sensitivity_report_is_bounded_material_and_does_not_mutate_baseline() -
     assert report.skipped_operators == []
     assert report.budget_exhausted is False
     assert all(scenario.material for scenario in report.scenarios)
-    assert all(scenario.baseline_fact_hash == report.baseline_fact_hash for scenario in report.scenarios)
+    assert all(
+        scenario.baseline_fact_hash == report.baseline_fact_hash for scenario in report.scenarios
+    )
     assert report.critical_scenario_ids[:3] == [
         "counterfactual:test-trace:activate_valid_exception",
         "counterfactual:test-trace:confirm_nonconforming_performance",

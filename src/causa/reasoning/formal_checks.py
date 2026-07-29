@@ -127,13 +127,9 @@ def evaluate_obligation_constraints(
     solver.add(remedy_requested == facts.remedy_requested)
     solver.add(limitation_period_expired == facts.limitation_period_expired)
     solver.add(
-        late_performance_issue
-        == And(duty_exists, due_date_missed, Not(valid_exception_applies))
+        late_performance_issue == And(duty_exists, due_date_missed, Not(valid_exception_applies))
     )
-    solver.add(
-        defect_issue
-        == And(duty_exists, performance_completed, performance_nonconforming)
-    )
+    solver.add(defect_issue == And(duty_exists, performance_completed, performance_nonconforming))
     solver.add(
         payment_default_issue
         == And(
@@ -143,13 +139,9 @@ def evaluate_obligation_constraints(
             Not(payment_defense_applies),
         )
     )
+    solver.add(breach_issue == Or(late_performance_issue, defect_issue, payment_default_issue))
     solver.add(
-        breach_issue
-        == Or(late_performance_issue, defect_issue, payment_default_issue)
-    )
-    solver.add(
-        causation_evidence_gap
-        == And(remedy_requested, loss_claimed, Not(causation_established))
+        causation_evidence_gap == And(remedy_requested, loss_claimed, Not(causation_established))
     )
     solver.add(limitation_bar == And(remedy_requested, limitation_period_expired))
     solver.add(
@@ -192,9 +184,7 @@ def evaluate_obligation_constraints(
                 "применимое исключение не установлено."
             )
         if defect_detected:
-            reasons.append(
-                "Defect issue: completed performance is confirmed nonconforming."
-            )
+            reasons.append("Defect issue: completed performance is confirmed nonconforming.")
             reasons_ru.append(
                 "Выявлен недостаток исполнения: завершенное исполнение признано ненадлежащим."
             )
@@ -207,9 +197,7 @@ def evaluate_obligation_constraints(
                 "применимое возражение не установлено."
             )
         if damages_remedy_detected:
-            reasons.append(
-                "Damages remedy is available under the current narrow facts."
-            )
+            reasons.append("Damages remedy is available under the current narrow facts.")
             reasons_ru.append(
                 "По текущему узкому набору фактов имеются формальные предпосылки "
                 "для требования убытков."
@@ -229,9 +217,7 @@ def evaluate_obligation_constraints(
             )
         if not breach_detected:
             reasons.append("No contractual issue under the current narrow constraint set.")
-            reasons_ru.append(
-                "Текущий узкий набор ограничений не выявил нарушения обязательства."
-            )
+            reasons_ru.append("Текущий узкий набор ограничений не выявил нарушения обязательства.")
     else:
         reasons.append("Constraint set is unsatisfiable.")
         reasons_ru.append("Набор формальных ограничений противоречив и не имеет решения.")

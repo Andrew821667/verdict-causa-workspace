@@ -77,7 +77,9 @@ def _pick_party(subjects: list[str], expected: str, fallback_index: int) -> str 
     return None
 
 
-def _to_formal_atoms(items: list[NormCondition] | list[NormConsequence], source_id: str) -> list[FormalAtom]:
+def _to_formal_atoms(
+    items: list[NormCondition] | list[NormConsequence], source_id: str
+) -> list[FormalAtom]:
     return [FormalAtom(id=item.id, text=item.text, source_ref=source_id) for item in items]
 
 

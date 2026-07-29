@@ -19,7 +19,9 @@ SYNTHETIC_SUPPLY_PRACTICE_UTILITY_OBSERVATIONS = [
         accepted_argument_count=1,
         human_correction_count=2,
         reviewer_usefulness_rating=3.5,
-        notes=["Синтетическая оценка: эксперт скорректировал пределы требования из-за недостатков."],
+        notes=[
+            "Синтетическая оценка: эксперт скорректировал пределы требования из-за недостатков."
+        ],
     ),
     PracticeUtilityObservation(
         id="utility-supply-authority-trace-v0",
@@ -41,9 +43,7 @@ def build_synthetic_supply_practice_utility_report(
     observations: list[PracticeUtilityObservation] | None = None,
 ) -> PracticeUtilityReport:
     selected_observations = (
-        SYNTHETIC_SUPPLY_PRACTICE_UTILITY_OBSERVATIONS
-        if observations is None
-        else observations
+        SYNTHETIC_SUPPLY_PRACTICE_UTILITY_OBSERVATIONS if observations is None else observations
     )
     total_observations = len(selected_observations)
     total_time_to_useful_draft = sum(
@@ -59,8 +59,7 @@ def build_synthetic_supply_practice_utility_report(
         observation.reviewer_usefulness_rating for observation in selected_observations
     )
     formally_smart_but_practically_useless_count = sum(
-        observation.formally_smart_but_practically_useless
-        for observation in selected_observations
+        observation.formally_smart_but_practically_useless for observation in selected_observations
     )
 
     return PracticeUtilityReport(
@@ -74,12 +73,8 @@ def build_synthetic_supply_practice_utility_report(
         total_accepted_argument_count=total_accepted_argument_count,
         total_human_correction_count=total_human_correction_count,
         average_reviewer_usefulness_rating=(
-            total_reviewer_usefulness_rating / total_observations
-            if total_observations
-            else 0.0
+            total_reviewer_usefulness_rating / total_observations if total_observations else 0.0
         ),
-        formally_smart_but_practically_useless_count=(
-            formally_smart_but_practically_useless_count
-        ),
+        formally_smart_but_practically_useless_count=(formally_smart_but_practically_useless_count),
         observations=selected_observations,
     )

@@ -947,9 +947,7 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.contractation_evidence_mapping
         )
         if self.contractation_constraint_set != expected_contractation_set:
-            raise ValueError(
-                "Contractation constraint set does not replay from reviewed evidence."
-            )
+            raise ValueError("Contractation constraint set does not replay from reviewed evidence.")
         expected_contractation_evaluation = evaluate_contractation_constraints(
             expected_contractation_set,
             self.contractation_evidence_mapping.facts,
@@ -960,9 +958,7 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.energy_supply_evidence_mapping
         )
         if self.energy_supply_constraint_set != expected_energy_supply_set:
-            raise ValueError(
-                "Energy supply constraint set does not replay from reviewed evidence."
-            )
+            raise ValueError("Energy supply constraint set does not replay from reviewed evidence.")
         expected_energy_supply_evaluation = evaluate_energy_supply_constraints(
             expected_energy_supply_set,
             self.energy_supply_evidence_mapping.facts,
@@ -981,9 +977,7 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.real_estate_sale_evidence_mapping.facts,
         )
         if self.real_estate_sale_evaluation != expected_real_estate_sale_evaluation:
-            raise ValueError(
-                "Real estate sale evaluation does not replay from reviewed evidence."
-            )
+            raise ValueError("Real estate sale evaluation does not replay from reviewed evidence.")
         expected_enterprise_sale_set = build_enterprise_sale_constraint_set(
             self.enterprise_sale_evidence_mapping
         )
@@ -996,9 +990,7 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.enterprise_sale_evidence_mapping.facts,
         )
         if self.enterprise_sale_evaluation != expected_enterprise_sale_evaluation:
-            raise ValueError(
-                "Enterprise sale evaluation does not replay from reviewed evidence."
-            )
+            raise ValueError("Enterprise sale evaluation does not replay from reviewed evidence.")
         expected_barter_set = build_barter_constraint_set(self.barter_evidence_mapping)
         if self.barter_constraint_set != expected_barter_set:
             raise ValueError("Barter constraint set does not replay from reviewed evidence.")
@@ -1048,9 +1040,7 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.vehicle_lease_evidence_mapping
         )
         if self.vehicle_lease_constraint_set != expected_vehicle_lease_set:
-            raise ValueError(
-                "Vehicle-lease constraint set does not replay from reviewed evidence."
-            )
+            raise ValueError("Vehicle-lease constraint set does not replay from reviewed evidence.")
         expected_vehicle_lease_evaluation = evaluate_vehicle_lease_constraints(
             expected_vehicle_lease_set,
             self.vehicle_lease_evidence_mapping.facts,
@@ -1104,9 +1094,7 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.residential_lease_evidence_mapping.facts,
         )
         if self.residential_lease_evaluation != expected_residential_lease_evaluation:
-            raise ValueError(
-                "Residential-lease evaluation does not replay from reviewed evidence."
-            )
+            raise ValueError("Residential-lease evaluation does not replay from reviewed evidence.")
         expected_gratuitous_use_set = build_gratuitous_use_constraint_set(
             self.gratuitous_use_evidence_mapping
         )
@@ -1595,15 +1583,9 @@ def _validate_request_integrity(
         raise ValueError("Contractation evidence uses an unsupported schema version.")
     if request.energy_supply_evidence.schema_version != ENERGY_SUPPLY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Energy supply evidence uses an unsupported schema version.")
-    if (
-        request.real_estate_sale_evidence.schema_version
-        != REAL_ESTATE_SALE_EVIDENCE_SCHEMA_VERSION
-    ):
+    if request.real_estate_sale_evidence.schema_version != REAL_ESTATE_SALE_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Real estate sale evidence uses an unsupported schema version.")
-    if (
-        request.enterprise_sale_evidence.schema_version
-        != ENTERPRISE_SALE_EVIDENCE_SCHEMA_VERSION
-    ):
+    if request.enterprise_sale_evidence.schema_version != ENTERPRISE_SALE_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Enterprise sale evidence uses an unsupported schema version.")
     if request.barter_evidence.schema_version != BARTER_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Barter evidence uses an unsupported schema version.")
@@ -1619,10 +1601,7 @@ def _validate_request_integrity(
         raise ValueError("Vehicle-lease evidence uses an unsupported schema version.")
     if request.building_lease_evidence.schema_version != BUILDING_LEASE_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Building-lease evidence uses an unsupported schema version.")
-    if (
-        request.enterprise_lease_evidence.schema_version
-        != ENTERPRISE_LEASE_EVIDENCE_SCHEMA_VERSION
-    ):
+    if request.enterprise_lease_evidence.schema_version != ENTERPRISE_LEASE_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Enterprise-lease evidence uses an unsupported schema version.")
     if request.leasing_evidence.schema_version != LEASING_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Leasing evidence uses an unsupported schema version.")
