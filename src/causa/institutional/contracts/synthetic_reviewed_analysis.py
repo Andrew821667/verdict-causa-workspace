@@ -140,6 +140,11 @@ from causa.institutional.contracts.gratuitous_use import (
     GratuitousUseEvidencePredicate,
     ReviewedGratuitousUseEvidence,
 )
+from causa.institutional.contracts.consumer_work import (
+    ConsumerWorkEvidenceAssertion,
+    ConsumerWorkEvidencePredicate,
+    ReviewedConsumerWorkEvidence,
+)
 from causa.institutional.contracts.work_contract import (
     ReviewedWorkContractEvidence,
     WorkContractEvidenceAssertion,
@@ -340,6 +345,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk702-716-work-contract-concept-terms-and-materials-v1",
     "synthetic-ru-gk717-729-work-contract-quality-acceptance-and-withdrawal-v1",
     "synthetic-case-supply-1-work-contract-evidence",
+    "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
+    "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1",
+    "synthetic-case-supply-1-consumer-work-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1712,6 +1720,48 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-work-contract-reviewer",
+        ),
+        consumer_work_evidence=ReviewedConsumerWorkEvidence(
+            id="reviewed-consumer-work-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                ConsumerWorkEvidenceAssertion(
+                    id=f"consumer-work-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-consumer-work-evidence",),
+                )
+                for predicate, value in (
+                    (ConsumerWorkEvidencePredicate.WORK_FOR_PERSONAL_CONSUMER_NEEDS, False),
+                    (
+                        ConsumerWorkEvidencePredicate.ADDITIONAL_WORK_IMPOSED_WITHOUT_CONSENT,
+                        False,
+                    ),
+                    (
+                        ConsumerWorkEvidencePredicate.WITHDRAWAL_RIGHT_BEFORE_DELIVERY_DENIED,
+                        False,
+                    ),
+                    (ConsumerWorkEvidencePredicate.CONSUMER_INFORMATION_NOT_PROVIDED, False),
+                    (ConsumerWorkEvidencePredicate.CONTRACTOR_MATERIAL_DEFECTIVE, False),
+                    (
+                        ConsumerWorkEvidencePredicate.PAYMENT_DEMANDED_BEFORE_ACCEPTANCE_WITHOUT_CONSENT,
+                        False,
+                    ),
+                    (ConsumerWorkEvidencePredicate.OPERATION_INFORMATION_NOT_PROVIDED, False),
+                    (ConsumerWorkEvidencePredicate.WORK_RESULT_HAS_SIGNIFICANT_DEFECT, False),
+                    (
+                        ConsumerWorkEvidencePredicate.SIGNIFICANT_DEFECT_FOUND_WITHIN_TEN_YEARS,
+                        False,
+                    ),
+                    (ConsumerWorkEvidencePredicate.RESULT_SOLD_WITHOUT_TWO_MONTH_NOTICE, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
+                "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-consumer-work-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

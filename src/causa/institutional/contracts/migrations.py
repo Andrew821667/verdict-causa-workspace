@@ -986,6 +986,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.51.0",
+        to_version="0.52.0",
+        reasons=[
+            "Reviewed inputs now require a separate consumer-work evidence contract.",
+            "Analysis and Russian translation distinguish qualification, imposed additional work, the withdrawal right, the information duty, contractor material, the payment order, operation information, significant defects, the ten-year claim, and the sale notice period under articles 730 through 739.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о бытовом подряде.",
+            "Анализ и русское объяснение разделяют квалификацию бытового подряда, навязанную дополнительную работу, право прекратить договор до сдачи работы, обязанность информировать заказчика, недоброкачественный материал подрядчика, порядок оплаты, сведения об использовании результата, существенные недостатки, десятилетний срок и двухмесячное предупреждение перед продажей результата по статьям 730–739 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_consumer_work_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

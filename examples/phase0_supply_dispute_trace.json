@@ -1690,6 +1690,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
+      "title": "Синтетическая проверенная модель понятия бытового подряда, прав заказчика, информации о работе и порядка оплаты по статьям 730–736 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: бытовой подряд как выполнение подрядчиком-предпринимателем работы по заданию гражданина для удовлетворения его бытовых или других личных потребностей, запрет навязывать заказчику дополнительную работу, право заказчика в любое время до сдачи работы прекратить договор с оплатой выполненной части, обязанность сообщить необходимую и достоверную информацию о работе, последствия использования недоброкачественного материала подрядчика, оплата после окончательной сдачи работы и обязанность сообщить требования к использованию результата проверяются раздельно (статьи 730–736 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "consumer_work_concept_information_and_payment_articles_730_736",
+        "legal_reference": "ГК РФ, статьи 730–736",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1",
+      "title": "Синтетическая проверенная модель последствий недостатков результата работы и неявки заказчика по статьям 737–739 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: требования заказчика при обнаружении недостатков результата работы, право требовать безвозмездного устранения существенного недостатка, обнаруженного по истечении гарантийного срока в пределах десяти лет с момента принятия результата, и право подрядчика продать невостребованный результат не ранее чем через два месяца после письменного предупреждения заказчика проверяются раздельно (статьи 737–739 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "consumer_work_defects_and_uncollected_result_articles_737_739",
+        "legal_reference": "ГК РФ, статьи 737–739",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-consumer-work-evidence",
+      "title": "Синтетическая проверенная запись фактов о бытовом подряде",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является договором бытового подряда; работа по заданию гражданина для удовлетворения его личных потребностей не выполнялась.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "consumer_work_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -5833,6 +5880,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-work-contract-reviewer"
+    },
+    "consumer_work_evidence": {
+      "id": "reviewed-consumer-work-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.consumer-work-evidence.v0",
+      "assertions": [
+        {
+          "id": "consumer-work-evidence-work_for_personal_consumer_needs",
+          "predicate": "work_for_personal_consumer_needs",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "id": "consumer-work-evidence-additional_work_imposed_without_consent",
+          "predicate": "additional_work_imposed_without_consent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "id": "consumer-work-evidence-withdrawal_right_before_delivery_denied",
+          "predicate": "withdrawal_right_before_delivery_denied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "id": "consumer-work-evidence-consumer_information_not_provided",
+          "predicate": "consumer_information_not_provided",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "id": "consumer-work-evidence-contractor_material_defective",
+          "predicate": "contractor_material_defective",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "id": "consumer-work-evidence-payment_demanded_before_acceptance_without_consent",
+          "predicate": "payment_demanded_before_acceptance_without_consent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "id": "consumer-work-evidence-operation_information_not_provided",
+          "predicate": "operation_information_not_provided",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "id": "consumer-work-evidence-work_result_has_significant_defect",
+          "predicate": "work_result_has_significant_defect",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "id": "consumer-work-evidence-significant_defect_found_within_ten_years",
+          "predicate": "significant_defect_found_within_ten_years",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "id": "consumer-work-evidence-result_sold_without_two_month_notice",
+          "predicate": "result_sold_without_two_month_notice",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
+        "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-consumer-work-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -10612,6 +10752,7 @@
       "synthetic-barter-reviewer",
       "synthetic-building-lease-reviewer",
       "synthetic-case-evidence-reviewer",
+      "synthetic-consumer-work-reviewer",
       "synthetic-contractation-reviewer",
       "synthetic-energy-supply-reviewer",
       "synthetic-enterprise-lease-reviewer",
@@ -10658,6 +10799,7 @@
       "synthetic-case-supply-1-annuity-evidence",
       "synthetic-case-supply-1-barter-evidence",
       "synthetic-case-supply-1-building-lease-evidence",
+      "synthetic-case-supply-1-consumer-work-evidence",
       "synthetic-case-supply-1-contractation-evidence",
       "synthetic-case-supply-1-energy-supply-evidence",
       "synthetic-case-supply-1-enterprise-lease-evidence",
@@ -10794,6 +10936,8 @@
       "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1",
       "synthetic-ru-gk702-716-work-contract-concept-terms-and-materials-v1",
       "synthetic-ru-gk717-729-work-contract-quality-acceptance-and-withdrawal-v1",
+      "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
+      "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -15605,6 +15749,142 @@
       "warnings_ru": [
         "Модель проверяет только формальные общие положения о подряде и не заменяет судебную оценку.",
         "Существенность превышения сметы, характер недостатков, соразмерность уменьшения цены и размер убытков оцениваются экспертом и судом (статьи 709, 717 и 723 ГК РФ)."
+      ]
+    },
+    "consumer_work_evidence_mapping": {
+      "evidence_id": "reviewed-consumer-work-evidence-supply-1-v0",
+      "schema_version": "contracts.consumer-work-evidence.v0",
+      "mapping_version": "contracts-reviewed-consumer-work-to-facts-v0",
+      "facts": {
+        "work_for_personal_consumer_needs": false,
+        "additional_work_imposed_without_consent": false,
+        "withdrawal_right_before_delivery_denied": false,
+        "consumer_information_not_provided": false,
+        "contractor_material_defective": false,
+        "payment_demanded_before_acceptance_without_consent": false,
+        "operation_information_not_provided": false,
+        "work_result_has_significant_defect": false,
+        "significant_defect_found_within_ten_years": false,
+        "result_sold_without_two_month_notice": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
+        "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "additional_work_imposed_without_consent",
+          "assertion_id": "consumer-work-evidence-additional_work_imposed_without_consent",
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "consumer_information_not_provided",
+          "assertion_id": "consumer-work-evidence-consumer_information_not_provided",
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "contractor_material_defective",
+          "assertion_id": "consumer-work-evidence-contractor_material_defective",
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "operation_information_not_provided",
+          "assertion_id": "consumer-work-evidence-operation_information_not_provided",
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "payment_demanded_before_acceptance_without_consent",
+          "assertion_id": "consumer-work-evidence-payment_demanded_before_acceptance_without_consent",
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "result_sold_without_two_month_notice",
+          "assertion_id": "consumer-work-evidence-result_sold_without_two_month_notice",
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "significant_defect_found_within_ten_years",
+          "assertion_id": "consumer-work-evidence-significant_defect_found_within_ten_years",
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "withdrawal_right_before_delivery_denied",
+          "assertion_id": "consumer-work-evidence-withdrawal_right_before_delivery_denied",
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "work_for_personal_consumer_needs",
+          "assertion_id": "consumer-work-evidence-work_for_personal_consumer_needs",
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "work_result_has_significant_defect",
+          "assertion_id": "consumer-work-evidence-work_result_has_significant_defect",
+          "source_refs": [
+            "synthetic-case-supply-1-consumer-work-evidence"
+          ]
+        }
+      ]
+    },
+    "consumer_work_constraint_set": {
+      "id": "consumer-work-constraint-set:reviewed-consumer-work-evidence-supply-1-v0",
+      "model_version": "contracts-consumer-work-articles-730-739-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
+        "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1"
+      ],
+      "expressions": [
+        "consumer_work_qualified == work_for_personal_consumer_needs",
+        "imposed_additional_work_not_payable == consumer_work_qualified AND additional_work_imposed_without_consent",
+        "withdrawal_right_denied == consumer_work_qualified AND withdrawal_right_before_delivery_denied",
+        "consumer_information_duty_breached == consumer_work_qualified AND consumer_information_not_provided",
+        "contractor_material_liability == consumer_work_qualified AND contractor_material_defective",
+        "payment_order_breached == consumer_work_qualified AND payment_demanded_before_acceptance_without_consent",
+        "operation_information_duty_breached == consumer_work_qualified AND operation_information_not_provided",
+        "significant_defect_remedy_available == consumer_work_qualified AND work_result_has_significant_defect",
+        "ten_year_claim_available == consumer_work_qualified AND work_result_has_significant_defect AND significant_defect_found_within_ten_years",
+        "sale_notice_period_breached == consumer_work_qualified AND result_sold_without_two_month_notice",
+        "requires_human_consumer_work_assessment == imposed_additional_work_not_payable OR withdrawal_right_denied OR consumer_information_duty_breached OR contractor_material_liability OR payment_order_breached OR operation_information_duty_breached OR significant_defect_remedy_available OR sale_notice_period_breached"
+      ]
+    },
+    "consumer_work_evaluation": {
+      "constraint_set_id": "consumer-work-constraint-set:reviewed-consumer-work-evidence-supply-1-v0",
+      "satisfiable": true,
+      "consumer_work_qualified": false,
+      "imposed_additional_work_not_payable": false,
+      "withdrawal_right_denied": false,
+      "consumer_information_duty_breached": false,
+      "contractor_material_liability": false,
+      "payment_order_breached": false,
+      "operation_information_duty_breached": false,
+      "significant_defect_remedy_available": false,
+      "ten_year_claim_available": false,
+      "sale_notice_period_breached": false,
+      "requires_human_consumer_work_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор бытового подряда."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о бытовом подряде и не заменяет судебную оценку.",
+        "Существенность недостатка, достоверность и полнота предоставленной информации и размер расходов заказчика оцениваются экспертом и судом (статьи 732, 737 и 739 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -20978,7 +21258,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.51.0",
+      "institutional_package_version": "contracts-ru-v0@0.52.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -22977,6 +23257,7 @@
           "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-building-lease-evidence",
+          "synthetic-case-supply-1-consumer-work-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-energy-supply-evidence",
           "synthetic-case-supply-1-enterprise-lease-evidence",
@@ -23113,6 +23394,8 @@
           "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1",
           "synthetic-ru-gk702-716-work-contract-concept-terms-and-materials-v1",
           "synthetic-ru-gk717-729-work-contract-quality-acceptance-and-withdrawal-v1",
+          "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
+          "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -24123,6 +24406,7 @@
           "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-building-lease-evidence",
+          "synthetic-case-supply-1-consumer-work-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-energy-supply-evidence",
           "synthetic-case-supply-1-enterprise-lease-evidence",
@@ -24259,6 +24543,8 @@
           "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1",
           "synthetic-ru-gk702-716-work-contract-concept-terms-and-materials-v1",
           "synthetic-ru-gk717-729-work-contract-quality-acceptance-and-withdrawal-v1",
+          "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
+          "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -25269,6 +25555,7 @@
           "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-building-lease-evidence",
+          "synthetic-case-supply-1-consumer-work-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-energy-supply-evidence",
           "synthetic-case-supply-1-enterprise-lease-evidence",
@@ -25405,6 +25692,8 @@
           "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1",
           "synthetic-ru-gk702-716-work-contract-concept-terms-and-materials-v1",
           "synthetic-ru-gk717-729-work-contract-quality-acceptance-and-withdrawal-v1",
+          "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
+          "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -25494,7 +25783,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.51.0",
+      "institutional_package_version": "contracts-ru-v0@0.52.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -26868,6 +27157,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель понятия бытового подряда, прав заказчика, информации о работе и порядка оплаты по статьям 730–736 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "consumer_work_concept_information_and_payment_articles_730_736",
+          "legal_reference": "ГК РФ, статьи 730–736",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель последствий недостатков результата работы и неявки заказчика по статьям 737–739 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "consumer_work_defects_and_uncollected_result_articles_737_739",
+          "legal_reference": "ГК РФ, статьи 737–739",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-consumer-work-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о бытовом подряде",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "consumer_work_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -27478,6 +27805,7 @@
             "synthetic-barter-reviewer",
             "synthetic-building-lease-reviewer",
             "synthetic-case-evidence-reviewer",
+            "synthetic-consumer-work-reviewer",
             "synthetic-contractation-reviewer",
             "synthetic-energy-supply-reviewer",
             "synthetic-enterprise-lease-reviewer",

@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о бытовом подряде по статьям 730–739 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-consumer-work-evidence-supply-1-v0",
+    "schema_version": "contracts.consumer-work-evidence.v0",
+    "mapping_version": "contracts-reviewed-consumer-work-to-facts-v0",
+    "facts": {
+      "work_for_personal_consumer_needs": false,
+      "additional_work_imposed_without_consent": false,
+      "withdrawal_right_before_delivery_denied": false,
+      "consumer_information_not_provided": false,
+      "contractor_material_defective": false,
+      "payment_demanded_before_acceptance_without_consent": false,
+      "operation_information_not_provided": false,
+      "work_result_has_significant_defect": false,
+      "significant_defect_found_within_ten_years": false,
+      "result_sold_without_two_month_notice": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
+      "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "additional_work_imposed_without_consent",
+        "assertion_id": "consumer-work-evidence-additional_work_imposed_without_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-consumer-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "consumer_information_not_provided",
+        "assertion_id": "consumer-work-evidence-consumer_information_not_provided",
+        "source_refs": [
+          "synthetic-case-supply-1-consumer-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "contractor_material_defective",
+        "assertion_id": "consumer-work-evidence-contractor_material_defective",
+        "source_refs": [
+          "synthetic-case-supply-1-consumer-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "operation_information_not_provided",
+        "assertion_id": "consumer-work-evidence-operation_information_not_provided",
+        "source_refs": [
+          "synthetic-case-supply-1-consumer-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "payment_demanded_before_acceptance_without_consent",
+        "assertion_id": "consumer-work-evidence-payment_demanded_before_acceptance_without_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-consumer-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "result_sold_without_two_month_notice",
+        "assertion_id": "consumer-work-evidence-result_sold_without_two_month_notice",
+        "source_refs": [
+          "synthetic-case-supply-1-consumer-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "significant_defect_found_within_ten_years",
+        "assertion_id": "consumer-work-evidence-significant_defect_found_within_ten_years",
+        "source_refs": [
+          "synthetic-case-supply-1-consumer-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "withdrawal_right_before_delivery_denied",
+        "assertion_id": "consumer-work-evidence-withdrawal_right_before_delivery_denied",
+        "source_refs": [
+          "synthetic-case-supply-1-consumer-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "work_for_personal_consumer_needs",
+        "assertion_id": "consumer-work-evidence-work_for_personal_consumer_needs",
+        "source_refs": [
+          "synthetic-case-supply-1-consumer-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "work_result_has_significant_defect",
+        "assertion_id": "consumer-work-evidence-work_result_has_significant_defect",
+        "source_refs": [
+          "synthetic-case-supply-1-consumer-work-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "consumer-work-constraint-set:reviewed-consumer-work-evidence-supply-1-v0",
+    "model_version": "contracts-consumer-work-articles-730-739-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
+      "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1"
+    ],
+    "expressions": [
+      "consumer_work_qualified == work_for_personal_consumer_needs",
+      "imposed_additional_work_not_payable == consumer_work_qualified AND additional_work_imposed_without_consent",
+      "withdrawal_right_denied == consumer_work_qualified AND withdrawal_right_before_delivery_denied",
+      "consumer_information_duty_breached == consumer_work_qualified AND consumer_information_not_provided",
+      "contractor_material_liability == consumer_work_qualified AND contractor_material_defective",
+      "payment_order_breached == consumer_work_qualified AND payment_demanded_before_acceptance_without_consent",
+      "operation_information_duty_breached == consumer_work_qualified AND operation_information_not_provided",
+      "significant_defect_remedy_available == consumer_work_qualified AND work_result_has_significant_defect",
+      "ten_year_claim_available == consumer_work_qualified AND work_result_has_significant_defect AND significant_defect_found_within_ten_years",
+      "sale_notice_period_breached == consumer_work_qualified AND result_sold_without_two_month_notice",
+      "requires_human_consumer_work_assessment == imposed_additional_work_not_payable OR withdrawal_right_denied OR consumer_information_duty_breached OR contractor_material_liability OR payment_order_breached OR operation_information_duty_breached OR significant_defect_remedy_available OR sale_notice_period_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "consumer-work-constraint-set:reviewed-consumer-work-evidence-supply-1-v0",
+    "satisfiable": true,
+    "consumer_work_qualified": false,
+    "imposed_additional_work_not_payable": false,
+    "withdrawal_right_denied": false,
+    "consumer_information_duty_breached": false,
+    "contractor_material_liability": false,
+    "payment_order_breached": false,
+    "operation_information_duty_breached": false,
+    "significant_defect_remedy_available": false,
+    "ten_year_claim_available": false,
+    "sale_notice_period_breached": false,
+    "requires_human_consumer_work_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор бытового подряда."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о бытовом подряде и не заменяет судебную оценку.",
+      "Существенность недостатка, достоверность и полнота предоставленной информации и размер расходов заказчика оцениваются экспертом и судом (статьи 732, 737 и 739 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "consumer-work-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "consumer-work-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "consumer_work_qualified": false
+        },
+        "observed_outcomes": {
+          "consumer_work_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор бытового подряда."
+        ]
+      },
+      {
+        "task_id": "consumer-work-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "consumer_work_qualified": true,
+          "requires_human_consumer_work_assessment": false
+        },
+        "observed_outcomes": {
+          "consumer_work_qualified": true,
+          "requires_human_consumer_work_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "consumer-work-bench-imposed-work",
+        "passed": true,
+        "expected_outcomes": {
+          "imposed_additional_work_not_payable": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "observed_outcomes": {
+          "imposed_additional_work_not_payable": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "Подрядчик не вправе навязывать заказчику включение в договор бытового подряда дополнительной работы или услуги; заказчик вправе отказаться от их оплаты (статья 731 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "consumer-work-bench-withdrawal-denied",
+        "passed": true,
+        "expected_outcomes": {
+          "withdrawal_right_denied": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "observed_outcomes": {
+          "withdrawal_right_denied": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "Заказчик вправе в любое время до сдачи ему работы отказаться от договора, уплатив часть цены пропорционально выполненной работе и возместив расходы подрядчика; условия, лишающие заказчика этого права, ничтожны (статья 731 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "consumer-work-bench-information",
+        "passed": true,
+        "expected_outcomes": {
+          "consumer_information_duty_breached": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "observed_outcomes": {
+          "consumer_information_duty_breached": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "Подрядчик обязан до заключения договора сообщить заказчику необходимую и достоверную информацию о предлагаемой работе, её видах и особенностях, цене и форме оплаты (статья 732 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "consumer-work-bench-contractor-material",
+        "passed": true,
+        "expected_outcomes": {
+          "contractor_material_liability": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "observed_outcomes": {
+          "contractor_material_liability": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "Работа выполнена из недоброкачественного материала подрядчика; наступают последствия, предусмотренные для выполнения работы с недостатками (статьи 733 и 739 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "consumer-work-bench-payment-order",
+        "passed": true,
+        "expected_outcomes": {
+          "payment_order_breached": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "observed_outcomes": {
+          "payment_order_breached": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "Работа оплачивается заказчиком после её окончательной сдачи подрядчиком; с согласия заказчика работа может быть оплачена при заключении договора полностью или путём выдачи аванса (статья 735 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "consumer-work-bench-operation-information",
+        "passed": true,
+        "expected_outcomes": {
+          "operation_information_duty_breached": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "observed_outcomes": {
+          "operation_information_duty_breached": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "При сдаче работы подрядчик обязан сообщить заказчику о требованиях, которые необходимо соблюдать для эффективного и безопасного использования результата, и о возможных последствиях их несоблюдения (статья 736 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "consumer-work-bench-ten-year-defect",
+        "passed": true,
+        "expected_outcomes": {
+          "significant_defect_remedy_available": true,
+          "ten_year_claim_available": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "observed_outcomes": {
+          "significant_defect_remedy_available": true,
+          "ten_year_claim_available": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "Результат работы имеет существенный недостаток: заказчик вправе требовать его безвозмездного устранения либо возмещения расходов на устранение своими силами или третьим лицом (статья 737 ГК РФ).",
+          "Существенный недостаток обнаружен по истечении гарантийного срока, но в пределах десяти лет с момента принятия результата работы, что сохраняет требование к подрядчику (статья 737 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "consumer-work-bench-sale-notice",
+        "passed": true,
+        "expected_outcomes": {
+          "sale_notice_period_breached": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "observed_outcomes": {
+          "sale_notice_period_breached": true,
+          "requires_human_consumer_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "При неявке заказчика за результатом работы подрядчик вправе продать его только по истечении двух месяцев со дня письменного предупреждения заказчика (статья 738 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "consumer-work-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "consumer-work-red-qualify-without-personal-needs",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "consumer_work_qualified": true
+        },
+        "observed_outcomes": {
+          "consumer_work_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор бытового подряда."
+        ]
+      },
+      {
+        "case_id": "consumer-work-red-allow-imposed-work",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "imposed_additional_work_not_payable": false
+        },
+        "observed_outcomes": {
+          "imposed_additional_work_not_payable": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "Подрядчик не вправе навязывать заказчику включение в договор бытового подряда дополнительной работы или услуги; заказчик вправе отказаться от их оплаты (статья 731 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consumer-work-red-allow-withdrawal-denial",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "withdrawal_right_denied": false
+        },
+        "observed_outcomes": {
+          "withdrawal_right_denied": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "Заказчик вправе в любое время до сдачи ему работы отказаться от договора, уплатив часть цены пропорционально выполненной работе и возместив расходы подрядчика; условия, лишающие заказчика этого права, ничтожны (статья 731 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consumer-work-red-ignore-information",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "consumer_information_duty_breached": false
+        },
+        "observed_outcomes": {
+          "consumer_information_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "Подрядчик обязан до заключения договора сообщить заказчику необходимую и достоверную информацию о предлагаемой работе, её видах и особенностях, цене и форме оплаты (статья 732 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consumer-work-red-excuse-contractor-material",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contractor_material_liability": false
+        },
+        "observed_outcomes": {
+          "contractor_material_liability": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "Работа выполнена из недоброкачественного материала подрядчика; наступают последствия, предусмотренные для выполнения работы с недостатками (статьи 733 и 739 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consumer-work-red-ignore-payment-order",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "payment_order_breached": false
+        },
+        "observed_outcomes": {
+          "payment_order_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "Работа оплачивается заказчиком после её окончательной сдачи подрядчиком; с согласия заказчика работа может быть оплачена при заключении договора полностью или путём выдачи аванса (статья 735 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consumer-work-red-ignore-operation-information",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "operation_information_duty_breached": false
+        },
+        "observed_outcomes": {
+          "operation_information_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "При сдаче работы подрядчик обязан сообщить заказчику о требованиях, которые необходимо соблюдать для эффективного и безопасного использования результата, и о возможных последствиях их несоблюдения (статья 736 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consumer-work-red-claim-without-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "ten_year_claim_available": true
+        },
+        "observed_outcomes": {
+          "ten_year_claim_available": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consumer-work-red-ignore-sale-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "sale_notice_period_breached": false
+        },
+        "observed_outcomes": {
+          "sale_notice_period_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "При неявке заказчика за результатом работы подрядчик вправе продать его только по истечении двух месяцев со дня письменного предупреждения заказчика (статья 738 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consumer-work-red-skip-human-on-significant-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_consumer_work_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_consumer_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как бытовой подряд: подрядчик, осуществляющий соответствующую предпринимательскую деятельность, выполняет по заданию гражданина работу для удовлетворения бытовых или других личных потребностей заказчика (статья 730 ГК РФ).",
+          "Результат работы имеет существенный недостаток: заказчик вправе требовать его безвозмездного устранения либо возмещения расходов на устранение своими силами или третьим лицом (статья 737 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

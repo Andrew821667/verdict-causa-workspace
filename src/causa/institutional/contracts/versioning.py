@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.52.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed consumer-work evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 730 through 739.",
+            "Qualification, imposed additional work, the withdrawal right, the information duty, contractor material, the payment order, operation information, significant defects, the ten-year claim, and the sale notice period remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о бытовом подряде обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 730–739 ГК РФ.",
+            "Квалификация бытового подряда, навязанная дополнительная работа, право прекратить договор до сдачи работы, обязанность информировать заказчика, недоброкачественный материал подрядчика, порядок оплаты, сведения об использовании результата, существенные недостатки, десятилетний срок и двухмесячное предупреждение перед продажей результата разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.51.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

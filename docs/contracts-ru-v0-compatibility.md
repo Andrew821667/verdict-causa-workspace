@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.52.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью бытового подряда |
 | `0.51.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью подряда |
 | `0.50.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью безвозмездного пользования |
 | `0.49.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью найма жилого помещения |
@@ -59,6 +60,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.51.0` → `0.52.0` соберите отдельно проверенный контракт данных о бытовом подряде (`contracts.consumer-work-evidence.v0`). Не выводите квалификацию бытового подряда, навязанную дополнительную работу, право прекратить договор до сдачи работы, обязанность информировать заказчика, недоброкачественный материал подрядчика, порядок оплаты, сведения об использовании результата, существенные недостатки, десятилетний срок и двухмесячное предупреждение перед продажей результата из прежних результатов об общих положениях о подряде или розничной купле-продаже. Пересоберите артефакты оценки бытового подряда, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.50.0` → `0.51.0` соберите отдельно проверенный контракт данных о подряде (`contracts.work-contract-evidence.v0`). Не выводите квалификацию подряда, обязанность выполнить работу лично, согласование сроков, предупреждение о превышении сметы, непригодность материала заказчика, предупреждение о рисках, ответственность за недостатки, срок предъявления требования, обязанность приёмки и оплату при одностороннем отказе из прежних результатов о купле-продаже или аренде. Пересоберите артефакты оценки подряда, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
