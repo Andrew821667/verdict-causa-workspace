@@ -2153,6 +2153,66 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk740-749-construction-contract-concept-documentation-and-duties-v1",
+        title="Синтетическая проверенная модель понятия строительного подряда, страхования риска, технической документации и обязанностей заказчика по статьям 740–749 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: строительный подряд как обязанность подрядчика в "
+            "установленный срок построить по заданию заказчика объект либо выполнить иные "
+            "строительные работы и обязанность заказчика создать необходимые условия, принять "
+            "результат и уплатить цену, страхование риска случайной гибели объекта, согласование "
+            "технической документации и сметы, сообщение заказчику о не учтённых в документации "
+            "работах, предоставление земельного участка и услуг и контроль заказчика за ходом и "
+            "качеством работ проверяются раздельно (статьи 740–749 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "construction_contract_concept_documentation_and_duties_articles_740_749",
+            "legal_reference": "ГК РФ, статьи 740–749",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk752-757-construction-contract-conservation-acceptance-and-quality-v1",
+        title="Синтетическая проверенная модель консервации строительства, сдачи и приёмки работ, качества и предельного срока обнаружения недостатков по статьям 752–757 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: последствия приостановления строительства и "
+            "консервации объекта, порядок сдачи и приёмки результата работ и односторонний акт "
+            "при необоснованном отказе от его подписания, ответственность подрядчика за "
+            "отступления от технической документации и обязательных строительных норм и "
+            "предельный пятилетний срок обнаружения недостатков проверяются раздельно "
+            "(статьи 752–757 ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "construction_contract_conservation_acceptance_and_quality_articles_752_757",
+            "legal_reference": "ГК РФ, статьи 752–757",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-construction-contract-evidence",
+        title="Синтетическая проверенная запись фактов о строительном подряде",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой товаров за единовременную "
+            "оплату и не является договором строительного подряда; строительство объекта и иные "
+            "строительные работы по заданию заказчика не выполнялись."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "construction_contract_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

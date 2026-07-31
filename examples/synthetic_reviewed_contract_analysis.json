@@ -1737,6 +1737,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk740-749-construction-contract-concept-documentation-and-duties-v1",
+      "title": "Синтетическая проверенная модель понятия строительного подряда, страхования риска, технической документации и обязанностей заказчика по статьям 740–749 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: строительный подряд как обязанность подрядчика в установленный срок построить по заданию заказчика объект либо выполнить иные строительные работы и обязанность заказчика создать необходимые условия, принять результат и уплатить цену, страхование риска случайной гибели объекта, согласование технической документации и сметы, сообщение заказчику о не учтённых в документации работах, предоставление земельного участка и услуг и контроль заказчика за ходом и качеством работ проверяются раздельно (статьи 740–749 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "construction_contract_concept_documentation_and_duties_articles_740_749",
+        "legal_reference": "ГК РФ, статьи 740–749",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk752-757-construction-contract-conservation-acceptance-and-quality-v1",
+      "title": "Синтетическая проверенная модель консервации строительства, сдачи и приёмки работ, качества и предельного срока обнаружения недостатков по статьям 752–757 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: последствия приостановления строительства и консервации объекта, порядок сдачи и приёмки результата работ и односторонний акт при необоснованном отказе от его подписания, ответственность подрядчика за отступления от технической документации и обязательных строительных норм и предельный пятилетний срок обнаружения недостатков проверяются раздельно (статьи 752–757 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "construction_contract_conservation_acceptance_and_quality_articles_752_757",
+        "legal_reference": "ГК РФ, статьи 752–757",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-construction-contract-evidence",
+      "title": "Синтетическая проверенная запись фактов о строительном подряде",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является договором строительного подряда; строительство объекта и иные строительные работы по заданию заказчика не выполнялись.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "construction_contract_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -5973,6 +6020,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-consumer-work-reviewer"
+    },
+    "construction_contract_evidence": {
+      "id": "reviewed-construction-contract-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.construction-contract-evidence.v0",
+      "assertions": [
+        {
+          "id": "construction-contract-evidence-construction_work_performed_and_accepted_for_price",
+          "predicate": "construction_work_performed_and_accepted_for_price",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "id": "construction-contract-evidence-risk_insurance_duty_unmet",
+          "predicate": "risk_insurance_duty_unmet",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "id": "construction-contract-evidence-technical_documentation_or_estimate_not_agreed",
+          "predicate": "technical_documentation_or_estimate_not_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "id": "construction-contract-evidence-additional_work_discovered_without_notice",
+          "predicate": "additional_work_discovered_without_notice",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "id": "construction-contract-evidence-customer_failed_to_provide_site_or_services",
+          "predicate": "customer_failed_to_provide_site_or_services",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "id": "construction-contract-evidence-customer_supervision_obstructed",
+          "predicate": "customer_supervision_obstructed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "id": "construction-contract-evidence-construction_suspended_and_conserved",
+          "predicate": "construction_suspended_and_conserved",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "id": "construction-contract-evidence-acceptance_act_signing_refused_without_grounds",
+          "predicate": "acceptance_act_signing_refused_without_grounds",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "id": "construction-contract-evidence-work_deviates_from_documentation_or_requirements",
+          "predicate": "work_deviates_from_documentation_or_requirements",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "id": "construction-contract-evidence-defect_found_within_five_year_period",
+          "predicate": "defect_found_within_five_year_period",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk740-749-construction-contract-concept-documentation-and-duties-v1",
+        "synthetic-ru-gk752-757-construction-contract-conservation-acceptance-and-quality-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-construction-contract-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -10752,6 +10892,7 @@
       "synthetic-barter-reviewer",
       "synthetic-building-lease-reviewer",
       "synthetic-case-evidence-reviewer",
+      "synthetic-construction-contract-reviewer",
       "synthetic-consumer-work-reviewer",
       "synthetic-contractation-reviewer",
       "synthetic-energy-supply-reviewer",
@@ -10799,6 +10940,7 @@
       "synthetic-case-supply-1-annuity-evidence",
       "synthetic-case-supply-1-barter-evidence",
       "synthetic-case-supply-1-building-lease-evidence",
+      "synthetic-case-supply-1-construction-contract-evidence",
       "synthetic-case-supply-1-consumer-work-evidence",
       "synthetic-case-supply-1-contractation-evidence",
       "synthetic-case-supply-1-energy-supply-evidence",
@@ -10938,6 +11080,8 @@
       "synthetic-ru-gk717-729-work-contract-quality-acceptance-and-withdrawal-v1",
       "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
       "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1",
+      "synthetic-ru-gk740-749-construction-contract-concept-documentation-and-duties-v1",
+      "synthetic-ru-gk752-757-construction-contract-conservation-acceptance-and-quality-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -15885,6 +16029,142 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о бытовом подряде и не заменяет судебную оценку.",
         "Существенность недостатка, достоверность и полнота предоставленной информации и размер расходов заказчика оцениваются экспертом и судом (статьи 732, 737 и 739 ГК РФ)."
+      ]
+    },
+    "construction_contract_evidence_mapping": {
+      "evidence_id": "reviewed-construction-contract-evidence-supply-1-v0",
+      "schema_version": "contracts.construction-contract-evidence.v0",
+      "mapping_version": "contracts-reviewed-construction-contract-to-facts-v0",
+      "facts": {
+        "construction_work_performed_and_accepted_for_price": false,
+        "risk_insurance_duty_unmet": false,
+        "technical_documentation_or_estimate_not_agreed": false,
+        "additional_work_discovered_without_notice": false,
+        "customer_failed_to_provide_site_or_services": false,
+        "customer_supervision_obstructed": false,
+        "construction_suspended_and_conserved": false,
+        "acceptance_act_signing_refused_without_grounds": false,
+        "work_deviates_from_documentation_or_requirements": false,
+        "defect_found_within_five_year_period": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk740-749-construction-contract-concept-documentation-and-duties-v1",
+        "synthetic-ru-gk752-757-construction-contract-conservation-acceptance-and-quality-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "acceptance_act_signing_refused_without_grounds",
+          "assertion_id": "construction-contract-evidence-acceptance_act_signing_refused_without_grounds",
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "additional_work_discovered_without_notice",
+          "assertion_id": "construction-contract-evidence-additional_work_discovered_without_notice",
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "construction_suspended_and_conserved",
+          "assertion_id": "construction-contract-evidence-construction_suspended_and_conserved",
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "construction_work_performed_and_accepted_for_price",
+          "assertion_id": "construction-contract-evidence-construction_work_performed_and_accepted_for_price",
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "customer_failed_to_provide_site_or_services",
+          "assertion_id": "construction-contract-evidence-customer_failed_to_provide_site_or_services",
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "customer_supervision_obstructed",
+          "assertion_id": "construction-contract-evidence-customer_supervision_obstructed",
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "defect_found_within_five_year_period",
+          "assertion_id": "construction-contract-evidence-defect_found_within_five_year_period",
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "risk_insurance_duty_unmet",
+          "assertion_id": "construction-contract-evidence-risk_insurance_duty_unmet",
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "technical_documentation_or_estimate_not_agreed",
+          "assertion_id": "construction-contract-evidence-technical_documentation_or_estimate_not_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        },
+        {
+          "fact_name": "work_deviates_from_documentation_or_requirements",
+          "assertion_id": "construction-contract-evidence-work_deviates_from_documentation_or_requirements",
+          "source_refs": [
+            "synthetic-case-supply-1-construction-contract-evidence"
+          ]
+        }
+      ]
+    },
+    "construction_contract_constraint_set": {
+      "id": "construction-contract-constraint-set:reviewed-construction-contract-evidence-supply-1-v0",
+      "model_version": "contracts-construction-contract-articles-740-757-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk740-749-construction-contract-concept-documentation-and-duties-v1",
+        "synthetic-ru-gk752-757-construction-contract-conservation-acceptance-and-quality-v1"
+      ],
+      "expressions": [
+        "construction_contract_qualified == construction_work_performed_and_accepted_for_price",
+        "risk_insurance_duty_breached == construction_contract_qualified AND risk_insurance_duty_unmet",
+        "documentation_or_estimate_condition_missing == construction_contract_qualified AND technical_documentation_or_estimate_not_agreed",
+        "additional_work_notice_duty_breached == construction_contract_qualified AND additional_work_discovered_without_notice",
+        "customer_cooperation_duty_breached == construction_contract_qualified AND customer_failed_to_provide_site_or_services",
+        "supervision_right_obstructed == construction_contract_qualified AND customer_supervision_obstructed",
+        "conservation_settlement_due == construction_contract_qualified AND construction_suspended_and_conserved",
+        "acceptance_act_dispute == construction_contract_qualified AND acceptance_act_signing_refused_without_grounds",
+        "construction_quality_breached == construction_contract_qualified AND work_deviates_from_documentation_or_requirements",
+        "five_year_defect_claim_available == construction_contract_qualified AND work_deviates_from_documentation_or_requirements AND defect_found_within_five_year_period",
+        "requires_human_construction_contract_assessment == risk_insurance_duty_breached OR documentation_or_estimate_condition_missing OR additional_work_notice_duty_breached OR customer_cooperation_duty_breached OR supervision_right_obstructed OR conservation_settlement_due OR acceptance_act_dispute OR construction_quality_breached"
+      ]
+    },
+    "construction_contract_evaluation": {
+      "constraint_set_id": "construction-contract-constraint-set:reviewed-construction-contract-evidence-supply-1-v0",
+      "satisfiable": true,
+      "construction_contract_qualified": false,
+      "risk_insurance_duty_breached": false,
+      "documentation_or_estimate_condition_missing": false,
+      "additional_work_notice_duty_breached": false,
+      "customer_cooperation_duty_breached": false,
+      "supervision_right_obstructed": false,
+      "conservation_settlement_due": false,
+      "acceptance_act_dispute": false,
+      "construction_quality_breached": false,
+      "five_year_defect_claim_available": false,
+      "requires_human_construction_contract_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор строительного подряда."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о строительном подряде и не заменяет судебную оценку.",
+        "Существенность отступлений от документации, обоснованность отказа от подписания акта и объём расходов при консервации оцениваются экспертом и судом (статьи 752, 753 и 754 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -21258,7 +21538,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.52.0",
+      "institutional_package_version": "contracts-ru-v0@0.53.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

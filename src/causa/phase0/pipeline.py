@@ -88,6 +88,9 @@ from causa.institutional.contracts.synthetic_residential_lease import (
 from causa.institutional.contracts.synthetic_gratuitous_use import (
     build_synthetic_gratuitous_use_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_construction_contract import (
+    build_synthetic_construction_contract_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_consumer_work import (
     build_synthetic_consumer_work_evaluation_artifact,
 )
@@ -794,6 +797,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-construction-contract",
+            title="Проверка строительного подряда",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.construction_contract_evidence_mapping.evidence_id,
+                trace.analysis_result.construction_contract_constraint_set.id,
+                *trace.analysis_result.construction_contract_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.construction_contract_evaluation.reasons_ru,
+                "Квалификация строительного подряда, страхование риска случайной гибели объекта, согласование технической документации и сметы, сообщение заказчику о не учтённых работах, предоставление участка и услуг, контроль заказчика за ходом работ, расчёты при консервации строительства, односторонний акт приёмки, отступления от документации и обязательных норм и предельный пятилетний срок обнаружения недостатков проверяются раздельно по статьям 740–757 ГК РФ.",
+                "Существенность отступлений от документации, обоснованность отказа от подписания акта и объём расходов при консервации оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1083,6 +1101,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     gratuitous_use_artifact = build_synthetic_gratuitous_use_evaluation_artifact()
     work_contract_artifact = build_synthetic_work_contract_evaluation_artifact()
     consumer_work_artifact = build_synthetic_consumer_work_evaluation_artifact()
+    construction_contract_artifact = build_synthetic_construction_contract_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -1208,6 +1227,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-work-contract-spec.md",
                 "src/causa/institutional/contracts/consumer_work.py",
                 "docs/contract-consumer-work-spec.md",
+                "src/causa/institutional/contracts/construction_contract.py",
+                "docs/contract-construction-contract-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -1261,6 +1282,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_gratuitous_use_evaluation_report.json",
                 "examples/synthetic_work_contract_evaluation_report.json",
                 "examples/synthetic_consumer_work_evaluation_report.json",
+                "examples/synthetic_construction_contract_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -1269,12 +1291,12 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 *(
-                    f"examples/migrations/contracts-ru-v0-{version}-to-0.52.0-migration-report.json"
+                    f"examples/migrations/contracts-ru-v0-{version}-to-0.53.0-migration-report.json"
                     for version in (
                         "0.1.0",
                         "0.3.0",
                         "0.4.0",
-                        *(f"0.{minor}.0" for minor in range(5, 52)),
+                        *(f"0.{minor}.0" for minor in range(5, 53)),
                     )
                 ),
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
@@ -1414,6 +1436,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 work_contract_artifact.red_team_report.id,
                 consumer_work_artifact.benchmark_report.id,
                 consumer_work_artifact.red_team_report.id,
+                construction_contract_artifact.benchmark_report.id,
+                construction_contract_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -1479,6 +1503,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_gratuitous_use_evaluation_report.json",
                 "examples/synthetic_work_contract_evaluation_report.json",
                 "examples/synthetic_consumer_work_evaluation_report.json",
+                "examples/synthetic_construction_contract_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

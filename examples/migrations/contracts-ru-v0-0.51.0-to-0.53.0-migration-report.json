@@ -1,0 +1,58 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.51.0:to-0.53.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.51.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.51.0",
+  "target_package_version": "0.53.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.51.0",
+      "to_version": "0.52.0",
+      "reasons": [
+        "Reviewed inputs now require a separate consumer-work evidence contract.",
+        "Analysis and Russian translation distinguish qualification, imposed additional work, the withdrawal right, the information duty, contractor material, the payment order, operation information, significant defects, the ten-year claim, and the sale notice period under articles 730 through 739."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о бытовом подряде.",
+        "Анализ и русское объяснение разделяют квалификацию бытового подряда, навязанную дополнительную работу, право прекратить договор до сдачи работы, обязанность информировать заказчика, недоброкачественный материал подрядчика, порядок оплаты, сведения об использовании результата, существенные недостатки, десятилетний срок и двухмесячное предупреждение перед продажей результата по статьям 730–739 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_consumer_work_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.52.0",
+      "to_version": "0.53.0",
+      "reasons": [
+        "Reviewed inputs now require a separate construction-contract evidence contract.",
+        "Analysis and Russian translation distinguish qualification, risk insurance, technical documentation, the additional-work notice, customer cooperation, supervision, conservation settlement, the acceptance act, construction quality, and the five-year defect period under articles 740 through 757."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о строительном подряде.",
+        "Анализ и русское объяснение разделяют квалификацию строительного подряда, страхование риска, техническую документацию и смету, сообщение о дополнительных работах, обязанности заказчика, контроль заказчика, расчёты при консервации, акт приёмки, качество работ и предельный пятилетний срок обнаружения недостатков по статьям 740–757 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_construction_contract_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

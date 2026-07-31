@@ -55,6 +55,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "evaluate-gratuitous-use",
         "evaluate-work-contract",
         "evaluate-consumer-work",
+        "evaluate-construction-contract",
         "evaluate-transaction-invalidity",
         "evaluate-obligation-constraints",
         "evaluate-performance-remedies",

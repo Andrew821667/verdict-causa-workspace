@@ -140,6 +140,11 @@ from causa.institutional.contracts.gratuitous_use import (
     GratuitousUseEvidencePredicate,
     ReviewedGratuitousUseEvidence,
 )
+from causa.institutional.contracts.construction_contract import (
+    ConstructionContractEvidenceAssertion,
+    ConstructionContractEvidencePredicate,
+    ReviewedConstructionContractEvidence,
+)
 from causa.institutional.contracts.consumer_work import (
     ConsumerWorkEvidenceAssertion,
     ConsumerWorkEvidencePredicate,
@@ -348,6 +353,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk730-736-consumer-work-concept-information-and-payment-v1",
     "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1",
     "synthetic-case-supply-1-consumer-work-evidence",
+    "synthetic-ru-gk740-749-construction-contract-concept-documentation-and-duties-v1",
+    "synthetic-ru-gk752-757-construction-contract-conservation-acceptance-and-quality-v1",
+    "synthetic-case-supply-1-construction-contract-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1762,6 +1770,60 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-consumer-work-reviewer",
+        ),
+        construction_contract_evidence=ReviewedConstructionContractEvidence(
+            id="reviewed-construction-contract-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                ConstructionContractEvidenceAssertion(
+                    id=f"construction-contract-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-construction-contract-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        ConstructionContractEvidencePredicate.CONSTRUCTION_WORK_PERFORMED_AND_ACCEPTED_FOR_PRICE,
+                        False,
+                    ),
+                    (ConstructionContractEvidencePredicate.RISK_INSURANCE_DUTY_UNMET, False),
+                    (
+                        ConstructionContractEvidencePredicate.TECHNICAL_DOCUMENTATION_OR_ESTIMATE_NOT_AGREED,
+                        False,
+                    ),
+                    (
+                        ConstructionContractEvidencePredicate.ADDITIONAL_WORK_DISCOVERED_WITHOUT_NOTICE,
+                        False,
+                    ),
+                    (
+                        ConstructionContractEvidencePredicate.CUSTOMER_FAILED_TO_PROVIDE_SITE_OR_SERVICES,
+                        False,
+                    ),
+                    (ConstructionContractEvidencePredicate.CUSTOMER_SUPERVISION_OBSTRUCTED, False),
+                    (
+                        ConstructionContractEvidencePredicate.CONSTRUCTION_SUSPENDED_AND_CONSERVED,
+                        False,
+                    ),
+                    (
+                        ConstructionContractEvidencePredicate.ACCEPTANCE_ACT_SIGNING_REFUSED_WITHOUT_GROUNDS,
+                        False,
+                    ),
+                    (
+                        ConstructionContractEvidencePredicate.WORK_DEVIATES_FROM_DOCUMENTATION_OR_REQUIREMENTS,
+                        False,
+                    ),
+                    (
+                        ConstructionContractEvidencePredicate.DEFECT_FOUND_WITHIN_FIVE_YEAR_PERIOD,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk740-749-construction-contract-concept-documentation-and-duties-v1",
+                "synthetic-ru-gk752-757-construction-contract-conservation-acceptance-and-quality-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-construction-contract-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
