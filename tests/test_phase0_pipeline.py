@@ -53,6 +53,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "evaluate-leasing",
         "evaluate-residential-lease",
         "evaluate-gratuitous-use",
+        "evaluate-work-contract",
         "evaluate-transaction-invalidity",
         "evaluate-obligation-constraints",
         "evaluate-performance-remedies",

@@ -284,6 +284,16 @@ from causa.institutional.contracts.gratuitous_use import (
     evaluate_gratuitous_use_constraints,
     map_reviewed_gratuitous_use_evidence,
 )
+from causa.institutional.contracts.work_contract import (
+    WORK_CONTRACT_EVIDENCE_SCHEMA_VERSION,
+    ReviewedWorkContractEvidence,
+    WorkContractConstraintSet,
+    WorkContractEvaluation,
+    WorkContractEvidenceMappingResult,
+    build_work_contract_constraint_set,
+    evaluate_work_contract_constraints,
+    map_reviewed_work_contract_evidence,
+)
 from causa.institutional.contracts.gift import (
     GIFT_EVIDENCE_SCHEMA_VERSION,
     GiftConstraintSet,
@@ -570,6 +580,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     leasing_evidence: ReviewedLeasingEvidence
     residential_lease_evidence: ReviewedResidentialLeaseEvidence
     gratuitous_use_evidence: ReviewedGratuitousUseEvidence
+    work_contract_evidence: ReviewedWorkContractEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -708,6 +719,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     gratuitous_use_evidence_mapping: GratuitousUseEvidenceMappingResult
     gratuitous_use_constraint_set: GratuitousUseConstraintSet
     gratuitous_use_evaluation: GratuitousUseEvaluation
+    work_contract_evidence_mapping: WorkContractEvidenceMappingResult
+    work_contract_constraint_set: WorkContractConstraintSet
+    work_contract_evaluation: WorkContractEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -1108,6 +1122,17 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.gratuitous_use_evaluation != expected_gratuitous_use_evaluation:
             raise ValueError("Gratuitous-use evaluation does not replay from reviewed evidence.")
+        expected_work_contract_set = build_work_contract_constraint_set(
+            self.work_contract_evidence_mapping
+        )
+        if self.work_contract_constraint_set != expected_work_contract_set:
+            raise ValueError("Work-contract constraint set does not replay from reviewed evidence.")
+        expected_work_contract_evaluation = evaluate_work_contract_constraints(
+            expected_work_contract_set,
+            self.work_contract_evidence_mapping.facts,
+        )
+        if self.work_contract_evaluation != expected_work_contract_evaluation:
+            raise ValueError("Work-contract evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -1492,6 +1517,8 @@ def _validate_request_integrity(
         raise ValueError("Residential-lease evidence case_id does not match the analysis request.")
     if request.gratuitous_use_evidence.case_id != request.case_id:
         raise ValueError("Gratuitous-use evidence case_id does not match the analysis request.")
+    if request.work_contract_evidence.case_id != request.case_id:
+        raise ValueError("Work-contract evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -1612,6 +1639,8 @@ def _validate_request_integrity(
         raise ValueError("Residential-lease evidence uses an unsupported schema version.")
     if request.gratuitous_use_evidence.schema_version != GRATUITOUS_USE_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Gratuitous-use evidence uses an unsupported schema version.")
+    if request.work_contract_evidence.schema_version != WORK_CONTRACT_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Work-contract evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -1652,6 +1681,7 @@ def _validate_request_integrity(
         *request.leasing_evidence.legal_source_refs,
         *request.residential_lease_evidence.legal_source_refs,
         *request.gratuitous_use_evidence.legal_source_refs,
+        *request.work_contract_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -1728,6 +1758,8 @@ def _validate_request_integrity(
     for assertion in request.residential_lease_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.gratuitous_use_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.work_contract_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -2123,6 +2155,17 @@ def _validate_request_integrity(
             "Gratuitous-use legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_gratuitous_use_legal_sources))
         )
+    invalid_work_contract_legal_sources = [
+        source_id
+        for source_id in request.work_contract_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_work_contract_legal_sources:
+        raise ValueError(
+            "Work-contract legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_work_contract_legal_sources))
+        )
     invalid_invalidity_legal_sources = [
         source_id
         for source_id in request.invalidity_evidence.legal_source_refs
@@ -2470,6 +2513,11 @@ def run_reviewed_contract_analysis(
         review_status=request.gratuitous_use_evidence.review_status,
         reviewer_id=request.gratuitous_use_evidence.reviewer_id,
     )
+    work_contract_reviewer_id = _require_reviewed(
+        artifact_name="Work-contract evidence",
+        review_status=request.work_contract_evidence.review_status,
+        reviewer_id=request.work_contract_evidence.reviewer_id,
+    )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
         review_status=request.invalidity_evidence.review_status,
@@ -2808,6 +2856,16 @@ def run_reviewed_contract_analysis(
         gratuitous_use_constraint_set,
         gratuitous_use_evidence_mapping.facts,
     )
+    work_contract_evidence_mapping = map_reviewed_work_contract_evidence(
+        request.work_contract_evidence
+    )
+    work_contract_constraint_set = build_work_contract_constraint_set(
+        work_contract_evidence_mapping
+    )
+    work_contract_evaluation = evaluate_work_contract_constraints(
+        work_contract_constraint_set,
+        work_contract_evidence_mapping.facts,
+    )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
     invalidity_evaluation = evaluate_invalidity_constraints(
@@ -3064,6 +3122,7 @@ def run_reviewed_contract_analysis(
         or leasing_evaluation.requires_human_leasing_assessment
         or residential_lease_evaluation.requires_human_residential_lease_assessment
         or gratuitous_use_evaluation.requires_human_gratuitous_use_assessment
+        or work_contract_evaluation.requires_human_work_contract_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -3116,6 +3175,7 @@ def run_reviewed_contract_analysis(
                 leasing_reviewer_id,
                 residential_lease_reviewer_id,
                 gratuitous_use_reviewer_id,
+                work_contract_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -3230,6 +3290,9 @@ def run_reviewed_contract_analysis(
         gratuitous_use_evidence_mapping=gratuitous_use_evidence_mapping,
         gratuitous_use_constraint_set=gratuitous_use_constraint_set,
         gratuitous_use_evaluation=gratuitous_use_evaluation,
+        work_contract_evidence_mapping=work_contract_evidence_mapping,
+        work_contract_constraint_set=work_contract_constraint_set,
+        work_contract_evaluation=work_contract_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

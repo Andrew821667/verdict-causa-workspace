@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка общих положений о подряде по статьям 702–729 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-work-contract-evidence-supply-1-v0",
+    "schema_version": "contracts.work-contract-evidence.v0",
+    "mapping_version": "contracts-reviewed-work-contract-to-facts-v0",
+    "facts": {
+      "work_performed_and_result_delivered_for_fee": false,
+      "subcontractor_engaged_despite_personal_duty": false,
+      "start_or_completion_term_not_agreed": false,
+      "estimate_exceeded_without_timely_notice": false,
+      "customer_material_unsuitable": false,
+      "contractor_failed_to_warn_of_risk": false,
+      "work_result_defective": false,
+      "defect_found_within_statutory_period": false,
+      "acceptance_avoided_or_inspection_omitted": false,
+      "customer_withdrew_before_completion_without_payment": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk702-716-work-contract-concept-terms-and-materials-v1",
+      "synthetic-ru-gk717-729-work-contract-quality-acceptance-and-withdrawal-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "acceptance_avoided_or_inspection_omitted",
+        "assertion_id": "work-contract-evidence-acceptance_avoided_or_inspection_omitted",
+        "source_refs": [
+          "synthetic-case-supply-1-work-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "contractor_failed_to_warn_of_risk",
+        "assertion_id": "work-contract-evidence-contractor_failed_to_warn_of_risk",
+        "source_refs": [
+          "synthetic-case-supply-1-work-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "customer_material_unsuitable",
+        "assertion_id": "work-contract-evidence-customer_material_unsuitable",
+        "source_refs": [
+          "synthetic-case-supply-1-work-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "customer_withdrew_before_completion_without_payment",
+        "assertion_id": "work-contract-evidence-customer_withdrew_before_completion_without_payment",
+        "source_refs": [
+          "synthetic-case-supply-1-work-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "defect_found_within_statutory_period",
+        "assertion_id": "work-contract-evidence-defect_found_within_statutory_period",
+        "source_refs": [
+          "synthetic-case-supply-1-work-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "estimate_exceeded_without_timely_notice",
+        "assertion_id": "work-contract-evidence-estimate_exceeded_without_timely_notice",
+        "source_refs": [
+          "synthetic-case-supply-1-work-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "start_or_completion_term_not_agreed",
+        "assertion_id": "work-contract-evidence-start_or_completion_term_not_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-work-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "subcontractor_engaged_despite_personal_duty",
+        "assertion_id": "work-contract-evidence-subcontractor_engaged_despite_personal_duty",
+        "source_refs": [
+          "synthetic-case-supply-1-work-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "work_performed_and_result_delivered_for_fee",
+        "assertion_id": "work-contract-evidence-work_performed_and_result_delivered_for_fee",
+        "source_refs": [
+          "synthetic-case-supply-1-work-contract-evidence"
+        ]
+      },
+      {
+        "fact_name": "work_result_defective",
+        "assertion_id": "work-contract-evidence-work_result_defective",
+        "source_refs": [
+          "synthetic-case-supply-1-work-contract-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "work-contract-constraint-set:reviewed-work-contract-evidence-supply-1-v0",
+    "model_version": "contracts-work-contract-articles-702-729-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk702-716-work-contract-concept-terms-and-materials-v1",
+      "synthetic-ru-gk717-729-work-contract-quality-acceptance-and-withdrawal-v1"
+    ],
+    "expressions": [
+      "work_contract_qualified == work_performed_and_result_delivered_for_fee",
+      "personal_performance_duty_breached == work_contract_qualified AND subcontractor_engaged_despite_personal_duty",
+      "term_condition_not_agreed == work_contract_qualified AND start_or_completion_term_not_agreed",
+      "estimate_notice_duty_breached == work_contract_qualified AND estimate_exceeded_without_timely_notice",
+      "customer_material_liability == work_contract_qualified AND customer_material_unsuitable",
+      "risk_warning_duty_breached == work_contract_qualified AND contractor_failed_to_warn_of_risk",
+      "contractor_liable_for_defects == work_contract_qualified AND work_result_defective",
+      "defect_claim_within_period == work_contract_qualified AND work_result_defective AND defect_found_within_statutory_period",
+      "acceptance_duty_breached == work_contract_qualified AND acceptance_avoided_or_inspection_omitted",
+      "withdrawal_compensation_due == work_contract_qualified AND customer_withdrew_before_completion_without_payment",
+      "requires_human_work_contract_assessment == personal_performance_duty_breached OR term_condition_not_agreed OR estimate_notice_duty_breached OR customer_material_liability OR risk_warning_duty_breached OR contractor_liable_for_defects OR acceptance_duty_breached OR withdrawal_compensation_due"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "work-contract-constraint-set:reviewed-work-contract-evidence-supply-1-v0",
+    "satisfiable": true,
+    "work_contract_qualified": false,
+    "personal_performance_duty_breached": false,
+    "term_condition_not_agreed": false,
+    "estimate_notice_duty_breached": false,
+    "customer_material_liability": false,
+    "risk_warning_duty_breached": false,
+    "contractor_liable_for_defects": false,
+    "defect_claim_within_period": false,
+    "acceptance_duty_breached": false,
+    "withdrawal_compensation_due": false,
+    "requires_human_work_contract_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор подряда."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные общие положения о подряде и не заменяет судебную оценку.",
+      "Существенность превышения сметы, характер недостатков, соразмерность уменьшения цены и размер убытков оцениваются экспертом и судом (статьи 709, 717 и 723 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "work-contract-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "work-contract-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "work_contract_qualified": false
+        },
+        "observed_outcomes": {
+          "work_contract_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор подряда."
+        ]
+      },
+      {
+        "task_id": "work-contract-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "work_contract_qualified": true,
+          "requires_human_work_contract_assessment": false
+        },
+        "observed_outcomes": {
+          "work_contract_qualified": true,
+          "requires_human_work_contract_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "work-contract-bench-personal-duty",
+        "passed": true,
+        "expected_outcomes": {
+          "personal_performance_duty_breached": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "observed_outcomes": {
+          "personal_performance_duty_breached": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Подрядчик привлёк субподрядчика вопреки вытекающей из закона или договора обязанности выполнить работу лично; он несёт ответственность за убытки, вызванные участием субподрядчика (статья 706 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "work-contract-bench-terms-not-agreed",
+        "passed": true,
+        "expected_outcomes": {
+          "term_condition_not_agreed": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "observed_outcomes": {
+          "term_condition_not_agreed": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "В договоре подряда указываются начальный и конечный сроки выполнения работы; при отсутствии согласования этого условия договор не считается заключённым (статья 708 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "work-contract-bench-estimate-notice",
+        "passed": true,
+        "expected_outcomes": {
+          "estimate_notice_duty_breached": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "observed_outcomes": {
+          "estimate_notice_duty_breached": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Подрядчик, обнаруживший необходимость существенно превысить приблизительную смету, обязан своевременно предупредить заказчика; при нарушении этой обязанности он сохраняет право на оплату только по первоначально согласованной цене (статья 709 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "work-contract-bench-customer-material",
+        "passed": true,
+        "expected_outcomes": {
+          "customer_material_liability": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "observed_outcomes": {
+          "customer_material_liability": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Материал или оборудование, предоставленные заказчиком, непригодны или недоброкачественны; подрядчик обязан немедленно предупредить об этом и вправе отказаться от договора с возмещением убытков (статьи 713 и 716 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "work-contract-bench-risk-warning",
+        "passed": true,
+        "expected_outcomes": {
+          "risk_warning_duty_breached": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "observed_outcomes": {
+          "risk_warning_duty_breached": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Подрядчик не предупредил заказчика об обстоятельствах, угрожающих годности или прочности результата работы либо создающих невозможность её завершения в срок, и лишается права ссылаться на них (статья 716 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "work-contract-bench-defect-within-period",
+        "passed": true,
+        "expected_outcomes": {
+          "contractor_liable_for_defects": true,
+          "defect_claim_within_period": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "observed_outcomes": {
+          "contractor_liable_for_defects": true,
+          "defect_claim_within_period": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Результат работы не соответствует условиям договора о качестве; заказчик вправе требовать безвозмездного устранения недостатков, соразмерного уменьшения цены или возмещения своих расходов на их устранение (статьи 721 и 723 ГК РФ).",
+          "Недостаток обнаружен в пределах гарантийного либо иного установленного срока, что сохраняет за заказчиком право предъявить требования по качеству (статьи 722 и 724 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "work-contract-bench-acceptance-avoided",
+        "passed": true,
+        "expected_outcomes": {
+          "acceptance_duty_breached": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "observed_outcomes": {
+          "acceptance_duty_breached": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Заказчик уклонился от приёмки результата работы либо не осмотрел его и не заявил о явных недостатках при приёмке (статья 720 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "work-contract-bench-withdrawal",
+        "passed": true,
+        "expected_outcomes": {
+          "withdrawal_compensation_due": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "observed_outcomes": {
+          "withdrawal_compensation_due": true,
+          "requires_human_work_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Заказчик отказался от договора до сдачи результата работы: он обязан уплатить подрядчику часть цены пропорционально выполненной работе и возместить убытки в пределах разницы между ценой договора и уплаченной суммой (статья 717 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "work-contract-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "work-contract-red-qualify-without-work",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "work_contract_qualified": true
+        },
+        "observed_outcomes": {
+          "work_contract_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор подряда."
+        ]
+      },
+      {
+        "case_id": "work-contract-red-allow-subcontracting",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "personal_performance_duty_breached": false
+        },
+        "observed_outcomes": {
+          "personal_performance_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Подрядчик привлёк субподрядчика вопреки вытекающей из закона или договора обязанности выполнить работу лично; он несёт ответственность за убытки, вызванные участием субподрядчика (статья 706 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "work-contract-red-ignore-terms",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "term_condition_not_agreed": false
+        },
+        "observed_outcomes": {
+          "term_condition_not_agreed": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "В договоре подряда указываются начальный и конечный сроки выполнения работы; при отсутствии согласования этого условия договор не считается заключённым (статья 708 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "work-contract-red-ignore-estimate-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "estimate_notice_duty_breached": false
+        },
+        "observed_outcomes": {
+          "estimate_notice_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Подрядчик, обнаруживший необходимость существенно превысить приблизительную смету, обязан своевременно предупредить заказчика; при нарушении этой обязанности он сохраняет право на оплату только по первоначально согласованной цене (статья 709 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "work-contract-red-ignore-customer-material",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "customer_material_liability": false
+        },
+        "observed_outcomes": {
+          "customer_material_liability": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Материал или оборудование, предоставленные заказчиком, непригодны или недоброкачественны; подрядчик обязан немедленно предупредить об этом и вправе отказаться от договора с возмещением убытков (статьи 713 и 716 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "work-contract-red-ignore-risk-warning",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "risk_warning_duty_breached": false
+        },
+        "observed_outcomes": {
+          "risk_warning_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Подрядчик не предупредил заказчика об обстоятельствах, угрожающих годности или прочности результата работы либо создающих невозможность её завершения в срок, и лишается права ссылаться на них (статья 716 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "work-contract-red-excuse-defects",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contractor_liable_for_defects": false
+        },
+        "observed_outcomes": {
+          "contractor_liable_for_defects": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Результат работы не соответствует условиям договора о качестве; заказчик вправе требовать безвозмездного устранения недостатков, соразмерного уменьшения цены или возмещения своих расходов на их устранение (статьи 721 и 723 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "work-contract-red-claim-without-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "defect_claim_within_period": true
+        },
+        "observed_outcomes": {
+          "defect_claim_within_period": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "work-contract-red-ignore-acceptance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "acceptance_duty_breached": false
+        },
+        "observed_outcomes": {
+          "acceptance_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Заказчик уклонился от приёмки результата работы либо не осмотрел его и не заявил о явных недостатках при приёмке (статья 720 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "work-contract-red-skip-human-on-withdrawal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_work_contract_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_work_contract_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд: подрядчик обязуется выполнить по заданию заказчика определённую работу и сдать её результат, а заказчик обязуется принять результат и оплатить его (статья 702 ГК РФ).",
+          "Заказчик отказался от договора до сдачи результата работы: он обязан уплатить подрядчику часть цены пропорционально выполненной работе и возместить убытки в пределах разницы между ценой договора и уплаченной суммой (статья 717 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

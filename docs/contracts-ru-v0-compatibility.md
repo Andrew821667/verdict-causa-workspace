@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.51.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью подряда |
 | `0.50.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью безвозмездного пользования |
 | `0.49.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью найма жилого помещения |
 | `0.48.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью финансовой аренды |
@@ -58,6 +59,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.50.0` → `0.51.0` соберите отдельно проверенный контракт данных о подряде (`contracts.work-contract-evidence.v0`). Не выводите квалификацию подряда, обязанность выполнить работу лично, согласование сроков, предупреждение о превышении сметы, непригодность материала заказчика, предупреждение о рисках, ответственность за недостатки, срок предъявления требования, обязанность приёмки и оплату при одностороннем отказе из прежних результатов о купле-продаже или аренде. Пересоберите артефакты оценки подряда, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.49.0` → `0.50.0` соберите отдельно проверенный контракт данных о безвозмездном пользовании (`contracts.gratuitous-use-evidence.v0`). Не выводите квалификацию, запрет передачи инсайдеру, обязанность предоставить вещь, скрытые недостатки, права третьих лиц, содержание вещи, риск случайной гибели, досрочное расторжение, срок извещения и сохранение прав при отчуждении из прежних результатов об аренде или найме. Пересоберите артефакты оценки безвозмездного пользования, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

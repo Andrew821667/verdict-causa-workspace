@@ -140,6 +140,11 @@ from causa.institutional.contracts.gratuitous_use import (
     GratuitousUseEvidencePredicate,
     ReviewedGratuitousUseEvidence,
 )
+from causa.institutional.contracts.work_contract import (
+    ReviewedWorkContractEvidence,
+    WorkContractEvidenceAssertion,
+    WorkContractEvidencePredicate,
+)
 from causa.institutional.contracts.barter import (
     BarterEvidenceAssertion,
     BarterEvidencePredicate,
@@ -332,6 +337,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk689-694-gratuitous-use-concept-limits-and-defects-v1",
     "synthetic-ru-gk695-701-gratuitous-use-maintenance-risk-and-termination-v1",
     "synthetic-case-supply-1-gratuitous-use-evidence",
+    "synthetic-ru-gk702-716-work-contract-concept-terms-and-materials-v1",
+    "synthetic-ru-gk717-729-work-contract-quality-acceptance-and-withdrawal-v1",
+    "synthetic-case-supply-1-work-contract-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1659,6 +1667,51 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-gratuitous-use-reviewer",
+        ),
+        work_contract_evidence=ReviewedWorkContractEvidence(
+            id="reviewed-work-contract-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                WorkContractEvidenceAssertion(
+                    id=f"work-contract-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-work-contract-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        WorkContractEvidencePredicate.WORK_PERFORMED_AND_RESULT_DELIVERED_FOR_FEE,
+                        False,
+                    ),
+                    (
+                        WorkContractEvidencePredicate.SUBCONTRACTOR_ENGAGED_DESPITE_PERSONAL_DUTY,
+                        False,
+                    ),
+                    (WorkContractEvidencePredicate.START_OR_COMPLETION_TERM_NOT_AGREED, False),
+                    (
+                        WorkContractEvidencePredicate.ESTIMATE_EXCEEDED_WITHOUT_TIMELY_NOTICE,
+                        False,
+                    ),
+                    (WorkContractEvidencePredicate.CUSTOMER_MATERIAL_UNSUITABLE, False),
+                    (WorkContractEvidencePredicate.CONTRACTOR_FAILED_TO_WARN_OF_RISK, False),
+                    (WorkContractEvidencePredicate.WORK_RESULT_DEFECTIVE, False),
+                    (WorkContractEvidencePredicate.DEFECT_FOUND_WITHIN_STATUTORY_PERIOD, False),
+                    (
+                        WorkContractEvidencePredicate.ACCEPTANCE_AVOIDED_OR_INSPECTION_OMITTED,
+                        False,
+                    ),
+                    (
+                        WorkContractEvidencePredicate.CUSTOMER_WITHDREW_BEFORE_COMPLETION_WITHOUT_PAYMENT,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk702-716-work-contract-concept-terms-and-materials-v1",
+                "synthetic-ru-gk717-729-work-contract-quality-acceptance-and-withdrawal-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-work-contract-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

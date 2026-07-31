@@ -88,6 +88,9 @@ from causa.institutional.contracts.synthetic_residential_lease import (
 from causa.institutional.contracts.synthetic_gratuitous_use import (
     build_synthetic_gratuitous_use_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_work_contract import (
+    build_synthetic_work_contract_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_gift import (
     build_synthetic_gift_evaluation_artifact,
 )
@@ -758,6 +761,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-work-contract",
+            title="Проверка подряда (общие положения)",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.work_contract_evidence_mapping.evidence_id,
+                trace.analysis_result.work_contract_constraint_set.id,
+                *trace.analysis_result.work_contract_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.work_contract_evaluation.reasons_ru,
+                "Квалификация подряда, обязанность выполнить работу лично, согласование начального и конечного сроков, предупреждение о существенном превышении сметы, непригодность материала заказчика, предупреждение об обстоятельствах, угрожающих годности работы, ответственность за недостатки результата, срок их обнаружения, обязанность осмотреть и принять результат и оплата при одностороннем отказе заказчика проверяются раздельно по статьям 702–729 ГК РФ.",
+                "Существенность превышения сметы, качество результата работы, разумность сроков и объём выполненной части работы оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1045,6 +1063,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     leasing_artifact = build_synthetic_leasing_evaluation_artifact()
     residential_lease_artifact = build_synthetic_residential_lease_evaluation_artifact()
     gratuitous_use_artifact = build_synthetic_gratuitous_use_evaluation_artifact()
+    work_contract_artifact = build_synthetic_work_contract_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -1166,6 +1185,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-residential-lease-spec.md",
                 "src/causa/institutional/contracts/gratuitous_use.py",
                 "docs/contract-gratuitous-use-spec.md",
+                "src/causa/institutional/contracts/work_contract.py",
+                "docs/contract-work-contract-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -1217,6 +1238,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_leasing_evaluation_report.json",
                 "examples/synthetic_residential_lease_evaluation_report.json",
                 "examples/synthetic_gratuitous_use_evaluation_report.json",
+                "examples/synthetic_work_contract_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -1225,12 +1247,12 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 *(
-                    f"examples/migrations/contracts-ru-v0-{version}-to-0.50.0-migration-report.json"
+                    f"examples/migrations/contracts-ru-v0-{version}-to-0.51.0-migration-report.json"
                     for version in (
                         "0.1.0",
                         "0.3.0",
                         "0.4.0",
-                        *(f"0.{minor}.0" for minor in range(5, 50)),
+                        *(f"0.{minor}.0" for minor in range(5, 51)),
                     )
                 ),
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
@@ -1366,6 +1388,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 residential_lease_artifact.red_team_report.id,
                 gratuitous_use_artifact.benchmark_report.id,
                 gratuitous_use_artifact.red_team_report.id,
+                work_contract_artifact.benchmark_report.id,
+                work_contract_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -1429,6 +1453,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_leasing_evaluation_report.json",
                 "examples/synthetic_residential_lease_evaluation_report.json",
                 "examples/synthetic_gratuitous_use_evaluation_report.json",
+                "examples/synthetic_work_contract_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

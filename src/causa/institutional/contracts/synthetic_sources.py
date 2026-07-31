@@ -2033,6 +2033,65 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk702-716-work-contract-concept-terms-and-materials-v1",
+        title="Синтетическая проверенная модель понятия подряда, сроков, сметы и материалов по статьям 702–716 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: подряд как выполнение работы по заданию заказчика и "
+            "сдача её результата за плату, обязанность выполнить работу лично при её прямом "
+            "закреплении, согласование начального и конечного сроков, предупреждение заказчика "
+            "о существенном превышении твёрдой сметы, ответственность за непригодность "
+            "предоставленного заказчиком материала и обязанность подрядчика предупредить об "
+            "обстоятельствах, угрожающих годности работы, проверяются раздельно (статьи 702–716 "
+            "ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "work_contract_concept_terms_and_materials_articles_702_716",
+            "legal_reference": "ГК РФ, статьи 702–716",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk717-729-work-contract-quality-acceptance-and-withdrawal-v1",
+        title="Синтетическая проверенная модель качества работы, приёмки, сроков обнаружения недостатков и отказа заказчика по статьям 717–729 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: право заказчика отказаться от договора до сдачи "
+            "результата с оплатой выполненной части, обязанность заказчика осмотреть и принять "
+            "результат работы, ответственность подрядчика за ненадлежащее качество и сроки "
+            "обнаружения недостатков результата работы проверяются раздельно (статьи 717–729 "
+            "ГК РФ)."
+        ),
+        valid_from="1996-03-01",
+        metadata={
+            "synthetic": True,
+            "topic": "work_contract_quality_acceptance_and_withdrawal_articles_717_729",
+            "legal_reference": "ГК РФ, статьи 717–729",
+            "basis_url": "https://government.ru/docs/all/95825/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-work-contract-evidence",
+        title="Синтетическая проверенная запись фактов о подряде",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спорный договор является поставкой товаров за единовременную "
+            "оплату и не является договором подряда; выполнения работы по заданию заказчика и "
+            "сдачи её результата за плату нет."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "work_contract_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-ru-gk166-168-invalidity-framework-v1",
         title="Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
         source_type=SourceType.STATUTE,

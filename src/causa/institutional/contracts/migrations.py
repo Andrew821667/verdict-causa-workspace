@@ -967,6 +967,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.50.0",
+        to_version="0.51.0",
+        reasons=[
+            "Reviewed inputs now require a separate work-contract evidence contract.",
+            "Analysis and Russian translation distinguish qualification, personal performance duty, agreed terms, estimate notice, customer material, risk warning, defect liability, claim period, acceptance duty, and withdrawal compensation under articles 702 through 729.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о подряде.",
+            "Анализ и русское объяснение разделяют квалификацию подряда, обязанность выполнить работу лично, согласование сроков, предупреждение о превышении сметы, непригодность материала заказчика, предупреждение о рисках, ответственность за недостатки, срок предъявления требования, обязанность приёмки и оплату при одностороннем отказе по статьям 702–729 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_work_contract_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 
