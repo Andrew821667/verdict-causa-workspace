@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.state_work import (
+    ReviewedStateWorkEvidence,
+    StateWorkEvidenceAssertion,
+    StateWorkEvidencePredicate,
+)
 from causa.institutional.contracts.design_work import (
     DesignWorkEvidenceAssertion,
     DesignWorkEvidencePredicate,
@@ -364,6 +369,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk758-760-design-work-concept-initial-data-and-approval-v1",
     "synthetic-ru-gk761-762-design-work-liability-and-customer-duties-v1",
     "synthetic-case-supply-1-design-work-evidence",
+    "synthetic-ru-gk763-766-state-work-contract-basis-parties-and-terms-v1",
+    "synthetic-ru-gk767-768-state-work-budget-changes-and-special-law-v1",
+    "synthetic-case-supply-1-state-work-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1880,6 +1888,39 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-design-work-reviewer",
+        ),
+        state_work_evidence=ReviewedStateWorkEvidence(
+            id="reviewed-state-work-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                StateWorkEvidenceAssertion(
+                    id=f"state-work-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-state-work-evidence",),
+                )
+                for predicate, value in (
+                    (StateWorkEvidencePredicate.WORK_FOR_STATE_OR_MUNICIPAL_NEEDS, False),
+                    (StateWorkEvidencePredicate.STATE_CONTRACT_NOT_CONCLUDED, False),
+                    (StateWorkEvidencePredicate.CUSTOMER_NOT_AUTHORIZED_BUDGET_RECIPIENT, False),
+                    (StateWorkEvidencePredicate.CONTRACT_CONCLUSION_PROCEDURE_BREACHED, False),
+                    (StateWorkEvidencePredicate.SCOPE_OR_COST_TERMS_NOT_AGREED, False),
+                    (StateWorkEvidencePredicate.START_OR_COMPLETION_DATES_NOT_AGREED, False),
+                    (StateWorkEvidencePredicate.FUNDING_AND_PAYMENT_TERMS_NOT_AGREED, False),
+                    (StateWorkEvidencePredicate.PERFORMANCE_SECURITY_NOT_AGREED, False),
+                    (StateWorkEvidencePredicate.BUDGET_REDUCED_WITHOUT_AGREED_NEW_TERMS, False),
+                    (
+                        StateWorkEvidencePredicate.CONTRACTOR_LOSSES_FROM_CHANGED_TERMS_NOT_COMPENSATED,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk763-766-state-work-contract-basis-parties-and-terms-v1",
+                "synthetic-ru-gk767-768-state-work-budget-changes-and-special-law-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-state-work-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

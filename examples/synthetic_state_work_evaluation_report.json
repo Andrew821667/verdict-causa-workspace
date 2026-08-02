@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о подрядных работах для государственных и муниципальных нужд по статьям 763–768 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-state-work-evidence-supply-1-v0",
+    "schema_version": "contracts.state-work-evidence.v0",
+    "mapping_version": "contracts-reviewed-state-work-to-facts-v0",
+    "facts": {
+      "work_for_state_or_municipal_needs": false,
+      "state_contract_not_concluded": false,
+      "customer_not_authorized_budget_recipient": false,
+      "contract_conclusion_procedure_breached": false,
+      "scope_or_cost_terms_not_agreed": false,
+      "start_or_completion_dates_not_agreed": false,
+      "funding_and_payment_terms_not_agreed": false,
+      "performance_security_not_agreed": false,
+      "budget_reduced_without_agreed_new_terms": false,
+      "contractor_losses_from_changed_terms_not_compensated": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk763-766-state-work-contract-basis-parties-and-terms-v1",
+      "synthetic-ru-gk767-768-state-work-budget-changes-and-special-law-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "budget_reduced_without_agreed_new_terms",
+        "assertion_id": "state-work-evidence-budget_reduced_without_agreed_new_terms",
+        "source_refs": [
+          "synthetic-case-supply-1-state-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_conclusion_procedure_breached",
+        "assertion_id": "state-work-evidence-contract_conclusion_procedure_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-state-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "contractor_losses_from_changed_terms_not_compensated",
+        "assertion_id": "state-work-evidence-contractor_losses_from_changed_terms_not_compensated",
+        "source_refs": [
+          "synthetic-case-supply-1-state-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "customer_not_authorized_budget_recipient",
+        "assertion_id": "state-work-evidence-customer_not_authorized_budget_recipient",
+        "source_refs": [
+          "synthetic-case-supply-1-state-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "funding_and_payment_terms_not_agreed",
+        "assertion_id": "state-work-evidence-funding_and_payment_terms_not_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-state-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "performance_security_not_agreed",
+        "assertion_id": "state-work-evidence-performance_security_not_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-state-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "scope_or_cost_terms_not_agreed",
+        "assertion_id": "state-work-evidence-scope_or_cost_terms_not_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-state-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "start_or_completion_dates_not_agreed",
+        "assertion_id": "state-work-evidence-start_or_completion_dates_not_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-state-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "state_contract_not_concluded",
+        "assertion_id": "state-work-evidence-state_contract_not_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-state-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "work_for_state_or_municipal_needs",
+        "assertion_id": "state-work-evidence-work_for_state_or_municipal_needs",
+        "source_refs": [
+          "synthetic-case-supply-1-state-work-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "state-work-constraint-set:reviewed-state-work-evidence-supply-1-v0",
+    "model_version": "contracts-state-work-articles-763-768-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk763-766-state-work-contract-basis-parties-and-terms-v1",
+      "synthetic-ru-gk767-768-state-work-budget-changes-and-special-law-v1"
+    ],
+    "expressions": [
+      "state_work_qualified == work_for_state_or_municipal_needs",
+      "state_contract_requirement_breached == state_work_qualified AND state_contract_not_concluded",
+      "customer_status_invalid == state_work_qualified AND customer_not_authorized_budget_recipient",
+      "conclusion_procedure_breached == state_work_qualified AND contract_conclusion_procedure_breached",
+      "scope_or_cost_terms_missing == state_work_qualified AND scope_or_cost_terms_not_agreed",
+      "schedule_terms_missing == state_work_qualified AND start_or_completion_dates_not_agreed",
+      "funding_terms_missing == state_work_qualified AND funding_and_payment_terms_not_agreed",
+      "performance_security_missing == state_work_qualified AND performance_security_not_agreed",
+      "budget_reduction_terms_not_agreed == state_work_qualified AND budget_reduced_without_agreed_new_terms",
+      "contractor_losses_compensation_due == state_work_qualified AND budget_reduced_without_agreed_new_terms AND contractor_losses_from_changed_terms_not_compensated",
+      "requires_human_state_work_assessment == state_contract_requirement_breached OR customer_status_invalid OR conclusion_procedure_breached OR scope_or_cost_terms_missing OR schedule_terms_missing OR funding_terms_missing OR performance_security_missing OR budget_reduction_terms_not_agreed"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "state-work-constraint-set:reviewed-state-work-evidence-supply-1-v0",
+    "satisfiable": true,
+    "state_work_qualified": false,
+    "state_contract_requirement_breached": false,
+    "customer_status_invalid": false,
+    "conclusion_procedure_breached": false,
+    "scope_or_cost_terms_missing": false,
+    "schedule_terms_missing": false,
+    "funding_terms_missing": false,
+    "performance_security_missing": false,
+    "budget_reduction_terms_not_agreed": false,
+    "contractor_losses_compensation_due": false,
+    "requires_human_state_work_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как подрядные работы для государственных или муниципальных нужд."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о подрядных работах для государственных и муниципальных нужд и не заменяет судебную оценку.",
+      "Достаточность бюджетного финансирования, соблюдение закупочных процедур и размер убытков подрядчика оцениваются экспертом и судом (статьи 765, 767 и 768 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "state-work-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "state-work-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "state_work_qualified": false
+        },
+        "observed_outcomes": {
+          "state_work_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как подрядные работы для государственных или муниципальных нужд."
+        ]
+      },
+      {
+        "task_id": "state-work-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "state_work_qualified": true,
+          "requires_human_state_work_assessment": false
+        },
+        "observed_outcomes": {
+          "state_work_qualified": true,
+          "requires_human_state_work_assessment": false
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "state-work-bench-no-contract",
+        "passed": true,
+        "expected_outcomes": {
+          "state_contract_requirement_breached": true,
+          "requires_human_state_work_assessment": true
+        },
+        "observed_outcomes": {
+          "state_contract_requirement_breached": true,
+          "requires_human_state_work_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Подрядные работы для государственных или муниципальных нужд осуществляются на основе государственного или муниципального контракта на выполнение подрядных работ (статья 763 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "state-work-bench-customer-status",
+        "passed": true,
+        "expected_outcomes": {
+          "customer_status_invalid": true,
+          "requires_human_state_work_assessment": true
+        },
+        "observed_outcomes": {
+          "customer_status_invalid": true,
+          "requires_human_state_work_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Государственным или муниципальным заказчиком выступают государственные органы, органы управления государственными внебюджетными фондами, органы местного самоуправления, казённые учреждения и иные получатели бюджетных средств (статья 764 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "state-work-bench-conclusion-procedure",
+        "passed": true,
+        "expected_outcomes": {
+          "conclusion_procedure_breached": true,
+          "requires_human_state_work_assessment": true
+        },
+        "observed_outcomes": {
+          "conclusion_procedure_breached": true,
+          "requires_human_state_work_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Основания и порядок заключения государственного или муниципального контракта определяются по правилам о поставке товаров для государственных нужд (статья 765 ГК РФ со ссылкой на статьи 527 и 528 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "state-work-bench-scope-and-cost",
+        "passed": true,
+        "expected_outcomes": {
+          "scope_or_cost_terms_missing": true,
+          "requires_human_state_work_assessment": true
+        },
+        "observed_outcomes": {
+          "scope_or_cost_terms_missing": true,
+          "requires_human_state_work_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Государственный или муниципальный контракт должен содержать условия об объёме и о стоимости подлежащей выполнению работы (статья 766 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "state-work-bench-schedule",
+        "passed": true,
+        "expected_outcomes": {
+          "schedule_terms_missing": true,
+          "requires_human_state_work_assessment": true
+        },
+        "observed_outcomes": {
+          "schedule_terms_missing": true,
+          "requires_human_state_work_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Государственный или муниципальный контракт должен содержать условия о сроках начала и окончания работы (статья 766 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "state-work-bench-funding",
+        "passed": true,
+        "expected_outcomes": {
+          "funding_terms_missing": true,
+          "requires_human_state_work_assessment": true
+        },
+        "observed_outcomes": {
+          "funding_terms_missing": true,
+          "requires_human_state_work_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Государственный или муниципальный контракт должен содержать условия о размере и порядке финансирования и оплаты работ (статья 766 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "state-work-bench-security",
+        "passed": true,
+        "expected_outcomes": {
+          "performance_security_missing": true,
+          "requires_human_state_work_assessment": true
+        },
+        "observed_outcomes": {
+          "performance_security_missing": true,
+          "requires_human_state_work_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Государственный или муниципальный контракт должен содержать условия о способах обеспечения исполнения обязательств сторон (статья 766 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "state-work-bench-budget-reduction",
+        "passed": true,
+        "expected_outcomes": {
+          "budget_reduction_terms_not_agreed": true,
+          "contractor_losses_compensation_due": true,
+          "requires_human_state_work_assessment": true
+        },
+        "observed_outcomes": {
+          "budget_reduction_terms_not_agreed": true,
+          "contractor_losses_compensation_due": true,
+          "requires_human_state_work_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "При уменьшении соответствующими государственными органами или органами местного самоуправления средств, выделенных для финансирования подрядных работ, стороны обязаны согласовать новые сроки и при необходимости другие условия выполнения работ (статья 767 ГК РФ).",
+          "Подрядчик вправе требовать возмещения убытков, причинённых изменением сроков выполнения работ вследствие уменьшения выделенных бюджетных средств (статья 767 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "state-work-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "state-work-red-qualify-without-state-needs",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "state_work_qualified": true
+        },
+        "observed_outcomes": {
+          "state_work_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как подрядные работы для государственных или муниципальных нужд."
+        ]
+      },
+      {
+        "case_id": "state-work-red-allow-work-without-contract",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "state_contract_requirement_breached": false
+        },
+        "observed_outcomes": {
+          "state_contract_requirement_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Подрядные работы для государственных или муниципальных нужд осуществляются на основе государственного или муниципального контракта на выполнение подрядных работ (статья 763 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "state-work-red-ignore-customer-status",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "customer_status_invalid": false
+        },
+        "observed_outcomes": {
+          "customer_status_invalid": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Государственным или муниципальным заказчиком выступают государственные органы, органы управления государственными внебюджетными фондами, органы местного самоуправления, казённые учреждения и иные получатели бюджетных средств (статья 764 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "state-work-red-ignore-procedure",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "conclusion_procedure_breached": false
+        },
+        "observed_outcomes": {
+          "conclusion_procedure_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Основания и порядок заключения государственного или муниципального контракта определяются по правилам о поставке товаров для государственных нужд (статья 765 ГК РФ со ссылкой на статьи 527 и 528 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "state-work-red-ignore-scope-and-cost",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "scope_or_cost_terms_missing": false
+        },
+        "observed_outcomes": {
+          "scope_or_cost_terms_missing": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Государственный или муниципальный контракт должен содержать условия об объёме и о стоимости подлежащей выполнению работы (статья 766 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "state-work-red-ignore-schedule",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "schedule_terms_missing": false
+        },
+        "observed_outcomes": {
+          "schedule_terms_missing": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Государственный или муниципальный контракт должен содержать условия о сроках начала и окончания работы (статья 766 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "state-work-red-ignore-funding",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "funding_terms_missing": false
+        },
+        "observed_outcomes": {
+          "funding_terms_missing": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Государственный или муниципальный контракт должен содержать условия о размере и порядке финансирования и оплаты работ (статья 766 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "state-work-red-ignore-security",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "performance_security_missing": false
+        },
+        "observed_outcomes": {
+          "performance_security_missing": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "Государственный или муниципальный контракт должен содержать условия о способах обеспечения исполнения обязательств сторон (статья 766 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "state-work-red-losses-without-budget-reduction",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contractor_losses_compensation_due": true
+        },
+        "observed_outcomes": {
+          "contractor_losses_compensation_due": false
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "state-work-red-skip-human-on-budget-reduction",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_state_work_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_state_work_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как подрядные работы для государственных или муниципальных нужд: строительные, проектные и изыскательские работы предназначены удовлетворять государственные или муниципальные нужды и финансируются за счёт соответствующих бюджетных средств (статья 763 ГК РФ).",
+          "При уменьшении соответствующими государственными органами или органами местного самоуправления средств, выделенных для финансирования подрядных работ, стороны обязаны согласовать новые сроки и при необходимости другие условия выполнения работ (статья 767 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

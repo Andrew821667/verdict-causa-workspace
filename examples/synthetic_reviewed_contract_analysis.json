@@ -1831,6 +1831,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk763-766-state-work-contract-basis-parties-and-terms-v1",
+      "title": "Синтетическая проверенная модель оснований выполнения подрядных работ для государственных нужд, сторон контракта и его содержания по статьям 763–766 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: выполнение подрядных строительных, проектных и изыскательских работ для государственных или муниципальных нужд на основе государственного или муниципального контракта, статус заказчика как государственного органа, казённого учреждения или иного получателя бюджетных средств, порядок заключения контракта по правилам о поставке для государственных нужд и обязательные условия контракта об объёме и стоимости работ, сроках их начала и окончания, размере и порядке финансирования и оплаты и способах обеспечения исполнения обязательств проверяются раздельно (статьи 763–766 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "state_work_contract_basis_parties_and_terms_articles_763_766",
+        "legal_reference": "ГК РФ, статьи 763–766",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk767-768-state-work-budget-changes-and-special-law-v1",
+      "title": "Синтетическая проверенная модель изменения государственного контракта при уменьшении бюджетных средств и применения специального закона по статьям 767–768 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обязанность сторон согласовать новые сроки и при необходимости другие условия выполнения работ при уменьшении выделенных бюджетных средств, право подрядчика требовать возмещения убытков, причинённых изменением сроков, и применение закона о подрядах для государственных или муниципальных нужд в части, не урегулированной Кодексом, проверяются раздельно (статьи 767–768 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "state_work_budget_changes_and_special_law_articles_767_768",
+        "legal_reference": "ГК РФ, статьи 767–768",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-state-work-evidence",
+      "title": "Синтетическая проверенная запись фактов о подрядных работах для государственных нужд",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату между коммерческими организациями и не относится к подрядным работам для государственных или муниципальных нужд; бюджетное финансирование работ отсутствует.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "state_work_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -6253,6 +6300,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-design-work-reviewer"
+    },
+    "state_work_evidence": {
+      "id": "reviewed-state-work-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.state-work-evidence.v0",
+      "assertions": [
+        {
+          "id": "state-work-evidence-work_for_state_or_municipal_needs",
+          "predicate": "work_for_state_or_municipal_needs",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "id": "state-work-evidence-state_contract_not_concluded",
+          "predicate": "state_contract_not_concluded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "id": "state-work-evidence-customer_not_authorized_budget_recipient",
+          "predicate": "customer_not_authorized_budget_recipient",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "id": "state-work-evidence-contract_conclusion_procedure_breached",
+          "predicate": "contract_conclusion_procedure_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "id": "state-work-evidence-scope_or_cost_terms_not_agreed",
+          "predicate": "scope_or_cost_terms_not_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "id": "state-work-evidence-start_or_completion_dates_not_agreed",
+          "predicate": "start_or_completion_dates_not_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "id": "state-work-evidence-funding_and_payment_terms_not_agreed",
+          "predicate": "funding_and_payment_terms_not_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "id": "state-work-evidence-performance_security_not_agreed",
+          "predicate": "performance_security_not_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "id": "state-work-evidence-budget_reduced_without_agreed_new_terms",
+          "predicate": "budget_reduced_without_agreed_new_terms",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "id": "state-work-evidence-contractor_losses_from_changed_terms_not_compensated",
+          "predicate": "contractor_losses_from_changed_terms_not_compensated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk763-766-state-work-contract-basis-parties-and-terms-v1",
+        "synthetic-ru-gk767-768-state-work-budget-changes-and-special-law-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-state-work-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -11069,6 +11209,7 @@
       "synthetic-security-reviewer",
       "synthetic-special-supply-reviewer",
       "synthetic-state-supply-reviewer",
+      "synthetic-state-work-reviewer",
       "synthetic-temporal-effect-reviewer",
       "synthetic-temporal-reviewer",
       "synthetic-termination-reviewer",
@@ -11118,6 +11259,7 @@
       "synthetic-case-supply-1-security-evidence",
       "synthetic-case-supply-1-special-supply-evidence",
       "synthetic-case-supply-1-state-supply-evidence",
+      "synthetic-case-supply-1-state-work-evidence",
       "synthetic-case-supply-1-temporal-effect-evidence",
       "synthetic-case-supply-1-termination-evidence",
       "synthetic-case-supply-1-third-party-evidence",
@@ -11226,6 +11368,8 @@
       "synthetic-ru-gk752-757-construction-contract-conservation-acceptance-and-quality-v1",
       "synthetic-ru-gk758-760-design-work-concept-initial-data-and-approval-v1",
       "synthetic-ru-gk761-762-design-work-liability-and-customer-duties-v1",
+      "synthetic-ru-gk763-766-state-work-contract-basis-parties-and-terms-v1",
+      "synthetic-ru-gk767-768-state-work-budget-changes-and-special-law-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -16445,6 +16589,142 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о проектных и изыскательских работах и не заменяет судебную оценку.",
         "Полнота исходных данных, характер недостатков документации и объём дополнительных расходов оцениваются экспертом и судом (статьи 759, 761 и 762 ГК РФ)."
+      ]
+    },
+    "state_work_evidence_mapping": {
+      "evidence_id": "reviewed-state-work-evidence-supply-1-v0",
+      "schema_version": "contracts.state-work-evidence.v0",
+      "mapping_version": "contracts-reviewed-state-work-to-facts-v0",
+      "facts": {
+        "work_for_state_or_municipal_needs": false,
+        "state_contract_not_concluded": false,
+        "customer_not_authorized_budget_recipient": false,
+        "contract_conclusion_procedure_breached": false,
+        "scope_or_cost_terms_not_agreed": false,
+        "start_or_completion_dates_not_agreed": false,
+        "funding_and_payment_terms_not_agreed": false,
+        "performance_security_not_agreed": false,
+        "budget_reduced_without_agreed_new_terms": false,
+        "contractor_losses_from_changed_terms_not_compensated": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk763-766-state-work-contract-basis-parties-and-terms-v1",
+        "synthetic-ru-gk767-768-state-work-budget-changes-and-special-law-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "budget_reduced_without_agreed_new_terms",
+          "assertion_id": "state-work-evidence-budget_reduced_without_agreed_new_terms",
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_conclusion_procedure_breached",
+          "assertion_id": "state-work-evidence-contract_conclusion_procedure_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "contractor_losses_from_changed_terms_not_compensated",
+          "assertion_id": "state-work-evidence-contractor_losses_from_changed_terms_not_compensated",
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "customer_not_authorized_budget_recipient",
+          "assertion_id": "state-work-evidence-customer_not_authorized_budget_recipient",
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "funding_and_payment_terms_not_agreed",
+          "assertion_id": "state-work-evidence-funding_and_payment_terms_not_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_security_not_agreed",
+          "assertion_id": "state-work-evidence-performance_security_not_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "scope_or_cost_terms_not_agreed",
+          "assertion_id": "state-work-evidence-scope_or_cost_terms_not_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "start_or_completion_dates_not_agreed",
+          "assertion_id": "state-work-evidence-start_or_completion_dates_not_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "state_contract_not_concluded",
+          "assertion_id": "state-work-evidence-state_contract_not_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "work_for_state_or_municipal_needs",
+          "assertion_id": "state-work-evidence-work_for_state_or_municipal_needs",
+          "source_refs": [
+            "synthetic-case-supply-1-state-work-evidence"
+          ]
+        }
+      ]
+    },
+    "state_work_constraint_set": {
+      "id": "state-work-constraint-set:reviewed-state-work-evidence-supply-1-v0",
+      "model_version": "contracts-state-work-articles-763-768-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk763-766-state-work-contract-basis-parties-and-terms-v1",
+        "synthetic-ru-gk767-768-state-work-budget-changes-and-special-law-v1"
+      ],
+      "expressions": [
+        "state_work_qualified == work_for_state_or_municipal_needs",
+        "state_contract_requirement_breached == state_work_qualified AND state_contract_not_concluded",
+        "customer_status_invalid == state_work_qualified AND customer_not_authorized_budget_recipient",
+        "conclusion_procedure_breached == state_work_qualified AND contract_conclusion_procedure_breached",
+        "scope_or_cost_terms_missing == state_work_qualified AND scope_or_cost_terms_not_agreed",
+        "schedule_terms_missing == state_work_qualified AND start_or_completion_dates_not_agreed",
+        "funding_terms_missing == state_work_qualified AND funding_and_payment_terms_not_agreed",
+        "performance_security_missing == state_work_qualified AND performance_security_not_agreed",
+        "budget_reduction_terms_not_agreed == state_work_qualified AND budget_reduced_without_agreed_new_terms",
+        "contractor_losses_compensation_due == state_work_qualified AND budget_reduced_without_agreed_new_terms AND contractor_losses_from_changed_terms_not_compensated",
+        "requires_human_state_work_assessment == state_contract_requirement_breached OR customer_status_invalid OR conclusion_procedure_breached OR scope_or_cost_terms_missing OR schedule_terms_missing OR funding_terms_missing OR performance_security_missing OR budget_reduction_terms_not_agreed"
+      ]
+    },
+    "state_work_evaluation": {
+      "constraint_set_id": "state-work-constraint-set:reviewed-state-work-evidence-supply-1-v0",
+      "satisfiable": true,
+      "state_work_qualified": false,
+      "state_contract_requirement_breached": false,
+      "customer_status_invalid": false,
+      "conclusion_procedure_breached": false,
+      "scope_or_cost_terms_missing": false,
+      "schedule_terms_missing": false,
+      "funding_terms_missing": false,
+      "performance_security_missing": false,
+      "budget_reduction_terms_not_agreed": false,
+      "contractor_losses_compensation_due": false,
+      "requires_human_state_work_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как подрядные работы для государственных или муниципальных нужд."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о подрядных работах для государственных и муниципальных нужд и не заменяет судебную оценку.",
+        "Достаточность бюджетного финансирования, соблюдение закупочных процедур и размер убытков подрядчика оцениваются экспертом и судом (статьи 765, 767 и 768 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -21818,7 +22098,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.54.0",
+      "institutional_package_version": "contracts-ru-v0@0.55.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

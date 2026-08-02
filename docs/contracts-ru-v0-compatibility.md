@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.55.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью подрядных работ для государственных нужд |
 | `0.54.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью проектных и изыскательских работ |
 | `0.53.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью строительного подряда |
 | `0.52.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью бытового подряда |
@@ -62,6 +63,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.54.0` → `0.55.0` соберите отдельно проверенный контракт данных о подрядных работах для государственных и муниципальных нужд (`contracts.state-work-evidence.v0`). Не выводите квалификацию работ для государственных нужд, требование государственного контракта, статус заказчика, порядок заключения контракта, условия об объёме и стоимости работ, сроках, финансировании и обеспечении исполнения обязательств, согласование новых условий при уменьшении бюджетных средств и возмещение убытков подрядчика из прежних результатов о строительном подряде или поставке для государственных нужд. Пересоберите артефакты оценки подрядных работ для государственных нужд, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.53.0` → `0.54.0` соберите отдельно проверенный контракт данных о проектных и изыскательских работах (`contracts.design-work-evidence.v0`). Не выводите квалификацию договора, передачу задания и исходных данных, отступление от задания, согласование документации, запрет передачи документации третьим лицам, право третьих лиц воспрепятствовать работам, ответственность за недостатки, недостатки, выявленные позднее, оплату и содействие заказчика и возмещение дополнительных расходов из прежних результатов об общих положениях о подряде или строительном подряде. Пересоберите артефакты оценки проектных и изыскательских работ, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.55.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed state-work evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 763 through 768.",
+            "Qualification, the state-contract requirement, the customer's budget-recipient status, the conclusion procedure, scope and cost, schedule, funding, performance security, budget reduction, and compensation for the contractor's losses remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о подрядных работах для государственных нужд обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 763–768 ГК РФ.",
+            "Квалификация работ для государственных или муниципальных нужд, требование государственного контракта, статус заказчика как получателя бюджетных средств, порядок заключения контракта, объём и стоимость работ, сроки, финансирование и оплата, обеспечение исполнения обязательств, уменьшение бюджетных средств и возмещение убытков подрядчика разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.54.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -1043,6 +1043,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.54.0",
+        to_version="0.55.0",
+        reasons=[
+            "Reviewed inputs now require a separate state-work evidence contract.",
+            "Analysis and Russian translation distinguish qualification, the state-contract requirement, the customer's budget-recipient status, the conclusion procedure, scope and cost, schedule, funding, performance security, budget reduction, and compensation for the contractor's losses under articles 763 through 768.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о подрядных работах для государственных нужд.",
+            "Анализ и русское объяснение разделяют квалификацию работ для государственных или муниципальных нужд, требование государственного контракта, статус заказчика как получателя бюджетных средств, порядок заключения контракта, объём и стоимость работ, сроки, финансирование и оплату, обеспечение исполнения обязательств, уменьшение бюджетных средств и возмещение убытков подрядчика по статьям 763–768 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_state_work_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 
