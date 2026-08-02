@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.design_work import (
+    DesignWorkEvidenceAssertion,
+    DesignWorkEvidencePredicate,
+    ReviewedDesignWorkEvidence,
+)
 from causa.institutional.contracts.consumer_work import (
     ConsumerWorkEvidenceAssertion,
     ConsumerWorkEvidencePredicate,
@@ -356,6 +361,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk740-749-construction-contract-concept-documentation-and-duties-v1",
     "synthetic-ru-gk752-757-construction-contract-conservation-acceptance-and-quality-v1",
     "synthetic-case-supply-1-construction-contract-evidence",
+    "synthetic-ru-gk758-760-design-work-concept-initial-data-and-approval-v1",
+    "synthetic-ru-gk761-762-design-work-liability-and-customer-duties-v1",
+    "synthetic-case-supply-1-design-work-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1824,6 +1832,54 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-construction-contract-reviewer",
+        ),
+        design_work_evidence=ReviewedDesignWorkEvidence(
+            id="reviewed-design-work-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                DesignWorkEvidenceAssertion(
+                    id=f"design-work-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-design-work-evidence",),
+                )
+                for predicate, value in (
+                    (DesignWorkEvidencePredicate.DESIGN_OR_SURVEY_WORK_PERFORMED_FOR_FEE, False),
+                    (DesignWorkEvidencePredicate.ASSIGNMENT_OR_INITIAL_DATA_NOT_PROVIDED, False),
+                    (
+                        DesignWorkEvidencePredicate.ASSIGNMENT_REQUIREMENTS_DEVIATED_WITHOUT_CONSENT,
+                        False,
+                    ),
+                    (
+                        DesignWorkEvidencePredicate.DOCUMENTATION_NOT_AGREED_WITH_AUTHORITIES,
+                        False,
+                    ),
+                    (
+                        DesignWorkEvidencePredicate.DOCUMENTATION_DISCLOSED_TO_THIRD_PARTY_WITHOUT_CONSENT,
+                        False,
+                    ),
+                    (DesignWorkEvidencePredicate.THIRD_PARTY_RIGHT_OBSTRUCTS_WORK, False),
+                    (DesignWorkEvidencePredicate.DOCUMENTATION_OR_SURVEY_DEFECTIVE, False),
+                    (
+                        DesignWorkEvidencePredicate.DEFECT_REVEALED_DURING_CONSTRUCTION_OR_USE,
+                        False,
+                    ),
+                    (
+                        DesignWorkEvidencePredicate.CUSTOMER_PAYMENT_OR_ASSISTANCE_DUTY_UNMET,
+                        False,
+                    ),
+                    (
+                        DesignWorkEvidencePredicate.EXTRA_COSTS_FROM_CHANGED_INITIAL_DATA_NOT_COMPENSATED,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk758-760-design-work-concept-initial-data-and-approval-v1",
+                "synthetic-ru-gk761-762-design-work-liability-and-customer-duties-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-design-work-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

@@ -1784,6 +1784,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk758-760-design-work-concept-initial-data-and-approval-v1",
+      "title": "Синтетическая проверенная модель понятия подряда на проектные и изыскательские работы, исходных данных и согласования документации по статьям 758–760 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: подряд на выполнение проектных и изыскательских работ как обязанность подрядчика по заданию заказчика разработать техническую документацию или выполнить изыскательские работы и обязанность заказчика принять и оплатить их результат, передача задания и иных исходных данных, запрет отступать от требований задания без согласия заказчика, согласование готовой документации с заказчиком и компетентными органами, запрет передавать документацию третьим лицам без согласия заказчика и гарантия отсутствия у третьих лиц права воспрепятствовать работам проверяются раздельно (статьи 758–760 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "design_work_concept_initial_data_and_approval_articles_758_760",
+        "legal_reference": "ГК РФ, статьи 758–760",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk761-762-design-work-liability-and-customer-duties-v1",
+      "title": "Синтетическая проверенная модель ответственности подрядчика за недостатки документации и обязанностей заказчика по статьям 761–762 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: ответственность подрядчика за ненадлежащее составление технической документации и выполнение изыскательских работ, включая недостатки, выявленные впоследствии в ходе строительства или эксплуатации объекта, обязанность заказчика уплатить установленную цену и оказывать содействие, включая участие в согласовании документации, и возмещение дополнительных расходов, вызванных изменением исходных данных, проверяются раздельно (статьи 761–762 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "design_work_liability_and_customer_duties_articles_761_762",
+        "legal_reference": "ГК РФ, статьи 761–762",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-design-work-evidence",
+      "title": "Синтетическая проверенная запись фактов о проектных и изыскательских работах",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является договором подряда на выполнение проектных и изыскательских работ; разработка технической документации и изыскательские работы по заданию заказчика не выполнялись.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "design_work_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -6113,6 +6160,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-construction-contract-reviewer"
+    },
+    "design_work_evidence": {
+      "id": "reviewed-design-work-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.design-work-evidence.v0",
+      "assertions": [
+        {
+          "id": "design-work-evidence-design_or_survey_work_performed_for_fee",
+          "predicate": "design_or_survey_work_performed_for_fee",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "id": "design-work-evidence-assignment_or_initial_data_not_provided",
+          "predicate": "assignment_or_initial_data_not_provided",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "id": "design-work-evidence-assignment_requirements_deviated_without_consent",
+          "predicate": "assignment_requirements_deviated_without_consent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "id": "design-work-evidence-documentation_not_agreed_with_authorities",
+          "predicate": "documentation_not_agreed_with_authorities",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "id": "design-work-evidence-documentation_disclosed_to_third_party_without_consent",
+          "predicate": "documentation_disclosed_to_third_party_without_consent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "id": "design-work-evidence-third_party_right_obstructs_work",
+          "predicate": "third_party_right_obstructs_work",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "id": "design-work-evidence-documentation_or_survey_defective",
+          "predicate": "documentation_or_survey_defective",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "id": "design-work-evidence-defect_revealed_during_construction_or_use",
+          "predicate": "defect_revealed_during_construction_or_use",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "id": "design-work-evidence-customer_payment_or_assistance_duty_unmet",
+          "predicate": "customer_payment_or_assistance_duty_unmet",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "id": "design-work-evidence-extra_costs_from_changed_initial_data_not_compensated",
+          "predicate": "extra_costs_from_changed_initial_data_not_compensated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk758-760-design-work-concept-initial-data-and-approval-v1",
+        "synthetic-ru-gk761-762-design-work-liability-and-customer-duties-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-design-work-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -10895,6 +11035,7 @@
       "synthetic-construction-contract-reviewer",
       "synthetic-consumer-work-reviewer",
       "synthetic-contractation-reviewer",
+      "synthetic-design-work-reviewer",
       "synthetic-energy-supply-reviewer",
       "synthetic-enterprise-lease-reviewer",
       "synthetic-enterprise-sale-reviewer",
@@ -10943,6 +11084,7 @@
       "synthetic-case-supply-1-construction-contract-evidence",
       "synthetic-case-supply-1-consumer-work-evidence",
       "synthetic-case-supply-1-contractation-evidence",
+      "synthetic-case-supply-1-design-work-evidence",
       "synthetic-case-supply-1-energy-supply-evidence",
       "synthetic-case-supply-1-enterprise-lease-evidence",
       "synthetic-case-supply-1-enterprise-sale-evidence",
@@ -11082,6 +11224,8 @@
       "synthetic-ru-gk737-739-consumer-work-defects-and-uncollected-result-v1",
       "synthetic-ru-gk740-749-construction-contract-concept-documentation-and-duties-v1",
       "synthetic-ru-gk752-757-construction-contract-conservation-acceptance-and-quality-v1",
+      "synthetic-ru-gk758-760-design-work-concept-initial-data-and-approval-v1",
+      "synthetic-ru-gk761-762-design-work-liability-and-customer-duties-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -16165,6 +16309,142 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о строительном подряде и не заменяет судебную оценку.",
         "Существенность отступлений от документации, обоснованность отказа от подписания акта и объём расходов при консервации оцениваются экспертом и судом (статьи 752, 753 и 754 ГК РФ)."
+      ]
+    },
+    "design_work_evidence_mapping": {
+      "evidence_id": "reviewed-design-work-evidence-supply-1-v0",
+      "schema_version": "contracts.design-work-evidence.v0",
+      "mapping_version": "contracts-reviewed-design-work-to-facts-v0",
+      "facts": {
+        "design_or_survey_work_performed_for_fee": false,
+        "assignment_or_initial_data_not_provided": false,
+        "assignment_requirements_deviated_without_consent": false,
+        "documentation_not_agreed_with_authorities": false,
+        "documentation_disclosed_to_third_party_without_consent": false,
+        "third_party_right_obstructs_work": false,
+        "documentation_or_survey_defective": false,
+        "defect_revealed_during_construction_or_use": false,
+        "customer_payment_or_assistance_duty_unmet": false,
+        "extra_costs_from_changed_initial_data_not_compensated": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk758-760-design-work-concept-initial-data-and-approval-v1",
+        "synthetic-ru-gk761-762-design-work-liability-and-customer-duties-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "assignment_or_initial_data_not_provided",
+          "assertion_id": "design-work-evidence-assignment_or_initial_data_not_provided",
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "assignment_requirements_deviated_without_consent",
+          "assertion_id": "design-work-evidence-assignment_requirements_deviated_without_consent",
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "customer_payment_or_assistance_duty_unmet",
+          "assertion_id": "design-work-evidence-customer_payment_or_assistance_duty_unmet",
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "defect_revealed_during_construction_or_use",
+          "assertion_id": "design-work-evidence-defect_revealed_during_construction_or_use",
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "design_or_survey_work_performed_for_fee",
+          "assertion_id": "design-work-evidence-design_or_survey_work_performed_for_fee",
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "documentation_disclosed_to_third_party_without_consent",
+          "assertion_id": "design-work-evidence-documentation_disclosed_to_third_party_without_consent",
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "documentation_not_agreed_with_authorities",
+          "assertion_id": "design-work-evidence-documentation_not_agreed_with_authorities",
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "documentation_or_survey_defective",
+          "assertion_id": "design-work-evidence-documentation_or_survey_defective",
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "extra_costs_from_changed_initial_data_not_compensated",
+          "assertion_id": "design-work-evidence-extra_costs_from_changed_initial_data_not_compensated",
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_right_obstructs_work",
+          "assertion_id": "design-work-evidence-third_party_right_obstructs_work",
+          "source_refs": [
+            "synthetic-case-supply-1-design-work-evidence"
+          ]
+        }
+      ]
+    },
+    "design_work_constraint_set": {
+      "id": "design-work-constraint-set:reviewed-design-work-evidence-supply-1-v0",
+      "model_version": "contracts-design-work-articles-758-762-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk758-760-design-work-concept-initial-data-and-approval-v1",
+        "synthetic-ru-gk761-762-design-work-liability-and-customer-duties-v1"
+      ],
+      "expressions": [
+        "design_work_qualified == design_or_survey_work_performed_for_fee",
+        "initial_data_duty_breached == design_work_qualified AND assignment_or_initial_data_not_provided",
+        "assignment_deviation_unauthorized == design_work_qualified AND assignment_requirements_deviated_without_consent",
+        "approval_duty_breached == design_work_qualified AND documentation_not_agreed_with_authorities",
+        "documentation_confidentiality_breached == design_work_qualified AND documentation_disclosed_to_third_party_without_consent",
+        "third_party_obstruction_risk == design_work_qualified AND third_party_right_obstructs_work",
+        "designer_liable_for_defects == design_work_qualified AND documentation_or_survey_defective",
+        "later_discovered_defect_claim == design_work_qualified AND documentation_or_survey_defective AND defect_revealed_during_construction_or_use",
+        "customer_payment_or_assistance_breached == design_work_qualified AND customer_payment_or_assistance_duty_unmet",
+        "extra_costs_compensation_due == design_work_qualified AND extra_costs_from_changed_initial_data_not_compensated",
+        "requires_human_design_work_assessment == initial_data_duty_breached OR assignment_deviation_unauthorized OR approval_duty_breached OR documentation_confidentiality_breached OR third_party_obstruction_risk OR designer_liable_for_defects OR customer_payment_or_assistance_breached OR extra_costs_compensation_due"
+      ]
+    },
+    "design_work_evaluation": {
+      "constraint_set_id": "design-work-constraint-set:reviewed-design-work-evidence-supply-1-v0",
+      "satisfiable": true,
+      "design_work_qualified": false,
+      "initial_data_duty_breached": false,
+      "assignment_deviation_unauthorized": false,
+      "approval_duty_breached": false,
+      "documentation_confidentiality_breached": false,
+      "third_party_obstruction_risk": false,
+      "designer_liable_for_defects": false,
+      "later_discovered_defect_claim": false,
+      "customer_payment_or_assistance_breached": false,
+      "extra_costs_compensation_due": false,
+      "requires_human_design_work_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор подряда на выполнение проектных и изыскательских работ."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о проектных и изыскательских работах и не заменяет судебную оценку.",
+        "Полнота исходных данных, характер недостатков документации и объём дополнительных расходов оцениваются экспертом и судом (статьи 759, 761 и 762 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -21538,7 +21818,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.53.0",
+      "institutional_package_version": "contracts-ru-v0@0.54.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

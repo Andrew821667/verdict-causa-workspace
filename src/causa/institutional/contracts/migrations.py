@@ -1024,6 +1024,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.53.0",
+        to_version="0.54.0",
+        reasons=[
+            "Reviewed inputs now require a separate design-work evidence contract.",
+            "Analysis and Russian translation distinguish qualification, initial data, unauthorised deviation from the assignment, approval with authorities, documentation confidentiality, third-party obstruction, liability for defects, later-discovered defects, customer payment and assistance, and extra-cost compensation under articles 758 through 762.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о проектных и изыскательских работах.",
+            "Анализ и русское объяснение разделяют квалификацию договора, передачу задания и исходных данных, отступление от задания без согласия, согласование документации с органами, запрет передачи документации третьим лицам, право третьих лиц воспрепятствовать работам, ответственность за недостатки, недостатки, выявленные позднее, оплату и содействие заказчика и возмещение дополнительных расходов по статьям 758–762 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_design_work_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

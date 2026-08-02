@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о подряде на выполнение проектных и изыскательских работ по статьям 758–762 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-design-work-evidence-supply-1-v0",
+    "schema_version": "contracts.design-work-evidence.v0",
+    "mapping_version": "contracts-reviewed-design-work-to-facts-v0",
+    "facts": {
+      "design_or_survey_work_performed_for_fee": false,
+      "assignment_or_initial_data_not_provided": false,
+      "assignment_requirements_deviated_without_consent": false,
+      "documentation_not_agreed_with_authorities": false,
+      "documentation_disclosed_to_third_party_without_consent": false,
+      "third_party_right_obstructs_work": false,
+      "documentation_or_survey_defective": false,
+      "defect_revealed_during_construction_or_use": false,
+      "customer_payment_or_assistance_duty_unmet": false,
+      "extra_costs_from_changed_initial_data_not_compensated": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk758-760-design-work-concept-initial-data-and-approval-v1",
+      "synthetic-ru-gk761-762-design-work-liability-and-customer-duties-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "assignment_or_initial_data_not_provided",
+        "assertion_id": "design-work-evidence-assignment_or_initial_data_not_provided",
+        "source_refs": [
+          "synthetic-case-supply-1-design-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "assignment_requirements_deviated_without_consent",
+        "assertion_id": "design-work-evidence-assignment_requirements_deviated_without_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-design-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "customer_payment_or_assistance_duty_unmet",
+        "assertion_id": "design-work-evidence-customer_payment_or_assistance_duty_unmet",
+        "source_refs": [
+          "synthetic-case-supply-1-design-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "defect_revealed_during_construction_or_use",
+        "assertion_id": "design-work-evidence-defect_revealed_during_construction_or_use",
+        "source_refs": [
+          "synthetic-case-supply-1-design-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "design_or_survey_work_performed_for_fee",
+        "assertion_id": "design-work-evidence-design_or_survey_work_performed_for_fee",
+        "source_refs": [
+          "synthetic-case-supply-1-design-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "documentation_disclosed_to_third_party_without_consent",
+        "assertion_id": "design-work-evidence-documentation_disclosed_to_third_party_without_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-design-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "documentation_not_agreed_with_authorities",
+        "assertion_id": "design-work-evidence-documentation_not_agreed_with_authorities",
+        "source_refs": [
+          "synthetic-case-supply-1-design-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "documentation_or_survey_defective",
+        "assertion_id": "design-work-evidence-documentation_or_survey_defective",
+        "source_refs": [
+          "synthetic-case-supply-1-design-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "extra_costs_from_changed_initial_data_not_compensated",
+        "assertion_id": "design-work-evidence-extra_costs_from_changed_initial_data_not_compensated",
+        "source_refs": [
+          "synthetic-case-supply-1-design-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_right_obstructs_work",
+        "assertion_id": "design-work-evidence-third_party_right_obstructs_work",
+        "source_refs": [
+          "synthetic-case-supply-1-design-work-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "design-work-constraint-set:reviewed-design-work-evidence-supply-1-v0",
+    "model_version": "contracts-design-work-articles-758-762-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk758-760-design-work-concept-initial-data-and-approval-v1",
+      "synthetic-ru-gk761-762-design-work-liability-and-customer-duties-v1"
+    ],
+    "expressions": [
+      "design_work_qualified == design_or_survey_work_performed_for_fee",
+      "initial_data_duty_breached == design_work_qualified AND assignment_or_initial_data_not_provided",
+      "assignment_deviation_unauthorized == design_work_qualified AND assignment_requirements_deviated_without_consent",
+      "approval_duty_breached == design_work_qualified AND documentation_not_agreed_with_authorities",
+      "documentation_confidentiality_breached == design_work_qualified AND documentation_disclosed_to_third_party_without_consent",
+      "third_party_obstruction_risk == design_work_qualified AND third_party_right_obstructs_work",
+      "designer_liable_for_defects == design_work_qualified AND documentation_or_survey_defective",
+      "later_discovered_defect_claim == design_work_qualified AND documentation_or_survey_defective AND defect_revealed_during_construction_or_use",
+      "customer_payment_or_assistance_breached == design_work_qualified AND customer_payment_or_assistance_duty_unmet",
+      "extra_costs_compensation_due == design_work_qualified AND extra_costs_from_changed_initial_data_not_compensated",
+      "requires_human_design_work_assessment == initial_data_duty_breached OR assignment_deviation_unauthorized OR approval_duty_breached OR documentation_confidentiality_breached OR third_party_obstruction_risk OR designer_liable_for_defects OR customer_payment_or_assistance_breached OR extra_costs_compensation_due"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "design-work-constraint-set:reviewed-design-work-evidence-supply-1-v0",
+    "satisfiable": true,
+    "design_work_qualified": false,
+    "initial_data_duty_breached": false,
+    "assignment_deviation_unauthorized": false,
+    "approval_duty_breached": false,
+    "documentation_confidentiality_breached": false,
+    "third_party_obstruction_risk": false,
+    "designer_liable_for_defects": false,
+    "later_discovered_defect_claim": false,
+    "customer_payment_or_assistance_breached": false,
+    "extra_costs_compensation_due": false,
+    "requires_human_design_work_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор подряда на выполнение проектных и изыскательских работ."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о проектных и изыскательских работах и не заменяет судебную оценку.",
+      "Полнота исходных данных, характер недостатков документации и объём дополнительных расходов оцениваются экспертом и судом (статьи 759, 761 и 762 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "design-work-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "design-work-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "design_work_qualified": false
+        },
+        "observed_outcomes": {
+          "design_work_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор подряда на выполнение проектных и изыскательских работ."
+        ]
+      },
+      {
+        "task_id": "design-work-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "design_work_qualified": true,
+          "requires_human_design_work_assessment": false
+        },
+        "observed_outcomes": {
+          "design_work_qualified": true,
+          "requires_human_design_work_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "design-work-bench-initial-data",
+        "passed": true,
+        "expected_outcomes": {
+          "initial_data_duty_breached": true,
+          "requires_human_design_work_assessment": true
+        },
+        "observed_outcomes": {
+          "initial_data_duty_breached": true,
+          "requires_human_design_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Заказчик обязан передать подрядчику задание на проектирование и иные исходные данные, необходимые для составления технической документации (статья 759 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "design-work-bench-assignment-deviation",
+        "passed": true,
+        "expected_outcomes": {
+          "assignment_deviation_unauthorized": true,
+          "requires_human_design_work_assessment": true
+        },
+        "observed_outcomes": {
+          "assignment_deviation_unauthorized": true,
+          "requires_human_design_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Подрядчик обязан соблюдать требования задания и других исходных данных и вправе отступить от них только с согласия заказчика (статья 759 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "design-work-bench-approval",
+        "passed": true,
+        "expected_outcomes": {
+          "approval_duty_breached": true,
+          "requires_human_design_work_assessment": true
+        },
+        "observed_outcomes": {
+          "approval_duty_breached": true,
+          "requires_human_design_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Подрядчик обязан согласовать готовую техническую документацию с заказчиком и совместно с ним — с компетентными государственными органами и органами местного самоуправления (статья 760 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "design-work-bench-disclosure",
+        "passed": true,
+        "expected_outcomes": {
+          "documentation_confidentiality_breached": true,
+          "requires_human_design_work_assessment": true
+        },
+        "observed_outcomes": {
+          "documentation_confidentiality_breached": true,
+          "requires_human_design_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Техническая документация передана третьим лицам без согласия другой стороны, что нарушает обязанности подрядчика и заказчика (статьи 760 и 762 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "design-work-bench-third-party-right",
+        "passed": true,
+        "expected_outcomes": {
+          "third_party_obstruction_risk": true,
+          "requires_human_design_work_assessment": true
+        },
+        "observed_outcomes": {
+          "third_party_obstruction_risk": true,
+          "requires_human_design_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Не гарантировано отсутствие у третьих лиц права воспрепятствовать выполнению работ или ограничить их выполнение на основе подготовленной документации (статья 760 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "design-work-bench-later-defect",
+        "passed": true,
+        "expected_outcomes": {
+          "designer_liable_for_defects": true,
+          "later_discovered_defect_claim": true,
+          "requires_human_design_work_assessment": true
+        },
+        "observed_outcomes": {
+          "designer_liable_for_defects": true,
+          "later_discovered_defect_claim": true,
+          "requires_human_design_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Подрядчик отвечает за ненадлежащее составление технической документации и выполнение изыскательских работ: он обязан безвозмездно переделать документацию, произвести необходимые дополнительные работы и возместить убытки (статья 761 ГК РФ).",
+          "Недостатки выявлены впоследствии в ходе строительства или эксплуатации созданного на основе документации объекта, что сохраняет ответственность подрядчика (статья 761 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "design-work-bench-customer-duties",
+        "passed": true,
+        "expected_outcomes": {
+          "customer_payment_or_assistance_breached": true,
+          "requires_human_design_work_assessment": true
+        },
+        "observed_outcomes": {
+          "customer_payment_or_assistance_breached": true,
+          "requires_human_design_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Заказчик обязан уплатить подрядчику установленную цену и оказывать содействие в выполнении работ, включая участие в согласовании документации с компетентными органами (статья 762 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "design-work-bench-extra-costs",
+        "passed": true,
+        "expected_outcomes": {
+          "extra_costs_compensation_due": true,
+          "requires_human_design_work_assessment": true
+        },
+        "observed_outcomes": {
+          "extra_costs_compensation_due": true,
+          "requires_human_design_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Заказчик обязан возместить подрядчику дополнительные расходы, вызванные изменением исходных данных вследствие обстоятельств, за которые подрядчик не отвечает (статья 762 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "design-work-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "design-work-red-qualify-without-work",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "design_work_qualified": true
+        },
+        "observed_outcomes": {
+          "design_work_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор подряда на выполнение проектных и изыскательских работ."
+        ]
+      },
+      {
+        "case_id": "design-work-red-ignore-initial-data",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "initial_data_duty_breached": false
+        },
+        "observed_outcomes": {
+          "initial_data_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Заказчик обязан передать подрядчику задание на проектирование и иные исходные данные, необходимые для составления технической документации (статья 759 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "design-work-red-allow-deviation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "assignment_deviation_unauthorized": false
+        },
+        "observed_outcomes": {
+          "assignment_deviation_unauthorized": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Подрядчик обязан соблюдать требования задания и других исходных данных и вправе отступить от них только с согласия заказчика (статья 759 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "design-work-red-ignore-approval",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "approval_duty_breached": false
+        },
+        "observed_outcomes": {
+          "approval_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Подрядчик обязан согласовать готовую техническую документацию с заказчиком и совместно с ним — с компетентными государственными органами и органами местного самоуправления (статья 760 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "design-work-red-allow-disclosure",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "documentation_confidentiality_breached": false
+        },
+        "observed_outcomes": {
+          "documentation_confidentiality_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Техническая документация передана третьим лицам без согласия другой стороны, что нарушает обязанности подрядчика и заказчика (статьи 760 и 762 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "design-work-red-ignore-third-party-right",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "third_party_obstruction_risk": false
+        },
+        "observed_outcomes": {
+          "third_party_obstruction_risk": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Не гарантировано отсутствие у третьих лиц права воспрепятствовать выполнению работ или ограничить их выполнение на основе подготовленной документации (статья 760 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "design-work-red-excuse-defects",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "designer_liable_for_defects": false
+        },
+        "observed_outcomes": {
+          "designer_liable_for_defects": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Подрядчик отвечает за ненадлежащее составление технической документации и выполнение изыскательских работ: он обязан безвозмездно переделать документацию, произвести необходимые дополнительные работы и возместить убытки (статья 761 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "design-work-red-claim-without-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "later_discovered_defect_claim": true
+        },
+        "observed_outcomes": {
+          "later_discovered_defect_claim": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "design-work-red-ignore-customer-duties",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "customer_payment_or_assistance_breached": false
+        },
+        "observed_outcomes": {
+          "customer_payment_or_assistance_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Заказчик обязан уплатить подрядчику установленную цену и оказывать содействие в выполнении работ, включая участие в согласовании документации с компетентными органами (статья 762 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "design-work-red-skip-human-on-extra-costs",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_design_work_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_design_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как подряд на выполнение проектных и изыскательских работ: подрядчик обязуется по заданию заказчика разработать техническую документацию или выполнить изыскательские работы, а заказчик — принять и оплатить их результат (статья 758 ГК РФ).",
+          "Заказчик обязан возместить подрядчику дополнительные расходы, вызванные изменением исходных данных вследствие обстоятельств, за которые подрядчик не отвечает (статья 762 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}
