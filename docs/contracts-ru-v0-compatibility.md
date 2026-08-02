@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.57.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью возмездного оказания услуг |
 | `0.56.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью научно-исследовательских и опытно-конструкторских работ |
 | `0.55.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью подрядных работ для государственных нужд |
 | `0.54.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью проектных и изыскательских работ |
@@ -64,6 +65,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.56.0` → `0.57.0` соберите отдельно проверенный контракт данных о возмездном оказании услуг (`contracts.paid-services-evidence.v0`). Не выводите квалификацию договора, исключение услуг по договорам отдельных глав, личное исполнение, сроки и порядок оплаты, невозможность исполнения, возмещение фактически понесённых расходов, односторонний отказ сторон и правила приостановления услуг связи из прежних результатов о подряде. Пересоберите артефакты оценки возмездного оказания услуг, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.55.0` → `0.56.0` соберите отдельно проверенный контракт данных о научно-исследовательских, опытно-конструкторских и технологических работах (`contracts.research-work-evidence.v0`). Не выводите квалификацию договора, личное проведение исследований, конфиденциальность, права на использование результатов, исключительные права третьих лиц, сообщение о невозможности, обязанности заказчика, последствия невозможности достижения результата и ответственность исполнителя из прежних результатов о подряде. Пересоберите артефакты оценки научно-исследовательских работ, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

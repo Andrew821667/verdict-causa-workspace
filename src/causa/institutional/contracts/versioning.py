@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.57.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed paid-services evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 779 through 783.1.",
+            "Qualification, the special-chapter exclusion, personal performance, payment terms, impossibility caused by the customer, impossibility without fault, reimbursement of actual expenses, the customer's withdrawal, the performer's withdrawal, and suspension of communication services remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о возмездном оказании услуг обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 779–783.1 ГК РФ.",
+            "Квалификация договора, исключение услуг по договорам отдельных глав, личное исполнение, сроки и порядок оплаты, невозможность исполнения по вине заказчика, невозможность без вины сторон, возмещение фактически понесённых расходов, отказ заказчика, отказ исполнителя и приостановление оказания услуг связи разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.56.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о возмездном оказании услуг по статьям 779–783.1 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-paid-services-evidence-supply-1-v0",
+    "schema_version": "contracts.paid-services-evidence.v0",
+    "mapping_version": "contracts-reviewed-paid-services-to-facts-v0",
+    "facts": {
+      "services_rendered_for_fee_by_assignment": false,
+      "contract_covered_by_special_chapter": false,
+      "third_party_performed_without_contract_permission": false,
+      "payment_terms_or_deadline_breached": false,
+      "impossibility_caused_by_customer": false,
+      "impossibility_without_party_fault": false,
+      "actual_expenses_not_reimbursed": false,
+      "customer_withdrew_without_covering_expenses": false,
+      "performer_withdrew_without_full_compensation": false,
+      "communication_suspension_rules_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
+      "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "actual_expenses_not_reimbursed",
+        "assertion_id": "paid-services-evidence-actual_expenses_not_reimbursed",
+        "source_refs": [
+          "synthetic-case-supply-1-paid-services-evidence"
+        ]
+      },
+      {
+        "fact_name": "communication_suspension_rules_breached",
+        "assertion_id": "paid-services-evidence-communication_suspension_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-paid-services-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_covered_by_special_chapter",
+        "assertion_id": "paid-services-evidence-contract_covered_by_special_chapter",
+        "source_refs": [
+          "synthetic-case-supply-1-paid-services-evidence"
+        ]
+      },
+      {
+        "fact_name": "customer_withdrew_without_covering_expenses",
+        "assertion_id": "paid-services-evidence-customer_withdrew_without_covering_expenses",
+        "source_refs": [
+          "synthetic-case-supply-1-paid-services-evidence"
+        ]
+      },
+      {
+        "fact_name": "impossibility_caused_by_customer",
+        "assertion_id": "paid-services-evidence-impossibility_caused_by_customer",
+        "source_refs": [
+          "synthetic-case-supply-1-paid-services-evidence"
+        ]
+      },
+      {
+        "fact_name": "impossibility_without_party_fault",
+        "assertion_id": "paid-services-evidence-impossibility_without_party_fault",
+        "source_refs": [
+          "synthetic-case-supply-1-paid-services-evidence"
+        ]
+      },
+      {
+        "fact_name": "payment_terms_or_deadline_breached",
+        "assertion_id": "paid-services-evidence-payment_terms_or_deadline_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-paid-services-evidence"
+        ]
+      },
+      {
+        "fact_name": "performer_withdrew_without_full_compensation",
+        "assertion_id": "paid-services-evidence-performer_withdrew_without_full_compensation",
+        "source_refs": [
+          "synthetic-case-supply-1-paid-services-evidence"
+        ]
+      },
+      {
+        "fact_name": "services_rendered_for_fee_by_assignment",
+        "assertion_id": "paid-services-evidence-services_rendered_for_fee_by_assignment",
+        "source_refs": [
+          "synthetic-case-supply-1-paid-services-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_performed_without_contract_permission",
+        "assertion_id": "paid-services-evidence-third_party_performed_without_contract_permission",
+        "source_refs": [
+          "synthetic-case-supply-1-paid-services-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "paid-services-constraint-set:reviewed-paid-services-evidence-supply-1-v0",
+    "model_version": "contracts-paid-services-articles-779-783-1-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
+      "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1"
+    ],
+    "expressions": [
+      "paid_services_qualified == services_rendered_for_fee_by_assignment",
+      "special_chapter_exclusion_applies == paid_services_qualified AND contract_covered_by_special_chapter",
+      "personal_performance_duty_breached == paid_services_qualified AND third_party_performed_without_contract_permission",
+      "payment_duty_breached == paid_services_qualified AND payment_terms_or_deadline_breached",
+      "customer_fault_full_payment_due == paid_services_qualified AND impossibility_caused_by_customer",
+      "no_fault_impossibility_established == paid_services_qualified AND impossibility_without_party_fault",
+      "actual_expenses_reimbursement_due == paid_services_qualified AND impossibility_without_party_fault AND actual_expenses_not_reimbursed",
+      "customer_withdrawal_expenses_due == paid_services_qualified AND customer_withdrew_without_covering_expenses",
+      "performer_withdrawal_compensation_due == paid_services_qualified AND performer_withdrew_without_full_compensation",
+      "communication_suspension_breached == paid_services_qualified AND communication_suspension_rules_breached",
+      "requires_human_paid_services_assessment == special_chapter_exclusion_applies OR personal_performance_duty_breached OR payment_duty_breached OR customer_fault_full_payment_due OR no_fault_impossibility_established OR customer_withdrawal_expenses_due OR performer_withdrawal_compensation_due OR communication_suspension_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "paid-services-constraint-set:reviewed-paid-services-evidence-supply-1-v0",
+    "satisfiable": true,
+    "paid_services_qualified": false,
+    "special_chapter_exclusion_applies": false,
+    "personal_performance_duty_breached": false,
+    "payment_duty_breached": false,
+    "customer_fault_full_payment_due": false,
+    "no_fault_impossibility_established": false,
+    "actual_expenses_reimbursement_due": false,
+    "customer_withdrawal_expenses_due": false,
+    "performer_withdrawal_compensation_due": false,
+    "communication_suspension_breached": false,
+    "requires_human_paid_services_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор возмездного оказания услуг."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о возмездном оказании услуг и не заменяет судебную оценку.",
+      "Качество оказанных услуг, наличие вины стороны и размер фактически понесённых расходов оцениваются экспертом и судом (статьи 781 и 782 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "paid-services-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "paid-services-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "paid_services_qualified": false
+        },
+        "observed_outcomes": {
+          "paid_services_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор возмездного оказания услуг."
+        ]
+      },
+      {
+        "task_id": "paid-services-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "paid_services_qualified": true,
+          "requires_human_paid_services_assessment": false
+        },
+        "observed_outcomes": {
+          "paid_services_qualified": true,
+          "requires_human_paid_services_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "paid-services-bench-special-chapter",
+        "passed": true,
+        "expected_outcomes": {
+          "special_chapter_exclusion_applies": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "observed_outcomes": {
+          "special_chapter_exclusion_applies": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Услуги оказываются по договору, предусмотренному отдельной главой Кодекса, поэтому правила о возмездном оказании услуг к таким отношениям не применяются (статья 779 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "paid-services-bench-personal-performance",
+        "passed": true,
+        "expected_outcomes": {
+          "personal_performance_duty_breached": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "observed_outcomes": {
+          "personal_performance_duty_breached": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Исполнитель обязан оказать услуги лично, если иное не предусмотрено договором (статья 780 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "paid-services-bench-payment",
+        "passed": true,
+        "expected_outcomes": {
+          "payment_duty_breached": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "observed_outcomes": {
+          "payment_duty_breached": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Заказчик обязан оплатить оказанные ему услуги в сроки и в порядке, которые указаны в договоре возмездного оказания услуг (статья 781 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "paid-services-bench-customer-fault",
+        "passed": true,
+        "expected_outcomes": {
+          "customer_fault_full_payment_due": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "observed_outcomes": {
+          "customer_fault_full_payment_due": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Невозможность исполнения возникла по вине заказчика: услуги подлежат оплате в полном объёме, если иное не предусмотрено законом или договором (статья 781 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "paid-services-bench-no-fault-expenses",
+        "passed": true,
+        "expected_outcomes": {
+          "no_fault_impossibility_established": true,
+          "actual_expenses_reimbursement_due": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "observed_outcomes": {
+          "no_fault_impossibility_established": true,
+          "actual_expenses_reimbursement_due": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Невозможность исполнения возникла по обстоятельствам, за которые ни одна из сторон не отвечает, что влечёт особые правила расчётов (статья 781 ГК РФ).",
+          "Заказчик обязан возместить исполнителю фактически понесённые им расходы, если иное не предусмотрено законом или договором (статья 781 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "paid-services-bench-customer-withdrawal",
+        "passed": true,
+        "expected_outcomes": {
+          "customer_withdrawal_expenses_due": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "observed_outcomes": {
+          "customer_withdrawal_expenses_due": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Заказчик вправе отказаться от исполнения договора при условии оплаты исполнителю фактически понесённых им расходов (статья 782 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "paid-services-bench-performer-withdrawal",
+        "passed": true,
+        "expected_outcomes": {
+          "performer_withdrawal_compensation_due": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "observed_outcomes": {
+          "performer_withdrawal_compensation_due": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Исполнитель вправе отказаться от исполнения обязательств по договору лишь при условии полного возмещения заказчику убытков (статья 782 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "paid-services-bench-communication",
+        "passed": true,
+        "expected_outcomes": {
+          "communication_suspension_breached": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "observed_outcomes": {
+          "communication_suspension_breached": true,
+          "requires_human_paid_services_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Приостановление или ограничение оказания услуг связи допускается только в случаях и порядке, установленных законом и договором (статья 783.1 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "paid-services-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "paid-services-red-qualify-without-services",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "paid_services_qualified": true
+        },
+        "observed_outcomes": {
+          "paid_services_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор возмездного оказания услуг."
+        ]
+      },
+      {
+        "case_id": "paid-services-red-ignore-special-chapter",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "special_chapter_exclusion_applies": false
+        },
+        "observed_outcomes": {
+          "special_chapter_exclusion_applies": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Услуги оказываются по договору, предусмотренному отдельной главой Кодекса, поэтому правила о возмездном оказании услуг к таким отношениям не применяются (статья 779 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "paid-services-red-allow-third-party",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "personal_performance_duty_breached": false
+        },
+        "observed_outcomes": {
+          "personal_performance_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Исполнитель обязан оказать услуги лично, если иное не предусмотрено договором (статья 780 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "paid-services-red-ignore-payment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "payment_duty_breached": false
+        },
+        "observed_outcomes": {
+          "payment_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Заказчик обязан оплатить оказанные ему услуги в сроки и в порядке, которые указаны в договоре возмездного оказания услуг (статья 781 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "paid-services-red-ignore-customer-fault",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "customer_fault_full_payment_due": false
+        },
+        "observed_outcomes": {
+          "customer_fault_full_payment_due": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Невозможность исполнения возникла по вине заказчика: услуги подлежат оплате в полном объёме, если иное не предусмотрено законом или договором (статья 781 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "paid-services-red-expenses-without-impossibility",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "actual_expenses_reimbursement_due": true
+        },
+        "observed_outcomes": {
+          "actual_expenses_reimbursement_due": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "paid-services-red-ignore-customer-withdrawal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "customer_withdrawal_expenses_due": false
+        },
+        "observed_outcomes": {
+          "customer_withdrawal_expenses_due": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Заказчик вправе отказаться от исполнения договора при условии оплаты исполнителю фактически понесённых им расходов (статья 782 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "paid-services-red-ignore-performer-withdrawal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "performer_withdrawal_compensation_due": false
+        },
+        "observed_outcomes": {
+          "performer_withdrawal_compensation_due": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Исполнитель вправе отказаться от исполнения обязательств по договору лишь при условии полного возмещения заказчику убытков (статья 782 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "paid-services-red-ignore-communication-rules",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "communication_suspension_breached": false
+        },
+        "observed_outcomes": {
+          "communication_suspension_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Приостановление или ограничение оказания услуг связи допускается только в случаях и порядке, установленных законом и договором (статья 783.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "paid-services-red-skip-human-on-no-fault-impossibility",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_paid_services_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_paid_services_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как возмездное оказание услуг: исполнитель обязуется по заданию заказчика оказать услуги — совершить определённые действия или осуществить определённую деятельность, а заказчик обязуется оплатить эти услуги (статья 779 ГК РФ).",
+          "Невозможность исполнения возникла по обстоятельствам, за которые ни одна из сторон не отвечает, что влечёт особые правила расчётов (статья 781 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

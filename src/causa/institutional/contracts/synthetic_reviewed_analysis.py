@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.paid_services import (
+    PaidServicesEvidenceAssertion,
+    PaidServicesEvidencePredicate,
+    ReviewedPaidServicesEvidence,
+)
 from causa.institutional.contracts.research_work import (
     ResearchWorkEvidenceAssertion,
     ResearchWorkEvidencePredicate,
@@ -380,6 +385,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk769-774-research-work-concept-confidentiality-and-duties-v1",
     "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1",
     "synthetic-case-supply-1-research-work-evidence",
+    "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
+    "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1",
+    "synthetic-case-supply-1-paid-services-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1977,6 +1985,51 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-research-work-reviewer",
+        ),
+        paid_services_evidence=ReviewedPaidServicesEvidence(
+            id="reviewed-paid-services-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                PaidServicesEvidenceAssertion(
+                    id=f"paid-services-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-paid-services-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        PaidServicesEvidencePredicate.SERVICES_RENDERED_FOR_FEE_BY_ASSIGNMENT,
+                        False,
+                    ),
+                    (PaidServicesEvidencePredicate.CONTRACT_COVERED_BY_SPECIAL_CHAPTER, False),
+                    (
+                        PaidServicesEvidencePredicate.THIRD_PARTY_PERFORMED_WITHOUT_CONTRACT_PERMISSION,
+                        False,
+                    ),
+                    (PaidServicesEvidencePredicate.PAYMENT_TERMS_OR_DEADLINE_BREACHED, False),
+                    (PaidServicesEvidencePredicate.IMPOSSIBILITY_CAUSED_BY_CUSTOMER, False),
+                    (PaidServicesEvidencePredicate.IMPOSSIBILITY_WITHOUT_PARTY_FAULT, False),
+                    (PaidServicesEvidencePredicate.ACTUAL_EXPENSES_NOT_REIMBURSED, False),
+                    (
+                        PaidServicesEvidencePredicate.CUSTOMER_WITHDREW_WITHOUT_COVERING_EXPENSES,
+                        False,
+                    ),
+                    (
+                        PaidServicesEvidencePredicate.PERFORMER_WITHDREW_WITHOUT_FULL_COMPENSATION,
+                        False,
+                    ),
+                    (
+                        PaidServicesEvidencePredicate.COMMUNICATION_SUSPENSION_RULES_BREACHED,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
+                "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-paid-services-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

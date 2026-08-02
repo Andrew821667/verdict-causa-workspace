@@ -1925,6 +1925,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
+      "title": "Синтетическая проверенная модель понятия возмездного оказания услуг, личного исполнения и оплаты услуг по статьям 779–781 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: возмездное оказание услуг как обязанность исполнителя по заданию заказчика совершить определённые действия или осуществить определённую деятельность и обязанность заказчика оплатить эти услуги, исключение услуг, оказываемых по договорам, предусмотренным отдельными главами Кодекса, обязанность оказать услуги лично, если иное не предусмотрено договором, оплата услуг в сроки и порядке договора, полная оплата при невозможности исполнения по вине заказчика и возмещение фактически понесённых расходов при невозможности по обстоятельствам, за которые ни одна из сторон не отвечает, проверяются раздельно (статьи 779–781 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "paid_services_concept_personal_performance_and_payment_articles_779_781",
+        "legal_reference": "ГК РФ, статьи 779–781",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1",
+      "title": "Синтетическая проверенная модель одностороннего отказа от договора возмездного оказания услуг и особенностей услуг связи по статьям 782–783.1 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: право заказчика отказаться от исполнения договора при условии оплаты исполнителю фактически понесённых расходов, право исполнителя отказаться лишь при полном возмещении заказчику убытков, применение к договору общих положений о подряде и бытовом подряде и допустимость приостановления или ограничения оказания услуг связи только в установленных законом и договором случаях проверяются раздельно (статьи 782–783.1 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "paid_services_withdrawal_and_communication_articles_782_783_1",
+        "legal_reference": "ГК РФ, статьи 782–783.1",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-paid-services-evidence",
+      "title": "Синтетическая проверенная запись фактов о возмездном оказании услуг",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является договором возмездного оказания услуг; совершения действий или осуществления деятельности по заданию заказчика за плату нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "paid_services_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -6533,6 +6580,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-research-work-reviewer"
+    },
+    "paid_services_evidence": {
+      "id": "reviewed-paid-services-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.paid-services-evidence.v0",
+      "assertions": [
+        {
+          "id": "paid-services-evidence-services_rendered_for_fee_by_assignment",
+          "predicate": "services_rendered_for_fee_by_assignment",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "id": "paid-services-evidence-contract_covered_by_special_chapter",
+          "predicate": "contract_covered_by_special_chapter",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "id": "paid-services-evidence-third_party_performed_without_contract_permission",
+          "predicate": "third_party_performed_without_contract_permission",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "id": "paid-services-evidence-payment_terms_or_deadline_breached",
+          "predicate": "payment_terms_or_deadline_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "id": "paid-services-evidence-impossibility_caused_by_customer",
+          "predicate": "impossibility_caused_by_customer",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "id": "paid-services-evidence-impossibility_without_party_fault",
+          "predicate": "impossibility_without_party_fault",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "id": "paid-services-evidence-actual_expenses_not_reimbursed",
+          "predicate": "actual_expenses_not_reimbursed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "id": "paid-services-evidence-customer_withdrew_without_covering_expenses",
+          "predicate": "customer_withdrew_without_covering_expenses",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "id": "paid-services-evidence-performer_withdrew_without_full_compensation",
+          "predicate": "performer_withdrew_without_full_compensation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "id": "paid-services-evidence-communication_suspension_rules_breached",
+          "predicate": "communication_suspension_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
+        "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-paid-services-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -11336,6 +11476,7 @@
       "synthetic-norm-reviewer",
       "synthetic-obligation-dynamics-reviewer",
       "synthetic-option-reviewer",
+      "synthetic-paid-services-reviewer",
       "synthetic-performance-remedies-reviewer",
       "synthetic-precontractual-reviewer",
       "synthetic-preliminary-reviewer",
@@ -11386,6 +11527,7 @@
       "synthetic-case-supply-1-limitation-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
       "synthetic-case-supply-1-option-evidence",
+      "synthetic-case-supply-1-paid-services-evidence",
       "synthetic-case-supply-1-performance-remedies-evidence",
       "synthetic-case-supply-1-precontractual-evidence",
       "synthetic-case-supply-1-preliminary-evidence",
@@ -11514,6 +11656,8 @@
       "synthetic-ru-gk767-768-state-work-budget-changes-and-special-law-v1",
       "synthetic-ru-gk769-774-research-work-concept-confidentiality-and-duties-v1",
       "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1",
+      "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
+      "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -17007,6 +17151,142 @@
         "Достижимость научного результата, наличие вины исполнителя и размер понесённых затрат оцениваются экспертом и судом (статьи 775, 776 и 777 ГК РФ)."
       ]
     },
+    "paid_services_evidence_mapping": {
+      "evidence_id": "reviewed-paid-services-evidence-supply-1-v0",
+      "schema_version": "contracts.paid-services-evidence.v0",
+      "mapping_version": "contracts-reviewed-paid-services-to-facts-v0",
+      "facts": {
+        "services_rendered_for_fee_by_assignment": false,
+        "contract_covered_by_special_chapter": false,
+        "third_party_performed_without_contract_permission": false,
+        "payment_terms_or_deadline_breached": false,
+        "impossibility_caused_by_customer": false,
+        "impossibility_without_party_fault": false,
+        "actual_expenses_not_reimbursed": false,
+        "customer_withdrew_without_covering_expenses": false,
+        "performer_withdrew_without_full_compensation": false,
+        "communication_suspension_rules_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
+        "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "actual_expenses_not_reimbursed",
+          "assertion_id": "paid-services-evidence-actual_expenses_not_reimbursed",
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "fact_name": "communication_suspension_rules_breached",
+          "assertion_id": "paid-services-evidence-communication_suspension_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_covered_by_special_chapter",
+          "assertion_id": "paid-services-evidence-contract_covered_by_special_chapter",
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "fact_name": "customer_withdrew_without_covering_expenses",
+          "assertion_id": "paid-services-evidence-customer_withdrew_without_covering_expenses",
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "fact_name": "impossibility_caused_by_customer",
+          "assertion_id": "paid-services-evidence-impossibility_caused_by_customer",
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "fact_name": "impossibility_without_party_fault",
+          "assertion_id": "paid-services-evidence-impossibility_without_party_fault",
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "fact_name": "payment_terms_or_deadline_breached",
+          "assertion_id": "paid-services-evidence-payment_terms_or_deadline_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "fact_name": "performer_withdrew_without_full_compensation",
+          "assertion_id": "paid-services-evidence-performer_withdrew_without_full_compensation",
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "fact_name": "services_rendered_for_fee_by_assignment",
+          "assertion_id": "paid-services-evidence-services_rendered_for_fee_by_assignment",
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_performed_without_contract_permission",
+          "assertion_id": "paid-services-evidence-third_party_performed_without_contract_permission",
+          "source_refs": [
+            "synthetic-case-supply-1-paid-services-evidence"
+          ]
+        }
+      ]
+    },
+    "paid_services_constraint_set": {
+      "id": "paid-services-constraint-set:reviewed-paid-services-evidence-supply-1-v0",
+      "model_version": "contracts-paid-services-articles-779-783-1-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
+        "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1"
+      ],
+      "expressions": [
+        "paid_services_qualified == services_rendered_for_fee_by_assignment",
+        "special_chapter_exclusion_applies == paid_services_qualified AND contract_covered_by_special_chapter",
+        "personal_performance_duty_breached == paid_services_qualified AND third_party_performed_without_contract_permission",
+        "payment_duty_breached == paid_services_qualified AND payment_terms_or_deadline_breached",
+        "customer_fault_full_payment_due == paid_services_qualified AND impossibility_caused_by_customer",
+        "no_fault_impossibility_established == paid_services_qualified AND impossibility_without_party_fault",
+        "actual_expenses_reimbursement_due == paid_services_qualified AND impossibility_without_party_fault AND actual_expenses_not_reimbursed",
+        "customer_withdrawal_expenses_due == paid_services_qualified AND customer_withdrew_without_covering_expenses",
+        "performer_withdrawal_compensation_due == paid_services_qualified AND performer_withdrew_without_full_compensation",
+        "communication_suspension_breached == paid_services_qualified AND communication_suspension_rules_breached",
+        "requires_human_paid_services_assessment == special_chapter_exclusion_applies OR personal_performance_duty_breached OR payment_duty_breached OR customer_fault_full_payment_due OR no_fault_impossibility_established OR customer_withdrawal_expenses_due OR performer_withdrawal_compensation_due OR communication_suspension_breached"
+      ]
+    },
+    "paid_services_evaluation": {
+      "constraint_set_id": "paid-services-constraint-set:reviewed-paid-services-evidence-supply-1-v0",
+      "satisfiable": true,
+      "paid_services_qualified": false,
+      "special_chapter_exclusion_applies": false,
+      "personal_performance_duty_breached": false,
+      "payment_duty_breached": false,
+      "customer_fault_full_payment_due": false,
+      "no_fault_impossibility_established": false,
+      "actual_expenses_reimbursement_due": false,
+      "customer_withdrawal_expenses_due": false,
+      "performer_withdrawal_compensation_due": false,
+      "communication_suspension_breached": false,
+      "requires_human_paid_services_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор возмездного оказания услуг."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о возмездном оказании услуг и не заменяет судебную оценку.",
+        "Качество оказанных услуг, наличие вины стороны и размер фактически понесённых расходов оцениваются экспертом и судом (статьи 781 и 782 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -22378,7 +22658,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.56.0",
+      "institutional_package_version": "contracts-ru-v0@0.57.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

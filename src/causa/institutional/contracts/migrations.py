@@ -1081,6 +1081,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.56.0",
+        to_version="0.57.0",
+        reasons=[
+            "Reviewed inputs now require a separate paid-services evidence contract.",
+            "Analysis and Russian translation distinguish qualification, the special-chapter exclusion, personal performance, payment terms, impossibility caused by the customer, impossibility without fault, reimbursement of actual expenses, the customer's withdrawal, the performer's withdrawal, and suspension of communication services under articles 779 through 783.1.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о возмездном оказании услуг.",
+            "Анализ и русское объяснение разделяют квалификацию договора, исключение услуг по договорам отдельных глав, личное исполнение, сроки и порядок оплаты, невозможность исполнения по вине заказчика, невозможность без вины сторон, возмещение фактически понесённых расходов, отказ заказчика, отказ исполнителя и приостановление оказания услуг связи по статьям 779–783.1 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_paid_services_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 
