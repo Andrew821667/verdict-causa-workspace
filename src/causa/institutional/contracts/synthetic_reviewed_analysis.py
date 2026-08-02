@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.research_work import (
+    ResearchWorkEvidenceAssertion,
+    ResearchWorkEvidencePredicate,
+    ReviewedResearchWorkEvidence,
+)
 from causa.institutional.contracts.state_work import (
     ReviewedStateWorkEvidence,
     StateWorkEvidenceAssertion,
@@ -372,6 +377,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk763-766-state-work-contract-basis-parties-and-terms-v1",
     "synthetic-ru-gk767-768-state-work-budget-changes-and-special-law-v1",
     "synthetic-case-supply-1-state-work-evidence",
+    "synthetic-ru-gk769-774-research-work-concept-confidentiality-and-duties-v1",
+    "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1",
+    "synthetic-case-supply-1-research-work-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -1921,6 +1929,54 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-state-work-reviewer",
+        ),
+        research_work_evidence=ReviewedResearchWorkEvidence(
+            id="reviewed-research-work-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                ResearchWorkEvidenceAssertion(
+                    id=f"research-work-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-research-work-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        ResearchWorkEvidencePredicate.RESEARCH_OR_DEVELOPMENT_WORK_PERFORMED_FOR_FEE,
+                        False,
+                    ),
+                    (
+                        ResearchWorkEvidencePredicate.THIRD_PARTY_ENGAGED_WITHOUT_CONSENT_IN_RESEARCH,
+                        False,
+                    ),
+                    (
+                        ResearchWorkEvidencePredicate.CONFIDENTIALITY_OR_PUBLICATION_DUTY_BREACHED,
+                        False,
+                    ),
+                    (ResearchWorkEvidencePredicate.RESULT_USE_RIGHTS_NOT_AGREED, False),
+                    (ResearchWorkEvidencePredicate.THIRD_PARTY_EXCLUSIVE_RIGHTS_INFRINGED, False),
+                    (ResearchWorkEvidencePredicate.IMPOSSIBILITY_NOT_REPORTED_IMMEDIATELY, False),
+                    (
+                        ResearchWorkEvidencePredicate.CUSTOMER_INFORMATION_OR_ACCEPTANCE_DUTY_UNMET,
+                        False,
+                    ),
+                    (
+                        ResearchWorkEvidencePredicate.RESULT_UNACHIEVABLE_WITHOUT_PERFORMER_FAULT,
+                        False,
+                    ),
+                    (ResearchWorkEvidencePredicate.PRE_IMPOSSIBILITY_COSTS_NOT_PAID, False),
+                    (
+                        ResearchWorkEvidencePredicate.PERFORMER_BREACH_WITHOUT_PROOF_OF_ABSENT_FAULT,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk769-774-research-work-concept-confidentiality-and-duties-v1",
+                "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-research-work-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

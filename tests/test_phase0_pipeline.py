@@ -58,6 +58,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "evaluate-construction-contract",
         "evaluate-design-work",
         "evaluate-state-work",
+        "evaluate-research-work",
         "evaluate-transaction-invalidity",
         "evaluate-obligation-constraints",
         "evaluate-performance-remedies",

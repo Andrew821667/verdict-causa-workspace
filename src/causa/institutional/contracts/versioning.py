@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.56.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed research-work evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 769 through 778.",
+            "Qualification, personal performance, confidentiality, result-use rights, third-party rights, the impossibility notice, the customer's duties, impossibility without fault, payment for work done before impossibility, and the performer's liability remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о научно-исследовательских и опытно-конструкторских работах обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 769–778 ГК РФ.",
+            "Квалификация договора, личное проведение исследований, конфиденциальность, права на использование результатов, исключительные права третьих лиц, сообщение о невозможности, обязанности заказчика, невозможность достижения результата без вины исполнителя, оплата работ до выявления невозможности и ответственность исполнителя разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.55.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

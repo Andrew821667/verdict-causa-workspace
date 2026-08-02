@@ -1062,6 +1062,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.55.0",
+        to_version="0.56.0",
+        reasons=[
+            "Reviewed inputs now require a separate research-work evidence contract.",
+            "Analysis and Russian translation distinguish qualification, personal performance, confidentiality, result-use rights, third-party rights, the impossibility notice, the customer's duties, impossibility without fault, payment for work done before impossibility, and the performer's liability under articles 769 through 778.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о научно-исследовательских, опытно-конструкторских и технологических работах.",
+            "Анализ и русское объяснение разделяют квалификацию договора, личное проведение исследований, конфиденциальность, права на использование результатов, исключительные права третьих лиц, сообщение о невозможности, обязанности заказчика, невозможность достижения результата без вины исполнителя, оплату работ до выявления невозможности и ответственность исполнителя по статьям 769–778 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_research_work_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

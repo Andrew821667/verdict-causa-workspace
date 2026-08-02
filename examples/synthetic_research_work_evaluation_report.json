@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о выполнении научно-исследовательских, опытно-конструкторских и технологических работ по статьям 769–778 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-research-work-evidence-supply-1-v0",
+    "schema_version": "contracts.research-work-evidence.v0",
+    "mapping_version": "contracts-reviewed-research-work-to-facts-v0",
+    "facts": {
+      "research_or_development_work_performed_for_fee": false,
+      "third_party_engaged_without_consent_in_research": false,
+      "confidentiality_or_publication_duty_breached": false,
+      "result_use_rights_not_agreed": false,
+      "third_party_exclusive_rights_infringed": false,
+      "impossibility_not_reported_immediately": false,
+      "customer_information_or_acceptance_duty_unmet": false,
+      "result_unachievable_without_performer_fault": false,
+      "pre_impossibility_costs_not_paid": false,
+      "performer_breach_without_proof_of_absent_fault": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk769-774-research-work-concept-confidentiality-and-duties-v1",
+      "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "confidentiality_or_publication_duty_breached",
+        "assertion_id": "research-work-evidence-confidentiality_or_publication_duty_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-research-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "customer_information_or_acceptance_duty_unmet",
+        "assertion_id": "research-work-evidence-customer_information_or_acceptance_duty_unmet",
+        "source_refs": [
+          "synthetic-case-supply-1-research-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "impossibility_not_reported_immediately",
+        "assertion_id": "research-work-evidence-impossibility_not_reported_immediately",
+        "source_refs": [
+          "synthetic-case-supply-1-research-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "performer_breach_without_proof_of_absent_fault",
+        "assertion_id": "research-work-evidence-performer_breach_without_proof_of_absent_fault",
+        "source_refs": [
+          "synthetic-case-supply-1-research-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "pre_impossibility_costs_not_paid",
+        "assertion_id": "research-work-evidence-pre_impossibility_costs_not_paid",
+        "source_refs": [
+          "synthetic-case-supply-1-research-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "research_or_development_work_performed_for_fee",
+        "assertion_id": "research-work-evidence-research_or_development_work_performed_for_fee",
+        "source_refs": [
+          "synthetic-case-supply-1-research-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "result_unachievable_without_performer_fault",
+        "assertion_id": "research-work-evidence-result_unachievable_without_performer_fault",
+        "source_refs": [
+          "synthetic-case-supply-1-research-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "result_use_rights_not_agreed",
+        "assertion_id": "research-work-evidence-result_use_rights_not_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-research-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_engaged_without_consent_in_research",
+        "assertion_id": "research-work-evidence-third_party_engaged_without_consent_in_research",
+        "source_refs": [
+          "synthetic-case-supply-1-research-work-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_exclusive_rights_infringed",
+        "assertion_id": "research-work-evidence-third_party_exclusive_rights_infringed",
+        "source_refs": [
+          "synthetic-case-supply-1-research-work-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "research-work-constraint-set:reviewed-research-work-evidence-supply-1-v0",
+    "model_version": "contracts-research-work-articles-769-778-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk769-774-research-work-concept-confidentiality-and-duties-v1",
+      "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1"
+    ],
+    "expressions": [
+      "research_work_qualified == research_or_development_work_performed_for_fee",
+      "personal_performance_duty_breached == research_work_qualified AND third_party_engaged_without_consent_in_research",
+      "confidentiality_duty_breached == research_work_qualified AND confidentiality_or_publication_duty_breached",
+      "result_use_rights_missing == research_work_qualified AND result_use_rights_not_agreed",
+      "third_party_rights_guarantee_breached == research_work_qualified AND third_party_exclusive_rights_infringed",
+      "impossibility_notice_duty_breached == research_work_qualified AND impossibility_not_reported_immediately",
+      "customer_duties_breached == research_work_qualified AND customer_information_or_acceptance_duty_unmet",
+      "impossibility_without_fault_established == research_work_qualified AND result_unachievable_without_performer_fault",
+      "pre_impossibility_payment_due == research_work_qualified AND result_unachievable_without_performer_fault AND pre_impossibility_costs_not_paid",
+      "performer_liability_established == research_work_qualified AND performer_breach_without_proof_of_absent_fault",
+      "requires_human_research_work_assessment == personal_performance_duty_breached OR confidentiality_duty_breached OR result_use_rights_missing OR third_party_rights_guarantee_breached OR impossibility_notice_duty_breached OR customer_duties_breached OR impossibility_without_fault_established OR performer_liability_established"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "research-work-constraint-set:reviewed-research-work-evidence-supply-1-v0",
+    "satisfiable": true,
+    "research_work_qualified": false,
+    "personal_performance_duty_breached": false,
+    "confidentiality_duty_breached": false,
+    "result_use_rights_missing": false,
+    "third_party_rights_guarantee_breached": false,
+    "impossibility_notice_duty_breached": false,
+    "customer_duties_breached": false,
+    "impossibility_without_fault_established": false,
+    "pre_impossibility_payment_due": false,
+    "performer_liability_established": false,
+    "requires_human_research_work_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор на выполнение научно-исследовательских, опытно-конструкторских и технологических работ."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о научно-исследовательских, опытно-конструкторских и технологических работах и не заменяет судебную оценку.",
+      "Достижимость научного результата, наличие вины исполнителя и размер понесённых затрат оцениваются экспертом и судом (статьи 775, 776 и 777 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "research-work-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "research-work-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "research_work_qualified": false
+        },
+        "observed_outcomes": {
+          "research_work_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор на выполнение научно-исследовательских, опытно-конструкторских и технологических работ."
+        ]
+      },
+      {
+        "task_id": "research-work-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "research_work_qualified": true,
+          "requires_human_research_work_assessment": false
+        },
+        "observed_outcomes": {
+          "research_work_qualified": true,
+          "requires_human_research_work_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "research-work-bench-personal-performance",
+        "passed": true,
+        "expected_outcomes": {
+          "personal_performance_duty_breached": true,
+          "requires_human_research_work_assessment": true
+        },
+        "observed_outcomes": {
+          "personal_performance_duty_breached": true,
+          "requires_human_research_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Исполнитель обязан провести научные исследования лично и вправе привлекать к исполнению договора третьих лиц только с согласия заказчика (статья 770 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "research-work-bench-confidentiality",
+        "passed": true,
+        "expected_outcomes": {
+          "confidentiality_duty_breached": true,
+          "requires_human_research_work_assessment": true
+        },
+        "observed_outcomes": {
+          "confidentiality_duty_breached": true,
+          "requires_human_research_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Стороны обязаны обеспечить конфиденциальность сведений, касающихся предмета договора, хода его исполнения и полученных результатов; публикация допускается только с согласия другой стороны (статья 771 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "research-work-bench-result-use-rights",
+        "passed": true,
+        "expected_outcomes": {
+          "result_use_rights_missing": true,
+          "requires_human_research_work_assessment": true
+        },
+        "observed_outcomes": {
+          "result_use_rights_missing": true,
+          "requires_human_research_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Стороны имеют право использовать результаты работ, в том числе способные к правовой охране, в пределах и на условиях, предусмотренных договором (статья 772 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "research-work-bench-third-party-rights",
+        "passed": true,
+        "expected_outcomes": {
+          "third_party_rights_guarantee_breached": true,
+          "requires_human_research_work_assessment": true
+        },
+        "observed_outcomes": {
+          "third_party_rights_guarantee_breached": true,
+          "requires_human_research_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Исполнитель обязан гарантировать заказчику передачу полученных результатов, не нарушающих исключительных прав других лиц (статья 773 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "research-work-bench-impossibility-notice",
+        "passed": true,
+        "expected_outcomes": {
+          "impossibility_notice_duty_breached": true,
+          "requires_human_research_work_assessment": true
+        },
+        "observed_outcomes": {
+          "impossibility_notice_duty_breached": true,
+          "requires_human_research_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Исполнитель обязан незамедлительно информировать заказчика об обнаруженной невозможности получить ожидаемые результаты или о нецелесообразности продолжения работы (статья 773 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "research-work-bench-customer-duties",
+        "passed": true,
+        "expected_outcomes": {
+          "customer_duties_breached": true,
+          "requires_human_research_work_assessment": true
+        },
+        "observed_outcomes": {
+          "customer_duties_breached": true,
+          "requires_human_research_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Заказчик обязан передавать исполнителю необходимую для выполнения работы информацию, принять результаты выполненных работ и оплатить их (статья 774 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "research-work-bench-impossibility-payment",
+        "passed": true,
+        "expected_outcomes": {
+          "impossibility_without_fault_established": true,
+          "pre_impossibility_payment_due": true,
+          "requires_human_research_work_assessment": true
+        },
+        "observed_outcomes": {
+          "impossibility_without_fault_established": true,
+          "pre_impossibility_payment_due": true,
+          "requires_human_research_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Обнаружена невозможность достижения результатов вследствие обстоятельств, не зависящих от исполнителя, что влечёт особые правила расчётов сторон (статьи 775 и 776 ГК РФ).",
+          "Заказчик обязан оплатить стоимость работ, проведённых до выявления невозможности получить результат, но не свыше соответствующей части цены, а при опытно-конструкторских и технологических работах — понесённые исполнителем затраты (статьи 775 и 776 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "research-work-bench-performer-liability",
+        "passed": true,
+        "expected_outcomes": {
+          "performer_liability_established": true,
+          "requires_human_research_work_assessment": true
+        },
+        "observed_outcomes": {
+          "performer_liability_established": true,
+          "requires_human_research_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Исполнитель несёт ответственность за нарушение договора, поскольку не доказал, что нарушение произошло не по его вине; убытки возмещаются в пределах стоимости работ, если договором не предусмотрено иное (статья 777 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "research-work-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "research-work-red-qualify-without-work",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "research_work_qualified": true
+        },
+        "observed_outcomes": {
+          "research_work_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор на выполнение научно-исследовательских, опытно-конструкторских и технологических работ."
+        ]
+      },
+      {
+        "case_id": "research-work-red-allow-third-party",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "personal_performance_duty_breached": false
+        },
+        "observed_outcomes": {
+          "personal_performance_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Исполнитель обязан провести научные исследования лично и вправе привлекать к исполнению договора третьих лиц только с согласия заказчика (статья 770 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "research-work-red-ignore-confidentiality",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "confidentiality_duty_breached": false
+        },
+        "observed_outcomes": {
+          "confidentiality_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Стороны обязаны обеспечить конфиденциальность сведений, касающихся предмета договора, хода его исполнения и полученных результатов; публикация допускается только с согласия другой стороны (статья 771 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "research-work-red-ignore-result-use-rights",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "result_use_rights_missing": false
+        },
+        "observed_outcomes": {
+          "result_use_rights_missing": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Стороны имеют право использовать результаты работ, в том числе способные к правовой охране, в пределах и на условиях, предусмотренных договором (статья 772 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "research-work-red-ignore-third-party-rights",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "third_party_rights_guarantee_breached": false
+        },
+        "observed_outcomes": {
+          "third_party_rights_guarantee_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Исполнитель обязан гарантировать заказчику передачу полученных результатов, не нарушающих исключительных прав других лиц (статья 773 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "research-work-red-ignore-impossibility-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "impossibility_notice_duty_breached": false
+        },
+        "observed_outcomes": {
+          "impossibility_notice_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Исполнитель обязан незамедлительно информировать заказчика об обнаруженной невозможности получить ожидаемые результаты или о нецелесообразности продолжения работы (статья 773 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "research-work-red-ignore-customer-duties",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "customer_duties_breached": false
+        },
+        "observed_outcomes": {
+          "customer_duties_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Заказчик обязан передавать исполнителю необходимую для выполнения работы информацию, принять результаты выполненных работ и оплатить их (статья 774 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "research-work-red-payment-without-impossibility",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "pre_impossibility_payment_due": true
+        },
+        "observed_outcomes": {
+          "pre_impossibility_payment_due": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "research-work-red-excuse-performer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "performer_liability_established": false
+        },
+        "observed_outcomes": {
+          "performer_liability_established": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Исполнитель несёт ответственность за нарушение договора, поскольку не доказал, что нарушение произошло не по его вине; убытки возмещаются в пределах стоимости работ, если договором не предусмотрено иное (статья 777 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "research-work-red-skip-human-on-impossibility",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_research_work_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_research_work_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор на выполнение научно-исследовательских, опытно-конструкторских или технологических работ: исполнитель обязуется провести обусловленные техническим заданием заказчика научные исследования либо разработать образец нового изделия, конструкторскую документацию на него или новую технологию, а заказчик — принять работу и оплатить её (статья 769 ГК РФ).",
+          "Обнаружена невозможность достижения результатов вследствие обстоятельств, не зависящих от исполнителя, что влечёт особые правила расчётов сторон (статьи 775 и 776 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

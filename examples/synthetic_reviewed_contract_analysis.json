@@ -1878,6 +1878,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk769-774-research-work-concept-confidentiality-and-duties-v1",
+      "title": "Синтетическая проверенная модель понятия договоров на научно-исследовательские и опытно-конструкторские работы, конфиденциальности, прав на результаты и обязанностей сторон по статьям 769–774 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: договор на выполнение научно-исследовательских работ как обязанность исполнителя провести обусловленные техническим заданием научные исследования и договор на выполнение опытно-конструкторских и технологических работ как обязанность разработать образец нового изделия, конструкторскую документацию на него или новую технологию, обязанность провести научные исследования лично и привлекать третьих лиц только с согласия заказчика, конфиденциальность сведений и согласование публикаций, определение пределов и условий использования результатов, гарантия ненарушения исключительных прав других лиц, незамедлительное сообщение о невозможности получить результат и обязанности заказчика передать информацию, принять и оплатить результаты проверяются раздельно (статьи 769–774 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "research_work_concept_confidentiality_and_duties_articles_769_774",
+        "legal_reference": "ГК РФ, статьи 769–774",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1",
+      "title": "Синтетическая проверенная модель последствий невозможности достижения результата и ответственности исполнителя по статьям 775–778 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: последствия невозможности достижения результатов научно-исследовательских работ и невозможности продолжения опытно-конструкторских и технологических работ по не зависящим от исполнителя обстоятельствам, обязанность заказчика оплатить стоимость работ и понесённые затраты до выявления невозможности, ответственность исполнителя при недоказанности отсутствия его вины и применение к этим договорам правил о сроках, цене работ и последствиях неявки заказчика за результатом проверяются раздельно (статьи 775–778 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "research_work_impossibility_and_liability_articles_775_778",
+        "legal_reference": "ГК РФ, статьи 775–778",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-research-work-evidence",
+      "title": "Синтетическая проверенная запись фактов о научно-исследовательских и опытно-конструкторских работах",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является договором на выполнение научно-исследовательских, опытно-конструкторских и технологических работ; научные исследования и разработка образца нового изделия по техническому заданию заказчика не проводились.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "research_work_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -6393,6 +6440,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-state-work-reviewer"
+    },
+    "research_work_evidence": {
+      "id": "reviewed-research-work-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.research-work-evidence.v0",
+      "assertions": [
+        {
+          "id": "research-work-evidence-research_or_development_work_performed_for_fee",
+          "predicate": "research_or_development_work_performed_for_fee",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "id": "research-work-evidence-third_party_engaged_without_consent_in_research",
+          "predicate": "third_party_engaged_without_consent_in_research",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "id": "research-work-evidence-confidentiality_or_publication_duty_breached",
+          "predicate": "confidentiality_or_publication_duty_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "id": "research-work-evidence-result_use_rights_not_agreed",
+          "predicate": "result_use_rights_not_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "id": "research-work-evidence-third_party_exclusive_rights_infringed",
+          "predicate": "third_party_exclusive_rights_infringed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "id": "research-work-evidence-impossibility_not_reported_immediately",
+          "predicate": "impossibility_not_reported_immediately",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "id": "research-work-evidence-customer_information_or_acceptance_duty_unmet",
+          "predicate": "customer_information_or_acceptance_duty_unmet",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "id": "research-work-evidence-result_unachievable_without_performer_fault",
+          "predicate": "result_unachievable_without_performer_fault",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "id": "research-work-evidence-pre_impossibility_costs_not_paid",
+          "predicate": "pre_impossibility_costs_not_paid",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "id": "research-work-evidence-performer_breach_without_proof_of_absent_fault",
+          "predicate": "performer_breach_without_proof_of_absent_fault",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk769-774-research-work-concept-confidentiality-and-duties-v1",
+        "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-research-work-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -11204,6 +11344,7 @@
       "synthetic-real-estate-sale-reviewer",
       "synthetic-rental-reviewer",
       "synthetic-representations-reviewer",
+      "synthetic-research-work-reviewer",
       "synthetic-residential-lease-reviewer",
       "synthetic-retail-sale-reviewer",
       "synthetic-security-reviewer",
@@ -11253,6 +11394,7 @@
       "synthetic-case-supply-1-real-estate-sale-evidence",
       "synthetic-case-supply-1-rental-evidence",
       "synthetic-case-supply-1-representations-evidence",
+      "synthetic-case-supply-1-research-work-evidence",
       "synthetic-case-supply-1-residential-lease-evidence",
       "synthetic-case-supply-1-retail-sale-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
@@ -11370,6 +11512,8 @@
       "synthetic-ru-gk761-762-design-work-liability-and-customer-duties-v1",
       "synthetic-ru-gk763-766-state-work-contract-basis-parties-and-terms-v1",
       "synthetic-ru-gk767-768-state-work-budget-changes-and-special-law-v1",
+      "synthetic-ru-gk769-774-research-work-concept-confidentiality-and-duties-v1",
+      "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -16725,6 +16869,142 @@
       "warnings_ru": [
         "Модель проверяет только формальные правила о подрядных работах для государственных и муниципальных нужд и не заменяет судебную оценку.",
         "Достаточность бюджетного финансирования, соблюдение закупочных процедур и размер убытков подрядчика оцениваются экспертом и судом (статьи 765, 767 и 768 ГК РФ)."
+      ]
+    },
+    "research_work_evidence_mapping": {
+      "evidence_id": "reviewed-research-work-evidence-supply-1-v0",
+      "schema_version": "contracts.research-work-evidence.v0",
+      "mapping_version": "contracts-reviewed-research-work-to-facts-v0",
+      "facts": {
+        "research_or_development_work_performed_for_fee": false,
+        "third_party_engaged_without_consent_in_research": false,
+        "confidentiality_or_publication_duty_breached": false,
+        "result_use_rights_not_agreed": false,
+        "third_party_exclusive_rights_infringed": false,
+        "impossibility_not_reported_immediately": false,
+        "customer_information_or_acceptance_duty_unmet": false,
+        "result_unachievable_without_performer_fault": false,
+        "pre_impossibility_costs_not_paid": false,
+        "performer_breach_without_proof_of_absent_fault": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk769-774-research-work-concept-confidentiality-and-duties-v1",
+        "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "confidentiality_or_publication_duty_breached",
+          "assertion_id": "research-work-evidence-confidentiality_or_publication_duty_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "customer_information_or_acceptance_duty_unmet",
+          "assertion_id": "research-work-evidence-customer_information_or_acceptance_duty_unmet",
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "impossibility_not_reported_immediately",
+          "assertion_id": "research-work-evidence-impossibility_not_reported_immediately",
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "performer_breach_without_proof_of_absent_fault",
+          "assertion_id": "research-work-evidence-performer_breach_without_proof_of_absent_fault",
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "pre_impossibility_costs_not_paid",
+          "assertion_id": "research-work-evidence-pre_impossibility_costs_not_paid",
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "research_or_development_work_performed_for_fee",
+          "assertion_id": "research-work-evidence-research_or_development_work_performed_for_fee",
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "result_unachievable_without_performer_fault",
+          "assertion_id": "research-work-evidence-result_unachievable_without_performer_fault",
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "result_use_rights_not_agreed",
+          "assertion_id": "research-work-evidence-result_use_rights_not_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_engaged_without_consent_in_research",
+          "assertion_id": "research-work-evidence-third_party_engaged_without_consent_in_research",
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_exclusive_rights_infringed",
+          "assertion_id": "research-work-evidence-third_party_exclusive_rights_infringed",
+          "source_refs": [
+            "synthetic-case-supply-1-research-work-evidence"
+          ]
+        }
+      ]
+    },
+    "research_work_constraint_set": {
+      "id": "research-work-constraint-set:reviewed-research-work-evidence-supply-1-v0",
+      "model_version": "contracts-research-work-articles-769-778-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk769-774-research-work-concept-confidentiality-and-duties-v1",
+        "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1"
+      ],
+      "expressions": [
+        "research_work_qualified == research_or_development_work_performed_for_fee",
+        "personal_performance_duty_breached == research_work_qualified AND third_party_engaged_without_consent_in_research",
+        "confidentiality_duty_breached == research_work_qualified AND confidentiality_or_publication_duty_breached",
+        "result_use_rights_missing == research_work_qualified AND result_use_rights_not_agreed",
+        "third_party_rights_guarantee_breached == research_work_qualified AND third_party_exclusive_rights_infringed",
+        "impossibility_notice_duty_breached == research_work_qualified AND impossibility_not_reported_immediately",
+        "customer_duties_breached == research_work_qualified AND customer_information_or_acceptance_duty_unmet",
+        "impossibility_without_fault_established == research_work_qualified AND result_unachievable_without_performer_fault",
+        "pre_impossibility_payment_due == research_work_qualified AND result_unachievable_without_performer_fault AND pre_impossibility_costs_not_paid",
+        "performer_liability_established == research_work_qualified AND performer_breach_without_proof_of_absent_fault",
+        "requires_human_research_work_assessment == personal_performance_duty_breached OR confidentiality_duty_breached OR result_use_rights_missing OR third_party_rights_guarantee_breached OR impossibility_notice_duty_breached OR customer_duties_breached OR impossibility_without_fault_established OR performer_liability_established"
+      ]
+    },
+    "research_work_evaluation": {
+      "constraint_set_id": "research-work-constraint-set:reviewed-research-work-evidence-supply-1-v0",
+      "satisfiable": true,
+      "research_work_qualified": false,
+      "personal_performance_duty_breached": false,
+      "confidentiality_duty_breached": false,
+      "result_use_rights_missing": false,
+      "third_party_rights_guarantee_breached": false,
+      "impossibility_notice_duty_breached": false,
+      "customer_duties_breached": false,
+      "impossibility_without_fault_established": false,
+      "pre_impossibility_payment_due": false,
+      "performer_liability_established": false,
+      "requires_human_research_work_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор на выполнение научно-исследовательских, опытно-конструкторских и технологических работ."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о научно-исследовательских, опытно-конструкторских и технологических работах и не заменяет судебную оценку.",
+        "Достижимость научного результата, наличие вины исполнителя и размер понесённых затрат оцениваются экспертом и судом (статьи 775, 776 и 777 ГК РФ)."
       ]
     },
     "invalidity_evidence_mapping": {
@@ -22098,7 +22378,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.55.0",
+      "institutional_package_version": "contracts-ru-v0@0.56.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
