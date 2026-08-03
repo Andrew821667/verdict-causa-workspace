@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка общих положений о перевозке по статьям 784–800 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-carriage-evidence-supply-1-v0",
+    "schema_version": "contracts.carriage-evidence.v0",
+    "mapping_version": "contracts-reviewed-carriage-to-facts-v0",
+    "facts": {
+      "carriage_of_goods_or_passenger_for_fee": false,
+      "transport_document_not_issued": false,
+      "public_carrier_refused_without_grounds": false,
+      "carriage_charge_or_retention_rules_breached": false,
+      "vehicle_not_supplied_or_not_used": false,
+      "delivery_deadline_missed": false,
+      "passenger_departure_delayed": false,
+      "cargo_lost_short_or_damaged": false,
+      "carrier_fault_not_disproved_for_cargo_loss": false,
+      "liability_limitation_agreement_present": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
+      "synthetic-ru-gk793-800-carriage-liability-and-claims-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "cargo_lost_short_or_damaged",
+        "assertion_id": "carriage-evidence-cargo_lost_short_or_damaged",
+        "source_refs": [
+          "synthetic-case-supply-1-carriage-evidence"
+        ]
+      },
+      {
+        "fact_name": "carriage_charge_or_retention_rules_breached",
+        "assertion_id": "carriage-evidence-carriage_charge_or_retention_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-carriage-evidence"
+        ]
+      },
+      {
+        "fact_name": "carriage_of_goods_or_passenger_for_fee",
+        "assertion_id": "carriage-evidence-carriage_of_goods_or_passenger_for_fee",
+        "source_refs": [
+          "synthetic-case-supply-1-carriage-evidence"
+        ]
+      },
+      {
+        "fact_name": "carrier_fault_not_disproved_for_cargo_loss",
+        "assertion_id": "carriage-evidence-carrier_fault_not_disproved_for_cargo_loss",
+        "source_refs": [
+          "synthetic-case-supply-1-carriage-evidence"
+        ]
+      },
+      {
+        "fact_name": "delivery_deadline_missed",
+        "assertion_id": "carriage-evidence-delivery_deadline_missed",
+        "source_refs": [
+          "synthetic-case-supply-1-carriage-evidence"
+        ]
+      },
+      {
+        "fact_name": "liability_limitation_agreement_present",
+        "assertion_id": "carriage-evidence-liability_limitation_agreement_present",
+        "source_refs": [
+          "synthetic-case-supply-1-carriage-evidence"
+        ]
+      },
+      {
+        "fact_name": "passenger_departure_delayed",
+        "assertion_id": "carriage-evidence-passenger_departure_delayed",
+        "source_refs": [
+          "synthetic-case-supply-1-carriage-evidence"
+        ]
+      },
+      {
+        "fact_name": "public_carrier_refused_without_grounds",
+        "assertion_id": "carriage-evidence-public_carrier_refused_without_grounds",
+        "source_refs": [
+          "synthetic-case-supply-1-carriage-evidence"
+        ]
+      },
+      {
+        "fact_name": "transport_document_not_issued",
+        "assertion_id": "carriage-evidence-transport_document_not_issued",
+        "source_refs": [
+          "synthetic-case-supply-1-carriage-evidence"
+        ]
+      },
+      {
+        "fact_name": "vehicle_not_supplied_or_not_used",
+        "assertion_id": "carriage-evidence-vehicle_not_supplied_or_not_used",
+        "source_refs": [
+          "synthetic-case-supply-1-carriage-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "carriage-constraint-set:reviewed-carriage-evidence-supply-1-v0",
+    "model_version": "contracts-carriage-articles-784-800-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
+      "synthetic-ru-gk793-800-carriage-liability-and-claims-v1"
+    ],
+    "expressions": [
+      "carriage_qualified == carriage_of_goods_or_passenger_for_fee",
+      "transport_document_duty_breached == carriage_qualified AND transport_document_not_issued",
+      "public_carriage_refusal_unlawful == carriage_qualified AND public_carrier_refused_without_grounds",
+      "charge_or_retention_rules_breached == carriage_qualified AND carriage_charge_or_retention_rules_breached",
+      "vehicle_supply_duty_breached == carriage_qualified AND vehicle_not_supplied_or_not_used",
+      "delivery_deadline_breached == carriage_qualified AND delivery_deadline_missed",
+      "passenger_delay_liability == carriage_qualified AND passenger_departure_delayed",
+      "cargo_damage_established == carriage_qualified AND cargo_lost_short_or_damaged",
+      "carrier_liable_for_cargo_loss == carriage_qualified AND cargo_lost_short_or_damaged AND carrier_fault_not_disproved_for_cargo_loss",
+      "liability_limitation_void == carriage_qualified AND liability_limitation_agreement_present",
+      "requires_human_carriage_assessment == transport_document_duty_breached OR public_carriage_refusal_unlawful OR charge_or_retention_rules_breached OR vehicle_supply_duty_breached OR delivery_deadline_breached OR passenger_delay_liability OR cargo_damage_established OR liability_limitation_void"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "carriage-constraint-set:reviewed-carriage-evidence-supply-1-v0",
+    "satisfiable": true,
+    "carriage_qualified": false,
+    "transport_document_duty_breached": false,
+    "public_carriage_refusal_unlawful": false,
+    "charge_or_retention_rules_breached": false,
+    "vehicle_supply_duty_breached": false,
+    "delivery_deadline_breached": false,
+    "passenger_delay_liability": false,
+    "cargo_damage_established": false,
+    "carrier_liable_for_cargo_loss": false,
+    "liability_limitation_void": false,
+    "requires_human_carriage_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор перевозки."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только общие положения ГК РФ о перевозке и не заменяет судебную оценку.",
+      "Транспортные уставы и кодексы, размер возмещения и обстоятельства, которые перевозчик не мог предотвратить, оцениваются экспертом и судом (статьи 784, 793 и 796 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "carriage-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "carriage-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "carriage_qualified": false
+        },
+        "observed_outcomes": {
+          "carriage_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор перевозки."
+        ]
+      },
+      {
+        "task_id": "carriage-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "carriage_qualified": true,
+          "requires_human_carriage_assessment": false
+        },
+        "observed_outcomes": {
+          "carriage_qualified": true,
+          "requires_human_carriage_assessment": false
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "carriage-bench-transport-document",
+        "passed": true,
+        "expected_outcomes": {
+          "transport_document_duty_breached": true,
+          "requires_human_carriage_assessment": true
+        },
+        "observed_outcomes": {
+          "transport_document_duty_breached": true,
+          "requires_human_carriage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Заключение договора перевозки подтверждается составлением транспортной накладной, коносамента или иного документа, а перевозка пассажира — билетом и багажной квитанцией (статьи 785 и 786 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "carriage-bench-public-refusal",
+        "passed": true,
+        "expected_outcomes": {
+          "public_carriage_refusal_unlawful": true,
+          "requires_human_carriage_assessment": true
+        },
+        "observed_outcomes": {
+          "public_carriage_refusal_unlawful": true,
+          "requires_human_carriage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Перевозка транспортом общего пользования является публичным договором: перевозчик обязан осуществлять перевозки по обращению любого гражданина или юридического лица (статья 789 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "carriage-bench-charge-rules",
+        "passed": true,
+        "expected_outcomes": {
+          "charge_or_retention_rules_breached": true,
+          "requires_human_carriage_assessment": true
+        },
+        "observed_outcomes": {
+          "charge_or_retention_rules_breached": true,
+          "requires_human_carriage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Провозная плата взимается по соглашению сторон, а для транспорта общего пользования — по утверждённым тарифам; удержание груза и багажа допускается только в установленных случаях (статья 790 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "carriage-bench-vehicle-supply",
+        "passed": true,
+        "expected_outcomes": {
+          "vehicle_supply_duty_breached": true,
+          "requires_human_carriage_assessment": true
+        },
+        "observed_outcomes": {
+          "vehicle_supply_duty_breached": true,
+          "requires_human_carriage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Перевозчик обязан подать отправителю исправные транспортные средства в срок, а отправитель — использовать поданные средства; их неподача или неиспользование влечёт ответственность сторон (статьи 791 и 794 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "carriage-bench-delivery-deadline",
+        "passed": true,
+        "expected_outcomes": {
+          "delivery_deadline_breached": true,
+          "requires_human_carriage_assessment": true
+        },
+        "observed_outcomes": {
+          "delivery_deadline_breached": true,
+          "requires_human_carriage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Перевозчик обязан доставить груз, пассажира или багаж в пункт назначения в сроки, определённые транспортными уставами и кодексами либо договором, а при их отсутствии — в разумный срок (статья 792 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "carriage-bench-passenger-delay",
+        "passed": true,
+        "expected_outcomes": {
+          "passenger_delay_liability": true,
+          "requires_human_carriage_assessment": true
+        },
+        "observed_outcomes": {
+          "passenger_delay_liability": true,
+          "requires_human_carriage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "За задержку отправления транспортного средства, перевозящего пассажира, перевозчик уплачивает штраф, если не докажет, что задержка произошла вследствие обстоятельств, которые он не мог предотвратить (статья 795 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "carriage-bench-cargo-loss",
+        "passed": true,
+        "expected_outcomes": {
+          "cargo_damage_established": true,
+          "carrier_liable_for_cargo_loss": true,
+          "requires_human_carriage_assessment": true
+        },
+        "observed_outcomes": {
+          "cargo_damage_established": true,
+          "carrier_liable_for_cargo_loss": true,
+          "requires_human_carriage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Установлены утрата, недостача или повреждение (порча) груза либо багажа, что влечёт проверку ответственности перевозчика и размера возмещения (статья 796 ГК РФ).",
+          "Перевозчик не доказал, что утрата, недостача или повреждение груза либо багажа произошли вследствие обстоятельств, которые он не мог предотвратить и устранение которых от него не зависело, и отвечает за них (статья 796 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "carriage-bench-liability-limitation",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_limitation_void": true,
+          "requires_human_carriage_assessment": true
+        },
+        "observed_outcomes": {
+          "liability_limitation_void": true,
+          "requires_human_carriage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Соглашения об ограничении или устранении установленной законом ответственности перевозчика недействительны, за исключением случаев, прямо предусмотренных транспортными уставами и кодексами (статья 793 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "carriage-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "carriage-red-qualify-without-carriage",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "carriage_qualified": true
+        },
+        "observed_outcomes": {
+          "carriage_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор перевозки."
+        ]
+      },
+      {
+        "case_id": "carriage-red-ignore-transport-document",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transport_document_duty_breached": false
+        },
+        "observed_outcomes": {
+          "transport_document_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Заключение договора перевозки подтверждается составлением транспортной накладной, коносамента или иного документа, а перевозка пассажира — билетом и багажной квитанцией (статьи 785 и 786 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "carriage-red-allow-public-refusal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "public_carriage_refusal_unlawful": false
+        },
+        "observed_outcomes": {
+          "public_carriage_refusal_unlawful": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Перевозка транспортом общего пользования является публичным договором: перевозчик обязан осуществлять перевозки по обращению любого гражданина или юридического лица (статья 789 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "carriage-red-ignore-charge-rules",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "charge_or_retention_rules_breached": false
+        },
+        "observed_outcomes": {
+          "charge_or_retention_rules_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Провозная плата взимается по соглашению сторон, а для транспорта общего пользования — по утверждённым тарифам; удержание груза и багажа допускается только в установленных случаях (статья 790 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "carriage-red-ignore-vehicle-supply",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "vehicle_supply_duty_breached": false
+        },
+        "observed_outcomes": {
+          "vehicle_supply_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Перевозчик обязан подать отправителю исправные транспортные средства в срок, а отправитель — использовать поданные средства; их неподача или неиспользование влечёт ответственность сторон (статьи 791 и 794 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "carriage-red-ignore-delivery-deadline",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "delivery_deadline_breached": false
+        },
+        "observed_outcomes": {
+          "delivery_deadline_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Перевозчик обязан доставить груз, пассажира или багаж в пункт назначения в сроки, определённые транспортными уставами и кодексами либо договором, а при их отсутствии — в разумный срок (статья 792 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "carriage-red-ignore-passenger-delay",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "passenger_delay_liability": false
+        },
+        "observed_outcomes": {
+          "passenger_delay_liability": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "За задержку отправления транспортного средства, перевозящего пассажира, перевозчик уплачивает штраф, если не докажет, что задержка произошла вследствие обстоятельств, которые он не мог предотвратить (статья 795 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "carriage-red-liability-without-damage",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "carrier_liable_for_cargo_loss": true
+        },
+        "observed_outcomes": {
+          "carrier_liable_for_cargo_loss": false
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "carriage-red-uphold-liability-limitation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_limitation_void": false
+        },
+        "observed_outcomes": {
+          "liability_limitation_void": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Соглашения об ограничении или устранении установленной законом ответственности перевозчика недействительны, за исключением случаев, прямо предусмотренных транспортными уставами и кодексами (статья 793 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "carriage-red-skip-human-on-cargo-damage",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_carriage_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_carriage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как перевозка: перевозчик обязуется доставить вверенный ему отправителем груз в пункт назначения и выдать его получателю либо перевезти пассажира и его багаж, а отправитель или пассажир — уплатить установленную плату (статьи 784–786 ГК РФ).",
+          "Установлены утрата, недостача или повреждение (порча) груза либо багажа, что влечёт проверку ответственности перевозчика и размера возмещения (статья 796 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

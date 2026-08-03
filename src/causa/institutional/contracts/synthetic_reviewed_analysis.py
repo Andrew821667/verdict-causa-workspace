@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.carriage import (
+    CarriageEvidenceAssertion,
+    CarriageEvidencePredicate,
+    ReviewedCarriageEvidence,
+)
 from causa.institutional.contracts.paid_services import (
     PaidServicesEvidenceAssertion,
     PaidServicesEvidencePredicate,
@@ -388,6 +393,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
     "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1",
     "synthetic-case-supply-1-paid-services-evidence",
+    "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
+    "synthetic-ru-gk793-800-carriage-liability-and-claims-v1",
+    "synthetic-case-supply-1-carriage-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2030,6 +2038,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-paid-services-reviewer",
+        ),
+        carriage_evidence=ReviewedCarriageEvidence(
+            id="reviewed-carriage-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                CarriageEvidenceAssertion(
+                    id=f"carriage-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-carriage-evidence",),
+                )
+                for predicate, value in (
+                    (CarriageEvidencePredicate.CARRIAGE_OF_GOODS_OR_PASSENGER_FOR_FEE, False),
+                    (CarriageEvidencePredicate.TRANSPORT_DOCUMENT_NOT_ISSUED, False),
+                    (CarriageEvidencePredicate.PUBLIC_CARRIER_REFUSED_WITHOUT_GROUNDS, False),
+                    (
+                        CarriageEvidencePredicate.CARRIAGE_CHARGE_OR_RETENTION_RULES_BREACHED,
+                        False,
+                    ),
+                    (CarriageEvidencePredicate.VEHICLE_NOT_SUPPLIED_OR_NOT_USED, False),
+                    (CarriageEvidencePredicate.DELIVERY_DEADLINE_MISSED, False),
+                    (CarriageEvidencePredicate.PASSENGER_DEPARTURE_DELAYED, False),
+                    (CarriageEvidencePredicate.CARGO_LOST_SHORT_OR_DAMAGED, False),
+                    (
+                        CarriageEvidencePredicate.CARRIER_FAULT_NOT_DISPROVED_FOR_CARGO_LOSS,
+                        False,
+                    ),
+                    (CarriageEvidencePredicate.LIABILITY_LIMITATION_AGREEMENT_PRESENT, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
+                "synthetic-ru-gk793-800-carriage-liability-and-claims-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-carriage-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

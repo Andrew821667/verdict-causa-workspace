@@ -1972,6 +1972,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
+      "title": "Синтетическая проверенная модель понятия перевозки, транспортных документов, провозной платы и обязанностей сторон по статьям 784–792 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: перевозка грузов, пассажиров и багажа на основании договора перевозки, обязанность перевозчика доставить вверенный груз в пункт назначения и выдать его получателю либо перевезти пассажира и багаж, подтверждение договора транспортной накладной, билетом и багажной квитанцией, публичный характер перевозки транспортом общего пользования, правила о провозной плате и удержании груза, подача исправных транспортных средств и их использование отправителем и сроки доставки проверяются раздельно (статьи 784–792 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "carriage_concept_documents_and_obligations_articles_784_792",
+        "legal_reference": "ГК РФ, статьи 784–792",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk793-800-carriage-liability-and-claims-v1",
+      "title": "Синтетическая проверенная модель ответственности перевозчика, сохранности груза и порядка предъявления требований по статьям 793–800 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: ответственность сторон за нарушение обязательств по перевозке и недействительность соглашений об ограничении или устранении установленной законом ответственности перевозчика, ответственность за неподачу транспортных средств и их неиспользование, штраф за задержку отправления пассажира, ответственность за утрату, недостачу и повреждение груза или багажа при недоказанности отсутствия вины перевозчика, обязательный претензионный порядок и ответственность за вред жизни и здоровью пассажира проверяются раздельно (статьи 793–800 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "carriage_liability_and_claims_articles_793_800",
+        "legal_reference": "ГК РФ, статьи 793–800",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-carriage-evidence",
+      "title": "Синтетическая проверенная запись фактов о перевозке",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является договором перевозки; доставка вверенного отправителем груза перевозчиком в пункт назначения за плату не осуществлялась.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "carriage_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -6673,6 +6720,99 @@
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-paid-services-reviewer"
+    },
+    "carriage_evidence": {
+      "id": "reviewed-carriage-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.carriage-evidence.v0",
+      "assertions": [
+        {
+          "id": "carriage-evidence-carriage_of_goods_or_passenger_for_fee",
+          "predicate": "carriage_of_goods_or_passenger_for_fee",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "id": "carriage-evidence-transport_document_not_issued",
+          "predicate": "transport_document_not_issued",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "id": "carriage-evidence-public_carrier_refused_without_grounds",
+          "predicate": "public_carrier_refused_without_grounds",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "id": "carriage-evidence-carriage_charge_or_retention_rules_breached",
+          "predicate": "carriage_charge_or_retention_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "id": "carriage-evidence-vehicle_not_supplied_or_not_used",
+          "predicate": "vehicle_not_supplied_or_not_used",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "id": "carriage-evidence-delivery_deadline_missed",
+          "predicate": "delivery_deadline_missed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "id": "carriage-evidence-passenger_departure_delayed",
+          "predicate": "passenger_departure_delayed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "id": "carriage-evidence-cargo_lost_short_or_damaged",
+          "predicate": "cargo_lost_short_or_damaged",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "id": "carriage-evidence-carrier_fault_not_disproved_for_cargo_loss",
+          "predicate": "carrier_fault_not_disproved_for_cargo_loss",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "id": "carriage-evidence-liability_limitation_agreement_present",
+          "predicate": "liability_limitation_agreement_present",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
+        "synthetic-ru-gk793-800-carriage-liability-and-claims-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-carriage-reviewer"
     },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
@@ -11451,6 +11591,7 @@
       "synthetic-authority-reviewer",
       "synthetic-barter-reviewer",
       "synthetic-building-lease-reviewer",
+      "synthetic-carriage-reviewer",
       "synthetic-case-evidence-reviewer",
       "synthetic-construction-contract-reviewer",
       "synthetic-consumer-work-reviewer",
@@ -11504,6 +11645,7 @@
       "synthetic-case-supply-1-annuity-evidence",
       "synthetic-case-supply-1-barter-evidence",
       "synthetic-case-supply-1-building-lease-evidence",
+      "synthetic-case-supply-1-carriage-evidence",
       "synthetic-case-supply-1-construction-contract-evidence",
       "synthetic-case-supply-1-consumer-work-evidence",
       "synthetic-case-supply-1-contractation-evidence",
@@ -11658,6 +11800,8 @@
       "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1",
       "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
       "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1",
+      "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
+      "synthetic-ru-gk793-800-carriage-liability-and-claims-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -17287,6 +17431,142 @@
         "Качество оказанных услуг, наличие вины стороны и размер фактически понесённых расходов оцениваются экспертом и судом (статьи 781 и 782 ГК РФ)."
       ]
     },
+    "carriage_evidence_mapping": {
+      "evidence_id": "reviewed-carriage-evidence-supply-1-v0",
+      "schema_version": "contracts.carriage-evidence.v0",
+      "mapping_version": "contracts-reviewed-carriage-to-facts-v0",
+      "facts": {
+        "carriage_of_goods_or_passenger_for_fee": false,
+        "transport_document_not_issued": false,
+        "public_carrier_refused_without_grounds": false,
+        "carriage_charge_or_retention_rules_breached": false,
+        "vehicle_not_supplied_or_not_used": false,
+        "delivery_deadline_missed": false,
+        "passenger_departure_delayed": false,
+        "cargo_lost_short_or_damaged": false,
+        "carrier_fault_not_disproved_for_cargo_loss": false,
+        "liability_limitation_agreement_present": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
+        "synthetic-ru-gk793-800-carriage-liability-and-claims-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "cargo_lost_short_or_damaged",
+          "assertion_id": "carriage-evidence-cargo_lost_short_or_damaged",
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "fact_name": "carriage_charge_or_retention_rules_breached",
+          "assertion_id": "carriage-evidence-carriage_charge_or_retention_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "fact_name": "carriage_of_goods_or_passenger_for_fee",
+          "assertion_id": "carriage-evidence-carriage_of_goods_or_passenger_for_fee",
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "fact_name": "carrier_fault_not_disproved_for_cargo_loss",
+          "assertion_id": "carriage-evidence-carrier_fault_not_disproved_for_cargo_loss",
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "fact_name": "delivery_deadline_missed",
+          "assertion_id": "carriage-evidence-delivery_deadline_missed",
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "fact_name": "liability_limitation_agreement_present",
+          "assertion_id": "carriage-evidence-liability_limitation_agreement_present",
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "fact_name": "passenger_departure_delayed",
+          "assertion_id": "carriage-evidence-passenger_departure_delayed",
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "fact_name": "public_carrier_refused_without_grounds",
+          "assertion_id": "carriage-evidence-public_carrier_refused_without_grounds",
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "fact_name": "transport_document_not_issued",
+          "assertion_id": "carriage-evidence-transport_document_not_issued",
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        },
+        {
+          "fact_name": "vehicle_not_supplied_or_not_used",
+          "assertion_id": "carriage-evidence-vehicle_not_supplied_or_not_used",
+          "source_refs": [
+            "synthetic-case-supply-1-carriage-evidence"
+          ]
+        }
+      ]
+    },
+    "carriage_constraint_set": {
+      "id": "carriage-constraint-set:reviewed-carriage-evidence-supply-1-v0",
+      "model_version": "contracts-carriage-articles-784-800-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
+        "synthetic-ru-gk793-800-carriage-liability-and-claims-v1"
+      ],
+      "expressions": [
+        "carriage_qualified == carriage_of_goods_or_passenger_for_fee",
+        "transport_document_duty_breached == carriage_qualified AND transport_document_not_issued",
+        "public_carriage_refusal_unlawful == carriage_qualified AND public_carrier_refused_without_grounds",
+        "charge_or_retention_rules_breached == carriage_qualified AND carriage_charge_or_retention_rules_breached",
+        "vehicle_supply_duty_breached == carriage_qualified AND vehicle_not_supplied_or_not_used",
+        "delivery_deadline_breached == carriage_qualified AND delivery_deadline_missed",
+        "passenger_delay_liability == carriage_qualified AND passenger_departure_delayed",
+        "cargo_damage_established == carriage_qualified AND cargo_lost_short_or_damaged",
+        "carrier_liable_for_cargo_loss == carriage_qualified AND cargo_lost_short_or_damaged AND carrier_fault_not_disproved_for_cargo_loss",
+        "liability_limitation_void == carriage_qualified AND liability_limitation_agreement_present",
+        "requires_human_carriage_assessment == transport_document_duty_breached OR public_carriage_refusal_unlawful OR charge_or_retention_rules_breached OR vehicle_supply_duty_breached OR delivery_deadline_breached OR passenger_delay_liability OR cargo_damage_established OR liability_limitation_void"
+      ]
+    },
+    "carriage_evaluation": {
+      "constraint_set_id": "carriage-constraint-set:reviewed-carriage-evidence-supply-1-v0",
+      "satisfiable": true,
+      "carriage_qualified": false,
+      "transport_document_duty_breached": false,
+      "public_carriage_refusal_unlawful": false,
+      "charge_or_retention_rules_breached": false,
+      "vehicle_supply_duty_breached": false,
+      "delivery_deadline_breached": false,
+      "passenger_delay_liability": false,
+      "cargo_damage_established": false,
+      "carrier_liable_for_cargo_loss": false,
+      "liability_limitation_void": false,
+      "requires_human_carriage_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор перевозки."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только общие положения ГК РФ о перевозке и не заменяет судебную оценку.",
+        "Транспортные уставы и кодексы, размер возмещения и обстоятельства, которые перевозчик не мог предотвратить, оцениваются экспертом и судом (статьи 784, 793 и 796 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -22658,7 +22938,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.57.0",
+      "institutional_package_version": "contracts-ru-v0@0.58.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -24657,6 +24937,7 @@
           "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-building-lease-evidence",
+          "synthetic-case-supply-1-carriage-evidence",
           "synthetic-case-supply-1-construction-contract-evidence",
           "synthetic-case-supply-1-consumer-work-evidence",
           "synthetic-case-supply-1-contractation-evidence",
@@ -24811,6 +25092,8 @@
           "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1",
           "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
           "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1",
+          "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
+          "synthetic-ru-gk793-800-carriage-liability-and-claims-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -25821,6 +26104,7 @@
           "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-building-lease-evidence",
+          "synthetic-case-supply-1-carriage-evidence",
           "synthetic-case-supply-1-construction-contract-evidence",
           "synthetic-case-supply-1-consumer-work-evidence",
           "synthetic-case-supply-1-contractation-evidence",
@@ -25975,6 +26259,8 @@
           "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1",
           "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
           "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1",
+          "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
+          "synthetic-ru-gk793-800-carriage-liability-and-claims-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -26985,6 +27271,7 @@
           "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-building-lease-evidence",
+          "synthetic-case-supply-1-carriage-evidence",
           "synthetic-case-supply-1-construction-contract-evidence",
           "synthetic-case-supply-1-consumer-work-evidence",
           "synthetic-case-supply-1-contractation-evidence",
@@ -27139,6 +27426,8 @@
           "synthetic-ru-gk775-778-research-work-impossibility-and-liability-v1",
           "synthetic-ru-gk779-781-paid-services-concept-personal-performance-and-payment-v1",
           "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1",
+          "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
+          "synthetic-ru-gk793-800-carriage-liability-and-claims-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -27228,7 +27517,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.57.0",
+      "institutional_package_version": "contracts-ru-v0@0.58.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -28830,6 +29119,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель понятия перевозки, транспортных документов, провозной платы и обязанностей сторон по статьям 784–792 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "carriage_concept_documents_and_obligations_articles_784_792",
+          "legal_reference": "ГК РФ, статьи 784–792",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk793-800-carriage-liability-and-claims-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель ответственности перевозчика, сохранности груза и порядка предъявления требований по статьям 793–800 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "carriage_liability_and_claims_articles_793_800",
+          "legal_reference": "ГК РФ, статьи 793–800",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-carriage-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о перевозке",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "carriage_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -29439,6 +29766,7 @@
             "synthetic-authority-reviewer",
             "synthetic-barter-reviewer",
             "synthetic-building-lease-reviewer",
+            "synthetic-carriage-reviewer",
             "synthetic-case-evidence-reviewer",
             "synthetic-construction-contract-reviewer",
             "synthetic-consumer-work-reviewer",

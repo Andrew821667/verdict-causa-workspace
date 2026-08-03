@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.58.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью перевозки |
 | `0.57.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью возмездного оказания услуг |
 | `0.56.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью научно-исследовательских и опытно-конструкторских работ |
 | `0.55.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью подрядных работ для государственных нужд |
@@ -65,6 +66,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.57.0` → `0.58.0` соберите отдельно проверенный контракт данных о перевозке (`contracts.carriage-evidence.v0`). Не выводите квалификацию перевозки, оформление транспортных документов, отказ перевозчика общего пользования, провозную плату, подачу транспортных средств, сроки доставки, задержку отправления пассажира, утрату и повреждение груза и недействительность соглашений об ограничении ответственности из прежних результатов о поставке или возмездном оказании услуг. Пересоберите артефакты оценки перевозки, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.56.0` → `0.57.0` соберите отдельно проверенный контракт данных о возмездном оказании услуг (`contracts.paid-services-evidence.v0`). Не выводите квалификацию договора, исключение услуг по договорам отдельных глав, личное исполнение, сроки и порядок оплаты, невозможность исполнения, возмещение фактически понесённых расходов, односторонний отказ сторон и правила приостановления услуг связи из прежних результатов о подряде. Пересоберите артефакты оценки возмездного оказания услуг, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
