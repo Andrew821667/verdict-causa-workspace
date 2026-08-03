@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.59.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed forwarding evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 801 through 806.",
+            "Qualification, written form and authority, unperformed services, carrier-linked liability, the client's information duty, the forwarder's notice duty, personal performance, withdrawal notice, compensation of losses, and the statutory penalty remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о транспортной экспедиции обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 801–806 ГК РФ.",
+            "Квалификация экспедиции, письменная форма и доверенность, невыполнение услуг, ответственность, связанная с договором перевозки, обязанность клиента предоставить информацию, обязанность экспедитора сообщить о её неполноте, личное исполнение, предупреждение об отказе, возмещение убытков и штраф разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.58.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -97,6 +97,9 @@ from causa.institutional.contracts.synthetic_design_work import (
 from causa.institutional.contracts.synthetic_carriage import (
     build_synthetic_carriage_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_forwarding import (
+    build_synthetic_forwarding_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_paid_services import (
     build_synthetic_paid_services_evaluation_artifact,
 )
@@ -902,6 +905,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-forwarding",
+            title="Проверка транспортной экспедиции",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.forwarding_evidence_mapping.evidence_id,
+                trace.analysis_result.forwarding_constraint_set.id,
+                *trace.analysis_result.forwarding_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.forwarding_evaluation.reasons_ru,
+                "Квалификация транспортной экспедиции, письменная форма договора и доверенность, выполнение и организация экспедиционных услуг, ответственность, связанная с договором перевозки, предоставление клиентом документов и информации о грузе, сообщение экспедитора о неполноте сведений, привлечение третьих лиц, предупреждение об отказе в разумный срок, возмещение убытков от расторжения и штраф проверяются раздельно по статьям 801–806 ГК РФ.",
+                "Разумность срока предупреждения, состав экспедиционных услуг и размер убытков и затрат оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1197,6 +1215,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     research_work_artifact = build_synthetic_research_work_evaluation_artifact()
     paid_services_artifact = build_synthetic_paid_services_evaluation_artifact()
     carriage_artifact = build_synthetic_carriage_evaluation_artifact()
+    forwarding_artifact = build_synthetic_forwarding_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -1334,6 +1353,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-paid-services-spec.md",
                 "src/causa/institutional/contracts/carriage.py",
                 "docs/contract-carriage-spec.md",
+                "src/causa/institutional/contracts/forwarding.py",
+                "docs/contract-forwarding-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -1393,6 +1414,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_research_work_evaluation_report.json",
                 "examples/synthetic_paid_services_evaluation_report.json",
                 "examples/synthetic_carriage_evaluation_report.json",
+                "examples/synthetic_forwarding_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -1401,12 +1423,12 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 *(
-                    f"examples/migrations/contracts-ru-v0-{version}-to-0.58.0-migration-report.json"
+                    f"examples/migrations/contracts-ru-v0-{version}-to-0.59.0-migration-report.json"
                     for version in (
                         "0.1.0",
                         "0.3.0",
                         "0.4.0",
-                        *(f"0.{minor}.0" for minor in range(5, 58)),
+                        *(f"0.{minor}.0" for minor in range(5, 59)),
                     )
                 ),
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
@@ -1558,6 +1580,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 paid_services_artifact.red_team_report.id,
                 carriage_artifact.benchmark_report.id,
                 carriage_artifact.red_team_report.id,
+                forwarding_artifact.benchmark_report.id,
+                forwarding_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -1629,6 +1653,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_research_work_evaluation_report.json",
                 "examples/synthetic_paid_services_evaluation_report.json",
                 "examples/synthetic_carriage_evaluation_report.json",
+                "examples/synthetic_forwarding_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

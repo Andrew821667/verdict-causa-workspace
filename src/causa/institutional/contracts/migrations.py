@@ -1119,6 +1119,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.58.0",
+        to_version="0.59.0",
+        reasons=[
+            "Reviewed inputs now require a separate forwarding evidence contract.",
+            "Analysis and Russian translation distinguish qualification, written form and authority, unperformed services, carrier-linked liability, the client's information duty, the forwarder's notice duty, personal performance, withdrawal notice, compensation of losses, and the statutory penalty under articles 801 through 806.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о транспортной экспедиции.",
+            "Анализ и русское объяснение разделяют квалификацию экспедиции, письменную форму и доверенность, невыполнение услуг, ответственность, связанную с договором перевозки, обязанность клиента предоставить информацию, обязанность экспедитора сообщить о её неполноте, личное исполнение, предупреждение об отказе, возмещение убытков и штраф по статьям 801–806 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_forwarding_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

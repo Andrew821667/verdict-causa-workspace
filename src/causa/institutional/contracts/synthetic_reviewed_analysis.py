@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.forwarding import (
+    ForwardingEvidenceAssertion,
+    ForwardingEvidencePredicate,
+    ReviewedForwardingEvidence,
+)
 from causa.institutional.contracts.carriage import (
     CarriageEvidenceAssertion,
     CarriageEvidencePredicate,
@@ -396,6 +401,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
     "synthetic-ru-gk793-800-carriage-liability-and-claims-v1",
     "synthetic-case-supply-1-carriage-evidence",
+    "synthetic-ru-gk801-804-forwarding-concept-form-and-information-v1",
+    "synthetic-ru-gk805-806-forwarding-third-parties-and-withdrawal-v1",
+    "synthetic-case-supply-1-forwarding-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2074,6 +2082,60 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-carriage-reviewer",
+        ),
+        forwarding_evidence=ReviewedForwardingEvidence(
+            id="reviewed-forwarding-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                ForwardingEvidenceAssertion(
+                    id=f"forwarding-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-forwarding-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        ForwardingEvidencePredicate.FORWARDING_SERVICES_FOR_FEE_AT_CLIENT_EXPENSE,
+                        False,
+                    ),
+                    (
+                        ForwardingEvidencePredicate.WRITTEN_FORM_OR_POWER_OF_ATTORNEY_MISSING,
+                        False,
+                    ),
+                    (
+                        ForwardingEvidencePredicate.FORWARDER_FAILED_TO_PERFORM_AGREED_SERVICES,
+                        False,
+                    ),
+                    (
+                        ForwardingEvidencePredicate.CARRIER_BREACH_CAUSED_FORWARDER_LIABILITY,
+                        False,
+                    ),
+                    (
+                        ForwardingEvidencePredicate.CLIENT_DOCUMENTS_OR_INFORMATION_NOT_PROVIDED,
+                        False,
+                    ),
+                    (
+                        ForwardingEvidencePredicate.FORWARDER_DID_NOT_REPORT_INCOMPLETE_INFORMATION,
+                        False,
+                    ),
+                    (
+                        ForwardingEvidencePredicate.THIRD_PARTY_ENGAGED_DESPITE_PERSONAL_DUTY,
+                        False,
+                    ),
+                    (ForwardingEvidencePredicate.WITHDRAWAL_WITHOUT_REASONABLE_NOTICE, False),
+                    (ForwardingEvidencePredicate.WITHDRAWAL_LOSSES_NOT_COMPENSATED, False),
+                    (
+                        ForwardingEvidencePredicate.STATUTORY_PENALTY_NOT_PAID_ON_WITHDRAWAL,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk801-804-forwarding-concept-form-and-information-v1",
+                "synthetic-ru-gk805-806-forwarding-third-parties-and-withdrawal-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-forwarding-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

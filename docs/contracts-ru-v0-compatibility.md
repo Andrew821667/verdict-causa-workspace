@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.59.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью транспортной экспедиции |
 | `0.58.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью перевозки |
 | `0.57.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью возмездного оказания услуг |
 | `0.56.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью научно-исследовательских и опытно-конструкторских работ |
@@ -66,6 +67,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.58.0` → `0.59.0` соберите отдельно проверенный контракт данных о транспортной экспедиции (`contracts.forwarding-evidence.v0`). Не выводите квалификацию экспедиции, письменную форму и доверенность, выполнение услуг, ответственность, связанную с договором перевозки, обязанности сторон по информации, привлечение третьих лиц, предупреждение об отказе, возмещение убытков и штраф из прежних результатов о перевозке или возмездном оказании услуг. Пересоберите артефакты оценки транспортной экспедиции, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.57.0` → `0.58.0` соберите отдельно проверенный контракт данных о перевозке (`contracts.carriage-evidence.v0`). Не выводите квалификацию перевозки, оформление транспортных документов, отказ перевозчика общего пользования, провозную плату, подачу транспортных средств, сроки доставки, задержку отправления пассажира, утрату и повреждение груза и недействительность соглашений об ограничении ответственности из прежних результатов о поставке или возмездном оказании услуг. Пересоберите артефакты оценки перевозки, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

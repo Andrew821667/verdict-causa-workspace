@@ -2019,6 +2019,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk801-804-forwarding-concept-form-and-information-v1",
+      "title": "Синтетическая проверенная модель понятия транспортной экспедиции, формы договора, ответственности экспедитора и информации о грузе по статьям 801–804 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: транспортная экспедиция как обязанность экспедитора за вознаграждение и за счёт клиента выполнить или организовать выполнение определённых договором услуг, связанных с перевозкой груза, письменная форма договора и выдача доверенности, ответственность экспедитора по общим правилам об обязательствах и по правилам ответственности перевозчика, когда нарушение вызвано ненадлежащим исполнением договора перевозки, обязанность клиента предоставить документы и информацию о свойствах груза и обязанность экспедитора сообщить о неполноте полученных сведений проверяются раздельно (статьи 801–804 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "forwarding_concept_form_and_information_articles_801_804",
+        "legal_reference": "ГК РФ, статьи 801–804",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk805-806-forwarding-third-parties-and-withdrawal-v1",
+      "title": "Синтетическая проверенная модель привлечения третьих лиц и одностороннего отказа от договора транспортной экспедиции по статьям 805–806 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: право экспедитора привлечь к исполнению своих обязанностей других лиц, если из договора не следует обязанность исполнить их лично, сохранение ответственности экспедитора при возложении исполнения на третье лицо, право любой стороны отказаться от исполнения договора с предупреждением в разумный срок, возмещение убытков, вызванных расторжением, и уплата штрафа в размере десяти процентов суммы понесённых затрат проверяются раздельно (статьи 805–806 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "forwarding_third_parties_and_withdrawal_articles_805_806",
+        "legal_reference": "ГК РФ, статьи 805–806",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-forwarding-evidence",
+      "title": "Синтетическая проверенная запись фактов о транспортной экспедиции",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является договором транспортной экспедиции; выполнения или организации услуг, связанных с перевозкой груза, за вознаграждение и за счёт клиента нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "forwarding_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -6814,6 +6861,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-carriage-reviewer"
     },
+    "forwarding_evidence": {
+      "id": "reviewed-forwarding-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.forwarding-evidence.v0",
+      "assertions": [
+        {
+          "id": "forwarding-evidence-forwarding_services_for_fee_at_client_expense",
+          "predicate": "forwarding_services_for_fee_at_client_expense",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "id": "forwarding-evidence-written_form_or_power_of_attorney_missing",
+          "predicate": "written_form_or_power_of_attorney_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "id": "forwarding-evidence-forwarder_failed_to_perform_agreed_services",
+          "predicate": "forwarder_failed_to_perform_agreed_services",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "id": "forwarding-evidence-carrier_breach_caused_forwarder_liability",
+          "predicate": "carrier_breach_caused_forwarder_liability",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "id": "forwarding-evidence-client_documents_or_information_not_provided",
+          "predicate": "client_documents_or_information_not_provided",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "id": "forwarding-evidence-forwarder_did_not_report_incomplete_information",
+          "predicate": "forwarder_did_not_report_incomplete_information",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "id": "forwarding-evidence-third_party_engaged_despite_personal_duty",
+          "predicate": "third_party_engaged_despite_personal_duty",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "id": "forwarding-evidence-withdrawal_without_reasonable_notice",
+          "predicate": "withdrawal_without_reasonable_notice",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "id": "forwarding-evidence-withdrawal_losses_not_compensated",
+          "predicate": "withdrawal_losses_not_compensated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "id": "forwarding-evidence-statutory_penalty_not_paid_on_withdrawal",
+          "predicate": "statutory_penalty_not_paid_on_withdrawal",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk801-804-forwarding-concept-form-and-information-v1",
+        "synthetic-ru-gk805-806-forwarding-third-parties-and-withdrawal-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-forwarding-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -11602,6 +11742,7 @@
       "synthetic-enterprise-sale-reviewer",
       "synthetic-form-reviewer",
       "synthetic-formation-reviewer",
+      "synthetic-forwarding-reviewer",
       "synthetic-framework-reviewer",
       "synthetic-freedom-reviewer",
       "synthetic-general-obligations-reviewer",
@@ -11655,6 +11796,7 @@
       "synthetic-case-supply-1-enterprise-sale-evidence",
       "synthetic-case-supply-1-form-evidence",
       "synthetic-case-supply-1-formation-evidence",
+      "synthetic-case-supply-1-forwarding-evidence",
       "synthetic-case-supply-1-framework-evidence",
       "synthetic-case-supply-1-freedom-evidence",
       "synthetic-case-supply-1-general-obligations-evidence",
@@ -11802,6 +11944,8 @@
       "synthetic-ru-gk782-783-1-paid-services-withdrawal-and-communication-v1",
       "synthetic-ru-gk784-792-carriage-concept-documents-and-obligations-v1",
       "synthetic-ru-gk793-800-carriage-liability-and-claims-v1",
+      "synthetic-ru-gk801-804-forwarding-concept-form-and-information-v1",
+      "synthetic-ru-gk805-806-forwarding-third-parties-and-withdrawal-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -17567,6 +17711,142 @@
         "Транспортные уставы и кодексы, размер возмещения и обстоятельства, которые перевозчик не мог предотвратить, оцениваются экспертом и судом (статьи 784, 793 и 796 ГК РФ)."
       ]
     },
+    "forwarding_evidence_mapping": {
+      "evidence_id": "reviewed-forwarding-evidence-supply-1-v0",
+      "schema_version": "contracts.forwarding-evidence.v0",
+      "mapping_version": "contracts-reviewed-forwarding-to-facts-v0",
+      "facts": {
+        "forwarding_services_for_fee_at_client_expense": false,
+        "written_form_or_power_of_attorney_missing": false,
+        "forwarder_failed_to_perform_agreed_services": false,
+        "carrier_breach_caused_forwarder_liability": false,
+        "client_documents_or_information_not_provided": false,
+        "forwarder_did_not_report_incomplete_information": false,
+        "third_party_engaged_despite_personal_duty": false,
+        "withdrawal_without_reasonable_notice": false,
+        "withdrawal_losses_not_compensated": false,
+        "statutory_penalty_not_paid_on_withdrawal": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk801-804-forwarding-concept-form-and-information-v1",
+        "synthetic-ru-gk805-806-forwarding-third-parties-and-withdrawal-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "carrier_breach_caused_forwarder_liability",
+          "assertion_id": "forwarding-evidence-carrier_breach_caused_forwarder_liability",
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "fact_name": "client_documents_or_information_not_provided",
+          "assertion_id": "forwarding-evidence-client_documents_or_information_not_provided",
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "fact_name": "forwarder_did_not_report_incomplete_information",
+          "assertion_id": "forwarding-evidence-forwarder_did_not_report_incomplete_information",
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "fact_name": "forwarder_failed_to_perform_agreed_services",
+          "assertion_id": "forwarding-evidence-forwarder_failed_to_perform_agreed_services",
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "fact_name": "forwarding_services_for_fee_at_client_expense",
+          "assertion_id": "forwarding-evidence-forwarding_services_for_fee_at_client_expense",
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "fact_name": "statutory_penalty_not_paid_on_withdrawal",
+          "assertion_id": "forwarding-evidence-statutory_penalty_not_paid_on_withdrawal",
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_engaged_despite_personal_duty",
+          "assertion_id": "forwarding-evidence-third_party_engaged_despite_personal_duty",
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "fact_name": "withdrawal_losses_not_compensated",
+          "assertion_id": "forwarding-evidence-withdrawal_losses_not_compensated",
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "fact_name": "withdrawal_without_reasonable_notice",
+          "assertion_id": "forwarding-evidence-withdrawal_without_reasonable_notice",
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        },
+        {
+          "fact_name": "written_form_or_power_of_attorney_missing",
+          "assertion_id": "forwarding-evidence-written_form_or_power_of_attorney_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-forwarding-evidence"
+          ]
+        }
+      ]
+    },
+    "forwarding_constraint_set": {
+      "id": "forwarding-constraint-set:reviewed-forwarding-evidence-supply-1-v0",
+      "model_version": "contracts-forwarding-articles-801-806-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk801-804-forwarding-concept-form-and-information-v1",
+        "synthetic-ru-gk805-806-forwarding-third-parties-and-withdrawal-v1"
+      ],
+      "expressions": [
+        "forwarding_qualified == forwarding_services_for_fee_at_client_expense",
+        "form_or_authority_requirement_breached == forwarding_qualified AND written_form_or_power_of_attorney_missing",
+        "forwarding_services_not_performed == forwarding_qualified AND forwarder_failed_to_perform_agreed_services",
+        "carrier_linked_liability_applies == forwarding_qualified AND carrier_breach_caused_forwarder_liability",
+        "client_information_duty_breached == forwarding_qualified AND client_documents_or_information_not_provided",
+        "forwarder_notice_duty_breached == forwarding_qualified AND client_documents_or_information_not_provided AND forwarder_did_not_report_incomplete_information",
+        "personal_performance_duty_breached == forwarding_qualified AND third_party_engaged_despite_personal_duty",
+        "withdrawal_notice_duty_breached == forwarding_qualified AND withdrawal_without_reasonable_notice",
+        "withdrawal_losses_compensation_due == forwarding_qualified AND withdrawal_without_reasonable_notice AND withdrawal_losses_not_compensated",
+        "statutory_penalty_due == forwarding_qualified AND statutory_penalty_not_paid_on_withdrawal",
+        "requires_human_forwarding_assessment == form_or_authority_requirement_breached OR forwarding_services_not_performed OR carrier_linked_liability_applies OR client_information_duty_breached OR personal_performance_duty_breached OR withdrawal_notice_duty_breached OR statutory_penalty_due"
+      ]
+    },
+    "forwarding_evaluation": {
+      "constraint_set_id": "forwarding-constraint-set:reviewed-forwarding-evidence-supply-1-v0",
+      "satisfiable": true,
+      "forwarding_qualified": false,
+      "form_or_authority_requirement_breached": false,
+      "forwarding_services_not_performed": false,
+      "carrier_linked_liability_applies": false,
+      "client_information_duty_breached": false,
+      "forwarder_notice_duty_breached": false,
+      "personal_performance_duty_breached": false,
+      "withdrawal_notice_duty_breached": false,
+      "withdrawal_losses_compensation_due": false,
+      "statutory_penalty_due": false,
+      "requires_human_forwarding_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор транспортной экспедиции."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о транспортной экспедиции и не заменяет судебную оценку.",
+        "Разумность срока предупреждения, состав экспедиционных услуг и размер убытков и затрат оцениваются экспертом и судом (статьи 801, 803 и 806 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -22938,7 +23218,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.58.0",
+      "institutional_package_version": "contracts-ru-v0@0.59.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
