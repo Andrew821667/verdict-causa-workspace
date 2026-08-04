@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка общих положений о хранении по статьям 886–906 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-storage-evidence-supply-1-v0",
+    "schema_version": "contracts.storage-evidence.v0",
+    "mapping_version": "contracts-reviewed-storage-to-facts-v0",
+    "facts": {
+      "thing_accepted_for_storage_and_return": false,
+      "storage_written_form_not_observed": false,
+      "acceptance_of_thing_refused_without_grounds": false,
+      "storage_period_rules_breached": false,
+      "safekeeping_measures_not_taken": false,
+      "custodian_used_thing_without_consent": false,
+      "storage_change_or_transfer_not_notified": false,
+      "storage_remuneration_and_expenses_breached": false,
+      "thing_return_duty_breached": false,
+      "custodian_liability_rules_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
+      "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "acceptance_of_thing_refused_without_grounds",
+        "assertion_id": "storage-evidence-acceptance_of_thing_refused_without_grounds",
+        "source_refs": [
+          "synthetic-case-supply-1-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "custodian_liability_rules_breached",
+        "assertion_id": "storage-evidence-custodian_liability_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "custodian_used_thing_without_consent",
+        "assertion_id": "storage-evidence-custodian_used_thing_without_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "safekeeping_measures_not_taken",
+        "assertion_id": "storage-evidence-safekeeping_measures_not_taken",
+        "source_refs": [
+          "synthetic-case-supply-1-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "storage_change_or_transfer_not_notified",
+        "assertion_id": "storage-evidence-storage_change_or_transfer_not_notified",
+        "source_refs": [
+          "synthetic-case-supply-1-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "storage_period_rules_breached",
+        "assertion_id": "storage-evidence-storage_period_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "storage_remuneration_and_expenses_breached",
+        "assertion_id": "storage-evidence-storage_remuneration_and_expenses_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "storage_written_form_not_observed",
+        "assertion_id": "storage-evidence-storage_written_form_not_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "thing_accepted_for_storage_and_return",
+        "assertion_id": "storage-evidence-thing_accepted_for_storage_and_return",
+        "source_refs": [
+          "synthetic-case-supply-1-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "thing_return_duty_breached",
+        "assertion_id": "storage-evidence-thing_return_duty_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-storage-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "storage-constraint-set:reviewed-storage-evidence-supply-1-v0",
+    "model_version": "contracts-storage-articles-886-906-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
+      "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1"
+    ],
+    "expressions": [
+      "storage_qualified == thing_accepted_for_storage_and_return",
+      "storage_form_breached == storage_qualified AND storage_written_form_not_observed",
+      "acceptance_duty_breached == storage_qualified AND acceptance_of_thing_refused_without_grounds",
+      "storage_period_duty_breached == storage_qualified AND storage_period_rules_breached",
+      "safekeeping_duty_breached == storage_qualified AND safekeeping_measures_not_taken",
+      "unauthorised_use_established == storage_qualified AND custodian_used_thing_without_consent",
+      "storage_change_notice_duty_breached == storage_qualified AND storage_change_or_transfer_not_notified",
+      "remuneration_and_expenses_duty_breached == storage_qualified AND storage_remuneration_and_expenses_breached",
+      "return_duty_breached == storage_qualified AND thing_return_duty_breached",
+      "custodian_liability_breached == storage_qualified AND safekeeping_measures_not_taken AND custodian_liability_rules_breached",
+      "requires_human_storage_assessment == storage_form_breached OR acceptance_duty_breached OR storage_period_duty_breached OR safekeeping_duty_breached OR unauthorised_use_established OR storage_change_notice_duty_breached OR remuneration_and_expenses_duty_breached OR return_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "storage-constraint-set:reviewed-storage-evidence-supply-1-v0",
+    "satisfiable": true,
+    "storage_qualified": false,
+    "storage_form_breached": false,
+    "acceptance_duty_breached": false,
+    "storage_period_duty_breached": false,
+    "safekeeping_duty_breached": false,
+    "unauthorised_use_established": false,
+    "storage_change_notice_duty_breached": false,
+    "remuneration_and_expenses_duty_breached": false,
+    "return_duty_breached": false,
+    "custodian_liability_breached": false,
+    "requires_human_storage_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор хранения."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только общие положения о хранении и не заменяет судебную оценку.",
+      "Достаточность принятых мер по обеспечению сохранности, необходимость чрезвычайных расходов и наличие вины хранителя оцениваются экспертом и судом (статьи 891, 898 и 901 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "storage-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "storage-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "storage_qualified": false
+        },
+        "observed_outcomes": {
+          "storage_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор хранения."
+        ]
+      },
+      {
+        "task_id": "storage-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "storage_qualified": true,
+          "requires_human_storage_assessment": false
+        },
+        "observed_outcomes": {
+          "storage_qualified": true,
+          "requires_human_storage_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "storage-bench-form",
+        "passed": true,
+        "expected_outcomes": {
+          "storage_form_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "storage_form_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Договор хранения должен быть заключён в письменной форме в предусмотренных законом случаях; простая письменная форма считается соблюдённой при выдаче сохранной расписки, квитанции, свидетельства или иного документа, подписанного хранителем (статья 887 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "storage-bench-acceptance",
+        "passed": true,
+        "expected_outcomes": {
+          "acceptance_duty_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "acceptance_duty_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Хранитель, обязавшийся принять вещь на хранение, не вправе требовать её передачи, однако поклажедатель, не передавший вещь в предусмотренный срок, отвечает за убытки, а хранитель освобождается от обязанности принять вещь в установленных случаях (статья 888 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "storage-bench-period",
+        "passed": true,
+        "expected_outcomes": {
+          "storage_period_duty_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "storage_period_duty_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Хранитель обязан хранить вещь в течение обусловленного срока, а при отсутствии срока — до востребования вещи поклажедателем (статья 889 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "storage-bench-safekeeping",
+        "passed": true,
+        "expected_outcomes": {
+          "safekeeping_duty_breached": true,
+          "custodian_liability_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "safekeeping_duty_breached": true,
+          "custodian_liability_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Хранитель обязан принять все предусмотренные договором меры, а также меры, соответствующие обязательным нормам и обычаям делового оборота, чтобы обеспечить сохранность переданной на хранение вещи (статья 891 ГК РФ).",
+          "Хранитель отвечает за утрату, недостачу или повреждение вещей по основаниям, предусмотренным статьёй 401 ГК РФ, а профессиональный хранитель — независимо от вины в установленных пределах; размер ответственности определяется статьёй 902 ГК РФ (статьи 901 и 902 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "storage-bench-unauthorised-use",
+        "passed": true,
+        "expected_outcomes": {
+          "unauthorised_use_established": true,
+          "requires_human_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "unauthorised_use_established": true,
+          "requires_human_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Хранитель не вправе без согласия поклажедателя пользоваться переданной на хранение вещью и предоставлять возможность пользования ею третьим лицам, за исключением случаев, когда это необходимо для обеспечения сохранности вещи (статья 892 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "storage-bench-change-notice",
+        "passed": true,
+        "expected_outcomes": {
+          "storage_change_notice_duty_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "storage_change_notice_duty_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Хранитель обязан незамедлительно уведомить поклажедателя об изменении условий хранения и вправе передать вещь на хранение третьему лицу только в предусмотренных законом случаях с извещением поклажедателя (статьи 893 и 895 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "storage-bench-remuneration",
+        "passed": true,
+        "expected_outcomes": {
+          "remuneration_and_expenses_duty_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "remuneration_and_expenses_duty_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Вознаграждение за хранение выплачивается по окончании хранения или по периодам, расходы на хранение включаются в вознаграждение, если иное не предусмотрено договором, а чрезвычайные расходы возмещаются в установленном порядке (статьи 896–898 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "storage-bench-return",
+        "passed": true,
+        "expected_outcomes": {
+          "return_duty_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "return_duty_breached": true,
+          "requires_human_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Поклажедатель обязан взять вещь обратно по истечении срока хранения, а хранитель обязан возвратить ту самую вещь в том состоянии, в каком она была принята, с учётом естественного ухудшения и естественной убыли (статьи 899 и 900 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "storage-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "storage-red-qualify-without-transfer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "storage_qualified": true
+        },
+        "observed_outcomes": {
+          "storage_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор хранения."
+        ]
+      },
+      {
+        "case_id": "storage-red-ignore-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "storage_form_breached": false
+        },
+        "observed_outcomes": {
+          "storage_form_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Договор хранения должен быть заключён в письменной форме в предусмотренных законом случаях; простая письменная форма считается соблюдённой при выдаче сохранной расписки, квитанции, свидетельства или иного документа, подписанного хранителем (статья 887 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "storage-red-ignore-acceptance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "acceptance_duty_breached": false
+        },
+        "observed_outcomes": {
+          "acceptance_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Хранитель, обязавшийся принять вещь на хранение, не вправе требовать её передачи, однако поклажедатель, не передавший вещь в предусмотренный срок, отвечает за убытки, а хранитель освобождается от обязанности принять вещь в установленных случаях (статья 888 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "storage-red-ignore-period",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "storage_period_duty_breached": false
+        },
+        "observed_outcomes": {
+          "storage_period_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Хранитель обязан хранить вещь в течение обусловленного срока, а при отсутствии срока — до востребования вещи поклажедателем (статья 889 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "storage-red-ignore-safekeeping",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "safekeeping_duty_breached": false
+        },
+        "observed_outcomes": {
+          "safekeeping_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Хранитель обязан принять все предусмотренные договором меры, а также меры, соответствующие обязательным нормам и обычаям делового оборота, чтобы обеспечить сохранность переданной на хранение вещи (статья 891 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "storage-red-liability-without-safekeeping-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "custodian_liability_breached": true
+        },
+        "observed_outcomes": {
+          "custodian_liability_breached": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "storage-red-allow-unauthorised-use",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unauthorised_use_established": false
+        },
+        "observed_outcomes": {
+          "unauthorised_use_established": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Хранитель не вправе без согласия поклажедателя пользоваться переданной на хранение вещью и предоставлять возможность пользования ею третьим лицам, за исключением случаев, когда это необходимо для обеспечения сохранности вещи (статья 892 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "storage-red-ignore-change-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "storage_change_notice_duty_breached": false
+        },
+        "observed_outcomes": {
+          "storage_change_notice_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Хранитель обязан незамедлительно уведомить поклажедателя об изменении условий хранения и вправе передать вещь на хранение третьему лицу только в предусмотренных законом случаях с извещением поклажедателя (статьи 893 и 895 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "storage-red-ignore-remuneration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "remuneration_and_expenses_duty_breached": false
+        },
+        "observed_outcomes": {
+          "remuneration_and_expenses_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Вознаграждение за хранение выплачивается по окончании хранения или по периодам, расходы на хранение включаются в вознаграждение, если иное не предусмотрено договором, а чрезвычайные расходы возмещаются в установленном порядке (статьи 896–898 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "storage-red-skip-human-on-return",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_storage_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор хранения: хранитель обязуется хранить вещь, переданную ему поклажедателем, и возвратить эту вещь в сохранности (статья 886 ГК РФ).",
+          "Поклажедатель обязан взять вещь обратно по истечении срока хранения, а хранитель обязан возвратить ту самую вещь в том состоянии, в каком она была принята, с учётом естественного ухудшения и естественной убыли (статьи 899 и 900 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

@@ -2395,6 +2395,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
+      "title": "Синтетическая проверенная модель понятия хранения, формы договора, принятия вещи, срока хранения, обеспечения сохранности и пользования вещью по статьям 886–895 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: договор хранения как обязанность хранителя хранить переданную поклажедателем вещь и возвратить её в сохранности, письменная форма договора и способы её соблюдения, обязанность принять вещь на хранение по консенсуальному договору, срок хранения и хранение до востребования, принятие мер по обеспечению сохранности вещи, запрет пользоваться вещью без согласия поклажедателя, уведомление об изменении условий хранения и передача вещи третьему лицу проверяются раздельно (статьи 886–895 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "storage_concept_form_period_and_safekeeping_articles_886_895",
+        "legal_reference": "ГК РФ, статьи 886–895",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1",
+      "title": "Синтетическая проверенная модель вознаграждения и расходов на хранение, возврата вещи и ответственности хранителя по статьям 896–906 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: выплата вознаграждения за хранение и его размер, возмещение расходов на хранение и чрезвычайных расходов, обязанность поклажедателя взять вещь обратно по истечении срока хранения, обязанность хранителя возвратить ту самую вещь в том состоянии, в каком она была принята, с учётом естественного ухудшения и естественной убыли, а также основания и размер ответственности хранителя, в том числе профессионального, проверяются раздельно (статьи 896–906 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "storage_remuneration_return_and_liability_articles_896_906",
+        "legal_reference": "ГК РФ, статьи 896–906",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-storage-evidence",
+      "title": "Синтетическая проверенная запись фактов о хранении",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров; вещь на хранение с обязанностью хранителя возвратить её в сохранности по этому договору не передавалась.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "storage_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -7934,6 +7981,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-settlements-reviewer"
     },
+    "storage_evidence": {
+      "id": "reviewed-storage-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.storage-evidence.v0",
+      "assertions": [
+        {
+          "id": "storage-evidence-thing_accepted_for_storage_and_return",
+          "predicate": "thing_accepted_for_storage_and_return",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "id": "storage-evidence-storage_written_form_not_observed",
+          "predicate": "storage_written_form_not_observed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "id": "storage-evidence-acceptance_of_thing_refused_without_grounds",
+          "predicate": "acceptance_of_thing_refused_without_grounds",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "id": "storage-evidence-storage_period_rules_breached",
+          "predicate": "storage_period_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "id": "storage-evidence-safekeeping_measures_not_taken",
+          "predicate": "safekeeping_measures_not_taken",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "id": "storage-evidence-custodian_used_thing_without_consent",
+          "predicate": "custodian_used_thing_without_consent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "id": "storage-evidence-storage_change_or_transfer_not_notified",
+          "predicate": "storage_change_or_transfer_not_notified",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "id": "storage-evidence-storage_remuneration_and_expenses_breached",
+          "predicate": "storage_remuneration_and_expenses_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "id": "storage-evidence-thing_return_duty_breached",
+          "predicate": "thing_return_duty_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "id": "storage-evidence-custodian_liability_rules_breached",
+          "predicate": "custodian_liability_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
+        "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-storage-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -12761,6 +12901,7 @@
       "synthetic-special-supply-reviewer",
       "synthetic-state-supply-reviewer",
       "synthetic-state-work-reviewer",
+      "synthetic-storage-reviewer",
       "synthetic-temporal-effect-reviewer",
       "synthetic-temporal-reviewer",
       "synthetic-termination-reviewer",
@@ -12822,6 +12963,7 @@
       "synthetic-case-supply-1-special-supply-evidence",
       "synthetic-case-supply-1-state-supply-evidence",
       "synthetic-case-supply-1-state-work-evidence",
+      "synthetic-case-supply-1-storage-evidence",
       "synthetic-case-supply-1-temporal-effect-evidence",
       "synthetic-case-supply-1-termination-evidence",
       "synthetic-case-supply-1-third-party-evidence",
@@ -12954,6 +13096,8 @@
       "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
       "synthetic-ru-gk861-876-settlements-forms-orders-credit-and-collection-v1",
       "synthetic-ru-gk877-885-settlements-cheque-rules-v1",
+      "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
+      "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -19808,6 +19952,142 @@
         "Соответствие представленных документов условиям аккредитива, основания неисполнения поручений и достаточность средств оцениваются экспертом и судом (статьи 866, 871 и 879 ГК РФ)."
       ]
     },
+    "storage_evidence_mapping": {
+      "evidence_id": "reviewed-storage-evidence-supply-1-v0",
+      "schema_version": "contracts.storage-evidence.v0",
+      "mapping_version": "contracts-reviewed-storage-to-facts-v0",
+      "facts": {
+        "thing_accepted_for_storage_and_return": false,
+        "storage_written_form_not_observed": false,
+        "acceptance_of_thing_refused_without_grounds": false,
+        "storage_period_rules_breached": false,
+        "safekeeping_measures_not_taken": false,
+        "custodian_used_thing_without_consent": false,
+        "storage_change_or_transfer_not_notified": false,
+        "storage_remuneration_and_expenses_breached": false,
+        "thing_return_duty_breached": false,
+        "custodian_liability_rules_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
+        "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "acceptance_of_thing_refused_without_grounds",
+          "assertion_id": "storage-evidence-acceptance_of_thing_refused_without_grounds",
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "custodian_liability_rules_breached",
+          "assertion_id": "storage-evidence-custodian_liability_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "custodian_used_thing_without_consent",
+          "assertion_id": "storage-evidence-custodian_used_thing_without_consent",
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "safekeeping_measures_not_taken",
+          "assertion_id": "storage-evidence-safekeeping_measures_not_taken",
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "storage_change_or_transfer_not_notified",
+          "assertion_id": "storage-evidence-storage_change_or_transfer_not_notified",
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "storage_period_rules_breached",
+          "assertion_id": "storage-evidence-storage_period_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "storage_remuneration_and_expenses_breached",
+          "assertion_id": "storage-evidence-storage_remuneration_and_expenses_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "storage_written_form_not_observed",
+          "assertion_id": "storage-evidence-storage_written_form_not_observed",
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "thing_accepted_for_storage_and_return",
+          "assertion_id": "storage-evidence-thing_accepted_for_storage_and_return",
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "thing_return_duty_breached",
+          "assertion_id": "storage-evidence-thing_return_duty_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-storage-evidence"
+          ]
+        }
+      ]
+    },
+    "storage_constraint_set": {
+      "id": "storage-constraint-set:reviewed-storage-evidence-supply-1-v0",
+      "model_version": "contracts-storage-articles-886-906-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
+        "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1"
+      ],
+      "expressions": [
+        "storage_qualified == thing_accepted_for_storage_and_return",
+        "storage_form_breached == storage_qualified AND storage_written_form_not_observed",
+        "acceptance_duty_breached == storage_qualified AND acceptance_of_thing_refused_without_grounds",
+        "storage_period_duty_breached == storage_qualified AND storage_period_rules_breached",
+        "safekeeping_duty_breached == storage_qualified AND safekeeping_measures_not_taken",
+        "unauthorised_use_established == storage_qualified AND custodian_used_thing_without_consent",
+        "storage_change_notice_duty_breached == storage_qualified AND storage_change_or_transfer_not_notified",
+        "remuneration_and_expenses_duty_breached == storage_qualified AND storage_remuneration_and_expenses_breached",
+        "return_duty_breached == storage_qualified AND thing_return_duty_breached",
+        "custodian_liability_breached == storage_qualified AND safekeeping_measures_not_taken AND custodian_liability_rules_breached",
+        "requires_human_storage_assessment == storage_form_breached OR acceptance_duty_breached OR storage_period_duty_breached OR safekeeping_duty_breached OR unauthorised_use_established OR storage_change_notice_duty_breached OR remuneration_and_expenses_duty_breached OR return_duty_breached"
+      ]
+    },
+    "storage_evaluation": {
+      "constraint_set_id": "storage-constraint-set:reviewed-storage-evidence-supply-1-v0",
+      "satisfiable": true,
+      "storage_qualified": false,
+      "storage_form_breached": false,
+      "acceptance_duty_breached": false,
+      "storage_period_duty_breached": false,
+      "safekeeping_duty_breached": false,
+      "unauthorised_use_established": false,
+      "storage_change_notice_duty_breached": false,
+      "remuneration_and_expenses_duty_breached": false,
+      "return_duty_breached": false,
+      "custodian_liability_breached": false,
+      "requires_human_storage_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор хранения."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только общие положения о хранении и не заменяет судебную оценку.",
+        "Достаточность принятых мер по обеспечению сохранности, необходимость чрезвычайных расходов и наличие вины хранителя оцениваются экспертом и судом (статьи 891, 898 и 901 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -25179,7 +25459,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.66.0",
+      "institutional_package_version": "contracts-ru-v0@0.67.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

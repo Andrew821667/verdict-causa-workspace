@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.67.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed storage evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 886 to 906.",
+            "Storage qualification, the written form, the duty to accept the thing, the storage period, safekeeping measures, use of the thing, notice of changed conditions, remuneration and expenses, return of the thing, and the custodian's liability remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о хранении обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 886–906 ГК РФ.",
+            "Квалификация хранения, письменная форма, обязанность принять вещь, срок хранения, меры по обеспечению сохранности, пользование вещью, уведомление об изменении условий, вознаграждение и расходы, возврат вещи и ответственность хранителя разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.66.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

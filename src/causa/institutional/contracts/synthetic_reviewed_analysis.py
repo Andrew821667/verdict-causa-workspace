@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.storage import (
+    ReviewedStorageEvidence,
+    StorageEvidenceAssertion,
+    StorageEvidencePredicate,
+)
 from causa.institutional.contracts.settlements import (
     ReviewedSettlementsEvidence,
     SettlementsEvidenceAssertion,
@@ -460,6 +465,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk861-876-settlements-forms-orders-credit-and-collection-v1",
     "synthetic-ru-gk877-885-settlements-cheque-rules-v1",
     "synthetic-case-supply-1-settlements-evidence",
+    "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
+    "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1",
+    "synthetic-case-supply-1-storage-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2459,6 +2467,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-settlements-reviewer",
+        ),
+        storage_evidence=ReviewedStorageEvidence(
+            id="reviewed-storage-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                StorageEvidenceAssertion(
+                    id=f"storage-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-storage-evidence",),
+                )
+                for predicate, value in (
+                    (StorageEvidencePredicate.THING_ACCEPTED_FOR_STORAGE_AND_RETURN, False),
+                    (StorageEvidencePredicate.STORAGE_WRITTEN_FORM_NOT_OBSERVED, False),
+                    (
+                        StorageEvidencePredicate.ACCEPTANCE_OF_THING_REFUSED_WITHOUT_GROUNDS,
+                        False,
+                    ),
+                    (StorageEvidencePredicate.STORAGE_PERIOD_RULES_BREACHED, False),
+                    (StorageEvidencePredicate.SAFEKEEPING_MEASURES_NOT_TAKEN, False),
+                    (StorageEvidencePredicate.CUSTODIAN_USED_THING_WITHOUT_CONSENT, False),
+                    (StorageEvidencePredicate.STORAGE_CHANGE_OR_TRANSFER_NOT_NOTIFIED, False),
+                    (
+                        StorageEvidencePredicate.STORAGE_REMUNERATION_AND_EXPENSES_BREACHED,
+                        False,
+                    ),
+                    (StorageEvidencePredicate.THING_RETURN_DUTY_BREACHED, False),
+                    (StorageEvidencePredicate.CUSTODIAN_LIABILITY_RULES_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
+                "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-storage-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

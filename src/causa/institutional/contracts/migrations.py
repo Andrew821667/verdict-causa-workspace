@@ -1271,6 +1271,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.66.0",
+        to_version="0.67.0",
+        reasons=[
+            "Reviewed inputs now require a separate storage evidence contract.",
+            "Analysis and Russian translation distinguish storage qualification, the written form, the duty to accept the thing, the storage period, safekeeping measures, use of the thing, notice of changed conditions, remuneration and expenses, return of the thing, and the custodian's liability under articles 886 to 906.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о хранении.",
+            "Анализ и русское объяснение разделяют квалификацию хранения, письменную форму, обязанность принять вещь, срок хранения, меры по обеспечению сохранности, пользование вещью, уведомление об изменении условий, вознаграждение и расходы, возврат вещи и ответственность хранителя по статьям 886–906 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_storage_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

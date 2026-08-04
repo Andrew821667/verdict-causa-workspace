@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.67.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью общих положений о хранении |
 | `0.66.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью расчётов |
 | `0.65.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью банковского счёта |
 | `0.64.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью банковского вклада |
@@ -74,6 +75,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.66.0` → `0.67.0` соберите отдельно проверенный контракт данных о хранении (`contracts.storage-evidence.v0`). Не выводите квалификацию хранения, письменную форму, обязанность принять вещь, срок хранения, меры по обеспечению сохранности, пользование вещью, уведомление об изменении условий, вознаграждение и расходы, возврат вещи и ответственность хранителя из прежних результатов о подряде, возмездном оказании услуг или перевозке. Пересоберите артефакты оценки хранения, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.65.0` → `0.66.0` соберите отдельно проверенный контракт данных о расчётах (`contracts.settlements-evidence.v0`). Не выводите осуществление безналичных расчётов, допустимость формы расчётов, исполнение платёжных поручений, условия и закрытие аккредитива, исполнение инкассовых поручений, реквизиты чека, его оплату и удостоверение отказа от оплаты из прежних результатов о банковском счёте или банковском вкладе. Пересоберите артефакты оценки расчётов, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

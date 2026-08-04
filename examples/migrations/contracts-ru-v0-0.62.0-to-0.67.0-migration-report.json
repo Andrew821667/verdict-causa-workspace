@@ -1,0 +1,115 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.62.0:to-0.67.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.62.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.62.0",
+  "target_package_version": "0.67.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.62.0",
+      "to_version": "0.63.0",
+      "reasons": [
+        "Reviewed inputs now require a separate factoring evidence contract.",
+        "Analysis and Russian translation distinguish factoring qualification, identification of the assigned claim, the factor's standing, the contractual ban on assignment, the client's warranty of claim validity, subsequent assignment, notice to the debtor, the debtor's set-off, settlements with the client, and the direction of the debtor's refund claim under articles 824 to 833."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о финансировании под уступку денежного требования.",
+        "Анализ и русское объяснение разделяют квалификацию факторинга, определённость уступаемого требования, статус финансового агента, договорный запрет уступки, ответственность клиента за действительность требования, последующую уступку, уведомление должника, зачёт требований должника, расчёты агента с клиентом и адресата требования должника о возврате сумм по статьям 824–833 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_factoring_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.63.0",
+      "to_version": "0.64.0",
+      "reasons": [
+        "Reviewed inputs now require a separate bank-deposit evidence contract.",
+        "Analysis and Russian translation distinguish bank-deposit qualification, the right to take deposits, the written form, repayment on demand, interest on early repayment, payment of interest, the ban on unilateral rate reduction, security of repayment, third-party deposits, and the savings book and certificate under articles 834 to 844."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о банковском вкладе.",
+        "Анализ и русское объяснение разделяют квалификацию банковского вклада, право привлекать вклады, письменную форму, возврат вклада по первому требованию, проценты при досрочном возврате, выплату процентов, запрет одностороннего уменьшения ставки, обеспечение возврата, вклады третьих лиц и в пользу третьих лиц, сберегательную книжку и сертификат по статьям 834–844 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_bank_deposit_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.64.0",
+      "to_version": "0.65.0",
+      "reasons": [
+        "Reviewed inputs now require a separate bank-account evidence contract.",
+        "Analysis and Russian translation distinguish bank-account qualification, the announced terms of opening, certification of disposal rights, operation deadlines, the bank's liability for improper operations, credit of the account, payment for the bank's services, debiting without the client's order, bank secrecy and restrictions, and termination with return of the balance under articles 845 to 860."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о банковском счёте.",
+        "Анализ и русское объяснение разделяют квалификацию банковского счёта, объявленные условия открытия, удостоверение прав распоряжения, сроки операций, ответственность банка за ненадлежащее совершение операций, кредитование счёта, оплату услуг банка, списание без распоряжения клиента, банковскую тайну и ограничение распоряжения, расторжение договора и возврат остатка по статьям 845–860 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_bank_account_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.65.0",
+      "to_version": "0.66.0",
+      "reasons": [
+        "Reviewed inputs now require a separate settlements evidence contract.",
+        "Analysis and Russian translation distinguish cashless settlements, the legality of the settlement form, execution of payment orders, the bank's liability for them, the terms and closure of a letter of credit, execution of collection orders, cheque requisites, cheque payment and its warranty, and certification of non-payment under articles 861 to 885."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о расчётах.",
+        "Анализ и русское объяснение разделяют безналичные расчёты, законность формы расчётов, исполнение платёжных поручений, ответственность банка за их неисполнение, условия и закрытие аккредитива, исполнение инкассовых поручений, реквизиты чека, его оплату и гарантию платежа, удостоверение отказа от оплаты по статьям 861–885 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_settlements_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.66.0",
+      "to_version": "0.67.0",
+      "reasons": [
+        "Reviewed inputs now require a separate storage evidence contract.",
+        "Analysis and Russian translation distinguish storage qualification, the written form, the duty to accept the thing, the storage period, safekeeping measures, use of the thing, notice of changed conditions, remuneration and expenses, return of the thing, and the custodian's liability under articles 886 to 906."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о хранении.",
+        "Анализ и русское объяснение разделяют квалификацию хранения, письменную форму, обязанность принять вещь, срок хранения, меры по обеспечению сохранности, пользование вещью, уведомление об изменении условий, вознаграждение и расходы, возврат вещи и ответственность хранителя по статьям 886–906 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_storage_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}
