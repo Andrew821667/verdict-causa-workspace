@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.65.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed bank-account evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 845 to 860.",
+            "Bank-account qualification, the announced terms of opening, certification of disposal rights, operation deadlines, the bank's liability for improper operations, credit of the account, payment for the bank's services, debiting without the client's order, bank secrecy and restrictions, and termination with return of the balance remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о банковском счёте обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 845–860 ГК РФ.",
+            "Квалификация банковского счёта, объявленные условия открытия, удостоверение прав распоряжения, сроки операций, ответственность банка за ненадлежащее совершение операций, кредитование счёта, оплата услуг банка, списание без распоряжения клиента, банковская тайна и ограничение распоряжения, расторжение договора и возврат остатка разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.64.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

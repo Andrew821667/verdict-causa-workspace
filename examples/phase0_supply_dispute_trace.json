@@ -2301,6 +2301,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
+      "title": "Синтетическая проверенная модель понятия банковского счёта, заключения договора, распоряжения счётом, сроков операций, кредитования счёта и оплаты услуг банка по статьям 845–853 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: договор банковского счёта как обязанность банка принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения о перечислении и выдаче сумм и проводить другие операции по счёту, заключение договора на объявленных банком условиях, удостоверение прав распоряжения счётом, совершение операций для клиента, сроки операций по счёту, кредитование счёта при отсутствии средств, оплата услуг банка, проценты за пользование средствами и зачёт встречных требований банка и клиента проверяются раздельно (статьи 845–853 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "bank_account_concept_operations_and_payment_articles_845_853",
+        "legal_reference": "ГК РФ, статьи 845–853",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
+      "title": "Синтетическая проверенная модель списания средств со счёта, ответственности банка, банковской тайны, ограничения распоряжения и расторжения договора по статьям 854–860 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: списание денежных средств со счёта по распоряжению клиента и без такого распоряжения в предусмотренных законом случаях, очерёдность списания при недостаточности средств, ответственность банка за ненадлежащее совершение операций по счёту, гарантия тайны банковского счёта и сведений о клиенте, пределы ограничения распоряжения счётом, расторжение договора и возврат остатка денежных средств проверяются раздельно (статьи 854–860 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "bank_account_debiting_secrecy_and_termination_articles_854_860",
+        "legal_reference": "ГК РФ, статьи 854–860",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-bank-account-evidence",
+      "title": "Синтетическая проверенная запись фактов о банковском счёте",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату; банковский счёт для приёма и зачисления денежных средств клиента по этому договору банком не открывался.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "bank_account_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -7654,6 +7701,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-bank-deposit-reviewer"
     },
+    "bank_account_evidence": {
+      "id": "reviewed-bank-account-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.bank-account-evidence.v0",
+      "assertions": [
+        {
+          "id": "bank-account-evidence-bank_account_opened_for_client_funds",
+          "predicate": "bank_account_opened_for_client_funds",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "id": "bank-account-evidence-account_opening_terms_breached",
+          "predicate": "account_opening_terms_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "id": "bank-account-evidence-disposal_rights_certification_breached",
+          "predicate": "disposal_rights_certification_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "id": "bank-account-evidence-operation_deadlines_breached",
+          "predicate": "operation_deadlines_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "id": "bank-account-evidence-improper_operation_liability_not_applied",
+          "predicate": "improper_operation_liability_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "id": "bank-account-evidence-account_credit_terms_breached",
+          "predicate": "account_credit_terms_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "id": "bank-account-evidence-account_service_payment_terms_breached",
+          "predicate": "account_service_payment_terms_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "id": "bank-account-evidence-funds_debited_without_client_order",
+          "predicate": "funds_debited_without_client_order",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "id": "bank-account-evidence-bank_secrecy_or_restriction_breached",
+          "predicate": "bank_secrecy_or_restriction_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "id": "bank-account-evidence-account_termination_and_balance_return_breached",
+          "predicate": "account_termination_and_balance_return_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
+        "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-bank-account-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -12429,6 +12569,7 @@
       "synthetic-adhesion-reviewer",
       "synthetic-annuity-reviewer",
       "synthetic-authority-reviewer",
+      "synthetic-bank-account-reviewer",
       "synthetic-bank-deposit-reviewer",
       "synthetic-barter-reviewer",
       "synthetic-building-lease-reviewer",
@@ -12489,6 +12630,7 @@
     "source_ids": [
       "synthetic-case-supply-1-adhesion-evidence",
       "synthetic-case-supply-1-annuity-evidence",
+      "synthetic-case-supply-1-bank-account-evidence",
       "synthetic-case-supply-1-bank-deposit-evidence",
       "synthetic-case-supply-1-barter-evidence",
       "synthetic-case-supply-1-building-lease-evidence",
@@ -12666,6 +12808,8 @@
       "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
       "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
       "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+      "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
+      "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -19248,6 +19392,142 @@
         "Наличие у банка права привлекать вклады, достаточность обеспечения возврата и содержание условий о процентах оцениваются экспертом и судом (статьи 835, 838 и 840 ГК РФ)."
       ]
     },
+    "bank_account_evidence_mapping": {
+      "evidence_id": "reviewed-bank-account-evidence-supply-1-v0",
+      "schema_version": "contracts.bank-account-evidence.v0",
+      "mapping_version": "contracts-reviewed-bank-account-to-facts-v0",
+      "facts": {
+        "bank_account_opened_for_client_funds": false,
+        "account_opening_terms_breached": false,
+        "disposal_rights_certification_breached": false,
+        "operation_deadlines_breached": false,
+        "improper_operation_liability_not_applied": false,
+        "account_credit_terms_breached": false,
+        "account_service_payment_terms_breached": false,
+        "funds_debited_without_client_order": false,
+        "bank_secrecy_or_restriction_breached": false,
+        "account_termination_and_balance_return_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
+        "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "account_credit_terms_breached",
+          "assertion_id": "bank-account-evidence-account_credit_terms_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "fact_name": "account_opening_terms_breached",
+          "assertion_id": "bank-account-evidence-account_opening_terms_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "fact_name": "account_service_payment_terms_breached",
+          "assertion_id": "bank-account-evidence-account_service_payment_terms_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "fact_name": "account_termination_and_balance_return_breached",
+          "assertion_id": "bank-account-evidence-account_termination_and_balance_return_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "fact_name": "bank_account_opened_for_client_funds",
+          "assertion_id": "bank-account-evidence-bank_account_opened_for_client_funds",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "fact_name": "bank_secrecy_or_restriction_breached",
+          "assertion_id": "bank-account-evidence-bank_secrecy_or_restriction_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "fact_name": "disposal_rights_certification_breached",
+          "assertion_id": "bank-account-evidence-disposal_rights_certification_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "fact_name": "funds_debited_without_client_order",
+          "assertion_id": "bank-account-evidence-funds_debited_without_client_order",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "fact_name": "improper_operation_liability_not_applied",
+          "assertion_id": "bank-account-evidence-improper_operation_liability_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        },
+        {
+          "fact_name": "operation_deadlines_breached",
+          "assertion_id": "bank-account-evidence-operation_deadlines_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-account-evidence"
+          ]
+        }
+      ]
+    },
+    "bank_account_constraint_set": {
+      "id": "bank-account-constraint-set:reviewed-bank-account-evidence-supply-1-v0",
+      "model_version": "contracts-bank-account-articles-845-860-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
+        "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1"
+      ],
+      "expressions": [
+        "bank_account_qualified == bank_account_opened_for_client_funds",
+        "account_opening_terms_duty_breached == bank_account_qualified AND account_opening_terms_breached",
+        "disposal_rights_certification_duty_breached == bank_account_qualified AND disposal_rights_certification_breached",
+        "operation_deadline_duty_breached == bank_account_qualified AND operation_deadlines_breached",
+        "improper_operation_liability_breached == bank_account_qualified AND operation_deadlines_breached AND improper_operation_liability_not_applied",
+        "account_credit_duty_breached == bank_account_qualified AND account_credit_terms_breached",
+        "account_service_payment_duty_breached == bank_account_qualified AND account_service_payment_terms_breached",
+        "unauthorised_debiting_established == bank_account_qualified AND funds_debited_without_client_order",
+        "bank_secrecy_duty_breached == bank_account_qualified AND bank_secrecy_or_restriction_breached",
+        "account_termination_duty_breached == bank_account_qualified AND account_termination_and_balance_return_breached",
+        "requires_human_bank_account_assessment == account_opening_terms_duty_breached OR disposal_rights_certification_duty_breached OR operation_deadline_duty_breached OR account_credit_duty_breached OR account_service_payment_duty_breached OR unauthorised_debiting_established OR bank_secrecy_duty_breached OR account_termination_duty_breached"
+      ]
+    },
+    "bank_account_evaluation": {
+      "constraint_set_id": "bank-account-constraint-set:reviewed-bank-account-evidence-supply-1-v0",
+      "satisfiable": true,
+      "bank_account_qualified": false,
+      "account_opening_terms_duty_breached": false,
+      "disposal_rights_certification_duty_breached": false,
+      "operation_deadline_duty_breached": false,
+      "improper_operation_liability_breached": false,
+      "account_credit_duty_breached": false,
+      "account_service_payment_duty_breached": false,
+      "unauthorised_debiting_established": false,
+      "bank_secrecy_duty_breached": false,
+      "account_termination_duty_breached": false,
+      "requires_human_bank_account_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор банковского счёта."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о банковском счёте и не заменяет судебную оценку.",
+        "Основания отказа в заключении договора, законность списания без распоряжения клиента и наличие оснований для ограничения распоряжения счётом оцениваются экспертом и судом (статьи 846, 854 и 858 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -24619,7 +24899,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.64.0",
+      "institutional_package_version": "contracts-ru-v0@0.65.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -26616,6 +26896,7 @@
         "source_refs": [
           "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-annuity-evidence",
+          "synthetic-case-supply-1-bank-account-evidence",
           "synthetic-case-supply-1-bank-deposit-evidence",
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-building-lease-evidence",
@@ -26793,6 +27074,8 @@
           "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
           "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
           "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+          "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
+          "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -27801,6 +28084,7 @@
         "source_refs": [
           "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-annuity-evidence",
+          "synthetic-case-supply-1-bank-account-evidence",
           "synthetic-case-supply-1-bank-deposit-evidence",
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-building-lease-evidence",
@@ -27978,6 +28262,8 @@
           "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
           "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
           "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+          "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
+          "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -28986,6 +29272,7 @@
         "source_refs": [
           "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-annuity-evidence",
+          "synthetic-case-supply-1-bank-account-evidence",
           "synthetic-case-supply-1-bank-deposit-evidence",
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-building-lease-evidence",
@@ -29163,6 +29450,8 @@
           "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
           "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
           "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+          "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
+          "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -29252,7 +29541,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.64.0",
+      "institutional_package_version": "contracts-ru-v0@0.65.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -31120,6 +31409,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель понятия банковского счёта, заключения договора, распоряжения счётом, сроков операций, кредитования счёта и оплаты услуг банка по статьям 845–853 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "bank_account_concept_operations_and_payment_articles_845_853",
+          "legal_reference": "ГК РФ, статьи 845–853",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель списания средств со счёта, ответственности банка, банковской тайны, ограничения распоряжения и расторжения договора по статьям 854–860 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "bank_account_debiting_secrecy_and_termination_articles_854_860",
+          "legal_reference": "ГК РФ, статьи 854–860",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-bank-account-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о банковском счёте",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "bank_account_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -31727,6 +32054,7 @@
             "synthetic-adhesion-reviewer",
             "synthetic-annuity-reviewer",
             "synthetic-authority-reviewer",
+            "synthetic-bank-account-reviewer",
             "synthetic-bank-deposit-reviewer",
             "synthetic-barter-reviewer",
             "synthetic-building-lease-reviewer",

@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о банковском счёте по статьям 845–860 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-bank-account-evidence-supply-1-v0",
+    "schema_version": "contracts.bank-account-evidence.v0",
+    "mapping_version": "contracts-reviewed-bank-account-to-facts-v0",
+    "facts": {
+      "bank_account_opened_for_client_funds": false,
+      "account_opening_terms_breached": false,
+      "disposal_rights_certification_breached": false,
+      "operation_deadlines_breached": false,
+      "improper_operation_liability_not_applied": false,
+      "account_credit_terms_breached": false,
+      "account_service_payment_terms_breached": false,
+      "funds_debited_without_client_order": false,
+      "bank_secrecy_or_restriction_breached": false,
+      "account_termination_and_balance_return_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
+      "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "account_credit_terms_breached",
+        "assertion_id": "bank-account-evidence-account_credit_terms_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-account-evidence"
+        ]
+      },
+      {
+        "fact_name": "account_opening_terms_breached",
+        "assertion_id": "bank-account-evidence-account_opening_terms_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-account-evidence"
+        ]
+      },
+      {
+        "fact_name": "account_service_payment_terms_breached",
+        "assertion_id": "bank-account-evidence-account_service_payment_terms_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-account-evidence"
+        ]
+      },
+      {
+        "fact_name": "account_termination_and_balance_return_breached",
+        "assertion_id": "bank-account-evidence-account_termination_and_balance_return_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-account-evidence"
+        ]
+      },
+      {
+        "fact_name": "bank_account_opened_for_client_funds",
+        "assertion_id": "bank-account-evidence-bank_account_opened_for_client_funds",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-account-evidence"
+        ]
+      },
+      {
+        "fact_name": "bank_secrecy_or_restriction_breached",
+        "assertion_id": "bank-account-evidence-bank_secrecy_or_restriction_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-account-evidence"
+        ]
+      },
+      {
+        "fact_name": "disposal_rights_certification_breached",
+        "assertion_id": "bank-account-evidence-disposal_rights_certification_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-account-evidence"
+        ]
+      },
+      {
+        "fact_name": "funds_debited_without_client_order",
+        "assertion_id": "bank-account-evidence-funds_debited_without_client_order",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-account-evidence"
+        ]
+      },
+      {
+        "fact_name": "improper_operation_liability_not_applied",
+        "assertion_id": "bank-account-evidence-improper_operation_liability_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-account-evidence"
+        ]
+      },
+      {
+        "fact_name": "operation_deadlines_breached",
+        "assertion_id": "bank-account-evidence-operation_deadlines_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-account-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "bank-account-constraint-set:reviewed-bank-account-evidence-supply-1-v0",
+    "model_version": "contracts-bank-account-articles-845-860-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
+      "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1"
+    ],
+    "expressions": [
+      "bank_account_qualified == bank_account_opened_for_client_funds",
+      "account_opening_terms_duty_breached == bank_account_qualified AND account_opening_terms_breached",
+      "disposal_rights_certification_duty_breached == bank_account_qualified AND disposal_rights_certification_breached",
+      "operation_deadline_duty_breached == bank_account_qualified AND operation_deadlines_breached",
+      "improper_operation_liability_breached == bank_account_qualified AND operation_deadlines_breached AND improper_operation_liability_not_applied",
+      "account_credit_duty_breached == bank_account_qualified AND account_credit_terms_breached",
+      "account_service_payment_duty_breached == bank_account_qualified AND account_service_payment_terms_breached",
+      "unauthorised_debiting_established == bank_account_qualified AND funds_debited_without_client_order",
+      "bank_secrecy_duty_breached == bank_account_qualified AND bank_secrecy_or_restriction_breached",
+      "account_termination_duty_breached == bank_account_qualified AND account_termination_and_balance_return_breached",
+      "requires_human_bank_account_assessment == account_opening_terms_duty_breached OR disposal_rights_certification_duty_breached OR operation_deadline_duty_breached OR account_credit_duty_breached OR account_service_payment_duty_breached OR unauthorised_debiting_established OR bank_secrecy_duty_breached OR account_termination_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "bank-account-constraint-set:reviewed-bank-account-evidence-supply-1-v0",
+    "satisfiable": true,
+    "bank_account_qualified": false,
+    "account_opening_terms_duty_breached": false,
+    "disposal_rights_certification_duty_breached": false,
+    "operation_deadline_duty_breached": false,
+    "improper_operation_liability_breached": false,
+    "account_credit_duty_breached": false,
+    "account_service_payment_duty_breached": false,
+    "unauthorised_debiting_established": false,
+    "bank_secrecy_duty_breached": false,
+    "account_termination_duty_breached": false,
+    "requires_human_bank_account_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор банковского счёта."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о банковском счёте и не заменяет судебную оценку.",
+      "Основания отказа в заключении договора, законность списания без распоряжения клиента и наличие оснований для ограничения распоряжения счётом оцениваются экспертом и судом (статьи 846, 854 и 858 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "bank-account-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "bank-account-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "bank_account_qualified": false
+        },
+        "observed_outcomes": {
+          "bank_account_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор банковского счёта."
+        ]
+      },
+      {
+        "task_id": "bank-account-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "bank_account_qualified": true,
+          "requires_human_bank_account_assessment": false
+        },
+        "observed_outcomes": {
+          "bank_account_qualified": true,
+          "requires_human_bank_account_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-account-bench-opening-terms",
+        "passed": true,
+        "expected_outcomes": {
+          "account_opening_terms_duty_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "observed_outcomes": {
+          "account_opening_terms_duty_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Банк обязан заключить договор банковского счёта с клиентом, обратившимся с предложением открыть счёт на объявленных банком условиях, соответствующих закону и банковским правилам (статья 846 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-account-bench-disposal-rights",
+        "passed": true,
+        "expected_outcomes": {
+          "disposal_rights_certification_duty_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "observed_outcomes": {
+          "disposal_rights_certification_duty_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Права лиц, осуществляющих от имени клиента распоряжения о перечислении и выдаче средств со счёта, удостоверяются в порядке, предусмотренном законом и банковскими правилами, а банк обязан совершать для клиента операции, предусмотренные для счетов данного вида (статьи 847 и 848 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-account-bench-operation-deadlines",
+        "passed": true,
+        "expected_outcomes": {
+          "operation_deadline_duty_breached": true,
+          "improper_operation_liability_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "observed_outcomes": {
+          "operation_deadline_duty_breached": true,
+          "improper_operation_liability_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Банк обязан зачислять поступившие на счёт клиента денежные средства и выдавать или перечислять их по распоряжению клиента в сроки, установленные законом или договором (статья 849 ГК РФ).",
+          "В случаях несвоевременного зачисления, необоснованного списания либо невыполнения указаний клиента о перечислении или выдаче средств банк обязан уплатить проценты в порядке и размере, предусмотренных статьёй 395 ГК РФ (статья 856 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-account-bench-account-credit",
+        "passed": true,
+        "expected_outcomes": {
+          "account_credit_duty_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "observed_outcomes": {
+          "account_credit_duty_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "При осуществлении платежей при отсутствии средств на счёте банк считается предоставившим клиенту кредит на соответствующую сумму, а права и обязанности сторон определяются правилами о займе и кредите, если договором не предусмотрено иное (статья 850 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-account-bench-service-payment",
+        "passed": true,
+        "expected_outcomes": {
+          "account_service_payment_duty_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "observed_outcomes": {
+          "account_service_payment_duty_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Оплата услуг банка по совершению операций, уплата процентов за пользование средствами, находящимися на счёте, и зачёт встречных требований банка и клиента производятся в порядке, предусмотренном договором и законом (статьи 851–853 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-account-bench-unauthorised-debiting",
+        "passed": true,
+        "expected_outcomes": {
+          "unauthorised_debiting_established": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "observed_outcomes": {
+          "unauthorised_debiting_established": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Списание денежных средств со счёта осуществляется банком на основании распоряжения клиента; без такого распоряжения списание допускается по решению суда и в случаях, установленных законом или предусмотренных договором, а при недостаточности средств соблюдается установленная очерёдность (статьи 854 и 855 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-account-bench-secrecy",
+        "passed": true,
+        "expected_outcomes": {
+          "bank_secrecy_duty_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "observed_outcomes": {
+          "bank_secrecy_duty_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Банк гарантирует тайну банковского счёта, операций по нему и сведений о клиенте, а ограничение прав клиента на распоряжение средствами допускается только при наложении ареста или приостановлении операций в случаях, предусмотренных законом (статьи 857 и 858 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-account-bench-termination",
+        "passed": true,
+        "expected_outcomes": {
+          "account_termination_duty_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "observed_outcomes": {
+          "account_termination_duty_breached": true,
+          "requires_human_bank_account_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Договор банковского счёта расторгается по заявлению клиента в любое время, а остаток денежных средств выдаётся клиенту либо перечисляется по его указанию в установленный законом срок (статьи 859 и 860 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "bank-account-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "bank-account-red-qualify-without-account",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "bank_account_qualified": true
+        },
+        "observed_outcomes": {
+          "bank_account_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор банковского счёта."
+        ]
+      },
+      {
+        "case_id": "bank-account-red-ignore-opening-terms",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "account_opening_terms_duty_breached": false
+        },
+        "observed_outcomes": {
+          "account_opening_terms_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Банк обязан заключить договор банковского счёта с клиентом, обратившимся с предложением открыть счёт на объявленных банком условиях, соответствующих закону и банковским правилам (статья 846 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-account-red-ignore-disposal-rights",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "disposal_rights_certification_duty_breached": false
+        },
+        "observed_outcomes": {
+          "disposal_rights_certification_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Права лиц, осуществляющих от имени клиента распоряжения о перечислении и выдаче средств со счёта, удостоверяются в порядке, предусмотренном законом и банковскими правилами, а банк обязан совершать для клиента операции, предусмотренные для счетов данного вида (статьи 847 и 848 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-account-red-ignore-operation-deadlines",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "operation_deadline_duty_breached": false
+        },
+        "observed_outcomes": {
+          "operation_deadline_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Банк обязан зачислять поступившие на счёт клиента денежные средства и выдавать или перечислять их по распоряжению клиента в сроки, установленные законом или договором (статья 849 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-account-red-liability-without-deadline-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "improper_operation_liability_breached": true
+        },
+        "observed_outcomes": {
+          "improper_operation_liability_breached": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-account-red-ignore-account-credit",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "account_credit_duty_breached": false
+        },
+        "observed_outcomes": {
+          "account_credit_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "При осуществлении платежей при отсутствии средств на счёте банк считается предоставившим клиенту кредит на соответствующую сумму, а права и обязанности сторон определяются правилами о займе и кредите, если договором не предусмотрено иное (статья 850 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-account-red-ignore-service-payment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "account_service_payment_duty_breached": false
+        },
+        "observed_outcomes": {
+          "account_service_payment_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Оплата услуг банка по совершению операций, уплата процентов за пользование средствами, находящимися на счёте, и зачёт встречных требований банка и клиента производятся в порядке, предусмотренном договором и законом (статьи 851–853 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-account-red-allow-unauthorised-debiting",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unauthorised_debiting_established": false
+        },
+        "observed_outcomes": {
+          "unauthorised_debiting_established": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Списание денежных средств со счёта осуществляется банком на основании распоряжения клиента; без такого распоряжения списание допускается по решению суда и в случаях, установленных законом или предусмотренных договором, а при недостаточности средств соблюдается установленная очерёдность (статьи 854 и 855 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-account-red-ignore-secrecy",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "bank_secrecy_duty_breached": false
+        },
+        "observed_outcomes": {
+          "bank_secrecy_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Банк гарантирует тайну банковского счёта, операций по нему и сведений о клиенте, а ограничение прав клиента на распоряжение средствами допускается только при наложении ареста или приостановлении операций в случаях, предусмотренных законом (статьи 857 и 858 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-account-red-skip-human-on-termination",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_bank_account_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_bank_account_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского счёта: банк обязуется принимать и зачислять поступающие на счёт клиента денежные средства, выполнять распоряжения клиента о перечислении и выдаче соответствующих сумм со счёта и проводить другие операции по счёту (статья 845 ГК РФ).",
+          "Договор банковского счёта расторгается по заявлению клиента в любое время, а остаток денежных средств выдаётся клиенту либо перечисляется по его указанию в установленный законом срок (статьи 859 и 860 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

@@ -404,6 +404,16 @@ from causa.institutional.contracts.commercial_credit import (
     evaluate_commercial_credit_constraints,
     map_reviewed_commercial_credit_evidence,
 )
+from causa.institutional.contracts.bank_account import (
+    BANK_ACCOUNT_EVIDENCE_SCHEMA_VERSION,
+    BankAccountConstraintSet,
+    BankAccountEvaluation,
+    BankAccountEvidenceMappingResult,
+    ReviewedBankAccountEvidence,
+    build_bank_account_constraint_set,
+    evaluate_bank_account_constraints,
+    map_reviewed_bank_account_evidence,
+)
 from causa.institutional.contracts.bank_deposit import (
     BANK_DEPOSIT_EVIDENCE_SCHEMA_VERSION,
     BankDepositConstraintSet,
@@ -724,6 +734,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     commercial_credit_evidence: ReviewedCommercialCreditEvidence
     factoring_evidence: ReviewedFactoringEvidence
     bank_deposit_evidence: ReviewedBankDepositEvidence
+    bank_account_evidence: ReviewedBankAccountEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -904,6 +915,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     bank_deposit_evidence_mapping: BankDepositEvidenceMappingResult
     bank_deposit_constraint_set: BankDepositConstraintSet
     bank_deposit_evaluation: BankDepositEvaluation
+    bank_account_evidence_mapping: BankAccountEvidenceMappingResult
+    bank_account_constraint_set: BankAccountConstraintSet
+    bank_account_evaluation: BankAccountEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -1452,6 +1466,17 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.bank_deposit_evaluation != expected_bank_deposit_evaluation:
             raise ValueError("Bank-deposit evaluation does not replay from reviewed evidence.")
+        expected_bank_account_set = build_bank_account_constraint_set(
+            self.bank_account_evidence_mapping
+        )
+        if self.bank_account_constraint_set != expected_bank_account_set:
+            raise ValueError("Bank-account constraint set does not replay from reviewed evidence.")
+        expected_bank_account_evaluation = evaluate_bank_account_constraints(
+            expected_bank_account_set,
+            self.bank_account_evidence_mapping.facts,
+        )
+        if self.bank_account_evaluation != expected_bank_account_evaluation:
+            raise ValueError("Bank-account evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -1866,6 +1891,8 @@ def _validate_request_integrity(
         raise ValueError("Factoring evidence case_id does not match the analysis request.")
     if request.bank_deposit_evidence.case_id != request.case_id:
         raise ValueError("Bank-deposit evidence case_id does not match the analysis request.")
+    if request.bank_account_evidence.case_id != request.case_id:
+        raise ValueError("Bank-account evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -2020,6 +2047,8 @@ def _validate_request_integrity(
         raise ValueError("Factoring evidence uses an unsupported schema version.")
     if request.bank_deposit_evidence.schema_version != BANK_DEPOSIT_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Bank-deposit evidence uses an unsupported schema version.")
+    if request.bank_account_evidence.schema_version != BANK_ACCOUNT_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Bank-account evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -2074,6 +2103,7 @@ def _validate_request_integrity(
         *request.commercial_credit_evidence.legal_source_refs,
         *request.factoring_evidence.legal_source_refs,
         *request.bank_deposit_evidence.legal_source_refs,
+        *request.bank_account_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -2178,6 +2208,8 @@ def _validate_request_integrity(
     for assertion in request.factoring_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.bank_deposit_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.bank_account_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -2727,6 +2759,17 @@ def _validate_request_integrity(
             "Bank-deposit legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_bank_deposit_legal_sources))
         )
+    invalid_bank_account_legal_sources = [
+        source_id
+        for source_id in request.bank_account_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_bank_account_legal_sources:
+        raise ValueError(
+            "Bank-account legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_bank_account_legal_sources))
+        )
     invalid_invalidity_legal_sources = [
         source_id
         for source_id in request.invalidity_evidence.legal_source_refs
@@ -3143,6 +3186,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Bank-deposit evidence",
         review_status=request.bank_deposit_evidence.review_status,
         reviewer_id=request.bank_deposit_evidence.reviewer_id,
+    )
+    bank_account_reviewer_id = _require_reviewed(
+        artifact_name="Bank-account evidence",
+        review_status=request.bank_account_evidence.review_status,
+        reviewer_id=request.bank_account_evidence.reviewer_id,
     )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
@@ -3592,6 +3640,14 @@ def run_reviewed_contract_analysis(
         bank_deposit_constraint_set,
         bank_deposit_evidence_mapping.facts,
     )
+    bank_account_evidence_mapping = map_reviewed_bank_account_evidence(
+        request.bank_account_evidence
+    )
+    bank_account_constraint_set = build_bank_account_constraint_set(bank_account_evidence_mapping)
+    bank_account_evaluation = evaluate_bank_account_constraints(
+        bank_account_constraint_set,
+        bank_account_evidence_mapping.facts,
+    )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
     invalidity_evaluation = evaluate_invalidity_constraints(
@@ -3862,6 +3918,7 @@ def run_reviewed_contract_analysis(
         or commercial_credit_evaluation.requires_human_commercial_credit_assessment
         or factoring_evaluation.requires_human_factoring_assessment
         or bank_deposit_evaluation.requires_human_bank_deposit_assessment
+        or bank_account_evaluation.requires_human_bank_account_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -3928,6 +3985,7 @@ def run_reviewed_contract_analysis(
                 commercial_credit_reviewer_id,
                 factoring_reviewer_id,
                 bank_deposit_reviewer_id,
+                bank_account_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -4084,6 +4142,9 @@ def run_reviewed_contract_analysis(
         bank_deposit_evidence_mapping=bank_deposit_evidence_mapping,
         bank_deposit_constraint_set=bank_deposit_constraint_set,
         bank_deposit_evaluation=bank_deposit_evaluation,
+        bank_account_evidence_mapping=bank_account_evidence_mapping,
+        bank_account_constraint_set=bank_account_constraint_set,
+        bank_account_evaluation=bank_account_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

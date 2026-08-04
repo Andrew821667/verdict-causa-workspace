@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.bank_account import (
+    BankAccountEvidenceAssertion,
+    BankAccountEvidencePredicate,
+    ReviewedBankAccountEvidence,
+)
 from causa.institutional.contracts.bank_deposit import (
     BankDepositEvidenceAssertion,
     BankDepositEvidencePredicate,
@@ -444,6 +449,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
     "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
     "synthetic-case-supply-1-bank-deposit-evidence",
+    "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
+    "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
+    "synthetic-case-supply-1-bank-account-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2374,6 +2382,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-bank-deposit-reviewer",
+        ),
+        bank_account_evidence=ReviewedBankAccountEvidence(
+            id="reviewed-bank-account-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                BankAccountEvidenceAssertion(
+                    id=f"bank-account-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-bank-account-evidence",),
+                )
+                for predicate, value in (
+                    (BankAccountEvidencePredicate.BANK_ACCOUNT_OPENED_FOR_CLIENT_FUNDS, False),
+                    (BankAccountEvidencePredicate.ACCOUNT_OPENING_TERMS_BREACHED, False),
+                    (BankAccountEvidencePredicate.DISPOSAL_RIGHTS_CERTIFICATION_BREACHED, False),
+                    (BankAccountEvidencePredicate.OPERATION_DEADLINES_BREACHED, False),
+                    (
+                        BankAccountEvidencePredicate.IMPROPER_OPERATION_LIABILITY_NOT_APPLIED,
+                        False,
+                    ),
+                    (BankAccountEvidencePredicate.ACCOUNT_CREDIT_TERMS_BREACHED, False),
+                    (BankAccountEvidencePredicate.ACCOUNT_SERVICE_PAYMENT_TERMS_BREACHED, False),
+                    (BankAccountEvidencePredicate.FUNDS_DEBITED_WITHOUT_CLIENT_ORDER, False),
+                    (BankAccountEvidencePredicate.BANK_SECRECY_OR_RESTRICTION_BREACHED, False),
+                    (
+                        BankAccountEvidencePredicate.ACCOUNT_TERMINATION_AND_BALANCE_RETURN_BREACHED,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
+                "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-bank-account-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
