@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.credit import (
+    CreditEvidenceAssertion,
+    CreditEvidencePredicate,
+    ReviewedCreditEvidence,
+)
 from causa.institutional.contracts.loan import (
     LoanEvidenceAssertion,
     LoanEvidencePredicate,
@@ -412,6 +417,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk807-811-loan-concept-form-interest-and-repayment-v1",
     "synthetic-ru-gk812-818-loan-challenge-security-purpose-and-novation-v1",
     "synthetic-case-supply-1-loan-evidence",
+    "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
+    "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1",
+    "synthetic-case-supply-1-credit-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2174,6 +2182,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-loan-reviewer",
+        ),
+        credit_evidence=ReviewedCreditEvidence(
+            id="reviewed-credit-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                CreditEvidenceAssertion(
+                    id=f"credit-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-credit-evidence",),
+                )
+                for predicate, value in (
+                    (CreditEvidencePredicate.CREDIT_PROVIDED_FOR_RETURN_WITH_INTEREST, False),
+                    (CreditEvidencePredicate.LENDER_NOT_A_CREDIT_ORGANISATION, False),
+                    (CreditEvidencePredicate.INTEREST_OR_OTHER_PAYMENTS_TERMS_BREACHED, False),
+                    (CreditEvidencePredicate.CONSUMER_CREDIT_RULES_APPLICABLE, False),
+                    (CreditEvidencePredicate.WRITTEN_FORM_MISSING, False),
+                    (CreditEvidencePredicate.LENDER_REFUSED_WITHOUT_INSOLVENCY_GROUNDS, False),
+                    (
+                        CreditEvidencePredicate.BORROWER_NOTICE_OF_REFUSAL_NOT_GIVEN_IN_TIME,
+                        False,
+                    ),
+                    (CreditEvidencePredicate.TARGETED_CREDIT_MISUSED, False),
+                    (CreditEvidencePredicate.EARLY_REPAYMENT_DEMANDED_WITHOUT_GROUNDS, False),
+                    (
+                        CreditEvidencePredicate.EARLY_REPAYMENT_FROM_CITIZEN_WITHOUT_STATUTORY_GROUND,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
+                "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-credit-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

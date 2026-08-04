@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о кредите по статьям 819–821.1 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-credit-evidence-supply-1-v0",
+    "schema_version": "contracts.credit-evidence.v0",
+    "mapping_version": "contracts-reviewed-credit-to-facts-v0",
+    "facts": {
+      "credit_provided_for_return_with_interest": false,
+      "lender_not_a_credit_organisation": false,
+      "interest_or_other_payments_terms_breached": false,
+      "consumer_credit_rules_applicable": false,
+      "written_form_missing": false,
+      "lender_refused_without_insolvency_grounds": false,
+      "borrower_notice_of_refusal_not_given_in_time": false,
+      "targeted_credit_misused": false,
+      "early_repayment_demanded_without_grounds": false,
+      "early_repayment_from_citizen_without_statutory_ground": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
+      "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "borrower_notice_of_refusal_not_given_in_time",
+        "assertion_id": "credit-evidence-borrower_notice_of_refusal_not_given_in_time",
+        "source_refs": [
+          "synthetic-case-supply-1-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "consumer_credit_rules_applicable",
+        "assertion_id": "credit-evidence-consumer_credit_rules_applicable",
+        "source_refs": [
+          "synthetic-case-supply-1-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "credit_provided_for_return_with_interest",
+        "assertion_id": "credit-evidence-credit_provided_for_return_with_interest",
+        "source_refs": [
+          "synthetic-case-supply-1-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "early_repayment_demanded_without_grounds",
+        "assertion_id": "credit-evidence-early_repayment_demanded_without_grounds",
+        "source_refs": [
+          "synthetic-case-supply-1-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "early_repayment_from_citizen_without_statutory_ground",
+        "assertion_id": "credit-evidence-early_repayment_from_citizen_without_statutory_ground",
+        "source_refs": [
+          "synthetic-case-supply-1-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "interest_or_other_payments_terms_breached",
+        "assertion_id": "credit-evidence-interest_or_other_payments_terms_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "lender_not_a_credit_organisation",
+        "assertion_id": "credit-evidence-lender_not_a_credit_organisation",
+        "source_refs": [
+          "synthetic-case-supply-1-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "lender_refused_without_insolvency_grounds",
+        "assertion_id": "credit-evidence-lender_refused_without_insolvency_grounds",
+        "source_refs": [
+          "synthetic-case-supply-1-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "targeted_credit_misused",
+        "assertion_id": "credit-evidence-targeted_credit_misused",
+        "source_refs": [
+          "synthetic-case-supply-1-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "written_form_missing",
+        "assertion_id": "credit-evidence-written_form_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-credit-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "credit-constraint-set:reviewed-credit-evidence-supply-1-v0",
+    "model_version": "contracts-credit-articles-819-821-1-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
+      "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1"
+    ],
+    "expressions": [
+      "credit_qualified == credit_provided_for_return_with_interest",
+      "lender_status_invalid == credit_qualified AND lender_not_a_credit_organisation",
+      "interest_or_payment_terms_breached == credit_qualified AND interest_or_other_payments_terms_breached",
+      "consumer_credit_regime_applies == credit_qualified AND consumer_credit_rules_applicable",
+      "written_form_nullity == credit_qualified AND written_form_missing",
+      "lender_refusal_unjustified == credit_qualified AND lender_refused_without_insolvency_grounds",
+      "borrower_refusal_notice_breached == credit_qualified AND borrower_notice_of_refusal_not_given_in_time",
+      "targeted_credit_control_breached == credit_qualified AND targeted_credit_misused",
+      "early_repayment_demand_unjustified == credit_qualified AND early_repayment_demanded_without_grounds",
+      "citizen_early_repayment_restriction_breached == credit_qualified AND early_repayment_demanded_without_grounds AND early_repayment_from_citizen_without_statutory_ground",
+      "requires_human_credit_assessment == lender_status_invalid OR interest_or_payment_terms_breached OR consumer_credit_regime_applies OR written_form_nullity OR lender_refusal_unjustified OR borrower_refusal_notice_breached OR targeted_credit_control_breached OR early_repayment_demand_unjustified"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "credit-constraint-set:reviewed-credit-evidence-supply-1-v0",
+    "satisfiable": true,
+    "credit_qualified": false,
+    "lender_status_invalid": false,
+    "interest_or_payment_terms_breached": false,
+    "consumer_credit_regime_applies": false,
+    "written_form_nullity": false,
+    "lender_refusal_unjustified": false,
+    "borrower_refusal_notice_breached": false,
+    "targeted_credit_control_breached": false,
+    "early_repayment_demand_unjustified": false,
+    "citizen_early_repayment_restriction_breached": false,
+    "requires_human_credit_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как кредитный договор."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила ГК РФ о кредите и не заменяет судебную оценку.",
+      "Достаточность обстоятельств, свидетельствующих о невозврате, применимость закона о потребительском кредите и основания досрочного возврата оцениваются экспертом и судом (статьи 819, 821 и 821.1 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "credit-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "credit-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "credit_qualified": false
+        },
+        "observed_outcomes": {
+          "credit_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как кредитный договор."
+        ]
+      },
+      {
+        "task_id": "credit-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "credit_qualified": true,
+          "requires_human_credit_assessment": false
+        },
+        "observed_outcomes": {
+          "credit_qualified": true,
+          "requires_human_credit_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "credit-bench-lender-status",
+        "passed": true,
+        "expected_outcomes": {
+          "lender_status_invalid": true,
+          "requires_human_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "lender_status_invalid": true,
+          "requires_human_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Кредитором по кредитному договору выступают банк или иная кредитная организация; предоставление средств иным лицом не образует кредитного договора (статья 819 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "credit-bench-interest-terms",
+        "passed": true,
+        "expected_outcomes": {
+          "interest_or_payment_terms_breached": true,
+          "requires_human_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "interest_or_payment_terms_breached": true,
+          "requires_human_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Нарушены условия договора о размере и порядке уплаты процентов за пользование кредитом либо иных предусмотренных договором платежей (статья 819 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "credit-bench-consumer-regime",
+        "passed": true,
+        "expected_outcomes": {
+          "consumer_credit_regime_applies": true,
+          "requires_human_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "consumer_credit_regime_applies": true,
+          "requires_human_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Заёмщиком является гражданин, а кредит предоставлен для целей, не связанных с предпринимательской деятельностью: к отношениям применяются правила о потребительском кредите (статья 819 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "credit-bench-written-form",
+        "passed": true,
+        "expected_outcomes": {
+          "written_form_nullity": true,
+          "requires_human_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "written_form_nullity": true,
+          "requires_human_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Кредитный договор должен быть заключён в письменной форме; несоблюдение письменной формы влечёт ничтожность договора (статья 820 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "credit-bench-lender-refusal",
+        "passed": true,
+        "expected_outcomes": {
+          "lender_refusal_unjustified": true,
+          "requires_human_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "lender_refusal_unjustified": true,
+          "requires_human_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Кредитор вправе отказаться от предоставления кредита полностью или частично лишь при наличии обстоятельств, очевидно свидетельствующих о том, что сумма не будет возвращена в срок (статья 821 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "credit-bench-borrower-notice",
+        "passed": true,
+        "expected_outcomes": {
+          "borrower_refusal_notice_breached": true,
+          "requires_human_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "borrower_refusal_notice_breached": true,
+          "requires_human_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Заёмщик вправе отказаться от получения кредита, уведомив кредитора до установленного договором срока предоставления, если иное не предусмотрено законом или договором (статья 821 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "credit-bench-targeted-credit",
+        "passed": true,
+        "expected_outcomes": {
+          "targeted_credit_control_breached": true,
+          "requires_human_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "targeted_credit_control_breached": true,
+          "requires_human_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "При нарушении заёмщиком обязанности целевого использования кредита кредитор вправе отказаться от дальнейшего кредитования по договору (статья 821 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "credit-bench-early-repayment-citizen",
+        "passed": true,
+        "expected_outcomes": {
+          "early_repayment_demand_unjustified": true,
+          "citizen_early_repayment_restriction_breached": true,
+          "requires_human_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "early_repayment_demand_unjustified": true,
+          "citizen_early_repayment_restriction_breached": true,
+          "requires_human_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Кредитор вправе требовать досрочного возврата кредита только в случаях, предусмотренных Кодексом, другими законами или договором (статья 821.1 ГК РФ).",
+          "От заёмщика-гражданина, получившего кредит для личных нужд, досрочный возврат может быть потребован только в случаях, предусмотренных законом (статья 821.1 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "credit-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "credit-red-qualify-without-credit",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "credit_qualified": true
+        },
+        "observed_outcomes": {
+          "credit_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как кредитный договор."
+        ]
+      },
+      {
+        "case_id": "credit-red-ignore-lender-status",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "lender_status_invalid": false
+        },
+        "observed_outcomes": {
+          "lender_status_invalid": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Кредитором по кредитному договору выступают банк или иная кредитная организация; предоставление средств иным лицом не образует кредитного договора (статья 819 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "credit-red-ignore-interest-terms",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "interest_or_payment_terms_breached": false
+        },
+        "observed_outcomes": {
+          "interest_or_payment_terms_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Нарушены условия договора о размере и порядке уплаты процентов за пользование кредитом либо иных предусмотренных договором платежей (статья 819 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "credit-red-ignore-consumer-regime",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "consumer_credit_regime_applies": false
+        },
+        "observed_outcomes": {
+          "consumer_credit_regime_applies": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Заёмщиком является гражданин, а кредит предоставлен для целей, не связанных с предпринимательской деятельностью: к отношениям применяются правила о потребительском кредите (статья 819 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "credit-red-uphold-oral-credit",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "written_form_nullity": false
+        },
+        "observed_outcomes": {
+          "written_form_nullity": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Кредитный договор должен быть заключён в письменной форме; несоблюдение письменной формы влечёт ничтожность договора (статья 820 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "credit-red-allow-lender-refusal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "lender_refusal_unjustified": false
+        },
+        "observed_outcomes": {
+          "lender_refusal_unjustified": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Кредитор вправе отказаться от предоставления кредита полностью или частично лишь при наличии обстоятельств, очевидно свидетельствующих о том, что сумма не будет возвращена в срок (статья 821 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "credit-red-ignore-borrower-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "borrower_refusal_notice_breached": false
+        },
+        "observed_outcomes": {
+          "borrower_refusal_notice_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Заёмщик вправе отказаться от получения кредита, уведомив кредитора до установленного договором срока предоставления, если иное не предусмотрено законом или договором (статья 821 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "credit-red-ignore-targeted-use",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "targeted_credit_control_breached": false
+        },
+        "observed_outcomes": {
+          "targeted_credit_control_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "При нарушении заёмщиком обязанности целевого использования кредита кредитор вправе отказаться от дальнейшего кредитования по договору (статья 821 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "credit-red-citizen-restriction-without-demand",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "citizen_early_repayment_restriction_breached": true
+        },
+        "observed_outcomes": {
+          "citizen_early_repayment_restriction_breached": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "credit-red-skip-human-on-early-repayment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_credit_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как кредитный: денежные средства предоставлены заёмщику в размере и на условиях договора, а заёмщик обязуется возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи (статья 819 ГК РФ).",
+          "Кредитор вправе требовать досрочного возврата кредита только в случаях, предусмотренных Кодексом, другими законами или договором (статья 821.1 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.61.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed credit evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 819 through 821.1.",
+            "Qualification, the lender's status, interest and other payments, the consumer-credit regime, written form, the lender's refusal, the borrower's refusal notice, targeted-credit control, early repayment, and the restriction protecting citizen borrowers remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о кредите обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 819–821.1 ГК РФ.",
+            "Квалификация кредита, статус кредитора, проценты и иные платежи, режим потребительского кредита, письменная форма, отказ кредитора, уведомление заёмщика об отказе, контроль за целевым кредитом, требование досрочного возврата и ограничение для заёмщика-гражданина разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.60.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -2113,6 +2113,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
+      "title": "Синтетическая проверенная модель понятия кредитного договора, его сторон, процентов и письменной формы по статьям 819–820 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: кредитный договор как обязанность банка или иной кредитной организации предоставить денежные средства заёмщику в размере и на условиях договора и обязанность заёмщика возвратить полученную сумму, уплатить проценты и предусмотренные договором иные платежи, применение правил о потребительском кредите к заёмщику-гражданину и обязательная письменная форма договора под страхом ничтожности проверяются раздельно (статьи 819–820 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "credit_concept_parties_and_form_articles_819_820",
+        "legal_reference": "ГК РФ, статьи 819–820",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1",
+      "title": "Синтетическая проверенная модель отказа от предоставления и получения кредита и требования досрочного возврата по статьям 821–821.1 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: право кредитора отказаться от предоставления кредита при обстоятельствах, очевидно свидетельствующих о невозврате суммы в срок, право заёмщика отказаться от получения кредита с уведомлением до установленного срока, право кредитора отказаться от дальнейшего кредитования при нецелевом использовании и допустимость требования досрочного возврата только в предусмотренных законом или договором случаях, а от заёмщика-гражданина — только в установленных законом случаях, проверяются раздельно (статьи 821–821.1 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "credit_refusal_and_early_repayment_articles_821_821_1",
+        "legal_reference": "ГК РФ, статьи 821–821.1",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-credit-evidence",
+      "title": "Синтетическая проверенная запись фактов о кредите",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является кредитным договором; предоставления денежных средств кредитной организацией с обязанностью возврата и уплаты процентов нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "credit_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -7094,6 +7141,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-loan-reviewer"
     },
+    "credit_evidence": {
+      "id": "reviewed-credit-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.credit-evidence.v0",
+      "assertions": [
+        {
+          "id": "credit-evidence-credit_provided_for_return_with_interest",
+          "predicate": "credit_provided_for_return_with_interest",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "id": "credit-evidence-lender_not_a_credit_organisation",
+          "predicate": "lender_not_a_credit_organisation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "id": "credit-evidence-interest_or_other_payments_terms_breached",
+          "predicate": "interest_or_other_payments_terms_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "id": "credit-evidence-consumer_credit_rules_applicable",
+          "predicate": "consumer_credit_rules_applicable",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "id": "credit-evidence-written_form_missing",
+          "predicate": "written_form_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "id": "credit-evidence-lender_refused_without_insolvency_grounds",
+          "predicate": "lender_refused_without_insolvency_grounds",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "id": "credit-evidence-borrower_notice_of_refusal_not_given_in_time",
+          "predicate": "borrower_notice_of_refusal_not_given_in_time",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "id": "credit-evidence-targeted_credit_misused",
+          "predicate": "targeted_credit_misused",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "id": "credit-evidence-early_repayment_demanded_without_grounds",
+          "predicate": "early_repayment_demanded_without_grounds",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "id": "credit-evidence-early_repayment_from_citizen_without_statutory_ground",
+          "predicate": "early_repayment_from_citizen_without_statutory_ground",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
+        "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-credit-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -11876,6 +12016,7 @@
       "synthetic-construction-contract-reviewer",
       "synthetic-consumer-work-reviewer",
       "synthetic-contractation-reviewer",
+      "synthetic-credit-reviewer",
       "synthetic-design-work-reviewer",
       "synthetic-energy-supply-reviewer",
       "synthetic-enterprise-lease-reviewer",
@@ -11931,6 +12072,7 @@
       "synthetic-case-supply-1-construction-contract-evidence",
       "synthetic-case-supply-1-consumer-work-evidence",
       "synthetic-case-supply-1-contractation-evidence",
+      "synthetic-case-supply-1-credit-evidence",
       "synthetic-case-supply-1-design-work-evidence",
       "synthetic-case-supply-1-energy-supply-evidence",
       "synthetic-case-supply-1-enterprise-lease-evidence",
@@ -12090,6 +12232,8 @@
       "synthetic-ru-gk805-806-forwarding-third-parties-and-withdrawal-v1",
       "synthetic-ru-gk807-811-loan-concept-form-interest-and-repayment-v1",
       "synthetic-ru-gk812-818-loan-challenge-security-purpose-and-novation-v1",
+      "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
+      "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -18127,6 +18271,142 @@
         "Обычно взимаемый размер процентов, обременительность условий и достаточность доказательств безденежности оцениваются экспертом и судом (статьи 809 и 812 ГК РФ)."
       ]
     },
+    "credit_evidence_mapping": {
+      "evidence_id": "reviewed-credit-evidence-supply-1-v0",
+      "schema_version": "contracts.credit-evidence.v0",
+      "mapping_version": "contracts-reviewed-credit-to-facts-v0",
+      "facts": {
+        "credit_provided_for_return_with_interest": false,
+        "lender_not_a_credit_organisation": false,
+        "interest_or_other_payments_terms_breached": false,
+        "consumer_credit_rules_applicable": false,
+        "written_form_missing": false,
+        "lender_refused_without_insolvency_grounds": false,
+        "borrower_notice_of_refusal_not_given_in_time": false,
+        "targeted_credit_misused": false,
+        "early_repayment_demanded_without_grounds": false,
+        "early_repayment_from_citizen_without_statutory_ground": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
+        "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "borrower_notice_of_refusal_not_given_in_time",
+          "assertion_id": "credit-evidence-borrower_notice_of_refusal_not_given_in_time",
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "consumer_credit_rules_applicable",
+          "assertion_id": "credit-evidence-consumer_credit_rules_applicable",
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "credit_provided_for_return_with_interest",
+          "assertion_id": "credit-evidence-credit_provided_for_return_with_interest",
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "early_repayment_demanded_without_grounds",
+          "assertion_id": "credit-evidence-early_repayment_demanded_without_grounds",
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "early_repayment_from_citizen_without_statutory_ground",
+          "assertion_id": "credit-evidence-early_repayment_from_citizen_without_statutory_ground",
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "interest_or_other_payments_terms_breached",
+          "assertion_id": "credit-evidence-interest_or_other_payments_terms_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "lender_not_a_credit_organisation",
+          "assertion_id": "credit-evidence-lender_not_a_credit_organisation",
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "lender_refused_without_insolvency_grounds",
+          "assertion_id": "credit-evidence-lender_refused_without_insolvency_grounds",
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "targeted_credit_misused",
+          "assertion_id": "credit-evidence-targeted_credit_misused",
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "written_form_missing",
+          "assertion_id": "credit-evidence-written_form_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-credit-evidence"
+          ]
+        }
+      ]
+    },
+    "credit_constraint_set": {
+      "id": "credit-constraint-set:reviewed-credit-evidence-supply-1-v0",
+      "model_version": "contracts-credit-articles-819-821-1-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
+        "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1"
+      ],
+      "expressions": [
+        "credit_qualified == credit_provided_for_return_with_interest",
+        "lender_status_invalid == credit_qualified AND lender_not_a_credit_organisation",
+        "interest_or_payment_terms_breached == credit_qualified AND interest_or_other_payments_terms_breached",
+        "consumer_credit_regime_applies == credit_qualified AND consumer_credit_rules_applicable",
+        "written_form_nullity == credit_qualified AND written_form_missing",
+        "lender_refusal_unjustified == credit_qualified AND lender_refused_without_insolvency_grounds",
+        "borrower_refusal_notice_breached == credit_qualified AND borrower_notice_of_refusal_not_given_in_time",
+        "targeted_credit_control_breached == credit_qualified AND targeted_credit_misused",
+        "early_repayment_demand_unjustified == credit_qualified AND early_repayment_demanded_without_grounds",
+        "citizen_early_repayment_restriction_breached == credit_qualified AND early_repayment_demanded_without_grounds AND early_repayment_from_citizen_without_statutory_ground",
+        "requires_human_credit_assessment == lender_status_invalid OR interest_or_payment_terms_breached OR consumer_credit_regime_applies OR written_form_nullity OR lender_refusal_unjustified OR borrower_refusal_notice_breached OR targeted_credit_control_breached OR early_repayment_demand_unjustified"
+      ]
+    },
+    "credit_evaluation": {
+      "constraint_set_id": "credit-constraint-set:reviewed-credit-evidence-supply-1-v0",
+      "satisfiable": true,
+      "credit_qualified": false,
+      "lender_status_invalid": false,
+      "interest_or_payment_terms_breached": false,
+      "consumer_credit_regime_applies": false,
+      "written_form_nullity": false,
+      "lender_refusal_unjustified": false,
+      "borrower_refusal_notice_breached": false,
+      "targeted_credit_control_breached": false,
+      "early_repayment_demand_unjustified": false,
+      "citizen_early_repayment_restriction_breached": false,
+      "requires_human_credit_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как кредитный договор."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила ГК РФ о кредите и не заменяет судебную оценку.",
+        "Достаточность обстоятельств, свидетельствующих о невозврате, применимость закона о потребительском кредите и основания досрочного возврата оцениваются экспертом и судом (статьи 819, 821 и 821.1 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -23498,7 +23778,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.60.0",
+      "institutional_package_version": "contracts-ru-v0@0.61.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

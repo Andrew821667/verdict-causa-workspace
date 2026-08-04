@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.61.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью кредита |
 | `0.60.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью займа |
 | `0.59.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью транспортной экспедиции |
 | `0.58.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью перевозки |
@@ -68,6 +69,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.60.0` → `0.61.0` соберите отдельно проверенный контракт данных о кредите (`contracts.credit-evidence.v0`). Не выводите квалификацию кредита, статус кредитора, условия о процентах, режим потребительского кредита, письменную форму, отказ кредитора и заёмщика, контроль за целевым кредитом и требование досрочного возврата из прежних результатов о займе. Пересоберите артефакты оценки кредита, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.59.0` → `0.60.0` соберите отдельно проверенный контракт данных о займе (`contracts.loan-evidence.v0`). Не выводите квалификацию займа, письменную форму, правила о процентах, ростовщические проценты, обязанность возврата, проценты за просрочку, оспаривание по безденежности, утрату обеспечения, контроль за целевым займом и новацию долга из прежних результатов об обязательствах или купле-продаже. Пересоберите артефакты оценки займа, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

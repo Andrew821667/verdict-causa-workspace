@@ -100,6 +100,9 @@ from causa.institutional.contracts.synthetic_carriage import (
 from causa.institutional.contracts.synthetic_forwarding import (
     build_synthetic_forwarding_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_credit import (
+    build_synthetic_credit_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_loan import (
     build_synthetic_loan_evaluation_artifact,
 )
@@ -938,6 +941,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-credit",
+            title="Проверка кредита",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.credit_evidence_mapping.evidence_id,
+                trace.analysis_result.credit_constraint_set.id,
+                *trace.analysis_result.credit_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.credit_evaluation.reasons_ru,
+                "Квалификация кредитного договора, статус кредитора как банка или иной кредитной организации, проценты и иные платежи, применение правил о потребительском кредите, обязательная письменная форма под страхом ничтожности, отказ кредитора при обстоятельствах невозврата, уведомление заёмщика об отказе от получения, нецелевое использование кредита и требование досрочного возврата проверяются раздельно по статьям 819–821.1 ГК РФ.",
+                "Достаточность обстоятельств, свидетельствующих о невозврате, применимость закона о потребительском кредите и основания досрочного возврата оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1235,6 +1253,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     carriage_artifact = build_synthetic_carriage_evaluation_artifact()
     forwarding_artifact = build_synthetic_forwarding_evaluation_artifact()
     loan_artifact = build_synthetic_loan_evaluation_artifact()
+    credit_artifact = build_synthetic_credit_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -1376,6 +1395,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-forwarding-spec.md",
                 "src/causa/institutional/contracts/loan.py",
                 "docs/contract-loan-spec.md",
+                "src/causa/institutional/contracts/credit.py",
+                "docs/contract-credit-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -1437,6 +1458,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_carriage_evaluation_report.json",
                 "examples/synthetic_forwarding_evaluation_report.json",
                 "examples/synthetic_loan_evaluation_report.json",
+                "examples/synthetic_credit_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -1445,12 +1467,12 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_supply_articles_506_524_report.json",
                 "examples/synthetic_termination_evaluation_report.json",
                 *(
-                    f"examples/migrations/contracts-ru-v0-{version}-to-0.60.0-migration-report.json"
+                    f"examples/migrations/contracts-ru-v0-{version}-to-0.61.0-migration-report.json"
                     for version in (
                         "0.1.0",
                         "0.3.0",
                         "0.4.0",
-                        *(f"0.{minor}.0" for minor in range(5, 60)),
+                        *(f"0.{minor}.0" for minor in range(5, 61)),
                     )
                 ),
                 f"{compatibility_check.package_id}@{compatibility_check.package_version}",
@@ -1606,6 +1628,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 forwarding_artifact.red_team_report.id,
                 loan_artifact.benchmark_report.id,
                 loan_artifact.red_team_report.id,
+                credit_artifact.benchmark_report.id,
+                credit_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -1679,6 +1703,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_carriage_evaluation_report.json",
                 "examples/synthetic_forwarding_evaluation_report.json",
                 "examples/synthetic_loan_evaluation_report.json",
+                "examples/synthetic_credit_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

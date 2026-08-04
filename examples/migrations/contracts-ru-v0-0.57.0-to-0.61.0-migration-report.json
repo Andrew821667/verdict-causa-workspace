@@ -1,0 +1,96 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.57.0:to-0.61.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.57.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.57.0",
+  "target_package_version": "0.61.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.57.0",
+      "to_version": "0.58.0",
+      "reasons": [
+        "Reviewed inputs now require a separate carriage evidence contract.",
+        "Analysis and Russian translation distinguish qualification, transport documents, public-carrier refusal, carriage charges, vehicle supply, delivery deadlines, passenger delay, cargo damage, the carrier's liability, and void liability limitations under articles 784 through 800."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о перевозке.",
+        "Анализ и русское объяснение разделяют квалификацию перевозки, транспортные документы, отказ перевозчика общего пользования, провозную плату и удержание груза, подачу транспортных средств, сроки доставки, задержку отправления пассажира, утрату и повреждение груза, ответственность перевозчика и недействительность соглашений об ограничении ответственности по статьям 784–800 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_carriage_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.58.0",
+      "to_version": "0.59.0",
+      "reasons": [
+        "Reviewed inputs now require a separate forwarding evidence contract.",
+        "Analysis and Russian translation distinguish qualification, written form and authority, unperformed services, carrier-linked liability, the client's information duty, the forwarder's notice duty, personal performance, withdrawal notice, compensation of losses, and the statutory penalty under articles 801 through 806."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о транспортной экспедиции.",
+        "Анализ и русское объяснение разделяют квалификацию экспедиции, письменную форму и доверенность, невыполнение услуг, ответственность, связанную с договором перевозки, обязанность клиента предоставить информацию, обязанность экспедитора сообщить о её неполноте, личное исполнение, предупреждение об отказе, возмещение убытков и штраф по статьям 801–806 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_forwarding_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.59.0",
+      "to_version": "0.60.0",
+      "reasons": [
+        "Reviewed inputs now require a separate loan evidence contract.",
+        "Analysis and Russian translation distinguish qualification, written form, interest rules, usurious interest, the repayment duty, late-payment interest, the unfunded-loan challenge, loss of security, targeted-loan control, and novation into a loan under articles 807 through 818."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о займе.",
+        "Анализ и русское объяснение разделяют квалификацию займа, письменную форму, правила о процентах, ростовщические проценты, обязанность возврата, проценты за просрочку, оспаривание по безденежности, утрату обеспечения, контроль за целевым займом и новацию долга в заёмное обязательство по статьям 807–818 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_loan_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.60.0",
+      "to_version": "0.61.0",
+      "reasons": [
+        "Reviewed inputs now require a separate credit evidence contract.",
+        "Analysis and Russian translation distinguish qualification, the lender's status, interest and other payments, the consumer-credit regime, written form, the lender's refusal, the borrower's refusal notice, targeted-credit control, early repayment, and the restriction protecting citizen borrowers under articles 819 through 821.1."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о кредите.",
+        "Анализ и русское объяснение разделяют квалификацию кредита, статус кредитора, проценты и иные платежи, режим потребительского кредита, письменную форму, отказ кредитора, уведомление заёмщика об отказе, контроль за целевым кредитом, требование досрочного возврата и ограничение для заёмщика-гражданина по статьям 819–821.1 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_credit_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}
