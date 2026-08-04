@@ -534,6 +534,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.settlements import (
+    SETTLEMENTS_EVIDENCE_SCHEMA_VERSION,
+    ReviewedSettlementsEvidence,
+    SettlementsConstraintSet,
+    SettlementsEvaluation,
+    SettlementsEvidenceMappingResult,
+    build_settlements_constraint_set,
+    evaluate_settlements_constraints,
+    map_reviewed_settlements_evidence,
+)
 from causa.institutional.contracts.security import (
     SECURITY_EVIDENCE_SCHEMA_VERSION,
     ReviewedSecurityEvidence,
@@ -735,6 +745,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     factoring_evidence: ReviewedFactoringEvidence
     bank_deposit_evidence: ReviewedBankDepositEvidence
     bank_account_evidence: ReviewedBankAccountEvidence
+    settlements_evidence: ReviewedSettlementsEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -918,6 +929,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     bank_account_evidence_mapping: BankAccountEvidenceMappingResult
     bank_account_constraint_set: BankAccountConstraintSet
     bank_account_evaluation: BankAccountEvaluation
+    settlements_evidence_mapping: SettlementsEvidenceMappingResult
+    settlements_constraint_set: SettlementsConstraintSet
+    settlements_evaluation: SettlementsEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -1477,6 +1491,17 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.bank_account_evaluation != expected_bank_account_evaluation:
             raise ValueError("Bank-account evaluation does not replay from reviewed evidence.")
+        expected_settlements_set = build_settlements_constraint_set(
+            self.settlements_evidence_mapping
+        )
+        if self.settlements_constraint_set != expected_settlements_set:
+            raise ValueError("Settlements constraint set does not replay from reviewed evidence.")
+        expected_settlements_evaluation = evaluate_settlements_constraints(
+            expected_settlements_set,
+            self.settlements_evidence_mapping.facts,
+        )
+        if self.settlements_evaluation != expected_settlements_evaluation:
+            raise ValueError("Settlements evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -1893,6 +1918,8 @@ def _validate_request_integrity(
         raise ValueError("Bank-deposit evidence case_id does not match the analysis request.")
     if request.bank_account_evidence.case_id != request.case_id:
         raise ValueError("Bank-account evidence case_id does not match the analysis request.")
+    if request.settlements_evidence.case_id != request.case_id:
+        raise ValueError("Settlements evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -2049,6 +2076,8 @@ def _validate_request_integrity(
         raise ValueError("Bank-deposit evidence uses an unsupported schema version.")
     if request.bank_account_evidence.schema_version != BANK_ACCOUNT_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Bank-account evidence uses an unsupported schema version.")
+    if request.settlements_evidence.schema_version != SETTLEMENTS_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Settlements evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -2104,6 +2133,7 @@ def _validate_request_integrity(
         *request.factoring_evidence.legal_source_refs,
         *request.bank_deposit_evidence.legal_source_refs,
         *request.bank_account_evidence.legal_source_refs,
+        *request.settlements_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -2210,6 +2240,8 @@ def _validate_request_integrity(
     for assertion in request.bank_deposit_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.bank_account_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.settlements_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -2770,6 +2802,17 @@ def _validate_request_integrity(
             "Bank-account legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_bank_account_legal_sources))
         )
+    invalid_settlements_legal_sources = [
+        source_id
+        for source_id in request.settlements_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_settlements_legal_sources:
+        raise ValueError(
+            "Settlements legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_settlements_legal_sources))
+        )
     invalid_invalidity_legal_sources = [
         source_id
         for source_id in request.invalidity_evidence.legal_source_refs
@@ -3191,6 +3234,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Bank-account evidence",
         review_status=request.bank_account_evidence.review_status,
         reviewer_id=request.bank_account_evidence.reviewer_id,
+    )
+    settlements_reviewer_id = _require_reviewed(
+        artifact_name="Settlements evidence",
+        review_status=request.settlements_evidence.review_status,
+        reviewer_id=request.settlements_evidence.reviewer_id,
     )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
@@ -3648,6 +3696,12 @@ def run_reviewed_contract_analysis(
         bank_account_constraint_set,
         bank_account_evidence_mapping.facts,
     )
+    settlements_evidence_mapping = map_reviewed_settlements_evidence(request.settlements_evidence)
+    settlements_constraint_set = build_settlements_constraint_set(settlements_evidence_mapping)
+    settlements_evaluation = evaluate_settlements_constraints(
+        settlements_constraint_set,
+        settlements_evidence_mapping.facts,
+    )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
     invalidity_evaluation = evaluate_invalidity_constraints(
@@ -3919,6 +3973,7 @@ def run_reviewed_contract_analysis(
         or factoring_evaluation.requires_human_factoring_assessment
         or bank_deposit_evaluation.requires_human_bank_deposit_assessment
         or bank_account_evaluation.requires_human_bank_account_assessment
+        or settlements_evaluation.requires_human_settlements_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -3986,6 +4041,7 @@ def run_reviewed_contract_analysis(
                 factoring_reviewer_id,
                 bank_deposit_reviewer_id,
                 bank_account_reviewer_id,
+                settlements_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -4145,6 +4201,9 @@ def run_reviewed_contract_analysis(
         bank_account_evidence_mapping=bank_account_evidence_mapping,
         bank_account_constraint_set=bank_account_constraint_set,
         bank_account_evaluation=bank_account_evaluation,
+        settlements_evidence_mapping=settlements_evidence_mapping,
+        settlements_constraint_set=settlements_constraint_set,
+        settlements_evaluation=settlements_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.66.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed settlements evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 861 to 885.",
+            "Cashless settlements, the legality of the settlement form, execution of payment orders, the bank's liability for them, the terms and closure of a letter of credit, execution of collection orders, cheque requisites, cheque payment and its warranty, and certification of non-payment remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о расчётах обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 861–885 ГК РФ.",
+            "Безналичные расчёты, законность формы расчётов, исполнение платёжных поручений, ответственность банка за их неисполнение, условия и закрытие аккредитива, исполнение инкассовых поручений, реквизиты чека, его оплата и гарантия платежа, удостоверение отказа от оплаты разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.65.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

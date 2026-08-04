@@ -2348,6 +2348,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk861-876-settlements-forms-orders-credit-and-collection-v1",
+      "title": "Синтетическая проверенная модель наличных и безналичных расчётов, их форм, расчётов платёжными поручениями, по аккредитиву и по инкассо по статьям 861–876 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: осуществление расчётов наличными деньгами и в безналичном порядке, формы безналичных расчётов, предусмотренные законом, банковскими правилами и применяемыми в банковской практике обычаями, обязанность банка перевести денежные средства по платёжному поручению в установленный срок и ответственность за её нарушение, обязательства банка-эмитента и исполняющего банка по аккредитиву, порядок его исполнения и закрытия, а также исполнение инкассового поручения и извещение о его неисполнении проверяются раздельно (статьи 861–876 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "settlements_forms_orders_credit_and_collection_articles_861_876",
+        "legal_reference": "ГК РФ, статьи 861–876",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk877-885-settlements-cheque-rules-v1",
+      "title": "Синтетическая проверенная модель расчётов чеками, реквизитов чека, его оплаты, передачи прав, аваля и последствий неоплаты по статьям 877–885 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: чек как ценная бумага, содержащая ничем не обусловленное распоряжение чекодателя банку произвести платёж указанной в нём суммы, обязательные реквизиты чека и последствия их отсутствия, оплата чека за счёт средств чекодателя при предъявлении в установленный срок, передача прав по чеку, гарантия платежа авалем, удостоверение отказа от оплаты, извещение о неоплате и её последствия проверяются раздельно (статьи 877–885 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "settlements_cheque_rules_articles_877_885",
+        "legal_reference": "ГК РФ, статьи 877–885",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-settlements-evidence",
+      "title": "Синтетическая проверенная запись фактов о расчётах",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: оплата по спорному договору поставки произведена единовременно; безналичные расчёты платёжными поручениями, по аккредитиву, по инкассо или чеками по этому обязательству не осуществлялись.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "settlements_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -7794,6 +7841,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-bank-account-reviewer"
     },
+    "settlements_evidence": {
+      "id": "reviewed-settlements-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.settlements-evidence.v0",
+      "assertions": [
+        {
+          "id": "settlements-evidence-cashless_settlements_performed",
+          "predicate": "cashless_settlements_performed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "id": "settlements-evidence-settlement_form_not_provided_by_law",
+          "predicate": "settlement_form_not_provided_by_law",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "id": "settlements-evidence-payment_order_execution_breached",
+          "predicate": "payment_order_execution_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "id": "settlements-evidence-payment_order_liability_not_applied",
+          "predicate": "payment_order_liability_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "id": "settlements-evidence-letter_of_credit_terms_breached",
+          "predicate": "letter_of_credit_terms_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "id": "settlements-evidence-letter_of_credit_closure_rules_breached",
+          "predicate": "letter_of_credit_closure_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "id": "settlements-evidence-collection_order_execution_breached",
+          "predicate": "collection_order_execution_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "id": "settlements-evidence-cheque_requisites_breached",
+          "predicate": "cheque_requisites_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "id": "settlements-evidence-cheque_payment_and_warranty_breached",
+          "predicate": "cheque_payment_and_warranty_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "id": "settlements-evidence-cheque_non_payment_certification_breached",
+          "predicate": "cheque_non_payment_certification_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk861-876-settlements-forms-orders-credit-and-collection-v1",
+        "synthetic-ru-gk877-885-settlements-cheque-rules-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-settlements-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -12617,6 +12757,7 @@
       "synthetic-residential-lease-reviewer",
       "synthetic-retail-sale-reviewer",
       "synthetic-security-reviewer",
+      "synthetic-settlements-reviewer",
       "synthetic-special-supply-reviewer",
       "synthetic-state-supply-reviewer",
       "synthetic-state-work-reviewer",
@@ -12677,6 +12818,7 @@
       "synthetic-case-supply-1-retail-sale-evidence",
       "synthetic-case-supply-1-reviewed-evidence",
       "synthetic-case-supply-1-security-evidence",
+      "synthetic-case-supply-1-settlements-evidence",
       "synthetic-case-supply-1-special-supply-evidence",
       "synthetic-case-supply-1-state-supply-evidence",
       "synthetic-case-supply-1-state-work-evidence",
@@ -12810,6 +12952,8 @@
       "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
       "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
       "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
+      "synthetic-ru-gk861-876-settlements-forms-orders-credit-and-collection-v1",
+      "synthetic-ru-gk877-885-settlements-cheque-rules-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -19528,6 +19672,142 @@
         "Основания отказа в заключении договора, законность списания без распоряжения клиента и наличие оснований для ограничения распоряжения счётом оцениваются экспертом и судом (статьи 846, 854 и 858 ГК РФ)."
       ]
     },
+    "settlements_evidence_mapping": {
+      "evidence_id": "reviewed-settlements-evidence-supply-1-v0",
+      "schema_version": "contracts.settlements-evidence.v0",
+      "mapping_version": "contracts-reviewed-settlements-to-facts-v0",
+      "facts": {
+        "cashless_settlements_performed": false,
+        "settlement_form_not_provided_by_law": false,
+        "payment_order_execution_breached": false,
+        "payment_order_liability_not_applied": false,
+        "letter_of_credit_terms_breached": false,
+        "letter_of_credit_closure_rules_breached": false,
+        "collection_order_execution_breached": false,
+        "cheque_requisites_breached": false,
+        "cheque_payment_and_warranty_breached": false,
+        "cheque_non_payment_certification_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk861-876-settlements-forms-orders-credit-and-collection-v1",
+        "synthetic-ru-gk877-885-settlements-cheque-rules-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "cashless_settlements_performed",
+          "assertion_id": "settlements-evidence-cashless_settlements_performed",
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "fact_name": "cheque_non_payment_certification_breached",
+          "assertion_id": "settlements-evidence-cheque_non_payment_certification_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "fact_name": "cheque_payment_and_warranty_breached",
+          "assertion_id": "settlements-evidence-cheque_payment_and_warranty_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "fact_name": "cheque_requisites_breached",
+          "assertion_id": "settlements-evidence-cheque_requisites_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "fact_name": "collection_order_execution_breached",
+          "assertion_id": "settlements-evidence-collection_order_execution_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "fact_name": "letter_of_credit_closure_rules_breached",
+          "assertion_id": "settlements-evidence-letter_of_credit_closure_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "fact_name": "letter_of_credit_terms_breached",
+          "assertion_id": "settlements-evidence-letter_of_credit_terms_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "fact_name": "payment_order_execution_breached",
+          "assertion_id": "settlements-evidence-payment_order_execution_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "fact_name": "payment_order_liability_not_applied",
+          "assertion_id": "settlements-evidence-payment_order_liability_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        },
+        {
+          "fact_name": "settlement_form_not_provided_by_law",
+          "assertion_id": "settlements-evidence-settlement_form_not_provided_by_law",
+          "source_refs": [
+            "synthetic-case-supply-1-settlements-evidence"
+          ]
+        }
+      ]
+    },
+    "settlements_constraint_set": {
+      "id": "settlements-constraint-set:reviewed-settlements-evidence-supply-1-v0",
+      "model_version": "contracts-settlements-articles-861-885-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk861-876-settlements-forms-orders-credit-and-collection-v1",
+        "synthetic-ru-gk877-885-settlements-cheque-rules-v1"
+      ],
+      "expressions": [
+        "cashless_settlements_qualified == cashless_settlements_performed",
+        "settlement_form_legality_breached == cashless_settlements_qualified AND settlement_form_not_provided_by_law",
+        "payment_order_execution_duty_breached == cashless_settlements_qualified AND payment_order_execution_breached",
+        "payment_order_liability_breached == cashless_settlements_qualified AND payment_order_execution_breached AND payment_order_liability_not_applied",
+        "letter_of_credit_duty_breached == cashless_settlements_qualified AND letter_of_credit_terms_breached",
+        "letter_of_credit_closure_duty_breached == cashless_settlements_qualified AND letter_of_credit_closure_rules_breached",
+        "collection_execution_duty_breached == cashless_settlements_qualified AND collection_order_execution_breached",
+        "cheque_requisites_duty_breached == cashless_settlements_qualified AND cheque_requisites_breached",
+        "cheque_payment_duty_breached == cashless_settlements_qualified AND cheque_payment_and_warranty_breached",
+        "cheque_non_payment_certification_duty_breached == cashless_settlements_qualified AND cheque_non_payment_certification_breached",
+        "requires_human_settlements_assessment == settlement_form_legality_breached OR payment_order_execution_duty_breached OR letter_of_credit_duty_breached OR letter_of_credit_closure_duty_breached OR collection_execution_duty_breached OR cheque_requisites_duty_breached OR cheque_payment_duty_breached OR cheque_non_payment_certification_duty_breached"
+      ]
+    },
+    "settlements_evaluation": {
+      "constraint_set_id": "settlements-constraint-set:reviewed-settlements-evidence-supply-1-v0",
+      "satisfiable": true,
+      "cashless_settlements_qualified": false,
+      "settlement_form_legality_breached": false,
+      "payment_order_execution_duty_breached": false,
+      "payment_order_liability_breached": false,
+      "letter_of_credit_duty_breached": false,
+      "letter_of_credit_closure_duty_breached": false,
+      "collection_execution_duty_breached": false,
+      "cheque_requisites_duty_breached": false,
+      "cheque_payment_duty_breached": false,
+      "cheque_non_payment_certification_duty_breached": false,
+      "requires_human_settlements_assessment": false,
+      "reasons_ru": [
+        "Безналичные расчёты по спорному обязательству не установлены."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о расчётах и не заменяет судебную оценку.",
+        "Соответствие представленных документов условиям аккредитива, основания неисполнения поручений и достаточность средств оцениваются экспертом и судом (статьи 866, 871 и 879 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -24899,7 +25179,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.65.0",
+      "institutional_package_version": "contracts-ru-v0@0.66.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

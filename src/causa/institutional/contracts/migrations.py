@@ -1252,6 +1252,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.65.0",
+        to_version="0.66.0",
+        reasons=[
+            "Reviewed inputs now require a separate settlements evidence contract.",
+            "Analysis and Russian translation distinguish cashless settlements, the legality of the settlement form, execution of payment orders, the bank's liability for them, the terms and closure of a letter of credit, execution of collection orders, cheque requisites, cheque payment and its warranty, and certification of non-payment under articles 861 to 885.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о расчётах.",
+            "Анализ и русское объяснение разделяют безналичные расчёты, законность формы расчётов, исполнение платёжных поручений, ответственность банка за их неисполнение, условия и закрытие аккредитива, исполнение инкассовых поручений, реквизиты чека, его оплату и гарантию платежа, удостоверение отказа от оплаты по статьям 861–885 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_settlements_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.settlements import (
+    ReviewedSettlementsEvidence,
+    SettlementsEvidenceAssertion,
+    SettlementsEvidencePredicate,
+)
 from causa.institutional.contracts.bank_account import (
     BankAccountEvidenceAssertion,
     BankAccountEvidencePredicate,
@@ -452,6 +457,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
     "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
     "synthetic-case-supply-1-bank-account-evidence",
+    "synthetic-ru-gk861-876-settlements-forms-orders-credit-and-collection-v1",
+    "synthetic-ru-gk877-885-settlements-cheque-rules-v1",
+    "synthetic-case-supply-1-settlements-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2418,6 +2426,39 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-bank-account-reviewer",
+        ),
+        settlements_evidence=ReviewedSettlementsEvidence(
+            id="reviewed-settlements-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                SettlementsEvidenceAssertion(
+                    id=f"settlements-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-settlements-evidence",),
+                )
+                for predicate, value in (
+                    (SettlementsEvidencePredicate.CASHLESS_SETTLEMENTS_PERFORMED, False),
+                    (SettlementsEvidencePredicate.SETTLEMENT_FORM_NOT_PROVIDED_BY_LAW, False),
+                    (SettlementsEvidencePredicate.PAYMENT_ORDER_EXECUTION_BREACHED, False),
+                    (SettlementsEvidencePredicate.PAYMENT_ORDER_LIABILITY_NOT_APPLIED, False),
+                    (SettlementsEvidencePredicate.LETTER_OF_CREDIT_TERMS_BREACHED, False),
+                    (SettlementsEvidencePredicate.LETTER_OF_CREDIT_CLOSURE_RULES_BREACHED, False),
+                    (SettlementsEvidencePredicate.COLLECTION_ORDER_EXECUTION_BREACHED, False),
+                    (SettlementsEvidencePredicate.CHEQUE_REQUISITES_BREACHED, False),
+                    (SettlementsEvidencePredicate.CHEQUE_PAYMENT_AND_WARRANTY_BREACHED, False),
+                    (
+                        SettlementsEvidencePredicate.CHEQUE_NON_PAYMENT_CERTIFICATION_BREACHED,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk861-876-settlements-forms-orders-credit-and-collection-v1",
+                "synthetic-ru-gk877-885-settlements-cheque-rules-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-settlements-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
