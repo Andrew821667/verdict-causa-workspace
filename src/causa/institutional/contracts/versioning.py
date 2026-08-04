@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.63.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed factoring evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 824 to 833.",
+            "Factoring qualification, identification of the assigned claim, the factor's standing, the contractual ban on assignment, the client's warranty of claim validity, subsequent assignment, notice to the debtor, the debtor's set-off, settlements with the client, and the direction of the debtor's refund claim remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о финансировании под уступку денежного требования обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 824–833 ГК РФ.",
+            "Квалификация факторинга, определённость уступаемого требования, статус финансового агента, договорный запрет уступки, ответственность клиента за действительность требования, последующая уступка, уведомление должника, зачёт требований должника, расчёты агента с клиентом и адресат требования должника о возврате сумм разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.62.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

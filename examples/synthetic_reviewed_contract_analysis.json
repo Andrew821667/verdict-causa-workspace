@@ -2207,6 +2207,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk824-829-factoring-concept-parties-and-assignment-v1",
+      "title": "Синтетическая проверенная модель понятия факторинга, его сторон, предмета уступки и последующей уступки по статьям 824–829 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: финансирование под уступку денежного требования как уступка клиентом финансовому агенту денежного требования к должнику против передачи денежных средств или совершения иных предусмотренных договором действий, требования к финансовому агенту, определение уступаемого требования способом, позволяющим его идентифицировать, ответственность клиента за действительность требования, действительность уступки вопреки договорному запрету и допустимость последующей уступки только при прямом указании договора проверяются раздельно (статьи 824–829 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "factoring_concept_parties_and_assignment_articles_824_829",
+        "legal_reference": "ГК РФ, статьи 824–829",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
+      "title": "Синтетическая проверенная модель исполнения должником, зачёта, расчётов сторон и возврата полученного по статьям 830–833 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обязанность должника произвести платёж финансовому агенту при письменном уведомлении об уступке с определением требования и указанием агента, право должника предъявить к зачёту требования к клиенту, имевшиеся ко времени получения уведомления, правила расчётов сторон при покупке требования и при его уступке в целях обеспечения и направление требования должника о возврате полученных сумм проверяются раздельно (статьи 830–833 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "factoring_debtor_performance_and_settlements_articles_830_833",
+        "legal_reference": "ГК РФ, статьи 830–833",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-factoring-evidence",
+      "title": "Синтетическая проверенная запись фактов о финансировании под уступку денежного требования",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является договором факторинга; уступки денежного требования финансовому агенту против предоставления финансирования нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "factoring_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -7374,6 +7421,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-commercial-credit-reviewer"
     },
+    "factoring_evidence": {
+      "id": "reviewed-factoring-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.factoring-evidence.v0",
+      "assertions": [
+        {
+          "id": "factoring-evidence-monetary_claim_assigned_for_financing",
+          "predicate": "monetary_claim_assigned_for_financing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "id": "factoring-evidence-assigned_claim_not_identified",
+          "predicate": "assigned_claim_not_identified",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "id": "factoring-evidence-factor_not_entitled_to_act",
+          "predicate": "factor_not_entitled_to_act",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "id": "factoring-evidence-contractual_assignment_ban_invoked_against_factor",
+          "predicate": "contractual_assignment_ban_invoked_against_factor",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "id": "factoring-evidence-client_claim_validity_warranty_breached",
+          "predicate": "client_claim_validity_warranty_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "id": "factoring-evidence-subsequent_assignment_made_without_permission",
+          "predicate": "subsequent_assignment_made_without_permission",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "id": "factoring-evidence-debtor_not_notified_of_assignment",
+          "predicate": "debtor_not_notified_of_assignment",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "id": "factoring-evidence-debtor_set_off_claims_disregarded",
+          "predicate": "debtor_set_off_claims_disregarded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "id": "factoring-evidence-factor_settlement_with_client_breached",
+          "predicate": "factor_settlement_with_client_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "id": "factoring-evidence-debtor_refund_claim_misdirected",
+          "predicate": "debtor_refund_claim_misdirected",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk824-829-factoring-concept-parties-and-assignment-v1",
+        "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-factoring-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -12162,6 +12302,7 @@
       "synthetic-energy-supply-reviewer",
       "synthetic-enterprise-lease-reviewer",
       "synthetic-enterprise-sale-reviewer",
+      "synthetic-factoring-reviewer",
       "synthetic-form-reviewer",
       "synthetic-formation-reviewer",
       "synthetic-forwarding-reviewer",
@@ -12219,6 +12360,7 @@
       "synthetic-case-supply-1-energy-supply-evidence",
       "synthetic-case-supply-1-enterprise-lease-evidence",
       "synthetic-case-supply-1-enterprise-sale-evidence",
+      "synthetic-case-supply-1-factoring-evidence",
       "synthetic-case-supply-1-form-evidence",
       "synthetic-case-supply-1-formation-evidence",
       "synthetic-case-supply-1-forwarding-evidence",
@@ -12378,6 +12520,8 @@
       "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1",
       "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
       "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1",
+      "synthetic-ru-gk824-829-factoring-concept-parties-and-assignment-v1",
+      "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -18688,6 +18832,142 @@
         "Существо обязательства, применимость правил основного договора и размер процентов за пользование кредитом оцениваются экспертом и судом (статьи 822 и 823 ГК РФ)."
       ]
     },
+    "factoring_evidence_mapping": {
+      "evidence_id": "reviewed-factoring-evidence-supply-1-v0",
+      "schema_version": "contracts.factoring-evidence.v0",
+      "mapping_version": "contracts-reviewed-factoring-to-facts-v0",
+      "facts": {
+        "monetary_claim_assigned_for_financing": false,
+        "assigned_claim_not_identified": false,
+        "factor_not_entitled_to_act": false,
+        "contractual_assignment_ban_invoked_against_factor": false,
+        "client_claim_validity_warranty_breached": false,
+        "subsequent_assignment_made_without_permission": false,
+        "debtor_not_notified_of_assignment": false,
+        "debtor_set_off_claims_disregarded": false,
+        "factor_settlement_with_client_breached": false,
+        "debtor_refund_claim_misdirected": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk824-829-factoring-concept-parties-and-assignment-v1",
+        "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "assigned_claim_not_identified",
+          "assertion_id": "factoring-evidence-assigned_claim_not_identified",
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "fact_name": "client_claim_validity_warranty_breached",
+          "assertion_id": "factoring-evidence-client_claim_validity_warranty_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "fact_name": "contractual_assignment_ban_invoked_against_factor",
+          "assertion_id": "factoring-evidence-contractual_assignment_ban_invoked_against_factor",
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_not_notified_of_assignment",
+          "assertion_id": "factoring-evidence-debtor_not_notified_of_assignment",
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_refund_claim_misdirected",
+          "assertion_id": "factoring-evidence-debtor_refund_claim_misdirected",
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_set_off_claims_disregarded",
+          "assertion_id": "factoring-evidence-debtor_set_off_claims_disregarded",
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "fact_name": "factor_not_entitled_to_act",
+          "assertion_id": "factoring-evidence-factor_not_entitled_to_act",
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "fact_name": "factor_settlement_with_client_breached",
+          "assertion_id": "factoring-evidence-factor_settlement_with_client_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "fact_name": "monetary_claim_assigned_for_financing",
+          "assertion_id": "factoring-evidence-monetary_claim_assigned_for_financing",
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        },
+        {
+          "fact_name": "subsequent_assignment_made_without_permission",
+          "assertion_id": "factoring-evidence-subsequent_assignment_made_without_permission",
+          "source_refs": [
+            "synthetic-case-supply-1-factoring-evidence"
+          ]
+        }
+      ]
+    },
+    "factoring_constraint_set": {
+      "id": "factoring-constraint-set:reviewed-factoring-evidence-supply-1-v0",
+      "model_version": "contracts-factoring-articles-824-833-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk824-829-factoring-concept-parties-and-assignment-v1",
+        "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1"
+      ],
+      "expressions": [
+        "factoring_qualified == monetary_claim_assigned_for_financing",
+        "claim_identification_breached == factoring_qualified AND assigned_claim_not_identified",
+        "factor_status_invalid == factoring_qualified AND factor_not_entitled_to_act",
+        "assignment_ban_ineffective_against_factor == factoring_qualified AND contractual_assignment_ban_invoked_against_factor",
+        "client_warranty_breached == factoring_qualified AND client_claim_validity_warranty_breached",
+        "subsequent_assignment_unauthorized == factoring_qualified AND subsequent_assignment_made_without_permission",
+        "debtor_notice_duty_breached == factoring_qualified AND debtor_not_notified_of_assignment",
+        "debtor_set_off_right_available == factoring_qualified AND debtor_not_notified_of_assignment AND debtor_set_off_claims_disregarded",
+        "settlement_duty_breached == factoring_qualified AND factor_settlement_with_client_breached",
+        "refund_claim_direction_breached == factoring_qualified AND debtor_refund_claim_misdirected",
+        "requires_human_factoring_assessment == claim_identification_breached OR factor_status_invalid OR assignment_ban_ineffective_against_factor OR client_warranty_breached OR subsequent_assignment_unauthorized OR debtor_notice_duty_breached OR settlement_duty_breached OR refund_claim_direction_breached"
+      ]
+    },
+    "factoring_evaluation": {
+      "constraint_set_id": "factoring-constraint-set:reviewed-factoring-evidence-supply-1-v0",
+      "satisfiable": true,
+      "factoring_qualified": false,
+      "claim_identification_breached": false,
+      "factor_status_invalid": false,
+      "assignment_ban_ineffective_against_factor": false,
+      "client_warranty_breached": false,
+      "subsequent_assignment_unauthorized": false,
+      "debtor_notice_duty_breached": false,
+      "debtor_set_off_right_available": false,
+      "settlement_duty_breached": false,
+      "refund_claim_direction_breached": false,
+      "requires_human_factoring_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор финансирования под уступку денежного требования."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о финансировании под уступку денежного требования и не заменяет судебную оценку.",
+        "Идентифицируемость требования, действительность уступки и содержание расчётов сторон оцениваются экспертом и судом (статьи 826, 827 и 831 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -24059,7 +24339,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.62.0",
+      "institutional_package_version": "contracts-ru-v0@0.63.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

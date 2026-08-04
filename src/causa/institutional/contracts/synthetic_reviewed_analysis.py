@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.factoring import (
+    FactoringEvidenceAssertion,
+    FactoringEvidencePredicate,
+    ReviewedFactoringEvidence,
+)
 from causa.institutional.contracts.commercial_credit import (
     CommercialCreditEvidenceAssertion,
     CommercialCreditEvidencePredicate,
@@ -428,6 +433,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
     "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1",
     "synthetic-case-supply-1-commercial-credit-evidence",
+    "synthetic-ru-gk824-829-factoring-concept-parties-and-assignment-v1",
+    "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
+    "synthetic-case-supply-1-factoring-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2283,6 +2291,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-commercial-credit-reviewer",
+        ),
+        factoring_evidence=ReviewedFactoringEvidence(
+            id="reviewed-factoring-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                FactoringEvidenceAssertion(
+                    id=f"factoring-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-factoring-evidence",),
+                )
+                for predicate, value in (
+                    (FactoringEvidencePredicate.MONETARY_CLAIM_ASSIGNED_FOR_FINANCING, False),
+                    (FactoringEvidencePredicate.ASSIGNED_CLAIM_NOT_IDENTIFIED, False),
+                    (FactoringEvidencePredicate.FACTOR_NOT_ENTITLED_TO_ACT, False),
+                    (
+                        FactoringEvidencePredicate.CONTRACTUAL_ASSIGNMENT_BAN_INVOKED_AGAINST_FACTOR,
+                        False,
+                    ),
+                    (FactoringEvidencePredicate.CLIENT_CLAIM_VALIDITY_WARRANTY_BREACHED, False),
+                    (
+                        FactoringEvidencePredicate.SUBSEQUENT_ASSIGNMENT_MADE_WITHOUT_PERMISSION,
+                        False,
+                    ),
+                    (FactoringEvidencePredicate.DEBTOR_NOT_NOTIFIED_OF_ASSIGNMENT, False),
+                    (FactoringEvidencePredicate.DEBTOR_SET_OFF_CLAIMS_DISREGARDED, False),
+                    (FactoringEvidencePredicate.FACTOR_SETTLEMENT_WITH_CLIENT_BREACHED, False),
+                    (FactoringEvidencePredicate.DEBTOR_REFUND_CLAIM_MISDIRECTED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk824-829-factoring-concept-parties-and-assignment-v1",
+                "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-factoring-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

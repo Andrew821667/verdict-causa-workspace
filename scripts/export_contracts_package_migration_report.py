@@ -16,13 +16,13 @@ def main() -> None:
         ("contracts-ru-v0-0.4.0-reviewed-analysis.json", "0.4.0"),
         *(
             (f"contracts-ru-v0-0.{minor}.0-phase0-trace.json", f"0.{minor}.0")
-            for minor in range(5, 62)
+            for minor in range(5, 63)
         ),
     ]
     fixture_pairs = [
         (
             migrations_path / input_name,
-            migrations_path / f"contracts-ru-v0-{version}-to-0.62.0-migration-report.json",
+            migrations_path / f"contracts-ru-v0-{version}-to-0.63.0-migration-report.json",
         )
         for input_name, version in input_versions
     ]

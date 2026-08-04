@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о финансировании под уступку денежного требования по статьям 824–833 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-factoring-evidence-supply-1-v0",
+    "schema_version": "contracts.factoring-evidence.v0",
+    "mapping_version": "contracts-reviewed-factoring-to-facts-v0",
+    "facts": {
+      "monetary_claim_assigned_for_financing": false,
+      "assigned_claim_not_identified": false,
+      "factor_not_entitled_to_act": false,
+      "contractual_assignment_ban_invoked_against_factor": false,
+      "client_claim_validity_warranty_breached": false,
+      "subsequent_assignment_made_without_permission": false,
+      "debtor_not_notified_of_assignment": false,
+      "debtor_set_off_claims_disregarded": false,
+      "factor_settlement_with_client_breached": false,
+      "debtor_refund_claim_misdirected": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk824-829-factoring-concept-parties-and-assignment-v1",
+      "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "assigned_claim_not_identified",
+        "assertion_id": "factoring-evidence-assigned_claim_not_identified",
+        "source_refs": [
+          "synthetic-case-supply-1-factoring-evidence"
+        ]
+      },
+      {
+        "fact_name": "client_claim_validity_warranty_breached",
+        "assertion_id": "factoring-evidence-client_claim_validity_warranty_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-factoring-evidence"
+        ]
+      },
+      {
+        "fact_name": "contractual_assignment_ban_invoked_against_factor",
+        "assertion_id": "factoring-evidence-contractual_assignment_ban_invoked_against_factor",
+        "source_refs": [
+          "synthetic-case-supply-1-factoring-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_not_notified_of_assignment",
+        "assertion_id": "factoring-evidence-debtor_not_notified_of_assignment",
+        "source_refs": [
+          "synthetic-case-supply-1-factoring-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_refund_claim_misdirected",
+        "assertion_id": "factoring-evidence-debtor_refund_claim_misdirected",
+        "source_refs": [
+          "synthetic-case-supply-1-factoring-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_set_off_claims_disregarded",
+        "assertion_id": "factoring-evidence-debtor_set_off_claims_disregarded",
+        "source_refs": [
+          "synthetic-case-supply-1-factoring-evidence"
+        ]
+      },
+      {
+        "fact_name": "factor_not_entitled_to_act",
+        "assertion_id": "factoring-evidence-factor_not_entitled_to_act",
+        "source_refs": [
+          "synthetic-case-supply-1-factoring-evidence"
+        ]
+      },
+      {
+        "fact_name": "factor_settlement_with_client_breached",
+        "assertion_id": "factoring-evidence-factor_settlement_with_client_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-factoring-evidence"
+        ]
+      },
+      {
+        "fact_name": "monetary_claim_assigned_for_financing",
+        "assertion_id": "factoring-evidence-monetary_claim_assigned_for_financing",
+        "source_refs": [
+          "synthetic-case-supply-1-factoring-evidence"
+        ]
+      },
+      {
+        "fact_name": "subsequent_assignment_made_without_permission",
+        "assertion_id": "factoring-evidence-subsequent_assignment_made_without_permission",
+        "source_refs": [
+          "synthetic-case-supply-1-factoring-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "factoring-constraint-set:reviewed-factoring-evidence-supply-1-v0",
+    "model_version": "contracts-factoring-articles-824-833-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk824-829-factoring-concept-parties-and-assignment-v1",
+      "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1"
+    ],
+    "expressions": [
+      "factoring_qualified == monetary_claim_assigned_for_financing",
+      "claim_identification_breached == factoring_qualified AND assigned_claim_not_identified",
+      "factor_status_invalid == factoring_qualified AND factor_not_entitled_to_act",
+      "assignment_ban_ineffective_against_factor == factoring_qualified AND contractual_assignment_ban_invoked_against_factor",
+      "client_warranty_breached == factoring_qualified AND client_claim_validity_warranty_breached",
+      "subsequent_assignment_unauthorized == factoring_qualified AND subsequent_assignment_made_without_permission",
+      "debtor_notice_duty_breached == factoring_qualified AND debtor_not_notified_of_assignment",
+      "debtor_set_off_right_available == factoring_qualified AND debtor_not_notified_of_assignment AND debtor_set_off_claims_disregarded",
+      "settlement_duty_breached == factoring_qualified AND factor_settlement_with_client_breached",
+      "refund_claim_direction_breached == factoring_qualified AND debtor_refund_claim_misdirected",
+      "requires_human_factoring_assessment == claim_identification_breached OR factor_status_invalid OR assignment_ban_ineffective_against_factor OR client_warranty_breached OR subsequent_assignment_unauthorized OR debtor_notice_duty_breached OR settlement_duty_breached OR refund_claim_direction_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "factoring-constraint-set:reviewed-factoring-evidence-supply-1-v0",
+    "satisfiable": true,
+    "factoring_qualified": false,
+    "claim_identification_breached": false,
+    "factor_status_invalid": false,
+    "assignment_ban_ineffective_against_factor": false,
+    "client_warranty_breached": false,
+    "subsequent_assignment_unauthorized": false,
+    "debtor_notice_duty_breached": false,
+    "debtor_set_off_right_available": false,
+    "settlement_duty_breached": false,
+    "refund_claim_direction_breached": false,
+    "requires_human_factoring_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор финансирования под уступку денежного требования."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о финансировании под уступку денежного требования и не заменяет судебную оценку.",
+      "Идентифицируемость требования, действительность уступки и содержание расчётов сторон оцениваются экспертом и судом (статьи 826, 827 и 831 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "factoring-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "factoring-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "factoring_qualified": false
+        },
+        "observed_outcomes": {
+          "factoring_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор финансирования под уступку денежного требования."
+        ]
+      },
+      {
+        "task_id": "factoring-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "factoring_qualified": true,
+          "requires_human_factoring_assessment": false
+        },
+        "observed_outcomes": {
+          "factoring_qualified": true,
+          "requires_human_factoring_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "factoring-bench-claim-identification",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_identification_breached": true,
+          "requires_human_factoring_assessment": true
+        },
+        "observed_outcomes": {
+          "claim_identification_breached": true,
+          "requires_human_factoring_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Уступаемое денежное требование должно быть определено в договоре способом, позволяющим идентифицировать существующее требование в момент заключения договора, а будущее требование — не позднее чем в момент его возникновения (статья 826 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "factoring-bench-factor-status",
+        "passed": true,
+        "expected_outcomes": {
+          "factor_status_invalid": true,
+          "requires_human_factoring_assessment": true
+        },
+        "observed_outcomes": {
+          "factor_status_invalid": true,
+          "requires_human_factoring_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Финансовым агентом по договору факторинга выступают коммерческие организации, для которых такая деятельность допустима (статья 825 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "factoring-bench-assignment-ban",
+        "passed": true,
+        "expected_outcomes": {
+          "assignment_ban_ineffective_against_factor": true,
+          "requires_human_factoring_assessment": true
+        },
+        "observed_outcomes": {
+          "assignment_ban_ineffective_against_factor": true,
+          "requires_human_factoring_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Уступка денежного требования финансовому агенту действительна, даже если между клиентом и должником существует соглашение о её запрете или ограничении; клиент при этом не освобождается от ответственности перед должником (статья 828 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "factoring-bench-client-warranty",
+        "passed": true,
+        "expected_outcomes": {
+          "client_warranty_breached": true,
+          "requires_human_factoring_assessment": true
+        },
+        "observed_outcomes": {
+          "client_warranty_breached": true,
+          "requires_human_factoring_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Клиент несёт ответственность за действительность уступаемого денежного требования, если договором не предусмотрено иное (статья 827 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "factoring-bench-subsequent-assignment",
+        "passed": true,
+        "expected_outcomes": {
+          "subsequent_assignment_unauthorized": true,
+          "requires_human_factoring_assessment": true
+        },
+        "observed_outcomes": {
+          "subsequent_assignment_unauthorized": true,
+          "requires_human_factoring_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Последующая уступка денежного требования финансовым агентом допускается, только если она прямо предусмотрена договором факторинга (статья 829 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "factoring-bench-debtor-set-off",
+        "passed": true,
+        "expected_outcomes": {
+          "debtor_notice_duty_breached": true,
+          "debtor_set_off_right_available": true,
+          "requires_human_factoring_assessment": true
+        },
+        "observed_outcomes": {
+          "debtor_notice_duty_breached": true,
+          "debtor_set_off_right_available": true,
+          "requires_human_factoring_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Должник обязан произвести платёж финансовому агенту при условии письменного уведомления об уступке с определением подлежащего исполнению требования и указанием агента (статья 830 ГК РФ).",
+          "Должник вправе предъявить к зачёту денежные требования к клиенту, основанные на договоре с ним и имевшиеся у должника ко времени получения уведомления об уступке (статья 832 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "factoring-bench-settlement",
+        "passed": true,
+        "expected_outcomes": {
+          "settlement_duty_breached": true,
+          "requires_human_factoring_assessment": true
+        },
+        "observed_outcomes": {
+          "settlement_duty_breached": true,
+          "requires_human_factoring_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Расчёты сторон определяются тем, приобретено ли требование в целях покупки или в целях обеспечения исполнения обязательства клиента: при обеспечительной уступке агент обязан представить отчёт и передать сумму, превышающую обеспеченный долг (статья 831 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "factoring-bench-refund-direction",
+        "passed": true,
+        "expected_outcomes": {
+          "refund_claim_direction_breached": true,
+          "requires_human_factoring_assessment": true
+        },
+        "observed_outcomes": {
+          "refund_claim_direction_breached": true,
+          "requires_human_factoring_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Должник вправе требовать возврата уплаченных сумм от клиента, а от финансового агента — только в предусмотренных законом случаях (статья 833 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "factoring-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "factoring-red-qualify-without-assignment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "factoring_qualified": true
+        },
+        "observed_outcomes": {
+          "factoring_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор финансирования под уступку денежного требования."
+        ]
+      },
+      {
+        "case_id": "factoring-red-ignore-claim-identification",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "claim_identification_breached": false
+        },
+        "observed_outcomes": {
+          "claim_identification_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Уступаемое денежное требование должно быть определено в договоре способом, позволяющим идентифицировать существующее требование в момент заключения договора, а будущее требование — не позднее чем в момент его возникновения (статья 826 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "factoring-red-ignore-factor-status",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "factor_status_invalid": false
+        },
+        "observed_outcomes": {
+          "factor_status_invalid": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Финансовым агентом по договору факторинга выступают коммерческие организации, для которых такая деятельность допустима (статья 825 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "factoring-red-uphold-assignment-ban",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "assignment_ban_ineffective_against_factor": false
+        },
+        "observed_outcomes": {
+          "assignment_ban_ineffective_against_factor": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Уступка денежного требования финансовому агенту действительна, даже если между клиентом и должником существует соглашение о её запрете или ограничении; клиент при этом не освобождается от ответственности перед должником (статья 828 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "factoring-red-ignore-client-warranty",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "client_warranty_breached": false
+        },
+        "observed_outcomes": {
+          "client_warranty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Клиент несёт ответственность за действительность уступаемого денежного требования, если договором не предусмотрено иное (статья 827 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "factoring-red-allow-subsequent-assignment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "subsequent_assignment_unauthorized": false
+        },
+        "observed_outcomes": {
+          "subsequent_assignment_unauthorized": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Последующая уступка денежного требования финансовым агентом допускается, только если она прямо предусмотрена договором факторинга (статья 829 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "factoring-red-ignore-debtor-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "debtor_notice_duty_breached": false
+        },
+        "observed_outcomes": {
+          "debtor_notice_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Должник обязан произвести платёж финансовому агенту при условии письменного уведомления об уступке с определением подлежащего исполнению требования и указанием агента (статья 830 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "factoring-red-set-off-without-notice-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "debtor_set_off_right_available": true
+        },
+        "observed_outcomes": {
+          "debtor_set_off_right_available": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "factoring-red-ignore-settlement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "settlement_duty_breached": false
+        },
+        "observed_outcomes": {
+          "settlement_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Расчёты сторон определяются тем, приобретено ли требование в целях покупки или в целях обеспечения исполнения обязательства клиента: при обеспечительной уступке агент обязан представить отчёт и передать сумму, превышающую обеспеченный долг (статья 831 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "factoring-red-skip-human-on-refund",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_factoring_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_factoring_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как финансирование под уступку денежного требования (факторинг): клиент уступает или обязуется уступить финансовому агенту денежное требование к должнику, а финансовый агент передаёт или обязуется передать клиенту денежные средства либо совершить иные предусмотренные договором действия (статья 824 ГК РФ).",
+          "Должник вправе требовать возврата уплаченных сумм от клиента, а от финансового агента — только в предусмотренных законом случаях (статья 833 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}
