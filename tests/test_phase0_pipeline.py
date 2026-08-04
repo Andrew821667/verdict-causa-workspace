@@ -64,6 +64,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "evaluate-forwarding",
         "evaluate-loan",
         "evaluate-credit",
+        "evaluate-commercial-credit",
         "evaluate-transaction-invalidity",
         "evaluate-obligation-constraints",
         "evaluate-performance-remedies",

@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.62.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed commercial-credit evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 822 and 823.",
+            "Goods-credit qualification, delivery of the fungibles, quantity and quality terms, application of the loan rules, commercial-credit qualification, agreed terms, interest, the limits on applying the chapter, and statutory prohibitions remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о товарном и коммерческом кредите обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 822 и 823 ГК РФ.",
+            "Квалификация товарного кредита, предоставление вещей, условия о количестве и качестве, применение правил о займе, квалификация коммерческого кредита, согласование его условий, проценты, пределы применения правил главы и установленный законом запрет разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.61.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

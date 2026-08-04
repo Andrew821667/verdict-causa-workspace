@@ -2160,6 +2160,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
+      "title": "Синтетическая проверенная модель товарного кредита и применения к нему правил о купле-продаже по статье 822 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: договор товарного кредита как обязанность стороны предоставить другой стороне вещи, определённые родовыми признаками, применение к нему правил о займе, если иное не предусмотрено договором и не вытекает из существа обязательства, и исполнение условий о количестве, ассортименте, комплектности, качестве, таре и упаковке предоставляемых вещей по правилам о купле-продаже товаров проверяются раздельно (статья 822 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "goods_credit_concept_and_sale_rules_article_822",
+        "legal_reference": "ГК РФ, статья 822",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1",
+      "title": "Синтетическая проверенная модель коммерческого кредита, его форм и применимых правил по статье 823 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: предоставление коммерческого кредита договорами, исполнение которых связано с передачей в собственность денежных сумм или вещей, определяемых родовыми признаками, в том числе в виде аванса, предварительной оплаты, отсрочки и рассрочки оплаты товаров, работ или услуг, допустимость такого условия, если иное не установлено законом, и применение правил главы о займе и кредите постольку, поскольку это не противоречит правилам о договоре, из которого возникло обязательство, и существу такого обязательства, проверяются раздельно (статья 823 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "commercial_credit_forms_and_applicable_rules_article_823",
+        "legal_reference": "ГК РФ, статья 823",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-commercial-credit-evidence",
+      "title": "Синтетическая проверенная запись фактов о товарном и коммерческом кредите",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату; обязанности предоставить вещи в кредит и условия о коммерческом кредите в виде аванса, предварительной оплаты, отсрочки или рассрочки в нём нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "commercial_credit_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -7234,6 +7281,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-credit-reviewer"
     },
+    "commercial_credit_evidence": {
+      "id": "reviewed-commercial-credit-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.commercial-credit-evidence.v0",
+      "assertions": [
+        {
+          "id": "commercial-credit-evidence-goods_credit_obligation_to_provide_fungibles",
+          "predicate": "goods_credit_obligation_to_provide_fungibles",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "id": "commercial-credit-evidence-goods_credit_items_not_provided",
+          "predicate": "goods_credit_items_not_provided",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "id": "commercial-credit-evidence-quantity_assortment_or_completeness_terms_breached",
+          "predicate": "quantity_assortment_or_completeness_terms_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "id": "commercial-credit-evidence-quality_packaging_or_container_terms_breached",
+          "predicate": "quality_packaging_or_container_terms_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "id": "commercial-credit-evidence-loan_rules_application_excluded_without_ground",
+          "predicate": "loan_rules_application_excluded_without_ground",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "id": "commercial-credit-evidence-commercial_credit_granted_in_main_contract",
+          "predicate": "commercial_credit_granted_in_main_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "id": "commercial-credit-evidence-commercial_credit_terms_not_agreed_in_main_contract",
+          "predicate": "commercial_credit_terms_not_agreed_in_main_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "id": "commercial-credit-evidence-commercial_credit_interest_terms_breached",
+          "predicate": "commercial_credit_interest_terms_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "id": "commercial-credit-evidence-chapter_rules_applied_contrary_to_main_contract",
+          "predicate": "chapter_rules_applied_contrary_to_main_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "id": "commercial-credit-evidence-statutory_prohibition_on_commercial_credit",
+          "predicate": "statutory_prohibition_on_commercial_credit",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
+        "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-commercial-credit-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -12013,6 +12153,7 @@
       "synthetic-building-lease-reviewer",
       "synthetic-carriage-reviewer",
       "synthetic-case-evidence-reviewer",
+      "synthetic-commercial-credit-reviewer",
       "synthetic-construction-contract-reviewer",
       "synthetic-consumer-work-reviewer",
       "synthetic-contractation-reviewer",
@@ -12069,6 +12210,7 @@
       "synthetic-case-supply-1-barter-evidence",
       "synthetic-case-supply-1-building-lease-evidence",
       "synthetic-case-supply-1-carriage-evidence",
+      "synthetic-case-supply-1-commercial-credit-evidence",
       "synthetic-case-supply-1-construction-contract-evidence",
       "synthetic-case-supply-1-consumer-work-evidence",
       "synthetic-case-supply-1-contractation-evidence",
@@ -12234,6 +12376,8 @@
       "synthetic-ru-gk812-818-loan-challenge-security-purpose-and-novation-v1",
       "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
       "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1",
+      "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
+      "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -18407,6 +18551,143 @@
         "Достаточность обстоятельств, свидетельствующих о невозврате, применимость закона о потребительском кредите и основания досрочного возврата оцениваются экспертом и судом (статьи 819, 821 и 821.1 ГК РФ)."
       ]
     },
+    "commercial_credit_evidence_mapping": {
+      "evidence_id": "reviewed-commercial-credit-evidence-supply-1-v0",
+      "schema_version": "contracts.commercial-credit-evidence.v0",
+      "mapping_version": "contracts-reviewed-commercial-credit-to-facts-v0",
+      "facts": {
+        "goods_credit_obligation_to_provide_fungibles": false,
+        "goods_credit_items_not_provided": false,
+        "quantity_assortment_or_completeness_terms_breached": false,
+        "quality_packaging_or_container_terms_breached": false,
+        "loan_rules_application_excluded_without_ground": false,
+        "commercial_credit_granted_in_main_contract": false,
+        "commercial_credit_terms_not_agreed_in_main_contract": false,
+        "commercial_credit_interest_terms_breached": false,
+        "chapter_rules_applied_contrary_to_main_contract": false,
+        "statutory_prohibition_on_commercial_credit": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
+        "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "chapter_rules_applied_contrary_to_main_contract",
+          "assertion_id": "commercial-credit-evidence-chapter_rules_applied_contrary_to_main_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "commercial_credit_granted_in_main_contract",
+          "assertion_id": "commercial-credit-evidence-commercial_credit_granted_in_main_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "commercial_credit_interest_terms_breached",
+          "assertion_id": "commercial-credit-evidence-commercial_credit_interest_terms_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "commercial_credit_terms_not_agreed_in_main_contract",
+          "assertion_id": "commercial-credit-evidence-commercial_credit_terms_not_agreed_in_main_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_credit_items_not_provided",
+          "assertion_id": "commercial-credit-evidence-goods_credit_items_not_provided",
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_credit_obligation_to_provide_fungibles",
+          "assertion_id": "commercial-credit-evidence-goods_credit_obligation_to_provide_fungibles",
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "loan_rules_application_excluded_without_ground",
+          "assertion_id": "commercial-credit-evidence-loan_rules_application_excluded_without_ground",
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "quality_packaging_or_container_terms_breached",
+          "assertion_id": "commercial-credit-evidence-quality_packaging_or_container_terms_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "quantity_assortment_or_completeness_terms_breached",
+          "assertion_id": "commercial-credit-evidence-quantity_assortment_or_completeness_terms_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        },
+        {
+          "fact_name": "statutory_prohibition_on_commercial_credit",
+          "assertion_id": "commercial-credit-evidence-statutory_prohibition_on_commercial_credit",
+          "source_refs": [
+            "synthetic-case-supply-1-commercial-credit-evidence"
+          ]
+        }
+      ]
+    },
+    "commercial_credit_constraint_set": {
+      "id": "commercial-credit-constraint-set:reviewed-commercial-credit-evidence-supply-1-v0",
+      "model_version": "contracts-commercial-credit-articles-822-823-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
+        "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1"
+      ],
+      "expressions": [
+        "goods_credit_qualified == goods_credit_obligation_to_provide_fungibles",
+        "goods_credit_delivery_breached == goods_credit_qualified AND goods_credit_items_not_provided",
+        "quantity_terms_breached == goods_credit_qualified AND quantity_assortment_or_completeness_terms_breached",
+        "quality_terms_breached == goods_credit_qualified AND quality_packaging_or_container_terms_breached",
+        "loan_rules_exclusion_unjustified == goods_credit_qualified AND loan_rules_application_excluded_without_ground",
+        "commercial_credit_qualified == commercial_credit_granted_in_main_contract",
+        "commercial_credit_terms_missing == commercial_credit_qualified AND commercial_credit_terms_not_agreed_in_main_contract",
+        "commercial_credit_interest_breached == commercial_credit_qualified AND commercial_credit_interest_terms_breached",
+        "chapter_rules_application_conflict == commercial_credit_qualified AND chapter_rules_applied_contrary_to_main_contract",
+        "statutory_prohibition_applies == commercial_credit_qualified AND statutory_prohibition_on_commercial_credit",
+        "requires_human_commercial_credit_assessment == goods_credit_delivery_breached OR quantity_terms_breached OR quality_terms_breached OR loan_rules_exclusion_unjustified OR commercial_credit_terms_missing OR commercial_credit_interest_breached OR chapter_rules_application_conflict OR statutory_prohibition_applies"
+      ]
+    },
+    "commercial_credit_evaluation": {
+      "constraint_set_id": "commercial-credit-constraint-set:reviewed-commercial-credit-evidence-supply-1-v0",
+      "satisfiable": true,
+      "goods_credit_qualified": false,
+      "goods_credit_delivery_breached": false,
+      "quantity_terms_breached": false,
+      "quality_terms_breached": false,
+      "loan_rules_exclusion_unjustified": false,
+      "commercial_credit_qualified": false,
+      "commercial_credit_terms_missing": false,
+      "commercial_credit_interest_breached": false,
+      "chapter_rules_application_conflict": false,
+      "statutory_prohibition_applies": false,
+      "requires_human_commercial_credit_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор товарного кредита.",
+        "Предоставление коммерческого кредита основным договором не установлено."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о товарном и коммерческом кредите и не заменяет судебную оценку.",
+        "Существо обязательства, применимость правил основного договора и размер процентов за пользование кредитом оцениваются экспертом и судом (статьи 822 и 823 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -23778,7 +24059,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.61.0",
+      "institutional_package_version": "contracts-ru-v0@0.62.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -25778,6 +26059,7 @@
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-building-lease-evidence",
           "synthetic-case-supply-1-carriage-evidence",
+          "synthetic-case-supply-1-commercial-credit-evidence",
           "synthetic-case-supply-1-construction-contract-evidence",
           "synthetic-case-supply-1-consumer-work-evidence",
           "synthetic-case-supply-1-contractation-evidence",
@@ -25943,6 +26225,8 @@
           "synthetic-ru-gk812-818-loan-challenge-security-purpose-and-novation-v1",
           "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
           "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1",
+          "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
+          "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -26954,6 +27238,7 @@
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-building-lease-evidence",
           "synthetic-case-supply-1-carriage-evidence",
+          "synthetic-case-supply-1-commercial-credit-evidence",
           "synthetic-case-supply-1-construction-contract-evidence",
           "synthetic-case-supply-1-consumer-work-evidence",
           "synthetic-case-supply-1-contractation-evidence",
@@ -27119,6 +27404,8 @@
           "synthetic-ru-gk812-818-loan-challenge-security-purpose-and-novation-v1",
           "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
           "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1",
+          "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
+          "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -28130,6 +28417,7 @@
           "synthetic-case-supply-1-barter-evidence",
           "synthetic-case-supply-1-building-lease-evidence",
           "synthetic-case-supply-1-carriage-evidence",
+          "synthetic-case-supply-1-commercial-credit-evidence",
           "synthetic-case-supply-1-construction-contract-evidence",
           "synthetic-case-supply-1-consumer-work-evidence",
           "synthetic-case-supply-1-contractation-evidence",
@@ -28295,6 +28583,8 @@
           "synthetic-ru-gk812-818-loan-challenge-security-purpose-and-novation-v1",
           "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
           "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1",
+          "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
+          "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -28384,7 +28674,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.61.0",
+      "institutional_package_version": "contracts-ru-v0@0.62.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -30138,6 +30428,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель товарного кредита и применения к нему правил о купле-продаже по статье 822 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "goods_credit_concept_and_sale_rules_article_822",
+          "legal_reference": "ГК РФ, статья 822",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель коммерческого кредита, его форм и применимых правил по статье 823 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "commercial_credit_forms_and_applicable_rules_article_823",
+          "legal_reference": "ГК РФ, статья 823",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-commercial-credit-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о товарном и коммерческом кредите",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "commercial_credit_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -30749,6 +31077,7 @@
             "synthetic-building-lease-reviewer",
             "synthetic-carriage-reviewer",
             "synthetic-case-evidence-reviewer",
+            "synthetic-commercial-credit-reviewer",
             "synthetic-construction-contract-reviewer",
             "synthetic-consumer-work-reviewer",
             "synthetic-contractation-reviewer",

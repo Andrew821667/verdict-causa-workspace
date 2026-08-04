@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.commercial_credit import (
+    CommercialCreditEvidenceAssertion,
+    CommercialCreditEvidencePredicate,
+    ReviewedCommercialCreditEvidence,
+)
 from causa.institutional.contracts.credit import (
     CreditEvidenceAssertion,
     CreditEvidencePredicate,
@@ -420,6 +425,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk819-820-credit-concept-parties-and-form-v1",
     "synthetic-ru-gk821-821-1-credit-refusal-and-early-repayment-v1",
     "synthetic-case-supply-1-credit-evidence",
+    "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
+    "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1",
+    "synthetic-case-supply-1-commercial-credit-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2218,6 +2226,63 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-credit-reviewer",
+        ),
+        commercial_credit_evidence=ReviewedCommercialCreditEvidence(
+            id="reviewed-commercial-credit-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                CommercialCreditEvidenceAssertion(
+                    id=f"commercial-credit-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-commercial-credit-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        CommercialCreditEvidencePredicate.GOODS_CREDIT_OBLIGATION_TO_PROVIDE_FUNGIBLES,
+                        False,
+                    ),
+                    (CommercialCreditEvidencePredicate.GOODS_CREDIT_ITEMS_NOT_PROVIDED, False),
+                    (
+                        CommercialCreditEvidencePredicate.QUANTITY_ASSORTMENT_OR_COMPLETENESS_TERMS_BREACHED,
+                        False,
+                    ),
+                    (
+                        CommercialCreditEvidencePredicate.QUALITY_PACKAGING_OR_CONTAINER_TERMS_BREACHED,
+                        False,
+                    ),
+                    (
+                        CommercialCreditEvidencePredicate.LOAN_RULES_APPLICATION_EXCLUDED_WITHOUT_GROUND,
+                        False,
+                    ),
+                    (
+                        CommercialCreditEvidencePredicate.COMMERCIAL_CREDIT_GRANTED_IN_MAIN_CONTRACT,
+                        False,
+                    ),
+                    (
+                        CommercialCreditEvidencePredicate.COMMERCIAL_CREDIT_TERMS_NOT_AGREED_IN_MAIN_CONTRACT,
+                        False,
+                    ),
+                    (
+                        CommercialCreditEvidencePredicate.COMMERCIAL_CREDIT_INTEREST_TERMS_BREACHED,
+                        False,
+                    ),
+                    (
+                        CommercialCreditEvidencePredicate.CHAPTER_RULES_APPLIED_CONTRARY_TO_MAIN_CONTRACT,
+                        False,
+                    ),
+                    (
+                        CommercialCreditEvidencePredicate.STATUTORY_PROHIBITION_ON_COMMERCIAL_CREDIT,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
+                "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-commercial-credit-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

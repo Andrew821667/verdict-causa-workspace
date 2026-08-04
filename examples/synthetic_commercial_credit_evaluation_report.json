@@ -1,0 +1,476 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о товарном и коммерческом кредите по статьям 822–823 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-commercial-credit-evidence-supply-1-v0",
+    "schema_version": "contracts.commercial-credit-evidence.v0",
+    "mapping_version": "contracts-reviewed-commercial-credit-to-facts-v0",
+    "facts": {
+      "goods_credit_obligation_to_provide_fungibles": false,
+      "goods_credit_items_not_provided": false,
+      "quantity_assortment_or_completeness_terms_breached": false,
+      "quality_packaging_or_container_terms_breached": false,
+      "loan_rules_application_excluded_without_ground": false,
+      "commercial_credit_granted_in_main_contract": false,
+      "commercial_credit_terms_not_agreed_in_main_contract": false,
+      "commercial_credit_interest_terms_breached": false,
+      "chapter_rules_applied_contrary_to_main_contract": false,
+      "statutory_prohibition_on_commercial_credit": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
+      "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "chapter_rules_applied_contrary_to_main_contract",
+        "assertion_id": "commercial-credit-evidence-chapter_rules_applied_contrary_to_main_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-commercial-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "commercial_credit_granted_in_main_contract",
+        "assertion_id": "commercial-credit-evidence-commercial_credit_granted_in_main_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-commercial-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "commercial_credit_interest_terms_breached",
+        "assertion_id": "commercial-credit-evidence-commercial_credit_interest_terms_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-commercial-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "commercial_credit_terms_not_agreed_in_main_contract",
+        "assertion_id": "commercial-credit-evidence-commercial_credit_terms_not_agreed_in_main_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-commercial-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_credit_items_not_provided",
+        "assertion_id": "commercial-credit-evidence-goods_credit_items_not_provided",
+        "source_refs": [
+          "synthetic-case-supply-1-commercial-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_credit_obligation_to_provide_fungibles",
+        "assertion_id": "commercial-credit-evidence-goods_credit_obligation_to_provide_fungibles",
+        "source_refs": [
+          "synthetic-case-supply-1-commercial-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "loan_rules_application_excluded_without_ground",
+        "assertion_id": "commercial-credit-evidence-loan_rules_application_excluded_without_ground",
+        "source_refs": [
+          "synthetic-case-supply-1-commercial-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "quality_packaging_or_container_terms_breached",
+        "assertion_id": "commercial-credit-evidence-quality_packaging_or_container_terms_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-commercial-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "quantity_assortment_or_completeness_terms_breached",
+        "assertion_id": "commercial-credit-evidence-quantity_assortment_or_completeness_terms_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-commercial-credit-evidence"
+        ]
+      },
+      {
+        "fact_name": "statutory_prohibition_on_commercial_credit",
+        "assertion_id": "commercial-credit-evidence-statutory_prohibition_on_commercial_credit",
+        "source_refs": [
+          "synthetic-case-supply-1-commercial-credit-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "commercial-credit-constraint-set:reviewed-commercial-credit-evidence-supply-1-v0",
+    "model_version": "contracts-commercial-credit-articles-822-823-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk822-goods-credit-concept-and-sale-rules-v1",
+      "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1"
+    ],
+    "expressions": [
+      "goods_credit_qualified == goods_credit_obligation_to_provide_fungibles",
+      "goods_credit_delivery_breached == goods_credit_qualified AND goods_credit_items_not_provided",
+      "quantity_terms_breached == goods_credit_qualified AND quantity_assortment_or_completeness_terms_breached",
+      "quality_terms_breached == goods_credit_qualified AND quality_packaging_or_container_terms_breached",
+      "loan_rules_exclusion_unjustified == goods_credit_qualified AND loan_rules_application_excluded_without_ground",
+      "commercial_credit_qualified == commercial_credit_granted_in_main_contract",
+      "commercial_credit_terms_missing == commercial_credit_qualified AND commercial_credit_terms_not_agreed_in_main_contract",
+      "commercial_credit_interest_breached == commercial_credit_qualified AND commercial_credit_interest_terms_breached",
+      "chapter_rules_application_conflict == commercial_credit_qualified AND chapter_rules_applied_contrary_to_main_contract",
+      "statutory_prohibition_applies == commercial_credit_qualified AND statutory_prohibition_on_commercial_credit",
+      "requires_human_commercial_credit_assessment == goods_credit_delivery_breached OR quantity_terms_breached OR quality_terms_breached OR loan_rules_exclusion_unjustified OR commercial_credit_terms_missing OR commercial_credit_interest_breached OR chapter_rules_application_conflict OR statutory_prohibition_applies"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "commercial-credit-constraint-set:reviewed-commercial-credit-evidence-supply-1-v0",
+    "satisfiable": true,
+    "goods_credit_qualified": false,
+    "goods_credit_delivery_breached": false,
+    "quantity_terms_breached": false,
+    "quality_terms_breached": false,
+    "loan_rules_exclusion_unjustified": false,
+    "commercial_credit_qualified": false,
+    "commercial_credit_terms_missing": false,
+    "commercial_credit_interest_breached": false,
+    "chapter_rules_application_conflict": false,
+    "statutory_prohibition_applies": false,
+    "requires_human_commercial_credit_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор товарного кредита.",
+      "Предоставление коммерческого кредита основным договором не установлено."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о товарном и коммерческом кредите и не заменяет судебную оценку.",
+      "Существо обязательства, применимость правил основного договора и размер процентов за пользование кредитом оцениваются экспертом и судом (статьи 822 и 823 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "commercial-credit-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "commercial-credit-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "goods_credit_qualified": false,
+          "commercial_credit_qualified": false,
+          "requires_human_commercial_credit_assessment": false
+        },
+        "observed_outcomes": {
+          "goods_credit_qualified": false,
+          "commercial_credit_qualified": false,
+          "requires_human_commercial_credit_assessment": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор товарного кредита.",
+          "Предоставление коммерческого кредита основным договором не установлено."
+        ]
+      },
+      {
+        "task_id": "commercial-credit-bench-goods-credit-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "goods_credit_qualified": true,
+          "requires_human_commercial_credit_assessment": false
+        },
+        "observed_outcomes": {
+          "goods_credit_qualified": true,
+          "requires_human_commercial_credit_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как товарный кредит: сторона обязуется предоставить другой стороне вещи, определённые родовыми признаками, и к такому договору применяются правила о займе, если иное не предусмотрено договором и не вытекает из существа обязательства (статья 822 ГК РФ).",
+          "Предоставление коммерческого кредита основным договором не установлено."
+        ]
+      },
+      {
+        "task_id": "commercial-credit-bench-goods-not-provided",
+        "passed": true,
+        "expected_outcomes": {
+          "goods_credit_delivery_breached": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "goods_credit_delivery_breached": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как товарный кредит: сторона обязуется предоставить другой стороне вещи, определённые родовыми признаками, и к такому договору применяются правила о займе, если иное не предусмотрено договором и не вытекает из существа обязательства (статья 822 ГК РФ).",
+          "Предоставление коммерческого кредита основным договором не установлено.",
+          "Вещи, определённые родовыми признаками, по договору товарного кредита не предоставлены (статья 822 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "commercial-credit-bench-quantity",
+        "passed": true,
+        "expected_outcomes": {
+          "quantity_terms_breached": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "quantity_terms_breached": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как товарный кредит: сторона обязуется предоставить другой стороне вещи, определённые родовыми признаками, и к такому договору применяются правила о займе, если иное не предусмотрено договором и не вытекает из существа обязательства (статья 822 ГК РФ).",
+          "Предоставление коммерческого кредита основным договором не установлено.",
+          "Условия о количестве, ассортименте и комплектности предоставляемых вещей исполняются по правилам о купле-продаже товаров, если иное не предусмотрено договором (статья 822 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "commercial-credit-bench-quality",
+        "passed": true,
+        "expected_outcomes": {
+          "quality_terms_breached": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "quality_terms_breached": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как товарный кредит: сторона обязуется предоставить другой стороне вещи, определённые родовыми признаками, и к такому договору применяются правила о займе, если иное не предусмотрено договором и не вытекает из существа обязательства (статья 822 ГК РФ).",
+          "Предоставление коммерческого кредита основным договором не установлено.",
+          "Условия о качестве, таре и упаковке предоставляемых вещей исполняются по правилам о купле-продаже товаров, если иное не предусмотрено договором (статья 822 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "commercial-credit-bench-loan-rules",
+        "passed": true,
+        "expected_outcomes": {
+          "loan_rules_exclusion_unjustified": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "loan_rules_exclusion_unjustified": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как товарный кредит: сторона обязуется предоставить другой стороне вещи, определённые родовыми признаками, и к такому договору применяются правила о займе, если иное не предусмотрено договором и не вытекает из существа обязательства (статья 822 ГК РФ).",
+          "Предоставление коммерческого кредита основным договором не установлено.",
+          "Правила о займе применяются к договору товарного кредита, если иное не предусмотрено договором и не вытекает из существа обязательства (статья 822 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "commercial-credit-bench-commercial-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "commercial_credit_qualified": true,
+          "requires_human_commercial_credit_assessment": false
+        },
+        "observed_outcomes": {
+          "commercial_credit_qualified": true,
+          "requires_human_commercial_credit_assessment": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор товарного кредита.",
+          "Основным договором предусмотрено предоставление коммерческого кредита в виде аванса, предварительной оплаты, отсрочки или рассрочки оплаты товаров, работ или услуг (статья 823 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "commercial-credit-bench-terms-missing",
+        "passed": true,
+        "expected_outcomes": {
+          "commercial_credit_terms_missing": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "commercial_credit_terms_missing": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор товарного кредита.",
+          "Основным договором предусмотрено предоставление коммерческого кредита в виде аванса, предварительной оплаты, отсрочки или рассрочки оплаты товаров, работ или услуг (статья 823 ГК РФ).",
+          "Условие о предоставлении коммерческого кредита должно быть согласовано в договоре, исполнение которого связано с передачей денежных сумм или вещей, определяемых родовыми признаками (статья 823 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "commercial-credit-bench-interest",
+        "passed": true,
+        "expected_outcomes": {
+          "commercial_credit_interest_breached": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "commercial_credit_interest_breached": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор товарного кредита.",
+          "Основным договором предусмотрено предоставление коммерческого кредита в виде аванса, предварительной оплаты, отсрочки или рассрочки оплаты товаров, работ или услуг (статья 823 ГК РФ).",
+          "К коммерческому кредиту применяются правила главы о займе и кредите, включая правила о процентах за пользование, если иное не предусмотрено правилами о договоре, из которого возникло обязательство (статьи 809 и 823 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "commercial-credit-bench-statutory-prohibition",
+        "passed": true,
+        "expected_outcomes": {
+          "statutory_prohibition_applies": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "observed_outcomes": {
+          "statutory_prohibition_applies": true,
+          "requires_human_commercial_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор товарного кредита.",
+          "Основным договором предусмотрено предоставление коммерческого кредита в виде аванса, предварительной оплаты, отсрочки или рассрочки оплаты товаров, работ или услуг (статья 823 ГК РФ).",
+          "Предоставление коммерческого кредита допускается, если иное не установлено законом; установленный законом запрет исключает такое условие (статья 823 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "commercial-credit-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "commercial-credit-red-qualify-goods-without-obligation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "goods_credit_qualified": true
+        },
+        "observed_outcomes": {
+          "goods_credit_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор товарного кредита.",
+          "Основным договором предусмотрено предоставление коммерческого кредита в виде аванса, предварительной оплаты, отсрочки или рассрочки оплаты товаров, работ или услуг (статья 823 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "commercial-credit-red-qualify-commercial-without-grant",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "commercial_credit_qualified": true
+        },
+        "observed_outcomes": {
+          "commercial_credit_qualified": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как товарный кредит: сторона обязуется предоставить другой стороне вещи, определённые родовыми признаками, и к такому договору применяются правила о займе, если иное не предусмотрено договором и не вытекает из существа обязательства (статья 822 ГК РФ).",
+          "Предоставление коммерческого кредита основным договором не установлено."
+        ]
+      },
+      {
+        "case_id": "commercial-credit-red-ignore-goods-delivery",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "goods_credit_delivery_breached": false
+        },
+        "observed_outcomes": {
+          "goods_credit_delivery_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как товарный кредит: сторона обязуется предоставить другой стороне вещи, определённые родовыми признаками, и к такому договору применяются правила о займе, если иное не предусмотрено договором и не вытекает из существа обязательства (статья 822 ГК РФ).",
+          "Предоставление коммерческого кредита основным договором не установлено.",
+          "Вещи, определённые родовыми признаками, по договору товарного кредита не предоставлены (статья 822 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "commercial-credit-red-ignore-quantity",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "quantity_terms_breached": false
+        },
+        "observed_outcomes": {
+          "quantity_terms_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как товарный кредит: сторона обязуется предоставить другой стороне вещи, определённые родовыми признаками, и к такому договору применяются правила о займе, если иное не предусмотрено договором и не вытекает из существа обязательства (статья 822 ГК РФ).",
+          "Предоставление коммерческого кредита основным договором не установлено.",
+          "Условия о количестве, ассортименте и комплектности предоставляемых вещей исполняются по правилам о купле-продаже товаров, если иное не предусмотрено договором (статья 822 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "commercial-credit-red-ignore-quality",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "quality_terms_breached": false
+        },
+        "observed_outcomes": {
+          "quality_terms_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как товарный кредит: сторона обязуется предоставить другой стороне вещи, определённые родовыми признаками, и к такому договору применяются правила о займе, если иное не предусмотрено договором и не вытекает из существа обязательства (статья 822 ГК РФ).",
+          "Предоставление коммерческого кредита основным договором не установлено.",
+          "Условия о качестве, таре и упаковке предоставляемых вещей исполняются по правилам о купле-продаже товаров, если иное не предусмотрено договором (статья 822 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "commercial-credit-red-ignore-loan-rules",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "loan_rules_exclusion_unjustified": false
+        },
+        "observed_outcomes": {
+          "loan_rules_exclusion_unjustified": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как товарный кредит: сторона обязуется предоставить другой стороне вещи, определённые родовыми признаками, и к такому договору применяются правила о займе, если иное не предусмотрено договором и не вытекает из существа обязательства (статья 822 ГК РФ).",
+          "Предоставление коммерческого кредита основным договором не установлено.",
+          "Правила о займе применяются к договору товарного кредита, если иное не предусмотрено договором и не вытекает из существа обязательства (статья 822 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "commercial-credit-red-terms-without-grant",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "commercial_credit_terms_missing": true
+        },
+        "observed_outcomes": {
+          "commercial_credit_terms_missing": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как товарный кредит: сторона обязуется предоставить другой стороне вещи, определённые родовыми признаками, и к такому договору применяются правила о займе, если иное не предусмотрено договором и не вытекает из существа обязательства (статья 822 ГК РФ).",
+          "Предоставление коммерческого кредита основным договором не установлено."
+        ]
+      },
+      {
+        "case_id": "commercial-credit-red-ignore-interest",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "commercial_credit_interest_breached": false
+        },
+        "observed_outcomes": {
+          "commercial_credit_interest_breached": true
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор товарного кредита.",
+          "Основным договором предусмотрено предоставление коммерческого кредита в виде аванса, предварительной оплаты, отсрочки или рассрочки оплаты товаров, работ или услуг (статья 823 ГК РФ).",
+          "К коммерческому кредиту применяются правила главы о займе и кредите, включая правила о процентах за пользование, если иное не предусмотрено правилами о договоре, из которого возникло обязательство (статьи 809 и 823 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "commercial-credit-red-ignore-application-conflict",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "chapter_rules_application_conflict": false
+        },
+        "observed_outcomes": {
+          "chapter_rules_application_conflict": true
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор товарного кредита.",
+          "Основным договором предусмотрено предоставление коммерческого кредита в виде аванса, предварительной оплаты, отсрочки или рассрочки оплаты товаров, работ или услуг (статья 823 ГК РФ).",
+          "Правила главы о займе и кредите применяются к коммерческому кредиту лишь постольку, поскольку это не противоречит правилам о договоре, из которого возникло обязательство, и существу такого обязательства (статья 823 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "commercial-credit-red-skip-human-on-prohibition",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_commercial_credit_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_commercial_credit_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор товарного кредита.",
+          "Основным договором предусмотрено предоставление коммерческого кредита в виде аванса, предварительной оплаты, отсрочки или рассрочки оплаты товаров, работ или услуг (статья 823 ГК РФ).",
+          "Предоставление коммерческого кредита допускается, если иное не установлено законом; установленный законом запрет исключает такое условие (статья 823 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

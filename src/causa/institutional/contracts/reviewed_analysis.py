@@ -394,6 +394,16 @@ from causa.institutional.contracts.credit import (
     evaluate_credit_constraints,
     map_reviewed_credit_evidence,
 )
+from causa.institutional.contracts.commercial_credit import (
+    COMMERCIAL_CREDIT_EVIDENCE_SCHEMA_VERSION,
+    CommercialCreditConstraintSet,
+    CommercialCreditEvaluation,
+    CommercialCreditEvidenceMappingResult,
+    ReviewedCommercialCreditEvidence,
+    build_commercial_credit_constraint_set,
+    evaluate_commercial_credit_constraints,
+    map_reviewed_commercial_credit_evidence,
+)
 from causa.institutional.contracts.gift import (
     GIFT_EVIDENCE_SCHEMA_VERSION,
     GiftConstraintSet,
@@ -691,6 +701,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     forwarding_evidence: ReviewedForwardingEvidence
     loan_evidence: ReviewedLoanEvidence
     credit_evidence: ReviewedCreditEvidence
+    commercial_credit_evidence: ReviewedCommercialCreditEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -862,6 +873,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     credit_evidence_mapping: CreditEvidenceMappingResult
     credit_constraint_set: CreditConstraintSet
     credit_evaluation: CreditEvaluation
+    commercial_credit_evidence_mapping: CommercialCreditEvidenceMappingResult
+    commercial_credit_constraint_set: CommercialCreditConstraintSet
+    commercial_credit_evaluation: CommercialCreditEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -1377,6 +1391,19 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.credit_evaluation != expected_credit_evaluation:
             raise ValueError("Credit evaluation does not replay from reviewed evidence.")
+        expected_commercial_credit_set = build_commercial_credit_constraint_set(
+            self.commercial_credit_evidence_mapping
+        )
+        if self.commercial_credit_constraint_set != expected_commercial_credit_set:
+            raise ValueError(
+                "Commercial-credit constraint set does not replay from reviewed evidence."
+            )
+        expected_commercial_credit_evaluation = evaluate_commercial_credit_constraints(
+            expected_commercial_credit_set,
+            self.commercial_credit_evidence_mapping.facts,
+        )
+        if self.commercial_credit_evaluation != expected_commercial_credit_evaluation:
+            raise ValueError("Commercial-credit evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -1785,6 +1812,8 @@ def _validate_request_integrity(
         raise ValueError("Loan evidence case_id does not match the analysis request.")
     if request.credit_evidence.case_id != request.case_id:
         raise ValueError("Credit evidence case_id does not match the analysis request.")
+    if request.commercial_credit_evidence.case_id != request.case_id:
+        raise ValueError("Commercial-credit evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -1930,6 +1959,11 @@ def _validate_request_integrity(
         raise ValueError("Loan evidence uses an unsupported schema version.")
     if request.credit_evidence.schema_version != CREDIT_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Credit evidence uses an unsupported schema version.")
+    if (
+        request.commercial_credit_evidence.schema_version
+        != COMMERCIAL_CREDIT_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Commercial-credit evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -1981,6 +2015,7 @@ def _validate_request_integrity(
         *request.forwarding_evidence.legal_source_refs,
         *request.loan_evidence.legal_source_refs,
         *request.credit_evidence.legal_source_refs,
+        *request.commercial_credit_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -2079,6 +2114,8 @@ def _validate_request_integrity(
     for assertion in request.loan_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.credit_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.commercial_credit_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -2595,6 +2632,17 @@ def _validate_request_integrity(
             "Credit legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_credit_legal_sources))
         )
+    invalid_commercial_credit_legal_sources = [
+        source_id
+        for source_id in request.commercial_credit_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_commercial_credit_legal_sources:
+        raise ValueError(
+            "Commercial-credit legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_commercial_credit_legal_sources))
+        )
     invalid_invalidity_legal_sources = [
         source_id
         for source_id in request.invalidity_evidence.legal_source_refs
@@ -2996,6 +3044,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Credit evidence",
         review_status=request.credit_evidence.review_status,
         reviewer_id=request.credit_evidence.reviewer_id,
+    )
+    commercial_credit_reviewer_id = _require_reviewed(
+        artifact_name="Commercial-credit evidence",
+        review_status=request.commercial_credit_evidence.review_status,
+        reviewer_id=request.commercial_credit_evidence.reviewer_id,
     )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
@@ -3421,6 +3474,16 @@ def run_reviewed_contract_analysis(
         credit_constraint_set,
         credit_evidence_mapping.facts,
     )
+    commercial_credit_evidence_mapping = map_reviewed_commercial_credit_evidence(
+        request.commercial_credit_evidence
+    )
+    commercial_credit_constraint_set = build_commercial_credit_constraint_set(
+        commercial_credit_evidence_mapping
+    )
+    commercial_credit_evaluation = evaluate_commercial_credit_constraints(
+        commercial_credit_constraint_set,
+        commercial_credit_evidence_mapping.facts,
+    )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
     invalidity_evaluation = evaluate_invalidity_constraints(
@@ -3688,6 +3751,7 @@ def run_reviewed_contract_analysis(
         or forwarding_evaluation.requires_human_forwarding_assessment
         or loan_evaluation.requires_human_loan_assessment
         or credit_evaluation.requires_human_credit_assessment
+        or commercial_credit_evaluation.requires_human_commercial_credit_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -3751,6 +3815,7 @@ def run_reviewed_contract_analysis(
                 forwarding_reviewer_id,
                 loan_reviewer_id,
                 credit_reviewer_id,
+                commercial_credit_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -3898,6 +3963,9 @@ def run_reviewed_contract_analysis(
         credit_evidence_mapping=credit_evidence_mapping,
         credit_constraint_set=credit_constraint_set,
         credit_evaluation=credit_evaluation,
+        commercial_credit_evidence_mapping=commercial_credit_evidence_mapping,
+        commercial_credit_constraint_set=commercial_credit_constraint_set,
+        commercial_credit_evaluation=commercial_credit_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

@@ -1176,6 +1176,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.61.0",
+        to_version="0.62.0",
+        reasons=[
+            "Reviewed inputs now require a separate commercial-credit evidence contract.",
+            "Analysis and Russian translation distinguish goods-credit qualification, delivery of the fungibles, quantity and quality terms, application of the loan rules, commercial-credit qualification, agreed terms, interest, the limits on applying the chapter, and statutory prohibitions under articles 822 and 823.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о товарном и коммерческом кредите.",
+            "Анализ и русское объяснение разделяют квалификацию товарного кредита, предоставление вещей, условия о количестве и качестве, применение правил о займе, квалификацию коммерческого кредита, согласование его условий, проценты, пределы применения правил главы и установленный законом запрет по статьям 822 и 823 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_commercial_credit_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

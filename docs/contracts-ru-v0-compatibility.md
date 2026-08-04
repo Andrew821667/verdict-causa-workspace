@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.62.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью товарного и коммерческого кредита |
 | `0.61.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью кредита |
 | `0.60.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью займа |
 | `0.59.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью транспортной экспедиции |
@@ -69,6 +70,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.61.0` → `0.62.0` соберите отдельно проверенный контракт данных о товарном и коммерческом кредите (`contracts.commercial-credit-evidence.v0`). Не выводите квалификацию товарного кредита, предоставление вещей, условия о количестве и качестве, применение правил о займе, квалификацию коммерческого кредита, согласование его условий, проценты и пределы применения правил главы из прежних результатов о займе, кредите или купле-продаже. Пересоберите артефакты оценки товарного и коммерческого кредита, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.60.0` → `0.61.0` соберите отдельно проверенный контракт данных о кредите (`contracts.credit-evidence.v0`). Не выводите квалификацию кредита, статус кредитора, условия о процентах, режим потребительского кредита, письменную форму, отказ кредитора и заёмщика, контроль за целевым кредитом и требование досрочного возврата из прежних результатов о займе. Пересоберите артефакты оценки кредита, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
