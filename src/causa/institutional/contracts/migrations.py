@@ -1138,6 +1138,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.59.0",
+        to_version="0.60.0",
+        reasons=[
+            "Reviewed inputs now require a separate loan evidence contract.",
+            "Analysis and Russian translation distinguish qualification, written form, interest rules, usurious interest, the repayment duty, late-payment interest, the unfunded-loan challenge, loss of security, targeted-loan control, and novation into a loan under articles 807 through 818.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о займе.",
+            "Анализ и русское объяснение разделяют квалификацию займа, письменную форму, правила о процентах, ростовщические проценты, обязанность возврата, проценты за просрочку, оспаривание по безденежности, утрату обеспечения, контроль за целевым займом и новацию долга в заёмное обязательство по статьям 807–818 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_loan_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

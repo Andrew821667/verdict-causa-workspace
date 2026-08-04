@@ -62,6 +62,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "evaluate-paid-services",
         "evaluate-carriage",
         "evaluate-forwarding",
+        "evaluate-loan",
         "evaluate-transaction-invalidity",
         "evaluate-obligation-constraints",
         "evaluate-performance-remedies",

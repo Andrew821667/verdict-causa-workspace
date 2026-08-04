@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.60.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed loan evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 807 through 818.",
+            "Qualification, written form, interest rules, usurious interest, the repayment duty, late-payment interest, the unfunded-loan challenge, loss of security, targeted-loan control, and novation into a loan remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о займе обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 807–818 ГК РФ.",
+            "Квалификация займа, письменная форма, правила о процентах, ростовщические проценты, обязанность возврата, проценты за просрочку, оспаривание по безденежности, утрата обеспечения, контроль за целевым займом и новация долга в заёмное обязательство разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.59.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

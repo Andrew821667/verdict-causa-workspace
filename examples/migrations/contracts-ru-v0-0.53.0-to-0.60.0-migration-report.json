@@ -1,0 +1,153 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.53.0:to-0.60.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.53.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.53.0",
+  "target_package_version": "0.60.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.53.0",
+      "to_version": "0.54.0",
+      "reasons": [
+        "Reviewed inputs now require a separate design-work evidence contract.",
+        "Analysis and Russian translation distinguish qualification, initial data, unauthorised deviation from the assignment, approval with authorities, documentation confidentiality, third-party obstruction, liability for defects, later-discovered defects, customer payment and assistance, and extra-cost compensation under articles 758 through 762."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о проектных и изыскательских работах.",
+        "Анализ и русское объяснение разделяют квалификацию договора, передачу задания и исходных данных, отступление от задания без согласия, согласование документации с органами, запрет передачи документации третьим лицам, право третьих лиц воспрепятствовать работам, ответственность за недостатки, недостатки, выявленные позднее, оплату и содействие заказчика и возмещение дополнительных расходов по статьям 758–762 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_design_work_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.54.0",
+      "to_version": "0.55.0",
+      "reasons": [
+        "Reviewed inputs now require a separate state-work evidence contract.",
+        "Analysis and Russian translation distinguish qualification, the state-contract requirement, the customer's budget-recipient status, the conclusion procedure, scope and cost, schedule, funding, performance security, budget reduction, and compensation for the contractor's losses under articles 763 through 768."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о подрядных работах для государственных нужд.",
+        "Анализ и русское объяснение разделяют квалификацию работ для государственных или муниципальных нужд, требование государственного контракта, статус заказчика как получателя бюджетных средств, порядок заключения контракта, объём и стоимость работ, сроки, финансирование и оплату, обеспечение исполнения обязательств, уменьшение бюджетных средств и возмещение убытков подрядчика по статьям 763–768 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_state_work_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.55.0",
+      "to_version": "0.56.0",
+      "reasons": [
+        "Reviewed inputs now require a separate research-work evidence contract.",
+        "Analysis and Russian translation distinguish qualification, personal performance, confidentiality, result-use rights, third-party rights, the impossibility notice, the customer's duties, impossibility without fault, payment for work done before impossibility, and the performer's liability under articles 769 through 778."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о научно-исследовательских, опытно-конструкторских и технологических работах.",
+        "Анализ и русское объяснение разделяют квалификацию договора, личное проведение исследований, конфиденциальность, права на использование результатов, исключительные права третьих лиц, сообщение о невозможности, обязанности заказчика, невозможность достижения результата без вины исполнителя, оплату работ до выявления невозможности и ответственность исполнителя по статьям 769–778 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_research_work_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.56.0",
+      "to_version": "0.57.0",
+      "reasons": [
+        "Reviewed inputs now require a separate paid-services evidence contract.",
+        "Analysis and Russian translation distinguish qualification, the special-chapter exclusion, personal performance, payment terms, impossibility caused by the customer, impossibility without fault, reimbursement of actual expenses, the customer's withdrawal, the performer's withdrawal, and suspension of communication services under articles 779 through 783.1."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о возмездном оказании услуг.",
+        "Анализ и русское объяснение разделяют квалификацию договора, исключение услуг по договорам отдельных глав, личное исполнение, сроки и порядок оплаты, невозможность исполнения по вине заказчика, невозможность без вины сторон, возмещение фактически понесённых расходов, отказ заказчика, отказ исполнителя и приостановление оказания услуг связи по статьям 779–783.1 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_paid_services_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.57.0",
+      "to_version": "0.58.0",
+      "reasons": [
+        "Reviewed inputs now require a separate carriage evidence contract.",
+        "Analysis and Russian translation distinguish qualification, transport documents, public-carrier refusal, carriage charges, vehicle supply, delivery deadlines, passenger delay, cargo damage, the carrier's liability, and void liability limitations under articles 784 through 800."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о перевозке.",
+        "Анализ и русское объяснение разделяют квалификацию перевозки, транспортные документы, отказ перевозчика общего пользования, провозную плату и удержание груза, подачу транспортных средств, сроки доставки, задержку отправления пассажира, утрату и повреждение груза, ответственность перевозчика и недействительность соглашений об ограничении ответственности по статьям 784–800 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_carriage_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.58.0",
+      "to_version": "0.59.0",
+      "reasons": [
+        "Reviewed inputs now require a separate forwarding evidence contract.",
+        "Analysis and Russian translation distinguish qualification, written form and authority, unperformed services, carrier-linked liability, the client's information duty, the forwarder's notice duty, personal performance, withdrawal notice, compensation of losses, and the statutory penalty under articles 801 through 806."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о транспортной экспедиции.",
+        "Анализ и русское объяснение разделяют квалификацию экспедиции, письменную форму и доверенность, невыполнение услуг, ответственность, связанную с договором перевозки, обязанность клиента предоставить информацию, обязанность экспедитора сообщить о её неполноте, личное исполнение, предупреждение об отказе, возмещение убытков и штраф по статьям 801–806 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_forwarding_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.59.0",
+      "to_version": "0.60.0",
+      "reasons": [
+        "Reviewed inputs now require a separate loan evidence contract.",
+        "Analysis and Russian translation distinguish qualification, written form, interest rules, usurious interest, the repayment duty, late-payment interest, the unfunded-loan challenge, loss of security, targeted-loan control, and novation into a loan under articles 807 through 818."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о займе.",
+        "Анализ и русское объяснение разделяют квалификацию займа, письменную форму, правила о процентах, ростовщические проценты, обязанность возврата, проценты за просрочку, оспаривание по безденежности, утрату обеспечения, контроль за целевым займом и новацию долга в заёмное обязательство по статьям 807–818 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_loan_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

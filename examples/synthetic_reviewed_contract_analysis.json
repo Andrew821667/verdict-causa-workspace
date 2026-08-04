@@ -2066,6 +2066,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk807-811-loan-concept-form-interest-and-repayment-v1",
+      "title": "Синтетическая проверенная модель понятия займа, формы договора, процентов и возврата суммы займа по статьям 807–811 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: заём как передача займодавцем в собственность заёмщику денег или вещей, определённых родовыми признаками, с обязанностью возвратить такую же сумму или равное количество вещей того же рода и качества, письменная форма договора при превышении установленной суммы и при участии юридического лица, правила о размере и уплате процентов и о беспроцентном займе, уменьшение судом чрезмерно обременительных ростовщических процентов, обязанность возвратить сумму займа в срок и начисление процентов за просрочку проверяются раздельно (статьи 807–811 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "loan_concept_form_interest_and_repayment_articles_807_811",
+        "legal_reference": "ГК РФ, статьи 807–811",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk812-818-loan-challenge-security-purpose-and-novation-v1",
+      "title": "Синтетическая проверенная модель оспаривания займа по безденежности, утраты обеспечения, целевого займа и новации долга по статьям 812–818 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: право заёмщика оспаривать договор займа по безденежности, право займодавца потребовать досрочного возврата при утрате обеспечения по обстоятельствам, за которые он не отвечает, использование целевого займа по назначению и обеспечение контроля займодавца и замена долга, возникшего из иного основания, заёмным обязательством с соблюдением требований о новации проверяются раздельно (статьи 812–818 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "loan_challenge_security_purpose_and_novation_articles_812_818",
+        "legal_reference": "ГК РФ, статьи 812–818",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-loan-evidence",
+      "title": "Синтетическая проверенная запись фактов о займе",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату и не является договором займа; передачи денег или вещей, определённых родовыми признаками, с обязанностью возврата нет.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "loan_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -6954,6 +7001,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-forwarding-reviewer"
     },
+    "loan_evidence": {
+      "id": "reviewed-loan-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.loan-evidence.v0",
+      "assertions": [
+        {
+          "id": "loan-evidence-money_or_fungibles_transferred_for_return",
+          "predicate": "money_or_fungibles_transferred_for_return",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "id": "loan-evidence-written_form_required_but_missing",
+          "predicate": "written_form_required_but_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "id": "loan-evidence-interest_terms_not_compliant",
+          "predicate": "interest_terms_not_compliant",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "id": "loan-evidence-usurious_interest_rate",
+          "predicate": "usurious_interest_rate",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "id": "loan-evidence-repayment_deadline_breached",
+          "predicate": "repayment_deadline_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "id": "loan-evidence-late_payment_interest_not_accrued",
+          "predicate": "late_payment_interest_not_accrued",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "id": "loan-evidence-loan_challenged_as_unfunded",
+          "predicate": "loan_challenged_as_unfunded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "id": "loan-evidence-security_lost_or_deteriorated",
+          "predicate": "security_lost_or_deteriorated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "id": "loan-evidence-targeted_loan_misused_or_control_obstructed",
+          "predicate": "targeted_loan_misused_or_control_obstructed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "id": "loan-evidence-novation_into_loan_requirements_breached",
+          "predicate": "novation_into_loan_requirements_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk807-811-loan-concept-form-interest-and-repayment-v1",
+        "synthetic-ru-gk812-818-loan-challenge-security-purpose-and-novation-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-loan-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -11755,6 +11895,7 @@
       "synthetic-leasing-reviewer",
       "synthetic-liability-reviewer",
       "synthetic-limitation-reviewer",
+      "synthetic-loan-reviewer",
       "synthetic-norm-reviewer",
       "synthetic-obligation-dynamics-reviewer",
       "synthetic-option-reviewer",
@@ -11809,6 +11950,7 @@
       "synthetic-case-supply-1-leasing-evidence",
       "synthetic-case-supply-1-liability-evidence",
       "synthetic-case-supply-1-limitation-evidence",
+      "synthetic-case-supply-1-loan-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
       "synthetic-case-supply-1-option-evidence",
       "synthetic-case-supply-1-paid-services-evidence",
@@ -11946,6 +12088,8 @@
       "synthetic-ru-gk793-800-carriage-liability-and-claims-v1",
       "synthetic-ru-gk801-804-forwarding-concept-form-and-information-v1",
       "synthetic-ru-gk805-806-forwarding-third-parties-and-withdrawal-v1",
+      "synthetic-ru-gk807-811-loan-concept-form-interest-and-repayment-v1",
+      "synthetic-ru-gk812-818-loan-challenge-security-purpose-and-novation-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -17847,6 +17991,142 @@
         "Разумность срока предупреждения, состав экспедиционных услуг и размер убытков и затрат оцениваются экспертом и судом (статьи 801, 803 и 806 ГК РФ)."
       ]
     },
+    "loan_evidence_mapping": {
+      "evidence_id": "reviewed-loan-evidence-supply-1-v0",
+      "schema_version": "contracts.loan-evidence.v0",
+      "mapping_version": "contracts-reviewed-loan-to-facts-v0",
+      "facts": {
+        "money_or_fungibles_transferred_for_return": false,
+        "written_form_required_but_missing": false,
+        "interest_terms_not_compliant": false,
+        "usurious_interest_rate": false,
+        "repayment_deadline_breached": false,
+        "late_payment_interest_not_accrued": false,
+        "loan_challenged_as_unfunded": false,
+        "security_lost_or_deteriorated": false,
+        "targeted_loan_misused_or_control_obstructed": false,
+        "novation_into_loan_requirements_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk807-811-loan-concept-form-interest-and-repayment-v1",
+        "synthetic-ru-gk812-818-loan-challenge-security-purpose-and-novation-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "interest_terms_not_compliant",
+          "assertion_id": "loan-evidence-interest_terms_not_compliant",
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "fact_name": "late_payment_interest_not_accrued",
+          "assertion_id": "loan-evidence-late_payment_interest_not_accrued",
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "fact_name": "loan_challenged_as_unfunded",
+          "assertion_id": "loan-evidence-loan_challenged_as_unfunded",
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "fact_name": "money_or_fungibles_transferred_for_return",
+          "assertion_id": "loan-evidence-money_or_fungibles_transferred_for_return",
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "fact_name": "novation_into_loan_requirements_breached",
+          "assertion_id": "loan-evidence-novation_into_loan_requirements_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "fact_name": "repayment_deadline_breached",
+          "assertion_id": "loan-evidence-repayment_deadline_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "fact_name": "security_lost_or_deteriorated",
+          "assertion_id": "loan-evidence-security_lost_or_deteriorated",
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "fact_name": "targeted_loan_misused_or_control_obstructed",
+          "assertion_id": "loan-evidence-targeted_loan_misused_or_control_obstructed",
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "fact_name": "usurious_interest_rate",
+          "assertion_id": "loan-evidence-usurious_interest_rate",
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        },
+        {
+          "fact_name": "written_form_required_but_missing",
+          "assertion_id": "loan-evidence-written_form_required_but_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-loan-evidence"
+          ]
+        }
+      ]
+    },
+    "loan_constraint_set": {
+      "id": "loan-constraint-set:reviewed-loan-evidence-supply-1-v0",
+      "model_version": "contracts-loan-articles-807-818-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk807-811-loan-concept-form-interest-and-repayment-v1",
+        "synthetic-ru-gk812-818-loan-challenge-security-purpose-and-novation-v1"
+      ],
+      "expressions": [
+        "loan_qualified == money_or_fungibles_transferred_for_return",
+        "written_form_requirement_breached == loan_qualified AND written_form_required_but_missing",
+        "interest_rules_breached == loan_qualified AND interest_terms_not_compliant",
+        "usurious_interest_reducible == loan_qualified AND usurious_interest_rate",
+        "repayment_duty_breached == loan_qualified AND repayment_deadline_breached",
+        "late_payment_interest_due == loan_qualified AND repayment_deadline_breached AND late_payment_interest_not_accrued",
+        "unfunded_loan_challenge_available == loan_qualified AND loan_challenged_as_unfunded",
+        "early_repayment_demand_available == loan_qualified AND security_lost_or_deteriorated",
+        "targeted_loan_control_breached == loan_qualified AND targeted_loan_misused_or_control_obstructed",
+        "novation_requirements_breached == loan_qualified AND novation_into_loan_requirements_breached",
+        "requires_human_loan_assessment == written_form_requirement_breached OR interest_rules_breached OR usurious_interest_reducible OR repayment_duty_breached OR unfunded_loan_challenge_available OR early_repayment_demand_available OR targeted_loan_control_breached OR novation_requirements_breached"
+      ]
+    },
+    "loan_evaluation": {
+      "constraint_set_id": "loan-constraint-set:reviewed-loan-evidence-supply-1-v0",
+      "satisfiable": true,
+      "loan_qualified": false,
+      "written_form_requirement_breached": false,
+      "interest_rules_breached": false,
+      "usurious_interest_reducible": false,
+      "repayment_duty_breached": false,
+      "late_payment_interest_due": false,
+      "unfunded_loan_challenge_available": false,
+      "early_repayment_demand_available": false,
+      "targeted_loan_control_breached": false,
+      "novation_requirements_breached": false,
+      "requires_human_loan_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор займа."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о займе и не заменяет судебную оценку.",
+        "Обычно взимаемый размер процентов, обременительность условий и достаточность доказательств безденежности оцениваются экспертом и судом (статьи 809 и 812 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -23218,7 +23498,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.59.0",
+      "institutional_package_version": "contracts-ru-v0@0.60.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

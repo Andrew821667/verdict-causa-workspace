@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.loan import (
+    LoanEvidenceAssertion,
+    LoanEvidencePredicate,
+    ReviewedLoanEvidence,
+)
 from causa.institutional.contracts.forwarding import (
     ForwardingEvidenceAssertion,
     ForwardingEvidencePredicate,
@@ -404,6 +409,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk801-804-forwarding-concept-form-and-information-v1",
     "synthetic-ru-gk805-806-forwarding-third-parties-and-withdrawal-v1",
     "synthetic-case-supply-1-forwarding-evidence",
+    "synthetic-ru-gk807-811-loan-concept-form-interest-and-repayment-v1",
+    "synthetic-ru-gk812-818-loan-challenge-security-purpose-and-novation-v1",
+    "synthetic-case-supply-1-loan-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2136,6 +2144,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-forwarding-reviewer",
+        ),
+        loan_evidence=ReviewedLoanEvidence(
+            id="reviewed-loan-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                LoanEvidenceAssertion(
+                    id=f"loan-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-loan-evidence",),
+                )
+                for predicate, value in (
+                    (LoanEvidencePredicate.MONEY_OR_FUNGIBLES_TRANSFERRED_FOR_RETURN, False),
+                    (LoanEvidencePredicate.WRITTEN_FORM_REQUIRED_BUT_MISSING, False),
+                    (LoanEvidencePredicate.INTEREST_TERMS_NOT_COMPLIANT, False),
+                    (LoanEvidencePredicate.USURIOUS_INTEREST_RATE, False),
+                    (LoanEvidencePredicate.REPAYMENT_DEADLINE_BREACHED, False),
+                    (LoanEvidencePredicate.LATE_PAYMENT_INTEREST_NOT_ACCRUED, False),
+                    (LoanEvidencePredicate.LOAN_CHALLENGED_AS_UNFUNDED, False),
+                    (LoanEvidencePredicate.SECURITY_LOST_OR_DETERIORATED, False),
+                    (LoanEvidencePredicate.TARGETED_LOAN_MISUSED_OR_CONTROL_OBSTRUCTED, False),
+                    (LoanEvidencePredicate.NOVATION_INTO_LOAN_REQUIREMENTS_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk807-811-loan-concept-form-interest-and-repayment-v1",
+                "synthetic-ru-gk812-818-loan-challenge-security-purpose-and-novation-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-loan-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
