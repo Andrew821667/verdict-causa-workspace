@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.64.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed bank-deposit evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 834 to 844.",
+            "Bank-deposit qualification, the right to take deposits, the written form, repayment on demand, interest on early repayment, payment of interest, the ban on unilateral rate reduction, security of repayment, third-party deposits, and the savings book and certificate remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о банковском вкладе обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 834–844 ГК РФ.",
+            "Квалификация банковского вклада, право привлекать вклады, письменная форма, возврат вклада по первому требованию, проценты при досрочном возврате, выплата процентов, запрет одностороннего уменьшения ставки, обеспечение возврата, вклады третьих лиц и в пользу третьих лиц, сберегательная книжка и сертификат разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.63.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

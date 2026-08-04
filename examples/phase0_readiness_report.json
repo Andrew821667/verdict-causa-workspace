@@ -149,6 +149,8 @@
         "docs/contract-commercial-credit-spec.md",
         "src/causa/institutional/contracts/factoring.py",
         "docs/contract-factoring-spec.md",
+        "src/causa/institutional/contracts/bank_deposit.py",
+        "docs/contract-bank-deposit-spec.md",
         "src/causa/institutional/contracts/invalidity.py",
         "docs/contract-invalidity-spec.md",
         "src/causa/institutional/contracts/security.py",
@@ -213,6 +215,7 @@
         "examples/synthetic_credit_evaluation_report.json",
         "examples/synthetic_commercial_credit_evaluation_report.json",
         "examples/synthetic_factoring_evaluation_report.json",
+        "examples/synthetic_bank_deposit_evaluation_report.json",
         "examples/synthetic_invalidity_evaluation_report.json",
         "examples/synthetic_security_evaluation_report.json",
         "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -280,7 +283,7 @@
         "examples/migrations/contracts-ru-v0-0.59.0-to-0.62.0-migration-report.json",
         "examples/migrations/contracts-ru-v0-0.60.0-to-0.62.0-migration-report.json",
         "examples/migrations/contracts-ru-v0-0.61.0-to-0.62.0-migration-report.json",
-        "contracts-ru-v0@0.63.0"
+        "contracts-ru-v0@0.64.0"
       ],
       "remaining_work": [
         "Расширить правила юридической силы и временные правила за пределы поставки.",
@@ -439,6 +442,8 @@
         "commercial-credit-red-team-report-v0",
         "factoring-benchmark-report-v0",
         "factoring-red-team-report-v0",
+        "bank-deposit-benchmark-report-v0",
+        "bank-deposit-red-team-report-v0",
         "invalidity-benchmark-report-v0",
         "invalidity-red-team-report-v0",
         "security-benchmark-report-v0",
@@ -515,6 +520,7 @@
         "examples/synthetic_credit_evaluation_report.json",
         "examples/synthetic_commercial_credit_evaluation_report.json",
         "examples/synthetic_factoring_evaluation_report.json",
+        "examples/synthetic_bank_deposit_evaluation_report.json",
         "examples/synthetic_invalidity_evaluation_report.json",
         "examples/synthetic_security_evaluation_report.json",
         "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -539,7 +545,7 @@
         "src/causa/institutional/contracts/synthetic_pilot.py",
         "docs/pilot-data-admission-spec.md",
         "examples/synthetic_pilot_rehearsal_report.json",
-        "pilot-gate:pilot-intake-5a1e0001:a75eff447e33",
+        "pilot-gate:pilot-intake-5a1e0001:9ea0849ba4d0",
         "contracts-pilot-gate-benchmark-v1",
         "contracts-pilot-gate-red-team-v1",
         "synthetic-privacy-safe-pilot-utility-report-v1"

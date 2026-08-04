@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.bank_deposit import (
+    BankDepositEvidenceAssertion,
+    BankDepositEvidencePredicate,
+    ReviewedBankDepositEvidence,
+)
 from causa.institutional.contracts.factoring import (
     FactoringEvidenceAssertion,
     FactoringEvidencePredicate,
@@ -436,6 +441,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk824-829-factoring-concept-parties-and-assignment-v1",
     "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
     "synthetic-case-supply-1-factoring-evidence",
+    "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
+    "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+    "synthetic-case-supply-1-bank-deposit-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2327,6 +2335,45 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-factoring-reviewer",
+        ),
+        bank_deposit_evidence=ReviewedBankDepositEvidence(
+            id="reviewed-bank-deposit-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                BankDepositEvidenceAssertion(
+                    id=f"bank-deposit-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-bank-deposit-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        BankDepositEvidencePredicate.DEPOSIT_ACCEPTED_FOR_RETURN_WITH_INTEREST,
+                        False,
+                    ),
+                    (BankDepositEvidencePredicate.DEPOSIT_TAKEN_BY_UNAUTHORISED_PERSON, False),
+                    (BankDepositEvidencePredicate.DEPOSIT_WRITTEN_FORM_NOT_OBSERVED, False),
+                    (
+                        BankDepositEvidencePredicate.CITIZEN_DEPOSIT_ON_DEMAND_REPAYMENT_BREACHED,
+                        False,
+                    ),
+                    (BankDepositEvidencePredicate.EARLY_REPAYMENT_INTEREST_MISCALCULATED, False),
+                    (BankDepositEvidencePredicate.DEPOSIT_INTEREST_NOT_PAID_AS_AGREED, False),
+                    (
+                        BankDepositEvidencePredicate.TERM_DEPOSIT_INTEREST_RATE_UNILATERALLY_REDUCED,
+                        False,
+                    ),
+                    (BankDepositEvidencePredicate.DEPOSIT_REPAYMENT_SECURITY_NOT_ENSURED, False),
+                    (BankDepositEvidencePredicate.THIRD_PARTY_DEPOSIT_RIGHTS_DISREGARDED, False),
+                    (BankDepositEvidencePredicate.SAVINGS_DOCUMENT_RULES_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
+                "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-bank-deposit-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.64.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью банковского вклада |
 | `0.63.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью финансирования под уступку денежного требования |
 | `0.62.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью товарного и коммерческого кредита |
 | `0.61.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью кредита |
@@ -71,6 +72,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.63.0` → `0.64.0` соберите отдельно проверенный контракт данных о банковском вкладе (`contracts.bank-deposit-evidence.v0`). Не выводите квалификацию банковского вклада, право привлекать вклады, письменную форму, возврат вклада по первому требованию, проценты при досрочном возврате, выплату процентов, запрет одностороннего уменьшения ставки, обеспечение возврата, права по вкладам третьих лиц и правила о сберегательной книжке из прежних результатов о займе, кредите или факторинге. Пересоберите артефакты оценки банковского вклада, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.62.0` → `0.63.0` соберите отдельно проверенный контракт данных о финансировании под уступку денежного требования (`contracts.factoring-evidence.v0`). Не выводите квалификацию факторинга, определённость уступаемого требования, статус финансового агента, действие договорного запрета уступки, ответственность клиента, допустимость последующей уступки, уведомление должника, зачёт его встречных требований, расчёты агента с клиентом и адресата требования о возврате сумм из прежних результатов о займе, кредите или товарном и коммерческом кредите. Пересоберите артефакты оценки факторинга, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

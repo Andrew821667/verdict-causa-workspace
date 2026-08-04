@@ -1214,6 +1214,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.63.0",
+        to_version="0.64.0",
+        reasons=[
+            "Reviewed inputs now require a separate bank-deposit evidence contract.",
+            "Analysis and Russian translation distinguish bank-deposit qualification, the right to take deposits, the written form, repayment on demand, interest on early repayment, payment of interest, the ban on unilateral rate reduction, security of repayment, third-party deposits, and the savings book and certificate under articles 834 to 844.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о банковском вкладе.",
+            "Анализ и русское объяснение разделяют квалификацию банковского вклада, право привлекать вклады, письменную форму, возврат вклада по первому требованию, проценты при досрочном возврате, выплату процентов, запрет одностороннего уменьшения ставки, обеспечение возврата, вклады третьих лиц и в пользу третьих лиц, сберегательную книжку и сертификат по статьям 834–844 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_bank_deposit_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

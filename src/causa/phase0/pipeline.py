@@ -103,6 +103,9 @@ from causa.institutional.contracts.synthetic_forwarding import (
 from causa.institutional.contracts.synthetic_commercial_credit import (
     build_synthetic_commercial_credit_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_bank_deposit import (
+    build_synthetic_bank_deposit_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_factoring import (
     build_synthetic_factoring_evaluation_artifact,
 )
@@ -992,6 +995,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-bank-deposit",
+            title="Проверка банковского вклада",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.bank_deposit_evidence_mapping.evidence_id,
+                trace.analysis_result.bank_deposit_constraint_set.id,
+                *trace.analysis_result.bank_deposit_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.bank_deposit_evaluation.reasons_ru,
+                "Квалификация договора банковского вклада, право банка привлекать денежные средства во вклады, обязательная письменная форма под страхом ничтожности, выдача вклада по первому требованию вкладчика, размер процентов при досрочном возврате, выплата процентов на сумму вклада, запрет одностороннего уменьшения ставки по срочному вкладу гражданина, обеспечение возврата вклада, зачисление средств третьих лиц и права по вкладу в пользу третьего лица, а также правила о сберегательной книжке и сберегательном сертификате проверяются раздельно по статьям 834–844 ГК РФ.",
+                "Наличие у банка права привлекать вклады, достаточность обеспечения возврата и содержание условий о процентах оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1292,6 +1310,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     credit_artifact = build_synthetic_credit_evaluation_artifact()
     commercial_credit_artifact = build_synthetic_commercial_credit_evaluation_artifact()
     factoring_artifact = build_synthetic_factoring_evaluation_artifact()
+    bank_deposit_artifact = build_synthetic_bank_deposit_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -1439,6 +1458,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-commercial-credit-spec.md",
                 "src/causa/institutional/contracts/factoring.py",
                 "docs/contract-factoring-spec.md",
+                "src/causa/institutional/contracts/bank_deposit.py",
+                "docs/contract-bank-deposit-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -1503,6 +1524,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_credit_evaluation_report.json",
                 "examples/synthetic_commercial_credit_evaluation_report.json",
                 "examples/synthetic_factoring_evaluation_report.json",
+                "examples/synthetic_bank_deposit_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -1678,6 +1700,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 commercial_credit_artifact.red_team_report.id,
                 factoring_artifact.benchmark_report.id,
                 factoring_artifact.red_team_report.id,
+                bank_deposit_artifact.benchmark_report.id,
+                bank_deposit_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -1754,6 +1778,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_credit_evaluation_report.json",
                 "examples/synthetic_commercial_credit_evaluation_report.json",
                 "examples/synthetic_factoring_evaluation_report.json",
+                "examples/synthetic_bank_deposit_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

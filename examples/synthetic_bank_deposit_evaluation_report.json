@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о банковском вкладе по статьям 834–844 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-bank-deposit-evidence-supply-1-v0",
+    "schema_version": "contracts.bank-deposit-evidence.v0",
+    "mapping_version": "contracts-reviewed-bank-deposit-to-facts-v0",
+    "facts": {
+      "deposit_accepted_for_return_with_interest": false,
+      "deposit_taken_by_unauthorised_person": false,
+      "deposit_written_form_not_observed": false,
+      "citizen_deposit_on_demand_repayment_breached": false,
+      "early_repayment_interest_miscalculated": false,
+      "deposit_interest_not_paid_as_agreed": false,
+      "term_deposit_interest_rate_unilaterally_reduced": false,
+      "deposit_repayment_security_not_ensured": false,
+      "third_party_deposit_rights_disregarded": false,
+      "savings_document_rules_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
+      "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "citizen_deposit_on_demand_repayment_breached",
+        "assertion_id": "bank-deposit-evidence-citizen_deposit_on_demand_repayment_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "deposit_accepted_for_return_with_interest",
+        "assertion_id": "bank-deposit-evidence-deposit_accepted_for_return_with_interest",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "deposit_interest_not_paid_as_agreed",
+        "assertion_id": "bank-deposit-evidence-deposit_interest_not_paid_as_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "deposit_repayment_security_not_ensured",
+        "assertion_id": "bank-deposit-evidence-deposit_repayment_security_not_ensured",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "deposit_taken_by_unauthorised_person",
+        "assertion_id": "bank-deposit-evidence-deposit_taken_by_unauthorised_person",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "deposit_written_form_not_observed",
+        "assertion_id": "bank-deposit-evidence-deposit_written_form_not_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "early_repayment_interest_miscalculated",
+        "assertion_id": "bank-deposit-evidence-early_repayment_interest_miscalculated",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "savings_document_rules_breached",
+        "assertion_id": "bank-deposit-evidence-savings_document_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "term_deposit_interest_rate_unilaterally_reduced",
+        "assertion_id": "bank-deposit-evidence-term_deposit_interest_rate_unilaterally_reduced",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "third_party_deposit_rights_disregarded",
+        "assertion_id": "bank-deposit-evidence-third_party_deposit_rights_disregarded",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "bank-deposit-constraint-set:reviewed-bank-deposit-evidence-supply-1-v0",
+    "model_version": "contracts-bank-deposit-articles-834-844-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
+      "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1"
+    ],
+    "expressions": [
+      "bank_deposit_qualified == deposit_accepted_for_return_with_interest",
+      "deposit_acceptance_unauthorised == bank_deposit_qualified AND deposit_taken_by_unauthorised_person",
+      "deposit_form_void == bank_deposit_qualified AND deposit_written_form_not_observed",
+      "on_demand_repayment_duty_breached == bank_deposit_qualified AND citizen_deposit_on_demand_repayment_breached",
+      "early_repayment_interest_breached == bank_deposit_qualified AND citizen_deposit_on_demand_repayment_breached AND early_repayment_interest_miscalculated",
+      "interest_payment_duty_breached == bank_deposit_qualified AND deposit_interest_not_paid_as_agreed",
+      "term_rate_reduction_prohibited == bank_deposit_qualified AND term_deposit_interest_rate_unilaterally_reduced",
+      "repayment_security_duty_breached == bank_deposit_qualified AND deposit_repayment_security_not_ensured",
+      "third_party_deposit_rights_breached == bank_deposit_qualified AND third_party_deposit_rights_disregarded",
+      "savings_document_duty_breached == bank_deposit_qualified AND savings_document_rules_breached",
+      "requires_human_bank_deposit_assessment == deposit_acceptance_unauthorised OR deposit_form_void OR on_demand_repayment_duty_breached OR interest_payment_duty_breached OR term_rate_reduction_prohibited OR repayment_security_duty_breached OR third_party_deposit_rights_breached OR savings_document_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "bank-deposit-constraint-set:reviewed-bank-deposit-evidence-supply-1-v0",
+    "satisfiable": true,
+    "bank_deposit_qualified": false,
+    "deposit_acceptance_unauthorised": false,
+    "deposit_form_void": false,
+    "on_demand_repayment_duty_breached": false,
+    "early_repayment_interest_breached": false,
+    "interest_payment_duty_breached": false,
+    "term_rate_reduction_prohibited": false,
+    "repayment_security_duty_breached": false,
+    "third_party_deposit_rights_breached": false,
+    "savings_document_duty_breached": false,
+    "requires_human_bank_deposit_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор банковского вклада."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о банковском вкладе и не заменяет судебную оценку.",
+      "Наличие у банка права привлекать вклады, достаточность обеспечения возврата и содержание условий о процентах оцениваются экспертом и судом (статьи 835, 838 и 840 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "bank-deposit-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "bank-deposit-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "bank_deposit_qualified": false
+        },
+        "observed_outcomes": {
+          "bank_deposit_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор банковского вклада."
+        ]
+      },
+      {
+        "task_id": "bank-deposit-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "bank_deposit_qualified": true,
+          "requires_human_bank_deposit_assessment": false
+        },
+        "observed_outcomes": {
+          "bank_deposit_qualified": true,
+          "requires_human_bank_deposit_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-deposit-bench-unauthorised-acceptance",
+        "passed": true,
+        "expected_outcomes": {
+          "deposit_acceptance_unauthorised": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "deposit_acceptance_unauthorised": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Право на привлечение денежных средств во вклады принадлежит банкам, которым такое право предоставлено в соответствии с выданным в установленном порядке разрешением (статья 835 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-deposit-bench-form",
+        "passed": true,
+        "expected_outcomes": {
+          "deposit_form_void": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "deposit_form_void": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Договор банковского вклада должен быть заключён в письменной форме; несоблюдение письменной формы влечёт ничтожность договора (статья 836 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-deposit-bench-early-repayment",
+        "passed": true,
+        "expected_outcomes": {
+          "on_demand_repayment_duty_breached": true,
+          "early_repayment_interest_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "on_demand_repayment_duty_breached": true,
+          "early_repayment_interest_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Банк обязан выдать сумму вклада или её часть по первому требованию вкладчика; условие об отказе гражданина от права на получение вклада по первому требованию ничтожно (статья 837 ГК РФ).",
+          "При возврате вклада до истечения срока либо до наступления иных предусмотренных договором обстоятельств проценты выплачиваются в размере, соответствующем размеру процентов по вкладам до востребования, если договором не предусмотрен иной размер (статья 837 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-deposit-bench-interest",
+        "passed": true,
+        "expected_outcomes": {
+          "interest_payment_duty_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "interest_payment_duty_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Банк выплачивает вкладчику проценты на сумму вклада в размере, определяемом договором, а проценты начисляются со дня, следующего за днём поступления суммы в банк, до дня её возврата вкладчику включительно (статьи 838 и 839 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-deposit-bench-rate-reduction",
+        "passed": true,
+        "expected_outcomes": {
+          "term_rate_reduction_prohibited": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "term_rate_reduction_prohibited": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "По вкладу, внесённому гражданином на условиях выдачи по истечении определённого срока либо при наступлении предусмотренных договором обстоятельств, банк не вправе односторонне уменьшать размер процентов, если иное не предусмотрено законом (статья 838 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-deposit-bench-security",
+        "passed": true,
+        "expected_outcomes": {
+          "repayment_security_duty_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "repayment_security_duty_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Банк обязан обеспечивать возврат вкладов граждан путём обязательного страхования, а способы обеспечения возврата вкладов юридических лиц определяются договором (статья 840 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-deposit-bench-third-party",
+        "passed": true,
+        "expected_outcomes": {
+          "third_party_deposit_rights_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "third_party_deposit_rights_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Денежные средства, поступившие в банк на имя вкладчика от третьих лиц, зачисляются на его счёт, а по вкладу в пользу третьего лица такое лицо приобретает права вкладчика с момента предъявления им первого требования либо иного выражения намерения воспользоваться правами (статьи 841 и 842 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-deposit-bench-savings-document",
+        "passed": true,
+        "expected_outcomes": {
+          "savings_document_duty_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "savings_document_duty_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Выдача вклада, выплата процентов и исполнение распоряжений вкладчика о перечислении денежных средств осуществляются при предъявлении сберегательной книжки, а права по сберегательному сертификату удостоверяются самим сертификатом на предусмотренных законом условиях (статьи 843 и 844 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "bank-deposit-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "bank-deposit-red-qualify-without-acceptance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "bank_deposit_qualified": true
+        },
+        "observed_outcomes": {
+          "bank_deposit_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор банковского вклада."
+        ]
+      },
+      {
+        "case_id": "bank-deposit-red-ignore-unauthorised-acceptance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "deposit_acceptance_unauthorised": false
+        },
+        "observed_outcomes": {
+          "deposit_acceptance_unauthorised": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Право на привлечение денежных средств во вклады принадлежит банкам, которым такое право предоставлено в соответствии с выданным в установленном порядке разрешением (статья 835 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-deposit-red-ignore-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "deposit_form_void": false
+        },
+        "observed_outcomes": {
+          "deposit_form_void": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Договор банковского вклада должен быть заключён в письменной форме; несоблюдение письменной формы влечёт ничтожность договора (статья 836 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-deposit-red-ignore-on-demand-repayment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "on_demand_repayment_duty_breached": false
+        },
+        "observed_outcomes": {
+          "on_demand_repayment_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Банк обязан выдать сумму вклада или её часть по первому требованию вкладчика; условие об отказе гражданина от права на получение вклада по первому требованию ничтожно (статья 837 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-deposit-red-early-interest-without-repayment-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "early_repayment_interest_breached": true
+        },
+        "observed_outcomes": {
+          "early_repayment_interest_breached": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-deposit-red-ignore-interest",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "interest_payment_duty_breached": false
+        },
+        "observed_outcomes": {
+          "interest_payment_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Банк выплачивает вкладчику проценты на сумму вклада в размере, определяемом договором, а проценты начисляются со дня, следующего за днём поступления суммы в банк, до дня её возврата вкладчику включительно (статьи 838 и 839 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-deposit-red-allow-rate-reduction",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "term_rate_reduction_prohibited": false
+        },
+        "observed_outcomes": {
+          "term_rate_reduction_prohibited": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "По вкладу, внесённому гражданином на условиях выдачи по истечении определённого срока либо при наступлении предусмотренных договором обстоятельств, банк не вправе односторонне уменьшать размер процентов, если иное не предусмотрено законом (статья 838 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-deposit-red-ignore-security",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "repayment_security_duty_breached": false
+        },
+        "observed_outcomes": {
+          "repayment_security_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Банк обязан обеспечивать возврат вкладов граждан путём обязательного страхования, а способы обеспечения возврата вкладов юридических лиц определяются договором (статья 840 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-deposit-red-ignore-third-party",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "third_party_deposit_rights_breached": false
+        },
+        "observed_outcomes": {
+          "third_party_deposit_rights_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Денежные средства, поступившие в банк на имя вкладчика от третьих лиц, зачисляются на его счёт, а по вкладу в пользу третьего лица такое лицо приобретает права вкладчика с момента предъявления им первого требования либо иного выражения намерения воспользоваться правами (статьи 841 и 842 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-deposit-red-skip-human-on-savings-document",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_bank_deposit_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_bank_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Выдача вклада, выплата процентов и исполнение распоряжений вкладчика о перечислении денежных средств осуществляются при предъявлении сберегательной книжки, а права по сберегательному сертификату удостоверяются самим сертификатом на предусмотренных законом условиях (статьи 843 и 844 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

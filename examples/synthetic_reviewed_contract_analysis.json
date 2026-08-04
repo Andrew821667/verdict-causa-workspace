@@ -2254,6 +2254,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
+      "title": "Синтетическая проверенная модель понятия банковского вклада, права привлекать вклады, формы договора, возврата вклада и процентов по статьям 834–839 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: договор банковского вклада как обязанность банка, принявшего поступившую от вкладчика или для него денежную сумму, возвратить сумму вклада и выплатить проценты, право на привлечение денежных средств во вклады, обязательная письменная форма договора под страхом ничтожности, выдача вклада по первому требованию вкладчика с выплатой процентов по ставке вкладов до востребования при досрочном возврате, размер процентов и порядок их начисления проверяются раздельно (статьи 834–839 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "bank_deposit_concept_form_and_interest_articles_834_839",
+        "legal_reference": "ГК РФ, статьи 834–839",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+      "title": "Синтетическая проверенная модель обеспечения возврата вклада, вкладов третьих лиц и в пользу третьих лиц, сберегательной книжки и сертификата по статьям 840–844 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обеспечение возврата вкладов граждан обязательным страхованием и определение способов обеспечения возврата вкладов юридических лиц договором, зачисление на счёт вкладчика денежных средств, поступивших от третьих лиц, приобретение прав вкладчика третьим лицом, в пользу которого внесён вклад, а также удостоверение вклада сберегательной книжкой и сберегательным сертификатом проверяются раздельно (статьи 840–844 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "bank_deposit_security_third_parties_and_documents_articles_840_844",
+        "legal_reference": "ГК РФ, статьи 840–844",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-bank-deposit-evidence",
+      "title": "Синтетическая проверенная запись фактов о банковском вкладе",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор является поставкой товаров за единовременную оплату; денежная сумма во вклад с обязанностью возвратить её и выплатить проценты банком не принималась.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "bank_deposit_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -7514,6 +7561,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-factoring-reviewer"
     },
+    "bank_deposit_evidence": {
+      "id": "reviewed-bank-deposit-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.bank-deposit-evidence.v0",
+      "assertions": [
+        {
+          "id": "bank-deposit-evidence-deposit_accepted_for_return_with_interest",
+          "predicate": "deposit_accepted_for_return_with_interest",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "id": "bank-deposit-evidence-deposit_taken_by_unauthorised_person",
+          "predicate": "deposit_taken_by_unauthorised_person",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "id": "bank-deposit-evidence-deposit_written_form_not_observed",
+          "predicate": "deposit_written_form_not_observed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "id": "bank-deposit-evidence-citizen_deposit_on_demand_repayment_breached",
+          "predicate": "citizen_deposit_on_demand_repayment_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "id": "bank-deposit-evidence-early_repayment_interest_miscalculated",
+          "predicate": "early_repayment_interest_miscalculated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "id": "bank-deposit-evidence-deposit_interest_not_paid_as_agreed",
+          "predicate": "deposit_interest_not_paid_as_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "id": "bank-deposit-evidence-term_deposit_interest_rate_unilaterally_reduced",
+          "predicate": "term_deposit_interest_rate_unilaterally_reduced",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "id": "bank-deposit-evidence-deposit_repayment_security_not_ensured",
+          "predicate": "deposit_repayment_security_not_ensured",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "id": "bank-deposit-evidence-third_party_deposit_rights_disregarded",
+          "predicate": "third_party_deposit_rights_disregarded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "id": "bank-deposit-evidence-savings_document_rules_breached",
+          "predicate": "savings_document_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
+        "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-bank-deposit-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -12289,6 +12429,7 @@
       "synthetic-adhesion-reviewer",
       "synthetic-annuity-reviewer",
       "synthetic-authority-reviewer",
+      "synthetic-bank-deposit-reviewer",
       "synthetic-barter-reviewer",
       "synthetic-building-lease-reviewer",
       "synthetic-carriage-reviewer",
@@ -12348,6 +12489,7 @@
     "source_ids": [
       "synthetic-case-supply-1-adhesion-evidence",
       "synthetic-case-supply-1-annuity-evidence",
+      "synthetic-case-supply-1-bank-deposit-evidence",
       "synthetic-case-supply-1-barter-evidence",
       "synthetic-case-supply-1-building-lease-evidence",
       "synthetic-case-supply-1-carriage-evidence",
@@ -12522,6 +12664,8 @@
       "synthetic-ru-gk823-commercial-credit-forms-and-applicable-rules-v1",
       "synthetic-ru-gk824-829-factoring-concept-parties-and-assignment-v1",
       "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
+      "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
+      "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -18968,6 +19112,142 @@
         "Идентифицируемость требования, действительность уступки и содержание расчётов сторон оцениваются экспертом и судом (статьи 826, 827 и 831 ГК РФ)."
       ]
     },
+    "bank_deposit_evidence_mapping": {
+      "evidence_id": "reviewed-bank-deposit-evidence-supply-1-v0",
+      "schema_version": "contracts.bank-deposit-evidence.v0",
+      "mapping_version": "contracts-reviewed-bank-deposit-to-facts-v0",
+      "facts": {
+        "deposit_accepted_for_return_with_interest": false,
+        "deposit_taken_by_unauthorised_person": false,
+        "deposit_written_form_not_observed": false,
+        "citizen_deposit_on_demand_repayment_breached": false,
+        "early_repayment_interest_miscalculated": false,
+        "deposit_interest_not_paid_as_agreed": false,
+        "term_deposit_interest_rate_unilaterally_reduced": false,
+        "deposit_repayment_security_not_ensured": false,
+        "third_party_deposit_rights_disregarded": false,
+        "savings_document_rules_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
+        "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "citizen_deposit_on_demand_repayment_breached",
+          "assertion_id": "bank-deposit-evidence-citizen_deposit_on_demand_repayment_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposit_accepted_for_return_with_interest",
+          "assertion_id": "bank-deposit-evidence-deposit_accepted_for_return_with_interest",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposit_interest_not_paid_as_agreed",
+          "assertion_id": "bank-deposit-evidence-deposit_interest_not_paid_as_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposit_repayment_security_not_ensured",
+          "assertion_id": "bank-deposit-evidence-deposit_repayment_security_not_ensured",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposit_taken_by_unauthorised_person",
+          "assertion_id": "bank-deposit-evidence-deposit_taken_by_unauthorised_person",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposit_written_form_not_observed",
+          "assertion_id": "bank-deposit-evidence-deposit_written_form_not_observed",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "early_repayment_interest_miscalculated",
+          "assertion_id": "bank-deposit-evidence-early_repayment_interest_miscalculated",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "savings_document_rules_breached",
+          "assertion_id": "bank-deposit-evidence-savings_document_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "term_deposit_interest_rate_unilaterally_reduced",
+          "assertion_id": "bank-deposit-evidence-term_deposit_interest_rate_unilaterally_reduced",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_deposit_rights_disregarded",
+          "assertion_id": "bank-deposit-evidence-third_party_deposit_rights_disregarded",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        }
+      ]
+    },
+    "bank_deposit_constraint_set": {
+      "id": "bank-deposit-constraint-set:reviewed-bank-deposit-evidence-supply-1-v0",
+      "model_version": "contracts-bank-deposit-articles-834-844-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
+        "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1"
+      ],
+      "expressions": [
+        "bank_deposit_qualified == deposit_accepted_for_return_with_interest",
+        "deposit_acceptance_unauthorised == bank_deposit_qualified AND deposit_taken_by_unauthorised_person",
+        "deposit_form_void == bank_deposit_qualified AND deposit_written_form_not_observed",
+        "on_demand_repayment_duty_breached == bank_deposit_qualified AND citizen_deposit_on_demand_repayment_breached",
+        "early_repayment_interest_breached == bank_deposit_qualified AND citizen_deposit_on_demand_repayment_breached AND early_repayment_interest_miscalculated",
+        "interest_payment_duty_breached == bank_deposit_qualified AND deposit_interest_not_paid_as_agreed",
+        "term_rate_reduction_prohibited == bank_deposit_qualified AND term_deposit_interest_rate_unilaterally_reduced",
+        "repayment_security_duty_breached == bank_deposit_qualified AND deposit_repayment_security_not_ensured",
+        "third_party_deposit_rights_breached == bank_deposit_qualified AND third_party_deposit_rights_disregarded",
+        "savings_document_duty_breached == bank_deposit_qualified AND savings_document_rules_breached",
+        "requires_human_bank_deposit_assessment == deposit_acceptance_unauthorised OR deposit_form_void OR on_demand_repayment_duty_breached OR interest_payment_duty_breached OR term_rate_reduction_prohibited OR repayment_security_duty_breached OR third_party_deposit_rights_breached OR savings_document_duty_breached"
+      ]
+    },
+    "bank_deposit_evaluation": {
+      "constraint_set_id": "bank-deposit-constraint-set:reviewed-bank-deposit-evidence-supply-1-v0",
+      "satisfiable": true,
+      "bank_deposit_qualified": false,
+      "deposit_acceptance_unauthorised": false,
+      "deposit_form_void": false,
+      "on_demand_repayment_duty_breached": false,
+      "early_repayment_interest_breached": false,
+      "interest_payment_duty_breached": false,
+      "term_rate_reduction_prohibited": false,
+      "repayment_security_duty_breached": false,
+      "third_party_deposit_rights_breached": false,
+      "savings_document_duty_breached": false,
+      "requires_human_bank_deposit_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор банковского вклада."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о банковском вкладе и не заменяет судебную оценку.",
+        "Наличие у банка права привлекать вклады, достаточность обеспечения возврата и содержание условий о процентах оцениваются экспертом и судом (статьи 835, 838 и 840 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -24339,7 +24619,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.63.0",
+      "institutional_package_version": "contracts-ru-v0@0.64.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
