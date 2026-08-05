@@ -2489,6 +2489,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk919-923-special-storage-pawnshop-bank-and-lockers-v1",
+      "title": "Синтетическая проверенная модель хранения в ломбарде, хранения ценностей в банке и в индивидуальном сейфе, хранения в камерах хранения транспортных организаций по статьям 919–923 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: удостоверение договора хранения вещи в ломбарде именной сохранной квитанцией, оценка вещи и её страхование за счёт ломбарда, судьба невостребованной вещи, приём банком на хранение ценных бумаг, драгоценных металлов и иных ценностей с выдачей именного сохранного документа, хранение ценностей в индивидуальном банковском сейфе и ответственность банка, а также публичный характер хранения в камерах хранения транспортных организаций и судьба невостребованных вещей проверяются раздельно (статьи 919–923 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "special_storage_pawnshop_bank_and_lockers_articles_919_923",
+        "legal_reference": "ГК РФ, статьи 919–923",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk924-926-special-storage-cloakroom-hotel-and-sequestration-v1",
+      "title": "Синтетическая проверенная модель хранения в гардеробах организаций, хранения в гостинице и секвестра по статьям 924–926 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: безвозмездность хранения в гардеробах организаций и обязанность принять все необходимые меры для сохранности вещи, ответственность гостиницы как хранителя за утрату, недостачу или повреждение внесённых постояльцем вещей и особый режим денег и драгоценностей, а также передача спорной вещи на хранение третьему лицу по договору о секвестре и её возврат управомоченному лицу проверяются раздельно (статьи 924–926 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "special_storage_cloakroom_hotel_and_sequestration_articles_924_926",
+        "legal_reference": "ГК РФ, статьи 924–926",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-special-storage-evidence",
+      "title": "Синтетическая проверенная запись фактов о специальных видах хранения",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки вещи не передавались на хранение ломбарду, банку, в камеру хранения, гардероб организации или гостиницу и не передавались на хранение в порядке секвестра.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "special_storage_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -8214,6 +8261,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-warehouse-storage-reviewer"
     },
+    "special_storage_evidence": {
+      "id": "reviewed-special-storage-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.special-storage-evidence.v0",
+      "assertions": [
+        {
+          "id": "special-storage-evidence-special_storage_service_provided",
+          "predicate": "special_storage_service_provided",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "id": "special-storage-evidence-pawnshop_storage_rules_breached",
+          "predicate": "pawnshop_storage_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "id": "special-storage-evidence-bank_valuables_storage_rules_breached",
+          "predicate": "bank_valuables_storage_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "id": "special-storage-evidence-safe_deposit_box_rules_breached",
+          "predicate": "safe_deposit_box_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "id": "special-storage-evidence-transport_locker_storage_rules_breached",
+          "predicate": "transport_locker_storage_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "id": "special-storage-evidence-locker_overdue_goods_rules_breached",
+          "predicate": "locker_overdue_goods_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "id": "special-storage-evidence-cloakroom_storage_rules_breached",
+          "predicate": "cloakroom_storage_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "id": "special-storage-evidence-hotel_guest_property_rules_breached",
+          "predicate": "hotel_guest_property_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "id": "special-storage-evidence-sequestration_rules_breached",
+          "predicate": "sequestration_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "id": "special-storage-evidence-special_storage_liability_limits_breached",
+          "predicate": "special_storage_liability_limits_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk919-923-special-storage-pawnshop-bank-and-lockers-v1",
+        "synthetic-ru-gk924-926-special-storage-cloakroom-hotel-and-sequestration-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-special-storage-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -13038,6 +13178,7 @@
       "synthetic-retail-sale-reviewer",
       "synthetic-security-reviewer",
       "synthetic-settlements-reviewer",
+      "synthetic-special-storage-reviewer",
       "synthetic-special-supply-reviewer",
       "synthetic-state-supply-reviewer",
       "synthetic-state-work-reviewer",
@@ -13101,6 +13242,7 @@
       "synthetic-case-supply-1-reviewed-evidence",
       "synthetic-case-supply-1-security-evidence",
       "synthetic-case-supply-1-settlements-evidence",
+      "synthetic-case-supply-1-special-storage-evidence",
       "synthetic-case-supply-1-special-supply-evidence",
       "synthetic-case-supply-1-state-supply-evidence",
       "synthetic-case-supply-1-state-work-evidence",
@@ -13242,6 +13384,8 @@
       "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1",
       "synthetic-ru-gk907-911-warehouse-storage-concept-and-inspection-v1",
       "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1",
+      "synthetic-ru-gk919-923-special-storage-pawnshop-bank-and-lockers-v1",
+      "synthetic-ru-gk924-926-special-storage-cloakroom-hotel-and-sequestration-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -20368,6 +20512,142 @@
         "Существенность изменения условий хранения, достаточность осмотра товаров и правомерность выдачи товара по складским документам оцениваются экспертом и судом (статьи 909, 910 и 916 ГК РФ)."
       ]
     },
+    "special_storage_evidence_mapping": {
+      "evidence_id": "reviewed-special-storage-evidence-supply-1-v0",
+      "schema_version": "contracts.special-storage-evidence.v0",
+      "mapping_version": "contracts-reviewed-special-storage-to-facts-v0",
+      "facts": {
+        "special_storage_service_provided": false,
+        "pawnshop_storage_rules_breached": false,
+        "bank_valuables_storage_rules_breached": false,
+        "safe_deposit_box_rules_breached": false,
+        "transport_locker_storage_rules_breached": false,
+        "locker_overdue_goods_rules_breached": false,
+        "cloakroom_storage_rules_breached": false,
+        "hotel_guest_property_rules_breached": false,
+        "sequestration_rules_breached": false,
+        "special_storage_liability_limits_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk919-923-special-storage-pawnshop-bank-and-lockers-v1",
+        "synthetic-ru-gk924-926-special-storage-cloakroom-hotel-and-sequestration-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "bank_valuables_storage_rules_breached",
+          "assertion_id": "special-storage-evidence-bank_valuables_storage_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "cloakroom_storage_rules_breached",
+          "assertion_id": "special-storage-evidence-cloakroom_storage_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "hotel_guest_property_rules_breached",
+          "assertion_id": "special-storage-evidence-hotel_guest_property_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "locker_overdue_goods_rules_breached",
+          "assertion_id": "special-storage-evidence-locker_overdue_goods_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "pawnshop_storage_rules_breached",
+          "assertion_id": "special-storage-evidence-pawnshop_storage_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "safe_deposit_box_rules_breached",
+          "assertion_id": "special-storage-evidence-safe_deposit_box_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "sequestration_rules_breached",
+          "assertion_id": "special-storage-evidence-sequestration_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "special_storage_liability_limits_breached",
+          "assertion_id": "special-storage-evidence-special_storage_liability_limits_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "special_storage_service_provided",
+          "assertion_id": "special-storage-evidence-special_storage_service_provided",
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "transport_locker_storage_rules_breached",
+          "assertion_id": "special-storage-evidence-transport_locker_storage_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-special-storage-evidence"
+          ]
+        }
+      ]
+    },
+    "special_storage_constraint_set": {
+      "id": "special-storage-constraint-set:reviewed-special-storage-evidence-supply-1-v0",
+      "model_version": "contracts-special-storage-articles-919-926-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk919-923-special-storage-pawnshop-bank-and-lockers-v1",
+        "synthetic-ru-gk924-926-special-storage-cloakroom-hotel-and-sequestration-v1"
+      ],
+      "expressions": [
+        "special_storage_qualified == special_storage_service_provided",
+        "pawnshop_duty_breached == special_storage_qualified AND pawnshop_storage_rules_breached",
+        "bank_valuables_duty_breached == special_storage_qualified AND bank_valuables_storage_rules_breached",
+        "safe_deposit_box_duty_breached == special_storage_qualified AND safe_deposit_box_rules_breached",
+        "transport_locker_duty_breached == special_storage_qualified AND transport_locker_storage_rules_breached",
+        "locker_overdue_goods_duty_breached == special_storage_qualified AND transport_locker_storage_rules_breached AND locker_overdue_goods_rules_breached",
+        "cloakroom_duty_breached == special_storage_qualified AND cloakroom_storage_rules_breached",
+        "hotel_guest_property_duty_breached == special_storage_qualified AND hotel_guest_property_rules_breached",
+        "sequestration_duty_breached == special_storage_qualified AND sequestration_rules_breached",
+        "liability_limits_duty_breached == special_storage_qualified AND special_storage_liability_limits_breached",
+        "requires_human_special_storage_assessment == pawnshop_duty_breached OR bank_valuables_duty_breached OR safe_deposit_box_duty_breached OR transport_locker_duty_breached OR cloakroom_duty_breached OR hotel_guest_property_duty_breached OR sequestration_duty_breached OR liability_limits_duty_breached"
+      ]
+    },
+    "special_storage_evaluation": {
+      "constraint_set_id": "special-storage-constraint-set:reviewed-special-storage-evidence-supply-1-v0",
+      "satisfiable": true,
+      "special_storage_qualified": false,
+      "pawnshop_duty_breached": false,
+      "bank_valuables_duty_breached": false,
+      "safe_deposit_box_duty_breached": false,
+      "transport_locker_duty_breached": false,
+      "locker_overdue_goods_duty_breached": false,
+      "cloakroom_duty_breached": false,
+      "hotel_guest_property_duty_breached": false,
+      "sequestration_duty_breached": false,
+      "liability_limits_duty_breached": false,
+      "requires_human_special_storage_assessment": false,
+      "reasons_ru": [
+        "Специальный вид хранения не установлен."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только правила о специальных видах хранения и не заменяет судебную оценку.",
+        "Оценка вещи, состав внесённых в гостиницу вещей и управомоченность получателя при секвестре оцениваются экспертом и судом (статьи 919, 925 и 926 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -25739,7 +26019,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.68.0",
+      "institutional_package_version": "contracts-ru-v0@0.69.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

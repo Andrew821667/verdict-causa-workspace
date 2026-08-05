@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о специальных видах хранения по статьям 919–926 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-special-storage-evidence-supply-1-v0",
+    "schema_version": "contracts.special-storage-evidence.v0",
+    "mapping_version": "contracts-reviewed-special-storage-to-facts-v0",
+    "facts": {
+      "special_storage_service_provided": false,
+      "pawnshop_storage_rules_breached": false,
+      "bank_valuables_storage_rules_breached": false,
+      "safe_deposit_box_rules_breached": false,
+      "transport_locker_storage_rules_breached": false,
+      "locker_overdue_goods_rules_breached": false,
+      "cloakroom_storage_rules_breached": false,
+      "hotel_guest_property_rules_breached": false,
+      "sequestration_rules_breached": false,
+      "special_storage_liability_limits_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk919-923-special-storage-pawnshop-bank-and-lockers-v1",
+      "synthetic-ru-gk924-926-special-storage-cloakroom-hotel-and-sequestration-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "bank_valuables_storage_rules_breached",
+        "assertion_id": "special-storage-evidence-bank_valuables_storage_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-special-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "cloakroom_storage_rules_breached",
+        "assertion_id": "special-storage-evidence-cloakroom_storage_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-special-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "hotel_guest_property_rules_breached",
+        "assertion_id": "special-storage-evidence-hotel_guest_property_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-special-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "locker_overdue_goods_rules_breached",
+        "assertion_id": "special-storage-evidence-locker_overdue_goods_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-special-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "pawnshop_storage_rules_breached",
+        "assertion_id": "special-storage-evidence-pawnshop_storage_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-special-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "safe_deposit_box_rules_breached",
+        "assertion_id": "special-storage-evidence-safe_deposit_box_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-special-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "sequestration_rules_breached",
+        "assertion_id": "special-storage-evidence-sequestration_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-special-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "special_storage_liability_limits_breached",
+        "assertion_id": "special-storage-evidence-special_storage_liability_limits_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-special-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "special_storage_service_provided",
+        "assertion_id": "special-storage-evidence-special_storage_service_provided",
+        "source_refs": [
+          "synthetic-case-supply-1-special-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "transport_locker_storage_rules_breached",
+        "assertion_id": "special-storage-evidence-transport_locker_storage_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-special-storage-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "special-storage-constraint-set:reviewed-special-storage-evidence-supply-1-v0",
+    "model_version": "contracts-special-storage-articles-919-926-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk919-923-special-storage-pawnshop-bank-and-lockers-v1",
+      "synthetic-ru-gk924-926-special-storage-cloakroom-hotel-and-sequestration-v1"
+    ],
+    "expressions": [
+      "special_storage_qualified == special_storage_service_provided",
+      "pawnshop_duty_breached == special_storage_qualified AND pawnshop_storage_rules_breached",
+      "bank_valuables_duty_breached == special_storage_qualified AND bank_valuables_storage_rules_breached",
+      "safe_deposit_box_duty_breached == special_storage_qualified AND safe_deposit_box_rules_breached",
+      "transport_locker_duty_breached == special_storage_qualified AND transport_locker_storage_rules_breached",
+      "locker_overdue_goods_duty_breached == special_storage_qualified AND transport_locker_storage_rules_breached AND locker_overdue_goods_rules_breached",
+      "cloakroom_duty_breached == special_storage_qualified AND cloakroom_storage_rules_breached",
+      "hotel_guest_property_duty_breached == special_storage_qualified AND hotel_guest_property_rules_breached",
+      "sequestration_duty_breached == special_storage_qualified AND sequestration_rules_breached",
+      "liability_limits_duty_breached == special_storage_qualified AND special_storage_liability_limits_breached",
+      "requires_human_special_storage_assessment == pawnshop_duty_breached OR bank_valuables_duty_breached OR safe_deposit_box_duty_breached OR transport_locker_duty_breached OR cloakroom_duty_breached OR hotel_guest_property_duty_breached OR sequestration_duty_breached OR liability_limits_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "special-storage-constraint-set:reviewed-special-storage-evidence-supply-1-v0",
+    "satisfiable": true,
+    "special_storage_qualified": false,
+    "pawnshop_duty_breached": false,
+    "bank_valuables_duty_breached": false,
+    "safe_deposit_box_duty_breached": false,
+    "transport_locker_duty_breached": false,
+    "locker_overdue_goods_duty_breached": false,
+    "cloakroom_duty_breached": false,
+    "hotel_guest_property_duty_breached": false,
+    "sequestration_duty_breached": false,
+    "liability_limits_duty_breached": false,
+    "requires_human_special_storage_assessment": false,
+    "reasons_ru": [
+      "Специальный вид хранения не установлен."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только правила о специальных видах хранения и не заменяет судебную оценку.",
+      "Оценка вещи, состав внесённых в гостиницу вещей и управомоченность получателя при секвестре оцениваются экспертом и судом (статьи 919, 925 и 926 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "special-storage-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "special-storage-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "special_storage_qualified": false
+        },
+        "observed_outcomes": {
+          "special_storage_qualified": false
+        },
+        "reasons_ru": [
+          "Специальный вид хранения не установлен."
+        ]
+      },
+      {
+        "task_id": "special-storage-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "special_storage_qualified": true,
+          "requires_human_special_storage_assessment": false
+        },
+        "observed_outcomes": {
+          "special_storage_qualified": true,
+          "requires_human_special_storage_assessment": false
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-storage-bench-pawnshop",
+        "passed": true,
+        "expected_outcomes": {
+          "pawnshop_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "pawnshop_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Договор хранения вещи в ломбарде удостоверяется именной сохранной квитанцией, вещь оценивается по соглашению сторон, ломбард обязан страховать её в пользу поклажедателя за свой счёт, а невостребованная вещь хранится и реализуется в установленном порядке (статьи 919 и 920 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-storage-bench-bank-valuables",
+        "passed": true,
+        "expected_outcomes": {
+          "bank_valuables_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "bank_valuables_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Банк может принимать на хранение ценные бумаги, драгоценные металлы и камни, иные драгоценные вещи и ценности; заключение договора удостоверяется выдачей именного сохранного документа (статья 921 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-storage-bench-safe-deposit-box",
+        "passed": true,
+        "expected_outcomes": {
+          "safe_deposit_box_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "safe_deposit_box_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Хранение ценностей в индивидуальном банковском сейфе осуществляется с предоставлением клиенту права самому помещать и изымать ценности либо с их приёмом банком; ответственность банка за содержимое сейфа определяется правилами статьи 922 ГК РФ."
+        ]
+      },
+      {
+        "task_id": "special-storage-bench-transport-locker",
+        "passed": true,
+        "expected_outcomes": {
+          "transport_locker_duty_breached": true,
+          "locker_overdue_goods_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "transport_locker_duty_breached": true,
+          "locker_overdue_goods_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Камеры хранения транспортных организаций общего пользования обязаны принимать на хранение вещи пассажиров и других граждан независимо от наличия у них проездных документов; договор признаётся публичным (статья 923 ГК РФ).",
+          "Вещи, не востребованные в установленный срок, хранятся камерой хранения в течение предусмотренного законом дополнительного срока, по истечении которого могут быть проданы в установленном порядке (статья 923 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-storage-bench-cloakroom",
+        "passed": true,
+        "expected_outcomes": {
+          "cloakroom_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "cloakroom_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Хранение в гардеробах организаций предполагается безвозмездным, а хранитель обязан принять все необходимые меры для обеспечения сохранности вещи независимо от того, осуществляется хранение за плату или безвозмездно (статья 924 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-storage-bench-hotel",
+        "passed": true,
+        "expected_outcomes": {
+          "hotel_guest_property_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "hotel_guest_property_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Гостиница отвечает как хранитель и без особого о том соглашения за утрату, недостачу или повреждение вещей постояльца, внесённых в гостиницу, за исключением денег и драгоценностей, принятых на хранение отдельно (статья 925 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-storage-bench-sequestration",
+        "passed": true,
+        "expected_outcomes": {
+          "sequestration_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "sequestration_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "По договору о секвестре вещь, являющаяся предметом спора, передаётся на хранение третьему лицу, которое обязано возвратить её лицу, признанному по решению суда или по соглашению сторон управомоченным (статья 926 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-storage-bench-liability-limits",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_limits_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "liability_limits_duty_breached": true,
+          "requires_human_special_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Пределы ответственности хранителя по специальным видам хранения определяются правилами о соответствующем виде хранения и общими положениями о хранении (статьи 919–926 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "special-storage-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "special-storage-red-qualify-without-service",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "special_storage_qualified": true
+        },
+        "observed_outcomes": {
+          "special_storage_qualified": false
+        },
+        "reasons_ru": [
+          "Специальный вид хранения не установлен."
+        ]
+      },
+      {
+        "case_id": "special-storage-red-ignore-pawnshop",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "pawnshop_duty_breached": false
+        },
+        "observed_outcomes": {
+          "pawnshop_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Договор хранения вещи в ломбарде удостоверяется именной сохранной квитанцией, вещь оценивается по соглашению сторон, ломбард обязан страховать её в пользу поклажедателя за свой счёт, а невостребованная вещь хранится и реализуется в установленном порядке (статьи 919 и 920 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "special-storage-red-ignore-bank-valuables",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "bank_valuables_duty_breached": false
+        },
+        "observed_outcomes": {
+          "bank_valuables_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Банк может принимать на хранение ценные бумаги, драгоценные металлы и камни, иные драгоценные вещи и ценности; заключение договора удостоверяется выдачей именного сохранного документа (статья 921 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "special-storage-red-ignore-safe-deposit-box",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "safe_deposit_box_duty_breached": false
+        },
+        "observed_outcomes": {
+          "safe_deposit_box_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Хранение ценностей в индивидуальном банковском сейфе осуществляется с предоставлением клиенту права самому помещать и изымать ценности либо с их приёмом банком; ответственность банка за содержимое сейфа определяется правилами статьи 922 ГК РФ."
+        ]
+      },
+      {
+        "case_id": "special-storage-red-ignore-transport-locker",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transport_locker_duty_breached": false
+        },
+        "observed_outcomes": {
+          "transport_locker_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Камеры хранения транспортных организаций общего пользования обязаны принимать на хранение вещи пассажиров и других граждан независимо от наличия у них проездных документов; договор признаётся публичным (статья 923 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "special-storage-red-overdue-without-locker-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "locker_overdue_goods_duty_breached": true
+        },
+        "observed_outcomes": {
+          "locker_overdue_goods_duty_breached": false
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "special-storage-red-ignore-cloakroom",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "cloakroom_duty_breached": false
+        },
+        "observed_outcomes": {
+          "cloakroom_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Хранение в гардеробах организаций предполагается безвозмездным, а хранитель обязан принять все необходимые меры для обеспечения сохранности вещи независимо от того, осуществляется хранение за плату или безвозмездно (статья 924 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "special-storage-red-ignore-hotel",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "hotel_guest_property_duty_breached": false
+        },
+        "observed_outcomes": {
+          "hotel_guest_property_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Гостиница отвечает как хранитель и без особого о том соглашения за утрату, недостачу или повреждение вещей постояльца, внесённых в гостиницу, за исключением денег и драгоценностей, принятых на хранение отдельно (статья 925 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "special-storage-red-ignore-sequestration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "sequestration_duty_breached": false
+        },
+        "observed_outcomes": {
+          "sequestration_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "По договору о секвестре вещь, являющаяся предметом спора, передаётся на хранение третьему лицу, которое обязано возвратить её лицу, признанному по решению суда или по соглашению сторон управомоченным (статья 926 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "special-storage-red-skip-human-on-liability-limits",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_special_storage_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_special_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как специальный вид хранения: вещь принята на хранение ломбардом, банком, камерой хранения транспортной организации, гардеробом организации, гостиницей либо в порядке секвестра (статьи 919–926 ГК РФ).",
+          "Пределы ответственности хранителя по специальным видам хранения определяются правилами о соответствующем виде хранения и общими положениями о хранении (статьи 919–926 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

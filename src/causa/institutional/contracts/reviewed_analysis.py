@@ -534,6 +534,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.special_storage import (
+    SPECIAL_STORAGE_EVIDENCE_SCHEMA_VERSION,
+    ReviewedSpecialStorageEvidence,
+    SpecialStorageConstraintSet,
+    SpecialStorageEvaluation,
+    SpecialStorageEvidenceMappingResult,
+    build_special_storage_constraint_set,
+    evaluate_special_storage_constraints,
+    map_reviewed_special_storage_evidence,
+)
 from causa.institutional.contracts.warehouse_storage import (
     WAREHOUSE_STORAGE_EVIDENCE_SCHEMA_VERSION,
     ReviewedWarehouseStorageEvidence,
@@ -768,6 +778,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     settlements_evidence: ReviewedSettlementsEvidence
     storage_evidence: ReviewedStorageEvidence
     warehouse_storage_evidence: ReviewedWarehouseStorageEvidence
+    special_storage_evidence: ReviewedSpecialStorageEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -960,6 +971,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     warehouse_storage_evidence_mapping: WarehouseStorageEvidenceMappingResult
     warehouse_storage_constraint_set: WarehouseStorageConstraintSet
     warehouse_storage_evaluation: WarehouseStorageEvaluation
+    special_storage_evidence_mapping: SpecialStorageEvidenceMappingResult
+    special_storage_constraint_set: SpecialStorageConstraintSet
+    special_storage_evaluation: SpecialStorageEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -1552,6 +1566,19 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.warehouse_storage_evaluation != expected_warehouse_storage_evaluation:
             raise ValueError("Warehouse-storage evaluation does not replay from reviewed evidence.")
+        expected_special_storage_set = build_special_storage_constraint_set(
+            self.special_storage_evidence_mapping
+        )
+        if self.special_storage_constraint_set != expected_special_storage_set:
+            raise ValueError(
+                "Special-storage constraint set does not replay from reviewed evidence."
+            )
+        expected_special_storage_evaluation = evaluate_special_storage_constraints(
+            expected_special_storage_set,
+            self.special_storage_evidence_mapping.facts,
+        )
+        if self.special_storage_evaluation != expected_special_storage_evaluation:
+            raise ValueError("Special-storage evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -1974,6 +2001,8 @@ def _validate_request_integrity(
         raise ValueError("Storage evidence case_id does not match the analysis request.")
     if request.warehouse_storage_evidence.case_id != request.case_id:
         raise ValueError("Warehouse-storage evidence case_id does not match the analysis request.")
+    if request.special_storage_evidence.case_id != request.case_id:
+        raise ValueError("Special-storage evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -2139,6 +2168,8 @@ def _validate_request_integrity(
         != WAREHOUSE_STORAGE_EVIDENCE_SCHEMA_VERSION
     ):
         raise ValueError("Warehouse-storage evidence uses an unsupported schema version.")
+    if request.special_storage_evidence.schema_version != SPECIAL_STORAGE_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Special-storage evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -2197,6 +2228,7 @@ def _validate_request_integrity(
         *request.settlements_evidence.legal_source_refs,
         *request.storage_evidence.legal_source_refs,
         *request.warehouse_storage_evidence.legal_source_refs,
+        *request.special_storage_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -2309,6 +2341,8 @@ def _validate_request_integrity(
     for assertion in request.storage_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.warehouse_storage_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.special_storage_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -2902,6 +2936,17 @@ def _validate_request_integrity(
             "Warehouse-storage legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_warehouse_storage_legal_sources))
         )
+    invalid_special_storage_legal_sources = [
+        source_id
+        for source_id in request.special_storage_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_special_storage_legal_sources:
+        raise ValueError(
+            "Special-storage legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_special_storage_legal_sources))
+        )
     invalid_invalidity_legal_sources = [
         source_id
         for source_id in request.invalidity_evidence.legal_source_refs
@@ -3338,6 +3383,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Warehouse-storage evidence",
         review_status=request.warehouse_storage_evidence.review_status,
         reviewer_id=request.warehouse_storage_evidence.reviewer_id,
+    )
+    special_storage_reviewer_id = _require_reviewed(
+        artifact_name="Special-storage evidence",
+        review_status=request.special_storage_evidence.review_status,
+        reviewer_id=request.special_storage_evidence.reviewer_id,
     )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
@@ -3817,6 +3867,16 @@ def run_reviewed_contract_analysis(
         warehouse_storage_constraint_set,
         warehouse_storage_evidence_mapping.facts,
     )
+    special_storage_evidence_mapping = map_reviewed_special_storage_evidence(
+        request.special_storage_evidence
+    )
+    special_storage_constraint_set = build_special_storage_constraint_set(
+        special_storage_evidence_mapping
+    )
+    special_storage_evaluation = evaluate_special_storage_constraints(
+        special_storage_constraint_set,
+        special_storage_evidence_mapping.facts,
+    )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
     invalidity_evaluation = evaluate_invalidity_constraints(
@@ -4091,6 +4151,7 @@ def run_reviewed_contract_analysis(
         or settlements_evaluation.requires_human_settlements_assessment
         or storage_evaluation.requires_human_storage_assessment
         or warehouse_storage_evaluation.requires_human_warehouse_storage_assessment
+        or special_storage_evaluation.requires_human_special_storage_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -4161,6 +4222,7 @@ def run_reviewed_contract_analysis(
                 settlements_reviewer_id,
                 storage_reviewer_id,
                 warehouse_storage_reviewer_id,
+                special_storage_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -4329,6 +4391,9 @@ def run_reviewed_contract_analysis(
         warehouse_storage_evidence_mapping=warehouse_storage_evidence_mapping,
         warehouse_storage_constraint_set=warehouse_storage_constraint_set,
         warehouse_storage_evaluation=warehouse_storage_evaluation,
+        special_storage_evidence_mapping=special_storage_evidence_mapping,
+        special_storage_constraint_set=special_storage_constraint_set,
+        special_storage_evaluation=special_storage_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

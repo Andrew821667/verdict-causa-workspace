@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.69.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed special-storage evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 919 to 926.",
+            "Special-storage qualification, pawnshop storage, storage of valuables in a bank, the individual safe deposit box, transport lockers, unclaimed goods, cloakrooms, hotel guest property, sequestration, and the limits of liability remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о специальных видах хранения обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 919–926 ГК РФ.",
+            "Квалификация специального вида хранения, хранение в ломбарде, хранение ценностей в банке, индивидуальный банковский сейф, камеры хранения транспортных организаций, невостребованные вещи, гардеробы организаций, вещи постояльца гостиницы, секвестр и пределы ответственности разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.68.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -1309,6 +1309,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.68.0",
+        to_version="0.69.0",
+        reasons=[
+            "Reviewed inputs now require a separate special-storage evidence contract.",
+            "Analysis and Russian translation distinguish special-storage qualification, pawnshop storage, storage of valuables in a bank, the individual safe deposit box, transport lockers, unclaimed goods, cloakrooms, hotel guest property, sequestration, and the limits of liability under articles 919 to 926.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о специальных видах хранения.",
+            "Анализ и русское объяснение разделяют квалификацию специального вида хранения, хранение в ломбарде, хранение ценностей в банке, индивидуальный банковский сейф, камеры хранения транспортных организаций, невостребованные вещи, гардеробы организаций, вещи постояльца гостиницы, секвестр и пределы ответственности по статьям 919–926 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_special_storage_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

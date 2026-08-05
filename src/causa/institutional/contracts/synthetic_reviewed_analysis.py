@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.special_storage import (
+    ReviewedSpecialStorageEvidence,
+    SpecialStorageEvidenceAssertion,
+    SpecialStorageEvidencePredicate,
+)
 from causa.institutional.contracts.warehouse_storage import (
     ReviewedWarehouseStorageEvidence,
     WarehouseStorageEvidenceAssertion,
@@ -476,6 +481,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk907-911-warehouse-storage-concept-and-inspection-v1",
     "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1",
     "synthetic-case-supply-1-warehouse-storage-evidence",
+    "synthetic-ru-gk919-923-special-storage-pawnshop-bank-and-lockers-v1",
+    "synthetic-ru-gk924-926-special-storage-cloakroom-hotel-and-sequestration-v1",
+    "synthetic-case-supply-1-special-storage-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2562,6 +2570,45 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-warehouse-storage-reviewer",
+        ),
+        special_storage_evidence=ReviewedSpecialStorageEvidence(
+            id="reviewed-special-storage-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                SpecialStorageEvidenceAssertion(
+                    id=f"special-storage-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-special-storage-evidence",),
+                )
+                for predicate, value in (
+                    (SpecialStorageEvidencePredicate.SPECIAL_STORAGE_SERVICE_PROVIDED, False),
+                    (SpecialStorageEvidencePredicate.PAWNSHOP_STORAGE_RULES_BREACHED, False),
+                    (
+                        SpecialStorageEvidencePredicate.BANK_VALUABLES_STORAGE_RULES_BREACHED,
+                        False,
+                    ),
+                    (SpecialStorageEvidencePredicate.SAFE_DEPOSIT_BOX_RULES_BREACHED, False),
+                    (
+                        SpecialStorageEvidencePredicate.TRANSPORT_LOCKER_STORAGE_RULES_BREACHED,
+                        False,
+                    ),
+                    (SpecialStorageEvidencePredicate.LOCKER_OVERDUE_GOODS_RULES_BREACHED, False),
+                    (SpecialStorageEvidencePredicate.CLOAKROOM_STORAGE_RULES_BREACHED, False),
+                    (SpecialStorageEvidencePredicate.HOTEL_GUEST_PROPERTY_RULES_BREACHED, False),
+                    (SpecialStorageEvidencePredicate.SEQUESTRATION_RULES_BREACHED, False),
+                    (
+                        SpecialStorageEvidencePredicate.SPECIAL_STORAGE_LIABILITY_LIMITS_BREACHED,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk919-923-special-storage-pawnshop-bank-and-lockers-v1",
+                "synthetic-ru-gk924-926-special-storage-cloakroom-hotel-and-sequestration-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-special-storage-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
