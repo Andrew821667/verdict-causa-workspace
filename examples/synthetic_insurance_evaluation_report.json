@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка общих положений о страховании и договоре страхования по статьям 927–943 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-insurance-evidence-supply-1-v0",
+    "schema_version": "contracts.insurance-evidence.v0",
+    "mapping_version": "contracts-reviewed-insurance-to-facts-v0",
+    "facts": {
+      "insurance_contract_concluded": false,
+      "insurer_not_entitled_to_act": false,
+      "insured_interest_absent_or_unlawful": false,
+      "insurance_written_form_not_observed": false,
+      "essential_terms_not_agreed": false,
+      "insurance_rules_application_breached": false,
+      "property_insurance_scope_breached": false,
+      "personal_insurance_scope_breached": false,
+      "beneficiary_rights_disregarded": false,
+      "compulsory_insurance_duty_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk927-938-insurance-forms-interests-and-parties-v1",
+      "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "beneficiary_rights_disregarded",
+        "assertion_id": "insurance-evidence-beneficiary_rights_disregarded",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-evidence"
+        ]
+      },
+      {
+        "fact_name": "compulsory_insurance_duty_breached",
+        "assertion_id": "insurance-evidence-compulsory_insurance_duty_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-evidence"
+        ]
+      },
+      {
+        "fact_name": "essential_terms_not_agreed",
+        "assertion_id": "insurance-evidence-essential_terms_not_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-evidence"
+        ]
+      },
+      {
+        "fact_name": "insurance_contract_concluded",
+        "assertion_id": "insurance-evidence-insurance_contract_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-evidence"
+        ]
+      },
+      {
+        "fact_name": "insurance_rules_application_breached",
+        "assertion_id": "insurance-evidence-insurance_rules_application_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-evidence"
+        ]
+      },
+      {
+        "fact_name": "insurance_written_form_not_observed",
+        "assertion_id": "insurance-evidence-insurance_written_form_not_observed",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-evidence"
+        ]
+      },
+      {
+        "fact_name": "insured_interest_absent_or_unlawful",
+        "assertion_id": "insurance-evidence-insured_interest_absent_or_unlawful",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-evidence"
+        ]
+      },
+      {
+        "fact_name": "insurer_not_entitled_to_act",
+        "assertion_id": "insurance-evidence-insurer_not_entitled_to_act",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-evidence"
+        ]
+      },
+      {
+        "fact_name": "personal_insurance_scope_breached",
+        "assertion_id": "insurance-evidence-personal_insurance_scope_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_insurance_scope_breached",
+        "assertion_id": "insurance-evidence-property_insurance_scope_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "insurance-constraint-set:reviewed-insurance-evidence-supply-1-v0",
+    "model_version": "contracts-insurance-articles-927-943-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk927-938-insurance-forms-interests-and-parties-v1",
+      "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1"
+    ],
+    "expressions": [
+      "insurance_qualified == insurance_contract_concluded",
+      "insurer_status_invalid == insurance_qualified AND insurer_not_entitled_to_act",
+      "insured_interest_invalid == insurance_qualified AND insured_interest_absent_or_unlawful",
+      "insurance_form_void == insurance_qualified AND insurance_written_form_not_observed",
+      "essential_terms_duty_breached == insurance_qualified AND essential_terms_not_agreed",
+      "insurance_rules_duty_breached == insurance_qualified AND essential_terms_not_agreed AND insurance_rules_application_breached",
+      "property_insurance_duty_breached == insurance_qualified AND property_insurance_scope_breached",
+      "personal_insurance_duty_breached == insurance_qualified AND personal_insurance_scope_breached",
+      "beneficiary_rights_breached == insurance_qualified AND beneficiary_rights_disregarded",
+      "compulsory_insurance_breached == insurance_qualified AND compulsory_insurance_duty_breached",
+      "requires_human_insurance_assessment == insurer_status_invalid OR insured_interest_invalid OR insurance_form_void OR essential_terms_duty_breached OR property_insurance_duty_breached OR personal_insurance_duty_breached OR beneficiary_rights_breached OR compulsory_insurance_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "insurance-constraint-set:reviewed-insurance-evidence-supply-1-v0",
+    "satisfiable": true,
+    "insurance_qualified": false,
+    "insurer_status_invalid": false,
+    "insured_interest_invalid": false,
+    "insurance_form_void": false,
+    "essential_terms_duty_breached": false,
+    "insurance_rules_duty_breached": false,
+    "property_insurance_duty_breached": false,
+    "personal_insurance_duty_breached": false,
+    "beneficiary_rights_breached": false,
+    "compulsory_insurance_breached": false,
+    "requires_human_insurance_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор страхования."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только общие положения о страховании и договоре страхования и не заменяет судебную оценку.",
+      "Наличие страхового интереса, характер страхового случая и содержание правил страхования оцениваются экспертом и судом (статьи 930, 942 и 943 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "insurance-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "insurance-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "insurance_qualified": false
+        },
+        "observed_outcomes": {
+          "insurance_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор страхования."
+        ]
+      },
+      {
+        "task_id": "insurance-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "insurance_qualified": true,
+          "requires_human_insurance_assessment": false
+        },
+        "observed_outcomes": {
+          "insurance_qualified": true,
+          "requires_human_insurance_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "insurance-bench-insurer-status",
+        "passed": true,
+        "expected_outcomes": {
+          "insurer_status_invalid": true,
+          "requires_human_insurance_assessment": true
+        },
+        "observed_outcomes": {
+          "insurer_status_invalid": true,
+          "requires_human_insurance_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "В качестве страховщиков могут выступать юридические лица, имеющие разрешения (лицензии) на осуществление страхования соответствующего вида (статья 938 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "insurance-bench-interest",
+        "passed": true,
+        "expected_outcomes": {
+          "insured_interest_invalid": true,
+          "requires_human_insurance_assessment": true
+        },
+        "observed_outcomes": {
+          "insured_interest_invalid": true,
+          "requires_human_insurance_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "Страхование противоправных интересов, а также убытков от участия в играх и расходов по освобождению заложников не допускается; договор страхования имущества в пользу лица, не имеющего интереса в сохранении застрахованного имущества, недействителен (статьи 928 и 930 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "insurance-bench-form",
+        "passed": true,
+        "expected_outcomes": {
+          "insurance_form_void": true,
+          "requires_human_insurance_assessment": true
+        },
+        "observed_outcomes": {
+          "insurance_form_void": true,
+          "requires_human_insurance_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "Договор страхования должен быть заключён в письменной форме; несоблюдение письменной формы влечёт недействительность договора, кроме договора обязательного государственного страхования (статья 940 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "insurance-bench-essential-terms",
+        "passed": true,
+        "expected_outcomes": {
+          "essential_terms_duty_breached": true,
+          "insurance_rules_duty_breached": true,
+          "requires_human_insurance_assessment": true
+        },
+        "observed_outcomes": {
+          "essential_terms_duty_breached": true,
+          "insurance_rules_duty_breached": true,
+          "requires_human_insurance_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "Между страхователем и страховщиком должно быть достигнуто соглашение об определённом имуществе либо ином имущественном интересе или о застрахованном лице, о характере страхового случая, о размере страховой суммы и о сроке действия договора (статья 942 ГК РФ).",
+          "Условия договора страхования могут быть определены в правилах страхования; они обязательны для страхователя, если в договоре прямо указано на их применение и сами правила изложены в договоре либо приложены к нему (статья 943 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "insurance-bench-property-scope",
+        "passed": true,
+        "expected_outcomes": {
+          "property_insurance_duty_breached": true,
+          "requires_human_insurance_assessment": true
+        },
+        "observed_outcomes": {
+          "property_insurance_duty_breached": true,
+          "requires_human_insurance_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "По договору имущественного страхования могут быть застрахованы риск утраты, недостачи или повреждения имущества, риск ответственности по обязательствам из причинения вреда или по договору и предпринимательский риск в пределах, предусмотренных законом (статьи 929 и 931–933 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "insurance-bench-personal-scope",
+        "passed": true,
+        "expected_outcomes": {
+          "personal_insurance_duty_breached": true,
+          "requires_human_insurance_assessment": true
+        },
+        "observed_outcomes": {
+          "personal_insurance_duty_breached": true,
+          "requires_human_insurance_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "По договору личного страхования страховщик обязуется выплатить страховую сумму в случае причинения вреда жизни или здоровью застрахованного лица, достижения им определённого возраста или наступления иного предусмотренного события (статья 934 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "insurance-bench-beneficiary",
+        "passed": true,
+        "expected_outcomes": {
+          "beneficiary_rights_breached": true,
+          "requires_human_insurance_assessment": true
+        },
+        "observed_outcomes": {
+          "beneficiary_rights_breached": true,
+          "requires_human_insurance_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "Права и обязанности выгодоприобретателя, освобождение страховщика от исполнения и порядок замены выгодоприобретателя определяются правилами статей 939 и 956 ГК РФ."
+        ]
+      },
+      {
+        "task_id": "insurance-bench-compulsory",
+        "passed": true,
+        "expected_outcomes": {
+          "compulsory_insurance_breached": true,
+          "requires_human_insurance_assessment": true
+        },
+        "observed_outcomes": {
+          "compulsory_insurance_breached": true,
+          "requires_human_insurance_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "Обязанность страховать жизнь, здоровье или имущество других лиц либо свою гражданскую ответственность может быть возложена законом; последствия неисполнения этой обязанности определяются статьями 935–937 ГК РФ."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "insurance-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "insurance-red-qualify-without-contract",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "insurance_qualified": true
+        },
+        "observed_outcomes": {
+          "insurance_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор страхования."
+        ]
+      },
+      {
+        "case_id": "insurance-red-ignore-insurer-status",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "insurer_status_invalid": false
+        },
+        "observed_outcomes": {
+          "insurer_status_invalid": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "В качестве страховщиков могут выступать юридические лица, имеющие разрешения (лицензии) на осуществление страхования соответствующего вида (статья 938 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "insurance-red-ignore-interest",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "insured_interest_invalid": false
+        },
+        "observed_outcomes": {
+          "insured_interest_invalid": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "Страхование противоправных интересов, а также убытков от участия в играх и расходов по освобождению заложников не допускается; договор страхования имущества в пользу лица, не имеющего интереса в сохранении застрахованного имущества, недействителен (статьи 928 и 930 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "insurance-red-ignore-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "insurance_form_void": false
+        },
+        "observed_outcomes": {
+          "insurance_form_void": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "Договор страхования должен быть заключён в письменной форме; несоблюдение письменной формы влечёт недействительность договора, кроме договора обязательного государственного страхования (статья 940 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "insurance-red-ignore-essential-terms",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "essential_terms_duty_breached": false
+        },
+        "observed_outcomes": {
+          "essential_terms_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "Между страхователем и страховщиком должно быть достигнуто соглашение об определённом имуществе либо ином имущественном интересе или о застрахованном лице, о характере страхового случая, о размере страховой суммы и о сроке действия договора (статья 942 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "insurance-red-rules-without-terms-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "insurance_rules_duty_breached": true
+        },
+        "observed_outcomes": {
+          "insurance_rules_duty_breached": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "insurance-red-ignore-property-scope",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "property_insurance_duty_breached": false
+        },
+        "observed_outcomes": {
+          "property_insurance_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "По договору имущественного страхования могут быть застрахованы риск утраты, недостачи или повреждения имущества, риск ответственности по обязательствам из причинения вреда или по договору и предпринимательский риск в пределах, предусмотренных законом (статьи 929 и 931–933 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "insurance-red-ignore-personal-scope",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "personal_insurance_duty_breached": false
+        },
+        "observed_outcomes": {
+          "personal_insurance_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "По договору личного страхования страховщик обязуется выплатить страховую сумму в случае причинения вреда жизни или здоровью застрахованного лица, достижения им определённого возраста или наступления иного предусмотренного события (статья 934 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "insurance-red-ignore-beneficiary",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "beneficiary_rights_breached": false
+        },
+        "observed_outcomes": {
+          "beneficiary_rights_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "Права и обязанности выгодоприобретателя, освобождение страховщика от исполнения и порядок замены выгодоприобретателя определяются правилами статей 939 и 956 ГК РФ."
+        ]
+      },
+      {
+        "case_id": "insurance-red-skip-human-on-compulsory",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_insurance_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_insurance_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор страхования: страхование имущества и иных имущественных интересов либо страхование жизни, здоровья и других личных интересов осуществляется на основании договора имущественного или личного страхования (статьи 927, 929 и 934 ГК РФ).",
+          "Обязанность страховать жизнь, здоровье или имущество других лиц либо свою гражданскую ответственность может быть возложена законом; последствия неисполнения этой обязанности определяются статьями 935–937 ГК РФ."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

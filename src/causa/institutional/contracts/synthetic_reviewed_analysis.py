@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.insurance import (
+    InsuranceEvidenceAssertion,
+    InsuranceEvidencePredicate,
+    ReviewedInsuranceEvidence,
+)
 from causa.institutional.contracts.special_storage import (
     ReviewedSpecialStorageEvidence,
     SpecialStorageEvidenceAssertion,
@@ -484,6 +489,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk919-923-special-storage-pawnshop-bank-and-lockers-v1",
     "synthetic-ru-gk924-926-special-storage-cloakroom-hotel-and-sequestration-v1",
     "synthetic-case-supply-1-special-storage-evidence",
+    "synthetic-ru-gk927-938-insurance-forms-interests-and-parties-v1",
+    "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1",
+    "synthetic-case-supply-1-insurance-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2609,6 +2617,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-special-storage-reviewer",
+        ),
+        insurance_evidence=ReviewedInsuranceEvidence(
+            id="reviewed-insurance-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                InsuranceEvidenceAssertion(
+                    id=f"insurance-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-insurance-evidence",),
+                )
+                for predicate, value in (
+                    (InsuranceEvidencePredicate.INSURANCE_CONTRACT_CONCLUDED, False),
+                    (InsuranceEvidencePredicate.INSURER_NOT_ENTITLED_TO_ACT, False),
+                    (InsuranceEvidencePredicate.INSURED_INTEREST_ABSENT_OR_UNLAWFUL, False),
+                    (InsuranceEvidencePredicate.INSURANCE_WRITTEN_FORM_NOT_OBSERVED, False),
+                    (InsuranceEvidencePredicate.ESSENTIAL_TERMS_NOT_AGREED, False),
+                    (InsuranceEvidencePredicate.INSURANCE_RULES_APPLICATION_BREACHED, False),
+                    (InsuranceEvidencePredicate.PROPERTY_INSURANCE_SCOPE_BREACHED, False),
+                    (InsuranceEvidencePredicate.PERSONAL_INSURANCE_SCOPE_BREACHED, False),
+                    (InsuranceEvidencePredicate.BENEFICIARY_RIGHTS_DISREGARDED, False),
+                    (InsuranceEvidencePredicate.COMPULSORY_INSURANCE_DUTY_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk927-938-insurance-forms-interests-and-parties-v1",
+                "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-insurance-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

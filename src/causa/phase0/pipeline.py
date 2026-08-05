@@ -112,6 +112,9 @@ from causa.institutional.contracts.synthetic_settlements import (
 from causa.institutional.contracts.synthetic_storage import (
     build_synthetic_storage_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_insurance import (
+    build_synthetic_insurance_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_special_storage import (
     build_synthetic_special_storage_evaluation_artifact,
 )
@@ -1100,6 +1103,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-insurance",
+            title="Проверка страхования",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.insurance_evidence_mapping.evidence_id,
+                trace.analysis_result.insurance_constraint_set.id,
+                *trace.analysis_result.insurance_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.insurance_evaluation.reasons_ru,
+                "Квалификация договора страхования, право страховщика осуществлять страхование данного вида, наличие и правомерность страхового интереса, обязательная письменная форма договора, согласование существенных условий, применение правил страхования, пределы имущественного и личного страхования, права выгодоприобретателя и исполнение обязанности по обязательному страхованию проверяются раздельно по статьям 927–943 ГК РФ.",
+                "Наличие страхового интереса, характер страхового случая и содержание правил страхования оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1406,6 +1424,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     storage_artifact = build_synthetic_storage_evaluation_artifact()
     warehouse_storage_artifact = build_synthetic_warehouse_storage_evaluation_artifact()
     special_storage_artifact = build_synthetic_special_storage_evaluation_artifact()
+    insurance_artifact = build_synthetic_insurance_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -1565,6 +1584,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-warehouse-storage-spec.md",
                 "src/causa/institutional/contracts/special_storage.py",
                 "docs/contract-special-storage-spec.md",
+                "src/causa/institutional/contracts/insurance.py",
+                "docs/contract-insurance-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -1635,6 +1656,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_storage_evaluation_report.json",
                 "examples/synthetic_warehouse_storage_evaluation_report.json",
                 "examples/synthetic_special_storage_evaluation_report.json",
+                "examples/synthetic_insurance_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -1822,6 +1844,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 warehouse_storage_artifact.red_team_report.id,
                 special_storage_artifact.benchmark_report.id,
                 special_storage_artifact.red_team_report.id,
+                insurance_artifact.benchmark_report.id,
+                insurance_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -1904,6 +1928,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_storage_evaluation_report.json",
                 "examples/synthetic_warehouse_storage_evaluation_report.json",
                 "examples/synthetic_special_storage_evaluation_report.json",
+                "examples/synthetic_insurance_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

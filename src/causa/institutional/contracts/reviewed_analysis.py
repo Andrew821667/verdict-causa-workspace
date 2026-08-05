@@ -534,6 +534,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.insurance import (
+    INSURANCE_EVIDENCE_SCHEMA_VERSION,
+    InsuranceConstraintSet,
+    InsuranceEvaluation,
+    InsuranceEvidenceMappingResult,
+    ReviewedInsuranceEvidence,
+    build_insurance_constraint_set,
+    evaluate_insurance_constraints,
+    map_reviewed_insurance_evidence,
+)
 from causa.institutional.contracts.special_storage import (
     SPECIAL_STORAGE_EVIDENCE_SCHEMA_VERSION,
     ReviewedSpecialStorageEvidence,
@@ -779,6 +789,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     storage_evidence: ReviewedStorageEvidence
     warehouse_storage_evidence: ReviewedWarehouseStorageEvidence
     special_storage_evidence: ReviewedSpecialStorageEvidence
+    insurance_evidence: ReviewedInsuranceEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -974,6 +985,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     special_storage_evidence_mapping: SpecialStorageEvidenceMappingResult
     special_storage_constraint_set: SpecialStorageConstraintSet
     special_storage_evaluation: SpecialStorageEvaluation
+    insurance_evidence_mapping: InsuranceEvidenceMappingResult
+    insurance_constraint_set: InsuranceConstraintSet
+    insurance_evaluation: InsuranceEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -1579,6 +1593,15 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.special_storage_evaluation != expected_special_storage_evaluation:
             raise ValueError("Special-storage evaluation does not replay from reviewed evidence.")
+        expected_insurance_set = build_insurance_constraint_set(self.insurance_evidence_mapping)
+        if self.insurance_constraint_set != expected_insurance_set:
+            raise ValueError("Insurance constraint set does not replay from reviewed evidence.")
+        expected_insurance_evaluation = evaluate_insurance_constraints(
+            expected_insurance_set,
+            self.insurance_evidence_mapping.facts,
+        )
+        if self.insurance_evaluation != expected_insurance_evaluation:
+            raise ValueError("Insurance evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -2003,6 +2026,8 @@ def _validate_request_integrity(
         raise ValueError("Warehouse-storage evidence case_id does not match the analysis request.")
     if request.special_storage_evidence.case_id != request.case_id:
         raise ValueError("Special-storage evidence case_id does not match the analysis request.")
+    if request.insurance_evidence.case_id != request.case_id:
+        raise ValueError("Insurance evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -2170,6 +2195,8 @@ def _validate_request_integrity(
         raise ValueError("Warehouse-storage evidence uses an unsupported schema version.")
     if request.special_storage_evidence.schema_version != SPECIAL_STORAGE_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Special-storage evidence uses an unsupported schema version.")
+    if request.insurance_evidence.schema_version != INSURANCE_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Insurance evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -2229,6 +2256,7 @@ def _validate_request_integrity(
         *request.storage_evidence.legal_source_refs,
         *request.warehouse_storage_evidence.legal_source_refs,
         *request.special_storage_evidence.legal_source_refs,
+        *request.insurance_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -2343,6 +2371,8 @@ def _validate_request_integrity(
     for assertion in request.warehouse_storage_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.special_storage_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.insurance_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -2947,6 +2977,17 @@ def _validate_request_integrity(
             "Special-storage legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_special_storage_legal_sources))
         )
+    invalid_insurance_legal_sources = [
+        source_id
+        for source_id in request.insurance_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_insurance_legal_sources:
+        raise ValueError(
+            "Insurance legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_insurance_legal_sources))
+        )
     invalid_invalidity_legal_sources = [
         source_id
         for source_id in request.invalidity_evidence.legal_source_refs
@@ -3388,6 +3429,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Special-storage evidence",
         review_status=request.special_storage_evidence.review_status,
         reviewer_id=request.special_storage_evidence.reviewer_id,
+    )
+    insurance_reviewer_id = _require_reviewed(
+        artifact_name="Insurance evidence",
+        review_status=request.insurance_evidence.review_status,
+        reviewer_id=request.insurance_evidence.reviewer_id,
     )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
@@ -3877,6 +3923,12 @@ def run_reviewed_contract_analysis(
         special_storage_constraint_set,
         special_storage_evidence_mapping.facts,
     )
+    insurance_evidence_mapping = map_reviewed_insurance_evidence(request.insurance_evidence)
+    insurance_constraint_set = build_insurance_constraint_set(insurance_evidence_mapping)
+    insurance_evaluation = evaluate_insurance_constraints(
+        insurance_constraint_set,
+        insurance_evidence_mapping.facts,
+    )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
     invalidity_evaluation = evaluate_invalidity_constraints(
@@ -4152,6 +4204,7 @@ def run_reviewed_contract_analysis(
         or storage_evaluation.requires_human_storage_assessment
         or warehouse_storage_evaluation.requires_human_warehouse_storage_assessment
         or special_storage_evaluation.requires_human_special_storage_assessment
+        or insurance_evaluation.requires_human_insurance_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -4223,6 +4276,7 @@ def run_reviewed_contract_analysis(
                 storage_reviewer_id,
                 warehouse_storage_reviewer_id,
                 special_storage_reviewer_id,
+                insurance_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -4394,6 +4448,9 @@ def run_reviewed_contract_analysis(
         special_storage_evidence_mapping=special_storage_evidence_mapping,
         special_storage_constraint_set=special_storage_constraint_set,
         special_storage_evaluation=special_storage_evaluation,
+        insurance_evidence_mapping=insurance_evidence_mapping,
+        insurance_constraint_set=insurance_constraint_set,
+        insurance_evaluation=insurance_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

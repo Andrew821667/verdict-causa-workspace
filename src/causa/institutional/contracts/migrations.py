@@ -1328,6 +1328,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.69.0",
+        to_version="0.70.0",
+        reasons=[
+            "Reviewed inputs now require a separate insurance evidence contract.",
+            "Analysis and Russian translation distinguish insurance qualification, the insurer's standing, the insured interest, the written form, the essential terms, the insurance rules, the scope of property and personal insurance, the beneficiary's rights, and compulsory insurance under articles 927 to 943.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о страховании.",
+            "Анализ и русское объяснение разделяют квалификацию страхования, статус страховщика, страховой интерес, письменную форму, существенные условия, правила страхования, пределы имущественного и личного страхования, права выгодоприобретателя и обязательное страхование по статьям 927–943 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_insurance_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

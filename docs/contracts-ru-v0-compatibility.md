@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.70.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью страхования |
 | `0.69.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью специальных видов хранения |
 | `0.68.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью хранения на товарном складе |
 | `0.67.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью общих положений о хранении |
@@ -77,6 +78,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.69.0` → `0.70.0` соберите отдельно проверенный контракт данных о страховании (`contracts.insurance-evidence.v0`). Не выводите квалификацию страхования, статус страховщика, страховой интерес, письменную форму, существенные условия, правила страхования, пределы имущественного и личного страхования, права выгодоприобретателя и обязательное страхование из прежних результатов об обеспечении исполнения или о хранении. Пересоберите артефакты оценки страхования, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.68.0` → `0.69.0` соберите отдельно проверенный контракт данных о специальных видах хранения (`contracts.special-storage-evidence.v0`). Не выводите хранение в ломбарде, хранение ценностей в банке и в индивидуальном сейфе, хранение в камерах хранения, гардеробах и гостинице, секвестр и пределы ответственности из прежних результатов об общих положениях о хранении или о хранении на товарном складе. Пересоберите артефакты оценки специальных видов хранения, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

@@ -2536,6 +2536,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk927-938-insurance-forms-interests-and-parties-v1",
+      "title": "Синтетическая проверенная модель добровольного и обязательного страхования, страховых интересов, имущественного и личного страхования и требований к страховщику по статьям 927–938 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: осуществление страхования на основании договоров имущественного или личного страхования, недопустимость страхования противоправных интересов, требование интереса в сохранении застрахованного имущества, страхование риска утраты имущества, риска ответственности и предпринимательского риска, страхование жизни и здоровья, обязанность страховать, возложенная законом, и её последствия, а также требования к страховщику проверяются раздельно (статьи 927–938 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "insurance_forms_interests_and_parties_articles_927_938",
+        "legal_reference": "ГК РФ, статьи 927–938",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1",
+      "title": "Синтетическая проверенная модель прав выгодоприобретателя, формы договора страхования, его существенных условий и правил страхования по статьям 939–943 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: права и обязанности выгодоприобретателя по договору страхования, обязательная письменная форма договора под страхом недействительности, соглашение сторон об объекте страхования или застрахованном лице, о характере страхового случая, о размере страховой суммы и о сроке действия договора, а также определение условий договора в правилах страхования и условия их обязательности для страхователя проверяются раздельно (статьи 939–943 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "insurance_contract_form_and_terms_articles_939_943",
+        "legal_reference": "ГК РФ, статьи 939–943",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-insurance-evidence",
+      "title": "Синтетическая проверенная запись фактов о страховании",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки договор страхования имущественных или личных интересов сторонами не заключался.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "insurance_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -8354,6 +8401,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-special-storage-reviewer"
     },
+    "insurance_evidence": {
+      "id": "reviewed-insurance-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.insurance-evidence.v0",
+      "assertions": [
+        {
+          "id": "insurance-evidence-insurance_contract_concluded",
+          "predicate": "insurance_contract_concluded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "id": "insurance-evidence-insurer_not_entitled_to_act",
+          "predicate": "insurer_not_entitled_to_act",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "id": "insurance-evidence-insured_interest_absent_or_unlawful",
+          "predicate": "insured_interest_absent_or_unlawful",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "id": "insurance-evidence-insurance_written_form_not_observed",
+          "predicate": "insurance_written_form_not_observed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "id": "insurance-evidence-essential_terms_not_agreed",
+          "predicate": "essential_terms_not_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "id": "insurance-evidence-insurance_rules_application_breached",
+          "predicate": "insurance_rules_application_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "id": "insurance-evidence-property_insurance_scope_breached",
+          "predicate": "property_insurance_scope_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "id": "insurance-evidence-personal_insurance_scope_breached",
+          "predicate": "personal_insurance_scope_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "id": "insurance-evidence-beneficiary_rights_disregarded",
+          "predicate": "beneficiary_rights_disregarded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "id": "insurance-evidence-compulsory_insurance_duty_breached",
+          "predicate": "compulsory_insurance_duty_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk927-938-insurance-forms-interests-and-parties-v1",
+        "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-insurance-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -13154,6 +13294,7 @@
       "synthetic-general-sale-reviewer",
       "synthetic-gift-reviewer",
       "synthetic-gratuitous-use-reviewer",
+      "synthetic-insurance-reviewer",
       "synthetic-interpretation-reviewer",
       "synthetic-invalidity-reviewer",
       "synthetic-lease-reviewer",
@@ -13218,6 +13359,7 @@
       "synthetic-case-supply-1-general-sale-evidence",
       "synthetic-case-supply-1-gift-evidence",
       "synthetic-case-supply-1-gratuitous-use-evidence",
+      "synthetic-case-supply-1-insurance-evidence",
       "synthetic-case-supply-1-interpretation-evidence",
       "synthetic-case-supply-1-invalidity-evidence",
       "synthetic-case-supply-1-lease-evidence",
@@ -13386,6 +13528,8 @@
       "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1",
       "synthetic-ru-gk919-923-special-storage-pawnshop-bank-and-lockers-v1",
       "synthetic-ru-gk924-926-special-storage-cloakroom-hotel-and-sequestration-v1",
+      "synthetic-ru-gk927-938-insurance-forms-interests-and-parties-v1",
+      "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -20648,6 +20792,142 @@
         "Оценка вещи, состав внесённых в гостиницу вещей и управомоченность получателя при секвестре оцениваются экспертом и судом (статьи 919, 925 и 926 ГК РФ)."
       ]
     },
+    "insurance_evidence_mapping": {
+      "evidence_id": "reviewed-insurance-evidence-supply-1-v0",
+      "schema_version": "contracts.insurance-evidence.v0",
+      "mapping_version": "contracts-reviewed-insurance-to-facts-v0",
+      "facts": {
+        "insurance_contract_concluded": false,
+        "insurer_not_entitled_to_act": false,
+        "insured_interest_absent_or_unlawful": false,
+        "insurance_written_form_not_observed": false,
+        "essential_terms_not_agreed": false,
+        "insurance_rules_application_breached": false,
+        "property_insurance_scope_breached": false,
+        "personal_insurance_scope_breached": false,
+        "beneficiary_rights_disregarded": false,
+        "compulsory_insurance_duty_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk927-938-insurance-forms-interests-and-parties-v1",
+        "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "beneficiary_rights_disregarded",
+          "assertion_id": "insurance-evidence-beneficiary_rights_disregarded",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "fact_name": "compulsory_insurance_duty_breached",
+          "assertion_id": "insurance-evidence-compulsory_insurance_duty_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "fact_name": "essential_terms_not_agreed",
+          "assertion_id": "insurance-evidence-essential_terms_not_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "fact_name": "insurance_contract_concluded",
+          "assertion_id": "insurance-evidence-insurance_contract_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "fact_name": "insurance_rules_application_breached",
+          "assertion_id": "insurance-evidence-insurance_rules_application_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "fact_name": "insurance_written_form_not_observed",
+          "assertion_id": "insurance-evidence-insurance_written_form_not_observed",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "fact_name": "insured_interest_absent_or_unlawful",
+          "assertion_id": "insurance-evidence-insured_interest_absent_or_unlawful",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "fact_name": "insurer_not_entitled_to_act",
+          "assertion_id": "insurance-evidence-insurer_not_entitled_to_act",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "fact_name": "personal_insurance_scope_breached",
+          "assertion_id": "insurance-evidence-personal_insurance_scope_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        },
+        {
+          "fact_name": "property_insurance_scope_breached",
+          "assertion_id": "insurance-evidence-property_insurance_scope_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-evidence"
+          ]
+        }
+      ]
+    },
+    "insurance_constraint_set": {
+      "id": "insurance-constraint-set:reviewed-insurance-evidence-supply-1-v0",
+      "model_version": "contracts-insurance-articles-927-943-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk927-938-insurance-forms-interests-and-parties-v1",
+        "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1"
+      ],
+      "expressions": [
+        "insurance_qualified == insurance_contract_concluded",
+        "insurer_status_invalid == insurance_qualified AND insurer_not_entitled_to_act",
+        "insured_interest_invalid == insurance_qualified AND insured_interest_absent_or_unlawful",
+        "insurance_form_void == insurance_qualified AND insurance_written_form_not_observed",
+        "essential_terms_duty_breached == insurance_qualified AND essential_terms_not_agreed",
+        "insurance_rules_duty_breached == insurance_qualified AND essential_terms_not_agreed AND insurance_rules_application_breached",
+        "property_insurance_duty_breached == insurance_qualified AND property_insurance_scope_breached",
+        "personal_insurance_duty_breached == insurance_qualified AND personal_insurance_scope_breached",
+        "beneficiary_rights_breached == insurance_qualified AND beneficiary_rights_disregarded",
+        "compulsory_insurance_breached == insurance_qualified AND compulsory_insurance_duty_breached",
+        "requires_human_insurance_assessment == insurer_status_invalid OR insured_interest_invalid OR insurance_form_void OR essential_terms_duty_breached OR property_insurance_duty_breached OR personal_insurance_duty_breached OR beneficiary_rights_breached OR compulsory_insurance_breached"
+      ]
+    },
+    "insurance_evaluation": {
+      "constraint_set_id": "insurance-constraint-set:reviewed-insurance-evidence-supply-1-v0",
+      "satisfiable": true,
+      "insurance_qualified": false,
+      "insurer_status_invalid": false,
+      "insured_interest_invalid": false,
+      "insurance_form_void": false,
+      "essential_terms_duty_breached": false,
+      "insurance_rules_duty_breached": false,
+      "property_insurance_duty_breached": false,
+      "personal_insurance_duty_breached": false,
+      "beneficiary_rights_breached": false,
+      "compulsory_insurance_breached": false,
+      "requires_human_insurance_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор страхования."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только общие положения о страховании и договоре страхования и не заменяет судебную оценку.",
+        "Наличие страхового интереса, характер страхового случая и содержание правил страхования оцениваются экспертом и судом (статьи 930, 942 и 943 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -26019,7 +26299,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.69.0",
+      "institutional_package_version": "contracts-ru-v0@0.70.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
