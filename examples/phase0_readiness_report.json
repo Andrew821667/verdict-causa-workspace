@@ -169,6 +169,8 @@
         "docs/contract-mandate-spec.md",
         "src/causa/institutional/contracts/negotiorum_gestio.py",
         "docs/contract-negotiorum-gestio-spec.md",
+        "src/causa/institutional/contracts/commission.py",
+        "docs/contract-commission-spec.md",
         "src/causa/institutional/contracts/invalidity.py",
         "docs/contract-invalidity-spec.md",
         "src/causa/institutional/contracts/security.py",
@@ -243,6 +245,7 @@
         "examples/synthetic_insurance_settlement_evaluation_report.json",
         "examples/synthetic_mandate_evaluation_report.json",
         "examples/synthetic_negotiorum_gestio_evaluation_report.json",
+        "examples/synthetic_commission_evaluation_report.json",
         "examples/synthetic_invalidity_evaluation_report.json",
         "examples/synthetic_security_evaluation_report.json",
         "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -310,7 +313,7 @@
         "examples/migrations/contracts-ru-v0-0.59.0-to-0.62.0-migration-report.json",
         "examples/migrations/contracts-ru-v0-0.60.0-to-0.62.0-migration-report.json",
         "examples/migrations/contracts-ru-v0-0.61.0-to-0.62.0-migration-report.json",
-        "contracts-ru-v0@0.73.0"
+        "contracts-ru-v0@0.74.0"
       ],
       "remaining_work": [
         "Расширить правила юридической силы и временные правила за пределы поставки.",
@@ -489,6 +492,8 @@
         "mandate-red-team-report-v0",
         "negotiorum-gestio-benchmark-report-v0",
         "negotiorum-gestio-red-team-report-v0",
+        "commission-benchmark-report-v0",
+        "commission-red-team-report-v0",
         "invalidity-benchmark-report-v0",
         "invalidity-red-team-report-v0",
         "security-benchmark-report-v0",
@@ -575,6 +580,7 @@
         "examples/synthetic_insurance_settlement_evaluation_report.json",
         "examples/synthetic_mandate_evaluation_report.json",
         "examples/synthetic_negotiorum_gestio_evaluation_report.json",
+        "examples/synthetic_commission_evaluation_report.json",
         "examples/synthetic_invalidity_evaluation_report.json",
         "examples/synthetic_security_evaluation_report.json",
         "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -599,7 +605,7 @@
         "src/causa/institutional/contracts/synthetic_pilot.py",
         "docs/pilot-data-admission-spec.md",
         "examples/synthetic_pilot_rehearsal_report.json",
-        "pilot-gate:pilot-intake-5a1e0001:1647954279d3",
+        "pilot-gate:pilot-intake-5a1e0001:f16ef1f33545",
         "contracts-pilot-gate-benchmark-v1",
         "contracts-pilot-gate-red-team-v1",
         "synthetic-privacy-safe-pilot-utility-report-v1"

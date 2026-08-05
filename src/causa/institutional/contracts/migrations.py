@@ -1404,6 +1404,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.73.0",
+        to_version="0.74.0",
+        reasons=[
+            "Reviewed inputs now require a separate commission evidence contract.",
+            "Analysis and Russian translation distinguish commission qualification, remuneration, the principal's instructions, notice of deviation, liability for the third party, sub-commission, the principal's property rights, the report, the principal's duties, and termination under articles 990 to 1004.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о комиссии.",
+            "Анализ и русское объяснение разделяют квалификацию комиссии, вознаграждение, указания комитента, уведомление об отступлении, ответственность за третье лицо, субкомиссию, права комитента на вещи, отчёт комиссионера, обязанности комитента и прекращение договора по статьям 990–1004 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_commission_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

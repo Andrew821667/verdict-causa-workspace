@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.74.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed commission evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 990 to 1004.",
+            "Commission qualification, remuneration, the principal's instructions, notice of deviation, liability for the third party, sub-commission, the principal's property rights, the report, the principal's duties, and termination remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о комиссии обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 990–1004 ГК РФ.",
+            "Квалификация комиссии, вознаграждение, указания комитента, уведомление об отступлении, ответственность за третье лицо, субкомиссия, права комитента на вещи, отчёт комиссионера, обязанности комитента и прекращение договора разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.73.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

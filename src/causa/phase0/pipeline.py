@@ -121,6 +121,9 @@ from causa.institutional.contracts.synthetic_insurance_settlement import (
 from causa.institutional.contracts.synthetic_mandate import (
     build_synthetic_mandate_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_commission import (
+    build_synthetic_commission_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_negotiorum_gestio import (
     build_synthetic_negotiorum_gestio_evaluation_artifact,
 )
@@ -1172,6 +1175,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-commission",
+            title="Проверка комиссии",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.commission_evidence_mapping.evidence_id,
+                trace.analysis_result.commission_constraint_set.id,
+                *trace.analysis_result.commission_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.commission_evaluation.reasons_ru,
+                "Квалификация договора комиссии, комиссионное вознаграждение и делькредере, исполнение поручения на наиболее выгодных условиях и отступление от указаний с уведомлением, ответственность за неисполнение сделки третьим лицом, субкомиссия, права комитента на вещи и удержание комиссионера, отчёт комиссионера и передача полученного, обязанности комитента и прекращение договора проверяются раздельно по статьям 990–1004 ГК РФ.",
+                "Выгодность условий сделки, необходимая осмотрительность при выборе третьего лица и обоснованность отступления от указаний оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1482,6 +1500,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     insurance_settlement_artifact = build_synthetic_insurance_settlement_evaluation_artifact()
     mandate_artifact = build_synthetic_mandate_evaluation_artifact()
     negotiorum_gestio_artifact = build_synthetic_negotiorum_gestio_evaluation_artifact()
+    commission_artifact = build_synthetic_commission_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -1649,6 +1668,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-mandate-spec.md",
                 "src/causa/institutional/contracts/negotiorum_gestio.py",
                 "docs/contract-negotiorum-gestio-spec.md",
+                "src/causa/institutional/contracts/commission.py",
+                "docs/contract-commission-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -1723,6 +1744,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_insurance_settlement_evaluation_report.json",
                 "examples/synthetic_mandate_evaluation_report.json",
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
+                "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -1918,6 +1940,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 mandate_artifact.red_team_report.id,
                 negotiorum_gestio_artifact.benchmark_report.id,
                 negotiorum_gestio_artifact.red_team_report.id,
+                commission_artifact.benchmark_report.id,
+                commission_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -2004,6 +2028,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_insurance_settlement_evaluation_report.json",
                 "examples/synthetic_mandate_evaluation_report.json",
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
+                "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

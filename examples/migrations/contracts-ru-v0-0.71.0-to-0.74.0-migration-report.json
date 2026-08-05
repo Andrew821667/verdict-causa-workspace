@@ -1,0 +1,77 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.71.0:to-0.74.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.71.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.71.0",
+  "target_package_version": "0.74.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.71.0",
+      "to_version": "0.72.0",
+      "reasons": [
+        "Reviewed inputs now require a separate mandate evidence contract.",
+        "Analysis and Russian translation distinguish mandate qualification, remuneration, the principal's instructions, notice of deviation, personal performance, reporting, the principal's duties, termination, its consequences, and the successors' duties under articles 971 to 979."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о поручении.",
+        "Анализ и русское объяснение разделяют квалификацию поручения, вознаграждение, указания доверителя, уведомление об отступлении, личное исполнение, отчёт поверенного, обязанности доверителя, прекращение договора, его последствия и обязанности правопреемников по статьям 971–979 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_mandate_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.72.0",
+      "to_version": "0.73.0",
+      "reasons": [
+        "Reviewed inputs now require a separate negotiorum-gestio evidence contract.",
+        "Analysis and Russian translation distinguish the conditions of acting in another's interest, notice to the interested person, waiting for the decision, the effects of approval and disapproval, reimbursement of expenses, remuneration, the transfer of the transaction's consequences, and the gestor's report under articles 980 to 989."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о действиях в чужом интересе без поручения.",
+        "Анализ и русское объяснение разделяют условия действий в чужом интересе, уведомление заинтересованного лица, ожидание его решения, последствия одобрения и неодобрения, возмещение расходов, вознаграждение, переход последствий сделки и отчёт по статьям 980–989 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_negotiorum_gestio_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.73.0",
+      "to_version": "0.74.0",
+      "reasons": [
+        "Reviewed inputs now require a separate commission evidence contract.",
+        "Analysis and Russian translation distinguish commission qualification, remuneration, the principal's instructions, notice of deviation, liability for the third party, sub-commission, the principal's property rights, the report, the principal's duties, and termination under articles 990 to 1004."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о комиссии.",
+        "Анализ и русское объяснение разделяют квалификацию комиссии, вознаграждение, указания комитента, уведомление об отступлении, ответственность за третье лицо, субкомиссию, права комитента на вещи, отчёт комиссионера, обязанности комитента и прекращение договора по статьям 990–1004 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_commission_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.commission import (
+    CommissionEvidenceAssertion,
+    CommissionEvidencePredicate,
+    ReviewedCommissionEvidence,
+)
 from causa.institutional.contracts.negotiorum_gestio import (
     NegotiorumGestioEvidenceAssertion,
     NegotiorumGestioEvidencePredicate,
@@ -516,6 +521,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
     "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1",
     "synthetic-case-supply-1-negotiorum-gestio-evidence",
+    "synthetic-ru-gk990-998-commission-concept-execution-and-property-v1",
+    "synthetic-ru-gk999-1004-commission-report-duties-and-termination-v1",
+    "synthetic-case-supply-1-commission-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2791,6 +2799,39 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-negotiorum-gestio-reviewer",
+        ),
+        commission_evidence=ReviewedCommissionEvidence(
+            id="reviewed-commission-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                CommissionEvidenceAssertion(
+                    id=f"commission-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-commission-evidence",),
+                )
+                for predicate, value in (
+                    (CommissionEvidencePredicate.COMMISSION_CONTRACT_CONCLUDED, False),
+                    (CommissionEvidencePredicate.COMMISSION_REMUNERATION_RULES_BREACHED, False),
+                    (CommissionEvidencePredicate.COMMISSION_INSTRUCTIONS_NOT_FOLLOWED, False),
+                    (CommissionEvidencePredicate.DEVIATION_NOTICE_NOT_GIVEN, False),
+                    (CommissionEvidencePredicate.THIRD_PARTY_TRANSACTION_RULES_BREACHED, False),
+                    (CommissionEvidencePredicate.SUBCOMMISSION_RULES_BREACHED, False),
+                    (CommissionEvidencePredicate.PRINCIPAL_PROPERTY_RIGHTS_DISREGARDED, False),
+                    (CommissionEvidencePredicate.COMMISSION_REPORT_OR_TRANSFER_BREACHED, False),
+                    (
+                        CommissionEvidencePredicate.PRINCIPAL_ACCEPTANCE_AND_EXPENSES_BREACHED,
+                        False,
+                    ),
+                    (CommissionEvidencePredicate.COMMISSION_TERMINATION_RULES_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk990-998-commission-concept-execution-and-property-v1",
+                "synthetic-ru-gk999-1004-commission-report-duties-and-termination-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-commission-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

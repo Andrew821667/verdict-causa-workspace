@@ -2724,6 +2724,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk990-998-commission-concept-execution-and-property-v1",
+      "title": "Синтетическая проверенная модель договора комиссии, комиссионного вознаграждения, исполнения поручения, субкомиссии и прав на вещи по статьям 990–998 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: договор комиссии как обязанность комиссионера по поручению комитента за вознаграждение совершить сделки от своего имени, но за счёт комитента, уплата комиссионного вознаграждения и вознаграждения за делькредере, исполнение поручения на наиболее выгодных для комитента условиях и допустимость отступления от указаний с уведомлением, ответственность за неисполнение сделки третьим лицом, субкомиссия, право собственности комитента на вещи и удовлетворение требований комиссионера проверяются раздельно (статьи 990–998 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "commission_concept_execution_and_property_articles_990_998",
+        "legal_reference": "ГК РФ, статьи 990–998",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk999-1004-commission-report-duties-and-termination-v1",
+      "title": "Синтетическая проверенная модель отчёта комиссионера, обязанностей комитента и прекращения договора комиссии по статьям 999–1004 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обязанность комиссионера представить отчёт и передать комитенту всё полученное по договору комиссии, обязанности комитента принять исполненное, осмотреть имущество и известить о недостатках, освободить комиссионера от обязательств перед третьим лицом и возместить израсходованные суммы, а также основания прекращения договора комиссии, отмена поручения комитентом и отказ комиссионера от исполнения проверяются раздельно (статьи 999–1004 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "commission_report_duties_and_termination_articles_999_1004",
+        "legal_reference": "ГК РФ, статьи 999–1004",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-commission-evidence",
+      "title": "Синтетическая проверенная запись фактов о комиссии",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки сделки от своего имени за счёт другой стороны не совершались; договор комиссии между сторонами не заключался.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "commission_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -8914,6 +8961,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-negotiorum-gestio-reviewer"
     },
+    "commission_evidence": {
+      "id": "reviewed-commission-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.commission-evidence.v0",
+      "assertions": [
+        {
+          "id": "commission-evidence-commission_contract_concluded",
+          "predicate": "commission_contract_concluded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "id": "commission-evidence-commission_remuneration_rules_breached",
+          "predicate": "commission_remuneration_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "id": "commission-evidence-commission_instructions_not_followed",
+          "predicate": "commission_instructions_not_followed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "id": "commission-evidence-deviation_notice_not_given",
+          "predicate": "deviation_notice_not_given",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "id": "commission-evidence-third_party_transaction_rules_breached",
+          "predicate": "third_party_transaction_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "id": "commission-evidence-subcommission_rules_breached",
+          "predicate": "subcommission_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "id": "commission-evidence-principal_property_rights_disregarded",
+          "predicate": "principal_property_rights_disregarded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "id": "commission-evidence-commission_report_or_transfer_breached",
+          "predicate": "commission_report_or_transfer_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "id": "commission-evidence-principal_acceptance_and_expenses_breached",
+          "predicate": "principal_acceptance_and_expenses_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "id": "commission-evidence-commission_termination_rules_breached",
+          "predicate": "commission_termination_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk990-998-commission-concept-execution-and-property-v1",
+        "synthetic-ru-gk999-1004-commission-report-duties-and-termination-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-commission-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -13696,6 +13836,7 @@
       "synthetic-carriage-reviewer",
       "synthetic-case-evidence-reviewer",
       "synthetic-commercial-credit-reviewer",
+      "synthetic-commission-reviewer",
       "synthetic-construction-contract-reviewer",
       "synthetic-consumer-work-reviewer",
       "synthetic-contractation-reviewer",
@@ -13764,6 +13905,7 @@
       "synthetic-case-supply-1-building-lease-evidence",
       "synthetic-case-supply-1-carriage-evidence",
       "synthetic-case-supply-1-commercial-credit-evidence",
+      "synthetic-case-supply-1-commission-evidence",
       "synthetic-case-supply-1-construction-contract-evidence",
       "synthetic-case-supply-1-consumer-work-evidence",
       "synthetic-case-supply-1-contractation-evidence",
@@ -13962,6 +14104,8 @@
       "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
       "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
       "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1",
+      "synthetic-ru-gk990-998-commission-concept-execution-and-property-v1",
+      "synthetic-ru-gk999-1004-commission-report-duties-and-termination-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -21768,6 +21912,142 @@
         "Очевидность выгоды, действительные намерения заинтересованного лица и необходимость понесённых расходов оцениваются экспертом и судом (статьи 980 и 984 ГК РФ)."
       ]
     },
+    "commission_evidence_mapping": {
+      "evidence_id": "reviewed-commission-evidence-supply-1-v0",
+      "schema_version": "contracts.commission-evidence.v0",
+      "mapping_version": "contracts-reviewed-commission-to-facts-v0",
+      "facts": {
+        "commission_contract_concluded": false,
+        "commission_remuneration_rules_breached": false,
+        "commission_instructions_not_followed": false,
+        "deviation_notice_not_given": false,
+        "third_party_transaction_rules_breached": false,
+        "subcommission_rules_breached": false,
+        "principal_property_rights_disregarded": false,
+        "commission_report_or_transfer_breached": false,
+        "principal_acceptance_and_expenses_breached": false,
+        "commission_termination_rules_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk990-998-commission-concept-execution-and-property-v1",
+        "synthetic-ru-gk999-1004-commission-report-duties-and-termination-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "commission_contract_concluded",
+          "assertion_id": "commission-evidence-commission_contract_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "fact_name": "commission_instructions_not_followed",
+          "assertion_id": "commission-evidence-commission_instructions_not_followed",
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "fact_name": "commission_remuneration_rules_breached",
+          "assertion_id": "commission-evidence-commission_remuneration_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "fact_name": "commission_report_or_transfer_breached",
+          "assertion_id": "commission-evidence-commission_report_or_transfer_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "fact_name": "commission_termination_rules_breached",
+          "assertion_id": "commission-evidence-commission_termination_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "fact_name": "deviation_notice_not_given",
+          "assertion_id": "commission-evidence-deviation_notice_not_given",
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "fact_name": "principal_acceptance_and_expenses_breached",
+          "assertion_id": "commission-evidence-principal_acceptance_and_expenses_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "fact_name": "principal_property_rights_disregarded",
+          "assertion_id": "commission-evidence-principal_property_rights_disregarded",
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "fact_name": "subcommission_rules_breached",
+          "assertion_id": "commission-evidence-subcommission_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_transaction_rules_breached",
+          "assertion_id": "commission-evidence-third_party_transaction_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-commission-evidence"
+          ]
+        }
+      ]
+    },
+    "commission_constraint_set": {
+      "id": "commission-constraint-set:reviewed-commission-evidence-supply-1-v0",
+      "model_version": "contracts-commission-articles-990-1004-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk990-998-commission-concept-execution-and-property-v1",
+        "synthetic-ru-gk999-1004-commission-report-duties-and-termination-v1"
+      ],
+      "expressions": [
+        "commission_qualified == commission_contract_concluded",
+        "remuneration_duty_breached == commission_qualified AND commission_remuneration_rules_breached",
+        "instructions_duty_breached == commission_qualified AND commission_instructions_not_followed",
+        "deviation_notice_duty_breached == commission_qualified AND commission_instructions_not_followed AND deviation_notice_not_given",
+        "third_party_transaction_duty_breached == commission_qualified AND third_party_transaction_rules_breached",
+        "subcommission_duty_breached == commission_qualified AND subcommission_rules_breached",
+        "principal_property_rights_breached == commission_qualified AND principal_property_rights_disregarded",
+        "report_and_transfer_duty_breached == commission_qualified AND commission_report_or_transfer_breached",
+        "principal_acceptance_duty_breached == commission_qualified AND principal_acceptance_and_expenses_breached",
+        "termination_duty_breached == commission_qualified AND commission_termination_rules_breached",
+        "requires_human_commission_assessment == remuneration_duty_breached OR instructions_duty_breached OR third_party_transaction_duty_breached OR subcommission_duty_breached OR principal_property_rights_breached OR report_and_transfer_duty_breached OR principal_acceptance_duty_breached OR termination_duty_breached"
+      ]
+    },
+    "commission_evaluation": {
+      "constraint_set_id": "commission-constraint-set:reviewed-commission-evidence-supply-1-v0",
+      "satisfiable": true,
+      "commission_qualified": false,
+      "remuneration_duty_breached": false,
+      "instructions_duty_breached": false,
+      "deviation_notice_duty_breached": false,
+      "third_party_transaction_duty_breached": false,
+      "subcommission_duty_breached": false,
+      "principal_property_rights_breached": false,
+      "report_and_transfer_duty_breached": false,
+      "principal_acceptance_duty_breached": false,
+      "termination_duty_breached": false,
+      "requires_human_commission_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор комиссии."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о комиссии и не заменяет судебную оценку.",
+        "Выгодность условий сделки, необходимая осмотрительность при выборе третьего лица и обоснованность отступления от указаний оцениваются экспертом и судом (статьи 992, 993 и 995 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -27139,7 +27419,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.73.0",
+      "institutional_package_version": "contracts-ru-v0@0.74.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -29142,6 +29422,7 @@
           "synthetic-case-supply-1-building-lease-evidence",
           "synthetic-case-supply-1-carriage-evidence",
           "synthetic-case-supply-1-commercial-credit-evidence",
+          "synthetic-case-supply-1-commission-evidence",
           "synthetic-case-supply-1-construction-contract-evidence",
           "synthetic-case-supply-1-consumer-work-evidence",
           "synthetic-case-supply-1-contractation-evidence",
@@ -29340,6 +29621,8 @@
           "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
           "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
           "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1",
+          "synthetic-ru-gk990-998-commission-concept-execution-and-property-v1",
+          "synthetic-ru-gk999-1004-commission-report-duties-and-termination-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -30354,6 +30637,7 @@
           "synthetic-case-supply-1-building-lease-evidence",
           "synthetic-case-supply-1-carriage-evidence",
           "synthetic-case-supply-1-commercial-credit-evidence",
+          "synthetic-case-supply-1-commission-evidence",
           "synthetic-case-supply-1-construction-contract-evidence",
           "synthetic-case-supply-1-consumer-work-evidence",
           "synthetic-case-supply-1-contractation-evidence",
@@ -30552,6 +30836,8 @@
           "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
           "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
           "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1",
+          "synthetic-ru-gk990-998-commission-concept-execution-and-property-v1",
+          "synthetic-ru-gk999-1004-commission-report-duties-and-termination-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -31566,6 +31852,7 @@
           "synthetic-case-supply-1-building-lease-evidence",
           "synthetic-case-supply-1-carriage-evidence",
           "synthetic-case-supply-1-commercial-credit-evidence",
+          "synthetic-case-supply-1-commission-evidence",
           "synthetic-case-supply-1-construction-contract-evidence",
           "synthetic-case-supply-1-consumer-work-evidence",
           "synthetic-case-supply-1-contractation-evidence",
@@ -31764,6 +32051,8 @@
           "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
           "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
           "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1",
+          "synthetic-ru-gk990-998-commission-concept-execution-and-property-v1",
+          "synthetic-ru-gk999-1004-commission-report-duties-and-termination-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -31853,7 +32142,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.73.0",
+      "institutional_package_version": "contracts-ru-v0@0.74.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -34063,6 +34352,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk990-998-commission-concept-execution-and-property-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель договора комиссии, комиссионного вознаграждения, исполнения поручения, субкомиссии и прав на вещи по статьям 990–998 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "commission_concept_execution_and_property_articles_990_998",
+          "legal_reference": "ГК РФ, статьи 990–998",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk999-1004-commission-report-duties-and-termination-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель отчёта комиссионера, обязанностей комитента и прекращения договора комиссии по статьям 999–1004 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "commission_report_duties_and_termination_articles_999_1004",
+          "legal_reference": "ГК РФ, статьи 999–1004",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-commission-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о комиссии",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "commission_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -34677,6 +35004,7 @@
             "synthetic-carriage-reviewer",
             "synthetic-case-evidence-reviewer",
             "synthetic-commercial-credit-reviewer",
+            "synthetic-commission-reviewer",
             "synthetic-construction-contract-reviewer",
             "synthetic-consumer-work-reviewer",
             "synthetic-contractation-reviewer",

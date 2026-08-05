@@ -534,6 +534,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.commission import (
+    COMMISSION_EVIDENCE_SCHEMA_VERSION,
+    CommissionConstraintSet,
+    CommissionEvaluation,
+    CommissionEvidenceMappingResult,
+    ReviewedCommissionEvidence,
+    build_commission_constraint_set,
+    evaluate_commission_constraints,
+    map_reviewed_commission_evidence,
+)
 from causa.institutional.contracts.negotiorum_gestio import (
     NEGOTIORUM_GESTIO_EVIDENCE_SCHEMA_VERSION,
     NegotiorumGestioConstraintSet,
@@ -823,6 +833,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     insurance_settlement_evidence: ReviewedInsuranceSettlementEvidence
     mandate_evidence: ReviewedMandateEvidence
     negotiorum_gestio_evidence: ReviewedNegotiorumGestioEvidence
+    commission_evidence: ReviewedCommissionEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -1030,6 +1041,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     negotiorum_gestio_evidence_mapping: NegotiorumGestioEvidenceMappingResult
     negotiorum_gestio_constraint_set: NegotiorumGestioConstraintSet
     negotiorum_gestio_evaluation: NegotiorumGestioEvaluation
+    commission_evidence_mapping: CommissionEvidenceMappingResult
+    commission_constraint_set: CommissionConstraintSet
+    commission_evaluation: CommissionEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -1681,6 +1695,15 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.negotiorum_gestio_evaluation != expected_negotiorum_gestio_evaluation:
             raise ValueError("Negotiorum-gestio evaluation does not replay from reviewed evidence.")
+        expected_commission_set = build_commission_constraint_set(self.commission_evidence_mapping)
+        if self.commission_constraint_set != expected_commission_set:
+            raise ValueError("Commission constraint set does not replay from reviewed evidence.")
+        expected_commission_evaluation = evaluate_commission_constraints(
+            expected_commission_set,
+            self.commission_evidence_mapping.facts,
+        )
+        if self.commission_evaluation != expected_commission_evaluation:
+            raise ValueError("Commission evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -2115,6 +2138,8 @@ def _validate_request_integrity(
         raise ValueError("Mandate evidence case_id does not match the analysis request.")
     if request.negotiorum_gestio_evidence.case_id != request.case_id:
         raise ValueError("Negotiorum-gestio evidence case_id does not match the analysis request.")
+    if request.commission_evidence.case_id != request.case_id:
+        raise ValueError("Commission evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -2296,6 +2321,8 @@ def _validate_request_integrity(
         != NEGOTIORUM_GESTIO_EVIDENCE_SCHEMA_VERSION
     ):
         raise ValueError("Negotiorum-gestio evidence uses an unsupported schema version.")
+    if request.commission_evidence.schema_version != COMMISSION_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Commission evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -2359,6 +2386,7 @@ def _validate_request_integrity(
         *request.insurance_settlement_evidence.legal_source_refs,
         *request.mandate_evidence.legal_source_refs,
         *request.negotiorum_gestio_evidence.legal_source_refs,
+        *request.commission_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -2481,6 +2509,8 @@ def _validate_request_integrity(
     for assertion in request.mandate_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.negotiorum_gestio_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.commission_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -3129,6 +3159,17 @@ def _validate_request_integrity(
             "Negotiorum-gestio legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_negotiorum_gestio_legal_sources))
         )
+    invalid_commission_legal_sources = [
+        source_id
+        for source_id in request.commission_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_commission_legal_sources:
+        raise ValueError(
+            "Commission legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_commission_legal_sources))
+        )
     invalid_invalidity_legal_sources = [
         source_id
         for source_id in request.invalidity_evidence.legal_source_refs
@@ -3590,6 +3631,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Negotiorum-gestio evidence",
         review_status=request.negotiorum_gestio_evidence.review_status,
         reviewer_id=request.negotiorum_gestio_evidence.reviewer_id,
+    )
+    commission_reviewer_id = _require_reviewed(
+        artifact_name="Commission evidence",
+        review_status=request.commission_evidence.review_status,
+        reviewer_id=request.commission_evidence.reviewer_id,
     )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
@@ -4111,6 +4157,12 @@ def run_reviewed_contract_analysis(
         negotiorum_gestio_constraint_set,
         negotiorum_gestio_evidence_mapping.facts,
     )
+    commission_evidence_mapping = map_reviewed_commission_evidence(request.commission_evidence)
+    commission_constraint_set = build_commission_constraint_set(commission_evidence_mapping)
+    commission_evaluation = evaluate_commission_constraints(
+        commission_constraint_set,
+        commission_evidence_mapping.facts,
+    )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
     invalidity_evaluation = evaluate_invalidity_constraints(
@@ -4390,6 +4442,7 @@ def run_reviewed_contract_analysis(
         or insurance_settlement_evaluation.requires_human_insurance_settlement_assessment
         or mandate_evaluation.requires_human_mandate_assessment
         or negotiorum_gestio_evaluation.requires_human_negotiorum_gestio_assessment
+        or commission_evaluation.requires_human_commission_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -4465,6 +4518,7 @@ def run_reviewed_contract_analysis(
                 insurance_settlement_reviewer_id,
                 mandate_reviewer_id,
                 negotiorum_gestio_reviewer_id,
+                commission_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -4648,6 +4702,9 @@ def run_reviewed_contract_analysis(
         negotiorum_gestio_evidence_mapping=negotiorum_gestio_evidence_mapping,
         negotiorum_gestio_constraint_set=negotiorum_gestio_constraint_set,
         negotiorum_gestio_evaluation=negotiorum_gestio_evaluation,
+        commission_evidence_mapping=commission_evidence_mapping,
+        commission_constraint_set=commission_constraint_set,
+        commission_evaluation=commission_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,
