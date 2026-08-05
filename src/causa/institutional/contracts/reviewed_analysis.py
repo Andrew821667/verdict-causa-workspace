@@ -534,6 +534,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.agency import (
+    AGENCY_EVIDENCE_SCHEMA_VERSION,
+    AgencyConstraintSet,
+    AgencyEvaluation,
+    AgencyEvidenceMappingResult,
+    ReviewedAgencyEvidence,
+    build_agency_constraint_set,
+    evaluate_agency_constraints,
+    map_reviewed_agency_evidence,
+)
 from causa.institutional.contracts.commission import (
     COMMISSION_EVIDENCE_SCHEMA_VERSION,
     CommissionConstraintSet,
@@ -834,6 +844,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     mandate_evidence: ReviewedMandateEvidence
     negotiorum_gestio_evidence: ReviewedNegotiorumGestioEvidence
     commission_evidence: ReviewedCommissionEvidence
+    agency_evidence: ReviewedAgencyEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -1044,6 +1055,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     commission_evidence_mapping: CommissionEvidenceMappingResult
     commission_constraint_set: CommissionConstraintSet
     commission_evaluation: CommissionEvaluation
+    agency_evidence_mapping: AgencyEvidenceMappingResult
+    agency_constraint_set: AgencyConstraintSet
+    agency_evaluation: AgencyEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -1704,6 +1718,15 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.commission_evaluation != expected_commission_evaluation:
             raise ValueError("Commission evaluation does not replay from reviewed evidence.")
+        expected_agency_set = build_agency_constraint_set(self.agency_evidence_mapping)
+        if self.agency_constraint_set != expected_agency_set:
+            raise ValueError("Agency constraint set does not replay from reviewed evidence.")
+        expected_agency_evaluation = evaluate_agency_constraints(
+            expected_agency_set,
+            self.agency_evidence_mapping.facts,
+        )
+        if self.agency_evaluation != expected_agency_evaluation:
+            raise ValueError("Agency evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -2140,6 +2163,8 @@ def _validate_request_integrity(
         raise ValueError("Negotiorum-gestio evidence case_id does not match the analysis request.")
     if request.commission_evidence.case_id != request.case_id:
         raise ValueError("Commission evidence case_id does not match the analysis request.")
+    if request.agency_evidence.case_id != request.case_id:
+        raise ValueError("Agency evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -2323,6 +2348,8 @@ def _validate_request_integrity(
         raise ValueError("Negotiorum-gestio evidence uses an unsupported schema version.")
     if request.commission_evidence.schema_version != COMMISSION_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Commission evidence uses an unsupported schema version.")
+    if request.agency_evidence.schema_version != AGENCY_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Agency evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -2387,6 +2414,7 @@ def _validate_request_integrity(
         *request.mandate_evidence.legal_source_refs,
         *request.negotiorum_gestio_evidence.legal_source_refs,
         *request.commission_evidence.legal_source_refs,
+        *request.agency_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -2511,6 +2539,8 @@ def _validate_request_integrity(
     for assertion in request.negotiorum_gestio_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.commission_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.agency_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -3170,6 +3200,17 @@ def _validate_request_integrity(
             "Commission legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_commission_legal_sources))
         )
+    invalid_agency_legal_sources = [
+        source_id
+        for source_id in request.agency_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_agency_legal_sources:
+        raise ValueError(
+            "Agency legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_agency_legal_sources))
+        )
     invalid_invalidity_legal_sources = [
         source_id
         for source_id in request.invalidity_evidence.legal_source_refs
@@ -3636,6 +3677,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Commission evidence",
         review_status=request.commission_evidence.review_status,
         reviewer_id=request.commission_evidence.reviewer_id,
+    )
+    agency_reviewer_id = _require_reviewed(
+        artifact_name="Agency evidence",
+        review_status=request.agency_evidence.review_status,
+        reviewer_id=request.agency_evidence.reviewer_id,
     )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
@@ -4163,6 +4209,12 @@ def run_reviewed_contract_analysis(
         commission_constraint_set,
         commission_evidence_mapping.facts,
     )
+    agency_evidence_mapping = map_reviewed_agency_evidence(request.agency_evidence)
+    agency_constraint_set = build_agency_constraint_set(agency_evidence_mapping)
+    agency_evaluation = evaluate_agency_constraints(
+        agency_constraint_set,
+        agency_evidence_mapping.facts,
+    )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
     invalidity_evaluation = evaluate_invalidity_constraints(
@@ -4443,6 +4495,7 @@ def run_reviewed_contract_analysis(
         or mandate_evaluation.requires_human_mandate_assessment
         or negotiorum_gestio_evaluation.requires_human_negotiorum_gestio_assessment
         or commission_evaluation.requires_human_commission_assessment
+        or agency_evaluation.requires_human_agency_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -4519,6 +4572,7 @@ def run_reviewed_contract_analysis(
                 mandate_reviewer_id,
                 negotiorum_gestio_reviewer_id,
                 commission_reviewer_id,
+                agency_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -4705,6 +4759,9 @@ def run_reviewed_contract_analysis(
         commission_evidence_mapping=commission_evidence_mapping,
         commission_constraint_set=commission_constraint_set,
         commission_evaluation=commission_evaluation,
+        agency_evidence_mapping=agency_evidence_mapping,
+        agency_constraint_set=agency_constraint_set,
+        agency_evaluation=agency_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

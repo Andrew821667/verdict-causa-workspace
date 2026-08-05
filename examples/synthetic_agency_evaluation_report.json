@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил об агентировании по статьям 1005–1011 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-agency-evidence-supply-1-v0",
+    "schema_version": "contracts.agency-evidence.v0",
+    "mapping_version": "contracts-reviewed-agency-to-facts-v0",
+    "facts": {
+      "agency_contract_concluded": false,
+      "agent_acting_capacity_misidentified": false,
+      "agency_remuneration_rules_breached": false,
+      "agency_exclusivity_restrictions_breached": false,
+      "restrictions_against_consumers_imposed": false,
+      "agent_report_not_submitted": false,
+      "report_objections_period_disregarded": false,
+      "subagency_rules_breached": false,
+      "agency_termination_rules_breached": false,
+      "applicable_rules_selection_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
+      "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "agency_contract_concluded",
+        "assertion_id": "agency-evidence-agency_contract_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-agency-evidence"
+        ]
+      },
+      {
+        "fact_name": "agency_exclusivity_restrictions_breached",
+        "assertion_id": "agency-evidence-agency_exclusivity_restrictions_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-agency-evidence"
+        ]
+      },
+      {
+        "fact_name": "agency_remuneration_rules_breached",
+        "assertion_id": "agency-evidence-agency_remuneration_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-agency-evidence"
+        ]
+      },
+      {
+        "fact_name": "agency_termination_rules_breached",
+        "assertion_id": "agency-evidence-agency_termination_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-agency-evidence"
+        ]
+      },
+      {
+        "fact_name": "agent_acting_capacity_misidentified",
+        "assertion_id": "agency-evidence-agent_acting_capacity_misidentified",
+        "source_refs": [
+          "synthetic-case-supply-1-agency-evidence"
+        ]
+      },
+      {
+        "fact_name": "agent_report_not_submitted",
+        "assertion_id": "agency-evidence-agent_report_not_submitted",
+        "source_refs": [
+          "synthetic-case-supply-1-agency-evidence"
+        ]
+      },
+      {
+        "fact_name": "applicable_rules_selection_breached",
+        "assertion_id": "agency-evidence-applicable_rules_selection_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-agency-evidence"
+        ]
+      },
+      {
+        "fact_name": "report_objections_period_disregarded",
+        "assertion_id": "agency-evidence-report_objections_period_disregarded",
+        "source_refs": [
+          "synthetic-case-supply-1-agency-evidence"
+        ]
+      },
+      {
+        "fact_name": "restrictions_against_consumers_imposed",
+        "assertion_id": "agency-evidence-restrictions_against_consumers_imposed",
+        "source_refs": [
+          "synthetic-case-supply-1-agency-evidence"
+        ]
+      },
+      {
+        "fact_name": "subagency_rules_breached",
+        "assertion_id": "agency-evidence-subagency_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-agency-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "agency-constraint-set:reviewed-agency-evidence-supply-1-v0",
+    "model_version": "contracts-agency-articles-1005-1011-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
+      "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1"
+    ],
+    "expressions": [
+      "agency_qualified == agency_contract_concluded",
+      "acting_capacity_duty_breached == agency_qualified AND agent_acting_capacity_misidentified",
+      "remuneration_duty_breached == agency_qualified AND agency_remuneration_rules_breached",
+      "exclusivity_restrictions_duty_breached == agency_qualified AND agency_exclusivity_restrictions_breached",
+      "consumer_restrictions_void == agency_qualified AND agency_exclusivity_restrictions_breached AND restrictions_against_consumers_imposed",
+      "report_duty_breached == agency_qualified AND agent_report_not_submitted",
+      "report_objections_duty_breached == agency_qualified AND report_objections_period_disregarded",
+      "subagency_duty_breached == agency_qualified AND subagency_rules_breached",
+      "termination_duty_breached == agency_qualified AND agency_termination_rules_breached",
+      "applicable_rules_duty_breached == agency_qualified AND applicable_rules_selection_breached",
+      "requires_human_agency_assessment == acting_capacity_duty_breached OR remuneration_duty_breached OR exclusivity_restrictions_duty_breached OR report_duty_breached OR report_objections_duty_breached OR subagency_duty_breached OR termination_duty_breached OR applicable_rules_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "agency-constraint-set:reviewed-agency-evidence-supply-1-v0",
+    "satisfiable": true,
+    "agency_qualified": false,
+    "acting_capacity_duty_breached": false,
+    "remuneration_duty_breached": false,
+    "exclusivity_restrictions_duty_breached": false,
+    "consumer_restrictions_void": false,
+    "report_duty_breached": false,
+    "report_objections_duty_breached": false,
+    "subagency_duty_breached": false,
+    "termination_duty_breached": false,
+    "applicable_rules_duty_breached": false,
+    "requires_human_agency_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как агентский договор."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила об агентировании и не заменяет судебную оценку.",
+      "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "agency-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "agency-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "agency_qualified": false
+        },
+        "observed_outcomes": {
+          "agency_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как агентский договор."
+        ]
+      },
+      {
+        "task_id": "agency-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "agency_qualified": true,
+          "requires_human_agency_assessment": false
+        },
+        "observed_outcomes": {
+          "agency_qualified": true,
+          "requires_human_agency_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "agency-bench-acting-capacity",
+        "passed": true,
+        "expected_outcomes": {
+          "acting_capacity_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "observed_outcomes": {
+          "acting_capacity_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "По сделке, совершённой агентом от своего имени и за счёт принципала, приобретает права и становится обязанным агент; по сделке, совершённой от имени и за счёт принципала, права и обязанности возникают непосредственно у принципала (статья 1005 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "agency-bench-remuneration",
+        "passed": true,
+        "expected_outcomes": {
+          "remuneration_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "observed_outcomes": {
+          "remuneration_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "Принципал обязан уплатить агенту вознаграждение в размере и порядке, установленных в агентском договоре; при отсутствии в договоре условий о размере вознаграждение определяется по правилам о цене (статья 1006 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "agency-bench-exclusivity",
+        "passed": true,
+        "expected_outcomes": {
+          "exclusivity_restrictions_duty_breached": true,
+          "consumer_restrictions_void": true,
+          "requires_human_agency_assessment": true
+        },
+        "observed_outcomes": {
+          "exclusivity_restrictions_duty_breached": true,
+          "consumer_restrictions_void": true,
+          "requires_human_agency_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "Агентским договором могут быть предусмотрены обязательства принципала не заключать аналогичных договоров с другими агентами на определённой территории и обязательства агента не заключать аналогичных договоров с другими принципалами (статья 1007 ГК РФ).",
+          "Условия агентского договора, в силу которых агент вправе продавать товары, выполнять работы или оказывать услуги исключительно определённой категории покупателей либо покупателям, имеющим место нахождения или жительства на определённой территории, ничтожны (статья 1007 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "agency-bench-report",
+        "passed": true,
+        "expected_outcomes": {
+          "report_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "observed_outcomes": {
+          "report_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "В ходе исполнения агентского договора агент обязан представлять принципалу отчёты в порядке и в сроки, предусмотренные договором, с приложением доказательств произведённых за счёт принципала расходов (статья 1008 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "agency-bench-report-objections",
+        "passed": true,
+        "expected_outcomes": {
+          "report_objections_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "observed_outcomes": {
+          "report_objections_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "Принципал, имеющий возражения по отчёту агента, должен сообщить о них агенту в течение тридцати дней со дня получения отчёта, если соглашением не установлен иной срок; в противном случае отчёт считается принятым (статья 1008 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "agency-bench-subagency",
+        "passed": true,
+        "expected_outcomes": {
+          "subagency_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "observed_outcomes": {
+          "subagency_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "Если иное не предусмотрено агентским договором, агент вправе заключить субагентский договор, оставаясь ответственным за действия субагента перед принципалом (статья 1009 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "agency-bench-termination",
+        "passed": true,
+        "expected_outcomes": {
+          "termination_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "observed_outcomes": {
+          "termination_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "Агентский договор прекращается вследствие отказа стороны от исполнения договора, заключённого без определения срока окончания, смерти агента, признания его недееспособным или банкротства (статья 1010 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "agency-bench-applicable-rules",
+        "passed": true,
+        "expected_outcomes": {
+          "applicable_rules_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "observed_outcomes": {
+          "applicable_rules_duty_breached": true,
+          "requires_human_agency_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "К отношениям, вытекающим из агентского договора, применяются правила о поручении или о комиссии в зависимости от того, действует агент от имени принципала или от своего имени, если эти правила не противоречат существу агентского договора (статья 1011 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "agency-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "agency-red-qualify-without-contract",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "agency_qualified": true
+        },
+        "observed_outcomes": {
+          "agency_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как агентский договор."
+        ]
+      },
+      {
+        "case_id": "agency-red-ignore-acting-capacity",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "acting_capacity_duty_breached": false
+        },
+        "observed_outcomes": {
+          "acting_capacity_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "По сделке, совершённой агентом от своего имени и за счёт принципала, приобретает права и становится обязанным агент; по сделке, совершённой от имени и за счёт принципала, права и обязанности возникают непосредственно у принципала (статья 1005 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "agency-red-ignore-remuneration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "remuneration_duty_breached": false
+        },
+        "observed_outcomes": {
+          "remuneration_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "Принципал обязан уплатить агенту вознаграждение в размере и порядке, установленных в агентском договоре; при отсутствии в договоре условий о размере вознаграждение определяется по правилам о цене (статья 1006 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "agency-red-ignore-exclusivity",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "exclusivity_restrictions_duty_breached": false
+        },
+        "observed_outcomes": {
+          "exclusivity_restrictions_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "Агентским договором могут быть предусмотрены обязательства принципала не заключать аналогичных договоров с другими агентами на определённой территории и обязательства агента не заключать аналогичных договоров с другими принципалами (статья 1007 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "agency-red-consumer-restrictions-without-exclusivity-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "consumer_restrictions_void": true
+        },
+        "observed_outcomes": {
+          "consumer_restrictions_void": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "agency-red-ignore-report",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "report_duty_breached": false
+        },
+        "observed_outcomes": {
+          "report_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "В ходе исполнения агентского договора агент обязан представлять принципалу отчёты в порядке и в сроки, предусмотренные договором, с приложением доказательств произведённых за счёт принципала расходов (статья 1008 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "agency-red-ignore-report-objections",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "report_objections_duty_breached": false
+        },
+        "observed_outcomes": {
+          "report_objections_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "Принципал, имеющий возражения по отчёту агента, должен сообщить о них агенту в течение тридцати дней со дня получения отчёта, если соглашением не установлен иной срок; в противном случае отчёт считается принятым (статья 1008 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "agency-red-ignore-subagency",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "subagency_duty_breached": false
+        },
+        "observed_outcomes": {
+          "subagency_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "Если иное не предусмотрено агентским договором, агент вправе заключить субагентский договор, оставаясь ответственным за действия субагента перед принципалом (статья 1009 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "agency-red-ignore-termination",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "termination_duty_breached": false
+        },
+        "observed_outcomes": {
+          "termination_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "Агентский договор прекращается вследствие отказа стороны от исполнения договора, заключённого без определения срока окончания, смерти агента, признания его недееспособным или банкротства (статья 1010 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "agency-red-skip-human-on-applicable-rules",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_agency_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_agency_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как агентский договор: агент обязуется за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала (статья 1005 ГК РФ).",
+          "К отношениям, вытекающим из агентского договора, применяются правила о поручении или о комиссии в зависимости от того, действует агент от имени принципала или от своего имени, если эти правила не противоречат существу агентского договора (статья 1011 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

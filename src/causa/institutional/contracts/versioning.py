@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.75.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed agency evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 1005 to 1011.",
+            "Agency qualification, the agent's acting capacity, remuneration, the permitted restrictions, the void restrictions on buyers, the agent's reports, the principal's objections, sub-agency, termination, and the choice of applicable rules remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные об агентировании обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 1005–1011 ГК РФ.",
+            "Квалификация агентирования, сторона сделки агента, вознаграждение, допустимые ограничения прав сторон, ничтожные условия о покупателях, отчёты агента, возражения принципала, субагентский договор, прекращение договора и выбор применимых правил разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.74.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -2771,6 +2771,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
+      "title": "Синтетическая проверенная модель агентского договора, правового положения агента, агентского вознаграждения, ограничений прав сторон и отчётов агента по статьям 1005–1008 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: агентский договор как обязанность агента за вознаграждение совершать по поручению принципала юридические и иные действия от своего имени, но за счёт принципала либо от имени и за счёт принципала, определение стороны сделки в зависимости от того, от чьего имени действует агент, уплата агентского вознаграждения, допустимые ограничения прав принципала и агента, ничтожность условий об исключительном круге покупателей и представление агентом отчётов с возражениями принципала проверяются раздельно (статьи 1005–1008 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "agency_concept_remuneration_and_reports_articles_1005_1008",
+        "legal_reference": "ГК РФ, статьи 1005–1008",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
+      "title": "Синтетическая проверенная модель субагентского договора, прекращения агентского договора и применения правил о поручении и комиссии по статьям 1009–1011 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: право агента заключить субагентский договор с сохранением ответственности перед принципалом, прекращение агентского договора вследствие отказа стороны от исполнения бессрочного договора, смерти агента, признания его недееспособным или банкротства, а также применение правил о поручении или о комиссии в зависимости от того, действует агент от имени принципала или от своего имени, проверяются раздельно (статьи 1009–1011 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "agency_subagency_termination_and_rules_articles_1009_1011",
+        "legal_reference": "ГК РФ, статьи 1009–1011",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-agency-evidence",
+      "title": "Синтетическая проверенная запись фактов об агентировании",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки поручение совершать юридические и иные действия за счёт другой стороны не давалось; агентский договор между сторонами не заключался.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "agency_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -9054,6 +9101,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-commission-reviewer"
     },
+    "agency_evidence": {
+      "id": "reviewed-agency-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.agency-evidence.v0",
+      "assertions": [
+        {
+          "id": "agency-evidence-agency_contract_concluded",
+          "predicate": "agency_contract_concluded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "id": "agency-evidence-agent_acting_capacity_misidentified",
+          "predicate": "agent_acting_capacity_misidentified",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "id": "agency-evidence-agency_remuneration_rules_breached",
+          "predicate": "agency_remuneration_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "id": "agency-evidence-agency_exclusivity_restrictions_breached",
+          "predicate": "agency_exclusivity_restrictions_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "id": "agency-evidence-restrictions_against_consumers_imposed",
+          "predicate": "restrictions_against_consumers_imposed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "id": "agency-evidence-agent_report_not_submitted",
+          "predicate": "agent_report_not_submitted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "id": "agency-evidence-report_objections_period_disregarded",
+          "predicate": "report_objections_period_disregarded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "id": "agency-evidence-subagency_rules_breached",
+          "predicate": "subagency_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "id": "agency-evidence-agency_termination_rules_breached",
+          "predicate": "agency_termination_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "id": "agency-evidence-applicable_rules_selection_breached",
+          "predicate": "applicable_rules_selection_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
+        "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-agency-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -13827,6 +13967,7 @@
     "pipeline_version": "contracts-reviewed-analysis-v9",
     "reviewer_ids": [
       "synthetic-adhesion-reviewer",
+      "synthetic-agency-reviewer",
       "synthetic-annuity-reviewer",
       "synthetic-authority-reviewer",
       "synthetic-bank-account-reviewer",
@@ -13898,6 +14039,7 @@
     ],
     "source_ids": [
       "synthetic-case-supply-1-adhesion-evidence",
+      "synthetic-case-supply-1-agency-evidence",
       "synthetic-case-supply-1-annuity-evidence",
       "synthetic-case-supply-1-bank-account-evidence",
       "synthetic-case-supply-1-bank-deposit-evidence",
@@ -13966,6 +14108,8 @@
       "synthetic-ru-contract-supply-delivery-duty-v1",
       "synthetic-ru-contract-supply-delivery-duty-v2",
       "synthetic-ru-contract-supply-delivery-term",
+      "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
+      "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -22048,6 +22192,142 @@
         "Выгодность условий сделки, необходимая осмотрительность при выборе третьего лица и обоснованность отступления от указаний оцениваются экспертом и судом (статьи 992, 993 и 995 ГК РФ)."
       ]
     },
+    "agency_evidence_mapping": {
+      "evidence_id": "reviewed-agency-evidence-supply-1-v0",
+      "schema_version": "contracts.agency-evidence.v0",
+      "mapping_version": "contracts-reviewed-agency-to-facts-v0",
+      "facts": {
+        "agency_contract_concluded": false,
+        "agent_acting_capacity_misidentified": false,
+        "agency_remuneration_rules_breached": false,
+        "agency_exclusivity_restrictions_breached": false,
+        "restrictions_against_consumers_imposed": false,
+        "agent_report_not_submitted": false,
+        "report_objections_period_disregarded": false,
+        "subagency_rules_breached": false,
+        "agency_termination_rules_breached": false,
+        "applicable_rules_selection_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
+        "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "agency_contract_concluded",
+          "assertion_id": "agency-evidence-agency_contract_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "fact_name": "agency_exclusivity_restrictions_breached",
+          "assertion_id": "agency-evidence-agency_exclusivity_restrictions_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "fact_name": "agency_remuneration_rules_breached",
+          "assertion_id": "agency-evidence-agency_remuneration_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "fact_name": "agency_termination_rules_breached",
+          "assertion_id": "agency-evidence-agency_termination_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "fact_name": "agent_acting_capacity_misidentified",
+          "assertion_id": "agency-evidence-agent_acting_capacity_misidentified",
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "fact_name": "agent_report_not_submitted",
+          "assertion_id": "agency-evidence-agent_report_not_submitted",
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "fact_name": "applicable_rules_selection_breached",
+          "assertion_id": "agency-evidence-applicable_rules_selection_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "fact_name": "report_objections_period_disregarded",
+          "assertion_id": "agency-evidence-report_objections_period_disregarded",
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "fact_name": "restrictions_against_consumers_imposed",
+          "assertion_id": "agency-evidence-restrictions_against_consumers_imposed",
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        },
+        {
+          "fact_name": "subagency_rules_breached",
+          "assertion_id": "agency-evidence-subagency_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-agency-evidence"
+          ]
+        }
+      ]
+    },
+    "agency_constraint_set": {
+      "id": "agency-constraint-set:reviewed-agency-evidence-supply-1-v0",
+      "model_version": "contracts-agency-articles-1005-1011-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
+        "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1"
+      ],
+      "expressions": [
+        "agency_qualified == agency_contract_concluded",
+        "acting_capacity_duty_breached == agency_qualified AND agent_acting_capacity_misidentified",
+        "remuneration_duty_breached == agency_qualified AND agency_remuneration_rules_breached",
+        "exclusivity_restrictions_duty_breached == agency_qualified AND agency_exclusivity_restrictions_breached",
+        "consumer_restrictions_void == agency_qualified AND agency_exclusivity_restrictions_breached AND restrictions_against_consumers_imposed",
+        "report_duty_breached == agency_qualified AND agent_report_not_submitted",
+        "report_objections_duty_breached == agency_qualified AND report_objections_period_disregarded",
+        "subagency_duty_breached == agency_qualified AND subagency_rules_breached",
+        "termination_duty_breached == agency_qualified AND agency_termination_rules_breached",
+        "applicable_rules_duty_breached == agency_qualified AND applicable_rules_selection_breached",
+        "requires_human_agency_assessment == acting_capacity_duty_breached OR remuneration_duty_breached OR exclusivity_restrictions_duty_breached OR report_duty_breached OR report_objections_duty_breached OR subagency_duty_breached OR termination_duty_breached OR applicable_rules_duty_breached"
+      ]
+    },
+    "agency_evaluation": {
+      "constraint_set_id": "agency-constraint-set:reviewed-agency-evidence-supply-1-v0",
+      "satisfiable": true,
+      "agency_qualified": false,
+      "acting_capacity_duty_breached": false,
+      "remuneration_duty_breached": false,
+      "exclusivity_restrictions_duty_breached": false,
+      "consumer_restrictions_void": false,
+      "report_duty_breached": false,
+      "report_objections_duty_breached": false,
+      "subagency_duty_breached": false,
+      "termination_duty_breached": false,
+      "applicable_rules_duty_breached": false,
+      "requires_human_agency_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как агентский договор."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила об агентировании и не заменяет судебную оценку.",
+        "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -27419,7 +27699,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.74.0",
+      "institutional_package_version": "contracts-ru-v0@0.75.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -29415,6 +29695,7 @@
         ],
         "source_refs": [
           "synthetic-case-supply-1-adhesion-evidence",
+          "synthetic-case-supply-1-agency-evidence",
           "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-bank-account-evidence",
           "synthetic-case-supply-1-bank-deposit-evidence",
@@ -29483,6 +29764,8 @@
           "synthetic-ru-contract-supply-delivery-duty-v1",
           "synthetic-ru-contract-supply-delivery-duty-v2",
           "synthetic-ru-contract-supply-delivery-term",
+          "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
+          "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
           "synthetic-ru-gk158-165-form-framework-v1",
           "synthetic-ru-gk160-434-written-form-model-v1",
           "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -30630,6 +30913,7 @@
         ],
         "source_refs": [
           "synthetic-case-supply-1-adhesion-evidence",
+          "synthetic-case-supply-1-agency-evidence",
           "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-bank-account-evidence",
           "synthetic-case-supply-1-bank-deposit-evidence",
@@ -30698,6 +30982,8 @@
           "synthetic-ru-contract-supply-delivery-duty-v1",
           "synthetic-ru-contract-supply-delivery-duty-v2",
           "synthetic-ru-contract-supply-delivery-term",
+          "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
+          "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
           "synthetic-ru-gk158-165-form-framework-v1",
           "synthetic-ru-gk160-434-written-form-model-v1",
           "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -31845,6 +32131,7 @@
         ],
         "source_refs": [
           "synthetic-case-supply-1-adhesion-evidence",
+          "synthetic-case-supply-1-agency-evidence",
           "synthetic-case-supply-1-annuity-evidence",
           "synthetic-case-supply-1-bank-account-evidence",
           "synthetic-case-supply-1-bank-deposit-evidence",
@@ -31913,6 +32200,8 @@
           "synthetic-ru-contract-supply-delivery-duty-v1",
           "synthetic-ru-contract-supply-delivery-duty-v2",
           "synthetic-ru-contract-supply-delivery-term",
+          "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
+          "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
           "synthetic-ru-gk158-165-form-framework-v1",
           "synthetic-ru-gk160-434-written-form-model-v1",
           "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -32142,7 +32431,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.74.0",
+      "institutional_package_version": "contracts-ru-v0@0.75.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -34390,6 +34679,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель агентского договора, правового положения агента, агентского вознаграждения, ограничений прав сторон и отчётов агента по статьям 1005–1008 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "agency_concept_remuneration_and_reports_articles_1005_1008",
+          "legal_reference": "ГК РФ, статьи 1005–1008",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель субагентского договора, прекращения агентского договора и применения правил о поручении и комиссии по статьям 1009–1011 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "agency_subagency_termination_and_rules_articles_1009_1011",
+          "legal_reference": "ГК РФ, статьи 1009–1011",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-agency-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов об агентировании",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "agency_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -34995,6 +35322,7 @@
           "evidence_mapping_version": "contracts-reviewed-evidence-to-facts-v0",
           "reviewer_ids": [
             "synthetic-adhesion-reviewer",
+            "synthetic-agency-reviewer",
             "synthetic-annuity-reviewer",
             "synthetic-authority-reviewer",
             "synthetic-bank-account-reviewer",

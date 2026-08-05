@@ -1423,6 +1423,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.74.0",
+        to_version="0.75.0",
+        reasons=[
+            "Reviewed inputs now require a separate agency evidence contract.",
+            "Analysis and Russian translation distinguish agency qualification, the agent's acting capacity, remuneration, the permitted restrictions, the void restrictions on buyers, the agent's reports, the principal's objections, sub-agency, termination, and the choice of applicable rules under articles 1005 to 1011.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных об агентировании.",
+            "Анализ и русское объяснение разделяют квалификацию агентирования, сторону сделки агента, вознаграждение, допустимые ограничения прав сторон, ничтожные условия о покупателях, отчёты агента, возражения принципала, субагентский договор, прекращение договора и выбор применимых правил по статьям 1005–1011 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_agency_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

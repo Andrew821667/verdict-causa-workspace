@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.agency import (
+    AgencyEvidenceAssertion,
+    AgencyEvidencePredicate,
+    ReviewedAgencyEvidence,
+)
 from causa.institutional.contracts.commission import (
     CommissionEvidenceAssertion,
     CommissionEvidencePredicate,
@@ -524,6 +529,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk990-998-commission-concept-execution-and-property-v1",
     "synthetic-ru-gk999-1004-commission-report-duties-and-termination-v1",
     "synthetic-case-supply-1-commission-evidence",
+    "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
+    "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
+    "synthetic-case-supply-1-agency-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2832,6 +2840,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-commission-reviewer",
+        ),
+        agency_evidence=ReviewedAgencyEvidence(
+            id="reviewed-agency-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                AgencyEvidenceAssertion(
+                    id=f"agency-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-agency-evidence",),
+                )
+                for predicate, value in (
+                    (AgencyEvidencePredicate.AGENCY_CONTRACT_CONCLUDED, False),
+                    (AgencyEvidencePredicate.AGENT_ACTING_CAPACITY_MISIDENTIFIED, False),
+                    (AgencyEvidencePredicate.AGENCY_REMUNERATION_RULES_BREACHED, False),
+                    (AgencyEvidencePredicate.AGENCY_EXCLUSIVITY_RESTRICTIONS_BREACHED, False),
+                    (AgencyEvidencePredicate.RESTRICTIONS_AGAINST_CONSUMERS_IMPOSED, False),
+                    (AgencyEvidencePredicate.AGENT_REPORT_NOT_SUBMITTED, False),
+                    (AgencyEvidencePredicate.REPORT_OBJECTIONS_PERIOD_DISREGARDED, False),
+                    (AgencyEvidencePredicate.SUBAGENCY_RULES_BREACHED, False),
+                    (AgencyEvidencePredicate.AGENCY_TERMINATION_RULES_BREACHED, False),
+                    (AgencyEvidencePredicate.APPLICABLE_RULES_SELECTION_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
+                "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-agency-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
