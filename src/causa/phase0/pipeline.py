@@ -130,6 +130,9 @@ from causa.institutional.contracts.synthetic_franchise import (
 from causa.institutional.contracts.synthetic_partnership import (
     build_synthetic_partnership_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_games import (
+    build_synthetic_games_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_public_promise import (
     build_synthetic_public_promise_evaluation_artifact,
 )
@@ -1280,6 +1283,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-games",
+            title="Проверка проведения игр и пари",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.games_evidence_mapping.evidence_id,
+                trace.analysis_result.games_constraint_set.id,
+                *trace.analysis_result.games_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.games_evaluation.reasons_ru,
+                "Квалификация отношений, связанных с организацией игр и пари, отказ в судебной защите требований из них, исключение для лиц, участвовавших под влиянием обмана, насилия или угрозы, условия судебной защиты требований из расчётных сделок, статус и разрешение организатора игр, оформление договора с участником, правила проведения игр, объявленные условия о сроке и порядке определения выигрыша, срок его выплаты и право участника требовать возмещения убытков проверяются раздельно по статьям 1062 и 1063 ГК РФ.",
+                "Наличие обмана, насилия или угрозы при участии в играх, характер расчётной сделки и содержание правил проведения игр оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1592,6 +1610,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     negotiorum_gestio_artifact = build_synthetic_negotiorum_gestio_evaluation_artifact()
     commission_artifact = build_synthetic_commission_evaluation_artifact()
     agency_artifact = build_synthetic_agency_evaluation_artifact()
+    games_artifact = build_synthetic_games_evaluation_artifact()
     public_promise_artifact = build_synthetic_public_promise_evaluation_artifact()
     partnership_artifact = build_synthetic_partnership_evaluation_artifact()
     franchise_artifact = build_synthetic_franchise_evaluation_artifact()
@@ -1767,6 +1786,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-commission-spec.md",
                 "src/causa/institutional/contracts/agency.py",
                 "docs/contract-agency-spec.md",
+                "src/causa/institutional/contracts/games.py",
+                "docs/contract-games-spec.md",
                 "src/causa/institutional/contracts/public_promise.py",
                 "docs/contract-public-promise-spec.md",
                 "src/causa/institutional/contracts/partnership.py",
@@ -1851,6 +1872,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_games_evaluation_report.json",
                 "examples/synthetic_public_promise_evaluation_report.json",
                 "examples/synthetic_partnership_evaluation_report.json",
                 "examples/synthetic_franchise_evaluation_report.json",
@@ -2054,6 +2076,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 commission_artifact.red_team_report.id,
                 agency_artifact.benchmark_report.id,
                 agency_artifact.red_team_report.id,
+                games_artifact.benchmark_report.id,
+                games_artifact.red_team_report.id,
                 public_promise_artifact.benchmark_report.id,
                 public_promise_artifact.red_team_report.id,
                 partnership_artifact.benchmark_report.id,
@@ -2150,6 +2174,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_games_evaluation_report.json",
                 "examples/synthetic_public_promise_evaluation_report.json",
                 "examples/synthetic_partnership_evaluation_report.json",
                 "examples/synthetic_franchise_evaluation_report.json",

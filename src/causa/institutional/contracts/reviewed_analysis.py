@@ -534,6 +534,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.games import (
+    GAMES_EVIDENCE_SCHEMA_VERSION,
+    GamesConstraintSet,
+    GamesEvaluation,
+    GamesEvidenceMappingResult,
+    ReviewedGamesEvidence,
+    build_games_constraint_set,
+    evaluate_games_constraints,
+    map_reviewed_games_evidence,
+)
 from causa.institutional.contracts.public_promise import (
     PUBLIC_PROMISE_EVIDENCE_SCHEMA_VERSION,
     PublicPromiseConstraintSet,
@@ -885,6 +895,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     negotiorum_gestio_evidence: ReviewedNegotiorumGestioEvidence
     commission_evidence: ReviewedCommissionEvidence
     agency_evidence: ReviewedAgencyEvidence
+    games_evidence: ReviewedGamesEvidence
     public_promise_evidence: ReviewedPublicPromiseEvidence
     partnership_evidence: ReviewedPartnershipEvidence
     franchise_evidence: ReviewedFranchiseEvidence
@@ -1102,6 +1113,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     agency_evidence_mapping: AgencyEvidenceMappingResult
     agency_constraint_set: AgencyConstraintSet
     agency_evaluation: AgencyEvaluation
+    games_evidence_mapping: GamesEvidenceMappingResult
+    games_constraint_set: GamesConstraintSet
+    games_evaluation: GamesEvaluation
     public_promise_evidence_mapping: PublicPromiseEvidenceMappingResult
     public_promise_constraint_set: PublicPromiseConstraintSet
     public_promise_evaluation: PublicPromiseEvaluation
@@ -1783,6 +1797,15 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.agency_evaluation != expected_agency_evaluation:
             raise ValueError("Agency evaluation does not replay from reviewed evidence.")
+        expected_games_set = build_games_constraint_set(self.games_evidence_mapping)
+        if self.games_constraint_set != expected_games_set:
+            raise ValueError("Games constraint set does not replay from reviewed evidence.")
+        expected_games_evaluation = evaluate_games_constraints(
+            expected_games_set,
+            self.games_evidence_mapping.facts,
+        )
+        if self.games_evaluation != expected_games_evaluation:
+            raise ValueError("Games evaluation does not replay from reviewed evidence.")
         expected_public_promise_set = build_public_promise_constraint_set(
             self.public_promise_evidence_mapping
         )
@@ -2267,6 +2290,8 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence case_id does not match the analysis request.")
     if request.agency_evidence.case_id != request.case_id:
         raise ValueError("Agency evidence case_id does not match the analysis request.")
+    if request.games_evidence.case_id != request.case_id:
+        raise ValueError("Games evidence case_id does not match the analysis request.")
     if request.public_promise_evidence.case_id != request.case_id:
         raise ValueError("Public-promise evidence case_id does not match the analysis request.")
     if request.partnership_evidence.case_id != request.case_id:
@@ -2460,6 +2485,8 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence uses an unsupported schema version.")
     if request.agency_evidence.schema_version != AGENCY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Agency evidence uses an unsupported schema version.")
+    if request.games_evidence.schema_version != GAMES_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Games evidence uses an unsupported schema version.")
     if request.public_promise_evidence.schema_version != PUBLIC_PROMISE_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Public-promise evidence uses an unsupported schema version.")
     if request.partnership_evidence.schema_version != PARTNERSHIP_EVIDENCE_SCHEMA_VERSION:
@@ -2533,6 +2560,7 @@ def _validate_request_integrity(
         *request.negotiorum_gestio_evidence.legal_source_refs,
         *request.commission_evidence.legal_source_refs,
         *request.agency_evidence.legal_source_refs,
+        *request.games_evidence.legal_source_refs,
         *request.public_promise_evidence.legal_source_refs,
         *request.partnership_evidence.legal_source_refs,
         *request.franchise_evidence.legal_source_refs,
@@ -2663,6 +2691,8 @@ def _validate_request_integrity(
     for assertion in request.commission_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.agency_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.games_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.public_promise_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -3341,6 +3371,17 @@ def _validate_request_integrity(
             "Agency legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_agency_legal_sources))
         )
+    invalid_games_legal_sources = [
+        source_id
+        for source_id in request.games_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_games_legal_sources:
+        raise ValueError(
+            "Games legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_games_legal_sources))
+        )
     invalid_public_promise_legal_sources = [
         source_id
         for source_id in request.public_promise_evidence.legal_source_refs
@@ -3856,6 +3897,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Agency evidence",
         review_status=request.agency_evidence.review_status,
         reviewer_id=request.agency_evidence.reviewer_id,
+    )
+    games_reviewer_id = _require_reviewed(
+        artifact_name="Games evidence",
+        review_status=request.games_evidence.review_status,
+        reviewer_id=request.games_evidence.reviewer_id,
     )
     public_promise_reviewer_id = _require_reviewed(
         artifact_name="Public-promise evidence",
@@ -4409,6 +4455,12 @@ def run_reviewed_contract_analysis(
         agency_constraint_set,
         agency_evidence_mapping.facts,
     )
+    games_evidence_mapping = map_reviewed_games_evidence(request.games_evidence)
+    games_constraint_set = build_games_constraint_set(games_evidence_mapping)
+    games_evaluation = evaluate_games_constraints(
+        games_constraint_set,
+        games_evidence_mapping.facts,
+    )
     public_promise_evidence_mapping = map_reviewed_public_promise_evidence(
         request.public_promise_evidence
     )
@@ -4722,6 +4774,7 @@ def run_reviewed_contract_analysis(
         or negotiorum_gestio_evaluation.requires_human_negotiorum_gestio_assessment
         or commission_evaluation.requires_human_commission_assessment
         or agency_evaluation.requires_human_agency_assessment
+        or games_evaluation.requires_human_games_assessment
         or public_promise_evaluation.requires_human_public_promise_assessment
         or partnership_evaluation.requires_human_partnership_assessment
         or franchise_evaluation.requires_human_franchise_assessment
@@ -4803,6 +4856,7 @@ def run_reviewed_contract_analysis(
                 negotiorum_gestio_reviewer_id,
                 commission_reviewer_id,
                 agency_reviewer_id,
+                games_reviewer_id,
                 public_promise_reviewer_id,
                 partnership_reviewer_id,
                 franchise_reviewer_id,
@@ -4996,6 +5050,9 @@ def run_reviewed_contract_analysis(
         agency_evidence_mapping=agency_evidence_mapping,
         agency_constraint_set=agency_constraint_set,
         agency_evaluation=agency_evaluation,
+        games_evidence_mapping=games_evidence_mapping,
+        games_constraint_set=games_constraint_set,
+        games_evaluation=games_evaluation,
         public_promise_evidence_mapping=public_promise_evidence_mapping,
         public_promise_constraint_set=public_promise_constraint_set,
         public_promise_evaluation=public_promise_evaluation,

@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.80.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью проведения игр и пари |
 | `0.79.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью публичного обещания награды и публичного конкурса |
 | `0.78.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью простого товарищества |
 | `0.77.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью коммерческой концессии |
@@ -87,6 +88,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.79.0` → `0.80.0` соберите отдельно проверенный контракт данных о проведении игр и пари (`contracts.games-evidence.v0`). Не выводите квалификацию отношений из игр и пари, отказ в судебной защите, статус организатора, форму договора с участником и срок выплаты выигрыша из прежних результатов о публичном обещании награды, публичном конкурсе или торгах. Пересоберите артефакты оценки проведения игр и пари, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.78.0` → `0.79.0` соберите отдельно проверенный контракт данных о публичном обещании награды и публичном конкурсе (`contracts.public-promise-evidence.v0`). Не выводите квалификацию публичного обещания награды, требования к объявлению, размер и распределение награды, отмену обещания, условия и отмену конкурса и решение о выплате награды из прежних результатов о простом товариществе, коммерческой концессии или торгах. Пересоберите артефакты оценки публичного обещания награды, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

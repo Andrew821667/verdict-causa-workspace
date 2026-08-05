@@ -1,0 +1,191 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.71.0:to-0.80.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.71.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.71.0",
+  "target_package_version": "0.80.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.71.0",
+      "to_version": "0.72.0",
+      "reasons": [
+        "Reviewed inputs now require a separate mandate evidence contract.",
+        "Analysis and Russian translation distinguish mandate qualification, remuneration, the principal's instructions, notice of deviation, personal performance, reporting, the principal's duties, termination, its consequences, and the successors' duties under articles 971 to 979."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о поручении.",
+        "Анализ и русское объяснение разделяют квалификацию поручения, вознаграждение, указания доверителя, уведомление об отступлении, личное исполнение, отчёт поверенного, обязанности доверителя, прекращение договора, его последствия и обязанности правопреемников по статьям 971–979 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_mandate_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.72.0",
+      "to_version": "0.73.0",
+      "reasons": [
+        "Reviewed inputs now require a separate negotiorum-gestio evidence contract.",
+        "Analysis and Russian translation distinguish the conditions of acting in another's interest, notice to the interested person, waiting for the decision, the effects of approval and disapproval, reimbursement of expenses, remuneration, the transfer of the transaction's consequences, and the gestor's report under articles 980 to 989."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о действиях в чужом интересе без поручения.",
+        "Анализ и русское объяснение разделяют условия действий в чужом интересе, уведомление заинтересованного лица, ожидание его решения, последствия одобрения и неодобрения, возмещение расходов, вознаграждение, переход последствий сделки и отчёт по статьям 980–989 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_negotiorum_gestio_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.73.0",
+      "to_version": "0.74.0",
+      "reasons": [
+        "Reviewed inputs now require a separate commission evidence contract.",
+        "Analysis and Russian translation distinguish commission qualification, remuneration, the principal's instructions, notice of deviation, liability for the third party, sub-commission, the principal's property rights, the report, the principal's duties, and termination under articles 990 to 1004."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о комиссии.",
+        "Анализ и русское объяснение разделяют квалификацию комиссии, вознаграждение, указания комитента, уведомление об отступлении, ответственность за третье лицо, субкомиссию, права комитента на вещи, отчёт комиссионера, обязанности комитента и прекращение договора по статьям 990–1004 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_commission_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.74.0",
+      "to_version": "0.75.0",
+      "reasons": [
+        "Reviewed inputs now require a separate agency evidence contract.",
+        "Analysis and Russian translation distinguish agency qualification, the agent's acting capacity, remuneration, the permitted restrictions, the void restrictions on buyers, the agent's reports, the principal's objections, sub-agency, termination, and the choice of applicable rules under articles 1005 to 1011."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об агентировании.",
+        "Анализ и русское объяснение разделяют квалификацию агентирования, сторону сделки агента, вознаграждение, допустимые ограничения прав сторон, ничтожные условия о покупателях, отчёты агента, возражения принципала, субагентский договор, прекращение договора и выбор применимых правил по статьям 1005–1011 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_agency_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.75.0",
+      "to_version": "0.76.0",
+      "reasons": [
+        "Reviewed inputs now require a separate trust-management evidence contract.",
+        "Analysis and Russian translation distinguish trust-management qualification, the scope of the managed property, the trustee's standing, the essential terms and form, the invalidity of a defective form, separation of the property, notice of encumbrance, the trustee's rights and report, liability, and remuneration and termination under articles 1012 to 1026."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о доверительном управлении имуществом.",
+        "Анализ и русское объяснение разделяют квалификацию доверительного управления, объект управления, статус управляющего, существенные условия и форму, недействительность при пороке формы, обособление имущества, предупреждение об обременении, права и отчёт управляющего, его ответственность, вознаграждение и прекращение договора по статьям 1012–1026 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_trust_management_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.76.0",
+      "to_version": "0.77.0",
+      "reasons": [
+        "Reviewed inputs now require a separate franchise evidence contract.",
+        "Analysis and Russian translation distinguish franchise qualification, the scope of the granted rights and the parties, the written form and state registration, the invalidity of a defective form, commercial subconcession, remuneration, the rightholder's and the user's obligations, restrictions on the parties' rights, and liability and termination under articles 1027 to 1040."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о коммерческой концессии.",
+        "Анализ и русское объяснение разделяют квалификацию коммерческой концессии, объём предоставленных прав и состав сторон, письменную форму и государственную регистрацию, ничтожность при пороке формы, коммерческую субконцессию, вознаграждение, обязанности правообладателя и пользователя, ограничения прав сторон, ответственность и прекращение договора по статьям 1027–1040 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_franchise_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.77.0",
+      "to_version": "0.78.0",
+      "reasons": [
+        "Reviewed inputs now require a separate partnership evidence contract.",
+        "Analysis and Russian translation distinguish partnership qualification, the parties and the purpose of the joint activity, the contributions and the common property, the conduct of common affairs, the right to information and the sharing of common expenses, the partners' liability, the distribution of profit, the voidness of excluding a partner from profit, termination and withdrawal, and the undisclosed partnership under articles 1041 to 1054."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о простом товариществе.",
+        "Анализ и русское объяснение разделяют квалификацию простого товарищества, стороны и цель совместной деятельности, вклады и общее имущество, ведение общих дел, право на информацию и распределение общих расходов, ответственность товарищей, распределение прибыли, ничтожность отстранения товарища от прибыли, прекращение договора и выход товарища, негласное товарищество по статьям 1041–1054 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_partnership_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.78.0",
+      "to_version": "0.79.0",
+      "reasons": [
+        "Reviewed inputs now require a separate public-promise evidence contract.",
+        "Analysis and Russian translation distinguish the qualification of a public promise or contest, the requirements for the announcement, the amount and distribution of the reward, the revocation of the promise, the compensation of expenses on revocation, the terms of the contest, its publicly useful purpose, the change and cancellation of the contest, the award decision, and the return of submitted works under articles 1055 to 1061."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о публичном обещании награды и публичном конкурсе.",
+        "Анализ и русское объяснение разделяют квалификацию публичного обещания награды и конкурса, требования к объявлению, размер и распределение награды, отмену обещания, возмещение расходов при отмене, условия конкурса, его общественно полезную цель, изменение и отмену конкурса, решение о выплате награды и возврат представленных работ по статьям 1055–1061 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_public_promise_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.79.0",
+      "to_version": "0.80.0",
+      "reasons": [
+        "Reviewed inputs now require a separate games evidence contract.",
+        "Analysis and Russian translation distinguish the qualification of a games or betting relation, the denial of judicial protection, the exception for participants acting under deceit or duress, the protection of claims from derivative transactions, the organizer's standing and licence, the form of the contract with a participant, the rules of the games, the announced terms of the prize, the period for paying the winnings, and the participant's right to damages under articles 1062 and 1063."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о проведении игр и пари.",
+        "Анализ и русское объяснение разделяют квалификацию отношений из игр и пари, отказ в судебной защите, исключение для участников, действовавших под влиянием обмана или угрозы, защиту требований из расчётных сделок, статус и лицензию организатора, форму договора с участником, правила проведения игр, объявленные условия о выигрыше, срок его выплаты и право участника на возмещение убытков по статьям 1062 и 1063 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_games_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

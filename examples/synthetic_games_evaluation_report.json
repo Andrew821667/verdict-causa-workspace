@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о проведении игр и пари по статьям 1062–1063 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-games-evidence-supply-1-v0",
+    "schema_version": "contracts.games-evidence.v0",
+    "mapping_version": "contracts-reviewed-games-to-facts-v0",
+    "facts": {
+      "games_or_betting_relation_established": false,
+      "judicial_protection_exclusion_breached": false,
+      "coercion_exception_disregarded": false,
+      "derivative_transactions_protection_breached": false,
+      "organizer_status_or_licence_breached": false,
+      "game_contract_form_breached": false,
+      "game_participation_rules_breached": false,
+      "prize_terms_announcement_breached": false,
+      "prize_payment_period_breached": false,
+      "payment_refusal_damages_not_applied": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1062-judicial-protection-of-claims-from-games-and-betting-v1",
+      "synthetic-ru-gk1063-organization-of-lotteries-and-payment-of-winnings-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "coercion_exception_disregarded",
+        "assertion_id": "games-evidence-coercion_exception_disregarded",
+        "source_refs": [
+          "synthetic-case-supply-1-games-evidence"
+        ]
+      },
+      {
+        "fact_name": "derivative_transactions_protection_breached",
+        "assertion_id": "games-evidence-derivative_transactions_protection_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-games-evidence"
+        ]
+      },
+      {
+        "fact_name": "game_contract_form_breached",
+        "assertion_id": "games-evidence-game_contract_form_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-games-evidence"
+        ]
+      },
+      {
+        "fact_name": "game_participation_rules_breached",
+        "assertion_id": "games-evidence-game_participation_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-games-evidence"
+        ]
+      },
+      {
+        "fact_name": "games_or_betting_relation_established",
+        "assertion_id": "games-evidence-games_or_betting_relation_established",
+        "source_refs": [
+          "synthetic-case-supply-1-games-evidence"
+        ]
+      },
+      {
+        "fact_name": "judicial_protection_exclusion_breached",
+        "assertion_id": "games-evidence-judicial_protection_exclusion_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-games-evidence"
+        ]
+      },
+      {
+        "fact_name": "organizer_status_or_licence_breached",
+        "assertion_id": "games-evidence-organizer_status_or_licence_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-games-evidence"
+        ]
+      },
+      {
+        "fact_name": "payment_refusal_damages_not_applied",
+        "assertion_id": "games-evidence-payment_refusal_damages_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-games-evidence"
+        ]
+      },
+      {
+        "fact_name": "prize_payment_period_breached",
+        "assertion_id": "games-evidence-prize_payment_period_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-games-evidence"
+        ]
+      },
+      {
+        "fact_name": "prize_terms_announcement_breached",
+        "assertion_id": "games-evidence-prize_terms_announcement_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-games-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "games-constraint-set:reviewed-games-evidence-supply-1-v0",
+    "model_version": "contracts-games-articles-1062-1063-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1062-judicial-protection-of-claims-from-games-and-betting-v1",
+      "synthetic-ru-gk1063-organization-of-lotteries-and-payment-of-winnings-v1"
+    ],
+    "expressions": [
+      "games_qualified == games_or_betting_relation_established",
+      "judicial_protection_duty_breached == games_qualified AND judicial_protection_exclusion_breached",
+      "coercion_exception_duty_breached == games_qualified AND coercion_exception_disregarded",
+      "derivative_protection_duty_breached == games_qualified AND derivative_transactions_protection_breached",
+      "organizer_status_duty_breached == games_qualified AND organizer_status_or_licence_breached",
+      "game_contract_form_duty_breached == games_qualified AND game_contract_form_breached",
+      "participation_rules_duty_breached == games_qualified AND game_participation_rules_breached",
+      "prize_terms_duty_breached == games_qualified AND prize_terms_announcement_breached",
+      "prize_payment_duty_breached == games_qualified AND prize_payment_period_breached",
+      "payment_refusal_damages_breached == games_qualified AND prize_payment_period_breached AND payment_refusal_damages_not_applied",
+      "requires_human_games_assessment == judicial_protection_duty_breached OR coercion_exception_duty_breached OR derivative_protection_duty_breached OR organizer_status_duty_breached OR game_contract_form_duty_breached OR participation_rules_duty_breached OR prize_terms_duty_breached OR prize_payment_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "games-constraint-set:reviewed-games-evidence-supply-1-v0",
+    "satisfiable": true,
+    "games_qualified": false,
+    "judicial_protection_duty_breached": false,
+    "coercion_exception_duty_breached": false,
+    "derivative_protection_duty_breached": false,
+    "organizer_status_duty_breached": false,
+    "game_contract_form_duty_breached": false,
+    "participation_rules_duty_breached": false,
+    "prize_terms_duty_breached": false,
+    "prize_payment_duty_breached": false,
+    "payment_refusal_damages_breached": false,
+    "requires_human_games_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как связанные с организацией игр и пари."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о проведении игр и пари и не заменяет судебную оценку.",
+      "Наличие обмана, насилия или угрозы при участии в играх, характер расчётной сделки и содержание правил проведения игр оцениваются экспертом и судом (статьи 1062 и 1063 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "games-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "games-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "games_qualified": false
+        },
+        "observed_outcomes": {
+          "games_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как связанные с организацией игр и пари."
+        ]
+      },
+      {
+        "task_id": "games-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "games_qualified": true,
+          "requires_human_games_assessment": false
+        },
+        "observed_outcomes": {
+          "games_qualified": true,
+          "requires_human_games_assessment": false
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "games-bench-judicial-protection",
+        "passed": true,
+        "expected_outcomes": {
+          "judicial_protection_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "observed_outcomes": {
+          "judicial_protection_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Требования граждан и юридических лиц, связанные с организацией игр и пари или с участием в них, не подлежат судебной защите, за исключением случаев, прямо предусмотренных законом (статья 1062 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "games-bench-coercion-exception",
+        "passed": true,
+        "expected_outcomes": {
+          "coercion_exception_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "observed_outcomes": {
+          "coercion_exception_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Судебной защите подлежат требования лиц, принявших участие в играх или пари под влиянием обмана, насилия, угрозы или злонамеренного соглашения их представителя с организатором игр или пари (статья 1062 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "games-bench-derivative-transactions",
+        "passed": true,
+        "expected_outcomes": {
+          "derivative_protection_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "observed_outcomes": {
+          "derivative_protection_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Требования, связанные с участием в сделках, предусматривающих обязанность уплатить денежные суммы в зависимости от изменения цен, курсов валют, процентных ставок и иных обстоятельств, подлежат судебной защите при условиях, установленных законом, в том числе при заключении сделки на бирже или с участием лицензированного лица (статья 1062 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "games-bench-organizer-status",
+        "passed": true,
+        "expected_outcomes": {
+          "organizer_status_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "observed_outcomes": {
+          "organizer_status_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Отношения между организаторами лотерей, тотализаторов и других основанных на риске игр и участниками игр основаны на договоре, а организаторами могут выступать Российская Федерация, субъекты Российской Федерации, муниципальные образования или лица, получившие от уполномоченного государственного или муниципального органа разрешение (лицензию) (статья 1063 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "games-bench-contract-form",
+        "passed": true,
+        "expected_outcomes": {
+          "game_contract_form_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "observed_outcomes": {
+          "game_contract_form_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Договор между организатором и участником игр оформляется выдачей лотерейного билета, квитанции или иного документа, а в случаях, предусмотренных правилами организации игр, — иным способом (статья 1063 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "games-bench-participation-rules",
+        "passed": true,
+        "expected_outcomes": {
+          "participation_rules_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "observed_outcomes": {
+          "participation_rules_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Правила организации и проведения игр, включая условия участия и порядок определения размера выигрыша, должны соблюдаться организатором и доводиться до участников (статья 1063 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "games-bench-prize-terms",
+        "passed": true,
+        "expected_outcomes": {
+          "prize_terms_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "observed_outcomes": {
+          "prize_terms_duty_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Предложение о заключении договора должно включать условия о сроке проведения игр и порядке определения выигрыша и его размера (статья 1063 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "games-bench-prize-payment",
+        "passed": true,
+        "expected_outcomes": {
+          "prize_payment_duty_breached": true,
+          "payment_refusal_damages_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "observed_outcomes": {
+          "prize_payment_duty_breached": true,
+          "payment_refusal_damages_breached": true,
+          "requires_human_games_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Организатор игр обязан выплатить выигрыш в предусмотренных условиями проведения игр размере, форме и срок, а если срок не указан — не позднее десяти дней с момента определения результатов игр (статья 1063 ГК РФ).",
+          "В случае неисполнения организатором игр обязанности выплатить выигрыш участник вправе требовать выплаты выигрыша, а также возмещения убытков, причинённых нарушением договора со стороны организатора (статья 1063 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "games-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "games-red-qualify-without-relation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "games_qualified": true
+        },
+        "observed_outcomes": {
+          "games_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как связанные с организацией игр и пари."
+        ]
+      },
+      {
+        "case_id": "games-red-ignore-judicial-protection",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "judicial_protection_duty_breached": false
+        },
+        "observed_outcomes": {
+          "judicial_protection_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Требования граждан и юридических лиц, связанные с организацией игр и пари или с участием в них, не подлежат судебной защите, за исключением случаев, прямо предусмотренных законом (статья 1062 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "games-red-ignore-coercion-exception",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "coercion_exception_duty_breached": false
+        },
+        "observed_outcomes": {
+          "coercion_exception_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Судебной защите подлежат требования лиц, принявших участие в играх или пари под влиянием обмана, насилия, угрозы или злонамеренного соглашения их представителя с организатором игр или пари (статья 1062 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "games-red-ignore-derivative-protection",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "derivative_protection_duty_breached": false
+        },
+        "observed_outcomes": {
+          "derivative_protection_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Требования, связанные с участием в сделках, предусматривающих обязанность уплатить денежные суммы в зависимости от изменения цен, курсов валют, процентных ставок и иных обстоятельств, подлежат судебной защите при условиях, установленных законом, в том числе при заключении сделки на бирже или с участием лицензированного лица (статья 1062 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "games-red-ignore-organizer-status",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "organizer_status_duty_breached": false
+        },
+        "observed_outcomes": {
+          "organizer_status_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Отношения между организаторами лотерей, тотализаторов и других основанных на риске игр и участниками игр основаны на договоре, а организаторами могут выступать Российская Федерация, субъекты Российской Федерации, муниципальные образования или лица, получившие от уполномоченного государственного или муниципального органа разрешение (лицензию) (статья 1063 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "games-red-ignore-contract-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "game_contract_form_duty_breached": false
+        },
+        "observed_outcomes": {
+          "game_contract_form_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Договор между организатором и участником игр оформляется выдачей лотерейного билета, квитанции или иного документа, а в случаях, предусмотренных правилами организации игр, — иным способом (статья 1063 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "games-red-ignore-participation-rules",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "participation_rules_duty_breached": false
+        },
+        "observed_outcomes": {
+          "participation_rules_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Правила организации и проведения игр, включая условия участия и порядок определения размера выигрыша, должны соблюдаться организатором и доводиться до участников (статья 1063 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "games-red-ignore-prize-terms",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "prize_terms_duty_breached": false
+        },
+        "observed_outcomes": {
+          "prize_terms_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Предложение о заключении договора должно включать условия о сроке проведения игр и порядке определения выигрыша и его размера (статья 1063 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "games-red-damages-without-payment-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "payment_refusal_damages_breached": true
+        },
+        "observed_outcomes": {
+          "payment_refusal_damages_breached": false
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "games-red-skip-human-on-prize-payment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_games_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_games_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как связанные с организацией игр и пари или с участием в них: требования граждан и юридических лиц из таких отношений подчиняются специальным правилам главы 58 ГК РФ (статьи 1062 и 1063 ГК РФ).",
+          "Организатор игр обязан выплатить выигрыш в предусмотренных условиями проведения игр размере, форме и срок, а если срок не указан — не позднее десяти дней с момента определения результатов игр (статья 1063 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

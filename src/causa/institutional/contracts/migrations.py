@@ -1518,6 +1518,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.79.0",
+        to_version="0.80.0",
+        reasons=[
+            "Reviewed inputs now require a separate games evidence contract.",
+            "Analysis and Russian translation distinguish the qualification of a games or betting relation, the denial of judicial protection, the exception for participants acting under deceit or duress, the protection of claims from derivative transactions, the organizer's standing and licence, the form of the contract with a participant, the rules of the games, the announced terms of the prize, the period for paying the winnings, and the participant's right to damages under articles 1062 and 1063.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о проведении игр и пари.",
+            "Анализ и русское объяснение разделяют квалификацию отношений из игр и пари, отказ в судебной защите, исключение для участников, действовавших под влиянием обмана или угрозы, защиту требований из расчётных сделок, статус и лицензию организатора, форму договора с участником, правила проведения игр, объявленные условия о выигрыше, срок его выплаты и право участника на возмещение убытков по статьям 1062 и 1063 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_games_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

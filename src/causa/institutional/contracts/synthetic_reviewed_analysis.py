@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.games import (
+    GamesEvidenceAssertion,
+    GamesEvidencePredicate,
+    ReviewedGamesEvidence,
+)
 from causa.institutional.contracts.public_promise import (
     PublicPromiseEvidenceAssertion,
     PublicPromiseEvidencePredicate,
@@ -552,6 +557,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk1062-judicial-protection-of-claims-from-games-and-betting-v1",
+    "synthetic-ru-gk1063-organization-of-lotteries-and-payment-of-winnings-v1",
+    "synthetic-case-supply-1-games-evidence",
     "synthetic-ru-gk1055-1056-public-promise-of-reward-and-revocation-v1",
     "synthetic-ru-gk1057-1061-public-contest-terms-award-and-works-v1",
     "synthetic-case-supply-1-public-promise-evidence",
@@ -2902,6 +2910,39 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        games_evidence=ReviewedGamesEvidence(
+            id="reviewed-games-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                GamesEvidenceAssertion(
+                    id=f"games-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-games-evidence",),
+                )
+                for predicate, value in (
+                    (GamesEvidencePredicate.GAMES_OR_BETTING_RELATION_ESTABLISHED, False),
+                    (GamesEvidencePredicate.JUDICIAL_PROTECTION_EXCLUSION_BREACHED, False),
+                    (GamesEvidencePredicate.COERCION_EXCEPTION_DISREGARDED, False),
+                    (
+                        GamesEvidencePredicate.DERIVATIVE_TRANSACTIONS_PROTECTION_BREACHED,
+                        False,
+                    ),
+                    (GamesEvidencePredicate.ORGANIZER_STATUS_OR_LICENCE_BREACHED, False),
+                    (GamesEvidencePredicate.GAME_CONTRACT_FORM_BREACHED, False),
+                    (GamesEvidencePredicate.GAME_PARTICIPATION_RULES_BREACHED, False),
+                    (GamesEvidencePredicate.PRIZE_TERMS_ANNOUNCEMENT_BREACHED, False),
+                    (GamesEvidencePredicate.PRIZE_PAYMENT_PERIOD_BREACHED, False),
+                    (GamesEvidencePredicate.PAYMENT_REFUSAL_DAMAGES_NOT_APPLIED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1062-judicial-protection-of-claims-from-games-and-betting-v1",
+                "synthetic-ru-gk1063-organization-of-lotteries-and-payment-of-winnings-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-games-reviewer",
         ),
         public_promise_evidence=ReviewedPublicPromiseEvidence(
             id="reviewed-public-promise-evidence-supply-1-v0",

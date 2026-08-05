@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.80.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed games evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 1062 and 1063.",
+            "The qualification of a games or betting relation, the denial of judicial protection, the exception for participants acting under deceit or duress, the protection of claims from derivative transactions, the organizer's standing and licence, the form of the contract with a participant, the rules of the games, the announced terms of the prize, the period for paying the winnings, and the participant's right to damages remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о проведении игр и пари обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 1062 и 1063 ГК РФ.",
+            "Квалификация отношений из игр и пари, отказ в судебной защите, исключение для участников, действовавших под влиянием обмана или угрозы, защита требований из расчётных сделок, статус и лицензия организатора, форма договора с участником, правила проведения игр, объявленные условия о выигрыше, срок его выплаты и право участника на возмещение убытков разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.79.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

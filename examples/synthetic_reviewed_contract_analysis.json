@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk1062-judicial-protection-of-claims-from-games-and-betting-v1",
+      "title": "Синтетическая проверенная модель отказа в судебной защите требований из игр и пари и исключений для потерпевших и расчётных сделок по статье 1062 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: правило о том, что требования граждан и юридических лиц, связанные с организацией игр и пари или с участием в них, не подлежат судебной защите, исключение для лиц, принявших участие в играх или пари под влиянием обмана, насилия, угрозы или злонамеренного соглашения представителя с организатором, а также условия судебной защиты требований из сделок, предусматривающих обязанность уплатить суммы в зависимости от изменения цен, курсов валют и иных обстоятельств, проверяются раздельно (статья 1062 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "judicial_protection_of_claims_from_games_and_betting_article_1062",
+        "legal_reference": "ГК РФ, статья 1062",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk1063-organization-of-lotteries-and-payment-of-winnings-v1",
+      "title": "Синтетическая проверенная модель организации лотерей, тотализаторов и иных основанных на риске игр, оформления договора с участником и выплаты выигрыша по статье 1063 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: требования к организаторам лотерей, тотализаторов и других основанных на риске игр, включая публично-правовые образования и лиц с разрешением (лицензией), оформление договора с участником выдачей лотерейного билета, квитанции или иного документа, обязательные условия о сроке проведения игр и порядке определения выигрыша, срок выплаты выигрыша и право участника требовать выплаты выигрыша и возмещения убытков при её неисполнении проверяются раздельно (статья 1063 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "organization_of_lotteries_and_payment_of_winnings_article_1063",
+        "legal_reference": "ГК РФ, статья 1063",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-games-evidence",
+      "title": "Синтетическая проверенная запись фактов о проведении игр и пари",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки игры и пари не проводились; требования сторон не связаны с организацией игр или с участием в них.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "games_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk1055-1056-public-promise-of-reward-and-revocation-v1",
       "title": "Синтетическая проверенная модель публичного обещания награды, требований к объявлению, размера и распределения награды и отмены обещания по статьям 1055 и 1056 ГК РФ",
       "source_type": "statute",
@@ -9382,6 +9429,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "games_evidence": {
+      "id": "reviewed-games-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.games-evidence.v0",
+      "assertions": [
+        {
+          "id": "games-evidence-games_or_betting_relation_established",
+          "predicate": "games_or_betting_relation_established",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "id": "games-evidence-judicial_protection_exclusion_breached",
+          "predicate": "judicial_protection_exclusion_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "id": "games-evidence-coercion_exception_disregarded",
+          "predicate": "coercion_exception_disregarded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "id": "games-evidence-derivative_transactions_protection_breached",
+          "predicate": "derivative_transactions_protection_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "id": "games-evidence-organizer_status_or_licence_breached",
+          "predicate": "organizer_status_or_licence_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "id": "games-evidence-game_contract_form_breached",
+          "predicate": "game_contract_form_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "id": "games-evidence-game_participation_rules_breached",
+          "predicate": "game_participation_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "id": "games-evidence-prize_terms_announcement_breached",
+          "predicate": "prize_terms_announcement_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "id": "games-evidence-prize_payment_period_breached",
+          "predicate": "prize_payment_period_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "id": "games-evidence-payment_refusal_damages_not_applied",
+          "predicate": "payment_refusal_damages_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk1062-judicial-protection-of-claims-from-games-and-betting-v1",
+        "synthetic-ru-gk1063-organization-of-lotteries-and-payment-of-winnings-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-games-reviewer"
+    },
     "public_promise_evidence": {
       "id": "reviewed-public-promise-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -14553,6 +14693,7 @@
       "synthetic-framework-reviewer",
       "synthetic-franchise-reviewer",
       "synthetic-freedom-reviewer",
+      "synthetic-games-reviewer",
       "synthetic-general-obligations-reviewer",
       "synthetic-general-sale-reviewer",
       "synthetic-gift-reviewer",
@@ -14627,6 +14768,7 @@
       "synthetic-case-supply-1-framework-evidence",
       "synthetic-case-supply-1-franchise-evidence",
       "synthetic-case-supply-1-freedom-evidence",
+      "synthetic-case-supply-1-games-evidence",
       "synthetic-case-supply-1-general-obligations-evidence",
       "synthetic-case-supply-1-general-sale-evidence",
       "synthetic-case-supply-1-gift-evidence",
@@ -14686,6 +14828,8 @@
       "synthetic-ru-gk1047-1054-partnership-liability-profit-and-termination-v1",
       "synthetic-ru-gk1055-1056-public-promise-of-reward-and-revocation-v1",
       "synthetic-ru-gk1057-1061-public-contest-terms-award-and-works-v1",
+      "synthetic-ru-gk1062-judicial-protection-of-claims-from-games-and-betting-v1",
+      "synthetic-ru-gk1063-organization-of-lotteries-and-payment-of-winnings-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -22904,6 +23048,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "games_evidence_mapping": {
+      "evidence_id": "reviewed-games-evidence-supply-1-v0",
+      "schema_version": "contracts.games-evidence.v0",
+      "mapping_version": "contracts-reviewed-games-to-facts-v0",
+      "facts": {
+        "games_or_betting_relation_established": false,
+        "judicial_protection_exclusion_breached": false,
+        "coercion_exception_disregarded": false,
+        "derivative_transactions_protection_breached": false,
+        "organizer_status_or_licence_breached": false,
+        "game_contract_form_breached": false,
+        "game_participation_rules_breached": false,
+        "prize_terms_announcement_breached": false,
+        "prize_payment_period_breached": false,
+        "payment_refusal_damages_not_applied": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk1062-judicial-protection-of-claims-from-games-and-betting-v1",
+        "synthetic-ru-gk1063-organization-of-lotteries-and-payment-of-winnings-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "coercion_exception_disregarded",
+          "assertion_id": "games-evidence-coercion_exception_disregarded",
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "fact_name": "derivative_transactions_protection_breached",
+          "assertion_id": "games-evidence-derivative_transactions_protection_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "fact_name": "game_contract_form_breached",
+          "assertion_id": "games-evidence-game_contract_form_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "fact_name": "game_participation_rules_breached",
+          "assertion_id": "games-evidence-game_participation_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "fact_name": "games_or_betting_relation_established",
+          "assertion_id": "games-evidence-games_or_betting_relation_established",
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "fact_name": "judicial_protection_exclusion_breached",
+          "assertion_id": "games-evidence-judicial_protection_exclusion_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "fact_name": "organizer_status_or_licence_breached",
+          "assertion_id": "games-evidence-organizer_status_or_licence_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "fact_name": "payment_refusal_damages_not_applied",
+          "assertion_id": "games-evidence-payment_refusal_damages_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "fact_name": "prize_payment_period_breached",
+          "assertion_id": "games-evidence-prize_payment_period_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        },
+        {
+          "fact_name": "prize_terms_announcement_breached",
+          "assertion_id": "games-evidence-prize_terms_announcement_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-games-evidence"
+          ]
+        }
+      ]
+    },
+    "games_constraint_set": {
+      "id": "games-constraint-set:reviewed-games-evidence-supply-1-v0",
+      "model_version": "contracts-games-articles-1062-1063-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk1062-judicial-protection-of-claims-from-games-and-betting-v1",
+        "synthetic-ru-gk1063-organization-of-lotteries-and-payment-of-winnings-v1"
+      ],
+      "expressions": [
+        "games_qualified == games_or_betting_relation_established",
+        "judicial_protection_duty_breached == games_qualified AND judicial_protection_exclusion_breached",
+        "coercion_exception_duty_breached == games_qualified AND coercion_exception_disregarded",
+        "derivative_protection_duty_breached == games_qualified AND derivative_transactions_protection_breached",
+        "organizer_status_duty_breached == games_qualified AND organizer_status_or_licence_breached",
+        "game_contract_form_duty_breached == games_qualified AND game_contract_form_breached",
+        "participation_rules_duty_breached == games_qualified AND game_participation_rules_breached",
+        "prize_terms_duty_breached == games_qualified AND prize_terms_announcement_breached",
+        "prize_payment_duty_breached == games_qualified AND prize_payment_period_breached",
+        "payment_refusal_damages_breached == games_qualified AND prize_payment_period_breached AND payment_refusal_damages_not_applied",
+        "requires_human_games_assessment == judicial_protection_duty_breached OR coercion_exception_duty_breached OR derivative_protection_duty_breached OR organizer_status_duty_breached OR game_contract_form_duty_breached OR participation_rules_duty_breached OR prize_terms_duty_breached OR prize_payment_duty_breached"
+      ]
+    },
+    "games_evaluation": {
+      "constraint_set_id": "games-constraint-set:reviewed-games-evidence-supply-1-v0",
+      "satisfiable": true,
+      "games_qualified": false,
+      "judicial_protection_duty_breached": false,
+      "coercion_exception_duty_breached": false,
+      "derivative_protection_duty_breached": false,
+      "organizer_status_duty_breached": false,
+      "game_contract_form_duty_breached": false,
+      "participation_rules_duty_breached": false,
+      "prize_terms_duty_breached": false,
+      "prize_payment_duty_breached": false,
+      "payment_refusal_damages_breached": false,
+      "requires_human_games_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как связанные с организацией игр и пари."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о проведении игр и пари и не заменяет судебную оценку.",
+        "Наличие обмана, насилия или угрозы при участии в играх, характер расчётной сделки и содержание правил проведения игр оцениваются экспертом и судом (статьи 1062 и 1063 ГК РФ)."
+      ]
+    },
     "public_promise_evidence_mapping": {
       "evidence_id": "reviewed-public-promise-evidence-supply-1-v0",
       "schema_version": "contracts.public-promise-evidence.v0",
@@ -28819,7 +29099,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.79.0",
+      "institutional_package_version": "contracts-ru-v0@0.80.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
