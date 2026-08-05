@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о возмещении вреда, причинённого жизни или здоровью гражданина, по статьям 1084–1094 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-tort-life-health-evidence-supply-1-v0",
+    "schema_version": "contracts.tort-life-health-evidence.v0",
+    "mapping_version": "contracts-reviewed-tort-life-health-to-facts-v0",
+    "facts": {
+      "life_or_health_harm_established": false,
+      "harm_scope_rules_breached": false,
+      "lost_earnings_calculation_breached": false,
+      "minor_victim_rules_breached": false,
+      "dependants_entitlement_breached": false,
+      "dependants_payment_amount_breached": false,
+      "compensation_adjustment_breached": false,
+      "indexation_not_applied": false,
+      "payment_order_or_succession_breached": false,
+      "funeral_expenses_rules_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1084-1087-life-health-harm-scope-and-earnings-v1",
+      "synthetic-ru-gk1088-1094-dependants-indexation-and-funeral-expenses-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "compensation_adjustment_breached",
+        "assertion_id": "tort-life-health-evidence-compensation_adjustment_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-life-health-evidence"
+        ]
+      },
+      {
+        "fact_name": "dependants_entitlement_breached",
+        "assertion_id": "tort-life-health-evidence-dependants_entitlement_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-life-health-evidence"
+        ]
+      },
+      {
+        "fact_name": "dependants_payment_amount_breached",
+        "assertion_id": "tort-life-health-evidence-dependants_payment_amount_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-life-health-evidence"
+        ]
+      },
+      {
+        "fact_name": "funeral_expenses_rules_breached",
+        "assertion_id": "tort-life-health-evidence-funeral_expenses_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-life-health-evidence"
+        ]
+      },
+      {
+        "fact_name": "harm_scope_rules_breached",
+        "assertion_id": "tort-life-health-evidence-harm_scope_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-life-health-evidence"
+        ]
+      },
+      {
+        "fact_name": "indexation_not_applied",
+        "assertion_id": "tort-life-health-evidence-indexation_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-life-health-evidence"
+        ]
+      },
+      {
+        "fact_name": "life_or_health_harm_established",
+        "assertion_id": "tort-life-health-evidence-life_or_health_harm_established",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-life-health-evidence"
+        ]
+      },
+      {
+        "fact_name": "lost_earnings_calculation_breached",
+        "assertion_id": "tort-life-health-evidence-lost_earnings_calculation_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-life-health-evidence"
+        ]
+      },
+      {
+        "fact_name": "minor_victim_rules_breached",
+        "assertion_id": "tort-life-health-evidence-minor_victim_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-life-health-evidence"
+        ]
+      },
+      {
+        "fact_name": "payment_order_or_succession_breached",
+        "assertion_id": "tort-life-health-evidence-payment_order_or_succession_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-life-health-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "tort-life-health-constraint-set:reviewed-tort-life-health-evidence-supply-1-v0",
+    "model_version": "contracts-tort-life-health-articles-1084-1094-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1084-1087-life-health-harm-scope-and-earnings-v1",
+      "synthetic-ru-gk1088-1094-dependants-indexation-and-funeral-expenses-v1"
+    ],
+    "expressions": [
+      "life_health_harm_qualified == life_or_health_harm_established",
+      "harm_scope_duty_breached == life_health_harm_qualified AND harm_scope_rules_breached",
+      "lost_earnings_duty_breached == life_health_harm_qualified AND lost_earnings_calculation_breached",
+      "minor_victim_duty_breached == life_health_harm_qualified AND minor_victim_rules_breached",
+      "dependants_entitlement_duty_breached == life_health_harm_qualified AND dependants_entitlement_breached",
+      "dependants_payment_duty_breached == life_health_harm_qualified AND dependants_payment_amount_breached",
+      "compensation_adjustment_duty_breached == life_health_harm_qualified AND compensation_adjustment_breached",
+      "indexation_duty_breached == life_health_harm_qualified AND compensation_adjustment_breached AND indexation_not_applied",
+      "payment_order_duty_breached == life_health_harm_qualified AND payment_order_or_succession_breached",
+      "funeral_expenses_duty_breached == life_health_harm_qualified AND funeral_expenses_rules_breached",
+      "requires_human_life_health_assessment == harm_scope_duty_breached OR lost_earnings_duty_breached OR minor_victim_duty_breached OR dependants_entitlement_duty_breached OR dependants_payment_duty_breached OR compensation_adjustment_duty_breached OR payment_order_duty_breached OR funeral_expenses_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "tort-life-health-constraint-set:reviewed-tort-life-health-evidence-supply-1-v0",
+    "satisfiable": true,
+    "life_health_harm_qualified": false,
+    "harm_scope_duty_breached": false,
+    "lost_earnings_duty_breached": false,
+    "minor_victim_duty_breached": false,
+    "dependants_entitlement_duty_breached": false,
+    "dependants_payment_duty_breached": false,
+    "compensation_adjustment_duty_breached": false,
+    "indexation_duty_breached": false,
+    "payment_order_duty_breached": false,
+    "funeral_expenses_duty_breached": false,
+    "requires_human_life_health_assessment": false,
+    "reasons_ru": [
+      "Причинение вреда жизни или здоровью гражданина не установлено."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о возмещении вреда, причинённого жизни или здоровью гражданина, и не заменяет судебную оценку.",
+      "Степень утраты трудоспособности, нуждаемость в дополнительных видах помощи, состав иждивенцев и размер заработка потерпевшего оцениваются экспертом и судом (статьи 1085, 1086 и 1088 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "tort-life-health-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "tort-life-health-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "life_health_harm_qualified": false
+        },
+        "observed_outcomes": {
+          "life_health_harm_qualified": false
+        },
+        "reasons_ru": [
+          "Причинение вреда жизни или здоровью гражданина не установлено."
+        ]
+      },
+      {
+        "task_id": "tort-life-health-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "life_health_harm_qualified": true,
+          "requires_human_life_health_assessment": false
+        },
+        "observed_outcomes": {
+          "life_health_harm_qualified": true,
+          "requires_human_life_health_assessment": false
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-life-health-bench-harm-scope",
+        "passed": true,
+        "expected_outcomes": {
+          "harm_scope_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "observed_outcomes": {
+          "harm_scope_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "При повреждении здоровья гражданина возмещению подлежат утраченный потерпевшим заработок (доход), который он имел либо определённо мог иметь, а также дополнительно понесённые расходы на лечение, дополнительное питание, приобретение лекарств, протезирование, посторонний уход, санаторно-курортное лечение и подготовку к другой профессии, если установлено, что потерпевший нуждается в этих видах помощи и не имеет права на их бесплатное получение (статья 1085 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-life-health-bench-lost-earnings",
+        "passed": true,
+        "expected_outcomes": {
+          "lost_earnings_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "observed_outcomes": {
+          "lost_earnings_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "Размер подлежащего возмещению утраченного заработка (дохода) определяется в процентах к среднему месячному заработку до увечья или утраты трудоспособности соответственно степени утраты профессиональной трудоспособности, а при её отсутствии — общей трудоспособности (статья 1086 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-life-health-bench-minor-victim",
+        "passed": true,
+        "expected_outcomes": {
+          "minor_victim_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "observed_outcomes": {
+          "minor_victim_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "При причинении вреда здоровью несовершеннолетнего возмещаются расходы, вызванные повреждением здоровья, а по достижении установленного возраста и при наличии заработка — вред, связанный с утратой или уменьшением трудоспособности, исходя из правил о минимальном размере оплаты труда и величине прожиточного минимума (статья 1087 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-life-health-bench-dependants-entitlement",
+        "passed": true,
+        "expected_outcomes": {
+          "dependants_entitlement_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "observed_outcomes": {
+          "dependants_entitlement_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "В случае смерти потерпевшего (кормильца) право на возмещение вреда имеют нетрудоспособные лица, состоявшие на его иждивении или имевшие ко дню его смерти право на получение от него содержания, ребёнок умершего, родившийся после его смерти, а также иные лица, названные в законе, с соблюдением установленных сроков возмещения (статья 1088 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-life-health-bench-dependants-payment",
+        "passed": true,
+        "expected_outcomes": {
+          "dependants_payment_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "observed_outcomes": {
+          "dependants_payment_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "Лицам, имеющим право на возмещение вреда в связи со смертью кормильца, вред возмещается в размере той доли заработка (дохода) умершего, которую они получали или имели право получать на своё содержание при его жизни; установленный каждому размер возмещения по общему правилу дальнейшему перерасчёту не подлежит (статья 1089 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-life-health-bench-adjustment",
+        "passed": true,
+        "expected_outcomes": {
+          "compensation_adjustment_duty_breached": true,
+          "indexation_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "observed_outcomes": {
+          "compensation_adjustment_duty_breached": true,
+          "indexation_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "Потерпевший и причинитель вправе требовать соответствующего изменения размера возмещения вреда при изменении трудоспособности потерпевшего или имущественного положения гражданина-причинителя (статья 1090 ГК РФ).",
+          "Суммы выплачиваемого гражданам возмещения вреда, причинённого жизни или здоровью, подлежат изменению пропорционально повышению установленной в соответствии с законом величины прожиточного минимума (статья 1091 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-life-health-bench-payment-order",
+        "passed": true,
+        "expected_outcomes": {
+          "payment_order_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "observed_outcomes": {
+          "payment_order_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "Возмещение вреда, причинённого жизни или здоровью, производится ежемесячными платежами, а при наличии уважительных причин суд может присудить платежи единовременно за период не более трёх лет; при реорганизации или ликвидации юридического лица соответствующие платежи капитализируются и передаются правопреемнику либо организации, обязанной выплачивать возмещение (статьи 1092 и 1093 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-life-health-bench-funeral-expenses",
+        "passed": true,
+        "expected_outcomes": {
+          "funeral_expenses_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "observed_outcomes": {
+          "funeral_expenses_duty_breached": true,
+          "requires_human_life_health_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "Лица, ответственные за вред, вызванный смертью потерпевшего, обязаны возместить необходимые расходы на погребение лицу, понёсшему эти расходы; пособие на погребение в счёт возмещения вреда не засчитывается (статья 1094 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "tort-life-health-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "tort-life-health-red-qualify-without-harm",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "life_health_harm_qualified": true
+        },
+        "observed_outcomes": {
+          "life_health_harm_qualified": false
+        },
+        "reasons_ru": [
+          "Причинение вреда жизни или здоровью гражданина не установлено."
+        ]
+      },
+      {
+        "case_id": "tort-life-health-red-ignore-harm-scope",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "harm_scope_duty_breached": false
+        },
+        "observed_outcomes": {
+          "harm_scope_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "При повреждении здоровья гражданина возмещению подлежат утраченный потерпевшим заработок (доход), который он имел либо определённо мог иметь, а также дополнительно понесённые расходы на лечение, дополнительное питание, приобретение лекарств, протезирование, посторонний уход, санаторно-курортное лечение и подготовку к другой профессии, если установлено, что потерпевший нуждается в этих видах помощи и не имеет права на их бесплатное получение (статья 1085 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-life-health-red-ignore-lost-earnings",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "lost_earnings_duty_breached": false
+        },
+        "observed_outcomes": {
+          "lost_earnings_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "Размер подлежащего возмещению утраченного заработка (дохода) определяется в процентах к среднему месячному заработку до увечья или утраты трудоспособности соответственно степени утраты профессиональной трудоспособности, а при её отсутствии — общей трудоспособности (статья 1086 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-life-health-red-ignore-minor-victim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "minor_victim_duty_breached": false
+        },
+        "observed_outcomes": {
+          "minor_victim_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "При причинении вреда здоровью несовершеннолетнего возмещаются расходы, вызванные повреждением здоровья, а по достижении установленного возраста и при наличии заработка — вред, связанный с утратой или уменьшением трудоспособности, исходя из правил о минимальном размере оплаты труда и величине прожиточного минимума (статья 1087 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-life-health-red-ignore-dependants-entitlement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "dependants_entitlement_duty_breached": false
+        },
+        "observed_outcomes": {
+          "dependants_entitlement_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "В случае смерти потерпевшего (кормильца) право на возмещение вреда имеют нетрудоспособные лица, состоявшие на его иждивении или имевшие ко дню его смерти право на получение от него содержания, ребёнок умершего, родившийся после его смерти, а также иные лица, названные в законе, с соблюдением установленных сроков возмещения (статья 1088 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-life-health-red-ignore-dependants-payment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "dependants_payment_duty_breached": false
+        },
+        "observed_outcomes": {
+          "dependants_payment_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "Лицам, имеющим право на возмещение вреда в связи со смертью кормильца, вред возмещается в размере той доли заработка (дохода) умершего, которую они получали или имели право получать на своё содержание при его жизни; установленный каждому размер возмещения по общему правилу дальнейшему перерасчёту не подлежит (статья 1089 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-life-health-red-ignore-adjustment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "compensation_adjustment_duty_breached": false
+        },
+        "observed_outcomes": {
+          "compensation_adjustment_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "Потерпевший и причинитель вправе требовать соответствующего изменения размера возмещения вреда при изменении трудоспособности потерпевшего или имущественного положения гражданина-причинителя (статья 1090 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-life-health-red-indexation-without-adjustment-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "indexation_duty_breached": true
+        },
+        "observed_outcomes": {
+          "indexation_duty_breached": false
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-life-health-red-ignore-payment-order",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "payment_order_duty_breached": false
+        },
+        "observed_outcomes": {
+          "payment_order_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "Возмещение вреда, причинённого жизни или здоровью, производится ежемесячными платежами, а при наличии уважительных причин суд может присудить платежи единовременно за период не более трёх лет; при реорганизации или ликвидации юридического лица соответствующие платежи капитализируются и передаются правопреемнику либо организации, обязанной выплачивать возмещение (статьи 1092 и 1093 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-life-health-red-skip-human-on-funeral-expenses",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_life_health_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_life_health_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда жизни или здоровью гражданина: такой вред возмещается по правилам главы 59 ГК РФ, если законом или договором не предусмотрен более высокий размер ответственности (статья 1084 ГК РФ).",
+          "Лица, ответственные за вред, вызванный смертью потерпевшего, обязаны возместить необходимые расходы на погребение лицу, понёсшему эти расходы; пособие на погребение в счёт возмещения вреда не засчитывается (статья 1094 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

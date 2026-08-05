@@ -136,6 +136,9 @@ from causa.institutional.contracts.synthetic_games import (
 from causa.institutional.contracts.synthetic_tort_general import (
     build_synthetic_tort_general_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_tort_life_health import (
+    build_synthetic_tort_life_health_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_public_promise import (
     build_synthetic_public_promise_evaluation_artifact,
 )
@@ -1316,6 +1319,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-tort-life-health",
+            title="Проверка возмещения вреда жизни и здоровью",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.tort_life_health_evidence_mapping.evidence_id,
+                trace.analysis_result.tort_life_health_constraint_set.id,
+                *trace.analysis_result.tort_life_health_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.tort_life_health_evaluation.reasons_ru,
+                "Установление вреда жизни или здоровью гражданина, объём и характер возмещения, расчёт утраченного заработка, особенности возмещения несовершеннолетнему потерпевшему, круг лиц, имеющих право на возмещение по случаю смерти кормильца, размер выплат им, изменение размера возмещения и его индексация, порядок ежемесячных платежей и капитализация при ликвидации должника, а также возмещение расходов на погребение проверяются раздельно по статьям 1084–1094 ГК РФ.",
+                "Степень утраты трудоспособности, нуждаемость в дополнительных видах помощи, состав иждивенцев и размер заработка потерпевшего оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1628,6 +1646,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     negotiorum_gestio_artifact = build_synthetic_negotiorum_gestio_evaluation_artifact()
     commission_artifact = build_synthetic_commission_evaluation_artifact()
     agency_artifact = build_synthetic_agency_evaluation_artifact()
+    tort_life_health_artifact = build_synthetic_tort_life_health_evaluation_artifact()
     tort_general_artifact = build_synthetic_tort_general_evaluation_artifact()
     games_artifact = build_synthetic_games_evaluation_artifact()
     public_promise_artifact = build_synthetic_public_promise_evaluation_artifact()
@@ -1805,6 +1824,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-commission-spec.md",
                 "src/causa/institutional/contracts/agency.py",
                 "docs/contract-agency-spec.md",
+                "src/causa/institutional/contracts/tort_life_health.py",
+                "docs/contract-tort-life-health-spec.md",
                 "src/causa/institutional/contracts/tort_general.py",
                 "docs/contract-tort-general-spec.md",
                 "src/causa/institutional/contracts/games.py",
@@ -1893,6 +1914,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_tort_life_health_evaluation_report.json",
                 "examples/synthetic_tort_general_evaluation_report.json",
                 "examples/synthetic_games_evaluation_report.json",
                 "examples/synthetic_public_promise_evaluation_report.json",
@@ -2098,6 +2120,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 commission_artifact.red_team_report.id,
                 agency_artifact.benchmark_report.id,
                 agency_artifact.red_team_report.id,
+                tort_life_health_artifact.benchmark_report.id,
+                tort_life_health_artifact.red_team_report.id,
                 tort_general_artifact.benchmark_report.id,
                 tort_general_artifact.red_team_report.id,
                 games_artifact.benchmark_report.id,
@@ -2198,6 +2222,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_tort_life_health_evaluation_report.json",
                 "examples/synthetic_tort_general_evaluation_report.json",
                 "examples/synthetic_games_evaluation_report.json",
                 "examples/synthetic_public_promise_evaluation_report.json",

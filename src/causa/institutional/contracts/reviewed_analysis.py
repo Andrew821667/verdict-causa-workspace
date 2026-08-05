@@ -534,6 +534,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.tort_life_health import (
+    TORT_LIFE_HEALTH_EVIDENCE_SCHEMA_VERSION,
+    ReviewedTortLifeHealthEvidence,
+    TortLifeHealthConstraintSet,
+    TortLifeHealthEvaluation,
+    TortLifeHealthEvidenceMappingResult,
+    build_tort_life_health_constraint_set,
+    evaluate_tort_life_health_constraints,
+    map_reviewed_tort_life_health_evidence,
+)
 from causa.institutional.contracts.tort_general import (
     TORT_GENERAL_EVIDENCE_SCHEMA_VERSION,
     ReviewedTortGeneralEvidence,
@@ -905,6 +915,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     negotiorum_gestio_evidence: ReviewedNegotiorumGestioEvidence
     commission_evidence: ReviewedCommissionEvidence
     agency_evidence: ReviewedAgencyEvidence
+    tort_life_health_evidence: ReviewedTortLifeHealthEvidence
     tort_general_evidence: ReviewedTortGeneralEvidence
     games_evidence: ReviewedGamesEvidence
     public_promise_evidence: ReviewedPublicPromiseEvidence
@@ -1124,6 +1135,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     agency_evidence_mapping: AgencyEvidenceMappingResult
     agency_constraint_set: AgencyConstraintSet
     agency_evaluation: AgencyEvaluation
+    tort_life_health_evidence_mapping: TortLifeHealthEvidenceMappingResult
+    tort_life_health_constraint_set: TortLifeHealthConstraintSet
+    tort_life_health_evaluation: TortLifeHealthEvaluation
     tort_general_evidence_mapping: TortGeneralEvidenceMappingResult
     tort_general_constraint_set: TortGeneralConstraintSet
     tort_general_evaluation: TortGeneralEvaluation
@@ -1811,6 +1825,19 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.agency_evaluation != expected_agency_evaluation:
             raise ValueError("Agency evaluation does not replay from reviewed evidence.")
+        expected_tort_life_health_set = build_tort_life_health_constraint_set(
+            self.tort_life_health_evidence_mapping
+        )
+        if self.tort_life_health_constraint_set != expected_tort_life_health_set:
+            raise ValueError(
+                "Tort-life-health constraint set does not replay from reviewed evidence."
+            )
+        expected_tort_life_health_evaluation = evaluate_tort_life_health_constraints(
+            expected_tort_life_health_set,
+            self.tort_life_health_evidence_mapping.facts,
+        )
+        if self.tort_life_health_evaluation != expected_tort_life_health_evaluation:
+            raise ValueError("Tort-life-health evaluation does not replay from reviewed evidence.")
         expected_tort_general_set = build_tort_general_constraint_set(
             self.tort_general_evidence_mapping
         )
@@ -2315,6 +2342,8 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence case_id does not match the analysis request.")
     if request.agency_evidence.case_id != request.case_id:
         raise ValueError("Agency evidence case_id does not match the analysis request.")
+    if request.tort_life_health_evidence.case_id != request.case_id:
+        raise ValueError("Tort-life-health evidence case_id does not match the analysis request.")
     if request.tort_general_evidence.case_id != request.case_id:
         raise ValueError("Tort-general evidence case_id does not match the analysis request.")
     if request.games_evidence.case_id != request.case_id:
@@ -2512,6 +2541,8 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence uses an unsupported schema version.")
     if request.agency_evidence.schema_version != AGENCY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Agency evidence uses an unsupported schema version.")
+    if request.tort_life_health_evidence.schema_version != TORT_LIFE_HEALTH_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Tort-life-health evidence uses an unsupported schema version.")
     if request.tort_general_evidence.schema_version != TORT_GENERAL_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Tort-general evidence uses an unsupported schema version.")
     if request.games_evidence.schema_version != GAMES_EVIDENCE_SCHEMA_VERSION:
@@ -2589,6 +2620,7 @@ def _validate_request_integrity(
         *request.negotiorum_gestio_evidence.legal_source_refs,
         *request.commission_evidence.legal_source_refs,
         *request.agency_evidence.legal_source_refs,
+        *request.tort_life_health_evidence.legal_source_refs,
         *request.tort_general_evidence.legal_source_refs,
         *request.games_evidence.legal_source_refs,
         *request.public_promise_evidence.legal_source_refs,
@@ -2721,6 +2753,8 @@ def _validate_request_integrity(
     for assertion in request.commission_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.agency_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.tort_life_health_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.tort_general_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -3403,6 +3437,17 @@ def _validate_request_integrity(
             "Agency legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_agency_legal_sources))
         )
+    invalid_tort_life_health_legal_sources = [
+        source_id
+        for source_id in request.tort_life_health_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_tort_life_health_legal_sources:
+        raise ValueError(
+            "Tort-life-health legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_tort_life_health_legal_sources))
+        )
     invalid_tort_general_legal_sources = [
         source_id
         for source_id in request.tort_general_evidence.legal_source_refs
@@ -3940,6 +3985,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Agency evidence",
         review_status=request.agency_evidence.review_status,
         reviewer_id=request.agency_evidence.reviewer_id,
+    )
+    tort_life_health_reviewer_id = _require_reviewed(
+        artifact_name="Tort-life-health evidence",
+        review_status=request.tort_life_health_evidence.review_status,
+        reviewer_id=request.tort_life_health_evidence.reviewer_id,
     )
     tort_general_reviewer_id = _require_reviewed(
         artifact_name="Tort-general evidence",
@@ -4503,6 +4553,16 @@ def run_reviewed_contract_analysis(
         agency_constraint_set,
         agency_evidence_mapping.facts,
     )
+    tort_life_health_evidence_mapping = map_reviewed_tort_life_health_evidence(
+        request.tort_life_health_evidence
+    )
+    tort_life_health_constraint_set = build_tort_life_health_constraint_set(
+        tort_life_health_evidence_mapping
+    )
+    tort_life_health_evaluation = evaluate_tort_life_health_constraints(
+        tort_life_health_constraint_set,
+        tort_life_health_evidence_mapping.facts,
+    )
     tort_general_evidence_mapping = map_reviewed_tort_general_evidence(
         request.tort_general_evidence
     )
@@ -4830,6 +4890,7 @@ def run_reviewed_contract_analysis(
         or negotiorum_gestio_evaluation.requires_human_negotiorum_gestio_assessment
         or commission_evaluation.requires_human_commission_assessment
         or agency_evaluation.requires_human_agency_assessment
+        or tort_life_health_evaluation.requires_human_life_health_assessment
         or tort_general_evaluation.requires_human_tort_assessment
         or games_evaluation.requires_human_games_assessment
         or public_promise_evaluation.requires_human_public_promise_assessment
@@ -4913,6 +4974,7 @@ def run_reviewed_contract_analysis(
                 negotiorum_gestio_reviewer_id,
                 commission_reviewer_id,
                 agency_reviewer_id,
+                tort_life_health_reviewer_id,
                 tort_general_reviewer_id,
                 games_reviewer_id,
                 public_promise_reviewer_id,
@@ -5108,6 +5170,9 @@ def run_reviewed_contract_analysis(
         agency_evidence_mapping=agency_evidence_mapping,
         agency_constraint_set=agency_constraint_set,
         agency_evaluation=agency_evaluation,
+        tort_life_health_evidence_mapping=tort_life_health_evidence_mapping,
+        tort_life_health_constraint_set=tort_life_health_constraint_set,
+        tort_life_health_evaluation=tort_life_health_evaluation,
         tort_general_evidence_mapping=tort_general_evidence_mapping,
         tort_general_constraint_set=tort_general_constraint_set,
         tort_general_evaluation=tort_general_evaluation,

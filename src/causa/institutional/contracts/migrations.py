@@ -1556,6 +1556,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.81.0",
+        to_version="0.82.0",
+        reasons=[
+            "Reviewed inputs now require a separate tort-life-health evidence contract.",
+            "Analysis and Russian translation distinguish the establishment of harm to life or health, the scope and nature of compensation, the calculation of lost earnings, the rules for minor victims, the entitlement of dependants, the amount payable to them, the adjustment of compensation, its indexation, the order of payments and succession, and funeral expenses under articles 1084 to 1094.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о вреде, причинённом жизни или здоровью гражданина.",
+            "Анализ и русское объяснение разделяют установление вреда жизни или здоровью, объём и характер возмещения, расчёт утраченного заработка, правила о несовершеннолетнем потерпевшем, круг лиц, имеющих право на возмещение по случаю смерти кормильца, размер выплат им, изменение размера возмещения, его индексацию, порядок платежей и расходы на погребение по статьям 1084–1094 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_tort_life_health_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

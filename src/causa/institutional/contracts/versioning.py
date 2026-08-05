@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.82.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed tort-life-health evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 1084 to 1094.",
+            "The establishment of harm to life or health, the scope and nature of compensation, the calculation of lost earnings, the rules for minor victims, the entitlement of dependants, the amount payable to them, the adjustment of compensation, its indexation, the order of payments and succession, and funeral expenses remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о вреде, причинённом жизни или здоровью гражданина, обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 1084–1094 ГК РФ.",
+            "Установление вреда жизни или здоровью, объём и характер возмещения, расчёт утраченного заработка, правила о несовершеннолетнем потерпевшем, круг лиц, имеющих право на возмещение по случаю смерти кормильца, размер выплат им, изменение размера возмещения, его индексация, порядок платежей и правопреемство, а также расходы на погребение разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.81.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

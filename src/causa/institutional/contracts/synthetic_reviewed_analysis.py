@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.tort_life_health import (
+    ReviewedTortLifeHealthEvidence,
+    TortLifeHealthEvidenceAssertion,
+    TortLifeHealthEvidencePredicate,
+)
 from causa.institutional.contracts.tort_general import (
     ReviewedTortGeneralEvidence,
     TortGeneralEvidenceAssertion,
@@ -562,6 +567,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk1084-1087-life-health-harm-scope-and-earnings-v1",
+    "synthetic-ru-gk1088-1094-dependants-indexation-and-funeral-expenses-v1",
+    "synthetic-case-supply-1-tort-life-health-evidence",
     "synthetic-ru-gk1064-1070-tort-general-grounds-and-liability-for-others-v1",
     "synthetic-ru-gk1073-1083-tort-high-risk-source-recourse-and-victim-fault-v1",
     "synthetic-case-supply-1-tort-general-evidence",
@@ -2918,6 +2926,39 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        tort_life_health_evidence=ReviewedTortLifeHealthEvidence(
+            id="reviewed-tort-life-health-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                TortLifeHealthEvidenceAssertion(
+                    id=f"tort-life-health-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-tort-life-health-evidence",),
+                )
+                for predicate, value in (
+                    (TortLifeHealthEvidencePredicate.LIFE_OR_HEALTH_HARM_ESTABLISHED, False),
+                    (TortLifeHealthEvidencePredicate.HARM_SCOPE_RULES_BREACHED, False),
+                    (TortLifeHealthEvidencePredicate.LOST_EARNINGS_CALCULATION_BREACHED, False),
+                    (TortLifeHealthEvidencePredicate.MINOR_VICTIM_RULES_BREACHED, False),
+                    (TortLifeHealthEvidencePredicate.DEPENDANTS_ENTITLEMENT_BREACHED, False),
+                    (TortLifeHealthEvidencePredicate.DEPENDANTS_PAYMENT_AMOUNT_BREACHED, False),
+                    (TortLifeHealthEvidencePredicate.COMPENSATION_ADJUSTMENT_BREACHED, False),
+                    (TortLifeHealthEvidencePredicate.INDEXATION_NOT_APPLIED, False),
+                    (
+                        TortLifeHealthEvidencePredicate.PAYMENT_ORDER_OR_SUCCESSION_BREACHED,
+                        False,
+                    ),
+                    (TortLifeHealthEvidencePredicate.FUNERAL_EXPENSES_RULES_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1084-1087-life-health-harm-scope-and-earnings-v1",
+                "synthetic-ru-gk1088-1094-dependants-indexation-and-funeral-expenses-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-tort-life-health-reviewer",
         ),
         tort_general_evidence=ReviewedTortGeneralEvidence(
             id="reviewed-tort-general-evidence-supply-1-v0",

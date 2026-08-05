@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk1084-1087-life-health-harm-scope-and-earnings-v1",
+      "title": "Синтетическая проверенная модель объёма и характера возмещения вреда, причинённого повреждением здоровья, расчёта утраченного заработка и возмещения вреда несовершеннолетнему по статьям 1084–1087 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: применение правил главы 59 к возмещению вреда, причинённого жизни или здоровью гражданина, состав возмещаемого утраченного заработка и дополнительно понесённых расходов на лечение, уход и подготовку к другой профессии, определение размера утраченного заработка по среднему месячному заработку и степени утраты трудоспособности, а также особенности возмещения вреда несовершеннолетнему потерпевшему проверяются раздельно (статьи 1084–1087 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "life_health_harm_scope_and_earnings_articles_1084_1087",
+        "legal_reference": "ГК РФ, статьи 1084–1087",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk1088-1094-dependants-indexation-and-funeral-expenses-v1",
+      "title": "Синтетическая проверенная модель возмещения вреда лицам, понёсшим ущерб в результате смерти кормильца, изменения размера возмещения, индексации, порядка платежей и расходов на погребение по статьям 1088–1094 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: круг лиц, имеющих право на возмещение вреда в связи со смертью кормильца, и сроки такого возмещения, определение размера возмещения по доле заработка умершего, изменение размера возмещения при изменении трудоспособности и имущественного положения, индексация сумм возмещения, ежемесячные платежи и капитализация при ликвидации юридического лица, а также возмещение необходимых расходов на погребение проверяются раздельно (статьи 1088–1094 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "dependants_indexation_and_funeral_expenses_articles_1088_1094",
+        "legal_reference": "ГК РФ, статьи 1088–1094",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-tort-life-health-evidence",
+      "title": "Синтетическая проверенная запись фактов о вреде, причинённом жизни или здоровью гражданина",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки вред жизни или здоровью гражданина не причинялся.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "tort_life_health_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk1064-1070-tort-general-grounds-and-liability-for-others-v1",
       "title": "Синтетическая проверенная модель общих оснований ответственности за причинение вреда, необходимой обороны и крайней необходимости и ответственности за вред, причинённый другими лицами, по статьям 1064–1070 ГК РФ",
       "source_type": "statute",
@@ -9476,6 +9523,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "tort_life_health_evidence": {
+      "id": "reviewed-tort-life-health-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.tort-life-health-evidence.v0",
+      "assertions": [
+        {
+          "id": "tort-life-health-evidence-life_or_health_harm_established",
+          "predicate": "life_or_health_harm_established",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "id": "tort-life-health-evidence-harm_scope_rules_breached",
+          "predicate": "harm_scope_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "id": "tort-life-health-evidence-lost_earnings_calculation_breached",
+          "predicate": "lost_earnings_calculation_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "id": "tort-life-health-evidence-minor_victim_rules_breached",
+          "predicate": "minor_victim_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "id": "tort-life-health-evidence-dependants_entitlement_breached",
+          "predicate": "dependants_entitlement_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "id": "tort-life-health-evidence-dependants_payment_amount_breached",
+          "predicate": "dependants_payment_amount_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "id": "tort-life-health-evidence-compensation_adjustment_breached",
+          "predicate": "compensation_adjustment_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "id": "tort-life-health-evidence-indexation_not_applied",
+          "predicate": "indexation_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "id": "tort-life-health-evidence-payment_order_or_succession_breached",
+          "predicate": "payment_order_or_succession_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "id": "tort-life-health-evidence-funeral_expenses_rules_breached",
+          "predicate": "funeral_expenses_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk1084-1087-life-health-harm-scope-and-earnings-v1",
+        "synthetic-ru-gk1088-1094-dependants-indexation-and-funeral-expenses-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-tort-life-health-reviewer"
+    },
     "tort_general_evidence": {
       "id": "reviewed-tort-general-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -14878,6 +15018,7 @@
       "synthetic-termination-reviewer",
       "synthetic-third-party-reviewer",
       "synthetic-tort-general-reviewer",
+      "synthetic-tort-life-health-reviewer",
       "synthetic-trust-management-reviewer",
       "synthetic-vehicle-lease-reviewer",
       "synthetic-warehouse-storage-reviewer",
@@ -14953,6 +15094,7 @@
       "synthetic-case-supply-1-termination-evidence",
       "synthetic-case-supply-1-third-party-evidence",
       "synthetic-case-supply-1-tort-general-evidence",
+      "synthetic-case-supply-1-tort-life-health-evidence",
       "synthetic-case-supply-1-trust-management-evidence",
       "synthetic-case-supply-1-vehicle-lease-evidence",
       "synthetic-case-supply-1-warehouse-storage-evidence",
@@ -14974,6 +15116,8 @@
       "synthetic-ru-gk1063-organization-of-lotteries-and-payment-of-winnings-v1",
       "synthetic-ru-gk1064-1070-tort-general-grounds-and-liability-for-others-v1",
       "synthetic-ru-gk1073-1083-tort-high-risk-source-recourse-and-victim-fault-v1",
+      "synthetic-ru-gk1084-1087-life-health-harm-scope-and-earnings-v1",
+      "synthetic-ru-gk1088-1094-dependants-indexation-and-funeral-expenses-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -23192,6 +23336,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "tort_life_health_evidence_mapping": {
+      "evidence_id": "reviewed-tort-life-health-evidence-supply-1-v0",
+      "schema_version": "contracts.tort-life-health-evidence.v0",
+      "mapping_version": "contracts-reviewed-tort-life-health-to-facts-v0",
+      "facts": {
+        "life_or_health_harm_established": false,
+        "harm_scope_rules_breached": false,
+        "lost_earnings_calculation_breached": false,
+        "minor_victim_rules_breached": false,
+        "dependants_entitlement_breached": false,
+        "dependants_payment_amount_breached": false,
+        "compensation_adjustment_breached": false,
+        "indexation_not_applied": false,
+        "payment_order_or_succession_breached": false,
+        "funeral_expenses_rules_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk1084-1087-life-health-harm-scope-and-earnings-v1",
+        "synthetic-ru-gk1088-1094-dependants-indexation-and-funeral-expenses-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "compensation_adjustment_breached",
+          "assertion_id": "tort-life-health-evidence-compensation_adjustment_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "fact_name": "dependants_entitlement_breached",
+          "assertion_id": "tort-life-health-evidence-dependants_entitlement_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "fact_name": "dependants_payment_amount_breached",
+          "assertion_id": "tort-life-health-evidence-dependants_payment_amount_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "fact_name": "funeral_expenses_rules_breached",
+          "assertion_id": "tort-life-health-evidence-funeral_expenses_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "fact_name": "harm_scope_rules_breached",
+          "assertion_id": "tort-life-health-evidence-harm_scope_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "fact_name": "indexation_not_applied",
+          "assertion_id": "tort-life-health-evidence-indexation_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "fact_name": "life_or_health_harm_established",
+          "assertion_id": "tort-life-health-evidence-life_or_health_harm_established",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "fact_name": "lost_earnings_calculation_breached",
+          "assertion_id": "tort-life-health-evidence-lost_earnings_calculation_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "fact_name": "minor_victim_rules_breached",
+          "assertion_id": "tort-life-health-evidence-minor_victim_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        },
+        {
+          "fact_name": "payment_order_or_succession_breached",
+          "assertion_id": "tort-life-health-evidence-payment_order_or_succession_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-life-health-evidence"
+          ]
+        }
+      ]
+    },
+    "tort_life_health_constraint_set": {
+      "id": "tort-life-health-constraint-set:reviewed-tort-life-health-evidence-supply-1-v0",
+      "model_version": "contracts-tort-life-health-articles-1084-1094-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk1084-1087-life-health-harm-scope-and-earnings-v1",
+        "synthetic-ru-gk1088-1094-dependants-indexation-and-funeral-expenses-v1"
+      ],
+      "expressions": [
+        "life_health_harm_qualified == life_or_health_harm_established",
+        "harm_scope_duty_breached == life_health_harm_qualified AND harm_scope_rules_breached",
+        "lost_earnings_duty_breached == life_health_harm_qualified AND lost_earnings_calculation_breached",
+        "minor_victim_duty_breached == life_health_harm_qualified AND minor_victim_rules_breached",
+        "dependants_entitlement_duty_breached == life_health_harm_qualified AND dependants_entitlement_breached",
+        "dependants_payment_duty_breached == life_health_harm_qualified AND dependants_payment_amount_breached",
+        "compensation_adjustment_duty_breached == life_health_harm_qualified AND compensation_adjustment_breached",
+        "indexation_duty_breached == life_health_harm_qualified AND compensation_adjustment_breached AND indexation_not_applied",
+        "payment_order_duty_breached == life_health_harm_qualified AND payment_order_or_succession_breached",
+        "funeral_expenses_duty_breached == life_health_harm_qualified AND funeral_expenses_rules_breached",
+        "requires_human_life_health_assessment == harm_scope_duty_breached OR lost_earnings_duty_breached OR minor_victim_duty_breached OR dependants_entitlement_duty_breached OR dependants_payment_duty_breached OR compensation_adjustment_duty_breached OR payment_order_duty_breached OR funeral_expenses_duty_breached"
+      ]
+    },
+    "tort_life_health_evaluation": {
+      "constraint_set_id": "tort-life-health-constraint-set:reviewed-tort-life-health-evidence-supply-1-v0",
+      "satisfiable": true,
+      "life_health_harm_qualified": false,
+      "harm_scope_duty_breached": false,
+      "lost_earnings_duty_breached": false,
+      "minor_victim_duty_breached": false,
+      "dependants_entitlement_duty_breached": false,
+      "dependants_payment_duty_breached": false,
+      "compensation_adjustment_duty_breached": false,
+      "indexation_duty_breached": false,
+      "payment_order_duty_breached": false,
+      "funeral_expenses_duty_breached": false,
+      "requires_human_life_health_assessment": false,
+      "reasons_ru": [
+        "Причинение вреда жизни или здоровью гражданина не установлено."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о возмещении вреда, причинённого жизни или здоровью гражданина, и не заменяет судебную оценку.",
+        "Степень утраты трудоспособности, нуждаемость в дополнительных видах помощи, состав иждивенцев и размер заработка потерпевшего оцениваются экспертом и судом (статьи 1085, 1086 и 1088 ГК РФ)."
+      ]
+    },
     "tort_general_evidence_mapping": {
       "evidence_id": "reviewed-tort-general-evidence-supply-1-v0",
       "schema_version": "contracts.tort-general-evidence.v0",
@@ -29379,7 +29659,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.81.0",
+      "institutional_package_version": "contracts-ru-v0@0.82.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
