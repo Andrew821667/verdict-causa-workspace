@@ -1,0 +1,58 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.81.0:to-0.83.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.81.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.81.0",
+  "target_package_version": "0.83.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.81.0",
+      "to_version": "0.82.0",
+      "reasons": [
+        "Reviewed inputs now require a separate tort-life-health evidence contract.",
+        "Analysis and Russian translation distinguish the establishment of harm to life or health, the scope and nature of compensation, the calculation of lost earnings, the rules for minor victims, the entitlement of dependants, the amount payable to them, the adjustment of compensation, its indexation, the order of payments and succession, and funeral expenses under articles 1084 to 1094."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о вреде, причинённом жизни или здоровью гражданина.",
+        "Анализ и русское объяснение разделяют установление вреда жизни или здоровью, объём и характер возмещения, расчёт утраченного заработка, правила о несовершеннолетнем потерпевшем, круг лиц, имеющих право на возмещение по случаю смерти кормильца, размер выплат им, изменение размера возмещения, его индексацию, порядок платежей и расходы на погребение по статьям 1084–1094 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_tort_life_health_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.82.0",
+      "to_version": "0.83.0",
+      "reasons": [
+        "Reviewed inputs now require a separate product-liability evidence contract.",
+        "Analysis and Russian translation distinguish the establishment of harm caused by a defect, compensation regardless of fault, the consumer-purpose requirement, the victim's choice of the seller or the manufacturer, the liability of the performer of work or services, liability for withheld information, the periods of compensation, the exception where no service life is set, the grounds of exculpation, and the victim's violation of the rules of use under articles 1095 to 1098."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о вреде вследствие недостатков товаров, работ или услуг.",
+        "Анализ и русское объяснение разделяют установление вреда вследствие недостатка, возмещение независимо от вины, требование о потребительской цели, выбор потерпевшим продавца или изготовителя, ответственность исполнителя работы и услуги, ответственность за непредоставление информации, сроки возмещения, исключение при неустановленном сроке службы и основания освобождения от ответственности по статьям 1095–1098 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_product_liability_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.product_liability import (
+    ProductLiabilityEvidenceAssertion,
+    ProductLiabilityEvidencePredicate,
+    ReviewedProductLiabilityEvidence,
+)
 from causa.institutional.contracts.tort_life_health import (
     ReviewedTortLifeHealthEvidence,
     TortLifeHealthEvidenceAssertion,
@@ -567,6 +572,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk1095-1096-product-defect-harm-and-liable-persons-v1",
+    "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1",
+    "synthetic-case-supply-1-product-liability-evidence",
     "synthetic-ru-gk1084-1087-life-health-harm-scope-and-earnings-v1",
     "synthetic-ru-gk1088-1094-dependants-indexation-and-funeral-expenses-v1",
     "synthetic-case-supply-1-tort-life-health-evidence",
@@ -2926,6 +2934,57 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        product_liability_evidence=ReviewedProductLiabilityEvidence(
+            id="reviewed-product-liability-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                ProductLiabilityEvidenceAssertion(
+                    id=f"product-liability-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-product-liability-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        ProductLiabilityEvidencePredicate.PRODUCT_OR_SERVICE_DEFECT_HARM_ESTABLISHED,
+                        False,
+                    ),
+                    (
+                        ProductLiabilityEvidencePredicate.COMPENSATION_REGARDLESS_OF_FAULT_BREACHED,
+                        False,
+                    ),
+                    (
+                        ProductLiabilityEvidencePredicate.CONSUMER_PURPOSE_REQUIREMENT_BREACHED,
+                        False,
+                    ),
+                    (ProductLiabilityEvidencePredicate.LIABLE_PERSON_CHOICE_BREACHED, False),
+                    (
+                        ProductLiabilityEvidencePredicate.WORK_OR_SERVICE_PROVIDER_LIABILITY_BREACHED,
+                        False,
+                    ),
+                    (ProductLiabilityEvidencePredicate.INFORMATION_LIABILITY_BREACHED, False),
+                    (
+                        ProductLiabilityEvidencePredicate.SERVICE_LIFE_PERIOD_RULES_BREACHED,
+                        False,
+                    ),
+                    (
+                        ProductLiabilityEvidencePredicate.SERVICE_LIFE_ABSENCE_EXCEPTION_DISREGARDED,
+                        False,
+                    ),
+                    (ProductLiabilityEvidencePredicate.EXCULPATION_GROUNDS_BREACHED, False),
+                    (
+                        ProductLiabilityEvidencePredicate.VICTIM_RULES_VIOLATION_NOT_APPLIED,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1095-1096-product-defect-harm-and-liable-persons-v1",
+                "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-product-liability-reviewer",
         ),
         tort_life_health_evidence=ReviewedTortLifeHealthEvidence(
             id="reviewed-tort-life-health-evidence-supply-1-v0",

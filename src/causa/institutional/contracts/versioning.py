@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.83.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed product-liability evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 1095 to 1098.",
+            "The establishment of harm caused by a defect, compensation regardless of fault, the consumer-purpose requirement, the victim's choice of the seller or the manufacturer, the liability of the performer of work or services, liability for withheld information, the periods of compensation, the exception where no service life is set, the grounds of exculpation, and the victim's violation of the rules of use remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о вреде вследствие недостатков товаров, работ или услуг обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 1095–1098 ГК РФ.",
+            "Установление вреда вследствие недостатка, возмещение независимо от вины, требование о потребительской цели, выбор потерпевшим продавца или изготовителя, ответственность исполнителя работы и услуги, ответственность за непредоставление информации, сроки возмещения, исключение при неустановленном сроке службы, основания освобождения от ответственности и нарушение потребителем правил пользования разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.82.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

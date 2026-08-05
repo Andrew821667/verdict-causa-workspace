@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk1095-1096-product-defect-harm-and-liable-persons-v1",
+      "title": "Синтетическая проверенная модель оснований возмещения вреда, причинённого вследствие недостатков товара, работы или услуги, и круга ответственных лиц по статьям 1095 и 1096 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: возмещение вреда, причинённого жизни, здоровью или имуществу вследствие конструктивных, рецептурных и иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них, независимо от вины и наличия договорных отношений, требование о приобретении в потребительских целях, право потерпевшего выбрать продавца или изготовителя, ответственность исполнителя работы или услуги и ответственность за непредоставление информации проверяются раздельно (статьи 1095 и 1096 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "product_defect_harm_and_liable_persons_articles_1095_1096",
+        "legal_reference": "ГК РФ, статьи 1095 и 1096",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1",
+      "title": "Синтетическая проверенная модель сроков возмещения вреда, причинённого недостатками товара, работы или услуги, и оснований освобождения от ответственности по статьям 1097 и 1098 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: возмещение вреда в течение установленного срока годности или срока службы либо в течение десяти лет со дня производства, возмещение независимо от времени причинения при неустановлении срока службы в нарушение закона и при непредупреждении потребителя о необходимых действиях по истечении срока, а также освобождение от ответственности при непреодолимой силе или нарушении потребителем правил пользования и хранения проверяются раздельно (статьи 1097 и 1098 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "product_liability_periods_and_exculpation_articles_1097_1098",
+        "legal_reference": "ГК РФ, статьи 1097 и 1098",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-product-liability-evidence",
+      "title": "Синтетическая проверенная запись фактов о вреде вследствие недостатков товаров, работ или услуг",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки вред вследствие недостатков товара, работы или услуги не причинялся; товар не приобретался в потребительских целях.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "product_liability_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk1084-1087-life-health-harm-scope-and-earnings-v1",
       "title": "Синтетическая проверенная модель объёма и характера возмещения вреда, причинённого повреждением здоровья, расчёта утраченного заработка и возмещения вреда несовершеннолетнему по статьям 1084–1087 ГК РФ",
       "source_type": "statute",
@@ -9523,6 +9570,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "product_liability_evidence": {
+      "id": "reviewed-product-liability-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.product-liability-evidence.v0",
+      "assertions": [
+        {
+          "id": "product-liability-evidence-product_or_service_defect_harm_established",
+          "predicate": "product_or_service_defect_harm_established",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "id": "product-liability-evidence-compensation_regardless_of_fault_breached",
+          "predicate": "compensation_regardless_of_fault_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "id": "product-liability-evidence-consumer_purpose_requirement_breached",
+          "predicate": "consumer_purpose_requirement_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "id": "product-liability-evidence-liable_person_choice_breached",
+          "predicate": "liable_person_choice_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "id": "product-liability-evidence-work_or_service_provider_liability_breached",
+          "predicate": "work_or_service_provider_liability_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "id": "product-liability-evidence-information_liability_breached",
+          "predicate": "information_liability_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "id": "product-liability-evidence-service_life_period_rules_breached",
+          "predicate": "service_life_period_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "id": "product-liability-evidence-service_life_absence_exception_disregarded",
+          "predicate": "service_life_absence_exception_disregarded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "id": "product-liability-evidence-exculpation_grounds_breached",
+          "predicate": "exculpation_grounds_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "id": "product-liability-evidence-victim_rules_violation_not_applied",
+          "predicate": "victim_rules_violation_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk1095-1096-product-defect-harm-and-liable-persons-v1",
+        "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-product-liability-reviewer"
+    },
     "tort_life_health_evidence": {
       "id": "reviewed-tort-life-health-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -14998,6 +15138,7 @@
       "synthetic-precontractual-reviewer",
       "synthetic-preliminary-reviewer",
       "synthetic-procedure-reviewer",
+      "synthetic-product-liability-reviewer",
       "synthetic-public-contract-reviewer",
       "synthetic-public-promise-reviewer",
       "synthetic-real-estate-sale-reviewer",
@@ -15074,6 +15215,7 @@
       "synthetic-case-supply-1-precontractual-evidence",
       "synthetic-case-supply-1-preliminary-evidence",
       "synthetic-case-supply-1-procedure-evidence",
+      "synthetic-case-supply-1-product-liability-evidence",
       "synthetic-case-supply-1-public-contract-evidence",
       "synthetic-case-supply-1-public-promise-evidence",
       "synthetic-case-supply-1-real-estate-sale-evidence",
@@ -15118,6 +15260,8 @@
       "synthetic-ru-gk1073-1083-tort-high-risk-source-recourse-and-victim-fault-v1",
       "synthetic-ru-gk1084-1087-life-health-harm-scope-and-earnings-v1",
       "synthetic-ru-gk1088-1094-dependants-indexation-and-funeral-expenses-v1",
+      "synthetic-ru-gk1095-1096-product-defect-harm-and-liable-persons-v1",
+      "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -23336,6 +23480,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "product_liability_evidence_mapping": {
+      "evidence_id": "reviewed-product-liability-evidence-supply-1-v0",
+      "schema_version": "contracts.product-liability-evidence.v0",
+      "mapping_version": "contracts-reviewed-product-liability-to-facts-v0",
+      "facts": {
+        "product_or_service_defect_harm_established": false,
+        "compensation_regardless_of_fault_breached": false,
+        "consumer_purpose_requirement_breached": false,
+        "liable_person_choice_breached": false,
+        "work_or_service_provider_liability_breached": false,
+        "information_liability_breached": false,
+        "service_life_period_rules_breached": false,
+        "service_life_absence_exception_disregarded": false,
+        "exculpation_grounds_breached": false,
+        "victim_rules_violation_not_applied": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk1095-1096-product-defect-harm-and-liable-persons-v1",
+        "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "compensation_regardless_of_fault_breached",
+          "assertion_id": "product-liability-evidence-compensation_regardless_of_fault_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "consumer_purpose_requirement_breached",
+          "assertion_id": "product-liability-evidence-consumer_purpose_requirement_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "exculpation_grounds_breached",
+          "assertion_id": "product-liability-evidence-exculpation_grounds_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "information_liability_breached",
+          "assertion_id": "product-liability-evidence-information_liability_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "liable_person_choice_breached",
+          "assertion_id": "product-liability-evidence-liable_person_choice_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "product_or_service_defect_harm_established",
+          "assertion_id": "product-liability-evidence-product_or_service_defect_harm_established",
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "service_life_absence_exception_disregarded",
+          "assertion_id": "product-liability-evidence-service_life_absence_exception_disregarded",
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "service_life_period_rules_breached",
+          "assertion_id": "product-liability-evidence-service_life_period_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "victim_rules_violation_not_applied",
+          "assertion_id": "product-liability-evidence-victim_rules_violation_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "work_or_service_provider_liability_breached",
+          "assertion_id": "product-liability-evidence-work_or_service_provider_liability_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-product-liability-evidence"
+          ]
+        }
+      ]
+    },
+    "product_liability_constraint_set": {
+      "id": "product-liability-constraint-set:reviewed-product-liability-evidence-supply-1-v0",
+      "model_version": "contracts-product-liability-articles-1095-1098-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk1095-1096-product-defect-harm-and-liable-persons-v1",
+        "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1"
+      ],
+      "expressions": [
+        "product_liability_qualified == product_or_service_defect_harm_established",
+        "no_fault_compensation_duty_breached == product_liability_qualified AND compensation_regardless_of_fault_breached",
+        "consumer_purpose_duty_breached == product_liability_qualified AND consumer_purpose_requirement_breached",
+        "liable_person_duty_breached == product_liability_qualified AND liable_person_choice_breached",
+        "work_service_liability_duty_breached == product_liability_qualified AND work_or_service_provider_liability_breached",
+        "information_duty_breached == product_liability_qualified AND information_liability_breached",
+        "service_life_duty_breached == product_liability_qualified AND service_life_period_rules_breached",
+        "service_life_exception_duty_breached == product_liability_qualified AND service_life_absence_exception_disregarded",
+        "exculpation_duty_breached == product_liability_qualified AND exculpation_grounds_breached",
+        "victim_rules_violation_breached == product_liability_qualified AND exculpation_grounds_breached AND victim_rules_violation_not_applied",
+        "requires_human_product_liability_assessment == no_fault_compensation_duty_breached OR consumer_purpose_duty_breached OR liable_person_duty_breached OR work_service_liability_duty_breached OR information_duty_breached OR service_life_duty_breached OR service_life_exception_duty_breached OR exculpation_duty_breached"
+      ]
+    },
+    "product_liability_evaluation": {
+      "constraint_set_id": "product-liability-constraint-set:reviewed-product-liability-evidence-supply-1-v0",
+      "satisfiable": true,
+      "product_liability_qualified": false,
+      "no_fault_compensation_duty_breached": false,
+      "consumer_purpose_duty_breached": false,
+      "liable_person_duty_breached": false,
+      "work_service_liability_duty_breached": false,
+      "information_duty_breached": false,
+      "service_life_duty_breached": false,
+      "service_life_exception_duty_breached": false,
+      "exculpation_duty_breached": false,
+      "victim_rules_violation_breached": false,
+      "requires_human_product_liability_assessment": false,
+      "reasons_ru": [
+        "Причинение вреда вследствие недостатков товара, работы или услуги не установлено."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о возмещении вреда вследствие недостатков товаров, работ и услуг и не заменяет судебную оценку.",
+        "Наличие недостатка, его причинная связь с вредом, цель приобретения товара и соблюдение потребителем правил пользования оцениваются экспертом и судом (статьи 1095, 1097 и 1098 ГК РФ)."
+      ]
+    },
     "tort_life_health_evidence_mapping": {
       "evidence_id": "reviewed-tort-life-health-evidence-supply-1-v0",
       "schema_version": "contracts.tort-life-health-evidence.v0",
@@ -29659,7 +29939,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.82.0",
+      "institutional_package_version": "contracts-ru-v0@0.83.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

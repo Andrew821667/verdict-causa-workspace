@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о возмещении вреда, причинённого вследствие недостатков товаров, работ или услуг, по статьям 1095–1098 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-product-liability-evidence-supply-1-v0",
+    "schema_version": "contracts.product-liability-evidence.v0",
+    "mapping_version": "contracts-reviewed-product-liability-to-facts-v0",
+    "facts": {
+      "product_or_service_defect_harm_established": false,
+      "compensation_regardless_of_fault_breached": false,
+      "consumer_purpose_requirement_breached": false,
+      "liable_person_choice_breached": false,
+      "work_or_service_provider_liability_breached": false,
+      "information_liability_breached": false,
+      "service_life_period_rules_breached": false,
+      "service_life_absence_exception_disregarded": false,
+      "exculpation_grounds_breached": false,
+      "victim_rules_violation_not_applied": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1095-1096-product-defect-harm-and-liable-persons-v1",
+      "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "compensation_regardless_of_fault_breached",
+        "assertion_id": "product-liability-evidence-compensation_regardless_of_fault_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-product-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "consumer_purpose_requirement_breached",
+        "assertion_id": "product-liability-evidence-consumer_purpose_requirement_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-product-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "exculpation_grounds_breached",
+        "assertion_id": "product-liability-evidence-exculpation_grounds_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-product-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "information_liability_breached",
+        "assertion_id": "product-liability-evidence-information_liability_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-product-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "liable_person_choice_breached",
+        "assertion_id": "product-liability-evidence-liable_person_choice_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-product-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "product_or_service_defect_harm_established",
+        "assertion_id": "product-liability-evidence-product_or_service_defect_harm_established",
+        "source_refs": [
+          "synthetic-case-supply-1-product-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "service_life_absence_exception_disregarded",
+        "assertion_id": "product-liability-evidence-service_life_absence_exception_disregarded",
+        "source_refs": [
+          "synthetic-case-supply-1-product-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "service_life_period_rules_breached",
+        "assertion_id": "product-liability-evidence-service_life_period_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-product-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "victim_rules_violation_not_applied",
+        "assertion_id": "product-liability-evidence-victim_rules_violation_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-product-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "work_or_service_provider_liability_breached",
+        "assertion_id": "product-liability-evidence-work_or_service_provider_liability_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-product-liability-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "product-liability-constraint-set:reviewed-product-liability-evidence-supply-1-v0",
+    "model_version": "contracts-product-liability-articles-1095-1098-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1095-1096-product-defect-harm-and-liable-persons-v1",
+      "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1"
+    ],
+    "expressions": [
+      "product_liability_qualified == product_or_service_defect_harm_established",
+      "no_fault_compensation_duty_breached == product_liability_qualified AND compensation_regardless_of_fault_breached",
+      "consumer_purpose_duty_breached == product_liability_qualified AND consumer_purpose_requirement_breached",
+      "liable_person_duty_breached == product_liability_qualified AND liable_person_choice_breached",
+      "work_service_liability_duty_breached == product_liability_qualified AND work_or_service_provider_liability_breached",
+      "information_duty_breached == product_liability_qualified AND information_liability_breached",
+      "service_life_duty_breached == product_liability_qualified AND service_life_period_rules_breached",
+      "service_life_exception_duty_breached == product_liability_qualified AND service_life_absence_exception_disregarded",
+      "exculpation_duty_breached == product_liability_qualified AND exculpation_grounds_breached",
+      "victim_rules_violation_breached == product_liability_qualified AND exculpation_grounds_breached AND victim_rules_violation_not_applied",
+      "requires_human_product_liability_assessment == no_fault_compensation_duty_breached OR consumer_purpose_duty_breached OR liable_person_duty_breached OR work_service_liability_duty_breached OR information_duty_breached OR service_life_duty_breached OR service_life_exception_duty_breached OR exculpation_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "product-liability-constraint-set:reviewed-product-liability-evidence-supply-1-v0",
+    "satisfiable": true,
+    "product_liability_qualified": false,
+    "no_fault_compensation_duty_breached": false,
+    "consumer_purpose_duty_breached": false,
+    "liable_person_duty_breached": false,
+    "work_service_liability_duty_breached": false,
+    "information_duty_breached": false,
+    "service_life_duty_breached": false,
+    "service_life_exception_duty_breached": false,
+    "exculpation_duty_breached": false,
+    "victim_rules_violation_breached": false,
+    "requires_human_product_liability_assessment": false,
+    "reasons_ru": [
+      "Причинение вреда вследствие недостатков товара, работы или услуги не установлено."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о возмещении вреда вследствие недостатков товаров, работ и услуг и не заменяет судебную оценку.",
+      "Наличие недостатка, его причинная связь с вредом, цель приобретения товара и соблюдение потребителем правил пользования оцениваются экспертом и судом (статьи 1095, 1097 и 1098 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "product-liability-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "product-liability-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "product_liability_qualified": false
+        },
+        "observed_outcomes": {
+          "product_liability_qualified": false
+        },
+        "reasons_ru": [
+          "Причинение вреда вследствие недостатков товара, работы или услуги не установлено."
+        ]
+      },
+      {
+        "task_id": "product-liability-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "product_liability_qualified": true,
+          "requires_human_product_liability_assessment": false
+        },
+        "observed_outcomes": {
+          "product_liability_qualified": true,
+          "requires_human_product_liability_assessment": false
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "product-liability-bench-no-fault",
+        "passed": true,
+        "expected_outcomes": {
+          "no_fault_compensation_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "observed_outcomes": {
+          "no_fault_compensation_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Вред, причинённый жизни, здоровью или имуществу гражданина либо имуществу юридического лица вследствие недостатков товара, работы или услуги, подлежит возмещению продавцом или изготовителем независимо от их вины и от того, состоял ли потерпевший с ними в договорных отношениях (статья 1095 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "product-liability-bench-consumer-purpose",
+        "passed": true,
+        "expected_outcomes": {
+          "consumer_purpose_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "observed_outcomes": {
+          "consumer_purpose_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Правила о возмещении вреда вследствие недостатков товара, работы или услуги применяются лишь в случаях приобретения товара, выполнения работы или оказания услуги в потребительских целях, а не для использования в предпринимательской деятельности (статья 1095 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "product-liability-bench-liable-person",
+        "passed": true,
+        "expected_outcomes": {
+          "liable_person_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "observed_outcomes": {
+          "liable_person_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Вред, причинённый вследствие недостатков товара, подлежит возмещению по выбору потерпевшего продавцом или изготовителем товара (статья 1096 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "product-liability-bench-work-service",
+        "passed": true,
+        "expected_outcomes": {
+          "work_service_liability_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "observed_outcomes": {
+          "work_service_liability_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Вред, причинённый вследствие недостатков работы или услуги, подлежит возмещению лицом, выполнившим работу или оказавшим услугу (исполнителем) (статья 1096 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "product-liability-bench-information",
+        "passed": true,
+        "expected_outcomes": {
+          "information_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "observed_outcomes": {
+          "information_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Вред, причинённый вследствие непредоставления полной или достоверной информации о товаре, работе или услуге, подлежит возмещению лицами, названными в правилах об ответственности за недостатки товара, работы или услуги (статья 1096 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "product-liability-bench-service-life",
+        "passed": true,
+        "expected_outcomes": {
+          "service_life_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "observed_outcomes": {
+          "service_life_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Вред возмещается, если он возник в течение установленного срока годности или срока службы товара, работы или услуги, а если такой срок не установлен — в течение десяти лет со дня производства товара, работы или услуги (статья 1097 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "product-liability-bench-service-life-exception",
+        "passed": true,
+        "expected_outcomes": {
+          "service_life_exception_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "observed_outcomes": {
+          "service_life_exception_duty_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Независимо от времени причинения вред возмещается, если в нарушение закона срок годности или срок службы не установлен либо потребитель не был предупреждён о необходимых действиях по истечении такого срока и о возможных последствиях их невыполнения, а также если он не получил полной и достоверной информации о товаре (статья 1097 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "product-liability-bench-exculpation",
+        "passed": true,
+        "expected_outcomes": {
+          "exculpation_duty_breached": true,
+          "victim_rules_violation_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "observed_outcomes": {
+          "exculpation_duty_breached": true,
+          "victim_rules_violation_breached": true,
+          "requires_human_product_liability_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Продавец, изготовитель товара или исполнитель работы либо услуги освобождается от ответственности только в случае, если докажет, что вред возник вследствие непреодолимой силы (статья 1098 ГК РФ).",
+          "Освобождение от ответственности также возможно при доказанности нарушения потребителем установленных правил пользования товаром, результатами работы или услуги либо правил их хранения (статья 1098 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "product-liability-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "product-liability-red-qualify-without-defect-harm",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "product_liability_qualified": true
+        },
+        "observed_outcomes": {
+          "product_liability_qualified": false
+        },
+        "reasons_ru": [
+          "Причинение вреда вследствие недостатков товара, работы или услуги не установлено."
+        ]
+      },
+      {
+        "case_id": "product-liability-red-ignore-no-fault",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "no_fault_compensation_duty_breached": false
+        },
+        "observed_outcomes": {
+          "no_fault_compensation_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Вред, причинённый жизни, здоровью или имуществу гражданина либо имуществу юридического лица вследствие недостатков товара, работы или услуги, подлежит возмещению продавцом или изготовителем независимо от их вины и от того, состоял ли потерпевший с ними в договорных отношениях (статья 1095 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "product-liability-red-ignore-consumer-purpose",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "consumer_purpose_duty_breached": false
+        },
+        "observed_outcomes": {
+          "consumer_purpose_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Правила о возмещении вреда вследствие недостатков товара, работы или услуги применяются лишь в случаях приобретения товара, выполнения работы или оказания услуги в потребительских целях, а не для использования в предпринимательской деятельности (статья 1095 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "product-liability-red-ignore-liable-person",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liable_person_duty_breached": false
+        },
+        "observed_outcomes": {
+          "liable_person_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Вред, причинённый вследствие недостатков товара, подлежит возмещению по выбору потерпевшего продавцом или изготовителем товара (статья 1096 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "product-liability-red-ignore-work-service",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "work_service_liability_duty_breached": false
+        },
+        "observed_outcomes": {
+          "work_service_liability_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Вред, причинённый вследствие недостатков работы или услуги, подлежит возмещению лицом, выполнившим работу или оказавшим услугу (исполнителем) (статья 1096 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "product-liability-red-ignore-information",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "information_duty_breached": false
+        },
+        "observed_outcomes": {
+          "information_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Вред, причинённый вследствие непредоставления полной или достоверной информации о товаре, работе или услуге, подлежит возмещению лицами, названными в правилах об ответственности за недостатки товара, работы или услуги (статья 1096 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "product-liability-red-ignore-service-life",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "service_life_duty_breached": false
+        },
+        "observed_outcomes": {
+          "service_life_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Вред возмещается, если он возник в течение установленного срока годности или срока службы товара, работы или услуги, а если такой срок не установлен — в течение десяти лет со дня производства товара, работы или услуги (статья 1097 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "product-liability-red-ignore-service-life-exception",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "service_life_exception_duty_breached": false
+        },
+        "observed_outcomes": {
+          "service_life_exception_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Независимо от времени причинения вред возмещается, если в нарушение закона срок годности или срок службы не установлен либо потребитель не был предупреждён о необходимых действиях по истечении такого срока и о возможных последствиях их невыполнения, а также если он не получил полной и достоверной информации о товаре (статья 1097 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "product-liability-red-victim-rules-without-exculpation-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "victim_rules_violation_breached": true
+        },
+        "observed_outcomes": {
+          "victim_rules_violation_breached": false
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "product-liability-red-skip-human-on-exculpation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_product_liability_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_product_liability_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда вследствие конструктивных, рецептурных или иных недостатков товара, работы или услуги либо вследствие недостоверной или недостаточной информации о них (статья 1095 ГК РФ).",
+          "Продавец, изготовитель товара или исполнитель работы либо услуги освобождается от ответственности только в случае, если докажет, что вред возник вследствие непреодолимой силы (статья 1098 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}
