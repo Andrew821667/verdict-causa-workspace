@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил об исполнении страхового обязательства по статьям 944–970 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-insurance-settlement-evidence-supply-1-v0",
+    "schema_version": "contracts.insurance-settlement-evidence.v0",
+    "mapping_version": "contracts-reviewed-insurance-settlement-to-facts-v0",
+    "facts": {
+      "insured_event_settlement_started": false,
+      "material_information_not_disclosed": false,
+      "insured_sum_rules_breached": false,
+      "premium_payment_rules_breached": false,
+      "risk_increase_or_early_termination_breached": false,
+      "insured_event_notice_not_given": false,
+      "notice_delay_consequences_not_applied": false,
+      "loss_mitigation_duty_breached": false,
+      "insurer_release_grounds_misapplied": false,
+      "subrogation_or_limitation_rules_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
+      "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "insured_event_notice_not_given",
+        "assertion_id": "insurance-settlement-evidence-insured_event_notice_not_given",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-settlement-evidence"
+        ]
+      },
+      {
+        "fact_name": "insured_event_settlement_started",
+        "assertion_id": "insurance-settlement-evidence-insured_event_settlement_started",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-settlement-evidence"
+        ]
+      },
+      {
+        "fact_name": "insured_sum_rules_breached",
+        "assertion_id": "insurance-settlement-evidence-insured_sum_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-settlement-evidence"
+        ]
+      },
+      {
+        "fact_name": "insurer_release_grounds_misapplied",
+        "assertion_id": "insurance-settlement-evidence-insurer_release_grounds_misapplied",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-settlement-evidence"
+        ]
+      },
+      {
+        "fact_name": "loss_mitigation_duty_breached",
+        "assertion_id": "insurance-settlement-evidence-loss_mitigation_duty_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-settlement-evidence"
+        ]
+      },
+      {
+        "fact_name": "material_information_not_disclosed",
+        "assertion_id": "insurance-settlement-evidence-material_information_not_disclosed",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-settlement-evidence"
+        ]
+      },
+      {
+        "fact_name": "notice_delay_consequences_not_applied",
+        "assertion_id": "insurance-settlement-evidence-notice_delay_consequences_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-settlement-evidence"
+        ]
+      },
+      {
+        "fact_name": "premium_payment_rules_breached",
+        "assertion_id": "insurance-settlement-evidence-premium_payment_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-settlement-evidence"
+        ]
+      },
+      {
+        "fact_name": "risk_increase_or_early_termination_breached",
+        "assertion_id": "insurance-settlement-evidence-risk_increase_or_early_termination_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-settlement-evidence"
+        ]
+      },
+      {
+        "fact_name": "subrogation_or_limitation_rules_breached",
+        "assertion_id": "insurance-settlement-evidence-subrogation_or_limitation_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-insurance-settlement-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "insurance-settlement-constraint-set:reviewed-insurance-settlement-evidence-supply-1-v0",
+    "model_version": "contracts-insurance-settlement-articles-944-970-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
+      "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1"
+    ],
+    "expressions": [
+      "insurance_settlement_qualified == insured_event_settlement_started",
+      "disclosure_duty_breached == insurance_settlement_qualified AND material_information_not_disclosed",
+      "insured_sum_duty_breached == insurance_settlement_qualified AND insured_sum_rules_breached",
+      "premium_duty_breached == insurance_settlement_qualified AND premium_payment_rules_breached",
+      "risk_and_termination_duty_breached == insurance_settlement_qualified AND risk_increase_or_early_termination_breached",
+      "insured_event_notice_duty_breached == insurance_settlement_qualified AND insured_event_notice_not_given",
+      "notice_delay_consequences_breached == insurance_settlement_qualified AND insured_event_notice_not_given AND notice_delay_consequences_not_applied",
+      "loss_mitigation_breached == insurance_settlement_qualified AND loss_mitigation_duty_breached",
+      "insurer_release_duty_breached == insurance_settlement_qualified AND insurer_release_grounds_misapplied",
+      "subrogation_and_limitation_breached == insurance_settlement_qualified AND subrogation_or_limitation_rules_breached",
+      "requires_human_insurance_settlement_assessment == disclosure_duty_breached OR insured_sum_duty_breached OR premium_duty_breached OR risk_and_termination_duty_breached OR insured_event_notice_duty_breached OR loss_mitigation_breached OR insurer_release_duty_breached OR subrogation_and_limitation_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "insurance-settlement-constraint-set:reviewed-insurance-settlement-evidence-supply-1-v0",
+    "satisfiable": true,
+    "insurance_settlement_qualified": false,
+    "disclosure_duty_breached": false,
+    "insured_sum_duty_breached": false,
+    "premium_duty_breached": false,
+    "risk_and_termination_duty_breached": false,
+    "insured_event_notice_duty_breached": false,
+    "notice_delay_consequences_breached": false,
+    "loss_mitigation_breached": false,
+    "insurer_release_duty_breached": false,
+    "subrogation_and_limitation_breached": false,
+    "requires_human_insurance_settlement_assessment": false,
+    "reasons_ru": [
+      "Исполнение страхового обязательства по спорным отношениям не установлено."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только правила об исполнении страхового обязательства и не заменяет судебную оценку.",
+      "Существенность несообщённых сведений, разумность мер по уменьшению убытков и наличие оснований освобождения страховщика оцениваются экспертом и судом (статьи 944, 962 и 963 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "insurance-settlement-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "insurance-settlement-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "insurance_settlement_qualified": false
+        },
+        "observed_outcomes": {
+          "insurance_settlement_qualified": false
+        },
+        "reasons_ru": [
+          "Исполнение страхового обязательства по спорным отношениям не установлено."
+        ]
+      },
+      {
+        "task_id": "insurance-settlement-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "insurance_settlement_qualified": true,
+          "requires_human_insurance_settlement_assessment": false
+        },
+        "observed_outcomes": {
+          "insurance_settlement_qualified": true,
+          "requires_human_insurance_settlement_assessment": false
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "insurance-settlement-bench-disclosure",
+        "passed": true,
+        "expected_outcomes": {
+          "disclosure_duty_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "observed_outcomes": {
+          "disclosure_duty_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "При заключении договора страхователь обязан сообщить страховщику известные ему обстоятельства, имеющие существенное значение для определения вероятности наступления страхового случая и размера возможных убытков (статья 944 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "insurance-settlement-bench-insured-sum",
+        "passed": true,
+        "expected_outcomes": {
+          "insured_sum_duty_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "observed_outcomes": {
+          "insured_sum_duty_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "Страховая сумма определяется соглашением сторон и по имущественному страхованию не должна превышать страховую стоимость; последствия страхования сверх страховой стоимости и неполного имущественного страхования определяются статьями 947–951 ГК РФ."
+        ]
+      },
+      {
+        "task_id": "insurance-settlement-bench-premium",
+        "passed": true,
+        "expected_outcomes": {
+          "premium_duty_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "observed_outcomes": {
+          "premium_duty_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "Страховая премия уплачивается в порядке и сроки, предусмотренные договором; договор страхования вступает в силу в момент уплаты премии или первого взноса, если договором не предусмотрено иное (статьи 954 и 957 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "insurance-settlement-bench-risk-increase",
+        "passed": true,
+        "expected_outcomes": {
+          "risk_and_termination_duty_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "observed_outcomes": {
+          "risk_and_termination_duty_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "Страхователь обязан незамедлительно сообщать страховщику о ставших ему известными значительных изменениях в обстоятельствах, влекущих увеличение страхового риска, а досрочное прекращение договора страхования подчиняется правилам статей 958 и 959 ГК РФ."
+        ]
+      },
+      {
+        "task_id": "insurance-settlement-bench-notice",
+        "passed": true,
+        "expected_outcomes": {
+          "insured_event_notice_duty_breached": true,
+          "notice_delay_consequences_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "observed_outcomes": {
+          "insured_event_notice_duty_breached": true,
+          "notice_delay_consequences_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "Страхователь обязан незамедлительно уведомить страховщика или его представителя о наступлении страхового случая в предусмотренный договором срок и способом (статья 961 ГК РФ).",
+          "Неисполнение обязанности уведомить о страховом случае даёт страховщику право отказать в выплате, если не будет доказано, что страховщик своевременно узнал о страховом случае либо что отсутствие сведений не могло сказаться на его обязанности произвести выплату (статья 961 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "insurance-settlement-bench-loss-mitigation",
+        "passed": true,
+        "expected_outcomes": {
+          "loss_mitigation_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "observed_outcomes": {
+          "loss_mitigation_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "При наступлении страхового случая страхователь обязан принять разумные и доступные в сложившихся обстоятельствах меры, чтобы уменьшить возможные убытки; необходимые расходы возмещаются страховщиком (статья 962 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "insurance-settlement-bench-insurer-release",
+        "passed": true,
+        "expected_outcomes": {
+          "insurer_release_duty_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "observed_outcomes": {
+          "insurer_release_duty_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "Освобождение страховщика от выплаты допускается по основаниям, предусмотренным законом, в том числе при умысле страхователя и при наступлении страхового случая вследствие обстоятельств, указанных в статье 964 ГК РФ (статьи 963 и 964 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "insurance-settlement-bench-subrogation",
+        "passed": true,
+        "expected_outcomes": {
+          "subrogation_and_limitation_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "observed_outcomes": {
+          "subrogation_and_limitation_breached": true,
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "К страховщику, выплатившему страховое возмещение, переходит в пределах выплаченной суммы право требования к лицу, ответственному за убытки, а срок исковой давности по требованиям из договора страхования определяется статьёй 966 ГК РФ (статьи 965 и 966 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "insurance-settlement-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "insurance-settlement-red-qualify-without-event",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "insurance_settlement_qualified": true
+        },
+        "observed_outcomes": {
+          "insurance_settlement_qualified": false
+        },
+        "reasons_ru": [
+          "Исполнение страхового обязательства по спорным отношениям не установлено."
+        ]
+      },
+      {
+        "case_id": "insurance-settlement-red-ignore-disclosure",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "disclosure_duty_breached": false
+        },
+        "observed_outcomes": {
+          "disclosure_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "При заключении договора страхователь обязан сообщить страховщику известные ему обстоятельства, имеющие существенное значение для определения вероятности наступления страхового случая и размера возможных убытков (статья 944 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "insurance-settlement-red-ignore-insured-sum",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "insured_sum_duty_breached": false
+        },
+        "observed_outcomes": {
+          "insured_sum_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "Страховая сумма определяется соглашением сторон и по имущественному страхованию не должна превышать страховую стоимость; последствия страхования сверх страховой стоимости и неполного имущественного страхования определяются статьями 947–951 ГК РФ."
+        ]
+      },
+      {
+        "case_id": "insurance-settlement-red-ignore-premium",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "premium_duty_breached": false
+        },
+        "observed_outcomes": {
+          "premium_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "Страховая премия уплачивается в порядке и сроки, предусмотренные договором; договор страхования вступает в силу в момент уплаты премии или первого взноса, если договором не предусмотрено иное (статьи 954 и 957 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "insurance-settlement-red-ignore-risk-increase",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "risk_and_termination_duty_breached": false
+        },
+        "observed_outcomes": {
+          "risk_and_termination_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "Страхователь обязан незамедлительно сообщать страховщику о ставших ему известными значительных изменениях в обстоятельствах, влекущих увеличение страхового риска, а досрочное прекращение договора страхования подчиняется правилам статей 958 и 959 ГК РФ."
+        ]
+      },
+      {
+        "case_id": "insurance-settlement-red-ignore-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "insured_event_notice_duty_breached": false
+        },
+        "observed_outcomes": {
+          "insured_event_notice_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "Страхователь обязан незамедлительно уведомить страховщика или его представителя о наступлении страхового случая в предусмотренный договором срок и способом (статья 961 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "insurance-settlement-red-consequences-without-notice-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "notice_delay_consequences_breached": true
+        },
+        "observed_outcomes": {
+          "notice_delay_consequences_breached": false
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "insurance-settlement-red-ignore-loss-mitigation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "loss_mitigation_breached": false
+        },
+        "observed_outcomes": {
+          "loss_mitigation_breached": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "При наступлении страхового случая страхователь обязан принять разумные и доступные в сложившихся обстоятельствах меры, чтобы уменьшить возможные убытки; необходимые расходы возмещаются страховщиком (статья 962 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "insurance-settlement-red-ignore-insurer-release",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "insurer_release_duty_breached": false
+        },
+        "observed_outcomes": {
+          "insurer_release_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "Освобождение страховщика от выплаты допускается по основаниям, предусмотренным законом, в том числе при умысле страхователя и при наступлении страхового случая вследствие обстоятельств, указанных в статье 964 ГК РФ (статьи 963 и 964 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "insurance-settlement-red-skip-human-on-subrogation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_insurance_settlement_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_insurance_settlement_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено исполнение страхового обязательства: наступил страховой случай и рассматриваются права и обязанности сторон договора страхования (статьи 944–970 ГК РФ).",
+          "К страховщику, выплатившему страховое возмещение, переходит в пределах выплаченной суммы право требования к лицу, ответственному за убытки, а срок исковой давности по требованиям из договора страхования определяется статьёй 966 ГК РФ (статьи 965 и 966 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

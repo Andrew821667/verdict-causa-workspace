@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.71.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed insurance-settlement evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 944 to 970.",
+            "Disclosure at conclusion, the insured sum, the premium, an increase of risk and early termination, notice of the insured event and its consequences, loss mitigation, release of the insurer, subrogation, and limitation remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные об исполнении страхового обязательства обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 944–970 ГК РФ.",
+            "Сообщение сведений при заключении договора, страховая сумма, страховая премия, увеличение страхового риска и досрочное прекращение, уведомление о страховом случае и его последствия, уменьшение убытков, освобождение страховщика, суброгация и исковая давность разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.70.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

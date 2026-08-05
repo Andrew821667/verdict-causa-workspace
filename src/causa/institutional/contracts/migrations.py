@@ -1347,6 +1347,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.70.0",
+        to_version="0.71.0",
+        reasons=[
+            "Reviewed inputs now require a separate insurance-settlement evidence contract.",
+            "Analysis and Russian translation distinguish disclosure at conclusion, the insured sum, the premium, an increase of risk and early termination, notice of the insured event and its consequences, loss mitigation, release of the insurer, subrogation, and limitation under articles 944 to 970.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных об исполнении страхового обязательства.",
+            "Анализ и русское объяснение разделяют сообщение сведений при заключении договора, страховую сумму, страховую премию, увеличение страхового риска и досрочное прекращение, уведомление о страховом случае и его последствия, уменьшение убытков, освобождение страховщика, суброгацию и исковую давность по статьям 944–970 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_insurance_settlement_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

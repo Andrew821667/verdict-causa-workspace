@@ -2583,6 +2583,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
+      "title": "Синтетическая проверенная модель сведений при заключении договора страхования, страховой суммы и стоимости, страховой премии, увеличения страхового риска и досрочного прекращения по статьям 944–959 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обязанность страхователя сообщить страховщику известные ему обстоятельства, имеющие существенное значение для оценки страхового риска, определение страховой суммы и страховой стоимости, последствия страхования сверх страховой стоимости и неполного имущественного страхования, порядок и сроки уплаты страховой премии, вступление договора в силу, сообщение об увеличении страхового риска и досрочное прекращение договора проверяются раздельно (статьи 944–959 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "insurance_settlement_disclosure_sum_and_premium_articles_944_959",
+        "legal_reference": "ГК РФ, статьи 944–959",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1",
+      "title": "Синтетическая проверенная модель уведомления о страховом случае, уменьшения убытков, освобождения страховщика, суброгации и исковой давности по статьям 960–970 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обязанность страхователя уведомить страховщика о наступлении страхового случая и последствия её неисполнения, обязанность принять разумные и доступные меры для уменьшения убытков и возмещение соответствующих расходов, основания освобождения страховщика от выплаты, переход к страховщику прав страхователя на возмещение ущерба и срок исковой давности по требованиям из договора страхования проверяются раздельно (статьи 960–970 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "insurance_settlement_notice_release_and_subrogation_articles_960_970",
+        "legal_reference": "ГК РФ, статьи 960–970",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-insurance-settlement-evidence",
+      "title": "Синтетическая проверенная запись фактов об исполнении страхового обязательства",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки страховой случай не наступал и исполнение страхового обязательства сторонами не производилось.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "insurance_settlement_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -8494,6 +8541,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-insurance-reviewer"
     },
+    "insurance_settlement_evidence": {
+      "id": "reviewed-insurance-settlement-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.insurance-settlement-evidence.v0",
+      "assertions": [
+        {
+          "id": "insurance-settlement-evidence-insured_event_settlement_started",
+          "predicate": "insured_event_settlement_started",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "id": "insurance-settlement-evidence-material_information_not_disclosed",
+          "predicate": "material_information_not_disclosed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "id": "insurance-settlement-evidence-insured_sum_rules_breached",
+          "predicate": "insured_sum_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "id": "insurance-settlement-evidence-premium_payment_rules_breached",
+          "predicate": "premium_payment_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "id": "insurance-settlement-evidence-risk_increase_or_early_termination_breached",
+          "predicate": "risk_increase_or_early_termination_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "id": "insurance-settlement-evidence-insured_event_notice_not_given",
+          "predicate": "insured_event_notice_not_given",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "id": "insurance-settlement-evidence-notice_delay_consequences_not_applied",
+          "predicate": "notice_delay_consequences_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "id": "insurance-settlement-evidence-loss_mitigation_duty_breached",
+          "predicate": "loss_mitigation_duty_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "id": "insurance-settlement-evidence-insurer_release_grounds_misapplied",
+          "predicate": "insurer_release_grounds_misapplied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "id": "insurance-settlement-evidence-subrogation_or_limitation_rules_breached",
+          "predicate": "subrogation_or_limitation_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
+        "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-insurance-settlement-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -13295,6 +13435,7 @@
       "synthetic-gift-reviewer",
       "synthetic-gratuitous-use-reviewer",
       "synthetic-insurance-reviewer",
+      "synthetic-insurance-settlement-reviewer",
       "synthetic-interpretation-reviewer",
       "synthetic-invalidity-reviewer",
       "synthetic-lease-reviewer",
@@ -13360,6 +13501,7 @@
       "synthetic-case-supply-1-gift-evidence",
       "synthetic-case-supply-1-gratuitous-use-evidence",
       "synthetic-case-supply-1-insurance-evidence",
+      "synthetic-case-supply-1-insurance-settlement-evidence",
       "synthetic-case-supply-1-interpretation-evidence",
       "synthetic-case-supply-1-invalidity-evidence",
       "synthetic-case-supply-1-lease-evidence",
@@ -13530,6 +13672,8 @@
       "synthetic-ru-gk924-926-special-storage-cloakroom-hotel-and-sequestration-v1",
       "synthetic-ru-gk927-938-insurance-forms-interests-and-parties-v1",
       "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1",
+      "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
+      "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -20928,6 +21072,142 @@
         "Наличие страхового интереса, характер страхового случая и содержание правил страхования оцениваются экспертом и судом (статьи 930, 942 и 943 ГК РФ)."
       ]
     },
+    "insurance_settlement_evidence_mapping": {
+      "evidence_id": "reviewed-insurance-settlement-evidence-supply-1-v0",
+      "schema_version": "contracts.insurance-settlement-evidence.v0",
+      "mapping_version": "contracts-reviewed-insurance-settlement-to-facts-v0",
+      "facts": {
+        "insured_event_settlement_started": false,
+        "material_information_not_disclosed": false,
+        "insured_sum_rules_breached": false,
+        "premium_payment_rules_breached": false,
+        "risk_increase_or_early_termination_breached": false,
+        "insured_event_notice_not_given": false,
+        "notice_delay_consequences_not_applied": false,
+        "loss_mitigation_duty_breached": false,
+        "insurer_release_grounds_misapplied": false,
+        "subrogation_or_limitation_rules_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
+        "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "insured_event_notice_not_given",
+          "assertion_id": "insurance-settlement-evidence-insured_event_notice_not_given",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "fact_name": "insured_event_settlement_started",
+          "assertion_id": "insurance-settlement-evidence-insured_event_settlement_started",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "fact_name": "insured_sum_rules_breached",
+          "assertion_id": "insurance-settlement-evidence-insured_sum_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "fact_name": "insurer_release_grounds_misapplied",
+          "assertion_id": "insurance-settlement-evidence-insurer_release_grounds_misapplied",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "fact_name": "loss_mitigation_duty_breached",
+          "assertion_id": "insurance-settlement-evidence-loss_mitigation_duty_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "fact_name": "material_information_not_disclosed",
+          "assertion_id": "insurance-settlement-evidence-material_information_not_disclosed",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "fact_name": "notice_delay_consequences_not_applied",
+          "assertion_id": "insurance-settlement-evidence-notice_delay_consequences_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "fact_name": "premium_payment_rules_breached",
+          "assertion_id": "insurance-settlement-evidence-premium_payment_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "fact_name": "risk_increase_or_early_termination_breached",
+          "assertion_id": "insurance-settlement-evidence-risk_increase_or_early_termination_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        },
+        {
+          "fact_name": "subrogation_or_limitation_rules_breached",
+          "assertion_id": "insurance-settlement-evidence-subrogation_or_limitation_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-insurance-settlement-evidence"
+          ]
+        }
+      ]
+    },
+    "insurance_settlement_constraint_set": {
+      "id": "insurance-settlement-constraint-set:reviewed-insurance-settlement-evidence-supply-1-v0",
+      "model_version": "contracts-insurance-settlement-articles-944-970-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
+        "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1"
+      ],
+      "expressions": [
+        "insurance_settlement_qualified == insured_event_settlement_started",
+        "disclosure_duty_breached == insurance_settlement_qualified AND material_information_not_disclosed",
+        "insured_sum_duty_breached == insurance_settlement_qualified AND insured_sum_rules_breached",
+        "premium_duty_breached == insurance_settlement_qualified AND premium_payment_rules_breached",
+        "risk_and_termination_duty_breached == insurance_settlement_qualified AND risk_increase_or_early_termination_breached",
+        "insured_event_notice_duty_breached == insurance_settlement_qualified AND insured_event_notice_not_given",
+        "notice_delay_consequences_breached == insurance_settlement_qualified AND insured_event_notice_not_given AND notice_delay_consequences_not_applied",
+        "loss_mitigation_breached == insurance_settlement_qualified AND loss_mitigation_duty_breached",
+        "insurer_release_duty_breached == insurance_settlement_qualified AND insurer_release_grounds_misapplied",
+        "subrogation_and_limitation_breached == insurance_settlement_qualified AND subrogation_or_limitation_rules_breached",
+        "requires_human_insurance_settlement_assessment == disclosure_duty_breached OR insured_sum_duty_breached OR premium_duty_breached OR risk_and_termination_duty_breached OR insured_event_notice_duty_breached OR loss_mitigation_breached OR insurer_release_duty_breached OR subrogation_and_limitation_breached"
+      ]
+    },
+    "insurance_settlement_evaluation": {
+      "constraint_set_id": "insurance-settlement-constraint-set:reviewed-insurance-settlement-evidence-supply-1-v0",
+      "satisfiable": true,
+      "insurance_settlement_qualified": false,
+      "disclosure_duty_breached": false,
+      "insured_sum_duty_breached": false,
+      "premium_duty_breached": false,
+      "risk_and_termination_duty_breached": false,
+      "insured_event_notice_duty_breached": false,
+      "notice_delay_consequences_breached": false,
+      "loss_mitigation_breached": false,
+      "insurer_release_duty_breached": false,
+      "subrogation_and_limitation_breached": false,
+      "requires_human_insurance_settlement_assessment": false,
+      "reasons_ru": [
+        "Исполнение страхового обязательства по спорным отношениям не установлено."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только правила об исполнении страхового обязательства и не заменяет судебную оценку.",
+        "Существенность несообщённых сведений, разумность мер по уменьшению убытков и наличие оснований освобождения страховщика оцениваются экспертом и судом (статьи 944, 962 и 963 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -26299,7 +26579,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.70.0",
+      "institutional_package_version": "contracts-ru-v0@0.71.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

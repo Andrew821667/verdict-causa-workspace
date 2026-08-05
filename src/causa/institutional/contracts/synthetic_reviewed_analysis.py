@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.insurance_settlement import (
+    InsuranceSettlementEvidenceAssertion,
+    InsuranceSettlementEvidencePredicate,
+    ReviewedInsuranceSettlementEvidence,
+)
 from causa.institutional.contracts.insurance import (
     InsuranceEvidenceAssertion,
     InsuranceEvidencePredicate,
@@ -492,6 +497,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk927-938-insurance-forms-interests-and-parties-v1",
     "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1",
     "synthetic-case-supply-1-insurance-evidence",
+    "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
+    "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1",
+    "synthetic-case-supply-1-insurance-settlement-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2647,6 +2655,57 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-insurance-reviewer",
+        ),
+        insurance_settlement_evidence=ReviewedInsuranceSettlementEvidence(
+            id="reviewed-insurance-settlement-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                InsuranceSettlementEvidenceAssertion(
+                    id=f"insurance-settlement-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-insurance-settlement-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        InsuranceSettlementEvidencePredicate.INSURED_EVENT_SETTLEMENT_STARTED,
+                        False,
+                    ),
+                    (
+                        InsuranceSettlementEvidencePredicate.MATERIAL_INFORMATION_NOT_DISCLOSED,
+                        False,
+                    ),
+                    (InsuranceSettlementEvidencePredicate.INSURED_SUM_RULES_BREACHED, False),
+                    (InsuranceSettlementEvidencePredicate.PREMIUM_PAYMENT_RULES_BREACHED, False),
+                    (
+                        InsuranceSettlementEvidencePredicate.RISK_INCREASE_OR_EARLY_TERMINATION_BREACHED,
+                        False,
+                    ),
+                    (
+                        InsuranceSettlementEvidencePredicate.INSURED_EVENT_NOTICE_NOT_GIVEN,
+                        False,
+                    ),
+                    (
+                        InsuranceSettlementEvidencePredicate.NOTICE_DELAY_CONSEQUENCES_NOT_APPLIED,
+                        False,
+                    ),
+                    (InsuranceSettlementEvidencePredicate.LOSS_MITIGATION_DUTY_BREACHED, False),
+                    (
+                        InsuranceSettlementEvidencePredicate.INSURER_RELEASE_GROUNDS_MISAPPLIED,
+                        False,
+                    ),
+                    (
+                        InsuranceSettlementEvidencePredicate.SUBROGATION_OR_LIMITATION_RULES_BREACHED,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
+                "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-insurance-settlement-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
