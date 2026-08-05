@@ -534,6 +534,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.unjust_enrichment import (
+    UNJUST_ENRICHMENT_EVIDENCE_SCHEMA_VERSION,
+    ReviewedUnjustEnrichmentEvidence,
+    UnjustEnrichmentConstraintSet,
+    UnjustEnrichmentEvaluation,
+    UnjustEnrichmentEvidenceMappingResult,
+    build_unjust_enrichment_constraint_set,
+    evaluate_unjust_enrichment_constraints,
+    map_reviewed_unjust_enrichment_evidence,
+)
 from causa.institutional.contracts.moral_harm import (
     MORAL_HARM_EVIDENCE_SCHEMA_VERSION,
     MoralHarmConstraintSet,
@@ -935,6 +945,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     negotiorum_gestio_evidence: ReviewedNegotiorumGestioEvidence
     commission_evidence: ReviewedCommissionEvidence
     agency_evidence: ReviewedAgencyEvidence
+    unjust_enrichment_evidence: ReviewedUnjustEnrichmentEvidence
     moral_harm_evidence: ReviewedMoralHarmEvidence
     product_liability_evidence: ReviewedProductLiabilityEvidence
     tort_life_health_evidence: ReviewedTortLifeHealthEvidence
@@ -1157,6 +1168,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     agency_evidence_mapping: AgencyEvidenceMappingResult
     agency_constraint_set: AgencyConstraintSet
     agency_evaluation: AgencyEvaluation
+    unjust_enrichment_evidence_mapping: UnjustEnrichmentEvidenceMappingResult
+    unjust_enrichment_constraint_set: UnjustEnrichmentConstraintSet
+    unjust_enrichment_evaluation: UnjustEnrichmentEvaluation
     moral_harm_evidence_mapping: MoralHarmEvidenceMappingResult
     moral_harm_constraint_set: MoralHarmConstraintSet
     moral_harm_evaluation: MoralHarmEvaluation
@@ -1853,6 +1867,19 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.agency_evaluation != expected_agency_evaluation:
             raise ValueError("Agency evaluation does not replay from reviewed evidence.")
+        expected_unjust_enrichment_set = build_unjust_enrichment_constraint_set(
+            self.unjust_enrichment_evidence_mapping
+        )
+        if self.unjust_enrichment_constraint_set != expected_unjust_enrichment_set:
+            raise ValueError(
+                "Unjust-enrichment constraint set does not replay from reviewed evidence."
+            )
+        expected_unjust_enrichment_evaluation = evaluate_unjust_enrichment_constraints(
+            expected_unjust_enrichment_set,
+            self.unjust_enrichment_evidence_mapping.facts,
+        )
+        if self.unjust_enrichment_evaluation != expected_unjust_enrichment_evaluation:
+            raise ValueError("Unjust-enrichment evaluation does not replay from reviewed evidence.")
         expected_moral_harm_set = build_moral_harm_constraint_set(self.moral_harm_evidence_mapping)
         if self.moral_harm_constraint_set != expected_moral_harm_set:
             raise ValueError("Moral-harm constraint set does not replay from reviewed evidence.")
@@ -2392,6 +2419,8 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence case_id does not match the analysis request.")
     if request.agency_evidence.case_id != request.case_id:
         raise ValueError("Agency evidence case_id does not match the analysis request.")
+    if request.unjust_enrichment_evidence.case_id != request.case_id:
+        raise ValueError("Unjust-enrichment evidence case_id does not match the analysis request.")
     if request.moral_harm_evidence.case_id != request.case_id:
         raise ValueError("Moral-harm evidence case_id does not match the analysis request.")
     if request.product_liability_evidence.case_id != request.case_id:
@@ -2595,6 +2624,11 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence uses an unsupported schema version.")
     if request.agency_evidence.schema_version != AGENCY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Agency evidence uses an unsupported schema version.")
+    if (
+        request.unjust_enrichment_evidence.schema_version
+        != UNJUST_ENRICHMENT_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Unjust-enrichment evidence uses an unsupported schema version.")
     if request.moral_harm_evidence.schema_version != MORAL_HARM_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Moral-harm evidence uses an unsupported schema version.")
     if (
@@ -2681,6 +2715,7 @@ def _validate_request_integrity(
         *request.negotiorum_gestio_evidence.legal_source_refs,
         *request.commission_evidence.legal_source_refs,
         *request.agency_evidence.legal_source_refs,
+        *request.unjust_enrichment_evidence.legal_source_refs,
         *request.moral_harm_evidence.legal_source_refs,
         *request.product_liability_evidence.legal_source_refs,
         *request.tort_life_health_evidence.legal_source_refs,
@@ -2816,6 +2851,8 @@ def _validate_request_integrity(
     for assertion in request.commission_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.agency_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.unjust_enrichment_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.moral_harm_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -3504,6 +3541,17 @@ def _validate_request_integrity(
             "Agency legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_agency_legal_sources))
         )
+    invalid_unjust_enrichment_legal_sources = [
+        source_id
+        for source_id in request.unjust_enrichment_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_unjust_enrichment_legal_sources:
+        raise ValueError(
+            "Unjust-enrichment legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_unjust_enrichment_legal_sources))
+        )
     invalid_moral_harm_legal_sources = [
         source_id
         for source_id in request.moral_harm_evidence.legal_source_refs
@@ -4074,6 +4122,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Agency evidence",
         review_status=request.agency_evidence.review_status,
         reviewer_id=request.agency_evidence.reviewer_id,
+    )
+    unjust_enrichment_reviewer_id = _require_reviewed(
+        artifact_name="Unjust-enrichment evidence",
+        review_status=request.unjust_enrichment_evidence.review_status,
+        reviewer_id=request.unjust_enrichment_evidence.reviewer_id,
     )
     moral_harm_reviewer_id = _require_reviewed(
         artifact_name="Moral-harm evidence",
@@ -4652,6 +4705,16 @@ def run_reviewed_contract_analysis(
         agency_constraint_set,
         agency_evidence_mapping.facts,
     )
+    unjust_enrichment_evidence_mapping = map_reviewed_unjust_enrichment_evidence(
+        request.unjust_enrichment_evidence
+    )
+    unjust_enrichment_constraint_set = build_unjust_enrichment_constraint_set(
+        unjust_enrichment_evidence_mapping
+    )
+    unjust_enrichment_evaluation = evaluate_unjust_enrichment_constraints(
+        unjust_enrichment_constraint_set,
+        unjust_enrichment_evidence_mapping.facts,
+    )
     moral_harm_evidence_mapping = map_reviewed_moral_harm_evidence(request.moral_harm_evidence)
     moral_harm_constraint_set = build_moral_harm_constraint_set(moral_harm_evidence_mapping)
     moral_harm_evaluation = evaluate_moral_harm_constraints(
@@ -5005,6 +5068,7 @@ def run_reviewed_contract_analysis(
         or negotiorum_gestio_evaluation.requires_human_negotiorum_gestio_assessment
         or commission_evaluation.requires_human_commission_assessment
         or agency_evaluation.requires_human_agency_assessment
+        or unjust_enrichment_evaluation.requires_human_unjust_enrichment_assessment
         or moral_harm_evaluation.requires_human_moral_harm_assessment
         or product_liability_evaluation.requires_human_product_liability_assessment
         or tort_life_health_evaluation.requires_human_life_health_assessment
@@ -5091,6 +5155,7 @@ def run_reviewed_contract_analysis(
                 negotiorum_gestio_reviewer_id,
                 commission_reviewer_id,
                 agency_reviewer_id,
+                unjust_enrichment_reviewer_id,
                 moral_harm_reviewer_id,
                 product_liability_reviewer_id,
                 tort_life_health_reviewer_id,
@@ -5289,6 +5354,9 @@ def run_reviewed_contract_analysis(
         agency_evidence_mapping=agency_evidence_mapping,
         agency_constraint_set=agency_constraint_set,
         agency_evaluation=agency_evaluation,
+        unjust_enrichment_evidence_mapping=unjust_enrichment_evidence_mapping,
+        unjust_enrichment_constraint_set=unjust_enrichment_constraint_set,
+        unjust_enrichment_evaluation=unjust_enrichment_evaluation,
         moral_harm_evidence_mapping=moral_harm_evidence_mapping,
         moral_harm_constraint_set=moral_harm_constraint_set,
         moral_harm_evaluation=moral_harm_evaluation,

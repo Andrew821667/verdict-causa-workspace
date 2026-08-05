@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
+      "title": "Синтетическая проверенная модель обязанности возвратить неосновательное обогащение, соотношения с другими требованиями и возврата обогащения в натуре и по стоимости по статьям 1102–1105 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обязанность лица, без установленных законом, иными правовыми актами или сделкой оснований приобретшего или сберёгшего имущество за счёт другого лица, возвратить неосновательное обогащение, применение правил независимо от причин обогащения, их применение к требованиям о возврате исполненного по недействительной сделке, об истребовании имущества из чужого незаконного владения и о возмещении вреда, а также возврат обогащения в натуре и возмещение его действительной стоимости проверяются раздельно (статьи 1102–1105 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "unjust_enrichment_duty_and_return_articles_1102_1105",
+        "legal_reference": "ГК РФ, статьи 1102–1105",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
+      "title": "Синтетическая проверенная модель последствий неосновательной передачи права, возмещения доходов и затрат и имущества, не подлежащего возврату, по статьям 1106–1109 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: право лица, передавшего принадлежащее ему право на основании несуществующего или недействительного обязательства, требовать восстановления прежнего положения, обязанность приобретателя возвратить доходы и уплатить проценты за пользование чужими средствами, право приобретателя на возмещение необходимых затрат на содержание и сохранение имущества, а также перечень имущества, не подлежащего возврату в качестве неосновательного обогащения, проверяются раздельно (статьи 1106–1109 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "unjust_enrichment_income_costs_and_exceptions_articles_1106_1109",
+        "legal_reference": "ГК РФ, статьи 1106–1109",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-unjust-enrichment-evidence",
+      "title": "Синтетическая проверенная запись фактов о неосновательном обогащении",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки имущество приобреталось на основании заключённого договора; неосновательное обогащение сторон не устанавливалось.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "unjust_enrichment_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
       "title": "Синтетическая проверенная модель общих положений о компенсации морального вреда и оснований компенсации независимо от вины причинителя по статьям 1099 и 1100 ГК РФ",
       "source_type": "statute",
@@ -9617,6 +9664,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "unjust_enrichment_evidence": {
+      "id": "reviewed-unjust-enrichment-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.unjust-enrichment-evidence.v0",
+      "assertions": [
+        {
+          "id": "unjust-enrichment-evidence-unjust_enrichment_established",
+          "predicate": "unjust_enrichment_established",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "id": "unjust-enrichment-evidence-restitution_duty_breached",
+          "predicate": "restitution_duty_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "id": "unjust-enrichment-evidence-irrelevance_of_cause_disregarded",
+          "predicate": "irrelevance_of_cause_disregarded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "id": "unjust-enrichment-evidence-subsidiary_application_rules_breached",
+          "predicate": "subsidiary_application_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "id": "unjust-enrichment-evidence-return_in_kind_rules_breached",
+          "predicate": "return_in_kind_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "id": "unjust-enrichment-evidence-value_compensation_rules_breached",
+          "predicate": "value_compensation_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "id": "unjust-enrichment-evidence-transferred_right_restoration_breached",
+          "predicate": "transferred_right_restoration_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "id": "unjust-enrichment-evidence-income_and_interest_rules_breached",
+          "predicate": "income_and_interest_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "id": "unjust-enrichment-evidence-maintenance_costs_reimbursement_breached",
+          "predicate": "maintenance_costs_reimbursement_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "id": "unjust-enrichment-evidence-non_returnable_enrichment_not_applied",
+          "predicate": "non_returnable_enrichment_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
+        "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-unjust-enrichment-reviewer"
+    },
     "moral_harm_evidence": {
       "id": "reviewed-moral-harm-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -15302,6 +15442,7 @@
       "synthetic-tort-general-reviewer",
       "synthetic-tort-life-health-reviewer",
       "synthetic-trust-management-reviewer",
+      "synthetic-unjust-enrichment-reviewer",
       "synthetic-vehicle-lease-reviewer",
       "synthetic-warehouse-storage-reviewer",
       "synthetic-work-contract-reviewer"
@@ -15380,6 +15521,7 @@
       "synthetic-case-supply-1-tort-general-evidence",
       "synthetic-case-supply-1-tort-life-health-evidence",
       "synthetic-case-supply-1-trust-management-evidence",
+      "synthetic-case-supply-1-unjust-enrichment-evidence",
       "synthetic-case-supply-1-vehicle-lease-evidence",
       "synthetic-case-supply-1-warehouse-storage-evidence",
       "synthetic-case-supply-1-work-contract-evidence",
@@ -15406,6 +15548,8 @@
       "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1",
       "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
       "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1",
+      "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
+      "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -23624,6 +23768,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "unjust_enrichment_evidence_mapping": {
+      "evidence_id": "reviewed-unjust-enrichment-evidence-supply-1-v0",
+      "schema_version": "contracts.unjust-enrichment-evidence.v0",
+      "mapping_version": "contracts-reviewed-unjust-enrichment-to-facts-v0",
+      "facts": {
+        "unjust_enrichment_established": false,
+        "restitution_duty_breached": false,
+        "irrelevance_of_cause_disregarded": false,
+        "subsidiary_application_rules_breached": false,
+        "return_in_kind_rules_breached": false,
+        "value_compensation_rules_breached": false,
+        "transferred_right_restoration_breached": false,
+        "income_and_interest_rules_breached": false,
+        "maintenance_costs_reimbursement_breached": false,
+        "non_returnable_enrichment_not_applied": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
+        "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "income_and_interest_rules_breached",
+          "assertion_id": "unjust-enrichment-evidence-income_and_interest_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "fact_name": "irrelevance_of_cause_disregarded",
+          "assertion_id": "unjust-enrichment-evidence-irrelevance_of_cause_disregarded",
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "fact_name": "maintenance_costs_reimbursement_breached",
+          "assertion_id": "unjust-enrichment-evidence-maintenance_costs_reimbursement_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "fact_name": "non_returnable_enrichment_not_applied",
+          "assertion_id": "unjust-enrichment-evidence-non_returnable_enrichment_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "fact_name": "restitution_duty_breached",
+          "assertion_id": "unjust-enrichment-evidence-restitution_duty_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "fact_name": "return_in_kind_rules_breached",
+          "assertion_id": "unjust-enrichment-evidence-return_in_kind_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "fact_name": "subsidiary_application_rules_breached",
+          "assertion_id": "unjust-enrichment-evidence-subsidiary_application_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "fact_name": "transferred_right_restoration_breached",
+          "assertion_id": "unjust-enrichment-evidence-transferred_right_restoration_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "fact_name": "unjust_enrichment_established",
+          "assertion_id": "unjust-enrichment-evidence-unjust_enrichment_established",
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        },
+        {
+          "fact_name": "value_compensation_rules_breached",
+          "assertion_id": "unjust-enrichment-evidence-value_compensation_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-unjust-enrichment-evidence"
+          ]
+        }
+      ]
+    },
+    "unjust_enrichment_constraint_set": {
+      "id": "unjust-enrichment-constraint-set:reviewed-unjust-enrichment-evidence-supply-1-v0",
+      "model_version": "contracts-unjust-enrichment-articles-1102-1109-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
+        "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1"
+      ],
+      "expressions": [
+        "unjust_enrichment_qualified == unjust_enrichment_established",
+        "restitution_duty_breach_established == unjust_enrichment_qualified AND restitution_duty_breached",
+        "irrelevance_of_cause_duty_breached == unjust_enrichment_qualified AND irrelevance_of_cause_disregarded",
+        "subsidiary_application_duty_breached == unjust_enrichment_qualified AND subsidiary_application_rules_breached",
+        "return_in_kind_duty_breached == unjust_enrichment_qualified AND return_in_kind_rules_breached",
+        "value_compensation_duty_breached == unjust_enrichment_qualified AND value_compensation_rules_breached",
+        "transferred_right_duty_breached == unjust_enrichment_qualified AND transferred_right_restoration_breached",
+        "income_and_interest_duty_breached == unjust_enrichment_qualified AND income_and_interest_rules_breached",
+        "maintenance_costs_duty_breached == unjust_enrichment_qualified AND maintenance_costs_reimbursement_breached",
+        "non_returnable_enrichment_breached == unjust_enrichment_qualified AND restitution_duty_breached AND non_returnable_enrichment_not_applied",
+        "requires_human_unjust_enrichment_assessment == restitution_duty_breach_established OR irrelevance_of_cause_duty_breached OR subsidiary_application_duty_breached OR return_in_kind_duty_breached OR value_compensation_duty_breached OR transferred_right_duty_breached OR income_and_interest_duty_breached OR maintenance_costs_duty_breached"
+      ]
+    },
+    "unjust_enrichment_evaluation": {
+      "constraint_set_id": "unjust-enrichment-constraint-set:reviewed-unjust-enrichment-evidence-supply-1-v0",
+      "satisfiable": true,
+      "unjust_enrichment_qualified": false,
+      "restitution_duty_breach_established": false,
+      "irrelevance_of_cause_duty_breached": false,
+      "subsidiary_application_duty_breached": false,
+      "return_in_kind_duty_breached": false,
+      "value_compensation_duty_breached": false,
+      "transferred_right_duty_breached": false,
+      "income_and_interest_duty_breached": false,
+      "maintenance_costs_duty_breached": false,
+      "non_returnable_enrichment_breached": false,
+      "requires_human_unjust_enrichment_assessment": false,
+      "reasons_ru": [
+        "Неосновательное обогащение не установлено."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о неосновательном обогащении и не заменяет судебную оценку.",
+        "Наличие правового основания приобретения имущества, его действительная стоимость и добросовестность приобретателя оцениваются экспертом и судом (статьи 1102, 1105 и 1109 ГК РФ)."
+      ]
+    },
     "moral_harm_evidence_mapping": {
       "evidence_id": "reviewed-moral-harm-evidence-supply-1-v0",
       "schema_version": "contracts.moral-harm-evidence.v0",
@@ -30219,7 +30499,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.84.0",
+      "institutional_package_version": "contracts-ru-v0@0.85.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -32287,6 +32567,7 @@
           "synthetic-case-supply-1-tort-general-evidence",
           "synthetic-case-supply-1-tort-life-health-evidence",
           "synthetic-case-supply-1-trust-management-evidence",
+          "synthetic-case-supply-1-unjust-enrichment-evidence",
           "synthetic-case-supply-1-vehicle-lease-evidence",
           "synthetic-case-supply-1-warehouse-storage-evidence",
           "synthetic-case-supply-1-work-contract-evidence",
@@ -32313,6 +32594,8 @@
           "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1",
           "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
           "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1",
+          "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
+          "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
           "synthetic-ru-gk158-165-form-framework-v1",
           "synthetic-ru-gk160-434-written-form-model-v1",
           "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -33532,6 +33815,7 @@
           "synthetic-case-supply-1-tort-general-evidence",
           "synthetic-case-supply-1-tort-life-health-evidence",
           "synthetic-case-supply-1-trust-management-evidence",
+          "synthetic-case-supply-1-unjust-enrichment-evidence",
           "synthetic-case-supply-1-vehicle-lease-evidence",
           "synthetic-case-supply-1-warehouse-storage-evidence",
           "synthetic-case-supply-1-work-contract-evidence",
@@ -33558,6 +33842,8 @@
           "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1",
           "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
           "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1",
+          "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
+          "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
           "synthetic-ru-gk158-165-form-framework-v1",
           "synthetic-ru-gk160-434-written-form-model-v1",
           "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -34777,6 +35063,7 @@
           "synthetic-case-supply-1-tort-general-evidence",
           "synthetic-case-supply-1-tort-life-health-evidence",
           "synthetic-case-supply-1-trust-management-evidence",
+          "synthetic-case-supply-1-unjust-enrichment-evidence",
           "synthetic-case-supply-1-vehicle-lease-evidence",
           "synthetic-case-supply-1-warehouse-storage-evidence",
           "synthetic-case-supply-1-work-contract-evidence",
@@ -34803,6 +35090,8 @@
           "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1",
           "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
           "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1",
+          "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
+          "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
           "synthetic-ru-gk158-165-form-framework-v1",
           "synthetic-ru-gk160-434-written-form-model-v1",
           "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -35032,7 +35321,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.84.0",
+      "institutional_package_version": "contracts-ru-v0@0.85.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -37318,6 +37607,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель обязанности возвратить неосновательное обогащение, соотношения с другими требованиями и возврата обогащения в натуре и по стоимости по статьям 1102–1105 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "unjust_enrichment_duty_and_return_articles_1102_1105",
+          "legal_reference": "ГК РФ, статьи 1102–1105",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель последствий неосновательной передачи права, возмещения доходов и затрат и имущества, не подлежащего возврату, по статьям 1106–1109 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "unjust_enrichment_income_costs_and_exceptions_articles_1106_1109",
+          "legal_reference": "ГК РФ, статьи 1106–1109",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-unjust-enrichment-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о неосновательном обогащении",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "unjust_enrichment_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель общих положений о компенсации морального вреда и оснований компенсации независимо от вины причинителя по статьям 1099 и 1100 ГК РФ",
@@ -38340,6 +38667,7 @@
             "synthetic-tort-general-reviewer",
             "synthetic-tort-life-health-reviewer",
             "synthetic-trust-management-reviewer",
+            "synthetic-unjust-enrichment-reviewer",
             "synthetic-vehicle-lease-reviewer",
             "synthetic-warehouse-storage-reviewer",
             "synthetic-work-contract-reviewer"

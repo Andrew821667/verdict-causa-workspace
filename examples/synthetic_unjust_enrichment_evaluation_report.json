@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил об обязательствах вследствие неосновательного обогащения по статьям 1102–1109 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-unjust-enrichment-evidence-supply-1-v0",
+    "schema_version": "contracts.unjust-enrichment-evidence.v0",
+    "mapping_version": "contracts-reviewed-unjust-enrichment-to-facts-v0",
+    "facts": {
+      "unjust_enrichment_established": false,
+      "restitution_duty_breached": false,
+      "irrelevance_of_cause_disregarded": false,
+      "subsidiary_application_rules_breached": false,
+      "return_in_kind_rules_breached": false,
+      "value_compensation_rules_breached": false,
+      "transferred_right_restoration_breached": false,
+      "income_and_interest_rules_breached": false,
+      "maintenance_costs_reimbursement_breached": false,
+      "non_returnable_enrichment_not_applied": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
+      "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "income_and_interest_rules_breached",
+        "assertion_id": "unjust-enrichment-evidence-income_and_interest_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-unjust-enrichment-evidence"
+        ]
+      },
+      {
+        "fact_name": "irrelevance_of_cause_disregarded",
+        "assertion_id": "unjust-enrichment-evidence-irrelevance_of_cause_disregarded",
+        "source_refs": [
+          "synthetic-case-supply-1-unjust-enrichment-evidence"
+        ]
+      },
+      {
+        "fact_name": "maintenance_costs_reimbursement_breached",
+        "assertion_id": "unjust-enrichment-evidence-maintenance_costs_reimbursement_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-unjust-enrichment-evidence"
+        ]
+      },
+      {
+        "fact_name": "non_returnable_enrichment_not_applied",
+        "assertion_id": "unjust-enrichment-evidence-non_returnable_enrichment_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-unjust-enrichment-evidence"
+        ]
+      },
+      {
+        "fact_name": "restitution_duty_breached",
+        "assertion_id": "unjust-enrichment-evidence-restitution_duty_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-unjust-enrichment-evidence"
+        ]
+      },
+      {
+        "fact_name": "return_in_kind_rules_breached",
+        "assertion_id": "unjust-enrichment-evidence-return_in_kind_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-unjust-enrichment-evidence"
+        ]
+      },
+      {
+        "fact_name": "subsidiary_application_rules_breached",
+        "assertion_id": "unjust-enrichment-evidence-subsidiary_application_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-unjust-enrichment-evidence"
+        ]
+      },
+      {
+        "fact_name": "transferred_right_restoration_breached",
+        "assertion_id": "unjust-enrichment-evidence-transferred_right_restoration_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-unjust-enrichment-evidence"
+        ]
+      },
+      {
+        "fact_name": "unjust_enrichment_established",
+        "assertion_id": "unjust-enrichment-evidence-unjust_enrichment_established",
+        "source_refs": [
+          "synthetic-case-supply-1-unjust-enrichment-evidence"
+        ]
+      },
+      {
+        "fact_name": "value_compensation_rules_breached",
+        "assertion_id": "unjust-enrichment-evidence-value_compensation_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-unjust-enrichment-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "unjust-enrichment-constraint-set:reviewed-unjust-enrichment-evidence-supply-1-v0",
+    "model_version": "contracts-unjust-enrichment-articles-1102-1109-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
+      "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1"
+    ],
+    "expressions": [
+      "unjust_enrichment_qualified == unjust_enrichment_established",
+      "restitution_duty_breach_established == unjust_enrichment_qualified AND restitution_duty_breached",
+      "irrelevance_of_cause_duty_breached == unjust_enrichment_qualified AND irrelevance_of_cause_disregarded",
+      "subsidiary_application_duty_breached == unjust_enrichment_qualified AND subsidiary_application_rules_breached",
+      "return_in_kind_duty_breached == unjust_enrichment_qualified AND return_in_kind_rules_breached",
+      "value_compensation_duty_breached == unjust_enrichment_qualified AND value_compensation_rules_breached",
+      "transferred_right_duty_breached == unjust_enrichment_qualified AND transferred_right_restoration_breached",
+      "income_and_interest_duty_breached == unjust_enrichment_qualified AND income_and_interest_rules_breached",
+      "maintenance_costs_duty_breached == unjust_enrichment_qualified AND maintenance_costs_reimbursement_breached",
+      "non_returnable_enrichment_breached == unjust_enrichment_qualified AND restitution_duty_breached AND non_returnable_enrichment_not_applied",
+      "requires_human_unjust_enrichment_assessment == restitution_duty_breach_established OR irrelevance_of_cause_duty_breached OR subsidiary_application_duty_breached OR return_in_kind_duty_breached OR value_compensation_duty_breached OR transferred_right_duty_breached OR income_and_interest_duty_breached OR maintenance_costs_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "unjust-enrichment-constraint-set:reviewed-unjust-enrichment-evidence-supply-1-v0",
+    "satisfiable": true,
+    "unjust_enrichment_qualified": false,
+    "restitution_duty_breach_established": false,
+    "irrelevance_of_cause_duty_breached": false,
+    "subsidiary_application_duty_breached": false,
+    "return_in_kind_duty_breached": false,
+    "value_compensation_duty_breached": false,
+    "transferred_right_duty_breached": false,
+    "income_and_interest_duty_breached": false,
+    "maintenance_costs_duty_breached": false,
+    "non_returnable_enrichment_breached": false,
+    "requires_human_unjust_enrichment_assessment": false,
+    "reasons_ru": [
+      "Неосновательное обогащение не установлено."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о неосновательном обогащении и не заменяет судебную оценку.",
+      "Наличие правового основания приобретения имущества, его действительная стоимость и добросовестность приобретателя оцениваются экспертом и судом (статьи 1102, 1105 и 1109 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "unjust-enrichment-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "unjust-enrichment-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "unjust_enrichment_qualified": false
+        },
+        "observed_outcomes": {
+          "unjust_enrichment_qualified": false
+        },
+        "reasons_ru": [
+          "Неосновательное обогащение не установлено."
+        ]
+      },
+      {
+        "task_id": "unjust-enrichment-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "unjust_enrichment_qualified": true,
+          "requires_human_unjust_enrichment_assessment": false
+        },
+        "observed_outcomes": {
+          "unjust_enrichment_qualified": true,
+          "requires_human_unjust_enrichment_assessment": false
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "unjust-enrichment-bench-restitution",
+        "passed": true,
+        "expected_outcomes": {
+          "restitution_duty_breach_established": true,
+          "non_returnable_enrichment_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "observed_outcomes": {
+          "restitution_duty_breach_established": true,
+          "non_returnable_enrichment_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "Приобретатель обязан возвратить потерпевшему неосновательно приобретённое или сбережённое имущество за исключением случаев, предусмотренных статьёй 1109 ГК РФ (статья 1102 ГК РФ).",
+          "Не подлежат возврату в качестве неосновательного обогащения имущество, переданное во исполнение обязательства до наступления срока исполнения, имущество, переданное во исполнение обязательства по истечении срока исковой давности, заработная плата и приравненные к ней платежи при отсутствии недобросовестности и счётной ошибки, а также денежные суммы и иное имущество, предоставленные во исполнение несуществующего обязательства, если приобретатель докажет, что лицо, требующее возврата, знало об отсутствии обязательства либо предоставило имущество в целях благотворительности (статья 1109 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "unjust-enrichment-bench-irrelevance-of-cause",
+        "passed": true,
+        "expected_outcomes": {
+          "irrelevance_of_cause_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "observed_outcomes": {
+          "irrelevance_of_cause_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "Правила о неосновательном обогащении применяются независимо от того, явилось ли неосновательное обогащение результатом поведения приобретателя имущества, самого потерпевшего, третьих лиц или произошло помимо их воли (статья 1102 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "unjust-enrichment-bench-subsidiary-application",
+        "passed": true,
+        "expected_outcomes": {
+          "subsidiary_application_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "observed_outcomes": {
+          "subsidiary_application_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "Правила о неосновательном обогащении подлежат применению также к требованиям о возврате исполненного по недействительной сделке, об истребовании имущества собственником из чужого незаконного владения, одной стороны обязательства к другой о возврате исполненного и о возмещении вреда, если иное не установлено законом и не вытекает из существа отношений (статья 1103 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "unjust-enrichment-bench-return-in-kind",
+        "passed": true,
+        "expected_outcomes": {
+          "return_in_kind_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "observed_outcomes": {
+          "return_in_kind_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "Имущество, составляющее неосновательное обогащение приобретателя, должно быть возвращено потерпевшему в натуре, а приобретатель отвечает за всякие недостачу или ухудшение такого имущества после того, как узнал или должен был узнать о неосновательности обогащения (статья 1104 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "unjust-enrichment-bench-value-compensation",
+        "passed": true,
+        "expected_outcomes": {
+          "value_compensation_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "observed_outcomes": {
+          "value_compensation_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "При невозможности возвратить в натуре неосновательно полученное или сбережённое имущество приобретатель должен возместить потерпевшему действительную стоимость этого имущества на момент его приобретения, а также убытки, вызванные последующим изменением стоимости имущества (статья 1105 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "unjust-enrichment-bench-transferred-right",
+        "passed": true,
+        "expected_outcomes": {
+          "transferred_right_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "observed_outcomes": {
+          "transferred_right_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "Лицо, передавшее путём уступки требования или иным образом принадлежащее ему право другому лицу на основании несуществующего или недействительного обязательства, вправе требовать восстановления прежнего положения, в том числе возвращения ему документов, удостоверяющих переданное право (статья 1106 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "unjust-enrichment-bench-income-and-interest",
+        "passed": true,
+        "expected_outcomes": {
+          "income_and_interest_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "observed_outcomes": {
+          "income_and_interest_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "Приобретатель обязан возвратить или возместить потерпевшему все доходы, которые он извлёк или должен был извлечь из имущества с того времени, когда узнал или должен был узнать о неосновательности обогащения; на сумму неосновательного денежного обогащения подлежат начислению проценты за пользование чужими средствами (статья 1107 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "unjust-enrichment-bench-maintenance-costs",
+        "passed": true,
+        "expected_outcomes": {
+          "maintenance_costs_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "observed_outcomes": {
+          "maintenance_costs_duty_breached": true,
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "При возврате неосновательно полученного или сбережённого имущества приобретатель вправе требовать от потерпевшего возмещения понесённых необходимых затрат на содержание и сохранение имущества с того времени, с которого он обязан возвратить доходы, с зачётом полученных им выгод (статья 1108 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "unjust-enrichment-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "unjust-enrichment-red-qualify-without-enrichment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unjust_enrichment_qualified": true
+        },
+        "observed_outcomes": {
+          "unjust_enrichment_qualified": false
+        },
+        "reasons_ru": [
+          "Неосновательное обогащение не установлено."
+        ]
+      },
+      {
+        "case_id": "unjust-enrichment-red-ignore-restitution",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "restitution_duty_breach_established": false
+        },
+        "observed_outcomes": {
+          "restitution_duty_breach_established": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "Приобретатель обязан возвратить потерпевшему неосновательно приобретённое или сбережённое имущество за исключением случаев, предусмотренных статьёй 1109 ГК РФ (статья 1102 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "unjust-enrichment-red-ignore-irrelevance-of-cause",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "irrelevance_of_cause_duty_breached": false
+        },
+        "observed_outcomes": {
+          "irrelevance_of_cause_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "Правила о неосновательном обогащении применяются независимо от того, явилось ли неосновательное обогащение результатом поведения приобретателя имущества, самого потерпевшего, третьих лиц или произошло помимо их воли (статья 1102 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "unjust-enrichment-red-ignore-subsidiary-application",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "subsidiary_application_duty_breached": false
+        },
+        "observed_outcomes": {
+          "subsidiary_application_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "Правила о неосновательном обогащении подлежат применению также к требованиям о возврате исполненного по недействительной сделке, об истребовании имущества собственником из чужого незаконного владения, одной стороны обязательства к другой о возврате исполненного и о возмещении вреда, если иное не установлено законом и не вытекает из существа отношений (статья 1103 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "unjust-enrichment-red-ignore-return-in-kind",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "return_in_kind_duty_breached": false
+        },
+        "observed_outcomes": {
+          "return_in_kind_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "Имущество, составляющее неосновательное обогащение приобретателя, должно быть возвращено потерпевшему в натуре, а приобретатель отвечает за всякие недостачу или ухудшение такого имущества после того, как узнал или должен был узнать о неосновательности обогащения (статья 1104 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "unjust-enrichment-red-ignore-value-compensation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "value_compensation_duty_breached": false
+        },
+        "observed_outcomes": {
+          "value_compensation_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "При невозможности возвратить в натуре неосновательно полученное или сбережённое имущество приобретатель должен возместить потерпевшему действительную стоимость этого имущества на момент его приобретения, а также убытки, вызванные последующим изменением стоимости имущества (статья 1105 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "unjust-enrichment-red-ignore-transferred-right",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transferred_right_duty_breached": false
+        },
+        "observed_outcomes": {
+          "transferred_right_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "Лицо, передавшее путём уступки требования или иным образом принадлежащее ему право другому лицу на основании несуществующего или недействительного обязательства, вправе требовать восстановления прежнего положения, в том числе возвращения ему документов, удостоверяющих переданное право (статья 1106 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "unjust-enrichment-red-ignore-income-and-interest",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "income_and_interest_duty_breached": false
+        },
+        "observed_outcomes": {
+          "income_and_interest_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "Приобретатель обязан возвратить или возместить потерпевшему все доходы, которые он извлёк или должен был извлечь из имущества с того времени, когда узнал или должен был узнать о неосновательности обогащения; на сумму неосновательного денежного обогащения подлежат начислению проценты за пользование чужими средствами (статья 1107 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "unjust-enrichment-red-non-returnable-without-restitution-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "non_returnable_enrichment_breached": true
+        },
+        "observed_outcomes": {
+          "non_returnable_enrichment_breached": false
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "unjust-enrichment-red-skip-human-on-maintenance-costs",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_unjust_enrichment_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_unjust_enrichment_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено неосновательное обогащение: лицо, которое без установленных законом, иными правовыми актами или сделкой оснований приобрело или сберегло имущество за счёт другого лица, обязано возвратить последнему неосновательно приобретённое или сбережённое имущество (статья 1102 ГК РФ).",
+          "При возврате неосновательно полученного или сбережённого имущества приобретатель вправе требовать от потерпевшего возмещения понесённых необходимых затрат на содержание и сохранение имущества с того времени, с которого он обязан возвратить доходы, с зачётом полученных им выгод (статья 1108 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

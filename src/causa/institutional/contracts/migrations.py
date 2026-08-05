@@ -1613,6 +1613,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.84.0",
+        to_version="0.85.0",
+        reasons=[
+            "Reviewed inputs now require a separate unjust-enrichment evidence contract.",
+            "Analysis and Russian translation distinguish the establishment of unjust enrichment, the duty of restitution, the irrelevance of the cause of the enrichment, the application of the rules to other claims, the return in kind, the compensation of value, the restoration of a transferred right, the return of income and interest, the reimbursement of maintenance costs, and the property not subject to return under articles 1102 to 1109.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о неосновательном обогащении.",
+            "Анализ и русское объяснение разделяют установление неосновательного обогащения, обязанность его возврата, независимость от причин обогащения, применение правил к другим требованиям, возврат в натуре, возмещение стоимости, восстановление переданного права, возврат доходов и уплату процентов, возмещение затрат на содержание имущества и имущество, не подлежащее возврату, по статьям 1102–1109 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_unjust_enrichment_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

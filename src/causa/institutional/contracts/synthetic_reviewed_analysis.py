@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.unjust_enrichment import (
+    ReviewedUnjustEnrichmentEvidence,
+    UnjustEnrichmentEvidenceAssertion,
+    UnjustEnrichmentEvidencePredicate,
+)
 from causa.institutional.contracts.moral_harm import (
     MoralHarmEvidenceAssertion,
     MoralHarmEvidencePredicate,
@@ -577,6 +582,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
+    "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
+    "synthetic-case-supply-1-unjust-enrichment-evidence",
     "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
     "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1",
     "synthetic-case-supply-1-moral-harm-evidence",
@@ -2942,6 +2950,48 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        unjust_enrichment_evidence=ReviewedUnjustEnrichmentEvidence(
+            id="reviewed-unjust-enrichment-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                UnjustEnrichmentEvidenceAssertion(
+                    id=f"unjust-enrichment-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-unjust-enrichment-evidence",),
+                )
+                for predicate, value in (
+                    (UnjustEnrichmentEvidencePredicate.UNJUST_ENRICHMENT_ESTABLISHED, False),
+                    (UnjustEnrichmentEvidencePredicate.RESTITUTION_DUTY_BREACHED, False),
+                    (UnjustEnrichmentEvidencePredicate.IRRELEVANCE_OF_CAUSE_DISREGARDED, False),
+                    (
+                        UnjustEnrichmentEvidencePredicate.SUBSIDIARY_APPLICATION_RULES_BREACHED,
+                        False,
+                    ),
+                    (UnjustEnrichmentEvidencePredicate.RETURN_IN_KIND_RULES_BREACHED, False),
+                    (UnjustEnrichmentEvidencePredicate.VALUE_COMPENSATION_RULES_BREACHED, False),
+                    (
+                        UnjustEnrichmentEvidencePredicate.TRANSFERRED_RIGHT_RESTORATION_BREACHED,
+                        False,
+                    ),
+                    (UnjustEnrichmentEvidencePredicate.INCOME_AND_INTEREST_RULES_BREACHED, False),
+                    (
+                        UnjustEnrichmentEvidencePredicate.MAINTENANCE_COSTS_REIMBURSEMENT_BREACHED,
+                        False,
+                    ),
+                    (
+                        UnjustEnrichmentEvidencePredicate.NON_RETURNABLE_ENRICHMENT_NOT_APPLIED,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
+                "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-unjust-enrichment-reviewer",
         ),
         moral_harm_evidence=ReviewedMoralHarmEvidence(
             id="reviewed-moral-harm-evidence-supply-1-v0",

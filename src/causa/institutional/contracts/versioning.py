@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.85.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed unjust-enrichment evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 1102 to 1109.",
+            "The establishment of unjust enrichment, the duty of restitution, the irrelevance of the cause of the enrichment, the application of the rules to other claims, the return in kind, the compensation of value, the restoration of a transferred right, the return of income and interest, the reimbursement of maintenance costs, and the property not subject to return remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о неосновательном обогащении обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 1102–1109 ГК РФ.",
+            "Установление неосновательного обогащения, обязанность его возврата, независимость от причин обогащения, применение правил к другим требованиям, возврат в натуре, возмещение стоимости, восстановление переданного права, возврат доходов и уплата процентов, возмещение затрат на содержание имущества и имущество, не подлежащее возврату, разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.84.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

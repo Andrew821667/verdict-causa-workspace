@@ -139,6 +139,9 @@ from causa.institutional.contracts.synthetic_tort_general import (
 from causa.institutional.contracts.synthetic_moral_harm import (
     build_synthetic_moral_harm_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_unjust_enrichment import (
+    build_synthetic_unjust_enrichment_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_product_liability import (
     build_synthetic_product_liability_evaluation_artifact,
 )
@@ -1370,6 +1373,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-unjust-enrichment",
+            title="Проверка неосновательного обогащения",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.unjust_enrichment_evidence_mapping.evidence_id,
+                trace.analysis_result.unjust_enrichment_constraint_set.id,
+                *trace.analysis_result.unjust_enrichment_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.unjust_enrichment_evaluation.reasons_ru,
+                "Установление неосновательного обогащения, обязанность его возврата, независимость правил от причин обогащения, их применение к требованиям о возврате исполненного по недействительной сделке и об истребовании имущества, возврат обогащения в натуре, возмещение действительной стоимости, восстановление прежнего положения при неосновательной передаче права, возврат доходов с начислением процентов, возмещение затрат на содержание имущества и перечень имущества, не подлежащего возврату, проверяются раздельно по статьям 1102–1109 ГК РФ.",
+                "Наличие правового основания приобретения имущества, его действительная стоимость и добросовестность приобретателя оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1682,6 +1700,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     negotiorum_gestio_artifact = build_synthetic_negotiorum_gestio_evaluation_artifact()
     commission_artifact = build_synthetic_commission_evaluation_artifact()
     agency_artifact = build_synthetic_agency_evaluation_artifact()
+    unjust_enrichment_artifact = build_synthetic_unjust_enrichment_evaluation_artifact()
     moral_harm_artifact = build_synthetic_moral_harm_evaluation_artifact()
     product_liability_artifact = build_synthetic_product_liability_evaluation_artifact()
     tort_life_health_artifact = build_synthetic_tort_life_health_evaluation_artifact()
@@ -1862,6 +1881,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-commission-spec.md",
                 "src/causa/institutional/contracts/agency.py",
                 "docs/contract-agency-spec.md",
+                "src/causa/institutional/contracts/unjust_enrichment.py",
+                "docs/contract-unjust-enrichment-spec.md",
                 "src/causa/institutional/contracts/moral_harm.py",
                 "docs/contract-moral-harm-spec.md",
                 "src/causa/institutional/contracts/product_liability.py",
@@ -1956,6 +1977,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_unjust_enrichment_evaluation_report.json",
                 "examples/synthetic_moral_harm_evaluation_report.json",
                 "examples/synthetic_product_liability_evaluation_report.json",
                 "examples/synthetic_tort_life_health_evaluation_report.json",
@@ -2164,6 +2186,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 commission_artifact.red_team_report.id,
                 agency_artifact.benchmark_report.id,
                 agency_artifact.red_team_report.id,
+                unjust_enrichment_artifact.benchmark_report.id,
+                unjust_enrichment_artifact.red_team_report.id,
                 moral_harm_artifact.benchmark_report.id,
                 moral_harm_artifact.red_team_report.id,
                 product_liability_artifact.benchmark_report.id,
@@ -2270,6 +2294,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_unjust_enrichment_evaluation_report.json",
                 "examples/synthetic_moral_harm_evaluation_report.json",
                 "examples/synthetic_product_liability_evaluation_report.json",
                 "examples/synthetic_tort_life_health_evaluation_report.json",
