@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о поручении по статьям 971–979 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-mandate-evidence-supply-1-v0",
+    "schema_version": "contracts.mandate-evidence.v0",
+    "mapping_version": "contracts-reviewed-mandate-to-facts-v0",
+    "facts": {
+      "mandate_contract_concluded": false,
+      "mandate_remuneration_rules_breached": false,
+      "mandate_instructions_not_followed": false,
+      "deviation_notice_not_given": false,
+      "attorney_personal_performance_breached": false,
+      "attorney_reporting_duty_breached": false,
+      "principal_duties_breached": false,
+      "mandate_termination_rules_breached": false,
+      "termination_consequences_not_applied": false,
+      "successor_duties_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
+      "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "attorney_personal_performance_breached",
+        "assertion_id": "mandate-evidence-attorney_personal_performance_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-mandate-evidence"
+        ]
+      },
+      {
+        "fact_name": "attorney_reporting_duty_breached",
+        "assertion_id": "mandate-evidence-attorney_reporting_duty_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-mandate-evidence"
+        ]
+      },
+      {
+        "fact_name": "deviation_notice_not_given",
+        "assertion_id": "mandate-evidence-deviation_notice_not_given",
+        "source_refs": [
+          "synthetic-case-supply-1-mandate-evidence"
+        ]
+      },
+      {
+        "fact_name": "mandate_contract_concluded",
+        "assertion_id": "mandate-evidence-mandate_contract_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-mandate-evidence"
+        ]
+      },
+      {
+        "fact_name": "mandate_instructions_not_followed",
+        "assertion_id": "mandate-evidence-mandate_instructions_not_followed",
+        "source_refs": [
+          "synthetic-case-supply-1-mandate-evidence"
+        ]
+      },
+      {
+        "fact_name": "mandate_remuneration_rules_breached",
+        "assertion_id": "mandate-evidence-mandate_remuneration_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-mandate-evidence"
+        ]
+      },
+      {
+        "fact_name": "mandate_termination_rules_breached",
+        "assertion_id": "mandate-evidence-mandate_termination_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-mandate-evidence"
+        ]
+      },
+      {
+        "fact_name": "principal_duties_breached",
+        "assertion_id": "mandate-evidence-principal_duties_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-mandate-evidence"
+        ]
+      },
+      {
+        "fact_name": "successor_duties_breached",
+        "assertion_id": "mandate-evidence-successor_duties_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-mandate-evidence"
+        ]
+      },
+      {
+        "fact_name": "termination_consequences_not_applied",
+        "assertion_id": "mandate-evidence-termination_consequences_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-mandate-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "mandate-constraint-set:reviewed-mandate-evidence-supply-1-v0",
+    "model_version": "contracts-mandate-articles-971-979-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
+      "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1"
+    ],
+    "expressions": [
+      "mandate_qualified == mandate_contract_concluded",
+      "remuneration_duty_breached == mandate_qualified AND mandate_remuneration_rules_breached",
+      "instructions_duty_breached == mandate_qualified AND mandate_instructions_not_followed",
+      "deviation_notice_duty_breached == mandate_qualified AND mandate_instructions_not_followed AND deviation_notice_not_given",
+      "personal_performance_duty_breached == mandate_qualified AND attorney_personal_performance_breached",
+      "reporting_duty_breached == mandate_qualified AND attorney_reporting_duty_breached",
+      "principal_duty_breached == mandate_qualified AND principal_duties_breached",
+      "termination_duty_breached == mandate_qualified AND mandate_termination_rules_breached",
+      "termination_consequences_breached == mandate_qualified AND termination_consequences_not_applied",
+      "successor_duty_breached == mandate_qualified AND successor_duties_breached",
+      "requires_human_mandate_assessment == remuneration_duty_breached OR instructions_duty_breached OR personal_performance_duty_breached OR reporting_duty_breached OR principal_duty_breached OR termination_duty_breached OR termination_consequences_breached OR successor_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "mandate-constraint-set:reviewed-mandate-evidence-supply-1-v0",
+    "satisfiable": true,
+    "mandate_qualified": false,
+    "remuneration_duty_breached": false,
+    "instructions_duty_breached": false,
+    "deviation_notice_duty_breached": false,
+    "personal_performance_duty_breached": false,
+    "reporting_duty_breached": false,
+    "principal_duty_breached": false,
+    "termination_duty_breached": false,
+    "termination_consequences_breached": false,
+    "successor_duty_breached": false,
+    "requires_human_mandate_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор поручения."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о поручении и не заменяет судебную оценку.",
+      "Правомерность и осуществимость указаний доверителя, необходимость отступления от них и соразмерность вознаграждения оцениваются экспертом и судом (статьи 973 и 978 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "mandate-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "mandate-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "mandate_qualified": false
+        },
+        "observed_outcomes": {
+          "mandate_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор поручения."
+        ]
+      },
+      {
+        "task_id": "mandate-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "mandate_qualified": true,
+          "requires_human_mandate_assessment": false
+        },
+        "observed_outcomes": {
+          "mandate_qualified": true,
+          "requires_human_mandate_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "mandate-bench-remuneration",
+        "passed": true,
+        "expected_outcomes": {
+          "remuneration_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "observed_outcomes": {
+          "remuneration_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "Доверитель обязан уплатить поверенному вознаграждение, если это предусмотрено законом, иными правовыми актами или договором; при осуществлении обеими сторонами предпринимательской деятельности договор предполагается возмездным (статья 972 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "mandate-bench-instructions",
+        "passed": true,
+        "expected_outcomes": {
+          "instructions_duty_breached": true,
+          "deviation_notice_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "observed_outcomes": {
+          "instructions_duty_breached": true,
+          "deviation_notice_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "Поверенный обязан исполнять данное ему поручение в соответствии с указаниями доверителя, которые должны быть правомерными, осуществимыми и конкретными (статья 973 ГК РФ).",
+          "Поверенный вправе отступить от указаний доверителя, если это необходимо в интересах доверителя и он не мог предварительно запросить доверителя либо не получил своевременного ответа; о допущенных отступлениях поверенный обязан уведомить доверителя при первой возможности (статья 973 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "mandate-bench-personal-performance",
+        "passed": true,
+        "expected_outcomes": {
+          "personal_performance_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "observed_outcomes": {
+          "personal_performance_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "Поверенный обязан исполнять поручение лично, за исключением случаев передоверия, предусмотренных законом; отвечает за выбор заместителя, если он поименован в договоре (статьи 974 и 976 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "mandate-bench-reporting",
+        "passed": true,
+        "expected_outcomes": {
+          "reporting_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "observed_outcomes": {
+          "reporting_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "Поверенный обязан сообщать доверителю по его требованию все сведения о ходе исполнения поручения, передавать без промедления всё полученное по сделкам и представить отчёт с приложением оправдательных документов (статья 974 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "mandate-bench-principal-duties",
+        "passed": true,
+        "expected_outcomes": {
+          "principal_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "observed_outcomes": {
+          "principal_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "Доверитель обязан выдать поверенному доверенность, возмещать понесённые издержки, обеспечивать средствами, необходимыми для исполнения поручения, и без промедления принять всё исполненное поверенным (статья 975 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "mandate-bench-termination",
+        "passed": true,
+        "expected_outcomes": {
+          "termination_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "observed_outcomes": {
+          "termination_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "Договор поручения прекращается вследствие отмены поручения доверителем, отказа поверенного, смерти или признания недееспособным одной из сторон; соглашение об отказе от этих прав ничтожно (статья 977 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "mandate-bench-termination-consequences",
+        "passed": true,
+        "expected_outcomes": {
+          "termination_consequences_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "observed_outcomes": {
+          "termination_consequences_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "При прекращении договора поручения до полного исполнения доверитель обязан возместить издержки и уплатить вознаграждение соразмерно выполненной работе, а отмена поручения по общему правилу не является основанием для возмещения убытков (статья 978 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "mandate-bench-successor",
+        "passed": true,
+        "expected_outcomes": {
+          "successor_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "observed_outcomes": {
+          "successor_duty_breached": true,
+          "requires_human_mandate_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "В случае смерти поверенного его наследники, а при ликвидации юридического лица — ликвидатор обязаны известить доверителя и принять меры для охраны его имущества (статья 979 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "mandate-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "mandate-red-qualify-without-contract",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "mandate_qualified": true
+        },
+        "observed_outcomes": {
+          "mandate_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор поручения."
+        ]
+      },
+      {
+        "case_id": "mandate-red-ignore-remuneration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "remuneration_duty_breached": false
+        },
+        "observed_outcomes": {
+          "remuneration_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "Доверитель обязан уплатить поверенному вознаграждение, если это предусмотрено законом, иными правовыми актами или договором; при осуществлении обеими сторонами предпринимательской деятельности договор предполагается возмездным (статья 972 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "mandate-red-ignore-instructions",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "instructions_duty_breached": false
+        },
+        "observed_outcomes": {
+          "instructions_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "Поверенный обязан исполнять данное ему поручение в соответствии с указаниями доверителя, которые должны быть правомерными, осуществимыми и конкретными (статья 973 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "mandate-red-notice-without-deviation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "deviation_notice_duty_breached": true
+        },
+        "observed_outcomes": {
+          "deviation_notice_duty_breached": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "mandate-red-ignore-personal-performance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "personal_performance_duty_breached": false
+        },
+        "observed_outcomes": {
+          "personal_performance_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "Поверенный обязан исполнять поручение лично, за исключением случаев передоверия, предусмотренных законом; отвечает за выбор заместителя, если он поименован в договоре (статьи 974 и 976 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "mandate-red-ignore-reporting",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "reporting_duty_breached": false
+        },
+        "observed_outcomes": {
+          "reporting_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "Поверенный обязан сообщать доверителю по его требованию все сведения о ходе исполнения поручения, передавать без промедления всё полученное по сделкам и представить отчёт с приложением оправдательных документов (статья 974 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "mandate-red-ignore-principal-duties",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "principal_duty_breached": false
+        },
+        "observed_outcomes": {
+          "principal_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "Доверитель обязан выдать поверенному доверенность, возмещать понесённые издержки, обеспечивать средствами, необходимыми для исполнения поручения, и без промедления принять всё исполненное поверенным (статья 975 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "mandate-red-ignore-termination",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "termination_duty_breached": false
+        },
+        "observed_outcomes": {
+          "termination_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "Договор поручения прекращается вследствие отмены поручения доверителем, отказа поверенного, смерти или признания недееспособным одной из сторон; соглашение об отказе от этих прав ничтожно (статья 977 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "mandate-red-ignore-termination-consequences",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "termination_consequences_breached": false
+        },
+        "observed_outcomes": {
+          "termination_consequences_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "При прекращении договора поручения до полного исполнения доверитель обязан возместить издержки и уплатить вознаграждение соразмерно выполненной работе, а отмена поручения по общему правилу не является основанием для возмещения убытков (статья 978 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "mandate-red-skip-human-on-successor",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_mandate_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_mandate_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор поручения: поверенный обязуется совершить от имени и за счёт доверителя определённые юридические действия, права и обязанности по которым возникают непосредственно у доверителя (статья 971 ГК РФ).",
+          "В случае смерти поверенного его наследники, а при ликвидации юридического лица — ликвидатор обязаны известить доверителя и принять меры для охраны его имущества (статья 979 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

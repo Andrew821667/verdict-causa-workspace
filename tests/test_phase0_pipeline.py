@@ -74,6 +74,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "evaluate-special-storage",
         "evaluate-insurance",
         "evaluate-insurance-settlement",
+        "evaluate-mandate",
         "evaluate-transaction-invalidity",
         "evaluate-obligation-constraints",
         "evaluate-performance-remedies",

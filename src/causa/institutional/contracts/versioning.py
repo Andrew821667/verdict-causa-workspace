@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.72.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed mandate evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 971 to 979.",
+            "Mandate qualification, remuneration, the principal's instructions, notice of deviation, personal performance, reporting, the principal's duties, termination, its consequences, and the successors' duties remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о поручении обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 971–979 ГК РФ.",
+            "Квалификация поручения, вознаграждение, указания доверителя, уведомление об отступлении, личное исполнение, отчёт поверенного, обязанности доверителя, прекращение договора, его последствия и обязанности правопреемников разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.71.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

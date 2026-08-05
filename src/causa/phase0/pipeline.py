@@ -118,6 +118,9 @@ from causa.institutional.contracts.synthetic_insurance import (
 from causa.institutional.contracts.synthetic_insurance_settlement import (
     build_synthetic_insurance_settlement_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_mandate import (
+    build_synthetic_mandate_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_special_storage import (
     build_synthetic_special_storage_evaluation_artifact,
 )
@@ -1136,6 +1139,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-mandate",
+            title="Проверка поручения",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.mandate_evidence_mapping.evidence_id,
+                trace.analysis_result.mandate_constraint_set.id,
+                *trace.analysis_result.mandate_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.mandate_evaluation.reasons_ru,
+                "Квалификация договора поручения, вознаграждение поверенного, исполнение поручения в соответствии с указаниями доверителя, уведомление о допущенных отступлениях, личное исполнение поручения и передоверие, обязанности поверенного сообщать сведения и представить отчёт, обязанности доверителя, прекращение договора поручения, его последствия и обязанности правопреемников поверенного проверяются раздельно по статьям 971–979 ГК РФ.",
+                "Правомерность и осуществимость указаний доверителя, необходимость отступления от них и соразмерность вознаграждения оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1444,6 +1462,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     special_storage_artifact = build_synthetic_special_storage_evaluation_artifact()
     insurance_artifact = build_synthetic_insurance_evaluation_artifact()
     insurance_settlement_artifact = build_synthetic_insurance_settlement_evaluation_artifact()
+    mandate_artifact = build_synthetic_mandate_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
     security_artifact = build_synthetic_security_evaluation_artifact()
@@ -1607,6 +1626,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-insurance-spec.md",
                 "src/causa/institutional/contracts/insurance_settlement.py",
                 "docs/contract-insurance-settlement-spec.md",
+                "src/causa/institutional/contracts/mandate.py",
+                "docs/contract-mandate-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
                 "docs/contract-invalidity-spec.md",
                 "src/causa/institutional/contracts/security.py",
@@ -1679,6 +1700,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_special_storage_evaluation_report.json",
                 "examples/synthetic_insurance_evaluation_report.json",
                 "examples/synthetic_insurance_settlement_evaluation_report.json",
+                "examples/synthetic_mandate_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",
@@ -1870,6 +1892,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 insurance_artifact.red_team_report.id,
                 insurance_settlement_artifact.benchmark_report.id,
                 insurance_settlement_artifact.red_team_report.id,
+                mandate_artifact.benchmark_report.id,
+                mandate_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
                 invalidity_artifact.red_team_report.id,
                 security_artifact.benchmark_report.id,
@@ -1954,6 +1978,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_special_storage_evaluation_report.json",
                 "examples/synthetic_insurance_evaluation_report.json",
                 "examples/synthetic_insurance_settlement_evaluation_report.json",
+                "examples/synthetic_mandate_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
                 "examples/synthetic_obligation_dynamics_evaluation_report.json",

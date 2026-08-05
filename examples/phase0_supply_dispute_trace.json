@@ -2630,6 +2630,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
+      "title": "Синтетическая проверенная модель договора поручения, вознаграждения поверенного, исполнения поручения по указаниям доверителя, обязанностей сторон и передоверия по статьям 971–976 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: договор поручения как обязанность поверенного совершить от имени и за счёт доверителя определённые юридические действия, возмездность поручения, исполнение поручения в соответствии с правомерными, осуществимыми и конкретными указаниями доверителя, право отступить от указаний в интересах доверителя с последующим уведомлением, личное исполнение поручения и передоверие, обязанности поверенного сообщать сведения, передавать полученное и представить отчёт, а также обязанности доверителя выдать доверенность, возмещать издержки и принять исполненное проверяются раздельно (статьи 971–976 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "mandate_concept_instructions_and_duties_articles_971_976",
+        "legal_reference": "ГК РФ, статьи 971–976",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
+      "title": "Синтетическая проверенная модель прекращения договора поручения, его последствий и обязанностей правопреемников поверенного по статьям 977–979 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: прекращение договора поручения вследствие отмены поручения доверителем, отказа поверенного, смерти или признания недееспособным одной из сторон, ничтожность соглашения об отказе от этих прав, возмещение издержек и уплата вознаграждения соразмерно выполненной работе при прекращении договора до его полного исполнения, а также обязанности наследников поверенного и ликвидатора известить доверителя и принять меры для охраны его имущества проверяются раздельно (статьи 977–979 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "mandate_termination_and_consequences_articles_977_979",
+        "legal_reference": "ГК РФ, статьи 977–979",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-mandate-evidence",
+      "title": "Синтетическая проверенная запись фактов о поручении",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки поручение совершить от имени и за счёт другой стороны юридические действия не давалось; договор поручения между сторонами не заключался.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "mandate_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -8634,6 +8681,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-insurance-settlement-reviewer"
     },
+    "mandate_evidence": {
+      "id": "reviewed-mandate-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.mandate-evidence.v0",
+      "assertions": [
+        {
+          "id": "mandate-evidence-mandate_contract_concluded",
+          "predicate": "mandate_contract_concluded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "id": "mandate-evidence-mandate_remuneration_rules_breached",
+          "predicate": "mandate_remuneration_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "id": "mandate-evidence-mandate_instructions_not_followed",
+          "predicate": "mandate_instructions_not_followed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "id": "mandate-evidence-deviation_notice_not_given",
+          "predicate": "deviation_notice_not_given",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "id": "mandate-evidence-attorney_personal_performance_breached",
+          "predicate": "attorney_personal_performance_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "id": "mandate-evidence-attorney_reporting_duty_breached",
+          "predicate": "attorney_reporting_duty_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "id": "mandate-evidence-principal_duties_breached",
+          "predicate": "principal_duties_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "id": "mandate-evidence-mandate_termination_rules_breached",
+          "predicate": "mandate_termination_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "id": "mandate-evidence-termination_consequences_not_applied",
+          "predicate": "termination_consequences_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "id": "mandate-evidence-successor_duties_breached",
+          "predicate": "successor_duties_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
+        "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-mandate-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -13443,6 +13583,7 @@
       "synthetic-liability-reviewer",
       "synthetic-limitation-reviewer",
       "synthetic-loan-reviewer",
+      "synthetic-mandate-reviewer",
       "synthetic-norm-reviewer",
       "synthetic-obligation-dynamics-reviewer",
       "synthetic-option-reviewer",
@@ -13509,6 +13650,7 @@
       "synthetic-case-supply-1-liability-evidence",
       "synthetic-case-supply-1-limitation-evidence",
       "synthetic-case-supply-1-loan-evidence",
+      "synthetic-case-supply-1-mandate-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
       "synthetic-case-supply-1-option-evidence",
       "synthetic-case-supply-1-paid-services-evidence",
@@ -13674,6 +13816,8 @@
       "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1",
       "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
       "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1",
+      "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
+      "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -21208,6 +21352,142 @@
         "Существенность несообщённых сведений, разумность мер по уменьшению убытков и наличие оснований освобождения страховщика оцениваются экспертом и судом (статьи 944, 962 и 963 ГК РФ)."
       ]
     },
+    "mandate_evidence_mapping": {
+      "evidence_id": "reviewed-mandate-evidence-supply-1-v0",
+      "schema_version": "contracts.mandate-evidence.v0",
+      "mapping_version": "contracts-reviewed-mandate-to-facts-v0",
+      "facts": {
+        "mandate_contract_concluded": false,
+        "mandate_remuneration_rules_breached": false,
+        "mandate_instructions_not_followed": false,
+        "deviation_notice_not_given": false,
+        "attorney_personal_performance_breached": false,
+        "attorney_reporting_duty_breached": false,
+        "principal_duties_breached": false,
+        "mandate_termination_rules_breached": false,
+        "termination_consequences_not_applied": false,
+        "successor_duties_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
+        "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "attorney_personal_performance_breached",
+          "assertion_id": "mandate-evidence-attorney_personal_performance_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "fact_name": "attorney_reporting_duty_breached",
+          "assertion_id": "mandate-evidence-attorney_reporting_duty_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "fact_name": "deviation_notice_not_given",
+          "assertion_id": "mandate-evidence-deviation_notice_not_given",
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "fact_name": "mandate_contract_concluded",
+          "assertion_id": "mandate-evidence-mandate_contract_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "fact_name": "mandate_instructions_not_followed",
+          "assertion_id": "mandate-evidence-mandate_instructions_not_followed",
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "fact_name": "mandate_remuneration_rules_breached",
+          "assertion_id": "mandate-evidence-mandate_remuneration_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "fact_name": "mandate_termination_rules_breached",
+          "assertion_id": "mandate-evidence-mandate_termination_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "fact_name": "principal_duties_breached",
+          "assertion_id": "mandate-evidence-principal_duties_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "fact_name": "successor_duties_breached",
+          "assertion_id": "mandate-evidence-successor_duties_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        },
+        {
+          "fact_name": "termination_consequences_not_applied",
+          "assertion_id": "mandate-evidence-termination_consequences_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-mandate-evidence"
+          ]
+        }
+      ]
+    },
+    "mandate_constraint_set": {
+      "id": "mandate-constraint-set:reviewed-mandate-evidence-supply-1-v0",
+      "model_version": "contracts-mandate-articles-971-979-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
+        "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1"
+      ],
+      "expressions": [
+        "mandate_qualified == mandate_contract_concluded",
+        "remuneration_duty_breached == mandate_qualified AND mandate_remuneration_rules_breached",
+        "instructions_duty_breached == mandate_qualified AND mandate_instructions_not_followed",
+        "deviation_notice_duty_breached == mandate_qualified AND mandate_instructions_not_followed AND deviation_notice_not_given",
+        "personal_performance_duty_breached == mandate_qualified AND attorney_personal_performance_breached",
+        "reporting_duty_breached == mandate_qualified AND attorney_reporting_duty_breached",
+        "principal_duty_breached == mandate_qualified AND principal_duties_breached",
+        "termination_duty_breached == mandate_qualified AND mandate_termination_rules_breached",
+        "termination_consequences_breached == mandate_qualified AND termination_consequences_not_applied",
+        "successor_duty_breached == mandate_qualified AND successor_duties_breached",
+        "requires_human_mandate_assessment == remuneration_duty_breached OR instructions_duty_breached OR personal_performance_duty_breached OR reporting_duty_breached OR principal_duty_breached OR termination_duty_breached OR termination_consequences_breached OR successor_duty_breached"
+      ]
+    },
+    "mandate_evaluation": {
+      "constraint_set_id": "mandate-constraint-set:reviewed-mandate-evidence-supply-1-v0",
+      "satisfiable": true,
+      "mandate_qualified": false,
+      "remuneration_duty_breached": false,
+      "instructions_duty_breached": false,
+      "deviation_notice_duty_breached": false,
+      "personal_performance_duty_breached": false,
+      "reporting_duty_breached": false,
+      "principal_duty_breached": false,
+      "termination_duty_breached": false,
+      "termination_consequences_breached": false,
+      "successor_duty_breached": false,
+      "requires_human_mandate_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор поручения."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о поручении и не заменяет судебную оценку.",
+        "Правомерность и осуществимость указаний доверителя, необходимость отступления от них и соразмерность вознаграждения оцениваются экспертом и судом (статьи 973 и 978 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -26579,7 +26859,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.71.0",
+      "institutional_package_version": "contracts-ru-v0@0.72.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -28609,6 +28889,7 @@
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-loan-evidence",
+          "synthetic-case-supply-1-mandate-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-option-evidence",
           "synthetic-case-supply-1-paid-services-evidence",
@@ -28774,6 +29055,8 @@
           "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1",
           "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
           "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1",
+          "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
+          "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -29815,6 +30098,7 @@
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-loan-evidence",
+          "synthetic-case-supply-1-mandate-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-option-evidence",
           "synthetic-case-supply-1-paid-services-evidence",
@@ -29980,6 +30264,8 @@
           "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1",
           "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
           "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1",
+          "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
+          "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -31021,6 +31307,7 @@
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-loan-evidence",
+          "synthetic-case-supply-1-mandate-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-option-evidence",
           "synthetic-case-supply-1-paid-services-evidence",
@@ -31186,6 +31473,8 @@
           "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1",
           "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
           "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1",
+          "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
+          "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -31275,7 +31564,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.71.0",
+      "institutional_package_version": "contracts-ru-v0@0.72.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -33409,6 +33698,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель договора поручения, вознаграждения поверенного, исполнения поручения по указаниям доверителя, обязанностей сторон и передоверия по статьям 971–976 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "mandate_concept_instructions_and_duties_articles_971_976",
+          "legal_reference": "ГК РФ, статьи 971–976",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель прекращения договора поручения, его последствий и обязанностей правопреемников поверенного по статьям 977–979 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "mandate_termination_and_consequences_articles_977_979",
+          "legal_reference": "ГК РФ, статьи 977–979",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-mandate-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о поручении",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "mandate_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -34050,6 +34377,7 @@
             "synthetic-liability-reviewer",
             "synthetic-limitation-reviewer",
             "synthetic-loan-reviewer",
+            "synthetic-mandate-reviewer",
             "synthetic-norm-reviewer",
             "synthetic-obligation-dynamics-reviewer",
             "synthetic-option-reviewer",

@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.mandate import (
+    MandateEvidenceAssertion,
+    MandateEvidencePredicate,
+    ReviewedMandateEvidence,
+)
 from causa.institutional.contracts.insurance_settlement import (
     InsuranceSettlementEvidenceAssertion,
     InsuranceSettlementEvidencePredicate,
@@ -500,6 +505,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
     "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1",
     "synthetic-case-supply-1-insurance-settlement-evidence",
+    "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
+    "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
+    "synthetic-case-supply-1-mandate-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2706,6 +2714,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-insurance-settlement-reviewer",
+        ),
+        mandate_evidence=ReviewedMandateEvidence(
+            id="reviewed-mandate-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                MandateEvidenceAssertion(
+                    id=f"mandate-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-mandate-evidence",),
+                )
+                for predicate, value in (
+                    (MandateEvidencePredicate.MANDATE_CONTRACT_CONCLUDED, False),
+                    (MandateEvidencePredicate.MANDATE_REMUNERATION_RULES_BREACHED, False),
+                    (MandateEvidencePredicate.MANDATE_INSTRUCTIONS_NOT_FOLLOWED, False),
+                    (MandateEvidencePredicate.DEVIATION_NOTICE_NOT_GIVEN, False),
+                    (MandateEvidencePredicate.ATTORNEY_PERSONAL_PERFORMANCE_BREACHED, False),
+                    (MandateEvidencePredicate.ATTORNEY_REPORTING_DUTY_BREACHED, False),
+                    (MandateEvidencePredicate.PRINCIPAL_DUTIES_BREACHED, False),
+                    (MandateEvidencePredicate.MANDATE_TERMINATION_RULES_BREACHED, False),
+                    (MandateEvidencePredicate.TERMINATION_CONSEQUENCES_NOT_APPLIED, False),
+                    (MandateEvidencePredicate.SUCCESSOR_DUTIES_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
+                "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-mandate-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
