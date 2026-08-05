@@ -1,0 +1,39 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.77.0:to-0.78.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.77.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.77.0",
+  "target_package_version": "0.78.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.77.0",
+      "to_version": "0.78.0",
+      "reasons": [
+        "Reviewed inputs now require a separate partnership evidence contract.",
+        "Analysis and Russian translation distinguish partnership qualification, the parties and the purpose of the joint activity, the contributions and the common property, the conduct of common affairs, the right to information and the sharing of common expenses, the partners' liability, the distribution of profit, the voidness of excluding a partner from profit, termination and withdrawal, and the undisclosed partnership under articles 1041 to 1054."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о простом товариществе.",
+        "Анализ и русское объяснение разделяют квалификацию простого товарищества, стороны и цель совместной деятельности, вклады и общее имущество, ведение общих дел, право на информацию и распределение общих расходов, ответственность товарищей, распределение прибыли, ничтожность отстранения товарища от прибыли, прекращение договора и выход товарища, негласное товарищество по статьям 1041–1054 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_partnership_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

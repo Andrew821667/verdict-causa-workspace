@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.78.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed partnership evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 1041 to 1054.",
+            "Partnership qualification, the parties and the purpose of the joint activity, the contributions and the common property, the conduct of common affairs, the right to information and the sharing of common expenses, the partners' liability, the distribution of profit, the voidness of excluding a partner from profit, termination and withdrawal, and the undisclosed partnership remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о простом товариществе обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 1041–1054 ГК РФ.",
+            "Квалификация простого товарищества, стороны и цель совместной деятельности, вклады и общее имущество, ведение общих дел, право на информацию и распределение общих расходов, ответственность товарищей, распределение прибыли, ничтожность отстранения товарища от прибыли, прекращение договора и выход товарища, негласное товарищество разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.77.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

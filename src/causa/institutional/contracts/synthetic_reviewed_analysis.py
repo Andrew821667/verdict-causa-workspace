@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.partnership import (
+    PartnershipEvidenceAssertion,
+    PartnershipEvidencePredicate,
+    ReviewedPartnershipEvidence,
+)
 from causa.institutional.contracts.franchise import (
     FranchiseEvidenceAssertion,
     FranchiseEvidencePredicate,
@@ -542,6 +547,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk1041-1046-partnership-concept-contributions-and-common-affairs-v1",
+    "synthetic-ru-gk1047-1054-partnership-liability-profit-and-termination-v1",
+    "synthetic-case-supply-1-partnership-evidence",
     "synthetic-ru-gk1027-1029-franchise-concept-form-and-subconcession-v1",
     "synthetic-ru-gk1030-1040-franchise-obligations-restrictions-and-termination-v1",
     "synthetic-case-supply-1-franchise-evidence",
@@ -2886,6 +2894,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        partnership_evidence=ReviewedPartnershipEvidence(
+            id="reviewed-partnership-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                PartnershipEvidenceAssertion(
+                    id=f"partnership-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-partnership-evidence",),
+                )
+                for predicate, value in (
+                    (PartnershipEvidencePredicate.PARTNERSHIP_CONTRACT_CONCLUDED, False),
+                    (PartnershipEvidencePredicate.PARTNERSHIP_PARTIES_OR_PURPOSE_BREACHED, False),
+                    (
+                        PartnershipEvidencePredicate.CONTRIBUTIONS_OR_COMMON_PROPERTY_BREACHED,
+                        False,
+                    ),
+                    (PartnershipEvidencePredicate.COMMON_AFFAIRS_CONDUCT_BREACHED, False),
+                    (PartnershipEvidencePredicate.INFORMATION_OR_EXPENSE_SHARING_BREACHED, False),
+                    (PartnershipEvidencePredicate.PARTNERS_LIABILITY_RULES_BREACHED, False),
+                    (PartnershipEvidencePredicate.PROFIT_DISTRIBUTION_RULES_BREACHED, False),
+                    (PartnershipEvidencePredicate.PROFIT_EXCLUSION_VOID_NOT_APPLIED, False),
+                    (
+                        PartnershipEvidencePredicate.TERMINATION_OR_WITHDRAWAL_RULES_BREACHED,
+                        False,
+                    ),
+                    (PartnershipEvidencePredicate.UNDISCLOSED_PARTNERSHIP_RULES_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1041-1046-partnership-concept-contributions-and-common-affairs-v1",
+                "synthetic-ru-gk1047-1054-partnership-liability-profit-and-termination-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-partnership-reviewer",
         ),
         franchise_evidence=ReviewedFranchiseEvidence(
             id="reviewed-franchise-evidence-supply-1-v0",

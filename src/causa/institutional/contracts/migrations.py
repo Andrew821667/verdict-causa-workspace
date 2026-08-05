@@ -1480,6 +1480,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.77.0",
+        to_version="0.78.0",
+        reasons=[
+            "Reviewed inputs now require a separate partnership evidence contract.",
+            "Analysis and Russian translation distinguish partnership qualification, the parties and the purpose of the joint activity, the contributions and the common property, the conduct of common affairs, the right to information and the sharing of common expenses, the partners' liability, the distribution of profit, the voidness of excluding a partner from profit, termination and withdrawal, and the undisclosed partnership under articles 1041 to 1054.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о простом товариществе.",
+            "Анализ и русское объяснение разделяют квалификацию простого товарищества, стороны и цель совместной деятельности, вклады и общее имущество, ведение общих дел, право на информацию и распределение общих расходов, ответственность товарищей, распределение прибыли, ничтожность отстранения товарища от прибыли, прекращение договора и выход товарища, негласное товарищество по статьям 1041–1054 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_partnership_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

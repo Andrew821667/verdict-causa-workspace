@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.78.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью простого товарищества |
 | `0.77.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью коммерческой концессии |
 | `0.76.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью доверительного управления имуществом |
 | `0.75.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью агентирования |
@@ -85,6 +86,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.77.0` → `0.78.0` соберите отдельно проверенный контракт данных о простом товариществе (`contracts.partnership-evidence.v0`). Не выводите квалификацию простого товарищества, состав сторон и цель совместной деятельности, вклады и общее имущество, ведение общих дел, ответственность товарищей, распределение прибыли и прекращение договора из прежних результатов о коммерческой концессии, агентировании или доверительном управлении. Пересоберите артефакты оценки простого товарищества, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.76.0` → `0.77.0` соберите отдельно проверенный контракт данных о коммерческой концессии (`contracts.franchise-evidence.v0`). Не выводите квалификацию коммерческой концессии, объём предоставленных прав, форму и государственную регистрацию, субконцессию, вознаграждение, обязанности сторон, ограничения их прав и прекращение договора из прежних результатов об агентировании, комиссии или доверительном управлении. Пересоберите артефакты оценки коммерческой концессии, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

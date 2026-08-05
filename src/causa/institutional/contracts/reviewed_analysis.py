@@ -534,6 +534,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.partnership import (
+    PARTNERSHIP_EVIDENCE_SCHEMA_VERSION,
+    PartnershipConstraintSet,
+    PartnershipEvaluation,
+    PartnershipEvidenceMappingResult,
+    ReviewedPartnershipEvidence,
+    build_partnership_constraint_set,
+    evaluate_partnership_constraints,
+    map_reviewed_partnership_evidence,
+)
 from causa.institutional.contracts.franchise import (
     FRANCHISE_EVIDENCE_SCHEMA_VERSION,
     FranchiseConstraintSet,
@@ -865,6 +875,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     negotiorum_gestio_evidence: ReviewedNegotiorumGestioEvidence
     commission_evidence: ReviewedCommissionEvidence
     agency_evidence: ReviewedAgencyEvidence
+    partnership_evidence: ReviewedPartnershipEvidence
     franchise_evidence: ReviewedFranchiseEvidence
     trust_management_evidence: ReviewedTrustManagementEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
@@ -1080,6 +1091,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     agency_evidence_mapping: AgencyEvidenceMappingResult
     agency_constraint_set: AgencyConstraintSet
     agency_evaluation: AgencyEvaluation
+    partnership_evidence_mapping: PartnershipEvidenceMappingResult
+    partnership_constraint_set: PartnershipConstraintSet
+    partnership_evaluation: PartnershipEvaluation
     franchise_evidence_mapping: FranchiseEvidenceMappingResult
     franchise_constraint_set: FranchiseConstraintSet
     franchise_evaluation: FranchiseEvaluation
@@ -1755,6 +1769,17 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.agency_evaluation != expected_agency_evaluation:
             raise ValueError("Agency evaluation does not replay from reviewed evidence.")
+        expected_partnership_set = build_partnership_constraint_set(
+            self.partnership_evidence_mapping
+        )
+        if self.partnership_constraint_set != expected_partnership_set:
+            raise ValueError("Partnership constraint set does not replay from reviewed evidence.")
+        expected_partnership_evaluation = evaluate_partnership_constraints(
+            expected_partnership_set,
+            self.partnership_evidence_mapping.facts,
+        )
+        if self.partnership_evaluation != expected_partnership_evaluation:
+            raise ValueError("Partnership evaluation does not replay from reviewed evidence.")
         expected_franchise_set = build_franchise_constraint_set(self.franchise_evidence_mapping)
         if self.franchise_constraint_set != expected_franchise_set:
             raise ValueError("Franchise constraint set does not replay from reviewed evidence.")
@@ -2215,6 +2240,8 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence case_id does not match the analysis request.")
     if request.agency_evidence.case_id != request.case_id:
         raise ValueError("Agency evidence case_id does not match the analysis request.")
+    if request.partnership_evidence.case_id != request.case_id:
+        raise ValueError("Partnership evidence case_id does not match the analysis request.")
     if request.franchise_evidence.case_id != request.case_id:
         raise ValueError("Franchise evidence case_id does not match the analysis request.")
     if request.trust_management_evidence.case_id != request.case_id:
@@ -2404,6 +2431,8 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence uses an unsupported schema version.")
     if request.agency_evidence.schema_version != AGENCY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Agency evidence uses an unsupported schema version.")
+    if request.partnership_evidence.schema_version != PARTNERSHIP_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Partnership evidence uses an unsupported schema version.")
     if request.franchise_evidence.schema_version != FRANCHISE_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Franchise evidence uses an unsupported schema version.")
     if request.trust_management_evidence.schema_version != TRUST_MANAGEMENT_EVIDENCE_SCHEMA_VERSION:
@@ -2473,6 +2502,7 @@ def _validate_request_integrity(
         *request.negotiorum_gestio_evidence.legal_source_refs,
         *request.commission_evidence.legal_source_refs,
         *request.agency_evidence.legal_source_refs,
+        *request.partnership_evidence.legal_source_refs,
         *request.franchise_evidence.legal_source_refs,
         *request.trust_management_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
@@ -2601,6 +2631,8 @@ def _validate_request_integrity(
     for assertion in request.commission_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.agency_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.partnership_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.franchise_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -3275,6 +3307,17 @@ def _validate_request_integrity(
             "Agency legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_agency_legal_sources))
         )
+    invalid_partnership_legal_sources = [
+        source_id
+        for source_id in request.partnership_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_partnership_legal_sources:
+        raise ValueError(
+            "Partnership legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_partnership_legal_sources))
+        )
     invalid_franchise_legal_sources = [
         source_id
         for source_id in request.franchise_evidence.legal_source_refs
@@ -3768,6 +3811,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Agency evidence",
         review_status=request.agency_evidence.review_status,
         reviewer_id=request.agency_evidence.reviewer_id,
+    )
+    partnership_reviewer_id = _require_reviewed(
+        artifact_name="Partnership evidence",
+        review_status=request.partnership_evidence.review_status,
+        reviewer_id=request.partnership_evidence.reviewer_id,
     )
     franchise_reviewer_id = _require_reviewed(
         artifact_name="Franchise evidence",
@@ -4311,6 +4359,12 @@ def run_reviewed_contract_analysis(
         agency_constraint_set,
         agency_evidence_mapping.facts,
     )
+    partnership_evidence_mapping = map_reviewed_partnership_evidence(request.partnership_evidence)
+    partnership_constraint_set = build_partnership_constraint_set(partnership_evidence_mapping)
+    partnership_evaluation = evaluate_partnership_constraints(
+        partnership_constraint_set,
+        partnership_evidence_mapping.facts,
+    )
     franchise_evidence_mapping = map_reviewed_franchise_evidence(request.franchise_evidence)
     franchise_constraint_set = build_franchise_constraint_set(franchise_evidence_mapping)
     franchise_evaluation = evaluate_franchise_constraints(
@@ -4608,6 +4662,7 @@ def run_reviewed_contract_analysis(
         or negotiorum_gestio_evaluation.requires_human_negotiorum_gestio_assessment
         or commission_evaluation.requires_human_commission_assessment
         or agency_evaluation.requires_human_agency_assessment
+        or partnership_evaluation.requires_human_partnership_assessment
         or franchise_evaluation.requires_human_franchise_assessment
         or trust_management_evaluation.requires_human_trust_management_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
@@ -4687,6 +4742,7 @@ def run_reviewed_contract_analysis(
                 negotiorum_gestio_reviewer_id,
                 commission_reviewer_id,
                 agency_reviewer_id,
+                partnership_reviewer_id,
                 franchise_reviewer_id,
                 trust_management_reviewer_id,
                 invalidity_reviewer_id,
@@ -4878,6 +4934,9 @@ def run_reviewed_contract_analysis(
         agency_evidence_mapping=agency_evidence_mapping,
         agency_constraint_set=agency_constraint_set,
         agency_evaluation=agency_evaluation,
+        partnership_evidence_mapping=partnership_evidence_mapping,
+        partnership_constraint_set=partnership_constraint_set,
+        partnership_evaluation=partnership_evaluation,
         franchise_evidence_mapping=franchise_evidence_mapping,
         franchise_constraint_set=franchise_constraint_set,
         franchise_evaluation=franchise_evaluation,

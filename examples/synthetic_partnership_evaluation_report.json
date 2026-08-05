@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о простом товариществе по статьям 1041–1054 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-partnership-evidence-supply-1-v0",
+    "schema_version": "contracts.partnership-evidence.v0",
+    "mapping_version": "contracts-reviewed-partnership-to-facts-v0",
+    "facts": {
+      "partnership_contract_concluded": false,
+      "partnership_parties_or_purpose_breached": false,
+      "contributions_or_common_property_breached": false,
+      "common_affairs_conduct_breached": false,
+      "information_or_expense_sharing_breached": false,
+      "partners_liability_rules_breached": false,
+      "profit_distribution_rules_breached": false,
+      "profit_exclusion_void_not_applied": false,
+      "termination_or_withdrawal_rules_breached": false,
+      "undisclosed_partnership_rules_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1041-1046-partnership-concept-contributions-and-common-affairs-v1",
+      "synthetic-ru-gk1047-1054-partnership-liability-profit-and-termination-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "common_affairs_conduct_breached",
+        "assertion_id": "partnership-evidence-common_affairs_conduct_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-partnership-evidence"
+        ]
+      },
+      {
+        "fact_name": "contributions_or_common_property_breached",
+        "assertion_id": "partnership-evidence-contributions_or_common_property_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-partnership-evidence"
+        ]
+      },
+      {
+        "fact_name": "information_or_expense_sharing_breached",
+        "assertion_id": "partnership-evidence-information_or_expense_sharing_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-partnership-evidence"
+        ]
+      },
+      {
+        "fact_name": "partners_liability_rules_breached",
+        "assertion_id": "partnership-evidence-partners_liability_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-partnership-evidence"
+        ]
+      },
+      {
+        "fact_name": "partnership_contract_concluded",
+        "assertion_id": "partnership-evidence-partnership_contract_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-partnership-evidence"
+        ]
+      },
+      {
+        "fact_name": "partnership_parties_or_purpose_breached",
+        "assertion_id": "partnership-evidence-partnership_parties_or_purpose_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-partnership-evidence"
+        ]
+      },
+      {
+        "fact_name": "profit_distribution_rules_breached",
+        "assertion_id": "partnership-evidence-profit_distribution_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-partnership-evidence"
+        ]
+      },
+      {
+        "fact_name": "profit_exclusion_void_not_applied",
+        "assertion_id": "partnership-evidence-profit_exclusion_void_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-partnership-evidence"
+        ]
+      },
+      {
+        "fact_name": "termination_or_withdrawal_rules_breached",
+        "assertion_id": "partnership-evidence-termination_or_withdrawal_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-partnership-evidence"
+        ]
+      },
+      {
+        "fact_name": "undisclosed_partnership_rules_breached",
+        "assertion_id": "partnership-evidence-undisclosed_partnership_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-partnership-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "partnership-constraint-set:reviewed-partnership-evidence-supply-1-v0",
+    "model_version": "contracts-partnership-articles-1041-1054-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1041-1046-partnership-concept-contributions-and-common-affairs-v1",
+      "synthetic-ru-gk1047-1054-partnership-liability-profit-and-termination-v1"
+    ],
+    "expressions": [
+      "partnership_qualified == partnership_contract_concluded",
+      "parties_and_purpose_duty_breached == partnership_qualified AND partnership_parties_or_purpose_breached",
+      "contributions_and_common_property_duty_breached == partnership_qualified AND contributions_or_common_property_breached",
+      "common_affairs_duty_breached == partnership_qualified AND common_affairs_conduct_breached",
+      "information_and_expenses_duty_breached == partnership_qualified AND information_or_expense_sharing_breached",
+      "partners_liability_duty_breached == partnership_qualified AND partners_liability_rules_breached",
+      "profit_distribution_duty_breached == partnership_qualified AND profit_distribution_rules_breached",
+      "profit_exclusion_void_breached == partnership_qualified AND profit_distribution_rules_breached AND profit_exclusion_void_not_applied",
+      "termination_and_withdrawal_duty_breached == partnership_qualified AND termination_or_withdrawal_rules_breached",
+      "undisclosed_partnership_duty_breached == partnership_qualified AND undisclosed_partnership_rules_breached",
+      "requires_human_partnership_assessment == parties_and_purpose_duty_breached OR contributions_and_common_property_duty_breached OR common_affairs_duty_breached OR information_and_expenses_duty_breached OR partners_liability_duty_breached OR profit_distribution_duty_breached OR termination_and_withdrawal_duty_breached OR undisclosed_partnership_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "partnership-constraint-set:reviewed-partnership-evidence-supply-1-v0",
+    "satisfiable": true,
+    "partnership_qualified": false,
+    "parties_and_purpose_duty_breached": false,
+    "contributions_and_common_property_duty_breached": false,
+    "common_affairs_duty_breached": false,
+    "information_and_expenses_duty_breached": false,
+    "partners_liability_duty_breached": false,
+    "profit_distribution_duty_breached": false,
+    "profit_exclusion_void_breached": false,
+    "termination_and_withdrawal_duty_breached": false,
+    "undisclosed_partnership_duty_breached": false,
+    "requires_human_partnership_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор простого товарищества."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о простом товариществе и не заменяет судебную оценку.",
+      "Стоимость вкладов товарищей, содержание общей цели и добросовестность ведения общих дел оцениваются экспертом и судом (статьи 1042, 1044 и 1048 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "partnership-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "partnership-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "partnership_qualified": false
+        },
+        "observed_outcomes": {
+          "partnership_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор простого товарищества."
+        ]
+      },
+      {
+        "task_id": "partnership-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "partnership_qualified": true,
+          "requires_human_partnership_assessment": false
+        },
+        "observed_outcomes": {
+          "partnership_qualified": true,
+          "requires_human_partnership_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "partnership-bench-parties-and-purpose",
+        "passed": true,
+        "expected_outcomes": {
+          "parties_and_purpose_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "observed_outcomes": {
+          "parties_and_purpose_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Сторонами договора простого товарищества, заключаемого для осуществления предпринимательской деятельности, могут быть только индивидуальные предприниматели и коммерческие организации, а цель совместной деятельности не должна противоречить закону (статья 1041 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "partnership-bench-contributions",
+        "passed": true,
+        "expected_outcomes": {
+          "contributions_and_common_property_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "observed_outcomes": {
+          "contributions_and_common_property_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Вкладом товарища признаётся всё, что он вносит в общее дело, включая деньги, иное имущество, профессиональные и иные знания, навыки, умения, деловую репутацию и деловые связи; внесённое имущество и полученные доходы по общему правилу признаются общей долевой собственностью товарищей (статьи 1042 и 1043 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "partnership-bench-common-affairs",
+        "passed": true,
+        "expected_outcomes": {
+          "common_affairs_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "observed_outcomes": {
+          "common_affairs_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Ведение общих дел товарищей осуществляется по общему правилу каждым товарищем от имени всех либо специально уполномоченным товарищем; полномочие подтверждается доверенностью или письменным договором, а ограничения прав товарища на ведение общих дел не могут противопоставляться третьим лицам, не знавшим о них (статья 1044 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "partnership-bench-information-and-expenses",
+        "passed": true,
+        "expected_outcomes": {
+          "information_and_expenses_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "observed_outcomes": {
+          "information_and_expenses_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Каждый товарищ независимо от того, уполномочен ли он вести общие дела, вправе знакомиться со всей документацией по ведению дел, и отказ от этого права или его ограничение, в том числе по соглашению товарищей, ничтожны; общие расходы и убытки покрываются в порядке, определённом соглашением, а при его отсутствии — соразмерно стоимости вклада (статьи 1045 и 1046 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "partnership-bench-liability",
+        "passed": true,
+        "expected_outcomes": {
+          "partners_liability_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "observed_outcomes": {
+          "partners_liability_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "По общим договорным обязательствам, не связанным с предпринимательской деятельностью, товарищи отвечают всем своим имуществом пропорционально стоимости вклада в общее дело, а по договору, заключённому для осуществления предпринимательской деятельности, товарищи отвечают солидарно по всем общим обязательствам (статья 1047 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "partnership-bench-profit-distribution",
+        "passed": true,
+        "expected_outcomes": {
+          "profit_distribution_duty_breached": true,
+          "profit_exclusion_void_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "observed_outcomes": {
+          "profit_distribution_duty_breached": true,
+          "profit_exclusion_void_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Прибыль, полученная товарищами в результате совместной деятельности, распределяется пропорционально стоимости вкладов в общее дело, если иное не предусмотрено договором простого товарищества или иным соглашением товарищей (статья 1048 ГК РФ).",
+          "Соглашение об устранении кого-либо из товарищей от участия в прибыли ничтожно (статья 1048 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "partnership-bench-termination",
+        "passed": true,
+        "expected_outcomes": {
+          "termination_and_withdrawal_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "observed_outcomes": {
+          "termination_and_withdrawal_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Выдел доли товарища по требованию его кредитора, основания прекращения договора простого товарищества, отказ от бессрочного договора, расторжение договора по требованию стороны и ответственность товарища, в отношении которого договор расторгнут, подчиняются правилам статей 1049–1053 ГК РФ."
+        ]
+      },
+      {
+        "task_id": "partnership-bench-undisclosed",
+        "passed": true,
+        "expected_outcomes": {
+          "undisclosed_partnership_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "observed_outcomes": {
+          "undisclosed_partnership_duty_breached": true,
+          "requires_human_partnership_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Договором простого товарищества может быть предусмотрено, что его существование не раскрывается для третьих лиц (негласное товарищество); в отношениях с третьими лицами каждый из участников отвечает всем своим имуществом по сделкам, которые он заключил от своего имени в общих интересах товарищей (статья 1054 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "partnership-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "partnership-red-qualify-without-contract",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "partnership_qualified": true
+        },
+        "observed_outcomes": {
+          "partnership_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор простого товарищества."
+        ]
+      },
+      {
+        "case_id": "partnership-red-ignore-parties-and-purpose",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "parties_and_purpose_duty_breached": false
+        },
+        "observed_outcomes": {
+          "parties_and_purpose_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Сторонами договора простого товарищества, заключаемого для осуществления предпринимательской деятельности, могут быть только индивидуальные предприниматели и коммерческие организации, а цель совместной деятельности не должна противоречить закону (статья 1041 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "partnership-red-ignore-contributions",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contributions_and_common_property_duty_breached": false
+        },
+        "observed_outcomes": {
+          "contributions_and_common_property_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Вкладом товарища признаётся всё, что он вносит в общее дело, включая деньги, иное имущество, профессиональные и иные знания, навыки, умения, деловую репутацию и деловые связи; внесённое имущество и полученные доходы по общему правилу признаются общей долевой собственностью товарищей (статьи 1042 и 1043 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "partnership-red-ignore-common-affairs",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "common_affairs_duty_breached": false
+        },
+        "observed_outcomes": {
+          "common_affairs_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Ведение общих дел товарищей осуществляется по общему правилу каждым товарищем от имени всех либо специально уполномоченным товарищем; полномочие подтверждается доверенностью или письменным договором, а ограничения прав товарища на ведение общих дел не могут противопоставляться третьим лицам, не знавшим о них (статья 1044 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "partnership-red-ignore-information-right",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "information_and_expenses_duty_breached": false
+        },
+        "observed_outcomes": {
+          "information_and_expenses_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Каждый товарищ независимо от того, уполномочен ли он вести общие дела, вправе знакомиться со всей документацией по ведению дел, и отказ от этого права или его ограничение, в том числе по соглашению товарищей, ничтожны; общие расходы и убытки покрываются в порядке, определённом соглашением, а при его отсутствии — соразмерно стоимости вклада (статьи 1045 и 1046 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "partnership-red-ignore-liability",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "partners_liability_duty_breached": false
+        },
+        "observed_outcomes": {
+          "partners_liability_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "По общим договорным обязательствам, не связанным с предпринимательской деятельностью, товарищи отвечают всем своим имуществом пропорционально стоимости вклада в общее дело, а по договору, заключённому для осуществления предпринимательской деятельности, товарищи отвечают солидарно по всем общим обязательствам (статья 1047 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "partnership-red-ignore-profit-distribution",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "profit_distribution_duty_breached": false
+        },
+        "observed_outcomes": {
+          "profit_distribution_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Прибыль, полученная товарищами в результате совместной деятельности, распределяется пропорционально стоимости вкладов в общее дело, если иное не предусмотрено договором простого товарищества или иным соглашением товарищей (статья 1048 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "partnership-red-void-exclusion-without-profit-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "profit_exclusion_void_breached": true
+        },
+        "observed_outcomes": {
+          "profit_exclusion_void_breached": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "partnership-red-ignore-termination",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "termination_and_withdrawal_duty_breached": false
+        },
+        "observed_outcomes": {
+          "termination_and_withdrawal_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Выдел доли товарища по требованию его кредитора, основания прекращения договора простого товарищества, отказ от бессрочного договора, расторжение договора по требованию стороны и ответственность товарища, в отношении которого договор расторгнут, подчиняются правилам статей 1049–1053 ГК РФ."
+        ]
+      },
+      {
+        "case_id": "partnership-red-skip-human-on-undisclosed",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_partnership_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_partnership_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор простого товарищества (о совместной деятельности): двое или несколько лиц обязуются соединить свои вклады и совместно действовать без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели (статья 1041 ГК РФ).",
+          "Договором простого товарищества может быть предусмотрено, что его существование не раскрывается для третьих лиц (негласное товарищество); в отношениях с третьими лицами каждый из участников отвечает всем своим имуществом по сделкам, которые он заключил от своего имени в общих интересах товарищей (статья 1054 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

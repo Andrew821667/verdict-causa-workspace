@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk1041-1046-partnership-concept-contributions-and-common-affairs-v1",
+      "title": "Синтетическая проверенная модель договора простого товарищества, вкладов товарищей, общего имущества, ведения общих дел, права на информацию и общих расходов по статьям 1041–1046 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: договор простого товарищества как соединение вкладов и совместная деятельность без образования юридического лица для извлечения прибыли или достижения иной не противоречащей закону цели, требования к сторонам договора при предпринимательской цели, состав вкладов товарищей и режим общего имущества, порядок ведения общих дел и противопоставимость ограничений полномочий третьим лицам, право каждого товарища знакомиться с документацией и порядок покрытия общих расходов и убытков проверяются раздельно (статьи 1041–1046 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "partnership_concept_contributions_and_common_affairs_articles_1041_1046",
+        "legal_reference": "ГК РФ, статьи 1041–1046",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk1047-1054-partnership-liability-profit-and-termination-v1",
+      "title": "Синтетическая проверенная модель ответственности товарищей, распределения прибыли, выдела доли, прекращения договора и негласного товарищества по статьям 1047–1054 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: долевая и солидарная ответственность товарищей по общим обязательствам, распределение прибыли пропорционально вкладам и ничтожность соглашения об устранении товарища от участия в прибыли, выдел доли товарища по требованию кредитора, основания прекращения договора, отказ от бессрочного договора и расторжение договора по требованию стороны, а также правила о негласном товариществе проверяются раздельно (статьи 1047–1054 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "partnership_liability_profit_and_termination_articles_1047_1054",
+        "legal_reference": "ГК РФ, статьи 1047–1054",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-partnership-evidence",
+      "title": "Синтетическая проверенная запись фактов о простом товариществе",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки вклады в общее дело не соединялись; договор простого товарищества между сторонами не заключался.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "partnership_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk1027-1029-franchise-concept-form-and-subconcession-v1",
       "title": "Синтетическая проверенная модель договора коммерческой концессии, его формы, государственной регистрации предоставления права и коммерческой субконцессии по статьям 1027–1029 ГК РФ",
       "source_type": "statute",
@@ -9288,6 +9335,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "partnership_evidence": {
+      "id": "reviewed-partnership-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.partnership-evidence.v0",
+      "assertions": [
+        {
+          "id": "partnership-evidence-partnership_contract_concluded",
+          "predicate": "partnership_contract_concluded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "id": "partnership-evidence-partnership_parties_or_purpose_breached",
+          "predicate": "partnership_parties_or_purpose_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "id": "partnership-evidence-contributions_or_common_property_breached",
+          "predicate": "contributions_or_common_property_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "id": "partnership-evidence-common_affairs_conduct_breached",
+          "predicate": "common_affairs_conduct_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "id": "partnership-evidence-information_or_expense_sharing_breached",
+          "predicate": "information_or_expense_sharing_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "id": "partnership-evidence-partners_liability_rules_breached",
+          "predicate": "partners_liability_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "id": "partnership-evidence-profit_distribution_rules_breached",
+          "predicate": "profit_distribution_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "id": "partnership-evidence-profit_exclusion_void_not_applied",
+          "predicate": "profit_exclusion_void_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "id": "partnership-evidence-termination_or_withdrawal_rules_breached",
+          "predicate": "termination_or_withdrawal_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "id": "partnership-evidence-undisclosed_partnership_rules_breached",
+          "predicate": "undisclosed_partnership_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk1041-1046-partnership-concept-contributions-and-common-affairs-v1",
+        "synthetic-ru-gk1047-1054-partnership-liability-profit-and-termination-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-partnership-reviewer"
+    },
     "franchise_evidence": {
       "id": "reviewed-franchise-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -14292,6 +14432,7 @@
       "synthetic-obligation-dynamics-reviewer",
       "synthetic-option-reviewer",
       "synthetic-paid-services-reviewer",
+      "synthetic-partnership-reviewer",
       "synthetic-performance-remedies-reviewer",
       "synthetic-precontractual-reviewer",
       "synthetic-preliminary-reviewer",
@@ -14363,6 +14504,7 @@
       "synthetic-case-supply-1-obligation-dynamics-evidence",
       "synthetic-case-supply-1-option-evidence",
       "synthetic-case-supply-1-paid-services-evidence",
+      "synthetic-case-supply-1-partnership-evidence",
       "synthetic-case-supply-1-performance-remedies-evidence",
       "synthetic-case-supply-1-precontractual-evidence",
       "synthetic-case-supply-1-preliminary-evidence",
@@ -14398,6 +14540,8 @@
       "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1",
       "synthetic-ru-gk1027-1029-franchise-concept-form-and-subconcession-v1",
       "synthetic-ru-gk1030-1040-franchise-obligations-restrictions-and-termination-v1",
+      "synthetic-ru-gk1041-1046-partnership-concept-contributions-and-common-affairs-v1",
+      "synthetic-ru-gk1047-1054-partnership-liability-profit-and-termination-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -22616,6 +22760,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "partnership_evidence_mapping": {
+      "evidence_id": "reviewed-partnership-evidence-supply-1-v0",
+      "schema_version": "contracts.partnership-evidence.v0",
+      "mapping_version": "contracts-reviewed-partnership-to-facts-v0",
+      "facts": {
+        "partnership_contract_concluded": false,
+        "partnership_parties_or_purpose_breached": false,
+        "contributions_or_common_property_breached": false,
+        "common_affairs_conduct_breached": false,
+        "information_or_expense_sharing_breached": false,
+        "partners_liability_rules_breached": false,
+        "profit_distribution_rules_breached": false,
+        "profit_exclusion_void_not_applied": false,
+        "termination_or_withdrawal_rules_breached": false,
+        "undisclosed_partnership_rules_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk1041-1046-partnership-concept-contributions-and-common-affairs-v1",
+        "synthetic-ru-gk1047-1054-partnership-liability-profit-and-termination-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "common_affairs_conduct_breached",
+          "assertion_id": "partnership-evidence-common_affairs_conduct_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "fact_name": "contributions_or_common_property_breached",
+          "assertion_id": "partnership-evidence-contributions_or_common_property_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "fact_name": "information_or_expense_sharing_breached",
+          "assertion_id": "partnership-evidence-information_or_expense_sharing_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "fact_name": "partners_liability_rules_breached",
+          "assertion_id": "partnership-evidence-partners_liability_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "fact_name": "partnership_contract_concluded",
+          "assertion_id": "partnership-evidence-partnership_contract_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "fact_name": "partnership_parties_or_purpose_breached",
+          "assertion_id": "partnership-evidence-partnership_parties_or_purpose_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "fact_name": "profit_distribution_rules_breached",
+          "assertion_id": "partnership-evidence-profit_distribution_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "fact_name": "profit_exclusion_void_not_applied",
+          "assertion_id": "partnership-evidence-profit_exclusion_void_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "fact_name": "termination_or_withdrawal_rules_breached",
+          "assertion_id": "partnership-evidence-termination_or_withdrawal_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        },
+        {
+          "fact_name": "undisclosed_partnership_rules_breached",
+          "assertion_id": "partnership-evidence-undisclosed_partnership_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-partnership-evidence"
+          ]
+        }
+      ]
+    },
+    "partnership_constraint_set": {
+      "id": "partnership-constraint-set:reviewed-partnership-evidence-supply-1-v0",
+      "model_version": "contracts-partnership-articles-1041-1054-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk1041-1046-partnership-concept-contributions-and-common-affairs-v1",
+        "synthetic-ru-gk1047-1054-partnership-liability-profit-and-termination-v1"
+      ],
+      "expressions": [
+        "partnership_qualified == partnership_contract_concluded",
+        "parties_and_purpose_duty_breached == partnership_qualified AND partnership_parties_or_purpose_breached",
+        "contributions_and_common_property_duty_breached == partnership_qualified AND contributions_or_common_property_breached",
+        "common_affairs_duty_breached == partnership_qualified AND common_affairs_conduct_breached",
+        "information_and_expenses_duty_breached == partnership_qualified AND information_or_expense_sharing_breached",
+        "partners_liability_duty_breached == partnership_qualified AND partners_liability_rules_breached",
+        "profit_distribution_duty_breached == partnership_qualified AND profit_distribution_rules_breached",
+        "profit_exclusion_void_breached == partnership_qualified AND profit_distribution_rules_breached AND profit_exclusion_void_not_applied",
+        "termination_and_withdrawal_duty_breached == partnership_qualified AND termination_or_withdrawal_rules_breached",
+        "undisclosed_partnership_duty_breached == partnership_qualified AND undisclosed_partnership_rules_breached",
+        "requires_human_partnership_assessment == parties_and_purpose_duty_breached OR contributions_and_common_property_duty_breached OR common_affairs_duty_breached OR information_and_expenses_duty_breached OR partners_liability_duty_breached OR profit_distribution_duty_breached OR termination_and_withdrawal_duty_breached OR undisclosed_partnership_duty_breached"
+      ]
+    },
+    "partnership_evaluation": {
+      "constraint_set_id": "partnership-constraint-set:reviewed-partnership-evidence-supply-1-v0",
+      "satisfiable": true,
+      "partnership_qualified": false,
+      "parties_and_purpose_duty_breached": false,
+      "contributions_and_common_property_duty_breached": false,
+      "common_affairs_duty_breached": false,
+      "information_and_expenses_duty_breached": false,
+      "partners_liability_duty_breached": false,
+      "profit_distribution_duty_breached": false,
+      "profit_exclusion_void_breached": false,
+      "termination_and_withdrawal_duty_breached": false,
+      "undisclosed_partnership_duty_breached": false,
+      "requires_human_partnership_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор простого товарищества."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о простом товариществе и не заменяет судебную оценку.",
+        "Стоимость вкладов товарищей, содержание общей цели и добросовестность ведения общих дел оцениваются экспертом и судом (статьи 1042, 1044 и 1048 ГК РФ)."
+      ]
+    },
     "franchise_evidence_mapping": {
       "evidence_id": "reviewed-franchise-evidence-supply-1-v0",
       "schema_version": "contracts.franchise-evidence.v0",
@@ -28259,7 +28539,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.77.0",
+      "institutional_package_version": "contracts-ru-v0@0.78.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
