@@ -133,6 +133,9 @@ from causa.institutional.contracts.synthetic_partnership import (
 from causa.institutional.contracts.synthetic_games import (
     build_synthetic_games_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_tort_general import (
+    build_synthetic_tort_general_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_public_promise import (
     build_synthetic_public_promise_evaluation_artifact,
 )
@@ -1298,6 +1301,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-tort-general",
+            title="Проверка общих правил о возмещении вреда",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.tort_general_evidence_mapping.evidence_id,
+                trace.analysis_result.tort_general_constraint_set.id,
+                *trace.analysis_result.tort_general_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.tort_general_evaluation.reasons_ru,
+                "Установление причинения вреда, правило о возмещении вреда в полном объёме, презумпция вины причинителя, вред в состоянии необходимой обороны и крайней необходимости, ответственность за вред, причинённый работником, органами власти, несовершеннолетними и недееспособными, ответственность владельца источника повышенной опасности, солидарная ответственность и регресс, способ и размер возмещения, учёт умысла и грубой неосторожности потерпевшего проверяются раздельно по статьям 1064–1083 ГК РФ.",
+                "Наличие вины причинителя, причинная связь, степень вины потерпевшего и размер убытков оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1610,6 +1628,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     negotiorum_gestio_artifact = build_synthetic_negotiorum_gestio_evaluation_artifact()
     commission_artifact = build_synthetic_commission_evaluation_artifact()
     agency_artifact = build_synthetic_agency_evaluation_artifact()
+    tort_general_artifact = build_synthetic_tort_general_evaluation_artifact()
     games_artifact = build_synthetic_games_evaluation_artifact()
     public_promise_artifact = build_synthetic_public_promise_evaluation_artifact()
     partnership_artifact = build_synthetic_partnership_evaluation_artifact()
@@ -1786,6 +1805,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-commission-spec.md",
                 "src/causa/institutional/contracts/agency.py",
                 "docs/contract-agency-spec.md",
+                "src/causa/institutional/contracts/tort_general.py",
+                "docs/contract-tort-general-spec.md",
                 "src/causa/institutional/contracts/games.py",
                 "docs/contract-games-spec.md",
                 "src/causa/institutional/contracts/public_promise.py",
@@ -1872,6 +1893,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_tort_general_evaluation_report.json",
                 "examples/synthetic_games_evaluation_report.json",
                 "examples/synthetic_public_promise_evaluation_report.json",
                 "examples/synthetic_partnership_evaluation_report.json",
@@ -2076,6 +2098,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 commission_artifact.red_team_report.id,
                 agency_artifact.benchmark_report.id,
                 agency_artifact.red_team_report.id,
+                tort_general_artifact.benchmark_report.id,
+                tort_general_artifact.red_team_report.id,
                 games_artifact.benchmark_report.id,
                 games_artifact.red_team_report.id,
                 public_promise_artifact.benchmark_report.id,
@@ -2174,6 +2198,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_tort_general_evaluation_report.json",
                 "examples/synthetic_games_evaluation_report.json",
                 "examples/synthetic_public_promise_evaluation_report.json",
                 "examples/synthetic_partnership_evaluation_report.json",

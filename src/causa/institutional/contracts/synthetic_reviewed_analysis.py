@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.tort_general import (
+    ReviewedTortGeneralEvidence,
+    TortGeneralEvidenceAssertion,
+    TortGeneralEvidencePredicate,
+)
 from causa.institutional.contracts.games import (
     GamesEvidenceAssertion,
     GamesEvidencePredicate,
@@ -557,6 +562,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk1064-1070-tort-general-grounds-and-liability-for-others-v1",
+    "synthetic-ru-gk1073-1083-tort-high-risk-source-recourse-and-victim-fault-v1",
+    "synthetic-case-supply-1-tort-general-evidence",
     "synthetic-ru-gk1062-judicial-protection-of-claims-from-games-and-betting-v1",
     "synthetic-ru-gk1063-organization-of-lotteries-and-payment-of-winnings-v1",
     "synthetic-case-supply-1-games-evidence",
@@ -2910,6 +2918,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        tort_general_evidence=ReviewedTortGeneralEvidence(
+            id="reviewed-tort-general-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                TortGeneralEvidenceAssertion(
+                    id=f"tort-general-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-tort-general-evidence",),
+                )
+                for predicate, value in (
+                    (TortGeneralEvidencePredicate.HARM_CAUSED_ESTABLISHED, False),
+                    (TortGeneralEvidencePredicate.FULL_COMPENSATION_RULE_BREACHED, False),
+                    (TortGeneralEvidencePredicate.FAULT_PRESUMPTION_BREACHED, False),
+                    (
+                        TortGeneralEvidencePredicate.LAWFUL_OR_DEFENSIVE_HARM_RULES_BREACHED,
+                        False,
+                    ),
+                    (TortGeneralEvidencePredicate.LIABILITY_FOR_OTHERS_BREACHED, False),
+                    (TortGeneralEvidencePredicate.HIGH_RISK_SOURCE_LIABILITY_BREACHED, False),
+                    (TortGeneralEvidencePredicate.JOINT_LIABILITY_AND_RECOURSE_BREACHED, False),
+                    (TortGeneralEvidencePredicate.COMPENSATION_METHOD_OR_AMOUNT_BREACHED, False),
+                    (
+                        TortGeneralEvidencePredicate.VICTIM_FAULT_OR_CAUSER_MEANS_DISREGARDED,
+                        False,
+                    ),
+                    (TortGeneralEvidencePredicate.GROSS_NEGLIGENCE_REDUCTION_NOT_APPLIED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1064-1070-tort-general-grounds-and-liability-for-others-v1",
+                "synthetic-ru-gk1073-1083-tort-high-risk-source-recourse-and-victim-fault-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-tort-general-reviewer",
         ),
         games_evidence=ReviewedGamesEvidence(
             id="reviewed-games-evidence-supply-1-v0",

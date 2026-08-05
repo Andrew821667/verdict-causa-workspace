@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.81.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью общих положений о возмещении вреда |
 | `0.80.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью проведения игр и пари |
 | `0.79.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью публичного обещания награды и публичного конкурса |
 | `0.78.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью простого товарищества |
@@ -88,6 +89,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.80.0` → `0.81.0` соберите отдельно проверенный контракт данных о возмещении причинённого вреда (`contracts.tort-general-evidence.v0`). Не выводите установление причинения вреда, презумпцию вины причинителя, ответственность за вред, причинённый другими лицами, ответственность за источник повышенной опасности и учёт вины потерпевшего из прежних договорных результатов об ответственности за нарушение обязательств. Пересоберите артефакты оценки возмещения вреда, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.79.0` → `0.80.0` соберите отдельно проверенный контракт данных о проведении игр и пари (`contracts.games-evidence.v0`). Не выводите квалификацию отношений из игр и пари, отказ в судебной защите, статус организатора, форму договора с участником и срок выплаты выигрыша из прежних результатов о публичном обещании награды, публичном конкурсе или торгах. Пересоберите артефакты оценки проведения игр и пари, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

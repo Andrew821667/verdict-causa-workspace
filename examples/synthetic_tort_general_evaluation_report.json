@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка общих правил о возмещении вреда по статьям 1064–1083 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-tort-general-evidence-supply-1-v0",
+    "schema_version": "contracts.tort-general-evidence.v0",
+    "mapping_version": "contracts-reviewed-tort-general-to-facts-v0",
+    "facts": {
+      "harm_caused_established": false,
+      "full_compensation_rule_breached": false,
+      "fault_presumption_breached": false,
+      "lawful_or_defensive_harm_rules_breached": false,
+      "liability_for_others_breached": false,
+      "high_risk_source_liability_breached": false,
+      "joint_liability_and_recourse_breached": false,
+      "compensation_method_or_amount_breached": false,
+      "victim_fault_or_causer_means_disregarded": false,
+      "gross_negligence_reduction_not_applied": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1064-1070-tort-general-grounds-and-liability-for-others-v1",
+      "synthetic-ru-gk1073-1083-tort-high-risk-source-recourse-and-victim-fault-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "compensation_method_or_amount_breached",
+        "assertion_id": "tort-general-evidence-compensation_method_or_amount_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-general-evidence"
+        ]
+      },
+      {
+        "fact_name": "fault_presumption_breached",
+        "assertion_id": "tort-general-evidence-fault_presumption_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-general-evidence"
+        ]
+      },
+      {
+        "fact_name": "full_compensation_rule_breached",
+        "assertion_id": "tort-general-evidence-full_compensation_rule_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-general-evidence"
+        ]
+      },
+      {
+        "fact_name": "gross_negligence_reduction_not_applied",
+        "assertion_id": "tort-general-evidence-gross_negligence_reduction_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-general-evidence"
+        ]
+      },
+      {
+        "fact_name": "harm_caused_established",
+        "assertion_id": "tort-general-evidence-harm_caused_established",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-general-evidence"
+        ]
+      },
+      {
+        "fact_name": "high_risk_source_liability_breached",
+        "assertion_id": "tort-general-evidence-high_risk_source_liability_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-general-evidence"
+        ]
+      },
+      {
+        "fact_name": "joint_liability_and_recourse_breached",
+        "assertion_id": "tort-general-evidence-joint_liability_and_recourse_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-general-evidence"
+        ]
+      },
+      {
+        "fact_name": "lawful_or_defensive_harm_rules_breached",
+        "assertion_id": "tort-general-evidence-lawful_or_defensive_harm_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-general-evidence"
+        ]
+      },
+      {
+        "fact_name": "liability_for_others_breached",
+        "assertion_id": "tort-general-evidence-liability_for_others_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-general-evidence"
+        ]
+      },
+      {
+        "fact_name": "victim_fault_or_causer_means_disregarded",
+        "assertion_id": "tort-general-evidence-victim_fault_or_causer_means_disregarded",
+        "source_refs": [
+          "synthetic-case-supply-1-tort-general-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "tort-general-constraint-set:reviewed-tort-general-evidence-supply-1-v0",
+    "model_version": "contracts-tort-general-articles-1064-1083-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1064-1070-tort-general-grounds-and-liability-for-others-v1",
+      "synthetic-ru-gk1073-1083-tort-high-risk-source-recourse-and-victim-fault-v1"
+    ],
+    "expressions": [
+      "tort_qualified == harm_caused_established",
+      "full_compensation_duty_breached == tort_qualified AND full_compensation_rule_breached",
+      "fault_presumption_duty_breached == tort_qualified AND fault_presumption_breached",
+      "lawful_harm_duty_breached == tort_qualified AND lawful_or_defensive_harm_rules_breached",
+      "liability_for_others_duty_breached == tort_qualified AND liability_for_others_breached",
+      "high_risk_source_duty_breached == tort_qualified AND high_risk_source_liability_breached",
+      "joint_liability_duty_breached == tort_qualified AND joint_liability_and_recourse_breached",
+      "compensation_method_duty_breached == tort_qualified AND compensation_method_or_amount_breached",
+      "victim_fault_duty_breached == tort_qualified AND victim_fault_or_causer_means_disregarded",
+      "gross_negligence_reduction_breached == tort_qualified AND victim_fault_or_causer_means_disregarded AND gross_negligence_reduction_not_applied",
+      "requires_human_tort_assessment == full_compensation_duty_breached OR fault_presumption_duty_breached OR lawful_harm_duty_breached OR liability_for_others_duty_breached OR high_risk_source_duty_breached OR joint_liability_duty_breached OR compensation_method_duty_breached OR victim_fault_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "tort-general-constraint-set:reviewed-tort-general-evidence-supply-1-v0",
+    "satisfiable": true,
+    "tort_qualified": false,
+    "full_compensation_duty_breached": false,
+    "fault_presumption_duty_breached": false,
+    "lawful_harm_duty_breached": false,
+    "liability_for_others_duty_breached": false,
+    "high_risk_source_duty_breached": false,
+    "joint_liability_duty_breached": false,
+    "compensation_method_duty_breached": false,
+    "victim_fault_duty_breached": false,
+    "gross_negligence_reduction_breached": false,
+    "requires_human_tort_assessment": false,
+    "reasons_ru": [
+      "Причинение вреда не установлено."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные общие правила о возмещении вреда и не заменяет судебную оценку.",
+      "Наличие вины причинителя, причинная связь, степень вины потерпевшего и размер убытков оцениваются экспертом и судом (статьи 1064, 1079 и 1083 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "tort-general-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "tort-general-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "tort_qualified": false
+        },
+        "observed_outcomes": {
+          "tort_qualified": false
+        },
+        "reasons_ru": [
+          "Причинение вреда не установлено."
+        ]
+      },
+      {
+        "task_id": "tort-general-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "tort_qualified": true,
+          "requires_human_tort_assessment": false
+        },
+        "observed_outcomes": {
+          "tort_qualified": true,
+          "requires_human_tort_assessment": false
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-general-bench-full-compensation",
+        "passed": true,
+        "expected_outcomes": {
+          "full_compensation_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "observed_outcomes": {
+          "full_compensation_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Вред возмещается в полном объёме; законом обязанность возмещения может быть возложена на лицо, не являющееся причинителем вреда, а законом или договором может быть установлена обязанность выплатить компенсацию сверх возмещения вреда (статья 1064 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-general-bench-fault-presumption",
+        "passed": true,
+        "expected_outcomes": {
+          "fault_presumption_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "observed_outcomes": {
+          "fault_presumption_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Лицо, причинившее вред, освобождается от возмещения, если докажет, что вред причинён не по его вине; законом может быть предусмотрено возмещение вреда и при отсутствии вины причинителя (статья 1064 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-general-bench-lawful-harm",
+        "passed": true,
+        "expected_outcomes": {
+          "lawful_harm_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "observed_outcomes": {
+          "lawful_harm_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Вред, причинённый в состоянии необходимой обороны, не подлежит возмещению, если её пределы не были превышены; вред, причинённый в состоянии крайней необходимости, возмещается причинившим его лицом, однако суд вправе возложить возмещение на третье лицо, в интересах которого действовал причинитель, либо освободить от возмещения полностью или частично (статьи 1066 и 1067 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-general-bench-liability-for-others",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_for_others_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "observed_outcomes": {
+          "liability_for_others_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Юридическое лицо или гражданин возмещает вред, причинённый его работником при исполнении трудовых обязанностей; вред, причинённый государственными органами, органами местного самоуправления и их должностными лицами, а также вред, причинённый несовершеннолетними, недееспособными и лицами, не способными понимать значение своих действий, возмещается по специальным правилам (статьи 1068–1070 и 1073–1078 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-general-bench-high-risk-source",
+        "passed": true,
+        "expected_outcomes": {
+          "high_risk_source_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "observed_outcomes": {
+          "high_risk_source_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Юридические лица и граждане, деятельность которых связана с повышенной опасностью для окружающих, обязаны возместить вред, причинённый источником повышенной опасности, если не докажут, что вред возник вследствие непреодолимой силы или умысла потерпевшего; обязанность возмещения возлагается на владельца источника повышенной опасности (статья 1079 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-general-bench-joint-liability",
+        "passed": true,
+        "expected_outcomes": {
+          "joint_liability_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "observed_outcomes": {
+          "joint_liability_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Лица, совместно причинившие вред, отвечают перед потерпевшим солидарно; лицо, возместившее вред, причинённый другим лицом, имеет право обратного требования (регресса) к этому лицу в размере выплаченного возмещения (статьи 1080 и 1081 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-general-bench-compensation-method",
+        "passed": true,
+        "expected_outcomes": {
+          "compensation_method_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "observed_outcomes": {
+          "compensation_method_duty_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Удовлетворяя требование о возмещении вреда, суд обязывает возместить вред в натуре либо возместить причинённые убытки в соответствии с правилами статьи 15 ГК РФ (статья 1082 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "tort-general-bench-victim-fault",
+        "passed": true,
+        "expected_outcomes": {
+          "victim_fault_duty_breached": true,
+          "gross_negligence_reduction_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "observed_outcomes": {
+          "victim_fault_duty_breached": true,
+          "gross_negligence_reduction_breached": true,
+          "requires_human_tort_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Вред, возникший вследствие умысла потерпевшего, возмещению не подлежит; суд может уменьшить размер возмещения с учётом имущественного положения гражданина-причинителя, за исключением случаев умышленного причинения вреда (статья 1083 ГК РФ).",
+          "Если грубая неосторожность потерпевшего содействовала возникновению или увеличению вреда, размер возмещения должен быть уменьшен в зависимости от степени вины потерпевшего и причинителя вреда (статья 1083 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "tort-general-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "tort-general-red-qualify-without-harm",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "tort_qualified": true
+        },
+        "observed_outcomes": {
+          "tort_qualified": false
+        },
+        "reasons_ru": [
+          "Причинение вреда не установлено."
+        ]
+      },
+      {
+        "case_id": "tort-general-red-ignore-full-compensation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "full_compensation_duty_breached": false
+        },
+        "observed_outcomes": {
+          "full_compensation_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Вред возмещается в полном объёме; законом обязанность возмещения может быть возложена на лицо, не являющееся причинителем вреда, а законом или договором может быть установлена обязанность выплатить компенсацию сверх возмещения вреда (статья 1064 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-general-red-ignore-fault-presumption",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "fault_presumption_duty_breached": false
+        },
+        "observed_outcomes": {
+          "fault_presumption_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Лицо, причинившее вред, освобождается от возмещения, если докажет, что вред причинён не по его вине; законом может быть предусмотрено возмещение вреда и при отсутствии вины причинителя (статья 1064 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-general-red-ignore-lawful-harm",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "lawful_harm_duty_breached": false
+        },
+        "observed_outcomes": {
+          "lawful_harm_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Вред, причинённый в состоянии необходимой обороны, не подлежит возмещению, если её пределы не были превышены; вред, причинённый в состоянии крайней необходимости, возмещается причинившим его лицом, однако суд вправе возложить возмещение на третье лицо, в интересах которого действовал причинитель, либо освободить от возмещения полностью или частично (статьи 1066 и 1067 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-general-red-ignore-liability-for-others",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_for_others_duty_breached": false
+        },
+        "observed_outcomes": {
+          "liability_for_others_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Юридическое лицо или гражданин возмещает вред, причинённый его работником при исполнении трудовых обязанностей; вред, причинённый государственными органами, органами местного самоуправления и их должностными лицами, а также вред, причинённый несовершеннолетними, недееспособными и лицами, не способными понимать значение своих действий, возмещается по специальным правилам (статьи 1068–1070 и 1073–1078 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-general-red-ignore-high-risk-source",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "high_risk_source_duty_breached": false
+        },
+        "observed_outcomes": {
+          "high_risk_source_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Юридические лица и граждане, деятельность которых связана с повышенной опасностью для окружающих, обязаны возместить вред, причинённый источником повышенной опасности, если не докажут, что вред возник вследствие непреодолимой силы или умысла потерпевшего; обязанность возмещения возлагается на владельца источника повышенной опасности (статья 1079 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-general-red-ignore-joint-liability",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "joint_liability_duty_breached": false
+        },
+        "observed_outcomes": {
+          "joint_liability_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Лица, совместно причинившие вред, отвечают перед потерпевшим солидарно; лицо, возместившее вред, причинённый другим лицом, имеет право обратного требования (регресса) к этому лицу в размере выплаченного возмещения (статьи 1080 и 1081 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-general-red-ignore-compensation-method",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "compensation_method_duty_breached": false
+        },
+        "observed_outcomes": {
+          "compensation_method_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Удовлетворяя требование о возмещении вреда, суд обязывает возместить вред в натуре либо возместить причинённые убытки в соответствии с правилами статьи 15 ГК РФ (статья 1082 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-general-red-reduction-without-victim-fault-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "gross_negligence_reduction_breached": true
+        },
+        "observed_outcomes": {
+          "gross_negligence_reduction_breached": false
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "tort-general-red-skip-human-on-victim-fault",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_tort_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_tort_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение вреда: вред, причинённый личности или имуществу гражданина, а также имуществу юридического лица, подлежит возмещению в полном объёме лицом, причинившим вред (статья 1064 ГК РФ).",
+          "Вред, возникший вследствие умысла потерпевшего, возмещению не подлежит; суд может уменьшить размер возмещения с учётом имущественного положения гражданина-причинителя, за исключением случаев умышленного причинения вреда (статья 1083 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

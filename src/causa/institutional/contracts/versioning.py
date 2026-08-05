@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.81.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed tort-general evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 1064 to 1083.",
+            "The establishment of harm, the rule of full compensation, the presumption of the causer's fault, harm caused in self-defence or in a state of necessity, liability for harm caused by others, liability for a source of increased danger, joint liability and recourse, the method and amount of compensation, the victim's fault and the causer's means, and the reduction for gross negligence remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о возмещении причинённого вреда обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 1064–1083 ГК РФ.",
+            "Установление причинения вреда, правило о возмещении в полном объёме, презумпция вины причинителя, вред в состоянии необходимой обороны и крайней необходимости, ответственность за вред, причинённый другими лицами, ответственность за источник повышенной опасности, солидарная ответственность и регресс, способ и размер возмещения, учёт вины потерпевшего и имущественного положения причинителя и уменьшение возмещения при грубой неосторожности разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.80.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

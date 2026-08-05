@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk1064-1070-tort-general-grounds-and-liability-for-others-v1",
+      "title": "Синтетическая проверенная модель общих оснований ответственности за причинение вреда, необходимой обороны и крайней необходимости и ответственности за вред, причинённый другими лицами, по статьям 1064–1070 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обязанность лица, причинившего вред личности или имуществу гражданина либо имуществу юридического лица, возместить вред в полном объёме, презумпция вины причинителя и случаи возмещения вреда при отсутствии вины, правила о вреде, причинённом в состоянии необходимой обороны и крайней необходимости, а также ответственность за вред, причинённый работником, государственными органами и их должностными лицами, проверяются раздельно (статьи 1064–1070 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "tort_general_grounds_and_liability_for_others_articles_1064_1070",
+        "legal_reference": "ГК РФ, статьи 1064–1070",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk1073-1083-tort-high-risk-source-recourse-and-victim-fault-v1",
+      "title": "Синтетическая проверенная модель ответственности за вред, причинённый несовершеннолетними и недееспособными, источником повышенной опасности, солидарной ответственности, регресса, способа возмещения и учёта вины потерпевшего по статьям 1073–1083 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: ответственность за вред, причинённый несовершеннолетними, недееспособными и лицами, не способными понимать значение своих действий, ответственность владельца источника повышенной опасности, солидарная ответственность лиц, совместно причинивших вред, и право регресса, способ возмещения вреда в натуре или возмещением убытков, а также учёт умысла и грубой неосторожности потерпевшего и имущественного положения гражданина-причинителя проверяются раздельно (статьи 1073–1083 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "tort_high_risk_source_recourse_and_victim_fault_articles_1073_1083",
+        "legal_reference": "ГК РФ, статьи 1073–1083",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-tort-general-evidence",
+      "title": "Синтетическая проверенная запись фактов о возмещении причинённого вреда",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки внедоговорное причинение вреда личности или имуществу сторон не устанавливалось.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "tort_general_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk1062-judicial-protection-of-claims-from-games-and-betting-v1",
       "title": "Синтетическая проверенная модель отказа в судебной защите требований из игр и пари и исключений для потерпевших и расчётных сделок по статье 1062 ГК РФ",
       "source_type": "statute",
@@ -9429,6 +9476,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "tort_general_evidence": {
+      "id": "reviewed-tort-general-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.tort-general-evidence.v0",
+      "assertions": [
+        {
+          "id": "tort-general-evidence-harm_caused_established",
+          "predicate": "harm_caused_established",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "id": "tort-general-evidence-full_compensation_rule_breached",
+          "predicate": "full_compensation_rule_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "id": "tort-general-evidence-fault_presumption_breached",
+          "predicate": "fault_presumption_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "id": "tort-general-evidence-lawful_or_defensive_harm_rules_breached",
+          "predicate": "lawful_or_defensive_harm_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "id": "tort-general-evidence-liability_for_others_breached",
+          "predicate": "liability_for_others_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "id": "tort-general-evidence-high_risk_source_liability_breached",
+          "predicate": "high_risk_source_liability_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "id": "tort-general-evidence-joint_liability_and_recourse_breached",
+          "predicate": "joint_liability_and_recourse_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "id": "tort-general-evidence-compensation_method_or_amount_breached",
+          "predicate": "compensation_method_or_amount_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "id": "tort-general-evidence-victim_fault_or_causer_means_disregarded",
+          "predicate": "victim_fault_or_causer_means_disregarded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "id": "tort-general-evidence-gross_negligence_reduction_not_applied",
+          "predicate": "gross_negligence_reduction_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk1064-1070-tort-general-grounds-and-liability-for-others-v1",
+        "synthetic-ru-gk1073-1083-tort-high-risk-source-recourse-and-victim-fault-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-tort-general-reviewer"
+    },
     "games_evidence": {
       "id": "reviewed-games-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -14737,6 +14877,7 @@
       "synthetic-temporal-reviewer",
       "synthetic-termination-reviewer",
       "synthetic-third-party-reviewer",
+      "synthetic-tort-general-reviewer",
       "synthetic-trust-management-reviewer",
       "synthetic-vehicle-lease-reviewer",
       "synthetic-warehouse-storage-reviewer",
@@ -14811,6 +14952,7 @@
       "synthetic-case-supply-1-temporal-effect-evidence",
       "synthetic-case-supply-1-termination-evidence",
       "synthetic-case-supply-1-third-party-evidence",
+      "synthetic-case-supply-1-tort-general-evidence",
       "synthetic-case-supply-1-trust-management-evidence",
       "synthetic-case-supply-1-vehicle-lease-evidence",
       "synthetic-case-supply-1-warehouse-storage-evidence",
@@ -14830,6 +14972,8 @@
       "synthetic-ru-gk1057-1061-public-contest-terms-award-and-works-v1",
       "synthetic-ru-gk1062-judicial-protection-of-claims-from-games-and-betting-v1",
       "synthetic-ru-gk1063-organization-of-lotteries-and-payment-of-winnings-v1",
+      "synthetic-ru-gk1064-1070-tort-general-grounds-and-liability-for-others-v1",
+      "synthetic-ru-gk1073-1083-tort-high-risk-source-recourse-and-victim-fault-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -23048,6 +23192,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "tort_general_evidence_mapping": {
+      "evidence_id": "reviewed-tort-general-evidence-supply-1-v0",
+      "schema_version": "contracts.tort-general-evidence.v0",
+      "mapping_version": "contracts-reviewed-tort-general-to-facts-v0",
+      "facts": {
+        "harm_caused_established": false,
+        "full_compensation_rule_breached": false,
+        "fault_presumption_breached": false,
+        "lawful_or_defensive_harm_rules_breached": false,
+        "liability_for_others_breached": false,
+        "high_risk_source_liability_breached": false,
+        "joint_liability_and_recourse_breached": false,
+        "compensation_method_or_amount_breached": false,
+        "victim_fault_or_causer_means_disregarded": false,
+        "gross_negligence_reduction_not_applied": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk1064-1070-tort-general-grounds-and-liability-for-others-v1",
+        "synthetic-ru-gk1073-1083-tort-high-risk-source-recourse-and-victim-fault-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "compensation_method_or_amount_breached",
+          "assertion_id": "tort-general-evidence-compensation_method_or_amount_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "fact_name": "fault_presumption_breached",
+          "assertion_id": "tort-general-evidence-fault_presumption_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "fact_name": "full_compensation_rule_breached",
+          "assertion_id": "tort-general-evidence-full_compensation_rule_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "fact_name": "gross_negligence_reduction_not_applied",
+          "assertion_id": "tort-general-evidence-gross_negligence_reduction_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "fact_name": "harm_caused_established",
+          "assertion_id": "tort-general-evidence-harm_caused_established",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "fact_name": "high_risk_source_liability_breached",
+          "assertion_id": "tort-general-evidence-high_risk_source_liability_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "fact_name": "joint_liability_and_recourse_breached",
+          "assertion_id": "tort-general-evidence-joint_liability_and_recourse_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "fact_name": "lawful_or_defensive_harm_rules_breached",
+          "assertion_id": "tort-general-evidence-lawful_or_defensive_harm_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "fact_name": "liability_for_others_breached",
+          "assertion_id": "tort-general-evidence-liability_for_others_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        },
+        {
+          "fact_name": "victim_fault_or_causer_means_disregarded",
+          "assertion_id": "tort-general-evidence-victim_fault_or_causer_means_disregarded",
+          "source_refs": [
+            "synthetic-case-supply-1-tort-general-evidence"
+          ]
+        }
+      ]
+    },
+    "tort_general_constraint_set": {
+      "id": "tort-general-constraint-set:reviewed-tort-general-evidence-supply-1-v0",
+      "model_version": "contracts-tort-general-articles-1064-1083-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk1064-1070-tort-general-grounds-and-liability-for-others-v1",
+        "synthetic-ru-gk1073-1083-tort-high-risk-source-recourse-and-victim-fault-v1"
+      ],
+      "expressions": [
+        "tort_qualified == harm_caused_established",
+        "full_compensation_duty_breached == tort_qualified AND full_compensation_rule_breached",
+        "fault_presumption_duty_breached == tort_qualified AND fault_presumption_breached",
+        "lawful_harm_duty_breached == tort_qualified AND lawful_or_defensive_harm_rules_breached",
+        "liability_for_others_duty_breached == tort_qualified AND liability_for_others_breached",
+        "high_risk_source_duty_breached == tort_qualified AND high_risk_source_liability_breached",
+        "joint_liability_duty_breached == tort_qualified AND joint_liability_and_recourse_breached",
+        "compensation_method_duty_breached == tort_qualified AND compensation_method_or_amount_breached",
+        "victim_fault_duty_breached == tort_qualified AND victim_fault_or_causer_means_disregarded",
+        "gross_negligence_reduction_breached == tort_qualified AND victim_fault_or_causer_means_disregarded AND gross_negligence_reduction_not_applied",
+        "requires_human_tort_assessment == full_compensation_duty_breached OR fault_presumption_duty_breached OR lawful_harm_duty_breached OR liability_for_others_duty_breached OR high_risk_source_duty_breached OR joint_liability_duty_breached OR compensation_method_duty_breached OR victim_fault_duty_breached"
+      ]
+    },
+    "tort_general_evaluation": {
+      "constraint_set_id": "tort-general-constraint-set:reviewed-tort-general-evidence-supply-1-v0",
+      "satisfiable": true,
+      "tort_qualified": false,
+      "full_compensation_duty_breached": false,
+      "fault_presumption_duty_breached": false,
+      "lawful_harm_duty_breached": false,
+      "liability_for_others_duty_breached": false,
+      "high_risk_source_duty_breached": false,
+      "joint_liability_duty_breached": false,
+      "compensation_method_duty_breached": false,
+      "victim_fault_duty_breached": false,
+      "gross_negligence_reduction_breached": false,
+      "requires_human_tort_assessment": false,
+      "reasons_ru": [
+        "Причинение вреда не установлено."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные общие правила о возмещении вреда и не заменяет судебную оценку.",
+        "Наличие вины причинителя, причинная связь, степень вины потерпевшего и размер убытков оцениваются экспертом и судом (статьи 1064, 1079 и 1083 ГК РФ)."
+      ]
+    },
     "games_evidence_mapping": {
       "evidence_id": "reviewed-games-evidence-supply-1-v0",
       "schema_version": "contracts.games-evidence.v0",
@@ -29099,7 +29379,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.80.0",
+      "institutional_package_version": "contracts-ru-v0@0.81.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
