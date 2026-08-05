@@ -79,6 +79,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "evaluate-commission",
         "evaluate-agency",
         "evaluate-trust-management",
+        "evaluate-franchise",
         "evaluate-transaction-invalidity",
         "evaluate-obligation-constraints",
         "evaluate-performance-remedies",

@@ -1461,6 +1461,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.76.0",
+        to_version="0.77.0",
+        reasons=[
+            "Reviewed inputs now require a separate franchise evidence contract.",
+            "Analysis and Russian translation distinguish franchise qualification, the scope of the granted rights and the parties, the written form and state registration, the invalidity of a defective form, commercial subconcession, remuneration, the rightholder's and the user's obligations, restrictions on the parties' rights, and liability and termination under articles 1027 to 1040.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о коммерческой концессии.",
+            "Анализ и русское объяснение разделяют квалификацию коммерческой концессии, объём предоставленных прав и состав сторон, письменную форму и государственную регистрацию, ничтожность при пороке формы, коммерческую субконцессию, вознаграждение, обязанности правообладателя и пользователя, ограничения прав сторон, ответственность и прекращение договора по статьям 1027–1040 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_franchise_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

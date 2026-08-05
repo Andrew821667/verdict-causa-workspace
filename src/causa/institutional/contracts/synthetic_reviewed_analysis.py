@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.franchise import (
+    FranchiseEvidenceAssertion,
+    FranchiseEvidencePredicate,
+    ReviewedFranchiseEvidence,
+)
 from causa.institutional.contracts.trust_management import (
     ReviewedTrustManagementEvidence,
     TrustManagementEvidenceAssertion,
@@ -537,6 +542,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk1027-1029-franchise-concept-form-and-subconcession-v1",
+    "synthetic-ru-gk1030-1040-franchise-obligations-restrictions-and-termination-v1",
+    "synthetic-case-supply-1-franchise-evidence",
     "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
     "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1",
     "synthetic-case-supply-1-trust-management-evidence",
@@ -2878,6 +2886,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        franchise_evidence=ReviewedFranchiseEvidence(
+            id="reviewed-franchise-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                FranchiseEvidenceAssertion(
+                    id=f"franchise-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-franchise-evidence",),
+                )
+                for predicate, value in (
+                    (FranchiseEvidencePredicate.FRANCHISE_CONTRACT_CONCLUDED, False),
+                    (FranchiseEvidencePredicate.FRANCHISE_SCOPE_OR_PARTIES_BREACHED, False),
+                    (FranchiseEvidencePredicate.FRANCHISE_FORM_OR_REGISTRATION_BREACHED, False),
+                    (FranchiseEvidencePredicate.FORM_INVALIDITY_NOT_APPLIED, False),
+                    (FranchiseEvidencePredicate.COMMERCIAL_SUBCONCESSION_RULES_BREACHED, False),
+                    (FranchiseEvidencePredicate.FRANCHISE_REMUNERATION_RULES_BREACHED, False),
+                    (FranchiseEvidencePredicate.RIGHTHOLDER_OBLIGATIONS_BREACHED, False),
+                    (FranchiseEvidencePredicate.USER_OBLIGATIONS_BREACHED, False),
+                    (FranchiseEvidencePredicate.FRANCHISE_RESTRICTIONS_RULES_BREACHED, False),
+                    (FranchiseEvidencePredicate.LIABILITY_OR_TERMINATION_RULES_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1027-1029-franchise-concept-form-and-subconcession-v1",
+                "synthetic-ru-gk1030-1040-franchise-obligations-restrictions-and-termination-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-franchise-reviewer",
         ),
         trust_management_evidence=ReviewedTrustManagementEvidence(
             id="reviewed-trust-management-evidence-supply-1-v0",

@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о коммерческой концессии по статьям 1027–1040 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-franchise-evidence-supply-1-v0",
+    "schema_version": "contracts.franchise-evidence.v0",
+    "mapping_version": "contracts-reviewed-franchise-to-facts-v0",
+    "facts": {
+      "franchise_contract_concluded": false,
+      "franchise_scope_or_parties_breached": false,
+      "franchise_form_or_registration_breached": false,
+      "form_invalidity_not_applied": false,
+      "commercial_subconcession_rules_breached": false,
+      "franchise_remuneration_rules_breached": false,
+      "rightholder_obligations_breached": false,
+      "user_obligations_breached": false,
+      "franchise_restrictions_rules_breached": false,
+      "liability_or_termination_rules_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1027-1029-franchise-concept-form-and-subconcession-v1",
+      "synthetic-ru-gk1030-1040-franchise-obligations-restrictions-and-termination-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "commercial_subconcession_rules_breached",
+        "assertion_id": "franchise-evidence-commercial_subconcession_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-franchise-evidence"
+        ]
+      },
+      {
+        "fact_name": "form_invalidity_not_applied",
+        "assertion_id": "franchise-evidence-form_invalidity_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-franchise-evidence"
+        ]
+      },
+      {
+        "fact_name": "franchise_contract_concluded",
+        "assertion_id": "franchise-evidence-franchise_contract_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-franchise-evidence"
+        ]
+      },
+      {
+        "fact_name": "franchise_form_or_registration_breached",
+        "assertion_id": "franchise-evidence-franchise_form_or_registration_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-franchise-evidence"
+        ]
+      },
+      {
+        "fact_name": "franchise_remuneration_rules_breached",
+        "assertion_id": "franchise-evidence-franchise_remuneration_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-franchise-evidence"
+        ]
+      },
+      {
+        "fact_name": "franchise_restrictions_rules_breached",
+        "assertion_id": "franchise-evidence-franchise_restrictions_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-franchise-evidence"
+        ]
+      },
+      {
+        "fact_name": "franchise_scope_or_parties_breached",
+        "assertion_id": "franchise-evidence-franchise_scope_or_parties_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-franchise-evidence"
+        ]
+      },
+      {
+        "fact_name": "liability_or_termination_rules_breached",
+        "assertion_id": "franchise-evidence-liability_or_termination_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-franchise-evidence"
+        ]
+      },
+      {
+        "fact_name": "rightholder_obligations_breached",
+        "assertion_id": "franchise-evidence-rightholder_obligations_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-franchise-evidence"
+        ]
+      },
+      {
+        "fact_name": "user_obligations_breached",
+        "assertion_id": "franchise-evidence-user_obligations_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-franchise-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "franchise-constraint-set:reviewed-franchise-evidence-supply-1-v0",
+    "model_version": "contracts-franchise-articles-1027-1040-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1027-1029-franchise-concept-form-and-subconcession-v1",
+      "synthetic-ru-gk1030-1040-franchise-obligations-restrictions-and-termination-v1"
+    ],
+    "expressions": [
+      "franchise_qualified == franchise_contract_concluded",
+      "scope_and_parties_duty_breached == franchise_qualified AND franchise_scope_or_parties_breached",
+      "form_and_registration_duty_breached == franchise_qualified AND franchise_form_or_registration_breached",
+      "form_invalidity_breached == franchise_qualified AND franchise_form_or_registration_breached AND form_invalidity_not_applied",
+      "subconcession_duty_breached == franchise_qualified AND commercial_subconcession_rules_breached",
+      "remuneration_duty_breached == franchise_qualified AND franchise_remuneration_rules_breached",
+      "rightholder_obligations_duty_breached == franchise_qualified AND rightholder_obligations_breached",
+      "user_obligations_duty_breached == franchise_qualified AND user_obligations_breached",
+      "restrictions_duty_breached == franchise_qualified AND franchise_restrictions_rules_breached",
+      "liability_and_termination_duty_breached == franchise_qualified AND liability_or_termination_rules_breached",
+      "requires_human_franchise_assessment == scope_and_parties_duty_breached OR form_and_registration_duty_breached OR subconcession_duty_breached OR remuneration_duty_breached OR rightholder_obligations_duty_breached OR user_obligations_duty_breached OR restrictions_duty_breached OR liability_and_termination_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "franchise-constraint-set:reviewed-franchise-evidence-supply-1-v0",
+    "satisfiable": true,
+    "franchise_qualified": false,
+    "scope_and_parties_duty_breached": false,
+    "form_and_registration_duty_breached": false,
+    "form_invalidity_breached": false,
+    "subconcession_duty_breached": false,
+    "remuneration_duty_breached": false,
+    "rightholder_obligations_duty_breached": false,
+    "user_obligations_duty_breached": false,
+    "restrictions_duty_breached": false,
+    "liability_and_termination_duty_breached": false,
+    "requires_human_franchise_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор коммерческой концессии."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о коммерческой концессии и не заменяет судебную оценку.",
+      "Объём переданных исключительных прав, качество товаров пользователя и добросовестность сторон оцениваются экспертом и судом (статьи 1027, 1032 и 1034 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "franchise-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "franchise-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "franchise_qualified": false
+        },
+        "observed_outcomes": {
+          "franchise_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор коммерческой концессии."
+        ]
+      },
+      {
+        "task_id": "franchise-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "franchise_qualified": true,
+          "requires_human_franchise_assessment": false
+        },
+        "observed_outcomes": {
+          "franchise_qualified": true,
+          "requires_human_franchise_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "franchise-bench-scope-and-parties",
+        "passed": true,
+        "expected_outcomes": {
+          "scope_and_parties_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "observed_outcomes": {
+          "scope_and_parties_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Договор коммерческой концессии предусматривает использование комплекса исключительных прав, деловой репутации и коммерческого опыта правообладателя в определённом объёме, а сторонами договора могут быть только коммерческие организации и граждане, зарегистрированные в качестве индивидуальных предпринимателей (статья 1027 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "franchise-bench-form-and-registration",
+        "passed": true,
+        "expected_outcomes": {
+          "form_and_registration_duty_breached": true,
+          "form_invalidity_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "observed_outcomes": {
+          "form_and_registration_duty_breached": true,
+          "form_invalidity_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Договор коммерческой концессии заключается в письменной форме, а предоставление права использования комплекса исключительных прав подлежит государственной регистрации в федеральном органе исполнительной власти по интеллектуальной собственности (статья 1028 ГК РФ).",
+          "Несоблюдение письменной формы договора коммерческой концессии влечёт его ничтожность, а при несоблюдении требования о государственной регистрации предоставление права использования считается несостоявшимся (статья 1028 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "franchise-bench-subconcession",
+        "passed": true,
+        "expected_outcomes": {
+          "subconcession_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "observed_outcomes": {
+          "subconcession_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Договором коммерческой концессии может быть предусмотрено право пользователя разрешать другим лицам использование комплекса исключительных прав на условиях субконцессии; договор субконцессии не может быть заключён на более длительный срок, чем основной договор (статья 1029 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "franchise-bench-remuneration",
+        "passed": true,
+        "expected_outcomes": {
+          "remuneration_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "observed_outcomes": {
+          "remuneration_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Вознаграждение по договору коммерческой концессии может выплачиваться пользователем в форме фиксированных разовых или периодических платежей, отчислений от выручки, наценки на оптовую цену товаров либо в иной форме, предусмотренной договором (статья 1030 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "franchise-bench-rightholder-obligations",
+        "passed": true,
+        "expected_outcomes": {
+          "rightholder_obligations_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "observed_outcomes": {
+          "rightholder_obligations_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Правообладатель обязан передать пользователю техническую и коммерческую документацию, проинструктировать пользователя и его работников, обеспечить государственную регистрацию предоставления права, оказывать постоянное техническое и консультативное содействие и контролировать качество товаров, работ и услуг (статья 1031 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "franchise-bench-user-obligations",
+        "passed": true,
+        "expected_outcomes": {
+          "user_obligations_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "observed_outcomes": {
+          "user_obligations_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Пользователь обязан использовать средства индивидуализации правообладателя указанным в договоре образом, обеспечивать соответствие качества товаров, работ и услуг, соблюдать инструкции правообладателя, оказывать покупателям дополнительные услуги, не разглашать секреты производства и информировать покупателей об использовании прав по договору концессии (статья 1032 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "franchise-bench-restrictions",
+        "passed": true,
+        "expected_outcomes": {
+          "restrictions_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "observed_outcomes": {
+          "restrictions_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Договором коммерческой концессии могут быть предусмотрены ограничения прав сторон, однако условия, по которым правообладатель определяет цену продажи товаров пользователем либо пользователь вправе продавать товары исключительно покупателям определённой категории или по месту жительства на закреплённой территории, являются ничтожными (статья 1033 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "franchise-bench-liability-termination",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_and_termination_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "observed_outcomes": {
+          "liability_and_termination_duty_breached": true,
+          "requires_human_franchise_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Правообладатель несёт субсидиарную, а по требованиям к пользователю как изготовителю продукции — солидарную ответственность за качество товаров, работ и услуг; изменение, прекращение и сохранение договора при переходе прав подчиняются правилам статей 1034, 1035 и 1037–1040 ГК РФ."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "franchise-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "franchise-red-qualify-without-contract",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "franchise_qualified": true
+        },
+        "observed_outcomes": {
+          "franchise_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор коммерческой концессии."
+        ]
+      },
+      {
+        "case_id": "franchise-red-ignore-scope-and-parties",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "scope_and_parties_duty_breached": false
+        },
+        "observed_outcomes": {
+          "scope_and_parties_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Договор коммерческой концессии предусматривает использование комплекса исключительных прав, деловой репутации и коммерческого опыта правообладателя в определённом объёме, а сторонами договора могут быть только коммерческие организации и граждане, зарегистрированные в качестве индивидуальных предпринимателей (статья 1027 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "franchise-red-ignore-registration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_and_registration_duty_breached": false
+        },
+        "observed_outcomes": {
+          "form_and_registration_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Договор коммерческой концессии заключается в письменной форме, а предоставление права использования комплекса исключительных прав подлежит государственной регистрации в федеральном органе исполнительной власти по интеллектуальной собственности (статья 1028 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "franchise-red-invalidity-without-form-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_invalidity_breached": true
+        },
+        "observed_outcomes": {
+          "form_invalidity_breached": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "franchise-red-ignore-subconcession",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "subconcession_duty_breached": false
+        },
+        "observed_outcomes": {
+          "subconcession_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Договором коммерческой концессии может быть предусмотрено право пользователя разрешать другим лицам использование комплекса исключительных прав на условиях субконцессии; договор субконцессии не может быть заключён на более длительный срок, чем основной договор (статья 1029 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "franchise-red-ignore-remuneration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "remuneration_duty_breached": false
+        },
+        "observed_outcomes": {
+          "remuneration_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Вознаграждение по договору коммерческой концессии может выплачиваться пользователем в форме фиксированных разовых или периодических платежей, отчислений от выручки, наценки на оптовую цену товаров либо в иной форме, предусмотренной договором (статья 1030 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "franchise-red-ignore-rightholder-obligations",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "rightholder_obligations_duty_breached": false
+        },
+        "observed_outcomes": {
+          "rightholder_obligations_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Правообладатель обязан передать пользователю техническую и коммерческую документацию, проинструктировать пользователя и его работников, обеспечить государственную регистрацию предоставления права, оказывать постоянное техническое и консультативное содействие и контролировать качество товаров, работ и услуг (статья 1031 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "franchise-red-ignore-user-obligations",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "user_obligations_duty_breached": false
+        },
+        "observed_outcomes": {
+          "user_obligations_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Пользователь обязан использовать средства индивидуализации правообладателя указанным в договоре образом, обеспечивать соответствие качества товаров, работ и услуг, соблюдать инструкции правообладателя, оказывать покупателям дополнительные услуги, не разглашать секреты производства и информировать покупателей об использовании прав по договору концессии (статья 1032 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "franchise-red-ignore-void-restrictions",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "restrictions_duty_breached": false
+        },
+        "observed_outcomes": {
+          "restrictions_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Договором коммерческой концессии могут быть предусмотрены ограничения прав сторон, однако условия, по которым правообладатель определяет цену продажи товаров пользователем либо пользователь вправе продавать товары исключительно покупателям определённой категории или по месту жительства на закреплённой территории, являются ничтожными (статья 1033 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "franchise-red-skip-human-on-liability",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_franchise_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_franchise_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор коммерческой концессии: правообладатель обязуется предоставить пользователю за вознаграждение на срок или без указания срока право использовать в предпринимательской деятельности комплекс принадлежащих правообладателю исключительных прав, включающий право на товарный знак, знак обслуживания, а также права на другие объекты исключительных прав (статья 1027 ГК РФ).",
+          "Правообладатель несёт субсидиарную, а по требованиям к пользователю как изготовителю продукции — солидарную ответственность за качество товаров, работ и услуг; изменение, прекращение и сохранение договора при переходе прав подчиняются правилам статей 1034, 1035 и 1037–1040 ГК РФ."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

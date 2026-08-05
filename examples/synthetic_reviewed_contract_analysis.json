@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk1027-1029-franchise-concept-form-and-subconcession-v1",
+      "title": "Синтетическая проверенная модель договора коммерческой концессии, его формы, государственной регистрации предоставления права и коммерческой субконцессии по статьям 1027–1029 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: договор коммерческой концессии как предоставление правообладателем пользователю за вознаграждение права использовать в предпринимательской деятельности комплекс исключительных прав, включающий право на товарный знак и знак обслуживания, требования к сторонам договора, письменная форма договора и государственная регистрация предоставления права использования, а также условия договора коммерческой субконцессии проверяются раздельно (статьи 1027–1029 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "franchise_concept_form_and_subconcession_articles_1027_1029",
+        "legal_reference": "ГК РФ, статьи 1027–1029",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk1030-1040-franchise-obligations-restrictions-and-termination-v1",
+      "title": "Синтетическая проверенная модель вознаграждения, обязанностей сторон, ограничений их прав, ответственности правообладателя и прекращения договора коммерческой концессии по статьям 1030–1040 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: формы вознаграждения по договору коммерческой концессии, обязанности правообладателя по передаче документации, инструктированию и контролю качества, обязанности пользователя по использованию средств индивидуализации, соблюдению качества и информированию покупателей, допустимые ограничения прав сторон и ничтожные условия, субсидиарная и солидарная ответственность правообладателя, а также изменение, прекращение и сохранение договора проверяются раздельно (статьи 1030–1040 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "franchise_obligations_restrictions_and_termination_articles_1030_1040",
+        "legal_reference": "ГК РФ, статьи 1030–1040",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-franchise-evidence",
+      "title": "Синтетическая проверенная запись фактов о коммерческой концессии",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки комплекс исключительных прав не предоставлялся; договор коммерческой концессии между сторонами не заключался.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "franchise_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
       "title": "Синтетическая проверенная модель договора доверительного управления имуществом, объекта управления, требований к управляющему, существенных условий, формы и обособления имущества по статьям 1012–1019 ГК РФ",
       "source_type": "statute",
@@ -9241,6 +9288,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "franchise_evidence": {
+      "id": "reviewed-franchise-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.franchise-evidence.v0",
+      "assertions": [
+        {
+          "id": "franchise-evidence-franchise_contract_concluded",
+          "predicate": "franchise_contract_concluded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "id": "franchise-evidence-franchise_scope_or_parties_breached",
+          "predicate": "franchise_scope_or_parties_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "id": "franchise-evidence-franchise_form_or_registration_breached",
+          "predicate": "franchise_form_or_registration_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "id": "franchise-evidence-form_invalidity_not_applied",
+          "predicate": "form_invalidity_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "id": "franchise-evidence-commercial_subconcession_rules_breached",
+          "predicate": "commercial_subconcession_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "id": "franchise-evidence-franchise_remuneration_rules_breached",
+          "predicate": "franchise_remuneration_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "id": "franchise-evidence-rightholder_obligations_breached",
+          "predicate": "rightholder_obligations_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "id": "franchise-evidence-user_obligations_breached",
+          "predicate": "user_obligations_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "id": "franchise-evidence-franchise_restrictions_rules_breached",
+          "predicate": "franchise_restrictions_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "id": "franchise-evidence-liability_or_termination_rules_breached",
+          "predicate": "liability_or_termination_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk1027-1029-franchise-concept-form-and-subconcession-v1",
+        "synthetic-ru-gk1030-1040-franchise-obligations-restrictions-and-termination-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-franchise-reviewer"
+    },
     "trust_management_evidence": {
       "id": "reviewed-trust-management-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -14131,6 +14271,7 @@
       "synthetic-formation-reviewer",
       "synthetic-forwarding-reviewer",
       "synthetic-framework-reviewer",
+      "synthetic-franchise-reviewer",
       "synthetic-freedom-reviewer",
       "synthetic-general-obligations-reviewer",
       "synthetic-general-sale-reviewer",
@@ -14202,6 +14343,7 @@
       "synthetic-case-supply-1-formation-evidence",
       "synthetic-case-supply-1-forwarding-evidence",
       "synthetic-case-supply-1-framework-evidence",
+      "synthetic-case-supply-1-franchise-evidence",
       "synthetic-case-supply-1-freedom-evidence",
       "synthetic-case-supply-1-general-obligations-evidence",
       "synthetic-case-supply-1-general-sale-evidence",
@@ -14254,6 +14396,8 @@
       "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
       "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
       "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1",
+      "synthetic-ru-gk1027-1029-franchise-concept-form-and-subconcession-v1",
+      "synthetic-ru-gk1030-1040-franchise-obligations-restrictions-and-termination-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -22472,6 +22616,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "franchise_evidence_mapping": {
+      "evidence_id": "reviewed-franchise-evidence-supply-1-v0",
+      "schema_version": "contracts.franchise-evidence.v0",
+      "mapping_version": "contracts-reviewed-franchise-to-facts-v0",
+      "facts": {
+        "franchise_contract_concluded": false,
+        "franchise_scope_or_parties_breached": false,
+        "franchise_form_or_registration_breached": false,
+        "form_invalidity_not_applied": false,
+        "commercial_subconcession_rules_breached": false,
+        "franchise_remuneration_rules_breached": false,
+        "rightholder_obligations_breached": false,
+        "user_obligations_breached": false,
+        "franchise_restrictions_rules_breached": false,
+        "liability_or_termination_rules_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk1027-1029-franchise-concept-form-and-subconcession-v1",
+        "synthetic-ru-gk1030-1040-franchise-obligations-restrictions-and-termination-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "commercial_subconcession_rules_breached",
+          "assertion_id": "franchise-evidence-commercial_subconcession_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "fact_name": "form_invalidity_not_applied",
+          "assertion_id": "franchise-evidence-form_invalidity_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "fact_name": "franchise_contract_concluded",
+          "assertion_id": "franchise-evidence-franchise_contract_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "fact_name": "franchise_form_or_registration_breached",
+          "assertion_id": "franchise-evidence-franchise_form_or_registration_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "fact_name": "franchise_remuneration_rules_breached",
+          "assertion_id": "franchise-evidence-franchise_remuneration_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "fact_name": "franchise_restrictions_rules_breached",
+          "assertion_id": "franchise-evidence-franchise_restrictions_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "fact_name": "franchise_scope_or_parties_breached",
+          "assertion_id": "franchise-evidence-franchise_scope_or_parties_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "fact_name": "liability_or_termination_rules_breached",
+          "assertion_id": "franchise-evidence-liability_or_termination_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "fact_name": "rightholder_obligations_breached",
+          "assertion_id": "franchise-evidence-rightholder_obligations_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        },
+        {
+          "fact_name": "user_obligations_breached",
+          "assertion_id": "franchise-evidence-user_obligations_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-franchise-evidence"
+          ]
+        }
+      ]
+    },
+    "franchise_constraint_set": {
+      "id": "franchise-constraint-set:reviewed-franchise-evidence-supply-1-v0",
+      "model_version": "contracts-franchise-articles-1027-1040-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk1027-1029-franchise-concept-form-and-subconcession-v1",
+        "synthetic-ru-gk1030-1040-franchise-obligations-restrictions-and-termination-v1"
+      ],
+      "expressions": [
+        "franchise_qualified == franchise_contract_concluded",
+        "scope_and_parties_duty_breached == franchise_qualified AND franchise_scope_or_parties_breached",
+        "form_and_registration_duty_breached == franchise_qualified AND franchise_form_or_registration_breached",
+        "form_invalidity_breached == franchise_qualified AND franchise_form_or_registration_breached AND form_invalidity_not_applied",
+        "subconcession_duty_breached == franchise_qualified AND commercial_subconcession_rules_breached",
+        "remuneration_duty_breached == franchise_qualified AND franchise_remuneration_rules_breached",
+        "rightholder_obligations_duty_breached == franchise_qualified AND rightholder_obligations_breached",
+        "user_obligations_duty_breached == franchise_qualified AND user_obligations_breached",
+        "restrictions_duty_breached == franchise_qualified AND franchise_restrictions_rules_breached",
+        "liability_and_termination_duty_breached == franchise_qualified AND liability_or_termination_rules_breached",
+        "requires_human_franchise_assessment == scope_and_parties_duty_breached OR form_and_registration_duty_breached OR subconcession_duty_breached OR remuneration_duty_breached OR rightholder_obligations_duty_breached OR user_obligations_duty_breached OR restrictions_duty_breached OR liability_and_termination_duty_breached"
+      ]
+    },
+    "franchise_evaluation": {
+      "constraint_set_id": "franchise-constraint-set:reviewed-franchise-evidence-supply-1-v0",
+      "satisfiable": true,
+      "franchise_qualified": false,
+      "scope_and_parties_duty_breached": false,
+      "form_and_registration_duty_breached": false,
+      "form_invalidity_breached": false,
+      "subconcession_duty_breached": false,
+      "remuneration_duty_breached": false,
+      "rightholder_obligations_duty_breached": false,
+      "user_obligations_duty_breached": false,
+      "restrictions_duty_breached": false,
+      "liability_and_termination_duty_breached": false,
+      "requires_human_franchise_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор коммерческой концессии."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о коммерческой концессии и не заменяет судебную оценку.",
+        "Объём переданных исключительных прав, качество товаров пользователя и добросовестность сторон оцениваются экспертом и судом (статьи 1027, 1032 и 1034 ГК РФ)."
+      ]
+    },
     "trust_management_evidence_mapping": {
       "evidence_id": "reviewed-trust-management-evidence-supply-1-v0",
       "schema_version": "contracts.trust-management-evidence.v0",
@@ -27979,7 +28259,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.76.0",
+      "institutional_package_version": "contracts-ru-v0@0.77.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

@@ -124,6 +124,9 @@ from causa.institutional.contracts.synthetic_mandate import (
 from causa.institutional.contracts.synthetic_agency import (
     build_synthetic_agency_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_franchise import (
+    build_synthetic_franchise_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_trust_management import (
     build_synthetic_trust_management_evaluation_artifact,
 )
@@ -1226,6 +1229,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-franchise",
+            title="Проверка коммерческой концессии",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.franchise_evidence_mapping.evidence_id,
+                trace.analysis_result.franchise_constraint_set.id,
+                *trace.analysis_result.franchise_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.franchise_evaluation.reasons_ru,
+                "Квалификация договора коммерческой концессии, объём предоставленного комплекса исключительных прав и состав сторон, письменная форма договора и государственная регистрация предоставления права, ничтожность при пороке формы, коммерческая субконцессия, вознаграждение правообладателя, обязанности правообладателя и пользователя, допустимые ограничения прав сторон и ничтожные условия, ответственность правообладателя и прекращение договора проверяются раздельно по статьям 1027–1040 ГК РФ.",
+                "Объём переданных исключительных прав, качество товаров пользователя и добросовестность сторон оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1538,6 +1556,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     negotiorum_gestio_artifact = build_synthetic_negotiorum_gestio_evaluation_artifact()
     commission_artifact = build_synthetic_commission_evaluation_artifact()
     agency_artifact = build_synthetic_agency_evaluation_artifact()
+    franchise_artifact = build_synthetic_franchise_evaluation_artifact()
     trust_management_artifact = build_synthetic_trust_management_evaluation_artifact()
     termination_artifact = build_synthetic_termination_evaluation_artifact()
     invalidity_artifact = build_synthetic_invalidity_evaluation_artifact()
@@ -1710,6 +1729,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-commission-spec.md",
                 "src/causa/institutional/contracts/agency.py",
                 "docs/contract-agency-spec.md",
+                "src/causa/institutional/contracts/franchise.py",
+                "docs/contract-franchise-spec.md",
                 "src/causa/institutional/contracts/trust_management.py",
                 "docs/contract-trust-management-spec.md",
                 "src/causa/institutional/contracts/invalidity.py",
@@ -1788,6 +1809,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_franchise_evaluation_report.json",
                 "examples/synthetic_trust_management_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",
@@ -1988,6 +2010,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 commission_artifact.red_team_report.id,
                 agency_artifact.benchmark_report.id,
                 agency_artifact.red_team_report.id,
+                franchise_artifact.benchmark_report.id,
+                franchise_artifact.red_team_report.id,
                 trust_management_artifact.benchmark_report.id,
                 trust_management_artifact.red_team_report.id,
                 invalidity_artifact.benchmark_report.id,
@@ -2078,6 +2102,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_franchise_evaluation_report.json",
                 "examples/synthetic_trust_management_evaluation_report.json",
                 "examples/synthetic_invalidity_evaluation_report.json",
                 "examples/synthetic_security_evaluation_report.json",

@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.77.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed franchise evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 1027 to 1040.",
+            "Franchise qualification, the scope of the granted rights and the parties, the written form and state registration, the invalidity of a defective form, commercial subconcession, remuneration, the rightholder's and the user's obligations, restrictions on the parties' rights, and liability and termination remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о коммерческой концессии обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 1027–1040 ГК РФ.",
+            "Квалификация коммерческой концессии, объём предоставленных прав и состав сторон, письменная форма и государственная регистрация, ничтожность при пороке формы, коммерческая субконцессия, вознаграждение, обязанности правообладателя и пользователя, ограничения прав сторон, ответственность и прекращение договора разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.76.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],
