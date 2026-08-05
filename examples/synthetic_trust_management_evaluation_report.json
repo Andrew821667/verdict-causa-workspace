@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о доверительном управлении имуществом по статьям 1012–1026 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-trust-management-evidence-supply-1-v0",
+    "schema_version": "contracts.trust-management-evidence.v0",
+    "mapping_version": "contracts-reviewed-trust-management-to-facts-v0",
+    "facts": {
+      "trust_management_contract_concluded": false,
+      "trust_property_scope_breached": false,
+      "trustee_status_invalid": false,
+      "essential_terms_or_form_breached": false,
+      "form_invalidity_not_applied": false,
+      "property_separation_breached": false,
+      "encumbered_property_notice_breached": false,
+      "trustee_rights_and_report_breached": false,
+      "trustee_liability_rules_breached": false,
+      "remuneration_or_termination_rules_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
+      "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "encumbered_property_notice_breached",
+        "assertion_id": "trust-management-evidence-encumbered_property_notice_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-trust-management-evidence"
+        ]
+      },
+      {
+        "fact_name": "essential_terms_or_form_breached",
+        "assertion_id": "trust-management-evidence-essential_terms_or_form_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-trust-management-evidence"
+        ]
+      },
+      {
+        "fact_name": "form_invalidity_not_applied",
+        "assertion_id": "trust-management-evidence-form_invalidity_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-trust-management-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_separation_breached",
+        "assertion_id": "trust-management-evidence-property_separation_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-trust-management-evidence"
+        ]
+      },
+      {
+        "fact_name": "remuneration_or_termination_rules_breached",
+        "assertion_id": "trust-management-evidence-remuneration_or_termination_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-trust-management-evidence"
+        ]
+      },
+      {
+        "fact_name": "trust_management_contract_concluded",
+        "assertion_id": "trust-management-evidence-trust_management_contract_concluded",
+        "source_refs": [
+          "synthetic-case-supply-1-trust-management-evidence"
+        ]
+      },
+      {
+        "fact_name": "trust_property_scope_breached",
+        "assertion_id": "trust-management-evidence-trust_property_scope_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-trust-management-evidence"
+        ]
+      },
+      {
+        "fact_name": "trustee_liability_rules_breached",
+        "assertion_id": "trust-management-evidence-trustee_liability_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-trust-management-evidence"
+        ]
+      },
+      {
+        "fact_name": "trustee_rights_and_report_breached",
+        "assertion_id": "trust-management-evidence-trustee_rights_and_report_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-trust-management-evidence"
+        ]
+      },
+      {
+        "fact_name": "trustee_status_invalid",
+        "assertion_id": "trust-management-evidence-trustee_status_invalid",
+        "source_refs": [
+          "synthetic-case-supply-1-trust-management-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "trust-management-constraint-set:reviewed-trust-management-evidence-supply-1-v0",
+    "model_version": "contracts-trust-management-articles-1012-1026-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
+      "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1"
+    ],
+    "expressions": [
+      "trust_management_qualified == trust_management_contract_concluded",
+      "property_scope_duty_breached == trust_management_qualified AND trust_property_scope_breached",
+      "trustee_status_duty_breached == trust_management_qualified AND trustee_status_invalid",
+      "essential_terms_duty_breached == trust_management_qualified AND essential_terms_or_form_breached",
+      "form_invalidity_breached == trust_management_qualified AND essential_terms_or_form_breached AND form_invalidity_not_applied",
+      "property_separation_duty_breached == trust_management_qualified AND property_separation_breached",
+      "encumbered_property_duty_breached == trust_management_qualified AND encumbered_property_notice_breached",
+      "trustee_rights_duty_breached == trust_management_qualified AND trustee_rights_and_report_breached",
+      "trustee_liability_duty_breached == trust_management_qualified AND trustee_liability_rules_breached",
+      "remuneration_and_termination_duty_breached == trust_management_qualified AND remuneration_or_termination_rules_breached",
+      "requires_human_trust_management_assessment == property_scope_duty_breached OR trustee_status_duty_breached OR essential_terms_duty_breached OR property_separation_duty_breached OR encumbered_property_duty_breached OR trustee_rights_duty_breached OR trustee_liability_duty_breached OR remuneration_and_termination_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "trust-management-constraint-set:reviewed-trust-management-evidence-supply-1-v0",
+    "satisfiable": true,
+    "trust_management_qualified": false,
+    "property_scope_duty_breached": false,
+    "trustee_status_duty_breached": false,
+    "essential_terms_duty_breached": false,
+    "form_invalidity_breached": false,
+    "property_separation_duty_breached": false,
+    "encumbered_property_duty_breached": false,
+    "trustee_rights_duty_breached": false,
+    "trustee_liability_duty_breached": false,
+    "remuneration_and_termination_duty_breached": false,
+    "requires_human_trust_management_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор доверительного управления имуществом."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о доверительном управлении имуществом и не заменяет судебную оценку.",
+      "Состав переданного имущества, должная заботливость управляющего и обоснованность расходов оцениваются экспертом и судом (статьи 1013, 1022 и 1023 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "trust-management-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "trust-management-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "trust_management_qualified": false
+        },
+        "observed_outcomes": {
+          "trust_management_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор доверительного управления имуществом."
+        ]
+      },
+      {
+        "task_id": "trust-management-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "trust_management_qualified": true,
+          "requires_human_trust_management_assessment": false
+        },
+        "observed_outcomes": {
+          "trust_management_qualified": true,
+          "requires_human_trust_management_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "trust-management-bench-property-scope",
+        "passed": true,
+        "expected_outcomes": {
+          "property_scope_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "observed_outcomes": {
+          "property_scope_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Объектами доверительного управления могут быть предприятия и другие имущественные комплексы, отдельные объекты недвижимости, ценные бумаги, права, удостоверенные бездокументарными ценными бумагами, исключительные права и иное имущество; имущество, находящееся в хозяйственном ведении или оперативном управлении, объектом управления быть не может (статья 1013 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "trust-management-bench-trustee-status",
+        "passed": true,
+        "expected_outcomes": {
+          "trustee_status_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "observed_outcomes": {
+          "trustee_status_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Доверительным управляющим может быть индивидуальный предприниматель или коммерческая организация, за исключением унитарного предприятия; имущество не подлежит передаче в доверительное управление государственному органу или органу местного самоуправления (статья 1015 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "trust-management-bench-essential-terms",
+        "passed": true,
+        "expected_outcomes": {
+          "essential_terms_duty_breached": true,
+          "form_invalidity_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "observed_outcomes": {
+          "essential_terms_duty_breached": true,
+          "form_invalidity_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "В договоре доверительного управления должны быть указаны состав передаваемого имущества, наименование учредителя управления или выгодоприобретателя, размер и форма вознаграждения управляющего и срок действия договора; договор заключается в письменной форме, а передача недвижимости подлежит государственной регистрации (статьи 1016 и 1017 ГК РФ).",
+          "Несоблюдение формы договора доверительного управления имуществом или требования о государственной регистрации передачи недвижимого имущества влечёт недействительность договора (статья 1017 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "trust-management-bench-separation",
+        "passed": true,
+        "expected_outcomes": {
+          "property_separation_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "observed_outcomes": {
+          "property_separation_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Имущество, переданное в доверительное управление, обособляется от другого имущества учредителя управления и от имущества управляющего, отражается у управляющего на отдельном балансе, и по нему ведётся самостоятельный учёт с открытием отдельного банковского счёта (статья 1018 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "trust-management-bench-encumbered-property",
+        "passed": true,
+        "expected_outcomes": {
+          "encumbered_property_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "observed_outcomes": {
+          "encumbered_property_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Передача в доверительное управление имущества, обременённого залогом, допускается с предупреждением управляющего об обременении; при отсутствии такого предупреждения управляющий вправе требовать расторжения договора и уплаты вознаграждения (статья 1019 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "trust-management-bench-trustee-rights",
+        "passed": true,
+        "expected_outcomes": {
+          "trustee_rights_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "observed_outcomes": {
+          "trustee_rights_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Доверительный управляющий осуществляет в пределах, предусмотренных законом и договором, правомочия собственника, обязан представлять учредителю управления и выгодоприобретателю отчёт о своей деятельности и по общему правилу осуществляет управление лично (статьи 1020 и 1021 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "trust-management-bench-liability",
+        "passed": true,
+        "expected_outcomes": {
+          "trustee_liability_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "observed_outcomes": {
+          "trustee_liability_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Доверительный управляющий, не проявивший при управлении имуществом должной заботливости об интересах выгодоприобретателя или учредителя управления, возмещает упущенную выгоду и убытки, если не докажет наличие предусмотренных законом обстоятельств (статья 1022 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "trust-management-bench-remuneration-termination",
+        "passed": true,
+        "expected_outcomes": {
+          "remuneration_and_termination_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "observed_outcomes": {
+          "remuneration_and_termination_duty_breached": true,
+          "requires_human_trust_management_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Доверительный управляющий имеет право на вознаграждение и возмещение необходимых расходов за счёт доходов от использования имущества, а прекращение договора доверительного управления подчиняется правилам статей 1023, 1024 и 1026 ГК РФ."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "trust-management-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "trust-management-red-qualify-without-contract",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "trust_management_qualified": true
+        },
+        "observed_outcomes": {
+          "trust_management_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор доверительного управления имуществом."
+        ]
+      },
+      {
+        "case_id": "trust-management-red-ignore-property-scope",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "property_scope_duty_breached": false
+        },
+        "observed_outcomes": {
+          "property_scope_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Объектами доверительного управления могут быть предприятия и другие имущественные комплексы, отдельные объекты недвижимости, ценные бумаги, права, удостоверенные бездокументарными ценными бумагами, исключительные права и иное имущество; имущество, находящееся в хозяйственном ведении или оперативном управлении, объектом управления быть не может (статья 1013 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "trust-management-red-ignore-trustee-status",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "trustee_status_duty_breached": false
+        },
+        "observed_outcomes": {
+          "trustee_status_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Доверительным управляющим может быть индивидуальный предприниматель или коммерческая организация, за исключением унитарного предприятия; имущество не подлежит передаче в доверительное управление государственному органу или органу местного самоуправления (статья 1015 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "trust-management-red-ignore-essential-terms",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "essential_terms_duty_breached": false
+        },
+        "observed_outcomes": {
+          "essential_terms_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "В договоре доверительного управления должны быть указаны состав передаваемого имущества, наименование учредителя управления или выгодоприобретателя, размер и форма вознаграждения управляющего и срок действия договора; договор заключается в письменной форме, а передача недвижимости подлежит государственной регистрации (статьи 1016 и 1017 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "trust-management-red-invalidity-without-form-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "form_invalidity_breached": true
+        },
+        "observed_outcomes": {
+          "form_invalidity_breached": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "trust-management-red-ignore-separation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "property_separation_duty_breached": false
+        },
+        "observed_outcomes": {
+          "property_separation_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Имущество, переданное в доверительное управление, обособляется от другого имущества учредителя управления и от имущества управляющего, отражается у управляющего на отдельном балансе, и по нему ведётся самостоятельный учёт с открытием отдельного банковского счёта (статья 1018 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "trust-management-red-ignore-encumbered-property",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "encumbered_property_duty_breached": false
+        },
+        "observed_outcomes": {
+          "encumbered_property_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Передача в доверительное управление имущества, обременённого залогом, допускается с предупреждением управляющего об обременении; при отсутствии такого предупреждения управляющий вправе требовать расторжения договора и уплаты вознаграждения (статья 1019 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "trust-management-red-ignore-trustee-rights",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "trustee_rights_duty_breached": false
+        },
+        "observed_outcomes": {
+          "trustee_rights_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Доверительный управляющий осуществляет в пределах, предусмотренных законом и договором, правомочия собственника, обязан представлять учредителю управления и выгодоприобретателю отчёт о своей деятельности и по общему правилу осуществляет управление лично (статьи 1020 и 1021 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "trust-management-red-ignore-liability",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "trustee_liability_duty_breached": false
+        },
+        "observed_outcomes": {
+          "trustee_liability_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Доверительный управляющий, не проявивший при управлении имуществом должной заботливости об интересах выгодоприобретателя или учредителя управления, возмещает упущенную выгоду и убытки, если не докажет наличие предусмотренных законом обстоятельств (статья 1022 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "trust-management-red-skip-human-on-termination",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_trust_management_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_trust_management_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор доверительного управления имуществом: учредитель управления передаёт доверительному управляющему на определённый срок имущество в доверительное управление, а управляющий обязуется осуществлять управление этим имуществом в интересах учредителя управления или указанного им лица (статья 1012 ГК РФ).",
+          "Доверительный управляющий имеет право на вознаграждение и возмещение необходимых расходов за счёт доходов от использования имущества, а прекращение договора доверительного управления подчиняется правилам статей 1023, 1024 и 1026 ГК РФ."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

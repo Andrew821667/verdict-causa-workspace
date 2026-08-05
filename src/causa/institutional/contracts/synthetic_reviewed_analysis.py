@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.trust_management import (
+    ReviewedTrustManagementEvidence,
+    TrustManagementEvidenceAssertion,
+    TrustManagementEvidencePredicate,
+)
 from causa.institutional.contracts.agency import (
     AgencyEvidenceAssertion,
     AgencyEvidencePredicate,
@@ -532,6 +537,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
+    "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1",
+    "synthetic-case-supply-1-trust-management-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2870,6 +2878,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        trust_management_evidence=ReviewedTrustManagementEvidence(
+            id="reviewed-trust-management-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                TrustManagementEvidenceAssertion(
+                    id=f"trust-management-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-trust-management-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        TrustManagementEvidencePredicate.TRUST_MANAGEMENT_CONTRACT_CONCLUDED,
+                        False,
+                    ),
+                    (TrustManagementEvidencePredicate.TRUST_PROPERTY_SCOPE_BREACHED, False),
+                    (TrustManagementEvidencePredicate.TRUSTEE_STATUS_INVALID, False),
+                    (TrustManagementEvidencePredicate.ESSENTIAL_TERMS_OR_FORM_BREACHED, False),
+                    (TrustManagementEvidencePredicate.FORM_INVALIDITY_NOT_APPLIED, False),
+                    (TrustManagementEvidencePredicate.PROPERTY_SEPARATION_BREACHED, False),
+                    (TrustManagementEvidencePredicate.ENCUMBERED_PROPERTY_NOTICE_BREACHED, False),
+                    (TrustManagementEvidencePredicate.TRUSTEE_RIGHTS_AND_REPORT_BREACHED, False),
+                    (TrustManagementEvidencePredicate.TRUSTEE_LIABILITY_RULES_BREACHED, False),
+                    (
+                        TrustManagementEvidencePredicate.REMUNERATION_OR_TERMINATION_RULES_BREACHED,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
+                "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-trust-management-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",

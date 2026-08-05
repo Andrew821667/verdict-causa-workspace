@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.76.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed trust-management evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 1012 to 1026.",
+            "Trust-management qualification, the scope of the managed property, the trustee's standing, the essential terms and form, the invalidity of a defective form, separation of the property, notice of encumbrance, the trustee's rights and report, liability, and remuneration and termination remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о доверительном управлении имуществом обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 1012–1026 ГК РФ.",
+            "Квалификация доверительного управления, объект управления, статус управляющего, существенные условия и форма, недействительность при пороке формы, обособление имущества, предупреждение об обременении, права и отчёт управляющего, его ответственность, вознаграждение и прекращение договора разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.75.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

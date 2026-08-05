@@ -1,0 +1,77 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.73.0:to-0.76.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.73.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.73.0",
+  "target_package_version": "0.76.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.73.0",
+      "to_version": "0.74.0",
+      "reasons": [
+        "Reviewed inputs now require a separate commission evidence contract.",
+        "Analysis and Russian translation distinguish commission qualification, remuneration, the principal's instructions, notice of deviation, liability for the third party, sub-commission, the principal's property rights, the report, the principal's duties, and termination under articles 990 to 1004."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о комиссии.",
+        "Анализ и русское объяснение разделяют квалификацию комиссии, вознаграждение, указания комитента, уведомление об отступлении, ответственность за третье лицо, субкомиссию, права комитента на вещи, отчёт комиссионера, обязанности комитента и прекращение договора по статьям 990–1004 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_commission_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.74.0",
+      "to_version": "0.75.0",
+      "reasons": [
+        "Reviewed inputs now require a separate agency evidence contract.",
+        "Analysis and Russian translation distinguish agency qualification, the agent's acting capacity, remuneration, the permitted restrictions, the void restrictions on buyers, the agent's reports, the principal's objections, sub-agency, termination, and the choice of applicable rules under articles 1005 to 1011."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об агентировании.",
+        "Анализ и русское объяснение разделяют квалификацию агентирования, сторону сделки агента, вознаграждение, допустимые ограничения прав сторон, ничтожные условия о покупателях, отчёты агента, возражения принципала, субагентский договор, прекращение договора и выбор применимых правил по статьям 1005–1011 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_agency_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.75.0",
+      "to_version": "0.76.0",
+      "reasons": [
+        "Reviewed inputs now require a separate trust-management evidence contract.",
+        "Analysis and Russian translation distinguish trust-management qualification, the scope of the managed property, the trustee's standing, the essential terms and form, the invalidity of a defective form, separation of the property, notice of encumbrance, the trustee's rights and report, liability, and remuneration and termination under articles 1012 to 1026."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о доверительном управлении имуществом.",
+        "Анализ и русское объяснение разделяют квалификацию доверительного управления, объект управления, статус управляющего, существенные условия и форму, недействительность при пороке формы, обособление имущества, предупреждение об обременении, права и отчёт управляющего, его ответственность, вознаграждение и прекращение договора по статьям 1012–1026 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_trust_management_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

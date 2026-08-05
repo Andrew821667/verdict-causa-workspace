@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
+      "title": "Синтетическая проверенная модель договора доверительного управления имуществом, объекта управления, требований к управляющему, существенных условий, формы и обособления имущества по статьям 1012–1019 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: договор доверительного управления имуществом как передача учредителем управления имущества доверительному управляющему на определённый срок с обязанностью осуществлять управление в интересах учредителя или выгодоприобретателя, допустимые объекты доверительного управления, требования к доверительному управляющему, существенные условия и письменная форма договора с государственной регистрацией передачи недвижимости, обособление переданного имущества и предупреждение управляющего об обременении залогом проверяются раздельно (статьи 1012–1019 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "trust_management_concept_terms_and_property_articles_1012_1019",
+        "legal_reference": "ГК РФ, статьи 1012–1019",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1",
+      "title": "Синтетическая проверенная модель прав и обязанностей доверительного управляющего, его ответственности, вознаграждения и прекращения договора по статьям 1020–1026 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: осуществление доверительным управляющим правомочий собственника в пределах закона и договора, представление отчёта учредителю управления и выгодоприобретателю, личное осуществление управления и допустимость поручения его другому лицу, ответственность управляющего за отсутствие должной заботливости, право на вознаграждение и возмещение расходов, а также основания прекращения договора доверительного управления проверяются раздельно (статьи 1020–1026 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "trust_management_duties_liability_and_termination_articles_1020_1026",
+        "legal_reference": "ГК РФ, статьи 1020–1026",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-trust-management-evidence",
+      "title": "Синтетическая проверенная запись фактов о доверительном управлении имуществом",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки имущество в доверительное управление не передавалось; договор доверительного управления имуществом между сторонами не заключался.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "trust_management_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -9194,6 +9241,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "trust_management_evidence": {
+      "id": "reviewed-trust-management-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.trust-management-evidence.v0",
+      "assertions": [
+        {
+          "id": "trust-management-evidence-trust_management_contract_concluded",
+          "predicate": "trust_management_contract_concluded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "id": "trust-management-evidence-trust_property_scope_breached",
+          "predicate": "trust_property_scope_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "id": "trust-management-evidence-trustee_status_invalid",
+          "predicate": "trustee_status_invalid",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "id": "trust-management-evidence-essential_terms_or_form_breached",
+          "predicate": "essential_terms_or_form_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "id": "trust-management-evidence-form_invalidity_not_applied",
+          "predicate": "form_invalidity_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "id": "trust-management-evidence-property_separation_breached",
+          "predicate": "property_separation_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "id": "trust-management-evidence-encumbered_property_notice_breached",
+          "predicate": "encumbered_property_notice_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "id": "trust-management-evidence-trustee_rights_and_report_breached",
+          "predicate": "trustee_rights_and_report_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "id": "trust-management-evidence-trustee_liability_rules_breached",
+          "predicate": "trustee_liability_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "id": "trust-management-evidence-remuneration_or_termination_rules_breached",
+          "predicate": "remuneration_or_termination_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
+        "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-trust-management-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -14033,6 +14173,7 @@
       "synthetic-temporal-reviewer",
       "synthetic-termination-reviewer",
       "synthetic-third-party-reviewer",
+      "synthetic-trust-management-reviewer",
       "synthetic-vehicle-lease-reviewer",
       "synthetic-warehouse-storage-reviewer",
       "synthetic-work-contract-reviewer"
@@ -14102,6 +14243,7 @@
       "synthetic-case-supply-1-temporal-effect-evidence",
       "synthetic-case-supply-1-termination-evidence",
       "synthetic-case-supply-1-third-party-evidence",
+      "synthetic-case-supply-1-trust-management-evidence",
       "synthetic-case-supply-1-vehicle-lease-evidence",
       "synthetic-case-supply-1-warehouse-storage-evidence",
       "synthetic-case-supply-1-work-contract-evidence",
@@ -14110,6 +14252,8 @@
       "synthetic-ru-contract-supply-delivery-term",
       "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
       "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
+      "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
+      "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -22328,6 +22472,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "trust_management_evidence_mapping": {
+      "evidence_id": "reviewed-trust-management-evidence-supply-1-v0",
+      "schema_version": "contracts.trust-management-evidence.v0",
+      "mapping_version": "contracts-reviewed-trust-management-to-facts-v0",
+      "facts": {
+        "trust_management_contract_concluded": false,
+        "trust_property_scope_breached": false,
+        "trustee_status_invalid": false,
+        "essential_terms_or_form_breached": false,
+        "form_invalidity_not_applied": false,
+        "property_separation_breached": false,
+        "encumbered_property_notice_breached": false,
+        "trustee_rights_and_report_breached": false,
+        "trustee_liability_rules_breached": false,
+        "remuneration_or_termination_rules_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
+        "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "encumbered_property_notice_breached",
+          "assertion_id": "trust-management-evidence-encumbered_property_notice_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "fact_name": "essential_terms_or_form_breached",
+          "assertion_id": "trust-management-evidence-essential_terms_or_form_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "fact_name": "form_invalidity_not_applied",
+          "assertion_id": "trust-management-evidence-form_invalidity_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "fact_name": "property_separation_breached",
+          "assertion_id": "trust-management-evidence-property_separation_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "fact_name": "remuneration_or_termination_rules_breached",
+          "assertion_id": "trust-management-evidence-remuneration_or_termination_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "fact_name": "trust_management_contract_concluded",
+          "assertion_id": "trust-management-evidence-trust_management_contract_concluded",
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "fact_name": "trust_property_scope_breached",
+          "assertion_id": "trust-management-evidence-trust_property_scope_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "fact_name": "trustee_liability_rules_breached",
+          "assertion_id": "trust-management-evidence-trustee_liability_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "fact_name": "trustee_rights_and_report_breached",
+          "assertion_id": "trust-management-evidence-trustee_rights_and_report_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        },
+        {
+          "fact_name": "trustee_status_invalid",
+          "assertion_id": "trust-management-evidence-trustee_status_invalid",
+          "source_refs": [
+            "synthetic-case-supply-1-trust-management-evidence"
+          ]
+        }
+      ]
+    },
+    "trust_management_constraint_set": {
+      "id": "trust-management-constraint-set:reviewed-trust-management-evidence-supply-1-v0",
+      "model_version": "contracts-trust-management-articles-1012-1026-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
+        "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1"
+      ],
+      "expressions": [
+        "trust_management_qualified == trust_management_contract_concluded",
+        "property_scope_duty_breached == trust_management_qualified AND trust_property_scope_breached",
+        "trustee_status_duty_breached == trust_management_qualified AND trustee_status_invalid",
+        "essential_terms_duty_breached == trust_management_qualified AND essential_terms_or_form_breached",
+        "form_invalidity_breached == trust_management_qualified AND essential_terms_or_form_breached AND form_invalidity_not_applied",
+        "property_separation_duty_breached == trust_management_qualified AND property_separation_breached",
+        "encumbered_property_duty_breached == trust_management_qualified AND encumbered_property_notice_breached",
+        "trustee_rights_duty_breached == trust_management_qualified AND trustee_rights_and_report_breached",
+        "trustee_liability_duty_breached == trust_management_qualified AND trustee_liability_rules_breached",
+        "remuneration_and_termination_duty_breached == trust_management_qualified AND remuneration_or_termination_rules_breached",
+        "requires_human_trust_management_assessment == property_scope_duty_breached OR trustee_status_duty_breached OR essential_terms_duty_breached OR property_separation_duty_breached OR encumbered_property_duty_breached OR trustee_rights_duty_breached OR trustee_liability_duty_breached OR remuneration_and_termination_duty_breached"
+      ]
+    },
+    "trust_management_evaluation": {
+      "constraint_set_id": "trust-management-constraint-set:reviewed-trust-management-evidence-supply-1-v0",
+      "satisfiable": true,
+      "trust_management_qualified": false,
+      "property_scope_duty_breached": false,
+      "trustee_status_duty_breached": false,
+      "essential_terms_duty_breached": false,
+      "form_invalidity_breached": false,
+      "property_separation_duty_breached": false,
+      "encumbered_property_duty_breached": false,
+      "trustee_rights_duty_breached": false,
+      "trustee_liability_duty_breached": false,
+      "remuneration_and_termination_duty_breached": false,
+      "requires_human_trust_management_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор доверительного управления имуществом."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о доверительном управлении имуществом и не заменяет судебную оценку.",
+        "Состав переданного имущества, должная заботливость управляющего и обоснованность расходов оцениваются экспертом и судом (статьи 1013, 1022 и 1023 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -27699,7 +27979,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.75.0",
+      "institutional_package_version": "contracts-ru-v0@0.76.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -29758,6 +30038,7 @@
           "synthetic-case-supply-1-temporal-effect-evidence",
           "synthetic-case-supply-1-termination-evidence",
           "synthetic-case-supply-1-third-party-evidence",
+          "synthetic-case-supply-1-trust-management-evidence",
           "synthetic-case-supply-1-vehicle-lease-evidence",
           "synthetic-case-supply-1-warehouse-storage-evidence",
           "synthetic-case-supply-1-work-contract-evidence",
@@ -29766,6 +30047,8 @@
           "synthetic-ru-contract-supply-delivery-term",
           "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
           "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
+          "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
+          "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1",
           "synthetic-ru-gk158-165-form-framework-v1",
           "synthetic-ru-gk160-434-written-form-model-v1",
           "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -30976,6 +31259,7 @@
           "synthetic-case-supply-1-temporal-effect-evidence",
           "synthetic-case-supply-1-termination-evidence",
           "synthetic-case-supply-1-third-party-evidence",
+          "synthetic-case-supply-1-trust-management-evidence",
           "synthetic-case-supply-1-vehicle-lease-evidence",
           "synthetic-case-supply-1-warehouse-storage-evidence",
           "synthetic-case-supply-1-work-contract-evidence",
@@ -30984,6 +31268,8 @@
           "synthetic-ru-contract-supply-delivery-term",
           "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
           "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
+          "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
+          "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1",
           "synthetic-ru-gk158-165-form-framework-v1",
           "synthetic-ru-gk160-434-written-form-model-v1",
           "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -32194,6 +32480,7 @@
           "synthetic-case-supply-1-temporal-effect-evidence",
           "synthetic-case-supply-1-termination-evidence",
           "synthetic-case-supply-1-third-party-evidence",
+          "synthetic-case-supply-1-trust-management-evidence",
           "synthetic-case-supply-1-vehicle-lease-evidence",
           "synthetic-case-supply-1-warehouse-storage-evidence",
           "synthetic-case-supply-1-work-contract-evidence",
@@ -32202,6 +32489,8 @@
           "synthetic-ru-contract-supply-delivery-term",
           "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
           "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
+          "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
+          "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1",
           "synthetic-ru-gk158-165-form-framework-v1",
           "synthetic-ru-gk160-434-written-form-model-v1",
           "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -32431,7 +32720,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.75.0",
+      "institutional_package_version": "contracts-ru-v0@0.76.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -34717,6 +35006,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель договора доверительного управления имуществом, объекта управления, требований к управляющему, существенных условий, формы и обособления имущества по статьям 1012–1019 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "trust_management_concept_terms_and_property_articles_1012_1019",
+          "legal_reference": "ГК РФ, статьи 1012–1019",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk1020-1026-trust-management-duties-liability-and-termination-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель прав и обязанностей доверительного управляющего, его ответственности, вознаграждения и прекращения договора по статьям 1020–1026 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "trust_management_duties_liability_and_termination_articles_1020_1026",
+          "legal_reference": "ГК РФ, статьи 1020–1026",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-trust-management-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о доверительном управлении имуществом",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "trust_management_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -35388,6 +35715,7 @@
             "synthetic-temporal-reviewer",
             "synthetic-termination-reviewer",
             "synthetic-third-party-reviewer",
+            "synthetic-trust-management-reviewer",
             "synthetic-vehicle-lease-reviewer",
             "synthetic-warehouse-storage-reviewer",
             "synthetic-work-contract-reviewer"

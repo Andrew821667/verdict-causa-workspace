@@ -1442,6 +1442,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.75.0",
+        to_version="0.76.0",
+        reasons=[
+            "Reviewed inputs now require a separate trust-management evidence contract.",
+            "Analysis and Russian translation distinguish trust-management qualification, the scope of the managed property, the trustee's standing, the essential terms and form, the invalidity of a defective form, separation of the property, notice of encumbrance, the trustee's rights and report, liability, and remuneration and termination under articles 1012 to 1026.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о доверительном управлении имуществом.",
+            "Анализ и русское объяснение разделяют квалификацию доверительного управления, объект управления, статус управляющего, существенные условия и форму, недействительность при пороке формы, обособление имущества, предупреждение об обременении, права и отчёт управляющего, его ответственность, вознаграждение и прекращение договора по статьям 1012–1026 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_trust_management_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 
