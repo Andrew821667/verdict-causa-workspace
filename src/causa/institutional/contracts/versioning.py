@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.68.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed warehouse-storage evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 907 to 918.",
+            "Warehouse-storage qualification, the public duty of a general warehouse, inspection on acceptance, recording of discrepancies, the owner's inspection rights, notice of changed conditions, inspection on return, warehouse documents, the double warehouse certificate, and release of goods remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о хранении на товарном складе обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 907–918 ГК РФ.",
+            "Квалификация складского хранения, публичный характер договора склада общего пользования, осмотр товаров при приёме, фиксация расхождений, право товаровладельца на осмотр, уведомление об изменении условий хранения, проверка при возвращении, складские документы, двойное складское свидетельство и выдача товара разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.67.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

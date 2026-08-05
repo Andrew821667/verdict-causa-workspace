@@ -2442,6 +2442,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk907-911-warehouse-storage-concept-and-inspection-v1",
+      "title": "Синтетическая проверенная модель договора складского хранения, склада общего пользования, проверки товаров при приёме, осмотра товаров и изменения условий хранения по статьям 907–911 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: договор складского хранения как обязанность товарного склада за вознаграждение хранить переданные товаровладельцем товары и возвратить их в сохранности, публичный характер договора склада общего пользования, осмотр товаров и определение их количества и внешнего состояния при приёме, право товаровладельца осматривать товары и брать пробы, изменение условий хранения с уведомлением товаровладельца и проверка товаров при их возвращении проверяются раздельно (статьи 907–911 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "warehouse_storage_concept_and_inspection_articles_907_911",
+        "legal_reference": "ГК РФ, статьи 907–911",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1",
+      "title": "Синтетическая проверенная модель складских документов, двойного складского свидетельства, выдачи товара и хранения вещей с обезличением по статьям 912–918 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: выдача складом двойного складского свидетельства, простого складского свидетельства или складской квитанции, обязательные реквизиты двойного складского свидетельства, права держателей складского и залогового свидетельств и их передача, выдача товара по двойному складскому свидетельству и хранение вещей с обезличением проверяются раздельно (статьи 912–918 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "warehouse_documents_and_goods_release_articles_912_918",
+        "legal_reference": "ГК РФ, статьи 912–918",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-warehouse-storage-evidence",
+      "title": "Синтетическая проверенная запись фактов о хранении на товарном складе",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: товары по спорному договору поставки передавались непосредственно покупателю; на хранение товарному складу за вознаграждение они не передавались.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "warehouse_storage_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -8074,6 +8121,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-storage-reviewer"
     },
+    "warehouse_storage_evidence": {
+      "id": "reviewed-warehouse-storage-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.warehouse-storage-evidence.v0",
+      "assertions": [
+        {
+          "id": "warehouse-storage-evidence-goods_accepted_by_warehouse_for_storage",
+          "predicate": "goods_accepted_by_warehouse_for_storage",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "id": "warehouse-storage-evidence-general_warehouse_public_duty_breached",
+          "predicate": "general_warehouse_public_duty_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "id": "warehouse-storage-evidence-goods_inspection_on_acceptance_breached",
+          "predicate": "goods_inspection_on_acceptance_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "id": "warehouse-storage-evidence-acceptance_discrepancy_not_recorded",
+          "predicate": "acceptance_discrepancy_not_recorded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "id": "warehouse-storage-evidence-owner_inspection_rights_breached",
+          "predicate": "owner_inspection_rights_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "id": "warehouse-storage-evidence-storage_conditions_change_not_notified",
+          "predicate": "storage_conditions_change_not_notified",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "id": "warehouse-storage-evidence-return_inspection_and_report_breached",
+          "predicate": "return_inspection_and_report_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "id": "warehouse-storage-evidence-warehouse_document_not_issued",
+          "predicate": "warehouse_document_not_issued",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "id": "warehouse-storage-evidence-double_certificate_rules_breached",
+          "predicate": "double_certificate_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "id": "warehouse-storage-evidence-goods_release_and_commingling_rules_breached",
+          "predicate": "goods_release_and_commingling_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk907-911-warehouse-storage-concept-and-inspection-v1",
+        "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-warehouse-storage-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -12907,6 +13047,7 @@
       "synthetic-termination-reviewer",
       "synthetic-third-party-reviewer",
       "synthetic-vehicle-lease-reviewer",
+      "synthetic-warehouse-storage-reviewer",
       "synthetic-work-contract-reviewer"
     ],
     "source_ids": [
@@ -12968,6 +13109,7 @@
       "synthetic-case-supply-1-termination-evidence",
       "synthetic-case-supply-1-third-party-evidence",
       "synthetic-case-supply-1-vehicle-lease-evidence",
+      "synthetic-case-supply-1-warehouse-storage-evidence",
       "synthetic-case-supply-1-work-contract-evidence",
       "synthetic-ru-contract-supply-delivery-duty-v1",
       "synthetic-ru-contract-supply-delivery-duty-v2",
@@ -13098,6 +13240,8 @@
       "synthetic-ru-gk877-885-settlements-cheque-rules-v1",
       "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
       "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1",
+      "synthetic-ru-gk907-911-warehouse-storage-concept-and-inspection-v1",
+      "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -20088,6 +20232,142 @@
         "Достаточность принятых мер по обеспечению сохранности, необходимость чрезвычайных расходов и наличие вины хранителя оцениваются экспертом и судом (статьи 891, 898 и 901 ГК РФ)."
       ]
     },
+    "warehouse_storage_evidence_mapping": {
+      "evidence_id": "reviewed-warehouse-storage-evidence-supply-1-v0",
+      "schema_version": "contracts.warehouse-storage-evidence.v0",
+      "mapping_version": "contracts-reviewed-warehouse-storage-to-facts-v0",
+      "facts": {
+        "goods_accepted_by_warehouse_for_storage": false,
+        "general_warehouse_public_duty_breached": false,
+        "goods_inspection_on_acceptance_breached": false,
+        "acceptance_discrepancy_not_recorded": false,
+        "owner_inspection_rights_breached": false,
+        "storage_conditions_change_not_notified": false,
+        "return_inspection_and_report_breached": false,
+        "warehouse_document_not_issued": false,
+        "double_certificate_rules_breached": false,
+        "goods_release_and_commingling_rules_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk907-911-warehouse-storage-concept-and-inspection-v1",
+        "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "acceptance_discrepancy_not_recorded",
+          "assertion_id": "warehouse-storage-evidence-acceptance_discrepancy_not_recorded",
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "double_certificate_rules_breached",
+          "assertion_id": "warehouse-storage-evidence-double_certificate_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "general_warehouse_public_duty_breached",
+          "assertion_id": "warehouse-storage-evidence-general_warehouse_public_duty_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_accepted_by_warehouse_for_storage",
+          "assertion_id": "warehouse-storage-evidence-goods_accepted_by_warehouse_for_storage",
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_inspection_on_acceptance_breached",
+          "assertion_id": "warehouse-storage-evidence-goods_inspection_on_acceptance_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "goods_release_and_commingling_rules_breached",
+          "assertion_id": "warehouse-storage-evidence-goods_release_and_commingling_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "owner_inspection_rights_breached",
+          "assertion_id": "warehouse-storage-evidence-owner_inspection_rights_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "return_inspection_and_report_breached",
+          "assertion_id": "warehouse-storage-evidence-return_inspection_and_report_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "storage_conditions_change_not_notified",
+          "assertion_id": "warehouse-storage-evidence-storage_conditions_change_not_notified",
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        },
+        {
+          "fact_name": "warehouse_document_not_issued",
+          "assertion_id": "warehouse-storage-evidence-warehouse_document_not_issued",
+          "source_refs": [
+            "synthetic-case-supply-1-warehouse-storage-evidence"
+          ]
+        }
+      ]
+    },
+    "warehouse_storage_constraint_set": {
+      "id": "warehouse-storage-constraint-set:reviewed-warehouse-storage-evidence-supply-1-v0",
+      "model_version": "contracts-warehouse-storage-articles-907-918-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk907-911-warehouse-storage-concept-and-inspection-v1",
+        "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1"
+      ],
+      "expressions": [
+        "warehouse_storage_qualified == goods_accepted_by_warehouse_for_storage",
+        "general_warehouse_duty_breached == warehouse_storage_qualified AND general_warehouse_public_duty_breached",
+        "acceptance_inspection_duty_breached == warehouse_storage_qualified AND goods_inspection_on_acceptance_breached",
+        "acceptance_record_duty_breached == warehouse_storage_qualified AND goods_inspection_on_acceptance_breached AND acceptance_discrepancy_not_recorded",
+        "owner_inspection_duty_breached == warehouse_storage_qualified AND owner_inspection_rights_breached",
+        "conditions_change_notice_duty_breached == warehouse_storage_qualified AND storage_conditions_change_not_notified",
+        "return_inspection_duty_breached == warehouse_storage_qualified AND return_inspection_and_report_breached",
+        "warehouse_document_duty_breached == warehouse_storage_qualified AND warehouse_document_not_issued",
+        "double_certificate_duty_breached == warehouse_storage_qualified AND double_certificate_rules_breached",
+        "goods_release_duty_breached == warehouse_storage_qualified AND goods_release_and_commingling_rules_breached",
+        "requires_human_warehouse_storage_assessment == general_warehouse_duty_breached OR acceptance_inspection_duty_breached OR owner_inspection_duty_breached OR conditions_change_notice_duty_breached OR return_inspection_duty_breached OR warehouse_document_duty_breached OR double_certificate_duty_breached OR goods_release_duty_breached"
+      ]
+    },
+    "warehouse_storage_evaluation": {
+      "constraint_set_id": "warehouse-storage-constraint-set:reviewed-warehouse-storage-evidence-supply-1-v0",
+      "satisfiable": true,
+      "warehouse_storage_qualified": false,
+      "general_warehouse_duty_breached": false,
+      "acceptance_inspection_duty_breached": false,
+      "acceptance_record_duty_breached": false,
+      "owner_inspection_duty_breached": false,
+      "conditions_change_notice_duty_breached": false,
+      "return_inspection_duty_breached": false,
+      "warehouse_document_duty_breached": false,
+      "double_certificate_duty_breached": false,
+      "goods_release_duty_breached": false,
+      "requires_human_warehouse_storage_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как договор складского хранения."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только правила о хранении на товарном складе и не заменяет судебную оценку.",
+        "Существенность изменения условий хранения, достаточность осмотра товаров и правомерность выдачи товара по складским документам оцениваются экспертом и судом (статьи 909, 910 и 916 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -25459,7 +25739,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.67.0",
+      "institutional_package_version": "contracts-ru-v0@0.68.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -27512,6 +27792,7 @@
           "synthetic-case-supply-1-termination-evidence",
           "synthetic-case-supply-1-third-party-evidence",
           "synthetic-case-supply-1-vehicle-lease-evidence",
+          "synthetic-case-supply-1-warehouse-storage-evidence",
           "synthetic-case-supply-1-work-contract-evidence",
           "synthetic-ru-contract-supply-delivery-duty-v1",
           "synthetic-ru-contract-supply-delivery-duty-v2",
@@ -27642,6 +27923,8 @@
           "synthetic-ru-gk877-885-settlements-cheque-rules-v1",
           "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
           "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1",
+          "synthetic-ru-gk907-911-warehouse-storage-concept-and-inspection-v1",
+          "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -28706,6 +28989,7 @@
           "synthetic-case-supply-1-termination-evidence",
           "synthetic-case-supply-1-third-party-evidence",
           "synthetic-case-supply-1-vehicle-lease-evidence",
+          "synthetic-case-supply-1-warehouse-storage-evidence",
           "synthetic-case-supply-1-work-contract-evidence",
           "synthetic-ru-contract-supply-delivery-duty-v1",
           "synthetic-ru-contract-supply-delivery-duty-v2",
@@ -28836,6 +29120,8 @@
           "synthetic-ru-gk877-885-settlements-cheque-rules-v1",
           "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
           "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1",
+          "synthetic-ru-gk907-911-warehouse-storage-concept-and-inspection-v1",
+          "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -29900,6 +30186,7 @@
           "synthetic-case-supply-1-termination-evidence",
           "synthetic-case-supply-1-third-party-evidence",
           "synthetic-case-supply-1-vehicle-lease-evidence",
+          "synthetic-case-supply-1-warehouse-storage-evidence",
           "synthetic-case-supply-1-work-contract-evidence",
           "synthetic-ru-contract-supply-delivery-duty-v1",
           "synthetic-ru-contract-supply-delivery-duty-v2",
@@ -30030,6 +30317,8 @@
           "synthetic-ru-gk877-885-settlements-cheque-rules-v1",
           "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
           "synthetic-ru-gk896-906-storage-remuneration-return-and-liability-v1",
+          "synthetic-ru-gk907-911-warehouse-storage-concept-and-inspection-v1",
+          "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -30119,7 +30408,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.67.0",
+      "institutional_package_version": "contracts-ru-v0@0.68.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -32101,6 +32390,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk907-911-warehouse-storage-concept-and-inspection-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель договора складского хранения, склада общего пользования, проверки товаров при приёме, осмотра товаров и изменения условий хранения по статьям 907–911 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "warehouse_storage_concept_and_inspection_articles_907_911",
+          "legal_reference": "ГК РФ, статьи 907–911",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель складских документов, двойного складского свидетельства, выдачи товара и хранения вещей с обезличением по статьям 912–918 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "warehouse_documents_and_goods_release_articles_912_918",
+          "legal_reference": "ГК РФ, статьи 912–918",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-warehouse-storage-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о хранении на товарном складе",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "warehouse_storage_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -32766,6 +33093,7 @@
             "synthetic-termination-reviewer",
             "synthetic-third-party-reviewer",
             "synthetic-vehicle-lease-reviewer",
+            "synthetic-warehouse-storage-reviewer",
             "synthetic-work-contract-reviewer"
           ],
           "governance_record_id": "governance-record:candidate-supply-excuse-scope",

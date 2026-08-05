@@ -1290,6 +1290,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.67.0",
+        to_version="0.68.0",
+        reasons=[
+            "Reviewed inputs now require a separate warehouse-storage evidence contract.",
+            "Analysis and Russian translation distinguish warehouse-storage qualification, the public duty of a general warehouse, inspection on acceptance, recording of discrepancies, the owner's inspection rights, notice of changed conditions, inspection on return, warehouse documents, the double warehouse certificate, and release of goods under articles 907 to 918.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о хранении на товарном складе.",
+            "Анализ и русское объяснение разделяют квалификацию складского хранения, публичный характер договора склада общего пользования, осмотр товаров при приёме, фиксацию расхождений, право товаровладельца на осмотр, уведомление об изменении условий хранения, проверку при возвращении, складские документы, двойное складское свидетельство и выдачу товара по статьям 907–918 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_warehouse_storage_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

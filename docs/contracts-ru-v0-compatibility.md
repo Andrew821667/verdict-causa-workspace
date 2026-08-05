@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.68.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью хранения на товарном складе |
 | `0.67.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью общих положений о хранении |
 | `0.66.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью расчётов |
 | `0.65.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью банковского счёта |
@@ -75,6 +76,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.67.0` → `0.68.0` соберите отдельно проверенный контракт данных о хранении на товарном складе (`contracts.warehouse-storage-evidence.v0`). Не выводите квалификацию складского хранения, публичный характер договора склада общего пользования, осмотр товаров при приёме, фиксацию расхождений, право товаровладельца на осмотр, уведомление об изменении условий хранения, проверку при возвращении, складские документы и выдачу товара из прежних результатов об общих положениях о хранении. Пересоберите артефакты оценки хранения на товарном складе, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.66.0` → `0.67.0` соберите отдельно проверенный контракт данных о хранении (`contracts.storage-evidence.v0`). Не выводите квалификацию хранения, письменную форму, обязанность принять вещь, срок хранения, меры по обеспечению сохранности, пользование вещью, уведомление об изменении условий, вознаграждение и расходы, возврат вещи и ответственность хранителя из прежних результатов о подряде, возмездном оказании услуг или перевозке. Пересоберите артефакты оценки хранения, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

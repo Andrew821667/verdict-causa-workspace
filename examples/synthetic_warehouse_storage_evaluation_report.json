@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о хранении на товарном складе по статьям 907–918 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-warehouse-storage-evidence-supply-1-v0",
+    "schema_version": "contracts.warehouse-storage-evidence.v0",
+    "mapping_version": "contracts-reviewed-warehouse-storage-to-facts-v0",
+    "facts": {
+      "goods_accepted_by_warehouse_for_storage": false,
+      "general_warehouse_public_duty_breached": false,
+      "goods_inspection_on_acceptance_breached": false,
+      "acceptance_discrepancy_not_recorded": false,
+      "owner_inspection_rights_breached": false,
+      "storage_conditions_change_not_notified": false,
+      "return_inspection_and_report_breached": false,
+      "warehouse_document_not_issued": false,
+      "double_certificate_rules_breached": false,
+      "goods_release_and_commingling_rules_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk907-911-warehouse-storage-concept-and-inspection-v1",
+      "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "acceptance_discrepancy_not_recorded",
+        "assertion_id": "warehouse-storage-evidence-acceptance_discrepancy_not_recorded",
+        "source_refs": [
+          "synthetic-case-supply-1-warehouse-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "double_certificate_rules_breached",
+        "assertion_id": "warehouse-storage-evidence-double_certificate_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-warehouse-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "general_warehouse_public_duty_breached",
+        "assertion_id": "warehouse-storage-evidence-general_warehouse_public_duty_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-warehouse-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_accepted_by_warehouse_for_storage",
+        "assertion_id": "warehouse-storage-evidence-goods_accepted_by_warehouse_for_storage",
+        "source_refs": [
+          "synthetic-case-supply-1-warehouse-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_inspection_on_acceptance_breached",
+        "assertion_id": "warehouse-storage-evidence-goods_inspection_on_acceptance_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-warehouse-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "goods_release_and_commingling_rules_breached",
+        "assertion_id": "warehouse-storage-evidence-goods_release_and_commingling_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-warehouse-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "owner_inspection_rights_breached",
+        "assertion_id": "warehouse-storage-evidence-owner_inspection_rights_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-warehouse-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "return_inspection_and_report_breached",
+        "assertion_id": "warehouse-storage-evidence-return_inspection_and_report_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-warehouse-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "storage_conditions_change_not_notified",
+        "assertion_id": "warehouse-storage-evidence-storage_conditions_change_not_notified",
+        "source_refs": [
+          "synthetic-case-supply-1-warehouse-storage-evidence"
+        ]
+      },
+      {
+        "fact_name": "warehouse_document_not_issued",
+        "assertion_id": "warehouse-storage-evidence-warehouse_document_not_issued",
+        "source_refs": [
+          "synthetic-case-supply-1-warehouse-storage-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "warehouse-storage-constraint-set:reviewed-warehouse-storage-evidence-supply-1-v0",
+    "model_version": "contracts-warehouse-storage-articles-907-918-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk907-911-warehouse-storage-concept-and-inspection-v1",
+      "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1"
+    ],
+    "expressions": [
+      "warehouse_storage_qualified == goods_accepted_by_warehouse_for_storage",
+      "general_warehouse_duty_breached == warehouse_storage_qualified AND general_warehouse_public_duty_breached",
+      "acceptance_inspection_duty_breached == warehouse_storage_qualified AND goods_inspection_on_acceptance_breached",
+      "acceptance_record_duty_breached == warehouse_storage_qualified AND goods_inspection_on_acceptance_breached AND acceptance_discrepancy_not_recorded",
+      "owner_inspection_duty_breached == warehouse_storage_qualified AND owner_inspection_rights_breached",
+      "conditions_change_notice_duty_breached == warehouse_storage_qualified AND storage_conditions_change_not_notified",
+      "return_inspection_duty_breached == warehouse_storage_qualified AND return_inspection_and_report_breached",
+      "warehouse_document_duty_breached == warehouse_storage_qualified AND warehouse_document_not_issued",
+      "double_certificate_duty_breached == warehouse_storage_qualified AND double_certificate_rules_breached",
+      "goods_release_duty_breached == warehouse_storage_qualified AND goods_release_and_commingling_rules_breached",
+      "requires_human_warehouse_storage_assessment == general_warehouse_duty_breached OR acceptance_inspection_duty_breached OR owner_inspection_duty_breached OR conditions_change_notice_duty_breached OR return_inspection_duty_breached OR warehouse_document_duty_breached OR double_certificate_duty_breached OR goods_release_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "warehouse-storage-constraint-set:reviewed-warehouse-storage-evidence-supply-1-v0",
+    "satisfiable": true,
+    "warehouse_storage_qualified": false,
+    "general_warehouse_duty_breached": false,
+    "acceptance_inspection_duty_breached": false,
+    "acceptance_record_duty_breached": false,
+    "owner_inspection_duty_breached": false,
+    "conditions_change_notice_duty_breached": false,
+    "return_inspection_duty_breached": false,
+    "warehouse_document_duty_breached": false,
+    "double_certificate_duty_breached": false,
+    "goods_release_duty_breached": false,
+    "requires_human_warehouse_storage_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как договор складского хранения."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только правила о хранении на товарном складе и не заменяет судебную оценку.",
+      "Существенность изменения условий хранения, достаточность осмотра товаров и правомерность выдачи товара по складским документам оцениваются экспертом и судом (статьи 909, 910 и 916 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "warehouse-storage-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "warehouse-storage-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "warehouse_storage_qualified": false
+        },
+        "observed_outcomes": {
+          "warehouse_storage_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор складского хранения."
+        ]
+      },
+      {
+        "task_id": "warehouse-storage-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "warehouse_storage_qualified": true,
+          "requires_human_warehouse_storage_assessment": false
+        },
+        "observed_outcomes": {
+          "warehouse_storage_qualified": true,
+          "requires_human_warehouse_storage_assessment": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "warehouse-storage-bench-public-duty",
+        "passed": true,
+        "expected_outcomes": {
+          "general_warehouse_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "general_warehouse_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Договор складского хранения, заключаемый складом общего пользования, признаётся публичным договором (статья 908 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "warehouse-storage-bench-acceptance-inspection",
+        "passed": true,
+        "expected_outcomes": {
+          "acceptance_inspection_duty_breached": true,
+          "acceptance_record_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "acceptance_inspection_duty_breached": true,
+          "acceptance_record_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Товарный склад обязан при приёме товаров на хранение произвести за свой счёт осмотр товаров и определить их количество и внешнее состояние, если иное не предусмотрено договором (статья 909 ГК РФ).",
+          "Выявленные при приёме товаров расхождения в количестве и внешнем состоянии подлежат фиксации, а сведения о товарах предоставляются товаровладельцу в предусмотренном порядке (статья 909 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "warehouse-storage-bench-owner-inspection",
+        "passed": true,
+        "expected_outcomes": {
+          "owner_inspection_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "owner_inspection_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Товаровладелец вправе во время хранения осматривать товары или их образцы, если товары хранятся с обезличением, брать пробы и принимать меры, необходимые для обеспечения сохранности товаров (статья 909 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "warehouse-storage-bench-conditions-change",
+        "passed": true,
+        "expected_outcomes": {
+          "conditions_change_notice_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "conditions_change_notice_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "При необходимости изменить условия хранения товаров склад вправе принять требуемые меры самостоятельно, уведомив товаровладельца о существенном изменении условий, а об обнаруженных повреждениях товара — незамедлительно составить акт и известить товаровладельца (статья 910 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "warehouse-storage-bench-return-inspection",
+        "passed": true,
+        "expected_outcomes": {
+          "return_inspection_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "return_inspection_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Товаровладелец и склад имеют право требовать осмотра товаров и проверки их количества при возвращении товара; при отсутствии совместного осмотра заявление о недостаче или повреждении подаётся в установленный срок (статья 911 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "warehouse-storage-bench-document",
+        "passed": true,
+        "expected_outcomes": {
+          "warehouse_document_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "warehouse_document_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Товарный склад выдаёт в подтверждение принятия товара на хранение двойное складское свидетельство, простое складское свидетельство либо складскую квитанцию (статьи 912 и 917 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "warehouse-storage-bench-double-certificate",
+        "passed": true,
+        "expected_outcomes": {
+          "double_certificate_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "double_certificate_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Двойное складское свидетельство состоит из складского и залогового свидетельств, содержит обязательные реквизиты, а права его держателей и передача этих свидетельств подчиняются правилам статей 913–915 ГК РФ."
+        ]
+      },
+      {
+        "task_id": "warehouse-storage-bench-goods-release",
+        "passed": true,
+        "expected_outcomes": {
+          "goods_release_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "observed_outcomes": {
+          "goods_release_duty_breached": true,
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Товар выдаётся держателю складского и залогового свидетельств в предусмотренном порядке, а при хранении вещей с обезличением склад возвращает равное или обусловленное сторонами количество вещей того же рода и качества (статьи 916 и 918 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "warehouse-storage-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "warehouse-storage-red-qualify-without-acceptance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "warehouse_storage_qualified": true
+        },
+        "observed_outcomes": {
+          "warehouse_storage_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как договор складского хранения."
+        ]
+      },
+      {
+        "case_id": "warehouse-storage-red-ignore-public-duty",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "general_warehouse_duty_breached": false
+        },
+        "observed_outcomes": {
+          "general_warehouse_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Договор складского хранения, заключаемый складом общего пользования, признаётся публичным договором (статья 908 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "warehouse-storage-red-ignore-acceptance-inspection",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "acceptance_inspection_duty_breached": false
+        },
+        "observed_outcomes": {
+          "acceptance_inspection_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Товарный склад обязан при приёме товаров на хранение произвести за свой счёт осмотр товаров и определить их количество и внешнее состояние, если иное не предусмотрено договором (статья 909 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "warehouse-storage-red-record-without-inspection-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "acceptance_record_duty_breached": true
+        },
+        "observed_outcomes": {
+          "acceptance_record_duty_breached": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "warehouse-storage-red-ignore-owner-inspection",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "owner_inspection_duty_breached": false
+        },
+        "observed_outcomes": {
+          "owner_inspection_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Товаровладелец вправе во время хранения осматривать товары или их образцы, если товары хранятся с обезличением, брать пробы и принимать меры, необходимые для обеспечения сохранности товаров (статья 909 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "warehouse-storage-red-ignore-conditions-change",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "conditions_change_notice_duty_breached": false
+        },
+        "observed_outcomes": {
+          "conditions_change_notice_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "При необходимости изменить условия хранения товаров склад вправе принять требуемые меры самостоятельно, уведомив товаровладельца о существенном изменении условий, а об обнаруженных повреждениях товара — незамедлительно составить акт и известить товаровладельца (статья 910 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "warehouse-storage-red-ignore-return-inspection",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "return_inspection_duty_breached": false
+        },
+        "observed_outcomes": {
+          "return_inspection_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Товаровладелец и склад имеют право требовать осмотра товаров и проверки их количества при возвращении товара; при отсутствии совместного осмотра заявление о недостаче или повреждении подаётся в установленный срок (статья 911 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "warehouse-storage-red-ignore-document",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "warehouse_document_duty_breached": false
+        },
+        "observed_outcomes": {
+          "warehouse_document_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Товарный склад выдаёт в подтверждение принятия товара на хранение двойное складское свидетельство, простое складское свидетельство либо складскую квитанцию (статьи 912 и 917 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "warehouse-storage-red-ignore-double-certificate",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "double_certificate_duty_breached": false
+        },
+        "observed_outcomes": {
+          "double_certificate_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Двойное складское свидетельство состоит из складского и залогового свидетельств, содержит обязательные реквизиты, а права его держателей и передача этих свидетельств подчиняются правилам статей 913–915 ГК РФ."
+        ]
+      },
+      {
+        "case_id": "warehouse-storage-red-skip-human-on-goods-release",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_warehouse_storage_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_warehouse_storage_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор складского хранения: товарный склад обязуется за вознаграждение хранить товары, переданные ему товаровладельцем, и возвратить эти товары в сохранности (статья 907 ГК РФ).",
+          "Товар выдаётся держателю складского и залогового свидетельств в предусмотренном порядке, а при хранении вещей с обезличением склад возвращает равное или обусловленное сторонами количество вещей того же рода и качества (статьи 916 и 918 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}
