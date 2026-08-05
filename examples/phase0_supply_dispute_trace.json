@@ -2677,6 +2677,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
+      "title": "Синтетическая проверенная модель условий действий в чужом интересе, уведомления заинтересованного лица, одобрения и неодобрения действий по статьям 980–983 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: совершение действий без поручения, иного указания или заранее обещанного согласия заинтересованного лица в целях предотвращения вреда его личности или имуществу исходя из очевидной выгоды или пользы и действительных или вероятных намерений этого лица с необходимой заботливостью и осмотрительностью, обязанность сообщить заинтересованному лицу и выждать его решение, применение правил о договоре поручения при одобрении действий и отсутствие обязанностей заинтересованного лица при их неодобрении проверяются раздельно (статьи 980–983 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "gestio_conditions_notice_and_approval_articles_980_983",
+        "legal_reference": "ГК РФ, статьи 980–983",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1",
+      "title": "Синтетическая проверенная модель возмещения расходов, вознаграждения, последствий сделки в чужом интересе и отчёта по статьям 984–989 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: возмещение необходимых расходов и иного реального ущерба лицу, действовавшему в чужом интересе, право на вознаграждение при положительном для заинтересованного лица результате, переход обязанностей по сделке, заключённой в чужом интересе, при её одобрении, применение правил о неосновательном обогащении и возмещении вреда, а также обязанность представить отчёт с указанием полученных доходов и понесённых расходов проверяются раздельно (статьи 984–989 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "gestio_expenses_remuneration_and_reporting_articles_984_989",
+        "legal_reference": "ГК РФ, статьи 984–989",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-negotiorum-gestio-evidence",
+      "title": "Синтетическая проверенная запись фактов о действиях в чужом интересе без поручения",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: стороны спорного договора поставки действовали по договору; действий без поручения в интересе другой стороны в целях предотвращения вреда её личности или имуществу не совершалось.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "negotiorum_gestio_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
       "title": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
       "source_type": "statute",
@@ -8774,6 +8821,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-mandate-reviewer"
     },
+    "negotiorum_gestio_evidence": {
+      "id": "reviewed-negotiorum-gestio-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.negotiorum-gestio-evidence.v0",
+      "assertions": [
+        {
+          "id": "negotiorum-gestio-evidence-action_in_another_interest_performed",
+          "predicate": "action_in_another_interest_performed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "id": "negotiorum-gestio-evidence-action_conditions_breached",
+          "predicate": "action_conditions_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "id": "negotiorum-gestio-evidence-interested_person_notice_not_given",
+          "predicate": "interested_person_notice_not_given",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "id": "negotiorum-gestio-evidence-notice_waiting_duty_breached",
+          "predicate": "notice_waiting_duty_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "id": "negotiorum-gestio-evidence-approval_effects_not_applied",
+          "predicate": "approval_effects_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "id": "negotiorum-gestio-evidence-disapproved_action_continued",
+          "predicate": "disapproved_action_continued",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "id": "negotiorum-gestio-evidence-necessary_expenses_not_reimbursed",
+          "predicate": "necessary_expenses_not_reimbursed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "id": "negotiorum-gestio-evidence-remuneration_rules_breached",
+          "predicate": "remuneration_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "id": "negotiorum-gestio-evidence-transaction_consequences_transfer_breached",
+          "predicate": "transaction_consequences_transfer_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "id": "negotiorum-gestio-evidence-gestor_reporting_duty_breached",
+          "predicate": "gestor_reporting_duty_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
+        "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-negotiorum-gestio-reviewer"
+    },
     "invalidity_evidence": {
       "id": "reviewed-invalidity-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -13584,6 +13724,7 @@
       "synthetic-limitation-reviewer",
       "synthetic-loan-reviewer",
       "synthetic-mandate-reviewer",
+      "synthetic-negotiorum-gestio-reviewer",
       "synthetic-norm-reviewer",
       "synthetic-obligation-dynamics-reviewer",
       "synthetic-option-reviewer",
@@ -13651,6 +13792,7 @@
       "synthetic-case-supply-1-limitation-evidence",
       "synthetic-case-supply-1-loan-evidence",
       "synthetic-case-supply-1-mandate-evidence",
+      "synthetic-case-supply-1-negotiorum-gestio-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
       "synthetic-case-supply-1-option-evidence",
       "synthetic-case-supply-1-paid-services-evidence",
@@ -13818,6 +13960,8 @@
       "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1",
       "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
       "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
+      "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
+      "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1",
       "synthetic-ru-plenum18-pretrial-guidance-v1",
       "synthetic-ru-plenum18-supply-guidance-v1",
       "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -21488,6 +21632,142 @@
         "Правомерность и осуществимость указаний доверителя, необходимость отступления от них и соразмерность вознаграждения оцениваются экспертом и судом (статьи 973 и 978 ГК РФ)."
       ]
     },
+    "negotiorum_gestio_evidence_mapping": {
+      "evidence_id": "reviewed-negotiorum-gestio-evidence-supply-1-v0",
+      "schema_version": "contracts.negotiorum-gestio-evidence.v0",
+      "mapping_version": "contracts-reviewed-negotiorum-gestio-to-facts-v0",
+      "facts": {
+        "action_in_another_interest_performed": false,
+        "action_conditions_breached": false,
+        "interested_person_notice_not_given": false,
+        "notice_waiting_duty_breached": false,
+        "approval_effects_not_applied": false,
+        "disapproved_action_continued": false,
+        "necessary_expenses_not_reimbursed": false,
+        "remuneration_rules_breached": false,
+        "transaction_consequences_transfer_breached": false,
+        "gestor_reporting_duty_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
+        "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "action_conditions_breached",
+          "assertion_id": "negotiorum-gestio-evidence-action_conditions_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "fact_name": "action_in_another_interest_performed",
+          "assertion_id": "negotiorum-gestio-evidence-action_in_another_interest_performed",
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "fact_name": "approval_effects_not_applied",
+          "assertion_id": "negotiorum-gestio-evidence-approval_effects_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "fact_name": "disapproved_action_continued",
+          "assertion_id": "negotiorum-gestio-evidence-disapproved_action_continued",
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "fact_name": "gestor_reporting_duty_breached",
+          "assertion_id": "negotiorum-gestio-evidence-gestor_reporting_duty_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "fact_name": "interested_person_notice_not_given",
+          "assertion_id": "negotiorum-gestio-evidence-interested_person_notice_not_given",
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "fact_name": "necessary_expenses_not_reimbursed",
+          "assertion_id": "negotiorum-gestio-evidence-necessary_expenses_not_reimbursed",
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "fact_name": "notice_waiting_duty_breached",
+          "assertion_id": "negotiorum-gestio-evidence-notice_waiting_duty_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "fact_name": "remuneration_rules_breached",
+          "assertion_id": "negotiorum-gestio-evidence-remuneration_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        },
+        {
+          "fact_name": "transaction_consequences_transfer_breached",
+          "assertion_id": "negotiorum-gestio-evidence-transaction_consequences_transfer_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-negotiorum-gestio-evidence"
+          ]
+        }
+      ]
+    },
+    "negotiorum_gestio_constraint_set": {
+      "id": "negotiorum-gestio-constraint-set:reviewed-negotiorum-gestio-evidence-supply-1-v0",
+      "model_version": "contracts-negotiorum-gestio-articles-980-989-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
+        "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1"
+      ],
+      "expressions": [
+        "negotiorum_gestio_qualified == action_in_another_interest_performed",
+        "action_conditions_duty_breached == negotiorum_gestio_qualified AND action_conditions_breached",
+        "notice_duty_breached == negotiorum_gestio_qualified AND interested_person_notice_not_given",
+        "waiting_duty_breached == negotiorum_gestio_qualified AND interested_person_notice_not_given AND notice_waiting_duty_breached",
+        "approval_effects_breached == negotiorum_gestio_qualified AND approval_effects_not_applied",
+        "disapproval_effects_breached == negotiorum_gestio_qualified AND disapproved_action_continued",
+        "expenses_reimbursement_breached == negotiorum_gestio_qualified AND necessary_expenses_not_reimbursed",
+        "remuneration_duty_breached == negotiorum_gestio_qualified AND remuneration_rules_breached",
+        "transaction_consequences_breached == negotiorum_gestio_qualified AND transaction_consequences_transfer_breached",
+        "reporting_duty_breached == negotiorum_gestio_qualified AND gestor_reporting_duty_breached",
+        "requires_human_negotiorum_gestio_assessment == action_conditions_duty_breached OR notice_duty_breached OR approval_effects_breached OR disapproval_effects_breached OR expenses_reimbursement_breached OR remuneration_duty_breached OR transaction_consequences_breached OR reporting_duty_breached"
+      ]
+    },
+    "negotiorum_gestio_evaluation": {
+      "constraint_set_id": "negotiorum-gestio-constraint-set:reviewed-negotiorum-gestio-evidence-supply-1-v0",
+      "satisfiable": true,
+      "negotiorum_gestio_qualified": false,
+      "action_conditions_duty_breached": false,
+      "notice_duty_breached": false,
+      "waiting_duty_breached": false,
+      "approval_effects_breached": false,
+      "disapproval_effects_breached": false,
+      "expenses_reimbursement_breached": false,
+      "remuneration_duty_breached": false,
+      "transaction_consequences_breached": false,
+      "reporting_duty_breached": false,
+      "requires_human_negotiorum_gestio_assessment": false,
+      "reasons_ru": [
+        "Действия в чужом интересе без поручения не установлены."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о действиях в чужом интересе без поручения и не заменяет судебную оценку.",
+        "Очевидность выгоды, действительные намерения заинтересованного лица и необходимость понесённых расходов оцениваются экспертом и судом (статьи 980 и 984 ГК РФ)."
+      ]
+    },
     "invalidity_evidence_mapping": {
       "evidence_id": "reviewed-invalidity-evidence-supply-1-v0",
       "schema_version": "contracts.invalidity-evidence.v0",
@@ -26859,7 +27139,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.72.0",
+      "institutional_package_version": "contracts-ru-v0@0.73.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -28890,6 +29170,7 @@
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-loan-evidence",
           "synthetic-case-supply-1-mandate-evidence",
+          "synthetic-case-supply-1-negotiorum-gestio-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-option-evidence",
           "synthetic-case-supply-1-paid-services-evidence",
@@ -29057,6 +29338,8 @@
           "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1",
           "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
           "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
+          "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
+          "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -30099,6 +30382,7 @@
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-loan-evidence",
           "synthetic-case-supply-1-mandate-evidence",
+          "synthetic-case-supply-1-negotiorum-gestio-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-option-evidence",
           "synthetic-case-supply-1-paid-services-evidence",
@@ -30266,6 +30550,8 @@
           "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1",
           "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
           "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
+          "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
+          "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -31308,6 +31594,7 @@
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-loan-evidence",
           "synthetic-case-supply-1-mandate-evidence",
+          "synthetic-case-supply-1-negotiorum-gestio-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-option-evidence",
           "synthetic-case-supply-1-paid-services-evidence",
@@ -31475,6 +31762,8 @@
           "synthetic-ru-gk960-970-insurance-settlement-notice-release-and-subrogation-v1",
           "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
           "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
+          "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
+          "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1",
           "synthetic-ru-plenum18-pretrial-guidance-v1",
           "synthetic-ru-plenum18-supply-guidance-v1",
           "synthetic-ru-plenum23-pledge-guidance-v1",
@@ -31564,7 +31853,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.72.0",
+      "institutional_package_version": "contracts-ru-v0@0.73.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -33736,6 +34025,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель условий действий в чужом интересе, уведомления заинтересованного лица, одобрения и неодобрения действий по статьям 980–983 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "gestio_conditions_notice_and_approval_articles_980_983",
+          "legal_reference": "ГК РФ, статьи 980–983",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель возмещения расходов, вознаграждения, последствий сделки в чужом интересе и отчёта по статьям 984–989 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "gestio_expenses_remuneration_and_reporting_articles_984_989",
+          "legal_reference": "ГК РФ, статьи 984–989",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-negotiorum-gestio-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о действиях в чужом интересе без поручения",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "negotiorum_gestio_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk166-168-invalidity-framework-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель ничтожности и оспоримости по статьям 166–168 ГК РФ",
@@ -34378,6 +34705,7 @@
             "synthetic-limitation-reviewer",
             "synthetic-loan-reviewer",
             "synthetic-mandate-reviewer",
+            "synthetic-negotiorum-gestio-reviewer",
             "synthetic-norm-reviewer",
             "synthetic-obligation-dynamics-reviewer",
             "synthetic-option-reviewer",

@@ -1385,6 +1385,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.72.0",
+        to_version="0.73.0",
+        reasons=[
+            "Reviewed inputs now require a separate negotiorum-gestio evidence contract.",
+            "Analysis and Russian translation distinguish the conditions of acting in another's interest, notice to the interested person, waiting for the decision, the effects of approval and disapproval, reimbursement of expenses, remuneration, the transfer of the transaction's consequences, and the gestor's report under articles 980 to 989.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о действиях в чужом интересе без поручения.",
+            "Анализ и русское объяснение разделяют условия действий в чужом интересе, уведомление заинтересованного лица, ожидание его решения, последствия одобрения и неодобрения, возмещение расходов, вознаграждение, переход последствий сделки и отчёт по статьям 980–989 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_negotiorum_gestio_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

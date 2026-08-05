@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о действиях в чужом интересе без поручения по статьям 980–989 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-negotiorum-gestio-evidence-supply-1-v0",
+    "schema_version": "contracts.negotiorum-gestio-evidence.v0",
+    "mapping_version": "contracts-reviewed-negotiorum-gestio-to-facts-v0",
+    "facts": {
+      "action_in_another_interest_performed": false,
+      "action_conditions_breached": false,
+      "interested_person_notice_not_given": false,
+      "notice_waiting_duty_breached": false,
+      "approval_effects_not_applied": false,
+      "disapproved_action_continued": false,
+      "necessary_expenses_not_reimbursed": false,
+      "remuneration_rules_breached": false,
+      "transaction_consequences_transfer_breached": false,
+      "gestor_reporting_duty_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
+      "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "action_conditions_breached",
+        "assertion_id": "negotiorum-gestio-evidence-action_conditions_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-negotiorum-gestio-evidence"
+        ]
+      },
+      {
+        "fact_name": "action_in_another_interest_performed",
+        "assertion_id": "negotiorum-gestio-evidence-action_in_another_interest_performed",
+        "source_refs": [
+          "synthetic-case-supply-1-negotiorum-gestio-evidence"
+        ]
+      },
+      {
+        "fact_name": "approval_effects_not_applied",
+        "assertion_id": "negotiorum-gestio-evidence-approval_effects_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-negotiorum-gestio-evidence"
+        ]
+      },
+      {
+        "fact_name": "disapproved_action_continued",
+        "assertion_id": "negotiorum-gestio-evidence-disapproved_action_continued",
+        "source_refs": [
+          "synthetic-case-supply-1-negotiorum-gestio-evidence"
+        ]
+      },
+      {
+        "fact_name": "gestor_reporting_duty_breached",
+        "assertion_id": "negotiorum-gestio-evidence-gestor_reporting_duty_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-negotiorum-gestio-evidence"
+        ]
+      },
+      {
+        "fact_name": "interested_person_notice_not_given",
+        "assertion_id": "negotiorum-gestio-evidence-interested_person_notice_not_given",
+        "source_refs": [
+          "synthetic-case-supply-1-negotiorum-gestio-evidence"
+        ]
+      },
+      {
+        "fact_name": "necessary_expenses_not_reimbursed",
+        "assertion_id": "negotiorum-gestio-evidence-necessary_expenses_not_reimbursed",
+        "source_refs": [
+          "synthetic-case-supply-1-negotiorum-gestio-evidence"
+        ]
+      },
+      {
+        "fact_name": "notice_waiting_duty_breached",
+        "assertion_id": "negotiorum-gestio-evidence-notice_waiting_duty_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-negotiorum-gestio-evidence"
+        ]
+      },
+      {
+        "fact_name": "remuneration_rules_breached",
+        "assertion_id": "negotiorum-gestio-evidence-remuneration_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-negotiorum-gestio-evidence"
+        ]
+      },
+      {
+        "fact_name": "transaction_consequences_transfer_breached",
+        "assertion_id": "negotiorum-gestio-evidence-transaction_consequences_transfer_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-negotiorum-gestio-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "negotiorum-gestio-constraint-set:reviewed-negotiorum-gestio-evidence-supply-1-v0",
+    "model_version": "contracts-negotiorum-gestio-articles-980-989-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
+      "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1"
+    ],
+    "expressions": [
+      "negotiorum_gestio_qualified == action_in_another_interest_performed",
+      "action_conditions_duty_breached == negotiorum_gestio_qualified AND action_conditions_breached",
+      "notice_duty_breached == negotiorum_gestio_qualified AND interested_person_notice_not_given",
+      "waiting_duty_breached == negotiorum_gestio_qualified AND interested_person_notice_not_given AND notice_waiting_duty_breached",
+      "approval_effects_breached == negotiorum_gestio_qualified AND approval_effects_not_applied",
+      "disapproval_effects_breached == negotiorum_gestio_qualified AND disapproved_action_continued",
+      "expenses_reimbursement_breached == negotiorum_gestio_qualified AND necessary_expenses_not_reimbursed",
+      "remuneration_duty_breached == negotiorum_gestio_qualified AND remuneration_rules_breached",
+      "transaction_consequences_breached == negotiorum_gestio_qualified AND transaction_consequences_transfer_breached",
+      "reporting_duty_breached == negotiorum_gestio_qualified AND gestor_reporting_duty_breached",
+      "requires_human_negotiorum_gestio_assessment == action_conditions_duty_breached OR notice_duty_breached OR approval_effects_breached OR disapproval_effects_breached OR expenses_reimbursement_breached OR remuneration_duty_breached OR transaction_consequences_breached OR reporting_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "negotiorum-gestio-constraint-set:reviewed-negotiorum-gestio-evidence-supply-1-v0",
+    "satisfiable": true,
+    "negotiorum_gestio_qualified": false,
+    "action_conditions_duty_breached": false,
+    "notice_duty_breached": false,
+    "waiting_duty_breached": false,
+    "approval_effects_breached": false,
+    "disapproval_effects_breached": false,
+    "expenses_reimbursement_breached": false,
+    "remuneration_duty_breached": false,
+    "transaction_consequences_breached": false,
+    "reporting_duty_breached": false,
+    "requires_human_negotiorum_gestio_assessment": false,
+    "reasons_ru": [
+      "Действия в чужом интересе без поручения не установлены."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о действиях в чужом интересе без поручения и не заменяет судебную оценку.",
+      "Очевидность выгоды, действительные намерения заинтересованного лица и необходимость понесённых расходов оцениваются экспертом и судом (статьи 980 и 984 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "negotiorum-gestio-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "negotiorum-gestio-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "negotiorum_gestio_qualified": false
+        },
+        "observed_outcomes": {
+          "negotiorum_gestio_qualified": false
+        },
+        "reasons_ru": [
+          "Действия в чужом интересе без поручения не установлены."
+        ]
+      },
+      {
+        "task_id": "negotiorum-gestio-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "negotiorum_gestio_qualified": true,
+          "requires_human_negotiorum_gestio_assessment": false
+        },
+        "observed_outcomes": {
+          "negotiorum_gestio_qualified": true,
+          "requires_human_negotiorum_gestio_assessment": false
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "negotiorum-gestio-bench-conditions",
+        "passed": true,
+        "expected_outcomes": {
+          "action_conditions_duty_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "observed_outcomes": {
+          "action_conditions_duty_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Действия в чужом интересе должны совершаться исходя из очевидной выгоды или пользы и действительных или вероятных намерений заинтересованного лица и с необходимой по обстоятельствам дела заботливостью и осмотрительностью (статья 980 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "negotiorum-gestio-bench-notice",
+        "passed": true,
+        "expected_outcomes": {
+          "notice_duty_breached": true,
+          "waiting_duty_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "observed_outcomes": {
+          "notice_duty_breached": true,
+          "waiting_duty_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Лицо, действующее в чужом интересе, обязано при первой возможности сообщить об этом заинтересованному лицу (статья 981 ГК РФ).",
+          "После сообщения заинтересованному лицу необходимо выждать в течение разумного срока его решение об одобрении или о неодобрении предпринимаемых действий, если такое ожидание не влечёт серьёзного ущерба (статья 981 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "negotiorum-gestio-bench-approval",
+        "passed": true,
+        "expected_outcomes": {
+          "approval_effects_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "observed_outcomes": {
+          "approval_effects_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Если лицо, в интересе которого предпринимаются действия, одобрит их, к отношениям сторон в дальнейшем применяются правила о договоре поручения или ином договоре, соответствующем характеру предпринятых действий (статья 982 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "negotiorum-gestio-bench-disapproval",
+        "passed": true,
+        "expected_outcomes": {
+          "disapproval_effects_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "observed_outcomes": {
+          "disapproval_effects_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Действия в чужом интересе, совершённые после того, как тому, кто их совершает, стало известно о неодобрении их заинтересованным лицом, не влекут для последнего обязанностей ни в отношении совершившего эти действия, ни в отношении третьих лиц (статья 983 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "negotiorum-gestio-bench-expenses",
+        "passed": true,
+        "expected_outcomes": {
+          "expenses_reimbursement_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "observed_outcomes": {
+          "expenses_reimbursement_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Необходимые расходы и иной реальный ущерб, понесённые лицом, действовавшим в чужом интересе, подлежат возмещению заинтересованным лицом, за исключением расходов, вызванных действиями после неодобрения (статья 984 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "negotiorum-gestio-bench-remuneration",
+        "passed": true,
+        "expected_outcomes": {
+          "remuneration_duty_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "observed_outcomes": {
+          "remuneration_duty_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Лицо, действия которого в чужом интересе привели к положительному для заинтересованного лица результату, имеет право на вознаграждение, если оно предусмотрено законом, соглашением или обычаями делового оборота (статья 985 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "negotiorum-gestio-bench-transaction",
+        "passed": true,
+        "expected_outcomes": {
+          "transaction_consequences_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "observed_outcomes": {
+          "transaction_consequences_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Обязанности по сделке, заключённой в чужом интересе, переходят к лицу, в интересах которого она совершена, при условии одобрения им этой сделки и отсутствия возражений другой стороны (статья 986 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "negotiorum-gestio-bench-reporting",
+        "passed": true,
+        "expected_outcomes": {
+          "reporting_duty_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "observed_outcomes": {
+          "reporting_duty_breached": true,
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Лицо, действовавшее в чужом интересе, обязано представить заинтересованному лицу отчёт с указанием полученных доходов и понесённых расходов и иных убытков (статья 989 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "negotiorum-gestio-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "negotiorum-gestio-red-qualify-without-action",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "negotiorum_gestio_qualified": true
+        },
+        "observed_outcomes": {
+          "negotiorum_gestio_qualified": false
+        },
+        "reasons_ru": [
+          "Действия в чужом интересе без поручения не установлены."
+        ]
+      },
+      {
+        "case_id": "negotiorum-gestio-red-ignore-conditions",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "action_conditions_duty_breached": false
+        },
+        "observed_outcomes": {
+          "action_conditions_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Действия в чужом интересе должны совершаться исходя из очевидной выгоды или пользы и действительных или вероятных намерений заинтересованного лица и с необходимой по обстоятельствам дела заботливостью и осмотрительностью (статья 980 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "negotiorum-gestio-red-ignore-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "notice_duty_breached": false
+        },
+        "observed_outcomes": {
+          "notice_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Лицо, действующее в чужом интересе, обязано при первой возможности сообщить об этом заинтересованному лицу (статья 981 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "negotiorum-gestio-red-waiting-without-notice-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "waiting_duty_breached": true
+        },
+        "observed_outcomes": {
+          "waiting_duty_breached": false
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "negotiorum-gestio-red-ignore-approval",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "approval_effects_breached": false
+        },
+        "observed_outcomes": {
+          "approval_effects_breached": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Если лицо, в интересе которого предпринимаются действия, одобрит их, к отношениям сторон в дальнейшем применяются правила о договоре поручения или ином договоре, соответствующем характеру предпринятых действий (статья 982 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "negotiorum-gestio-red-allow-disapproved-action",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "disapproval_effects_breached": false
+        },
+        "observed_outcomes": {
+          "disapproval_effects_breached": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Действия в чужом интересе, совершённые после того, как тому, кто их совершает, стало известно о неодобрении их заинтересованным лицом, не влекут для последнего обязанностей ни в отношении совершившего эти действия, ни в отношении третьих лиц (статья 983 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "negotiorum-gestio-red-ignore-expenses",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "expenses_reimbursement_breached": false
+        },
+        "observed_outcomes": {
+          "expenses_reimbursement_breached": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Необходимые расходы и иной реальный ущерб, понесённые лицом, действовавшим в чужом интересе, подлежат возмещению заинтересованным лицом, за исключением расходов, вызванных действиями после неодобрения (статья 984 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "negotiorum-gestio-red-ignore-remuneration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "remuneration_duty_breached": false
+        },
+        "observed_outcomes": {
+          "remuneration_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Лицо, действия которого в чужом интересе привели к положительному для заинтересованного лица результату, имеет право на вознаграждение, если оно предусмотрено законом, соглашением или обычаями делового оборота (статья 985 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "negotiorum-gestio-red-ignore-transaction",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transaction_consequences_breached": false
+        },
+        "observed_outcomes": {
+          "transaction_consequences_breached": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Обязанности по сделке, заключённой в чужом интересе, переходят к лицу, в интересах которого она совершена, при условии одобрения им этой сделки и отсутствия возражений другой стороны (статья 986 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "negotiorum-gestio-red-skip-human-on-reporting",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_negotiorum_gestio_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_negotiorum_gestio_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены действия в чужом интересе без поручения: действия без поручения, иного указания или заранее обещанного согласия заинтересованного лица совершены в целях предотвращения вреда его личности или имуществу, исполнения его обязательства или в его иных непротивоправных интересах (статья 980 ГК РФ).",
+          "Лицо, действовавшее в чужом интересе, обязано представить заинтересованному лицу отчёт с указанием полученных доходов и понесённых расходов и иных убытков (статья 989 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

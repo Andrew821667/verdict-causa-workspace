@@ -1,0 +1,153 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.66.0:to-0.73.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.66.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.66.0",
+  "target_package_version": "0.73.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.66.0",
+      "to_version": "0.67.0",
+      "reasons": [
+        "Reviewed inputs now require a separate storage evidence contract.",
+        "Analysis and Russian translation distinguish storage qualification, the written form, the duty to accept the thing, the storage period, safekeeping measures, use of the thing, notice of changed conditions, remuneration and expenses, return of the thing, and the custodian's liability under articles 886 to 906."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о хранении.",
+        "Анализ и русское объяснение разделяют квалификацию хранения, письменную форму, обязанность принять вещь, срок хранения, меры по обеспечению сохранности, пользование вещью, уведомление об изменении условий, вознаграждение и расходы, возврат вещи и ответственность хранителя по статьям 886–906 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_storage_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.67.0",
+      "to_version": "0.68.0",
+      "reasons": [
+        "Reviewed inputs now require a separate warehouse-storage evidence contract.",
+        "Analysis and Russian translation distinguish warehouse-storage qualification, the public duty of a general warehouse, inspection on acceptance, recording of discrepancies, the owner's inspection rights, notice of changed conditions, inspection on return, warehouse documents, the double warehouse certificate, and release of goods under articles 907 to 918."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о хранении на товарном складе.",
+        "Анализ и русское объяснение разделяют квалификацию складского хранения, публичный характер договора склада общего пользования, осмотр товаров при приёме, фиксацию расхождений, право товаровладельца на осмотр, уведомление об изменении условий хранения, проверку при возвращении, складские документы, двойное складское свидетельство и выдачу товара по статьям 907–918 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_warehouse_storage_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.68.0",
+      "to_version": "0.69.0",
+      "reasons": [
+        "Reviewed inputs now require a separate special-storage evidence contract.",
+        "Analysis and Russian translation distinguish special-storage qualification, pawnshop storage, storage of valuables in a bank, the individual safe deposit box, transport lockers, unclaimed goods, cloakrooms, hotel guest property, sequestration, and the limits of liability under articles 919 to 926."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о специальных видах хранения.",
+        "Анализ и русское объяснение разделяют квалификацию специального вида хранения, хранение в ломбарде, хранение ценностей в банке, индивидуальный банковский сейф, камеры хранения транспортных организаций, невостребованные вещи, гардеробы организаций, вещи постояльца гостиницы, секвестр и пределы ответственности по статьям 919–926 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_special_storage_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.69.0",
+      "to_version": "0.70.0",
+      "reasons": [
+        "Reviewed inputs now require a separate insurance evidence contract.",
+        "Analysis and Russian translation distinguish insurance qualification, the insurer's standing, the insured interest, the written form, the essential terms, the insurance rules, the scope of property and personal insurance, the beneficiary's rights, and compulsory insurance under articles 927 to 943."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о страховании.",
+        "Анализ и русское объяснение разделяют квалификацию страхования, статус страховщика, страховой интерес, письменную форму, существенные условия, правила страхования, пределы имущественного и личного страхования, права выгодоприобретателя и обязательное страхование по статьям 927–943 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_insurance_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.70.0",
+      "to_version": "0.71.0",
+      "reasons": [
+        "Reviewed inputs now require a separate insurance-settlement evidence contract.",
+        "Analysis and Russian translation distinguish disclosure at conclusion, the insured sum, the premium, an increase of risk and early termination, notice of the insured event and its consequences, loss mitigation, release of the insurer, subrogation, and limitation under articles 944 to 970."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об исполнении страхового обязательства.",
+        "Анализ и русское объяснение разделяют сообщение сведений при заключении договора, страховую сумму, страховую премию, увеличение страхового риска и досрочное прекращение, уведомление о страховом случае и его последствия, уменьшение убытков, освобождение страховщика, суброгацию и исковую давность по статьям 944–970 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_insurance_settlement_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.71.0",
+      "to_version": "0.72.0",
+      "reasons": [
+        "Reviewed inputs now require a separate mandate evidence contract.",
+        "Analysis and Russian translation distinguish mandate qualification, remuneration, the principal's instructions, notice of deviation, personal performance, reporting, the principal's duties, termination, its consequences, and the successors' duties under articles 971 to 979."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о поручении.",
+        "Анализ и русское объяснение разделяют квалификацию поручения, вознаграждение, указания доверителя, уведомление об отступлении, личное исполнение, отчёт поверенного, обязанности доверителя, прекращение договора, его последствия и обязанности правопреемников по статьям 971–979 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_mandate_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.72.0",
+      "to_version": "0.73.0",
+      "reasons": [
+        "Reviewed inputs now require a separate negotiorum-gestio evidence contract.",
+        "Analysis and Russian translation distinguish the conditions of acting in another's interest, notice to the interested person, waiting for the decision, the effects of approval and disapproval, reimbursement of expenses, remuneration, the transfer of the transaction's consequences, and the gestor's report under articles 980 to 989."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о действиях в чужом интересе без поручения.",
+        "Анализ и русское объяснение разделяют условия действий в чужом интересе, уведомление заинтересованного лица, ожидание его решения, последствия одобрения и неодобрения, возмещение расходов, вознаграждение, переход последствий сделки и отчёт по статьям 980–989 ГК РФ."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_negotiorum_gestio_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

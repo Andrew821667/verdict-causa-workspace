@@ -534,6 +534,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.negotiorum_gestio import (
+    NEGOTIORUM_GESTIO_EVIDENCE_SCHEMA_VERSION,
+    NegotiorumGestioConstraintSet,
+    NegotiorumGestioEvaluation,
+    NegotiorumGestioEvidenceMappingResult,
+    ReviewedNegotiorumGestioEvidence,
+    build_negotiorum_gestio_constraint_set,
+    evaluate_negotiorum_gestio_constraints,
+    map_reviewed_negotiorum_gestio_evidence,
+)
 from causa.institutional.contracts.mandate import (
     MANDATE_EVIDENCE_SCHEMA_VERSION,
     MandateConstraintSet,
@@ -812,6 +822,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     insurance_evidence: ReviewedInsuranceEvidence
     insurance_settlement_evidence: ReviewedInsuranceSettlementEvidence
     mandate_evidence: ReviewedMandateEvidence
+    negotiorum_gestio_evidence: ReviewedNegotiorumGestioEvidence
     invalidity_evidence: ReviewedInvalidityEvidence
     security_evidence: ReviewedSecurityEvidence
     obligation_dynamics_evidence: ReviewedObligationDynamicsEvidence
@@ -1016,6 +1027,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     mandate_evidence_mapping: MandateEvidenceMappingResult
     mandate_constraint_set: MandateConstraintSet
     mandate_evaluation: MandateEvaluation
+    negotiorum_gestio_evidence_mapping: NegotiorumGestioEvidenceMappingResult
+    negotiorum_gestio_constraint_set: NegotiorumGestioConstraintSet
+    negotiorum_gestio_evaluation: NegotiorumGestioEvaluation
     invalidity_evidence_mapping: InvalidityEvidenceMappingResult
     invalidity_constraint_set: InvalidityConstraintSet
     invalidity_evaluation: InvalidityEvaluation
@@ -1654,6 +1668,19 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.mandate_evaluation != expected_mandate_evaluation:
             raise ValueError("Mandate evaluation does not replay from reviewed evidence.")
+        expected_negotiorum_gestio_set = build_negotiorum_gestio_constraint_set(
+            self.negotiorum_gestio_evidence_mapping
+        )
+        if self.negotiorum_gestio_constraint_set != expected_negotiorum_gestio_set:
+            raise ValueError(
+                "Negotiorum-gestio constraint set does not replay from reviewed evidence."
+            )
+        expected_negotiorum_gestio_evaluation = evaluate_negotiorum_gestio_constraints(
+            expected_negotiorum_gestio_set,
+            self.negotiorum_gestio_evidence_mapping.facts,
+        )
+        if self.negotiorum_gestio_evaluation != expected_negotiorum_gestio_evaluation:
+            raise ValueError("Negotiorum-gestio evaluation does not replay from reviewed evidence.")
         expected_invalidity_set = build_invalidity_constraint_set(self.invalidity_evidence_mapping)
         if self.invalidity_constraint_set != expected_invalidity_set:
             raise ValueError("Invalidity constraint set does not replay from reviewed evidence.")
@@ -2086,6 +2113,8 @@ def _validate_request_integrity(
         )
     if request.mandate_evidence.case_id != request.case_id:
         raise ValueError("Mandate evidence case_id does not match the analysis request.")
+    if request.negotiorum_gestio_evidence.case_id != request.case_id:
+        raise ValueError("Negotiorum-gestio evidence case_id does not match the analysis request.")
     if request.invalidity_evidence.case_id != request.case_id:
         raise ValueError("Invalidity evidence case_id does not match the analysis request.")
     if request.security_evidence.case_id != request.case_id:
@@ -2262,6 +2291,11 @@ def _validate_request_integrity(
         raise ValueError("Insurance-settlement evidence uses an unsupported schema version.")
     if request.mandate_evidence.schema_version != MANDATE_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Mandate evidence uses an unsupported schema version.")
+    if (
+        request.negotiorum_gestio_evidence.schema_version
+        != NEGOTIORUM_GESTIO_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Negotiorum-gestio evidence uses an unsupported schema version.")
     if request.reviewed_norm.source_id not in request.authority_input.candidate_source_ids:
         raise ValueError("Reviewed norm source must be an authority candidate.")
 
@@ -2324,6 +2358,7 @@ def _validate_request_integrity(
         *request.insurance_evidence.legal_source_refs,
         *request.insurance_settlement_evidence.legal_source_refs,
         *request.mandate_evidence.legal_source_refs,
+        *request.negotiorum_gestio_evidence.legal_source_refs,
         *request.invalidity_evidence.legal_source_refs,
         *request.security_evidence.legal_source_refs,
         *request.obligation_dynamics_evidence.legal_source_refs,
@@ -2444,6 +2479,8 @@ def _validate_request_integrity(
     for assertion in request.insurance_settlement_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.mandate_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.negotiorum_gestio_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.invalidity_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -3081,6 +3118,17 @@ def _validate_request_integrity(
             "Mandate legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_mandate_legal_sources))
         )
+    invalid_negotiorum_gestio_legal_sources = [
+        source_id
+        for source_id in request.negotiorum_gestio_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_negotiorum_gestio_legal_sources:
+        raise ValueError(
+            "Negotiorum-gestio legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_negotiorum_gestio_legal_sources))
+        )
     invalid_invalidity_legal_sources = [
         source_id
         for source_id in request.invalidity_evidence.legal_source_refs
@@ -3537,6 +3585,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Mandate evidence",
         review_status=request.mandate_evidence.review_status,
         reviewer_id=request.mandate_evidence.reviewer_id,
+    )
+    negotiorum_gestio_reviewer_id = _require_reviewed(
+        artifact_name="Negotiorum-gestio evidence",
+        review_status=request.negotiorum_gestio_evidence.review_status,
+        reviewer_id=request.negotiorum_gestio_evidence.reviewer_id,
     )
     invalidity_reviewer_id = _require_reviewed(
         artifact_name="Invalidity evidence",
@@ -4048,6 +4101,16 @@ def run_reviewed_contract_analysis(
         mandate_constraint_set,
         mandate_evidence_mapping.facts,
     )
+    negotiorum_gestio_evidence_mapping = map_reviewed_negotiorum_gestio_evidence(
+        request.negotiorum_gestio_evidence
+    )
+    negotiorum_gestio_constraint_set = build_negotiorum_gestio_constraint_set(
+        negotiorum_gestio_evidence_mapping
+    )
+    negotiorum_gestio_evaluation = evaluate_negotiorum_gestio_constraints(
+        negotiorum_gestio_constraint_set,
+        negotiorum_gestio_evidence_mapping.facts,
+    )
     invalidity_evidence_mapping = map_reviewed_invalidity_evidence(request.invalidity_evidence)
     invalidity_constraint_set = build_invalidity_constraint_set(invalidity_evidence_mapping)
     invalidity_evaluation = evaluate_invalidity_constraints(
@@ -4326,6 +4389,7 @@ def run_reviewed_contract_analysis(
         or insurance_evaluation.requires_human_insurance_assessment
         or insurance_settlement_evaluation.requires_human_insurance_settlement_assessment
         or mandate_evaluation.requires_human_mandate_assessment
+        or negotiorum_gestio_evaluation.requires_human_negotiorum_gestio_assessment
         or invalidity_evaluation.requires_human_invalidity_assessment
         or security_evaluation.requires_human_security_assessment
         or dynamics_evaluation.requires_human_dynamics_assessment
@@ -4400,6 +4464,7 @@ def run_reviewed_contract_analysis(
                 insurance_reviewer_id,
                 insurance_settlement_reviewer_id,
                 mandate_reviewer_id,
+                negotiorum_gestio_reviewer_id,
                 invalidity_reviewer_id,
                 security_reviewer_id,
                 dynamics_reviewer_id,
@@ -4580,6 +4645,9 @@ def run_reviewed_contract_analysis(
         mandate_evidence_mapping=mandate_evidence_mapping,
         mandate_constraint_set=mandate_constraint_set,
         mandate_evaluation=mandate_evaluation,
+        negotiorum_gestio_evidence_mapping=negotiorum_gestio_evidence_mapping,
+        negotiorum_gestio_constraint_set=negotiorum_gestio_constraint_set,
+        negotiorum_gestio_evaluation=negotiorum_gestio_evaluation,
         formation_evidence_mapping=formation_evidence_mapping,
         formation_constraint_set=formation_constraint_set,
         formation_evaluation=formation_evaluation,

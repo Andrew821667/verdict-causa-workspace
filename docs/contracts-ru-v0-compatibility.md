@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.73.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью действий в чужом интересе без поручения |
 | `0.72.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью поручения |
 | `0.71.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью исполнения страхового обязательства |
 | `0.70.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью страхования |
@@ -80,6 +81,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.72.0` → `0.73.0` соберите отдельно проверенный контракт данных о действиях в чужом интересе без поручения (`contracts.negotiorum-gestio-evidence.v0`). Не выводите условия таких действий, уведомление заинтересованного лица, последствия одобрения и неодобрения, возмещение расходов, вознаграждение и отчёт из прежних результатов о поручении. Пересоберите артефакты оценки действий в чужом интересе, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.71.0` → `0.72.0` соберите отдельно проверенный контракт данных о поручении (`contracts.mandate-evidence.v0`). Не выводите квалификацию поручения, вознаграждение поверенного, указания доверителя, личное исполнение, отчёт поверенного, обязанности доверителя и прекращение договора из прежних результатов о возмездном оказании услуг или транспортной экспедиции. Пересоберите артефакты оценки поручения, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

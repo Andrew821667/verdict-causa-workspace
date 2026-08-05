@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.negotiorum_gestio import (
+    NegotiorumGestioEvidenceAssertion,
+    NegotiorumGestioEvidencePredicate,
+    ReviewedNegotiorumGestioEvidence,
+)
 from causa.institutional.contracts.mandate import (
     MandateEvidenceAssertion,
     MandateEvidencePredicate,
@@ -508,6 +513,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk971-976-mandate-concept-instructions-and-duties-v1",
     "synthetic-ru-gk977-979-mandate-termination-and-consequences-v1",
     "synthetic-case-supply-1-mandate-evidence",
+    "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
+    "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1",
+    "synthetic-case-supply-1-negotiorum-gestio-evidence",
     "synthetic-ru-gk166-168-invalidity-framework-v1",
     "synthetic-ru-gk169-172-void-transactions-v1",
     "synthetic-ru-gk173-179-voidable-transactions-v1",
@@ -2744,6 +2752,45 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-mandate-reviewer",
+        ),
+        negotiorum_gestio_evidence=ReviewedNegotiorumGestioEvidence(
+            id="reviewed-negotiorum-gestio-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                NegotiorumGestioEvidenceAssertion(
+                    id=f"negotiorum-gestio-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-negotiorum-gestio-evidence",),
+                )
+                for predicate, value in (
+                    (
+                        NegotiorumGestioEvidencePredicate.ACTION_IN_ANOTHER_INTEREST_PERFORMED,
+                        False,
+                    ),
+                    (NegotiorumGestioEvidencePredicate.ACTION_CONDITIONS_BREACHED, False),
+                    (
+                        NegotiorumGestioEvidencePredicate.INTERESTED_PERSON_NOTICE_NOT_GIVEN,
+                        False,
+                    ),
+                    (NegotiorumGestioEvidencePredicate.NOTICE_WAITING_DUTY_BREACHED, False),
+                    (NegotiorumGestioEvidencePredicate.APPROVAL_EFFECTS_NOT_APPLIED, False),
+                    (NegotiorumGestioEvidencePredicate.DISAPPROVED_ACTION_CONTINUED, False),
+                    (NegotiorumGestioEvidencePredicate.NECESSARY_EXPENSES_NOT_REIMBURSED, False),
+                    (NegotiorumGestioEvidencePredicate.REMUNERATION_RULES_BREACHED, False),
+                    (
+                        NegotiorumGestioEvidencePredicate.TRANSACTION_CONSEQUENCES_TRANSFER_BREACHED,
+                        False,
+                    ),
+                    (NegotiorumGestioEvidencePredicate.GESTOR_REPORTING_DUTY_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk980-983-gestio-conditions-notice-and-approval-v1",
+                "synthetic-ru-gk984-989-gestio-expenses-remuneration-and-reporting-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-negotiorum-gestio-reviewer",
         ),
         invalidity_evidence=ReviewedInvalidityEvidence(
             id="reviewed-invalidity-evidence-supply-1-v0",
