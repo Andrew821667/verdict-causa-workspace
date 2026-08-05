@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.moral_harm import (
+    MoralHarmEvidenceAssertion,
+    MoralHarmEvidencePredicate,
+    ReviewedMoralHarmEvidence,
+)
 from causa.institutional.contracts.product_liability import (
     ProductLiabilityEvidenceAssertion,
     ProductLiabilityEvidencePredicate,
@@ -572,6 +577,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
+    "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1",
+    "synthetic-case-supply-1-moral-harm-evidence",
     "synthetic-ru-gk1095-1096-product-defect-harm-and-liable-persons-v1",
     "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1",
     "synthetic-case-supply-1-product-liability-evidence",
@@ -2934,6 +2942,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        moral_harm_evidence=ReviewedMoralHarmEvidence(
+            id="reviewed-moral-harm-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                MoralHarmEvidenceAssertion(
+                    id=f"moral-harm-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-moral-harm-evidence",),
+                )
+                for predicate, value in (
+                    (MoralHarmEvidencePredicate.MORAL_HARM_CLAIM_ESTABLISHED, False),
+                    (MoralHarmEvidencePredicate.NON_MATERIAL_BENEFITS_SCOPE_BREACHED, False),
+                    (
+                        MoralHarmEvidencePredicate.PROPERTY_RIGHTS_COMPENSATION_LIMITS_BREACHED,
+                        False,
+                    ),
+                    (
+                        MoralHarmEvidencePredicate.INDEPENDENT_FROM_PROPERTY_DAMAGE_BREACHED,
+                        False,
+                    ),
+                    (MoralHarmEvidencePredicate.NO_FAULT_GROUNDS_DISREGARDED, False),
+                    (MoralHarmEvidencePredicate.HIGH_RISK_SOURCE_GROUND_BREACHED, False),
+                    (MoralHarmEvidencePredicate.UNLAWFUL_PROSECUTION_GROUND_BREACHED, False),
+                    (MoralHarmEvidencePredicate.DEFAMATION_GROUND_BREACHED, False),
+                    (MoralHarmEvidencePredicate.COMPENSATION_FORM_OR_AMOUNT_BREACHED, False),
+                    (MoralHarmEvidencePredicate.VICTIM_INDIVIDUAL_FEATURES_DISREGARDED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
+                "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-moral-harm-reviewer",
         ),
         product_liability_evidence=ReviewedProductLiabilityEvidence(
             id="reviewed-product-liability-evidence-supply-1-v0",

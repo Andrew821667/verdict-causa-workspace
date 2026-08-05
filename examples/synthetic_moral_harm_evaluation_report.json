@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о компенсации морального вреда по статьям 1099–1101 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-moral-harm-evidence-supply-1-v0",
+    "schema_version": "contracts.moral-harm-evidence.v0",
+    "mapping_version": "contracts-reviewed-moral-harm-to-facts-v0",
+    "facts": {
+      "moral_harm_claim_established": false,
+      "non_material_benefits_scope_breached": false,
+      "property_rights_compensation_limits_breached": false,
+      "independent_from_property_damage_breached": false,
+      "no_fault_grounds_disregarded": false,
+      "high_risk_source_ground_breached": false,
+      "unlawful_prosecution_ground_breached": false,
+      "defamation_ground_breached": false,
+      "compensation_form_or_amount_breached": false,
+      "victim_individual_features_disregarded": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
+      "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "compensation_form_or_amount_breached",
+        "assertion_id": "moral-harm-evidence-compensation_form_or_amount_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-moral-harm-evidence"
+        ]
+      },
+      {
+        "fact_name": "defamation_ground_breached",
+        "assertion_id": "moral-harm-evidence-defamation_ground_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-moral-harm-evidence"
+        ]
+      },
+      {
+        "fact_name": "high_risk_source_ground_breached",
+        "assertion_id": "moral-harm-evidence-high_risk_source_ground_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-moral-harm-evidence"
+        ]
+      },
+      {
+        "fact_name": "independent_from_property_damage_breached",
+        "assertion_id": "moral-harm-evidence-independent_from_property_damage_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-moral-harm-evidence"
+        ]
+      },
+      {
+        "fact_name": "moral_harm_claim_established",
+        "assertion_id": "moral-harm-evidence-moral_harm_claim_established",
+        "source_refs": [
+          "synthetic-case-supply-1-moral-harm-evidence"
+        ]
+      },
+      {
+        "fact_name": "no_fault_grounds_disregarded",
+        "assertion_id": "moral-harm-evidence-no_fault_grounds_disregarded",
+        "source_refs": [
+          "synthetic-case-supply-1-moral-harm-evidence"
+        ]
+      },
+      {
+        "fact_name": "non_material_benefits_scope_breached",
+        "assertion_id": "moral-harm-evidence-non_material_benefits_scope_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-moral-harm-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_rights_compensation_limits_breached",
+        "assertion_id": "moral-harm-evidence-property_rights_compensation_limits_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-moral-harm-evidence"
+        ]
+      },
+      {
+        "fact_name": "unlawful_prosecution_ground_breached",
+        "assertion_id": "moral-harm-evidence-unlawful_prosecution_ground_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-moral-harm-evidence"
+        ]
+      },
+      {
+        "fact_name": "victim_individual_features_disregarded",
+        "assertion_id": "moral-harm-evidence-victim_individual_features_disregarded",
+        "source_refs": [
+          "synthetic-case-supply-1-moral-harm-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "moral-harm-constraint-set:reviewed-moral-harm-evidence-supply-1-v0",
+    "model_version": "contracts-moral-harm-articles-1099-1101-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
+      "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1"
+    ],
+    "expressions": [
+      "moral_harm_qualified == moral_harm_claim_established",
+      "non_material_benefits_duty_breached == moral_harm_qualified AND non_material_benefits_scope_breached",
+      "property_rights_limits_duty_breached == moral_harm_qualified AND property_rights_compensation_limits_breached",
+      "independence_duty_breached == moral_harm_qualified AND independent_from_property_damage_breached",
+      "no_fault_grounds_duty_breached == moral_harm_qualified AND no_fault_grounds_disregarded",
+      "high_risk_source_ground_duty_breached == moral_harm_qualified AND high_risk_source_ground_breached",
+      "unlawful_prosecution_ground_duty_breached == moral_harm_qualified AND unlawful_prosecution_ground_breached",
+      "defamation_ground_duty_breached == moral_harm_qualified AND defamation_ground_breached",
+      "compensation_form_duty_breached == moral_harm_qualified AND compensation_form_or_amount_breached",
+      "victim_features_breached == moral_harm_qualified AND compensation_form_or_amount_breached AND victim_individual_features_disregarded",
+      "requires_human_moral_harm_assessment == non_material_benefits_duty_breached OR property_rights_limits_duty_breached OR independence_duty_breached OR no_fault_grounds_duty_breached OR high_risk_source_ground_duty_breached OR unlawful_prosecution_ground_duty_breached OR defamation_ground_duty_breached OR compensation_form_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "moral-harm-constraint-set:reviewed-moral-harm-evidence-supply-1-v0",
+    "satisfiable": true,
+    "moral_harm_qualified": false,
+    "non_material_benefits_duty_breached": false,
+    "property_rights_limits_duty_breached": false,
+    "independence_duty_breached": false,
+    "no_fault_grounds_duty_breached": false,
+    "high_risk_source_ground_duty_breached": false,
+    "unlawful_prosecution_ground_duty_breached": false,
+    "defamation_ground_duty_breached": false,
+    "compensation_form_duty_breached": false,
+    "victim_features_breached": false,
+    "requires_human_moral_harm_assessment": false,
+    "reasons_ru": [
+      "Причинение морального вреда не установлено."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о компенсации морального вреда и не заменяет судебную оценку.",
+      "Характер и степень физических и нравственных страданий, индивидуальные особенности потерпевшего и требования разумности и справедливости оцениваются экспертом и судом (статьи 1099 и 1101 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "moral-harm-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "moral-harm-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "moral_harm_qualified": false
+        },
+        "observed_outcomes": {
+          "moral_harm_qualified": false
+        },
+        "reasons_ru": [
+          "Причинение морального вреда не установлено."
+        ]
+      },
+      {
+        "task_id": "moral-harm-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "moral_harm_qualified": true,
+          "requires_human_moral_harm_assessment": false
+        },
+        "observed_outcomes": {
+          "moral_harm_qualified": true,
+          "requires_human_moral_harm_assessment": false
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "moral-harm-bench-non-material-benefits",
+        "passed": true,
+        "expected_outcomes": {
+          "non_material_benefits_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "observed_outcomes": {
+          "non_material_benefits_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Основания и размер компенсации гражданину морального вреда, причинённого действиями, нарушающими его личные неимущественные права либо посягающими на принадлежащие ему другие нематериальные блага, определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "moral-harm-bench-property-rights",
+        "passed": true,
+        "expected_outcomes": {
+          "property_rights_limits_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "observed_outcomes": {
+          "property_rights_limits_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Моральный вред, причинённый действиями, нарушающими имущественные права гражданина, подлежит компенсации в случаях, предусмотренных законом (статья 1099 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "moral-harm-bench-independence",
+        "passed": true,
+        "expected_outcomes": {
+          "independence_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "observed_outcomes": {
+          "independence_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Компенсация морального вреда осуществляется независимо от подлежащего возмещению имущественного вреда (статья 1099 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "moral-harm-bench-no-fault-grounds",
+        "passed": true,
+        "expected_outcomes": {
+          "no_fault_grounds_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "observed_outcomes": {
+          "no_fault_grounds_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Компенсация морального вреда осуществляется независимо от вины причинителя в случаях, предусмотренных законом, перечень которых установлен статьёй 1100 ГК РФ (статья 1100 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "moral-harm-bench-high-risk-source",
+        "passed": true,
+        "expected_outcomes": {
+          "high_risk_source_ground_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "observed_outcomes": {
+          "high_risk_source_ground_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Моральный вред компенсируется независимо от вины причинителя, когда вред причинён жизни или здоровью гражданина источником повышенной опасности (статья 1100 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "moral-harm-bench-unlawful-prosecution",
+        "passed": true,
+        "expected_outcomes": {
+          "unlawful_prosecution_ground_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "observed_outcomes": {
+          "unlawful_prosecution_ground_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Моральный вред компенсируется независимо от вины причинителя, когда вред причинён гражданину в результате его незаконного осуждения, незаконного привлечения к уголовной ответственности, незаконного применения в качестве меры пресечения заключения под стражу или подписки о невыезде, а также незаконного наложения административного наказания (статья 1100 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "moral-harm-bench-defamation",
+        "passed": true,
+        "expected_outcomes": {
+          "defamation_ground_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "observed_outcomes": {
+          "defamation_ground_duty_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Моральный вред компенсируется независимо от вины причинителя, когда вред причинён распространением сведений, порочащих честь, достоинство и деловую репутацию (статья 1100 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "moral-harm-bench-compensation-form",
+        "passed": true,
+        "expected_outcomes": {
+          "compensation_form_duty_breached": true,
+          "victim_features_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "observed_outcomes": {
+          "compensation_form_duty_breached": true,
+          "victim_features_breached": true,
+          "requires_human_moral_harm_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Компенсация морального вреда осуществляется в денежной форме, а её размер определяется судом в зависимости от характера причинённых потерпевшему физических и нравственных страданий, степени вины причинителя в случаях, когда вина является основанием возмещения, и с учётом требований разумности и справедливости (статья 1101 ГК РФ).",
+          "При определении размера компенсации характер физических и нравственных страданий оценивается судом с учётом фактических обстоятельств причинения морального вреда и индивидуальных особенностей потерпевшего (статья 1101 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "moral-harm-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "moral-harm-red-qualify-without-harm",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "moral_harm_qualified": true
+        },
+        "observed_outcomes": {
+          "moral_harm_qualified": false
+        },
+        "reasons_ru": [
+          "Причинение морального вреда не установлено."
+        ]
+      },
+      {
+        "case_id": "moral-harm-red-ignore-non-material-benefits",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "non_material_benefits_duty_breached": false
+        },
+        "observed_outcomes": {
+          "non_material_benefits_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Основания и размер компенсации гражданину морального вреда, причинённого действиями, нарушающими его личные неимущественные права либо посягающими на принадлежащие ему другие нематериальные блага, определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "moral-harm-red-ignore-property-rights-limits",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "property_rights_limits_duty_breached": false
+        },
+        "observed_outcomes": {
+          "property_rights_limits_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Моральный вред, причинённый действиями, нарушающими имущественные права гражданина, подлежит компенсации в случаях, предусмотренных законом (статья 1099 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "moral-harm-red-ignore-independence",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "independence_duty_breached": false
+        },
+        "observed_outcomes": {
+          "independence_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Компенсация морального вреда осуществляется независимо от подлежащего возмещению имущественного вреда (статья 1099 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "moral-harm-red-ignore-no-fault-grounds",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "no_fault_grounds_duty_breached": false
+        },
+        "observed_outcomes": {
+          "no_fault_grounds_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Компенсация морального вреда осуществляется независимо от вины причинителя в случаях, предусмотренных законом, перечень которых установлен статьёй 1100 ГК РФ (статья 1100 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "moral-harm-red-ignore-high-risk-source",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "high_risk_source_ground_duty_breached": false
+        },
+        "observed_outcomes": {
+          "high_risk_source_ground_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Моральный вред компенсируется независимо от вины причинителя, когда вред причинён жизни или здоровью гражданина источником повышенной опасности (статья 1100 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "moral-harm-red-ignore-unlawful-prosecution",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unlawful_prosecution_ground_duty_breached": false
+        },
+        "observed_outcomes": {
+          "unlawful_prosecution_ground_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Моральный вред компенсируется независимо от вины причинителя, когда вред причинён гражданину в результате его незаконного осуждения, незаконного привлечения к уголовной ответственности, незаконного применения в качестве меры пресечения заключения под стражу или подписки о невыезде, а также незаконного наложения административного наказания (статья 1100 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "moral-harm-red-ignore-defamation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "defamation_ground_duty_breached": false
+        },
+        "observed_outcomes": {
+          "defamation_ground_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Моральный вред компенсируется независимо от вины причинителя, когда вред причинён распространением сведений, порочащих честь, достоинство и деловую репутацию (статья 1100 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "moral-harm-red-features-without-form-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "victim_features_breached": true
+        },
+        "observed_outcomes": {
+          "victim_features_breached": false
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "moral-harm-red-skip-human-on-compensation-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_moral_harm_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_moral_harm_assessment": true
+        },
+        "reasons_ru": [
+          "Установлено причинение морального вреда: основания и размер компенсации гражданину морального вреда определяются правилами главы 59 и статьи 151 ГК РФ (статья 1099 ГК РФ).",
+          "Компенсация морального вреда осуществляется в денежной форме, а её размер определяется судом в зависимости от характера причинённых потерпевшему физических и нравственных страданий, степени вины причинителя в случаях, когда вина является основанием возмещения, и с учётом требований разумности и справедливости (статья 1101 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

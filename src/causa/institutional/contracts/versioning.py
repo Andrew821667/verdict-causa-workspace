@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.84.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed moral-harm evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 1099 to 1101.",
+            "The establishment of moral harm, compensation for infringements of non-material benefits, the statutory limits for infringements of property rights, the independence from property damage, the grounds of compensation regardless of fault, the source of increased danger, unlawful prosecution, defamation, the monetary form and amount of compensation, and the victim's individual features remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о компенсации морального вреда обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 1099–1101 ГК РФ.",
+            "Установление морального вреда, компенсация при посягательстве на нематериальные блага, пределы компенсации при нарушении имущественных прав, независимость от возмещения имущественного вреда, основания компенсации независимо от вины, источник повышенной опасности, незаконное привлечение к ответственности, распространение порочащих сведений, денежная форма и размер компенсации и индивидуальные особенности потерпевшего разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.83.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

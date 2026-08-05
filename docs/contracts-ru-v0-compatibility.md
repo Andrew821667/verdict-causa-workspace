@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.84.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью компенсации морального вреда |
 | `0.83.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью вреда вследствие недостатков товаров, работ и услуг |
 | `0.82.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью возмещения вреда жизни и здоровью |
 | `0.81.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью общих положений о возмещении вреда |
@@ -91,6 +92,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.83.0` → `0.84.0` соберите отдельно проверенный контракт данных о компенсации морального вреда (`contracts.moral-harm-evidence.v0`). Не выводите установление морального вреда, основания компенсации независимо от вины и правила о размере компенсации из прежних результатов о возмещении имущественного вреда или вреда жизни и здоровью. Пересоберите артефакты оценки морального вреда, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.82.0` → `0.83.0` соберите отдельно проверенный контракт данных о вреде вследствие недостатков товаров, работ или услуг (`contracts.product-liability-evidence.v0`). Не выводите возмещение независимо от вины, требование о потребительской цели, круг ответственных лиц и сроки возмещения из прежних результатов о качестве товара по договору купли-продажи или о возмещении вреда жизни и здоровью. Пересоберите артефакты оценки вреда вследствие недостатков, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

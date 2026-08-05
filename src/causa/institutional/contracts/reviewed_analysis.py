@@ -534,6 +534,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.moral_harm import (
+    MORAL_HARM_EVIDENCE_SCHEMA_VERSION,
+    MoralHarmConstraintSet,
+    MoralHarmEvaluation,
+    MoralHarmEvidenceMappingResult,
+    ReviewedMoralHarmEvidence,
+    build_moral_harm_constraint_set,
+    evaluate_moral_harm_constraints,
+    map_reviewed_moral_harm_evidence,
+)
 from causa.institutional.contracts.product_liability import (
     PRODUCT_LIABILITY_EVIDENCE_SCHEMA_VERSION,
     ProductLiabilityConstraintSet,
@@ -925,6 +935,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     negotiorum_gestio_evidence: ReviewedNegotiorumGestioEvidence
     commission_evidence: ReviewedCommissionEvidence
     agency_evidence: ReviewedAgencyEvidence
+    moral_harm_evidence: ReviewedMoralHarmEvidence
     product_liability_evidence: ReviewedProductLiabilityEvidence
     tort_life_health_evidence: ReviewedTortLifeHealthEvidence
     tort_general_evidence: ReviewedTortGeneralEvidence
@@ -1146,6 +1157,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     agency_evidence_mapping: AgencyEvidenceMappingResult
     agency_constraint_set: AgencyConstraintSet
     agency_evaluation: AgencyEvaluation
+    moral_harm_evidence_mapping: MoralHarmEvidenceMappingResult
+    moral_harm_constraint_set: MoralHarmConstraintSet
+    moral_harm_evaluation: MoralHarmEvaluation
     product_liability_evidence_mapping: ProductLiabilityEvidenceMappingResult
     product_liability_constraint_set: ProductLiabilityConstraintSet
     product_liability_evaluation: ProductLiabilityEvaluation
@@ -1839,6 +1853,15 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.agency_evaluation != expected_agency_evaluation:
             raise ValueError("Agency evaluation does not replay from reviewed evidence.")
+        expected_moral_harm_set = build_moral_harm_constraint_set(self.moral_harm_evidence_mapping)
+        if self.moral_harm_constraint_set != expected_moral_harm_set:
+            raise ValueError("Moral-harm constraint set does not replay from reviewed evidence.")
+        expected_moral_harm_evaluation = evaluate_moral_harm_constraints(
+            expected_moral_harm_set,
+            self.moral_harm_evidence_mapping.facts,
+        )
+        if self.moral_harm_evaluation != expected_moral_harm_evaluation:
+            raise ValueError("Moral-harm evaluation does not replay from reviewed evidence.")
         expected_product_liability_set = build_product_liability_constraint_set(
             self.product_liability_evidence_mapping
         )
@@ -2369,6 +2392,8 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence case_id does not match the analysis request.")
     if request.agency_evidence.case_id != request.case_id:
         raise ValueError("Agency evidence case_id does not match the analysis request.")
+    if request.moral_harm_evidence.case_id != request.case_id:
+        raise ValueError("Moral-harm evidence case_id does not match the analysis request.")
     if request.product_liability_evidence.case_id != request.case_id:
         raise ValueError("Product-liability evidence case_id does not match the analysis request.")
     if request.tort_life_health_evidence.case_id != request.case_id:
@@ -2570,6 +2595,8 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence uses an unsupported schema version.")
     if request.agency_evidence.schema_version != AGENCY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Agency evidence uses an unsupported schema version.")
+    if request.moral_harm_evidence.schema_version != MORAL_HARM_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Moral-harm evidence uses an unsupported schema version.")
     if (
         request.product_liability_evidence.schema_version
         != PRODUCT_LIABILITY_EVIDENCE_SCHEMA_VERSION
@@ -2654,6 +2681,7 @@ def _validate_request_integrity(
         *request.negotiorum_gestio_evidence.legal_source_refs,
         *request.commission_evidence.legal_source_refs,
         *request.agency_evidence.legal_source_refs,
+        *request.moral_harm_evidence.legal_source_refs,
         *request.product_liability_evidence.legal_source_refs,
         *request.tort_life_health_evidence.legal_source_refs,
         *request.tort_general_evidence.legal_source_refs,
@@ -2788,6 +2816,8 @@ def _validate_request_integrity(
     for assertion in request.commission_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.agency_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.moral_harm_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.product_liability_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -3474,6 +3504,17 @@ def _validate_request_integrity(
             "Agency legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_agency_legal_sources))
         )
+    invalid_moral_harm_legal_sources = [
+        source_id
+        for source_id in request.moral_harm_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_moral_harm_legal_sources:
+        raise ValueError(
+            "Moral-harm legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_moral_harm_legal_sources))
+        )
     invalid_product_liability_legal_sources = [
         source_id
         for source_id in request.product_liability_evidence.legal_source_refs
@@ -4033,6 +4074,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Agency evidence",
         review_status=request.agency_evidence.review_status,
         reviewer_id=request.agency_evidence.reviewer_id,
+    )
+    moral_harm_reviewer_id = _require_reviewed(
+        artifact_name="Moral-harm evidence",
+        review_status=request.moral_harm_evidence.review_status,
+        reviewer_id=request.moral_harm_evidence.reviewer_id,
     )
     product_liability_reviewer_id = _require_reviewed(
         artifact_name="Product-liability evidence",
@@ -4606,6 +4652,12 @@ def run_reviewed_contract_analysis(
         agency_constraint_set,
         agency_evidence_mapping.facts,
     )
+    moral_harm_evidence_mapping = map_reviewed_moral_harm_evidence(request.moral_harm_evidence)
+    moral_harm_constraint_set = build_moral_harm_constraint_set(moral_harm_evidence_mapping)
+    moral_harm_evaluation = evaluate_moral_harm_constraints(
+        moral_harm_constraint_set,
+        moral_harm_evidence_mapping.facts,
+    )
     product_liability_evidence_mapping = map_reviewed_product_liability_evidence(
         request.product_liability_evidence
     )
@@ -4953,6 +5005,7 @@ def run_reviewed_contract_analysis(
         or negotiorum_gestio_evaluation.requires_human_negotiorum_gestio_assessment
         or commission_evaluation.requires_human_commission_assessment
         or agency_evaluation.requires_human_agency_assessment
+        or moral_harm_evaluation.requires_human_moral_harm_assessment
         or product_liability_evaluation.requires_human_product_liability_assessment
         or tort_life_health_evaluation.requires_human_life_health_assessment
         or tort_general_evaluation.requires_human_tort_assessment
@@ -5038,6 +5091,7 @@ def run_reviewed_contract_analysis(
                 negotiorum_gestio_reviewer_id,
                 commission_reviewer_id,
                 agency_reviewer_id,
+                moral_harm_reviewer_id,
                 product_liability_reviewer_id,
                 tort_life_health_reviewer_id,
                 tort_general_reviewer_id,
@@ -5235,6 +5289,9 @@ def run_reviewed_contract_analysis(
         agency_evidence_mapping=agency_evidence_mapping,
         agency_constraint_set=agency_constraint_set,
         agency_evaluation=agency_evaluation,
+        moral_harm_evidence_mapping=moral_harm_evidence_mapping,
+        moral_harm_constraint_set=moral_harm_constraint_set,
+        moral_harm_evaluation=moral_harm_evaluation,
         product_liability_evidence_mapping=product_liability_evidence_mapping,
         product_liability_constraint_set=product_liability_constraint_set,
         product_liability_evaluation=product_liability_evaluation,

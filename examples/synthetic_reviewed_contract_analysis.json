@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
+      "title": "Синтетическая проверенная модель общих положений о компенсации морального вреда и оснований компенсации независимо от вины причинителя по статьям 1099 и 1100 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: определение оснований и размера компенсации морального вреда правилами главы 59 и статьи 151 ГК РФ, компенсация морального вреда, причинённого нарушением имущественных прав, только в предусмотренных законом случаях, независимость компенсации от возмещения имущественного вреда, а также случаи компенсации независимо от вины причинителя — вред источником повышенной опасности, незаконное осуждение и привлечение к ответственности, распространение порочащих сведений — проверяются раздельно (статьи 1099 и 1100 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "moral_harm_grounds_and_no_fault_cases_articles_1099_1100",
+        "legal_reference": "ГК РФ, статьи 1099 и 1100",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1",
+      "title": "Синтетическая проверенная модель способа и размера компенсации морального вреда по статье 1101 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: осуществление компенсации морального вреда в денежной форме, определение её размера судом в зависимости от характера причинённых физических и нравственных страданий и степени вины причинителя, учёт требований разумности и справедливости, а также учёт фактических обстоятельств причинения вреда и индивидуальных особенностей потерпевшего проверяются раздельно (статья 1101 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "moral_harm_form_and_amount_of_compensation_article_1101",
+        "legal_reference": "ГК РФ, статья 1101",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-moral-harm-evidence",
+      "title": "Синтетическая проверенная запись фактов о компенсации морального вреда",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки требование о компенсации морального вреда не заявлялось; физические и нравственные страдания не устанавливались.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "moral_harm_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk1095-1096-product-defect-harm-and-liable-persons-v1",
       "title": "Синтетическая проверенная модель оснований возмещения вреда, причинённого вследствие недостатков товара, работы или услуги, и круга ответственных лиц по статьям 1095 и 1096 ГК РФ",
       "source_type": "statute",
@@ -9570,6 +9617,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "moral_harm_evidence": {
+      "id": "reviewed-moral-harm-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.moral-harm-evidence.v0",
+      "assertions": [
+        {
+          "id": "moral-harm-evidence-moral_harm_claim_established",
+          "predicate": "moral_harm_claim_established",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "id": "moral-harm-evidence-non_material_benefits_scope_breached",
+          "predicate": "non_material_benefits_scope_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "id": "moral-harm-evidence-property_rights_compensation_limits_breached",
+          "predicate": "property_rights_compensation_limits_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "id": "moral-harm-evidence-independent_from_property_damage_breached",
+          "predicate": "independent_from_property_damage_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "id": "moral-harm-evidence-no_fault_grounds_disregarded",
+          "predicate": "no_fault_grounds_disregarded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "id": "moral-harm-evidence-high_risk_source_ground_breached",
+          "predicate": "high_risk_source_ground_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "id": "moral-harm-evidence-unlawful_prosecution_ground_breached",
+          "predicate": "unlawful_prosecution_ground_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "id": "moral-harm-evidence-defamation_ground_breached",
+          "predicate": "defamation_ground_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "id": "moral-harm-evidence-compensation_form_or_amount_breached",
+          "predicate": "compensation_form_or_amount_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "id": "moral-harm-evidence-victim_individual_features_disregarded",
+          "predicate": "victim_individual_features_disregarded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
+        "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-moral-harm-reviewer"
+    },
     "product_liability_evidence": {
       "id": "reviewed-product-liability-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -15128,6 +15268,7 @@
       "synthetic-limitation-reviewer",
       "synthetic-loan-reviewer",
       "synthetic-mandate-reviewer",
+      "synthetic-moral-harm-reviewer",
       "synthetic-negotiorum-gestio-reviewer",
       "synthetic-norm-reviewer",
       "synthetic-obligation-dynamics-reviewer",
@@ -15206,6 +15347,7 @@
       "synthetic-case-supply-1-limitation-evidence",
       "synthetic-case-supply-1-loan-evidence",
       "synthetic-case-supply-1-mandate-evidence",
+      "synthetic-case-supply-1-moral-harm-evidence",
       "synthetic-case-supply-1-negotiorum-gestio-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
       "synthetic-case-supply-1-option-evidence",
@@ -15262,6 +15404,8 @@
       "synthetic-ru-gk1088-1094-dependants-indexation-and-funeral-expenses-v1",
       "synthetic-ru-gk1095-1096-product-defect-harm-and-liable-persons-v1",
       "synthetic-ru-gk1097-1098-product-liability-periods-and-exculpation-v1",
+      "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
+      "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -23480,6 +23624,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "moral_harm_evidence_mapping": {
+      "evidence_id": "reviewed-moral-harm-evidence-supply-1-v0",
+      "schema_version": "contracts.moral-harm-evidence.v0",
+      "mapping_version": "contracts-reviewed-moral-harm-to-facts-v0",
+      "facts": {
+        "moral_harm_claim_established": false,
+        "non_material_benefits_scope_breached": false,
+        "property_rights_compensation_limits_breached": false,
+        "independent_from_property_damage_breached": false,
+        "no_fault_grounds_disregarded": false,
+        "high_risk_source_ground_breached": false,
+        "unlawful_prosecution_ground_breached": false,
+        "defamation_ground_breached": false,
+        "compensation_form_or_amount_breached": false,
+        "victim_individual_features_disregarded": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
+        "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "compensation_form_or_amount_breached",
+          "assertion_id": "moral-harm-evidence-compensation_form_or_amount_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "fact_name": "defamation_ground_breached",
+          "assertion_id": "moral-harm-evidence-defamation_ground_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "fact_name": "high_risk_source_ground_breached",
+          "assertion_id": "moral-harm-evidence-high_risk_source_ground_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "fact_name": "independent_from_property_damage_breached",
+          "assertion_id": "moral-harm-evidence-independent_from_property_damage_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "fact_name": "moral_harm_claim_established",
+          "assertion_id": "moral-harm-evidence-moral_harm_claim_established",
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "fact_name": "no_fault_grounds_disregarded",
+          "assertion_id": "moral-harm-evidence-no_fault_grounds_disregarded",
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "fact_name": "non_material_benefits_scope_breached",
+          "assertion_id": "moral-harm-evidence-non_material_benefits_scope_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "fact_name": "property_rights_compensation_limits_breached",
+          "assertion_id": "moral-harm-evidence-property_rights_compensation_limits_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "fact_name": "unlawful_prosecution_ground_breached",
+          "assertion_id": "moral-harm-evidence-unlawful_prosecution_ground_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        },
+        {
+          "fact_name": "victim_individual_features_disregarded",
+          "assertion_id": "moral-harm-evidence-victim_individual_features_disregarded",
+          "source_refs": [
+            "synthetic-case-supply-1-moral-harm-evidence"
+          ]
+        }
+      ]
+    },
+    "moral_harm_constraint_set": {
+      "id": "moral-harm-constraint-set:reviewed-moral-harm-evidence-supply-1-v0",
+      "model_version": "contracts-moral-harm-articles-1099-1101-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk1099-1100-moral-harm-grounds-and-no-fault-cases-v1",
+        "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1"
+      ],
+      "expressions": [
+        "moral_harm_qualified == moral_harm_claim_established",
+        "non_material_benefits_duty_breached == moral_harm_qualified AND non_material_benefits_scope_breached",
+        "property_rights_limits_duty_breached == moral_harm_qualified AND property_rights_compensation_limits_breached",
+        "independence_duty_breached == moral_harm_qualified AND independent_from_property_damage_breached",
+        "no_fault_grounds_duty_breached == moral_harm_qualified AND no_fault_grounds_disregarded",
+        "high_risk_source_ground_duty_breached == moral_harm_qualified AND high_risk_source_ground_breached",
+        "unlawful_prosecution_ground_duty_breached == moral_harm_qualified AND unlawful_prosecution_ground_breached",
+        "defamation_ground_duty_breached == moral_harm_qualified AND defamation_ground_breached",
+        "compensation_form_duty_breached == moral_harm_qualified AND compensation_form_or_amount_breached",
+        "victim_features_breached == moral_harm_qualified AND compensation_form_or_amount_breached AND victim_individual_features_disregarded",
+        "requires_human_moral_harm_assessment == non_material_benefits_duty_breached OR property_rights_limits_duty_breached OR independence_duty_breached OR no_fault_grounds_duty_breached OR high_risk_source_ground_duty_breached OR unlawful_prosecution_ground_duty_breached OR defamation_ground_duty_breached OR compensation_form_duty_breached"
+      ]
+    },
+    "moral_harm_evaluation": {
+      "constraint_set_id": "moral-harm-constraint-set:reviewed-moral-harm-evidence-supply-1-v0",
+      "satisfiable": true,
+      "moral_harm_qualified": false,
+      "non_material_benefits_duty_breached": false,
+      "property_rights_limits_duty_breached": false,
+      "independence_duty_breached": false,
+      "no_fault_grounds_duty_breached": false,
+      "high_risk_source_ground_duty_breached": false,
+      "unlawful_prosecution_ground_duty_breached": false,
+      "defamation_ground_duty_breached": false,
+      "compensation_form_duty_breached": false,
+      "victim_features_breached": false,
+      "requires_human_moral_harm_assessment": false,
+      "reasons_ru": [
+        "Причинение морального вреда не установлено."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о компенсации морального вреда и не заменяет судебную оценку.",
+        "Характер и степень физических и нравственных страданий, индивидуальные особенности потерпевшего и требования разумности и справедливости оцениваются экспертом и судом (статьи 1099 и 1101 ГК РФ)."
+      ]
+    },
     "product_liability_evidence_mapping": {
       "evidence_id": "reviewed-product-liability-evidence-supply-1-v0",
       "schema_version": "contracts.product-liability-evidence.v0",
@@ -29939,7 +30219,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.83.0",
+      "institutional_package_version": "contracts-ru-v0@0.84.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

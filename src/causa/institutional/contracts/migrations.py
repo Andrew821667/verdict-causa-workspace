@@ -1594,6 +1594,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.83.0",
+        to_version="0.84.0",
+        reasons=[
+            "Reviewed inputs now require a separate moral-harm evidence contract.",
+            "Analysis and Russian translation distinguish the establishment of moral harm, compensation for infringements of non-material benefits, the statutory limits for infringements of property rights, the independence from property damage, the grounds of compensation regardless of fault, the source of increased danger, unlawful prosecution, defamation, the monetary form and amount of compensation, and the victim's individual features under articles 1099 to 1101.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о компенсации морального вреда.",
+            "Анализ и русское объяснение разделяют установление морального вреда, компенсацию при посягательстве на нематериальные блага, пределы компенсации при нарушении имущественных прав, независимость от возмещения имущественного вреда, основания компенсации независимо от вины, источник повышенной опасности, незаконное привлечение к ответственности, распространение порочащих сведений, денежную форму и размер компенсации по статьям 1099–1101 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_moral_harm_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 
