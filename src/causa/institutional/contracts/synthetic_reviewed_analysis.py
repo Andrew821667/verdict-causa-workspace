@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.public_promise import (
+    PublicPromiseEvidenceAssertion,
+    PublicPromiseEvidencePredicate,
+    ReviewedPublicPromiseEvidence,
+)
 from causa.institutional.contracts.partnership import (
     PartnershipEvidenceAssertion,
     PartnershipEvidencePredicate,
@@ -547,6 +552,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk1055-1056-public-promise-of-reward-and-revocation-v1",
+    "synthetic-ru-gk1057-1061-public-contest-terms-award-and-works-v1",
+    "synthetic-case-supply-1-public-promise-evidence",
     "synthetic-ru-gk1041-1046-partnership-concept-contributions-and-common-affairs-v1",
     "synthetic-ru-gk1047-1054-partnership-liability-profit-and-termination-v1",
     "synthetic-case-supply-1-partnership-evidence",
@@ -2894,6 +2902,48 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        public_promise_evidence=ReviewedPublicPromiseEvidence(
+            id="reviewed-public-promise-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                PublicPromiseEvidenceAssertion(
+                    id=f"public-promise-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-public-promise-evidence",),
+                )
+                for predicate, value in (
+                    (PublicPromiseEvidencePredicate.PUBLIC_PROMISE_OR_CONTEST_DECLARED, False),
+                    (
+                        PublicPromiseEvidencePredicate.PROMISE_ANNOUNCEMENT_REQUIREMENTS_BREACHED,
+                        False,
+                    ),
+                    (
+                        PublicPromiseEvidencePredicate.REWARD_AMOUNT_OR_DISTRIBUTION_BREACHED,
+                        False,
+                    ),
+                    (PublicPromiseEvidencePredicate.PROMISE_REVOCATION_RULES_BREACHED, False),
+                    (
+                        PublicPromiseEvidencePredicate.REVOCATION_EXPENSE_COMPENSATION_NOT_APPLIED,
+                        False,
+                    ),
+                    (PublicPromiseEvidencePredicate.CONTEST_ANNOUNCEMENT_TERMS_BREACHED, False),
+                    (PublicPromiseEvidencePredicate.CONTEST_PUBLIC_PURPOSE_BREACHED, False),
+                    (
+                        PublicPromiseEvidencePredicate.CONTEST_CHANGE_OR_CANCELLATION_BREACHED,
+                        False,
+                    ),
+                    (PublicPromiseEvidencePredicate.CONTEST_AWARD_DECISION_BREACHED, False),
+                    (PublicPromiseEvidencePredicate.CONTEST_WORKS_RETURN_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1055-1056-public-promise-of-reward-and-revocation-v1",
+                "synthetic-ru-gk1057-1061-public-contest-terms-award-and-works-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-public-promise-reviewer",
         ),
         partnership_evidence=ReviewedPartnershipEvidence(
             id="reviewed-partnership-evidence-supply-1-v0",

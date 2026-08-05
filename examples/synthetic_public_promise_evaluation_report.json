@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о публичном обещании награды и публичном конкурсе по статьям 1055–1061 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-public-promise-evidence-supply-1-v0",
+    "schema_version": "contracts.public-promise-evidence.v0",
+    "mapping_version": "contracts-reviewed-public-promise-to-facts-v0",
+    "facts": {
+      "public_promise_or_contest_declared": false,
+      "promise_announcement_requirements_breached": false,
+      "reward_amount_or_distribution_breached": false,
+      "promise_revocation_rules_breached": false,
+      "revocation_expense_compensation_not_applied": false,
+      "contest_announcement_terms_breached": false,
+      "contest_public_purpose_breached": false,
+      "contest_change_or_cancellation_breached": false,
+      "contest_award_decision_breached": false,
+      "contest_works_return_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1055-1056-public-promise-of-reward-and-revocation-v1",
+      "synthetic-ru-gk1057-1061-public-contest-terms-award-and-works-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "contest_announcement_terms_breached",
+        "assertion_id": "public-promise-evidence-contest_announcement_terms_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-public-promise-evidence"
+        ]
+      },
+      {
+        "fact_name": "contest_award_decision_breached",
+        "assertion_id": "public-promise-evidence-contest_award_decision_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-public-promise-evidence"
+        ]
+      },
+      {
+        "fact_name": "contest_change_or_cancellation_breached",
+        "assertion_id": "public-promise-evidence-contest_change_or_cancellation_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-public-promise-evidence"
+        ]
+      },
+      {
+        "fact_name": "contest_public_purpose_breached",
+        "assertion_id": "public-promise-evidence-contest_public_purpose_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-public-promise-evidence"
+        ]
+      },
+      {
+        "fact_name": "contest_works_return_breached",
+        "assertion_id": "public-promise-evidence-contest_works_return_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-public-promise-evidence"
+        ]
+      },
+      {
+        "fact_name": "promise_announcement_requirements_breached",
+        "assertion_id": "public-promise-evidence-promise_announcement_requirements_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-public-promise-evidence"
+        ]
+      },
+      {
+        "fact_name": "promise_revocation_rules_breached",
+        "assertion_id": "public-promise-evidence-promise_revocation_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-public-promise-evidence"
+        ]
+      },
+      {
+        "fact_name": "public_promise_or_contest_declared",
+        "assertion_id": "public-promise-evidence-public_promise_or_contest_declared",
+        "source_refs": [
+          "synthetic-case-supply-1-public-promise-evidence"
+        ]
+      },
+      {
+        "fact_name": "revocation_expense_compensation_not_applied",
+        "assertion_id": "public-promise-evidence-revocation_expense_compensation_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-public-promise-evidence"
+        ]
+      },
+      {
+        "fact_name": "reward_amount_or_distribution_breached",
+        "assertion_id": "public-promise-evidence-reward_amount_or_distribution_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-public-promise-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "public-promise-constraint-set:reviewed-public-promise-evidence-supply-1-v0",
+    "model_version": "contracts-public-promise-articles-1055-1061-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1055-1056-public-promise-of-reward-and-revocation-v1",
+      "synthetic-ru-gk1057-1061-public-contest-terms-award-and-works-v1"
+    ],
+    "expressions": [
+      "public_promise_qualified == public_promise_or_contest_declared",
+      "announcement_requirements_duty_breached == public_promise_qualified AND promise_announcement_requirements_breached",
+      "reward_amount_and_distribution_duty_breached == public_promise_qualified AND reward_amount_or_distribution_breached",
+      "promise_revocation_duty_breached == public_promise_qualified AND promise_revocation_rules_breached",
+      "revocation_expense_compensation_breached == public_promise_qualified AND promise_revocation_rules_breached AND revocation_expense_compensation_not_applied",
+      "contest_terms_duty_breached == public_promise_qualified AND contest_announcement_terms_breached",
+      "contest_public_purpose_duty_breached == public_promise_qualified AND contest_public_purpose_breached",
+      "contest_change_duty_breached == public_promise_qualified AND contest_change_or_cancellation_breached",
+      "contest_award_decision_duty_breached == public_promise_qualified AND contest_award_decision_breached",
+      "contest_works_duty_breached == public_promise_qualified AND contest_works_return_breached",
+      "requires_human_public_promise_assessment == announcement_requirements_duty_breached OR reward_amount_and_distribution_duty_breached OR promise_revocation_duty_breached OR contest_terms_duty_breached OR contest_public_purpose_duty_breached OR contest_change_duty_breached OR contest_award_decision_duty_breached OR contest_works_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "public-promise-constraint-set:reviewed-public-promise-evidence-supply-1-v0",
+    "satisfiable": true,
+    "public_promise_qualified": false,
+    "announcement_requirements_duty_breached": false,
+    "reward_amount_and_distribution_duty_breached": false,
+    "promise_revocation_duty_breached": false,
+    "revocation_expense_compensation_breached": false,
+    "contest_terms_duty_breached": false,
+    "contest_public_purpose_duty_breached": false,
+    "contest_change_duty_breached": false,
+    "contest_award_decision_duty_breached": false,
+    "contest_works_duty_breached": false,
+    "requires_human_public_promise_assessment": false,
+    "reasons_ru": [
+      "Отношения не квалифицированы как публичное обещание награды или публичный конкурс."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о публичном обещании награды и публичном конкурсе и не заменяет судебную оценку.",
+      "Существо конкурсного задания, общественная полезность цели конкурса и обоснованность оценки работ оцениваются экспертом и судом (статьи 1057 и 1059 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "public-promise-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "public-promise-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "public_promise_qualified": false
+        },
+        "observed_outcomes": {
+          "public_promise_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как публичное обещание награды или публичный конкурс."
+        ]
+      },
+      {
+        "task_id": "public-promise-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "public_promise_qualified": true,
+          "requires_human_public_promise_assessment": false
+        },
+        "observed_outcomes": {
+          "public_promise_qualified": true,
+          "requires_human_public_promise_assessment": false
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-promise-bench-announcement",
+        "passed": true,
+        "expected_outcomes": {
+          "announcement_requirements_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "observed_outcomes": {
+          "announcement_requirements_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Обязанность выплатить награду возникает при условии, что публичное обещание награды позволяет установить, кем она обещана; лицо, отозвавшееся на обещание, вправе требовать письменного подтверждения обещания и несёт риск последствий непредъявления такого требования (статья 1055 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-promise-bench-reward-amount",
+        "passed": true,
+        "expected_outcomes": {
+          "reward_amount_and_distribution_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "observed_outcomes": {
+          "reward_amount_and_distribution_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Если размер награды в публичном обещании не указан, он определяется по соглашению с лицом, обещавшим награду, а при споре — судом; при совершении указанного действия несколькими лицами награда причитается тому, кто совершил его первым, либо распределяется между ними, если действие совершено одновременно или неделимо (статья 1055 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-promise-bench-revocation",
+        "passed": true,
+        "expected_outcomes": {
+          "promise_revocation_duty_breached": true,
+          "revocation_expense_compensation_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "observed_outcomes": {
+          "promise_revocation_duty_breached": true,
+          "revocation_expense_compensation_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Отказ от публичного обещания награды должен быть совершён в той же форме, в какой обещание было объявлено, и не допускается, если обещание содержит отказ от такой отмены, если дан срок для совершения действия либо если действие уже совершено (статья 1056 ГК РФ).",
+          "Отмена публичного обещания награды не освобождает объявившее её лицо от возмещения отозвавшимся лицам расходов, понесённых ими в связи с совершением указанного в объявлении действия, в пределах указанной в объявлении награды (статья 1056 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-promise-bench-contest-terms",
+        "passed": true,
+        "expected_outcomes": {
+          "contest_terms_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "observed_outcomes": {
+          "contest_terms_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Объявление о публичном конкурсе должно содержать существо задания, критерии и порядок оценки результатов, место, срок и порядок их представления, размер и форму награды, а также порядок и сроки объявления результатов конкурса (статья 1057 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-promise-bench-public-purpose",
+        "passed": true,
+        "expected_outcomes": {
+          "contest_public_purpose_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "observed_outcomes": {
+          "contest_public_purpose_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Публичный конкурс должен быть направлен на достижение каких-либо общественно полезных целей; он может быть открытым или закрытым, а при открытом конкурсе допускается предварительная квалификация участников (статья 1057 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-promise-bench-contest-change",
+        "passed": true,
+        "expected_outcomes": {
+          "contest_change_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "observed_outcomes": {
+          "contest_change_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Изменение условий и отмена публичного конкурса допускаются только в течение первой половины установленного для представления работ срока, тем же способом, каким конкурс был объявлен, с возмещением расходов участникам, выполнившим работу до того, как им стало или должно было стать известно об изменении (статья 1058 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-promise-bench-award-decision",
+        "passed": true,
+        "expected_outcomes": {
+          "contest_award_decision_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "observed_outcomes": {
+          "contest_award_decision_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Решение о выплате награды принимается и сообщается участникам в порядке и в сроки, установленные в объявлении о конкурсе; при присуждении награды нескольким лицам она распределяется в соответствии с условиями конкурса, а использование удостоенных наград произведений науки, литературы и искусства подчиняется правилам статьи 1060 ГК РФ (статьи 1059 и 1060 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "public-promise-bench-works-return",
+        "passed": true,
+        "expected_outcomes": {
+          "contest_works_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "observed_outcomes": {
+          "contest_works_duty_breached": true,
+          "requires_human_public_promise_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Организатор публичного конкурса обязан возвратить участникам конкурса работы, не удостоенные награды, если иное не предусмотрено объявлением о конкурсе и не вытекает из характера выполненной работы (статья 1061 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "public-promise-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "public-promise-red-qualify-without-announcement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "public_promise_qualified": true
+        },
+        "observed_outcomes": {
+          "public_promise_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения не квалифицированы как публичное обещание награды или публичный конкурс."
+        ]
+      },
+      {
+        "case_id": "public-promise-red-ignore-announcement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "announcement_requirements_duty_breached": false
+        },
+        "observed_outcomes": {
+          "announcement_requirements_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Обязанность выплатить награду возникает при условии, что публичное обещание награды позволяет установить, кем она обещана; лицо, отозвавшееся на обещание, вправе требовать письменного подтверждения обещания и несёт риск последствий непредъявления такого требования (статья 1055 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-promise-red-ignore-reward-amount",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "reward_amount_and_distribution_duty_breached": false
+        },
+        "observed_outcomes": {
+          "reward_amount_and_distribution_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Если размер награды в публичном обещании не указан, он определяется по соглашению с лицом, обещавшим награду, а при споре — судом; при совершении указанного действия несколькими лицами награда причитается тому, кто совершил его первым, либо распределяется между ними, если действие совершено одновременно или неделимо (статья 1055 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-promise-red-ignore-revocation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "promise_revocation_duty_breached": false
+        },
+        "observed_outcomes": {
+          "promise_revocation_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Отказ от публичного обещания награды должен быть совершён в той же форме, в какой обещание было объявлено, и не допускается, если обещание содержит отказ от такой отмены, если дан срок для совершения действия либо если действие уже совершено (статья 1056 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-promise-red-compensation-without-revocation-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "revocation_expense_compensation_breached": true
+        },
+        "observed_outcomes": {
+          "revocation_expense_compensation_breached": false
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-promise-red-ignore-contest-terms",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contest_terms_duty_breached": false
+        },
+        "observed_outcomes": {
+          "contest_terms_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Объявление о публичном конкурсе должно содержать существо задания, критерии и порядок оценки результатов, место, срок и порядок их представления, размер и форму награды, а также порядок и сроки объявления результатов конкурса (статья 1057 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-promise-red-ignore-public-purpose",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contest_public_purpose_duty_breached": false
+        },
+        "observed_outcomes": {
+          "contest_public_purpose_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Публичный конкурс должен быть направлен на достижение каких-либо общественно полезных целей; он может быть открытым или закрытым, а при открытом конкурсе допускается предварительная квалификация участников (статья 1057 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-promise-red-ignore-contest-change",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contest_change_duty_breached": false
+        },
+        "observed_outcomes": {
+          "contest_change_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Изменение условий и отмена публичного конкурса допускаются только в течение первой половины установленного для представления работ срока, тем же способом, каким конкурс был объявлен, с возмещением расходов участникам, выполнившим работу до того, как им стало или должно было стать известно об изменении (статья 1058 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-promise-red-ignore-award-decision",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contest_award_decision_duty_breached": false
+        },
+        "observed_outcomes": {
+          "contest_award_decision_duty_breached": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Решение о выплате награды принимается и сообщается участникам в порядке и в сроки, установленные в объявлении о конкурсе; при присуждении награды нескольким лицам она распределяется в соответствии с условиями конкурса, а использование удостоенных наград произведений науки, литературы и искусства подчиняется правилам статьи 1060 ГК РФ (статьи 1059 и 1060 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "public-promise-red-skip-human-on-works-return",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_public_promise_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_public_promise_assessment": true
+        },
+        "reasons_ru": [
+          "Отношения квалифицированы как публичное обещание награды или публичный конкурс: лицо, объявившее публично о выплате денежного вознаграждения или выдаче иной награды тому, кто совершит указанное в объявлении правомерное действие в указанный в нём срок, обязано выплатить обещанную награду любому, кто совершил соответствующее действие (статьи 1055 и 1057 ГК РФ).",
+          "Организатор публичного конкурса обязан возвратить участникам конкурса работы, не удостоенные награды, если иное не предусмотрено объявлением о конкурсе и не вытекает из характера выполненной работы (статья 1061 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

@@ -1499,6 +1499,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.78.0",
+        to_version="0.79.0",
+        reasons=[
+            "Reviewed inputs now require a separate public-promise evidence contract.",
+            "Analysis and Russian translation distinguish the qualification of a public promise or contest, the requirements for the announcement, the amount and distribution of the reward, the revocation of the promise, the compensation of expenses on revocation, the terms of the contest, its publicly useful purpose, the change and cancellation of the contest, the award decision, and the return of submitted works under articles 1055 to 1061.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о публичном обещании награды и публичном конкурсе.",
+            "Анализ и русское объяснение разделяют квалификацию публичного обещания награды и конкурса, требования к объявлению, размер и распределение награды, отмену обещания, возмещение расходов при отмене, условия конкурса, его общественно полезную цель, изменение и отмену конкурса, решение о выплате награды и возврат представленных работ по статьям 1055–1061 ГК РФ.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_public_promise_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.79.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed public-promise evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 1055 to 1061.",
+            "The qualification of a public promise or contest, the requirements for the announcement, the amount and distribution of the reward, the revocation of the promise, the compensation of expenses on revocation, the terms of the contest, its publicly useful purpose, the change and cancellation of the contest, the award decision, and the return of submitted works remain distinct.",
+        ],
+        notes_ru=[
+            "Проверенные данные о публичном обещании награды и публичном конкурсе обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 1055–1061 ГК РФ.",
+            "Квалификация публичного обещания награды и конкурса, требования к объявлению, размер и распределение награды, отмена обещания, возмещение расходов при отмене, условия конкурса, его общественно полезная цель, изменение и отмена конкурса, решение о выплате награды и возврат представленных работ разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.78.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk1055-1056-public-promise-of-reward-and-revocation-v1",
+      "title": "Синтетическая проверенная модель публичного обещания награды, требований к объявлению, размера и распределения награды и отмены обещания по статьям 1055 и 1056 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обязанность выплатить обещанную награду тому, кто совершил указанное в публичном объявлении правомерное действие, требование о возможности установить, кем награда обещана, право отозвавшегося лица требовать письменного подтверждения обещания, определение размера награды и её распределение между несколькими лицами, а также форма и пределы отмены публичного обещания награды с возмещением расходов отозвавшимся лицам проверяются раздельно (статьи 1055 и 1056 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "public_promise_of_reward_and_revocation_articles_1055_1056",
+        "legal_reference": "ГК РФ, статьи 1055 и 1056",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk1057-1061-public-contest-terms-award-and-works-v1",
+      "title": "Синтетическая проверенная модель организации публичного конкурса, изменения его условий и отмены, решения о выплате награды и возврата работ по статьям 1057–1061 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: обязательные условия объявления о публичном конкурсе, направленность конкурса на достижение общественно полезных целей, пределы изменения условий и отмены конкурса с возмещением расходов участникам, порядок и сроки принятия и объявления решения о выплате награды, использование удостоенных награды произведений науки, литературы и искусства и обязанность возвратить участникам работы, не удостоенные награды, проверяются раздельно (статьи 1057–1061 ГК РФ).",
+      "valid_from": "1996-03-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "public_contest_terms_award_and_works_articles_1057_1061",
+        "legal_reference": "ГК РФ, статьи 1057–1061",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-public-promise-evidence",
+      "title": "Синтетическая проверенная запись фактов о публичном обещании награды и публичном конкурсе",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки публичное обещание награды не объявлялось и публичный конкурс не проводился.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "public_promise_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk1041-1046-partnership-concept-contributions-and-common-affairs-v1",
       "title": "Синтетическая проверенная модель договора простого товарищества, вкладов товарищей, общего имущества, ведения общих дел, права на информацию и общих расходов по статьям 1041–1046 ГК РФ",
       "source_type": "statute",
@@ -9335,6 +9382,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "public_promise_evidence": {
+      "id": "reviewed-public-promise-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.public-promise-evidence.v0",
+      "assertions": [
+        {
+          "id": "public-promise-evidence-public_promise_or_contest_declared",
+          "predicate": "public_promise_or_contest_declared",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "id": "public-promise-evidence-promise_announcement_requirements_breached",
+          "predicate": "promise_announcement_requirements_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "id": "public-promise-evidence-reward_amount_or_distribution_breached",
+          "predicate": "reward_amount_or_distribution_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "id": "public-promise-evidence-promise_revocation_rules_breached",
+          "predicate": "promise_revocation_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "id": "public-promise-evidence-revocation_expense_compensation_not_applied",
+          "predicate": "revocation_expense_compensation_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "id": "public-promise-evidence-contest_announcement_terms_breached",
+          "predicate": "contest_announcement_terms_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "id": "public-promise-evidence-contest_public_purpose_breached",
+          "predicate": "contest_public_purpose_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "id": "public-promise-evidence-contest_change_or_cancellation_breached",
+          "predicate": "contest_change_or_cancellation_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "id": "public-promise-evidence-contest_award_decision_breached",
+          "predicate": "contest_award_decision_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "id": "public-promise-evidence-contest_works_return_breached",
+          "predicate": "contest_works_return_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk1055-1056-public-promise-of-reward-and-revocation-v1",
+        "synthetic-ru-gk1057-1061-public-contest-terms-award-and-works-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-public-promise-reviewer"
+    },
     "partnership_evidence": {
       "id": "reviewed-partnership-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -14438,6 +14578,7 @@
       "synthetic-preliminary-reviewer",
       "synthetic-procedure-reviewer",
       "synthetic-public-contract-reviewer",
+      "synthetic-public-promise-reviewer",
       "synthetic-real-estate-sale-reviewer",
       "synthetic-rental-reviewer",
       "synthetic-representations-reviewer",
@@ -14510,6 +14651,7 @@
       "synthetic-case-supply-1-preliminary-evidence",
       "synthetic-case-supply-1-procedure-evidence",
       "synthetic-case-supply-1-public-contract-evidence",
+      "synthetic-case-supply-1-public-promise-evidence",
       "synthetic-case-supply-1-real-estate-sale-evidence",
       "synthetic-case-supply-1-rental-evidence",
       "synthetic-case-supply-1-representations-evidence",
@@ -14542,6 +14684,8 @@
       "synthetic-ru-gk1030-1040-franchise-obligations-restrictions-and-termination-v1",
       "synthetic-ru-gk1041-1046-partnership-concept-contributions-and-common-affairs-v1",
       "synthetic-ru-gk1047-1054-partnership-liability-profit-and-termination-v1",
+      "synthetic-ru-gk1055-1056-public-promise-of-reward-and-revocation-v1",
+      "synthetic-ru-gk1057-1061-public-contest-terms-award-and-works-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -22760,6 +22904,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "public_promise_evidence_mapping": {
+      "evidence_id": "reviewed-public-promise-evidence-supply-1-v0",
+      "schema_version": "contracts.public-promise-evidence.v0",
+      "mapping_version": "contracts-reviewed-public-promise-to-facts-v0",
+      "facts": {
+        "public_promise_or_contest_declared": false,
+        "promise_announcement_requirements_breached": false,
+        "reward_amount_or_distribution_breached": false,
+        "promise_revocation_rules_breached": false,
+        "revocation_expense_compensation_not_applied": false,
+        "contest_announcement_terms_breached": false,
+        "contest_public_purpose_breached": false,
+        "contest_change_or_cancellation_breached": false,
+        "contest_award_decision_breached": false,
+        "contest_works_return_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk1055-1056-public-promise-of-reward-and-revocation-v1",
+        "synthetic-ru-gk1057-1061-public-contest-terms-award-and-works-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "contest_announcement_terms_breached",
+          "assertion_id": "public-promise-evidence-contest_announcement_terms_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "fact_name": "contest_award_decision_breached",
+          "assertion_id": "public-promise-evidence-contest_award_decision_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "fact_name": "contest_change_or_cancellation_breached",
+          "assertion_id": "public-promise-evidence-contest_change_or_cancellation_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "fact_name": "contest_public_purpose_breached",
+          "assertion_id": "public-promise-evidence-contest_public_purpose_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "fact_name": "contest_works_return_breached",
+          "assertion_id": "public-promise-evidence-contest_works_return_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "fact_name": "promise_announcement_requirements_breached",
+          "assertion_id": "public-promise-evidence-promise_announcement_requirements_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "fact_name": "promise_revocation_rules_breached",
+          "assertion_id": "public-promise-evidence-promise_revocation_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "fact_name": "public_promise_or_contest_declared",
+          "assertion_id": "public-promise-evidence-public_promise_or_contest_declared",
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "fact_name": "revocation_expense_compensation_not_applied",
+          "assertion_id": "public-promise-evidence-revocation_expense_compensation_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        },
+        {
+          "fact_name": "reward_amount_or_distribution_breached",
+          "assertion_id": "public-promise-evidence-reward_amount_or_distribution_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-public-promise-evidence"
+          ]
+        }
+      ]
+    },
+    "public_promise_constraint_set": {
+      "id": "public-promise-constraint-set:reviewed-public-promise-evidence-supply-1-v0",
+      "model_version": "contracts-public-promise-articles-1055-1061-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk1055-1056-public-promise-of-reward-and-revocation-v1",
+        "synthetic-ru-gk1057-1061-public-contest-terms-award-and-works-v1"
+      ],
+      "expressions": [
+        "public_promise_qualified == public_promise_or_contest_declared",
+        "announcement_requirements_duty_breached == public_promise_qualified AND promise_announcement_requirements_breached",
+        "reward_amount_and_distribution_duty_breached == public_promise_qualified AND reward_amount_or_distribution_breached",
+        "promise_revocation_duty_breached == public_promise_qualified AND promise_revocation_rules_breached",
+        "revocation_expense_compensation_breached == public_promise_qualified AND promise_revocation_rules_breached AND revocation_expense_compensation_not_applied",
+        "contest_terms_duty_breached == public_promise_qualified AND contest_announcement_terms_breached",
+        "contest_public_purpose_duty_breached == public_promise_qualified AND contest_public_purpose_breached",
+        "contest_change_duty_breached == public_promise_qualified AND contest_change_or_cancellation_breached",
+        "contest_award_decision_duty_breached == public_promise_qualified AND contest_award_decision_breached",
+        "contest_works_duty_breached == public_promise_qualified AND contest_works_return_breached",
+        "requires_human_public_promise_assessment == announcement_requirements_duty_breached OR reward_amount_and_distribution_duty_breached OR promise_revocation_duty_breached OR contest_terms_duty_breached OR contest_public_purpose_duty_breached OR contest_change_duty_breached OR contest_award_decision_duty_breached OR contest_works_duty_breached"
+      ]
+    },
+    "public_promise_evaluation": {
+      "constraint_set_id": "public-promise-constraint-set:reviewed-public-promise-evidence-supply-1-v0",
+      "satisfiable": true,
+      "public_promise_qualified": false,
+      "announcement_requirements_duty_breached": false,
+      "reward_amount_and_distribution_duty_breached": false,
+      "promise_revocation_duty_breached": false,
+      "revocation_expense_compensation_breached": false,
+      "contest_terms_duty_breached": false,
+      "contest_public_purpose_duty_breached": false,
+      "contest_change_duty_breached": false,
+      "contest_award_decision_duty_breached": false,
+      "contest_works_duty_breached": false,
+      "requires_human_public_promise_assessment": false,
+      "reasons_ru": [
+        "Отношения не квалифицированы как публичное обещание награды или публичный конкурс."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о публичном обещании награды и публичном конкурсе и не заменяет судебную оценку.",
+        "Существо конкурсного задания, общественная полезность цели конкурса и обоснованность оценки работ оцениваются экспертом и судом (статьи 1057 и 1059 ГК РФ)."
+      ]
+    },
     "partnership_evidence_mapping": {
       "evidence_id": "reviewed-partnership-evidence-supply-1-v0",
       "schema_version": "contracts.partnership-evidence.v0",
@@ -28539,7 +28819,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.78.0",
+      "institutional_package_version": "contracts-ru-v0@0.79.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
