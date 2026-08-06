@@ -20,6 +20,9 @@
   имени совершившего её лица, пока представляемый её не одобрит;
 - статья 10 ГК РФ — при злоупотреблении правом суд отказывает лицу в защите
   принадлежащего ему права полностью или частично;
+- статья 173.1 ГК РФ — сделка, совершённая без необходимого в силу закона
+  согласия третьего лица, органа юридического лица или государственного органа,
+  является оспоримой;
 - статья 209 ГК РФ — распоряжение имуществом принадлежит собственнику, поэтому
   отчуждение неуправомоченным лицом не переносит право на приобретателя;
 - статья 1103 ГК РФ — применение правил о неосновательном обогащении к
@@ -29,7 +32,9 @@
 from pydantic import BaseModel, ConfigDict, Field
 from z3 import And, Bool, Not, Or, Solver, sat
 
-GENERAL_EFFECTS_MODEL_VERSION = "contracts-general-part-effects-articles-10-167-183-199-209-432-v3"
+GENERAL_EFFECTS_MODEL_VERSION = (
+    "contracts-general-part-effects-articles-10-167-173-1-183-199-209-432-v4"
+)
 
 
 class GeneralEffectsInputs(BaseModel):
@@ -53,6 +58,8 @@ class GeneralEffectsInputs(BaseModel):
     unauthorized_disposal_detected: bool
     # Пределы осуществления гражданских прав (статья 10 ГК РФ).
     abuse_of_right_detected: bool
+    # Сделки: отсутствие необходимого согласия (статьи 157.1 и 173.1 ГК РФ).
+    consent_missing_for_transaction: bool
     # Нарушение обязательства и прекращение договора (статьи 309–328, 450–453).
     breach_issue: bool
     effective_termination: bool
@@ -80,6 +87,7 @@ class GeneralEffectsEvaluation(BaseModel):
     protection_refused_for_abuse: bool
     # Совокупный эффект для требований из договора.
     contractual_claims_enforceable: bool
+    transaction_challengeable_for_missing_consent: bool
     title_transfer_defeated: bool
     institute_conclusions_displaced: bool
     breach_findings_without_effect: bool
@@ -97,6 +105,7 @@ def build_general_effects_inputs(
     representation_evaluation,
     property_rights_evaluation,
     civil_principles_evaluation,
+    transactions_evaluation,
     constraint_evaluation,
     termination_evaluation,
 ) -> GeneralEffectsInputs:
@@ -113,6 +122,7 @@ def build_general_effects_inputs(
         ),
         unauthorized_disposal_detected=(property_rights_evaluation.unauthorized_disposal_detected),
         abuse_of_right_detected=civil_principles_evaluation.abuse_of_right_detected,
+        consent_missing_for_transaction=(transactions_evaluation.consent_missing_for_transaction),
         breach_issue=constraint_evaluation.breach_issue,
         effective_termination=termination_evaluation.effective_termination,
     )
@@ -132,6 +142,7 @@ def build_general_effects_constraint_set(
             "representation_evaluation",
             "property_rights_evaluation",
             "civil_principles_evaluation",
+            "transactions_evaluation",
             "constraint_evaluation",
             "termination_evaluation",
         ],
@@ -148,9 +159,10 @@ def build_general_effects_constraint_set(
             "contractual_claims_enforceable == contract_legally_effective AND judicial_protection_available",
             "institute_conclusions_displaced == NOT contract_legally_effective",
             "breach_findings_without_effect == breach_issue AND NOT contractual_claims_enforceable",
+            "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
             "title_transfer_defeated == unauthorized_disposal_detected",
             "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-            "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated",
+            "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent",
         ],
     )
 
@@ -172,6 +184,9 @@ def evaluate_general_effects_constraints(
     claims_barred_by_limitation = Bool("claims_barred_by_limitation")
     protection_refused_for_abuse = Bool("protection_refused_for_abuse")
     contractual_claims_enforceable = Bool("contractual_claims_enforceable")
+    transaction_challengeable_for_missing_consent = Bool(
+        "transaction_challengeable_for_missing_consent"
+    )
     institute_conclusions_displaced = Bool("institute_conclusions_displaced")
     breach_findings_without_effect = Bool("breach_findings_without_effect")
     title_transfer_defeated = Bool("title_transfer_defeated")
@@ -229,6 +244,10 @@ def evaluate_general_effects_constraints(
         breach_findings_without_effect
         == And(variables["breach_issue"], Not(contractual_claims_enforceable))
     )
+    solver.add(
+        transaction_challengeable_for_missing_consent
+        == And(contract_legally_effective, variables["consent_missing_for_transaction"])
+    )
     solver.add(title_transfer_defeated == variables["unauthorized_disposal_detected"])
     solver.add(
         restitution_regime_applies
@@ -243,6 +262,7 @@ def evaluate_general_effects_constraints(
             breach_findings_without_effect,
             restitution_regime_applies,
             title_transfer_defeated,
+            transaction_challengeable_for_missing_consent,
         )
     )
 
@@ -260,6 +280,7 @@ def evaluate_general_effects_constraints(
             claims_barred_by_limitation=False,
             protection_refused_for_abuse=False,
             contractual_claims_enforceable=False,
+            transaction_challengeable_for_missing_consent=False,
             institute_conclusions_displaced=True,
             breach_findings_without_effect=False,
             title_transfer_defeated=False,
@@ -328,6 +349,14 @@ def evaluate_general_effects_constraints(
             "специальных институтов о нарушении его условий не могут быть положены в основание "
             "присуждения (статьи 167, 199 и 432 ГК РФ)."
         )
+    if truth(transaction_challengeable_for_missing_consent):
+        reasons_ru.append(
+            "Сделка совершена без необходимого в силу закона согласия третьего лица, органа "
+            "юридического лица или государственного органа, поэтому она является оспоримой и "
+            "может быть признана недействительной судом по иску такого лица или иных лиц, "
+            "указанных в законе; до признания её недействительной судом договор сохраняет "
+            "действие (статьи 157.1, 166 и 173.1 ГК РФ)."
+        )
     if truth(title_transfer_defeated):
         reasons_ru.append(
             "Имуществом распорядилось лицо, не управомоченное на его отчуждение, поэтому право "
@@ -361,6 +390,9 @@ def evaluate_general_effects_constraints(
         claims_barred_by_limitation=truth(claims_barred_by_limitation),
         protection_refused_for_abuse=truth(protection_refused_for_abuse),
         contractual_claims_enforceable=truth(contractual_claims_enforceable),
+        transaction_challengeable_for_missing_consent=truth(
+            transaction_challengeable_for_missing_consent
+        ),
         institute_conclusions_displaced=truth(institute_conclusions_displaced),
         breach_findings_without_effect=truth(breach_findings_without_effect),
         title_transfer_defeated=truth(title_transfer_defeated),

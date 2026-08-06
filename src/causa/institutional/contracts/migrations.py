@@ -1711,6 +1711,26 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.89.0",
+        to_version="0.90.0",
+        reasons=[
+            "Reviewed inputs now require a separate transactions evidence contract covering articles 153 to 157.1.",
+            "The general-part effects layer gains an input for a transaction made without the statutory consent, so such a transaction is reported as voidable under article 173.1 while the contract stays effective until a court says otherwise.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о сделке по статьям 153–157.1 ГК РФ.",
+            "Слой общих положений получил вход о сделке без необходимого согласия, поэтому такая сделка отражается как оспоримая по статье 173.1 ГК РФ, а договор сохраняет действие до признания сделки недействительной судом.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_transactions_evaluation.py",
+            "python scripts/export_synthetic_general_effects_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

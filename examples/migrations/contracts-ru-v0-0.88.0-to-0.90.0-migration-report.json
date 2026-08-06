@@ -1,0 +1,60 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.88.0:to-0.90.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.88.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.88.0",
+  "target_package_version": "0.90.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.88.0",
+      "to_version": "0.89.0",
+      "reasons": [
+        "Reviewed inputs now require a separate civil-principles evidence contract covering articles 1 to 16.1.",
+        "The general-part effects layer gains an input for an established abuse of right, so judicial protection is refused under article 10 while the contract itself stays effective."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об основных началах и защите гражданских прав по статьям 1–16.1 ГК РФ.",
+        "Слой общих положений получил вход об установленном злоупотреблении правом, поэтому в судебной защите отказывается по статье 10 ГК РФ, а сам договор сохраняет силу."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_civil_principles_evaluation.py",
+        "python scripts/export_synthetic_general_effects_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.89.0",
+      "to_version": "0.90.0",
+      "reasons": [
+        "Reviewed inputs now require a separate transactions evidence contract covering articles 153 to 157.1.",
+        "The general-part effects layer gains an input for a transaction made without the statutory consent, so such a transaction is reported as voidable under article 173.1 while the contract stays effective until a court says otherwise."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных о сделке по статьям 153–157.1 ГК РФ.",
+        "Слой общих положений получил вход о сделке без необходимого согласия, поэтому такая сделка отражается как оспоримая по статье 173.1 ГК РФ, а договор сохраняет действие до признания сделки недействительной судом."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_transactions_evaluation.py",
+        "python scripts/export_synthetic_general_effects_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

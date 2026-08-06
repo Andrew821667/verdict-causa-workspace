@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.transactions import (
+    ReviewedTransactionsEvidence,
+    TransactionsEvidenceAssertion,
+    TransactionsEvidencePredicate,
+)
 from causa.institutional.contracts.civil_principles import (
     CivilPrinciplesEvidenceAssertion,
     CivilPrinciplesEvidencePredicate,
@@ -597,6 +602,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+    "synthetic-ru-gk157-1-consent-to-a-transaction-v1",
+    "synthetic-case-supply-1-transactions-evidence",
     "synthetic-ru-gk1-10-civil-principles-and-limits-of-exercise-v1",
     "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1",
     "synthetic-case-supply-1-civil-principles-evidence",
@@ -2974,6 +2982,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        transactions_evidence=ReviewedTransactionsEvidence(
+            id="reviewed-transactions-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                TransactionsEvidenceAssertion(
+                    id=f"transactions-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-transactions-evidence",),
+                )
+                for predicate, value in (
+                    (TransactionsEvidencePredicate.TRANSACTION_ASSERTED, False),
+                    (TransactionsEvidencePredicate.TRANSACTION_DEFINITION_BREACHED, False),
+                    (TransactionsEvidencePredicate.PARTIES_COUNT_RULES_BREACHED, False),
+                    (TransactionsEvidencePredicate.UNILATERAL_TRANSACTION_EFFECT_BREACHED, False),
+                    (TransactionsEvidencePredicate.UNILATERAL_REGULATION_BREACHED, False),
+                    (TransactionsEvidencePredicate.CONDITIONAL_TRANSACTION_RULES_BREACHED, False),
+                    (TransactionsEvidencePredicate.CONDITION_INTERFERENCE_IN_BAD_FAITH, False),
+                    (TransactionsEvidencePredicate.STATUTORY_CONSENT_NOT_OBTAINED, False),
+                    (TransactionsEvidencePredicate.CONSENT_PROCEDURE_BREACHED, False),
+                    (TransactionsEvidencePredicate.SILENCE_TREATED_AS_CONSENT, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+                "synthetic-ru-gk157-1-consent-to-a-transaction-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-transactions-reviewer",
         ),
         civil_principles_evidence=ReviewedCivilPrinciplesEvidence(
             id="reviewed-civil-principles-evidence-supply-1-v0",

@@ -1397,6 +1397,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-transactions",
+            title="Проверка понятия, вида и условий сделки",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.transactions_evidence_mapping.evidence_id,
+                trace.analysis_result.transactions_constraint_set.id,
+                *trace.analysis_result.transactions_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.transactions_evaluation.reasons_ru,
+                "Понятие сделки, деление сделок на односторонние и дву- или многосторонние, эффект односторонней сделки, применение к ней общих положений о договорах, сделки под отлагательным и отменительным условием, недобросовестное влияние на наступление условия, необходимость согласия на совершение сделки, порядок и содержание такого согласия и запрет считать молчание согласием проверяются раздельно по статьям 153–157.1 ГК РФ.",
+                "Направленность воли сторон, наступление условия и добросовестность влияния на него оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-civil-principles",
             title="Проверка основных начал и защиты гражданских прав",
             status=PipelineStepStatus.PASSED,

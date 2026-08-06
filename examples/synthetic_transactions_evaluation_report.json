@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка понятия, видов и условий сделок, а также согласия на их совершение по статьям 153–157.1 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-transactions-evidence-supply-1-v0",
+    "schema_version": "contracts.transactions-evidence.v0",
+    "mapping_version": "contracts-reviewed-transactions-to-facts-v0",
+    "facts": {
+      "transaction_asserted": false,
+      "transaction_definition_breached": false,
+      "parties_count_rules_breached": false,
+      "unilateral_transaction_effect_breached": false,
+      "unilateral_regulation_breached": false,
+      "conditional_transaction_rules_breached": false,
+      "condition_interference_in_bad_faith": false,
+      "statutory_consent_not_obtained": false,
+      "consent_procedure_breached": false,
+      "silence_treated_as_consent": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+      "synthetic-ru-gk157-1-consent-to-a-transaction-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "condition_interference_in_bad_faith",
+        "assertion_id": "transactions-evidence-condition_interference_in_bad_faith",
+        "source_refs": [
+          "synthetic-case-supply-1-transactions-evidence"
+        ]
+      },
+      {
+        "fact_name": "conditional_transaction_rules_breached",
+        "assertion_id": "transactions-evidence-conditional_transaction_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-transactions-evidence"
+        ]
+      },
+      {
+        "fact_name": "consent_procedure_breached",
+        "assertion_id": "transactions-evidence-consent_procedure_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-transactions-evidence"
+        ]
+      },
+      {
+        "fact_name": "parties_count_rules_breached",
+        "assertion_id": "transactions-evidence-parties_count_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-transactions-evidence"
+        ]
+      },
+      {
+        "fact_name": "silence_treated_as_consent",
+        "assertion_id": "transactions-evidence-silence_treated_as_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-transactions-evidence"
+        ]
+      },
+      {
+        "fact_name": "statutory_consent_not_obtained",
+        "assertion_id": "transactions-evidence-statutory_consent_not_obtained",
+        "source_refs": [
+          "synthetic-case-supply-1-transactions-evidence"
+        ]
+      },
+      {
+        "fact_name": "transaction_asserted",
+        "assertion_id": "transactions-evidence-transaction_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-transactions-evidence"
+        ]
+      },
+      {
+        "fact_name": "transaction_definition_breached",
+        "assertion_id": "transactions-evidence-transaction_definition_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-transactions-evidence"
+        ]
+      },
+      {
+        "fact_name": "unilateral_regulation_breached",
+        "assertion_id": "transactions-evidence-unilateral_regulation_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-transactions-evidence"
+        ]
+      },
+      {
+        "fact_name": "unilateral_transaction_effect_breached",
+        "assertion_id": "transactions-evidence-unilateral_transaction_effect_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-transactions-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "transactions-constraint-set:reviewed-transactions-evidence-supply-1-v0",
+    "model_version": "contracts-transactions-articles-153-157-1-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+      "synthetic-ru-gk157-1-consent-to-a-transaction-v1"
+    ],
+    "expressions": [
+      "transactions_qualified == transaction_asserted",
+      "transaction_definition_duty_breached == transactions_qualified AND transaction_definition_breached",
+      "parties_count_duty_breached == transactions_qualified AND parties_count_rules_breached",
+      "unilateral_transaction_duty_breached == transactions_qualified AND unilateral_transaction_effect_breached",
+      "unilateral_regulation_duty_breached == transactions_qualified AND unilateral_regulation_breached",
+      "conditional_transaction_duty_breached == transactions_qualified AND conditional_transaction_rules_breached",
+      "condition_interference_duty_breached == transactions_qualified AND condition_interference_in_bad_faith",
+      "consent_missing_for_transaction == transactions_qualified AND statutory_consent_not_obtained",
+      "consent_procedure_duty_breached == transactions_qualified AND consent_procedure_breached",
+      "silence_as_consent_breached == transactions_qualified AND statutory_consent_not_obtained AND silence_treated_as_consent",
+      "requires_human_transactions_assessment == transaction_definition_duty_breached OR parties_count_duty_breached OR unilateral_transaction_duty_breached OR unilateral_regulation_duty_breached OR conditional_transaction_duty_breached OR condition_interference_duty_breached OR consent_missing_for_transaction OR consent_procedure_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "transactions-constraint-set:reviewed-transactions-evidence-supply-1-v0",
+    "satisfiable": true,
+    "transactions_qualified": false,
+    "transaction_definition_duty_breached": false,
+    "parties_count_duty_breached": false,
+    "unilateral_transaction_duty_breached": false,
+    "unilateral_regulation_duty_breached": false,
+    "conditional_transaction_duty_breached": false,
+    "condition_interference_duty_breached": false,
+    "consent_missing_for_transaction": false,
+    "consent_procedure_duty_breached": false,
+    "silence_as_consent_breached": false,
+    "requires_human_transactions_assessment": false,
+    "reasons_ru": [
+      "Совершение сделки не заявлено."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о понятии, видах и условиях сделок и не заменяет судебную оценку.",
+      "Направленность воли сторон, наступление или ненаступление условия и добросовестность влияния на него оцениваются экспертом и судом (статьи 153 и 157 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "transactions-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "transactions-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "transactions_qualified": false
+        },
+        "observed_outcomes": {
+          "transactions_qualified": false
+        },
+        "reasons_ru": [
+          "Совершение сделки не заявлено."
+        ]
+      },
+      {
+        "task_id": "transactions-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "transactions_qualified": true,
+          "requires_human_transactions_assessment": false
+        },
+        "observed_outcomes": {
+          "transactions_qualified": true,
+          "requires_human_transactions_assessment": false
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "transactions-bench-definition",
+        "passed": true,
+        "expected_outcomes": {
+          "transaction_definition_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "observed_outcomes": {
+          "transaction_definition_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Действие не отвечает понятию сделки: сделками признаются действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей (статья 153 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "transactions-bench-parties-count",
+        "passed": true,
+        "expected_outcomes": {
+          "parties_count_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "observed_outcomes": {
+          "parties_count_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Нарушены правила о видах сделок: сделки могут быть двух- или многосторонними (договоры) и односторонними; для заключения договора необходимо выражение согласованной воли двух сторон либо трёх и более сторон (статья 154 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "transactions-bench-unilateral-effect",
+        "passed": true,
+        "expected_outcomes": {
+          "unilateral_transaction_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "observed_outcomes": {
+          "unilateral_transaction_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Односторонняя сделка создаёт обязанности для лиц, которые её не совершали: односторонняя сделка создаёт обязанности для лица, её совершившего, и может создавать обязанности для других лиц лишь в случаях, установленных законом либо соглашением с этими лицами (статья 155 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "transactions-bench-unilateral-regulation",
+        "passed": true,
+        "expected_outcomes": {
+          "unilateral_regulation_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "observed_outcomes": {
+          "unilateral_regulation_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "К односторонней сделке не применены общие положения об обязательствах и о договорах, применимые постольку, поскольку это не противоречит закону, одностороннему характеру и существу сделки (статья 156 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "transactions-bench-conditional",
+        "passed": true,
+        "expected_outcomes": {
+          "conditional_transaction_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "observed_outcomes": {
+          "conditional_transaction_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Нарушены правила о сделках под условием: сделка считается совершённой под отлагательным или отменительным условием, если стороны поставили возникновение либо прекращение прав и обязанностей в зависимость от обстоятельства, относительно которого неизвестно, наступит оно или не наступит (статья 157 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "transactions-bench-condition-interference",
+        "passed": true,
+        "expected_outcomes": {
+          "condition_interference_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "observed_outcomes": {
+          "condition_interference_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Сторона недобросовестно повлияла на наступление условия: если наступлению условия недобросовестно воспрепятствовала сторона, которой это невыгодно, условие признаётся наступившим; если наступлению условия недобросовестно содействовала сторона, которой это выгодно, условие признаётся ненаступившим (статья 157 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "transactions-bench-consent-missing",
+        "passed": true,
+        "expected_outcomes": {
+          "consent_missing_for_transaction": true,
+          "silence_as_consent_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "observed_outcomes": {
+          "consent_missing_for_transaction": true,
+          "silence_as_consent_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Сделка совершена без необходимого в силу закона согласия третьего лица, органа юридического лица или государственного органа либо органа местного самоуправления (статья 157.1 ГК РФ); такая сделка является оспоримой и может быть признана недействительной судом (статья 173.1 ГК РФ).",
+          "Молчание признано согласием на совершение сделки, тогда как молчание не считается согласием на совершение сделки, за исключением случаев, установленных законом (статья 157.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "transactions-bench-consent-procedure",
+        "passed": true,
+        "expected_outcomes": {
+          "consent_procedure_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "observed_outcomes": {
+          "consent_procedure_duty_breached": true,
+          "requires_human_transactions_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Нарушены порядок и содержание согласия на совершение сделки: в предварительном согласии должен быть определён предмет сделки, а при последующем согласии (одобрении) должна быть указана сделка, на совершение которой дано согласие (статья 157.1 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "transactions-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "transactions-red-qualify-without-transaction",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transactions_qualified": true
+        },
+        "observed_outcomes": {
+          "transactions_qualified": false
+        },
+        "reasons_ru": [
+          "Совершение сделки не заявлено."
+        ]
+      },
+      {
+        "case_id": "transactions-red-ignore-definition",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "transaction_definition_duty_breached": false
+        },
+        "observed_outcomes": {
+          "transaction_definition_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Действие не отвечает понятию сделки: сделками признаются действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей (статья 153 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "transactions-red-ignore-parties-count",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "parties_count_duty_breached": false
+        },
+        "observed_outcomes": {
+          "parties_count_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Нарушены правила о видах сделок: сделки могут быть двух- или многосторонними (договоры) и односторонними; для заключения договора необходимо выражение согласованной воли двух сторон либо трёх и более сторон (статья 154 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "transactions-red-bind-third-party-by-unilateral-act",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unilateral_transaction_duty_breached": false
+        },
+        "observed_outcomes": {
+          "unilateral_transaction_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Односторонняя сделка создаёт обязанности для лиц, которые её не совершали: односторонняя сделка создаёт обязанности для лица, её совершившего, и может создавать обязанности для других лиц лишь в случаях, установленных законом либо соглашением с этими лицами (статья 155 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "transactions-red-ignore-unilateral-regulation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unilateral_regulation_duty_breached": false
+        },
+        "observed_outcomes": {
+          "unilateral_regulation_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "К односторонней сделке не применены общие положения об обязательствах и о договорах, применимые постольку, поскольку это не противоречит закону, одностороннему характеру и существу сделки (статья 156 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "transactions-red-ignore-conditional-rules",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "conditional_transaction_duty_breached": false
+        },
+        "observed_outcomes": {
+          "conditional_transaction_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Нарушены правила о сделках под условием: сделка считается совершённой под отлагательным или отменительным условием, если стороны поставили возникновение либо прекращение прав и обязанностей в зависимость от обстоятельства, относительно которого неизвестно, наступит оно или не наступит (статья 157 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "transactions-red-allow-bad-faith-interference",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "condition_interference_duty_breached": false
+        },
+        "observed_outcomes": {
+          "condition_interference_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Сторона недобросовестно повлияла на наступление условия: если наступлению условия недобросовестно воспрепятствовала сторона, которой это невыгодно, условие признаётся наступившим; если наступлению условия недобросовестно содействовала сторона, которой это выгодно, условие признаётся ненаступившим (статья 157 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "transactions-red-ignore-missing-consent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "consent_missing_for_transaction": false
+        },
+        "observed_outcomes": {
+          "consent_missing_for_transaction": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Сделка совершена без необходимого в силу закона согласия третьего лица, органа юридического лица или государственного органа либо органа местного самоуправления (статья 157.1 ГК РФ); такая сделка является оспоримой и может быть признана недействительной судом (статья 173.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "transactions-red-ignore-consent-procedure",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "consent_procedure_duty_breached": false
+        },
+        "observed_outcomes": {
+          "consent_procedure_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ).",
+          "Нарушены порядок и содержание согласия на совершение сделки: в предварительном согласии должен быть определён предмет сделки, а при последующем согласии (одобрении) должна быть указана сделка, на совершение которой дано согласие (статья 157.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "transactions-red-silence-without-required-consent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "silence_as_consent_breached": true
+        },
+        "observed_outcomes": {
+          "silence_as_consent_breached": false
+        },
+        "reasons_ru": [
+          "Заявлена сделка: действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей, признаются сделками (статья 153 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95820/"
+  ]
+}

@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+      "title": "Синтетическая проверенная модель понятия сделки, её видов и сделок под условием по статьям 153–157 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: признание сделками действий граждан и юридических лиц, направленных на установление, изменение или прекращение гражданских прав и обязанностей, деление сделок на односторонние и двух- или многосторонние, создание односторонней сделкой обязанностей для совершившего её лица, применение к односторонним сделкам общих положений об обязательствах и о договорах, а также совершение сделки под отлагательным или отменительным условием и последствия недобросовестного воспрепятствования или содействия наступлению условия проверяются раздельно (статьи 153–157 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "transaction_concept_kinds_and_conditions_articles_153_157",
+        "legal_reference": "ГК РФ, статьи 153–157",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk157-1-consent-to-a-transaction-v1",
+      "title": "Синтетическая проверенная модель согласия на совершение сделки по статье 157.1 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: необходимость согласия третьего лица, органа юридического лица, государственного органа или органа местного самоуправления на совершение сделки, определение предмета сделки в предварительном согласии, указание сделки в последующем согласии (одобрении), а также правило о том, что молчание не считается согласием на совершение сделки, за исключением случаев, установленных законом, проверяются раздельно (статья 157.1 ГК РФ).",
+      "valid_from": "2013-09-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "consent_to_a_transaction_article_157_1",
+        "legal_reference": "ГК РФ, статья 157.1",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-transactions-evidence",
+      "title": "Синтетическая проверенная запись фактов о понятии, виде и условиях сделки",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спорный договор поставки заключён как двусторонняя сделка без отлагательных и отменительных условий; согласия третьих лиц или органов на его совершение по закону не требовалось.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "transactions_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk1-10-civil-principles-and-limits-of-exercise-v1",
       "title": "Синтетическая проверенная модель основных начал гражданского законодательства, оснований возникновения прав и пределов их осуществления по статьям 1–10 ГК РФ",
       "source_type": "statute",
@@ -9805,6 +9852,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "transactions_evidence": {
+      "id": "reviewed-transactions-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.transactions-evidence.v0",
+      "assertions": [
+        {
+          "id": "transactions-evidence-transaction_asserted",
+          "predicate": "transaction_asserted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "id": "transactions-evidence-transaction_definition_breached",
+          "predicate": "transaction_definition_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "id": "transactions-evidence-parties_count_rules_breached",
+          "predicate": "parties_count_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "id": "transactions-evidence-unilateral_transaction_effect_breached",
+          "predicate": "unilateral_transaction_effect_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "id": "transactions-evidence-unilateral_regulation_breached",
+          "predicate": "unilateral_regulation_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "id": "transactions-evidence-conditional_transaction_rules_breached",
+          "predicate": "conditional_transaction_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "id": "transactions-evidence-condition_interference_in_bad_faith",
+          "predicate": "condition_interference_in_bad_faith",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "id": "transactions-evidence-statutory_consent_not_obtained",
+          "predicate": "statutory_consent_not_obtained",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "id": "transactions-evidence-consent_procedure_breached",
+          "predicate": "consent_procedure_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "id": "transactions-evidence-silence_treated_as_consent",
+          "predicate": "silence_treated_as_consent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+        "synthetic-ru-gk157-1-consent-to-a-transaction-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-transactions-reviewer"
+    },
     "civil_principles_evidence": {
       "id": "reviewed-civil-principles-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -15864,6 +16004,7 @@
       "synthetic-third-party-reviewer",
       "synthetic-tort-general-reviewer",
       "synthetic-tort-life-health-reviewer",
+      "synthetic-transactions-reviewer",
       "synthetic-trust-management-reviewer",
       "synthetic-unjust-enrichment-reviewer",
       "synthetic-vehicle-lease-reviewer",
@@ -15946,6 +16087,7 @@
       "synthetic-case-supply-1-third-party-evidence",
       "synthetic-case-supply-1-tort-general-evidence",
       "synthetic-case-supply-1-tort-life-health-evidence",
+      "synthetic-case-supply-1-transactions-evidence",
       "synthetic-case-supply-1-trust-management-evidence",
       "synthetic-case-supply-1-unjust-enrichment-evidence",
       "synthetic-case-supply-1-vehicle-lease-evidence",
@@ -15978,6 +16120,8 @@
       "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
       "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
       "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1",
+      "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+      "synthetic-ru-gk157-1-consent-to-a-transaction-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -24200,6 +24344,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "transactions_evidence_mapping": {
+      "evidence_id": "reviewed-transactions-evidence-supply-1-v0",
+      "schema_version": "contracts.transactions-evidence.v0",
+      "mapping_version": "contracts-reviewed-transactions-to-facts-v0",
+      "facts": {
+        "transaction_asserted": false,
+        "transaction_definition_breached": false,
+        "parties_count_rules_breached": false,
+        "unilateral_transaction_effect_breached": false,
+        "unilateral_regulation_breached": false,
+        "conditional_transaction_rules_breached": false,
+        "condition_interference_in_bad_faith": false,
+        "statutory_consent_not_obtained": false,
+        "consent_procedure_breached": false,
+        "silence_treated_as_consent": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+        "synthetic-ru-gk157-1-consent-to-a-transaction-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "condition_interference_in_bad_faith",
+          "assertion_id": "transactions-evidence-condition_interference_in_bad_faith",
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "fact_name": "conditional_transaction_rules_breached",
+          "assertion_id": "transactions-evidence-conditional_transaction_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "fact_name": "consent_procedure_breached",
+          "assertion_id": "transactions-evidence-consent_procedure_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "fact_name": "parties_count_rules_breached",
+          "assertion_id": "transactions-evidence-parties_count_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "fact_name": "silence_treated_as_consent",
+          "assertion_id": "transactions-evidence-silence_treated_as_consent",
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "fact_name": "statutory_consent_not_obtained",
+          "assertion_id": "transactions-evidence-statutory_consent_not_obtained",
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "fact_name": "transaction_asserted",
+          "assertion_id": "transactions-evidence-transaction_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "fact_name": "transaction_definition_breached",
+          "assertion_id": "transactions-evidence-transaction_definition_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "fact_name": "unilateral_regulation_breached",
+          "assertion_id": "transactions-evidence-unilateral_regulation_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        },
+        {
+          "fact_name": "unilateral_transaction_effect_breached",
+          "assertion_id": "transactions-evidence-unilateral_transaction_effect_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-transactions-evidence"
+          ]
+        }
+      ]
+    },
+    "transactions_constraint_set": {
+      "id": "transactions-constraint-set:reviewed-transactions-evidence-supply-1-v0",
+      "model_version": "contracts-transactions-articles-153-157-1-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+        "synthetic-ru-gk157-1-consent-to-a-transaction-v1"
+      ],
+      "expressions": [
+        "transactions_qualified == transaction_asserted",
+        "transaction_definition_duty_breached == transactions_qualified AND transaction_definition_breached",
+        "parties_count_duty_breached == transactions_qualified AND parties_count_rules_breached",
+        "unilateral_transaction_duty_breached == transactions_qualified AND unilateral_transaction_effect_breached",
+        "unilateral_regulation_duty_breached == transactions_qualified AND unilateral_regulation_breached",
+        "conditional_transaction_duty_breached == transactions_qualified AND conditional_transaction_rules_breached",
+        "condition_interference_duty_breached == transactions_qualified AND condition_interference_in_bad_faith",
+        "consent_missing_for_transaction == transactions_qualified AND statutory_consent_not_obtained",
+        "consent_procedure_duty_breached == transactions_qualified AND consent_procedure_breached",
+        "silence_as_consent_breached == transactions_qualified AND statutory_consent_not_obtained AND silence_treated_as_consent",
+        "requires_human_transactions_assessment == transaction_definition_duty_breached OR parties_count_duty_breached OR unilateral_transaction_duty_breached OR unilateral_regulation_duty_breached OR conditional_transaction_duty_breached OR condition_interference_duty_breached OR consent_missing_for_transaction OR consent_procedure_duty_breached"
+      ]
+    },
+    "transactions_evaluation": {
+      "constraint_set_id": "transactions-constraint-set:reviewed-transactions-evidence-supply-1-v0",
+      "satisfiable": true,
+      "transactions_qualified": false,
+      "transaction_definition_duty_breached": false,
+      "parties_count_duty_breached": false,
+      "unilateral_transaction_duty_breached": false,
+      "unilateral_regulation_duty_breached": false,
+      "conditional_transaction_duty_breached": false,
+      "condition_interference_duty_breached": false,
+      "consent_missing_for_transaction": false,
+      "consent_procedure_duty_breached": false,
+      "silence_as_consent_breached": false,
+      "requires_human_transactions_assessment": false,
+      "reasons_ru": [
+        "Совершение сделки не заявлено."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о понятии, видах и условиях сделок и не заменяет судебную оценку.",
+        "Направленность воли сторон, наступление или ненаступление условия и добросовестность влияния на него оцениваются экспертом и судом (статьи 153 и 157 ГК РФ)."
+      ]
+    },
     "civil_principles_evidence_mapping": {
       "evidence_id": "reviewed-civil-principles-evidence-supply-1-v0",
       "schema_version": "contracts.civil-principles-evidence.v0",
@@ -24618,12 +24898,13 @@
       "unauthorized_representation_detected": false,
       "unauthorized_disposal_detected": false,
       "abuse_of_right_detected": false,
+      "consent_missing_for_transaction": false,
       "breach_issue": true,
       "effective_termination": false
     },
     "general_effects_constraint_set": {
       "id": "general-effects-constraint-set:case-supply-1",
-      "model_version": "contracts-general-part-effects-articles-10-167-183-199-209-432-v3",
+      "model_version": "contracts-general-part-effects-articles-10-167-173-1-183-199-209-432-v4",
       "source_evaluations": [
         "formation_evaluation",
         "invalidity_evaluation",
@@ -24632,6 +24913,7 @@
         "representation_evaluation",
         "property_rights_evaluation",
         "civil_principles_evaluation",
+        "transactions_evaluation",
         "constraint_evaluation",
         "termination_evaluation"
       ],
@@ -24648,9 +24930,10 @@
         "contractual_claims_enforceable == contract_legally_effective AND judicial_protection_available",
         "institute_conclusions_displaced == NOT contract_legally_effective",
         "breach_findings_without_effect == breach_issue AND NOT contractual_claims_enforceable",
+        "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
         "title_transfer_defeated == unauthorized_disposal_detected",
         "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-        "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated"
+        "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent"
       ]
     },
     "general_effects_evaluation": {
@@ -24665,6 +24948,7 @@
       "claims_barred_by_limitation": false,
       "protection_refused_for_abuse": false,
       "contractual_claims_enforceable": true,
+      "transaction_challengeable_for_missing_consent": false,
       "title_transfer_defeated": false,
       "institute_conclusions_displaced": false,
       "breach_findings_without_effect": false,
@@ -31410,7 +31694,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.89.0",
+      "institutional_package_version": "contracts-ru-v0@0.90.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

@@ -37,7 +37,7 @@ class SyntheticCivilPrinciplesEvaluationArtifact(BaseModel):
         )
         if self.constraint_set != expected_set or self.reviewed_evaluation != expected_evaluation:
             raise ValueError(
-                "Property-rights evaluation is not reproducible from reviewed evidence."
+                "Civil-principles evaluation is not reproducible from reviewed evidence."
             )
         return self
 

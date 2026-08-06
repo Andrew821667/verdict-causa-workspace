@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.90.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью понятия, видов и условий сделок, подключённой к слою общих положений |
 | `0.89.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью основных начал и защиты гражданских прав, подключённой к слою общих положений |
 | `0.88.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью вещных прав, подключённой к слою общих положений |
 | `0.87.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью представительства, подключённой к слою общих положений |
@@ -97,6 +98,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.89.0` → `0.90.0` соберите отдельно проверенный контракт данных о сделке (`contracts.transactions-evidence.v0`). Слой общих положений получил вход о сделке без необходимого согласия и новый вывод `transaction_challengeable_for_missing_consent`, поэтому пересоберите артефакты сделок, слоя общих положений, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.88.0` → `0.89.0` соберите отдельно проверенный контракт данных об основных началах и защите гражданских прав (`contracts.civil-principles-evidence.v0`). Слой общих положений получил вход об установленном злоупотреблении правом и новые выводы `limitation_bars_protection` и `protection_refused_for_abuse`, поэтому пересоберите артефакты основных начал, слоя общих положений, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

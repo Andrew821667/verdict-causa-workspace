@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.90.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed transactions evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 153 to 157.1.",
+            "The concept of a transaction, the division into unilateral and multilateral transactions, the effect of a unilateral act, conditional transactions, bad-faith interference with a condition, the statutory consent to a transaction, the procedure for that consent and the prohibition on treating silence as consent remain distinct.",
+            "A transaction made without the statutory consent feeds the general-part effects layer and is marked as voidable under article 173.1 without displacing the contract, because a voidable transaction is invalid only once a court says so.",
+        ],
+        notes_ru=[
+            "Проверенные данные о сделке обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 153–157.1 ГК РФ.",
+            "Понятие сделки, деление сделок на односторонние и дву-/многосторонние, эффект односторонней сделки, сделки под условием, недобросовестное влияние на наступление условия, необходимость согласия на совершение сделки, порядок такого согласия и запрет считать молчание согласием разделены.",
+            "Сделка без необходимого в силу закона согласия поступает в слой общих положений и помечается как оспоримая по статье 173.1 ГК РФ, не лишая договор действия: оспоримая сделка недействительна только в силу признания её таковой судом.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.89.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],
