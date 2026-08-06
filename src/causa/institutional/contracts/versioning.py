@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.89.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed civil-principles evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 1 to 16.1.",
+            "Good faith, equality and freedom of contract, the grounds on which rights arise, the abuse of right, the refusal of protection, the methods of protection, the limits of self-help, the compensation of losses and the liability of public authorities remain distinct.",
+            "An established abuse of right feeds the general-part effects layer and withdraws judicial protection under article 10 without invalidating the contract.",
+        ],
+        notes_ru=[
+            "Проверенные данные об основных началах и защите гражданских прав обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 1–16.1 ГК РФ.",
+            "Добросовестность, равенство и свобода договора, основания возникновения прав, злоупотребление правом, отказ в защите права, способы защиты, пределы самозащиты, возмещение убытков и ответственность публично-правовых образований разделены.",
+            "Установленное злоупотребление правом поступает в слой общих положений и лишает требование судебной защиты по статье 10 ГК РФ, не порочя сам договор.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.88.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -1397,6 +1397,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-civil-principles",
+            title="Проверка основных начал и защиты гражданских прав",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.civil_principles_evidence_mapping.evidence_id,
+                trace.analysis_result.civil_principles_constraint_set.id,
+                *trace.analysis_result.civil_principles_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.civil_principles_evaluation.reasons_ru,
+                "Требование добросовестности, равенство участников и свобода договора, основания возникновения гражданских прав и обязанностей, пределы осуществления прав и злоупотребление правом, отказ в защите права, способы защиты, пределы самозащиты, возмещение убытков и ответственность публично-правовых образований проверяются раздельно по статьям 1–16.1 ГК РФ.",
+                "Недобросовестность поведения стороны, намерение причинить вред другому лицу и размер убытков оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-property-rights",
             title="Проверка права собственности и его защиты",
             status=PipelineStepStatus.PASSED,

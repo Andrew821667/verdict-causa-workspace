@@ -1,5 +1,15 @@
 # Contracts RU v0 Changelog
 
+## 0.89.0 - 2026-08-06
+
+- Добавляет отдельный проверенный контракт данных об основных началах и защите гражданских прав и формальную модель статей 1–16.1 ГК РФ (`src/causa/institutional/contracts/civil_principles.py`).
+- Разделяет требование добросовестности, равенство участников и свободу договора, основания возникновения прав и обязанностей, злоупотребление правом, отказ в защите права, способы защиты, пределы самозащиты, возмещение убытков и ответственность публично-правовых образований.
+- Подключает основные начала к слою общих положений: `abuse_of_right_detected` даёт вывод `protection_refused_for_abuse` — в судебной защите отказано (пункт 2 статьи 10 ГК РФ), договорные требования неисполнимы, а установленное нарушение не может быть положено в основание присуждения. Договор при этом остаётся действительным.
+- Слой общих положений обновлён до `contracts-general-part-effects-articles-10-167-183-199-209-432-v3`: добавлены вход `abuse_of_right_detected` и выводы `limitation_bars_protection` и `protection_refused_for_abuse`. Отказ в защите по злоупотреблению правом устроен параллельно отказу по исковой давности.
+- Регрессия закреплена тестом `test_abuse_of_right_refuses_protection_through_general_effects`.
+- Добавляет русскую спецификацию [`docs/contract-civil-principles-spec.md`](contract-civil-principles-spec.md), синтетический артефакт, benchmark (`10/10`), red-team (`10/10`) и шаг `evaluate-civil-principles` в Phase 0.
+- Сохраняет evidence `contracts.case-evidence.v9`, analysis `contracts-reviewed-analysis-v9` и русские шаблоны `ru-v11`.
+
 ## 0.88.0 - 2026-08-06
 
 - Добавляет отдельный проверенный контракт данных о вещных правах и формальную модель статей 209–305 ГК РФ (`src/causa/institutional/contracts/property_rights.py`).

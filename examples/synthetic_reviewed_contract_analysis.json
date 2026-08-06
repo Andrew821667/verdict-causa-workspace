@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk1-10-civil-principles-and-limits-of-exercise-v1",
+      "title": "Синтетическая проверенная модель основных начал гражданского законодательства, оснований возникновения прав и пределов их осуществления по статьям 1–10 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: равенство участников оборота, неприкосновенность собственности, свобода договора и недопустимость произвольного вмешательства в частные дела, требование добросовестности при установлении, осуществлении и защите прав, запрет извлекать преимущество из незаконного или недобросовестного поведения, основания возникновения гражданских прав и обязанностей, а также запрет злоупотребления правом и отказ суда в защите права при его нарушении проверяются раздельно (статьи 1–10 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "civil_principles_and_limits_of_exercise_articles_1_10",
+        "legal_reference": "ГК РФ, статьи 1–10",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1",
+      "title": "Синтетическая проверенная модель способов защиты гражданских прав, самозащиты, возмещения убытков и ответственности публично-правовых образований по статьям 12–16.1 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: перечень способов защиты гражданских прав, допустимость самозащиты и требование её соразмерности нарушению, право требовать полного возмещения убытков, включая реальный ущерб и упущенную выгоду, а также возмещение убытков, причинённых незаконными действиями органов власти, и компенсация ущерба, причинённого правомерными действиями таких органов, проверяются раздельно (статьи 12–16.1 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "protection_methods_damages_and_authority_liability_articles_12_16_1",
+        "legal_reference": "ГК РФ, статьи 12–16.1",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-civil-principles-evidence",
+      "title": "Синтетическая проверенная запись фактов об основных началах и защите гражданских прав",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки о злоупотреблении правом и нарушении основных начал гражданского законодательства не заявлялось.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "civil_principles_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
       "title": "Синтетическая проверенная модель содержания права собственности, бремени содержания и риска, оснований приобретения, момента возникновения права и приобретательной давности по статьям 209–234 ГК РФ",
       "source_type": "statute",
@@ -9758,6 +9805,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "civil_principles_evidence": {
+      "id": "reviewed-civil-principles-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.civil-principles-evidence.v0",
+      "assertions": [
+        {
+          "id": "civil-principles-evidence-civil_rights_exercise_asserted",
+          "predicate": "civil_rights_exercise_asserted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "id": "civil-principles-evidence-good_faith_principle_breached",
+          "predicate": "good_faith_principle_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "id": "civil-principles-evidence-equality_or_freedom_principle_breached",
+          "predicate": "equality_or_freedom_principle_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "id": "civil-principles-evidence-rights_arising_grounds_breached",
+          "predicate": "rights_arising_grounds_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "id": "civil-principles-evidence-abuse_of_right_established",
+          "predicate": "abuse_of_right_established",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "id": "civil-principles-evidence-protection_refusal_not_applied",
+          "predicate": "protection_refusal_not_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "id": "civil-principles-evidence-protection_methods_breached",
+          "predicate": "protection_methods_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "id": "civil-principles-evidence-self_help_limits_breached",
+          "predicate": "self_help_limits_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "id": "civil-principles-evidence-damages_compensation_rules_breached",
+          "predicate": "damages_compensation_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "id": "civil-principles-evidence-public_authority_liability_breached",
+          "predicate": "public_authority_liability_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk1-10-civil-principles-and-limits-of-exercise-v1",
+        "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-civil-principles-reviewer"
+    },
     "property_rights_evidence": {
       "id": "reviewed-property-rights-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -15656,6 +15796,7 @@
       "synthetic-building-lease-reviewer",
       "synthetic-carriage-reviewer",
       "synthetic-case-evidence-reviewer",
+      "synthetic-civil-principles-reviewer",
       "synthetic-commercial-credit-reviewer",
       "synthetic-commission-reviewer",
       "synthetic-construction-contract-reviewer",
@@ -15738,6 +15879,7 @@
       "synthetic-case-supply-1-barter-evidence",
       "synthetic-case-supply-1-building-lease-evidence",
       "synthetic-case-supply-1-carriage-evidence",
+      "synthetic-case-supply-1-civil-principles-evidence",
       "synthetic-case-supply-1-commercial-credit-evidence",
       "synthetic-case-supply-1-commission-evidence",
       "synthetic-case-supply-1-construction-contract-evidence",
@@ -15812,6 +15954,7 @@
       "synthetic-ru-contract-supply-delivery-duty-v1",
       "synthetic-ru-contract-supply-delivery-duty-v2",
       "synthetic-ru-contract-supply-delivery-term",
+      "synthetic-ru-gk1-10-civil-principles-and-limits-of-exercise-v1",
       "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
       "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
       "synthetic-ru-gk1012-1019-trust-management-concept-terms-and-property-v1",
@@ -15834,6 +15977,7 @@
       "synthetic-ru-gk1101-moral-harm-form-and-amount-of-compensation-v1",
       "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
       "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
+      "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
@@ -24056,6 +24200,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "civil_principles_evidence_mapping": {
+      "evidence_id": "reviewed-civil-principles-evidence-supply-1-v0",
+      "schema_version": "contracts.civil-principles-evidence.v0",
+      "mapping_version": "contracts-reviewed-civil-principles-to-facts-v0",
+      "facts": {
+        "civil_rights_exercise_asserted": false,
+        "good_faith_principle_breached": false,
+        "equality_or_freedom_principle_breached": false,
+        "rights_arising_grounds_breached": false,
+        "abuse_of_right_established": false,
+        "protection_refusal_not_applied": false,
+        "protection_methods_breached": false,
+        "self_help_limits_breached": false,
+        "damages_compensation_rules_breached": false,
+        "public_authority_liability_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk1-10-civil-principles-and-limits-of-exercise-v1",
+        "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "abuse_of_right_established",
+          "assertion_id": "civil-principles-evidence-abuse_of_right_established",
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "fact_name": "civil_rights_exercise_asserted",
+          "assertion_id": "civil-principles-evidence-civil_rights_exercise_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "fact_name": "damages_compensation_rules_breached",
+          "assertion_id": "civil-principles-evidence-damages_compensation_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "fact_name": "equality_or_freedom_principle_breached",
+          "assertion_id": "civil-principles-evidence-equality_or_freedom_principle_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "fact_name": "good_faith_principle_breached",
+          "assertion_id": "civil-principles-evidence-good_faith_principle_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "fact_name": "protection_methods_breached",
+          "assertion_id": "civil-principles-evidence-protection_methods_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "fact_name": "protection_refusal_not_applied",
+          "assertion_id": "civil-principles-evidence-protection_refusal_not_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "fact_name": "public_authority_liability_breached",
+          "assertion_id": "civil-principles-evidence-public_authority_liability_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "fact_name": "rights_arising_grounds_breached",
+          "assertion_id": "civil-principles-evidence-rights_arising_grounds_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        },
+        {
+          "fact_name": "self_help_limits_breached",
+          "assertion_id": "civil-principles-evidence-self_help_limits_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-civil-principles-evidence"
+          ]
+        }
+      ]
+    },
+    "civil_principles_constraint_set": {
+      "id": "civil-principles-constraint-set:reviewed-civil-principles-evidence-supply-1-v0",
+      "model_version": "contracts-civil-principles-articles-1-16-1-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk1-10-civil-principles-and-limits-of-exercise-v1",
+        "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1"
+      ],
+      "expressions": [
+        "civil_principles_qualified == civil_rights_exercise_asserted",
+        "good_faith_duty_breached == civil_principles_qualified AND good_faith_principle_breached",
+        "equality_and_freedom_duty_breached == civil_principles_qualified AND equality_or_freedom_principle_breached",
+        "rights_arising_duty_breached == civil_principles_qualified AND rights_arising_grounds_breached",
+        "abuse_of_right_detected == civil_principles_qualified AND abuse_of_right_established",
+        "protection_refusal_breached == civil_principles_qualified AND abuse_of_right_established AND protection_refusal_not_applied",
+        "protection_methods_duty_breached == civil_principles_qualified AND protection_methods_breached",
+        "self_help_duty_breached == civil_principles_qualified AND self_help_limits_breached",
+        "damages_compensation_duty_breached == civil_principles_qualified AND damages_compensation_rules_breached",
+        "public_authority_liability_duty_breached == civil_principles_qualified AND public_authority_liability_breached",
+        "requires_human_civil_principles_assessment == good_faith_duty_breached OR equality_and_freedom_duty_breached OR rights_arising_duty_breached OR abuse_of_right_detected OR protection_methods_duty_breached OR self_help_duty_breached OR damages_compensation_duty_breached OR public_authority_liability_duty_breached"
+      ]
+    },
+    "civil_principles_evaluation": {
+      "constraint_set_id": "civil-principles-constraint-set:reviewed-civil-principles-evidence-supply-1-v0",
+      "satisfiable": true,
+      "civil_principles_qualified": false,
+      "good_faith_duty_breached": false,
+      "equality_and_freedom_duty_breached": false,
+      "rights_arising_duty_breached": false,
+      "abuse_of_right_detected": false,
+      "protection_refusal_breached": false,
+      "protection_methods_duty_breached": false,
+      "self_help_duty_breached": false,
+      "damages_compensation_duty_breached": false,
+      "public_authority_liability_duty_breached": false,
+      "requires_human_civil_principles_assessment": false,
+      "reasons_ru": [
+        "Осуществление или защита гражданского права не заявлены."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные основные начала гражданского законодательства и правила об осуществлении и защите гражданских прав и не заменяет судебную оценку.",
+        "Недобросовестность поведения, характер и последствия злоупотребления правом и размер убытков оцениваются экспертом и судом (статьи 1, 10 и 15 ГК РФ)."
+      ]
+    },
     "property_rights_evidence_mapping": {
       "evidence_id": "reviewed-property-rights-evidence-supply-1-v0",
       "schema_version": "contracts.property-rights-evidence.v0",
@@ -24337,12 +24617,13 @@
       "claim_not_subject_to_limitation": false,
       "unauthorized_representation_detected": false,
       "unauthorized_disposal_detected": false,
+      "abuse_of_right_detected": false,
       "breach_issue": true,
       "effective_termination": false
     },
     "general_effects_constraint_set": {
       "id": "general-effects-constraint-set:case-supply-1",
-      "model_version": "contracts-general-part-effects-articles-167-183-199-209-432-v2",
+      "model_version": "contracts-general-part-effects-articles-10-167-183-199-209-432-v3",
       "source_evaluations": [
         "formation_evaluation",
         "invalidity_evaluation",
@@ -24350,6 +24631,7 @@
         "limitation_evaluation",
         "representation_evaluation",
         "property_rights_evaluation",
+        "civil_principles_evaluation",
         "constraint_evaluation",
         "termination_evaluation"
       ],
@@ -24359,14 +24641,16 @@
         "form_defect_displaces_contract == transaction_void_for_form",
         "unauthorized_representation_displaces_contract == unauthorized_representation_detected",
         "contract_legally_effective == contract_concluded_prerequisites AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected",
-        "judicial_protection_available == claim_not_subject_to_limitation OR NOT limitation_defense_available",
-        "claims_barred_by_limitation == contract_legally_effective AND NOT judicial_protection_available",
+        "limitation_bars_protection == limitation_defense_available AND NOT claim_not_subject_to_limitation",
+        "judicial_protection_available == NOT limitation_bars_protection AND NOT abuse_of_right_detected",
+        "claims_barred_by_limitation == contract_legally_effective AND limitation_bars_protection",
+        "protection_refused_for_abuse == contract_legally_effective AND abuse_of_right_detected",
         "contractual_claims_enforceable == contract_legally_effective AND judicial_protection_available",
         "institute_conclusions_displaced == NOT contract_legally_effective",
         "breach_findings_without_effect == breach_issue AND NOT contractual_claims_enforceable",
         "title_transfer_defeated == unauthorized_disposal_detected",
         "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-        "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated"
+        "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated"
       ]
     },
     "general_effects_evaluation": {
@@ -24379,6 +24663,7 @@
       "unauthorized_representation_displaces_contract": false,
       "judicial_protection_available": true,
       "claims_barred_by_limitation": false,
+      "protection_refused_for_abuse": false,
       "contractual_claims_enforceable": true,
       "title_transfer_defeated": false,
       "institute_conclusions_displaced": false,
@@ -31125,7 +31410,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.88.0",
+      "institutional_package_version": "contracts-ru-v0@0.89.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

@@ -18,6 +18,8 @@
   в иске;
 - статья 183 ГК РФ — при отсутствии полномочий сделка считается заключённой от
   имени совершившего её лица, пока представляемый её не одобрит;
+- статья 10 ГК РФ — при злоупотреблении правом суд отказывает лицу в защите
+  принадлежащего ему права полностью или частично;
 - статья 209 ГК РФ — распоряжение имуществом принадлежит собственнику, поэтому
   отчуждение неуправомоченным лицом не переносит право на приобретателя;
 - статья 1103 ГК РФ — применение правил о неосновательном обогащении к
@@ -27,7 +29,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 from z3 import And, Bool, Not, Or, Solver, sat
 
-GENERAL_EFFECTS_MODEL_VERSION = "contracts-general-part-effects-articles-167-183-199-209-432-v2"
+GENERAL_EFFECTS_MODEL_VERSION = "contracts-general-part-effects-articles-10-167-183-199-209-432-v3"
 
 
 class GeneralEffectsInputs(BaseModel):
@@ -49,6 +51,8 @@ class GeneralEffectsInputs(BaseModel):
     unauthorized_representation_detected: bool
     # Вещные права: распоряжение неуправомоченным лицом (статья 209 ГК РФ).
     unauthorized_disposal_detected: bool
+    # Пределы осуществления гражданских прав (статья 10 ГК РФ).
+    abuse_of_right_detected: bool
     # Нарушение обязательства и прекращение договора (статьи 309–328, 450–453).
     breach_issue: bool
     effective_termination: bool
@@ -73,6 +77,7 @@ class GeneralEffectsEvaluation(BaseModel):
     # Возможность судебной защиты.
     judicial_protection_available: bool
     claims_barred_by_limitation: bool
+    protection_refused_for_abuse: bool
     # Совокупный эффект для требований из договора.
     contractual_claims_enforceable: bool
     title_transfer_defeated: bool
@@ -91,6 +96,7 @@ def build_general_effects_inputs(
     limitation_evaluation,
     representation_evaluation,
     property_rights_evaluation,
+    civil_principles_evaluation,
     constraint_evaluation,
     termination_evaluation,
 ) -> GeneralEffectsInputs:
@@ -106,6 +112,7 @@ def build_general_effects_inputs(
             representation_evaluation.unauthorized_representation_detected
         ),
         unauthorized_disposal_detected=(property_rights_evaluation.unauthorized_disposal_detected),
+        abuse_of_right_detected=civil_principles_evaluation.abuse_of_right_detected,
         breach_issue=constraint_evaluation.breach_issue,
         effective_termination=termination_evaluation.effective_termination,
     )
@@ -124,6 +131,7 @@ def build_general_effects_constraint_set(
             "limitation_evaluation",
             "representation_evaluation",
             "property_rights_evaluation",
+            "civil_principles_evaluation",
             "constraint_evaluation",
             "termination_evaluation",
         ],
@@ -133,14 +141,16 @@ def build_general_effects_constraint_set(
             "form_defect_displaces_contract == transaction_void_for_form",
             "unauthorized_representation_displaces_contract == unauthorized_representation_detected",
             "contract_legally_effective == contract_concluded_prerequisites AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected",
-            "judicial_protection_available == claim_not_subject_to_limitation OR NOT limitation_defense_available",
-            "claims_barred_by_limitation == contract_legally_effective AND NOT judicial_protection_available",
+            "limitation_bars_protection == limitation_defense_available AND NOT claim_not_subject_to_limitation",
+            "judicial_protection_available == NOT limitation_bars_protection AND NOT abuse_of_right_detected",
+            "claims_barred_by_limitation == contract_legally_effective AND limitation_bars_protection",
+            "protection_refused_for_abuse == contract_legally_effective AND abuse_of_right_detected",
             "contractual_claims_enforceable == contract_legally_effective AND judicial_protection_available",
             "institute_conclusions_displaced == NOT contract_legally_effective",
             "breach_findings_without_effect == breach_issue AND NOT contractual_claims_enforceable",
             "title_transfer_defeated == unauthorized_disposal_detected",
             "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-            "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated",
+            "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated",
         ],
     )
 
@@ -158,7 +168,9 @@ def evaluate_general_effects_constraints(
         "unauthorized_representation_displaces_contract"
     )
     judicial_protection_available = Bool("judicial_protection_available")
+    limitation_bars_protection = Bool("limitation_bars_protection")
     claims_barred_by_limitation = Bool("claims_barred_by_limitation")
+    protection_refused_for_abuse = Bool("protection_refused_for_abuse")
     contractual_claims_enforceable = Bool("contractual_claims_enforceable")
     institute_conclusions_displaced = Bool("institute_conclusions_displaced")
     breach_findings_without_effect = Bool("breach_findings_without_effect")
@@ -188,15 +200,25 @@ def evaluate_general_effects_constraints(
         )
     )
     solver.add(
-        judicial_protection_available
-        == Or(
-            variables["claim_not_subject_to_limitation"],
-            Not(variables["limitation_defense_available"]),
+        limitation_bars_protection
+        == And(
+            variables["limitation_defense_available"],
+            Not(variables["claim_not_subject_to_limitation"]),
         )
     )
     solver.add(
-        claims_barred_by_limitation
-        == And(contract_legally_effective, Not(judicial_protection_available))
+        judicial_protection_available
+        == And(
+            Not(limitation_bars_protection),
+            Not(variables["abuse_of_right_detected"]),
+        )
+    )
+    solver.add(
+        claims_barred_by_limitation == And(contract_legally_effective, limitation_bars_protection)
+    )
+    solver.add(
+        protection_refused_for_abuse
+        == And(contract_legally_effective, variables["abuse_of_right_detected"])
     )
     solver.add(
         contractual_claims_enforceable
@@ -217,6 +239,7 @@ def evaluate_general_effects_constraints(
         == Or(
             institute_conclusions_displaced,
             claims_barred_by_limitation,
+            protection_refused_for_abuse,
             breach_findings_without_effect,
             restitution_regime_applies,
             title_transfer_defeated,
@@ -235,6 +258,7 @@ def evaluate_general_effects_constraints(
             unauthorized_representation_displaces_contract=False,
             judicial_protection_available=False,
             claims_barred_by_limitation=False,
+            protection_refused_for_abuse=False,
             contractual_claims_enforceable=False,
             institute_conclusions_displaced=True,
             breach_findings_without_effect=False,
@@ -291,6 +315,12 @@ def evaluate_general_effects_constraints(
             "является самостоятельным основанием к вынесению судом решения об отказе в иске "
             "(статья 199 ГК РФ)."
         )
+    if truth(protection_refused_for_abuse):
+        reasons_ru.append(
+            "Установлено злоупотребление правом, поэтому суд с учётом характера и последствий "
+            "допущенного злоупотребления отказывает лицу в защите принадлежащего ему права "
+            "полностью или частично (статья 10 ГК РФ)."
+        )
     if truth(breach_findings_without_effect):
         reasons_ru.append(
             "Установленное нарушение обязательства не влечёт удовлетворения требований: "
@@ -329,6 +359,7 @@ def evaluate_general_effects_constraints(
         ),
         judicial_protection_available=truth(judicial_protection_available),
         claims_barred_by_limitation=truth(claims_barred_by_limitation),
+        protection_refused_for_abuse=truth(protection_refused_for_abuse),
         contractual_claims_enforceable=truth(contractual_claims_enforceable),
         institute_conclusions_displaced=truth(institute_conclusions_displaced),
         breach_findings_without_effect=truth(breach_findings_without_effect),

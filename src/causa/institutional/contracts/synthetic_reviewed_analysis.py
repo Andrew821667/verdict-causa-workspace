@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.civil_principles import (
+    CivilPrinciplesEvidenceAssertion,
+    CivilPrinciplesEvidencePredicate,
+    ReviewedCivilPrinciplesEvidence,
+)
 from causa.institutional.contracts.property_rights import (
     PropertyRightsEvidenceAssertion,
     PropertyRightsEvidencePredicate,
@@ -592,6 +597,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk1-10-civil-principles-and-limits-of-exercise-v1",
+    "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1",
+    "synthetic-case-supply-1-civil-principles-evidence",
     "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
     "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
     "synthetic-case-supply-1-property-rights-evidence",
@@ -2966,6 +2974,45 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        civil_principles_evidence=ReviewedCivilPrinciplesEvidence(
+            id="reviewed-civil-principles-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                CivilPrinciplesEvidenceAssertion(
+                    id=f"civil-principles-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-civil-principles-evidence",),
+                )
+                for predicate, value in (
+                    (CivilPrinciplesEvidencePredicate.CIVIL_RIGHTS_EXERCISE_ASSERTED, False),
+                    (CivilPrinciplesEvidencePredicate.GOOD_FAITH_PRINCIPLE_BREACHED, False),
+                    (
+                        CivilPrinciplesEvidencePredicate.EQUALITY_OR_FREEDOM_PRINCIPLE_BREACHED,
+                        False,
+                    ),
+                    (CivilPrinciplesEvidencePredicate.RIGHTS_ARISING_GROUNDS_BREACHED, False),
+                    (CivilPrinciplesEvidencePredicate.ABUSE_OF_RIGHT_ESTABLISHED, False),
+                    (CivilPrinciplesEvidencePredicate.PROTECTION_REFUSAL_NOT_APPLIED, False),
+                    (CivilPrinciplesEvidencePredicate.PROTECTION_METHODS_BREACHED, False),
+                    (CivilPrinciplesEvidencePredicate.SELF_HELP_LIMITS_BREACHED, False),
+                    (
+                        CivilPrinciplesEvidencePredicate.DAMAGES_COMPENSATION_RULES_BREACHED,
+                        False,
+                    ),
+                    (
+                        CivilPrinciplesEvidencePredicate.PUBLIC_AUTHORITY_LIABILITY_BREACHED,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1-10-civil-principles-and-limits-of-exercise-v1",
+                "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-civil-principles-reviewer",
         ),
         property_rights_evidence=ReviewedPropertyRightsEvidence(
             id="reviewed-property-rights-evidence-supply-1-v0",

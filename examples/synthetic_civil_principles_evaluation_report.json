@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка основных начал гражданского законодательства и правил о защите гражданских прав по статьям 1–16.1 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-civil-principles-evidence-supply-1-v0",
+    "schema_version": "contracts.civil-principles-evidence.v0",
+    "mapping_version": "contracts-reviewed-civil-principles-to-facts-v0",
+    "facts": {
+      "civil_rights_exercise_asserted": false,
+      "good_faith_principle_breached": false,
+      "equality_or_freedom_principle_breached": false,
+      "rights_arising_grounds_breached": false,
+      "abuse_of_right_established": false,
+      "protection_refusal_not_applied": false,
+      "protection_methods_breached": false,
+      "self_help_limits_breached": false,
+      "damages_compensation_rules_breached": false,
+      "public_authority_liability_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1-10-civil-principles-and-limits-of-exercise-v1",
+      "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "abuse_of_right_established",
+        "assertion_id": "civil-principles-evidence-abuse_of_right_established",
+        "source_refs": [
+          "synthetic-case-supply-1-civil-principles-evidence"
+        ]
+      },
+      {
+        "fact_name": "civil_rights_exercise_asserted",
+        "assertion_id": "civil-principles-evidence-civil_rights_exercise_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-civil-principles-evidence"
+        ]
+      },
+      {
+        "fact_name": "damages_compensation_rules_breached",
+        "assertion_id": "civil-principles-evidence-damages_compensation_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-civil-principles-evidence"
+        ]
+      },
+      {
+        "fact_name": "equality_or_freedom_principle_breached",
+        "assertion_id": "civil-principles-evidence-equality_or_freedom_principle_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-civil-principles-evidence"
+        ]
+      },
+      {
+        "fact_name": "good_faith_principle_breached",
+        "assertion_id": "civil-principles-evidence-good_faith_principle_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-civil-principles-evidence"
+        ]
+      },
+      {
+        "fact_name": "protection_methods_breached",
+        "assertion_id": "civil-principles-evidence-protection_methods_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-civil-principles-evidence"
+        ]
+      },
+      {
+        "fact_name": "protection_refusal_not_applied",
+        "assertion_id": "civil-principles-evidence-protection_refusal_not_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-civil-principles-evidence"
+        ]
+      },
+      {
+        "fact_name": "public_authority_liability_breached",
+        "assertion_id": "civil-principles-evidence-public_authority_liability_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-civil-principles-evidence"
+        ]
+      },
+      {
+        "fact_name": "rights_arising_grounds_breached",
+        "assertion_id": "civil-principles-evidence-rights_arising_grounds_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-civil-principles-evidence"
+        ]
+      },
+      {
+        "fact_name": "self_help_limits_breached",
+        "assertion_id": "civil-principles-evidence-self_help_limits_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-civil-principles-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "civil-principles-constraint-set:reviewed-civil-principles-evidence-supply-1-v0",
+    "model_version": "contracts-civil-principles-articles-1-16-1-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1-10-civil-principles-and-limits-of-exercise-v1",
+      "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1"
+    ],
+    "expressions": [
+      "civil_principles_qualified == civil_rights_exercise_asserted",
+      "good_faith_duty_breached == civil_principles_qualified AND good_faith_principle_breached",
+      "equality_and_freedom_duty_breached == civil_principles_qualified AND equality_or_freedom_principle_breached",
+      "rights_arising_duty_breached == civil_principles_qualified AND rights_arising_grounds_breached",
+      "abuse_of_right_detected == civil_principles_qualified AND abuse_of_right_established",
+      "protection_refusal_breached == civil_principles_qualified AND abuse_of_right_established AND protection_refusal_not_applied",
+      "protection_methods_duty_breached == civil_principles_qualified AND protection_methods_breached",
+      "self_help_duty_breached == civil_principles_qualified AND self_help_limits_breached",
+      "damages_compensation_duty_breached == civil_principles_qualified AND damages_compensation_rules_breached",
+      "public_authority_liability_duty_breached == civil_principles_qualified AND public_authority_liability_breached",
+      "requires_human_civil_principles_assessment == good_faith_duty_breached OR equality_and_freedom_duty_breached OR rights_arising_duty_breached OR abuse_of_right_detected OR protection_methods_duty_breached OR self_help_duty_breached OR damages_compensation_duty_breached OR public_authority_liability_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "civil-principles-constraint-set:reviewed-civil-principles-evidence-supply-1-v0",
+    "satisfiable": true,
+    "civil_principles_qualified": false,
+    "good_faith_duty_breached": false,
+    "equality_and_freedom_duty_breached": false,
+    "rights_arising_duty_breached": false,
+    "abuse_of_right_detected": false,
+    "protection_refusal_breached": false,
+    "protection_methods_duty_breached": false,
+    "self_help_duty_breached": false,
+    "damages_compensation_duty_breached": false,
+    "public_authority_liability_duty_breached": false,
+    "requires_human_civil_principles_assessment": false,
+    "reasons_ru": [
+      "Осуществление или защита гражданского права не заявлены."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные основные начала гражданского законодательства и правила об осуществлении и защите гражданских прав и не заменяет судебную оценку.",
+      "Недобросовестность поведения, характер и последствия злоупотребления правом и размер убытков оцениваются экспертом и судом (статьи 1, 10 и 15 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "civil-principles-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "civil-principles-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "civil_principles_qualified": false
+        },
+        "observed_outcomes": {
+          "civil_principles_qualified": false
+        },
+        "reasons_ru": [
+          "Осуществление или защита гражданского права не заявлены."
+        ]
+      },
+      {
+        "task_id": "civil-principles-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "civil_principles_qualified": true,
+          "requires_human_civil_principles_assessment": false
+        },
+        "observed_outcomes": {
+          "civil_principles_qualified": true,
+          "requires_human_civil_principles_assessment": false
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "civil-principles-bench-good-faith",
+        "passed": true,
+        "expected_outcomes": {
+          "good_faith_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "observed_outcomes": {
+          "good_faith_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "При установлении, осуществлении и защите гражданских прав и при исполнении гражданских обязанностей участники гражданских правоотношений должны действовать добросовестно; никто не вправе извлекать преимущество из своего незаконного или недобросовестного поведения (статья 1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "civil-principles-bench-equality-freedom",
+        "passed": true,
+        "expected_outcomes": {
+          "equality_and_freedom_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "observed_outcomes": {
+          "equality_and_freedom_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Граждане и юридические лица приобретают и осуществляют свои гражданские права своей волей и в своём интересе и свободны в установлении своих прав и обязанностей на основе договора; гражданские права могут быть ограничены только на основании федерального закона и только в той мере, в какой это необходимо для целей, названных в законе (статья 1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "civil-principles-bench-rights-arising",
+        "passed": true,
+        "expected_outcomes": {
+          "rights_arising_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "observed_outcomes": {
+          "rights_arising_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Гражданские права и обязанности возникают из оснований, предусмотренных законом и иными правовыми актами, а также из действий граждан и юридических лиц, которые хотя и не предусмотрены законом, но в силу общих начал и смысла гражданского законодательства порождают гражданские права и обязанности (статья 8 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "civil-principles-bench-protection-methods",
+        "passed": true,
+        "expected_outcomes": {
+          "protection_methods_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "observed_outcomes": {
+          "protection_methods_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Защита гражданских прав осуществляется способами, предусмотренными законом, в том числе путём признания права, восстановления положения, существовавшего до нарушения, присуждения к исполнению обязанности в натуре, возмещения убытков и иными способами, предусмотренными законом (статья 12 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "civil-principles-bench-self-help",
+        "passed": true,
+        "expected_outcomes": {
+          "self_help_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "observed_outcomes": {
+          "self_help_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Допускается самозащита гражданских прав; способы самозащиты должны быть соразмерны нарушению и не выходить за пределы действий, необходимых для его пресечения (статья 14 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "civil-principles-bench-damages",
+        "passed": true,
+        "expected_outcomes": {
+          "damages_compensation_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "observed_outcomes": {
+          "damages_compensation_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Лицо, право которого нарушено, может требовать полного возмещения причинённых ему убытков, включая реальный ущерб и упущенную выгоду, если законом или договором не предусмотрено возмещение убытков в меньшем размере (статья 15 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "civil-principles-bench-public-authority",
+        "passed": true,
+        "expected_outcomes": {
+          "public_authority_liability_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "observed_outcomes": {
+          "public_authority_liability_duty_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Убытки, причинённые гражданину или юридическому лицу в результате незаконных действий или бездействия государственных органов, органов местного самоуправления или их должностных лиц, подлежат возмещению соответствующим публично-правовым образованием; ущерб, причинённый правомерными действиями таких органов, компенсируется в случаях, предусмотренных законом (статьи 16 и 16.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "civil-principles-bench-abuse-of-right",
+        "passed": true,
+        "expected_outcomes": {
+          "abuse_of_right_detected": true,
+          "protection_refusal_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "observed_outcomes": {
+          "abuse_of_right_detected": true,
+          "protection_refusal_breached": true,
+          "requires_human_civil_principles_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Не допускаются осуществление гражданских прав исключительно с намерением причинить вред другому лицу, действия в обход закона с противоправной целью, а также иное заведомо недобросовестное осуществление гражданских прав (злоупотребление правом) (статья 10 ГК РФ).",
+          "В случае несоблюдения требований о пределах осуществления гражданских прав суд с учётом характера и последствий допущенного злоупотребления отказывает лицу в защите принадлежащего ему права полностью или частично, а также применяет иные меры, предусмотренные законом (статья 10 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "civil-principles-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "civil-principles-red-qualify-without-exercise",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "civil_principles_qualified": true
+        },
+        "observed_outcomes": {
+          "civil_principles_qualified": false
+        },
+        "reasons_ru": [
+          "Осуществление или защита гражданского права не заявлены."
+        ]
+      },
+      {
+        "case_id": "civil-principles-red-ignore-good-faith",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "good_faith_duty_breached": false
+        },
+        "observed_outcomes": {
+          "good_faith_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "При установлении, осуществлении и защите гражданских прав и при исполнении гражданских обязанностей участники гражданских правоотношений должны действовать добросовестно; никто не вправе извлекать преимущество из своего незаконного или недобросовестного поведения (статья 1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "civil-principles-red-ignore-equality",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "equality_and_freedom_duty_breached": false
+        },
+        "observed_outcomes": {
+          "equality_and_freedom_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Граждане и юридические лица приобретают и осуществляют свои гражданские права своей волей и в своём интересе и свободны в установлении своих прав и обязанностей на основе договора; гражданские права могут быть ограничены только на основании федерального закона и только в той мере, в какой это необходимо для целей, названных в законе (статья 1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "civil-principles-red-ignore-rights-arising",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "rights_arising_duty_breached": false
+        },
+        "observed_outcomes": {
+          "rights_arising_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Гражданские права и обязанности возникают из оснований, предусмотренных законом и иными правовыми актами, а также из действий граждан и юридических лиц, которые хотя и не предусмотрены законом, но в силу общих начал и смысла гражданского законодательства порождают гражданские права и обязанности (статья 8 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "civil-principles-red-ignore-abuse",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "abuse_of_right_detected": false
+        },
+        "observed_outcomes": {
+          "abuse_of_right_detected": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Не допускаются осуществление гражданских прав исключительно с намерением причинить вред другому лицу, действия в обход закона с противоправной целью, а также иное заведомо недобросовестное осуществление гражданских прав (злоупотребление правом) (статья 10 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "civil-principles-red-refusal-without-abuse",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "protection_refusal_breached": true
+        },
+        "observed_outcomes": {
+          "protection_refusal_breached": false
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "civil-principles-red-ignore-protection-methods",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "protection_methods_duty_breached": false
+        },
+        "observed_outcomes": {
+          "protection_methods_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Защита гражданских прав осуществляется способами, предусмотренными законом, в том числе путём признания права, восстановления положения, существовавшего до нарушения, присуждения к исполнению обязанности в натуре, возмещения убытков и иными способами, предусмотренными законом (статья 12 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "civil-principles-red-ignore-self-help-limits",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "self_help_duty_breached": false
+        },
+        "observed_outcomes": {
+          "self_help_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Допускается самозащита гражданских прав; способы самозащиты должны быть соразмерны нарушению и не выходить за пределы действий, необходимых для его пресечения (статья 14 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "civil-principles-red-ignore-damages",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "damages_compensation_duty_breached": false
+        },
+        "observed_outcomes": {
+          "damages_compensation_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Лицо, право которого нарушено, может требовать полного возмещения причинённых ему убытков, включая реальный ущерб и упущенную выгоду, если законом или договором не предусмотрено возмещение убытков в меньшем размере (статья 15 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "civil-principles-red-skip-human-on-public-authority",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_civil_principles_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_civil_principles_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено осуществление или защита гражданского права: гражданское законодательство основывается на признании равенства участников регулируемых им отношений, неприкосновенности собственности, свободы договора и недопустимости произвольного вмешательства кого-либо в частные дела (статья 1 ГК РФ).",
+          "Убытки, причинённые гражданину или юридическому лицу в результате незаконных действий или бездействия государственных органов, органов местного самоуправления или их должностных лиц, подлежат возмещению соответствующим публично-правовым образованием; ущерб, причинённый правомерными действиями таких органов, компенсируется в случаях, предусмотренных законом (статьи 16 и 16.1 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95820/"
+  ]
+}

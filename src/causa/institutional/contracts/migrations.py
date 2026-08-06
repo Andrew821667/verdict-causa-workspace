@@ -1691,6 +1691,26 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.88.0",
+        to_version="0.89.0",
+        reasons=[
+            "Reviewed inputs now require a separate civil-principles evidence contract covering articles 1 to 16.1.",
+            "The general-part effects layer gains an input for an established abuse of right, so judicial protection is refused under article 10 while the contract itself stays effective.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных об основных началах и защите гражданских прав по статьям 1–16.1 ГК РФ.",
+            "Слой общих положений получил вход об установленном злоупотреблении правом, поэтому в судебной защите отказывается по статье 10 ГК РФ, а сам договор сохраняет силу.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_civil_principles_evaluation.py",
+            "python scripts/export_synthetic_general_effects_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 
