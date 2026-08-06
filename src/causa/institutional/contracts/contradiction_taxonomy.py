@@ -1,3 +1,29 @@
+"""Таксономия противоречий в договорных делах.
+
+`CONTRACT_CONTRADICTION_TYPES` — словарь имён для разметки противоречий внутри
+одного института; он описывает предметную область и ничего не проверяет сам.
+
+`CROSS_INSTITUTE_CONTRADICTION_TYPES` устроен иначе: каждое имя из этого набора
+обязано проверяться слоем сверки `general_consistency` и соответствовать полю
+его оценки. Соответствие закреплено тестом
+`test_every_declared_cross_institute_type_is_checked`, поэтому набор не может
+снова стать перечнем без потребителей.
+"""
+
+CROSS_INSTITUTE_CONTRADICTION_TYPES = (
+    "capacity_invalidity_conflict",
+    "entity_capacity_invalidity_conflict",
+    "limited_capacity_invalidity_conflict",
+    "minor_capacity_invalidity_conflict",
+    "consent_invalidity_conflict",
+    "circulation_lawfulness_conflict",
+    "formation_invalidity_conclusion_conflict",
+    "formation_termination_conclusion_conflict",
+    "formation_form_observance_conflict",
+    "circulation_public_interest_conflict",
+)
+
+
 CONTRACT_CONTRADICTION_TYPES = [
     "performance_status_conflict",
     "delivery_date_conflict",

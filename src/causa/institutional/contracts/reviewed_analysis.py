@@ -534,6 +534,14 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.general_consistency import (
+    GeneralConsistencyConstraintSet,
+    GeneralConsistencyEvaluation,
+    GeneralConsistencyInputs,
+    build_general_consistency_constraint_set,
+    build_general_consistency_inputs,
+    evaluate_general_consistency_constraints,
+)
 from causa.institutional.contracts.objects import (
     OBJECTS_EVIDENCE_SCHEMA_VERSION,
     ObjectsConstraintSet,
@@ -1253,6 +1261,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     agency_evidence_mapping: AgencyEvidenceMappingResult
     agency_constraint_set: AgencyConstraintSet
     agency_evaluation: AgencyEvaluation
+    general_consistency_inputs: GeneralConsistencyInputs
+    general_consistency_constraint_set: GeneralConsistencyConstraintSet
+    general_consistency_evaluation: GeneralConsistencyEvaluation
     objects_evidence_mapping: ObjectsEvidenceMappingResult
     objects_constraint_set: ObjectsConstraintSet
     objects_evaluation: ObjectsEvaluation
@@ -2009,6 +2020,33 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.general_effects_evaluation != expected_general_effects_evaluation:
             raise ValueError("General-effects evaluation does not replay from anchor evaluations.")
+        expected_consistency_inputs = build_general_consistency_inputs(
+            self.persons_evidence_mapping.facts,
+            self.invalidity_evidence_mapping.facts,
+            self.transactions_evidence_mapping.facts,
+            self.objects_evidence_mapping.facts,
+            self.form_evidence_mapping.facts,
+            self.formation_evidence_mapping.facts,
+            self.termination_evidence_mapping.facts,
+            self.formation_evaluation,
+        )
+        if self.general_consistency_inputs != expected_consistency_inputs:
+            raise ValueError(
+                "Cross-institute consistency inputs do not replay from reviewed facts."
+            )
+        expected_consistency_set = build_general_consistency_constraint_set(
+            expected_consistency_inputs, self.case_id
+        )
+        if self.general_consistency_constraint_set != expected_consistency_set:
+            raise ValueError(
+                "Cross-institute consistency constraint set does not replay from reviewed facts."
+            )
+        if self.general_consistency_evaluation != evaluate_general_consistency_constraints(
+            expected_consistency_set, expected_consistency_inputs
+        ):
+            raise ValueError(
+                "Cross-institute consistency evaluation does not replay from reviewed facts."
+            )
         expected_objects_set = build_objects_constraint_set(self.objects_evidence_mapping)
         if self.objects_constraint_set != expected_objects_set:
             raise ValueError("Objects constraint set does not replay from reviewed evidence.")
@@ -5458,6 +5496,22 @@ def run_reviewed_contract_analysis(
     general_effects_constraint_set = build_general_effects_constraint_set(
         general_effects_inputs, request.case_id
     )
+    general_consistency_inputs = build_general_consistency_inputs(
+        persons_evidence_mapping.facts,
+        invalidity_evidence_mapping.facts,
+        transactions_evidence_mapping.facts,
+        objects_evidence_mapping.facts,
+        form_evidence_mapping.facts,
+        formation_evidence_mapping.facts,
+        termination_evidence_mapping.facts,
+        formation_evaluation,
+    )
+    general_consistency_constraint_set = build_general_consistency_constraint_set(
+        general_consistency_inputs, request.case_id
+    )
+    general_consistency_evaluation = evaluate_general_consistency_constraints(
+        general_consistency_constraint_set, general_consistency_inputs
+    )
     general_effects_evaluation = evaluate_general_effects_constraints(
         general_effects_constraint_set, general_effects_inputs
     )
@@ -5528,6 +5582,7 @@ def run_reviewed_contract_analysis(
         or negotiorum_gestio_evaluation.requires_human_negotiorum_gestio_assessment
         or commission_evaluation.requires_human_commission_assessment
         or agency_evaluation.requires_human_agency_assessment
+        or general_consistency_evaluation.requires_human_consistency_assessment
         or objects_evaluation.requires_human_objects_assessment
         or persons_evaluation.requires_human_persons_assessment
         or terms_evaluation.requires_human_terms_assessment
@@ -5830,6 +5885,9 @@ def run_reviewed_contract_analysis(
         agency_evaluation=agency_evaluation,
         unjust_enrichment_evidence_mapping=unjust_enrichment_evidence_mapping,
         unjust_enrichment_constraint_set=unjust_enrichment_constraint_set,
+        general_consistency_inputs=general_consistency_inputs,
+        general_consistency_constraint_set=general_consistency_constraint_set,
+        general_consistency_evaluation=general_consistency_evaluation,
         objects_evidence_mapping=objects_evidence_mapping,
         objects_constraint_set=objects_constraint_set,
         objects_evaluation=objects_evaluation,

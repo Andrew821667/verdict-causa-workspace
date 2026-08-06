@@ -1,0 +1,376 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая сверка проверенных фактов между институтами пакета. Слой называет расхождение в описаниях одного и того же обстоятельства и не выбирает, какая версия верна. Не устанавливает судебный факт и не является юридической консультацией.",
+  "inputs": {
+    "persons_incapacity_declared": false,
+    "invalidity_incapacitated_person_transaction": false,
+    "persons_entity_capacity_breached": false,
+    "invalidity_entity_beyond_statutory_purpose": false,
+    "persons_limited_capacity_without_consent": false,
+    "invalidity_limited_capacity_without_consent": false,
+    "persons_age_capacity_breached": false,
+    "invalidity_minor_under_14_transaction": false,
+    "transactions_statutory_consent_absent": false,
+    "invalidity_required_consent_absent": false,
+    "objects_not_in_civil_circulation": false,
+    "invalidity_violates_law": false,
+    "formation_contract_concluded": true,
+    "invalidity_transaction_concluded": true,
+    "termination_contract_formed": true,
+    "formation_required_form_observed": true,
+    "form_written_form_required": true,
+    "form_written_form_observed": true,
+    "invalidity_public_interests_affected": false
+  },
+  "constraint_set": {
+    "id": "general-consistency-constraint-set:case-supply-1",
+    "model_version": "contracts-general-cross-institute-consistency-v0",
+    "source_evidence": [
+      "persons_evidence",
+      "invalidity_evidence",
+      "transactions_evidence",
+      "objects_evidence",
+      "form_evidence",
+      "formation_evidence",
+      "termination_evidence"
+    ],
+    "expressions": [
+      "capacity_invalidity_conflict == persons_incapacity_declared AND NOT invalidity_incapacitated_person_transaction",
+      "entity_capacity_invalidity_conflict == persons_entity_capacity_breached AND NOT invalidity_entity_beyond_statutory_purpose",
+      "limited_capacity_invalidity_conflict == persons_limited_capacity_without_consent AND NOT invalidity_limited_capacity_without_consent",
+      "minor_capacity_invalidity_conflict == invalidity_minor_under_14_transaction AND NOT persons_age_capacity_breached",
+      "consent_invalidity_conflict == transactions_statutory_consent_absent AND NOT invalidity_required_consent_absent",
+      "circulation_lawfulness_conflict == objects_not_in_civil_circulation AND NOT invalidity_violates_law",
+      "formation_invalidity_conclusion_conflict == NOT formation_contract_concluded AND invalidity_transaction_concluded",
+      "formation_termination_conclusion_conflict == NOT formation_contract_concluded AND termination_contract_formed",
+      "formation_form_observance_conflict == formation_required_form_observed AND form_written_form_required AND NOT form_written_form_observed",
+      "circulation_public_interest_conflict == objects_not_in_civil_circulation AND NOT invalidity_public_interests_affected",
+      "contradictions_detected == capacity_invalidity_conflict OR entity_capacity_invalidity_conflict OR limited_capacity_invalidity_conflict OR minor_capacity_invalidity_conflict OR consent_invalidity_conflict OR circulation_lawfulness_conflict OR formation_invalidity_conclusion_conflict OR formation_termination_conclusion_conflict OR formation_form_observance_conflict OR circulation_public_interest_conflict",
+      "requires_human_consistency_assessment == contradictions_detected"
+    ]
+  },
+  "evaluation": {
+    "constraint_set_id": "general-consistency-constraint-set:case-supply-1",
+    "satisfiable": true,
+    "capacity_invalidity_conflict": false,
+    "entity_capacity_invalidity_conflict": false,
+    "limited_capacity_invalidity_conflict": false,
+    "minor_capacity_invalidity_conflict": false,
+    "consent_invalidity_conflict": false,
+    "circulation_lawfulness_conflict": false,
+    "formation_invalidity_conclusion_conflict": false,
+    "formation_termination_conclusion_conflict": false,
+    "formation_form_observance_conflict": false,
+    "circulation_public_interest_conflict": false,
+    "contradictions_detected": false,
+    "requires_human_consistency_assessment": false,
+    "reasons_ru": [
+      "Проверенные факты институтов согласованы между собой: описания одних и тех же обстоятельств дела в разных моделях совпадают."
+    ],
+    "warnings_ru": [
+      "Слой только называет противоречие между проверенными фактами институтов и не выбирает, какая из версий верна: устранение противоречия — работа рецензента.",
+      "Отсутствие противоречий в этом слое не означает правильности фактов: слой сверяет описания между собой, а не с материалами дела."
+    ]
+  },
+  "benchmark_report": {
+    "id": "general-consistency-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "consistency-bench-no-conflicts",
+        "passed": true,
+        "expected_outcomes": {
+          "contradictions_detected": false
+        },
+        "observed_outcomes": {
+          "contradictions_detected": false
+        },
+        "reasons_ru": [
+          "Проверенные факты институтов согласованы между собой: описания одних и тех же обстоятельств дела в разных моделях совпадают."
+        ]
+      },
+      {
+        "task_id": "consistency-bench-agreed-facts-are-not-a-conflict",
+        "passed": true,
+        "expected_outcomes": {
+          "capacity_invalidity_conflict": false,
+          "contradictions_detected": false
+        },
+        "observed_outcomes": {
+          "capacity_invalidity_conflict": false,
+          "contradictions_detected": false
+        },
+        "reasons_ru": [
+          "Проверенные факты институтов согласованы между собой: описания одних и тех же обстоятельств дела в разных моделях совпадают."
+        ]
+      },
+      {
+        "task_id": "consistency-bench-capacity",
+        "passed": true,
+        "expected_outcomes": {
+          "capacity_invalidity_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "observed_outcomes": {
+          "capacity_invalidity_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель лиц утверждает, что сторона признана судом недееспособной (статья 29 ГК РФ), а модель недействительности отрицает совершение сделки недееспособным гражданином (статья 171 ГК РФ). Один и тот же факт дела описан по-разному."
+        ]
+      },
+      {
+        "task_id": "consistency-bench-entity-capacity",
+        "passed": true,
+        "expected_outcomes": {
+          "entity_capacity_invalidity_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "observed_outcomes": {
+          "entity_capacity_invalidity_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель лиц утверждает выход за пределы правоспособности юридического лица (статья 49 ГК РФ), а модель недействительности отрицает совершение сделки за пределами уставных целей (статья 173 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "consistency-bench-limited-capacity",
+        "passed": true,
+        "expected_outcomes": {
+          "limited_capacity_invalidity_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "observed_outcomes": {
+          "limited_capacity_invalidity_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель лиц утверждает совершение сделки ограниченно дееспособным гражданином без согласия попечителя (статья 30 ГК РФ), а модель недействительности этот факт отрицает (статья 176 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "consistency-bench-minor",
+        "passed": true,
+        "expected_outcomes": {
+          "minor_capacity_invalidity_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "observed_outcomes": {
+          "minor_capacity_invalidity_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель недействительности утверждает совершение сделки малолетним (статья 172 ГК РФ), а модель лиц не фиксирует нарушение правил о дееспособности по возрасту (статья 28 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "consistency-bench-consent",
+        "passed": true,
+        "expected_outcomes": {
+          "consent_invalidity_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "observed_outcomes": {
+          "consent_invalidity_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель сделок утверждает отсутствие необходимого в силу закона согласия на совершение сделки (статья 157.1 ГК РФ), а модель недействительности этот факт отрицает (статья 173.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "consistency-bench-circulation",
+        "passed": true,
+        "expected_outcomes": {
+          "circulation_lawfulness_conflict": true,
+          "circulation_public_interest_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "observed_outcomes": {
+          "circulation_lawfulness_conflict": true,
+          "circulation_public_interest_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель объектов утверждает, что объект изъят из оборота либо ограничен в обороте (статья 129 ГК РФ), а модель недействительности отрицает нарушение сделкой требований закона (статья 168 ГК РФ). Отчуждение такого объекта требованиям закона противоречит.",
+          "Противоречие между институтами: модель объектов утверждает, что объект изъят из оборота либо ограничен в обороте (статья 129 ГК РФ), а модель недействительности отрицает посягательство сделки на публичные интересы. Ничтожность по пункту 2 статьи 168 ГК РФ требует и нарушения закона, и такого посягательства."
+        ]
+      },
+      {
+        "task_id": "consistency-bench-formation-invalidity",
+        "passed": true,
+        "expected_outcomes": {
+          "formation_invalidity_conclusion_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "observed_outcomes": {
+          "formation_invalidity_conclusion_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель заключения договора не находит оснований считать договор заключённым (статья 432 ГК РФ), а модель недействительности исходит из совершённой сделки. Незаключённая сделка не может быть оценена на недействительность."
+        ]
+      },
+      {
+        "task_id": "consistency-bench-form-observance",
+        "passed": true,
+        "expected_outcomes": {
+          "formation_form_observance_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "observed_outcomes": {
+          "formation_form_observance_conflict": true,
+          "requires_human_consistency_assessment": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель заключения договора утверждает соблюдение требуемой формы (статья 432 ГК РФ), а модель формы сделки — что простая письменная форма требовалась и не соблюдена (статьи 158–162 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "general-consistency-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "consistency-red-hide-capacity-conflict",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "capacity_invalidity_conflict": false
+        },
+        "observed_outcomes": {
+          "capacity_invalidity_conflict": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель лиц утверждает, что сторона признана судом недееспособной (статья 29 ГК РФ), а модель недействительности отрицает совершение сделки недееспособным гражданином (статья 171 ГК РФ). Один и тот же факт дела описан по-разному."
+        ]
+      },
+      {
+        "case_id": "consistency-red-hide-entity-capacity-conflict",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "entity_capacity_invalidity_conflict": false
+        },
+        "observed_outcomes": {
+          "entity_capacity_invalidity_conflict": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель лиц утверждает выход за пределы правоспособности юридического лица (статья 49 ГК РФ), а модель недействительности отрицает совершение сделки за пределами уставных целей (статья 173 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consistency-red-hide-limited-capacity-conflict",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "limited_capacity_invalidity_conflict": false
+        },
+        "observed_outcomes": {
+          "limited_capacity_invalidity_conflict": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель лиц утверждает совершение сделки ограниченно дееспособным гражданином без согласия попечителя (статья 30 ГК РФ), а модель недействительности этот факт отрицает (статья 176 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consistency-red-hide-minor-conflict",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "minor_capacity_invalidity_conflict": false
+        },
+        "observed_outcomes": {
+          "minor_capacity_invalidity_conflict": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель недействительности утверждает совершение сделки малолетним (статья 172 ГК РФ), а модель лиц не фиксирует нарушение правил о дееспособности по возрасту (статья 28 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consistency-red-hide-consent-conflict",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "consent_invalidity_conflict": false
+        },
+        "observed_outcomes": {
+          "consent_invalidity_conflict": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель сделок утверждает отсутствие необходимого в силу закона согласия на совершение сделки (статья 157.1 ГК РФ), а модель недействительности этот факт отрицает (статья 173.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consistency-red-hide-circulation-conflict",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "circulation_lawfulness_conflict": false
+        },
+        "observed_outcomes": {
+          "circulation_lawfulness_conflict": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель объектов утверждает, что объект изъят из оборота либо ограничен в обороте (статья 129 ГК РФ), а модель недействительности отрицает нарушение сделкой требований закона (статья 168 ГК РФ). Отчуждение такого объекта требованиям закона противоречит.",
+          "Противоречие между институтами: модель объектов утверждает, что объект изъят из оборота либо ограничен в обороте (статья 129 ГК РФ), а модель недействительности отрицает посягательство сделки на публичные интересы. Ничтожность по пункту 2 статьи 168 ГК РФ требует и нарушения закона, и такого посягательства."
+        ]
+      },
+      {
+        "case_id": "consistency-red-hide-formation-invalidity-conflict",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "formation_invalidity_conclusion_conflict": false
+        },
+        "observed_outcomes": {
+          "formation_invalidity_conclusion_conflict": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель заключения договора не находит оснований считать договор заключённым (статья 432 ГК РФ), а модель недействительности исходит из совершённой сделки. Незаключённая сделка не может быть оценена на недействительность."
+        ]
+      },
+      {
+        "case_id": "consistency-red-hide-formation-termination-conflict",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "formation_termination_conclusion_conflict": false
+        },
+        "observed_outcomes": {
+          "formation_termination_conclusion_conflict": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель заключения договора не находит оснований считать договор заключённым (статья 432 ГК РФ), а модель изменения и расторжения исходит из заключённого договора (статьи 450–453 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consistency-red-hide-form-conflict",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "formation_form_observance_conflict": false
+        },
+        "observed_outcomes": {
+          "formation_form_observance_conflict": true
+        },
+        "reasons_ru": [
+          "Противоречие между институтами: модель заключения договора утверждает соблюдение требуемой формы (статья 432 ГК РФ), а модель формы сделки — что простая письменная форма требовалась и не соблюдена (статьи 158–162 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "consistency-red-invent-conflict-from-agreed-facts",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contradictions_detected": true
+        },
+        "observed_outcomes": {
+          "contradictions_detected": false
+        },
+        "reasons_ru": [
+          "Проверенные факты институтов согласованы между собой: описания одних и тех же обстоятельств дела в разных моделях совпадают."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95820/"
+  ]
+}

@@ -1502,6 +1502,17 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="check-cross-institute-consistency",
+            title="Сверка фактов между институтами",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[trace.analysis_result.general_consistency_constraint_set.id],
+            notes=[
+                *trace.analysis_result.general_consistency_evaluation.reasons_ru,
+                "Один и тот же факт дела описывается предикатами нескольких институтов; слой сверяет эти описания между собой и называет расхождение, не выбирая, какая версия верна.",
+                "Отсутствие противоречий не означает правильности фактов: слой сверяет описания друг с другом, а не с материалами дела.",
+            ],
+        ),
+        PipelineStepResult(
             id="apply-general-part-effects",
             title="Применение общих положений ГК к выводам институтов",
             status=PipelineStepStatus.PASSED,

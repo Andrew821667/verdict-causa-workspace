@@ -1791,6 +1791,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.93.0",
+        to_version="0.94.0",
+        reasons=[
+            "The analysis result gains a cross-institute consistency layer with three new fields; no new evidence contract is required.",
+            "Reviewed facts that describe the same circumstance in several institutes are now compared, so an artifact carrying a contradiction now raises the human-review flag instead of passing silently.",
+        ],
+        reasons_ru=[
+            "Результат анализа получил слой сверки фактов между институтами и три новых поля; отдельный контракт данных собирать не требуется.",
+            "Проверенные факты разных институтов, описывающие одно и то же обстоятельство, теперь сверяются, поэтому артефакт с противоречием поднимает флаг экспертизы, а не проходит молча.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_general_consistency_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

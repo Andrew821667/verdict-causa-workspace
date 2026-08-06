@@ -24776,6 +24776,77 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "general_consistency_inputs": {
+      "persons_incapacity_declared": false,
+      "invalidity_incapacitated_person_transaction": false,
+      "persons_entity_capacity_breached": false,
+      "invalidity_entity_beyond_statutory_purpose": false,
+      "persons_limited_capacity_without_consent": false,
+      "invalidity_limited_capacity_without_consent": false,
+      "persons_age_capacity_breached": false,
+      "invalidity_minor_under_14_transaction": false,
+      "transactions_statutory_consent_absent": false,
+      "invalidity_required_consent_absent": false,
+      "objects_not_in_civil_circulation": false,
+      "invalidity_violates_law": false,
+      "formation_contract_concluded": true,
+      "invalidity_transaction_concluded": true,
+      "termination_contract_formed": true,
+      "formation_required_form_observed": true,
+      "form_written_form_required": true,
+      "form_written_form_observed": true,
+      "invalidity_public_interests_affected": false
+    },
+    "general_consistency_constraint_set": {
+      "id": "general-consistency-constraint-set:case-supply-1",
+      "model_version": "contracts-general-cross-institute-consistency-v0",
+      "source_evidence": [
+        "persons_evidence",
+        "invalidity_evidence",
+        "transactions_evidence",
+        "objects_evidence",
+        "form_evidence",
+        "formation_evidence",
+        "termination_evidence"
+      ],
+      "expressions": [
+        "capacity_invalidity_conflict == persons_incapacity_declared AND NOT invalidity_incapacitated_person_transaction",
+        "entity_capacity_invalidity_conflict == persons_entity_capacity_breached AND NOT invalidity_entity_beyond_statutory_purpose",
+        "limited_capacity_invalidity_conflict == persons_limited_capacity_without_consent AND NOT invalidity_limited_capacity_without_consent",
+        "minor_capacity_invalidity_conflict == invalidity_minor_under_14_transaction AND NOT persons_age_capacity_breached",
+        "consent_invalidity_conflict == transactions_statutory_consent_absent AND NOT invalidity_required_consent_absent",
+        "circulation_lawfulness_conflict == objects_not_in_civil_circulation AND NOT invalidity_violates_law",
+        "formation_invalidity_conclusion_conflict == NOT formation_contract_concluded AND invalidity_transaction_concluded",
+        "formation_termination_conclusion_conflict == NOT formation_contract_concluded AND termination_contract_formed",
+        "formation_form_observance_conflict == formation_required_form_observed AND form_written_form_required AND NOT form_written_form_observed",
+        "circulation_public_interest_conflict == objects_not_in_civil_circulation AND NOT invalidity_public_interests_affected",
+        "contradictions_detected == capacity_invalidity_conflict OR entity_capacity_invalidity_conflict OR limited_capacity_invalidity_conflict OR minor_capacity_invalidity_conflict OR consent_invalidity_conflict OR circulation_lawfulness_conflict OR formation_invalidity_conclusion_conflict OR formation_termination_conclusion_conflict OR formation_form_observance_conflict OR circulation_public_interest_conflict",
+        "requires_human_consistency_assessment == contradictions_detected"
+      ]
+    },
+    "general_consistency_evaluation": {
+      "constraint_set_id": "general-consistency-constraint-set:case-supply-1",
+      "satisfiable": true,
+      "capacity_invalidity_conflict": false,
+      "entity_capacity_invalidity_conflict": false,
+      "limited_capacity_invalidity_conflict": false,
+      "minor_capacity_invalidity_conflict": false,
+      "consent_invalidity_conflict": false,
+      "circulation_lawfulness_conflict": false,
+      "formation_invalidity_conclusion_conflict": false,
+      "formation_termination_conclusion_conflict": false,
+      "formation_form_observance_conflict": false,
+      "circulation_public_interest_conflict": false,
+      "contradictions_detected": false,
+      "requires_human_consistency_assessment": false,
+      "reasons_ru": [
+        "Проверенные факты институтов согласованы между собой: описания одних и тех же обстоятельств дела в разных моделях совпадают."
+      ],
+      "warnings_ru": [
+        "Слой только называет противоречие между проверенными фактами институтов и не выбирает, какая из версий верна: устранение противоречия — работа рецензента.",
+        "Отсутствие противоречий в этом слое не означает правильности фактов: слой сверяет описания между собой, а не с материалами дела."
+      ]
+    },
     "objects_evidence_mapping": {
       "evidence_id": "reviewed-objects-evidence-supply-1-v0",
       "schema_version": "contracts.objects-evidence.v0",
@@ -32546,7 +32617,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.93.0",
+      "institutional_package_version": "contracts-ru-v0@0.94.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -37431,7 +37502,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.93.0",
+      "institutional_package_version": "contracts-ru-v0@0.94.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",

@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.94.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "A cross-institute consistency layer checks reviewed facts that describe the same circumstance in several institutes.",
+            "The layer needs no evidence contract of its own: its inputs are the reviewed facts themselves.",
+            "Ten declared cross-institute contradiction types are now checked, and a test forbids the taxonomy from having declared types that nothing checks.",
+            "A detected contradiction is named and raises the human-review flag; the layer never picks one of the conflicting versions.",
+        ],
+        notes_ru=[
+            "Слой сверки проверяет факты разных институтов, описывающие одно и то же обстоятельство дела.",
+            "Слою не нужен собственный контракт данных: его входы — сами проверенные факты.",
+            "Десять объявленных типов межинституциональных противоречий теперь проверяются, а тест запрещает таксономии содержать объявленные типы без проверки.",
+            "Обнаруженное противоречие называется и поднимает флаг экспертизы; слой никогда не выбирает одну из противоречащих версий.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.93.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

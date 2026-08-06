@@ -95,6 +95,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "evaluate-civil-principles",
         "evaluate-property-rights",
         "evaluate-representation",
+        "check-cross-institute-consistency",
         "apply-general-part-effects",
         "evaluate-transaction-invalidity",
         "evaluate-obligation-constraints",
