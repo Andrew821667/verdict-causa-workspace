@@ -1397,6 +1397,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-persons",
+            title="Проверка правоспособности и дееспособности сторон",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.persons_evidence_mapping.evidence_id,
+                trace.analysis_result.persons_constraint_set.id,
+                *trace.analysis_result.persons_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.persons_evaluation.reasons_ru,
+                "Правоспособность гражданина и её содержание, объём дееспособности по возрасту, признание гражданина недееспособным, ограничение дееспособности и согласие попечителя, недопустимость соглашений об ограничении правоспособности, правоспособность юридического лица и лицензируемые виды деятельности, его государственная регистрация и действия его органов проверяются раздельно по статьям 17–53 ГК РФ.",
+                "Признание гражданина недееспособным или ограниченно дееспособным, наличие лицензии и добросовестность действий органов юридического лица оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-terms",
             title="Проверка исчисления сроков",
             status=PipelineStepStatus.PASSED,

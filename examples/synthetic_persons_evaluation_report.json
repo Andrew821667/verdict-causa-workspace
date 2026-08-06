@@ -1,0 +1,457 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правоспособности и дееспособности граждан и юридических лиц по статьям 17–53 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-persons-evidence-supply-1-v0",
+    "schema_version": "contracts.persons-evidence.v0",
+    "mapping_version": "contracts-reviewed-persons-to-facts-v0",
+    "facts": {
+      "party_capacity_asserted": false,
+      "legal_capacity_rules_breached": false,
+      "active_capacity_age_rules_breached": false,
+      "incapacity_declared_by_court": false,
+      "limited_capacity_rules_breached": false,
+      "guardianship_consent_missing": false,
+      "capacity_restriction_by_agreement": false,
+      "entity_capacity_scope_breached": false,
+      "entity_registration_or_status_breached": false,
+      "entity_body_authority_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
+      "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "active_capacity_age_rules_breached",
+        "assertion_id": "persons-evidence-active_capacity_age_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-persons-evidence"
+        ]
+      },
+      {
+        "fact_name": "capacity_restriction_by_agreement",
+        "assertion_id": "persons-evidence-capacity_restriction_by_agreement",
+        "source_refs": [
+          "synthetic-case-supply-1-persons-evidence"
+        ]
+      },
+      {
+        "fact_name": "entity_body_authority_breached",
+        "assertion_id": "persons-evidence-entity_body_authority_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-persons-evidence"
+        ]
+      },
+      {
+        "fact_name": "entity_capacity_scope_breached",
+        "assertion_id": "persons-evidence-entity_capacity_scope_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-persons-evidence"
+        ]
+      },
+      {
+        "fact_name": "entity_registration_or_status_breached",
+        "assertion_id": "persons-evidence-entity_registration_or_status_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-persons-evidence"
+        ]
+      },
+      {
+        "fact_name": "guardianship_consent_missing",
+        "assertion_id": "persons-evidence-guardianship_consent_missing",
+        "source_refs": [
+          "synthetic-case-supply-1-persons-evidence"
+        ]
+      },
+      {
+        "fact_name": "incapacity_declared_by_court",
+        "assertion_id": "persons-evidence-incapacity_declared_by_court",
+        "source_refs": [
+          "synthetic-case-supply-1-persons-evidence"
+        ]
+      },
+      {
+        "fact_name": "legal_capacity_rules_breached",
+        "assertion_id": "persons-evidence-legal_capacity_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-persons-evidence"
+        ]
+      },
+      {
+        "fact_name": "limited_capacity_rules_breached",
+        "assertion_id": "persons-evidence-limited_capacity_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-persons-evidence"
+        ]
+      },
+      {
+        "fact_name": "party_capacity_asserted",
+        "assertion_id": "persons-evidence-party_capacity_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-persons-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "persons-constraint-set:reviewed-persons-evidence-supply-1-v0",
+    "model_version": "contracts-persons-articles-17-53-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
+      "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1"
+    ],
+    "expressions": [
+      "persons_qualified == party_capacity_asserted",
+      "legal_capacity_duty_breached == persons_qualified AND legal_capacity_rules_breached",
+      "active_capacity_age_duty_breached == persons_qualified AND active_capacity_age_rules_breached",
+      "party_lacks_capacity == persons_qualified AND incapacity_declared_by_court",
+      "limited_capacity_duty_breached == persons_qualified AND limited_capacity_rules_breached",
+      "guardianship_consent_duty_breached == persons_qualified AND limited_capacity_rules_breached AND guardianship_consent_missing",
+      "capacity_restriction_duty_breached == persons_qualified AND capacity_restriction_by_agreement",
+      "entity_capacity_scope_duty_breached == persons_qualified AND entity_capacity_scope_breached",
+      "entity_registration_duty_breached == persons_qualified AND entity_registration_or_status_breached",
+      "entity_body_authority_duty_breached == persons_qualified AND entity_body_authority_breached",
+      "requires_human_persons_assessment == legal_capacity_duty_breached OR active_capacity_age_duty_breached OR party_lacks_capacity OR limited_capacity_duty_breached OR capacity_restriction_duty_breached OR entity_capacity_scope_duty_breached OR entity_registration_duty_breached OR entity_body_authority_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "persons-constraint-set:reviewed-persons-evidence-supply-1-v0",
+    "satisfiable": true,
+    "persons_qualified": false,
+    "legal_capacity_duty_breached": false,
+    "active_capacity_age_duty_breached": false,
+    "party_lacks_capacity": false,
+    "limited_capacity_duty_breached": false,
+    "guardianship_consent_duty_breached": false,
+    "capacity_restriction_duty_breached": false,
+    "entity_capacity_scope_duty_breached": false,
+    "entity_registration_duty_breached": false,
+    "entity_body_authority_duty_breached": false,
+    "requires_human_persons_assessment": false,
+    "reasons_ru": [
+      "Вопрос о правоспособности или дееспособности стороны не заявлен."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о правоспособности и дееспособности и не заменяет судебную оценку.",
+      "Признание гражданина недееспособным или ограниченно дееспособным, наличие лицензии и добросовестность действий органов юридического лица оцениваются экспертом и судом (статьи 29, 30, 49 и 53 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "persons-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "persons-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "persons_qualified": false
+        },
+        "observed_outcomes": {
+          "persons_qualified": false
+        },
+        "reasons_ru": [
+          "Вопрос о правоспособности или дееспособности стороны не заявлен."
+        ]
+      },
+      {
+        "task_id": "persons-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "persons_qualified": true,
+          "requires_human_persons_assessment": false
+        },
+        "observed_outcomes": {
+          "persons_qualified": true,
+          "requires_human_persons_assessment": false
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "persons-bench-legal-capacity",
+        "passed": true,
+        "expected_outcomes": {
+          "legal_capacity_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "observed_outcomes": {
+          "legal_capacity_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Нарушены правила о правоспособности гражданина: она возникает в момент рождения и прекращается смертью, а её содержание включает возможность иметь имущество, совершать сделки и иметь иные имущественные и личные неимущественные права (статьи 17 и 18 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "persons-bench-age-capacity",
+        "passed": true,
+        "expected_outcomes": {
+          "active_capacity_age_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "observed_outcomes": {
+          "active_capacity_age_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Нарушены правила об объёме дееспособности по возрасту: способность своими действиями приобретать и осуществлять гражданские права возникает в полном объёме с наступлением совершеннолетия, а сделки несовершеннолетних совершаются по особым правилам (статьи 21, 26 и 28 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "persons-bench-incapacity",
+        "passed": true,
+        "expected_outcomes": {
+          "party_lacks_capacity": true,
+          "requires_human_persons_assessment": true
+        },
+        "observed_outcomes": {
+          "party_lacks_capacity": true,
+          "requires_human_persons_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Сторона признана судом недееспособной вследствие психического расстройства, при котором она не может понимать значения своих действий или руководить ими; от её имени сделки совершает опекун (статья 29 ГК РФ), а сделка, совершённая ею самой, ничтожна (статья 171 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "persons-bench-limited-capacity-without-consent",
+        "passed": true,
+        "expected_outcomes": {
+          "limited_capacity_duty_breached": true,
+          "guardianship_consent_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "observed_outcomes": {
+          "limited_capacity_duty_breached": true,
+          "guardianship_consent_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Нарушены правила об ограничении дееспособности: гражданин, ограниченный судом в дееспособности, самостоятельно совершает лишь мелкие бытовые сделки (статья 30 ГК РФ).",
+          "Сделка совершена ограниченно дееспособным гражданином без согласия попечителя, тогда как иные сделки он вправе совершать только с такого согласия (статья 30 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "persons-bench-capacity-restriction",
+        "passed": true,
+        "expected_outcomes": {
+          "capacity_restriction_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "observed_outcomes": {
+          "capacity_restriction_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Совершена сделка, направленная на ограничение правоспособности или дееспособности: такие сделки ничтожны, за исключением случаев, когда они допускаются законом (статья 22 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "persons-bench-entity-scope",
+        "passed": true,
+        "expected_outcomes": {
+          "entity_capacity_scope_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "observed_outcomes": {
+          "entity_capacity_scope_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Нарушены правила о правоспособности юридического лица: оно может иметь гражданские права, соответствующие целям деятельности, а отдельными видами деятельности вправе заниматься только на основании лицензии или членства в саморегулируемой организации (статья 49 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "persons-bench-entity-registration",
+        "passed": true,
+        "expected_outcomes": {
+          "entity_registration_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "observed_outcomes": {
+          "entity_registration_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Нарушены правила о государственной регистрации и статусе юридического лица: оно подлежит государственной регистрации и считается созданным со дня внесения соответствующей записи в единый государственный реестр (статья 51 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "persons-bench-entity-body",
+        "passed": true,
+        "expected_outcomes": {
+          "entity_body_authority_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "observed_outcomes": {
+          "entity_body_authority_duty_breached": true,
+          "requires_human_persons_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Нарушены правила об органах юридического лица: оно приобретает гражданские права и принимает на себя гражданские обязанности через свои органы, действующие от его имени и обязанные действовать добросовестно и разумно (статья 53 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "persons-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "persons-red-qualify-without-assertion",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "persons_qualified": true
+        },
+        "observed_outcomes": {
+          "persons_qualified": false
+        },
+        "reasons_ru": [
+          "Вопрос о правоспособности или дееспособности стороны не заявлен."
+        ]
+      },
+      {
+        "case_id": "persons-red-ignore-legal-capacity",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "legal_capacity_duty_breached": false
+        },
+        "observed_outcomes": {
+          "legal_capacity_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Нарушены правила о правоспособности гражданина: она возникает в момент рождения и прекращается смертью, а её содержание включает возможность иметь имущество, совершать сделки и иметь иные имущественные и личные неимущественные права (статьи 17 и 18 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "persons-red-ignore-age-rules",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "active_capacity_age_duty_breached": false
+        },
+        "observed_outcomes": {
+          "active_capacity_age_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Нарушены правила об объёме дееспособности по возрасту: способность своими действиями приобретать и осуществлять гражданские права возникает в полном объёме с наступлением совершеннолетия, а сделки несовершеннолетних совершаются по особым правилам (статьи 21, 26 и 28 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "persons-red-bind-incapable-party",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "party_lacks_capacity": false
+        },
+        "observed_outcomes": {
+          "party_lacks_capacity": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Сторона признана судом недееспособной вследствие психического расстройства, при котором она не может понимать значения своих действий или руководить ими; от её имени сделки совершает опекун (статья 29 ГК РФ), а сделка, совершённая ею самой, ничтожна (статья 171 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "persons-red-ignore-limited-capacity",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "limited_capacity_duty_breached": false
+        },
+        "observed_outcomes": {
+          "limited_capacity_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Нарушены правила об ограничении дееспособности: гражданин, ограниченный судом в дееспособности, самостоятельно совершает лишь мелкие бытовые сделки (статья 30 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "persons-red-ignore-guardianship-consent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "guardianship_consent_duty_breached": false
+        },
+        "observed_outcomes": {
+          "guardianship_consent_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Нарушены правила об ограничении дееспособности: гражданин, ограниченный судом в дееспособности, самостоятельно совершает лишь мелкие бытовые сделки (статья 30 ГК РФ).",
+          "Сделка совершена ограниченно дееспособным гражданином без согласия попечителя, тогда как иные сделки он вправе совершать только с такого согласия (статья 30 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "persons-red-allow-capacity-restriction",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "capacity_restriction_duty_breached": false
+        },
+        "observed_outcomes": {
+          "capacity_restriction_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Совершена сделка, направленная на ограничение правоспособности или дееспособности: такие сделки ничтожны, за исключением случаев, когда они допускаются законом (статья 22 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "persons-red-ignore-licence",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "entity_capacity_scope_duty_breached": false
+        },
+        "observed_outcomes": {
+          "entity_capacity_scope_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Нарушены правила о правоспособности юридического лица: оно может иметь гражданские права, соответствующие целям деятельности, а отдельными видами деятельности вправе заниматься только на основании лицензии или членства в саморегулируемой организации (статья 49 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "persons-red-ignore-registration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "entity_registration_duty_breached": false
+        },
+        "observed_outcomes": {
+          "entity_registration_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ).",
+          "Нарушены правила о государственной регистрации и статусе юридического лица: оно подлежит государственной регистрации и считается созданным со дня внесения соответствующей записи в единый государственный реестр (статья 51 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "persons-red-guardianship-without-limited-capacity",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "guardianship_consent_duty_breached": true
+        },
+        "observed_outcomes": {
+          "guardianship_consent_duty_breached": false
+        },
+        "reasons_ru": [
+          "Заявлен вопрос о правоспособности или дееспособности стороны: способность иметь гражданские права и нести обязанности признаётся в равной мере за всеми гражданами (статья 17 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95820/"
+  ]
+}

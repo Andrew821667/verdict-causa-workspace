@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.92.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed persons evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 17 to 53.",
+            "The legal capacity of a citizen, the scope of active capacity by age, a court declaration of incapacity, a court restriction of capacity and the guardian's consent, agreements restricting capacity, the capacity of a legal entity, its registration and the acts of its bodies remain distinct.",
+            "A court declaration of incapacity feeds the general-part effects layer and voids the transaction under article 171, displacing the contract rather than marking it voidable.",
+        ],
+        notes_ru=[
+            "Проверенные данные о правоспособности и дееспособности обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 17–53 ГК РФ.",
+            "Правоспособность гражданина, объём дееспособности по возрасту, признание недееспособным, ограничение дееспособности и согласие попечителя, соглашения об ограничении правоспособности, правоспособность юридического лица, его регистрация и действия органов разделены.",
+            "Признание стороны судом недееспособной поступает в слой общих положений и влечёт ничтожность сделки по статье 171 ГК РФ: договор лишается действия, а не помечается оспоримым.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.91.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

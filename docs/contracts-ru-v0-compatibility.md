@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.92.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью правоспособности и дееспособности, подключённой к слою общих положений |
 | `0.91.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью исчисления сроков, управляющей выводом об исковой давности |
 | `0.90.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью понятия, видов и условий сделок, подключённой к слою общих положений |
 | `0.89.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью основных начал и защиты гражданских прав, подключённой к слою общих положений |
@@ -99,6 +100,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.91.0` → `0.92.0` соберите отдельно проверенный контракт данных о правоспособности и дееспособности (`contracts.persons-evidence.v0`). Слой общих положений получил вход о признании стороны недееспособной и новый вывод `incapacity_voids_transaction`, поэтому пересоберите артефакты лиц, слоя общих положений, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.90.0` → `0.91.0` соберите отдельно проверенный контракт данных об исчислении сроков (`contracts.terms-evidence.v0`). Слой общих положений получил вход о пороке исчисления срока исковой давности и новый вывод `limitation_conclusion_unreliable`, поэтому пересоберите артефакты сроков, слоя общих положений, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 

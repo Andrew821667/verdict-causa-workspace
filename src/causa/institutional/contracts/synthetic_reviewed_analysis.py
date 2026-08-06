@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.persons import (
+    PersonsEvidenceAssertion,
+    PersonsEvidencePredicate,
+    ReviewedPersonsEvidence,
+)
 from causa.institutional.contracts.terms import (
     ReviewedTermsEvidence,
     TermsEvidenceAssertion,
@@ -607,6 +612,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
+    "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1",
+    "synthetic-case-supply-1-persons-evidence",
     "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
     "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1",
     "synthetic-case-supply-1-terms-evidence",
@@ -2990,6 +2998,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        persons_evidence=ReviewedPersonsEvidence(
+            id="reviewed-persons-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                PersonsEvidenceAssertion(
+                    id=f"persons-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-persons-evidence",),
+                )
+                for predicate, value in (
+                    (PersonsEvidencePredicate.PARTY_CAPACITY_ASSERTED, False),
+                    (PersonsEvidencePredicate.LEGAL_CAPACITY_RULES_BREACHED, False),
+                    (PersonsEvidencePredicate.ACTIVE_CAPACITY_AGE_RULES_BREACHED, False),
+                    (PersonsEvidencePredicate.INCAPACITY_DECLARED_BY_COURT, False),
+                    (PersonsEvidencePredicate.LIMITED_CAPACITY_RULES_BREACHED, False),
+                    (PersonsEvidencePredicate.GUARDIANSHIP_CONSENT_MISSING, False),
+                    (PersonsEvidencePredicate.CAPACITY_RESTRICTION_BY_AGREEMENT, False),
+                    (PersonsEvidencePredicate.ENTITY_CAPACITY_SCOPE_BREACHED, False),
+                    (PersonsEvidencePredicate.ENTITY_REGISTRATION_OR_STATUS_BREACHED, False),
+                    (PersonsEvidencePredicate.ENTITY_BODY_AUTHORITY_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
+                "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-persons-reviewer",
         ),
         terms_evidence=ReviewedTermsEvidence(
             id="reviewed-terms-evidence-supply-1-v0",

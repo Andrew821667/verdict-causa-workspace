@@ -1751,6 +1751,26 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.91.0",
+        to_version="0.92.0",
+        reasons=[
+            "Reviewed inputs now require a separate persons evidence contract covering articles 17 to 53.",
+            "The general-part effects layer gains an input for a court declaration of incapacity, so the transaction is void under article 171 and the contract loses effect.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о правоспособности и дееспособности по статьям 17–53 ГК РФ.",
+            "Слой общих положений получил вход о признании стороны недееспособной, поэтому сделка ничтожна по статье 171 ГК РФ и договор лишается действия.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_persons_evaluation.py",
+            "python scripts/export_synthetic_general_effects_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

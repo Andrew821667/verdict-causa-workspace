@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
+      "title": "Синтетическая проверенная модель правоспособности и дееспособности граждан по статьям 17–30 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: возникновение правоспособности гражданина в момент рождения и её содержание, недопустимость сделок, направленных на ограничение правоспособности и дееспособности, возникновение дееспособности в полном объёме с наступлением совершеннолетия, особые правила о сделках несовершеннолетних, признание гражданина недееспособным вследствие психического расстройства и совершение сделок от его имени опекуном, а также ограничение дееспособности судом и совершение сделок с согласия попечителя проверяются раздельно (статьи 17–30 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "legal_and_active_capacity_of_citizens_articles_17_30",
+        "legal_reference": "ГК РФ, статьи 17–30",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1",
+      "title": "Синтетическая проверенная модель правоспособности, регистрации и органов юридического лица по статьям 49–53 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: правоспособность юридического лица и её соответствие целям деятельности, осуществление отдельных видов деятельности на основании лицензии или членства в саморегулируемой организации, государственная регистрация юридического лица и его создание со дня внесения записи в единый государственный реестр, а также приобретение юридическим лицом прав и обязанностей через свои органы и обязанность этих органов действовать добросовестно и разумно проверяются раздельно (статьи 49–53 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "capacity_registration_and_bodies_of_legal_entities_articles_49_53",
+        "legal_reference": "ГК РФ, статьи 49–53",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-persons-evidence",
+      "title": "Синтетическая проверенная запись фактов о правоспособности и дееспособности сторон",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: обе стороны спорного договора поставки — действующие юридические лица, вопросов об их правоспособности и о дееспособности граждан не заявлялось.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "persons_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
       "title": "Синтетическая проверенная модель определения срока, начала его течения и окончания по статьям 190–193 ГК РФ",
       "source_type": "statute",
@@ -9899,6 +9946,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "persons_evidence": {
+      "id": "reviewed-persons-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.persons-evidence.v0",
+      "assertions": [
+        {
+          "id": "persons-evidence-party_capacity_asserted",
+          "predicate": "party_capacity_asserted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "id": "persons-evidence-legal_capacity_rules_breached",
+          "predicate": "legal_capacity_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "id": "persons-evidence-active_capacity_age_rules_breached",
+          "predicate": "active_capacity_age_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "id": "persons-evidence-incapacity_declared_by_court",
+          "predicate": "incapacity_declared_by_court",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "id": "persons-evidence-limited_capacity_rules_breached",
+          "predicate": "limited_capacity_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "id": "persons-evidence-guardianship_consent_missing",
+          "predicate": "guardianship_consent_missing",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "id": "persons-evidence-capacity_restriction_by_agreement",
+          "predicate": "capacity_restriction_by_agreement",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "id": "persons-evidence-entity_capacity_scope_breached",
+          "predicate": "entity_capacity_scope_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "id": "persons-evidence-entity_registration_or_status_breached",
+          "predicate": "entity_registration_or_status_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "id": "persons-evidence-entity_body_authority_breached",
+          "predicate": "entity_body_authority_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
+        "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-persons-reviewer"
+    },
     "terms_evidence": {
       "id": "reviewed-terms-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -16117,6 +16257,7 @@
       "synthetic-paid-services-reviewer",
       "synthetic-partnership-reviewer",
       "synthetic-performance-remedies-reviewer",
+      "synthetic-persons-reviewer",
       "synthetic-precontractual-reviewer",
       "synthetic-preliminary-reviewer",
       "synthetic-procedure-reviewer",
@@ -16201,6 +16342,7 @@
       "synthetic-case-supply-1-paid-services-evidence",
       "synthetic-case-supply-1-partnership-evidence",
       "synthetic-case-supply-1-performance-remedies-evidence",
+      "synthetic-case-supply-1-persons-evidence",
       "synthetic-case-supply-1-precontractual-evidence",
       "synthetic-case-supply-1-preliminary-evidence",
       "synthetic-case-supply-1-procedure-evidence",
@@ -16268,6 +16410,7 @@
       "synthetic-ru-gk160-434-written-form-model-v1",
       "synthetic-ru-gk166-168-invalidity-framework-v1",
       "synthetic-ru-gk169-172-void-transactions-v1",
+      "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
       "synthetic-ru-gk173-179-voidable-transactions-v1",
       "synthetic-ru-gk180-181-invalidity-effects-v1",
       "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
@@ -16325,6 +16468,7 @@
       "synthetic-ru-gk454-464-sale-transfer-v1",
       "synthetic-ru-gk465-477-sale-conformity-v1",
       "synthetic-ru-gk478-491-sale-payment-v1",
+      "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1",
       "synthetic-ru-gk492-495-retail-sale-concept-v1",
       "synthetic-ru-gk502-504-retail-exchange-and-quality-v1",
       "synthetic-ru-gk506-512-supply-framework-v1",
@@ -24488,6 +24632,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "persons_evidence_mapping": {
+      "evidence_id": "reviewed-persons-evidence-supply-1-v0",
+      "schema_version": "contracts.persons-evidence.v0",
+      "mapping_version": "contracts-reviewed-persons-to-facts-v0",
+      "facts": {
+        "party_capacity_asserted": false,
+        "legal_capacity_rules_breached": false,
+        "active_capacity_age_rules_breached": false,
+        "incapacity_declared_by_court": false,
+        "limited_capacity_rules_breached": false,
+        "guardianship_consent_missing": false,
+        "capacity_restriction_by_agreement": false,
+        "entity_capacity_scope_breached": false,
+        "entity_registration_or_status_breached": false,
+        "entity_body_authority_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
+        "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "active_capacity_age_rules_breached",
+          "assertion_id": "persons-evidence-active_capacity_age_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "fact_name": "capacity_restriction_by_agreement",
+          "assertion_id": "persons-evidence-capacity_restriction_by_agreement",
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "fact_name": "entity_body_authority_breached",
+          "assertion_id": "persons-evidence-entity_body_authority_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "fact_name": "entity_capacity_scope_breached",
+          "assertion_id": "persons-evidence-entity_capacity_scope_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "fact_name": "entity_registration_or_status_breached",
+          "assertion_id": "persons-evidence-entity_registration_or_status_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "fact_name": "guardianship_consent_missing",
+          "assertion_id": "persons-evidence-guardianship_consent_missing",
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "fact_name": "incapacity_declared_by_court",
+          "assertion_id": "persons-evidence-incapacity_declared_by_court",
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "fact_name": "legal_capacity_rules_breached",
+          "assertion_id": "persons-evidence-legal_capacity_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "fact_name": "limited_capacity_rules_breached",
+          "assertion_id": "persons-evidence-limited_capacity_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        },
+        {
+          "fact_name": "party_capacity_asserted",
+          "assertion_id": "persons-evidence-party_capacity_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-persons-evidence"
+          ]
+        }
+      ]
+    },
+    "persons_constraint_set": {
+      "id": "persons-constraint-set:reviewed-persons-evidence-supply-1-v0",
+      "model_version": "contracts-persons-articles-17-53-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
+        "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1"
+      ],
+      "expressions": [
+        "persons_qualified == party_capacity_asserted",
+        "legal_capacity_duty_breached == persons_qualified AND legal_capacity_rules_breached",
+        "active_capacity_age_duty_breached == persons_qualified AND active_capacity_age_rules_breached",
+        "party_lacks_capacity == persons_qualified AND incapacity_declared_by_court",
+        "limited_capacity_duty_breached == persons_qualified AND limited_capacity_rules_breached",
+        "guardianship_consent_duty_breached == persons_qualified AND limited_capacity_rules_breached AND guardianship_consent_missing",
+        "capacity_restriction_duty_breached == persons_qualified AND capacity_restriction_by_agreement",
+        "entity_capacity_scope_duty_breached == persons_qualified AND entity_capacity_scope_breached",
+        "entity_registration_duty_breached == persons_qualified AND entity_registration_or_status_breached",
+        "entity_body_authority_duty_breached == persons_qualified AND entity_body_authority_breached",
+        "requires_human_persons_assessment == legal_capacity_duty_breached OR active_capacity_age_duty_breached OR party_lacks_capacity OR limited_capacity_duty_breached OR capacity_restriction_duty_breached OR entity_capacity_scope_duty_breached OR entity_registration_duty_breached OR entity_body_authority_duty_breached"
+      ]
+    },
+    "persons_evaluation": {
+      "constraint_set_id": "persons-constraint-set:reviewed-persons-evidence-supply-1-v0",
+      "satisfiable": true,
+      "persons_qualified": false,
+      "legal_capacity_duty_breached": false,
+      "active_capacity_age_duty_breached": false,
+      "party_lacks_capacity": false,
+      "limited_capacity_duty_breached": false,
+      "guardianship_consent_duty_breached": false,
+      "capacity_restriction_duty_breached": false,
+      "entity_capacity_scope_duty_breached": false,
+      "entity_registration_duty_breached": false,
+      "entity_body_authority_duty_breached": false,
+      "requires_human_persons_assessment": false,
+      "reasons_ru": [
+        "Вопрос о правоспособности или дееспособности стороны не заявлен."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о правоспособности и дееспособности и не заменяет судебную оценку.",
+        "Признание гражданина недееспособным или ограниченно дееспособным, наличие лицензии и добросовестность действий органов юридического лица оцениваются экспертом и судом (статьи 29, 30, 49 и 53 ГК РФ)."
+      ]
+    },
     "terms_evidence_mapping": {
       "evidence_id": "reviewed-terms-evidence-supply-1-v0",
       "schema_version": "contracts.terms-evidence.v0",
@@ -25180,12 +25460,13 @@
       "unauthorized_disposal_detected": false,
       "abuse_of_right_detected": false,
       "consent_missing_for_transaction": false,
+      "party_lacks_capacity": false,
       "breach_issue": true,
       "effective_termination": false
     },
     "general_effects_constraint_set": {
       "id": "general-effects-constraint-set:case-supply-1",
-      "model_version": "contracts-general-part-effects-articles-10-167-173-1-183-190-199-209-432-v5",
+      "model_version": "contracts-general-part-effects-articles-10-167-171-173-1-183-190-199-209-432-v6",
       "source_evaluations": [
         "formation_evaluation",
         "invalidity_evaluation",
@@ -25196,6 +25477,7 @@
         "civil_principles_evaluation",
         "transactions_evaluation",
         "terms_evaluation",
+        "persons_evaluation",
         "constraint_evaluation",
         "termination_evaluation"
       ],
@@ -25204,7 +25486,8 @@
         "invalidity_displaces_contract == contractual_effect_displaced",
         "form_defect_displaces_contract == transaction_void_for_form",
         "unauthorized_representation_displaces_contract == unauthorized_representation_detected",
-        "contract_legally_effective == contract_concluded_prerequisites AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected",
+        "incapacity_voids_transaction == party_lacks_capacity",
+        "contract_legally_effective == contract_concluded_prerequisites AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected AND NOT party_lacks_capacity",
         "limitation_bars_protection == limitation_defense_available AND NOT claim_not_subject_to_limitation AND NOT term_calculation_defective",
         "limitation_conclusion_unreliable == limitation_defense_available AND term_calculation_defective",
         "judicial_protection_available == NOT limitation_bars_protection AND NOT abuse_of_right_detected",
@@ -25227,6 +25510,7 @@
       "invalidity_displaces_contract": false,
       "form_defect_displaces_contract": false,
       "unauthorized_representation_displaces_contract": false,
+      "incapacity_voids_transaction": false,
       "judicial_protection_available": true,
       "claims_barred_by_limitation": false,
       "limitation_conclusion_unreliable": false,
@@ -31978,7 +32262,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.91.0",
+      "institutional_package_version": "contracts-ru-v0@0.92.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
