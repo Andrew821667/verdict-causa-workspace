@@ -534,6 +534,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.objects import (
+    OBJECTS_EVIDENCE_SCHEMA_VERSION,
+    ObjectsConstraintSet,
+    ObjectsEvaluation,
+    ObjectsEvidenceMappingResult,
+    ReviewedObjectsEvidence,
+    build_objects_constraint_set,
+    evaluate_objects_constraints,
+    map_reviewed_objects_evidence,
+)
 from causa.institutional.contracts.persons import (
     PERSONS_EVIDENCE_SCHEMA_VERSION,
     PersonsConstraintSet,
@@ -1013,6 +1023,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     negotiorum_gestio_evidence: ReviewedNegotiorumGestioEvidence
     commission_evidence: ReviewedCommissionEvidence
     agency_evidence: ReviewedAgencyEvidence
+    objects_evidence: ReviewedObjectsEvidence
     persons_evidence: ReviewedPersonsEvidence
     terms_evidence: ReviewedTermsEvidence
     transactions_evidence: ReviewedTransactionsEvidence
@@ -1242,6 +1253,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     agency_evidence_mapping: AgencyEvidenceMappingResult
     agency_constraint_set: AgencyConstraintSet
     agency_evaluation: AgencyEvaluation
+    objects_evidence_mapping: ObjectsEvidenceMappingResult
+    objects_constraint_set: ObjectsConstraintSet
+    objects_evaluation: ObjectsEvaluation
     persons_evidence_mapping: PersonsEvidenceMappingResult
     persons_constraint_set: PersonsConstraintSet
     persons_evaluation: PersonsEvaluation
@@ -1975,6 +1989,7 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.transactions_evaluation,
             self.terms_evaluation,
             self.persons_evaluation,
+            self.objects_evaluation,
             self.constraint_evaluation,
             self.termination_evaluation,
         )
@@ -1994,6 +2009,15 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.general_effects_evaluation != expected_general_effects_evaluation:
             raise ValueError("General-effects evaluation does not replay from anchor evaluations.")
+        expected_objects_set = build_objects_constraint_set(self.objects_evidence_mapping)
+        if self.objects_constraint_set != expected_objects_set:
+            raise ValueError("Objects constraint set does not replay from reviewed evidence.")
+        expected_objects_evaluation = evaluate_objects_constraints(
+            expected_objects_set,
+            self.objects_evidence_mapping.facts,
+        )
+        if self.objects_evaluation != expected_objects_evaluation:
+            raise ValueError("Objects evaluation does not replay from reviewed evidence.")
         expected_persons_set = build_persons_constraint_set(self.persons_evidence_mapping)
         if self.persons_constraint_set != expected_persons_set:
             raise ValueError("Persons constraint set does not replay from reviewed evidence.")
@@ -2614,6 +2638,8 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence case_id does not match the analysis request.")
     if request.agency_evidence.case_id != request.case_id:
         raise ValueError("Agency evidence case_id does not match the analysis request.")
+    if request.objects_evidence.case_id != request.case_id:
+        raise ValueError("Objects evidence case_id does not match the analysis request.")
     if request.persons_evidence.case_id != request.case_id:
         raise ValueError("Persons evidence case_id does not match the analysis request.")
     if request.terms_evidence.case_id != request.case_id:
@@ -2831,6 +2857,8 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence uses an unsupported schema version.")
     if request.agency_evidence.schema_version != AGENCY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Agency evidence uses an unsupported schema version.")
+    if request.objects_evidence.schema_version != OBJECTS_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Objects evidence uses an unsupported schema version.")
     if request.persons_evidence.schema_version != PERSONS_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Persons evidence uses an unsupported schema version.")
     if request.terms_evidence.schema_version != TERMS_EVIDENCE_SCHEMA_VERSION:
@@ -2934,6 +2962,7 @@ def _validate_request_integrity(
         *request.negotiorum_gestio_evidence.legal_source_refs,
         *request.commission_evidence.legal_source_refs,
         *request.agency_evidence.legal_source_refs,
+        *request.objects_evidence.legal_source_refs,
         *request.persons_evidence.legal_source_refs,
         *request.terms_evidence.legal_source_refs,
         *request.transactions_evidence.legal_source_refs,
@@ -3076,6 +3105,8 @@ def _validate_request_integrity(
     for assertion in request.commission_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.agency_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.objects_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.persons_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -3778,6 +3809,17 @@ def _validate_request_integrity(
             "Agency legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_agency_legal_sources))
         )
+    invalid_objects_legal_sources = [
+        source_id
+        for source_id in request.objects_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_objects_legal_sources:
+        raise ValueError(
+            "Objects legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_objects_legal_sources))
+        )
     invalid_persons_legal_sources = [
         source_id
         for source_id in request.persons_evidence.legal_source_refs
@@ -4426,6 +4468,11 @@ def run_reviewed_contract_analysis(
         review_status=request.agency_evidence.review_status,
         reviewer_id=request.agency_evidence.reviewer_id,
     )
+    objects_reviewer_id = _require_reviewed(
+        artifact_name="Objects evidence",
+        review_status=request.objects_evidence.review_status,
+        reviewer_id=request.objects_evidence.reviewer_id,
+    )
     persons_reviewer_id = _require_reviewed(
         artifact_name="Persons evidence",
         review_status=request.persons_evidence.review_status,
@@ -5038,6 +5085,12 @@ def run_reviewed_contract_analysis(
         agency_constraint_set,
         agency_evidence_mapping.facts,
     )
+    objects_evidence_mapping = map_reviewed_objects_evidence(request.objects_evidence)
+    objects_constraint_set = build_objects_constraint_set(objects_evidence_mapping)
+    objects_evaluation = evaluate_objects_constraints(
+        objects_constraint_set,
+        objects_evidence_mapping.facts,
+    )
     persons_evidence_mapping = map_reviewed_persons_evidence(request.persons_evidence)
     persons_constraint_set = build_persons_constraint_set(persons_evidence_mapping)
     persons_evaluation = evaluate_persons_constraints(
@@ -5398,6 +5451,7 @@ def run_reviewed_contract_analysis(
         transactions_evaluation,
         terms_evaluation,
         persons_evaluation,
+        objects_evaluation,
         constraint_evaluation,
         termination_evaluation,
     )
@@ -5474,6 +5528,7 @@ def run_reviewed_contract_analysis(
         or negotiorum_gestio_evaluation.requires_human_negotiorum_gestio_assessment
         or commission_evaluation.requires_human_commission_assessment
         or agency_evaluation.requires_human_agency_assessment
+        or objects_evaluation.requires_human_objects_assessment
         or persons_evaluation.requires_human_persons_assessment
         or terms_evaluation.requires_human_terms_assessment
         or transactions_evaluation.requires_human_transactions_assessment
@@ -5567,6 +5622,7 @@ def run_reviewed_contract_analysis(
                 negotiorum_gestio_reviewer_id,
                 commission_reviewer_id,
                 agency_reviewer_id,
+                objects_reviewer_id,
                 persons_reviewer_id,
                 terms_reviewer_id,
                 transactions_reviewer_id,
@@ -5774,6 +5830,9 @@ def run_reviewed_contract_analysis(
         agency_evaluation=agency_evaluation,
         unjust_enrichment_evidence_mapping=unjust_enrichment_evidence_mapping,
         unjust_enrichment_constraint_set=unjust_enrichment_constraint_set,
+        objects_evidence_mapping=objects_evidence_mapping,
+        objects_constraint_set=objects_constraint_set,
+        objects_evaluation=objects_evaluation,
         persons_evidence_mapping=persons_evidence_mapping,
         persons_constraint_set=persons_constraint_set,
         persons_evaluation=persons_evaluation,

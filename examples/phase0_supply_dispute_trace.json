@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk128-136-objects-circulation-and-kinds-of-things-v1",
+      "title": "Синтетическая проверенная модель объектов гражданских прав, их оборотоспособности и видов вещей по статьям 128–136 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: перечень объектов гражданских прав, включая вещи, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага, свободное отчуждение объектов, не ограниченных в обороте, деление вещей на недвижимые и движимые, неделимые и сложные вещи, следование принадлежности судьбе главной вещи и принадлежность плодов, продукции и доходов собственнику вещи проверяются раздельно (статьи 128–136 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "objects_circulation_and_kinds_of_things_articles_128_136",
+        "legal_reference": "ГК РФ, статьи 128–136",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk140-152-money-securities-and-intangible-benefits-v1",
+      "title": "Синтетическая проверенная модель денег, ценных бумаг и нематериальных благ по статьям 140–152 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: рубль как законное платёжное средство, обязательное к приёму по нарицательной стоимости, удостоверение прав ценными бумагами по правилам закона, неотчуждаемость и непередаваемость нематериальных благ, включая жизнь и здоровье, достоинство личности, честь и доброе имя и деловую репутацию, а также право требовать по суду опровержения порочащих сведений проверяются раздельно (статьи 140–152 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "money_securities_and_intangible_benefits_articles_140_152",
+        "legal_reference": "ГК РФ, статьи 140–152",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-objects-evidence",
+      "title": "Синтетическая проверенная запись фактов об объекте спорного договора",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: предметом спорного договора поставки является движимое имущество, не изъятое из оборота и не ограниченное в обороте; самостоятельных возражений об объекте гражданских прав не заявлялось.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "objects_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
       "title": "Синтетическая проверенная модель правоспособности и дееспособности граждан по статьям 17–30 ГК РФ",
       "source_type": "statute",
@@ -9946,6 +9993,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "objects_evidence": {
+      "id": "reviewed-objects-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.objects-evidence.v0",
+      "assertions": [
+        {
+          "id": "objects-evidence-object_of_rights_asserted",
+          "predicate": "object_of_rights_asserted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "id": "objects-evidence-object_classification_breached",
+          "predicate": "object_classification_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "id": "objects-evidence-object_not_in_civil_circulation",
+          "predicate": "object_not_in_civil_circulation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "id": "objects-evidence-immovable_classification_breached",
+          "predicate": "immovable_classification_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "id": "objects-evidence-divisibility_or_complex_thing_breached",
+          "predicate": "divisibility_or_complex_thing_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "id": "objects-evidence-principal_and_appurtenance_breached",
+          "predicate": "principal_and_appurtenance_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "id": "objects-evidence-fruits_products_income_breached",
+          "predicate": "fruits_products_income_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "id": "objects-evidence-money_or_securities_rules_breached",
+          "predicate": "money_or_securities_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "id": "objects-evidence-intangible_benefits_protection_breached",
+          "predicate": "intangible_benefits_protection_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "id": "objects-evidence-honour_and_reputation_protection_breached",
+          "predicate": "honour_and_reputation_protection_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk128-136-objects-circulation-and-kinds-of-things-v1",
+        "synthetic-ru-gk140-152-money-securities-and-intangible-benefits-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-objects-reviewer"
+    },
     "persons_evidence": {
       "id": "reviewed-persons-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -16252,6 +16392,7 @@
       "synthetic-moral-harm-reviewer",
       "synthetic-negotiorum-gestio-reviewer",
       "synthetic-norm-reviewer",
+      "synthetic-objects-reviewer",
       "synthetic-obligation-dynamics-reviewer",
       "synthetic-option-reviewer",
       "synthetic-paid-services-reviewer",
@@ -16337,6 +16478,7 @@
       "synthetic-case-supply-1-mandate-evidence",
       "synthetic-case-supply-1-moral-harm-evidence",
       "synthetic-case-supply-1-negotiorum-gestio-evidence",
+      "synthetic-case-supply-1-objects-evidence",
       "synthetic-case-supply-1-obligation-dynamics-evidence",
       "synthetic-case-supply-1-option-evidence",
       "synthetic-case-supply-1-paid-services-evidence",
@@ -16404,6 +16546,8 @@
       "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
       "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
       "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1",
+      "synthetic-ru-gk128-136-objects-circulation-and-kinds-of-things-v1",
+      "synthetic-ru-gk140-152-money-securities-and-intangible-benefits-v1",
       "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
       "synthetic-ru-gk157-1-consent-to-a-transaction-v1",
       "synthetic-ru-gk158-165-form-framework-v1",
@@ -24632,6 +24776,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "objects_evidence_mapping": {
+      "evidence_id": "reviewed-objects-evidence-supply-1-v0",
+      "schema_version": "contracts.objects-evidence.v0",
+      "mapping_version": "contracts-reviewed-objects-to-facts-v0",
+      "facts": {
+        "object_of_rights_asserted": false,
+        "object_classification_breached": false,
+        "object_not_in_civil_circulation": false,
+        "immovable_classification_breached": false,
+        "divisibility_or_complex_thing_breached": false,
+        "principal_and_appurtenance_breached": false,
+        "fruits_products_income_breached": false,
+        "money_or_securities_rules_breached": false,
+        "intangible_benefits_protection_breached": false,
+        "honour_and_reputation_protection_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk128-136-objects-circulation-and-kinds-of-things-v1",
+        "synthetic-ru-gk140-152-money-securities-and-intangible-benefits-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "divisibility_or_complex_thing_breached",
+          "assertion_id": "objects-evidence-divisibility_or_complex_thing_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "fact_name": "fruits_products_income_breached",
+          "assertion_id": "objects-evidence-fruits_products_income_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "fact_name": "honour_and_reputation_protection_breached",
+          "assertion_id": "objects-evidence-honour_and_reputation_protection_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "fact_name": "immovable_classification_breached",
+          "assertion_id": "objects-evidence-immovable_classification_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "fact_name": "intangible_benefits_protection_breached",
+          "assertion_id": "objects-evidence-intangible_benefits_protection_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "fact_name": "money_or_securities_rules_breached",
+          "assertion_id": "objects-evidence-money_or_securities_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "fact_name": "object_classification_breached",
+          "assertion_id": "objects-evidence-object_classification_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "fact_name": "object_not_in_civil_circulation",
+          "assertion_id": "objects-evidence-object_not_in_civil_circulation",
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "fact_name": "object_of_rights_asserted",
+          "assertion_id": "objects-evidence-object_of_rights_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        },
+        {
+          "fact_name": "principal_and_appurtenance_breached",
+          "assertion_id": "objects-evidence-principal_and_appurtenance_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-objects-evidence"
+          ]
+        }
+      ]
+    },
+    "objects_constraint_set": {
+      "id": "objects-constraint-set:reviewed-objects-evidence-supply-1-v0",
+      "model_version": "contracts-objects-articles-128-152-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk128-136-objects-circulation-and-kinds-of-things-v1",
+        "synthetic-ru-gk140-152-money-securities-and-intangible-benefits-v1"
+      ],
+      "expressions": [
+        "objects_qualified == object_of_rights_asserted",
+        "object_classification_duty_breached == objects_qualified AND object_classification_breached",
+        "object_excluded_from_circulation == objects_qualified AND object_not_in_civil_circulation",
+        "immovable_classification_duty_breached == objects_qualified AND immovable_classification_breached",
+        "divisibility_duty_breached == objects_qualified AND divisibility_or_complex_thing_breached",
+        "principal_and_appurtenance_duty_breached == objects_qualified AND principal_and_appurtenance_breached",
+        "fruits_products_income_duty_breached == objects_qualified AND fruits_products_income_breached",
+        "money_or_securities_duty_breached == objects_qualified AND money_or_securities_rules_breached",
+        "intangible_benefits_duty_breached == objects_qualified AND intangible_benefits_protection_breached",
+        "honour_and_reputation_duty_breached == objects_qualified AND intangible_benefits_protection_breached AND honour_and_reputation_protection_breached",
+        "requires_human_objects_assessment == object_classification_duty_breached OR object_excluded_from_circulation OR immovable_classification_duty_breached OR divisibility_duty_breached OR principal_and_appurtenance_duty_breached OR fruits_products_income_duty_breached OR money_or_securities_duty_breached OR intangible_benefits_duty_breached"
+      ]
+    },
+    "objects_evaluation": {
+      "constraint_set_id": "objects-constraint-set:reviewed-objects-evidence-supply-1-v0",
+      "satisfiable": true,
+      "objects_qualified": false,
+      "object_classification_duty_breached": false,
+      "object_excluded_from_circulation": false,
+      "immovable_classification_duty_breached": false,
+      "divisibility_duty_breached": false,
+      "principal_and_appurtenance_duty_breached": false,
+      "fruits_products_income_duty_breached": false,
+      "money_or_securities_duty_breached": false,
+      "intangible_benefits_duty_breached": false,
+      "honour_and_reputation_duty_breached": false,
+      "requires_human_objects_assessment": false,
+      "reasons_ru": [
+        "Спор об объекте гражданских прав не заявлен."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила об объектах гражданских прав и не заменяет судебную оценку.",
+        "Отнесение объекта к изъятым из оборота или ограниченным в обороте, прочность связи вещи с землёй и порочащий характер распространённых сведений оцениваются экспертом и судом (статьи 129, 130 и 152 ГК РФ)."
+      ]
+    },
     "persons_evidence_mapping": {
       "evidence_id": "reviewed-persons-evidence-supply-1-v0",
       "schema_version": "contracts.persons-evidence.v0",
@@ -25461,12 +25741,13 @@
       "abuse_of_right_detected": false,
       "consent_missing_for_transaction": false,
       "party_lacks_capacity": false,
+      "object_excluded_from_circulation": false,
       "breach_issue": true,
       "effective_termination": false
     },
     "general_effects_constraint_set": {
       "id": "general-effects-constraint-set:case-supply-1",
-      "model_version": "contracts-general-part-effects-articles-10-167-171-173-1-183-190-199-209-432-v6",
+      "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-183-190-199-209-432-v7",
       "source_evaluations": [
         "formation_evaluation",
         "invalidity_evaluation",
@@ -25478,6 +25759,7 @@
         "transactions_evaluation",
         "terms_evaluation",
         "persons_evaluation",
+        "objects_evaluation",
         "constraint_evaluation",
         "termination_evaluation"
       ],
@@ -25487,7 +25769,8 @@
         "form_defect_displaces_contract == transaction_void_for_form",
         "unauthorized_representation_displaces_contract == unauthorized_representation_detected",
         "incapacity_voids_transaction == party_lacks_capacity",
-        "contract_legally_effective == contract_concluded_prerequisites AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected AND NOT party_lacks_capacity",
+        "restricted_object_voids_transaction == object_excluded_from_circulation",
+        "contract_legally_effective == contract_concluded_prerequisites AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected AND NOT party_lacks_capacity AND NOT object_excluded_from_circulation",
         "limitation_bars_protection == limitation_defense_available AND NOT claim_not_subject_to_limitation AND NOT term_calculation_defective",
         "limitation_conclusion_unreliable == limitation_defense_available AND term_calculation_defective",
         "judicial_protection_available == NOT limitation_bars_protection AND NOT abuse_of_right_detected",
@@ -25511,6 +25794,7 @@
       "form_defect_displaces_contract": false,
       "unauthorized_representation_displaces_contract": false,
       "incapacity_voids_transaction": false,
+      "restricted_object_voids_transaction": false,
       "judicial_protection_available": true,
       "claims_barred_by_limitation": false,
       "limitation_conclusion_unreliable": false,
@@ -32262,7 +32546,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.92.0",
+      "institutional_package_version": "contracts-ru-v0@0.93.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -34300,6 +34584,7 @@
           "synthetic-case-supply-1-mandate-evidence",
           "synthetic-case-supply-1-moral-harm-evidence",
           "synthetic-case-supply-1-negotiorum-gestio-evidence",
+          "synthetic-case-supply-1-objects-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-option-evidence",
           "synthetic-case-supply-1-paid-services-evidence",
@@ -34367,6 +34652,8 @@
           "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
           "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
           "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1",
+          "synthetic-ru-gk128-136-objects-circulation-and-kinds-of-things-v1",
+          "synthetic-ru-gk140-152-money-securities-and-intangible-benefits-v1",
           "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
           "synthetic-ru-gk157-1-consent-to-a-transaction-v1",
           "synthetic-ru-gk158-165-form-framework-v1",
@@ -35566,6 +35853,7 @@
           "synthetic-case-supply-1-mandate-evidence",
           "synthetic-case-supply-1-moral-harm-evidence",
           "synthetic-case-supply-1-negotiorum-gestio-evidence",
+          "synthetic-case-supply-1-objects-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-option-evidence",
           "synthetic-case-supply-1-paid-services-evidence",
@@ -35633,6 +35921,8 @@
           "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
           "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
           "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1",
+          "synthetic-ru-gk128-136-objects-circulation-and-kinds-of-things-v1",
+          "synthetic-ru-gk140-152-money-securities-and-intangible-benefits-v1",
           "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
           "synthetic-ru-gk157-1-consent-to-a-transaction-v1",
           "synthetic-ru-gk158-165-form-framework-v1",
@@ -36832,6 +37122,7 @@
           "synthetic-case-supply-1-mandate-evidence",
           "synthetic-case-supply-1-moral-harm-evidence",
           "synthetic-case-supply-1-negotiorum-gestio-evidence",
+          "synthetic-case-supply-1-objects-evidence",
           "synthetic-case-supply-1-obligation-dynamics-evidence",
           "synthetic-case-supply-1-option-evidence",
           "synthetic-case-supply-1-paid-services-evidence",
@@ -36899,6 +37190,8 @@
           "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
           "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
           "synthetic-ru-gk12-16-1-protection-methods-damages-and-authority-liability-v1",
+          "synthetic-ru-gk128-136-objects-circulation-and-kinds-of-things-v1",
+          "synthetic-ru-gk140-152-money-securities-and-intangible-benefits-v1",
           "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
           "synthetic-ru-gk157-1-consent-to-a-transaction-v1",
           "synthetic-ru-gk158-165-form-framework-v1",
@@ -37138,7 +37431,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.92.0",
+      "institutional_package_version": "contracts-ru-v0@0.93.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -39424,6 +39717,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk128-136-objects-circulation-and-kinds-of-things-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель объектов гражданских прав, их оборотоспособности и видов вещей по статьям 128–136 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "objects_circulation_and_kinds_of_things_articles_128_136",
+          "legal_reference": "ГК РФ, статьи 128–136",
+          "basis_url": "https://government.ru/docs/all/95820/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk140-152-money-securities-and-intangible-benefits-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель денег, ценных бумаг и нематериальных благ по статьям 140–152 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "money_securities_and_intangible_benefits_articles_140_152",
+          "legal_reference": "ГК РФ, статьи 140–152",
+          "basis_url": "https://government.ru/docs/all/95820/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-objects-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов об объекте спорного договора",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "objects_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель правоспособности и дееспособности граждан по статьям 17–30 ГК РФ",
@@ -40682,6 +41013,7 @@
             "synthetic-moral-harm-reviewer",
             "synthetic-negotiorum-gestio-reviewer",
             "synthetic-norm-reviewer",
+            "synthetic-objects-reviewer",
             "synthetic-obligation-dynamics-reviewer",
             "synthetic-option-reviewer",
             "synthetic-paid-services-reviewer",

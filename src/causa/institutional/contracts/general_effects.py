@@ -28,6 +28,9 @@
   является оспоримой;
 - статья 171 ГК РФ — сделка, совершённая гражданином, признанным судом
   недееспособным, ничтожна;
+- статьи 129 и 168 ГК РФ — объекты гражданских прав свободно отчуждаются, если
+  они не ограничены в обороте, а сделка, нарушающая требования закона и
+  посягающая при этом на публичные интересы, ничтожна;
 - статья 209 ГК РФ — распоряжение имуществом принадлежит собственнику, поэтому
   отчуждение неуправомоченным лицом не переносит право на приобретателя;
 - статья 1103 ГК РФ — применение правил о неосновательном обогащении к
@@ -38,7 +41,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from z3 import And, Bool, Not, Or, Solver, sat
 
 GENERAL_EFFECTS_MODEL_VERSION = (
-    "contracts-general-part-effects-articles-10-167-171-173-1-183-190-199-209-432-v6"
+    "contracts-general-part-effects-articles-10-129-167-171-173-1-183-190-199-209-432-v7"
 )
 
 
@@ -69,6 +72,8 @@ class GeneralEffectsInputs(BaseModel):
     consent_missing_for_transaction: bool
     # Лица: недееспособность стороны (статьи 29 и 171 ГК РФ).
     party_lacks_capacity: bool
+    # Объекты: изъятие объекта из оборота (статьи 129 и 168 ГК РФ).
+    object_excluded_from_circulation: bool
     # Нарушение обязательства и прекращение договора (статьи 309–328, 450–453).
     breach_issue: bool
     effective_termination: bool
@@ -91,6 +96,7 @@ class GeneralEffectsEvaluation(BaseModel):
     form_defect_displaces_contract: bool
     unauthorized_representation_displaces_contract: bool
     incapacity_voids_transaction: bool
+    restricted_object_voids_transaction: bool
     # Возможность судебной защиты.
     judicial_protection_available: bool
     claims_barred_by_limitation: bool
@@ -119,6 +125,7 @@ def build_general_effects_inputs(
     transactions_evaluation,
     terms_evaluation,
     persons_evaluation,
+    objects_evaluation,
     constraint_evaluation,
     termination_evaluation,
 ) -> GeneralEffectsInputs:
@@ -138,6 +145,7 @@ def build_general_effects_inputs(
         consent_missing_for_transaction=(transactions_evaluation.consent_missing_for_transaction),
         term_calculation_defective=terms_evaluation.term_calculation_defective,
         party_lacks_capacity=persons_evaluation.party_lacks_capacity,
+        object_excluded_from_circulation=(objects_evaluation.object_excluded_from_circulation),
         breach_issue=constraint_evaluation.breach_issue,
         effective_termination=termination_evaluation.effective_termination,
     )
@@ -160,6 +168,7 @@ def build_general_effects_constraint_set(
             "transactions_evaluation",
             "terms_evaluation",
             "persons_evaluation",
+            "objects_evaluation",
             "constraint_evaluation",
             "termination_evaluation",
         ],
@@ -169,7 +178,8 @@ def build_general_effects_constraint_set(
             "form_defect_displaces_contract == transaction_void_for_form",
             "unauthorized_representation_displaces_contract == unauthorized_representation_detected",
             "incapacity_voids_transaction == party_lacks_capacity",
-            "contract_legally_effective == contract_concluded_prerequisites AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected AND NOT party_lacks_capacity",
+            "restricted_object_voids_transaction == object_excluded_from_circulation",
+            "contract_legally_effective == contract_concluded_prerequisites AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected AND NOT party_lacks_capacity AND NOT object_excluded_from_circulation",
             "limitation_bars_protection == limitation_defense_available AND NOT claim_not_subject_to_limitation AND NOT term_calculation_defective",
             "limitation_conclusion_unreliable == limitation_defense_available AND term_calculation_defective",
             "judicial_protection_available == NOT limitation_bars_protection AND NOT abuse_of_right_detected",
@@ -199,6 +209,7 @@ def evaluate_general_effects_constraints(
         "unauthorized_representation_displaces_contract"
     )
     incapacity_voids_transaction = Bool("incapacity_voids_transaction")
+    restricted_object_voids_transaction = Bool("restricted_object_voids_transaction")
     judicial_protection_available = Bool("judicial_protection_available")
     limitation_bars_protection = Bool("limitation_bars_protection")
     claims_barred_by_limitation = Bool("claims_barred_by_limitation")
@@ -227,6 +238,7 @@ def evaluate_general_effects_constraints(
         == variables["unauthorized_representation_detected"]
     )
     solver.add(incapacity_voids_transaction == variables["party_lacks_capacity"])
+    solver.add(restricted_object_voids_transaction == variables["object_excluded_from_circulation"])
     solver.add(
         contract_legally_effective
         == And(
@@ -235,6 +247,7 @@ def evaluate_general_effects_constraints(
             Not(variables["transaction_void_for_form"]),
             Not(variables["unauthorized_representation_detected"]),
             Not(variables["party_lacks_capacity"]),
+            Not(variables["object_excluded_from_circulation"]),
         )
     )
     solver.add(
@@ -309,6 +322,7 @@ def evaluate_general_effects_constraints(
             form_defect_displaces_contract=False,
             unauthorized_representation_displaces_contract=False,
             incapacity_voids_transaction=False,
+            restricted_object_voids_transaction=False,
             judicial_protection_available=False,
             claims_barred_by_limitation=False,
             limitation_conclusion_unreliable=False,
@@ -370,6 +384,13 @@ def evaluate_general_effects_constraints(
             "не влечёт юридических последствий; каждая из сторон обязана возвратить другой "
             "всё полученное, а дееспособная сторона возмещает реальный ущерб, если знала или "
             "должна была знать о недееспособности (статьи 29, 167 и 171 ГК РФ)."
+        )
+    if truth(restricted_object_voids_transaction):
+        reasons_ru.append(
+            "Объект сделки изъят из оборота либо его отчуждение ограничено законом, тогда как "
+            "объекты гражданских прав могут свободно отчуждаться, если они не ограничены в "
+            "обороте; сделка, нарушающая это требование закона и посягающая при этом на "
+            "публичные интересы, ничтожна (статьи 129 и 168 ГК РФ)."
         )
     if truth(claims_barred_by_limitation):
         reasons_ru.append(
@@ -435,6 +456,7 @@ def evaluate_general_effects_constraints(
             unauthorized_representation_displaces_contract
         ),
         incapacity_voids_transaction=truth(incapacity_voids_transaction),
+        restricted_object_voids_transaction=truth(restricted_object_voids_transaction),
         judicial_protection_available=truth(judicial_protection_available),
         claims_barred_by_limitation=truth(claims_barred_by_limitation),
         limitation_conclusion_unreliable=truth(limitation_conclusion_unreliable),

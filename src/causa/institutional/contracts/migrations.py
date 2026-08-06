@@ -1771,6 +1771,26 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.92.0",
+        to_version="0.93.0",
+        reasons=[
+            "Reviewed inputs now require a separate objects evidence contract covering articles 128 to 152.",
+            "The general-part effects layer gains an input for an object excluded from civil circulation, so the transaction is void under articles 129 and 168 and the contract loses effect.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных об объекте гражданских прав по статьям 128–152 ГК РФ.",
+            "Слой общих положений получил вход об изъятии объекта из оборота, поэтому сделка ничтожна по статьям 129 и 168 ГК РФ и договор лишается действия.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_objects_evaluation.py",
+            "python scripts/export_synthetic_general_effects_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

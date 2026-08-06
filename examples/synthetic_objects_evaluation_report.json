@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка объектов гражданских прав, их оборотоспособности и нематериальных благ по статьям 128–152 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-objects-evidence-supply-1-v0",
+    "schema_version": "contracts.objects-evidence.v0",
+    "mapping_version": "contracts-reviewed-objects-to-facts-v0",
+    "facts": {
+      "object_of_rights_asserted": false,
+      "object_classification_breached": false,
+      "object_not_in_civil_circulation": false,
+      "immovable_classification_breached": false,
+      "divisibility_or_complex_thing_breached": false,
+      "principal_and_appurtenance_breached": false,
+      "fruits_products_income_breached": false,
+      "money_or_securities_rules_breached": false,
+      "intangible_benefits_protection_breached": false,
+      "honour_and_reputation_protection_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk128-136-objects-circulation-and-kinds-of-things-v1",
+      "synthetic-ru-gk140-152-money-securities-and-intangible-benefits-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "divisibility_or_complex_thing_breached",
+        "assertion_id": "objects-evidence-divisibility_or_complex_thing_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-objects-evidence"
+        ]
+      },
+      {
+        "fact_name": "fruits_products_income_breached",
+        "assertion_id": "objects-evidence-fruits_products_income_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-objects-evidence"
+        ]
+      },
+      {
+        "fact_name": "honour_and_reputation_protection_breached",
+        "assertion_id": "objects-evidence-honour_and_reputation_protection_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-objects-evidence"
+        ]
+      },
+      {
+        "fact_name": "immovable_classification_breached",
+        "assertion_id": "objects-evidence-immovable_classification_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-objects-evidence"
+        ]
+      },
+      {
+        "fact_name": "intangible_benefits_protection_breached",
+        "assertion_id": "objects-evidence-intangible_benefits_protection_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-objects-evidence"
+        ]
+      },
+      {
+        "fact_name": "money_or_securities_rules_breached",
+        "assertion_id": "objects-evidence-money_or_securities_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-objects-evidence"
+        ]
+      },
+      {
+        "fact_name": "object_classification_breached",
+        "assertion_id": "objects-evidence-object_classification_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-objects-evidence"
+        ]
+      },
+      {
+        "fact_name": "object_not_in_civil_circulation",
+        "assertion_id": "objects-evidence-object_not_in_civil_circulation",
+        "source_refs": [
+          "synthetic-case-supply-1-objects-evidence"
+        ]
+      },
+      {
+        "fact_name": "object_of_rights_asserted",
+        "assertion_id": "objects-evidence-object_of_rights_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-objects-evidence"
+        ]
+      },
+      {
+        "fact_name": "principal_and_appurtenance_breached",
+        "assertion_id": "objects-evidence-principal_and_appurtenance_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-objects-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "objects-constraint-set:reviewed-objects-evidence-supply-1-v0",
+    "model_version": "contracts-objects-articles-128-152-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk128-136-objects-circulation-and-kinds-of-things-v1",
+      "synthetic-ru-gk140-152-money-securities-and-intangible-benefits-v1"
+    ],
+    "expressions": [
+      "objects_qualified == object_of_rights_asserted",
+      "object_classification_duty_breached == objects_qualified AND object_classification_breached",
+      "object_excluded_from_circulation == objects_qualified AND object_not_in_civil_circulation",
+      "immovable_classification_duty_breached == objects_qualified AND immovable_classification_breached",
+      "divisibility_duty_breached == objects_qualified AND divisibility_or_complex_thing_breached",
+      "principal_and_appurtenance_duty_breached == objects_qualified AND principal_and_appurtenance_breached",
+      "fruits_products_income_duty_breached == objects_qualified AND fruits_products_income_breached",
+      "money_or_securities_duty_breached == objects_qualified AND money_or_securities_rules_breached",
+      "intangible_benefits_duty_breached == objects_qualified AND intangible_benefits_protection_breached",
+      "honour_and_reputation_duty_breached == objects_qualified AND intangible_benefits_protection_breached AND honour_and_reputation_protection_breached",
+      "requires_human_objects_assessment == object_classification_duty_breached OR object_excluded_from_circulation OR immovable_classification_duty_breached OR divisibility_duty_breached OR principal_and_appurtenance_duty_breached OR fruits_products_income_duty_breached OR money_or_securities_duty_breached OR intangible_benefits_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "objects-constraint-set:reviewed-objects-evidence-supply-1-v0",
+    "satisfiable": true,
+    "objects_qualified": false,
+    "object_classification_duty_breached": false,
+    "object_excluded_from_circulation": false,
+    "immovable_classification_duty_breached": false,
+    "divisibility_duty_breached": false,
+    "principal_and_appurtenance_duty_breached": false,
+    "fruits_products_income_duty_breached": false,
+    "money_or_securities_duty_breached": false,
+    "intangible_benefits_duty_breached": false,
+    "honour_and_reputation_duty_breached": false,
+    "requires_human_objects_assessment": false,
+    "reasons_ru": [
+      "Спор об объекте гражданских прав не заявлен."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила об объектах гражданских прав и не заменяет судебную оценку.",
+      "Отнесение объекта к изъятым из оборота или ограниченным в обороте, прочность связи вещи с землёй и порочащий характер распространённых сведений оцениваются экспертом и судом (статьи 129, 130 и 152 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "objects-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "objects-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "objects_qualified": false
+        },
+        "observed_outcomes": {
+          "objects_qualified": false
+        },
+        "reasons_ru": [
+          "Спор об объекте гражданских прав не заявлен."
+        ]
+      },
+      {
+        "task_id": "objects-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "objects_qualified": true,
+          "requires_human_objects_assessment": false
+        },
+        "observed_outcomes": {
+          "objects_qualified": true,
+          "requires_human_objects_assessment": false
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "objects-bench-classification",
+        "passed": true,
+        "expected_outcomes": {
+          "object_classification_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "observed_outcomes": {
+          "object_classification_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Объект отнесён к объектам гражданских прав с нарушением их перечня: вещи, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага различаются (статья 128 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "objects-bench-circulation",
+        "passed": true,
+        "expected_outcomes": {
+          "object_excluded_from_circulation": true,
+          "requires_human_objects_assessment": true
+        },
+        "observed_outcomes": {
+          "object_excluded_from_circulation": true,
+          "requires_human_objects_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Объект изъят из оборота либо его отчуждение ограничено законом, тогда как объекты гражданских прав могут свободно отчуждаться или переходить от одного лица к другому, если они не ограничены в обороте (статья 129 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "objects-bench-immovable",
+        "passed": true,
+        "expected_outcomes": {
+          "immovable_classification_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "observed_outcomes": {
+          "immovable_classification_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Нарушено деление вещей на недвижимые и движимые: к недвижимым вещам относятся земельные участки, участки недр и всё, что прочно связано с землёй, а вещи, не относящиеся к недвижимости, признаются движимым имуществом (статья 130 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "objects-bench-divisibility",
+        "passed": true,
+        "expected_outcomes": {
+          "divisibility_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "observed_outcomes": {
+          "divisibility_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Нарушены правила о неделимых и сложных вещах: вещь, раздел которой в натуре невозможен без разрушения, повреждения или изменения её назначения, признаётся неделимой, а действие сделки, совершённой по поводу сложной вещи, распространяется на все входящие в неё вещи (статьи 133 и 134 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "objects-bench-appurtenance",
+        "passed": true,
+        "expected_outcomes": {
+          "principal_and_appurtenance_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "observed_outcomes": {
+          "principal_and_appurtenance_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Нарушено правило о главной вещи и принадлежности: вещь, предназначенная для обслуживания другой, главной вещи и связанная с ней общим назначением, следует судьбе главной вещи, если договором не предусмотрено иное (статья 135 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "objects-bench-fruits",
+        "passed": true,
+        "expected_outcomes": {
+          "fruits_products_income_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "observed_outcomes": {
+          "fruits_products_income_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Нарушено правило о плодах, продукции и доходах: полученные в результате использования вещи, они принадлежат собственнику вещи, если иное не предусмотрено законом, иными правовыми актами или договором (статья 136 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "objects-bench-money-securities",
+        "passed": true,
+        "expected_outcomes": {
+          "money_or_securities_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "observed_outcomes": {
+          "money_or_securities_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Нарушены правила о деньгах и ценных бумагах: рубль является законным платёжным средством, обязательным к приёму по нарицательной стоимости на всей территории Российской Федерации, а ценные бумаги удостоверяют права по правилам, установленным законом (статьи 140 и 142 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "objects-bench-intangible-and-reputation",
+        "passed": true,
+        "expected_outcomes": {
+          "intangible_benefits_duty_breached": true,
+          "honour_and_reputation_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "observed_outcomes": {
+          "intangible_benefits_duty_breached": true,
+          "honour_and_reputation_duty_breached": true,
+          "requires_human_objects_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Нарушены правила о нематериальных благах: жизнь и здоровье, достоинство личности, честь и доброе имя, деловая репутация и иные принадлежащие гражданину от рождения или в силу закона блага неотчуждаемы и непередаваемы иным способом (статья 150 ГК РФ).",
+          "Нарушены правила о защите чести, достоинства и деловой репутации: гражданин вправе требовать по суду опровержения порочащих его сведений, если распространивший их не докажет, что они соответствуют действительности (статья 152 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "objects-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "objects-red-qualify-without-object",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "objects_qualified": true
+        },
+        "observed_outcomes": {
+          "objects_qualified": false
+        },
+        "reasons_ru": [
+          "Спор об объекте гражданских прав не заявлен."
+        ]
+      },
+      {
+        "case_id": "objects-red-ignore-classification",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "object_classification_duty_breached": false
+        },
+        "observed_outcomes": {
+          "object_classification_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Объект отнесён к объектам гражданских прав с нарушением их перечня: вещи, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага различаются (статья 128 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "objects-red-transfer-excluded-object",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "object_excluded_from_circulation": false
+        },
+        "observed_outcomes": {
+          "object_excluded_from_circulation": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Объект изъят из оборота либо его отчуждение ограничено законом, тогда как объекты гражданских прав могут свободно отчуждаться или переходить от одного лица к другому, если они не ограничены в обороте (статья 129 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "objects-red-ignore-immovable-rules",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "immovable_classification_duty_breached": false
+        },
+        "observed_outcomes": {
+          "immovable_classification_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Нарушено деление вещей на недвижимые и движимые: к недвижимым вещам относятся земельные участки, участки недр и всё, что прочно связано с землёй, а вещи, не относящиеся к недвижимости, признаются движимым имуществом (статья 130 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "objects-red-divide-indivisible-thing",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "divisibility_duty_breached": false
+        },
+        "observed_outcomes": {
+          "divisibility_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Нарушены правила о неделимых и сложных вещах: вещь, раздел которой в натуре невозможен без разрушения, повреждения или изменения её назначения, признаётся неделимой, а действие сделки, совершённой по поводу сложной вещи, распространяется на все входящие в неё вещи (статьи 133 и 134 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "objects-red-separate-appurtenance",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "principal_and_appurtenance_duty_breached": false
+        },
+        "observed_outcomes": {
+          "principal_and_appurtenance_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Нарушено правило о главной вещи и принадлежности: вещь, предназначенная для обслуживания другой, главной вещи и связанная с ней общим назначением, следует судьбе главной вещи, если договором не предусмотрено иное (статья 135 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "objects-red-ignore-fruits",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "fruits_products_income_duty_breached": false
+        },
+        "observed_outcomes": {
+          "fruits_products_income_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Нарушено правило о плодах, продукции и доходах: полученные в результате использования вещи, они принадлежат собственнику вещи, если иное не предусмотрено законом, иными правовыми актами или договором (статья 136 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "objects-red-ignore-money-rules",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "money_or_securities_duty_breached": false
+        },
+        "observed_outcomes": {
+          "money_or_securities_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Нарушены правила о деньгах и ценных бумагах: рубль является законным платёжным средством, обязательным к приёму по нарицательной стоимости на всей территории Российской Федерации, а ценные бумаги удостоверяют права по правилам, установленным законом (статьи 140 и 142 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "objects-red-alienate-intangible-benefit",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "intangible_benefits_duty_breached": false
+        },
+        "observed_outcomes": {
+          "intangible_benefits_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ).",
+          "Нарушены правила о нематериальных благах: жизнь и здоровье, достоинство личности, честь и доброе имя, деловая репутация и иные принадлежащие гражданину от рождения или в силу закона блага неотчуждаемы и непередаваемы иным способом (статья 150 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "objects-red-reputation-without-intangible-benefit",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "honour_and_reputation_duty_breached": true
+        },
+        "observed_outcomes": {
+          "honour_and_reputation_duty_breached": false
+        },
+        "reasons_ru": [
+          "Заявлен объект гражданских прав: к объектам относятся вещи, включая наличные деньги и документарные ценные бумаги, иное имущество, имущественные права, результаты работ и оказание услуг, охраняемые результаты интеллектуальной деятельности и нематериальные блага (статья 128 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95820/"
+  ]
+}

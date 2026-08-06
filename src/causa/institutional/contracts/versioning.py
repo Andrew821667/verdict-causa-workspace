@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.93.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed objects evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 128 to 152.",
+            "The list of objects of civil rights, their transferability, the division into immovable and movable things, indivisible and complex things, the principal thing and its appurtenance, fruits and income, money and securities, and intangible benefits remain distinct.",
+            "An object excluded from civil circulation feeds the general-part effects layer and voids the transaction under articles 129 and 168.",
+        ],
+        notes_ru=[
+            "Проверенные данные об объекте гражданских прав обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 128–152 ГК РФ.",
+            "Перечень объектов гражданских прав, их оборотоспособность, деление вещей на недвижимые и движимые, неделимые и сложные вещи, главная вещь и принадлежность, плоды и доходы, деньги и ценные бумаги и нематериальные блага разделены.",
+            "Изъятие объекта из оборота поступает в слой общих положений и влечёт ничтожность сделки по статьям 129 и 168 ГК РФ.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.92.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.objects import (
+    ObjectsEvidenceAssertion,
+    ObjectsEvidencePredicate,
+    ReviewedObjectsEvidence,
+)
 from causa.institutional.contracts.persons import (
     PersonsEvidenceAssertion,
     PersonsEvidencePredicate,
@@ -612,6 +617,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk128-136-objects-circulation-and-kinds-of-things-v1",
+    "synthetic-ru-gk140-152-money-securities-and-intangible-benefits-v1",
+    "synthetic-case-supply-1-objects-evidence",
     "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
     "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1",
     "synthetic-case-supply-1-persons-evidence",
@@ -2998,6 +3006,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        objects_evidence=ReviewedObjectsEvidence(
+            id="reviewed-objects-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                ObjectsEvidenceAssertion(
+                    id=f"objects-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-objects-evidence",),
+                )
+                for predicate, value in (
+                    (ObjectsEvidencePredicate.OBJECT_OF_RIGHTS_ASSERTED, False),
+                    (ObjectsEvidencePredicate.OBJECT_CLASSIFICATION_BREACHED, False),
+                    (ObjectsEvidencePredicate.OBJECT_NOT_IN_CIVIL_CIRCULATION, False),
+                    (ObjectsEvidencePredicate.IMMOVABLE_CLASSIFICATION_BREACHED, False),
+                    (ObjectsEvidencePredicate.DIVISIBILITY_OR_COMPLEX_THING_BREACHED, False),
+                    (ObjectsEvidencePredicate.PRINCIPAL_AND_APPURTENANCE_BREACHED, False),
+                    (ObjectsEvidencePredicate.FRUITS_PRODUCTS_INCOME_BREACHED, False),
+                    (ObjectsEvidencePredicate.MONEY_OR_SECURITIES_RULES_BREACHED, False),
+                    (ObjectsEvidencePredicate.INTANGIBLE_BENEFITS_PROTECTION_BREACHED, False),
+                    (ObjectsEvidencePredicate.HONOUR_AND_REPUTATION_PROTECTION_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk128-136-objects-circulation-and-kinds-of-things-v1",
+                "synthetic-ru-gk140-152-money-securities-and-intangible-benefits-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-objects-reviewer",
         ),
         persons_evidence=ReviewedPersonsEvidence(
             id="reviewed-persons-evidence-supply-1-v0",

@@ -51,6 +51,7 @@ def test_general_effects_layer_is_derived_from_anchor_evaluations() -> None:
         result.transactions_evaluation,
         result.terms_evaluation,
         result.persons_evaluation,
+        result.objects_evaluation,
         result.constraint_evaluation,
         result.termination_evaluation,
     )
@@ -129,6 +130,7 @@ def test_general_effects_never_displaces_an_effective_contract() -> None:
         consent_missing_for_transaction=False,
         term_calculation_defective=False,
         party_lacks_capacity=False,
+        object_excluded_from_circulation=False,
         breach_issue=True,
         effective_termination=False,
     )

@@ -1397,6 +1397,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-objects",
+            title="Проверка объекта гражданских прав",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.objects_evidence_mapping.evidence_id,
+                trace.analysis_result.objects_constraint_set.id,
+                *trace.analysis_result.objects_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.objects_evaluation.reasons_ru,
+                "Перечень объектов гражданских прав, их оборотоспособность, деление вещей на недвижимые и движимые, неделимые и сложные вещи, следование принадлежности судьбе главной вещи, плоды, продукция и доходы, деньги и ценные бумаги, нематериальные блага и защита чести, достоинства и деловой репутации проверяются раздельно по статьям 128–152 ГК РФ.",
+                "Отнесение объекта к изъятым из оборота, прочность связи вещи с землёй и порочащий характер сведений оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-persons",
             title="Проверка правоспособности и дееспособности сторон",
             status=PipelineStepStatus.PASSED,
