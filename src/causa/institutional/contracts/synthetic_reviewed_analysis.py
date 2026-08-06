@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.representation import (
+    RepresentationEvidenceAssertion,
+    RepresentationEvidencePredicate,
+    ReviewedRepresentationEvidence,
+)
 from causa.institutional.contracts.unjust_enrichment import (
     ReviewedUnjustEnrichmentEvidence,
     UnjustEnrichmentEvidenceAssertion,
@@ -582,6 +587,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
+    "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
+    "synthetic-case-supply-1-representation-evidence",
     "synthetic-ru-gk1102-1105-unjust-enrichment-duty-and-return-v1",
     "synthetic-ru-gk1106-1109-unjust-enrichment-income-costs-and-exceptions-v1",
     "synthetic-case-supply-1-unjust-enrichment-evidence",
@@ -2950,6 +2958,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        representation_evidence=ReviewedRepresentationEvidence(
+            id="reviewed-representation-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                RepresentationEvidenceAssertion(
+                    id=f"representation-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-representation-evidence",),
+                )
+                for predicate, value in (
+                    (RepresentationEvidencePredicate.REPRESENTATION_RELATION_ESTABLISHED, False),
+                    (RepresentationEvidencePredicate.AUTHORITY_BASIS_INVALID, False),
+                    (RepresentationEvidencePredicate.PROHIBITED_SELF_DEALING, False),
+                    (
+                        RepresentationEvidencePredicate.COMMERCIAL_REPRESENTATION_RULES_BREACHED,
+                        False,
+                    ),
+                    (RepresentationEvidencePredicate.POWER_OF_ATTORNEY_FORM_BREACHED, False),
+                    (RepresentationEvidencePredicate.POWER_OF_ATTORNEY_TERM_BREACHED, False),
+                    (RepresentationEvidencePredicate.SUBSTITUTION_RULES_BREACHED, False),
+                    (RepresentationEvidencePredicate.TERMINATION_OR_NOTICE_BREACHED, False),
+                    (
+                        RepresentationEvidencePredicate.UNAUTHORIZED_ACT_WITHOUT_RATIFICATION,
+                        False,
+                    ),
+                    (RepresentationEvidencePredicate.RATIFICATION_EFFECT_DISREGARDED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
+                "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-representation-reviewer",
         ),
         unjust_enrichment_evidence=ReviewedUnjustEnrichmentEvidence(
             id="reviewed-unjust-enrichment-evidence-supply-1-v0",

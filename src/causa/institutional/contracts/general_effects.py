@@ -16,6 +16,8 @@
 - статья 199 ГК РФ — истечение срока исковой давности, о применении которой
   заявлено стороной, является основанием к вынесению судом решения об отказе
   в иске;
+- статья 183 ГК РФ — при отсутствии полномочий сделка считается заключённой от
+  имени совершившего её лица, пока представляемый её не одобрит;
 - статья 1103 ГК РФ — применение правил о неосновательном обогащении к
   требованиям о возврате исполненного по недействительной сделке.
 """
@@ -23,7 +25,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 from z3 import And, Bool, Not, Or, Solver, sat
 
-GENERAL_EFFECTS_MODEL_VERSION = "contracts-general-part-effects-articles-167-199-432-v0"
+GENERAL_EFFECTS_MODEL_VERSION = "contracts-general-part-effects-articles-167-183-199-432-v1"
 
 
 class GeneralEffectsInputs(BaseModel):
@@ -41,6 +43,8 @@ class GeneralEffectsInputs(BaseModel):
     # Исковая давность (статьи 195–208 ГК РФ).
     limitation_defense_available: bool
     claim_not_subject_to_limitation: bool
+    # Представительство: сделка неуполномоченного лица (статья 183 ГК РФ).
+    unauthorized_representation_detected: bool
     # Нарушение обязательства и прекращение договора (статьи 309–328, 450–453).
     breach_issue: bool
     effective_termination: bool
@@ -61,6 +65,7 @@ class GeneralEffectsEvaluation(BaseModel):
     formation_defect_displaces_contract: bool
     invalidity_displaces_contract: bool
     form_defect_displaces_contract: bool
+    unauthorized_representation_displaces_contract: bool
     # Возможность судебной защиты.
     judicial_protection_available: bool
     claims_barred_by_limitation: bool
@@ -79,6 +84,7 @@ def build_general_effects_inputs(
     invalidity_evaluation,
     form_evaluation,
     limitation_evaluation,
+    representation_evaluation,
     constraint_evaluation,
     termination_evaluation,
 ) -> GeneralEffectsInputs:
@@ -90,6 +96,9 @@ def build_general_effects_inputs(
         transaction_void_for_form=form_evaluation.transaction_void_for_form,
         limitation_defense_available=limitation_evaluation.limitation_defense_available,
         claim_not_subject_to_limitation=limitation_evaluation.claim_not_subject_to_limitation,
+        unauthorized_representation_detected=(
+            representation_evaluation.unauthorized_representation_detected
+        ),
         breach_issue=constraint_evaluation.breach_issue,
         effective_termination=termination_evaluation.effective_termination,
     )
@@ -106,6 +115,7 @@ def build_general_effects_constraint_set(
             "invalidity_evaluation",
             "form_evaluation",
             "limitation_evaluation",
+            "representation_evaluation",
             "constraint_evaluation",
             "termination_evaluation",
         ],
@@ -113,7 +123,8 @@ def build_general_effects_constraint_set(
             "formation_defect_displaces_contract == NOT contract_concluded_prerequisites",
             "invalidity_displaces_contract == contractual_effect_displaced",
             "form_defect_displaces_contract == transaction_void_for_form",
-            "contract_legally_effective == contract_concluded_prerequisites AND NOT contractual_effect_displaced AND NOT transaction_void_for_form",
+            "unauthorized_representation_displaces_contract == unauthorized_representation_detected",
+            "contract_legally_effective == contract_concluded_prerequisites AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected",
             "judicial_protection_available == claim_not_subject_to_limitation OR NOT limitation_defense_available",
             "claims_barred_by_limitation == contract_legally_effective AND NOT judicial_protection_available",
             "contractual_claims_enforceable == contract_legally_effective AND judicial_protection_available",
@@ -134,6 +145,9 @@ def evaluate_general_effects_constraints(
     formation_defect_displaces_contract = Bool("formation_defect_displaces_contract")
     invalidity_displaces_contract = Bool("invalidity_displaces_contract")
     form_defect_displaces_contract = Bool("form_defect_displaces_contract")
+    unauthorized_representation_displaces_contract = Bool(
+        "unauthorized_representation_displaces_contract"
+    )
     judicial_protection_available = Bool("judicial_protection_available")
     claims_barred_by_limitation = Bool("claims_barred_by_limitation")
     contractual_claims_enforceable = Bool("contractual_claims_enforceable")
@@ -151,11 +165,16 @@ def evaluate_general_effects_constraints(
     solver.add(invalidity_displaces_contract == variables["contractual_effect_displaced"])
     solver.add(form_defect_displaces_contract == variables["transaction_void_for_form"])
     solver.add(
+        unauthorized_representation_displaces_contract
+        == variables["unauthorized_representation_detected"]
+    )
+    solver.add(
         contract_legally_effective
         == And(
             variables["contract_concluded_prerequisites"],
             Not(variables["contractual_effect_displaced"]),
             Not(variables["transaction_void_for_form"]),
+            Not(variables["unauthorized_representation_detected"]),
         )
     )
     solver.add(
@@ -201,6 +220,7 @@ def evaluate_general_effects_constraints(
             formation_defect_displaces_contract=False,
             invalidity_displaces_contract=False,
             form_defect_displaces_contract=False,
+            unauthorized_representation_displaces_contract=False,
             judicial_protection_available=False,
             claims_barred_by_limitation=False,
             contractual_claims_enforceable=False,
@@ -246,6 +266,12 @@ def evaluate_general_effects_constraints(
             "Несоблюдение установленной формы сделки влечёт её недействительность в случаях, "
             "прямо указанных в законе или в соглашении сторон (статьи 162 и 165 ГК РФ)."
         )
+    if truth(unauthorized_representation_displaces_contract):
+        reasons_ru.append(
+            "Сделка совершена лицом без полномочий и не одобрена представляемым, поэтому она "
+            "считается заключённой от имени и в интересах совершившего её лица и не связывает "
+            "представляемого (статья 183 ГК РФ)."
+        )
     if truth(claims_barred_by_limitation):
         reasons_ru.append(
             "Истечение срока исковой давности, о применении которой заявлено стороной спора, "
@@ -278,6 +304,9 @@ def evaluate_general_effects_constraints(
         formation_defect_displaces_contract=truth(formation_defect_displaces_contract),
         invalidity_displaces_contract=truth(invalidity_displaces_contract),
         form_defect_displaces_contract=truth(form_defect_displaces_contract),
+        unauthorized_representation_displaces_contract=truth(
+            unauthorized_representation_displaces_contract
+        ),
         judicial_protection_available=truth(judicial_protection_available),
         claims_barred_by_limitation=truth(claims_barred_by_limitation),
         contractual_claims_enforceable=truth(contractual_claims_enforceable),

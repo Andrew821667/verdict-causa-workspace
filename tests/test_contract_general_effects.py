@@ -45,6 +45,7 @@ def test_general_effects_layer_is_derived_from_anchor_evaluations() -> None:
         result.invalidity_evaluation,
         result.form_evaluation,
         result.limitation_evaluation,
+        result.representation_evaluation,
         result.constraint_evaluation,
         result.termination_evaluation,
     )
@@ -117,6 +118,7 @@ def test_general_effects_never_displaces_an_effective_contract() -> None:
         transaction_void_for_form=False,
         limitation_defense_available=False,
         claim_not_subject_to_limitation=False,
+        unauthorized_representation_detected=False,
         breach_issue=True,
         effective_termination=False,
     )

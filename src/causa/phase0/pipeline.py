@@ -142,6 +142,9 @@ from causa.institutional.contracts.synthetic_moral_harm import (
 from causa.institutional.contracts.synthetic_general_effects import (
     build_synthetic_general_effects_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_representation import (
+    build_synthetic_representation_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_unjust_enrichment import (
     build_synthetic_unjust_enrichment_evaluation_artifact,
 )
@@ -1391,6 +1394,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-representation",
+            title="Проверка представительства и доверенности",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.representation_evidence_mapping.evidence_id,
+                trace.analysis_result.representation_constraint_set.id,
+                *trace.analysis_result.representation_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.representation_evaluation.reasons_ru,
+                "Квалификация представительства, основание полномочия, запрет совершения представителем сделок в отношении себя лично, коммерческое представительство, форма, удостоверение и срок доверенности, передоверие, прекращение доверенности и извещение о нём, а также совершение сделки неуполномоченным лицом и последующее одобрение проверяются раздельно по статьям 182–189 ГК РФ.",
+                "Объём полномочий представителя, явствование полномочия из обстановки и факт последующего одобрения сделки оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="apply-general-part-effects",
             title="Применение общих положений ГК к выводам институтов",
             status=PipelineStepStatus.PASSED,
@@ -1717,6 +1735,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     negotiorum_gestio_artifact = build_synthetic_negotiorum_gestio_evaluation_artifact()
     commission_artifact = build_synthetic_commission_evaluation_artifact()
     agency_artifact = build_synthetic_agency_evaluation_artifact()
+    representation_artifact = build_synthetic_representation_evaluation_artifact()
     general_effects_artifact = build_synthetic_general_effects_evaluation_artifact()
     unjust_enrichment_artifact = build_synthetic_unjust_enrichment_evaluation_artifact()
     moral_harm_artifact = build_synthetic_moral_harm_evaluation_artifact()
@@ -1899,6 +1918,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-commission-spec.md",
                 "src/causa/institutional/contracts/agency.py",
                 "docs/contract-agency-spec.md",
+                "src/causa/institutional/contracts/representation.py",
+                "docs/contract-representation-spec.md",
                 "src/causa/institutional/contracts/general_effects.py",
                 "docs/contract-general-effects-spec.md",
                 "src/causa/institutional/contracts/unjust_enrichment.py",
@@ -1997,6 +2018,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_representation_evaluation_report.json",
                 "examples/synthetic_general_effects_evaluation_report.json",
                 "examples/synthetic_unjust_enrichment_evaluation_report.json",
                 "examples/synthetic_moral_harm_evaluation_report.json",
@@ -2207,6 +2229,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 commission_artifact.red_team_report.id,
                 agency_artifact.benchmark_report.id,
                 agency_artifact.red_team_report.id,
+                representation_artifact.benchmark_report.id,
+                representation_artifact.red_team_report.id,
                 general_effects_artifact.benchmark_report.id,
                 general_effects_artifact.red_team_report.id,
                 unjust_enrichment_artifact.benchmark_report.id,
@@ -2317,6 +2341,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_representation_evaluation_report.json",
                 "examples/synthetic_general_effects_evaluation_report.json",
                 "examples/synthetic_unjust_enrichment_evaluation_report.json",
                 "examples/synthetic_moral_harm_evaluation_report.json",

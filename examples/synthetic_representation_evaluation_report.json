@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о представительстве и доверенности по статьям 182–189 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-representation-evidence-supply-1-v0",
+    "schema_version": "contracts.representation-evidence.v0",
+    "mapping_version": "contracts-reviewed-representation-to-facts-v0",
+    "facts": {
+      "representation_relation_established": false,
+      "authority_basis_invalid": false,
+      "prohibited_self_dealing": false,
+      "commercial_representation_rules_breached": false,
+      "power_of_attorney_form_breached": false,
+      "power_of_attorney_term_breached": false,
+      "substitution_rules_breached": false,
+      "termination_or_notice_breached": false,
+      "unauthorized_act_without_ratification": false,
+      "ratification_effect_disregarded": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
+      "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "authority_basis_invalid",
+        "assertion_id": "representation-evidence-authority_basis_invalid",
+        "source_refs": [
+          "synthetic-case-supply-1-representation-evidence"
+        ]
+      },
+      {
+        "fact_name": "commercial_representation_rules_breached",
+        "assertion_id": "representation-evidence-commercial_representation_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-representation-evidence"
+        ]
+      },
+      {
+        "fact_name": "power_of_attorney_form_breached",
+        "assertion_id": "representation-evidence-power_of_attorney_form_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-representation-evidence"
+        ]
+      },
+      {
+        "fact_name": "power_of_attorney_term_breached",
+        "assertion_id": "representation-evidence-power_of_attorney_term_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-representation-evidence"
+        ]
+      },
+      {
+        "fact_name": "prohibited_self_dealing",
+        "assertion_id": "representation-evidence-prohibited_self_dealing",
+        "source_refs": [
+          "synthetic-case-supply-1-representation-evidence"
+        ]
+      },
+      {
+        "fact_name": "ratification_effect_disregarded",
+        "assertion_id": "representation-evidence-ratification_effect_disregarded",
+        "source_refs": [
+          "synthetic-case-supply-1-representation-evidence"
+        ]
+      },
+      {
+        "fact_name": "representation_relation_established",
+        "assertion_id": "representation-evidence-representation_relation_established",
+        "source_refs": [
+          "synthetic-case-supply-1-representation-evidence"
+        ]
+      },
+      {
+        "fact_name": "substitution_rules_breached",
+        "assertion_id": "representation-evidence-substitution_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-representation-evidence"
+        ]
+      },
+      {
+        "fact_name": "termination_or_notice_breached",
+        "assertion_id": "representation-evidence-termination_or_notice_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-representation-evidence"
+        ]
+      },
+      {
+        "fact_name": "unauthorized_act_without_ratification",
+        "assertion_id": "representation-evidence-unauthorized_act_without_ratification",
+        "source_refs": [
+          "synthetic-case-supply-1-representation-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "representation-constraint-set:reviewed-representation-evidence-supply-1-v0",
+    "model_version": "contracts-representation-articles-182-189-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
+      "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1"
+    ],
+    "expressions": [
+      "representation_qualified == representation_relation_established",
+      "authority_basis_duty_breached == representation_qualified AND authority_basis_invalid",
+      "self_dealing_duty_breached == representation_qualified AND prohibited_self_dealing",
+      "commercial_representation_duty_breached == representation_qualified AND commercial_representation_rules_breached",
+      "power_of_attorney_form_duty_breached == representation_qualified AND power_of_attorney_form_breached",
+      "power_of_attorney_term_duty_breached == representation_qualified AND power_of_attorney_term_breached",
+      "substitution_duty_breached == representation_qualified AND substitution_rules_breached",
+      "termination_notice_duty_breached == representation_qualified AND termination_or_notice_breached",
+      "unauthorized_representation_detected == representation_qualified AND unauthorized_act_without_ratification",
+      "ratification_effect_breached == representation_qualified AND unauthorized_act_without_ratification AND ratification_effect_disregarded",
+      "requires_human_representation_assessment == authority_basis_duty_breached OR self_dealing_duty_breached OR commercial_representation_duty_breached OR power_of_attorney_form_duty_breached OR power_of_attorney_term_duty_breached OR substitution_duty_breached OR termination_notice_duty_breached OR unauthorized_representation_detected"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "representation-constraint-set:reviewed-representation-evidence-supply-1-v0",
+    "satisfiable": true,
+    "representation_qualified": false,
+    "authority_basis_duty_breached": false,
+    "self_dealing_duty_breached": false,
+    "commercial_representation_duty_breached": false,
+    "power_of_attorney_form_duty_breached": false,
+    "power_of_attorney_term_duty_breached": false,
+    "substitution_duty_breached": false,
+    "termination_notice_duty_breached": false,
+    "unauthorized_representation_detected": false,
+    "ratification_effect_breached": false,
+    "requires_human_representation_assessment": false,
+    "reasons_ru": [
+      "Отношения представительства не установлены."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о представительстве и доверенности и не заменяет судебную оценку.",
+      "Объём полномочий представителя, явствование полномочия из обстановки и факт последующего одобрения сделки оцениваются экспертом и судом (статьи 182, 183 и 189 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "representation-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "representation-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "representation_qualified": false
+        },
+        "observed_outcomes": {
+          "representation_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения представительства не установлены."
+        ]
+      },
+      {
+        "task_id": "representation-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "representation_qualified": true,
+          "requires_human_representation_assessment": false
+        },
+        "observed_outcomes": {
+          "representation_qualified": true,
+          "requires_human_representation_assessment": false
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representation-bench-authority-basis",
+        "passed": true,
+        "expected_outcomes": {
+          "authority_basis_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "observed_outcomes": {
+          "authority_basis_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Полномочие представителя должно основываться на доверенности, указании закона либо акте уполномоченного государственного органа или органа местного самоуправления либо явствовать из обстановки, в которой действует представитель (статья 182 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representation-bench-self-dealing",
+        "passed": true,
+        "expected_outcomes": {
+          "self_dealing_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "observed_outcomes": {
+          "self_dealing_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Представитель не может совершать сделки от имени представляемого в отношении себя лично, а также в отношении другого лица, представителем которого он одновременно является, за исключением случаев коммерческого представительства; такая сделка может быть признана судом недействительной по иску представляемого (статья 182 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representation-bench-commercial",
+        "passed": true,
+        "expected_outcomes": {
+          "commercial_representation_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "observed_outcomes": {
+          "commercial_representation_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Коммерческим представителем является лицо, постоянно и самостоятельно представительствующее от имени предпринимателей при заключении ими договоров; одновременное представительство разных сторон допускается с их согласия, а коммерческий представитель обязан исполнять поручения с заботливостью обычного предпринимателя (статья 184 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representation-bench-poa-form",
+        "passed": true,
+        "expected_outcomes": {
+          "power_of_attorney_form_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "observed_outcomes": {
+          "power_of_attorney_form_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Доверенностью признаётся письменное уполномочие, выдаваемое одним лицом другому для представительства перед третьими лицами; доверенность на совершение сделок, требующих нотариальной формы, на подачу заявлений о государственной регистрации прав и на распоряжение зарегистрированными правами должна быть нотариально удостоверена, если иное не установлено законом (статьи 185 и 185.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representation-bench-poa-term",
+        "passed": true,
+        "expected_outcomes": {
+          "power_of_attorney_term_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "observed_outcomes": {
+          "power_of_attorney_term_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Если в доверенности не указан срок её действия, она сохраняет силу в течение года со дня её совершения; доверенность, в которой не указана дата её совершения, ничтожна (статья 186 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representation-bench-substitution",
+        "passed": true,
+        "expected_outcomes": {
+          "substitution_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "observed_outcomes": {
+          "substitution_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Лицо, которому выдана доверенность, должно лично совершать действия, на которые оно уполномочено, и может передоверить их совершение другому лицу, если уполномочено на это доверенностью либо вынуждено силою обстоятельств для охраны интересов выдавшего доверенность; передавший полномочия обязан известить об этом выдавшего доверенность (статья 187 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representation-bench-termination",
+        "passed": true,
+        "expected_outcomes": {
+          "termination_notice_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "observed_outcomes": {
+          "termination_notice_duty_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Действие доверенности прекращается по основаниям, установленным законом, в том числе вследствие её отмены или отказа от неё; лицо, выдавшее доверенность, обязано известить о её отмене представителя и известных ему третьих лиц, а права и обязанности, возникшие до того, как представитель узнал или должен был узнать о прекращении доверенности, сохраняют силу для представляемого (статьи 188 и 189 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "representation-bench-unauthorized-act",
+        "passed": true,
+        "expected_outcomes": {
+          "unauthorized_representation_detected": true,
+          "ratification_effect_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "observed_outcomes": {
+          "unauthorized_representation_detected": true,
+          "ratification_effect_breached": true,
+          "requires_human_representation_assessment": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "При отсутствии полномочий действовать от имени другого лица или при их превышении сделка считается заключённой от имени и в интересах совершившего её лица, если только другое лицо впоследствии не одобрит данную сделку; до одобрения представляемый такой сделкой не связан (статья 183 ГК РФ).",
+          "Последующее одобрение сделки представляемым создаёт, изменяет и прекращает для него гражданские права и обязанности по данной сделке с момента её совершения (статья 183 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "representation-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "representation-red-qualify-without-relation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "representation_qualified": true
+        },
+        "observed_outcomes": {
+          "representation_qualified": false
+        },
+        "reasons_ru": [
+          "Отношения представительства не установлены."
+        ]
+      },
+      {
+        "case_id": "representation-red-ignore-authority-basis",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "authority_basis_duty_breached": false
+        },
+        "observed_outcomes": {
+          "authority_basis_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Полномочие представителя должно основываться на доверенности, указании закона либо акте уполномоченного государственного органа или органа местного самоуправления либо явствовать из обстановки, в которой действует представитель (статья 182 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representation-red-allow-self-dealing",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "self_dealing_duty_breached": false
+        },
+        "observed_outcomes": {
+          "self_dealing_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Представитель не может совершать сделки от имени представляемого в отношении себя лично, а также в отношении другого лица, представителем которого он одновременно является, за исключением случаев коммерческого представительства; такая сделка может быть признана судом недействительной по иску представляемого (статья 182 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representation-red-ignore-commercial-rules",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "commercial_representation_duty_breached": false
+        },
+        "observed_outcomes": {
+          "commercial_representation_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Коммерческим представителем является лицо, постоянно и самостоятельно представительствующее от имени предпринимателей при заключении ими договоров; одновременное представительство разных сторон допускается с их согласия, а коммерческий представитель обязан исполнять поручения с заботливостью обычного предпринимателя (статья 184 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representation-red-ignore-poa-form",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "power_of_attorney_form_duty_breached": false
+        },
+        "observed_outcomes": {
+          "power_of_attorney_form_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Доверенностью признаётся письменное уполномочие, выдаваемое одним лицом другому для представительства перед третьими лицами; доверенность на совершение сделок, требующих нотариальной формы, на подачу заявлений о государственной регистрации прав и на распоряжение зарегистрированными правами должна быть нотариально удостоверена, если иное не установлено законом (статьи 185 и 185.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representation-red-ignore-poa-term",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "power_of_attorney_term_duty_breached": false
+        },
+        "observed_outcomes": {
+          "power_of_attorney_term_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Если в доверенности не указан срок её действия, она сохраняет силу в течение года со дня её совершения; доверенность, в которой не указана дата её совершения, ничтожна (статья 186 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representation-red-ignore-substitution",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "substitution_duty_breached": false
+        },
+        "observed_outcomes": {
+          "substitution_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Лицо, которому выдана доверенность, должно лично совершать действия, на которые оно уполномочено, и может передоверить их совершение другому лицу, если уполномочено на это доверенностью либо вынуждено силою обстоятельств для охраны интересов выдавшего доверенность; передавший полномочия обязан известить об этом выдавшего доверенность (статья 187 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representation-red-ignore-termination-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "termination_notice_duty_breached": false
+        },
+        "observed_outcomes": {
+          "termination_notice_duty_breached": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "Действие доверенности прекращается по основаниям, установленным законом, в том числе вследствие её отмены или отказа от неё; лицо, выдавшее доверенность, обязано известить о её отмене представителя и известных ему третьих лиц, а права и обязанности, возникшие до того, как представитель узнал или должен был узнать о прекращении доверенности, сохраняют силу для представляемого (статьи 188 и 189 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representation-red-bind-principal-without-authority",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unauthorized_representation_detected": false
+        },
+        "observed_outcomes": {
+          "unauthorized_representation_detected": true
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ).",
+          "При отсутствии полномочий действовать от имени другого лица или при их превышении сделка считается заключённой от имени и в интересах совершившего её лица, если только другое лицо впоследствии не одобрит данную сделку; до одобрения представляемый такой сделкой не связан (статья 183 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "representation-red-ratification-without-unauthorized-act",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "ratification_effect_breached": true
+        },
+        "observed_outcomes": {
+          "ratification_effect_breached": false
+        },
+        "reasons_ru": [
+          "Установлены отношения представительства: сделка, совершённая одним лицом (представителем) от имени другого лица (представляемого) в силу полномочия, основанного на доверенности, указании закона либо акте уполномоченного органа, непосредственно создаёт, изменяет и прекращает гражданские права и обязанности представляемого (статья 182 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95820/"
+  ]
+}

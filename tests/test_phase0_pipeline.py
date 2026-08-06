@@ -88,6 +88,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "evaluate-product-liability",
         "evaluate-moral-harm",
         "evaluate-unjust-enrichment",
+        "evaluate-representation",
         "apply-general-part-effects",
         "evaluate-transaction-invalidity",
         "evaluate-obligation-constraints",

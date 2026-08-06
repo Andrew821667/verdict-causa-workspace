@@ -1651,6 +1651,26 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.86.0",
+        to_version="0.87.0",
+        reasons=[
+            "Reviewed inputs now require a separate representation evidence contract covering articles 182 to 189.",
+            "The general-part effects layer gains an input for an unauthorised act without ratification, so a contract signed without authority no longer produces effects for the principal under article 183.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных о представительстве и доверенности по статьям 182–189 ГК РФ.",
+            "Слой общих положений получил вход о сделке неуполномоченного лица без одобрения, поэтому договор, подписанный без полномочий, больше не порождает последствий для представляемого (статья 183 ГК РФ).",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_representation_evaluation.py",
+            "python scripts/export_synthetic_general_effects_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

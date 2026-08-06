@@ -1,5 +1,15 @@
 # Contracts RU v0 Changelog
 
+## 0.87.0 - 2026-08-06
+
+- Добавляет отдельный проверенный контракт данных о представительстве и доверенности и формальную модель статей 182–189 ГК РФ (`src/causa/institutional/contracts/representation.py`).
+- Разделяет квалификацию представительства, основание полномочия, запрет сделок в отношении себя лично, коммерческое представительство, форму и срок доверенности, передоверие, прекращение и извещение, сделку неуполномоченного лица и эффект последующего одобрения.
+- **Первый институт части первой ГК РФ, подключённый к слою общих положений, а не добавленный как остров:** вывод `unauthorized_representation_detected` поступает в `general_effects` и по статье 183 ГК РФ снимает `contract_legally_effective`, вытесняя выводы специальных институтов.
+- Слой общих положений обновлён до `contracts-general-part-effects-articles-167-183-199-432-v1`: добавлены вход `unauthorized_representation_detected` и вывод `unauthorized_representation_displaces_contract`.
+- Регрессия закреплена тестом `test_unauthorized_representation_propagates_through_general_effects`.
+- Добавляет русскую спецификацию [`docs/contract-representation-spec.md`](contract-representation-spec.md), синтетический артефакт, benchmark (`10/10`), red-team (`10/10`) и шаг `evaluate-representation` в Phase 0.
+- Сохраняет evidence `contracts.case-evidence.v9`, analysis `contracts-reviewed-analysis-v9` и русские шаблоны `ru-v11`.
+
 ## 0.86.0 - 2026-08-06
 
 - Добавляет слой применения общих положений ГК РФ к выводам специальных институтов (`src/causa/institutional/contracts/general_effects.py`, статьи 167, 199 и 432).

@@ -534,6 +534,16 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.representation import (
+    REPRESENTATION_EVIDENCE_SCHEMA_VERSION,
+    RepresentationConstraintSet,
+    RepresentationEvaluation,
+    RepresentationEvidenceMappingResult,
+    ReviewedRepresentationEvidence,
+    build_representation_constraint_set,
+    evaluate_representation_constraints,
+    map_reviewed_representation_evidence,
+)
 from causa.institutional.contracts.general_effects import (
     GeneralEffectsConstraintSet,
     GeneralEffectsEvaluation,
@@ -953,6 +963,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     negotiorum_gestio_evidence: ReviewedNegotiorumGestioEvidence
     commission_evidence: ReviewedCommissionEvidence
     agency_evidence: ReviewedAgencyEvidence
+    representation_evidence: ReviewedRepresentationEvidence
     unjust_enrichment_evidence: ReviewedUnjustEnrichmentEvidence
     moral_harm_evidence: ReviewedMoralHarmEvidence
     product_liability_evidence: ReviewedProductLiabilityEvidence
@@ -1176,6 +1187,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     agency_evidence_mapping: AgencyEvidenceMappingResult
     agency_constraint_set: AgencyConstraintSet
     agency_evaluation: AgencyEvaluation
+    representation_evidence_mapping: RepresentationEvidenceMappingResult
+    representation_constraint_set: RepresentationConstraintSet
+    representation_evaluation: RepresentationEvaluation
     general_effects_inputs: GeneralEffectsInputs
     general_effects_constraint_set: GeneralEffectsConstraintSet
     general_effects_evaluation: GeneralEffectsEvaluation
@@ -1885,6 +1899,7 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.invalidity_evaluation,
             self.form_evaluation,
             self.limitation_evaluation,
+            self.representation_evaluation,
             self.constraint_evaluation,
             self.termination_evaluation,
         )
@@ -1904,6 +1919,19 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.general_effects_evaluation != expected_general_effects_evaluation:
             raise ValueError("General-effects evaluation does not replay from anchor evaluations.")
+        expected_representation_set = build_representation_constraint_set(
+            self.representation_evidence_mapping
+        )
+        if self.representation_constraint_set != expected_representation_set:
+            raise ValueError(
+                "Representation constraint set does not replay from reviewed evidence."
+            )
+        expected_representation_evaluation = evaluate_representation_constraints(
+            expected_representation_set,
+            self.representation_evidence_mapping.facts,
+        )
+        if self.representation_evaluation != expected_representation_evaluation:
+            raise ValueError("Representation evaluation does not replay from reviewed evidence.")
         expected_unjust_enrichment_set = build_unjust_enrichment_constraint_set(
             self.unjust_enrichment_evidence_mapping
         )
@@ -2456,6 +2484,8 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence case_id does not match the analysis request.")
     if request.agency_evidence.case_id != request.case_id:
         raise ValueError("Agency evidence case_id does not match the analysis request.")
+    if request.representation_evidence.case_id != request.case_id:
+        raise ValueError("Representation evidence case_id does not match the analysis request.")
     if request.unjust_enrichment_evidence.case_id != request.case_id:
         raise ValueError("Unjust-enrichment evidence case_id does not match the analysis request.")
     if request.moral_harm_evidence.case_id != request.case_id:
@@ -2661,6 +2691,8 @@ def _validate_request_integrity(
         raise ValueError("Commission evidence uses an unsupported schema version.")
     if request.agency_evidence.schema_version != AGENCY_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Agency evidence uses an unsupported schema version.")
+    if request.representation_evidence.schema_version != REPRESENTATION_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Representation evidence uses an unsupported schema version.")
     if (
         request.unjust_enrichment_evidence.schema_version
         != UNJUST_ENRICHMENT_EVIDENCE_SCHEMA_VERSION
@@ -2752,6 +2784,7 @@ def _validate_request_integrity(
         *request.negotiorum_gestio_evidence.legal_source_refs,
         *request.commission_evidence.legal_source_refs,
         *request.agency_evidence.legal_source_refs,
+        *request.representation_evidence.legal_source_refs,
         *request.unjust_enrichment_evidence.legal_source_refs,
         *request.moral_harm_evidence.legal_source_refs,
         *request.product_liability_evidence.legal_source_refs,
@@ -2888,6 +2921,8 @@ def _validate_request_integrity(
     for assertion in request.commission_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.agency_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.representation_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.unjust_enrichment_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -3578,6 +3613,17 @@ def _validate_request_integrity(
             "Agency legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_agency_legal_sources))
         )
+    invalid_representation_legal_sources = [
+        source_id
+        for source_id in request.representation_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_representation_legal_sources:
+        raise ValueError(
+            "Representation legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_representation_legal_sources))
+        )
     invalid_unjust_enrichment_legal_sources = [
         source_id
         for source_id in request.unjust_enrichment_evidence.legal_source_refs
@@ -4159,6 +4205,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Agency evidence",
         review_status=request.agency_evidence.review_status,
         reviewer_id=request.agency_evidence.reviewer_id,
+    )
+    representation_reviewer_id = _require_reviewed(
+        artifact_name="Representation evidence",
+        review_status=request.representation_evidence.review_status,
+        reviewer_id=request.representation_evidence.reviewer_id,
     )
     unjust_enrichment_reviewer_id = _require_reviewed(
         artifact_name="Unjust-enrichment evidence",
@@ -4742,6 +4793,16 @@ def run_reviewed_contract_analysis(
         agency_constraint_set,
         agency_evidence_mapping.facts,
     )
+    representation_evidence_mapping = map_reviewed_representation_evidence(
+        request.representation_evidence
+    )
+    representation_constraint_set = build_representation_constraint_set(
+        representation_evidence_mapping
+    )
+    representation_evaluation = evaluate_representation_constraints(
+        representation_constraint_set,
+        representation_evidence_mapping.facts,
+    )
     unjust_enrichment_evidence_mapping = map_reviewed_unjust_enrichment_evidence(
         request.unjust_enrichment_evidence
     )
@@ -5046,6 +5107,7 @@ def run_reviewed_contract_analysis(
         invalidity_evaluation,
         form_evaluation,
         limitation_evaluation,
+        representation_evaluation,
         constraint_evaluation,
         termination_evaluation,
     )
@@ -5122,6 +5184,7 @@ def run_reviewed_contract_analysis(
         or negotiorum_gestio_evaluation.requires_human_negotiorum_gestio_assessment
         or commission_evaluation.requires_human_commission_assessment
         or agency_evaluation.requires_human_agency_assessment
+        or representation_evaluation.requires_human_representation_assessment
         or unjust_enrichment_evaluation.requires_human_unjust_enrichment_assessment
         or moral_harm_evaluation.requires_human_moral_harm_assessment
         or product_liability_evaluation.requires_human_product_liability_assessment
@@ -5209,6 +5272,7 @@ def run_reviewed_contract_analysis(
                 negotiorum_gestio_reviewer_id,
                 commission_reviewer_id,
                 agency_reviewer_id,
+                representation_reviewer_id,
                 unjust_enrichment_reviewer_id,
                 moral_harm_reviewer_id,
                 product_liability_reviewer_id,
@@ -5410,6 +5474,9 @@ def run_reviewed_contract_analysis(
         agency_evaluation=agency_evaluation,
         unjust_enrichment_evidence_mapping=unjust_enrichment_evidence_mapping,
         unjust_enrichment_constraint_set=unjust_enrichment_constraint_set,
+        representation_evidence_mapping=representation_evidence_mapping,
+        representation_constraint_set=representation_constraint_set,
+        representation_evaluation=representation_evaluation,
         general_effects_inputs=general_effects_inputs,
         general_effects_constraint_set=general_effects_constraint_set,
         general_effects_evaluation=general_effects_evaluation,

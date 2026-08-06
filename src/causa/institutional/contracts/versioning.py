@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.87.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed representation evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 182 to 189.",
+            "Representation qualification, the basis of authority, the ban on self-dealing, commercial representation, the form and term of a power of attorney, substitution, termination and notice, an act by an unauthorised person and the effect of ratification remain distinct.",
+            "An unauthorised act without ratification feeds the general-part effects layer and displaces the contract for the principal under article 183.",
+        ],
+        notes_ru=[
+            "Проверенные данные о представительстве и доверенности обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 182–189 ГК РФ.",
+            "Квалификация представительства, основание полномочия, запрет сделок в отношении себя лично, коммерческое представительство, форма и срок доверенности, передоверие, прекращение и извещение, сделка неуполномоченного лица и эффект последующего одобрения разделены.",
+            "Сделка неуполномоченного лица без одобрения поступает в слой общих положений и лишает договор эффекта для представляемого по статье 183 ГК РФ.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.86.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],
