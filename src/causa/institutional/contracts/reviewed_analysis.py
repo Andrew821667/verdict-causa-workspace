@@ -534,6 +534,14 @@ from causa.institutional.contracts.invalidity import (
     evaluate_invalidity_constraints,
     map_reviewed_invalidity_evidence,
 )
+from causa.institutional.contracts.general_effects import (
+    GeneralEffectsConstraintSet,
+    GeneralEffectsEvaluation,
+    GeneralEffectsInputs,
+    build_general_effects_constraint_set,
+    build_general_effects_inputs,
+    evaluate_general_effects_constraints,
+)
 from causa.institutional.contracts.unjust_enrichment import (
     UNJUST_ENRICHMENT_EVIDENCE_SCHEMA_VERSION,
     ReviewedUnjustEnrichmentEvidence,
@@ -1168,6 +1176,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     agency_evidence_mapping: AgencyEvidenceMappingResult
     agency_constraint_set: AgencyConstraintSet
     agency_evaluation: AgencyEvaluation
+    general_effects_inputs: GeneralEffectsInputs
+    general_effects_constraint_set: GeneralEffectsConstraintSet
+    general_effects_evaluation: GeneralEffectsEvaluation
     unjust_enrichment_evidence_mapping: UnjustEnrichmentEvidenceMappingResult
     unjust_enrichment_constraint_set: UnjustEnrichmentConstraintSet
     unjust_enrichment_evaluation: UnjustEnrichmentEvaluation
@@ -1867,6 +1878,32 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.agency_evaluation != expected_agency_evaluation:
             raise ValueError("Agency evaluation does not replay from reviewed evidence.")
+        # Слой общих положений выводится из выводов якорных моделей, поэтому
+        # проверяется и воспроизводимость входов, а не только оценки.
+        expected_general_effects_inputs = build_general_effects_inputs(
+            self.formation_evaluation,
+            self.invalidity_evaluation,
+            self.form_evaluation,
+            self.limitation_evaluation,
+            self.constraint_evaluation,
+            self.termination_evaluation,
+        )
+        if self.general_effects_inputs != expected_general_effects_inputs:
+            raise ValueError(
+                "General-effects inputs do not replay from anchor institute evaluations."
+            )
+        expected_general_effects_set = build_general_effects_constraint_set(
+            expected_general_effects_inputs, self.case_id
+        )
+        if self.general_effects_constraint_set != expected_general_effects_set:
+            raise ValueError(
+                "General-effects constraint set does not replay from anchor evaluations."
+            )
+        expected_general_effects_evaluation = evaluate_general_effects_constraints(
+            expected_general_effects_set, expected_general_effects_inputs
+        )
+        if self.general_effects_evaluation != expected_general_effects_evaluation:
+            raise ValueError("General-effects evaluation does not replay from anchor evaluations.")
         expected_unjust_enrichment_set = build_unjust_enrichment_constraint_set(
             self.unjust_enrichment_evidence_mapping
         )
@@ -5002,6 +5039,22 @@ def run_reviewed_contract_analysis(
         liability_constraint_set,
         liability_evidence_mapping.facts,
     )
+    # Слой общих положений: применяет статьи 167, 199 и 432 ГК РФ к выводам
+    # специальных институтов и определяет, сохраняют ли те правовой эффект.
+    general_effects_inputs = build_general_effects_inputs(
+        formation_evaluation,
+        invalidity_evaluation,
+        form_evaluation,
+        limitation_evaluation,
+        constraint_evaluation,
+        termination_evaluation,
+    )
+    general_effects_constraint_set = build_general_effects_constraint_set(
+        general_effects_inputs, request.case_id
+    )
+    general_effects_evaluation = evaluate_general_effects_constraints(
+        general_effects_constraint_set, general_effects_inputs
+    )
     counterfactual_sensitivity = run_contract_counterfactual_sensitivity(
         trace_id=f"analysis:{request.id}",
         constraint_set=constraint_set,
@@ -5009,7 +5062,8 @@ def run_reviewed_contract_analysis(
         budget=counterfactual_budget,
     )
     requires_human_resolution = (
-        authority_evaluation.selected_source_id is None
+        general_effects_evaluation.requires_human_general_effects_assessment
+        or authority_evaluation.selected_source_id is None
         or formation_evaluation.requires_human_formation_assessment
         or temporal_effect_evaluation.requires_human_temporal_effect_assessment
         or limitation_evaluation.requires_human_limitation_assessment
@@ -5356,6 +5410,9 @@ def run_reviewed_contract_analysis(
         agency_evaluation=agency_evaluation,
         unjust_enrichment_evidence_mapping=unjust_enrichment_evidence_mapping,
         unjust_enrichment_constraint_set=unjust_enrichment_constraint_set,
+        general_effects_inputs=general_effects_inputs,
+        general_effects_constraint_set=general_effects_constraint_set,
+        general_effects_evaluation=general_effects_evaluation,
         unjust_enrichment_evaluation=unjust_enrichment_evaluation,
         moral_harm_evidence_mapping=moral_harm_evidence_mapping,
         moral_harm_constraint_set=moral_harm_constraint_set,

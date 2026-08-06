@@ -1632,6 +1632,25 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.85.0",
+        to_version="0.86.0",
+        reasons=[
+            "Analysis now derives a general-part effects layer from the conclusions of the anchor institutes instead of leaving them unconnected.",
+            "Conclusions of the special institutes are marked as displaced when the contract is not concluded, is invalid or is void for defect of form, and findings of breach are marked as unable to support an award when judicial protection is barred by limitation under articles 167, 199 and 432.",
+        ],
+        reasons_ru=[
+            "Анализ теперь выводит слой общих положений из выводов якорных институтов, а не оставляет их несвязанными.",
+            "Выводы специальных институтов помечаются как лишённые правового эффекта, если договор не заключён, недействителен или ничтожен из-за порока формы, а установленное нарушение помечается как не способное обосновать присуждение при отказе в судебной защите по исковой давности (статьи 167, 199 и 432 ГК РФ).",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_general_effects_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

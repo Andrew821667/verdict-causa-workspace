@@ -173,6 +173,8 @@
         "docs/contract-commission-spec.md",
         "src/causa/institutional/contracts/agency.py",
         "docs/contract-agency-spec.md",
+        "src/causa/institutional/contracts/general_effects.py",
+        "docs/contract-general-effects-spec.md",
         "src/causa/institutional/contracts/unjust_enrichment.py",
         "docs/contract-unjust-enrichment-spec.md",
         "src/causa/institutional/contracts/moral_harm.py",
@@ -269,6 +271,7 @@
         "examples/synthetic_negotiorum_gestio_evaluation_report.json",
         "examples/synthetic_commission_evaluation_report.json",
         "examples/synthetic_agency_evaluation_report.json",
+        "examples/synthetic_general_effects_evaluation_report.json",
         "examples/synthetic_unjust_enrichment_evaluation_report.json",
         "examples/synthetic_moral_harm_evaluation_report.json",
         "examples/synthetic_product_liability_evaluation_report.json",
@@ -346,7 +349,7 @@
         "examples/migrations/contracts-ru-v0-0.59.0-to-0.62.0-migration-report.json",
         "examples/migrations/contracts-ru-v0-0.60.0-to-0.62.0-migration-report.json",
         "examples/migrations/contracts-ru-v0-0.61.0-to-0.62.0-migration-report.json",
-        "contracts-ru-v0@0.85.0"
+        "contracts-ru-v0@0.86.0"
       ],
       "remaining_work": [
         "Расширить правила юридической силы и временные правила за пределы поставки.",
@@ -529,6 +532,8 @@
         "commission-red-team-report-v0",
         "agency-benchmark-report-v0",
         "agency-red-team-report-v0",
+        "general-effects-benchmark-report-v0",
+        "general-effects-red-team-report-v0",
         "unjust-enrichment-benchmark-report-v0",
         "unjust-enrichment-red-team-report-v0",
         "moral-harm-benchmark-report-v0",
@@ -637,6 +642,7 @@
         "examples/synthetic_negotiorum_gestio_evaluation_report.json",
         "examples/synthetic_commission_evaluation_report.json",
         "examples/synthetic_agency_evaluation_report.json",
+        "examples/synthetic_general_effects_evaluation_report.json",
         "examples/synthetic_unjust_enrichment_evaluation_report.json",
         "examples/synthetic_moral_harm_evaluation_report.json",
         "examples/synthetic_product_liability_evaluation_report.json",
@@ -671,7 +677,7 @@
         "src/causa/institutional/contracts/synthetic_pilot.py",
         "docs/pilot-data-admission-spec.md",
         "examples/synthetic_pilot_rehearsal_report.json",
-        "pilot-gate:pilot-intake-5a1e0001:c0d92c409422",
+        "pilot-gate:pilot-intake-5a1e0001:2d07142ddcdd",
         "contracts-pilot-gate-benchmark-v1",
         "contracts-pilot-gate-red-team-v1",
         "synthetic-privacy-safe-pilot-utility-report-v1"

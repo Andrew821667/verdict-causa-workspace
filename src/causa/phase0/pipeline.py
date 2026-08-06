@@ -139,6 +139,9 @@ from causa.institutional.contracts.synthetic_tort_general import (
 from causa.institutional.contracts.synthetic_moral_harm import (
     build_synthetic_moral_harm_evaluation_artifact,
 )
+from causa.institutional.contracts.synthetic_general_effects import (
+    build_synthetic_general_effects_evaluation_artifact,
+)
 from causa.institutional.contracts.synthetic_unjust_enrichment import (
     build_synthetic_unjust_enrichment_evaluation_artifact,
 )
@@ -1388,6 +1391,20 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="apply-general-part-effects",
+            title="Применение общих положений ГК к выводам институтов",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.general_effects_constraint_set.id,
+                *trace.analysis_result.general_effects_constraint_set.source_evaluations,
+            ],
+            notes=[
+                *trace.analysis_result.general_effects_evaluation.reasons_ru,
+                "Слой выводит из результатов якорных моделей общей части, действует ли договор как основание требований, доступна ли судебная защита, сохраняют ли выводы специальных институтов правовой эффект, может ли установленное нарушение обосновать присуждение и подлежат ли применению последствия недействительности (статьи 167, 199 и 432 ГК РФ).",
+                "Наличие оснований недействительности, уважительность причин пропуска срока исковой давности и состав подлежащего возврату оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transaction-invalidity",
             title="Проверка действительности сделки",
             status=PipelineStepStatus.PASSED,
@@ -1700,6 +1717,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
     negotiorum_gestio_artifact = build_synthetic_negotiorum_gestio_evaluation_artifact()
     commission_artifact = build_synthetic_commission_evaluation_artifact()
     agency_artifact = build_synthetic_agency_evaluation_artifact()
+    general_effects_artifact = build_synthetic_general_effects_evaluation_artifact()
     unjust_enrichment_artifact = build_synthetic_unjust_enrichment_evaluation_artifact()
     moral_harm_artifact = build_synthetic_moral_harm_evaluation_artifact()
     product_liability_artifact = build_synthetic_product_liability_evaluation_artifact()
@@ -1881,6 +1899,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "docs/contract-commission-spec.md",
                 "src/causa/institutional/contracts/agency.py",
                 "docs/contract-agency-spec.md",
+                "src/causa/institutional/contracts/general_effects.py",
+                "docs/contract-general-effects-spec.md",
                 "src/causa/institutional/contracts/unjust_enrichment.py",
                 "docs/contract-unjust-enrichment-spec.md",
                 "src/causa/institutional/contracts/moral_harm.py",
@@ -1977,6 +1997,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_general_effects_evaluation_report.json",
                 "examples/synthetic_unjust_enrichment_evaluation_report.json",
                 "examples/synthetic_moral_harm_evaluation_report.json",
                 "examples/synthetic_product_liability_evaluation_report.json",
@@ -2186,6 +2207,8 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 commission_artifact.red_team_report.id,
                 agency_artifact.benchmark_report.id,
                 agency_artifact.red_team_report.id,
+                general_effects_artifact.benchmark_report.id,
+                general_effects_artifact.red_team_report.id,
                 unjust_enrichment_artifact.benchmark_report.id,
                 unjust_enrichment_artifact.red_team_report.id,
                 moral_harm_artifact.benchmark_report.id,
@@ -2294,6 +2317,7 @@ def build_phase0_readiness_report() -> Phase0ReadinessReport:
                 "examples/synthetic_negotiorum_gestio_evaluation_report.json",
                 "examples/synthetic_commission_evaluation_report.json",
                 "examples/synthetic_agency_evaluation_report.json",
+                "examples/synthetic_general_effects_evaluation_report.json",
                 "examples/synthetic_unjust_enrichment_evaluation_report.json",
                 "examples/synthetic_moral_harm_evaluation_report.json",
                 "examples/synthetic_product_liability_evaluation_report.json",

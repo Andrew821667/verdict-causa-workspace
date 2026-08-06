@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.86.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "The general-part effects layer derives its inputs from anchor institute evaluations instead of a separate reviewed evidence contract.",
+            "Formal boundaries cover Civil Code articles 167, 199 and 432 as applied to the conclusions of special institutes.",
+            "Whether the contract is legally effective, whether judicial protection is available, whether the conclusions of special institutes are displaced, whether findings of breach can support an award, and whether the restitution regime applies remain distinct.",
+        ],
+        notes_ru=[
+            "Слой общих положений выводит свои входы из выводов якорных институтов, а не из отдельного проверенного контракта данных.",
+            "Формальные границы охватывают статьи 167, 199 и 432 ГК РФ в применении к выводам специальных институтов.",
+            "Действие договора как основания требований, доступность судебной защиты, вытеснение выводов специальных институтов, невозможность положить установленное нарушение в основание присуждения и применение последствий недействительности разделены.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.85.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

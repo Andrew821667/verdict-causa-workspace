@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.86.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз со слоем применения общих положений ГК |
 | `0.85.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью неосновательного обогащения |
 | `0.84.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью компенсации морального вреда |
 | `0.83.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью вреда вследствие недостатков товаров, работ и услуг |
@@ -93,6 +94,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.85.0` → `0.86.0` отдельный контракт данных собирать не требуется: слой общих положений выводит свои входы из выводов якорных моделей (formation, invalidity, form, limitation, constraint, termination). Пересоберите reviewed analysis, трассировки Этапа 0 и readiness — результат анализа получил три новых поля (`general_effects_inputs`, `general_effects_constraint_set`, `general_effects_evaluation`), а флаг `requires_human_resolution` теперь поднимается при вытеснении договорного эффекта и при отказе в судебной защите по давности. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
 Для перехода `0.84.0` → `0.85.0` соберите отдельно проверенный контракт данных о неосновательном обогащении (`contracts.unjust-enrichment-evidence.v0`). Не выводите установление неосновательного обогащения, обязанность его возврата и правила о доходах и затратах из прежних результатов о недействительности сделки, реституции или возмещении вреда. Пересоберите артефакты оценки неосновательного обогащения, reviewed analysis, трассировки Этапа 0 и readiness. Evidence остаётся `contracts.case-evidence.v9`, analysis — `contracts-reviewed-analysis-v9`, русские шаблоны — `ru-v11`.
 
