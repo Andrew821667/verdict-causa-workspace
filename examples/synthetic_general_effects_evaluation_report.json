@@ -9,18 +9,20 @@
     "limitation_defense_available": false,
     "claim_not_subject_to_limitation": false,
     "unauthorized_representation_detected": false,
+    "unauthorized_disposal_detected": false,
     "breach_issue": true,
     "effective_termination": false
   },
   "constraint_set": {
     "id": "general-effects-constraint-set:case-supply-1",
-    "model_version": "contracts-general-part-effects-articles-167-183-199-432-v1",
+    "model_version": "contracts-general-part-effects-articles-167-183-199-209-432-v2",
     "source_evaluations": [
       "formation_evaluation",
       "invalidity_evaluation",
       "form_evaluation",
       "limitation_evaluation",
       "representation_evaluation",
+      "property_rights_evaluation",
       "constraint_evaluation",
       "termination_evaluation"
     ],
@@ -35,8 +37,9 @@
       "contractual_claims_enforceable == contract_legally_effective AND judicial_protection_available",
       "institute_conclusions_displaced == NOT contract_legally_effective",
       "breach_findings_without_effect == breach_issue AND NOT contractual_claims_enforceable",
+      "title_transfer_defeated == unauthorized_disposal_detected",
       "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-      "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR breach_findings_without_effect OR restitution_regime_applies"
+      "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated"
     ]
   },
   "derived_evaluation": {
@@ -50,6 +53,7 @@
     "judicial_protection_available": true,
     "claims_barred_by_limitation": false,
     "contractual_claims_enforceable": true,
+    "title_transfer_defeated": false,
     "institute_conclusions_displaced": false,
     "breach_findings_without_effect": false,
     "restitution_regime_applies": false,

@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
+      "title": "Синтетическая проверенная модель содержания права собственности, бремени содержания и риска, оснований приобретения, момента возникновения права и приобретательной давности по статьям 209–234 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: правомочия владения, пользования и распоряжения имуществом и их осуществление в установленных законом пределах, бремя содержания имущества и риск случайной гибели, основания приобретения права собственности, возникновение права у приобретателя по договору с момента передачи вещи или государственной регистрации отчуждения, а также приобретение права по давности владения проверяются раздельно (статьи 209–234 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "ownership_content_acquisition_and_prescription_articles_209_234",
+        "legal_reference": "ГК РФ, статьи 209–234",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+      "title": "Синтетическая проверенная модель общей собственности, истребования имущества из чужого незаконного владения, защиты добросовестного приобретателя и негаторной защиты по статьям 244–305 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: владение, пользование и распоряжение имуществом в общей долевой и совместной собственности по соглашению участников, право собственника истребовать имущество из чужого незаконного владения, ограничения истребования у возмездного добросовестного приобретателя и невозможность истребования у него денег и ценных бумаг на предъявителя, а также требование об устранении нарушений права, не соединённых с лишением владения, и защита владельца, не являющегося собственником, проверяются раздельно (статьи 244–305 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "common_property_and_protection_of_rights_articles_244_305",
+        "legal_reference": "ГК РФ, статьи 244–305",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-property-rights-evidence",
+      "title": "Синтетическая проверенная запись фактов о вещных правах",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки вещно-правовые требования не заявлялись; принадлежность товара продавцу не оспаривалась.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "property_rights_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
       "title": "Синтетическая проверенная модель представительства, оснований полномочия, запрета сделок в отношении себя лично, последствий сделки неуполномоченного лица и коммерческого представительства по статьям 182–184 ГК РФ",
       "source_type": "statute",
@@ -9711,6 +9758,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "property_rights_evidence": {
+      "id": "reviewed-property-rights-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.property-rights-evidence.v0",
+      "assertions": [
+        {
+          "id": "property-rights-evidence-property_right_asserted",
+          "predicate": "property_right_asserted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "id": "property-rights-evidence-ownership_powers_breached",
+          "predicate": "ownership_powers_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "id": "property-rights-evidence-disposal_by_non_owner_detected",
+          "predicate": "disposal_by_non_owner_detected",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "id": "property-rights-evidence-risk_and_burden_rules_breached",
+          "predicate": "risk_and_burden_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "id": "property-rights-evidence-acquisition_moment_rules_breached",
+          "predicate": "acquisition_moment_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "id": "property-rights-evidence-acquisitive_prescription_breached",
+          "predicate": "acquisitive_prescription_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "id": "property-rights-evidence-common_property_rules_breached",
+          "predicate": "common_property_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "id": "property-rights-evidence-vindication_rules_breached",
+          "predicate": "vindication_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "id": "property-rights-evidence-good_faith_purchaser_protection_disregarded",
+          "predicate": "good_faith_purchaser_protection_disregarded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "id": "property-rights-evidence-negatory_or_possessor_claim_breached",
+          "predicate": "negatory_or_possessor_claim_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
+        "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-property-rights-reviewer"
+    },
     "representation_evidence": {
       "id": "reviewed-representation-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -15560,6 +15700,7 @@
       "synthetic-preliminary-reviewer",
       "synthetic-procedure-reviewer",
       "synthetic-product-liability-reviewer",
+      "synthetic-property-rights-reviewer",
       "synthetic-public-contract-reviewer",
       "synthetic-public-promise-reviewer",
       "synthetic-real-estate-sale-reviewer",
@@ -15640,6 +15781,7 @@
       "synthetic-case-supply-1-preliminary-evidence",
       "synthetic-case-supply-1-procedure-evidence",
       "synthetic-case-supply-1-product-liability-evidence",
+      "synthetic-case-supply-1-property-rights-evidence",
       "synthetic-case-supply-1-public-contract-evidence",
       "synthetic-case-supply-1-public-promise-evidence",
       "synthetic-case-supply-1-real-estate-sale-evidence",
@@ -15702,6 +15844,8 @@
       "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
       "synthetic-ru-gk195-200-limitation-framework-v1",
       "synthetic-ru-gk202-208-limitation-effects-v1",
+      "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
+      "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
       "synthetic-ru-gk307-308-obligation-concept-v1",
       "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
       "synthetic-ru-gk309-328-performance-v1",
@@ -23912,6 +24056,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "property_rights_evidence_mapping": {
+      "evidence_id": "reviewed-property-rights-evidence-supply-1-v0",
+      "schema_version": "contracts.property-rights-evidence.v0",
+      "mapping_version": "contracts-reviewed-property-rights-to-facts-v0",
+      "facts": {
+        "property_right_asserted": false,
+        "ownership_powers_breached": false,
+        "disposal_by_non_owner_detected": false,
+        "risk_and_burden_rules_breached": false,
+        "acquisition_moment_rules_breached": false,
+        "acquisitive_prescription_breached": false,
+        "common_property_rules_breached": false,
+        "vindication_rules_breached": false,
+        "good_faith_purchaser_protection_disregarded": false,
+        "negatory_or_possessor_claim_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
+        "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "acquisition_moment_rules_breached",
+          "assertion_id": "property-rights-evidence-acquisition_moment_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "fact_name": "acquisitive_prescription_breached",
+          "assertion_id": "property-rights-evidence-acquisitive_prescription_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "fact_name": "common_property_rules_breached",
+          "assertion_id": "property-rights-evidence-common_property_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "fact_name": "disposal_by_non_owner_detected",
+          "assertion_id": "property-rights-evidence-disposal_by_non_owner_detected",
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "fact_name": "good_faith_purchaser_protection_disregarded",
+          "assertion_id": "property-rights-evidence-good_faith_purchaser_protection_disregarded",
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "fact_name": "negatory_or_possessor_claim_breached",
+          "assertion_id": "property-rights-evidence-negatory_or_possessor_claim_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "fact_name": "ownership_powers_breached",
+          "assertion_id": "property-rights-evidence-ownership_powers_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "fact_name": "property_right_asserted",
+          "assertion_id": "property-rights-evidence-property_right_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "fact_name": "risk_and_burden_rules_breached",
+          "assertion_id": "property-rights-evidence-risk_and_burden_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "fact_name": "vindication_rules_breached",
+          "assertion_id": "property-rights-evidence-vindication_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        }
+      ]
+    },
+    "property_rights_constraint_set": {
+      "id": "property-rights-constraint-set:reviewed-property-rights-evidence-supply-1-v0",
+      "model_version": "contracts-property-rights-articles-209-305-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
+        "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1"
+      ],
+      "expressions": [
+        "property_rights_qualified == property_right_asserted",
+        "ownership_powers_duty_breached == property_rights_qualified AND ownership_powers_breached",
+        "unauthorized_disposal_detected == property_rights_qualified AND disposal_by_non_owner_detected",
+        "risk_and_burden_duty_breached == property_rights_qualified AND risk_and_burden_rules_breached",
+        "acquisition_moment_duty_breached == property_rights_qualified AND acquisition_moment_rules_breached",
+        "acquisitive_prescription_duty_breached == property_rights_qualified AND acquisitive_prescription_breached",
+        "common_property_duty_breached == property_rights_qualified AND common_property_rules_breached",
+        "vindication_duty_breached == property_rights_qualified AND vindication_rules_breached",
+        "good_faith_purchaser_breached == property_rights_qualified AND vindication_rules_breached AND good_faith_purchaser_protection_disregarded",
+        "negatory_claim_duty_breached == property_rights_qualified AND negatory_or_possessor_claim_breached",
+        "requires_human_property_rights_assessment == ownership_powers_duty_breached OR unauthorized_disposal_detected OR risk_and_burden_duty_breached OR acquisition_moment_duty_breached OR acquisitive_prescription_duty_breached OR common_property_duty_breached OR vindication_duty_breached OR negatory_claim_duty_breached"
+      ]
+    },
+    "property_rights_evaluation": {
+      "constraint_set_id": "property-rights-constraint-set:reviewed-property-rights-evidence-supply-1-v0",
+      "satisfiable": true,
+      "property_rights_qualified": false,
+      "ownership_powers_duty_breached": false,
+      "unauthorized_disposal_detected": false,
+      "risk_and_burden_duty_breached": false,
+      "acquisition_moment_duty_breached": false,
+      "acquisitive_prescription_duty_breached": false,
+      "common_property_duty_breached": false,
+      "vindication_duty_breached": false,
+      "good_faith_purchaser_breached": false,
+      "negatory_claim_duty_breached": false,
+      "requires_human_property_rights_assessment": false,
+      "reasons_ru": [
+        "Вещное право на спорное имущество не заявлено."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила о праве собственности и его защите и не заменяет судебную оценку.",
+        "Добросовестность приобретателя, обстоятельства выбытия имущества из владения собственника и давностное владение оцениваются экспертом и судом (статьи 234, 302 и 305 ГК РФ)."
+      ]
+    },
     "representation_evidence_mapping": {
       "evidence_id": "reviewed-representation-evidence-supply-1-v0",
       "schema_version": "contracts.representation-evidence.v0",
@@ -24056,18 +24336,20 @@
       "limitation_defense_available": false,
       "claim_not_subject_to_limitation": false,
       "unauthorized_representation_detected": false,
+      "unauthorized_disposal_detected": false,
       "breach_issue": true,
       "effective_termination": false
     },
     "general_effects_constraint_set": {
       "id": "general-effects-constraint-set:case-supply-1",
-      "model_version": "contracts-general-part-effects-articles-167-183-199-432-v1",
+      "model_version": "contracts-general-part-effects-articles-167-183-199-209-432-v2",
       "source_evaluations": [
         "formation_evaluation",
         "invalidity_evaluation",
         "form_evaluation",
         "limitation_evaluation",
         "representation_evaluation",
+        "property_rights_evaluation",
         "constraint_evaluation",
         "termination_evaluation"
       ],
@@ -24082,8 +24364,9 @@
         "contractual_claims_enforceable == contract_legally_effective AND judicial_protection_available",
         "institute_conclusions_displaced == NOT contract_legally_effective",
         "breach_findings_without_effect == breach_issue AND NOT contractual_claims_enforceable",
+        "title_transfer_defeated == unauthorized_disposal_detected",
         "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-        "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR breach_findings_without_effect OR restitution_regime_applies"
+        "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated"
       ]
     },
     "general_effects_evaluation": {
@@ -24097,6 +24380,7 @@
       "judicial_protection_available": true,
       "claims_barred_by_limitation": false,
       "contractual_claims_enforceable": true,
+      "title_transfer_defeated": false,
       "institute_conclusions_displaced": false,
       "breach_findings_without_effect": false,
       "restitution_regime_applies": false,
@@ -30841,7 +31125,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.87.0",
+      "institutional_package_version": "contracts-ru-v0@0.88.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -32887,6 +33171,7 @@
           "synthetic-case-supply-1-preliminary-evidence",
           "synthetic-case-supply-1-procedure-evidence",
           "synthetic-case-supply-1-product-liability-evidence",
+          "synthetic-case-supply-1-property-rights-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-public-promise-evidence",
           "synthetic-case-supply-1-real-estate-sale-evidence",
@@ -32949,6 +33234,8 @@
           "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
           "synthetic-ru-gk195-200-limitation-framework-v1",
           "synthetic-ru-gk202-208-limitation-effects-v1",
+          "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
+          "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
           "synthetic-ru-gk307-308-obligation-concept-v1",
           "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
           "synthetic-ru-gk309-328-performance-v1",
@@ -34138,6 +34425,7 @@
           "synthetic-case-supply-1-preliminary-evidence",
           "synthetic-case-supply-1-procedure-evidence",
           "synthetic-case-supply-1-product-liability-evidence",
+          "synthetic-case-supply-1-property-rights-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-public-promise-evidence",
           "synthetic-case-supply-1-real-estate-sale-evidence",
@@ -34200,6 +34488,8 @@
           "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
           "synthetic-ru-gk195-200-limitation-framework-v1",
           "synthetic-ru-gk202-208-limitation-effects-v1",
+          "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
+          "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
           "synthetic-ru-gk307-308-obligation-concept-v1",
           "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
           "synthetic-ru-gk309-328-performance-v1",
@@ -35389,6 +35679,7 @@
           "synthetic-case-supply-1-preliminary-evidence",
           "synthetic-case-supply-1-procedure-evidence",
           "synthetic-case-supply-1-product-liability-evidence",
+          "synthetic-case-supply-1-property-rights-evidence",
           "synthetic-case-supply-1-public-contract-evidence",
           "synthetic-case-supply-1-public-promise-evidence",
           "synthetic-case-supply-1-real-estate-sale-evidence",
@@ -35451,6 +35742,8 @@
           "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
           "synthetic-ru-gk195-200-limitation-framework-v1",
           "synthetic-ru-gk202-208-limitation-effects-v1",
+          "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
+          "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
           "synthetic-ru-gk307-308-obligation-concept-v1",
           "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
           "synthetic-ru-gk309-328-performance-v1",
@@ -35672,7 +35965,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.87.0",
+      "institutional_package_version": "contracts-ru-v0@0.88.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -37958,6 +38251,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель содержания права собственности, бремени содержания и риска, оснований приобретения, момента возникновения права и приобретательной давности по статьям 209–234 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "ownership_content_acquisition_and_prescription_articles_209_234",
+          "legal_reference": "ГК РФ, статьи 209–234",
+          "basis_url": "https://government.ru/docs/all/95820/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель общей собственности, истребования имущества из чужого незаконного владения, защиты добросовестного приобретателя и негаторной защиты по статьям 244–305 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "common_property_and_protection_of_rights_articles_244_305",
+          "legal_reference": "ГК РФ, статьи 244–305",
+          "basis_url": "https://government.ru/docs/all/95820/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-property-rights-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о вещных правах",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "property_rights_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель представительства, оснований полномочия, запрета сделок в отношении себя лично, последствий сделки неуполномоченного лица и коммерческого представительства по статьям 182–184 ГК РФ",
@@ -39034,6 +39365,7 @@
             "synthetic-preliminary-reviewer",
             "synthetic-procedure-reviewer",
             "synthetic-product-liability-reviewer",
+            "synthetic-property-rights-reviewer",
             "synthetic-public-contract-reviewer",
             "synthetic-public-promise-reviewer",
             "synthetic-real-estate-sale-reviewer",

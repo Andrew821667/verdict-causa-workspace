@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.88.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed property-rights evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 209 to 305.",
+            "The content of ownership, disposal by a non-owner, the burden and risk, the moment of acquisition, acquisitive prescription, common property, vindication, the protection of a good-faith purchaser and the negatory claim remain distinct.",
+            "Disposal by a non-owner feeds the general-part effects layer and defeats the transfer of title under articles 209 and 302.",
+        ],
+        notes_ru=[
+            "Проверенные данные о вещных правах обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 209–305 ГК РФ.",
+            "Содержание права собственности, распоряжение неуправомоченным лицом, бремя содержания и риск, момент возникновения права, приобретательная давность, общая собственность, истребование имущества, защита добросовестного приобретателя и негаторная защита разделены.",
+            "Распоряжение неуправомоченным лицом поступает в слой общих положений и опровергает переход титула по статьям 209 и 302 ГК РФ.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.87.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

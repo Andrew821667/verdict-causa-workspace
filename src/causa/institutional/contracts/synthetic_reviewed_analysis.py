@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.property_rights import (
+    PropertyRightsEvidenceAssertion,
+    PropertyRightsEvidencePredicate,
+    ReviewedPropertyRightsEvidence,
+)
 from causa.institutional.contracts.representation import (
     RepresentationEvidenceAssertion,
     RepresentationEvidencePredicate,
@@ -587,6 +592,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
+    "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+    "synthetic-case-supply-1-property-rights-evidence",
     "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
     "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
     "synthetic-case-supply-1-representation-evidence",
@@ -2958,6 +2966,42 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        property_rights_evidence=ReviewedPropertyRightsEvidence(
+            id="reviewed-property-rights-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                PropertyRightsEvidenceAssertion(
+                    id=f"property-rights-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-property-rights-evidence",),
+                )
+                for predicate, value in (
+                    (PropertyRightsEvidencePredicate.PROPERTY_RIGHT_ASSERTED, False),
+                    (PropertyRightsEvidencePredicate.OWNERSHIP_POWERS_BREACHED, False),
+                    (PropertyRightsEvidencePredicate.DISPOSAL_BY_NON_OWNER_DETECTED, False),
+                    (PropertyRightsEvidencePredicate.RISK_AND_BURDEN_RULES_BREACHED, False),
+                    (PropertyRightsEvidencePredicate.ACQUISITION_MOMENT_RULES_BREACHED, False),
+                    (PropertyRightsEvidencePredicate.ACQUISITIVE_PRESCRIPTION_BREACHED, False),
+                    (PropertyRightsEvidencePredicate.COMMON_PROPERTY_RULES_BREACHED, False),
+                    (PropertyRightsEvidencePredicate.VINDICATION_RULES_BREACHED, False),
+                    (
+                        PropertyRightsEvidencePredicate.GOOD_FAITH_PURCHASER_PROTECTION_DISREGARDED,
+                        False,
+                    ),
+                    (
+                        PropertyRightsEvidencePredicate.NEGATORY_OR_POSSESSOR_CLAIM_BREACHED,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
+                "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-property-rights-reviewer",
         ),
         representation_evidence=ReviewedRepresentationEvidence(
             id="reviewed-representation-evidence-supply-1-v0",

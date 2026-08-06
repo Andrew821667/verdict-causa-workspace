@@ -1,0 +1,456 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил о праве собственности и его защите по статьям 209–305 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-property-rights-evidence-supply-1-v0",
+    "schema_version": "contracts.property-rights-evidence.v0",
+    "mapping_version": "contracts-reviewed-property-rights-to-facts-v0",
+    "facts": {
+      "property_right_asserted": false,
+      "ownership_powers_breached": false,
+      "disposal_by_non_owner_detected": false,
+      "risk_and_burden_rules_breached": false,
+      "acquisition_moment_rules_breached": false,
+      "acquisitive_prescription_breached": false,
+      "common_property_rules_breached": false,
+      "vindication_rules_breached": false,
+      "good_faith_purchaser_protection_disregarded": false,
+      "negatory_or_possessor_claim_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
+      "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "acquisition_moment_rules_breached",
+        "assertion_id": "property-rights-evidence-acquisition_moment_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
+        "fact_name": "acquisitive_prescription_breached",
+        "assertion_id": "property-rights-evidence-acquisitive_prescription_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
+        "fact_name": "common_property_rules_breached",
+        "assertion_id": "property-rights-evidence-common_property_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
+        "fact_name": "disposal_by_non_owner_detected",
+        "assertion_id": "property-rights-evidence-disposal_by_non_owner_detected",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
+        "fact_name": "good_faith_purchaser_protection_disregarded",
+        "assertion_id": "property-rights-evidence-good_faith_purchaser_protection_disregarded",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
+        "fact_name": "negatory_or_possessor_claim_breached",
+        "assertion_id": "property-rights-evidence-negatory_or_possessor_claim_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
+        "fact_name": "ownership_powers_breached",
+        "assertion_id": "property-rights-evidence-ownership_powers_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_right_asserted",
+        "assertion_id": "property-rights-evidence-property_right_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
+        "fact_name": "risk_and_burden_rules_breached",
+        "assertion_id": "property-rights-evidence-risk_and_burden_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
+        "fact_name": "vindication_rules_breached",
+        "assertion_id": "property-rights-evidence-vindication_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "property-rights-constraint-set:reviewed-property-rights-evidence-supply-1-v0",
+    "model_version": "contracts-property-rights-articles-209-305-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
+      "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1"
+    ],
+    "expressions": [
+      "property_rights_qualified == property_right_asserted",
+      "ownership_powers_duty_breached == property_rights_qualified AND ownership_powers_breached",
+      "unauthorized_disposal_detected == property_rights_qualified AND disposal_by_non_owner_detected",
+      "risk_and_burden_duty_breached == property_rights_qualified AND risk_and_burden_rules_breached",
+      "acquisition_moment_duty_breached == property_rights_qualified AND acquisition_moment_rules_breached",
+      "acquisitive_prescription_duty_breached == property_rights_qualified AND acquisitive_prescription_breached",
+      "common_property_duty_breached == property_rights_qualified AND common_property_rules_breached",
+      "vindication_duty_breached == property_rights_qualified AND vindication_rules_breached",
+      "good_faith_purchaser_breached == property_rights_qualified AND vindication_rules_breached AND good_faith_purchaser_protection_disregarded",
+      "negatory_claim_duty_breached == property_rights_qualified AND negatory_or_possessor_claim_breached",
+      "requires_human_property_rights_assessment == ownership_powers_duty_breached OR unauthorized_disposal_detected OR risk_and_burden_duty_breached OR acquisition_moment_duty_breached OR acquisitive_prescription_duty_breached OR common_property_duty_breached OR vindication_duty_breached OR negatory_claim_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "property-rights-constraint-set:reviewed-property-rights-evidence-supply-1-v0",
+    "satisfiable": true,
+    "property_rights_qualified": false,
+    "ownership_powers_duty_breached": false,
+    "unauthorized_disposal_detected": false,
+    "risk_and_burden_duty_breached": false,
+    "acquisition_moment_duty_breached": false,
+    "acquisitive_prescription_duty_breached": false,
+    "common_property_duty_breached": false,
+    "vindication_duty_breached": false,
+    "good_faith_purchaser_breached": false,
+    "negatory_claim_duty_breached": false,
+    "requires_human_property_rights_assessment": false,
+    "reasons_ru": [
+      "Вещное право на спорное имущество не заявлено."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила о праве собственности и его защите и не заменяет судебную оценку.",
+      "Добросовестность приобретателя, обстоятельства выбытия имущества из владения собственника и давностное владение оцениваются экспертом и судом (статьи 234, 302 и 305 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "property-rights-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "property-rights-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "property_rights_qualified": false
+        },
+        "observed_outcomes": {
+          "property_rights_qualified": false
+        },
+        "reasons_ru": [
+          "Вещное право на спорное имущество не заявлено."
+        ]
+      },
+      {
+        "task_id": "property-rights-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "property_rights_qualified": true,
+          "requires_human_property_rights_assessment": false
+        },
+        "observed_outcomes": {
+          "property_rights_qualified": true,
+          "requires_human_property_rights_assessment": false
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "property-rights-bench-ownership-powers",
+        "passed": true,
+        "expected_outcomes": {
+          "ownership_powers_duty_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "observed_outcomes": {
+          "ownership_powers_duty_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Правомочия владения, пользования и распоряжения осуществляются собственником по своему усмотрению в пределах, установленных законом, и не должны нарушать права и охраняемые законом интересы других лиц (статья 209 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "property-rights-bench-unauthorized-disposal",
+        "passed": true,
+        "expected_outcomes": {
+          "unauthorized_disposal_detected": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "observed_outcomes": {
+          "unauthorized_disposal_detected": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Распоряжение имуществом совершено лицом, не управомоченным на его отчуждение: право распоряжения принадлежит собственнику, и отчуждение чужого имущества по общему правилу не влечёт перехода права собственности к приобретателю (статьи 209 и 302 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "property-rights-bench-risk-and-burden",
+        "passed": true,
+        "expected_outcomes": {
+          "risk_and_burden_duty_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "observed_outcomes": {
+          "risk_and_burden_duty_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Собственник несёт бремя содержания принадлежащего ему имущества и риск случайной гибели или случайного повреждения имущества, если иное не предусмотрено законом или договором (статьи 210 и 211 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "property-rights-bench-acquisition-moment",
+        "passed": true,
+        "expected_outcomes": {
+          "acquisition_moment_duty_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "observed_outcomes": {
+          "acquisition_moment_duty_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Право собственности у приобретателя вещи по договору возникает с момента её передачи, если иное не предусмотрено законом или договором, а если отчуждение подлежит государственной регистрации — с момента такой регистрации (статьи 218 и 223 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "property-rights-bench-prescription",
+        "passed": true,
+        "expected_outcomes": {
+          "acquisitive_prescription_duty_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "observed_outcomes": {
+          "acquisitive_prescription_duty_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Лицо, не являющееся собственником, но добросовестно, открыто и непрерывно владеющее как своим собственным недвижимым имуществом в течение пятнадцати лет либо иным имуществом в течение пяти лет, приобретает право собственности на это имущество (статья 234 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "property-rights-bench-common-property",
+        "passed": true,
+        "expected_outcomes": {
+          "common_property_duty_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "observed_outcomes": {
+          "common_property_duty_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Владение, пользование и распоряжение имуществом, находящимся в общей долевой собственности, осуществляются по соглашению всех её участников, а распоряжение имуществом в совместной собственности — по согласию всех сособственников (статьи 244–259 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "property-rights-bench-negatory",
+        "passed": true,
+        "expected_outcomes": {
+          "negatory_claim_duty_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "observed_outcomes": {
+          "negatory_claim_duty_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Собственник может требовать устранения всяких нарушений его права, хотя бы эти нарушения и не были соединены с лишением владения; такая защита принадлежит также лицу, владеющему имуществом по иному основанию, предусмотренному законом или договором, в том числе против самого собственника (статьи 304 и 305 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "property-rights-bench-vindication",
+        "passed": true,
+        "expected_outcomes": {
+          "vindication_duty_breached": true,
+          "good_faith_purchaser_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "observed_outcomes": {
+          "vindication_duty_breached": true,
+          "good_faith_purchaser_breached": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Собственник вправе истребовать своё имущество из чужого незаконного владения (статья 301 ГК РФ).",
+          "Если имущество возмездно приобретено у лица, которое не имело права его отчуждать, о чём приобретатель не знал и не мог знать, собственник вправе истребовать это имущество только в случаях, когда оно утеряно собственником, похищено либо выбыло из его владения иным путём помимо его воли; деньги и ценные бумаги на предъявителя у добросовестного приобретателя истребованы быть не могут (статья 302 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "property-rights-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "property-rights-red-qualify-without-right",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "property_rights_qualified": true
+        },
+        "observed_outcomes": {
+          "property_rights_qualified": false
+        },
+        "reasons_ru": [
+          "Вещное право на спорное имущество не заявлено."
+        ]
+      },
+      {
+        "case_id": "property-rights-red-ignore-ownership-powers",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "ownership_powers_duty_breached": false
+        },
+        "observed_outcomes": {
+          "ownership_powers_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Правомочия владения, пользования и распоряжения осуществляются собственником по своему усмотрению в пределах, установленных законом, и не должны нарушать права и охраняемые законом интересы других лиц (статья 209 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "property-rights-red-legitimise-non-owner-disposal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unauthorized_disposal_detected": false
+        },
+        "observed_outcomes": {
+          "unauthorized_disposal_detected": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Распоряжение имуществом совершено лицом, не управомоченным на его отчуждение: право распоряжения принадлежит собственнику, и отчуждение чужого имущества по общему правилу не влечёт перехода права собственности к приобретателю (статьи 209 и 302 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "property-rights-red-ignore-risk-and-burden",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "risk_and_burden_duty_breached": false
+        },
+        "observed_outcomes": {
+          "risk_and_burden_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Собственник несёт бремя содержания принадлежащего ему имущества и риск случайной гибели или случайного повреждения имущества, если иное не предусмотрено законом или договором (статьи 210 и 211 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "property-rights-red-ignore-acquisition-moment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "acquisition_moment_duty_breached": false
+        },
+        "observed_outcomes": {
+          "acquisition_moment_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Право собственности у приобретателя вещи по договору возникает с момента её передачи, если иное не предусмотрено законом или договором, а если отчуждение подлежит государственной регистрации — с момента такой регистрации (статьи 218 и 223 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "property-rights-red-ignore-prescription",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "acquisitive_prescription_duty_breached": false
+        },
+        "observed_outcomes": {
+          "acquisitive_prescription_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Лицо, не являющееся собственником, но добросовестно, открыто и непрерывно владеющее как своим собственным недвижимым имуществом в течение пятнадцати лет либо иным имуществом в течение пяти лет, приобретает право собственности на это имущество (статья 234 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "property-rights-red-ignore-common-property",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "common_property_duty_breached": false
+        },
+        "observed_outcomes": {
+          "common_property_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Владение, пользование и распоряжение имуществом, находящимся в общей долевой собственности, осуществляются по соглашению всех её участников, а распоряжение имуществом в совместной собственности — по согласию всех сособственников (статьи 244–259 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "property-rights-red-ignore-vindication",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "vindication_duty_breached": false
+        },
+        "observed_outcomes": {
+          "vindication_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Собственник вправе истребовать своё имущество из чужого незаконного владения (статья 301 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "property-rights-red-good-faith-without-vindication-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "good_faith_purchaser_breached": true
+        },
+        "observed_outcomes": {
+          "good_faith_purchaser_breached": false
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "property-rights-red-skip-human-on-negatory",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_property_rights_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_property_rights_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Собственник может требовать устранения всяких нарушений его права, хотя бы эти нарушения и не были соединены с лишением владения; такая защита принадлежит также лицу, владеющему имуществом по иному основанию, предусмотренному законом или договором, в том числе против самого собственника (статьи 304 и 305 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95820/"
+  ]
+}

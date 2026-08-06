@@ -18,6 +18,8 @@
   в иске;
 - статья 183 ГК РФ — при отсутствии полномочий сделка считается заключённой от
   имени совершившего её лица, пока представляемый её не одобрит;
+- статья 209 ГК РФ — распоряжение имуществом принадлежит собственнику, поэтому
+  отчуждение неуправомоченным лицом не переносит право на приобретателя;
 - статья 1103 ГК РФ — применение правил о неосновательном обогащении к
   требованиям о возврате исполненного по недействительной сделке.
 """
@@ -25,7 +27,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 from z3 import And, Bool, Not, Or, Solver, sat
 
-GENERAL_EFFECTS_MODEL_VERSION = "contracts-general-part-effects-articles-167-183-199-432-v1"
+GENERAL_EFFECTS_MODEL_VERSION = "contracts-general-part-effects-articles-167-183-199-209-432-v2"
 
 
 class GeneralEffectsInputs(BaseModel):
@@ -45,6 +47,8 @@ class GeneralEffectsInputs(BaseModel):
     claim_not_subject_to_limitation: bool
     # Представительство: сделка неуполномоченного лица (статья 183 ГК РФ).
     unauthorized_representation_detected: bool
+    # Вещные права: распоряжение неуправомоченным лицом (статья 209 ГК РФ).
+    unauthorized_disposal_detected: bool
     # Нарушение обязательства и прекращение договора (статьи 309–328, 450–453).
     breach_issue: bool
     effective_termination: bool
@@ -71,6 +75,7 @@ class GeneralEffectsEvaluation(BaseModel):
     claims_barred_by_limitation: bool
     # Совокупный эффект для требований из договора.
     contractual_claims_enforceable: bool
+    title_transfer_defeated: bool
     institute_conclusions_displaced: bool
     breach_findings_without_effect: bool
     restitution_regime_applies: bool
@@ -85,6 +90,7 @@ def build_general_effects_inputs(
     form_evaluation,
     limitation_evaluation,
     representation_evaluation,
+    property_rights_evaluation,
     constraint_evaluation,
     termination_evaluation,
 ) -> GeneralEffectsInputs:
@@ -99,6 +105,7 @@ def build_general_effects_inputs(
         unauthorized_representation_detected=(
             representation_evaluation.unauthorized_representation_detected
         ),
+        unauthorized_disposal_detected=(property_rights_evaluation.unauthorized_disposal_detected),
         breach_issue=constraint_evaluation.breach_issue,
         effective_termination=termination_evaluation.effective_termination,
     )
@@ -116,6 +123,7 @@ def build_general_effects_constraint_set(
             "form_evaluation",
             "limitation_evaluation",
             "representation_evaluation",
+            "property_rights_evaluation",
             "constraint_evaluation",
             "termination_evaluation",
         ],
@@ -130,8 +138,9 @@ def build_general_effects_constraint_set(
             "contractual_claims_enforceable == contract_legally_effective AND judicial_protection_available",
             "institute_conclusions_displaced == NOT contract_legally_effective",
             "breach_findings_without_effect == breach_issue AND NOT contractual_claims_enforceable",
+            "title_transfer_defeated == unauthorized_disposal_detected",
             "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-            "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR breach_findings_without_effect OR restitution_regime_applies",
+            "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated",
         ],
     )
 
@@ -153,6 +162,7 @@ def evaluate_general_effects_constraints(
     contractual_claims_enforceable = Bool("contractual_claims_enforceable")
     institute_conclusions_displaced = Bool("institute_conclusions_displaced")
     breach_findings_without_effect = Bool("breach_findings_without_effect")
+    title_transfer_defeated = Bool("title_transfer_defeated")
     restitution_regime_applies = Bool("restitution_regime_applies")
     requires_human_general_effects_assessment = Bool("requires_human_general_effects_assessment")
 
@@ -197,6 +207,7 @@ def evaluate_general_effects_constraints(
         breach_findings_without_effect
         == And(variables["breach_issue"], Not(contractual_claims_enforceable))
     )
+    solver.add(title_transfer_defeated == variables["unauthorized_disposal_detected"])
     solver.add(
         restitution_regime_applies
         == And(variables["contractual_effect_displaced"], variables["restitution_required"])
@@ -208,6 +219,7 @@ def evaluate_general_effects_constraints(
             claims_barred_by_limitation,
             breach_findings_without_effect,
             restitution_regime_applies,
+            title_transfer_defeated,
         )
     )
 
@@ -226,6 +238,7 @@ def evaluate_general_effects_constraints(
             contractual_claims_enforceable=False,
             institute_conclusions_displaced=True,
             breach_findings_without_effect=False,
+            title_transfer_defeated=False,
             restitution_regime_applies=False,
             requires_human_general_effects_assessment=True,
             reasons_ru=["Выводы моделей общей части противоречивы."],
@@ -285,6 +298,13 @@ def evaluate_general_effects_constraints(
             "специальных институтов о нарушении его условий не могут быть положены в основание "
             "присуждения (статьи 167, 199 и 432 ГК РФ)."
         )
+    if truth(title_transfer_defeated):
+        reasons_ru.append(
+            "Имуществом распорядилось лицо, не управомоченное на его отчуждение, поэтому право "
+            "собственности к приобретателю по общему правилу не перешло; требование о переходе "
+            "титула не может быть удовлетворено, а защита добросовестного приобретателя "
+            "оценивается по правилам статьи 302 ГК РФ (статьи 209 и 302 ГК РФ)."
+        )
     if truth(restitution_regime_applies):
         reasons_ru.append(
             "Вместо договорных требований подлежат применению последствия недействительности "
@@ -312,6 +332,7 @@ def evaluate_general_effects_constraints(
         contractual_claims_enforceable=truth(contractual_claims_enforceable),
         institute_conclusions_displaced=truth(institute_conclusions_displaced),
         breach_findings_without_effect=truth(breach_findings_without_effect),
+        title_transfer_defeated=truth(title_transfer_defeated),
         restitution_regime_applies=truth(restitution_regime_applies),
         requires_human_general_effects_assessment=truth(requires_human_general_effects_assessment),
         reasons_ru=reasons_ru,
