@@ -8,6 +8,7 @@
     "transaction_void_for_form": false,
     "limitation_defense_available": false,
     "claim_not_subject_to_limitation": false,
+    "term_calculation_defective": false,
     "unauthorized_representation_detected": false,
     "unauthorized_disposal_detected": false,
     "abuse_of_right_detected": false,
@@ -17,7 +18,7 @@
   },
   "constraint_set": {
     "id": "general-effects-constraint-set:case-supply-1",
-    "model_version": "contracts-general-part-effects-articles-10-167-173-1-183-199-209-432-v4",
+    "model_version": "contracts-general-part-effects-articles-10-167-173-1-183-190-199-209-432-v5",
     "source_evaluations": [
       "formation_evaluation",
       "invalidity_evaluation",
@@ -27,6 +28,7 @@
       "property_rights_evaluation",
       "civil_principles_evaluation",
       "transactions_evaluation",
+      "terms_evaluation",
       "constraint_evaluation",
       "termination_evaluation"
     ],
@@ -36,7 +38,8 @@
       "form_defect_displaces_contract == transaction_void_for_form",
       "unauthorized_representation_displaces_contract == unauthorized_representation_detected",
       "contract_legally_effective == contract_concluded_prerequisites AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected",
-      "limitation_bars_protection == limitation_defense_available AND NOT claim_not_subject_to_limitation",
+      "limitation_bars_protection == limitation_defense_available AND NOT claim_not_subject_to_limitation AND NOT term_calculation_defective",
+      "limitation_conclusion_unreliable == limitation_defense_available AND term_calculation_defective",
       "judicial_protection_available == NOT limitation_bars_protection AND NOT abuse_of_right_detected",
       "claims_barred_by_limitation == contract_legally_effective AND limitation_bars_protection",
       "protection_refused_for_abuse == contract_legally_effective AND abuse_of_right_detected",
@@ -46,7 +49,7 @@
       "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
       "title_transfer_defeated == unauthorized_disposal_detected",
       "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-      "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent"
+      "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable"
     ]
   },
   "derived_evaluation": {
@@ -59,6 +62,7 @@
     "unauthorized_representation_displaces_contract": false,
     "judicial_protection_available": true,
     "claims_barred_by_limitation": false,
+    "limitation_conclusion_unreliable": false,
     "protection_refused_for_abuse": false,
     "contractual_claims_enforceable": true,
     "transaction_challengeable_for_missing_consent": false,

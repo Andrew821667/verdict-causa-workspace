@@ -1397,6 +1397,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-terms",
+            title="Проверка исчисления сроков",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.terms_evidence_mapping.evidence_id,
+                trace.analysis_result.terms_constraint_set.id,
+                *trace.analysis_result.terms_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.terms_evaluation.reasons_ru,
+                "Определение срока, неизбежность события, начало течения срока, его окончание, перенос окончания с нерабочего дня на ближайший рабочий, исчисление срока исковой давности, совершение действия до двадцати четырёх часов последнего дня, час прекращения операций в организации и сдача письменных извещений в организацию связи проверяются раздельно по статьям 190–194 ГК РФ.",
+                "Неизбежность события, режим рабочих и нерабочих дней и фактическое время совершения действия оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transactions",
             title="Проверка понятия, вида и условий сделки",
             status=PipelineStepStatus.PASSED,

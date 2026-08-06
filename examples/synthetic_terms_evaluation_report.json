@@ -1,0 +1,457 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка правил об исчислении сроков по статьям 190–194 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-terms-evidence-supply-1-v0",
+    "schema_version": "contracts.terms-evidence.v0",
+    "mapping_version": "contracts-reviewed-terms-to-facts-v0",
+    "facts": {
+      "term_asserted": false,
+      "term_definition_breached": false,
+      "term_event_certainty_breached": false,
+      "term_start_rules_breached": false,
+      "term_end_rules_breached": false,
+      "non_working_day_rule_breached": false,
+      "limitation_term_calculation_breached": false,
+      "performance_deadline_breached": false,
+      "organisation_operating_hours_breached": false,
+      "written_notice_dispatch_breached": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
+      "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "limitation_term_calculation_breached",
+        "assertion_id": "terms-evidence-limitation_term_calculation_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-terms-evidence"
+        ]
+      },
+      {
+        "fact_name": "non_working_day_rule_breached",
+        "assertion_id": "terms-evidence-non_working_day_rule_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-terms-evidence"
+        ]
+      },
+      {
+        "fact_name": "organisation_operating_hours_breached",
+        "assertion_id": "terms-evidence-organisation_operating_hours_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-terms-evidence"
+        ]
+      },
+      {
+        "fact_name": "performance_deadline_breached",
+        "assertion_id": "terms-evidence-performance_deadline_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-terms-evidence"
+        ]
+      },
+      {
+        "fact_name": "term_asserted",
+        "assertion_id": "terms-evidence-term_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-terms-evidence"
+        ]
+      },
+      {
+        "fact_name": "term_definition_breached",
+        "assertion_id": "terms-evidence-term_definition_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-terms-evidence"
+        ]
+      },
+      {
+        "fact_name": "term_end_rules_breached",
+        "assertion_id": "terms-evidence-term_end_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-terms-evidence"
+        ]
+      },
+      {
+        "fact_name": "term_event_certainty_breached",
+        "assertion_id": "terms-evidence-term_event_certainty_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-terms-evidence"
+        ]
+      },
+      {
+        "fact_name": "term_start_rules_breached",
+        "assertion_id": "terms-evidence-term_start_rules_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-terms-evidence"
+        ]
+      },
+      {
+        "fact_name": "written_notice_dispatch_breached",
+        "assertion_id": "terms-evidence-written_notice_dispatch_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-terms-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "terms-constraint-set:reviewed-terms-evidence-supply-1-v0",
+    "model_version": "contracts-terms-articles-190-194-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
+      "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1"
+    ],
+    "expressions": [
+      "terms_qualified == term_asserted",
+      "term_definition_duty_breached == terms_qualified AND term_definition_breached",
+      "term_event_certainty_duty_breached == terms_qualified AND term_definition_breached AND term_event_certainty_breached",
+      "term_start_duty_breached == terms_qualified AND term_start_rules_breached",
+      "term_end_duty_breached == terms_qualified AND term_end_rules_breached",
+      "non_working_day_duty_breached == terms_qualified AND non_working_day_rule_breached",
+      "term_calculation_defective == terms_qualified AND limitation_term_calculation_breached",
+      "performance_deadline_duty_breached == terms_qualified AND performance_deadline_breached",
+      "organisation_operating_hours_duty_breached == terms_qualified AND organisation_operating_hours_breached",
+      "written_notice_dispatch_duty_breached == terms_qualified AND written_notice_dispatch_breached",
+      "requires_human_terms_assessment == term_definition_duty_breached OR term_start_duty_breached OR term_end_duty_breached OR non_working_day_duty_breached OR term_calculation_defective OR performance_deadline_duty_breached OR organisation_operating_hours_duty_breached OR written_notice_dispatch_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "terms-constraint-set:reviewed-terms-evidence-supply-1-v0",
+    "satisfiable": true,
+    "terms_qualified": false,
+    "term_definition_duty_breached": false,
+    "term_event_certainty_duty_breached": false,
+    "term_start_duty_breached": false,
+    "term_end_duty_breached": false,
+    "non_working_day_duty_breached": false,
+    "term_calculation_defective": false,
+    "performance_deadline_duty_breached": false,
+    "organisation_operating_hours_duty_breached": false,
+    "written_notice_dispatch_duty_breached": false,
+    "requires_human_terms_assessment": false,
+    "reasons_ru": [
+      "Срок в деле не заявлен."
+    ],
+    "warnings_ru": [
+      "Модель проверяет только формальные правила об исчислении сроков и не заменяет судебную оценку.",
+      "Неизбежность события, которым определён срок, режим рабочих и нерабочих дней и фактическое время совершения действия оцениваются экспертом и судом (статьи 190, 193 и 194 ГК РФ)."
+    ]
+  },
+  "benchmark_report": {
+    "id": "terms-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "terms-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "terms_qualified": false
+        },
+        "observed_outcomes": {
+          "terms_qualified": false
+        },
+        "reasons_ru": [
+          "Срок в деле не заявлен."
+        ]
+      },
+      {
+        "task_id": "terms-bench-qualified-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "terms_qualified": true,
+          "requires_human_terms_assessment": false
+        },
+        "observed_outcomes": {
+          "terms_qualified": true,
+          "requires_human_terms_assessment": false
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "terms-bench-definition-and-event",
+        "passed": true,
+        "expected_outcomes": {
+          "term_definition_duty_breached": true,
+          "term_event_certainty_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "observed_outcomes": {
+          "term_definition_duty_breached": true,
+          "term_event_certainty_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Срок определён с нарушением: он определяется календарной датой, истечением периода времени либо указанием на событие (статья 190 ГК РФ).",
+          "Срок определён указанием на событие, которое не должно неизбежно наступить, тогда как срок может определяться указанием лишь на такое событие, которое должно неизбежно наступить (статья 190 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "terms-bench-start",
+        "passed": true,
+        "expected_outcomes": {
+          "term_start_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "observed_outcomes": {
+          "term_start_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Начало срока определено неверно: течение срока, определённого периодом времени, начинается на следующий день после календарной даты или наступления события, которыми определено его начало (статья 191 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "terms-bench-end",
+        "passed": true,
+        "expected_outcomes": {
+          "term_end_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "observed_outcomes": {
+          "term_end_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Окончание срока определено неверно: срок, исчисляемый годами, истекает в соответствующие месяц и число последнего года срока; к срокам, исчисляемым полугодами, кварталами, месяцами, неделями и полумесяцами, применяются соответствующие правила (статья 192 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "terms-bench-non-working-day",
+        "passed": true,
+        "expected_outcomes": {
+          "non_working_day_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "observed_outcomes": {
+          "non_working_day_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Не применено правило о нерабочем дне: если последний день срока приходится на нерабочий день, днём окончания срока считается ближайший следующий за ним рабочий день (статья 193 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "terms-bench-limitation-calculation",
+        "passed": true,
+        "expected_outcomes": {
+          "term_calculation_defective": true,
+          "requires_human_terms_assessment": true
+        },
+        "observed_outcomes": {
+          "term_calculation_defective": true,
+          "requires_human_terms_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Срок исковой давности исчислен с нарушением правил об исчислении сроков: определение срока, начало его течения, окончание и перенос на ближайший следующий рабочий день подчиняются статьям 190–193 ГК РФ, поэтому вывод об истечении срока исковой давности не может считаться установленным."
+        ]
+      },
+      {
+        "task_id": "terms-bench-performance-deadline",
+        "passed": true,
+        "expected_outcomes": {
+          "performance_deadline_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "observed_outcomes": {
+          "performance_deadline_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Нарушен порядок совершения действий в последний день срока: если срок установлен для совершения какого-либо действия, оно может быть выполнено до двадцати четырёх часов последнего дня срока (статья 194 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "terms-bench-operating-hours",
+        "passed": true,
+        "expected_outcomes": {
+          "organisation_operating_hours_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "observed_outcomes": {
+          "organisation_operating_hours_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Не учтено правило об операциях в организации: если действие должно быть совершено в организации, срок истекает в тот час, когда в этой организации по установленным правилам прекращаются соответствующие операции (статья 194 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "terms-bench-notice-dispatch",
+        "passed": true,
+        "expected_outcomes": {
+          "written_notice_dispatch_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "observed_outcomes": {
+          "written_notice_dispatch_duty_breached": true,
+          "requires_human_terms_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Не учтена сдача письменных заявлений и извещений в организацию связи: сданные до двадцати четырёх часов последнего дня срока, они считаются совершёнными в срок (статья 194 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "terms-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "terms-red-qualify-without-term",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "terms_qualified": true
+        },
+        "observed_outcomes": {
+          "terms_qualified": false
+        },
+        "reasons_ru": [
+          "Срок в деле не заявлен."
+        ]
+      },
+      {
+        "case_id": "terms-red-ignore-definition",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "term_definition_duty_breached": false
+        },
+        "observed_outcomes": {
+          "term_definition_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Срок определён с нарушением: он определяется календарной датой, истечением периода времени либо указанием на событие (статья 190 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "terms-red-allow-uncertain-event",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "term_event_certainty_duty_breached": false
+        },
+        "observed_outcomes": {
+          "term_event_certainty_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Срок определён с нарушением: он определяется календарной датой, истечением периода времени либо указанием на событие (статья 190 ГК РФ).",
+          "Срок определён указанием на событие, которое не должно неизбежно наступить, тогда как срок может определяться указанием лишь на такое событие, которое должно неизбежно наступить (статья 190 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "terms-red-ignore-start",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "term_start_duty_breached": false
+        },
+        "observed_outcomes": {
+          "term_start_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Начало срока определено неверно: течение срока, определённого периодом времени, начинается на следующий день после календарной даты или наступления события, которыми определено его начало (статья 191 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "terms-red-ignore-end",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "term_end_duty_breached": false
+        },
+        "observed_outcomes": {
+          "term_end_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Окончание срока определено неверно: срок, исчисляемый годами, истекает в соответствующие месяц и число последнего года срока; к срокам, исчисляемым полугодами, кварталами, месяцами, неделями и полумесяцами, применяются соответствующие правила (статья 192 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "terms-red-ignore-non-working-day",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "non_working_day_duty_breached": false
+        },
+        "observed_outcomes": {
+          "non_working_day_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Не применено правило о нерабочем дне: если последний день срока приходится на нерабочий день, днём окончания срока считается ближайший следующий за ним рабочий день (статья 193 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "terms-red-ignore-limitation-calculation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "term_calculation_defective": false
+        },
+        "observed_outcomes": {
+          "term_calculation_defective": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Срок исковой давности исчислен с нарушением правил об исчислении сроков: определение срока, начало его течения, окончание и перенос на ближайший следующий рабочий день подчиняются статьям 190–193 ГК РФ, поэтому вывод об истечении срока исковой давности не может считаться установленным."
+        ]
+      },
+      {
+        "case_id": "terms-red-shorten-last-day",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "performance_deadline_duty_breached": false
+        },
+        "observed_outcomes": {
+          "performance_deadline_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Нарушен порядок совершения действий в последний день срока: если срок установлен для совершения какого-либо действия, оно может быть выполнено до двадцати четырёх часов последнего дня срока (статья 194 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "terms-red-ignore-operating-hours",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "organisation_operating_hours_duty_breached": false
+        },
+        "observed_outcomes": {
+          "organisation_operating_hours_duty_breached": true
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ).",
+          "Не учтено правило об операциях в организации: если действие должно быть совершено в организации, срок истекает в тот час, когда в этой организации по установленным правилам прекращаются соответствующие операции (статья 194 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "terms-red-event-certainty-without-definition-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "term_event_certainty_duty_breached": true
+        },
+        "observed_outcomes": {
+          "term_event_certainty_duty_breached": false
+        },
+        "reasons_ru": [
+          "Заявлен срок: установленный законом, иными правовыми актами, сделкой или назначаемый судом срок определяется календарной датой или истечением периода времени, который исчисляется годами, месяцами, неделями, днями или часами (статья 190 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95820/"
+  ]
+}

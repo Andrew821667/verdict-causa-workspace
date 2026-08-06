@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.91.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Reviewed terms evidence is mandatory for the Phase 0 analysis path.",
+            "Formal boundaries cover Civil Code articles 190 to 194.",
+            "The definition of a term, the certainty of the event it refers to, the start of its running, its expiry, the shift off a non-working day, the calculation of the limitation period, the last-day deadline, the operating hours of an organisation and the dispatch of written notices remain distinct.",
+            "A defective calculation of the limitation period feeds the general-part effects layer and withdraws the limitation bar under articles 190 to 194 and 199, because the expiry of the period is then not established.",
+        ],
+        notes_ru=[
+            "Проверенные данные об исчислении сроков обязательны для аналитического пути Phase 0.",
+            "Формальные границы охватывают статьи 190–194 ГК РФ.",
+            "Определение срока, неизбежность события, начало течения срока, его окончание, перенос с нерабочего дня, исчисление срока исковой давности, действия в последний день срока, час прекращения операций в организации и сдача письменных извещений в организацию связи разделены.",
+            "Порок исчисления срока исковой давности поступает в слой общих положений и снимает отказ в защите по давности (статьи 190–194 и 199 ГК РФ), поскольку истечение срока в этом случае не считается установленным.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.90.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

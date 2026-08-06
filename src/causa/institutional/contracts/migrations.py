@@ -1731,6 +1731,26 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.90.0",
+        to_version="0.91.0",
+        reasons=[
+            "Reviewed inputs now require a separate terms evidence contract covering articles 190 to 194.",
+            "The general-part effects layer gains an input for a defective calculation of the limitation period, so the limitation bar is withdrawn and the limitation conclusion is reported as unreliable.",
+        ],
+        reasons_ru=[
+            "Проверенные входы теперь требуют отдельный контракт данных об исчислении сроков по статьям 190–194 ГК РФ.",
+            "Слой общих положений получил вход о пороке исчисления срока исковой давности, поэтому отказ в защите по давности снимается, а вывод о давности помечается как недостоверный.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_terms_evaluation.py",
+            "python scripts/export_synthetic_general_effects_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_translation_bundle.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

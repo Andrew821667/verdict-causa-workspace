@@ -2818,6 +2818,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
+      "title": "Синтетическая проверенная модель определения срока, начала его течения и окончания по статьям 190–193 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: определение срока календарной датой, истечением периода времени, исчисляемого годами, месяцами, неделями, днями или часами, либо указанием на событие, которое должно неизбежно наступить, начало течения срока на следующий день после календарной даты или наступления события, окончание срока, исчисляемого годами, месяцами, кварталами, полугодиями, неделями и полумесяцами, а также перенос окончания срока, приходящегося на нерабочий день, на ближайший следующий за ним рабочий день проверяются раздельно (статьи 190–193 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "term_definition_start_and_end_articles_190_193",
+        "legal_reference": "ГК РФ, статьи 190–193",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1",
+      "title": "Синтетическая проверенная модель порядка совершения действий в последний день срока по статье 194 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: возможность выполнить действие до двадцати четырёх часов последнего дня срока, истечение срока в тот час, когда в организации по установленным правилам прекращаются соответствующие операции, а также признание совершёнными в срок письменных заявлений и извещений, сданных в организацию связи до двадцати четырёх часов последнего дня срока, проверяются раздельно (статья 194 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "actions_on_the_last_day_of_a_term_article_194",
+        "legal_reference": "ГК РФ, статья 194",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-terms-evidence",
+      "title": "Синтетическая проверенная запись фактов об исчислении сроков по делу",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки самостоятельных возражений об исчислении сроков не заявлялось.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "terms_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
       "title": "Синтетическая проверенная модель понятия сделки, её видов и сделок под условием по статьям 153–157 ГК РФ",
       "source_type": "statute",
@@ -9852,6 +9899,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-agency-reviewer"
     },
+    "terms_evidence": {
+      "id": "reviewed-terms-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.terms-evidence.v0",
+      "assertions": [
+        {
+          "id": "terms-evidence-term_asserted",
+          "predicate": "term_asserted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "id": "terms-evidence-term_definition_breached",
+          "predicate": "term_definition_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "id": "terms-evidence-term_event_certainty_breached",
+          "predicate": "term_event_certainty_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "id": "terms-evidence-term_start_rules_breached",
+          "predicate": "term_start_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "id": "terms-evidence-term_end_rules_breached",
+          "predicate": "term_end_rules_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "id": "terms-evidence-non_working_day_rule_breached",
+          "predicate": "non_working_day_rule_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "id": "terms-evidence-limitation_term_calculation_breached",
+          "predicate": "limitation_term_calculation_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "id": "terms-evidence-performance_deadline_breached",
+          "predicate": "performance_deadline_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "id": "terms-evidence-organisation_operating_hours_breached",
+          "predicate": "organisation_operating_hours_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "id": "terms-evidence-written_notice_dispatch_breached",
+          "predicate": "written_notice_dispatch_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
+        "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-terms-reviewer"
+    },
     "transactions_evidence": {
       "id": "reviewed-transactions-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -16001,6 +16141,7 @@
       "synthetic-temporal-effect-reviewer",
       "synthetic-temporal-reviewer",
       "synthetic-termination-reviewer",
+      "synthetic-terms-reviewer",
       "synthetic-third-party-reviewer",
       "synthetic-tort-general-reviewer",
       "synthetic-tort-life-health-reviewer",
@@ -16084,6 +16225,7 @@
       "synthetic-case-supply-1-storage-evidence",
       "synthetic-case-supply-1-temporal-effect-evidence",
       "synthetic-case-supply-1-termination-evidence",
+      "synthetic-case-supply-1-terms-evidence",
       "synthetic-case-supply-1-third-party-evidence",
       "synthetic-case-supply-1-tort-general-evidence",
       "synthetic-case-supply-1-tort-life-health-evidence",
@@ -16130,6 +16272,8 @@
       "synthetic-ru-gk180-181-invalidity-effects-v1",
       "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
       "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
+      "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
+      "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1",
       "synthetic-ru-gk195-200-limitation-framework-v1",
       "synthetic-ru-gk202-208-limitation-effects-v1",
       "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
@@ -24344,6 +24488,142 @@
         "Существо агентского договора, допустимость договорных ограничений и обоснованность возражений по отчёту оцениваются экспертом и судом (статьи 1007, 1008 и 1011 ГК РФ)."
       ]
     },
+    "terms_evidence_mapping": {
+      "evidence_id": "reviewed-terms-evidence-supply-1-v0",
+      "schema_version": "contracts.terms-evidence.v0",
+      "mapping_version": "contracts-reviewed-terms-to-facts-v0",
+      "facts": {
+        "term_asserted": false,
+        "term_definition_breached": false,
+        "term_event_certainty_breached": false,
+        "term_start_rules_breached": false,
+        "term_end_rules_breached": false,
+        "non_working_day_rule_breached": false,
+        "limitation_term_calculation_breached": false,
+        "performance_deadline_breached": false,
+        "organisation_operating_hours_breached": false,
+        "written_notice_dispatch_breached": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
+        "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "limitation_term_calculation_breached",
+          "assertion_id": "terms-evidence-limitation_term_calculation_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "fact_name": "non_working_day_rule_breached",
+          "assertion_id": "terms-evidence-non_working_day_rule_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "fact_name": "organisation_operating_hours_breached",
+          "assertion_id": "terms-evidence-organisation_operating_hours_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_deadline_breached",
+          "assertion_id": "terms-evidence-performance_deadline_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "fact_name": "term_asserted",
+          "assertion_id": "terms-evidence-term_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "fact_name": "term_definition_breached",
+          "assertion_id": "terms-evidence-term_definition_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "fact_name": "term_end_rules_breached",
+          "assertion_id": "terms-evidence-term_end_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "fact_name": "term_event_certainty_breached",
+          "assertion_id": "terms-evidence-term_event_certainty_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "fact_name": "term_start_rules_breached",
+          "assertion_id": "terms-evidence-term_start_rules_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        },
+        {
+          "fact_name": "written_notice_dispatch_breached",
+          "assertion_id": "terms-evidence-written_notice_dispatch_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-terms-evidence"
+          ]
+        }
+      ]
+    },
+    "terms_constraint_set": {
+      "id": "terms-constraint-set:reviewed-terms-evidence-supply-1-v0",
+      "model_version": "contracts-terms-articles-190-194-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
+        "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1"
+      ],
+      "expressions": [
+        "terms_qualified == term_asserted",
+        "term_definition_duty_breached == terms_qualified AND term_definition_breached",
+        "term_event_certainty_duty_breached == terms_qualified AND term_definition_breached AND term_event_certainty_breached",
+        "term_start_duty_breached == terms_qualified AND term_start_rules_breached",
+        "term_end_duty_breached == terms_qualified AND term_end_rules_breached",
+        "non_working_day_duty_breached == terms_qualified AND non_working_day_rule_breached",
+        "term_calculation_defective == terms_qualified AND limitation_term_calculation_breached",
+        "performance_deadline_duty_breached == terms_qualified AND performance_deadline_breached",
+        "organisation_operating_hours_duty_breached == terms_qualified AND organisation_operating_hours_breached",
+        "written_notice_dispatch_duty_breached == terms_qualified AND written_notice_dispatch_breached",
+        "requires_human_terms_assessment == term_definition_duty_breached OR term_start_duty_breached OR term_end_duty_breached OR non_working_day_duty_breached OR term_calculation_defective OR performance_deadline_duty_breached OR organisation_operating_hours_duty_breached OR written_notice_dispatch_duty_breached"
+      ]
+    },
+    "terms_evaluation": {
+      "constraint_set_id": "terms-constraint-set:reviewed-terms-evidence-supply-1-v0",
+      "satisfiable": true,
+      "terms_qualified": false,
+      "term_definition_duty_breached": false,
+      "term_event_certainty_duty_breached": false,
+      "term_start_duty_breached": false,
+      "term_end_duty_breached": false,
+      "non_working_day_duty_breached": false,
+      "term_calculation_defective": false,
+      "performance_deadline_duty_breached": false,
+      "organisation_operating_hours_duty_breached": false,
+      "written_notice_dispatch_duty_breached": false,
+      "requires_human_terms_assessment": false,
+      "reasons_ru": [
+        "Срок в деле не заявлен."
+      ],
+      "warnings_ru": [
+        "Модель проверяет только формальные правила об исчислении сроков и не заменяет судебную оценку.",
+        "Неизбежность события, которым определён срок, режим рабочих и нерабочих дней и фактическое время совершения действия оцениваются экспертом и судом (статьи 190, 193 и 194 ГК РФ)."
+      ]
+    },
     "transactions_evidence_mapping": {
       "evidence_id": "reviewed-transactions-evidence-supply-1-v0",
       "schema_version": "contracts.transactions-evidence.v0",
@@ -24895,6 +25175,7 @@
       "transaction_void_for_form": false,
       "limitation_defense_available": false,
       "claim_not_subject_to_limitation": false,
+      "term_calculation_defective": false,
       "unauthorized_representation_detected": false,
       "unauthorized_disposal_detected": false,
       "abuse_of_right_detected": false,
@@ -24904,7 +25185,7 @@
     },
     "general_effects_constraint_set": {
       "id": "general-effects-constraint-set:case-supply-1",
-      "model_version": "contracts-general-part-effects-articles-10-167-173-1-183-199-209-432-v4",
+      "model_version": "contracts-general-part-effects-articles-10-167-173-1-183-190-199-209-432-v5",
       "source_evaluations": [
         "formation_evaluation",
         "invalidity_evaluation",
@@ -24914,6 +25195,7 @@
         "property_rights_evaluation",
         "civil_principles_evaluation",
         "transactions_evaluation",
+        "terms_evaluation",
         "constraint_evaluation",
         "termination_evaluation"
       ],
@@ -24923,7 +25205,8 @@
         "form_defect_displaces_contract == transaction_void_for_form",
         "unauthorized_representation_displaces_contract == unauthorized_representation_detected",
         "contract_legally_effective == contract_concluded_prerequisites AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected",
-        "limitation_bars_protection == limitation_defense_available AND NOT claim_not_subject_to_limitation",
+        "limitation_bars_protection == limitation_defense_available AND NOT claim_not_subject_to_limitation AND NOT term_calculation_defective",
+        "limitation_conclusion_unreliable == limitation_defense_available AND term_calculation_defective",
         "judicial_protection_available == NOT limitation_bars_protection AND NOT abuse_of_right_detected",
         "claims_barred_by_limitation == contract_legally_effective AND limitation_bars_protection",
         "protection_refused_for_abuse == contract_legally_effective AND abuse_of_right_detected",
@@ -24933,7 +25216,7 @@
         "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
         "title_transfer_defeated == unauthorized_disposal_detected",
         "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-        "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent"
+        "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable"
       ]
     },
     "general_effects_evaluation": {
@@ -24946,6 +25229,7 @@
       "unauthorized_representation_displaces_contract": false,
       "judicial_protection_available": true,
       "claims_barred_by_limitation": false,
+      "limitation_conclusion_unreliable": false,
       "protection_refused_for_abuse": false,
       "contractual_claims_enforceable": true,
       "transaction_challengeable_for_missing_consent": false,
@@ -31694,7 +31978,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.90.0",
+      "institutional_package_version": "contracts-ru-v0@0.91.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -33761,6 +34045,7 @@
           "synthetic-case-supply-1-storage-evidence",
           "synthetic-case-supply-1-temporal-effect-evidence",
           "synthetic-case-supply-1-termination-evidence",
+          "synthetic-case-supply-1-terms-evidence",
           "synthetic-case-supply-1-third-party-evidence",
           "synthetic-case-supply-1-tort-general-evidence",
           "synthetic-case-supply-1-tort-life-health-evidence",
@@ -33807,6 +34092,8 @@
           "synthetic-ru-gk180-181-invalidity-effects-v1",
           "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
           "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
+          "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
+          "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1",
           "synthetic-ru-gk195-200-limitation-framework-v1",
           "synthetic-ru-gk202-208-limitation-effects-v1",
           "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
@@ -35021,6 +35308,7 @@
           "synthetic-case-supply-1-storage-evidence",
           "synthetic-case-supply-1-temporal-effect-evidence",
           "synthetic-case-supply-1-termination-evidence",
+          "synthetic-case-supply-1-terms-evidence",
           "synthetic-case-supply-1-third-party-evidence",
           "synthetic-case-supply-1-tort-general-evidence",
           "synthetic-case-supply-1-tort-life-health-evidence",
@@ -35067,6 +35355,8 @@
           "synthetic-ru-gk180-181-invalidity-effects-v1",
           "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
           "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
+          "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
+          "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1",
           "synthetic-ru-gk195-200-limitation-framework-v1",
           "synthetic-ru-gk202-208-limitation-effects-v1",
           "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
@@ -36281,6 +36571,7 @@
           "synthetic-case-supply-1-storage-evidence",
           "synthetic-case-supply-1-temporal-effect-evidence",
           "synthetic-case-supply-1-termination-evidence",
+          "synthetic-case-supply-1-terms-evidence",
           "synthetic-case-supply-1-third-party-evidence",
           "synthetic-case-supply-1-tort-general-evidence",
           "synthetic-case-supply-1-tort-life-health-evidence",
@@ -36327,6 +36618,8 @@
           "synthetic-ru-gk180-181-invalidity-effects-v1",
           "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
           "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
+          "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
+          "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1",
           "synthetic-ru-gk195-200-limitation-framework-v1",
           "synthetic-ru-gk202-208-limitation-effects-v1",
           "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
@@ -36552,7 +36845,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.90.0",
+      "institutional_package_version": "contracts-ru-v0@0.91.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -38838,6 +39131,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель определения срока, начала его течения и окончания по статьям 190–193 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "term_definition_start_and_end_articles_190_193",
+          "legal_reference": "ГК РФ, статьи 190–193",
+          "basis_url": "https://government.ru/docs/all/95820/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель порядка совершения действий в последний день срока по статье 194 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "actions_on_the_last_day_of_a_term_article_194",
+          "legal_reference": "ГК РФ, статья 194",
+          "basis_url": "https://government.ru/docs/all/95820/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-terms-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов об исчислении сроков по делу",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "terms_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель понятия сделки, её видов и сделок под условием по статьям 153–157 ГК РФ",
@@ -40049,6 +40380,7 @@
             "synthetic-temporal-effect-reviewer",
             "synthetic-temporal-reviewer",
             "synthetic-termination-reviewer",
+            "synthetic-terms-reviewer",
             "synthetic-third-party-reviewer",
             "synthetic-tort-general-reviewer",
             "synthetic-tort-life-health-reviewer",

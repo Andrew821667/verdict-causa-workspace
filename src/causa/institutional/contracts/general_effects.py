@@ -16,6 +16,9 @@
 - статья 199 ГК РФ — истечение срока исковой давности, о применении которой
   заявлено стороной, является основанием к вынесению судом решения об отказе
   в иске;
+- статьи 190–194 ГК РФ — правила исчисления сроков, которым подчинён и срок
+  исковой давности, поэтому порок исчисления обесценивает вывод о его
+  истечении;
 - статья 183 ГК РФ — при отсутствии полномочий сделка считается заключённой от
   имени совершившего её лица, пока представляемый её не одобрит;
 - статья 10 ГК РФ — при злоупотреблении правом суд отказывает лицу в защите
@@ -33,7 +36,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from z3 import And, Bool, Not, Or, Solver, sat
 
 GENERAL_EFFECTS_MODEL_VERSION = (
-    "contracts-general-part-effects-articles-10-167-173-1-183-199-209-432-v4"
+    "contracts-general-part-effects-articles-10-167-173-1-183-190-199-209-432-v5"
 )
 
 
@@ -52,6 +55,8 @@ class GeneralEffectsInputs(BaseModel):
     # Исковая давность (статьи 195–208 ГК РФ).
     limitation_defense_available: bool
     claim_not_subject_to_limitation: bool
+    # Исчисление сроков (статьи 190–194 ГК РФ).
+    term_calculation_defective: bool
     # Представительство: сделка неуполномоченного лица (статья 183 ГК РФ).
     unauthorized_representation_detected: bool
     # Вещные права: распоряжение неуправомоченным лицом (статья 209 ГК РФ).
@@ -84,6 +89,7 @@ class GeneralEffectsEvaluation(BaseModel):
     # Возможность судебной защиты.
     judicial_protection_available: bool
     claims_barred_by_limitation: bool
+    limitation_conclusion_unreliable: bool
     protection_refused_for_abuse: bool
     # Совокупный эффект для требований из договора.
     contractual_claims_enforceable: bool
@@ -106,6 +112,7 @@ def build_general_effects_inputs(
     property_rights_evaluation,
     civil_principles_evaluation,
     transactions_evaluation,
+    terms_evaluation,
     constraint_evaluation,
     termination_evaluation,
 ) -> GeneralEffectsInputs:
@@ -123,6 +130,7 @@ def build_general_effects_inputs(
         unauthorized_disposal_detected=(property_rights_evaluation.unauthorized_disposal_detected),
         abuse_of_right_detected=civil_principles_evaluation.abuse_of_right_detected,
         consent_missing_for_transaction=(transactions_evaluation.consent_missing_for_transaction),
+        term_calculation_defective=terms_evaluation.term_calculation_defective,
         breach_issue=constraint_evaluation.breach_issue,
         effective_termination=termination_evaluation.effective_termination,
     )
@@ -143,6 +151,7 @@ def build_general_effects_constraint_set(
             "property_rights_evaluation",
             "civil_principles_evaluation",
             "transactions_evaluation",
+            "terms_evaluation",
             "constraint_evaluation",
             "termination_evaluation",
         ],
@@ -152,7 +161,8 @@ def build_general_effects_constraint_set(
             "form_defect_displaces_contract == transaction_void_for_form",
             "unauthorized_representation_displaces_contract == unauthorized_representation_detected",
             "contract_legally_effective == contract_concluded_prerequisites AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected",
-            "limitation_bars_protection == limitation_defense_available AND NOT claim_not_subject_to_limitation",
+            "limitation_bars_protection == limitation_defense_available AND NOT claim_not_subject_to_limitation AND NOT term_calculation_defective",
+            "limitation_conclusion_unreliable == limitation_defense_available AND term_calculation_defective",
             "judicial_protection_available == NOT limitation_bars_protection AND NOT abuse_of_right_detected",
             "claims_barred_by_limitation == contract_legally_effective AND limitation_bars_protection",
             "protection_refused_for_abuse == contract_legally_effective AND abuse_of_right_detected",
@@ -162,7 +172,7 @@ def build_general_effects_constraint_set(
             "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
             "title_transfer_defeated == unauthorized_disposal_detected",
             "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-            "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent",
+            "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable",
         ],
     )
 
@@ -182,6 +192,7 @@ def evaluate_general_effects_constraints(
     judicial_protection_available = Bool("judicial_protection_available")
     limitation_bars_protection = Bool("limitation_bars_protection")
     claims_barred_by_limitation = Bool("claims_barred_by_limitation")
+    limitation_conclusion_unreliable = Bool("limitation_conclusion_unreliable")
     protection_refused_for_abuse = Bool("protection_refused_for_abuse")
     contractual_claims_enforceable = Bool("contractual_claims_enforceable")
     transaction_challengeable_for_missing_consent = Bool(
@@ -219,6 +230,14 @@ def evaluate_general_effects_constraints(
         == And(
             variables["limitation_defense_available"],
             Not(variables["claim_not_subject_to_limitation"]),
+            Not(variables["term_calculation_defective"]),
+        )
+    )
+    solver.add(
+        limitation_conclusion_unreliable
+        == And(
+            variables["limitation_defense_available"],
+            variables["term_calculation_defective"],
         )
     )
     solver.add(
@@ -263,6 +282,7 @@ def evaluate_general_effects_constraints(
             restitution_regime_applies,
             title_transfer_defeated,
             transaction_challengeable_for_missing_consent,
+            limitation_conclusion_unreliable,
         )
     )
 
@@ -278,6 +298,7 @@ def evaluate_general_effects_constraints(
             unauthorized_representation_displaces_contract=False,
             judicial_protection_available=False,
             claims_barred_by_limitation=False,
+            limitation_conclusion_unreliable=False,
             protection_refused_for_abuse=False,
             contractual_claims_enforceable=False,
             transaction_challengeable_for_missing_consent=False,
@@ -336,6 +357,13 @@ def evaluate_general_effects_constraints(
             "является самостоятельным основанием к вынесению судом решения об отказе в иске "
             "(статья 199 ГК РФ)."
         )
+    if truth(limitation_conclusion_unreliable):
+        reasons_ru.append(
+            "Вывод об истечении срока исковой давности не может быть положен в основание "
+            "отказа в иске: срок исковой давности исчисляется по общим правилам об "
+            "исчислении сроков, а они применены с нарушением, поэтому истечение срока не "
+            "считается установленным (статьи 190–194 и 199 ГК РФ)."
+        )
     if truth(protection_refused_for_abuse):
         reasons_ru.append(
             "Установлено злоупотребление правом, поэтому суд с учётом характера и последствий "
@@ -388,6 +416,7 @@ def evaluate_general_effects_constraints(
         ),
         judicial_protection_available=truth(judicial_protection_available),
         claims_barred_by_limitation=truth(claims_barred_by_limitation),
+        limitation_conclusion_unreliable=truth(limitation_conclusion_unreliable),
         protection_refused_for_abuse=truth(protection_refused_for_abuse),
         contractual_claims_enforceable=truth(contractual_claims_enforceable),
         transaction_challengeable_for_missing_consent=truth(

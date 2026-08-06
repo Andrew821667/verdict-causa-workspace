@@ -145,6 +145,11 @@ from causa.institutional.contracts.construction_contract import (
     ConstructionContractEvidencePredicate,
     ReviewedConstructionContractEvidence,
 )
+from causa.institutional.contracts.terms import (
+    ReviewedTermsEvidence,
+    TermsEvidenceAssertion,
+    TermsEvidencePredicate,
+)
 from causa.institutional.contracts.transactions import (
     ReviewedTransactionsEvidence,
     TransactionsEvidenceAssertion,
@@ -602,6 +607,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1005-1008-agency-concept-remuneration-and-reports-v1",
     "synthetic-ru-gk1009-1011-agency-subagency-termination-and-rules-v1",
     "synthetic-case-supply-1-agency-evidence",
+    "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
+    "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1",
+    "synthetic-case-supply-1-terms-evidence",
     "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
     "synthetic-ru-gk157-1-consent-to-a-transaction-v1",
     "synthetic-case-supply-1-transactions-evidence",
@@ -2982,6 +2990,36 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-agency-reviewer",
+        ),
+        terms_evidence=ReviewedTermsEvidence(
+            id="reviewed-terms-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                TermsEvidenceAssertion(
+                    id=f"terms-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-terms-evidence",),
+                )
+                for predicate, value in (
+                    (TermsEvidencePredicate.TERM_ASSERTED, False),
+                    (TermsEvidencePredicate.TERM_DEFINITION_BREACHED, False),
+                    (TermsEvidencePredicate.TERM_EVENT_CERTAINTY_BREACHED, False),
+                    (TermsEvidencePredicate.TERM_START_RULES_BREACHED, False),
+                    (TermsEvidencePredicate.TERM_END_RULES_BREACHED, False),
+                    (TermsEvidencePredicate.NON_WORKING_DAY_RULE_BREACHED, False),
+                    (TermsEvidencePredicate.LIMITATION_TERM_CALCULATION_BREACHED, False),
+                    (TermsEvidencePredicate.PERFORMANCE_DEADLINE_BREACHED, False),
+                    (TermsEvidencePredicate.ORGANISATION_OPERATING_HOURS_BREACHED, False),
+                    (TermsEvidencePredicate.WRITTEN_NOTICE_DISPATCH_BREACHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
+                "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-terms-reviewer",
         ),
         transactions_evidence=ReviewedTransactionsEvidence(
             id="reviewed-transactions-evidence-supply-1-v0",
