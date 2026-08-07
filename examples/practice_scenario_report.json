@@ -1,0 +1,119 @@
+{
+  "id": "practice-scenario-report-v0",
+  "suite_version": "contracts-practice-scenarios-v0",
+  "total": 6,
+  "passed": 6,
+  "failed": 0,
+  "results": [
+    {
+      "scenario_id": "practice-abuse-refusal-of-protection",
+      "title_ru": "Недобросовестное поведение стороны: отказ в защите права",
+      "source_ru": "Постановление Пленума ВС РФ от 23.06.2015 № 25, пункт 1",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.protection_refused_for_abuse": true,
+        "general_effects_evaluation.contractual_claims_enforceable": false,
+        "general_effects_evaluation.contract_legally_effective": true,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.protection_refused_for_abuse": true,
+        "general_effects_evaluation.contractual_claims_enforceable": false,
+        "general_effects_evaluation.contract_legally_effective": true,
+        "requires_human_resolution": true
+      },
+      "mismatched": []
+    },
+    {
+      "scenario_id": "practice-unauthorized-act-refusal-against-principal",
+      "title_ru": "Сделка неуполномоченного лица: отказ в иске к представляемому",
+      "source_ru": "Постановление Пленума ВС РФ от 23.06.2015 № 25, пункт 123",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.unauthorized_representation_displaces_contract": true,
+        "general_effects_evaluation.contract_legally_effective": false,
+        "general_effects_evaluation.contractual_claims_enforceable": false,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.unauthorized_representation_displaces_contract": true,
+        "general_effects_evaluation.contract_legally_effective": false,
+        "general_effects_evaluation.contractual_claims_enforceable": false,
+        "requires_human_resolution": true
+      },
+      "mismatched": []
+    },
+    {
+      "scenario_id": "practice-mutual-restitution-presumed-equal",
+      "title_ru": "Недействительная сделка исполнена обеими сторонами: реституция",
+      "source_ru": "Постановление Пленума ВС РФ от 23.06.2015 № 25, пункт 80",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.invalidity_displaces_contract": true,
+        "general_effects_evaluation.restitution_regime_applies": true,
+        "general_effects_evaluation.contract_legally_effective": false,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.invalidity_displaces_contract": true,
+        "general_effects_evaluation.restitution_regime_applies": true,
+        "general_effects_evaluation.contract_legally_effective": false,
+        "requires_human_resolution": true
+      },
+      "mismatched": []
+    },
+    {
+      "scenario_id": "practice-estoppel-against-non-conclusion-objection",
+      "title_ru": "Принявшая исполнение сторона не вправе ссылаться на незаключённость",
+      "source_ru": "Постановление Пленума ВС РФ от 25.12.2018 № 49; выдача поиска назвала пункт неуверенно — «пункт 5 или 6», номер не подтверждён",
+      "passed": true,
+      "expected_outcomes": {
+        "formation_evaluation.non_conclusion_objection_barred": true,
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.contractual_claims_enforceable": true
+      },
+      "observed_outcomes": {
+        "formation_evaluation.non_conclusion_objection_barred": true,
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.contractual_claims_enforceable": true
+      },
+      "mismatched": []
+    },
+    {
+      "scenario_id": "practice-missing-consent-is-voidable-only",
+      "title_ru": "Отсутствие необходимого согласия делает сделку оспоримой",
+      "source_ru": "Постановление Пленума ВС РФ от 23.06.2015 № 25, разъяснения о согласии на совершение сделки (статьи 157.1 и 173.1 ГК РФ)",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.transaction_challengeable_for_missing_consent": true,
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.contractual_claims_enforceable": true,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.transaction_challengeable_for_missing_consent": true,
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.contractual_claims_enforceable": true,
+        "requires_human_resolution": true
+      },
+      "mismatched": []
+    },
+    {
+      "scenario_id": "practice-invalidity-alone-does-not-prove-loss-of-possession",
+      "title_ru": "Недействительность сама по себе не означает выбытия имущества помимо воли",
+      "source_ru": "Постановление Пленума ВС РФ № 10 и Пленума ВАС РФ № 22 от 29.04.2010, пункт 39",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.invalidity_displaces_contract": true,
+        "general_effects_evaluation.title_transfer_defeated": false,
+        "property_rights_evaluation.unauthorized_disposal_detected": false
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.invalidity_displaces_contract": true,
+        "general_effects_evaluation.title_transfer_defeated": false,
+        "property_rights_evaluation.unauthorized_disposal_detected": false
+      },
+      "mismatched": []
+    }
+  ]
+}
