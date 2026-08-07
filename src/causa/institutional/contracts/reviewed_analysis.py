@@ -2027,7 +2027,6 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.objects_evidence_mapping.facts,
             self.form_evidence_mapping.facts,
             self.formation_evidence_mapping.facts,
-            self.termination_evidence_mapping.facts,
             self.formation_evaluation,
         )
         if self.general_consistency_inputs != expected_consistency_inputs:
@@ -5520,7 +5519,6 @@ def run_reviewed_contract_analysis(
         objects_evidence_mapping.facts,
         form_evidence_mapping.facts,
         formation_evidence_mapping.facts,
-        termination_evidence_mapping.facts,
         formation_evaluation,
     )
     general_consistency_constraint_set = build_general_consistency_constraint_set(

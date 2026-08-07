@@ -1841,6 +1841,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_practice_scenario_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.96.0",
+        to_version="0.97.0",
+        reasons=[
+            "The cross-institute consistency evaluation loses two boolean fields whose checks could never fire in the full pipeline, because pre-existing input checks reject the same condition earlier.",
+            "Artifacts carrying the removed fields must be regenerated.",
+        ],
+        reasons_ru=[
+            "Оценка слоя сверки лишилась двух булевых полей: соответствующие сверки в полном конвейере сработать не могли — то же условие раньше отвергается прежними проверками входов.",
+            "Артефакты, содержащие удалённые поля, требуют пересборки.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_general_consistency_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

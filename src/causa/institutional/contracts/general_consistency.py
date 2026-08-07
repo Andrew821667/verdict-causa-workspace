@@ -15,6 +15,15 @@
 Слой ничего не исправляет и не выбирает версию: он называет противоречие и
 поднимает флаг экспертизы. Устранение противоречия — работа рецензента, а не
 решателя.
+
+Набор сверок сокращён с десяти до восьми по результатам измерения
+достижимости: расхождения «договор не заключён, но оценивается
+недействительность» и «договор не заключён, но расторгается» в полном
+конвейере сработать не могли — то же условие ловят прежние жёсткие проверки
+входов, отвергая анализ раньше. Объявленная, но недостижимая сверка вводит в
+заблуждение не меньше, чем мёртвый список типов, поэтому обе удалены, а тест
+`test_every_declared_conflict_fires_end_to_end` проверяет достижимость каждой
+оставшейся.
 """
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -45,8 +54,6 @@ class GeneralConsistencyInputs(BaseModel):
     invalidity_violates_law: bool
     # Заключение договора (статьи 432–443) и смежные институты.
     formation_contract_concluded: bool
-    invalidity_transaction_concluded: bool
-    termination_contract_formed: bool
     formation_required_form_observed: bool
     form_written_form_required: bool
     form_written_form_observed: bool
@@ -70,8 +77,6 @@ class GeneralConsistencyEvaluation(BaseModel):
     minor_capacity_invalidity_conflict: bool
     consent_invalidity_conflict: bool
     circulation_lawfulness_conflict: bool
-    formation_invalidity_conclusion_conflict: bool
-    formation_termination_conclusion_conflict: bool
     formation_form_observance_conflict: bool
     circulation_public_interest_conflict: bool
     contradictions_detected: bool
@@ -87,7 +92,6 @@ def build_general_consistency_inputs(
     objects_facts,
     form_facts,
     formation_facts,
-    termination_facts,
     formation_evaluation,
 ) -> GeneralConsistencyInputs:
     """Собрать входы слоя из проверенных фактов институтов."""
@@ -110,8 +114,6 @@ def build_general_consistency_inputs(
         objects_not_in_civil_circulation=objects_facts.object_not_in_civil_circulation,
         invalidity_violates_law=invalidity_facts.violates_law,
         formation_contract_concluded=formation_evaluation.contract_concluded_prerequisites,
-        invalidity_transaction_concluded=invalidity_facts.transaction_concluded,
-        termination_contract_formed=termination_facts.contract_formed,
         formation_required_form_observed=formation_facts.required_form_observed,
         form_written_form_required=form_facts.simple_written_form_required,
         form_written_form_observed=form_facts.simple_written_form_observed,
@@ -137,7 +139,6 @@ def build_general_consistency_constraint_set(
             "objects_evidence",
             "form_evidence",
             "formation_evidence",
-            "termination_evidence",
         ],
         expressions=[
             "capacity_invalidity_conflict == persons_incapacity_declared AND NOT invalidity_incapacitated_person_transaction",
@@ -146,11 +147,9 @@ def build_general_consistency_constraint_set(
             "minor_capacity_invalidity_conflict == invalidity_minor_under_14_transaction AND NOT persons_age_capacity_breached",
             "consent_invalidity_conflict == transactions_statutory_consent_absent AND NOT invalidity_required_consent_absent",
             "circulation_lawfulness_conflict == objects_not_in_civil_circulation AND NOT invalidity_violates_law",
-            "formation_invalidity_conclusion_conflict == NOT formation_contract_concluded AND invalidity_transaction_concluded",
-            "formation_termination_conclusion_conflict == NOT formation_contract_concluded AND termination_contract_formed",
             "formation_form_observance_conflict == formation_required_form_observed AND form_written_form_required AND NOT form_written_form_observed AND form_noncompliance_invalidates",
             "circulation_public_interest_conflict == objects_not_in_civil_circulation AND NOT invalidity_public_interests_affected",
-            "contradictions_detected == capacity_invalidity_conflict OR entity_capacity_invalidity_conflict OR limited_capacity_invalidity_conflict OR minor_capacity_invalidity_conflict OR consent_invalidity_conflict OR circulation_lawfulness_conflict OR formation_invalidity_conclusion_conflict OR formation_termination_conclusion_conflict OR formation_form_observance_conflict OR circulation_public_interest_conflict",
+            "contradictions_detected == capacity_invalidity_conflict OR entity_capacity_invalidity_conflict OR limited_capacity_invalidity_conflict OR minor_capacity_invalidity_conflict OR consent_invalidity_conflict OR circulation_lawfulness_conflict OR formation_form_observance_conflict OR circulation_public_interest_conflict",
             "requires_human_consistency_assessment == contradictions_detected",
         ],
     )
@@ -169,8 +168,6 @@ def evaluate_general_consistency_constraints(
     minor_capacity_invalidity_conflict = Bool("minor_capacity_invalidity_conflict")
     consent_invalidity_conflict = Bool("consent_invalidity_conflict")
     circulation_lawfulness_conflict = Bool("circulation_lawfulness_conflict")
-    formation_invalidity_conclusion_conflict = Bool("formation_invalidity_conclusion_conflict")
-    formation_termination_conclusion_conflict = Bool("formation_termination_conclusion_conflict")
     formation_form_observance_conflict = Bool("formation_form_observance_conflict")
     circulation_public_interest_conflict = Bool("circulation_public_interest_conflict")
     contradictions_detected = Bool("contradictions_detected")
@@ -222,20 +219,6 @@ def evaluate_general_consistency_constraints(
         )
     )
     solver.add(
-        formation_invalidity_conclusion_conflict
-        == And(
-            Not(variables["formation_contract_concluded"]),
-            variables["invalidity_transaction_concluded"],
-        )
-    )
-    solver.add(
-        formation_termination_conclusion_conflict
-        == And(
-            Not(variables["formation_contract_concluded"]),
-            variables["termination_contract_formed"],
-        )
-    )
-    solver.add(
         formation_form_observance_conflict
         == And(
             variables["formation_required_form_observed"],
@@ -260,8 +243,6 @@ def evaluate_general_consistency_constraints(
             minor_capacity_invalidity_conflict,
             consent_invalidity_conflict,
             circulation_lawfulness_conflict,
-            formation_invalidity_conclusion_conflict,
-            formation_termination_conclusion_conflict,
             formation_form_observance_conflict,
             circulation_public_interest_conflict,
         )
@@ -279,8 +260,6 @@ def evaluate_general_consistency_constraints(
             minor_capacity_invalidity_conflict=False,
             consent_invalidity_conflict=False,
             circulation_lawfulness_conflict=False,
-            formation_invalidity_conclusion_conflict=False,
-            formation_termination_conclusion_conflict=False,
             formation_form_observance_conflict=False,
             circulation_public_interest_conflict=False,
             contradictions_detected=True,
@@ -332,19 +311,6 @@ def evaluate_general_consistency_constraints(
             "отрицает нарушение сделкой требований закона (статья 168 ГК РФ). Отчуждение "
             "такого объекта требованиям закона противоречит."
         )
-    if truth(formation_invalidity_conclusion_conflict):
-        reasons_ru.append(
-            "Противоречие между институтами: модель заключения договора не находит оснований "
-            "считать договор заключённым (статья 432 ГК РФ), а модель недействительности "
-            "исходит из совершённой сделки. Незаключённая сделка не может быть оценена на "
-            "недействительность."
-        )
-    if truth(formation_termination_conclusion_conflict):
-        reasons_ru.append(
-            "Противоречие между институтами: модель заключения договора не находит оснований "
-            "считать договор заключённым (статья 432 ГК РФ), а модель изменения и расторжения "
-            "исходит из заключённого договора (статьи 450–453 ГК РФ)."
-        )
     if truth(formation_form_observance_conflict):
         reasons_ru.append(
             "Противоречие между институтами: модель заключения договора утверждает соблюдение "
@@ -373,8 +339,6 @@ def evaluate_general_consistency_constraints(
         minor_capacity_invalidity_conflict=truth(minor_capacity_invalidity_conflict),
         consent_invalidity_conflict=truth(consent_invalidity_conflict),
         circulation_lawfulness_conflict=truth(circulation_lawfulness_conflict),
-        formation_invalidity_conclusion_conflict=truth(formation_invalidity_conclusion_conflict),
-        formation_termination_conclusion_conflict=truth(formation_termination_conclusion_conflict),
         formation_form_observance_conflict=truth(formation_form_observance_conflict),
         circulation_public_interest_conflict=truth(circulation_public_interest_conflict),
         contradictions_detected=truth(contradictions_detected),

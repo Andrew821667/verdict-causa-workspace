@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.97.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Two declared cross-institute checks were measured to be unreachable in the full pipeline and are removed; eight remain.",
+            "Each remaining check is proven to fire end to end by a parametrised test, so a declared check that cannot fire is now impossible.",
+            "The consistency evaluation loses two boolean fields; artifacts must be regenerated.",
+        ],
+        notes_ru=[
+            "Две объявленные межинституциональные сверки измерением признаны недостижимыми в полном конвейере и удалены; осталось восемь.",
+            "Достижимость каждой оставшейся доказывается параметризованным тестом, поэтому объявить сверку, неспособную сработать, больше нельзя.",
+            "Оценка слоя сверки лишилась двух булевых полей; артефакты требуют пересборки.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.96.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

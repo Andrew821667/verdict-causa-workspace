@@ -1,5 +1,8 @@
 """Тесты слоя сверки проверенных фактов между институтами пакета."""
 
+import pytest
+
+from causa.institutional.contracts.case_scenarios import _NO_DUTY, _merge
 from causa.institutional.contracts.contradiction_taxonomy import (
     CROSS_INSTITUTE_CONTRADICTION_TYPES,
 )
@@ -50,7 +53,7 @@ def test_every_declared_cross_institute_type_is_checked() -> None:
         if name.endswith("_conflict") and annotation.annotation is bool
     }
     assert set(CROSS_INSTITUTE_CONTRADICTION_TYPES) == checked
-    assert len(CROSS_INSTITUTE_CONTRADICTION_TYPES) == 10
+    assert len(CROSS_INSTITUTE_CONTRADICTION_TYPES) == 8
 
 
 def test_consistency_layer_is_derived_from_reviewed_facts() -> None:
@@ -66,7 +69,6 @@ def test_consistency_layer_is_derived_from_reviewed_facts() -> None:
         result.objects_evidence_mapping.facts,
         result.form_evidence_mapping.facts,
         result.formation_evidence_mapping.facts,
-        result.termination_evidence_mapping.facts,
         result.formation_evaluation,
     )
     # Демонстрационное дело согласовано: слой ничего не выдумывает.
@@ -162,3 +164,110 @@ def test_consistency_benchmark_and_red_team_cover_boundaries() -> None:
     assert benchmark.passed == benchmark.total
     assert red_team.total == len(SYNTHETIC_GENERAL_CONSISTENCY_RED_TEAM_CASES) == 10
     assert red_team.blocked == red_team.total
+
+
+#: Минимальные согласованные входы, при которых каждая объявленная сверка обязана
+#: сработать в полном конвейере. Ключ — имя сверки, значение — правки данных.
+_END_TO_END_TRIGGERS = {
+    "capacity_invalidity_conflict": {
+        "persons_evidence": {
+            "party_capacity_asserted": True,
+            "incapacity_declared_by_court": True,
+        },
+        "invalidity_evidence": {
+            "transaction_concluded": True,
+            "incapacitated_person_transaction": False,
+        },
+    },
+    "entity_capacity_invalidity_conflict": {
+        "persons_evidence": {
+            "party_capacity_asserted": True,
+            "entity_capacity_scope_breached": True,
+        },
+        "invalidity_evidence": {
+            "transaction_concluded": True,
+            "entity_beyond_statutory_purpose": False,
+        },
+    },
+    "limited_capacity_invalidity_conflict": {
+        "persons_evidence": {
+            "party_capacity_asserted": True,
+            "limited_capacity_rules_breached": True,
+            "guardianship_consent_missing": True,
+        },
+        "invalidity_evidence": {
+            "transaction_concluded": True,
+            "limited_capacity_without_consent": False,
+        },
+    },
+    "minor_capacity_invalidity_conflict": _merge(
+        _NO_DUTY,
+        {
+            "invalidity_evidence": {
+                "transaction_concluded": True,
+                "minor_under_14_transaction": True,
+            },
+            "persons_evidence": {
+                "party_capacity_asserted": True,
+                "active_capacity_age_rules_breached": False,
+            },
+        },
+    ),
+    "consent_invalidity_conflict": {
+        "transactions_evidence": {
+            "transaction_asserted": True,
+            "statutory_consent_not_obtained": True,
+        },
+        "invalidity_evidence": {"transaction_concluded": True, "required_consent_absent": False},
+    },
+    "circulation_lawfulness_conflict": {
+        "objects_evidence": {
+            "object_of_rights_asserted": True,
+            "object_not_in_civil_circulation": True,
+        },
+        "invalidity_evidence": {"transaction_concluded": True, "violates_law": False},
+    },
+    "circulation_public_interest_conflict": {
+        "objects_evidence": {
+            "object_of_rights_asserted": True,
+            "object_not_in_civil_circulation": True,
+        },
+        "invalidity_evidence": {
+            "transaction_concluded": True,
+            "violates_law": True,
+            "public_interests_or_third_rights_affected": False,
+        },
+    },
+    "formation_form_observance_conflict": {
+        "form_evidence": {
+            "simple_written_form_required": True,
+            "simple_written_form_observed": False,
+            "written_noncompliance_invalidates_by_law_or_agreement": True,
+        },
+        "formation_evidence": {"required_form_observed": True},
+    },
+}
+
+
+@pytest.mark.parametrize("conflict_name", CROSS_INSTITUTE_CONTRADICTION_TYPES)
+def test_every_declared_conflict_fires_end_to_end(conflict_name: str) -> None:
+    """Объявленная сверка обязана срабатывать в полном конвейере, а не только в слое.
+
+    Измерение показало, что две сверки объявлены, но сработать не могли: то же
+    условие ловили прежние жёсткие проверки входов, отвергая анализ раньше.
+    Объявленная и недостижимая сверка вводит в заблуждение не меньше, чем мёртвый
+    список типов, поэтому обе удалены, а достижимость оставшихся закреплена здесь.
+    """
+    request = build_synthetic_supply_analysis_request()
+    updates = {
+        field: _flip(getattr(request, field), **predicate_values)
+        for field, predicate_values in _END_TO_END_TRIGGERS[conflict_name].items()
+    }
+
+    result = run_reviewed_contract_analysis(
+        request.model_copy(update=updates), build_synthetic_supply_analysis_sources()
+    )
+
+    assert getattr(result.general_consistency_evaluation, conflict_name) is True
+    assert result.general_consistency_evaluation.contradictions_detected is True
+    assert result.requires_human_resolution is True
