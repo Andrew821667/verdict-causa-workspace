@@ -4,6 +4,7 @@
 
 | Package version | Core | Norm schema | Evidence schema | Translator | Analysis pipeline | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| `0.96.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с фабулами по опубликованным позициям ВС РФ |
 | `0.95.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с набором смоделированных фабул дел |
 | `0.94.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз со слоем сверки фактов между институтами |
 | `0.93.0` | `0.1.0` | `contracts.norm.v0` | `contracts.case-evidence.v9` | `contracts-json-to-formal-v0` | `contracts-reviewed-analysis-v9` | поддерживаемый синтетический релиз с моделью объектов гражданских прав, подключённой к слою общих положений |
@@ -103,6 +104,8 @@
 This matrix is intentionally exact rather than a claim that every `0.17.x` combination is compatible. The current coordinates are checked by `src/causa/institutional/contracts/versioning.py`.
 
 ## Migration Guide
+
+Для перехода `0.95.0` → `0.96.0` изменения контрактов данных не требуются: поля результата анализа те же, проверки входов не менялись. Пересоберите отчёт фабул по практике.
 
 Для перехода `0.94.0` → `0.95.0` изменения контрактов данных не требуются: поля результата анализа те же. Две проверки входов ослаблены — вывод специального института о нарушении может отличаться от вывода об обязательстве, когда договорный эффект вытеснен. Это снимает блокировку анализа ничтожной сделки с уже состоявшимся исполнением; артефакты, проходившие прежние проверки, проходят и новые. Пересоберите отчёт фабул, reviewed analysis, трассировки Этапа 0 и readiness.
 

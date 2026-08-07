@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.96.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Six case situations take their expected outcome from a published position of the Supreme Court of Russia rather than from the author's own reading of the Code.",
+            "Two of them assert the absence of an over-reaching conclusion: a missing statutory consent must stop at voidability, and invalidity alone must not defeat title.",
+            "Every such situation carries a verification field, and a test refuses a situation that does not state how well its source is verified.",
+            "Source texts come from search results and are not page-verified: the environment's network policy blocks page loading for all legal sources.",
+        ],
+        notes_ru=[
+            "Шесть фабул берут ожидаемый итог из опубликованной позиции Верховного Суда РФ, а не из моего прочтения кодекса.",
+            "Две из них утверждают отсутствие лишнего вывода: отсутствие необходимого согласия обязано останавливаться на оспоримости, а недействительность сама по себе не должна опровергать титул.",
+            "Каждая фабула несёт поле проверенности источника, и тест отклоняет фабулу, которая о ней умалчивает.",
+            "Тексты позиций получены из выдачи поиска и постранично не сверены: сетевая политика среды блокирует загрузку всех правовых источников.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.95.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

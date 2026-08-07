@@ -1828,6 +1828,19 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.95.0",
+        to_version="0.96.0",
+        reasons=[
+            "A suite of situations anchored to published Supreme Court positions is added; no analysis field changes.",
+        ],
+        reasons_ru=[
+            "Добавлен набор фабул, привязанных к опубликованным позициям Верховного Суда РФ; поля результата анализа не изменились.",
+        ],
+        replay_commands=[
+            "python scripts/export_practice_scenario_report.py",
+        ],
+    ),
 ]
 
 
