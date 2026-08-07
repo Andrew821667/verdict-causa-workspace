@@ -156,6 +156,7 @@ SYNTHETIC_GENERAL_CONSISTENCY_BENCHMARKS = (
             formation_required_form_observed=True,
             form_written_form_required=True,
             form_written_form_observed=False,
+            form_noncompliance_invalidates=True,
         ),
         expected_outcomes={
             "formation_form_observance_conflict": True,
@@ -221,6 +222,7 @@ SYNTHETIC_GENERAL_CONSISTENCY_RED_TEAM_CASES = (
             formation_required_form_observed=True,
             form_written_form_required=True,
             form_written_form_observed=False,
+            form_noncompliance_invalidates=True,
         ),
         forbidden_outcomes={"formation_form_observance_conflict": False},
     ),

@@ -2404,7 +2404,17 @@ class ReviewedContractAnalysisResult(BaseModel):
             raise ValueError("Sale causation does not match case evidence.")
         if sale_facts.payment_due != self.evidence_mapping.facts.payment_due:
             raise ValueError("Sale payment due status does not match case evidence.")
-        if self.sale_evaluation.sale_breach_established != self.constraint_evaluation.breach_issue:
+        # Специальный институт описывает нарушение фактически, а `breach_issue` —
+        # только при существующей договорной обязанности. Когда договорный эффект
+        # вытеснен (ничтожность, статья 167 ГК РФ), эти величины расходятся
+        # закономерно: факт просрочки остаётся, обязанности уже нет. Требовать их
+        # равенства значило бы отвергать анализ ничтожной сделки, по которой
+        # исполнение уже состоялось, — то есть именно те дела, где нужна реституция.
+        if (
+            self.evidence_mapping.facts.duty_exists
+            and self.sale_evaluation.sale_breach_established
+            != self.constraint_evaluation.breach_issue
+        ):
             raise ValueError("Sale breach status does not match obligation evaluation.")
         expected_supply_set = build_supply_constraint_set(self.supply_evidence_mapping)
         if self.supply_constraint_set != expected_supply_set:
@@ -2462,7 +2472,8 @@ class ReviewedContractAnalysisResult(BaseModel):
         ):
             raise ValueError("Sale and supply qualification results do not match.")
         if (
-            self.supply_evaluation.supply_breach_established
+            self.evidence_mapping.facts.duty_exists
+            and self.supply_evaluation.supply_breach_established
             != self.constraint_evaluation.breach_issue
         ):
             raise ValueError("Supply breach status does not match obligation evaluation.")
@@ -5370,7 +5381,10 @@ def run_reviewed_contract_analysis(
         raise ValueError("Sale payment due status does not match case evidence.")
     sale_constraint_set = build_sale_constraint_set(sale_evidence_mapping)
     sale_evaluation = evaluate_sale_constraints(sale_constraint_set, sale_facts)
-    if sale_evaluation.sale_breach_established != constraint_evaluation.breach_issue:
+    if (
+        evidence_mapping.facts.duty_exists
+        and sale_evaluation.sale_breach_established != constraint_evaluation.breach_issue
+    ):
         raise ValueError("Sale breach status does not match obligation evaluation.")
     supply_evidence_mapping = map_reviewed_supply_evidence(request.supply_evidence)
     supply_facts = supply_evidence_mapping.facts
@@ -5415,7 +5429,10 @@ def run_reviewed_contract_analysis(
             raise ValueError(f"Sale and supply {label} facts do not match.")
     if sale_evaluation.sale_contract_qualified != supply_evaluation.supply_contract_qualified:
         raise ValueError("Sale and supply qualification results do not match.")
-    if supply_evaluation.supply_breach_established != constraint_evaluation.breach_issue:
+    if (
+        evidence_mapping.facts.duty_exists
+        and supply_evaluation.supply_breach_established != constraint_evaluation.breach_issue
+    ):
         raise ValueError("Supply breach status does not match obligation evaluation.")
     security_evidence_mapping = map_reviewed_security_evidence(request.security_evidence)
     if (

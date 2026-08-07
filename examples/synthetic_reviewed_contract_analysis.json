@@ -24795,6 +24795,7 @@
       "formation_required_form_observed": true,
       "form_written_form_required": true,
       "form_written_form_observed": true,
+      "form_noncompliance_invalidates": false,
       "invalidity_public_interests_affected": false
     },
     "general_consistency_constraint_set": {
@@ -24818,7 +24819,7 @@
         "circulation_lawfulness_conflict == objects_not_in_civil_circulation AND NOT invalidity_violates_law",
         "formation_invalidity_conclusion_conflict == NOT formation_contract_concluded AND invalidity_transaction_concluded",
         "formation_termination_conclusion_conflict == NOT formation_contract_concluded AND termination_contract_formed",
-        "formation_form_observance_conflict == formation_required_form_observed AND form_written_form_required AND NOT form_written_form_observed",
+        "formation_form_observance_conflict == formation_required_form_observed AND form_written_form_required AND NOT form_written_form_observed AND form_noncompliance_invalidates",
         "circulation_public_interest_conflict == objects_not_in_civil_circulation AND NOT invalidity_public_interests_affected",
         "contradictions_detected == capacity_invalidity_conflict OR entity_capacity_invalidity_conflict OR limited_capacity_invalidity_conflict OR minor_capacity_invalidity_conflict OR consent_invalidity_conflict OR circulation_lawfulness_conflict OR formation_invalidity_conclusion_conflict OR formation_termination_conclusion_conflict OR formation_form_observance_conflict OR circulation_public_interest_conflict",
         "requires_human_consistency_assessment == contradictions_detected"
@@ -32617,7 +32618,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.94.0",
+      "institutional_package_version": "contracts-ru-v0@0.95.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

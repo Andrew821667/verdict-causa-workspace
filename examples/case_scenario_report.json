@@ -1,0 +1,293 @@
+{
+  "id": "case-scenario-report-v0",
+  "suite_version": "contracts-case-scenarios-v0",
+  "total": 12,
+  "passed": 12,
+  "failed": 0,
+  "results": [
+    {
+      "scenario_id": "scenario-supply-breach-enforceable",
+      "title_ru": "Просрочка поставки, спор рассматривается по существу",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.contractual_claims_enforceable": true,
+        "general_effects_evaluation.institute_conclusions_displaced": false,
+        "general_consistency_evaluation.contradictions_detected": false,
+        "requires_human_resolution": false
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.contractual_claims_enforceable": true,
+        "general_effects_evaluation.institute_conclusions_displaced": false,
+        "general_consistency_evaluation.contradictions_detected": false,
+        "requires_human_resolution": false
+      },
+      "mismatched": [],
+      "reasons_ru": [
+        "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+        "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+      ]
+    },
+    {
+      "scenario_id": "scenario-limitation-barred",
+      "title_ru": "Истёкшая исковая давность заявлена ответчиком",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.claims_barred_by_limitation": true,
+        "general_effects_evaluation.contractual_claims_enforceable": false,
+        "general_effects_evaluation.breach_findings_without_effect": true,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.claims_barred_by_limitation": true,
+        "general_effects_evaluation.contractual_claims_enforceable": false,
+        "general_effects_evaluation.breach_findings_without_effect": true,
+        "requires_human_resolution": true
+      },
+      "mismatched": [],
+      "reasons_ru": [
+        "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+        "Истечение срока исковой давности, о применении которой заявлено стороной спора, является самостоятельным основанием к вынесению судом решения об отказе в иске (статья 199 ГК РФ).",
+        "Установленное нарушение обязательства не влечёт удовлетворения требований: договор не порождает последствий либо в судебной защите отказано, поэтому выводы специальных институтов о нарушении его условий не могут быть положены в основание присуждения (статьи 167, 199 и 432 ГК РФ)."
+      ]
+    },
+    {
+      "scenario_id": "scenario-limitation-defective-calculation",
+      "title_ru": "Давность заявлена, но срок исчислен с нарушением главы 11",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.claims_barred_by_limitation": false,
+        "general_effects_evaluation.limitation_conclusion_unreliable": true,
+        "general_effects_evaluation.contractual_claims_enforceable": true,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.claims_barred_by_limitation": false,
+        "general_effects_evaluation.limitation_conclusion_unreliable": true,
+        "general_effects_evaluation.contractual_claims_enforceable": true,
+        "requires_human_resolution": true
+      },
+      "mismatched": [],
+      "reasons_ru": [
+        "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+        "Вывод об истечении срока исковой давности не может быть положен в основание отказа в иске: срок исковой давности исчисляется по общим правилам об исчислении сроков, а они применены с нарушением, поэтому истечение срока не считается установленным (статьи 190–194 и 199 ГК РФ).",
+        "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+      ]
+    },
+    {
+      "scenario_id": "scenario-abuse-of-right",
+      "title_ru": "Установлено злоупотребление правом",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.protection_refused_for_abuse": true,
+        "general_effects_evaluation.contractual_claims_enforceable": false,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.protection_refused_for_abuse": true,
+        "general_effects_evaluation.contractual_claims_enforceable": false,
+        "requires_human_resolution": true
+      },
+      "mismatched": [],
+      "reasons_ru": [
+        "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+        "Установлено злоупотребление правом, поэтому суд с учётом характера и последствий допущенного злоупотребления отказывает лицу в защите принадлежащего ему права полностью или частично (статья 10 ГК РФ).",
+        "Установленное нарушение обязательства не влечёт удовлетворения требований: договор не порождает последствий либо в судебной защите отказано, поэтому выводы специальных институтов о нарушении его условий не могут быть положены в основание присуждения (статьи 167, 199 и 432 ГК РФ)."
+      ]
+    },
+    {
+      "scenario_id": "scenario-missing-statutory-consent",
+      "title_ru": "Сделка совершена без необходимого в силу закона согласия",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.transaction_challengeable_for_missing_consent": true,
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.contractual_claims_enforceable": true,
+        "general_consistency_evaluation.consent_invalidity_conflict": false,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.transaction_challengeable_for_missing_consent": true,
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.contractual_claims_enforceable": true,
+        "general_consistency_evaluation.consent_invalidity_conflict": false,
+        "requires_human_resolution": true
+      },
+      "mismatched": [],
+      "reasons_ru": [
+        "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+        "Сделка совершена без необходимого в силу закона согласия третьего лица, органа юридического лица или государственного органа, поэтому она является оспоримой и может быть признана недействительной судом по иску такого лица или иных лиц, указанных в законе; до признания её недействительной судом договор сохраняет действие (статьи 157.1, 166 и 173.1 ГК РФ).",
+        "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+      ]
+    },
+    {
+      "scenario_id": "scenario-party-incapacity",
+      "title_ru": "Сторона признана судом недееспособной",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.incapacity_voids_transaction": true,
+        "general_effects_evaluation.contract_legally_effective": false,
+        "general_effects_evaluation.institute_conclusions_displaced": true,
+        "general_effects_evaluation.contractual_claims_enforceable": false,
+        "general_consistency_evaluation.capacity_invalidity_conflict": false,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.incapacity_voids_transaction": true,
+        "general_effects_evaluation.contract_legally_effective": false,
+        "general_effects_evaluation.institute_conclusions_displaced": true,
+        "general_effects_evaluation.contractual_claims_enforceable": false,
+        "general_consistency_evaluation.capacity_invalidity_conflict": false,
+        "requires_human_resolution": true
+      },
+      "mismatched": [],
+      "reasons_ru": [
+        "Договор не порождает правовых последствий как основание требований сторон; выводы специальных институтов о нарушении его условий правового эффекта не имеют.",
+        "Недействительная сделка не влечёт юридических последствий, за исключением тех, которые связаны с её недействительностью, и недействительна с момента её совершения (статья 167 ГК РФ).",
+        "Сторона признана судом недееспособной, поэтому совершённая ею сделка ничтожна и не влечёт юридических последствий; каждая из сторон обязана возвратить другой всё полученное, а дееспособная сторона возмещает реальный ущерб, если знала или должна была знать о недееспособности (статьи 29, 167 и 171 ГК РФ)."
+      ]
+    },
+    {
+      "scenario_id": "scenario-object-out-of-circulation",
+      "title_ru": "Предметом сделки является объект, изъятый из оборота",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.restricted_object_voids_transaction": true,
+        "general_effects_evaluation.contract_legally_effective": false,
+        "general_effects_evaluation.institute_conclusions_displaced": true,
+        "general_consistency_evaluation.circulation_lawfulness_conflict": false,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.restricted_object_voids_transaction": true,
+        "general_effects_evaluation.contract_legally_effective": false,
+        "general_effects_evaluation.institute_conclusions_displaced": true,
+        "general_consistency_evaluation.circulation_lawfulness_conflict": false,
+        "requires_human_resolution": true
+      },
+      "mismatched": [],
+      "reasons_ru": [
+        "Договор не порождает правовых последствий как основание требований сторон; выводы специальных институтов о нарушении его условий правового эффекта не имеют.",
+        "Недействительная сделка не влечёт юридических последствий, за исключением тех, которые связаны с её недействительностью, и недействительна с момента её совершения (статья 167 ГК РФ).",
+        "Объект сделки изъят из оборота либо его отчуждение ограничено законом, тогда как объекты гражданских прав могут свободно отчуждаться, если они не ограничены в обороте; сделка, нарушающая это требование закона и посягающая при этом на публичные интересы, ничтожна (статьи 129 и 168 ГК РФ)."
+      ]
+    },
+    {
+      "scenario_id": "scenario-unauthorized-representation",
+      "title_ru": "Сделка совершена неуполномоченным лицом и не одобрена",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.unauthorized_representation_displaces_contract": true,
+        "general_effects_evaluation.contract_legally_effective": false,
+        "general_effects_evaluation.institute_conclusions_displaced": true,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.unauthorized_representation_displaces_contract": true,
+        "general_effects_evaluation.contract_legally_effective": false,
+        "general_effects_evaluation.institute_conclusions_displaced": true,
+        "requires_human_resolution": true
+      },
+      "mismatched": [],
+      "reasons_ru": [
+        "Договор не порождает правовых последствий как основание требований сторон; выводы специальных институтов о нарушении его условий правового эффекта не имеют.",
+        "Сделка совершена лицом без полномочий и не одобрена представляемым, поэтому она считается заключённой от имени и в интересах совершившего её лица и не связывает представляемого (статья 183 ГК РФ).",
+        "Установленное нарушение обязательства не влечёт удовлетворения требований: договор не порождает последствий либо в судебной защите отказано, поэтому выводы специальных институтов о нарушении его условий не могут быть положены в основание присуждения (статьи 167, 199 и 432 ГК РФ)."
+      ]
+    },
+    {
+      "scenario_id": "scenario-disposal-by-non-owner",
+      "title_ru": "Продана вещь, принадлежащая другому лицу",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.title_transfer_defeated": true,
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.contractual_claims_enforceable": true,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.title_transfer_defeated": true,
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.contractual_claims_enforceable": true,
+        "requires_human_resolution": true
+      },
+      "mismatched": [],
+      "reasons_ru": [
+        "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+        "Имуществом распорядилось лицо, не управомоченное на его отчуждение, поэтому право собственности к приобретателю по общему правилу не перешло; требование о переходе титула не может быть удовлетворено, а защита добросовестного приобретателя оценивается по правилам статьи 302 ГК РФ (статьи 209 и 302 ГК РФ).",
+        "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+      ]
+    },
+    {
+      "scenario_id": "scenario-simple-written-form-defect",
+      "title_ru": "Простая письменная форма не соблюдена",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.form_defect_displaces_contract": false,
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.institute_conclusions_displaced": false,
+        "general_consistency_evaluation.formation_form_observance_conflict": false
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.form_defect_displaces_contract": false,
+        "general_effects_evaluation.contract_legally_effective": true,
+        "general_effects_evaluation.institute_conclusions_displaced": false,
+        "general_consistency_evaluation.formation_form_observance_conflict": false
+      },
+      "mismatched": [],
+      "reasons_ru": [
+        "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+        "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+      ]
+    },
+    {
+      "scenario_id": "scenario-invalidity-with-restitution",
+      "title_ru": "Сделка недействительна, стороны успели исполнить",
+      "passed": true,
+      "expected_outcomes": {
+        "general_effects_evaluation.invalidity_displaces_contract": true,
+        "general_effects_evaluation.contract_legally_effective": false,
+        "general_effects_evaluation.restitution_regime_applies": true,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_effects_evaluation.invalidity_displaces_contract": true,
+        "general_effects_evaluation.contract_legally_effective": false,
+        "general_effects_evaluation.restitution_regime_applies": true,
+        "requires_human_resolution": true
+      },
+      "mismatched": [],
+      "reasons_ru": [
+        "Договор не порождает правовых последствий как основание требований сторон; выводы специальных институтов о нарушении его условий правового эффекта не имеют.",
+        "Недействительная сделка не влечёт юридических последствий, за исключением тех, которые связаны с её недействительностью, и недействительна с момента её совершения (статья 167 ГК РФ).",
+        "Вместо договорных требований подлежат применению последствия недействительности сделки: каждая из сторон обязана возвратить другой всё полученное по сделке, а к требованиям о возврате исполненного применяются правила о неосновательном обогащении (статьи 167 и 1103 ГК РФ)."
+      ]
+    },
+    {
+      "scenario_id": "scenario-contradictory-review-data",
+      "title_ru": "Рецензент внёс несогласованные факты о недееспособности",
+      "passed": true,
+      "expected_outcomes": {
+        "general_consistency_evaluation.capacity_invalidity_conflict": true,
+        "general_consistency_evaluation.contradictions_detected": true,
+        "requires_human_resolution": true
+      },
+      "observed_outcomes": {
+        "general_consistency_evaluation.capacity_invalidity_conflict": true,
+        "general_consistency_evaluation.contradictions_detected": true,
+        "requires_human_resolution": true
+      },
+      "mismatched": [],
+      "reasons_ru": [
+        "Договор не порождает правовых последствий как основание требований сторон; выводы специальных институтов о нарушении его условий правового эффекта не имеют.",
+        "Сторона признана судом недееспособной, поэтому совершённая ею сделка ничтожна и не влечёт юридических последствий; каждая из сторон обязана возвратить другой всё полученное, а дееспособная сторона возмещает реальный ущерб, если знала или должна была знать о недееспособности (статьи 29, 167 и 171 ГК РФ).",
+        "Установленное нарушение обязательства не влечёт удовлетворения требований: договор не порождает последствий либо в судебной защите отказано, поэтому выводы специальных институтов о нарушении его условий не могут быть положены в основание присуждения (статьи 167, 199 и 432 ГК РФ)."
+      ]
+    }
+  ]
+}

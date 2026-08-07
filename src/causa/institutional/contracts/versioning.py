@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.95.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Twelve modelled case situations run through the whole analysis, not through a single institute.",
+            "Expected outcomes are derived from the Civil Code before the run and recorded next to each situation.",
+            "The specialist breach conclusion is no longer required to equal the obligation breach conclusion once the contractual effect is displaced, so a void contract with performance already rendered can be analysed.",
+        ],
+        notes_ru=[
+            "Двенадцать смоделированных фабул проходят через весь анализ, а не через один институт.",
+            "Ожидаемый результат каждой фабулы выведен из ГК РФ до запуска и записан рядом с ней.",
+            "Вывод специального института о нарушении больше не обязан совпадать с выводом об обязательстве, когда договорный эффект вытеснен, поэтому ничтожная сделка с уже состоявшимся исполнением поддаётся анализу.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.94.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

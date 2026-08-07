@@ -50,6 +50,7 @@ class GeneralConsistencyInputs(BaseModel):
     formation_required_form_observed: bool
     form_written_form_required: bool
     form_written_form_observed: bool
+    form_noncompliance_invalidates: bool
     invalidity_public_interests_affected: bool
 
 
@@ -114,6 +115,9 @@ def build_general_consistency_inputs(
         formation_required_form_observed=formation_facts.required_form_observed,
         form_written_form_required=form_facts.simple_written_form_required,
         form_written_form_observed=form_facts.simple_written_form_observed,
+        form_noncompliance_invalidates=(
+            form_facts.written_noncompliance_invalidates_by_law_or_agreement
+        ),
         invalidity_public_interests_affected=(
             invalidity_facts.public_interests_or_third_rights_affected
         ),
@@ -144,7 +148,7 @@ def build_general_consistency_constraint_set(
             "circulation_lawfulness_conflict == objects_not_in_civil_circulation AND NOT invalidity_violates_law",
             "formation_invalidity_conclusion_conflict == NOT formation_contract_concluded AND invalidity_transaction_concluded",
             "formation_termination_conclusion_conflict == NOT formation_contract_concluded AND termination_contract_formed",
-            "formation_form_observance_conflict == formation_required_form_observed AND form_written_form_required AND NOT form_written_form_observed",
+            "formation_form_observance_conflict == formation_required_form_observed AND form_written_form_required AND NOT form_written_form_observed AND form_noncompliance_invalidates",
             "circulation_public_interest_conflict == objects_not_in_civil_circulation AND NOT invalidity_public_interests_affected",
             "contradictions_detected == capacity_invalidity_conflict OR entity_capacity_invalidity_conflict OR limited_capacity_invalidity_conflict OR minor_capacity_invalidity_conflict OR consent_invalidity_conflict OR circulation_lawfulness_conflict OR formation_invalidity_conclusion_conflict OR formation_termination_conclusion_conflict OR formation_form_observance_conflict OR circulation_public_interest_conflict",
             "requires_human_consistency_assessment == contradictions_detected",
@@ -237,6 +241,7 @@ def evaluate_general_consistency_constraints(
             variables["formation_required_form_observed"],
             variables["form_written_form_required"],
             Not(variables["form_written_form_observed"]),
+            variables["form_noncompliance_invalidates"],
         )
     )
     solver.add(
@@ -343,8 +348,9 @@ def evaluate_general_consistency_constraints(
     if truth(formation_form_observance_conflict):
         reasons_ru.append(
             "Противоречие между институтами: модель заключения договора утверждает соблюдение "
-            "требуемой формы (статья 432 ГК РФ), а модель формы сделки — что простая "
-            "письменная форма требовалась и не соблюдена (статьи 158–162 ГК РФ)."
+            "требуемой формы (статья 432 ГК РФ), а модель формы сделки — что письменная форма "
+            "требовалась, не соблюдена и закон либо соглашение сторон связывают с этим "
+            "недействительность (статьи 158–162 ГК РФ)."
         )
     if truth(circulation_public_interest_conflict):
         reasons_ru.append(

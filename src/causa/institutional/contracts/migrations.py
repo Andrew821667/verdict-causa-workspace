@@ -1810,6 +1810,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.94.0",
+        to_version="0.95.0",
+        reasons=[
+            "A suite of modelled case situations is added; no analysis field changes.",
+            "Two input cross-checks are relaxed: the specialist breach conclusion may differ from the obligation breach conclusion once the contractual effect is displaced, which unblocks the analysis of a void contract with performance already rendered.",
+        ],
+        reasons_ru=[
+            "Добавлен набор смоделированных фабул дел; поля результата анализа не изменились.",
+            "Две проверки входов ослаблены: вывод специального института о нарушении может отличаться от вывода об обязательстве, когда договорный эффект вытеснен, что снимает блокировку анализа ничтожной сделки с уже состоявшимся исполнением.",
+        ],
+        replay_commands=[
+            "python scripts/export_case_scenario_report.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 
