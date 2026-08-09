@@ -14,12 +14,13 @@
 """
 
 import json
+import re
 from collections import Counter
 from pathlib import Path
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-PRACTICE_BASE_SCHEMA_VERSION = "contracts-practice-base-export-v0"
+PRACTICE_BASE_SCHEMA_VERSION = "contracts-practice-base-export-v1"
 
 #: Путь, по которому ожидается выгрузка.
 PRACTICE_BASE_PATH = Path("data/practice/cases.jsonl")
@@ -33,22 +34,70 @@ ALLOWED_OUTCOMES = frozenset(
 ALLOWED_VERIFICATION = frozenset({"текст_сверен_с_первоисточником", "извлечено_из_базы_без_сверки"})
 
 #: Темы, ради которых выгрузка запрашивается, и статьи ГК РФ за ними.
+#:
+#: Номера статей — строки, а не числа: в ГК РФ есть статьи с точкой (157.1,
+#: 173.1, 181.3, 327.1, 393.1, 429.2, 431.2). Первая же выгрузка сослалась на
+#: пять таких статей, и приёмная сторона на них не сошлась.
 REQUESTED_TOPICS = {
-    "исковая_давность": (195, 199, 200, 205, 206, 207, 208),
-    "исчисление_сроков": (190, 191, 192, 193, 194),
-    "злоупотребление_правом": (10,),
-    "представительство": (182, 183, 185, 189),
-    "согласие_на_сделку": (157, 173),
-    "дееспособность": (29, 30, 171, 172, 176),
-    "правоспособность_юрлица": (49, 173),
-    "оборотоспособность": (129, 168),
-    "форма_сделки": (158, 160, 161, 162, 163, 165),
-    "заключённость": (432, 433, 438),
-    "недействительность": (166, 167, 168, 178, 179, 181),
-    "вещные_права": (209, 301, 302),
-    "расторжение": (450, 451, 452, 453),
-    "нарушение_обязательства": (309, 310, 328, 393),
+    "исковая_давность": ("195", "199", "200", "205", "206", "207", "208"),
+    "исчисление_сроков": ("190", "191", "192", "193", "194"),
+    "злоупотребление_правом": ("10",),
+    "представительство": ("182", "183", "185", "189"),
+    "согласие_на_сделку": ("157.1", "173.1"),
+    "дееспособность": ("29", "30", "171", "172", "176"),
+    "правоспособность_юрлица": ("49", "173"),
+    "оборотоспособность": ("129", "168"),
+    "форма_сделки": ("158", "160", "161", "162", "163", "165"),
+    "заключённость": ("432", "433", "438"),
+    "недействительность": ("166", "167", "168", "178", "179", "181"),
+    "вещные_права": ("209", "301", "302"),
+    "расторжение": ("450", "451", "452", "453"),
+    "нарушение_обязательства": ("309", "310", "328", "393"),
 }
+
+#: Синонимы тематических меток.
+#:
+#: В задании агенту темы названы прозой («изменение и расторжение договора»), а
+#: здесь — короткими ключами. Выгрузка пришла размеченной по прозе задания, и
+#: половина меток не сошлась с ключами. Расхождение возникло из-за задания, а не
+#: из-за выгрузки, поэтому приводится в согласие здесь, а не требованием к
+#: выгружающей стороне.
+TOPIC_ALIASES = {
+    "изменение_и_расторжение_договора": "расторжение",
+    "оборотоспособность_и_ничтожность": "оборотоспособность",
+    "заключенность_договора": "заключённость",
+    "заключённость_договора": "заключённость",
+    "недействительность_и_реституция": "недействительность",
+    "продажа_чужой_вещи_и_виндикация": "вещные_права",
+    "сделка_неуполномоченного_лица": "представительство",
+    "дееспособность_гражданина": "дееспособность",
+}
+
+_ARTICLE_PATTERN = re.compile(r"^\d+(\.\d+)?$")
+
+
+def normalize_article(value: object) -> str:
+    """Привести номер статьи к строке вида «393» или «393.1».
+
+    JSON не различает «181» и «181.0», а ГК РФ различает. Число с дробной частью
+    записывается как есть, целое — без хвостового нуля.
+    """
+    if isinstance(value, bool):
+        raise ValueError(f"Номер статьи не может быть логическим значением: {value!r}.")
+    if isinstance(value, int):
+        text = str(value)
+    elif isinstance(value, float):
+        text = f"{value:g}"
+    else:
+        text = str(value).strip()
+    if not _ARTICLE_PATTERN.match(text):
+        raise ValueError(f"Недопустимый номер статьи {value!r}: ожидается «393» или «393.1».")
+    return text
+
+
+def normalize_topic(tag: str) -> str:
+    """Привести тематическую метку к ключу `REQUESTED_TOPICS`, если он известен."""
+    return TOPIC_ALIASES.get(tag, tag)
 
 
 class PracticeCase(BaseModel):
@@ -64,7 +113,7 @@ class PracticeCase(BaseModel):
     source_kind: str
     source_ref: str
     verification: str
-    articles_gk: list[int] = Field(default_factory=list)
+    articles_gk: list[str] = Field(default_factory=list)
     topic_tags: list[str] = Field(default_factory=list)
     fabula_ru: str
     holding_ru: str
@@ -73,6 +122,30 @@ class PracticeCase(BaseModel):
     quote_ru: str = ""
     contains_personal_data: bool = False
     notes_ru: str = ""
+
+    @field_validator("articles_gk", mode="before")
+    @classmethod
+    def normalize_articles(cls, value: object) -> object:
+        if not isinstance(value, list):
+            return value
+        return [normalize_article(item) for item in value]
+
+    @field_validator("topic_tags", mode="before")
+    @classmethod
+    def normalize_topics(cls, value: object) -> object:
+        if not isinstance(value, list):
+            return value
+        return [normalize_topic(str(item)) for item in value]
+
+    @property
+    def outcome_is_final(self) -> bool:
+        """Есть ли у дела окончательный исход, пригодный как ожидаемый результат.
+
+        Определения высших судов чаще отменяют акты и направляют дело на новое
+        рассмотрение. Такой акт содержит проверяемый правовой вывод, но не
+        содержит итога спора, с которым можно сверить вывод модели.
+        """
+        return self.outcome != "иное"
 
     @field_validator("outcome")
     @classmethod
@@ -114,6 +187,8 @@ class PracticeBaseInventory(BaseModel):
     by_outcome: dict[str, int] = Field(default_factory=dict)
     unverified: int = 0
     with_personal_data: int = 0
+    with_final_outcome: int = 0
+    unknown_topics: list[str] = Field(default_factory=list)
     missing_topics: list[str] = Field(default_factory=list)
     notes_ru: list[str] = Field(default_factory=list)
 
@@ -153,9 +228,23 @@ def load_practice_base(path: Path | None = None) -> PracticeBaseInventory:
     by_topic = Counter(tag for case in cases for tag in case.topic_tags)
     by_outcome = Counter(case.outcome for case in cases)
     missing = sorted(topic for topic in REQUESTED_TOPICS if not by_topic.get(topic))
+    unknown = sorted(tag for tag in by_topic if tag not in REQUESTED_TOPICS)
+    final = sum(case.outcome_is_final for case in cases)
     notes: list[str] = []
     if missing:
         notes.append("Темы без единого дела: " + ", ".join(missing) + ".")
+    if unknown:
+        notes.append(
+            "Метки вне запрошенного перечня: "
+            + ", ".join(unknown)
+            + ". Их нужно либо внести в REQUESTED_TOPICS, либо в TOPIC_ALIASES."
+        )
+    if final < len(cases):
+        notes.append(
+            f"Дел с окончательным исходом: {final} из {len(cases)}. У остальных исход "
+            "«иное» — акт отменяет нижестоящие решения и направляет дело на новое "
+            "рассмотрение, поэтому сверять с ним можно правовой вывод, но не итог спора."
+        )
     unverified = sum(case.verification == "извлечено_из_базы_без_сверки" for case in cases)
     if unverified:
         notes.append(
@@ -176,6 +265,8 @@ def load_practice_base(path: Path | None = None) -> PracticeBaseInventory:
         by_outcome=dict(sorted(by_outcome.items())),
         unverified=unverified,
         with_personal_data=personal,
+        with_final_outcome=final,
+        unknown_topics=unknown,
         missing_topics=missing,
         notes_ru=notes,
     )

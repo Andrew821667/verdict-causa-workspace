@@ -33,15 +33,27 @@ _VALID = {
 }
 
 
-def test_missing_export_is_not_an_error() -> None:
-    """Пока база недоступна, приёмная сторона возвращает пустую опись, а не падает."""
-    inventory = load_practice_base()
+def test_missing_export_is_not_an_error(tmp_path) -> None:
+    """Отсутствие выгрузки возвращает пустую опись, а не падает."""
+    inventory = load_practice_base(tmp_path / "нет-такого-файла.jsonl")
 
-    if inventory.present:
-        pytest.skip("Выгрузка уже присутствует в репозитории.")
+    assert inventory.present is False
     assert inventory.total == 0
     assert set(inventory.missing_topics) == set(REQUESTED_TOPICS)
-    assert any(str(PRACTICE_BASE_PATH) in note for note in inventory.notes_ru)
+    assert any("нет-такого-файла.jsonl" in note for note in inventory.notes_ru)
+
+
+def test_repository_export_loads() -> None:
+    """Выгрузка, лежащая в репозитории, читается приёмной стороной без правок."""
+    if not PRACTICE_BASE_PATH.exists():
+        pytest.skip("Выгрузка ещё не получена.")
+
+    inventory = load_practice_base()
+
+    assert inventory.present is True
+    assert inventory.total > 0
+    # Метки выгрузки приведены к запрошенным темам: нераспознанных не остаётся.
+    assert inventory.unknown_topics == []
 
 
 def test_case_requires_substance_and_valid_outcome() -> None:
@@ -83,6 +95,51 @@ def test_export_is_read_and_described(tmp_path) -> None:
     assert any("персональными данными" in note for note in inventory.notes_ru)
     # Темы без единого дела перечисляются, чтобы выгрузку можно было дополнить.
     assert "недействительность" in inventory.missing_topics
+
+
+def test_articles_with_a_point_survive_the_import() -> None:
+    """Статьи ГК РФ с точкой — не ошибка выгрузки.
+
+    Первая полученная выгрузка сослалась на статьи 181.3, 181.5, 327.1, 388.1 и
+    393.1. Приёмная сторона объявляла номер статьи целым числом и отвергала их;
+    отвергала она при этом действующие нормы, а не испорченные данные.
+    """
+    case = PracticeCase.model_validate({**_VALID, "articles_gk": [181.3, 327.1, 199, "393.1"]})
+
+    assert case.articles_gk == ["181.3", "327.1", "199", "393.1"]
+
+    with pytest.raises(ValidationError, match="Недопустимый номер статьи"):
+        PracticeCase.model_validate({**_VALID, "articles_gk": ["статья 199"]})
+
+
+def test_topic_labels_from_the_brief_are_mapped_to_requested_topics() -> None:
+    """Метки, названные прозой задания, приводятся к ключам перечня тем.
+
+    Расхождение внесено заданием агенту, где темы названы иначе, чем ключи
+    здесь. Согласование сделано на приёмной стороне.
+    """
+    case = PracticeCase.model_validate(
+        {**_VALID, "topic_tags": ["изменение_и_расторжение_договора", "заключенность_договора"]}
+    )
+
+    assert case.topic_tags == ["расторжение", "заключённость"]
+    assert all(tag in REQUESTED_TOPICS for tag in case.topic_tags)
+
+
+def test_remand_decisions_are_counted_apart_from_final_outcomes(tmp_path) -> None:
+    """Отмена с направлением на новое рассмотрение не даёт ожидаемого итога спора."""
+    remand = {**_VALID, "id": "vs-remand", "outcome": "иное"}
+    export = tmp_path / "cases.jsonl"
+    export.write_text(
+        "\n".join(json.dumps(row, ensure_ascii=False) for row in (_VALID, remand)) + "\n",
+        encoding="utf-8",
+    )
+
+    inventory = load_practice_base(export)
+
+    assert inventory.total == 2
+    assert inventory.with_final_outcome == 1
+    assert any("окончательным исходом" in note for note in inventory.notes_ru)
 
 
 def test_duplicate_case_id_is_rejected(tmp_path) -> None:
