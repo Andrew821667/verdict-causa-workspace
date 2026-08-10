@@ -2959,6 +2959,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
+      "title": "Синтетическая проверенная модель возложения ответственности и вины кредитора по статьям 402–404 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: действия работников должника по исполнению его обязательства считаются действиями должника; возложение исполнения на третье лицо не переносит ответственность, если законом не установлено, что отвечает являющееся непосредственным исполнителем третье лицо; вина кредитора даёт суду право уменьшить размер ответственности должника (статьи 402–404 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "attribution_of_liability_and_creditor_fault_articles_402_404",
+        "legal_reference": "ГК РФ, статьи 402-404",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
+      "title": "Синтетическая проверенная модель просрочки должника и просрочки кредитора по статьям 405–406 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: просрочивший должник отвечает за убытки, причинённые просрочкой, и за последствия случайно наступившей невозможности исполнения; при утрате кредитором интереса к исполнению он вправе отказаться от его принятия; должник не считается просрочившим, пока обязательство не может быть исполнено вследствие просрочки кредитора (статьи 405–406 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "delay_of_the_debtor_and_of_the_creditor_articles_405_406",
+        "legal_reference": "ГК РФ, статьи 405-406",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-attribution-delay-evidence",
+      "title": "Синтетическая проверенная запись фактов о возложении ответственности и просрочке по делу",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки исполнение на третьих лиц не возлагалось, вина кредитора не устанавливалась, о просрочке кредитора не заявлялось.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "attribution_delay_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
       "title": "Синтетическая проверенная модель понятия сделки, её видов и сделок под условием по статьям 153–157 ГК РФ",
       "source_type": "statute",
@@ -10272,6 +10319,99 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-terms-reviewer"
     },
+    "attribution_delay_evidence": {
+      "id": "reviewed-attribution-delay-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.attribution-delay-evidence.v0",
+      "assertions": [
+        {
+          "id": "attribution-delay-evidence-obligation_breach_asserted",
+          "predicate": "obligation_breach_asserted",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "id": "attribution-delay-evidence-breach_caused_by_debtor_employees",
+          "predicate": "breach_caused_by_debtor_employees",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "id": "attribution-delay-evidence-performance_entrusted_to_third_party",
+          "predicate": "performance_entrusted_to_third_party",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "id": "attribution-delay-evidence-third_party_caused_breach",
+          "predicate": "third_party_caused_breach",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "id": "attribution-delay-evidence-law_assigns_liability_to_performer",
+          "predicate": "law_assigns_liability_to_performer",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "id": "attribution-delay-evidence-creditor_fault_contributed_to_breach",
+          "predicate": "creditor_fault_contributed_to_breach",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "id": "attribution-delay-evidence-creditor_failed_to_mitigate_loss",
+          "predicate": "creditor_failed_to_mitigate_loss",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "id": "attribution-delay-evidence-debtor_delay_established",
+          "predicate": "debtor_delay_established",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "id": "attribution-delay-evidence-performance_lost_interest_for_creditor",
+          "predicate": "performance_lost_interest_for_creditor",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "id": "attribution-delay-evidence-creditor_delay_established",
+          "predicate": "creditor_delay_established",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
+        "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-attribution-delay-reviewer"
+    },
     "transactions_evidence": {
       "id": "reviewed-transactions-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -16349,6 +16489,7 @@
       "synthetic-adhesion-reviewer",
       "synthetic-agency-reviewer",
       "synthetic-annuity-reviewer",
+      "synthetic-attribution-delay-reviewer",
       "synthetic-authority-reviewer",
       "synthetic-bank-account-reviewer",
       "synthetic-bank-deposit-reviewer",
@@ -16438,6 +16579,7 @@
       "synthetic-case-supply-1-adhesion-evidence",
       "synthetic-case-supply-1-agency-evidence",
       "synthetic-case-supply-1-annuity-evidence",
+      "synthetic-case-supply-1-attribution-delay-evidence",
       "synthetic-case-supply-1-bank-account-evidence",
       "synthetic-case-supply-1-bank-deposit-evidence",
       "synthetic-case-supply-1-barter-evidence",
@@ -16579,6 +16721,8 @@
       "synthetic-ru-gk391-3923-debt-transfer-v1",
       "synthetic-ru-gk393-4061-remedies-v1",
       "synthetic-ru-gk401-liability-model-v1",
+      "synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
+      "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
       "synthetic-ru-gk407-413-discharge-v1",
       "synthetic-ru-gk414-419-discharge-v1",
       "synthetic-ru-gk421-422-freedom-of-contract-v1",
@@ -25249,6 +25393,142 @@
         "Неизбежность события, которым определён срок, режим рабочих и нерабочих дней и фактическое время совершения действия оцениваются экспертом и судом (статьи 190, 193 и 194 ГК РФ)."
       ]
     },
+    "attribution_delay_evidence_mapping": {
+      "evidence_id": "reviewed-attribution-delay-evidence-supply-1-v0",
+      "schema_version": "contracts.attribution-delay-evidence.v0",
+      "mapping_version": "contracts-reviewed-attribution-delay-to-facts-v0",
+      "facts": {
+        "obligation_breach_asserted": true,
+        "breach_caused_by_debtor_employees": false,
+        "performance_entrusted_to_third_party": false,
+        "third_party_caused_breach": false,
+        "law_assigns_liability_to_performer": false,
+        "creditor_fault_contributed_to_breach": false,
+        "creditor_failed_to_mitigate_loss": false,
+        "debtor_delay_established": false,
+        "performance_lost_interest_for_creditor": false,
+        "creditor_delay_established": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
+        "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "breach_caused_by_debtor_employees",
+          "assertion_id": "attribution-delay-evidence-breach_caused_by_debtor_employees",
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_delay_established",
+          "assertion_id": "attribution-delay-evidence-creditor_delay_established",
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_failed_to_mitigate_loss",
+          "assertion_id": "attribution-delay-evidence-creditor_failed_to_mitigate_loss",
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_fault_contributed_to_breach",
+          "assertion_id": "attribution-delay-evidence-creditor_fault_contributed_to_breach",
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_delay_established",
+          "assertion_id": "attribution-delay-evidence-debtor_delay_established",
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "fact_name": "law_assigns_liability_to_performer",
+          "assertion_id": "attribution-delay-evidence-law_assigns_liability_to_performer",
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "fact_name": "obligation_breach_asserted",
+          "assertion_id": "attribution-delay-evidence-obligation_breach_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_entrusted_to_third_party",
+          "assertion_id": "attribution-delay-evidence-performance_entrusted_to_third_party",
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "fact_name": "performance_lost_interest_for_creditor",
+          "assertion_id": "attribution-delay-evidence-performance_lost_interest_for_creditor",
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        },
+        {
+          "fact_name": "third_party_caused_breach",
+          "assertion_id": "attribution-delay-evidence-third_party_caused_breach",
+          "source_refs": [
+            "synthetic-case-supply-1-attribution-delay-evidence"
+          ]
+        }
+      ]
+    },
+    "attribution_delay_constraint_set": {
+      "id": "attribution-delay-constraint-set:reviewed-attribution-delay-evidence-supply-1-v0",
+      "model_version": "contracts-attribution-delay-articles-402-406-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
+        "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1"
+      ],
+      "expressions": [
+        "attribution_qualified == obligation_breach_asserted",
+        "debtor_answerable_for_employees == attribution_qualified AND breach_caused_by_debtor_employees",
+        "liability_shifted_to_performer == attribution_qualified AND performance_entrusted_to_third_party AND third_party_caused_breach AND law_assigns_liability_to_performer",
+        "debtor_answerable_for_third_party == attribution_qualified AND performance_entrusted_to_third_party AND third_party_caused_breach AND NOT law_assigns_liability_to_performer",
+        "creditor_fault_established == attribution_qualified AND (creditor_fault_contributed_to_breach OR creditor_failed_to_mitigate_loss)",
+        "liability_reducible_for_creditor_fault == creditor_fault_established",
+        "debtor_in_delay == attribution_qualified AND debtor_delay_established AND NOT creditor_delay_established",
+        "creditor_may_refuse_performance == debtor_in_delay AND performance_lost_interest_for_creditor",
+        "creditor_in_delay == attribution_qualified AND creditor_delay_established",
+        "creditor_delay_excuses_debtor == creditor_in_delay",
+        "requires_human_attribution_assessment == debtor_answerable_for_employees OR debtor_answerable_for_third_party OR liability_shifted_to_performer OR creditor_fault_established OR debtor_in_delay OR creditor_in_delay"
+      ]
+    },
+    "attribution_delay_evaluation": {
+      "constraint_set_id": "attribution-delay-constraint-set:reviewed-attribution-delay-evidence-supply-1-v0",
+      "satisfiable": true,
+      "attribution_qualified": true,
+      "debtor_answerable_for_employees": false,
+      "debtor_answerable_for_third_party": false,
+      "liability_shifted_to_performer": false,
+      "creditor_fault_established": false,
+      "liability_reducible_for_creditor_fault": false,
+      "debtor_in_delay": false,
+      "creditor_may_refuse_performance": false,
+      "creditor_in_delay": false,
+      "creditor_delay_excuses_debtor": false,
+      "requires_human_attribution_assessment": false,
+      "reasons_ru": [
+        "Заявлено нарушение обязательства, к которому применяются правила о возложении ответственности и просрочке сторон (статьи 402–406 ГК РФ)."
+      ],
+      "warnings_ru": [
+        "Модель называет основания ответственности и просрочки, но не определяет её размер: уменьшение размера при вине кредитора — право суда, а не расчёт по заранее известной пропорции (статья 404 ГК РФ).",
+        "Утрата интереса кредитора к исполнению и разумность мер к уменьшению убытков оцениваются экспертом и судом (статьи 404 и 405 ГК РФ)."
+      ]
+    },
     "transactions_evidence_mapping": {
       "evidence_id": "reviewed-transactions-evidence-supply-1-v0",
       "schema_version": "contracts.transactions-evidence.v0",
@@ -32611,7 +32891,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.97.0",
+      "institutional_package_version": "contracts-ru-v0@0.98.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -34609,6 +34889,7 @@
           "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-agency-evidence",
           "synthetic-case-supply-1-annuity-evidence",
+          "synthetic-case-supply-1-attribution-delay-evidence",
           "synthetic-case-supply-1-bank-account-evidence",
           "synthetic-case-supply-1-bank-deposit-evidence",
           "synthetic-case-supply-1-barter-evidence",
@@ -34750,6 +35031,8 @@
           "synthetic-ru-gk391-3923-debt-transfer-v1",
           "synthetic-ru-gk393-4061-remedies-v1",
           "synthetic-ru-gk401-liability-model-v1",
+          "synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
+          "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
           "synthetic-ru-gk421-422-freedom-of-contract-v1",
@@ -35878,6 +36161,7 @@
           "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-agency-evidence",
           "synthetic-case-supply-1-annuity-evidence",
+          "synthetic-case-supply-1-attribution-delay-evidence",
           "synthetic-case-supply-1-bank-account-evidence",
           "synthetic-case-supply-1-bank-deposit-evidence",
           "synthetic-case-supply-1-barter-evidence",
@@ -36019,6 +36303,8 @@
           "synthetic-ru-gk391-3923-debt-transfer-v1",
           "synthetic-ru-gk393-4061-remedies-v1",
           "synthetic-ru-gk401-liability-model-v1",
+          "synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
+          "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
           "synthetic-ru-gk421-422-freedom-of-contract-v1",
@@ -37147,6 +37433,7 @@
           "synthetic-case-supply-1-adhesion-evidence",
           "synthetic-case-supply-1-agency-evidence",
           "synthetic-case-supply-1-annuity-evidence",
+          "synthetic-case-supply-1-attribution-delay-evidence",
           "synthetic-case-supply-1-bank-account-evidence",
           "synthetic-case-supply-1-bank-deposit-evidence",
           "synthetic-case-supply-1-barter-evidence",
@@ -37288,6 +37575,8 @@
           "synthetic-ru-gk391-3923-debt-transfer-v1",
           "synthetic-ru-gk393-4061-remedies-v1",
           "synthetic-ru-gk401-liability-model-v1",
+          "synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
+          "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
           "synthetic-ru-gk421-422-freedom-of-contract-v1",
@@ -37496,7 +37785,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.97.0",
+      "institutional_package_version": "contracts-ru-v0@0.98.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -39896,6 +40185,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель возложения ответственности и вины кредитора по статьям 402–404 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "attribution_of_liability_and_creditor_fault_articles_402_404",
+          "legal_reference": "ГК РФ, статьи 402-404",
+          "basis_url": "https://government.ru/docs/all/95820/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель просрочки должника и просрочки кредитора по статьям 405–406 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "delay_of_the_debtor_and_of_the_creditor_articles_405_406",
+          "legal_reference": "ГК РФ, статьи 405-406",
+          "basis_url": "https://government.ru/docs/all/95820/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-attribution-delay-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о возложении ответственности и просрочке по делу",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "attribution_delay_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель понятия сделки, её видов и сделок под условием по статьям 153–157 ГК РФ",
@@ -41035,6 +41362,7 @@
             "synthetic-adhesion-reviewer",
             "synthetic-agency-reviewer",
             "synthetic-annuity-reviewer",
+            "synthetic-attribution-delay-reviewer",
             "synthetic-authority-reviewer",
             "synthetic-bank-account-reviewer",
             "synthetic-bank-deposit-reviewer",

@@ -1442,6 +1442,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-attribution-delay",
+            title="Проверка возложения ответственности и просрочки сторон",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.attribution_delay_evidence_mapping.evidence_id,
+                trace.analysis_result.attribution_delay_constraint_set.id,
+                *trace.analysis_result.attribution_delay_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.attribution_delay_evaluation.reasons_ru,
+                "Действия работников должника, возложение исполнения на третье лицо и случаи, когда закон возлагает ответственность на непосредственного исполнителя, вина кредитора и непринятие им мер к уменьшению убытков, просрочка должника, утрата кредитором интереса к исполнению и просрочка кредитора проверяются раздельно по статьям 402–406 ГК РФ.",
+                "Размер ответственности при вине кредитора, утрата интереса к исполнению и разумность мер к уменьшению убытков оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-transactions",
             title="Проверка понятия, вида и условий сделки",
             status=PipelineStepStatus.PASSED,

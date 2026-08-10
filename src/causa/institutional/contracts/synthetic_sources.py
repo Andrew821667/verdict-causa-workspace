@@ -3780,6 +3780,63 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
+        title="Синтетическая проверенная модель возложения ответственности и вины кредитора по статьям 402–404 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: действия работников должника по исполнению его "
+            "обязательства считаются действиями должника; возложение исполнения на третье "
+            "лицо не переносит ответственность, если законом не установлено, что отвечает "
+            "являющееся непосредственным исполнителем третье лицо; вина кредитора даёт суду "
+            "право уменьшить размер ответственности должника (статьи 402–404 ГК РФ)."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "attribution_of_liability_and_creditor_fault_articles_402_404",
+            "legal_reference": "ГК РФ, статьи 402-404",
+            "basis_url": "https://government.ru/docs/all/95820/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
+        title="Синтетическая проверенная модель просрочки должника и просрочки кредитора по статьям 405–406 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: просрочивший должник отвечает за убытки, "
+            "причинённые просрочкой, и за последствия случайно наступившей невозможности "
+            "исполнения; при утрате кредитором интереса к исполнению он вправе отказаться "
+            "от его принятия; должник не считается просрочившим, пока обязательство не "
+            "может быть исполнено вследствие просрочки кредитора (статьи 405–406 ГК РФ)."
+        ),
+        valid_from="1995-01-01",
+        metadata={
+            "synthetic": True,
+            "topic": "delay_of_the_debtor_and_of_the_creditor_articles_405_406",
+            "legal_reference": "ГК РФ, статьи 405-406",
+            "basis_url": "https://government.ru/docs/all/95820/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-attribution-delay-evidence",
+        title="Синтетическая проверенная запись фактов о возложении ответственности и просрочке по делу",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: по спорному договору поставки исполнение на третьих лиц "
+            "не возлагалось, вина кредитора не устанавливалась, о просрочке кредитора не "
+            "заявлялось."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "attribution_delay_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-case-supply-1-terms-evidence",
         title="Синтетическая проверенная запись фактов об исчислении сроков по делу",
         source_type=SourceType.FACT,

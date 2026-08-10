@@ -155,6 +155,11 @@ from causa.institutional.contracts.persons import (
     PersonsEvidencePredicate,
     ReviewedPersonsEvidence,
 )
+from causa.institutional.contracts.attribution_delay import (
+    AttributionDelayEvidenceAssertion,
+    AttributionDelayEvidencePredicate,
+    ReviewedAttributionDelayEvidence,
+)
 from causa.institutional.contracts.terms import (
     ReviewedTermsEvidence,
     TermsEvidenceAssertion,
@@ -626,6 +631,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
     "synthetic-ru-gk194-actions-on-the-last-day-of-a-term-v1",
     "synthetic-case-supply-1-terms-evidence",
+    "synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
+    "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
+    "synthetic-case-supply-1-attribution-delay-evidence",
     "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
     "synthetic-ru-gk157-1-consent-to-a-transaction-v1",
     "synthetic-case-supply-1-transactions-evidence",
@@ -3096,6 +3104,51 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-terms-reviewer",
+        ),
+        attribution_delay_evidence=ReviewedAttributionDelayEvidence(
+            id="reviewed-attribution-delay-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                AttributionDelayEvidenceAssertion(
+                    id=f"attribution-delay-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-attribution-delay-evidence",),
+                )
+                for predicate, value in (
+                    (AttributionDelayEvidencePredicate.OBLIGATION_BREACH_ASSERTED, True),
+                    (
+                        AttributionDelayEvidencePredicate.BREACH_CAUSED_BY_DEBTOR_EMPLOYEES,
+                        False,
+                    ),
+                    (
+                        AttributionDelayEvidencePredicate.PERFORMANCE_ENTRUSTED_TO_THIRD_PARTY,
+                        False,
+                    ),
+                    (AttributionDelayEvidencePredicate.THIRD_PARTY_CAUSED_BREACH, False),
+                    (
+                        AttributionDelayEvidencePredicate.LAW_ASSIGNS_LIABILITY_TO_PERFORMER,
+                        False,
+                    ),
+                    (
+                        AttributionDelayEvidencePredicate.CREDITOR_FAULT_CONTRIBUTED_TO_BREACH,
+                        False,
+                    ),
+                    (AttributionDelayEvidencePredicate.CREDITOR_FAILED_TO_MITIGATE_LOSS, False),
+                    (AttributionDelayEvidencePredicate.DEBTOR_DELAY_ESTABLISHED, False),
+                    (
+                        AttributionDelayEvidencePredicate.PERFORMANCE_LOST_INTEREST_FOR_CREDITOR,
+                        False,
+                    ),
+                    (AttributionDelayEvidencePredicate.CREDITOR_DELAY_ESTABLISHED, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
+                "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-attribution-delay-reviewer",
         ),
         transactions_evidence=ReviewedTransactionsEvidence(
             id="reviewed-transactions-evidence-supply-1-v0",

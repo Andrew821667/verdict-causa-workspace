@@ -1859,6 +1859,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.97.0",
+        to_version="0.98.0",
+        reasons=[
+            "The analysis result gains the attribution and delay mapping, constraint set and evaluation for articles 402-406.",
+            "Artifacts produced before the institute existed must be regenerated.",
+        ],
+        reasons_ru=[
+            "Результат анализа пополнился разбором, набором ограничений и оценкой возложения ответственности и просрочки сторон по статьям 402–406 ГК РФ.",
+            "Артефакты, собранные до появления института, требуют пересборки.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_attribution_delay_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

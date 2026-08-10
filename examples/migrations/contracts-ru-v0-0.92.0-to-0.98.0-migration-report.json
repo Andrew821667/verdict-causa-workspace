@@ -1,0 +1,126 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.92.0:to-0.98.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.92.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.92.0",
+  "target_package_version": "0.98.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.92.0",
+      "to_version": "0.93.0",
+      "reasons": [
+        "Reviewed inputs now require a separate objects evidence contract covering articles 128 to 152.",
+        "The general-part effects layer gains an input for an object excluded from civil circulation, so the transaction is void under articles 129 and 168 and the contract loses effect."
+      ],
+      "reasons_ru": [
+        "Проверенные входы теперь требуют отдельный контракт данных об объекте гражданских прав по статьям 128–152 ГК РФ.",
+        "Слой общих положений получил вход об изъятии объекта из оборота, поэтому сделка ничтожна по статьям 129 и 168 ГК РФ и договор лишается действия."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_objects_evaluation.py",
+        "python scripts/export_synthetic_general_effects_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.93.0",
+      "to_version": "0.94.0",
+      "reasons": [
+        "The analysis result gains a cross-institute consistency layer with three new fields; no new evidence contract is required.",
+        "Reviewed facts that describe the same circumstance in several institutes are now compared, so an artifact carrying a contradiction now raises the human-review flag instead of passing silently."
+      ],
+      "reasons_ru": [
+        "Результат анализа получил слой сверки фактов между институтами и три новых поля; отдельный контракт данных собирать не требуется.",
+        "Проверенные факты разных институтов, описывающие одно и то же обстоятельство, теперь сверяются, поэтому артефакт с противоречием поднимает флаг экспертизы, а не проходит молча."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_general_consistency_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_translation_bundle.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.94.0",
+      "to_version": "0.95.0",
+      "reasons": [
+        "A suite of modelled case situations is added; no analysis field changes.",
+        "Two input cross-checks are relaxed: the specialist breach conclusion may differ from the obligation breach conclusion once the contractual effect is displaced, which unblocks the analysis of a void contract with performance already rendered."
+      ],
+      "reasons_ru": [
+        "Добавлен набор смоделированных фабул дел; поля результата анализа не изменились.",
+        "Две проверки входов ослаблены: вывод специального института о нарушении может отличаться от вывода об обязательстве, когда договорный эффект вытеснен, что снимает блокировку анализа ничтожной сделки с уже состоявшимся исполнением."
+      ],
+      "replay_commands": [
+        "python scripts/export_case_scenario_report.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.95.0",
+      "to_version": "0.96.0",
+      "reasons": [
+        "A suite of situations anchored to published Supreme Court positions is added; no analysis field changes."
+      ],
+      "reasons_ru": [
+        "Добавлен набор фабул, привязанных к опубликованным позициям Верховного Суда РФ; поля результата анализа не изменились."
+      ],
+      "replay_commands": [
+        "python scripts/export_practice_scenario_report.py"
+      ]
+    },
+    {
+      "from_version": "0.96.0",
+      "to_version": "0.97.0",
+      "reasons": [
+        "The cross-institute consistency evaluation loses two boolean fields whose checks could never fire in the full pipeline, because pre-existing input checks reject the same condition earlier.",
+        "Artifacts carrying the removed fields must be regenerated."
+      ],
+      "reasons_ru": [
+        "Оценка слоя сверки лишилась двух булевых полей: соответствующие сверки в полном конвейере сработать не могли — то же условие раньше отвергается прежними проверками входов.",
+        "Артефакты, содержащие удалённые поля, требуют пересборки."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_general_consistency_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.97.0",
+      "to_version": "0.98.0",
+      "reasons": [
+        "The analysis result gains the attribution and delay mapping, constraint set and evaluation for articles 402-406.",
+        "Artifacts produced before the institute existed must be regenerated."
+      ],
+      "reasons_ru": [
+        "Результат анализа пополнился разбором, набором ограничений и оценкой возложения ответственности и просрочки сторон по статьям 402–406 ГК РФ.",
+        "Артефакты, собранные до появления института, требуют пересборки."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_attribution_delay_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

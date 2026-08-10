@@ -40,13 +40,14 @@ def test_liability_chapter_is_not_swallowed_by_obligation_dynamics() -> None:
 
     Строка версии заявляет статьи 382–419, то есть вместе с главой 25. Предикаты
     разбирают перемену лиц и прекращение обязательства, но не ответственность.
-    Если бы карта покрытия повторяла заявленный диапазон, статьи 403 и 404
-    считались бы покрытыми, хотя их не разбирает ни один институт.
+    Пока карта покрытия повторяла заявленный диапазон, статьи 403 и 404
+    считались покрытыми, хотя их не разбирал ни один институт. Пробел закрыт
+    отдельным институтом, а не расширением этой модели.
     """
     assert institutes_for_article("407") == ["obligation_dynamics"]
     assert "obligation_dynamics" not in institutes_for_article("403")
-    assert institutes_for_article("403") == []
-    assert institutes_for_article("404") == []
+    assert institutes_for_article("403") == ["attribution_delay"]
+    assert institutes_for_article("404") == ["attribution_delay"]
 
 
 def test_repository_export_has_no_unexplained_gaps() -> None:

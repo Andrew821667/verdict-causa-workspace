@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.98.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Adds the attribution and delay institute for articles 402-406, closing a gap that real court practice hit twice in fifty cases.",
+            "The analysis result gains three fields; artifacts must be regenerated.",
+            "The gap was found by measuring the articles cited by real courts against the ranges the institutes declare, not by reading the code.",
+        ],
+        notes_ru=[
+            "Добавлен институт возложения ответственности и просрочки сторон по статьям 402–406 ГК РФ: пробел, в который реальная судебная практика попала дважды на пятидесяти делах.",
+            "Результат анализа получил три новых поля; артефакты требуют пересборки.",
+            "Пробел найден измерением статей, на которые сослались суды, против диапазонов институтов, а не разбором кода.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.97.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],
