@@ -17,6 +17,7 @@ from causa.institutional.contracts.performance_remedies_evaluation import (
     run_performance_remedies_benchmark_suite,
     run_performance_remedies_red_team_suite,
 )
+from causa.institutional.contracts.fact_consistency import FactConsistencyError
 from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
 from causa.institutional.contracts.synthetic_performance_remedies import (
     SyntheticPerformanceRemediesEvaluationArtifact,
@@ -115,19 +116,19 @@ def test_analysis_rejects_unreviewed_wrong_case_and_factual_legal_source() -> No
 
 
 @pytest.mark.parametrize(
-    ("predicate", "message"),
+    ("predicate", "key"),
     [
-        ("obligation_exists", "obligation status"),
-        ("breach_established", "breach status"),
-        ("performance_tendered", "tender status"),
-        ("loss_claimed", "loss claim"),
-        ("causation_proven", "causation"),
-        ("monetary_delay", "monetary-delay status"),
+        ("obligation_exists", "remedies_obligation_status"),
+        ("breach_established", "remedies_breach_status"),
+        ("performance_tendered", "remedies_tender_status"),
+        ("loss_claimed", "remedies_loss_claim"),
+        ("causation_proven", "remedies_causation"),
+        ("monetary_delay", "remedies_monetary_delay"),
     ],
 )
 def test_analysis_rejects_performance_remedies_status_mismatch(
     predicate: str,
-    message: str,
+    key: str,
 ) -> None:
     request = build_synthetic_supply_analysis_request()
     target_value = predicate in {"loss_claimed", "causation_proven", "monetary_delay"}
@@ -143,11 +144,13 @@ def test_analysis_rejects_performance_remedies_status_mismatch(
     )
     evidence = request.performance_remedies_evidence.model_copy(update={"assertions": assertions})
 
-    with pytest.raises(ValueError, match=message):
+    with pytest.raises(FactConsistencyError) as failure:
         run_reviewed_contract_analysis(
             request.model_copy(update={"performance_remedies_evidence": evidence}),
             build_synthetic_supply_analysis_sources(),
         )
+
+    assert key in failure.value.keys
 
 
 def test_performance_remedies_fact_consistency_rejects_breach_without_obligation() -> None:

@@ -4,6 +4,7 @@ import pytest
 from pydantic import ValidationError
 
 from causa.core.bootstrap import BootstrapReviewStatus
+from causa.institutional.contracts.fact_consistency import FactConsistencyError
 from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
 from causa.institutional.contracts.security import (
     SECURITY_EVIDENCE_SCHEMA_VERSION,
@@ -99,13 +100,13 @@ def test_analysis_rejects_unreviewed_wrong_case_and_factual_legal_source() -> No
 
 
 @pytest.mark.parametrize(
-    ("predicate", "message"),
+    ("predicate", "key"),
     [
-        ("main_obligation_exists", "main obligation status"),
-        ("main_obligation_breached", "breach status"),
+        ("main_obligation_exists", "security_main_obligation_status"),
+        ("main_obligation_breached", "security_breach_status"),
     ],
 )
-def test_analysis_rejects_security_status_mismatch(predicate: str, message: str) -> None:
+def test_analysis_rejects_security_status_mismatch(predicate: str, key: str) -> None:
     request = build_synthetic_supply_analysis_request()
     assertions = tuple(
         assertion.model_copy(update={"value": False})
@@ -119,11 +120,13 @@ def test_analysis_rejects_security_status_mismatch(predicate: str, message: str)
     )
     evidence = request.security_evidence.model_copy(update={"assertions": assertions})
 
-    with pytest.raises(ValueError, match=message):
+    with pytest.raises(FactConsistencyError) as failure:
         run_reviewed_contract_analysis(
             request.model_copy(update={"security_evidence": evidence}),
             build_synthetic_supply_analysis_sources(),
         )
+
+    assert key in failure.value.keys
 
 
 def test_security_fact_consistency_rejects_breach_without_obligation() -> None:

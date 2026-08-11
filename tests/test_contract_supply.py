@@ -4,6 +4,7 @@ import pytest
 from pydantic import ValidationError
 
 from causa.core.bootstrap import BootstrapReviewStatus
+from causa.institutional.contracts.fact_consistency import FactConsistencyError
 from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
 from causa.institutional.contracts.supply import (
     SUPPLY_EVIDENCE_SCHEMA_VERSION,
@@ -105,20 +106,20 @@ def test_analysis_rejects_unreviewed_wrong_case_and_factual_supply_source() -> N
 
 
 @pytest.mark.parametrize(
-    ("predicate", "value", "message"),
+    ("predicate", "value", "key"),
     [
-        (SupplyEvidencePredicate.CONTRACT_CONCLUDED, False, "contract status"),
-        (SupplyEvidencePredicate.DELIVERY_COMPLETED, False, "delivery status"),
-        (SupplyEvidencePredicate.DELIVERY_LATE, False, "delay status"),
-        (SupplyEvidencePredicate.QUALITY_DEFECT, True, "nonconformity"),
-        (SupplyEvidencePredicate.LOSS_CLAIMED, True, "loss claim"),
-        (SupplyEvidencePredicate.PAYMENT_DUE, True, "payment due status"),
+        (SupplyEvidencePredicate.CONTRACT_CONCLUDED, False, "supply_contract_status"),
+        (SupplyEvidencePredicate.DELIVERY_COMPLETED, False, "supply_delivery_status"),
+        (SupplyEvidencePredicate.DELIVERY_LATE, False, "supply_delay_status"),
+        (SupplyEvidencePredicate.QUALITY_DEFECT, True, "supply_nonconformity"),
+        (SupplyEvidencePredicate.LOSS_CLAIMED, True, "supply_loss_claim"),
+        (SupplyEvidencePredicate.PAYMENT_DUE, True, "supply_payment_due"),
     ],
 )
 def test_analysis_rejects_supply_status_mismatch(
     predicate: SupplyEvidencePredicate,
     value: bool,
-    message: str,
+    key: str,
 ) -> None:
     request = build_synthetic_supply_analysis_request()
     assertions = tuple(
@@ -129,11 +130,13 @@ def test_analysis_rejects_supply_status_mismatch(
     )
     evidence = request.supply_evidence.model_copy(update={"assertions": assertions})
 
-    with pytest.raises(ValueError, match=message):
+    with pytest.raises(FactConsistencyError) as failure:
         run_reviewed_contract_analysis(
             request.model_copy(update={"supply_evidence": evidence}),
             build_synthetic_supply_analysis_sources(),
         )
+
+    assert key in failure.value.keys
 
 
 def test_supply_fact_consistency_rejects_custody_without_lawful_refusal() -> None:

@@ -17,6 +17,7 @@ from causa.institutional.contracts.formation_evaluation import (
     run_formation_benchmark_suite,
     run_formation_red_team_suite,
 )
+from causa.institutional.contracts.fact_consistency import FactConsistencyError
 from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
 from causa.institutional.contracts.synthetic_formation import (
     SyntheticFormationEvaluationArtifact,
@@ -114,11 +115,13 @@ def test_analysis_rejects_formation_duty_mismatch() -> None:
     )
     evidence = request.formation_evidence.model_copy(update={"assertions": assertions})
 
-    with pytest.raises(ValueError, match="does not match formation result"):
+    with pytest.raises(FactConsistencyError) as failure:
         run_reviewed_contract_analysis(
             request.model_copy(update={"formation_evidence": evidence}),
             build_synthetic_supply_analysis_sources(),
         )
+
+    assert "invalidity_transaction_status" in failure.value.keys
 
 
 def test_formation_fact_consistency_is_enforced() -> None:

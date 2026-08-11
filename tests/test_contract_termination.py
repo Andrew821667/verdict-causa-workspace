@@ -4,6 +4,7 @@ import pytest
 from pydantic import ValidationError
 
 from causa.core.bootstrap import BootstrapReviewStatus
+from causa.institutional.contracts.fact_consistency import FactConsistencyError
 from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
 from causa.institutional.contracts.synthetic_reviewed_analysis import (
     build_synthetic_supply_analysis_artifact,
@@ -116,11 +117,13 @@ def test_analysis_rejects_contract_status_mismatch() -> None:
     )
     evidence = request.termination_evidence.model_copy(update={"assertions": assertions})
 
-    with pytest.raises(ValueError, match="does not match formation result"):
+    with pytest.raises(FactConsistencyError) as failure:
         run_reviewed_contract_analysis(
             request.model_copy(update={"termination_evidence": evidence}),
             build_synthetic_supply_analysis_sources(),
         )
+
+    assert "termination_contract_status" in failure.value.keys
 
 
 def test_termination_fact_consistency_rejects_ambiguous_target() -> None:

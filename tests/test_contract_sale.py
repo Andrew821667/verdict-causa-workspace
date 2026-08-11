@@ -4,6 +4,7 @@ import pytest
 from pydantic import ValidationError
 
 from causa.core.bootstrap import BootstrapReviewStatus
+from causa.institutional.contracts.fact_consistency import FactConsistencyError
 from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
 from causa.institutional.contracts.sale import (
     SALE_EVIDENCE_SCHEMA_VERSION,
@@ -103,20 +104,20 @@ def test_analysis_rejects_unreviewed_wrong_case_and_factual_sale_source() -> Non
 
 
 @pytest.mark.parametrize(
-    ("predicate", "value", "message"),
+    ("predicate", "value", "key"),
     [
-        (SaleEvidencePredicate.CONTRACT_CONCLUDED, False, "contract status"),
-        (SaleEvidencePredicate.GOODS_TRANSFER_COMPLETED, False, "transfer status"),
-        (SaleEvidencePredicate.DELIVERY_LATE, False, "delay status"),
-        (SaleEvidencePredicate.QUALITY_DEFECT, True, "nonconformity"),
-        (SaleEvidencePredicate.LOSS_CLAIMED, True, "loss claim"),
-        (SaleEvidencePredicate.PAYMENT_DUE, True, "payment due status"),
+        (SaleEvidencePredicate.CONTRACT_CONCLUDED, False, "sale_contract_status"),
+        (SaleEvidencePredicate.GOODS_TRANSFER_COMPLETED, False, "sale_transfer_status"),
+        (SaleEvidencePredicate.DELIVERY_LATE, False, "sale_delay_status"),
+        (SaleEvidencePredicate.QUALITY_DEFECT, True, "sale_nonconformity"),
+        (SaleEvidencePredicate.LOSS_CLAIMED, True, "sale_loss_claim"),
+        (SaleEvidencePredicate.PAYMENT_DUE, True, "sale_payment_due"),
     ],
 )
 def test_analysis_rejects_sale_status_mismatch(
     predicate: SaleEvidencePredicate,
     value: bool,
-    message: str,
+    key: str,
 ) -> None:
     request = build_synthetic_supply_analysis_request()
     assertions = tuple(
@@ -127,11 +128,13 @@ def test_analysis_rejects_sale_status_mismatch(
     )
     evidence = request.sale_evidence.model_copy(update={"assertions": assertions})
 
-    with pytest.raises(ValueError, match=message):
+    with pytest.raises(FactConsistencyError) as failure:
         run_reviewed_contract_analysis(
             request.model_copy(update={"sale_evidence": evidence}),
             build_synthetic_supply_analysis_sources(),
         )
+
+    assert key in failure.value.keys
 
 
 def test_sale_fact_consistency_rejects_late_delivery_without_due_term() -> None:

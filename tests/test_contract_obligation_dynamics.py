@@ -17,6 +17,7 @@ from causa.institutional.contracts.obligation_dynamics_evaluation import (
     run_obligation_dynamics_benchmark_suite,
     run_obligation_dynamics_red_team_suite,
 )
+from causa.institutional.contracts.fact_consistency import FactConsistencyError
 from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
 from causa.institutional.contracts.synthetic_obligation_dynamics import (
     SyntheticObligationDynamicsEvaluationArtifact,
@@ -112,14 +113,14 @@ def test_analysis_rejects_unreviewed_wrong_case_and_factual_legal_source() -> No
 
 
 @pytest.mark.parametrize(
-    ("predicate", "message"),
+    ("predicate", "key"),
     [
-        ("obligation_exists", "obligation status"),
-        ("obligation_breached", "breach status"),
-        ("performance_rendered", "performance status"),
+        ("obligation_exists", "dynamics_obligation_status"),
+        ("obligation_breached", "dynamics_breach_status"),
+        ("performance_rendered", "dynamics_performance_status"),
     ],
 )
-def test_analysis_rejects_dynamics_status_mismatch(predicate: str, message: str) -> None:
+def test_analysis_rejects_dynamics_status_mismatch(predicate: str, key: str) -> None:
     request = build_synthetic_supply_analysis_request()
     assertions = tuple(
         assertion.model_copy(update={"value": False})
@@ -145,11 +146,13 @@ def test_analysis_rejects_dynamics_status_mismatch(predicate: str, message: str)
     )
     evidence = request.obligation_dynamics_evidence.model_copy(update={"assertions": assertions})
 
-    with pytest.raises(ValueError, match=message):
+    with pytest.raises(FactConsistencyError) as failure:
         run_reviewed_contract_analysis(
             request.model_copy(update={"obligation_dynamics_evidence": evidence}),
             build_synthetic_supply_analysis_sources(),
         )
+
+    assert key in failure.value.keys
 
 
 def test_dynamics_fact_consistency_rejects_breach_without_obligation() -> None:

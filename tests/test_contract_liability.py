@@ -16,6 +16,7 @@ from causa.institutional.contracts.liability_evaluation import (
     run_liability_benchmark_suite,
     run_liability_red_team_suite,
 )
+from causa.institutional.contracts.fact_consistency import FactConsistencyError
 from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
 from causa.institutional.contracts.synthetic_liability import (
     build_synthetic_liability_evaluation_artifact,
@@ -150,11 +151,13 @@ def test_analysis_rejects_liability_breach_fact_that_conflicts_with_obligation_m
     )
     evidence = request.liability_evidence.model_copy(update={"assertions": assertions})
 
-    with pytest.raises(ValueError, match="does not match obligation evaluation"):
+    with pytest.raises(FactConsistencyError) as failure:
         run_reviewed_contract_analysis(
             request.model_copy(update={"liability_evidence": evidence}),
             build_synthetic_supply_analysis_sources(),
         )
+
+    assert "liability_breach_fact" in failure.value.keys
 
 
 def test_liability_sources_are_synthetic_review_models_with_official_basis() -> None:

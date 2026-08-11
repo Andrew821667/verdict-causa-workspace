@@ -17,6 +17,7 @@ from causa.institutional.contracts.invalidity_evaluation import (
     run_invalidity_benchmark_suite,
     run_invalidity_red_team_suite,
 )
+from causa.institutional.contracts.fact_consistency import FactConsistencyError
 from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
 from causa.institutional.contracts.synthetic_invalidity import (
     SyntheticInvalidityEvaluationArtifact,
@@ -112,11 +113,13 @@ def test_analysis_rejects_invalidity_transaction_status_mismatch() -> None:
     )
     evidence = request.invalidity_evidence.model_copy(update={"assertions": assertions})
 
-    with pytest.raises(ValueError, match="does not match formation result"):
+    with pytest.raises(FactConsistencyError) as failure:
         run_reviewed_contract_analysis(
             request.model_copy(update={"invalidity_evidence": evidence}),
             build_synthetic_supply_analysis_sources(),
         )
+
+    assert "invalidity_transaction_status" in failure.value.keys
 
 
 def test_analysis_rejects_displaced_effect_with_contractual_duty() -> None:
@@ -129,11 +132,13 @@ def test_analysis_rejects_displaced_effect_with_contractual_duty() -> None:
     )
     evidence = request.invalidity_evidence.model_copy(update={"assertions": assertions})
 
-    with pytest.raises(ValueError, match="do not match contractual duty evidence"):
+    with pytest.raises(FactConsistencyError) as failure:
         run_reviewed_contract_analysis(
             request.model_copy(update={"invalidity_evidence": evidence}),
             build_synthetic_supply_analysis_sources(),
         )
+
+    assert "contractual_duty" in failure.value.keys
 
 
 def test_invalidity_fact_consistency_rejects_knowledge_without_ground() -> None:

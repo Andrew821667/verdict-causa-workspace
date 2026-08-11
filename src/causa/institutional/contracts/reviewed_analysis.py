@@ -562,6 +562,9 @@ from causa.institutional.contracts.persons import (
     evaluate_persons_constraints,
     map_reviewed_persons_evidence,
 )
+from causa.institutional.contracts.fact_consistency import (
+    FactConsistencyCollector,
+)
 from causa.institutional.contracts.attribution_delay import (
     ATTRIBUTION_DELAY_EVIDENCE_SCHEMA_VERSION,
     AttributionDelayConstraintSet,
@@ -1388,11 +1391,12 @@ class ReviewedContractAnalysisResult(BaseModel):
             raise ValueError("Temporal-effect evaluation does not replay from reviewed evidence.")
         # Момент заключения (статья 433) не может быть установлен, если formation не
         # подтвердил формальные предпосылки заключения договора (статьи 432–443).
-        if (
-            self.temporal_effect_evaluation.conclusion_moment_established
-            and not self.formation_evaluation.contract_concluded_prerequisites
-        ):
-            raise ValueError("Temporal-effect conclusion moment does not match formation result.")
+        facts_agree = FactConsistencyCollector()
+        facts_agree.implies(
+            "temporal_effect_conclusion_moment",
+            self.temporal_effect_evaluation.conclusion_moment_established,
+            self.formation_evaluation.contract_concluded_prerequisites,
+        )
         expected_limitation_set = build_limitation_constraint_set(self.limitation_evidence_mapping)
         if self.limitation_constraint_set != expected_limitation_set:
             raise ValueError("Limitation constraint set does not replay from reviewed evidence.")
@@ -2275,19 +2279,20 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.invalidity_evaluation != expected_invalidity_evaluation:
             raise ValueError("Invalidity evaluation does not replay from reviewed evidence.")
-        if (
-            self.invalidity_evidence_mapping.facts.transaction_concluded
-            != self.formation_evaluation.contract_concluded_prerequisites
-        ):
-            raise ValueError("Invalidity transaction status does not match formation result.")
+        facts_agree.equal(
+            "invalidity_transaction_status",
+            self.invalidity_evidence_mapping.facts.transaction_concluded,
+            self.formation_evaluation.contract_concluded_prerequisites,
+        )
         expected_contractual_duty = (
             self.formation_evaluation.contract_concluded_prerequisites
             and not self.invalidity_evaluation.contractual_effect_displaced
         )
-        if expected_contractual_duty != self.evidence_mapping.facts.duty_exists:
-            raise ValueError(
-                "Formation and invalidity results do not match contractual duty evidence."
-            )
+        facts_agree.equal(
+            "contractual_duty",
+            self.evidence_mapping.facts.duty_exists,
+            expected_contractual_duty,
+        )
         expected_security_set = build_security_constraint_set(self.security_evidence_mapping)
         if self.security_constraint_set != expected_security_set:
             raise ValueError("Security constraint set does not replay from reviewed evidence.")
@@ -2297,21 +2302,21 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.security_evaluation != expected_security_evaluation:
             raise ValueError("Security evaluation does not replay from reviewed evidence.")
-        if (
-            self.security_evidence_mapping.facts.main_obligation_exists
-            != self.formation_evaluation.contract_concluded_prerequisites
-        ):
-            raise ValueError("Security main obligation status does not match formation result.")
-        if (
-            self.security_evidence_mapping.facts.main_obligation_invalid
-            != self.invalidity_evaluation.contractual_effect_displaced
-        ):
-            raise ValueError("Security invalidity status does not match invalidity result.")
-        if (
-            self.security_evidence_mapping.facts.main_obligation_breached
-            != self.constraint_evaluation.breach_issue
-        ):
-            raise ValueError("Security breach status does not match obligation evaluation.")
+        facts_agree.equal(
+            "security_main_obligation_status",
+            self.security_evidence_mapping.facts.main_obligation_exists,
+            self.formation_evaluation.contract_concluded_prerequisites,
+        )
+        facts_agree.equal(
+            "security_invalidity_status",
+            self.security_evidence_mapping.facts.main_obligation_invalid,
+            self.invalidity_evaluation.contractual_effect_displaced,
+        )
+        facts_agree.equal(
+            "security_breach_status",
+            self.security_evidence_mapping.facts.main_obligation_breached,
+            self.constraint_evaluation.breach_issue,
+        )
         expected_dynamics_set = build_obligation_dynamics_constraint_set(
             self.obligation_dynamics_evidence_mapping
         )
@@ -2327,36 +2332,30 @@ class ReviewedContractAnalysisResult(BaseModel):
             raise ValueError(
                 "Obligation-dynamics evaluation does not replay from reviewed evidence."
             )
-        if (
-            self.obligation_dynamics_evidence_mapping.facts.obligation_exists
-            != self.evidence_mapping.facts.duty_exists
-        ):
-            raise ValueError("Obligation-dynamics obligation status does not match duty evidence.")
-        if (
-            self.obligation_dynamics_evidence_mapping.facts.obligation_breached
-            != self.constraint_evaluation.breach_issue
-        ):
-            raise ValueError(
-                "Obligation-dynamics breach status does not match obligation evaluation."
-            )
-        if (
-            self.obligation_dynamics_evidence_mapping.facts.performance_rendered
-            != self.evidence_mapping.facts.performance_completed
-        ):
-            raise ValueError(
-                "Obligation-dynamics performance status does not match performance evidence."
-            )
+        facts_agree.equal(
+            "dynamics_obligation_status",
+            self.obligation_dynamics_evidence_mapping.facts.obligation_exists,
+            self.evidence_mapping.facts.duty_exists,
+        )
+        facts_agree.equal(
+            "dynamics_breach_status",
+            self.obligation_dynamics_evidence_mapping.facts.obligation_breached,
+            self.constraint_evaluation.breach_issue,
+        )
+        facts_agree.equal(
+            "dynamics_performance_status",
+            self.obligation_dynamics_evidence_mapping.facts.performance_rendered,
+            self.evidence_mapping.facts.performance_completed,
+        )
         expected_proper_performance = (
             self.evidence_mapping.facts.performance_completed
             and not self.evidence_mapping.facts.performance_nonconforming
         )
-        if (
-            self.obligation_dynamics_evidence_mapping.facts.performance_accepted_as_proper
-            != expected_proper_performance
-        ):
-            raise ValueError(
-                "Obligation-dynamics proper-performance status does not match case evidence."
-            )
+        facts_agree.equal(
+            "dynamics_proper_performance",
+            self.obligation_dynamics_evidence_mapping.facts.performance_accepted_as_proper,
+            expected_proper_performance,
+        )
         expected_performance_remedies_set = build_performance_remedies_constraint_set(
             self.performance_remedies_evidence_mapping
         )
@@ -2373,33 +2372,42 @@ class ReviewedContractAnalysisResult(BaseModel):
                 "Performance-remedies evaluation does not replay from reviewed evidence."
             )
         performance_facts = self.performance_remedies_evidence_mapping.facts
-        if performance_facts.obligation_exists != self.evidence_mapping.facts.duty_exists:
-            raise ValueError("Performance-remedies obligation status does not match duty evidence.")
-        if performance_facts.breach_established != self.constraint_evaluation.breach_issue:
-            raise ValueError(
-                "Performance-remedies breach status does not match obligation evaluation."
-            )
-        if (
-            performance_facts.performance_tendered
-            != self.obligation_dynamics_evidence_mapping.facts.performance_rendered
-        ):
-            raise ValueError(
-                "Performance-remedies tender status does not match obligation-dynamics evidence."
-            )
-        if performance_facts.loss_claimed != self.evidence_mapping.facts.loss_claimed:
-            raise ValueError("Performance-remedies loss claim does not match case evidence.")
-        if performance_facts.causation_proven != self.evidence_mapping.facts.causation_established:
-            raise ValueError("Performance-remedies causation does not match case evidence.")
+        facts_agree.equal(
+            "remedies_obligation_status",
+            performance_facts.obligation_exists,
+            self.evidence_mapping.facts.duty_exists,
+        )
+        facts_agree.equal(
+            "remedies_breach_status",
+            performance_facts.breach_established,
+            self.constraint_evaluation.breach_issue,
+        )
+        facts_agree.equal(
+            "remedies_tender_status",
+            performance_facts.performance_tendered,
+            self.obligation_dynamics_evidence_mapping.facts.performance_rendered,
+        )
+        facts_agree.equal(
+            "remedies_loss_claim",
+            performance_facts.loss_claimed,
+            self.evidence_mapping.facts.loss_claimed,
+        )
+        facts_agree.equal(
+            "remedies_causation",
+            performance_facts.causation_proven,
+            self.evidence_mapping.facts.causation_established,
+        )
         expected_monetary_delay = (
             self.evidence_mapping.facts.payment_duty_exists
             and self.evidence_mapping.facts.payment_due
             and self.evidence_mapping.facts.payment_missed
             and not self.evidence_mapping.facts.payment_defense_applies
         )
-        if performance_facts.monetary_delay != expected_monetary_delay:
-            raise ValueError(
-                "Performance-remedies monetary-delay status does not match payment evidence."
-            )
+        facts_agree.equal(
+            "remedies_monetary_delay",
+            performance_facts.monetary_delay,
+            expected_monetary_delay,
+        )
         expected_sale_set = build_sale_constraint_set(self.sale_evidence_mapping)
         if self.sale_constraint_set != expected_sale_set:
             raise ValueError("Sale constraint set does not replay from reviewed evidence.")
@@ -2410,40 +2418,58 @@ class ReviewedContractAnalysisResult(BaseModel):
         if self.sale_evaluation != expected_sale_evaluation:
             raise ValueError("Sale evaluation does not replay from reviewed evidence.")
         sale_facts = self.sale_evidence_mapping.facts
-        if (
-            sale_facts.contract_concluded
-            != self.formation_evaluation.contract_concluded_prerequisites
-        ):
-            raise ValueError("Sale contract status does not match formation result.")
-        if sale_facts.goods_transfer_completed != self.evidence_mapping.facts.performance_completed:
-            raise ValueError("Sale transfer status does not match performance evidence.")
-        if sale_facts.delivery_late != self.temporal_evaluation.due_date_missed:
-            raise ValueError("Sale delay status does not match temporal evaluation.")
+        facts_agree.equal(
+            "sale_contract_status",
+            sale_facts.contract_concluded,
+            self.formation_evaluation.contract_concluded_prerequisites,
+        )
+        facts_agree.equal(
+            "sale_transfer_status",
+            sale_facts.goods_transfer_completed,
+            self.evidence_mapping.facts.performance_completed,
+        )
+        facts_agree.equal(
+            "sale_delay_status",
+            sale_facts.delivery_late,
+            self.temporal_evaluation.due_date_missed,
+        )
         sale_basic_nonconforming = (
             sale_facts.quantity_shortfall
             or sale_facts.quality_defect
             or sale_facts.incomplete_goods
         )
-        if sale_basic_nonconforming != self.evidence_mapping.facts.performance_nonconforming:
-            raise ValueError("Sale nonconformity does not match performance evidence.")
-        if sale_facts.loss_claimed != self.evidence_mapping.facts.loss_claimed:
-            raise ValueError("Sale loss claim does not match case evidence.")
-        if sale_facts.causation_proven != self.evidence_mapping.facts.causation_established:
-            raise ValueError("Sale causation does not match case evidence.")
-        if sale_facts.payment_due != self.evidence_mapping.facts.payment_due:
-            raise ValueError("Sale payment due status does not match case evidence.")
+        facts_agree.equal(
+            "sale_nonconformity",
+            sale_basic_nonconforming,
+            self.evidence_mapping.facts.performance_nonconforming,
+        )
+        facts_agree.equal(
+            "sale_loss_claim",
+            sale_facts.loss_claimed,
+            self.evidence_mapping.facts.loss_claimed,
+        )
+        facts_agree.equal(
+            "sale_causation",
+            sale_facts.causation_proven,
+            self.evidence_mapping.facts.causation_established,
+        )
+        facts_agree.equal(
+            "sale_payment_due",
+            sale_facts.payment_due,
+            self.evidence_mapping.facts.payment_due,
+        )
         # Специальный институт описывает нарушение фактически, а `breach_issue` —
         # только при существующей договорной обязанности. Когда договорный эффект
         # вытеснен (ничтожность, статья 167 ГК РФ), эти величины расходятся
         # закономерно: факт просрочки остаётся, обязанности уже нет. Требовать их
         # равенства значило бы отвергать анализ ничтожной сделки, по которой
         # исполнение уже состоялось, — то есть именно те дела, где нужна реституция.
-        if (
-            self.evidence_mapping.facts.duty_exists
-            and self.sale_evaluation.sale_breach_established
-            != self.constraint_evaluation.breach_issue
-        ):
-            raise ValueError("Sale breach status does not match obligation evaluation.")
+        if self.evidence_mapping.facts.duty_exists:
+            facts_agree.equal(
+                "sale_breach_status",
+                self.sale_evaluation.sale_breach_established,
+                self.constraint_evaluation.breach_issue,
+            )
         expected_supply_set = build_supply_constraint_set(self.supply_evidence_mapping)
         if self.supply_constraint_set != expected_supply_set:
             raise ValueError("Supply constraint set does not replay from reviewed evidence.")
@@ -2454,28 +2480,46 @@ class ReviewedContractAnalysisResult(BaseModel):
         if self.supply_evaluation != expected_supply_evaluation:
             raise ValueError("Supply evaluation does not replay from reviewed evidence.")
         supply_facts = self.supply_evidence_mapping.facts
-        if (
-            supply_facts.contract_concluded
-            != self.formation_evaluation.contract_concluded_prerequisites
-        ):
-            raise ValueError("Supply contract status does not match formation result.")
-        if supply_facts.delivery_completed != self.evidence_mapping.facts.performance_completed:
-            raise ValueError("Supply delivery status does not match performance evidence.")
-        if supply_facts.delivery_late != self.temporal_evaluation.due_date_missed:
-            raise ValueError("Supply delay status does not match temporal evaluation.")
+        facts_agree.equal(
+            "supply_contract_status",
+            supply_facts.contract_concluded,
+            self.formation_evaluation.contract_concluded_prerequisites,
+        )
+        facts_agree.equal(
+            "supply_delivery_status",
+            supply_facts.delivery_completed,
+            self.evidence_mapping.facts.performance_completed,
+        )
+        facts_agree.equal(
+            "supply_delay_status",
+            supply_facts.delivery_late,
+            self.temporal_evaluation.due_date_missed,
+        )
         supply_nonconforming = (
             supply_facts.quantity_shortfall
             or supply_facts.quality_defect
             or supply_facts.incomplete_goods
         )
-        if supply_nonconforming != self.evidence_mapping.facts.performance_nonconforming:
-            raise ValueError("Supply nonconformity does not match performance evidence.")
-        if supply_facts.loss_claimed != self.evidence_mapping.facts.loss_claimed:
-            raise ValueError("Supply loss claim does not match case evidence.")
-        if supply_facts.causation_proven != self.evidence_mapping.facts.causation_established:
-            raise ValueError("Supply causation does not match case evidence.")
-        if supply_facts.payment_due != self.evidence_mapping.facts.payment_due:
-            raise ValueError("Supply payment due status does not match case evidence.")
+        facts_agree.equal(
+            "supply_nonconformity",
+            supply_nonconforming,
+            self.evidence_mapping.facts.performance_nonconforming,
+        )
+        facts_agree.equal(
+            "supply_loss_claim",
+            supply_facts.loss_claimed,
+            self.evidence_mapping.facts.loss_claimed,
+        )
+        facts_agree.equal(
+            "supply_causation",
+            supply_facts.causation_proven,
+            self.evidence_mapping.facts.causation_established,
+        )
+        facts_agree.equal(
+            "supply_payment_due",
+            supply_facts.payment_due,
+            self.evidence_mapping.facts.payment_due,
+        )
         sale_supply_pairs = (
             (sale_facts.contract_concluded, supply_facts.contract_concluded, "contract"),
             (sale_facts.goods_transfer_completed, supply_facts.delivery_completed, "delivery"),
@@ -2492,19 +2536,18 @@ class ReviewedContractAnalysisResult(BaseModel):
             (sale_facts.contract_terminated, supply_facts.contract_terminated, "termination"),
         )
         for sale_value, supply_value, label in sale_supply_pairs:
-            if sale_value != supply_value:
-                raise ValueError(f"Sale and supply {label} facts do not match.")
-        if (
-            self.sale_evaluation.sale_contract_qualified
-            != self.supply_evaluation.supply_contract_qualified
-        ):
-            raise ValueError("Sale and supply qualification results do not match.")
-        if (
-            self.evidence_mapping.facts.duty_exists
-            and self.supply_evaluation.supply_breach_established
-            != self.constraint_evaluation.breach_issue
-        ):
-            raise ValueError("Supply breach status does not match obligation evaluation.")
+            facts_agree.equal(f"sale_supply_pair:{label}", supply_value, sale_value)
+        facts_agree.equal(
+            "sale_supply_qualification",
+            self.supply_evaluation.supply_contract_qualified,
+            self.sale_evaluation.sale_contract_qualified,
+        )
+        if self.evidence_mapping.facts.duty_exists:
+            facts_agree.equal(
+                "supply_breach_status",
+                self.supply_evaluation.supply_breach_established,
+                self.constraint_evaluation.breach_issue,
+            )
         expected_termination_set = build_termination_constraint_set(
             self.termination_evidence_mapping
         )
@@ -2516,38 +2559,45 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.termination_evaluation != expected_termination_evaluation:
             raise ValueError("Termination evaluation does not replay from reviewed evidence.")
-        if (
-            self.termination_evidence_mapping.facts.contract_formed
-            != self.formation_evaluation.contract_concluded_prerequisites
-        ):
-            raise ValueError("Termination contract status does not match formation result.")
-        if (
-            self.termination_evidence_mapping.facts.substantial_breach_proven
-            and not self.constraint_evaluation.breach_issue
-        ):
-            raise ValueError("Substantial breach evidence requires an obligation breach.")
-        if supply_facts.contract_terminated != self.termination_evaluation.effective_termination:
-            raise ValueError("Supply termination status does not match termination evaluation.")
-        if sale_facts.contract_terminated != self.termination_evaluation.effective_termination:
-            raise ValueError("Sale termination status does not match termination evaluation.")
-        if (
-            self.sale_evaluation.sale_contract_refusal_effective
-            and not self.termination_evaluation.effective_termination
-        ):
-            raise ValueError("Effective sale refusal must be reflected in termination evidence.")
-        if (
-            self.supply_evaluation.supply_unilateral_refusal_effective
-            and not self.termination_evaluation.effective_termination
-        ):
-            raise ValueError("Effective supply refusal must be reflected in termination evidence.")
+        facts_agree.equal(
+            "termination_contract_status",
+            self.termination_evidence_mapping.facts.contract_formed,
+            self.formation_evaluation.contract_concluded_prerequisites,
+        )
+        facts_agree.implies(
+            "termination_substantial_breach",
+            self.termination_evidence_mapping.facts.substantial_breach_proven,
+            self.constraint_evaluation.breach_issue,
+        )
+        facts_agree.equal(
+            "supply_termination_status",
+            supply_facts.contract_terminated,
+            self.termination_evaluation.effective_termination,
+        )
+        facts_agree.equal(
+            "sale_termination_status",
+            sale_facts.contract_terminated,
+            self.termination_evaluation.effective_termination,
+        )
+        facts_agree.implies(
+            "sale_refusal_termination",
+            self.sale_evaluation.sale_contract_refusal_effective,
+            self.termination_evaluation.effective_termination,
+        )
+        facts_agree.implies(
+            "supply_refusal_termination",
+            self.supply_evaluation.supply_unilateral_refusal_effective,
+            self.termination_evaluation.effective_termination,
+        )
         expected_constraint_set = build_liability_constraint_set(self.liability_evidence_mapping)
         if self.liability_constraint_set != expected_constraint_set:
             raise ValueError("Liability constraint set does not replay from reviewed evidence.")
-        if (
-            self.liability_evidence_mapping.facts.breach_established
-            != self.constraint_evaluation.breach_issue
-        ):
-            raise ValueError("Liability breach fact does not match obligation evaluation.")
+        facts_agree.equal(
+            "liability_breach_fact",
+            self.liability_evidence_mapping.facts.breach_established,
+            self.constraint_evaluation.breach_issue,
+        )
+        facts_agree.raise_if_any()
         expected_evaluation = evaluate_liability_constraints(
             expected_constraint_set,
             self.liability_evidence_mapping.facts,
@@ -4747,11 +4797,12 @@ def run_reviewed_contract_analysis(
         temporal_effect_constraint_set,
         temporal_effect_evidence_mapping.facts,
     )
-    if (
-        temporal_effect_evaluation.conclusion_moment_established
-        and not formation_evaluation.contract_concluded_prerequisites
-    ):
-        raise ValueError("Temporal-effect conclusion moment does not match formation result.")
+    facts_agree = FactConsistencyCollector()
+    facts_agree.implies(
+        "temporal_effect_conclusion_moment",
+        temporal_effect_evaluation.conclusion_moment_established,
+        formation_evaluation.contract_concluded_prerequisites,
+    )
     limitation_evidence_mapping = map_reviewed_limitation_evidence(request.limitation_evidence)
     limitation_constraint_set = build_limitation_constraint_set(limitation_evidence_mapping)
     limitation_evaluation = evaluate_limitation_constraints(
@@ -5344,17 +5395,18 @@ def run_reviewed_contract_analysis(
         invalidity_constraint_set,
         invalidity_evidence_mapping.facts,
     )
-    if (
-        invalidity_evidence_mapping.facts.transaction_concluded
-        != formation_evaluation.contract_concluded_prerequisites
-    ):
-        raise ValueError("Invalidity transaction status does not match formation result.")
+    facts_agree.equal(
+        "invalidity_transaction_status",
+        invalidity_evidence_mapping.facts.transaction_concluded,
+        formation_evaluation.contract_concluded_prerequisites,
+    )
     expected_contractual_duty = (
         formation_evaluation.contract_concluded_prerequisites
         and not invalidity_evaluation.contractual_effect_displaced
     )
-    if expected_contractual_duty != evidence_mapping.facts.duty_exists:
-        raise ValueError("Formation and invalidity results do not match contractual duty evidence.")
+    facts_agree.equal(
+        "contractual_duty", evidence_mapping.facts.duty_exists, expected_contractual_duty
+    )
     constraint_set = build_obligation_constraint_set(formal_translation.obligation_rule)
     constraint_evaluation = evaluate_obligation_constraints(
         constraint_set,
@@ -5363,28 +5415,30 @@ def run_reviewed_contract_analysis(
     dynamics_evidence_mapping = map_reviewed_obligation_dynamics_evidence(
         request.obligation_dynamics_evidence
     )
-    if dynamics_evidence_mapping.facts.obligation_exists != evidence_mapping.facts.duty_exists:
-        raise ValueError("Obligation-dynamics obligation status does not match duty evidence.")
-    if dynamics_evidence_mapping.facts.obligation_breached != constraint_evaluation.breach_issue:
-        raise ValueError("Obligation-dynamics breach status does not match obligation evaluation.")
-    if (
-        dynamics_evidence_mapping.facts.performance_rendered
-        != evidence_mapping.facts.performance_completed
-    ):
-        raise ValueError(
-            "Obligation-dynamics performance status does not match performance evidence."
-        )
+    facts_agree.equal(
+        "dynamics_obligation_status",
+        dynamics_evidence_mapping.facts.obligation_exists,
+        evidence_mapping.facts.duty_exists,
+    )
+    facts_agree.equal(
+        "dynamics_breach_status",
+        dynamics_evidence_mapping.facts.obligation_breached,
+        constraint_evaluation.breach_issue,
+    )
+    facts_agree.equal(
+        "dynamics_performance_status",
+        dynamics_evidence_mapping.facts.performance_rendered,
+        evidence_mapping.facts.performance_completed,
+    )
     expected_proper_performance = (
         evidence_mapping.facts.performance_completed
         and not evidence_mapping.facts.performance_nonconforming
     )
-    if (
-        dynamics_evidence_mapping.facts.performance_accepted_as_proper
-        != expected_proper_performance
-    ):
-        raise ValueError(
-            "Obligation-dynamics proper-performance status does not match case evidence."
-        )
+    facts_agree.equal(
+        "dynamics_proper_performance",
+        dynamics_evidence_mapping.facts.performance_accepted_as_proper,
+        expected_proper_performance,
+    )
     dynamics_constraint_set = build_obligation_dynamics_constraint_set(dynamics_evidence_mapping)
     dynamics_evaluation = evaluate_obligation_dynamics_constraints(
         dynamics_constraint_set,
@@ -5394,31 +5448,40 @@ def run_reviewed_contract_analysis(
         request.performance_remedies_evidence
     )
     performance_facts = performance_remedies_evidence_mapping.facts
-    if performance_facts.obligation_exists != evidence_mapping.facts.duty_exists:
-        raise ValueError("Performance-remedies obligation status does not match duty evidence.")
-    if performance_facts.breach_established != constraint_evaluation.breach_issue:
-        raise ValueError("Performance-remedies breach status does not match obligation evaluation.")
-    if (
-        performance_facts.performance_tendered
-        != dynamics_evidence_mapping.facts.performance_rendered
-    ):
-        raise ValueError(
-            "Performance-remedies tender status does not match obligation-dynamics evidence."
-        )
-    if performance_facts.loss_claimed != evidence_mapping.facts.loss_claimed:
-        raise ValueError("Performance-remedies loss claim does not match case evidence.")
-    if performance_facts.causation_proven != evidence_mapping.facts.causation_established:
-        raise ValueError("Performance-remedies causation does not match case evidence.")
+    facts_agree.equal(
+        "remedies_obligation_status",
+        performance_facts.obligation_exists,
+        evidence_mapping.facts.duty_exists,
+    )
+    facts_agree.equal(
+        "remedies_breach_status",
+        performance_facts.breach_established,
+        constraint_evaluation.breach_issue,
+    )
+    facts_agree.equal(
+        "remedies_tender_status",
+        performance_facts.performance_tendered,
+        dynamics_evidence_mapping.facts.performance_rendered,
+    )
+    facts_agree.equal(
+        "remedies_loss_claim",
+        performance_facts.loss_claimed,
+        evidence_mapping.facts.loss_claimed,
+    )
+    facts_agree.equal(
+        "remedies_causation",
+        performance_facts.causation_proven,
+        evidence_mapping.facts.causation_established,
+    )
     expected_monetary_delay = (
         evidence_mapping.facts.payment_duty_exists
         and evidence_mapping.facts.payment_due
         and evidence_mapping.facts.payment_missed
         and not evidence_mapping.facts.payment_defense_applies
     )
-    if performance_facts.monetary_delay != expected_monetary_delay:
-        raise ValueError(
-            "Performance-remedies monetary-delay status does not match payment evidence."
-        )
+    facts_agree.equal(
+        "remedies_monetary_delay", performance_facts.monetary_delay, expected_monetary_delay
+    )
     performance_remedies_constraint_set = build_performance_remedies_constraint_set(
         performance_remedies_evidence_mapping
     )
@@ -5428,51 +5491,82 @@ def run_reviewed_contract_analysis(
     )
     sale_evidence_mapping = map_reviewed_sale_evidence(request.sale_evidence)
     sale_facts = sale_evidence_mapping.facts
-    if sale_facts.contract_concluded != formation_evaluation.contract_concluded_prerequisites:
-        raise ValueError("Sale contract status does not match formation result.")
-    if sale_facts.goods_transfer_completed != evidence_mapping.facts.performance_completed:
-        raise ValueError("Sale transfer status does not match performance evidence.")
-    if sale_facts.delivery_late != temporal_evaluation.due_date_missed:
-        raise ValueError("Sale delay status does not match temporal evaluation.")
+    facts_agree.equal(
+        "sale_contract_status",
+        sale_facts.contract_concluded,
+        formation_evaluation.contract_concluded_prerequisites,
+    )
+    facts_agree.equal(
+        "sale_transfer_status",
+        sale_facts.goods_transfer_completed,
+        evidence_mapping.facts.performance_completed,
+    )
+    facts_agree.equal(
+        "sale_delay_status", sale_facts.delivery_late, temporal_evaluation.due_date_missed
+    )
     sale_basic_nonconforming = (
         sale_facts.quantity_shortfall or sale_facts.quality_defect or sale_facts.incomplete_goods
     )
-    if sale_basic_nonconforming != evidence_mapping.facts.performance_nonconforming:
-        raise ValueError("Sale nonconformity does not match performance evidence.")
-    if sale_facts.loss_claimed != evidence_mapping.facts.loss_claimed:
-        raise ValueError("Sale loss claim does not match case evidence.")
-    if sale_facts.causation_proven != evidence_mapping.facts.causation_established:
-        raise ValueError("Sale causation does not match case evidence.")
-    if sale_facts.payment_due != evidence_mapping.facts.payment_due:
-        raise ValueError("Sale payment due status does not match case evidence.")
+    facts_agree.equal(
+        "sale_nonconformity",
+        sale_basic_nonconforming,
+        evidence_mapping.facts.performance_nonconforming,
+    )
+    facts_agree.equal(
+        "sale_loss_claim", sale_facts.loss_claimed, evidence_mapping.facts.loss_claimed
+    )
+    facts_agree.equal(
+        "sale_causation",
+        sale_facts.causation_proven,
+        evidence_mapping.facts.causation_established,
+    )
+    facts_agree.equal(
+        "sale_payment_due", sale_facts.payment_due, evidence_mapping.facts.payment_due
+    )
     sale_constraint_set = build_sale_constraint_set(sale_evidence_mapping)
     sale_evaluation = evaluate_sale_constraints(sale_constraint_set, sale_facts)
-    if (
-        evidence_mapping.facts.duty_exists
-        and sale_evaluation.sale_breach_established != constraint_evaluation.breach_issue
-    ):
-        raise ValueError("Sale breach status does not match obligation evaluation.")
+    if evidence_mapping.facts.duty_exists:
+        facts_agree.equal(
+            "sale_breach_status",
+            sale_evaluation.sale_breach_established,
+            constraint_evaluation.breach_issue,
+        )
     supply_evidence_mapping = map_reviewed_supply_evidence(request.supply_evidence)
     supply_facts = supply_evidence_mapping.facts
-    if supply_facts.contract_concluded != formation_evaluation.contract_concluded_prerequisites:
-        raise ValueError("Supply contract status does not match formation result.")
-    if supply_facts.delivery_completed != evidence_mapping.facts.performance_completed:
-        raise ValueError("Supply delivery status does not match performance evidence.")
-    if supply_facts.delivery_late != temporal_evaluation.due_date_missed:
-        raise ValueError("Supply delay status does not match temporal evaluation.")
+    facts_agree.equal(
+        "supply_contract_status",
+        supply_facts.contract_concluded,
+        formation_evaluation.contract_concluded_prerequisites,
+    )
+    facts_agree.equal(
+        "supply_delivery_status",
+        supply_facts.delivery_completed,
+        evidence_mapping.facts.performance_completed,
+    )
+    facts_agree.equal(
+        "supply_delay_status", supply_facts.delivery_late, temporal_evaluation.due_date_missed
+    )
     supply_nonconforming = (
         supply_facts.quantity_shortfall
         or supply_facts.quality_defect
         or supply_facts.incomplete_goods
     )
-    if supply_nonconforming != evidence_mapping.facts.performance_nonconforming:
-        raise ValueError("Supply nonconformity does not match performance evidence.")
-    if supply_facts.loss_claimed != evidence_mapping.facts.loss_claimed:
-        raise ValueError("Supply loss claim does not match case evidence.")
-    if supply_facts.causation_proven != evidence_mapping.facts.causation_established:
-        raise ValueError("Supply causation does not match case evidence.")
-    if supply_facts.payment_due != evidence_mapping.facts.payment_due:
-        raise ValueError("Supply payment due status does not match case evidence.")
+    facts_agree.equal(
+        "supply_nonconformity",
+        supply_nonconforming,
+        evidence_mapping.facts.performance_nonconforming,
+    )
+    facts_agree.equal(
+        "supply_loss_claim", supply_facts.loss_claimed, evidence_mapping.facts.loss_claimed
+    )
+    facts_agree.equal(
+        "supply_causation",
+        supply_facts.causation_proven,
+        evidence_mapping.facts.causation_established,
+    )
+    facts_agree.equal(
+        "supply_payment_due", supply_facts.payment_due, evidence_mapping.facts.payment_due
+    )
     supply_constraint_set = build_supply_constraint_set(supply_evidence_mapping)
     supply_evaluation = evaluate_supply_constraints(supply_constraint_set, supply_facts)
     sale_supply_pairs = (
@@ -5491,31 +5585,34 @@ def run_reviewed_contract_analysis(
         (sale_facts.contract_terminated, supply_facts.contract_terminated, "termination"),
     )
     for sale_value, supply_value, label in sale_supply_pairs:
-        if sale_value != supply_value:
-            raise ValueError(f"Sale and supply {label} facts do not match.")
-    if sale_evaluation.sale_contract_qualified != supply_evaluation.supply_contract_qualified:
-        raise ValueError("Sale and supply qualification results do not match.")
-    if (
-        evidence_mapping.facts.duty_exists
-        and supply_evaluation.supply_breach_established != constraint_evaluation.breach_issue
-    ):
-        raise ValueError("Supply breach status does not match obligation evaluation.")
+        facts_agree.equal(f"sale_supply_pair:{label}", supply_value, sale_value)
+    facts_agree.equal(
+        "sale_supply_qualification",
+        supply_evaluation.supply_contract_qualified,
+        sale_evaluation.sale_contract_qualified,
+    )
+    if evidence_mapping.facts.duty_exists:
+        facts_agree.equal(
+            "supply_breach_status",
+            supply_evaluation.supply_breach_established,
+            constraint_evaluation.breach_issue,
+        )
     security_evidence_mapping = map_reviewed_security_evidence(request.security_evidence)
-    if (
-        security_evidence_mapping.facts.main_obligation_exists
-        != formation_evaluation.contract_concluded_prerequisites
-    ):
-        raise ValueError("Security main obligation status does not match formation result.")
-    if (
-        security_evidence_mapping.facts.main_obligation_invalid
-        != invalidity_evaluation.contractual_effect_displaced
-    ):
-        raise ValueError("Security invalidity status does not match invalidity result.")
-    if (
-        security_evidence_mapping.facts.main_obligation_breached
-        != constraint_evaluation.breach_issue
-    ):
-        raise ValueError("Security breach status does not match obligation evaluation.")
+    facts_agree.equal(
+        "security_main_obligation_status",
+        security_evidence_mapping.facts.main_obligation_exists,
+        formation_evaluation.contract_concluded_prerequisites,
+    )
+    facts_agree.equal(
+        "security_invalidity_status",
+        security_evidence_mapping.facts.main_obligation_invalid,
+        invalidity_evaluation.contractual_effect_displaced,
+    )
+    facts_agree.equal(
+        "security_breach_status",
+        security_evidence_mapping.facts.main_obligation_breached,
+        constraint_evaluation.breach_issue,
+    )
     security_constraint_set = build_security_constraint_set(security_evidence_mapping)
     security_evaluation = evaluate_security_constraints(
         security_constraint_set,
@@ -5527,33 +5624,43 @@ def run_reviewed_contract_analysis(
         termination_constraint_set,
         termination_evidence_mapping.facts,
     )
-    if (
-        termination_evidence_mapping.facts.contract_formed
-        != formation_evaluation.contract_concluded_prerequisites
-    ):
-        raise ValueError("Termination contract status does not match formation result.")
-    if (
-        termination_evidence_mapping.facts.substantial_breach_proven
-        and not constraint_evaluation.breach_issue
-    ):
-        raise ValueError("Substantial breach evidence requires an obligation breach.")
-    if supply_facts.contract_terminated != termination_evaluation.effective_termination:
-        raise ValueError("Supply termination status does not match termination evaluation.")
-    if sale_facts.contract_terminated != termination_evaluation.effective_termination:
-        raise ValueError("Sale termination status does not match termination evaluation.")
-    if (
-        sale_evaluation.sale_contract_refusal_effective
-        and not termination_evaluation.effective_termination
-    ):
-        raise ValueError("Effective sale refusal must be reflected in termination evidence.")
-    if (
-        supply_evaluation.supply_unilateral_refusal_effective
-        and not termination_evaluation.effective_termination
-    ):
-        raise ValueError("Effective supply refusal must be reflected in termination evidence.")
+    facts_agree.equal(
+        "termination_contract_status",
+        termination_evidence_mapping.facts.contract_formed,
+        formation_evaluation.contract_concluded_prerequisites,
+    )
+    facts_agree.implies(
+        "termination_substantial_breach",
+        termination_evidence_mapping.facts.substantial_breach_proven,
+        constraint_evaluation.breach_issue,
+    )
+    facts_agree.equal(
+        "supply_termination_status",
+        supply_facts.contract_terminated,
+        termination_evaluation.effective_termination,
+    )
+    facts_agree.equal(
+        "sale_termination_status",
+        sale_facts.contract_terminated,
+        termination_evaluation.effective_termination,
+    )
+    facts_agree.implies(
+        "sale_refusal_termination",
+        sale_evaluation.sale_contract_refusal_effective,
+        termination_evaluation.effective_termination,
+    )
+    facts_agree.implies(
+        "supply_refusal_termination",
+        supply_evaluation.supply_unilateral_refusal_effective,
+        termination_evaluation.effective_termination,
+    )
     liability_evidence_mapping = map_reviewed_liability_evidence(request.liability_evidence)
-    if liability_evidence_mapping.facts.breach_established != constraint_evaluation.breach_issue:
-        raise ValueError("Liability breach fact does not match obligation evaluation.")
+    facts_agree.equal(
+        "liability_breach_fact",
+        liability_evidence_mapping.facts.breach_established,
+        constraint_evaluation.breach_issue,
+    )
+    facts_agree.raise_if_any()
     liability_constraint_set = build_liability_constraint_set(liability_evidence_mapping)
     liability_evaluation = evaluate_liability_constraints(
         liability_constraint_set,
