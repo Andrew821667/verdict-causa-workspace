@@ -91,6 +91,7 @@ def test_supply_dispute_pipeline_has_no_failed_steps() -> None:
         "evaluate-objects",
         "evaluate-persons",
         "evaluate-terms",
+        "evaluate-meeting-decisions",
         "evaluate-attribution-delay",
         "evaluate-transactions",
         "evaluate-civil-principles",

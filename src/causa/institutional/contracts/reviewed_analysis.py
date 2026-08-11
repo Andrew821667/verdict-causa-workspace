@@ -565,6 +565,16 @@ from causa.institutional.contracts.persons import (
 from causa.institutional.contracts.fact_consistency import (
     FactConsistencyCollector,
 )
+from causa.institutional.contracts.meeting_decisions import (
+    MEETING_DECISIONS_EVIDENCE_SCHEMA_VERSION,
+    MeetingDecisionsConstraintSet,
+    MeetingDecisionsEvaluation,
+    MeetingDecisionsEvidenceMappingResult,
+    ReviewedMeetingDecisionsEvidence,
+    build_meeting_decisions_constraint_set,
+    evaluate_meeting_decisions_constraints,
+    map_reviewed_meeting_decisions_evidence,
+)
 from causa.institutional.contracts.attribution_delay import (
     ATTRIBUTION_DELAY_EVIDENCE_SCHEMA_VERSION,
     AttributionDelayConstraintSet,
@@ -1048,6 +1058,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     persons_evidence: ReviewedPersonsEvidence
     terms_evidence: ReviewedTermsEvidence
     attribution_delay_evidence: ReviewedAttributionDelayEvidence
+    meeting_decisions_evidence: ReviewedMeetingDecisionsEvidence
     transactions_evidence: ReviewedTransactionsEvidence
     civil_principles_evidence: ReviewedCivilPrinciplesEvidence
     property_rights_evidence: ReviewedPropertyRightsEvidence
@@ -1290,6 +1301,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     attribution_delay_evidence_mapping: AttributionDelayEvidenceMappingResult
     attribution_delay_constraint_set: AttributionDelayConstraintSet
     attribution_delay_evaluation: AttributionDelayEvaluation
+    meeting_decisions_evidence_mapping: MeetingDecisionsEvidenceMappingResult
+    meeting_decisions_constraint_set: MeetingDecisionsConstraintSet
+    meeting_decisions_evaluation: MeetingDecisionsEvaluation
     transactions_evidence_mapping: TransactionsEvidenceMappingResult
     transactions_constraint_set: TransactionsConstraintSet
     transactions_evaluation: TransactionsEvaluation
@@ -2106,6 +2120,19 @@ class ReviewedContractAnalysisResult(BaseModel):
             raise ValueError(
                 "Attribution and delay evaluation does not replay from reviewed evidence."
             )
+        expected_meeting_decisions_set = build_meeting_decisions_constraint_set(
+            self.meeting_decisions_evidence_mapping
+        )
+        if self.meeting_decisions_constraint_set != expected_meeting_decisions_set:
+            raise ValueError(
+                "Meeting-decisions constraint set does not replay from reviewed evidence."
+            )
+        expected_meeting_decisions_evaluation = evaluate_meeting_decisions_constraints(
+            expected_meeting_decisions_set,
+            self.meeting_decisions_evidence_mapping.facts,
+        )
+        if self.meeting_decisions_evaluation != expected_meeting_decisions_evaluation:
+            raise ValueError("Meeting-decisions evaluation does not replay from reviewed evidence.")
         expected_transactions_set = build_transactions_constraint_set(
             self.transactions_evidence_mapping
         )
@@ -2775,6 +2802,8 @@ def _validate_request_integrity(
         raise ValueError(
             "Attribution and delay evidence case_id does not match the analysis request."
         )
+    if request.meeting_decisions_evidence.case_id != request.case_id:
+        raise ValueError("Meeting-decisions evidence case_id does not match the analysis request.")
     if request.transactions_evidence.case_id != request.case_id:
         raise ValueError("Transactions evidence case_id does not match the analysis request.")
     if request.civil_principles_evidence.case_id != request.case_id:
@@ -2999,6 +3028,11 @@ def _validate_request_integrity(
         != ATTRIBUTION_DELAY_EVIDENCE_SCHEMA_VERSION
     ):
         raise ValueError("Attribution and delay evidence uses an unsupported schema version.")
+    if (
+        request.meeting_decisions_evidence.schema_version
+        != MEETING_DECISIONS_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Meeting-decisions evidence uses an unsupported schema version.")
     if request.transactions_evidence.schema_version != TRANSACTIONS_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Transactions evidence uses an unsupported schema version.")
     if request.civil_principles_evidence.schema_version != CIVIL_PRINCIPLES_EVIDENCE_SCHEMA_VERSION:
@@ -3102,6 +3136,7 @@ def _validate_request_integrity(
         *request.persons_evidence.legal_source_refs,
         *request.terms_evidence.legal_source_refs,
         *request.attribution_delay_evidence.legal_source_refs,
+        *request.meeting_decisions_evidence.legal_source_refs,
         *request.transactions_evidence.legal_source_refs,
         *request.civil_principles_evidence.legal_source_refs,
         *request.property_rights_evidence.legal_source_refs,
@@ -3250,6 +3285,8 @@ def _validate_request_integrity(
     for assertion in request.terms_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.attribution_delay_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.meeting_decisions_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.transactions_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -3992,6 +4029,17 @@ def _validate_request_integrity(
             "Attribution and delay legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_attribution_delay_legal_sources))
         )
+    invalid_meeting_decisions_legal_sources = [
+        source_id
+        for source_id in request.meeting_decisions_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_meeting_decisions_legal_sources:
+        raise ValueError(
+            "Meeting-decisions legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_meeting_decisions_legal_sources))
+        )
     invalid_transactions_legal_sources = [
         source_id
         for source_id in request.transactions_evidence.legal_source_refs
@@ -4638,6 +4686,11 @@ def run_reviewed_contract_analysis(
         review_status=request.attribution_delay_evidence.review_status,
         reviewer_id=request.attribution_delay_evidence.reviewer_id,
     )
+    meeting_decisions_reviewer_id = _require_reviewed(
+        artifact_name="Meeting-decisions evidence",
+        review_status=request.meeting_decisions_evidence.review_status,
+        reviewer_id=request.meeting_decisions_evidence.reviewer_id,
+    )
     transactions_reviewer_id = _require_reviewed(
         artifact_name="Transactions evidence",
         review_status=request.transactions_evidence.review_status,
@@ -5269,6 +5322,16 @@ def run_reviewed_contract_analysis(
         attribution_delay_constraint_set,
         attribution_delay_evidence_mapping.facts,
     )
+    meeting_decisions_evidence_mapping = map_reviewed_meeting_decisions_evidence(
+        request.meeting_decisions_evidence
+    )
+    meeting_decisions_constraint_set = build_meeting_decisions_constraint_set(
+        meeting_decisions_evidence_mapping
+    )
+    meeting_decisions_evaluation = evaluate_meeting_decisions_constraints(
+        meeting_decisions_constraint_set,
+        meeting_decisions_evidence_mapping.facts,
+    )
     transactions_evidence_mapping = map_reviewed_transactions_evidence(
         request.transactions_evidence
     )
@@ -5776,6 +5839,7 @@ def run_reviewed_contract_analysis(
         or persons_evaluation.requires_human_persons_assessment
         or terms_evaluation.requires_human_terms_assessment
         or attribution_delay_evaluation.requires_human_attribution_assessment
+        or meeting_decisions_evaluation.requires_human_meeting_decision_assessment
         or transactions_evaluation.requires_human_transactions_assessment
         or civil_principles_evaluation.requires_human_civil_principles_assessment
         or property_rights_evaluation.requires_human_property_rights_assessment
@@ -5871,6 +5935,7 @@ def run_reviewed_contract_analysis(
                 persons_reviewer_id,
                 terms_reviewer_id,
                 attribution_delay_reviewer_id,
+                meeting_decisions_reviewer_id,
                 transactions_reviewer_id,
                 civil_principles_reviewer_id,
                 property_rights_reviewer_id,
@@ -6091,6 +6156,9 @@ def run_reviewed_contract_analysis(
         attribution_delay_evidence_mapping=attribution_delay_evidence_mapping,
         attribution_delay_constraint_set=attribution_delay_constraint_set,
         attribution_delay_evaluation=attribution_delay_evaluation,
+        meeting_decisions_evidence_mapping=meeting_decisions_evidence_mapping,
+        meeting_decisions_constraint_set=meeting_decisions_constraint_set,
+        meeting_decisions_evaluation=meeting_decisions_evaluation,
         transactions_evidence_mapping=transactions_evidence_mapping,
         transactions_constraint_set=transactions_constraint_set,
         transactions_evaluation=transactions_evaluation,

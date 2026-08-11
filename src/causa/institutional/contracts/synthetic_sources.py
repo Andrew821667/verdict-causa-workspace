@@ -3820,6 +3820,65 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+        title="Синтетическая проверенная модель последствий и порядка принятия решения собрания по статьям 181.1–181.2 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: решение собрания порождает правовые последствия "
+            "для всех лиц, имевших право участвовать в данном собрании, а также для иных "
+            "лиц, если это установлено законом или вытекает из существа отношений; решение "
+            "принимается большинством голосов участников при участии в собрании не менее "
+            "пятидесяти процентов от общего числа участников сообщества "
+            "(статьи 181.1–181.2 ГК РФ)."
+        ),
+        valid_from="2013-09-01",
+        metadata={
+            "synthetic": True,
+            "topic": "meeting_decision_effect_and_adoption_articles_1811_1812",
+            "legal_reference": "ГК РФ, статьи 181.1-181.2",
+            "basis_url": "https://government.ru/docs/all/95820/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1",
+        title="Синтетическая проверенная модель недействительности решения собрания по статьям 181.3–181.5 ГК РФ",
+        source_type=SourceType.STATUTE,
+        text=(
+            "Синтетическое представление: решение собрания недействительно по основаниям "
+            "главы 9.1 в силу признания его судом (оспоримое) либо независимо от такого "
+            "признания (ничтожное); оспоримость снимается несущественностью нарушения для "
+            "истца и подтверждением решения последующим решением; ничтожность наступает при "
+            "принятии решения по вопросу вне повестки при неполном участии, при отсутствии "
+            "кворума, по вопросу вне компетенции собрания и при противоречии основам "
+            "правопорядка или нравственности (статьи 181.3–181.5 ГК РФ)."
+        ),
+        valid_from="2013-09-01",
+        metadata={
+            "synthetic": True,
+            "topic": "meeting_decision_invalidity_articles_1813_1815",
+            "legal_reference": "ГК РФ, статьи 181.3-181.5",
+            "basis_url": "https://government.ru/docs/all/95820/",
+            "review_required": True,
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-meeting-decisions-evidence",
+        title="Синтетическая проверенная запись фактов о решении собрания по делу",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: по спорному договору поставки решения гражданско-правового "
+            "сообщества не принимались и на них никто не ссылался."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "meeting_decisions_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-case-supply-1-attribution-delay-evidence",
         title="Синтетическая проверенная запись фактов о возложении ответственности и просрочке по делу",
         source_type=SourceType.FACT,

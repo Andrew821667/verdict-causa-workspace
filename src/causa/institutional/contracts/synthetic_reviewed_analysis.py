@@ -160,6 +160,11 @@ from causa.institutional.contracts.attribution_delay import (
     AttributionDelayEvidencePredicate,
     ReviewedAttributionDelayEvidence,
 )
+from causa.institutional.contracts.meeting_decisions import (
+    MeetingDecisionsEvidenceAssertion,
+    MeetingDecisionsEvidencePredicate,
+    ReviewedMeetingDecisionsEvidence,
+)
 from causa.institutional.contracts.terms import (
     ReviewedTermsEvidence,
     TermsEvidenceAssertion,
@@ -634,6 +639,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
     "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
     "synthetic-case-supply-1-attribution-delay-evidence",
+    "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+    "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1",
+    "synthetic-case-supply-1-meeting-decisions-evidence",
     "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
     "synthetic-ru-gk157-1-consent-to-a-transaction-v1",
     "synthetic-case-supply-1-transactions-evidence",
@@ -3104,6 +3112,25 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-terms-reviewer",
+        ),
+        meeting_decisions_evidence=ReviewedMeetingDecisionsEvidence(
+            id="reviewed-meeting-decisions-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                MeetingDecisionsEvidenceAssertion(
+                    id=f"meeting-decisions-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=False,
+                    source_refs=("synthetic-case-supply-1-meeting-decisions-evidence",),
+                )
+                for predicate in MeetingDecisionsEvidencePredicate
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+                "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-meeting-decisions-reviewer",
         ),
         attribution_delay_evidence=ReviewedAttributionDelayEvidence(
             id="reviewed-attribution-delay-evidence-supply-1-v0",

@@ -3006,6 +3006,53 @@
       }
     },
     {
+      "id": "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+      "title": "Синтетическая проверенная модель последствий и порядка принятия решения собрания по статьям 181.1–181.2 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: решение собрания порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, а также для иных лиц, если это установлено законом или вытекает из существа отношений; решение принимается большинством голосов участников при участии в собрании не менее пятидесяти процентов от общего числа участников сообщества (статьи 181.1–181.2 ГК РФ).",
+      "valid_from": "2013-09-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "meeting_decision_effect_and_adoption_articles_1811_1812",
+        "legal_reference": "ГК РФ, статьи 181.1-181.2",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1",
+      "title": "Синтетическая проверенная модель недействительности решения собрания по статьям 181.3–181.5 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: решение собрания недействительно по основаниям главы 9.1 в силу признания его судом (оспоримое) либо независимо от такого признания (ничтожное); оспоримость снимается несущественностью нарушения для истца и подтверждением решения последующим решением; ничтожность наступает при принятии решения по вопросу вне повестки при неполном участии, при отсутствии кворума, по вопросу вне компетенции собрания и при противоречии основам правопорядка или нравственности (статьи 181.3–181.5 ГК РФ).",
+      "valid_from": "2013-09-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "meeting_decision_invalidity_articles_1813_1815",
+        "legal_reference": "ГК РФ, статьи 181.3-181.5",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-meeting-decisions-evidence",
+      "title": "Синтетическая проверенная запись фактов о решении собрания по делу",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: по спорному договору поставки решения гражданско-правового сообщества не принимались и на них никто не ссылался.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "meeting_decisions_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
       "title": "Синтетическая проверенная модель понятия сделки, её видов и сделок под условием по статьям 153–157 ГК РФ",
       "source_type": "statute",
@@ -10412,6 +10459,131 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-attribution-delay-reviewer"
     },
+    "meeting_decisions_evidence": {
+      "id": "reviewed-meeting-decisions-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.meeting-decisions-evidence.v0",
+      "assertions": [
+        {
+          "id": "meeting-decisions-evidence-meeting_decision_asserted",
+          "predicate": "meeting_decision_asserted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-quorum_present",
+          "predicate": "quorum_present",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-required_majority_obtained",
+          "predicate": "required_majority_obtained",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-all_participants_took_part",
+          "predicate": "all_participants_took_part",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-question_outside_agenda",
+          "predicate": "question_outside_agenda",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-question_outside_competence",
+          "predicate": "question_outside_competence",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-contrary_to_public_order_or_morality",
+          "predicate": "contrary_to_public_order_or_morality",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-convocation_or_conduct_procedure_breached",
+          "predicate": "convocation_or_conduct_procedure_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-participant_equality_breached",
+          "predicate": "participant_equality_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-representative_authority_defect",
+          "predicate": "representative_authority_defect",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-minutes_requirements_breached",
+          "predicate": "minutes_requirements_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-vote_could_not_affect_outcome",
+          "predicate": "vote_could_not_affect_outcome",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-no_material_adverse_consequences",
+          "predicate": "no_material_adverse_consequences",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-decision_confirmed_by_later_decision",
+          "predicate": "decision_confirmed_by_later_decision",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+        "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-meeting-decisions-reviewer"
+    },
     "transactions_evidence": {
       "id": "reviewed-transactions-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -16530,6 +16702,7 @@
       "synthetic-limitation-reviewer",
       "synthetic-loan-reviewer",
       "synthetic-mandate-reviewer",
+      "synthetic-meeting-decisions-reviewer",
       "synthetic-moral-harm-reviewer",
       "synthetic-negotiorum-gestio-reviewer",
       "synthetic-norm-reviewer",
@@ -16618,6 +16791,7 @@
       "synthetic-case-supply-1-limitation-evidence",
       "synthetic-case-supply-1-loan-evidence",
       "synthetic-case-supply-1-mandate-evidence",
+      "synthetic-case-supply-1-meeting-decisions-evidence",
       "synthetic-case-supply-1-moral-harm-evidence",
       "synthetic-case-supply-1-negotiorum-gestio-evidence",
       "synthetic-case-supply-1-objects-evidence",
@@ -16699,6 +16873,8 @@
       "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
       "synthetic-ru-gk173-179-voidable-transactions-v1",
       "synthetic-ru-gk180-181-invalidity-effects-v1",
+      "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+      "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1",
       "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
       "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
       "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
@@ -25529,6 +25705,179 @@
         "Утрата интереса кредитора к исполнению и разумность мер к уменьшению убытков оцениваются экспертом и судом (статьи 404 и 405 ГК РФ)."
       ]
     },
+    "meeting_decisions_evidence_mapping": {
+      "evidence_id": "reviewed-meeting-decisions-evidence-supply-1-v0",
+      "schema_version": "contracts.meeting-decisions-evidence.v0",
+      "mapping_version": "contracts-reviewed-meeting-decisions-to-facts-v0",
+      "facts": {
+        "meeting_decision_asserted": false,
+        "quorum_present": false,
+        "required_majority_obtained": false,
+        "all_participants_took_part": false,
+        "question_outside_agenda": false,
+        "question_outside_competence": false,
+        "contrary_to_public_order_or_morality": false,
+        "convocation_or_conduct_procedure_breached": false,
+        "participant_equality_breached": false,
+        "representative_authority_defect": false,
+        "minutes_requirements_breached": false,
+        "vote_could_not_affect_outcome": false,
+        "no_material_adverse_consequences": false,
+        "decision_confirmed_by_later_decision": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+        "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "all_participants_took_part",
+          "assertion_id": "meeting-decisions-evidence-all_participants_took_part",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "contrary_to_public_order_or_morality",
+          "assertion_id": "meeting-decisions-evidence-contrary_to_public_order_or_morality",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "convocation_or_conduct_procedure_breached",
+          "assertion_id": "meeting-decisions-evidence-convocation_or_conduct_procedure_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "decision_confirmed_by_later_decision",
+          "assertion_id": "meeting-decisions-evidence-decision_confirmed_by_later_decision",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "meeting_decision_asserted",
+          "assertion_id": "meeting-decisions-evidence-meeting_decision_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "minutes_requirements_breached",
+          "assertion_id": "meeting-decisions-evidence-minutes_requirements_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "no_material_adverse_consequences",
+          "assertion_id": "meeting-decisions-evidence-no_material_adverse_consequences",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "participant_equality_breached",
+          "assertion_id": "meeting-decisions-evidence-participant_equality_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "question_outside_agenda",
+          "assertion_id": "meeting-decisions-evidence-question_outside_agenda",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "question_outside_competence",
+          "assertion_id": "meeting-decisions-evidence-question_outside_competence",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "quorum_present",
+          "assertion_id": "meeting-decisions-evidence-quorum_present",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "representative_authority_defect",
+          "assertion_id": "meeting-decisions-evidence-representative_authority_defect",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "required_majority_obtained",
+          "assertion_id": "meeting-decisions-evidence-required_majority_obtained",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "vote_could_not_affect_outcome",
+          "assertion_id": "meeting-decisions-evidence-vote_could_not_affect_outcome",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        }
+      ]
+    },
+    "meeting_decisions_constraint_set": {
+      "id": "meeting-decisions-constraint-set:reviewed-meeting-decisions-evidence-supply-1-v0",
+      "model_version": "contracts-meeting-decisions-articles-1811-1815-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+        "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1"
+      ],
+      "expressions": [
+        "meeting_decision_qualified == meeting_decision_asserted",
+        "decision_not_adopted == meeting_decision_qualified AND NOT required_majority_obtained",
+        "quorum_absent == meeting_decision_qualified AND NOT quorum_present",
+        "agenda_violation_void == meeting_decision_qualified AND question_outside_agenda AND NOT all_participants_took_part",
+        "competence_violation_void == meeting_decision_qualified AND question_outside_competence",
+        "public_order_violation_void == meeting_decision_qualified AND contrary_to_public_order_or_morality",
+        "decision_void == quorum_absent OR agenda_violation_void OR competence_violation_void OR public_order_violation_void",
+        "procedural_defect_established == meeting_decision_qualified AND (convocation_or_conduct_procedure_breached OR participant_equality_breached OR representative_authority_defect OR minutes_requirements_breached)",
+        "voidability_cured_by_immateriality == procedural_defect_established AND vote_could_not_affect_outcome AND no_material_adverse_consequences",
+        "voidability_cured_by_confirmation == procedural_defect_established AND decision_confirmed_by_later_decision",
+        "decision_voidable == procedural_defect_established AND NOT decision_void AND NOT voidability_cured_by_immateriality AND NOT voidability_cured_by_confirmation",
+        "decision_binds_all_participants == meeting_decision_qualified AND NOT decision_void AND NOT decision_not_adopted",
+        "requires_human_meeting_decision_assessment == decision_void OR decision_voidable OR decision_not_adopted OR voidability_cured_by_immateriality OR voidability_cured_by_confirmation"
+      ]
+    },
+    "meeting_decisions_evaluation": {
+      "constraint_set_id": "meeting-decisions-constraint-set:reviewed-meeting-decisions-evidence-supply-1-v0",
+      "satisfiable": true,
+      "meeting_decision_qualified": false,
+      "decision_not_adopted": false,
+      "quorum_absent": false,
+      "agenda_violation_void": false,
+      "competence_violation_void": false,
+      "public_order_violation_void": false,
+      "decision_void": false,
+      "procedural_defect_established": false,
+      "voidability_cured_by_immateriality": false,
+      "voidability_cured_by_confirmation": false,
+      "decision_voidable": false,
+      "decision_binds_all_participants": false,
+      "requires_human_meeting_decision_assessment": false,
+      "reasons_ru": [
+        "Решение собрания в деле не заявлено."
+      ],
+      "warnings_ru": [
+        "Модель не исчисляет сроки оспаривания решения: шесть месяцев со дня, когда участник узнал или должен был узнать о нарушении своего права, но не позднее двух лет со дня общедоступности сведений о решении, проверяются институтами исчисления сроков и исковой давности (статья 181.4 ГК РФ).",
+        "Существенность неблагоприятных последствий решения для участника и влияние его голоса на итог оцениваются экспертом и судом (статья 181.4 ГК РФ).",
+        "Решение собрания не является сделкой: пороки главы 9.1 оцениваются по её правилам, а не по статьям 166–181 ГК РФ."
+      ]
+    },
     "transactions_evidence_mapping": {
       "evidence_id": "reviewed-transactions-evidence-supply-1-v0",
       "schema_version": "contracts.transactions-evidence.v0",
@@ -32891,7 +33240,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.98.0",
+      "institutional_package_version": "contracts-ru-v0@0.99.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -34928,6 +35277,7 @@
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-loan-evidence",
           "synthetic-case-supply-1-mandate-evidence",
+          "synthetic-case-supply-1-meeting-decisions-evidence",
           "synthetic-case-supply-1-moral-harm-evidence",
           "synthetic-case-supply-1-negotiorum-gestio-evidence",
           "synthetic-case-supply-1-objects-evidence",
@@ -35009,6 +35359,8 @@
           "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
           "synthetic-ru-gk173-179-voidable-transactions-v1",
           "synthetic-ru-gk180-181-invalidity-effects-v1",
+          "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+          "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1",
           "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
           "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
           "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
@@ -36200,6 +36552,7 @@
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-loan-evidence",
           "synthetic-case-supply-1-mandate-evidence",
+          "synthetic-case-supply-1-meeting-decisions-evidence",
           "synthetic-case-supply-1-moral-harm-evidence",
           "synthetic-case-supply-1-negotiorum-gestio-evidence",
           "synthetic-case-supply-1-objects-evidence",
@@ -36281,6 +36634,8 @@
           "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
           "synthetic-ru-gk173-179-voidable-transactions-v1",
           "synthetic-ru-gk180-181-invalidity-effects-v1",
+          "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+          "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1",
           "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
           "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
           "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
@@ -37472,6 +37827,7 @@
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-loan-evidence",
           "synthetic-case-supply-1-mandate-evidence",
+          "synthetic-case-supply-1-meeting-decisions-evidence",
           "synthetic-case-supply-1-moral-harm-evidence",
           "synthetic-case-supply-1-negotiorum-gestio-evidence",
           "synthetic-case-supply-1-objects-evidence",
@@ -37553,6 +37909,8 @@
           "synthetic-ru-gk17-30-legal-and-active-capacity-of-citizens-v1",
           "synthetic-ru-gk173-179-voidable-transactions-v1",
           "synthetic-ru-gk180-181-invalidity-effects-v1",
+          "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+          "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1",
           "synthetic-ru-gk182-184-representation-authority-and-limits-v1",
           "synthetic-ru-gk185-189-power-of-attorney-form-term-and-termination-v1",
           "synthetic-ru-gk190-193-term-definition-start-and-end-v1",
@@ -37785,7 +38143,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.98.0",
+      "institutional_package_version": "contracts-ru-v0@0.99.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",
@@ -40223,6 +40581,44 @@
         }
       },
       {
+        "id": "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель последствий и порядка принятия решения собрания по статьям 181.1–181.2 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "meeting_decision_effect_and_adoption_articles_1811_1812",
+          "legal_reference": "ГК РФ, статьи 181.1-181.2",
+          "basis_url": "https://government.ru/docs/all/95820/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель недействительности решения собрания по статьям 181.3–181.5 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "meeting_decision_invalidity_articles_1813_1815",
+          "legal_reference": "ГК РФ, статьи 181.3-181.5",
+          "basis_url": "https://government.ru/docs/all/95820/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-meeting-decisions-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о решении собрания по делу",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "meeting_decisions_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
         "layer": "source",
         "label": "Синтетическая проверенная модель понятия сделки, её видов и сделок под условием по статьям 153–157 ГК РФ",
@@ -41403,6 +41799,7 @@
             "synthetic-limitation-reviewer",
             "synthetic-loan-reviewer",
             "synthetic-mandate-reviewer",
+            "synthetic-meeting-decisions-reviewer",
             "synthetic-moral-harm-reviewer",
             "synthetic-negotiorum-gestio-reviewer",
             "synthetic-norm-reviewer",

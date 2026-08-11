@@ -1442,6 +1442,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-meeting-decisions",
+            title="Проверка решения собрания",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.meeting_decisions_evidence_mapping.evidence_id,
+                trace.analysis_result.meeting_decisions_constraint_set.id,
+                *trace.analysis_result.meeting_decisions_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.meeting_decisions_evaluation.reasons_ru,
+                "Обязательность решения для всех имевших право участвовать, наличие кворума и требуемого большинства, основания ничтожности (вопрос вне повестки при неполном участии, отсутствие кворума, вопрос вне компетенции, противоречие основам правопорядка) и основания оспоримости (порядок созыва и проведения, равенство прав участников, полномочия выступавшего, правила составления протокола) вместе с оговорками о несущественности и подтверждении проверяются раздельно по статьям 181.1–181.5 ГК РФ.",
+                "Сроки оспаривания решения, существенность неблагоприятных последствий и влияние голоса на итог оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-attribution-delay",
             title="Проверка возложения ответственности и просрочки сторон",
             status=PipelineStepStatus.PASSED,

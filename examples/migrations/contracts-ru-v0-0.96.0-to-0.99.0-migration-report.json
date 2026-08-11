@@ -1,0 +1,74 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.96.0:to-0.99.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.96.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.96.0",
+  "target_package_version": "0.99.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.96.0",
+      "to_version": "0.97.0",
+      "reasons": [
+        "The cross-institute consistency evaluation loses two boolean fields whose checks could never fire in the full pipeline, because pre-existing input checks reject the same condition earlier.",
+        "Artifacts carrying the removed fields must be regenerated."
+      ],
+      "reasons_ru": [
+        "Оценка слоя сверки лишилась двух булевых полей: соответствующие сверки в полном конвейере сработать не могли — то же условие раньше отвергается прежними проверками входов.",
+        "Артефакты, содержащие удалённые поля, требуют пересборки."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_general_consistency_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.97.0",
+      "to_version": "0.98.0",
+      "reasons": [
+        "The analysis result gains the attribution and delay mapping, constraint set and evaluation for articles 402-406.",
+        "Artifacts produced before the institute existed must be regenerated."
+      ],
+      "reasons_ru": [
+        "Результат анализа пополнился разбором, набором ограничений и оценкой возложения ответственности и просрочки сторон по статьям 402–406 ГК РФ.",
+        "Артефакты, собранные до появления института, требуют пересборки."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_attribution_delay_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "0.98.0",
+      "to_version": "0.99.0",
+      "reasons": [
+        "The analysis result gains the meeting-decisions mapping, constraint set and evaluation for chapter 9.1, articles 181.1-181.5.",
+        "Artifacts produced before the institute existed must be regenerated."
+      ],
+      "reasons_ru": [
+        "Результат анализа пополнился разбором, набором ограничений и оценкой решений собраний по главе 9.1 ГК РФ (статьи 181.1–181.5).",
+        "Артефакты, собранные до появления института, требуют пересборки."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_meeting_decisions_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

@@ -1,0 +1,562 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка решений собраний по статьям 181.1–181.5 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-meeting-decisions-evidence-supply-1-v0",
+    "schema_version": "contracts.meeting-decisions-evidence.v0",
+    "mapping_version": "contracts-reviewed-meeting-decisions-to-facts-v0",
+    "facts": {
+      "meeting_decision_asserted": false,
+      "quorum_present": false,
+      "required_majority_obtained": false,
+      "all_participants_took_part": false,
+      "question_outside_agenda": false,
+      "question_outside_competence": false,
+      "contrary_to_public_order_or_morality": false,
+      "convocation_or_conduct_procedure_breached": false,
+      "participant_equality_breached": false,
+      "representative_authority_defect": false,
+      "minutes_requirements_breached": false,
+      "vote_could_not_affect_outcome": false,
+      "no_material_adverse_consequences": false,
+      "decision_confirmed_by_later_decision": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+      "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "all_participants_took_part",
+        "assertion_id": "meeting-decisions-evidence-all_participants_took_part",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "contrary_to_public_order_or_morality",
+        "assertion_id": "meeting-decisions-evidence-contrary_to_public_order_or_morality",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "convocation_or_conduct_procedure_breached",
+        "assertion_id": "meeting-decisions-evidence-convocation_or_conduct_procedure_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "decision_confirmed_by_later_decision",
+        "assertion_id": "meeting-decisions-evidence-decision_confirmed_by_later_decision",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "meeting_decision_asserted",
+        "assertion_id": "meeting-decisions-evidence-meeting_decision_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "minutes_requirements_breached",
+        "assertion_id": "meeting-decisions-evidence-minutes_requirements_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "no_material_adverse_consequences",
+        "assertion_id": "meeting-decisions-evidence-no_material_adverse_consequences",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "participant_equality_breached",
+        "assertion_id": "meeting-decisions-evidence-participant_equality_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "question_outside_agenda",
+        "assertion_id": "meeting-decisions-evidence-question_outside_agenda",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "question_outside_competence",
+        "assertion_id": "meeting-decisions-evidence-question_outside_competence",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "quorum_present",
+        "assertion_id": "meeting-decisions-evidence-quorum_present",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "representative_authority_defect",
+        "assertion_id": "meeting-decisions-evidence-representative_authority_defect",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "required_majority_obtained",
+        "assertion_id": "meeting-decisions-evidence-required_majority_obtained",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "vote_could_not_affect_outcome",
+        "assertion_id": "meeting-decisions-evidence-vote_could_not_affect_outcome",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "meeting-decisions-constraint-set:reviewed-meeting-decisions-evidence-supply-1-v0",
+    "model_version": "contracts-meeting-decisions-articles-1811-1815-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
+      "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1"
+    ],
+    "expressions": [
+      "meeting_decision_qualified == meeting_decision_asserted",
+      "decision_not_adopted == meeting_decision_qualified AND NOT required_majority_obtained",
+      "quorum_absent == meeting_decision_qualified AND NOT quorum_present",
+      "agenda_violation_void == meeting_decision_qualified AND question_outside_agenda AND NOT all_participants_took_part",
+      "competence_violation_void == meeting_decision_qualified AND question_outside_competence",
+      "public_order_violation_void == meeting_decision_qualified AND contrary_to_public_order_or_morality",
+      "decision_void == quorum_absent OR agenda_violation_void OR competence_violation_void OR public_order_violation_void",
+      "procedural_defect_established == meeting_decision_qualified AND (convocation_or_conduct_procedure_breached OR participant_equality_breached OR representative_authority_defect OR minutes_requirements_breached)",
+      "voidability_cured_by_immateriality == procedural_defect_established AND vote_could_not_affect_outcome AND no_material_adverse_consequences",
+      "voidability_cured_by_confirmation == procedural_defect_established AND decision_confirmed_by_later_decision",
+      "decision_voidable == procedural_defect_established AND NOT decision_void AND NOT voidability_cured_by_immateriality AND NOT voidability_cured_by_confirmation",
+      "decision_binds_all_participants == meeting_decision_qualified AND NOT decision_void AND NOT decision_not_adopted",
+      "requires_human_meeting_decision_assessment == decision_void OR decision_voidable OR decision_not_adopted OR voidability_cured_by_immateriality OR voidability_cured_by_confirmation"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "meeting-decisions-constraint-set:reviewed-meeting-decisions-evidence-supply-1-v0",
+    "satisfiable": true,
+    "meeting_decision_qualified": false,
+    "decision_not_adopted": false,
+    "quorum_absent": false,
+    "agenda_violation_void": false,
+    "competence_violation_void": false,
+    "public_order_violation_void": false,
+    "decision_void": false,
+    "procedural_defect_established": false,
+    "voidability_cured_by_immateriality": false,
+    "voidability_cured_by_confirmation": false,
+    "decision_voidable": false,
+    "decision_binds_all_participants": false,
+    "requires_human_meeting_decision_assessment": false,
+    "reasons_ru": [
+      "Решение собрания в деле не заявлено."
+    ],
+    "warnings_ru": [
+      "Модель не исчисляет сроки оспаривания решения: шесть месяцев со дня, когда участник узнал или должен был узнать о нарушении своего права, но не позднее двух лет со дня общедоступности сведений о решении, проверяются институтами исчисления сроков и исковой давности (статья 181.4 ГК РФ).",
+      "Существенность неблагоприятных последствий решения для участника и влияние его голоса на итог оцениваются экспертом и судом (статья 181.4 ГК РФ).",
+      "Решение собрания не является сделкой: пороки главы 9.1 оцениваются по её правилам, а не по статьям 166–181 ГК РФ."
+    ]
+  },
+  "benchmark_report": {
+    "id": "meeting-decisions-benchmark-report-v0",
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "meeting-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "meeting_decision_qualified": false,
+          "decision_void": false,
+          "requires_human_meeting_decision_assessment": false
+        },
+        "observed_outcomes": {
+          "meeting_decision_qualified": false,
+          "decision_void": false,
+          "requires_human_meeting_decision_assessment": false
+        },
+        "reasons_ru": [
+          "Решение собрания в деле не заявлено."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-lawful-decision-binds-all",
+        "passed": true,
+        "expected_outcomes": {
+          "decision_binds_all_participants": true,
+          "decision_void": false,
+          "decision_voidable": false,
+          "requires_human_meeting_decision_assessment": false
+        },
+        "observed_outcomes": {
+          "decision_binds_all_participants": true,
+          "decision_void": false,
+          "decision_voidable": false,
+          "requires_human_meeting_decision_assessment": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение обязательно для всех лиц, имевших право участвовать в собрании, в том числе для голосовавших против и не участвовавших (статья 181.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-no-majority-means-no-decision",
+        "passed": true,
+        "expected_outcomes": {
+          "decision_not_adopted": true,
+          "decision_void": false,
+          "decision_binds_all_participants": false
+        },
+        "observed_outcomes": {
+          "decision_not_adopted": true,
+          "decision_void": false,
+          "decision_binds_all_participants": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение не принято: требуемое большинство голосов участников собрания не набрано. Это отсутствие решения, а не его порок (статья 181.2 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-no-quorum-is-void",
+        "passed": true,
+        "expected_outcomes": {
+          "quorum_absent": true,
+          "decision_void": true,
+          "decision_binds_all_participants": false
+        },
+        "observed_outcomes": {
+          "quorum_absent": true,
+          "decision_void": true,
+          "decision_binds_all_participants": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение ничтожно: собрание было неправомочно, поскольку в нём приняли участие менее половины участников соответствующего гражданско-правового сообщества (статьи 181.2 и 181.5 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-outside-agenda-is-void",
+        "passed": true,
+        "expected_outcomes": {
+          "agenda_violation_void": true,
+          "decision_void": true
+        },
+        "observed_outcomes": {
+          "agenda_violation_void": true,
+          "decision_void": true
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение ничтожно: оно принято по вопросу, не включённому в повестку дня, при том что в собрании участвовали не все участники сообщества (статья 181.5 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-outside-agenda-cured-by-full-participation",
+        "passed": true,
+        "expected_outcomes": {
+          "agenda_violation_void": false,
+          "decision_void": false,
+          "decision_binds_all_participants": true
+        },
+        "observed_outcomes": {
+          "agenda_violation_void": false,
+          "decision_void": false,
+          "decision_binds_all_participants": true
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение обязательно для всех лиц, имевших право участвовать в собрании, в том числе для голосовавших против и не участвовавших (статья 181.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-outside-competence-is-void",
+        "passed": true,
+        "expected_outcomes": {
+          "competence_violation_void": true,
+          "decision_void": true
+        },
+        "observed_outcomes": {
+          "competence_violation_void": true,
+          "decision_void": true
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение ничтожно: оно принято по вопросу, не относящемуся к компетенции собрания (статья 181.5 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-public-order-is-void",
+        "passed": true,
+        "expected_outcomes": {
+          "public_order_violation_void": true,
+          "decision_void": true
+        },
+        "observed_outcomes": {
+          "public_order_violation_void": true,
+          "decision_void": true
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение ничтожно: оно противоречит основам правопорядка или нравственности (статья 181.5 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-procedure-breach-is-voidable",
+        "passed": true,
+        "expected_outcomes": {
+          "procedural_defect_established": true,
+          "decision_voidable": true,
+          "decision_void": false,
+          "decision_binds_all_participants": true
+        },
+        "observed_outcomes": {
+          "procedural_defect_established": true,
+          "decision_voidable": true,
+          "decision_void": false,
+          "decision_binds_all_participants": true
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Установлено нарушение порядка принятия решения: порядка созыва, подготовки или проведения собрания, равенства прав участников, полномочий лица, выступавшего от имени участника, либо правил составления протокола (статья 181.4 ГК РФ).",
+          "Решение оспоримо: оно может быть признано судом недействительным по установленному нарушению и действует, пока не признано недействительным (статья 181.4 ГК РФ).",
+          "Решение обязательно для всех лиц, имевших право участвовать в собрании, в том числе для голосовавших против и не участвовавших (статья 181.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-equality-breach-is-voidable",
+        "passed": true,
+        "expected_outcomes": {
+          "decision_voidable": true,
+          "decision_void": false
+        },
+        "observed_outcomes": {
+          "decision_voidable": true,
+          "decision_void": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Установлено нарушение порядка принятия решения: порядка созыва, подготовки или проведения собрания, равенства прав участников, полномочий лица, выступавшего от имени участника, либо правил составления протокола (статья 181.4 ГК РФ).",
+          "Решение оспоримо: оно может быть признано судом недействительным по установленному нарушению и действует, пока не признано недействительным (статья 181.4 ГК РФ).",
+          "Решение обязательно для всех лиц, имевших право участвовать в собрании, в том числе для голосовавших против и не участвовавших (статья 181.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-immateriality-cures-voidability",
+        "passed": true,
+        "expected_outcomes": {
+          "voidability_cured_by_immateriality": true,
+          "decision_voidable": false,
+          "decision_binds_all_participants": true
+        },
+        "observed_outcomes": {
+          "voidability_cured_by_immateriality": true,
+          "decision_voidable": false,
+          "decision_binds_all_participants": true
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Установлено нарушение порядка принятия решения: порядка созыва, подготовки или проведения собрания, равенства прав участников, полномочий лица, выступавшего от имени участника, либо правил составления протокола (статья 181.4 ГК РФ).",
+          "Оспоримость снята: голос лица, обращающегося с иском, не мог повлиять на принятие решения, и решение не влечёт для этого лица существенных неблагоприятных последствий (статья 181.4 ГК РФ).",
+          "Решение обязательно для всех лиц, имевших право участвовать в собрании, в том числе для голосовавших против и не участвовавших (статья 181.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-confirmation-cures-voidability",
+        "passed": true,
+        "expected_outcomes": {
+          "voidability_cured_by_confirmation": true,
+          "decision_voidable": false
+        },
+        "observed_outcomes": {
+          "voidability_cured_by_confirmation": true,
+          "decision_voidable": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Установлено нарушение порядка принятия решения: порядка созыва, подготовки или проведения собрания, равенства прав участников, полномочий лица, выступавшего от имени участника, либо правил составления протокола (статья 181.4 ГК РФ).",
+          "Оспоримость снята: решение подтверждено последующим решением собрания, принятым до вынесения решения суда (статья 181.4 ГК РФ).",
+          "Решение обязательно для всех лиц, имевших право участвовать в собрании, в том числе для голосовавших против и не участвовавших (статья 181.1 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "meeting-decisions-red-team-report-v0",
+    "total": 10,
+    "blocked": 10,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "meeting-red-void-without-decision",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "decision_void": true
+        },
+        "observed_outcomes": {
+          "decision_void": false
+        },
+        "reasons_ru": [
+          "Решение собрания в деле не заявлено."
+        ]
+      },
+      {
+        "case_id": "meeting-red-immateriality-cures-nullity",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "decision_void": false
+        },
+        "observed_outcomes": {
+          "decision_void": true
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение ничтожно: собрание было неправомочно, поскольку в нём приняли участие менее половины участников соответствующего гражданско-правового сообщества (статьи 181.2 и 181.5 ГК РФ).",
+          "Установлено нарушение порядка принятия решения: порядка созыва, подготовки или проведения собрания, равенства прав участников, полномочий лица, выступавшего от имени участника, либо правил составления протокола (статья 181.4 ГК РФ).",
+          "Оспоримость снята: голос лица, обращающегося с иском, не мог повлиять на принятие решения, и решение не влечёт для этого лица существенных неблагоприятных последствий (статья 181.4 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "meeting-red-confirmation-cures-nullity",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "decision_void": false
+        },
+        "observed_outcomes": {
+          "decision_void": true
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение ничтожно: оно принято по вопросу, не относящемуся к компетенции собрания (статья 181.5 ГК РФ).",
+          "Установлено нарушение порядка принятия решения: порядка созыва, подготовки или проведения собрания, равенства прав участников, полномочий лица, выступавшего от имени участника, либо правил составления протокола (статья 181.4 ГК РФ).",
+          "Оспоримость снята: решение подтверждено последующим решением собрания, принятым до вынесения решения суда (статья 181.4 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "meeting-red-void-decision-still-binds",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "decision_binds_all_participants": true
+        },
+        "observed_outcomes": {
+          "decision_binds_all_participants": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение ничтожно: оно противоречит основам правопорядка или нравственности (статья 181.5 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "meeting-red-voidable-and-void-at-once",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "decision_voidable": true
+        },
+        "observed_outcomes": {
+          "decision_voidable": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение ничтожно: оно принято по вопросу, не относящемуся к компетенции собрания (статья 181.5 ГК РФ).",
+          "Установлено нарушение порядка принятия решения: порядка созыва, подготовки или проведения собрания, равенства прав участников, полномочий лица, выступавшего от имени участника, либо правил составления протокола (статья 181.4 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "meeting-red-agenda-void-despite-full-participation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "agenda_violation_void": true
+        },
+        "observed_outcomes": {
+          "agenda_violation_void": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение обязательно для всех лиц, имевших право участвовать в собрании, в том числе для голосовавших против и не участвовавших (статья 181.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "meeting-red-immateriality-without-defect",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "voidability_cured_by_immateriality": true
+        },
+        "observed_outcomes": {
+          "voidability_cured_by_immateriality": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение обязательно для всех лиц, имевших право участвовать в собрании, в том числе для голосовавших против и не участвовавших (статья 181.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "meeting-red-half-immateriality-cures",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "voidability_cured_by_immateriality": true,
+          "decision_voidable": false
+        },
+        "observed_outcomes": {
+          "voidability_cured_by_immateriality": false,
+          "decision_voidable": true
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Установлено нарушение порядка принятия решения: порядка созыва, подготовки или проведения собрания, равенства прав участников, полномочий лица, выступавшего от имени участника, либо правил составления протокола (статья 181.4 ГК РФ).",
+          "Решение оспоримо: оно может быть признано судом недействительным по установленному нарушению и действует, пока не признано недействительным (статья 181.4 ГК РФ).",
+          "Решение обязательно для всех лиц, имевших право участвовать в собрании, в том числе для голосовавших против и не участвовавших (статья 181.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "meeting-red-unadopted-decision-binds",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "decision_binds_all_participants": true
+        },
+        "observed_outcomes": {
+          "decision_binds_all_participants": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение не принято: требуемое большинство голосов участников собрания не набрано. Это отсутствие решения, а не его порок (статья 181.2 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "meeting-red-procedure-defect-without-decision",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "procedural_defect_established": true,
+          "decision_voidable": true
+        },
+        "observed_outcomes": {
+          "procedural_defect_established": false,
+          "decision_voidable": false
+        },
+        "reasons_ru": [
+          "Решение собрания в деле не заявлено."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95820/"
+  ]
+}

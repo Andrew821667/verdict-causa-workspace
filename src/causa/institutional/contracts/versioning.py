@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="0.99.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Adds the meeting-decisions institute for chapter 9.1, articles 181.1-181.5, closing the last substantive coverage gap real practice hit.",
+            "A meeting decision is not a transaction: its defects are judged by chapter 9.1, not by articles 166-181, so the model is separate.",
+            "The analysis result gains three fields; artifacts must be regenerated.",
+        ],
+        notes_ru=[
+            "Добавлен институт решений собраний по главе 9.1 ГК РФ (статьи 181.1–181.5): последний существенный пробел покрытия, в который попала реальная практика.",
+            "Решение собрания не является сделкой: его пороки оцениваются по правилам главы 9.1, а не по статьям 166–181, поэтому модель отдельная.",
+            "Результат анализа получил три новых поля; артефакты требуют пересборки.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.98.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],
