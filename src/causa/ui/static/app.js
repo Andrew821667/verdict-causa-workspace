@@ -1,0 +1,509 @@
+"use strict";
+
+/* Резонанс — клиент стенда.
+   Никаких внешних библиотек: интерфейс должен открываться там, где запущен
+   сервер, без сборки и без сети. */
+
+const state = {
+  desktop: null,
+  workspaceId: null,
+  caseId: null,
+  view: null,
+  tab: "line",
+};
+
+const $ = (id) => document.getElementById(id);
+
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+
+async function getJSON(url) {
+  const response = await fetch(url);
+  const payload = await response.json();
+  if (!response.ok) throw new Error(payload.error_ru || "Запрос не выполнен");
+  return payload;
+}
+
+/* ── Верхняя полоса и список пространств ─────────────────────────── */
+
+function renderTopbar() {
+  const { organisation, operator } = state.desktop;
+  $("org-title").textContent = organisation.title_ru;
+  $("operator-name").textContent = operator.display_name;
+  $("operator-role").textContent = operator.role_ru;
+
+  const panel = $("rights-panel");
+  panel.replaceChildren();
+  panel.append(el("strong", null, "Что эта роль вправе делать: "));
+  panel.append(document.createTextNode(operator.rights_ru.join("; ") + "."));
+  panel.append(el("br"));
+  const others = organisation.operators
+    .filter((person) => person.id !== operator.id)
+    .map((person) => `${person.display_name} — ${person.role_ru}`)
+    .join("; ");
+  panel.append(
+    el("span", "muted", "Другие роли в организации: " + others + ".")
+  );
+}
+
+function renderRail() {
+  const host = $("workspaces");
+  host.replaceChildren();
+  for (const workspace of state.desktop.workspaces) {
+    const block = el("div", "ws");
+    const head = el("div", "ws__head");
+    head.append(el("span", "ws__name", workspace.title_ru));
+    head.append(
+      el("span", "ws__meta", `${workspace.sla_mode_ru} · ${workspace.risk_tier_ru}`)
+    );
+    block.append(head);
+
+    for (const card of workspace.cases) {
+      const button = el("button", "case-btn");
+      button.type = "button";
+      if (workspace.id === state.workspaceId && card.case_id === state.caseId) {
+        button.classList.add("is-active");
+      }
+      button.append(el("span", null, card.title_ru));
+      button.append(el("span", "case-btn__cluster", card.cluster_ru));
+
+      const flags = el("div", "case-btn__flags");
+      if (card.blocking_gaps > 0) {
+        flags.append(el("span", "badge badge--warn", `пробелов: ${card.blocking_gaps}`));
+      }
+      if (card.needs_human) {
+        flags.append(el("span", "badge badge--stop", "нужен человек"));
+      }
+      if (card.open_debt_ru.length > 0) {
+        flags.append(el("span", "badge badge--stop", "разрыв до итога"));
+      }
+      if (flags.childElementCount > 0) button.append(flags);
+
+      button.addEventListener("click", () => openCase(workspace.id, card.case_id));
+      block.append(button);
+    }
+    host.append(block);
+  }
+}
+
+/* ── Окно дела ───────────────────────────────────────────────────── */
+
+async function openCase(workspaceId, caseId) {
+  state.workspaceId = workspaceId;
+  state.caseId = caseId;
+  $("case-title").textContent = "Загрузка разбора…";
+  try {
+    state.view = await getJSON(
+      `/api/case/${encodeURIComponent(workspaceId)}/${encodeURIComponent(caseId)}`
+    );
+  } catch (error) {
+    $("case-title").textContent = "Дело не открылось";
+    $("case-id").textContent = error.message;
+    return;
+  }
+  renderRail();
+  renderCase();
+}
+
+function renderCase() {
+  const view = state.view;
+  $("case-title").textContent = view.title_ru;
+  $("case-id").textContent = `${view.case_id} · пространство ${view.workspace_id}`;
+
+  const caveat = $("case-caveat");
+  caveat.textContent = view.caveat_ru;
+  caveat.hidden = !view.caveat_ru;
+
+  const badges = $("case-badges");
+  badges.replaceChildren();
+  const blocking = view.gaps.gaps.filter((gap) => gap.blocking).length;
+  badges.append(
+    el(
+      "span",
+      blocking ? "badge badge--warn" : "badge badge--ok",
+      blocking ? `пробелов, меняющих вывод: ${blocking}` : "пробелов, меняющих вывод, нет"
+    )
+  );
+  const debts = view.map.edges.filter((edge) => edge.open_debt).length;
+  if (debts > 0) {
+    badges.append(el("span", "badge badge--stop", `разрывов без обоснования: ${debts}`));
+  }
+  if (view.reasoning.registers.length === 3) {
+    badges.append(el("span", "badge", "три регистра изложения"));
+  }
+
+  renderMaterials();
+  renderQualification();
+  renderGaps();
+  renderOutcomes();
+  renderTabs();
+}
+
+function renderMaterials() {
+  const view = state.view;
+  const host = $("materials");
+  host.replaceChildren();
+  for (const node of view.map.nodes.filter((n) => n.kind === "source")) {
+    host.append(el("li", null, node.title_ru));
+  }
+  if (host.childElementCount === 0) {
+    host.append(el("li", null, "линия вывода не ссылается на источники"));
+  }
+
+  const breaks = $("breaks");
+  breaks.replaceChildren();
+  const byTarget = new Map(view.map.nodes.map((node) => [node.id, node]));
+  for (const edge of view.map.edges.filter((e) => !e.connected)) {
+    const item = el("li", edge.open_debt ? "is-debt" : null);
+    const node = byTarget.get(edge.source);
+    item.append(el("span", "kicker", node ? node.title_ru : edge.source));
+    item.append(document.createTextNode(edge.reason_ru));
+    breaks.append(item);
+  }
+  if (breaks.childElementCount === 0) {
+    breaks.append(el("li", null, "все сработавшие институты доходят до итога"));
+  }
+}
+
+function renderQualification() {
+  const host = $("qualification");
+  host.replaceChildren();
+  const qualification = state.view.qualification;
+  const primaryId = qualification.primary ? qualification.primary.institute : null;
+
+  for (const candidate of qualification.candidates) {
+    const classes = ["cluster"];
+    if (candidate.institute === primaryId) classes.push("cluster--primary");
+    if (candidate.displaced_by_special_rule) classes.push("cluster--displaced");
+    const box = el("div", classes.join(" "));
+    box.append(el("div", "cluster__title", candidate.title_ru));
+    box.append(
+      el("div", "cluster__meta", `${candidate.group_ru} · ${candidate.articles_ru}`)
+    );
+    const flags = el("div", "case-btn__flags");
+    if (candidate.institute === primaryId) {
+      flags.append(el("span", "badge badge--ok", "основная квалификация"));
+    }
+    if (candidate.displaced_by_special_rule) {
+      flags.append(el("span", "badge", "вытеснена специальными правилами"));
+    }
+    if (candidate.certainty !== "single") {
+      flags.append(el("span", "badge badge--warn", candidate.certainty_ru));
+    }
+    box.append(flags);
+    box.append(el("div", "cluster__basis", candidate.basis_ru));
+    host.append(box);
+  }
+  if (qualification.candidates.length === 0) {
+    host.append(el("p", "muted", "Ни один предикат квалификации не сработал."));
+  }
+  if (qualification.notes_ru.length > 0) {
+    const notes = el("ul", "notes");
+    for (const note of qualification.notes_ru) notes.append(el("li", null, note));
+    host.append(notes);
+  }
+}
+
+function renderGaps() {
+  const host = $("gaps");
+  host.replaceChildren();
+  for (const gap of state.view.gaps.gaps) {
+    const item = el("li", gap.blocking ? "gap gap--blocking" : "gap");
+    item.append(el("div", "gap__kind", gap.kind_ru));
+    item.append(el("div", "gap__q", gap.question_ru));
+    if (gap.consequence_ru.length > 0) {
+      item.append(el("div", "gap__label", "если закрыть, изменится:"));
+      const list = el("ul");
+      for (const line of gap.consequence_ru) list.append(el("li", null, line));
+      item.append(list);
+    }
+    if (gap.closes_with_ru.length > 0) {
+      item.append(el("div", "gap__label", "закрывается:"));
+      const list = el("ul");
+      for (const line of gap.closes_with_ru) list.append(el("li", null, line));
+      item.append(list);
+    }
+    host.append(item);
+  }
+  if (state.view.gaps.gaps.length === 0) {
+    host.append(el("li", "muted", "Очередь пуста."));
+  }
+}
+
+/* ── Вкладки ─────────────────────────────────────────────────────── */
+
+function renderTabs() {
+  for (const tab of document.querySelectorAll(".tab")) {
+    const active = tab.dataset.view === state.tab;
+    tab.classList.toggle("is-active", active);
+    tab.setAttribute("aria-selected", String(active));
+    $(`panel-${tab.dataset.view}`).hidden = !active;
+  }
+  ({
+    line: renderLine,
+    debate: renderDebate,
+    registers: renderRegisters,
+    map: renderMap,
+  })[state.tab]();
+}
+
+function renderLine() {
+  const panel = $("panel-line");
+  panel.replaceChildren();
+  const list = el("ul", "line");
+  for (const step of state.view.reasoning.line) {
+    const item = el("li", "step");
+    const yes = step.value === true;
+    item.append(
+      el("span", `step__mark ${yes ? "step__mark--yes" : "step__mark--no"}`, yes ? "да" : "нет")
+    );
+    const body = el("div");
+    body.append(el("div", "step__q", step.question_ru));
+    body.append(el("p", "step__text", step.text_ru));
+    if (step.source_refs.length > 0) {
+      body.append(el("div", "step__src", "источники: " + step.source_refs.join(", ")));
+    }
+    item.append(body);
+    list.append(item);
+  }
+  panel.append(list);
+  appendNotes(panel, state.view.reasoning.notes_ru);
+}
+
+function renderDebate() {
+  const panel = $("panel-debate");
+  panel.replaceChildren();
+  const debate = state.view.reasoning.debate;
+  panel.append(el("p", "disclaimer", debate.disclaimer_ru));
+
+  const grid = el("div", "debate");
+  const sides = [
+    [debate.supporting, "side side--for"],
+    [debate.opposing, "side side--against"],
+    [debate.critic, "side side--critic"],
+  ];
+  for (const [side, className] of sides) {
+    const box = el("div", className);
+    box.append(el("h3", null, side.title_ru));
+    box.append(el("div", "side__origin", side.origin_ru));
+    const list = el("ul");
+    for (const point of side.points_ru) list.append(el("li", null, point));
+    box.append(list);
+    grid.append(box);
+  }
+  panel.append(grid);
+}
+
+function renderRegisters() {
+  const panel = $("panel-registers");
+  panel.replaceChildren();
+  const registers = state.view.reasoning.registers;
+  if (registers.length === 0) {
+    panel.append(
+      el("p", "disclaimer", "Регистры изложения для этого дела не собраны.")
+    );
+    return;
+  }
+  for (const register of registers) {
+    const box = el("div", "register");
+    const head = el("div", "register__head");
+    head.append(el("strong", null, register.level_ru));
+    const flags = el("div", "case-btn__flags");
+    flags.append(
+      el(
+        "span",
+        register.faithfulness_passed ? "badge badge--ok" : "badge badge--stop",
+        register.faithfulness_passed ? "проверка верности пройдена" : "проверка верности не пройдена"
+      )
+    );
+    flags.append(
+      el(
+        "span",
+        register.usability_passed ? "badge badge--ok" : "badge badge--warn",
+        register.usability_passed ? "структура в порядке" : "структура с замечаниями"
+      )
+    );
+    head.append(flags);
+    box.append(head);
+    box.append(el("pre", null, register.text));
+    panel.append(box);
+  }
+}
+
+function renderMap() {
+  const panel = $("panel-map");
+  panel.replaceChildren();
+  const map = state.view.map;
+  const byId = new Map(map.nodes.map((node) => [node.id, node]));
+
+  const groups = [
+    ["evidence", "Проверенные факты"],
+    ["institute", "Институты, сказавшие что-либо по делу"],
+    ["layer", "Итоговые выводы"],
+  ];
+  const outgoing = new Map();
+  for (const edge of map.edges) {
+    if (!outgoing.has(edge.source)) outgoing.set(edge.source, []);
+    outgoing.get(edge.source).push(edge);
+  }
+
+  for (const [kind, title] of groups) {
+    const group = el("div", "map-group");
+    group.append(el("h3", null, title));
+    for (const node of map.nodes.filter((n) => n.kind === kind)) {
+      const toLayer = (outgoing.get(node.id) || []).find((edge) =>
+        edge.target.startsWith("layer:")
+      );
+      const classes = ["map-node"];
+      if (toLayer && !toLayer.connected) classes.push("map-node--break");
+      if (toLayer && toLayer.open_debt) classes.push("map-node--debt");
+      const row = el("div", classes.join(" "));
+      row.append(el("strong", null, node.title_ru));
+      if (toLayer) {
+        row.append(
+          el(
+            "span",
+            "map-node__why",
+            toLayer.connected
+              ? "→ доходит до итога"
+              : `✕ не доходит: ${toLayer.reason_ru}`
+          )
+        );
+      } else if (node.detail_ru) {
+        row.append(el("span", "map-node__why", node.detail_ru));
+      }
+      if (node.needs_human) {
+        row.append(el("span", "badge badge--stop", "нужен человек"));
+      }
+      group.append(row);
+    }
+    panel.append(group);
+  }
+  appendNotes(panel, map.notes_ru);
+}
+
+function appendNotes(panel, notes) {
+  if (!notes || notes.length === 0) return;
+  const list = el("ul", "notes");
+  for (const note of notes) list.append(el("li", null, note));
+  panel.append(list);
+}
+
+/* ── Замечания ───────────────────────────────────────────────────── */
+
+const REMARK_HINTS = {
+  clarification:
+    "Уточнение остаётся в этом деле. Сигналом системе оно быть не может: оно о фактах, а не о том, как система рассуждает.",
+  disagreement:
+    "Как сигнал породит кандидата типа «разрешение конфликта норм» — самый строгий путь governance.",
+  qualification:
+    "Как сигнал породит кандидата типа «разрешение конфликта норм»: спор о том, каким институтом описано дело.",
+  missing_rule: "Как сигнал породит кандидата типа «пробел в знании».",
+  wording: "Как сигнал породит кандидата слоя перевода: вопрос изложения, а не права.",
+};
+
+function renderRemarkHint() {
+  const kind = $("remark-kind").value;
+  const signal = $("remark-signal");
+  if (kind === "clarification") {
+    signal.checked = false;
+    signal.disabled = true;
+  } else {
+    signal.disabled = false;
+  }
+  $("remark-hint").textContent = REMARK_HINTS[kind];
+}
+
+function renderOutcomes() {
+  const host = $("outcomes");
+  host.replaceChildren();
+  for (const outcome of state.view.remarks.outcomes) {
+    host.append(outcomeNode(outcome));
+  }
+}
+
+function outcomeNode(outcome) {
+  const item = el("li", outcome.candidate ? "outcome outcome--signal" : "outcome");
+  item.append(el("div", "outcome__label", outcome.kind_ru));
+  item.append(el("p", null, outcome.case_effect_ru));
+  if (outcome.system_effect_ru) {
+    item.append(el("p", null, outcome.system_effect_ru));
+  }
+  if (outcome.candidate) {
+    const flags = el("div", "case-btn__flags");
+    flags.append(el("span", "badge badge--propose", `кандидат: ${outcome.candidate.status}`));
+    flags.append(el("span", "badge", outcome.candidate_type));
+    item.append(flags);
+    item.append(
+      el("div", "outcome__stages", "обязательные стадии: " + outcome.required_stages_ru.join(" → "))
+    );
+  }
+  for (const note of outcome.notes_ru) {
+    item.append(el("p", "muted", note));
+  }
+  return item;
+}
+
+async function submitRemark(event) {
+  event.preventDefault();
+  const text = $("remark-text").value.trim();
+  if (!text) return;
+  const body = {
+    kind: $("remark-kind").value,
+    text_ru: text,
+    as_learning_signal: $("remark-signal").checked,
+  };
+  const response = await fetch(
+    `/api/case/${encodeURIComponent(state.workspaceId)}/${encodeURIComponent(state.caseId)}/remark`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }
+  );
+  const outcome = await response.json();
+  if (!response.ok) {
+    $("remark-hint").textContent = outcome.error_ru || "Замечание не принято";
+    return;
+  }
+  $("outcomes").append(outcomeNode(outcome));
+  $("remark-text").value = "";
+}
+
+/* ── Запуск ──────────────────────────────────────────────────────── */
+
+async function start() {
+  state.desktop = await getJSON("/api/desktop");
+  renderTopbar();
+  renderRail();
+  renderRemarkHint();
+
+  $("rights-toggle").addEventListener("click", (event) => {
+    const panel = $("rights-panel");
+    panel.hidden = !panel.hidden;
+    event.currentTarget.setAttribute("aria-expanded", String(!panel.hidden));
+  });
+  const known = new Set(["line", "debate", "registers", "map"]);
+  const fromHash = location.hash.replace("#", "");
+  if (known.has(fromHash)) state.tab = fromHash;
+  for (const tab of document.querySelectorAll(".tab")) {
+    tab.addEventListener("click", () => {
+      state.tab = tab.dataset.view;
+      location.hash = state.tab;
+      renderTabs();
+    });
+  }
+  $("remark-kind").addEventListener("change", renderRemarkHint);
+  $("remark-form").addEventListener("submit", submitRemark);
+
+  const first = state.desktop.workspaces[0];
+  if (first && first.cases.length > 0) {
+    await openCase(first.id, first.cases[0].case_id);
+  }
+}
+
+start();

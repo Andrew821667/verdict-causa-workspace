@@ -272,6 +272,25 @@ src/causa/  Python package skeleton.
 tests/      Minimal tests for the first models and pipeline.
 ```
 
+## Operator interface
+
+A local stand for testing the system by hand, without reading tests or exports:
+
+```bash
+python -m causa.ui.server
+```
+
+It serves `http://127.0.0.1:8765` and adds no dependencies — the server is
+`http.server`, the front end is plain HTML, CSS and JavaScript with no build
+step and no network access. It shows five cases (the synthetic supply dispute
+and four Supreme Court cases): the cluster the system determined for itself, the
+line of conclusion or the three-sided argument around it, the three translation
+registers, the queue of typed gaps, the map of the analysis with its breaks, and
+the two separate operator actions — recording a remark in the case, and sending
+it as a learning signal that becomes a `proposed` governance candidate.
+
+Russian specification: [docs/ui-spec.md](docs/ui-spec.md).
+
 ## Development setup
 
 ```bash

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Резонанс — стенд Verdict Causa</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__brand">
+    <span class="mark" aria-hidden="true"></span>
+    <span>
+      <strong id="org-title">…</strong>
+      <span class="muted" id="org-sub">стенд для самостоятельного тестирования</span>
+    </span>
+  </div>
+  <div class="topbar__operator">
+    <span class="role-chip" id="operator-role">…</span>
+    <span id="operator-name">…</span>
+    <button type="button" class="ghost" id="rights-toggle" aria-expanded="false">права роли</button>
+  </div>
+</header>
+
+<div class="rights" id="rights-panel" hidden></div>
+
+<main class="shell">
+
+  <nav class="rail" aria-label="Пространства и дела">
+    <h2 class="rail__title">Рабочие пространства</h2>
+    <div id="workspaces"></div>
+    <p class="rail__note">
+      Материалы одного пространства не видны из другого. Это инвариант модели,
+      а не настройка интерфейса.
+    </p>
+  </nav>
+
+  <section class="case" aria-live="polite">
+
+    <div class="case__head">
+      <div>
+        <h1 id="case-title">Выберите дело</h1>
+        <p class="muted" id="case-id"></p>
+      </div>
+      <div class="badges" id="case-badges"></div>
+    </div>
+
+    <p class="caveat" id="case-caveat" hidden></p>
+
+    <div class="columns">
+
+      <aside class="col col--materials">
+        <h2>Материалы</h2>
+        <p class="col__hint">Источники, на которых держится линия вывода.</p>
+        <ul class="materials" id="materials"></ul>
+        <h3>Разрывы разбора</h3>
+        <ul class="breaks" id="breaks"></ul>
+      </aside>
+
+      <div class="col col--main">
+        <div class="tabs" role="tablist" id="tabs">
+          <button role="tab" class="tab is-active" data-view="line">Линия вывода</button>
+          <button role="tab" class="tab" data-view="debate">Спор</button>
+          <button role="tab" class="tab" data-view="registers">Изложение</button>
+          <button role="tab" class="tab" data-view="map">Карта разбора</button>
+        </div>
+
+        <section class="panel" id="panel-line"></section>
+        <section class="panel" id="panel-debate" hidden></section>
+        <section class="panel" id="panel-registers" hidden></section>
+        <section class="panel" id="panel-map" hidden></section>
+      </div>
+
+      <aside class="col col--side">
+        <h2>Квалификация</h2>
+        <p class="col__hint">Кластер определяет система. Оператор может возразить.</p>
+        <div id="qualification"></div>
+
+        <h2>Замечания оператора</h2>
+        <form class="remark" id="remark-form">
+          <label>
+            <span>Вид замечания</span>
+            <select name="kind" id="remark-kind">
+              <option value="clarification">уточнение по делу</option>
+              <option value="disagreement">не согласен с выводом</option>
+              <option value="qualification">квалификация определена неверно</option>
+              <option value="missing_rule">не учтена норма или практика</option>
+              <option value="wording">изложение непонятно</option>
+            </select>
+          </label>
+          <label>
+            <span>Текст</span>
+            <textarea name="text_ru" id="remark-text" rows="3"
+              placeholder="Например: срок продлён дополнительным соглашением от 12 марта."></textarea>
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" name="as_learning_signal" id="remark-signal">
+            <span>отправить как сигнал системе, а не только в дело</span>
+          </label>
+          <p class="remark__hint" id="remark-hint"></p>
+          <button type="submit">Внести</button>
+        </form>
+        <ul class="outcomes" id="outcomes"></ul>
+
+        <h2>Пробелы</h2>
+        <p class="col__hint">Чего не хватает и что изменится, если это получить.</p>
+        <ul class="gaps" id="gaps"></ul>
+      </aside>
+
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  Формальный результат не является судебным выводом или юридической консультацией.
+  Замечания, внесённые на стенде, живут в памяти процесса и теряются при перезапуске.
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>
