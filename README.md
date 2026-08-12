@@ -274,20 +274,27 @@ tests/      Minimal tests for the first models and pipeline.
 
 ## Operator interface
 
-A local stand for testing the system by hand, without reading tests or exports:
+The interface a lawyer actually uses lives in [`web/`](web/README.md) — Next.js
+16, App Router, TypeScript, Tailwind, static export:
+
+```bash
+cd web && npm install && npm run dev
+```
+
+It opens with the verdict on the case — what is established, what qualifies it,
+what to do next — and only then the steps of the analysis, the typed gaps as
+tasks, the three-sided argument, the three translation registers and the map of
+what reaches the final conclusions and what does not. Five cases ship with it:
+the synthetic supply dispute and four Supreme Court cases.
+
+The data is computed by Python and baked into the build, so the front end never
+restates a rule — and, for the same reason, it does not analyse new cases.
+
+A separate stand carries the live API (case payloads, operator remarks):
 
 ```bash
 python -m causa.ui.server
 ```
-
-It serves `http://127.0.0.1:8765` and adds no dependencies — the server is
-`http.server`, the front end is plain HTML, CSS and JavaScript with no build
-step and no network access. It shows five cases (the synthetic supply dispute
-and four Supreme Court cases): the cluster the system determined for itself, the
-line of conclusion or the three-sided argument around it, the three translation
-registers, the queue of typed gaps, the map of the analysis with its breaks, and
-the two separate operator actions — recording a remark in the case, and sending
-it as a learning signal that becomes a `proposed` governance candidate.
 
 Russian specification: [docs/ui-spec.md](docs/ui-spec.md).
 

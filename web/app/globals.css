@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+/* Резонанс — оформление.
+   Полная палитра задана на голом :root; тёмная тема переопределяет только
+   значения. Ни один цвет не объявлен единственный раз внутри media-блока. */
+
+:root {
+  --bg: #f6f7f6;
+  --surface: #ffffff;
+  --surface-2: #f0f2f1;
+  --border: #e1e5e3;
+  --border-strong: #cdd4d1;
+  --text: #0f1614;
+  --muted: #62706c;
+  --faint: #8b9793;
+  --accent: #0e6b5f;
+  --accent-soft: #e3f0ed;
+  --good: #0d7a52;
+  --good-soft: #e2f2ea;
+  --warn: #8f5c07;
+  --warn-soft: #f8efdf;
+  --stop: #9d3020;
+  --stop-soft: #fae9e5;
+  --propose: #5b4293;
+  --propose-soft: #eee9f8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1211;
+    --surface: #161d1c;
+    --surface-2: #1d2625;
+    --border: #29332f;
+    --border-strong: #3a4642;
+    --text: #e7eeeb;
+    --muted: #9daba6;
+    --faint: #74827d;
+    --accent: #55c1b0;
+    --accent-soft: #16302c;
+    --good: #4fcf97;
+    --good-soft: #133026;
+    --warn: #d7a256;
+    --warn-soft: #33281a;
+    --stop: #ec8b76;
+    --stop-soft: #3a211c;
+    --propose: #b49ae6;
+    --propose-soft: #251f3d;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-stop: var(--stop);
+  --color-stop-soft: var(--stop-soft);
+  --color-propose: var(--propose);
+  --color-propose-soft: var(--propose-soft);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Тонкая полоса прокрутки в панелях, чтобы длинные списки не рвали макет. */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}

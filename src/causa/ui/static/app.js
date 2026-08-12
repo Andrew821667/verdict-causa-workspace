@@ -21,11 +21,31 @@ function el(tag, className, text) {
   return node;
 }
 
+/* Снимок стенда: те же данные, вложенные в файл. Если он есть, страница
+   работает без сервера, и это прямо сказано на экране. */
+const SNAPSHOT = window.CAUSA_SNAPSHOT || null;
+
 async function getJSON(url) {
   const response = await fetch(url);
   const payload = await response.json();
   if (!response.ok) throw new Error(payload.error_ru || "Запрос не выполнен");
   return payload;
+}
+
+async function loadDesktop() {
+  if (SNAPSHOT) return SNAPSHOT.desktop;
+  return getJSON("/api/desktop");
+}
+
+async function loadCase(workspaceId, caseId) {
+  if (SNAPSHOT) {
+    const view = SNAPSHOT.cases[`${workspaceId}/${caseId}`];
+    if (!view) throw new Error("В снимке этого дела нет.");
+    return JSON.parse(JSON.stringify(view));
+  }
+  return getJSON(
+    `/api/case/${encodeURIComponent(workspaceId)}/${encodeURIComponent(caseId)}`
+  );
 }
 
 /* ── Верхняя полоса и список пространств ─────────────────────────── */
@@ -97,9 +117,7 @@ async function openCase(workspaceId, caseId) {
   state.caseId = caseId;
   $("case-title").textContent = "Загрузка разбора…";
   try {
-    state.view = await getJSON(
-      `/api/case/${encodeURIComponent(workspaceId)}/${encodeURIComponent(caseId)}`
-    );
+    state.view = await loadCase(workspaceId, caseId);
   } catch (error) {
     $("case-title").textContent = "Дело не открылось";
     $("case-id").textContent = error.message;
@@ -452,10 +470,27 @@ async function submitRemark(event) {
   event.preventDefault();
   const text = $("remark-text").value.trim();
   if (!text) return;
+  const kind = $("remark-kind").value;
+  const signal = $("remark-signal").checked;
+
+  if (SNAPSHOT) {
+    // Снимок не пересчитывает дело: исход берётся из заранее вычисленного
+    // сервером набора, а не собирается здесь заново.
+    const outcome = JSON.parse(
+      JSON.stringify(SNAPSHOT.remark_outcomes[`${kind}:${signal ? 1 : 0}`])
+    );
+    if (outcome.candidate) {
+      outcome.candidate.statement = text;
+    }
+    $("outcomes").append(outcomeNode(outcome));
+    $("remark-text").value = "";
+    return;
+  }
+
   const body = {
-    kind: $("remark-kind").value,
+    kind: kind,
     text_ru: text,
-    as_learning_signal: $("remark-signal").checked,
+    as_learning_signal: signal,
   };
   const response = await fetch(
     `/api/case/${encodeURIComponent(state.workspaceId)}/${encodeURIComponent(state.caseId)}/remark`,
@@ -474,11 +509,29 @@ async function submitRemark(event) {
   $("remark-text").value = "";
 }
 
+/* ── Снимок ──────────────────────────────────────────────────────── */
+
+function markAsSnapshot() {
+  $("org-sub").textContent =
+    "статический снимок стенда · данные вычислены конвейером, пересчёт недоступен";
+  const foot = document.querySelector(".foot");
+  foot.prepend(
+    el(
+      "p",
+      null,
+      "Это снимок, а не живой стенд. Разборы всех дел вычислены тем же кодом, " +
+        "что и на сервере, и вложены в файл; новых дел снимок посчитать не может, " +
+        "а исходы замечаний в нём заранее вычислены, а не собраны в браузере."
+    )
+  );
+}
+
 /* ── Запуск ──────────────────────────────────────────────────────── */
 
 async function start() {
-  state.desktop = await getJSON("/api/desktop");
+  state.desktop = await loadDesktop();
   renderTopbar();
+  if (SNAPSHOT) markAsSnapshot();
   renderRail();
   renderRemarkHint();
 

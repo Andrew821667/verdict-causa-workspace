@@ -34,12 +34,14 @@ from causa.institutional.contracts.synthetic_reviewed_analysis import (
 from causa.phase0.demo_trace import build_supply_dispute_demo_trace
 from causa.reasoning.counterfactual import CounterfactualBudget
 from causa.translation_pipeline import TranslationBundle
-from causa.ui.case_map import CaseMap, build_case_map
+from causa.ui.case_map import CaseMap, NodeKind, build_case_map
 from causa.ui.gaps import GapQueue, build_gap_queue
 from causa.ui.institute_titles import INSTITUTE_TITLES_RU
+from causa.ui.labels import SourceLabel, source_labels
 from causa.ui.qualification import CaseQualification, build_case_qualification
 from causa.ui.reasoning import ReasoningView, build_reasoning_view
 from causa.ui.remarks import OperatorRemark, RemarkLedger, build_remark_ledger
+from causa.ui.verdict import CaseVerdict, build_case_verdict
 from causa.ui.workspace import (
     CaseCard,
     Desk,
@@ -67,11 +69,15 @@ class CaseView(BaseModel):
     workspace_id: str
     #: Оговорка о том, чем этот разбор является. Пусто для демонстрационного дела.
     caveat_ru: str = ""
+    #: Главный ответ по делу — то, что читается первым.
+    verdict: CaseVerdict
     qualification: CaseQualification
     reasoning: ReasoningView
     gaps: GapQueue
     map: CaseMap
     remarks: RemarkLedger
+    #: Подписи к идентификаторам источников, на которых держится линия вывода.
+    sources: list[SourceLabel] = Field(default_factory=list)
 
     @property
     def open_debt_ru(self) -> list[str]:
@@ -106,16 +112,23 @@ def build_case_view(
     caveat_ru: str = "",
 ) -> CaseView:
     """Собрать окно дела из результата конвейера."""
+    qualification = build_case_qualification(result)
+    gaps = build_gap_queue(result)
+    case_map = build_case_map(request, result)
     return CaseView(
         case_id=case_id,
         title_ru=title_ru,
         workspace_id=workspace_id,
         caveat_ru=caveat_ru,
-        qualification=build_case_qualification(result),
+        verdict=build_case_verdict(result, qualification, gaps),
+        qualification=qualification,
         reasoning=build_reasoning_view(request, result, bundle),
-        gaps=build_gap_queue(result),
-        map=build_case_map(request, result),
+        gaps=gaps,
+        map=case_map,
         remarks=build_remark_ledger(case_id, remarks or []),
+        sources=source_labels(
+            [node.title_ru for node in case_map.nodes if node.kind is NodeKind.SOURCE]
+        ),
     )
 
 
