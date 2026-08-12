@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import raw from "@/data/desktop.json";
 import type { CaseView, Dataset } from "@/lib/types";
 import { Chip } from "@/components/primitives";
@@ -11,6 +11,8 @@ import { Qualification } from "@/components/Qualification";
 import { Remarks } from "@/components/Remarks";
 import { DebateView, Registers } from "@/components/DebateView";
 import { CaseMap } from "@/components/CaseMap";
+import { ChangePanel } from "@/components/ChangePanel";
+import { detectApi } from "@/lib/api";
 
 /**
  * Данные вложены в сборку намеренно: разбор пяти дел вычислен Python и
@@ -34,8 +36,18 @@ export default function Page() {
   const [selected, setSelected] = useState(`${first.id}/${first.cases[0].case_id}`);
   const [tab, setTab] = useState<TabId>("overview");
   const [railOpen, setRailOpen] = useState(false);
+  const [live, setLive] = useState(false);
+  const [override, setOverride] = useState<Record<string, CaseView>>({});
+  const [change, setChange] = useState<Record<string, unknown> | null>(null);
 
-  const view = useMemo<CaseView>(() => dataset.cases[selected], [selected]);
+  useEffect(() => {
+    detectApi().then(setLive);
+  }, []);
+
+  const view = useMemo<CaseView>(
+    () => override[selected] ?? dataset.cases[selected],
+    [selected, override],
+  );
 
   return (
     <div className="min-h-full">
@@ -47,6 +59,7 @@ export default function Page() {
           onSelect={(key) => {
             setSelected(key);
             setTab("overview");
+            setChange(null);
             setRailOpen(false);
           }}
           open={railOpen}
@@ -88,8 +101,21 @@ export default function Page() {
           {tab === "overview" && (
             <div className="space-y-5">
               <VerdictHero verdict={view.verdict} />
+              {change && <ChangePanel change={change} onClose={() => setChange(null)} />}
               <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,380px)]">
-                <GapQueue gaps={view.gaps.gaps} notes={view.gaps.notes_ru} />
+                <GapQueue
+                  gaps={view.gaps.gaps}
+                  notes={view.gaps.notes_ru}
+                  live={live}
+                  caseKey={selected}
+                  onChanged={(payload) => {
+                    setChange(payload.change as Record<string, unknown>);
+                    setOverride({
+                      ...override,
+                      [selected]: payload.case as unknown as CaseView,
+                    });
+                  }}
+                />
                 <div className="space-y-5">
                   <Qualification qualification={view.qualification} />
                   <Remarks dataset={dataset} initial={view.remarks.outcomes} />

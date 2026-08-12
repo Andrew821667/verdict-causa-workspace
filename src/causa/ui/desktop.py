@@ -26,21 +26,21 @@ from causa.institutional.contracts.real_case_scenarios import REAL_CASE_SCENARIO
 from causa.institutional.contracts.reviewed_analysis import (
     ReviewedContractAnalysisRequest,
     ReviewedContractAnalysisResult,
-    run_reviewed_contract_analysis,
 )
 from causa.institutional.contracts.synthetic_reviewed_analysis import (
     build_synthetic_supply_analysis_sources,
 )
 from causa.phase0.demo_trace import build_supply_dispute_demo_trace
-from causa.reasoning.counterfactual import CounterfactualBudget
 from causa.translation_pipeline import TranslationBundle
 from causa.ui.case_map import CaseMap, NodeKind, build_case_map
 from causa.ui.gaps import GapQueue, build_gap_queue
+from causa.ui.documents import GapClosure, UploadedDocument
 from causa.ui.institute_titles import INSTITUTE_TITLES_RU
 from causa.ui.labels import SourceLabel, source_labels
 from causa.ui.qualification import CaseQualification, build_case_qualification
 from causa.ui.reasoning import ReasoningView, build_reasoning_view
 from causa.ui.remarks import OperatorRemark, RemarkLedger, build_remark_ledger
+from causa.ui.session import CaseInputs, CaseSession
 from causa.ui.verdict import CaseVerdict, build_case_verdict
 from causa.ui.workspace import (
     CaseCard,
@@ -78,6 +78,10 @@ class CaseView(BaseModel):
     remarks: RemarkLedger
     #: Подписи к идентификаторам источников, на которых держится линия вывода.
     sources: list[SourceLabel] = Field(default_factory=list)
+    #: Документы, приложенные оператором в этой сессии.
+    documents: list[UploadedDocument] = Field(default_factory=list)
+    #: Пробелы, которые оператор закрыл документом.
+    closures: list[GapClosure] = Field(default_factory=list)
 
     @property
     def open_debt_ru(self) -> list[str]:
@@ -110,6 +114,8 @@ def build_case_view(
     bundle: TranslationBundle | None = None,
     remarks: list[OperatorRemark] | None = None,
     caveat_ru: str = "",
+    documents: list[UploadedDocument] | None = None,
+    closures: list[GapClosure] | None = None,
 ) -> CaseView:
     """Собрать окно дела из результата конвейера."""
     qualification = build_case_qualification(result)
@@ -129,20 +135,27 @@ def build_case_view(
         sources=source_labels(
             [node.title_ru for node in case_map.nodes if node.kind is NodeKind.SOURCE]
         ),
+        documents=list(documents or []),
+        closures=list(closures or []),
+    )
+
+
+def build_demo_case_inputs() -> CaseInputs:
+    """Входы демонстрационного дела о поставке."""
+    trace = build_supply_dispute_demo_trace()
+    return CaseInputs(
+        case_id=trace.analysis_result.case_id,
+        title_ru="Поставка: спор о просрочке передачи товара",
+        workspace_id=DEMO_WORKSPACE_ID,
+        request=trace.analysis_request,
+        sources=list(trace.legal_sources),
+        bundle=trace.translation_bundle,
     )
 
 
 def build_demo_case_view() -> CaseView:
     """Демонстрационное дело о поставке — со всеми артефактами Этапа 0."""
-    trace = build_supply_dispute_demo_trace()
-    return build_case_view(
-        case_id=trace.analysis_result.case_id,
-        title_ru="Поставка: спор о просрочке передачи товара",
-        workspace_id=DEMO_WORKSPACE_ID,
-        request=trace.analysis_request,
-        result=trace.analysis_result,
-        bundle=trace.translation_bundle,
-    )
+    return CaseSession(build_demo_case_inputs()).build_view()
 
 
 _PRACTICE_CAVEAT = (
@@ -153,25 +166,32 @@ _PRACTICE_CAVEAT = (
 )
 
 
+def build_practice_case_inputs() -> list[CaseInputs]:
+    """Входы четырёх дел Верховного Суда."""
+    sources = build_synthetic_supply_analysis_sources()
+    return [
+        CaseInputs(
+            case_id=scenario.case_id,
+            title_ru=f"{scenario.case_number} — {INSTITUTE_TITLES_RU[scenario.institute]}",
+            workspace_id=PRACTICE_WORKSPACE_ID,
+            request=build_real_case_request(scenario),
+            sources=list(sources),
+            caveat_ru=f"{_PRACTICE_CAVEAT} Позиция суда: {scenario.court_holding_ru}",
+        )
+        for scenario in REAL_CASE_SCENARIOS
+    ]
+
+
 def build_practice_case_views() -> list[CaseView]:
     """Четыре дела Верховного Суда, прогнанные через весь конвейер."""
-    sources = build_synthetic_supply_analysis_sources()
-    budget = CounterfactualBudget()
-    views: list[CaseView] = []
-    for scenario in REAL_CASE_SCENARIOS:
-        request = build_real_case_request(scenario)
-        result = run_reviewed_contract_analysis(request, sources, counterfactual_budget=budget)
-        views.append(
-            build_case_view(
-                case_id=scenario.case_id,
-                title_ru=(f"{scenario.case_number} — {INSTITUTE_TITLES_RU[scenario.institute]}"),
-                workspace_id=PRACTICE_WORKSPACE_ID,
-                request=request,
-                result=result,
-                caveat_ru=f"{_PRACTICE_CAVEAT} Позиция суда: {scenario.court_holding_ru}",
-            )
-        )
-    return views
+    return [CaseSession(inputs).build_view() for inputs in build_practice_case_inputs()]
+
+
+def build_demo_sessions() -> list[CaseSession]:
+    """Сессии всех дел стенда: они умеют пересчитываться, а окна — нет."""
+    return [
+        CaseSession(inputs) for inputs in [build_demo_case_inputs(), *build_practice_case_inputs()]
+    ]
 
 
 class DesktopState(BaseModel):
@@ -193,10 +213,16 @@ class DesktopState(BaseModel):
         )
 
 
-def build_demo_desktop() -> DesktopState:
-    """Собрать стенд целиком: организация, два пространства, пять дел."""
-    demo_view = build_demo_case_view()
-    practice_views = build_practice_case_views()
+def build_demo_desktop(views: list[CaseView] | None = None) -> DesktopState:
+    """Собрать стенд целиком: организация, два пространства, пять дел.
+
+    Готовые окна можно передать: после пересчёта дела стол пересобирается из
+    уже посчитанных окон, а не считает всё заново.
+    """
+    if views is None:
+        views = [build_demo_case_view(), *build_practice_case_views()]
+    demo_view = next(view for view in views if view.workspace_id == DEMO_WORKSPACE_ID)
+    practice_views = [view for view in views if view.workspace_id == PRACTICE_WORKSPACE_ID]
 
     demo_workspace = Workspace(
         id=DEMO_WORKSPACE_ID,

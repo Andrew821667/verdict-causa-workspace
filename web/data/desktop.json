@@ -1513,7 +1513,9 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "supplied_date",
+      "fact_updates": {}
      },
      {
       "id": "gap:decisive:activate_valid_exception",
@@ -1530,7 +1532,11 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "valid_exception_applies": true
+      }
      },
      {
       "id": "gap:decisive:confirm_nonconforming_performance",
@@ -1546,7 +1552,11 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "performance_nonconforming": true
+      }
      },
      {
       "id": "gap:decisive:establish_payment_default",
@@ -1563,7 +1573,13 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "payment_duty_exists": true,
+       "payment_due": true,
+       "payment_missed": true
+      }
      },
      {
       "id": "gap:decisive:request_damages_with_causation",
@@ -1580,7 +1596,13 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "causation_established": true,
+       "remedy_requested": true
+      }
      },
      {
       "id": "gap:decisive:request_damages_without_causation",
@@ -1597,7 +1619,12 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "remedy_requested": true
+      }
      },
      {
       "id": "gap:decisive:test_limitation_bar",
@@ -1614,7 +1641,14 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "causation_established": true,
+       "remedy_requested": true,
+       "limitation_period_expired": true
+      }
      }
     ],
     "notes_ru": [
@@ -2687,7 +2721,9 @@
      "kind_ru": "разъяснение высшей инстанции",
      "recognised": true
     }
-   ]
+   ],
+   "documents": [],
+   "closures": []
   },
   "ws-practice-vs/vs-4-kg22-2-k1": {
    "version": "ui-desktop-v0",
@@ -4066,7 +4102,9 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "supplied_date",
+      "fact_updates": {}
      },
      {
       "id": "gap:decisive:activate_valid_exception",
@@ -4083,7 +4121,11 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "valid_exception_applies": true
+      }
      },
      {
       "id": "gap:decisive:confirm_nonconforming_performance",
@@ -4099,7 +4141,11 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "performance_nonconforming": true
+      }
      },
      {
       "id": "gap:decisive:establish_payment_default",
@@ -4116,7 +4162,13 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "payment_duty_exists": true,
+       "payment_due": true,
+       "payment_missed": true
+      }
      },
      {
       "id": "gap:decisive:request_damages_with_causation",
@@ -4133,7 +4185,13 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "causation_established": true,
+       "remedy_requested": true
+      }
      },
      {
       "id": "gap:decisive:request_damages_without_causation",
@@ -4150,7 +4208,12 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "remedy_requested": true
+      }
      },
      {
       "id": "gap:decisive:test_limitation_bar",
@@ -4167,7 +4230,14 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "causation_established": true,
+       "remedy_requested": true,
+       "limitation_period_expired": true
+      }
      }
     ],
     "notes_ru": [
@@ -5262,7 +5332,9 @@
      "kind_ru": "разъяснение высшей инстанции",
      "recognised": true
     }
-   ]
+   ],
+   "documents": [],
+   "closures": []
   },
   "ws-practice-vs/vs-18-kg17-121": {
    "version": "ui-desktop-v0",
@@ -6628,7 +6700,9 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "supplied_date",
+      "fact_updates": {}
      },
      {
       "id": "gap:decisive:activate_valid_exception",
@@ -6645,7 +6719,11 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "valid_exception_applies": true
+      }
      },
      {
       "id": "gap:decisive:confirm_nonconforming_performance",
@@ -6661,7 +6739,11 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "performance_nonconforming": true
+      }
      },
      {
       "id": "gap:decisive:establish_payment_default",
@@ -6678,7 +6760,13 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "payment_duty_exists": true,
+       "payment_due": true,
+       "payment_missed": true
+      }
      },
      {
       "id": "gap:decisive:request_damages_with_causation",
@@ -6695,7 +6783,13 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "causation_established": true,
+       "remedy_requested": true
+      }
      },
      {
       "id": "gap:decisive:request_damages_without_causation",
@@ -6712,7 +6806,12 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "remedy_requested": true
+      }
      },
      {
       "id": "gap:decisive:test_limitation_bar",
@@ -6729,7 +6828,14 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "causation_established": true,
+       "remedy_requested": true,
+       "limitation_period_expired": true
+      }
      }
     ],
     "notes_ru": [
@@ -7802,7 +7908,9 @@
      "kind_ru": "разъяснение высшей инстанции",
      "recognised": true
     }
-   ]
+   ],
+   "documents": [],
+   "closures": []
   },
   "ws-practice-vs/vs-5-kg24-43-k2": {
    "version": "ui-desktop-v0",
@@ -9185,7 +9293,9 @@
       ],
       "institute": "property_rights",
       "institute_ru": "Право собственности и его защита",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": null,
+      "fact_updates": {}
      },
      {
       "id": "gap:human:general_effects:requires_human_general_effects_assessment",
@@ -9198,7 +9308,9 @@
       ],
       "institute": "general_effects",
       "institute_ru": "Применение общих положений ГК к выводам институтов",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": null,
+      "fact_updates": {}
      },
      {
       "id": "gap:decisive:correct_performance_date",
@@ -9215,7 +9327,9 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "supplied_date",
+      "fact_updates": {}
      },
      {
       "id": "gap:decisive:activate_valid_exception",
@@ -9232,7 +9346,11 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "valid_exception_applies": true
+      }
      },
      {
       "id": "gap:decisive:confirm_nonconforming_performance",
@@ -9248,7 +9366,11 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "performance_nonconforming": true
+      }
      },
      {
       "id": "gap:decisive:establish_payment_default",
@@ -9265,7 +9387,13 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "payment_duty_exists": true,
+       "payment_due": true,
+       "payment_missed": true
+      }
      },
      {
       "id": "gap:decisive:request_damages_with_causation",
@@ -9282,7 +9410,13 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "causation_established": true,
+       "remedy_requested": true
+      }
      },
      {
       "id": "gap:decisive:request_damages_without_causation",
@@ -9299,7 +9433,12 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "remedy_requested": true
+      }
      },
      {
       "id": "gap:decisive:test_limitation_bar",
@@ -9316,7 +9455,14 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "causation_established": true,
+       "remedy_requested": true,
+       "limitation_period_expired": true
+      }
      }
     ],
     "notes_ru": [
@@ -10411,7 +10557,9 @@
      "kind_ru": "разъяснение высшей инстанции",
      "recognised": true
     }
-   ]
+   ],
+   "documents": [],
+   "closures": []
   },
   "ws-practice-vs/vs-310-es15-4563": {
    "version": "ui-desktop-v0",
@@ -11777,7 +11925,9 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "supplied_date",
+      "fact_updates": {}
      },
      {
       "id": "gap:decisive:activate_valid_exception",
@@ -11794,7 +11944,11 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "valid_exception_applies": true
+      }
      },
      {
       "id": "gap:decisive:confirm_nonconforming_performance",
@@ -11810,7 +11964,11 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "performance_nonconforming": true
+      }
      },
      {
       "id": "gap:decisive:establish_payment_default",
@@ -11827,7 +11985,13 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "payment_duty_exists": true,
+       "payment_due": true,
+       "payment_missed": true
+      }
      },
      {
       "id": "gap:decisive:request_damages_with_causation",
@@ -11844,7 +12008,13 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "causation_established": true,
+       "remedy_requested": true
+      }
      },
      {
       "id": "gap:decisive:request_damages_without_causation",
@@ -11861,7 +12031,12 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "remedy_requested": true
+      }
      },
      {
       "id": "gap:decisive:test_limitation_bar",
@@ -11878,7 +12053,14 @@
       ],
       "institute": "constraint",
       "institute_ru": "Обязательство, срок и нарушение",
-      "blocking": true
+      "blocking": true,
+      "closure_kind": "asserted_fact",
+      "fact_updates": {
+       "loss_claimed": true,
+       "causation_established": true,
+       "remedy_requested": true,
+       "limitation_period_expired": true
+      }
      }
     ],
     "notes_ru": [
@@ -12951,7 +13133,9 @@
      "kind_ru": "разъяснение высшей инстанции",
      "recognised": true
     }
-   ]
+   ],
+   "documents": [],
+   "closures": []
   }
  },
  "remark_outcomes": {

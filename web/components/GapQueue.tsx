@@ -1,5 +1,6 @@
 import type { TypedGap } from "@/lib/types";
 import { Card, Chip, SectionTitle, Note } from "./primitives";
+import { GapCloser } from "./GapCloser";
 
 const KIND_TONE = {
   decisive_fact: "warn",
@@ -17,9 +18,15 @@ const KIND_TONE = {
 export function GapQueue({
   gaps,
   notes,
+  live,
+  caseKey,
+  onChanged,
 }: {
   gaps: TypedGap[];
   notes: string[];
+  live: boolean;
+  caseKey: string;
+  onChanged: (payload: Record<string, unknown>) => void;
 }) {
   return (
     <Card className="p-5 sm:p-6">
@@ -78,6 +85,8 @@ export function GapQueue({
                 </div>
               </div>
             )}
+
+            <GapCloser gap={gap} live={live} caseKey={caseKey} onChanged={onChanged} />
           </li>
         ))}
       </ul>

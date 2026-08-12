@@ -25,28 +25,94 @@
 пространств не должна зависеть от того, какой URL кто-то подобрал.
 """
 
+import base64
+import binascii
 import json
 import mimetypes
+from datetime import date
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
-from causa.ui.desktop import DesktopState, build_demo_desktop
+from causa.ui.desktop import DesktopState, build_demo_desktop, build_demo_sessions
+from causa.ui.documents import (
+    MAX_DOCUMENT_BYTES,
+    ClosureKind,
+    DocumentTooLargeError,
+    GapClosure,
+    build_document,
+)
+from causa.ui.session import CaseSession, GapClosureConflict, compare_views
 from causa.ui.remarks import OperatorRemark, RemarkKind, apply_remark
 
 SERVER_VERSION = "ui-server-v0"
 
 STATIC_ROOT = Path(__file__).parent / "static"
 
+#: Собранный интерфейс на Next.js. Если он есть, стенд отдаёт его: тогда
+#: загрузка документов работает с тем же адресом, что и API, и браузеру не
+#: приходится ходить между двумя серверами.
+WEB_ROOT = Path(__file__).resolve().parents[3] / "web" / "out"
+
+
+def static_root() -> Path:
+    return WEB_ROOT if (WEB_ROOT / "index.html").is_file() else STATIC_ROOT
+
+
 MAX_REMARK_BODY_BYTES = 64 * 1024
+
+#: Маршрут POST → метод сервиса и предел размера тела.
+#:
+#: Файл приходит в base64, поэтому его предел заметно больше замечания и
+#: больше самого файла: кодирование добавляет треть.
+_POST_ACTIONS: dict[str, tuple[str, int]] = {
+    "remark": ("add_remark", MAX_REMARK_BODY_BYTES),
+    "document": ("add_document", 2 * MAX_DOCUMENT_BYTES),
+    "close-gap": ("close_gap", MAX_REMARK_BODY_BYTES),
+}
 
 
 class DesktopService:
-    """Состояние стенда: собранный стол и замечания, добавленные в этой сессии."""
+    """Состояние стенда: сессии дел и всё, что оператор к ним добавил.
 
-    def __init__(self, state: DesktopState | None = None) -> None:
-        self.state = state if state is not None else build_demo_desktop()
+    Сессии нужны потому, что дело обязано пересчитываться: приложенный документ
+    меняет факты, а факты меняют вывод. Стол пересобирается из уже посчитанных
+    окон — заново считается только изменившееся дело.
+    """
+
+    def __init__(
+        self,
+        state: DesktopState | None = None,
+        sessions: list[CaseSession] | None = None,
+    ) -> None:
+        if sessions is None and state is None:
+            sessions = build_demo_sessions()
+        self._sessions = {session.inputs.key: session for session in (sessions or [])}
+        if state is not None:
+            self.state = state
+        else:
+            self.state = build_demo_desktop(
+                [session.build_view() for session in self._sessions.values()]
+            )
         self._remarks: dict[str, list[OperatorRemark]] = {}
+
+    def session(self, workspace_id: str, case_id: str) -> CaseSession:
+        # Доступ проверяется столом до того, как дело будет найдено.
+        self.state.desk.case(workspace_id, case_id)
+        key = f"{workspace_id}/{case_id}"
+        session = self._sessions.get(key)
+        if session is None:
+            raise KeyError(f"Дело {case_id} открыто только на чтение: пересчёт для него не собран.")
+        return session
+
+    def _replace_view(self, view) -> None:
+        views = [
+            view
+            if existing.workspace_id == view.workspace_id and existing.case_id == view.case_id
+            else existing
+            for existing in self.state.case_views
+        ]
+        self.state = build_demo_desktop(views)
 
     def desktop_payload(self) -> dict:
         desk = self.state.desk
@@ -115,6 +181,56 @@ class DesktopService:
         self._remarks.setdefault(case_id, []).append(remark)
         return apply_remark(remark).model_dump(mode="json")
 
+    def add_document(self, workspace_id: str, case_id: str, body: dict) -> dict:
+        """Принять файл. Содержимое не разбирается — только считается отпечаток."""
+        session = self.session(workspace_id, case_id)
+        try:
+            content = base64.b64decode(body["content_base64"], validate=True)
+        except (KeyError, binascii.Error) as error:
+            raise ValueError(f"Содержимое файла передано неверно: {error}.") from error
+        document = session.add_document(
+            build_document(
+                case_id=case_id,
+                filename=body["filename"],
+                content=content,
+                uploaded_by=self.state.desk.operator.id,
+                media_type=body.get("media_type", "application/octet-stream"),
+                uploaded_on=date.today(),
+            )
+        )
+        return {
+            "document": document.model_dump(mode="json"),
+            "note_ru": (
+                "Файл приобщён к делу. Система его не читает: чтобы он повлиял на "
+                "вывод, укажите, какой пробел он закрывает."
+            ),
+        }
+
+    def close_gap(self, workspace_id: str, case_id: str, body: dict) -> dict:
+        """Закрыть пробел документом и пересчитать дело целиком."""
+        session = self.session(workspace_id, case_id)
+        before = self.state.view(workspace_id, case_id)
+        closure = GapClosure(
+            gap_id=body["gap_id"],
+            document_id=body["document_id"],
+            kind=ClosureKind(body.get("kind", ClosureKind.ASSERTED_FACT.value)),
+            fact_updates=dict(body.get("fact_updates", {})),
+            agreed_due_date=_optional_date(body.get("agreed_due_date")),
+            actual_performance_date=_optional_date(body.get("actual_performance_date")),
+            statement_ru=body.get("statement_ru", ""),
+        )
+        after = session.close_gap(closure)
+        self._replace_view(after)
+        return {
+            "closure": closure.model_dump(mode="json"),
+            "change": compare_views(before, after).model_dump(mode="json"),
+            "case": self.case_payload(workspace_id, case_id),
+        }
+
+
+def _optional_date(value: str | None) -> date | None:
+    return date.fromisoformat(value) if value else None
+
 
 def build_handler(service: DesktopService) -> type[BaseHTTPRequestHandler]:
     class Handler(BaseHTTPRequestHandler):
@@ -136,9 +252,10 @@ def build_handler(service: DesktopService) -> type[BaseHTTPRequestHandler]:
             self._send_json({"error_ru": message_ru}, status=status)
 
         def _serve_static(self, path: str) -> None:
+            root = static_root()
             relative = "index.html" if path in ("", "/") else path.lstrip("/")
-            target = (STATIC_ROOT / relative).resolve()
-            if not str(target).startswith(str(STATIC_ROOT.resolve())) or not target.is_file():
+            target = (root / relative).resolve()
+            if not str(target).startswith(str(root.resolve())) or not target.is_file():
                 self._send_error_ru(404, f"Файл не найден: {relative}")
                 return
             content_type, _ = mimetypes.guess_type(target.name)
@@ -175,32 +292,39 @@ def build_handler(service: DesktopService) -> type[BaseHTTPRequestHandler]:
 
         def do_POST(self) -> None:  # noqa: N802 - имя задано базовым классом
             path = urlparse(self.path).path
-            if not path.startswith("/api/case/") or not path.endswith("/remark"):
+            action = next((name for name in _POST_ACTIONS if path.endswith("/" + name)), None)
+            if not path.startswith("/api/case/") or action is None:
                 self._send_error_ru(404, "Маршрут не поддерживается.")
                 return
             parts = [
                 unquote(part)
-                for part in path[len("/api/case/") : -len("/remark")].split("/")
+                for part in path[len("/api/case/") : -len("/" + action)].split("/")
                 if part
             ]
             if len(parts) != 2:
-                self._send_error_ru(404, "Ожидается /api/case/<пространство>/<дело>/remark.")
+                self._send_error_ru(404, f"Ожидается /api/case/<пространство>/<дело>/{action}.")
                 return
             length = int(self.headers.get("Content-Length") or 0)
-            if length > MAX_REMARK_BODY_BYTES:
-                self._send_error_ru(413, "Замечание слишком большое для стенда.")
+            if length > _POST_ACTIONS[action][1]:
+                self._send_error_ru(413, "Тело запроса слишком велико для стенда.")
                 return
             try:
                 body = json.loads(self.rfile.read(length) or b"{}")
             except json.JSONDecodeError:
                 self._send_error_ru(400, "Тело запроса не является JSON.")
                 return
+            handler = getattr(service, _POST_ACTIONS[action][0])
             try:
-                self._send_json(service.add_remark(parts[0], parts[1], body), status=201)
+                self._send_json(handler(parts[0], parts[1], body), status=201)
             except PermissionError as error:
                 self._send_error_ru(403, str(error))
+            except DocumentTooLargeError as error:
+                self._send_error_ru(413, str(error))
+            except GapClosureConflict as conflict:
+                # Не ошибка запроса, а отказ слоя сверки: он несёт разбор.
+                self._send_json(conflict.payload(), status=409)
             except KeyError as error:
-                self._send_error_ru(400, f"В замечании не хватает поля: {error}.")
+                self._send_error_ru(400, f"В запросе не хватает поля или объекта: {error}.")
             except ValueError as error:
                 self._send_error_ru(400, str(error))
 

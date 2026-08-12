@@ -88,6 +88,10 @@ export interface TypedGap {
   institute: string | null;
   institute_ru: string | null;
   blocking: boolean;
+  /** Как пробел закрывается: утверждением о факте, датой или никак. */
+  closure_kind: "asserted_fact" | "supplied_date" | null;
+  /** Какие факты станут какими, если оператор подтвердит их документом. */
+  fact_updates: Record<string, boolean>;
 }
 
 export interface MapNode {
@@ -137,6 +141,8 @@ export interface CaseView {
   map: { nodes: MapNode[]; edges: MapEdge[]; notes_ru: string[] };
   remarks: { outcomes: RemarkOutcome[] };
   sources: SourceLabel[];
+  documents: { id: string; filename: string; size_bytes: number; sha256: string }[];
+  closures: { gap_id: string; document_id: string; statement_ru: string }[];
 }
 
 export interface CaseCard {

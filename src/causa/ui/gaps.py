@@ -35,6 +35,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from causa.institutional.contracts.legal_operators import build_contract_legal_operator_library
 from causa.institutional.contracts.reviewed_analysis import ReviewedContractAnalysisResult
+from causa.ui.documents import DERIVED_FACTS_RU, ClosureKind
 from causa.ui.institute_titles import INSTITUTE_TITLES_RU
 
 GAP_QUEUE_VERSION = "ui-gap-queue-v0"
@@ -69,6 +70,10 @@ class TypedGap(BaseModel):
     institute: str | None = None
     institute_ru: str | None = None
     blocking: bool = False
+    #: Как пробел закрывается: утверждением о факте, датой или никак.
+    closure_kind: ClosureKind | None = None
+    #: Какие факты станут какими, если оператор подтвердит их документом.
+    fact_updates: dict[str, bool] = Field(default_factory=dict)
 
 
 class GapQueue(BaseModel):
@@ -101,6 +106,11 @@ def _decisive_fact_gaps(result: ReviewedContractAnalysisResult) -> list[TypedGap
         if not scenario.material:
             continue
         operator = library.get(scenario.operator_id)
+        fact_updates = {delta.field_name: delta.after for delta in scenario.fact_deltas}
+        # Пропуск срока не утверждается, а вычисляется из дат, поэтому такой
+        # пробел закрывается датой из документа, а не галочкой.
+        derived = [field for field in fact_updates if field in DERIVED_FACTS_RU]
+        closure_kind = ClosureKind.SUPPLIED_DATE if derived else ClosureKind.ASSERTED_FACT
         gaps.append(
             TypedGap(
                 id=f"gap:decisive:{scenario.operator_code.value}",
@@ -112,6 +122,8 @@ def _decisive_fact_gaps(result: ReviewedContractAnalysisResult) -> list[TypedGap
                 institute="constraint",
                 institute_ru=INSTITUTE_TITLES_RU["constraint"],
                 blocking=scenario.id in critical,
+                closure_kind=closure_kind,
+                fact_updates={} if derived else fact_updates,
             )
         )
     return gaps

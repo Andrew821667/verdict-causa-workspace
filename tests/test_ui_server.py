@@ -13,7 +13,13 @@ from causa.ui.desktop import (
     PRACTICE_WORKSPACE_ID,
     build_demo_desktop,
 )
-from causa.ui.server import STATIC_ROOT, DesktopService, build_handler
+from causa.ui.server import (
+    STATIC_ROOT,
+    WEB_ROOT,
+    DesktopService,
+    build_handler,
+    static_root,
+)
 
 
 @pytest.fixture(scope="module")
@@ -170,11 +176,19 @@ def test_remarks_appear_in_the_case_after_they_are_added(base_url) -> None:
     assert "remark-test-visible" in ids
 
 
-def test_static_files_exist_and_are_served(base_url) -> None:
-    for name in ("index.html", "styles.css", "app.js"):
-        assert (STATIC_ROOT / name).is_file(), name
-        with urllib.request.urlopen(f"{base_url}/{name}") as response:  # noqa: S310
-            assert response.status == 200
+def test_the_served_interface_is_the_built_one_when_it_exists(base_url) -> None:
+    """Стенд отдаёт сборку Next.js, если она есть, и свой запасной вид, если нет.
+
+    Это важно не для красоты: загрузка документа обращается к API по тому же
+    адресу, и разводить интерфейс и API по разным серверам значило бы чинить
+    CORS вместо того, чтобы проверять разбор.
+    """
+    root = static_root()
+
+    assert (root / "index.html").is_file()
+    assert root in (WEB_ROOT, STATIC_ROOT)
+    with urllib.request.urlopen(f"{base_url}/index.html") as response:  # noqa: S310
+        assert response.status == 200
 
 
 def test_path_traversal_is_refused(base_url) -> None:
