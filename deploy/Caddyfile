@@ -11,7 +11,8 @@
 
 stand.example.com {
 	basic_auth {
-		# caddy hash-password --plaintext 'ваш-пароль'
+		# Строку ниже подставляет ./deploy/configure.sh: он спросит пароль,
+		# не покажет его на экране и запишет сюда только bcrypt-хэш.
 		operator ЗАМЕНИТЕ_НА_ХЭШ
 	}
 

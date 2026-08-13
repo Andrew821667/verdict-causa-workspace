@@ -51,12 +51,12 @@ PY
 
 cat <<'NEXT'
 
-Готово. Дальше — вручную, по deploy/README.md:
+Готово. Дальше:
 
-  1. служба macOS: скопировать deploy/com.verdictcausa.stand.plist в
-     ~/Library/LaunchAgents/, заменить путь пользователя, launchctl load;
-  2. Caddy: в deploy/Caddyfile заменить поддомен, почту и хэш пароля,
-     затем sudo caddy run --config deploy/Caddyfile.
+  ./deploy/configure.sh
+
+Он спросит поддомен, почту для Let's Encrypt и пароль и соберёт рабочие файлы
+в deploy/local/. Запускать службу и Caddy — по deploy/README.md, вручную.
 
 Стенд слушает только 127.0.0.1:8765. Аутентификации в приложении нет —
 без basic_auth в Caddy наружу его выпускать нельзя.

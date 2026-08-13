@@ -31,27 +31,38 @@
 - доменное имя, A-запись которого указывает на внешний адрес Mac mini, и
   проброшенные на него порты 80 и 443.
 
-## Установка
+## Установка: два шага
 
 ```bash
 git clone <адрес репозитория> ~/verdict-causa
 cd ~/verdict-causa
-./deploy/install.sh
+./deploy/install.sh      # окружение, пакет, сборка интерфейса, проверка
+./deploy/configure.sh    # поддомен, почта, пароль
 ```
 
-Скрипт создаёт виртуальное окружение, ставит пакет, собирает интерфейс,
-проверяет, что стенд поднимается, и печатает следующий шаг. Ничего в системе он
-не включает: службу и веб-сервер вы запускаете сами — установка, которая молча
-открывает порт наружу, недопустима.
+`install.sh` создаёт виртуальное окружение, ставит пакет, собирает интерфейс и
+проверяет, что стенд поднимается.
+
+`configure.sh` спрашивает поддомен, почту для Let's Encrypt и пароль, после чего
+собирает из шаблонов рабочие файлы в `deploy/local/`. Пароль он спрашивает
+дважды, не показывает на экране, не передаёт в аргументах команды (их видно в
+`ps`) и нигде не сохраняет: в файл идёт только bcrypt-хэш. Готовый `Caddyfile`
+проверяется командой `caddy validate` до того, как что-то откроется наружу.
+Каталог `deploy/local/` не попадает в git.
+
+Ни один из скриптов ничего в системе не включает и портов не открывает: службу и
+веб-сервер запускаете вы — установка, которая молча выпускает приложение наружу,
+недопустима.
 
 ## Служба macOS
 
 ```bash
-cp deploy/com.verdictcausa.stand.plist ~/Library/LaunchAgents/
-# в файле замените /Users/ВАШ_ПОЛЬЗОВАТЕЛЬ на реальный домашний каталог
+cp deploy/local/com.verdictcausa.stand.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.verdictcausa.stand.plist
 launchctl start com.verdictcausa.stand
 ```
+
+Пути внутри файла `configure.sh` уже подставил — править ничего не нужно.
 
 Служба слушает `127.0.0.1:8765` — только локально. Наружу её выпускает Caddy.
 
@@ -64,26 +75,20 @@ launchctl start com.verdictcausa.stand
 
 ## Поддомен и TLS
 
-1. Откройте `deploy/Caddyfile`, замените `stand.example.com` на свой поддомен и
-   почту для Let's Encrypt.
-2. Создайте пароль:
+Файл уже собран `configure.sh`, остаётся запустить:
 
-   ```bash
-   caddy hash-password --plaintext 'ваш-пароль'
-   ```
+```bash
+sudo caddy run --config deploy/local/Caddyfile
+```
 
-   Вставьте полученный хэш в `basic_auth` вместо заглушки.
-3. Запустите:
-
-   ```bash
-   sudo caddy run --config deploy/Caddyfile
-   ```
-
-   Либо как службу: `sudo brew services start caddy` с этим файлом в
-   `/opt/homebrew/etc/Caddyfile`.
+Либо как службу: `sudo cp deploy/local/Caddyfile /opt/homebrew/etc/Caddyfile &&
+sudo brew services start caddy`.
 
 Caddy сам получит и продлит сертификат. Порт 80 нужен для проверки владения
-доменом.
+доменом — без него Let's Encrypt не подтвердит, что домен ваш.
+
+Сменить пароль или поддомен позже — тот же `./deploy/configure.sh`: он перезапишет
+`deploy/local/` целиком. Перезапустите Caddy после этого.
 
 ## Обновление
 
@@ -92,6 +97,10 @@ cd ~/verdict-causa && git pull
 ./deploy/install.sh
 launchctl stop com.verdictcausa.stand && launchctl start com.verdictcausa.stand
 ```
+
+`configure.sh` при обновлении повторять не нужно: `deploy/local/` переживает
+`git pull`, потому что не отслеживается git. Повторите его, только если менялись
+шаблоны в `deploy/` — об этом скажет запись в `docs/contracts-ru-v0-changelog.md`.
 
 Пересборка интерфейса обязательна: данные разбора вкладываются в сборку, и
 старая сборка покажет старые выводы.
@@ -104,3 +113,5 @@ launchctl stop com.verdictcausa.stand && launchctl start com.verdictcausa.stand
 | браузер просит пароль и не пускает | хэш в `basic_auth` не соответствует паролю |
 | Caddy не получает сертификат | порт 80 не проброшен либо A-запись не обновилась |
 | интерфейс открылся, но кнопка загрузки выключена | стенд отдаёт снимок: не собран `web/out` |
+| `configure.sh` говорит «caddy не найден» | `brew install caddy` |
+| `configure.sh` говорит «остались заглушки» | шаблон в `deploy/` правили руками — верните его из git |
