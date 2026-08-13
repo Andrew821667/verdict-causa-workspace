@@ -1895,6 +1895,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="0.99.0",
+        to_version="1.0.0",
+        reasons=[
+            "The general-effects layer gains the creditor-delay input from the attribution-delay institute and a conclusion that the debtor's delay is excused (article 405(3)).",
+            "Artifacts produced before the wiring existed must be regenerated.",
+        ],
+        reasons_ru=[
+            "Слой общих положений получил вход о просрочке кредитора из института возложения ответственности и вывод о снятии просрочки должника (статья 405 пункт 3 ГК РФ).",
+            "Артефакты, собранные до проводки, требуют пересборки.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_general_effects_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

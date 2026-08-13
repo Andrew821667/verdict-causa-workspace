@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.0.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Wires the attribution-delay institute into the general-effects layer: a creditor's delay under article 405(3) removes the ground for treating the debtor as in default.",
+            "The layer gains one input and one conclusion; a breach finding loses its effect when the creditor is in delay, while the contract stays effective and judicial protection stays available.",
+            "Closes the first of the three open connectivity debts named by the layer audit.",
+            "The analysis result gains one field; artifacts must be regenerated.",
+        ],
+        notes_ru=[
+            "Институт возложения ответственности и просрочки сторон проведён в слой общих положений: просрочка кредитора по статье 405 пункт 3 ГК РФ снимает основание считать должника просрочившим.",
+            "Слой получил один вход и один вывод: при просрочке кредитора вывод о нарушении лишается эффекта, а договор продолжает действовать и судебная защита остаётся доступной.",
+            "Закрыт первый из трёх открытых долгов связности, названных аудитом слоя.",
+            "Результат анализа пополнился одним полем; артефакты требуют пересборки.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="0.99.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

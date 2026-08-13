@@ -26437,11 +26437,12 @@
       "party_lacks_capacity": false,
       "object_excluded_from_circulation": false,
       "breach_issue": true,
-      "effective_termination": false
+      "effective_termination": false,
+      "creditor_delay_excuses_debtor": false
     },
     "general_effects_constraint_set": {
       "id": "general-effects-constraint-set:case-supply-1",
-      "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-183-190-199-209-432-v7",
+      "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-183-190-199-209-405-432-v8",
       "source_evaluations": [
         "formation_evaluation",
         "invalidity_evaluation",
@@ -26472,7 +26473,8 @@
         "protection_refused_for_abuse == contract_legally_effective AND abuse_of_right_detected",
         "contractual_claims_enforceable == contract_legally_effective AND judicial_protection_available",
         "institute_conclusions_displaced == NOT contract_legally_effective",
-        "breach_findings_without_effect == breach_issue AND NOT contractual_claims_enforceable",
+        "debtor_delay_excused_by_creditor == breach_issue AND creditor_delay_excuses_debtor",
+        "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor)",
         "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
         "title_transfer_defeated == unauthorized_disposal_detected",
         "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
@@ -26498,6 +26500,7 @@
       "title_transfer_defeated": false,
       "institute_conclusions_displaced": false,
       "breach_findings_without_effect": false,
+      "debtor_delay_excused_by_creditor": false,
       "restitution_regime_applies": false,
       "requires_human_general_effects_assessment": false,
       "reasons_ru": [
@@ -33240,7 +33243,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@0.99.0",
+      "institutional_package_version": "contracts-ru-v0@1.0.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -38143,7 +38146,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@0.99.0",
+      "institutional_package_version": "contracts-ru-v0@1.0.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",

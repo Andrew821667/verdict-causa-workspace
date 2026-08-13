@@ -50,7 +50,8 @@ def test_open_wiring_debt_is_named() -> None:
     report = audit_layer_connectivity()
 
     debt = {entry.institute for entry in report.open_wiring_debt}
-    assert debt == {"attribution_delay", "meeting_decisions", "obligation_dynamics"}
+    # `attribution_delay` проведён в слой выпуском 1.0.0 и вышел из долга.
+    assert debt == {"meeting_decisions", "obligation_dynamics"}
     assert any("Открытый долг связности" in note for note in report.notes_ru)
     for entry in report.open_wiring_debt:
         assert entry.verdict is ConnectivityVerdict.SHOULD_BE_WIRED

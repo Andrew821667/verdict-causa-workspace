@@ -54,7 +54,8 @@ def test_open_wiring_debt_is_visible_on_the_case(case_map) -> None:
     """Долг связности виден на деле, а не только в спецификации аудита."""
     debts = {edge.source.split(":", 1)[1] for edge in case_map.edges if edge.open_debt}
 
-    assert debts == {"attribution_delay", "obligation_dynamics"}
+    # `attribution_delay` проведён в слой выпуском 1.0.0 и вышел из долга.
+    assert debts == {"obligation_dynamics"}
     assert any("открытый долг связности" in note for note in case_map.notes_ru)
 
 

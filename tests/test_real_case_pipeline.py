@@ -75,10 +75,12 @@ def test_the_set_of_layer_inputs_is_pinned() -> None:
 
     Он должен ломаться при изменении входов слоя, а не подстраиваться под них.
     """
-    assert len(GeneralEffectsInputs.model_fields) == 15
-    assert len(LAYER_FED_BY) == 13
+    assert len(GeneralEffectsInputs.model_fields) == 16
+    assert len(LAYER_FED_BY) == 14
     assert "freedom" not in LAYER_FED_BY
-    assert "attribution_delay" not in LAYER_FED_BY
+    # Проведён в выпуске 1.0.0: просрочка кредитора снимает основание считать
+    # должника просрочившим (статья 405 пункт 3 ГК РФ).
+    assert "attribution_delay" in LAYER_FED_BY
 
 
 def test_institutes_that_cannot_reach_the_layer_are_named() -> None:
