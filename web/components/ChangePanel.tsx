@@ -9,9 +9,11 @@ import { Card } from "./primitives";
  */
 export function ChangePanel({
   change,
+  reconciliation,
   onClose,
 }: {
   change: Record<string, unknown>;
+  reconciliation?: Record<string, unknown> | null;
   onClose: () => void;
 }) {
   const steps = (change.steps as { question_ru: string; before: boolean; after: boolean }[]) ?? [];
@@ -58,6 +60,21 @@ export function ChangePanel({
         Пробелов, меняющих вывод: {String(change.blocking_gaps_before)} →{" "}
         {String(change.blocking_gaps_after)}
       </p>
+
+      {reconciliation && (reconciliation.lines_ru as string[])?.length > 0 && (
+        <details className="mt-3">
+          <summary className="cursor-pointer text-[13px] text-muted">
+            {String(reconciliation.summary_ru)}
+          </summary>
+          <ul className="mt-2 space-y-1">
+            {(reconciliation.lines_ru as string[]).map((line) => (
+              <li key={line} className="text-[12.5px] text-muted">
+                • {line}
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
 
       {notes.map((note) => (
         <p key={note} className="mt-2 text-[13px] text-muted">

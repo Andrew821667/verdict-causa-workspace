@@ -1,0 +1,219 @@
+"""Тесты согласования зависимых фактов."""
+
+import base64
+
+import pytest
+
+from causa.institutional.contracts.fact_consistency import (
+    FACT_CONSISTENCY_VOCABULARY,
+    FactConsistencyMismatch,
+)
+from causa.institutional.contracts.synthetic_reviewed_analysis import (
+    build_synthetic_supply_analysis_request,
+)
+from causa.ui.documents import build_document
+from causa.ui.reconciliation import (
+    RECONCILABLE_FACTS,
+    UNRECONCILABLE_RU,
+    reconcile,
+)
+from causa.ui.server import DesktopService
+from causa.ui.session import GapClosureBrokeInvariant, GapClosureConflict
+
+WORKSPACE = "ws-demo-supply"
+CASE = "case-supply-1"
+
+
+def _service() -> DesktopService:
+    return DesktopService()
+
+
+def _upload(service) -> str:
+    uploaded = service.add_document(
+        WORKSPACE,
+        CASE,
+        {"filename": "Док.pdf", "content_base64": base64.b64encode(b"x").decode()},
+    )
+    return uploaded["document"]["id"]
+
+
+def _gap(service, code: str):
+    view = service.state.view(WORKSPACE, CASE)
+    return next(gap for gap in view.gaps.gaps if gap.id.endswith(code))
+
+
+def test_every_consistency_key_is_classified() -> None:
+    """Ключ без записи означал бы, что согласование где-то молча не сработает."""
+    classified = set(RECONCILABLE_FACTS) | set(UNRECONCILABLE_RU)
+
+    assert classified == set(FACT_CONSISTENCY_VOCABULARY)
+    assert set(RECONCILABLE_FACTS).isdisjoint(UNRECONCILABLE_RU)
+
+
+def test_every_unreconcilable_key_carries_a_reason() -> None:
+    for key, reason in UNRECONCILABLE_RU.items():
+        assert len(reason) > 40, key
+
+
+def test_reconcilable_targets_name_real_evidence_and_predicates() -> None:
+    """Карта согласования обязана ломаться, а не промахиваться молча."""
+    request = build_synthetic_supply_analysis_request()
+
+    for key, (field, predicate) in RECONCILABLE_FACTS.items():
+        evidence = getattr(request, field, None)
+        assert evidence is not None, key
+        predicates = {assertion.predicate.value for assertion in evidence.assertions}
+        assert predicate in predicates, f"{key}: {field}.{predicate}"
+
+
+def test_reconciliation_records_the_document_as_the_source() -> None:
+    """Исправленный факт обязан показывать, на чём держится его новое значение."""
+    request = build_synthetic_supply_analysis_request()
+    document = build_document(
+        case_id=CASE, filename="Расчёт.pdf", content=b"calc", uploaded_by="op"
+    )
+    mismatch = FactConsistencyMismatch(
+        key="remedies_loss_claim",
+        fact_ru="средства защиты: заявлены убытки",
+        anchor_ru="статья 393 ГК РФ",
+        expected=True,
+        actual=False,
+    )
+
+    updated, alignments, blocked = reconcile(request, [mismatch], document)
+
+    assertion = next(
+        item
+        for item in updated.performance_remedies_evidence.assertions
+        if item.predicate.value == "loss_claimed"
+    )
+    assert assertion.value is True
+    assert document.id in assertion.source_refs
+    assert [item.key for item in alignments] == ["remedies_loss_claim"]
+    assert blocked == []
+
+
+def test_unreconcilable_keys_do_not_stop_a_pass() -> None:
+    """Часть таких расхождений исчезает сама, когда согласован исходный факт."""
+    request = build_synthetic_supply_analysis_request()
+    blocked_mismatch = FactConsistencyMismatch(
+        key="sale_breach_status",
+        fact_ru="купля-продажа: нарушение установлено",
+        anchor_ru="нарушение выводится моделью обязательства",
+        expected=False,
+        actual=True,
+    )
+
+    _, alignments, blocked = reconcile(request, [blocked_mismatch])
+
+    assert alignments == []
+    assert blocked == ["sale_breach_status"]
+
+
+def test_an_unknown_key_is_refused_rather_than_ignored() -> None:
+    request = build_synthetic_supply_analysis_request()
+    mismatch = FactConsistencyMismatch(
+        key="remedies_loss_claim",
+        fact_ru="…",
+        anchor_ru="…",
+        expected=True,
+        actual=False,
+    ).model_copy(update={"key": "выдуманная_сверка"})
+
+    with pytest.raises(KeyError, match="без записи о согласовании"):
+        reconcile(request, [mismatch])
+
+
+def test_without_consent_the_closure_is_still_refused() -> None:
+    """Согласование — решение оператора, а не поведение по умолчанию."""
+    service = _service()
+    document_id = _upload(service)
+    gap = _gap(service, "request_damages_with_causation")
+
+    with pytest.raises(GapClosureConflict):
+        service.close_gap(
+            WORKSPACE,
+            CASE,
+            {
+                "gap_id": gap.id,
+                "document_id": document_id,
+                "kind": "asserted_fact",
+                "fact_updates": gap.fact_updates,
+            },
+        )
+
+
+def test_with_consent_the_case_is_recomputed_and_the_change_is_shown() -> None:
+    """Одно утверждение оператора применяется ко всем наборам, где записан тот же факт."""
+    service = _service()
+    document_id = _upload(service)
+    gap = _gap(service, "request_damages_with_causation")
+
+    result = service.close_gap(
+        WORKSPACE,
+        CASE,
+        {
+            "gap_id": gap.id,
+            "document_id": document_id,
+            "kind": "asserted_fact",
+            "fact_updates": gap.fact_updates,
+            "reconcile_dependents": True,
+        },
+    )
+
+    change = result["change"]
+    reconciliation = result["reconciliation"]
+    assert any(step["question_ru"].startswith("Доступно ли") for step in change["steps"])
+    assert change["blocking_gaps_after"] < change["blocking_gaps_before"]
+    assert reconciliation["lines_ru"]
+    assert reconciliation["passes"] >= 2
+    assert "Согласовано зависимых фактов" in reconciliation["summary_ru"]
+
+
+def test_a_broken_institute_rule_stops_reconciliation_and_names_it() -> None:
+    """Заявленная неустойка требует установленного нарушения — и это не обходится."""
+    service = _service()
+    document_id = _upload(service)
+    gap = _gap(service, "activate_valid_exception")
+
+    with pytest.raises(GapClosureBrokeInvariant) as failure:
+        service.close_gap(
+            WORKSPACE,
+            CASE,
+            {
+                "gap_id": gap.id,
+                "document_id": document_id,
+                "kind": "asserted_fact",
+                "fact_updates": gap.fact_updates,
+                "reconcile_dependents": True,
+            },
+        )
+
+    payload = failure.value.payload()
+    assert payload["broken_rules"]
+    assert "откачено" in payload["explanation_ru"]
+    assert service.session(WORKSPACE, CASE).closures == []
+
+
+def test_a_closure_blocked_only_by_unreconcilable_keys_says_which() -> None:
+    """Оператор должен видеть, что именно система отказалась выбирать за него."""
+    service = _service()
+    document_id = _upload(service)
+    gap = _gap(service, "confirm_nonconforming_performance")
+
+    with pytest.raises(GapClosureConflict) as failure:
+        service.close_gap(
+            WORKSPACE,
+            CASE,
+            {
+                "gap_id": gap.id,
+                "document_id": document_id,
+                "kind": "asserted_fact",
+                "fact_updates": gap.fact_updates,
+                "reconcile_dependents": True,
+            },
+        )
+
+    payload = failure.value.payload()
+    assert payload["blocked_ru"]
+    assert any("nonconformity" in line for line in payload["blocked_ru"])

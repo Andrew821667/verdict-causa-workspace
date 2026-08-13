@@ -19,7 +19,7 @@
 для ведения дел: перезапуск теряет и документы, и пересчёт.
 """
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from causa.core.models import LegalSource
 from causa.institutional.contracts.fact_consistency import FactConsistencyError
@@ -30,9 +30,20 @@ from causa.institutional.contracts.reviewed_analysis import (
 from causa.reasoning.counterfactual import CounterfactualBudget
 from causa.translation_pipeline import TranslationBundle
 from causa.ui.documents import GapClosure, UploadedDocument, apply_closure, document_source
+from causa.ui.reconciliation import (
+    UNRECONCILABLE_RU,
+    FactAlignment,
+    ReconciliationReport,
+    reconcile,
+)
 from causa.ui.remarks import OperatorRemark
 
 SESSION_VERSION = "ui-case-session-v0"
+
+#: Сколько раз подряд согласовывать зависимые факты, прежде чем признать, что
+#: расхождения не сходятся. Предел нужен: без него ошибка в карте согласования
+#: превратилась бы в бесконечную правку данных.
+MAX_RECONCILIATION_PASSES = 5
 
 
 class CaseInputs(BaseModel):
@@ -89,9 +100,15 @@ class ChangeReport(BaseModel):
 class GapClosureConflict(RuntimeError):
     """Закрытие пробела противоречит фактам, заявленным в других институтах."""
 
-    def __init__(self, closure: GapClosure, error: FactConsistencyError) -> None:
+    def __init__(
+        self,
+        closure: GapClosure,
+        error: FactConsistencyError,
+        blocked_keys: list[str] | None = None,
+    ) -> None:
         self.closure = closure
         self.mismatches = error.mismatches
+        self.blocked_keys = blocked_keys or []
         super().__init__(
             f"Утверждение по пробелу {closure.gap_id} противоречит "
             f"{len(error.mismatches)} фактам дела."
@@ -108,9 +125,64 @@ class GapClosureConflict(RuntimeError):
                 "что заявлено там. Система не выбирает версию за юриста: "
                 "согласовать эти факты должен человек."
             ),
+            "blocked_ru": [
+                f"{key} — {UNRECONCILABLE_RU.get(key, 'причина не записана')}"
+                for key in self.blocked_keys
+            ],
             "next_step_ru": (
-                "Приведите перечисленные факты в согласие с новым утверждением "
-                "либо откажитесь от него."
+                "Согласуйте зависимые факты — интерфейс предложит это отдельным "
+                "действием — либо откажитесь от утверждения."
+            ),
+        }
+
+
+class GapClosureNotConverged(RuntimeError):
+    """Согласование не сошлось: расхождения продолжают появляться."""
+
+    def __init__(self, closure: GapClosure, alignments: list[FactAlignment]) -> None:
+        self.closure = closure
+        self.alignments = alignments
+        super().__init__(
+            f"Согласование по пробелу {closure.gap_id} не сошлось за "
+            f"{MAX_RECONCILIATION_PASSES} проходов; изменение откачено."
+        )
+
+    def payload(self) -> dict:
+        return {
+            "gap_id": self.closure.gap_id,
+            "aligned_ru": [alignment.line_ru for alignment in self.alignments],
+            "explanation_ru": (
+                "Согласование зависимых фактов не сошлось: каждое исправление "
+                "открывало новое расхождение. Изменение откачено — править "
+                "данные дальше наугад система не будет."
+            ),
+        }
+
+
+class GapClosureBrokeInvariant(RuntimeError):
+    """Согласование нарушило внутреннее правило института."""
+
+    def __init__(
+        self,
+        closure: GapClosure,
+        error: ValidationError,
+        alignments: list[FactAlignment],
+    ) -> None:
+        self.closure = closure
+        self.alignments = alignments
+        self.details = [str(item.get("msg", "")) for item in error.errors()]
+        super().__init__(f"Согласование по пробелу {closure.gap_id} нарушило правило института.")
+
+    def payload(self) -> dict:
+        return {
+            "gap_id": self.closure.gap_id,
+            "aligned_ru": [alignment.line_ru for alignment in self.alignments],
+            "broken_rules": self.details,
+            "explanation_ru": (
+                "Согласование остановлено: приведение зависимого факта в "
+                "согласие нарушило собственное правило института. Изменение "
+                "откачено. Какой из фактов уступает — решение юриста, и "
+                "система его не принимает."
             ),
         }
 
@@ -124,6 +196,7 @@ class CaseSession:
         self.documents: list[UploadedDocument] = []
         self.closures: list[GapClosure] = []
         self.remarks: list[OperatorRemark] = []
+        self.reconciliations: list[ReconciliationReport] = []
         self._request = inputs.request
         # Источники дела растут: приложенный документ обязан попасть в реестр,
         # иначе ссылка на него из утверждения будет ссылкой в пустоту.
@@ -150,25 +223,63 @@ class CaseSession:
         self._sources.append(document_source(document))
         return document
 
-    def close_gap(self, closure: GapClosure):
+    def close_gap(self, closure: GapClosure, *, reconcile_dependents: bool = False):
         """Внести утверждение оператора в факты дела и пересчитать его целиком.
 
         Если новое утверждение противоречит фактам, заявленным в других
         институтах, слой сверки отвергает анализ — и правильно делает: иначе
-        решателю пришлось бы молча выбрать одну из двух версий факта. Тогда
-        изменение откатывается, а оператор получает список расхождений.
-        Согласовывать их система за него не будет.
+        решателю пришлось бы молча выбрать одну из двух версий факта. По
+        умолчанию изменение откатывается, а оператор получает список
+        расхождений.
+
+        `reconcile_dependents=True` — это решение оператора, а не поведение по
+        умолчанию: тогда зависимые факты приводятся к тому, что следует из
+        выводов моделей, и он получает список изменённого. Проходов может
+        понадобиться несколько: согласование одного факта иногда открывает
+        следующее расхождение, поэтому цикл повторяется, пока расхождения
+        сходятся, но не бесконечно.
         """
         document = self.document(closure.document_id)
-        previous = self._request
+        previous_request = self._request
         self._request = apply_closure(self._request, closure, document)
-        try:
-            view = self.build_view()
-        except FactConsistencyError as error:
-            self._request = previous
-            raise GapClosureConflict(closure, error) from error
-        self.closures.append(closure)
-        return view
+
+        alignments: list[FactAlignment] = []
+        for attempt in range(1, MAX_RECONCILIATION_PASSES + 1):
+            try:
+                view = self.build_view()
+            except ValidationError as error:
+                # Согласование сломало собственное правило института: например,
+                # заявленная неустойка требует установленного нарушения. Дальше
+                # решать, каким из фактов пожертвовать, — работа юриста.
+                self._request = previous_request
+                raise GapClosureBrokeInvariant(closure, error, alignments) from error
+            except FactConsistencyError as error:
+                if not reconcile_dependents:
+                    self._request = previous_request
+                    raise GapClosureConflict(closure, error) from error
+                try:
+                    self._request, aligned, blocked = reconcile(
+                        self._request, error.mismatches, document
+                    )
+                except KeyError:
+                    self._request = previous_request
+                    raise GapClosureConflict(closure, error) from error
+                if not aligned:
+                    # Согласовывать больше нечего, а расхождения остались:
+                    # дальше пришлось бы выбирать версию факта за юриста.
+                    self._request = previous_request
+                    raise GapClosureConflict(closure, error, blocked_keys=blocked) from error
+                alignments.extend(aligned)
+                continue
+            self.closures.append(closure)
+            report = ReconciliationReport(alignments=alignments, passes=attempt)
+            self.reconciliations.append(report)
+            return view, report
+
+        # Расхождения не сошлись за отведённые проходы: продолжать значит
+        # править данные наугад.
+        self._request = previous_request
+        raise GapClosureNotConverged(closure, alignments)
 
     def build_view(self):
         """Собрать окно дела по текущим входам."""

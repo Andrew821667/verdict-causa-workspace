@@ -31,7 +31,9 @@ export function GapCloser({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [conflicts, setConflicts] = useState<string[]>([]);
+  const [blocked, setBlocked] = useState<string[]>([]);
   const [explanation, setExplanation] = useState("");
+  const [pending, setPending] = useState<string | null>(null);
 
   if (!gap.closure_kind) return null;
   const byDate = gap.closure_kind === "supplied_date";
@@ -48,22 +50,34 @@ export function GapCloser({
   async function submit(event: React.FormEvent) {
     event.preventDefault();
     if (!file) return;
+    await send(false);
+  }
+
+  async function send(reconcile: boolean) {
     setBusy(true);
     setError("");
     setConflicts([]);
+    setBlocked([]);
     try {
-      const upload = await postJson(`/api/case/${caseKey}/document`, {
-        filename: file.name,
-        media_type: file.type || "application/octet-stream",
-        content_base64: await toBase64(file),
-      });
-      if (!upload.ok) {
-        setError(upload.payload.error_ru || "Файл не принят");
-        return;
+      let documentId = pending;
+      if (!documentId) {
+        if (!file) return;
+        const upload = await postJson(`/api/case/${caseKey}/document`, {
+          filename: file.name,
+          media_type: file.type || "application/octet-stream",
+          content_base64: await toBase64(file),
+        });
+        if (!upload.ok) {
+          setError(upload.payload.error_ru || "Файл не принят");
+          return;
+        }
+        documentId = upload.payload.document.id as string;
+        setPending(documentId);
       }
       const closed = await postJson(`/api/case/${caseKey}/close-gap`, {
         gap_id: gap.id,
-        document_id: upload.payload.document.id,
+        document_id: documentId,
+        reconcile_dependents: reconcile,
         kind: gap.closure_kind,
         fact_updates: gap.fact_updates,
         agreed_due_date: byDate && due ? due : null,
@@ -71,7 +85,8 @@ export function GapCloser({
         statement_ru: statement,
       });
       if (closed.status === 409) {
-        setConflicts(closed.payload.conflicts_ru || []);
+        setConflicts(closed.payload.conflicts_ru || closed.payload.aligned_ru || []);
+        setBlocked(closed.payload.blocked_ru || closed.payload.broken_rules || []);
         setExplanation(closed.payload.explanation_ru || "");
         return;
       }
@@ -82,6 +97,7 @@ export function GapCloser({
       onChanged(closed.payload);
       setOpen(false);
       setFile(null);
+      setPending(null);
     } finally {
       setBusy(false);
     }
@@ -168,6 +184,25 @@ export function GapCloser({
               </li>
             ))}
           </ul>
+          {blocked.length > 0 && (
+            <ul className="mt-2 space-y-1 border-t border-stop/30 pt-2">
+              {blocked.map((line) => (
+                <li key={line} className="text-[12.5px] text-muted">
+                  ✕ {line}
+                </li>
+              ))}
+            </ul>
+          )}
+          {blocked.length === 0 && (
+            <button
+              type="button"
+              onClick={() => send(true)}
+              disabled={busy}
+              className="mt-3 rounded-lg border border-stop/50 bg-surface px-3 py-1.5 text-[13px] font-medium text-stop disabled:opacity-50"
+            >
+              Согласовать зависимые факты
+            </button>
+          )}
         </div>
       )}
 

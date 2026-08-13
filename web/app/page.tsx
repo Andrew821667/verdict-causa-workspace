@@ -39,6 +39,7 @@ export default function Page() {
   const [live, setLive] = useState(false);
   const [override, setOverride] = useState<Record<string, CaseView>>({});
   const [change, setChange] = useState<Record<string, unknown> | null>(null);
+  const [reconciliation, setReconciliation] = useState<Record<string, unknown> | null>(null);
 
   useEffect(() => {
     detectApi().then(setLive);
@@ -101,7 +102,13 @@ export default function Page() {
           {tab === "overview" && (
             <div className="space-y-5">
               <VerdictHero verdict={view.verdict} />
-              {change && <ChangePanel change={change} onClose={() => setChange(null)} />}
+              {change && (
+                <ChangePanel
+                  change={change}
+                  reconciliation={reconciliation}
+                  onClose={() => setChange(null)}
+                />
+              )}
               <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,380px)]">
                 <GapQueue
                   gaps={view.gaps.gaps}
@@ -110,6 +117,9 @@ export default function Page() {
                   caseKey={selected}
                   onChanged={(payload) => {
                     setChange(payload.change as Record<string, unknown>);
+                    setReconciliation(
+                      payload.reconciliation as Record<string, unknown>,
+                    );
                     setOverride({
                       ...override,
                       [selected]: payload.case as unknown as CaseView,

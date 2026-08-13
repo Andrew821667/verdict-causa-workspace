@@ -42,7 +42,13 @@ from causa.ui.documents import (
     GapClosure,
     build_document,
 )
-from causa.ui.session import CaseSession, GapClosureConflict, compare_views
+from causa.ui.session import (
+    CaseSession,
+    GapClosureBrokeInvariant,
+    GapClosureConflict,
+    GapClosureNotConverged,
+    compare_views,
+)
 from causa.ui.remarks import OperatorRemark, RemarkKind, apply_remark
 
 SERVER_VERSION = "ui-server-v0"
@@ -219,11 +225,19 @@ class DesktopService:
             actual_performance_date=_optional_date(body.get("actual_performance_date")),
             statement_ru=body.get("statement_ru", ""),
         )
-        after = session.close_gap(closure)
+        after, reconciliation = session.close_gap(
+            closure,
+            reconcile_dependents=bool(body.get("reconcile_dependents", False)),
+        )
         self._replace_view(after)
         return {
             "closure": closure.model_dump(mode="json"),
             "change": compare_views(before, after).model_dump(mode="json"),
+            "reconciliation": {
+                **reconciliation.model_dump(mode="json"),
+                "summary_ru": reconciliation.summary_ru,
+                "lines_ru": [item.line_ru for item in reconciliation.alignments],
+            },
             "case": self.case_payload(workspace_id, case_id),
         }
 
@@ -320,7 +334,11 @@ def build_handler(service: DesktopService) -> type[BaseHTTPRequestHandler]:
                 self._send_error_ru(403, str(error))
             except DocumentTooLargeError as error:
                 self._send_error_ru(413, str(error))
-            except GapClosureConflict as conflict:
+            except (
+                GapClosureConflict,
+                GapClosureNotConverged,
+                GapClosureBrokeInvariant,
+            ) as conflict:
                 # Не ошибка запроса, а отказ слоя сверки: он несёт разбор.
                 self._send_json(conflict.payload(), status=409)
             except KeyError as error:
