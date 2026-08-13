@@ -92,7 +92,9 @@ def test_cards_report_gaps_and_debt(desktop) -> None:
 
     assert card.cluster_ru == "Поставка"
     assert card.blocking_gaps > 0
-    assert card.open_debt_ru
+    # Долгов связности на этом деле не осталось: оба сработавших института
+    # проведены в слой выпусками 1.0.0 и 1.1.0.
+    assert card.open_debt_ru == []
 
 
 def test_desktop_endpoint_lists_only_accessible_workspaces(base_url) -> None:

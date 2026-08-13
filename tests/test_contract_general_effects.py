@@ -55,6 +55,7 @@ def test_general_effects_layer_is_derived_from_anchor_evaluations() -> None:
         result.constraint_evaluation,
         result.termination_evaluation,
         result.attribution_delay_evaluation,
+        result.obligation_dynamics_evaluation,
     )
     # В демонстрационном деле договор действует и требования исполнимы.
     evaluation = result.general_effects_evaluation
@@ -135,6 +136,8 @@ def test_general_effects_never_displaces_an_effective_contract() -> None:
         breach_issue=True,
         effective_termination=False,
         creditor_delay_excuses_debtor=False,
+        obligation_discharged_full=False,
+        accrued_claims_preserved=False,
     )
     evaluation = evaluate_general_effects_constraints(
         build_general_effects_constraint_set(inputs, "case-effective"), inputs

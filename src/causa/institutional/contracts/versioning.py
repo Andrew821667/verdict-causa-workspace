@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.1.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Wires the obligation-dynamics institute into the general-effects layer: a discharge under chapter 26 extinguishes the claim to performance.",
+            "Claims that accrued before the discharge survive (article 407(4)), and then the breach finding keeps its effect; the layer needs both inputs to tell the two apart.",
+            "Closes the second of the three open connectivity debts named by the layer audit; only meeting-decisions remains.",
+            "The analysis result gains one field; artifacts must be regenerated.",
+        ],
+        notes_ru=[
+            "Институт перемены лиц и прекращения обязательств проведён в слой общих положений: прекращение по главе 26 ГК РФ прекращает и требование об исполнении.",
+            "Требования, возникшие до прекращения, сохраняются (статья 407 пункт 4), и тогда вывод о нарушении своего эффекта не теряет; слою нужны оба входа, чтобы различить эти случаи.",
+            "Закрыт второй из трёх открытых долгов связности; остались только решения собраний.",
+            "Результат анализа пополнился одним полем; артефакты требуют пересборки.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.0.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

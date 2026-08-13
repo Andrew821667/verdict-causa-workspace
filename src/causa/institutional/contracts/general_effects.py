@@ -38,14 +38,18 @@
 - статья 405 пункт 3 ГК РФ — должник не считается просрочившим, пока
   обязательство не может быть исполнено вследствие просрочки кредитора, поэтому
   вывод специального института о нарушении не может быть положен в основание
-  присуждения.
+  присуждения;
+- глава 26 ГК РФ (статьи 407–419) — прекращение обязательства зачётом,
+  новацией, прощением долга, невозможностью исполнения и иными основаниями
+  прекращает и требование о его исполнении, тогда как требования, возникшие до
+  прекращения, сохраняются (статья 407 пункт 4).
 """
 
 from pydantic import BaseModel, ConfigDict, Field
 from z3 import And, Bool, Not, Or, Solver, sat
 
 GENERAL_EFFECTS_MODEL_VERSION = (
-    "contracts-general-part-effects-articles-10-129-167-171-173-1-183-190-199-209-405-432-v8"
+    "contracts-general-part-effects-articles-10-129-167-171-173-1-183-190-199-209-405-407-432-v9"
 )
 
 
@@ -83,6 +87,9 @@ class GeneralEffectsInputs(BaseModel):
     effective_termination: bool
     # Просрочка кредитора снимает просрочку должника (статья 405 пункт 3).
     creditor_delay_excuses_debtor: bool
+    # Прекращение обязательства по главе 26 и судьба возникших требований.
+    obligation_discharged_full: bool
+    accrued_claims_preserved: bool
 
 
 class GeneralEffectsConstraintSet(BaseModel):
@@ -115,6 +122,7 @@ class GeneralEffectsEvaluation(BaseModel):
     institute_conclusions_displaced: bool
     breach_findings_without_effect: bool
     debtor_delay_excused_by_creditor: bool
+    obligation_discharged_before_claim: bool
     restitution_regime_applies: bool
     requires_human_general_effects_assessment: bool
     reasons_ru: list[str] = Field(default_factory=list)
@@ -136,6 +144,7 @@ def build_general_effects_inputs(
     constraint_evaluation,
     termination_evaluation,
     attribution_delay_evaluation,
+    obligation_dynamics_evaluation,
 ) -> GeneralEffectsInputs:
     """Собрать входы слоя из выводов якорных моделей общей части."""
     return GeneralEffectsInputs(
@@ -157,6 +166,8 @@ def build_general_effects_inputs(
         breach_issue=constraint_evaluation.breach_issue,
         effective_termination=termination_evaluation.effective_termination,
         creditor_delay_excuses_debtor=(attribution_delay_evaluation.creditor_delay_excuses_debtor),
+        obligation_discharged_full=obligation_dynamics_evaluation.obligation_discharged_full,
+        accrued_claims_preserved=obligation_dynamics_evaluation.accrued_claims_preserved,
     )
 
 
@@ -197,7 +208,8 @@ def build_general_effects_constraint_set(
             "contractual_claims_enforceable == contract_legally_effective AND judicial_protection_available",
             "institute_conclusions_displaced == NOT contract_legally_effective",
             "debtor_delay_excused_by_creditor == breach_issue AND creditor_delay_excuses_debtor",
-            "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor)",
+            "obligation_discharged_before_claim == obligation_discharged_full AND NOT accrued_claims_preserved",
+            "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor OR obligation_discharged_before_claim)",
             "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
             "title_transfer_defeated == unauthorized_disposal_detected",
             "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
@@ -232,6 +244,7 @@ def evaluate_general_effects_constraints(
     institute_conclusions_displaced = Bool("institute_conclusions_displaced")
     breach_findings_without_effect = Bool("breach_findings_without_effect")
     debtor_delay_excused_by_creditor = Bool("debtor_delay_excused_by_creditor")
+    obligation_discharged_before_claim = Bool("obligation_discharged_before_claim")
     title_transfer_defeated = Bool("title_transfer_defeated")
     restitution_regime_applies = Bool("restitution_regime_applies")
     requires_human_general_effects_assessment = Bool("requires_human_general_effects_assessment")
@@ -299,6 +312,16 @@ def evaluate_general_effects_constraints(
         debtor_delay_excused_by_creditor
         == And(variables["breach_issue"], variables["creditor_delay_excuses_debtor"])
     )
+    # Прекращение обязательства по главе 26 прекращает и требование о его
+    # исполнении. Но требования, возникшие до прекращения, сохраняются
+    # (статья 407 пункт 4), и тогда вывод о нарушении своего эффекта не теряет.
+    solver.add(
+        obligation_discharged_before_claim
+        == And(
+            variables["obligation_discharged_full"],
+            Not(variables["accrued_claims_preserved"]),
+        )
+    )
     # Просрочка кредитора не отменяет договор и не лишает суда защиты: она
     # снимает основание считать должника просрочившим (статья 405 пункт 3), а
     # значит вывод института о нарушении не может лечь в основание присуждения.
@@ -309,6 +332,7 @@ def evaluate_general_effects_constraints(
             Or(
                 Not(contractual_claims_enforceable),
                 variables["creditor_delay_excuses_debtor"],
+                obligation_discharged_before_claim,
             ),
         )
     )
@@ -356,6 +380,7 @@ def evaluate_general_effects_constraints(
             institute_conclusions_displaced=True,
             breach_findings_without_effect=False,
             debtor_delay_excused_by_creditor=False,
+            obligation_discharged_before_claim=False,
             title_transfer_defeated=False,
             restitution_regime_applies=False,
             requires_human_general_effects_assessment=True,
@@ -443,6 +468,13 @@ def evaluate_general_effects_constraints(
             "просрочки кредитора; вывод специального института о нарушении не "
             "может быть положен в основание присуждения (статья 405 пункт 3 ГК РФ)."
         )
+    if truth(obligation_discharged_before_claim):
+        reasons_ru.append(
+            "Обязательство прекращено по основаниям главы 26 ГК РФ, и требований, "
+            "возникших до прекращения, не сохранилось, поэтому требовать его "
+            "исполнения нельзя, а вывод специального института о нарушении не "
+            "может быть положен в основание присуждения (статьи 407–419 ГК РФ)."
+        )
     if truth(breach_findings_without_effect):
         reasons_ru.append(
             "Установленное нарушение обязательства не влечёт удовлетворения требований: "
@@ -500,6 +532,7 @@ def evaluate_general_effects_constraints(
         institute_conclusions_displaced=truth(institute_conclusions_displaced),
         breach_findings_without_effect=truth(breach_findings_without_effect),
         debtor_delay_excused_by_creditor=truth(debtor_delay_excused_by_creditor),
+        obligation_discharged_before_claim=truth(obligation_discharged_before_claim),
         title_transfer_defeated=truth(title_transfer_defeated),
         restitution_regime_applies=truth(restitution_regime_applies),
         requires_human_general_effects_assessment=truth(requires_human_general_effects_assessment),

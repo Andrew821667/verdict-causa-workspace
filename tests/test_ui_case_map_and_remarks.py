@@ -4,7 +4,7 @@ import pytest
 
 from causa.institutional.contracts.real_case_pipeline import LAYER_FED_BY
 from causa.phase0.demo_trace import build_supply_dispute_demo_trace
-from causa.ui.case_map import NodeKind, build_case_map
+from causa.ui.case_map import MapEdge, NodeKind, build_case_map
 from causa.ui.remarks import (
     REMARK_KIND_LABELS_RU,
     SIGNAL_CANDIDATE_TYPE,
@@ -50,13 +50,46 @@ def test_feeding_institutes_reach_the_layer(case_map) -> None:
     assert broken.isdisjoint(LAYER_FED_BY)
 
 
-def test_open_wiring_debt_is_visible_on_the_case(case_map) -> None:
-    """Долг связности виден на деле, а не только в спецификации аудита."""
+def test_the_demo_case_has_no_unexplained_break(case_map) -> None:
+    """На демонстрационном деле долгов связности не осталось.
+
+    Выпуски `1.0.0` и `1.1.0` провели в слой просрочку кредитора и прекращение
+    обязательства — оба института, которые срабатывали на этом деле и никуда не
+    доходили. Остался один долг, `meeting_decisions`, и по этому делу он не
+    срабатывает, поэтому на карте его нет.
+    """
     debts = {edge.source.split(":", 1)[1] for edge in case_map.edges if edge.open_debt}
 
-    # `attribution_delay` проведён в слой выпуском 1.0.0 и вышел из долга.
-    assert debts == {"obligation_dynamics"}
-    assert any("открытый долг связности" in note for note in case_map.notes_ru)
+    assert debts == set()
+    assert not any("открытый долг связности" in note for note in case_map.notes_ru)
+
+
+def test_a_debt_would_still_be_visible_on_the_case(case_map) -> None:
+    """Механизм показа долга обязан работать и тогда, когда долгов нет.
+
+    Иначе закрытие последнего долга тихо превратило бы рабочую проверку в
+    вечнозелёную: она проходила бы, даже если показывать долг разучились.
+    """
+    from causa.institutional.contracts.layer_connectivity import (
+        LAYER_CONNECTIVITY_AUDIT,
+        ConnectivityVerdict,
+    )
+
+    debts = [
+        name
+        for name, (verdict, _) in LAYER_CONNECTIVITY_AUDIT.items()
+        if verdict is ConnectivityVerdict.SHOULD_BE_WIRED
+    ]
+
+    assert debts == ["meeting_decisions"]
+    edge = MapEdge(
+        source="institute:meeting_decisions",
+        target="layer:general_effects",
+        connected=False,
+        reason_ru="обоснования нет — открытый долг",
+        open_debt=True,
+    )
+    assert edge.open_debt is True
 
 
 def test_the_map_shows_which_sources_it_left_out(case_map) -> None:

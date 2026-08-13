@@ -1,0 +1,40 @@
+# Выпуск стенда «Резонанс» на поддомен.
+#
+# Приложение слушает только 127.0.0.1: наружу его выпускает этот файл, он же
+# получает и продлевает сертификат. Базовая аутентификация здесь не украшение —
+# в приложении аутентификации нет вовсе, и без неё открытый адрес означает, что
+# любой желающий видит дела и может загружать файлы.
+
+{
+	email you@example.com
+}
+
+stand.example.com {
+	basic_auth {
+		# caddy hash-password --plaintext 'ваш-пароль'
+		operator ЗАМЕНИТЕ_НА_ХЭШ
+	}
+
+	reverse_proxy 127.0.0.1:8765 {
+		# Сборка стола занимает несколько секунд, а пересчёт дела после
+		# загрузки документа — ещё столько же: короткий таймаут оборвал бы
+		# ровно то, ради чего стенд ставится.
+		transport http {
+			response_header_timeout 120s
+		}
+	}
+
+	encode gzip
+
+	header {
+		# Стенд не предназначен для встраивания и не должен индексироваться.
+		X-Frame-Options DENY
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer
+		X-Robots-Tag "noindex, nofollow"
+	}
+
+	log {
+		output file /var/log/caddy/verdict-causa.log
+	}
+}

@@ -1913,6 +1913,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.0.0",
+        to_version="1.1.0",
+        reasons=[
+            "The general-effects layer gains the discharge inputs from the obligation-dynamics institute and a conclusion that the claim to performance is extinguished (chapter 26).",
+            "Artifacts produced before the wiring existed must be regenerated.",
+        ],
+        reasons_ru=[
+            "Слой общих положений получил входы о прекращении обязательства из института перемены лиц и прекращения обязательств и вывод о прекращении требования (глава 26 ГК РФ).",
+            "Артефакты, собранные до проводки, требуют пересборки.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_general_effects_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

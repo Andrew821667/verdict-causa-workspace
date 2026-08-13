@@ -29,6 +29,7 @@ import base64
 import binascii
 import json
 import mimetypes
+import os
 from datetime import date
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -349,8 +350,16 @@ def build_handler(service: DesktopService) -> type[BaseHTTPRequestHandler]:
     return Handler
 
 
-def serve(host: str = "127.0.0.1", port: int = 8765) -> None:
-    """Запустить стенд. Сборка стола выполняется один раз до старта."""
+def serve(host: str | None = None, port: int | None = None) -> None:
+    """Запустить стенд. Сборка стола выполняется один раз до старта.
+
+    Адрес и порт читаются из окружения, чтобы служба задавала их файлом, а не
+    правкой кода. По умолчанию — только `127.0.0.1`: аутентификации в
+    приложении нет, и слушать все адреса означало бы открыть дела всякому, кто
+    доберётся до порта. Наружу стенд выпускается обратным прокси с паролем.
+    """
+    host = host or os.environ.get("CAUSA_UI_HOST", "127.0.0.1")
+    port = port or int(os.environ.get("CAUSA_UI_PORT", "8765"))
     service = DesktopService()
     server = ThreadingHTTPServer((host, port), build_handler(service))
     print(f"Стенд Verdict Causa: http://{host}:{port}")
