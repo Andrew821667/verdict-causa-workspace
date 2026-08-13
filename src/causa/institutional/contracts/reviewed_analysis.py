@@ -2037,6 +2037,7 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.termination_evaluation,
             self.attribution_delay_evaluation,
             self.obligation_dynamics_evaluation,
+            self.meeting_decisions_evaluation,
         )
         if self.general_effects_inputs != expected_general_effects_inputs:
             raise ValueError(
@@ -5749,6 +5750,7 @@ def run_reviewed_contract_analysis(
         termination_evaluation,
         attribution_delay_evaluation,
         dynamics_evaluation,
+        meeting_decisions_evaluation,
     )
     general_effects_constraint_set = build_general_effects_constraint_set(
         general_effects_inputs, request.case_id

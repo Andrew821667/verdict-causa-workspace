@@ -53,10 +53,9 @@ def test_feeding_institutes_reach_the_layer(case_map) -> None:
 def test_the_demo_case_has_no_unexplained_break(case_map) -> None:
     """На демонстрационном деле долгов связности не осталось.
 
-    Выпуски `1.0.0` и `1.1.0` провели в слой просрочку кредитора и прекращение
-    обязательства — оба института, которые срабатывали на этом деле и никуда не
-    доходили. Остался один долг, `meeting_decisions`, и по этому делу он не
-    срабатывает, поэтому на карте его нет.
+    Выпуски `1.0.0`, `1.1.0` и `1.2.0` провели в слой просрочку кредитора,
+    прекращение обязательства и решения собраний — все три института, у которых
+    аудит не нашёл причины оставаться в стороне.
     """
     debts = {edge.source.split(":", 1)[1] for edge in case_map.edges if edge.open_debt}
 
@@ -81,9 +80,9 @@ def test_a_debt_would_still_be_visible_on_the_case(case_map) -> None:
         if verdict is ConnectivityVerdict.SHOULD_BE_WIRED
     ]
 
-    assert debts == ["meeting_decisions"]
+    assert debts == []
     edge = MapEdge(
-        source="institute:meeting_decisions",
+        source="institute:synthetic_institute",
         target="layer:general_effects",
         connected=False,
         reason_ru="обоснования нет — открытый долг",

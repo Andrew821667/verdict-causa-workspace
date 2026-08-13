@@ -56,6 +56,7 @@ def test_general_effects_layer_is_derived_from_anchor_evaluations() -> None:
         result.termination_evaluation,
         result.attribution_delay_evaluation,
         result.obligation_dynamics_evaluation,
+        result.meeting_decisions_evaluation,
     )
     # В демонстрационном деле договор действует и требования исполнимы.
     evaluation = result.general_effects_evaluation
@@ -118,6 +119,80 @@ def test_limitation_defense_propagates_to_whole_analysis() -> None:
     assert barred.requires_human_resolution is True
 
 
+def test_a_void_meeting_decision_reaches_the_final_conclusions() -> None:
+    """Регрессия: вывод модели главы 9.1 не доходил до слоя до выпуска `1.2.0`.
+
+    Ничтожность решения собрания подрывает условие договора, которое на этом
+    решении держится (дело 45-КГ23-2-К7), но связь между решением и условием —
+    факт дела, а не вывод института, поэтому она пришла отдельным предикатом.
+    """
+    request = build_synthetic_supply_analysis_request()
+    sources = build_synthetic_supply_analysis_sources()
+    baseline = run_reviewed_contract_analysis(request, sources)
+    assert baseline.general_effects_evaluation.term_deprived_of_meeting_basis is False
+    assert baseline.general_effects_evaluation.requires_human_general_effects_assessment is False
+
+    void = run_reviewed_contract_analysis(
+        request.model_copy(
+            update={
+                "meeting_decisions_evidence": _flip(
+                    request.meeting_decisions_evidence,
+                    meeting_decision_asserted=True,
+                    meeting_decision_underpins_contract_term=True,
+                    quorum_present=True,
+                    required_majority_obtained=True,
+                    contrary_to_public_order_or_morality=True,
+                )
+            }
+        ),
+        sources,
+    )
+
+    institute = void.meeting_decisions_evaluation
+    assert institute.decision_void is True
+    assert institute.contract_term_lacks_meeting_basis is True
+    assert institute.contract_term_binds_all_participants is False
+
+    evaluation = void.general_effects_evaluation
+    # Порок условия — не порок договора: сам договор продолжает действовать.
+    assert evaluation.contract_legally_effective is True
+    assert evaluation.contractual_claims_enforceable is True
+    assert evaluation.term_deprived_of_meeting_basis is True
+    # Слой не знает, о каком именно условии идёт спор, поэтому вывод о нарушении
+    # он не отменяет, а поднимает дело человеку.
+    assert evaluation.breach_findings_without_effect is False
+    assert evaluation.requires_human_general_effects_assessment is True
+    assert any("181.5" in reason for reason in evaluation.reasons_ru)
+
+
+def test_a_lawful_meeting_decision_binds_the_participants_who_voted_against() -> None:
+    """Статья 181.1 работает и в положительную сторону, а не только на пороки."""
+    request = build_synthetic_supply_analysis_request()
+    sources = build_synthetic_supply_analysis_sources()
+
+    lawful = run_reviewed_contract_analysis(
+        request.model_copy(
+            update={
+                "meeting_decisions_evidence": _flip(
+                    request.meeting_decisions_evidence,
+                    meeting_decision_asserted=True,
+                    meeting_decision_underpins_contract_term=True,
+                    quorum_present=True,
+                    required_majority_obtained=True,
+                )
+            }
+        ),
+        sources,
+    )
+
+    evaluation = lawful.general_effects_evaluation
+    assert evaluation.term_binding_on_all_participants is True
+    assert evaluation.term_deprived_of_meeting_basis is False
+    assert evaluation.term_meeting_basis_challengeable is False
+    # Действительное основание условия — не повод поднимать дело человеку.
+    assert evaluation.requires_human_general_effects_assessment is False
+
+
 def test_general_effects_never_displaces_an_effective_contract() -> None:
     inputs = GeneralEffectsInputs(
         contract_concluded_prerequisites=True,
@@ -138,6 +213,9 @@ def test_general_effects_never_displaces_an_effective_contract() -> None:
         creditor_delay_excuses_debtor=False,
         obligation_discharged_full=False,
         accrued_claims_preserved=False,
+        contract_term_lacks_meeting_basis=False,
+        contract_term_basis_voidable=False,
+        contract_term_binds_all_participants=False,
     )
     evaluation = evaluate_general_effects_constraints(
         build_general_effects_constraint_set(inputs, "case-effective"), inputs
@@ -152,7 +230,7 @@ def test_general_effects_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_general_effects_benchmark_suite()
     red_team = run_general_effects_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 10
+    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 13
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 10
+    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 13
     assert red_team.blocked == red_team.total

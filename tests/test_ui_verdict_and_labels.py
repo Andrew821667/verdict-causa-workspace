@@ -56,6 +56,27 @@ def test_displaced_conclusions_beat_the_breach_question(trace) -> None:
     assert verdict.tone is Tone.STOP
 
 
+def test_a_term_without_a_meeting_basis_qualifies_the_verdict(trace) -> None:
+    """Оператор обязан увидеть, что у части требования отпало основание.
+
+    Слой не отменяет вывод о нарушении: он не знает, о каком условии спор.
+    Поэтому это оговорка к вердикту, а не другой вердикт.
+    """
+    result = trace.analysis_result
+    without_basis = result.model_copy(
+        update={
+            "general_effects_evaluation": result.general_effects_evaluation.model_copy(
+                update={"term_deprived_of_meeting_basis": True}
+            )
+        }
+    )
+
+    verdict = _verdict(without_basis)
+
+    assert verdict.state is VerdictState.BREACH_ESTABLISHED
+    assert any("решени" in line and "собрани" in line for line in verdict.qualifiers_ru)
+
+
 def test_limitation_bar_beats_the_breach_question(trace) -> None:
     """Давность перекрывает требование независимо от наличия нарушения."""
     result = trace.analysis_result

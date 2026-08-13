@@ -1931,6 +1931,27 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.1.0",
+        to_version="1.2.0",
+        reasons=[
+            "The general-effects layer gains the meeting-decisions inputs: a contract term resting on a void or unadopted decision loses its basis (articles 181.3 and 181.5).",
+            "The meeting-decisions evidence contract gains the predicate that links a decision to a contract term and moves to contracts.meeting-decisions-evidence.v1.",
+            "Artifacts produced before the wiring existed must be regenerated.",
+        ],
+        reasons_ru=[
+            "Слой общих положений получил входы о решениях собраний: договорное условие, которое держится на ничтожном или непринятом решении, лишается основания (статьи 181.3 и 181.5 ГК РФ).",
+            "Контракт данных о решениях собраний получил предикат связи решения с договорным условием и перешёл на `contracts.meeting-decisions-evidence.v1`.",
+            "Артефакты, собранные до проводки, требуют пересборки.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_meeting_decisions_evaluation.py",
+            "python scripts/export_synthetic_general_effects_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

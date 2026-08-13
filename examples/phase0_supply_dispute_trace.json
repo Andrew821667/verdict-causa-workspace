@@ -10462,11 +10462,19 @@
     "meeting_decisions_evidence": {
       "id": "reviewed-meeting-decisions-evidence-supply-1-v0",
       "case_id": "case-supply-1",
-      "schema_version": "contracts.meeting-decisions-evidence.v0",
+      "schema_version": "contracts.meeting-decisions-evidence.v1",
       "assertions": [
         {
           "id": "meeting-decisions-evidence-meeting_decision_asserted",
           "predicate": "meeting_decision_asserted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "id": "meeting-decisions-evidence-meeting_decision_underpins_contract_term",
+          "predicate": "meeting_decision_underpins_contract_term",
           "value": false,
           "source_refs": [
             "synthetic-case-supply-1-meeting-decisions-evidence"
@@ -25707,10 +25715,11 @@
     },
     "meeting_decisions_evidence_mapping": {
       "evidence_id": "reviewed-meeting-decisions-evidence-supply-1-v0",
-      "schema_version": "contracts.meeting-decisions-evidence.v0",
-      "mapping_version": "contracts-reviewed-meeting-decisions-to-facts-v0",
+      "schema_version": "contracts.meeting-decisions-evidence.v1",
+      "mapping_version": "contracts-reviewed-meeting-decisions-to-facts-v1",
       "facts": {
         "meeting_decision_asserted": false,
+        "meeting_decision_underpins_contract_term": false,
         "quorum_present": false,
         "required_majority_obtained": false,
         "all_participants_took_part": false,
@@ -25761,6 +25770,13 @@
         {
           "fact_name": "meeting_decision_asserted",
           "assertion_id": "meeting-decisions-evidence-meeting_decision_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-meeting-decisions-evidence"
+          ]
+        },
+        {
+          "fact_name": "meeting_decision_underpins_contract_term",
+          "assertion_id": "meeting-decisions-evidence-meeting_decision_underpins_contract_term",
           "source_refs": [
             "synthetic-case-supply-1-meeting-decisions-evidence"
           ]
@@ -25832,7 +25848,7 @@
     },
     "meeting_decisions_constraint_set": {
       "id": "meeting-decisions-constraint-set:reviewed-meeting-decisions-evidence-supply-1-v0",
-      "model_version": "contracts-meeting-decisions-articles-1811-1815-v0",
+      "model_version": "contracts-meeting-decisions-articles-1811-1815-v1",
       "legal_source_refs": [
         "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
         "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1"
@@ -25850,7 +25866,10 @@
         "voidability_cured_by_confirmation == procedural_defect_established AND decision_confirmed_by_later_decision",
         "decision_voidable == procedural_defect_established AND NOT decision_void AND NOT voidability_cured_by_immateriality AND NOT voidability_cured_by_confirmation",
         "decision_binds_all_participants == meeting_decision_qualified AND NOT decision_void AND NOT decision_not_adopted",
-        "requires_human_meeting_decision_assessment == decision_void OR decision_voidable OR decision_not_adopted OR voidability_cured_by_immateriality OR voidability_cured_by_confirmation"
+        "contract_term_lacks_meeting_basis == meeting_decision_underpins_contract_term AND (decision_void OR decision_not_adopted)",
+        "contract_term_basis_voidable == meeting_decision_underpins_contract_term AND decision_voidable AND NOT contract_term_lacks_meeting_basis",
+        "contract_term_binds_all_participants == meeting_decision_underpins_contract_term AND decision_binds_all_participants",
+        "requires_human_meeting_decision_assessment == decision_void OR decision_voidable OR decision_not_adopted OR voidability_cured_by_immateriality OR voidability_cured_by_confirmation OR contract_term_lacks_meeting_basis"
       ]
     },
     "meeting_decisions_evaluation": {
@@ -25868,6 +25887,9 @@
       "voidability_cured_by_confirmation": false,
       "decision_voidable": false,
       "decision_binds_all_participants": false,
+      "contract_term_lacks_meeting_basis": false,
+      "contract_term_basis_voidable": false,
+      "contract_term_binds_all_participants": false,
       "requires_human_meeting_decision_assessment": false,
       "reasons_ru": [
         "Решение собрания в деле не заявлено."
@@ -26440,11 +26462,14 @@
       "effective_termination": false,
       "creditor_delay_excuses_debtor": false,
       "obligation_discharged_full": true,
-      "accrued_claims_preserved": true
+      "accrued_claims_preserved": true,
+      "contract_term_lacks_meeting_basis": false,
+      "contract_term_basis_voidable": false,
+      "contract_term_binds_all_participants": false
     },
     "general_effects_constraint_set": {
       "id": "general-effects-constraint-set:case-supply-1",
-      "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-183-190-199-209-405-407-432-v9",
+      "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199-209-405-407-432-v10",
       "source_evaluations": [
         "formation_evaluation",
         "invalidity_evaluation",
@@ -26458,7 +26483,10 @@
         "persons_evaluation",
         "objects_evaluation",
         "constraint_evaluation",
-        "termination_evaluation"
+        "termination_evaluation",
+        "attribution_delay_evaluation",
+        "obligation_dynamics_evaluation",
+        "meeting_decisions_evaluation"
       ],
       "expressions": [
         "formation_defect_displaces_contract == NOT contract_concluded_prerequisites",
@@ -26478,10 +26506,13 @@
         "debtor_delay_excused_by_creditor == breach_issue AND creditor_delay_excuses_debtor",
         "obligation_discharged_before_claim == obligation_discharged_full AND NOT accrued_claims_preserved",
         "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor OR obligation_discharged_before_claim)",
+        "term_deprived_of_meeting_basis == contract_legally_effective AND contract_term_lacks_meeting_basis",
+        "term_meeting_basis_challengeable == contract_legally_effective AND contract_term_basis_voidable",
+        "term_binding_on_all_participants == contractual_claims_enforceable AND contract_term_binds_all_participants",
         "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
         "title_transfer_defeated == unauthorized_disposal_detected",
         "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-        "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable"
+        "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable"
       ]
     },
     "general_effects_evaluation": {
@@ -26505,6 +26536,9 @@
       "breach_findings_without_effect": false,
       "debtor_delay_excused_by_creditor": false,
       "obligation_discharged_before_claim": false,
+      "term_deprived_of_meeting_basis": false,
+      "term_meeting_basis_challengeable": false,
+      "term_binding_on_all_participants": false,
       "restitution_regime_applies": false,
       "requires_human_general_effects_assessment": false,
       "reasons_ru": [
@@ -33247,7 +33281,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.1.0",
+      "institutional_package_version": "contracts-ru-v0@1.2.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -38150,7 +38184,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@1.1.0",
+      "institutional_package_version": "contracts-ru-v0@1.2.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005",
       "translation_template_version": "translation-template-ru-v11",

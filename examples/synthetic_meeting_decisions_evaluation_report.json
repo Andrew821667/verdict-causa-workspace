@@ -3,10 +3,11 @@
   "disclaimer_ru": "Синтетическая проверка решений собраний по статьям 181.1–181.5 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
   "reviewed_mapping": {
     "evidence_id": "reviewed-meeting-decisions-evidence-supply-1-v0",
-    "schema_version": "contracts.meeting-decisions-evidence.v0",
-    "mapping_version": "contracts-reviewed-meeting-decisions-to-facts-v0",
+    "schema_version": "contracts.meeting-decisions-evidence.v1",
+    "mapping_version": "contracts-reviewed-meeting-decisions-to-facts-v1",
     "facts": {
       "meeting_decision_asserted": false,
+      "meeting_decision_underpins_contract_term": false,
       "quorum_present": false,
       "required_majority_obtained": false,
       "all_participants_took_part": false,
@@ -57,6 +58,13 @@
       {
         "fact_name": "meeting_decision_asserted",
         "assertion_id": "meeting-decisions-evidence-meeting_decision_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-meeting-decisions-evidence"
+        ]
+      },
+      {
+        "fact_name": "meeting_decision_underpins_contract_term",
+        "assertion_id": "meeting-decisions-evidence-meeting_decision_underpins_contract_term",
         "source_refs": [
           "synthetic-case-supply-1-meeting-decisions-evidence"
         ]
@@ -128,7 +136,7 @@
   },
   "constraint_set": {
     "id": "meeting-decisions-constraint-set:reviewed-meeting-decisions-evidence-supply-1-v0",
-    "model_version": "contracts-meeting-decisions-articles-1811-1815-v0",
+    "model_version": "contracts-meeting-decisions-articles-1811-1815-v1",
     "legal_source_refs": [
       "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
       "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1"
@@ -146,7 +154,10 @@
       "voidability_cured_by_confirmation == procedural_defect_established AND decision_confirmed_by_later_decision",
       "decision_voidable == procedural_defect_established AND NOT decision_void AND NOT voidability_cured_by_immateriality AND NOT voidability_cured_by_confirmation",
       "decision_binds_all_participants == meeting_decision_qualified AND NOT decision_void AND NOT decision_not_adopted",
-      "requires_human_meeting_decision_assessment == decision_void OR decision_voidable OR decision_not_adopted OR voidability_cured_by_immateriality OR voidability_cured_by_confirmation"
+      "contract_term_lacks_meeting_basis == meeting_decision_underpins_contract_term AND (decision_void OR decision_not_adopted)",
+      "contract_term_basis_voidable == meeting_decision_underpins_contract_term AND decision_voidable AND NOT contract_term_lacks_meeting_basis",
+      "contract_term_binds_all_participants == meeting_decision_underpins_contract_term AND decision_binds_all_participants",
+      "requires_human_meeting_decision_assessment == decision_void OR decision_voidable OR decision_not_adopted OR voidability_cured_by_immateriality OR voidability_cured_by_confirmation OR contract_term_lacks_meeting_basis"
     ]
   },
   "reviewed_evaluation": {
@@ -164,6 +175,9 @@
     "voidability_cured_by_confirmation": false,
     "decision_voidable": false,
     "decision_binds_all_participants": false,
+    "contract_term_lacks_meeting_basis": false,
+    "contract_term_basis_voidable": false,
+    "contract_term_binds_all_participants": false,
     "requires_human_meeting_decision_assessment": false,
     "reasons_ru": [
       "Решение собрания в деле не заявлено."
@@ -176,8 +190,8 @@
   },
   "benchmark_report": {
     "id": "meeting-decisions-benchmark-report-v0",
-    "total": 12,
-    "passed": 12,
+    "total": 16,
+    "passed": 16,
     "failed": 0,
     "results": [
       {
@@ -396,13 +410,92 @@
           "Оспоримость снята: решение подтверждено последующим решением собрания, принятым до вынесения решения суда (статья 181.4 ГК РФ).",
           "Решение обязательно для всех лиц, имевших право участвовать в собрании, в том числе для голосовавших против и не участвовавших (статья 181.1 ГК РФ)."
         ]
+      },
+      {
+        "task_id": "meeting-bench-lawful-decision-binds-the-term",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_term_binds_all_participants": true,
+          "contract_term_lacks_meeting_basis": false,
+          "contract_term_basis_voidable": false
+        },
+        "observed_outcomes": {
+          "contract_term_binds_all_participants": true,
+          "contract_term_lacks_meeting_basis": false,
+          "contract_term_basis_voidable": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение обязательно для всех лиц, имевших право участвовать в собрании, в том числе для голосовавших против и не участвовавших (статья 181.1 ГК РФ).",
+          "Условие договора, принятое решением собрания, обязательно для всех лиц, имевших право участвовать в собрании, и не может быть изменено в одностороннем порядке вопреки этому решению (статьи 181.1 и 181.3 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-void-decision-strips-the-term",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_term_lacks_meeting_basis": true,
+          "contract_term_binds_all_participants": false,
+          "requires_human_meeting_decision_assessment": true
+        },
+        "observed_outcomes": {
+          "contract_term_lacks_meeting_basis": true,
+          "contract_term_binds_all_participants": false,
+          "requires_human_meeting_decision_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение ничтожно: оно противоречит основам правопорядка или нравственности (статья 181.5 ГК РФ).",
+          "Условие договора держится на решении собрания, которое ничтожно либо не принято, поэтому условие лишилось основания: недействительное решение недействительно с момента принятия независимо от признания судом, а непринятое решение правовых последствий не порождает (статьи 181.2, 181.3 и 181.5 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-unadopted-decision-strips-the-term",
+        "passed": true,
+        "expected_outcomes": {
+          "decision_not_adopted": true,
+          "contract_term_lacks_meeting_basis": true,
+          "contract_term_binds_all_participants": false
+        },
+        "observed_outcomes": {
+          "decision_not_adopted": true,
+          "contract_term_lacks_meeting_basis": true,
+          "contract_term_binds_all_participants": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение не принято: требуемое большинство голосов участников собрания не набрано. Это отсутствие решения, а не его порок (статья 181.2 ГК РФ).",
+          "Условие договора держится на решении собрания, которое ничтожно либо не принято, поэтому условие лишилось основания: недействительное решение недействительно с момента принятия независимо от признания судом, а непринятое решение правовых последствий не порождает (статьи 181.2, 181.3 и 181.5 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "meeting-bench-voidable-decision-keeps-the-term",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_term_basis_voidable": true,
+          "contract_term_lacks_meeting_basis": false,
+          "contract_term_binds_all_participants": true
+        },
+        "observed_outcomes": {
+          "contract_term_basis_voidable": true,
+          "contract_term_lacks_meeting_basis": false,
+          "contract_term_binds_all_participants": true
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Установлено нарушение порядка принятия решения: порядка созыва, подготовки или проведения собрания, равенства прав участников, полномочий лица, выступавшего от имени участника, либо правил составления протокола (статья 181.4 ГК РФ).",
+          "Решение оспоримо: оно может быть признано судом недействительным по установленному нарушению и действует, пока не признано недействительным (статья 181.4 ГК РФ).",
+          "Решение обязательно для всех лиц, имевших право участвовать в собрании, в том числе для голосовавших против и не участвовавших (статья 181.1 ГК РФ).",
+          "Основание договорного условия оспоримо: решение собрания, на котором условие держится, может быть признано судом недействительным, но до этого момента действует, поэтому условие сохраняет силу (статья 181.4 ГК РФ).",
+          "Условие договора, принятое решением собрания, обязательно для всех лиц, имевших право участвовать в собрании, и не может быть изменено в одностороннем порядке вопреки этому решению (статьи 181.1 и 181.3 ГК РФ)."
+        ]
       }
     ]
   },
   "red_team_report": {
     "id": "meeting-decisions-red-team-report-v0",
-    "total": 10,
-    "blocked": 10,
+    "total": 13,
+    "blocked": 13,
     "unblocked": 0,
     "results": [
       {
@@ -552,6 +645,53 @@
         },
         "reasons_ru": [
           "Решение собрания в деле не заявлено."
+        ]
+      },
+      {
+        "case_id": "meeting-red-term-loses-basis-without-the-link",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_term_lacks_meeting_basis": true
+        },
+        "observed_outcomes": {
+          "contract_term_lacks_meeting_basis": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение ничтожно: оно противоречит основам правопорядка или нравственности (статья 181.5 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "meeting-red-voidable-decision-strips-the-term",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_term_lacks_meeting_basis": true
+        },
+        "observed_outcomes": {
+          "contract_term_lacks_meeting_basis": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Установлено нарушение порядка принятия решения: порядка созыва, подготовки или проведения собрания, равенства прав участников, полномочий лица, выступавшего от имени участника, либо правил составления протокола (статья 181.4 ГК РФ).",
+          "Решение оспоримо: оно может быть признано судом недействительным по установленному нарушению и действует, пока не признано недействительным (статья 181.4 ГК РФ).",
+          "Решение обязательно для всех лиц, имевших право участвовать в собрании, в том числе для голосовавших против и не участвовавших (статья 181.1 ГК РФ).",
+          "Основание договорного условия оспоримо: решение собрания, на котором условие держится, может быть признано судом недействительным, но до этого момента действует, поэтому условие сохраняет силу (статья 181.4 ГК РФ).",
+          "Условие договора, принятое решением собрания, обязательно для всех лиц, имевших право участвовать в собрании, и не может быть изменено в одностороннем порядке вопреки этому решению (статьи 181.1 и 181.3 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "meeting-red-void-decision-still-binds-the-term",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_term_binds_all_participants": true
+        },
+        "observed_outcomes": {
+          "contract_term_binds_all_participants": false
+        },
+        "reasons_ru": [
+          "Заявлено решение собрания: оно порождает правовые последствия для всех лиц, имевших право участвовать в данном собрании, если принято в установленном порядке (статья 181.1 ГК РФ).",
+          "Решение ничтожно: оно принято по вопросу, не относящемуся к компетенции собрания (статья 181.5 ГК РФ).",
+          "Условие договора держится на решении собрания, которое ничтожно либо не принято, поэтому условие лишилось основания: недействительное решение недействительно с момента принятия независимо от признания судом, а непринятое решение правовых последствий не порождает (статьи 181.2, 181.3 и 181.5 ГК РФ)."
         ]
       }
     ]

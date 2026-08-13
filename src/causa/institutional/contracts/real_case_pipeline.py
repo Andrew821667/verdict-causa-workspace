@@ -77,6 +77,7 @@ LAYER_FED_BY = (
     "termination",
     "attribution_delay",
     "obligation_dynamics",
+    "meeting_decisions",
 )
 
 _INSTITUTE_EVALUATION_FIELD = {name: f"{name}_evaluation" for name in INSTITUTE_RUNNERS}

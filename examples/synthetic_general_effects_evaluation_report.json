@@ -19,11 +19,14 @@
     "effective_termination": false,
     "creditor_delay_excuses_debtor": false,
     "obligation_discharged_full": true,
-    "accrued_claims_preserved": true
+    "accrued_claims_preserved": true,
+    "contract_term_lacks_meeting_basis": false,
+    "contract_term_basis_voidable": false,
+    "contract_term_binds_all_participants": false
   },
   "constraint_set": {
     "id": "general-effects-constraint-set:case-supply-1",
-    "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-183-190-199-209-405-407-432-v9",
+    "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199-209-405-407-432-v10",
     "source_evaluations": [
       "formation_evaluation",
       "invalidity_evaluation",
@@ -37,7 +40,10 @@
       "persons_evaluation",
       "objects_evaluation",
       "constraint_evaluation",
-      "termination_evaluation"
+      "termination_evaluation",
+      "attribution_delay_evaluation",
+      "obligation_dynamics_evaluation",
+      "meeting_decisions_evaluation"
     ],
     "expressions": [
       "formation_defect_displaces_contract == NOT contract_concluded_prerequisites",
@@ -57,10 +63,13 @@
       "debtor_delay_excused_by_creditor == breach_issue AND creditor_delay_excuses_debtor",
       "obligation_discharged_before_claim == obligation_discharged_full AND NOT accrued_claims_preserved",
       "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor OR obligation_discharged_before_claim)",
+      "term_deprived_of_meeting_basis == contract_legally_effective AND contract_term_lacks_meeting_basis",
+      "term_meeting_basis_challengeable == contract_legally_effective AND contract_term_basis_voidable",
+      "term_binding_on_all_participants == contractual_claims_enforceable AND contract_term_binds_all_participants",
       "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
       "title_transfer_defeated == unauthorized_disposal_detected",
       "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-      "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable"
+      "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable"
     ]
   },
   "derived_evaluation": {
@@ -84,6 +93,9 @@
     "breach_findings_without_effect": false,
     "debtor_delay_excused_by_creditor": false,
     "obligation_discharged_before_claim": false,
+    "term_deprived_of_meeting_basis": false,
+    "term_meeting_basis_challengeable": false,
+    "term_binding_on_all_participants": false,
     "restitution_regime_applies": false,
     "requires_human_general_effects_assessment": false,
     "reasons_ru": [
@@ -97,8 +109,8 @@
   },
   "benchmark_report": {
     "id": "general-effects-benchmark-report-v0",
-    "total": 10,
-    "passed": 10,
+    "total": 13,
+    "passed": 13,
     "failed": 0,
     "results": [
       {
@@ -299,13 +311,70 @@
           "Недействительная сделка не влечёт юридических последствий, за исключением тех, которые связаны с её недействительностью, и недействительна с момента её совершения (статья 167 ГК РФ).",
           "Вместо договорных требований подлежат применению последствия недействительности сделки: каждая из сторон обязана возвратить другой всё полученное по сделке, а к требованиям о возврате исполненного применяются правила о неосновательном обогащении (статьи 167 и 1103 ГК РФ)."
         ]
+      },
+      {
+        "task_id": "general-effects-bench-term-without-meeting-basis",
+        "passed": true,
+        "expected_outcomes": {
+          "term_deprived_of_meeting_basis": true,
+          "contract_legally_effective": true,
+          "institute_conclusions_displaced": false,
+          "requires_human_general_effects_assessment": true
+        },
+        "observed_outcomes": {
+          "term_deprived_of_meeting_basis": true,
+          "contract_legally_effective": true,
+          "institute_conclusions_displaced": false,
+          "requires_human_general_effects_assessment": true
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Условие договора держится на решении общего собрания, которое ничтожно либо не принято, поэтому основания у этого условия нет: недействительное решение недействительно с момента его принятия, а ничтожность не зависит от признания судом. Требование, основанное на таком условии, не может быть удовлетворено в той части, в какой оно из этого условия следует; какое именно условие спорно, определяет юрист (статьи 181.1, 181.3 и 181.5 ГК РФ).",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+        ]
+      },
+      {
+        "task_id": "general-effects-bench-term-meeting-basis-challengeable",
+        "passed": true,
+        "expected_outcomes": {
+          "term_meeting_basis_challengeable": true,
+          "term_deprived_of_meeting_basis": false,
+          "requires_human_general_effects_assessment": true
+        },
+        "observed_outcomes": {
+          "term_meeting_basis_challengeable": true,
+          "term_deprived_of_meeting_basis": false,
+          "requires_human_general_effects_assessment": true
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Решение собрания, на котором держится условие договора, оспоримо: оно действует, пока не признано недействительным судом, поэтому условие сохраняет силу, но вывод по делу зависит от исхода оспаривания (статья 181.4 ГК РФ).",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+        ]
+      },
+      {
+        "task_id": "general-effects-bench-term-binds-all-participants",
+        "passed": true,
+        "expected_outcomes": {
+          "term_binding_on_all_participants": true,
+          "requires_human_general_effects_assessment": false
+        },
+        "observed_outcomes": {
+          "term_binding_on_all_participants": true,
+          "requires_human_general_effects_assessment": false
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Условие договора принято решением собрания и обязательно для всех лиц, имевших право участвовать в нём, в том числе для голосовавших против и не участвовавших; изменить его в одностороннем порядке вопреки решению нельзя (статьи 181.1 и 181.3 ГК РФ).",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+        ]
       }
     ]
   },
   "red_team_report": {
     "id": "general-effects-red-team-report-v0",
-    "total": 10,
-    "blocked": 10,
+    "total": 13,
+    "blocked": 13,
     "unblocked": 0,
     "results": [
       {
@@ -444,6 +513,49 @@
         },
         "observed_outcomes": {
           "requires_human_general_effects_assessment": true
+        },
+        "reasons_ru": [
+          "Договор не порождает правовых последствий как основание требований сторон; выводы специальных институтов о нарушении его условий правового эффекта не имеют.",
+          "Договор не считается заключённым: между сторонами не достигнуто соглашение по всем существенным условиям в требуемой форме, поэтому обязательства из него не возникли (статья 432 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "general-effects-red-strip-term-basis-without-the-link",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "term_deprived_of_meeting_basis": true
+        },
+        "observed_outcomes": {
+          "term_deprived_of_meeting_basis": false
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+        ]
+      },
+      {
+        "case_id": "general-effects-red-skip-human-on-term-without-basis",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_general_effects_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_general_effects_assessment": true
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Условие договора держится на решении общего собрания, которое ничтожно либо не принято, поэтому основания у этого условия нет: недействительное решение недействительно с момента его принятия, а ничтожность не зависит от признания судом. Требование, основанное на таком условии, не может быть удовлетворено в той части, в какой оно из этого условия следует; какое именно условие спорно, определяет юрист (статьи 181.1, 181.3 и 181.5 ГК РФ).",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+        ]
+      },
+      {
+        "case_id": "general-effects-red-bind-participants-on-unconcluded-contract",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "term_binding_on_all_participants": true
+        },
+        "observed_outcomes": {
+          "term_binding_on_all_participants": false
         },
         "reasons_ru": [
           "Договор не порождает правовых последствий как основание требований сторон; выводы специальных институтов о нарушении его условий правового эффекта не имеют.",

@@ -46,6 +46,29 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.2.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Wires the meeting-decisions institute into the general-effects layer: a contract term resting on a void or unadopted decision loses its basis (articles 181.3 and 181.5).",
+            "The link between a decision and a contract term is a fact of the case, not a conclusion, so the meeting-decisions evidence contract gains one predicate and moves to contracts.meeting-decisions-evidence.v1.",
+            "The layer says only what it knows: it flags the term and raises the case for human assessment rather than cancelling any breach finding, because it does not know which term is disputed.",
+            "Closes the last of the three open connectivity debts named by the layer audit.",
+            "The analysis result keeps its fields but every evaluation changes shape; artifacts must be regenerated.",
+        ],
+        notes_ru=[
+            "Институт решений собраний проведён в слой общих положений: договорное условие, которое держится на ничтожном или непринятом решении, лишается основания (статьи 181.3 и 181.5 ГК РФ).",
+            "Связь решения с условием договора — факт дела, а не вывод, поэтому контракт данных о решениях собраний получил один предикат и перешёл на `contracts.meeting-decisions-evidence.v1`.",
+            "Слой говорит ровно то, что знает: он отмечает условие и поднимает дело человеку, а не отменяет вывод о нарушении, потому что не знает, о каком именно условии спор.",
+            "Закрыт последний из трёх открытых долгов связности, названных аудитом слоя.",
+            "Состав полей результата не изменился, но форма выводов изменилась; артефакты требуют пересборки.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.1.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

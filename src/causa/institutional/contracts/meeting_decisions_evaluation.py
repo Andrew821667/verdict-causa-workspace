@@ -190,6 +190,58 @@ SYNTHETIC_MEETING_DECISIONS_BENCHMARKS = (
             "decision_voidable": False,
         },
     ),
+    MeetingDecisionsEvaluationTask(
+        id="meeting-bench-lawful-decision-binds-the-term",
+        title_ru="Условие держится на действительном решении: обязательно для всех",
+        facts=_facts(**_LAWFUL, meeting_decision_underpins_contract_term=True),
+        expected_outcomes={
+            "contract_term_binds_all_participants": True,
+            "contract_term_lacks_meeting_basis": False,
+            "contract_term_basis_voidable": False,
+        },
+    ),
+    MeetingDecisionsEvaluationTask(
+        id="meeting-bench-void-decision-strips-the-term",
+        title_ru="Условие держится на ничтожном решении: основания нет",
+        facts=_facts(
+            **_LAWFUL,
+            contrary_to_public_order_or_morality=True,
+            meeting_decision_underpins_contract_term=True,
+        ),
+        expected_outcomes={
+            "contract_term_lacks_meeting_basis": True,
+            "contract_term_binds_all_participants": False,
+            "requires_human_meeting_decision_assessment": True,
+        },
+    ),
+    MeetingDecisionsEvaluationTask(
+        id="meeting-bench-unadopted-decision-strips-the-term",
+        title_ru="Условие держится на непринятом решении: основания нет",
+        facts=_facts(
+            meeting_decision_asserted=True,
+            quorum_present=True,
+            meeting_decision_underpins_contract_term=True,
+        ),
+        expected_outcomes={
+            "decision_not_adopted": True,
+            "contract_term_lacks_meeting_basis": True,
+            "contract_term_binds_all_participants": False,
+        },
+    ),
+    MeetingDecisionsEvaluationTask(
+        id="meeting-bench-voidable-decision-keeps-the-term",
+        title_ru="Решение оспоримо: условие действует, но основание спорно",
+        facts=_facts(
+            **_LAWFUL,
+            participant_equality_breached=True,
+            meeting_decision_underpins_contract_term=True,
+        ),
+        expected_outcomes={
+            "contract_term_basis_voidable": True,
+            "contract_term_lacks_meeting_basis": False,
+            "contract_term_binds_all_participants": True,
+        },
+    ),
 )
 
 
@@ -274,6 +326,32 @@ SYNTHETIC_MEETING_DECISIONS_RED_TEAM_CASES = (
         title_ru="Нарушение порядка при незаявленном решении собрания",
         facts=_facts(participant_equality_breached=True, minutes_requirements_breached=True),
         forbidden_outcomes={"procedural_defect_established": True, "decision_voidable": True},
+    ),
+    MeetingDecisionsRedTeamCase(
+        id="meeting-red-term-loses-basis-without-the-link",
+        title_ru="Условие лишено основания при незаявленной связи с решением",
+        facts=_facts(**_LAWFUL, contrary_to_public_order_or_morality=True),
+        forbidden_outcomes={"contract_term_lacks_meeting_basis": True},
+    ),
+    MeetingDecisionsRedTeamCase(
+        id="meeting-red-voidable-decision-strips-the-term",
+        title_ru="Оспоримость решения выдана за отсутствие основания у условия",
+        facts=_facts(
+            **_LAWFUL,
+            minutes_requirements_breached=True,
+            meeting_decision_underpins_contract_term=True,
+        ),
+        forbidden_outcomes={"contract_term_lacks_meeting_basis": True},
+    ),
+    MeetingDecisionsRedTeamCase(
+        id="meeting-red-void-decision-still-binds-the-term",
+        title_ru="Условие на ничтожном решении признано обязательным для всех",
+        facts=_facts(
+            **_LAWFUL,
+            question_outside_competence=True,
+            meeting_decision_underpins_contract_term=True,
+        ),
+        forbidden_outcomes={"contract_term_binds_all_participants": True},
     ),
 )
 

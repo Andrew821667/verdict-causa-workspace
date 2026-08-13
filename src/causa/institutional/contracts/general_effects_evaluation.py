@@ -179,6 +179,38 @@ SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS = (
             "requires_human_general_effects_assessment": True,
         },
     ),
+    GeneralEffectsEvaluationTask(
+        id="general-effects-bench-term-without-meeting-basis",
+        title_ru="Условие держится на ничтожном решении собрания — основания нет",
+        inputs=_inputs(**_EFFECTIVE, contract_term_lacks_meeting_basis=True),
+        expected_outcomes={
+            "term_deprived_of_meeting_basis": True,
+            # Порок условия не отменяет договор целиком.
+            "contract_legally_effective": True,
+            "institute_conclusions_displaced": False,
+            "requires_human_general_effects_assessment": True,
+        },
+    ),
+    GeneralEffectsEvaluationTask(
+        id="general-effects-bench-term-meeting-basis-challengeable",
+        title_ru="Решение собрания оспоримо — условие действует, но основание спорно",
+        inputs=_inputs(**_EFFECTIVE, contract_term_basis_voidable=True),
+        expected_outcomes={
+            "term_meeting_basis_challengeable": True,
+            "term_deprived_of_meeting_basis": False,
+            "requires_human_general_effects_assessment": True,
+        },
+    ),
+    GeneralEffectsEvaluationTask(
+        id="general-effects-bench-term-binds-all-participants",
+        title_ru="Условие принято действительным решением — связывает всех участников",
+        inputs=_inputs(**_EFFECTIVE, contract_term_binds_all_participants=True),
+        expected_outcomes={
+            "term_binding_on_all_participants": True,
+            # Действительное основание условия — не повод поднимать дело человеку.
+            "requires_human_general_effects_assessment": False,
+        },
+    ),
 )
 
 
@@ -242,6 +274,26 @@ SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES = (
         title_ru="Пропустить экспертизу при вытеснении договорного эффекта",
         inputs=_inputs(contract_concluded_prerequisites=False),
         forbidden_outcomes={"requires_human_general_effects_assessment": False},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-strip-term-basis-without-the-link",
+        title_ru="Лишить условие основания без вывода института о решении собрания",
+        inputs=_inputs(**_EFFECTIVE),
+        forbidden_outcomes={"term_deprived_of_meeting_basis": True},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-skip-human-on-term-without-basis",
+        title_ru="Пропустить экспертизу при условии, лишившемся основания",
+        inputs=_inputs(**_EFFECTIVE, contract_term_lacks_meeting_basis=True),
+        forbidden_outcomes={"requires_human_general_effects_assessment": False},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-bind-participants-on-unconcluded-contract",
+        title_ru="Связать участников условием незаключённого договора",
+        inputs=_inputs(
+            contract_concluded_prerequisites=False, contract_term_binds_all_participants=True
+        ),
+        forbidden_outcomes={"term_binding_on_all_participants": True},
     ),
 )
 

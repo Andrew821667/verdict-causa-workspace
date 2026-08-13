@@ -3,6 +3,7 @@
 from causa.institutional.contracts.layer_connectivity import (
     LAYER_CONNECTIVITY_AUDIT,
     VERDICT_LABELS_RU,
+    ConnectivityEntry,
     ConnectivityVerdict,
     audit_layer_connectivity,
 )
@@ -41,23 +42,42 @@ def test_every_reason_is_written_out() -> None:
         assert verdict in VERDICT_LABELS_RU, name
 
 
-def test_open_wiring_debt_is_named() -> None:
-    """Открытый долг связности виден в отчёте, а не только в исходнике.
+def test_no_institute_is_left_without_a_path_to_the_layer() -> None:
+    """Все три института, найденные аудитом, проведены в слой.
 
-    Это единственная категория, которая обязана уменьшаться: остальные —
-    решения, а не задолженность.
+    `attribution_delay` — выпуском 1.0.0, `obligation_dynamics` — 1.1.0,
+    `meeting_decisions` — 1.2.0. Отчёт обязан сказать об этом прямо: молчание о
+    долге неотличимо от поломки показа долга.
     """
     report = audit_layer_connectivity()
 
-    debt = {entry.institute for entry in report.open_wiring_debt}
-    # `attribution_delay` проведён в слой выпуском 1.0.0 и вышел из долга.
-    # `obligation_dynamics` проведён в слой выпуском 1.1.0 и вышел из долга.
-    assert debt == {"meeting_decisions"}
-    assert any("Открытый долг связности" in note for note in report.notes_ru)
-    for entry in report.open_wiring_debt:
-        assert entry.verdict is ConnectivityVerdict.SHOULD_BE_WIRED
-        # Долг обязан называть норму, из которой следует связь.
-        assert "стать" in entry.reason_ru or "глав" in entry.reason_ru, entry.institute
+    assert report.open_wiring_debt == []
+    assert any("Открытого долга связности нет" in note for note in report.notes_ru)
+    assert "should_be_wired" not in report.by_verdict
+
+
+def test_the_debt_category_still_works_when_it_is_empty() -> None:
+    """Закрытие последнего долга не должно превращать проверку в вечнозелёную.
+
+    Категория остаётся в модели ради следующего института, вывод которого
+    окажется без пути в слой, поэтому проверяются требования к записи долга, а
+    не только его отсутствие сегодня.
+    """
+    assert ConnectivityVerdict.SHOULD_BE_WIRED in VERDICT_LABELS_RU
+
+    debt = ConnectivityEntry(
+        institute="synthetic_institute",
+        verdict=ConnectivityVerdict.SHOULD_BE_WIRED,
+        verdict_ru=VERDICT_LABELS_RU[ConnectivityVerdict.SHOULD_BE_WIRED],
+        reason_ru=(
+            "вывод по праву меняет судьбу требования и опирается на статью закона, "
+            "но до слоя не доходит"
+        ),
+    )
+
+    assert debt.verdict is ConnectivityVerdict.SHOULD_BE_WIRED
+    # Долг обязан называть норму, из которой следует связь.
+    assert "стать" in debt.reason_ru or "глав" in debt.reason_ru
 
 
 def test_the_audit_does_not_invent_institutes() -> None:

@@ -229,9 +229,9 @@ def test_benchmark_and_red_team_suites_pass() -> None:
     benchmark = run_meeting_decisions_benchmark_suite()
     red_team = run_meeting_decisions_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_MEETING_DECISIONS_BENCHMARKS) == 12
+    assert benchmark.total == len(SYNTHETIC_MEETING_DECISIONS_BENCHMARKS) == 16
     assert benchmark.failed == 0, [r for r in benchmark.results if not r.passed]
-    assert red_team.total == len(SYNTHETIC_MEETING_DECISIONS_RED_TEAM_CASES) == 10
+    assert red_team.total == len(SYNTHETIC_MEETING_DECISIONS_RED_TEAM_CASES) == 13
     assert red_team.unblocked == 0, [r for r in red_team.results if not r.blocked]
 
 

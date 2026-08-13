@@ -42,14 +42,27 @@
 - глава 26 ГК РФ (статьи 407–419) — прекращение обязательства зачётом,
   новацией, прощением долга, невозможностью исполнения и иными основаниями
   прекращает и требование о его исполнении, тогда как требования, возникшие до
-  прекращения, сохраняются (статья 407 пункт 4).
+  прекращения, сохраняются (статья 407 пункт 4);
+- статья 181.1 ГК РФ — решение собрания порождает правовые последствия для всех
+  лиц, имевших право участвовать в собрании, поэтому условие договора, принятое
+  таким решением, связывает и голосовавших против;
+- статьи 181.3 и 181.5 ГК РФ — недействительное решение собрания
+  недействительно с момента принятия, а ничтожность по статье 181.5 не зависит
+  от признания судом, поэтому договорное условие, которое держится на таком
+  решении, лишается основания (дело 45-КГ23-2-К7).
+
+Про условие, потерявшее основание, слой говорит ровно то, что знает: спорное
+условие держалось на решении собрания, и этого решения в правовом смысле нет.
+Он не отменяет вывод специального института о нарушении, потому что не знает, о
+каком именно условии идёт спор, — он поднимает дело человеку.
 """
 
 from pydantic import BaseModel, ConfigDict, Field
 from z3 import And, Bool, Not, Or, Solver, sat
 
 GENERAL_EFFECTS_MODEL_VERSION = (
-    "contracts-general-part-effects-articles-10-129-167-171-173-1-183-190-199-209-405-407-432-v9"
+    "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199"
+    "-209-405-407-432-v10"
 )
 
 
@@ -90,6 +103,10 @@ class GeneralEffectsInputs(BaseModel):
     # Прекращение обязательства по главе 26 и судьба возникших требований.
     obligation_discharged_full: bool
     accrued_claims_preserved: bool
+    # Договорное условие, которое держится на решении собрания (глава 9.1).
+    contract_term_lacks_meeting_basis: bool
+    contract_term_basis_voidable: bool
+    contract_term_binds_all_participants: bool
 
 
 class GeneralEffectsConstraintSet(BaseModel):
@@ -123,6 +140,9 @@ class GeneralEffectsEvaluation(BaseModel):
     breach_findings_without_effect: bool
     debtor_delay_excused_by_creditor: bool
     obligation_discharged_before_claim: bool
+    term_deprived_of_meeting_basis: bool
+    term_meeting_basis_challengeable: bool
+    term_binding_on_all_participants: bool
     restitution_regime_applies: bool
     requires_human_general_effects_assessment: bool
     reasons_ru: list[str] = Field(default_factory=list)
@@ -145,6 +165,7 @@ def build_general_effects_inputs(
     termination_evaluation,
     attribution_delay_evaluation,
     obligation_dynamics_evaluation,
+    meeting_decisions_evaluation,
 ) -> GeneralEffectsInputs:
     """Собрать входы слоя из выводов якорных моделей общей части."""
     return GeneralEffectsInputs(
@@ -168,6 +189,13 @@ def build_general_effects_inputs(
         creditor_delay_excuses_debtor=(attribution_delay_evaluation.creditor_delay_excuses_debtor),
         obligation_discharged_full=obligation_dynamics_evaluation.obligation_discharged_full,
         accrued_claims_preserved=obligation_dynamics_evaluation.accrued_claims_preserved,
+        contract_term_lacks_meeting_basis=(
+            meeting_decisions_evaluation.contract_term_lacks_meeting_basis
+        ),
+        contract_term_basis_voidable=(meeting_decisions_evaluation.contract_term_basis_voidable),
+        contract_term_binds_all_participants=(
+            meeting_decisions_evaluation.contract_term_binds_all_participants
+        ),
     )
 
 
@@ -191,6 +219,9 @@ def build_general_effects_constraint_set(
             "objects_evaluation",
             "constraint_evaluation",
             "termination_evaluation",
+            "attribution_delay_evaluation",
+            "obligation_dynamics_evaluation",
+            "meeting_decisions_evaluation",
         ],
         expressions=[
             "formation_defect_displaces_contract == NOT contract_concluded_prerequisites",
@@ -210,10 +241,13 @@ def build_general_effects_constraint_set(
             "debtor_delay_excused_by_creditor == breach_issue AND creditor_delay_excuses_debtor",
             "obligation_discharged_before_claim == obligation_discharged_full AND NOT accrued_claims_preserved",
             "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor OR obligation_discharged_before_claim)",
+            "term_deprived_of_meeting_basis == contract_legally_effective AND contract_term_lacks_meeting_basis",
+            "term_meeting_basis_challengeable == contract_legally_effective AND contract_term_basis_voidable",
+            "term_binding_on_all_participants == contractual_claims_enforceable AND contract_term_binds_all_participants",
             "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
             "title_transfer_defeated == unauthorized_disposal_detected",
             "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-            "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable",
+            "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable",
         ],
     )
 
@@ -245,6 +279,9 @@ def evaluate_general_effects_constraints(
     breach_findings_without_effect = Bool("breach_findings_without_effect")
     debtor_delay_excused_by_creditor = Bool("debtor_delay_excused_by_creditor")
     obligation_discharged_before_claim = Bool("obligation_discharged_before_claim")
+    term_deprived_of_meeting_basis = Bool("term_deprived_of_meeting_basis")
+    term_meeting_basis_challengeable = Bool("term_meeting_basis_challengeable")
+    term_binding_on_all_participants = Bool("term_binding_on_all_participants")
     title_transfer_defeated = Bool("title_transfer_defeated")
     restitution_regime_applies = Bool("restitution_regime_applies")
     requires_human_general_effects_assessment = Bool("requires_human_general_effects_assessment")
@@ -336,6 +373,24 @@ def evaluate_general_effects_constraints(
             ),
         )
     )
+    # Условие договора, принятое решением собрания, разделяет судьбу этого
+    # решения (статьи 181.3 и 181.5). Смысл вывод имеет только там, где договор
+    # вообще действует: если он вытеснен целиком, судьба отдельного условия уже
+    # решена, и второй ответ был бы двойным счётом.
+    solver.add(
+        term_deprived_of_meeting_basis
+        == And(contract_legally_effective, variables["contract_term_lacks_meeting_basis"])
+    )
+    solver.add(
+        term_meeting_basis_challengeable
+        == And(contract_legally_effective, variables["contract_term_basis_voidable"])
+    )
+    # Обратная сторона статьи 181.1: решение действительно, договор действует и
+    # защита доступна — тогда условие связывает и того, кто голосовал против.
+    solver.add(
+        term_binding_on_all_participants
+        == And(contractual_claims_enforceable, variables["contract_term_binds_all_participants"])
+    )
     solver.add(
         transaction_challengeable_for_missing_consent
         == And(contract_legally_effective, variables["consent_missing_for_transaction"])
@@ -356,6 +411,8 @@ def evaluate_general_effects_constraints(
             title_transfer_defeated,
             transaction_challengeable_for_missing_consent,
             limitation_conclusion_unreliable,
+            term_deprived_of_meeting_basis,
+            term_meeting_basis_challengeable,
         )
     )
 
@@ -381,6 +438,9 @@ def evaluate_general_effects_constraints(
             breach_findings_without_effect=False,
             debtor_delay_excused_by_creditor=False,
             obligation_discharged_before_claim=False,
+            term_deprived_of_meeting_basis=False,
+            term_meeting_basis_challengeable=False,
+            term_binding_on_all_participants=False,
             title_transfer_defeated=False,
             restitution_regime_applies=False,
             requires_human_general_effects_assessment=True,
@@ -482,6 +542,28 @@ def evaluate_general_effects_constraints(
             "специальных институтов о нарушении его условий не могут быть положены в основание "
             "присуждения (статьи 167, 199 и 432 ГК РФ)."
         )
+    if truth(term_deprived_of_meeting_basis):
+        reasons_ru.append(
+            "Условие договора держится на решении общего собрания, которое ничтожно либо не "
+            "принято, поэтому основания у этого условия нет: недействительное решение "
+            "недействительно с момента его принятия, а ничтожность не зависит от признания "
+            "судом. Требование, основанное на таком условии, не может быть удовлетворено в "
+            "той части, в какой оно из этого условия следует; какое именно условие спорно, "
+            "определяет юрист (статьи 181.1, 181.3 и 181.5 ГК РФ)."
+        )
+    if truth(term_meeting_basis_challengeable):
+        reasons_ru.append(
+            "Решение собрания, на котором держится условие договора, оспоримо: оно "
+            "действует, пока не признано недействительным судом, поэтому условие сохраняет "
+            "силу, но вывод по делу зависит от исхода оспаривания (статья 181.4 ГК РФ)."
+        )
+    if truth(term_binding_on_all_participants):
+        reasons_ru.append(
+            "Условие договора принято решением собрания и обязательно для всех лиц, имевших "
+            "право участвовать в нём, в том числе для голосовавших против и не "
+            "участвовавших; изменить его в одностороннем порядке вопреки решению нельзя "
+            "(статьи 181.1 и 181.3 ГК РФ)."
+        )
     if truth(transaction_challengeable_for_missing_consent):
         reasons_ru.append(
             "Сделка совершена без необходимого в силу закона согласия третьего лица, органа "
@@ -533,6 +615,9 @@ def evaluate_general_effects_constraints(
         breach_findings_without_effect=truth(breach_findings_without_effect),
         debtor_delay_excused_by_creditor=truth(debtor_delay_excused_by_creditor),
         obligation_discharged_before_claim=truth(obligation_discharged_before_claim),
+        term_deprived_of_meeting_basis=truth(term_deprived_of_meeting_basis),
+        term_meeting_basis_challengeable=truth(term_meeting_basis_challengeable),
+        term_binding_on_all_participants=truth(term_binding_on_all_participants),
         title_transfer_defeated=truth(title_transfer_defeated),
         restitution_regime_applies=truth(restitution_regime_applies),
         requires_human_general_effects_assessment=truth(requires_human_general_effects_assessment),
