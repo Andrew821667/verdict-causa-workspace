@@ -87,14 +87,33 @@ if [ ! -x "$python_bin" ]; then
 	exit 1
 fi
 
-caddyfile="$out/Caddyfile"
+# Собираются два файла из одного шаблона:
+#
+#   verdict-causa.caddy — блок сайта, подключается к чужому Caddyfile через
+#                         import, если Caddy на машине уже обслуживает сайты;
+#   Caddyfile           — отдельная конфигурация, если Caddy больше ничем не занят.
+#
+# Почта для Let's Encrypt задана директивой `tls` внутри блока сайта, а не в
+# глобальных настройках: два глобальных блока в одной конфигурации Caddy не
+# уживаются, и вставку было бы некуда подключить.
+
 umask 077
+site="$out/verdict-causa.caddy"
 sed \
 	-e "s|you@example.com|$email|" \
 	-e "s|stand\.example\.com|$domain|" \
 	-e "s|operator ЗАМЕНИТЕ_НА_ХЭШ|$operator $hash|" \
 	-e "s|/var/log/caddy/verdict-causa\.log|$logs/verdict-causa-caddy.log|" \
-	"$root/deploy/Caddyfile" > "$caddyfile"
+	"$root/deploy/Caddyfile.site" > "$site"
+chmod 600 "$site"
+
+caddyfile="$out/Caddyfile"
+cat > "$caddyfile" <<'HEADER'
+# Отдельная конфигурация Caddy для стенда «Резонанс».
+# Собрана ./deploy/configure.sh — правьте шаблон deploy/Caddyfile.site, не этот файл.
+
+HEADER
+cat "$site" >> "$caddyfile"
 chmod 600 "$caddyfile"
 
 plist="$out/com.verdictcausa.stand.plist"
@@ -110,7 +129,7 @@ chmod 644 "$plist"
 
 # Проверяются сами заглушки, а не строка «example.com»: поддомен пользователя
 # теоретически может её содержать, и ложная тревога здесь хуже, чем её нет.
-if grep -q "ЗАМЕНИТЕ_НА_ХЭШ\|ВАШ_ПОЛЬЗОВАТЕЛЬ\|you@example\.com" "$caddyfile" "$plist"; then
+if grep -q "ЗАМЕНИТЕ_НА_ХЭШ\|ВАШ_ПОЛЬЗОВАТЕЛЬ\|you@example\.com" "$caddyfile" "$site" "$plist"; then
 	echo "В собранных файлах остались заглушки — подстановка не сработала." >&2
 	exit 1
 fi
@@ -122,8 +141,11 @@ cat <<NEXT
 
 Готово. Собрано:
 
-  $caddyfile   (права 600: внутри хэш пароля)
+  $site        (блок сайта для подключения к существующему Caddy)
+  $caddyfile   (отдельная конфигурация, если Caddy больше ничем не занят)
   $plist
+
+Оба файла с правами 600: внутри хэш пароля.
 
 Дальше — вручную, по deploy/README.md:
 

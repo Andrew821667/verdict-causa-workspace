@@ -78,6 +78,45 @@ if [ "$(uname -s)" != "Darwin" ]; then
 	exit 1
 fi
 
+# --- Что уже занято на этой машине ------------------------------------------
+# Mac mini обычно не пустой. Всё, что может столкнуться с чужим проектом,
+# проверяется здесь и до установки: узнать о конфликте после того, как чужой
+# сайт лёг, — недопустимо.
+
+echo "════ 0/4 · проверяю, что уже работает на машине"
+
+listener() {
+	lsof -nP -iTCP:"$1" -sTCP:LISTEN 2> /dev/null | awk 'NR==2 {print $1}'
+}
+
+busy_8765="$(listener 8765)"
+if [ -n "$busy_8765" ]; then
+	echo "Порт 8765 уже занят процессом «$busy_8765»." >&2
+	echo "Это порт стенда. Освободите его либо остановите тот процесс." >&2
+	exit 1
+fi
+
+for port in 80 443; do
+	owner="$(listener "$port")"
+	if [ -n "$owner" ] && [ "$owner" != "caddy" ]; then
+		echo "Порт $port занят процессом «$owner», а не Caddy." >&2
+		echo "Скорее всего на машине уже работает веб-сервер (nginx, Docker)." >&2
+		echo "Установка остановлена: снимать чужой сервер с порта я не буду." >&2
+		exit 1
+	fi
+done
+
+brew_etc="$(brew --prefix)/etc"
+existing_caddyfile=""
+if [ -f "$brew_etc/Caddyfile" ]; then
+	existing_caddyfile="$brew_etc/Caddyfile"
+	echo "→ найдена работающая конфигурация Caddy: $existing_caddyfile"
+	echo "  стенд будет добавлен к ней вставкой, файл не перезаписывается"
+else
+	echo "→ своей конфигурации у Caddy нет, поставлю отдельную"
+fi
+echo "→ порты 80, 443 и 8765 свободны либо заняты самим Caddy"
+
 # Права root понадобятся на последнем шаге: Caddy занимает порты 80 и 443, а на
 # macOS порты ниже 1024 обычному пользователю недоступны. Спрашиваем сейчас,
 # чтобы установка не встала на середине с открытым запросом пароля.
@@ -133,12 +172,40 @@ echo "→ стенд отвечает на 127.0.0.1:8765"
 
 echo
 echo "════ 4/4 · Caddy и сертификат"
-brew_etc="$(brew --prefix)/etc"
-sudo cp "$caddyfile" "$brew_etc/Caddyfile"
-sudo chmod 600 "$brew_etc/Caddyfile"
+
+site="$root/deploy/local/verdict-causa.caddy"
+installed_site="$brew_etc/verdict-causa.caddy"
+sudo cp "$site" "$installed_site"
+sudo chmod 600 "$installed_site"
+
+if [ -n "$existing_caddyfile" ]; then
+	# Чужая конфигурация не перезаписывается: в неё добавляется одна строка
+	# import, и то после резервной копии. Перезапись здесь означала бы, что
+	# установка стенда молча уронила остальные сайты машины.
+	if sudo grep -q "verdict-causa.caddy" "$existing_caddyfile"; then
+		echo "→ вставка уже подключена к $existing_caddyfile"
+	else
+		backup="$existing_caddyfile.before-verdict-causa.$(date +%Y%m%d%H%M%S)"
+		sudo cp "$existing_caddyfile" "$backup"
+		printf '\nimport %s\n' "$installed_site" | sudo tee -a "$existing_caddyfile" > /dev/null
+		echo "→ вставка подключена; копия прежней конфигурации: $backup"
+	fi
+	config="$existing_caddyfile"
+else
+	sudo cp "$caddyfile" "$brew_etc/Caddyfile"
+	sudo chmod 600 "$brew_etc/Caddyfile"
+	config="$brew_etc/Caddyfile"
+fi
+
+# Проверка до перезапуска: сломанный файл не должен уронить чужие сайты.
+if ! sudo caddy validate --config "$config" > /dev/null 2>&1; then
+	echo "Итоговая конфигурация Caddy не проходит проверку — не перезапускаю." >&2
+	echo "Проверьте: sudo caddy validate --config $config" >&2
+	exit 1
+fi
 sudo brew services restart caddy > /dev/null
 
-domain="$(awk '/^[a-z0-9.-]+ \{/ {print $1; exit}' "$caddyfile")"
+domain="$(awk '/^[a-z0-9.-]+ \{/ {print $1; exit}' "$site")"
 
 echo "→ жду сертификат для $domain"
 issued=0
@@ -164,7 +231,8 @@ if [ "$issued" -eq 1 ]; then
 
 Служба:   launchctl stop|start com.verdictcausa.stand
 Логи:     ~/Library/Logs/verdict-causa-stand.log
-Caddy:    brew services stop caddy
+Caddy:    sudo brew services restart caddy
+Конфиг:   $config
 DONE
 else
 	cat <<PENDING
