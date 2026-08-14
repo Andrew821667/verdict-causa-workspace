@@ -21,7 +21,7 @@
 		<key>CAUSA_UI_HOST</key>
 		<string>127.0.0.1</string>
 		<key>CAUSA_UI_PORT</key>
-		<string>8765</string>
+		<string>ПОРТ_СТЕНДА</string>
 		<key>PYTHONUNBUFFERED</key>
 		<string>1</string>
 	</dict>

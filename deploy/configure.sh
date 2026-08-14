@@ -50,6 +50,42 @@ if [ -z "$operator" ]; then
 	operator="${operator:-operator}"
 fi
 
+# --- Порт стенда ------------------------------------------------------------
+# На машине с другими проектами занятых портов много, поэтому свободный порт
+# подбирается сам. Порт локальный: наружу он не открывается ни при каком выборе.
+
+port="${CAUSA_PORT:-}"
+if [ -n "$port" ]; then
+	if lsof -nP -iTCP:"$port" -sTCP:LISTEN > /dev/null 2>&1; then
+		echo "Порт $port уже занят — выберите другой или уберите CAUSA_PORT." >&2
+		exit 1
+	fi
+else
+	port="$(
+		python3 - <<'PYPORT'
+import socket
+
+# Сначала привычный 8765, затем соседние: так порт стенда остаётся узнаваемым,
+# когда он свободен, и не мешает чужим проектам, когда занят.
+for candidate in [8765, *range(8790, 8890)]:
+    with socket.socket() as probe:
+        try:
+            probe.bind(("127.0.0.1", candidate))
+        except OSError:
+            continue
+        print(candidate)
+        break
+else:
+    raise SystemExit("свободный порт в диапазоне 8765 и 8790-8889 не найден")
+PYPORT
+	)"
+	if [ -z "$port" ]; then
+		echo "Не удалось подобрать свободный порт." >&2
+		exit 1
+	fi
+fi
+echo "Порт стенда: $port (только 127.0.0.1)"
+
 password="${CAUSA_PASSWORD:-}"
 while [ -z "$password" ]; do
 	read -r -s -p "Пароль: " password
@@ -104,6 +140,7 @@ sed \
 	-e "s|stand\.example\.com|$domain|" \
 	-e "s|operator ЗАМЕНИТЕ_НА_ХЭШ|$operator $hash|" \
 	-e "s|/var/log/caddy/verdict-causa\.log|$logs/verdict-causa-caddy.log|" \
+	-e "s|ПОРТ_СТЕНДА|$port|" \
 	"$root/deploy/Caddyfile.site" > "$site"
 chmod 600 "$site"
 
@@ -120,6 +157,7 @@ plist="$out/com.verdictcausa.stand.plist"
 sed \
 	-e "s|/Users/ВАШ_ПОЛЬЗОВАТЕЛЬ/verdict-causa|$root|g" \
 	-e "s|/Users/ВАШ_ПОЛЬЗОВАТЕЛЬ/Library/Logs|$logs|g" \
+	-e "s|ПОРТ_СТЕНДА|$port|" \
 	"$root/deploy/com.verdictcausa.stand.plist" > "$plist"
 chmod 644 "$plist"
 
@@ -129,10 +167,12 @@ chmod 644 "$plist"
 
 # Проверяются сами заглушки, а не строка «example.com»: поддомен пользователя
 # теоретически может её содержать, и ложная тревога здесь хуже, чем её нет.
-if grep -q "ЗАМЕНИТЕ_НА_ХЭШ\|ВАШ_ПОЛЬЗОВАТЕЛЬ\|you@example\.com" "$caddyfile" "$site" "$plist"; then
+if grep -q "ЗАМЕНИТЕ_НА_ХЭШ\|ВАШ_ПОЛЬЗОВАТЕЛЬ\|you@example\.com\|ПОРТ_СТЕНДА" "$caddyfile" "$site" "$plist"; then
 	echo "В собранных файлах остались заглушки — подстановка не сработала." >&2
 	exit 1
 fi
+
+printf '%s\n' "$port" > "$out/port"
 
 caddy validate --config "$caddyfile" > /dev/null
 echo "→ конфигурация Caddy проверена"
@@ -152,7 +192,7 @@ cat <<NEXT
   cp "$plist" ~/Library/LaunchAgents/
   launchctl load ~/Library/LaunchAgents/com.verdictcausa.stand.plist
   launchctl start com.verdictcausa.stand
-  curl -s http://127.0.0.1:8765/api/desktop | head -c 200
+  curl -s http://127.0.0.1:$port/api/desktop | head -c 200
 
   sudo caddy run --config "$caddyfile"
 
@@ -160,6 +200,6 @@ cat <<NEXT
 $domain — указывать на его внешний адрес: без порта 80
 Let's Encrypt не подтвердит владение доменом.
 
-Стенд слушает только 127.0.0.1:8765. Аутентификации в приложении нет —
+Стенд слушает только 127.0.0.1:$port. Аутентификации в приложении нет —
 без basic_auth в Caddy наружу его выпускать нельзя.
 NEXT

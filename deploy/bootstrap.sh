@@ -89,19 +89,29 @@ listener() {
 	lsof -nP -iTCP:"$1" -sTCP:LISTEN 2> /dev/null | awk 'NR==2 {print $1}'
 }
 
-busy_8765="$(listener 8765)"
-if [ -n "$busy_8765" ]; then
-	echo "Порт 8765 уже занят процессом «$busy_8765»." >&2
-	echo "Это порт стенда. Освободите его либо остановите тот процесс." >&2
-	exit 1
-fi
+# Внутренний порт стенда не фиксирован: configure.sh подберёт свободный.
+# Проверять здесь нечего — проверять нужно только то, что сменить нельзя.
 
 for port in 80 443; do
 	owner="$(listener "$port")"
 	if [ -n "$owner" ] && [ "$owner" != "caddy" ]; then
-		echo "Порт $port занят процессом «$owner», а не Caddy." >&2
-		echo "Скорее всего на машине уже работает веб-сервер (nginx, Docker)." >&2
-		echo "Установка остановлена: снимать чужой сервер с порта я не буду." >&2
+		cat >&2 <<CONFLICT
+Порт $port занят процессом «$owner», а не Caddy.
+
+Порты 80 и 443 сменить нельзя: адрес без порта означает 443, а Let's Encrypt
+проверяет владение доменом через 80. Поэтому выход не «взять другой порт», а
+подключить стенд к тому серверу, который эти порты уже держит.
+
+Что делать:
+  1. Поставьте только стенд, без выпуска наружу:
+       ./deploy/install.sh && ./deploy/configure.sh
+     Он поднимется на 127.0.0.1 и выбранном порту, ничего не заняв снаружи.
+  2. В конфигурацию «$owner» добавьте проксирование
+     revision.ai-verdict.ru на этот локальный адрес.
+     Подробности и примеры для nginx и Caddy: deploy/attach-to-existing.md
+
+Установка остановлена: снимать чужой сервер с порта я не буду.
+CONFLICT
 		exit 1
 	fi
 done
@@ -115,7 +125,7 @@ if [ -f "$brew_etc/Caddyfile" ]; then
 else
 	echo "→ своей конфигурации у Caddy нет, поставлю отдельную"
 fi
-echo "→ порты 80, 443 и 8765 свободны либо заняты самим Caddy"
+echo "→ порты 80 и 443 свободны либо заняты самим Caddy"
 
 # Права root понадобятся на последнем шаге: Caddy занимает порты 80 и 443, а на
 # macOS порты ниже 1024 обычному пользователю недоступны. Спрашиваем сейчас,
@@ -136,6 +146,7 @@ echo "════ 2/4 · поддомен, почта, пароль"
 
 plist="$root/deploy/local/com.verdictcausa.stand.plist"
 caddyfile="$root/deploy/local/Caddyfile"
+stand_port="$(cat "$root/deploy/local/port")"
 
 # --- 3. Служба macOS --------------------------------------------------------
 
@@ -154,7 +165,7 @@ launchctl start com.verdictcausa.stand
 echo "→ жду, пока стенд соберёт дела"
 started=0
 for _ in $(seq 1 60); do
-	if curl -fsS --max-time 3 http://127.0.0.1:8765/api/desktop > /dev/null 2>&1; then
+	if curl -fsS --max-time 3 "http://127.0.0.1:$stand_port/api/desktop" > /dev/null 2>&1; then
 		started=1
 		break
 	fi
@@ -162,11 +173,11 @@ for _ in $(seq 1 60); do
 done
 
 if [ "$started" -eq 0 ]; then
-	echo "Стенд не ответил на 127.0.0.1:8765 за две минуты." >&2
+	echo "Стенд не ответил на 127.0.0.1:$stand_port за две минуты." >&2
 	echo "Смотрите ~/Library/Logs/verdict-causa-stand-error.log" >&2
 	exit 1
 fi
-echo "→ стенд отвечает на 127.0.0.1:8765"
+echo "→ стенд отвечает на 127.0.0.1:$stand_port"
 
 # --- 4. Выпуск наружу -------------------------------------------------------
 
