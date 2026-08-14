@@ -105,9 +105,28 @@ done
 # Через stdin, а не через --plaintext: аргументы команды видны в ps любому
 # пользователю машины.
 
-hash="$(printf '%s' "$password" | caddy hash-password 2> /dev/null || true)"
+# Разные сборки Caddy читают пароль по-разному. Сначала пробуем stdin — там
+# пароль не попадает в список процессов; если сборка так не умеет, переходим на
+# --plaintext. Он виден в `ps` доли секунды, и это плата за работоспособность,
+# а не выбор по умолчанию.
+hash_error=""
+hash="$(printf '%s\n' "$password" | caddy hash-password 2> /tmp/caddy-hash-err || true)"
 if [ -z "$hash" ]; then
-	echo "caddy hash-password не вернул хэш — проверьте версию caddy." >&2
+	hash_error="$(cat /tmp/caddy-hash-err 2> /dev/null || true)"
+	hash="$(caddy hash-password --plaintext "$password" 2>> /tmp/caddy-hash-err || true)"
+fi
+rm -f /tmp/caddy-hash-err
+
+# Ответ должен быть похож на bcrypt-хэш, а не на приглашение ввести пароль.
+case "$hash" in
+	\$2*) ;;
+	*) hash="" ;;
+esac
+
+if [ -z "$hash" ]; then
+	echo "caddy hash-password не вернул хэш." >&2
+	echo "Версия: $(caddy version 2>&1 | head -1)" >&2
+	[ -n "$hash_error" ] && echo "Сообщение caddy: $hash_error" >&2
 	exit 1
 fi
 unset password confirmation
