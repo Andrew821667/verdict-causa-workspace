@@ -86,7 +86,11 @@ fi
 echo "════ 0/4 · проверяю, что уже работает на машине"
 
 listener() {
-	lsof -nP -iTCP:"$1" -sTCP:LISTEN 2> /dev/null | awk 'NR==2 {print $1}'
+	# `lsof` возвращает 1, когда порт свободен. При `set -o pipefail` это валило
+	# весь скрипт молча — ровно в том случае, ради которого он и писался.
+	local found
+	found="$(lsof -nP -iTCP:"$1" -sTCP:LISTEN 2> /dev/null || true)"
+	printf '%s\n' "$found" | awk 'NR==2 {print $1}'
 }
 
 # Внутренний порт стенда не фиксирован: configure.sh подберёт свободный.
