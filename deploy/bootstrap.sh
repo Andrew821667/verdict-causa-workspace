@@ -188,31 +188,58 @@ stand_port="$(cat "$root/deploy/local/port")"
 echo
 echo "════ 3/4 · служба macOS"
 agents="$HOME/Library/LaunchAgents"
+label="com.verdictcausa.stand"
+uid="$(id -u)"
 mkdir -p "$agents"
-cp "$plist" "$agents/com.verdictcausa.stand.plist"
+cp "$plist" "$agents/$label.plist"
 
-# Перезагрузка, а не загрузка: при повторном запуске служба уже стоит, и
-# launchctl load на ней молча ничего не сделает.
-launchctl unload "$agents/com.verdictcausa.stand.plist" 2> /dev/null || true
-launchctl load "$agents/com.verdictcausa.stand.plist"
-launchctl start com.verdictcausa.stand
+# Способ загрузки службы зависит от версии macOS и от того, откуда запущен
+# скрипт: по ssh домен `gui/` может быть недоступен, а `launchctl load` объявлен
+# устаревшим. Поэтому пробуем по очереди и **не считаем неудачу фатальной** —
+# важен результат, а не то, каким из механизмов он достигнут. Раньше здесь
+# стояло голое `launchctl load`, и при отказе скрипт умирал молча.
+launchctl bootout "gui/$uid/$label" 2> /dev/null || true
+launchctl unload "$agents/$label.plist" 2> /dev/null || true
+
+launchctl bootstrap "gui/$uid" "$agents/$label.plist" 2> /dev/null \
+	|| launchctl load "$agents/$label.plist" 2> /dev/null \
+	|| true
+launchctl kickstart -k "gui/$uid/$label" 2> /dev/null \
+	|| launchctl start "$label" 2> /dev/null \
+	|| true
+
+wait_for_stand() {
+	local attempts="$1"
+	local _
+	for _ in $(seq 1 "$attempts"); do
+		if curl -fsS --max-time 3 "http://127.0.0.1:$stand_port/api/desktop" > /dev/null 2>&1; then
+			return 0
+		fi
+		sleep 2
+	done
+	return 1
+}
 
 echo "→ жду, пока стенд соберёт дела"
-started=0
-for _ in $(seq 1 60); do
-	if curl -fsS --max-time 3 "http://127.0.0.1:$stand_port/api/desktop" > /dev/null 2>&1; then
-		started=1
-		break
+autostart="служба macOS"
+if ! wait_for_stand 45; then
+	# Служба не поднялась. Запускаем процесс напрямую: стенд должен работать
+	# сейчас, а автозапуск после перезагрузки — вопрос отдельный и он назван.
+	echo "→ служба не отозвалась, запускаю процесс напрямую"
+	mkdir -p "$HOME/Library/Logs"
+	CAUSA_UI_HOST=127.0.0.1 CAUSA_UI_PORT="$stand_port" \
+		nohup "$root/.venv/bin/python" -m causa.ui.server \
+		>> "$HOME/Library/Logs/verdict-causa-stand.log" 2>&1 &
+	autostart="запущен напрямую, автозапуск после перезагрузки не настроен"
+	if ! wait_for_stand 45; then
+		echo "Стенд не ответил на 127.0.0.1:$stand_port." >&2
+		echo "Последние строки журнала:" >&2
+		tail -20 "$HOME/Library/Logs/verdict-causa-stand.log" >&2 2> /dev/null || true
+		tail -20 "$HOME/Library/Logs/verdict-causa-stand-error.log" >&2 2> /dev/null || true
+		exit 1
 	fi
-	sleep 2
-done
-
-if [ "$started" -eq 0 ]; then
-	echo "Стенд не ответил на 127.0.0.1:$stand_port за две минуты." >&2
-	echo "Смотрите ~/Library/Logs/verdict-causa-stand-error.log" >&2
-	exit 1
 fi
-echo "→ стенд отвечает на 127.0.0.1:$stand_port"
+echo "→ стенд отвечает на 127.0.0.1:$stand_port ($autostart)"
 
 # --- 4. Выпуск наружу -------------------------------------------------------
 
@@ -275,7 +302,7 @@ if [ "$issued" -eq 1 ]; then
 
 Войти: имя пользователя и пароль, заданные на шаге 2.
 
-Служба:   launchctl stop|start com.verdictcausa.stand
+Служба:   $autostart
 Логи:     ~/Library/Logs/verdict-causa-stand.log
 Caddy:    sudo brew services restart caddy
 Конфиг:   $config
