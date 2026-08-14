@@ -78,6 +78,12 @@ if [ "$(uname -s)" != "Darwin" ]; then
 	exit 1
 fi
 
+# Права root понадобятся на последнем шаге: Caddy занимает порты 80 и 443, а на
+# macOS порты ниже 1024 обычному пользователю недоступны. Спрашиваем сейчас,
+# чтобы установка не встала на середине с открытым запросом пароля.
+echo "Понадобятся права администратора для запуска Caddy на портах 80 и 443."
+sudo -v
+
 # --- 1. Установка -----------------------------------------------------------
 
 echo "════ 1/4 · окружение и сборка интерфейса"
@@ -130,7 +136,7 @@ echo "════ 4/4 · Caddy и сертификат"
 brew_etc="$(brew --prefix)/etc"
 sudo cp "$caddyfile" "$brew_etc/Caddyfile"
 sudo chmod 600 "$brew_etc/Caddyfile"
-brew services restart caddy > /dev/null
+sudo brew services restart caddy > /dev/null
 
 domain="$(awk '/^[a-z0-9.-]+ \{/ {print $1; exit}' "$caddyfile")"
 
