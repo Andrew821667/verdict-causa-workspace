@@ -63,6 +63,37 @@ fi
 # --- Предварительные проверки -----------------------------------------------
 # Лучше остановиться здесь, чем на середине, оставив половину установки.
 
+# Подходящий Python ищется среди установленных, а не берётся первый попавшийся:
+# на macOS `python3` часто системный 3.9, а рядом стоит свежий из Homebrew.
+# Обновлять системный нельзя — на нём держатся другие проекты.
+if [ -z "${PYTHON:-}" ]; then
+	for candidate in python3.13 python3.12 python3.11 python3; do
+		path="$(command -v "$candidate" 2> /dev/null || true)"
+		[ -n "$path" ] || continue
+		if "$path" -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 11) else 1)' 2> /dev/null; then
+			PYTHON="$path"
+			export PYTHON
+			break
+		fi
+	done
+fi
+
+if [ -z "${PYTHON:-}" ]; then
+	cat >&2 <<'NOPYTHON'
+Не найден Python 3.11 или новее.
+
+Системный python3 на macOS обычно 3.9, и обновлять его нельзя: на нём держатся
+другие проекты машины. Поставьте отдельный — это установка, а не обновление, и
+системный python3 останется прежним:
+
+    brew install python@3.12
+
+Затем запустите установку заново.
+NOPYTHON
+	exit 1
+fi
+echo "Python для стенда: $PYTHON ($("$PYTHON" -V 2>&1))"
+
 missing=()
 command -v python3 > /dev/null || missing+=("python3")
 command -v npm > /dev/null || missing+=("node/npm")
