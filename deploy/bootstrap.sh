@@ -276,7 +276,22 @@ if ! sudo caddy validate --config "$config" > /dev/null 2>&1; then
 	echo "Проверьте: sudo caddy validate --config $config" >&2
 	exit 1
 fi
-sudo brew services restart caddy > /dev/null
+# Homebrew отказывается работать под sudo, а Caddy без root не займёт порты
+# ниже 1024. Поэтому способов запуска три, и они пробуются по очереди: важно,
+# что Caddy работает, а не то, каким из них он запущен.
+caddy_bin="$(command -v caddy)"
+if sudo brew services restart caddy > /dev/null 2>&1; then
+	caddy_how="служба Homebrew"
+elif sudo "$caddy_bin" reload --config "$config" > /dev/null 2>&1; then
+	caddy_how="перезагружена конфигурация работающего Caddy"
+elif sudo "$caddy_bin" start --config "$config" > /dev/null 2>&1; then
+	caddy_how="запущен напрямую (автозапуск после перезагрузки не настроен)"
+else
+	echo "Не удалось запустить Caddy ни одним из способов." >&2
+	echo "Попробуйте вручную: sudo $caddy_bin run --config $config" >&2
+	exit 1
+fi
+echo "→ Caddy: $caddy_how"
 
 domain="$(awk '/^[a-z0-9.-]+ \{/ {print $1; exit}' "$site")"
 
@@ -302,7 +317,8 @@ if [ "$issued" -eq 1 ]; then
 
 Войти: имя пользователя и пароль, заданные на шаге 2.
 
-Служба:   $autostart
+Стенд:    $autostart
+Caddy:    $caddy_how
 Логи:     ~/Library/Logs/verdict-causa-stand.log
 Caddy:    sudo brew services restart caddy
 Конфиг:   $config
