@@ -17,6 +17,7 @@
     "object_excluded_from_circulation": false,
     "breach_issue": true,
     "effective_termination": false,
+    "claims_accrued_before_termination": false,
     "creditor_delay_excuses_debtor": false,
     "obligation_discharged_full": true,
     "accrued_claims_preserved": true,
@@ -26,7 +27,7 @@
   },
   "constraint_set": {
     "id": "general-effects-constraint-set:case-supply-1",
-    "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199-209-405-407-432-v10",
+    "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199-209-405-407-432-453-v11",
     "source_evaluations": [
       "formation_evaluation",
       "invalidity_evaluation",
@@ -63,13 +64,15 @@
       "debtor_delay_excused_by_creditor == breach_issue AND creditor_delay_excuses_debtor",
       "obligation_discharged_before_claim == obligation_discharged_full AND NOT accrued_claims_preserved",
       "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor OR obligation_discharged_before_claim)",
+      "termination_ends_future_performance == contract_legally_effective AND effective_termination",
+      "only_accrued_claims_survive_termination == termination_ends_future_performance AND claims_accrued_before_termination",
       "term_deprived_of_meeting_basis == contract_legally_effective AND contract_term_lacks_meeting_basis",
       "term_meeting_basis_challengeable == contract_legally_effective AND contract_term_basis_voidable",
       "term_binding_on_all_participants == contractual_claims_enforceable AND contract_term_binds_all_participants",
       "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
       "title_transfer_defeated == unauthorized_disposal_detected",
       "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-      "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable"
+      "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance"
     ]
   },
   "derived_evaluation": {
@@ -93,6 +96,8 @@
     "breach_findings_without_effect": false,
     "debtor_delay_excused_by_creditor": false,
     "obligation_discharged_before_claim": false,
+    "termination_ends_future_performance": false,
+    "only_accrued_claims_survive_termination": false,
     "term_deprived_of_meeting_basis": false,
     "term_meeting_basis_challengeable": false,
     "term_binding_on_all_participants": false,
@@ -109,8 +114,8 @@
   },
   "benchmark_report": {
     "id": "general-effects-benchmark-report-v0",
-    "total": 13,
-    "passed": 13,
+    "total": 15,
+    "passed": 15,
     "failed": 0,
     "results": [
       {
@@ -353,6 +358,47 @@
         ]
       },
       {
+        "task_id": "general-effects-bench-termination-ends-future-performance",
+        "passed": true,
+        "expected_outcomes": {
+          "termination_ends_future_performance": true,
+          "breach_findings_without_effect": false,
+          "restitution_regime_applies": false,
+          "requires_human_general_effects_assessment": true
+        },
+        "observed_outcomes": {
+          "termination_ends_future_performance": true,
+          "breach_findings_without_effect": false,
+          "restitution_regime_applies": false,
+          "requires_human_general_effects_assessment": true
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Договор расторгнут, поэтому обязательства сторон на будущее прекращены и требовать исполнения по нему нельзя. Это не отменяет вывод о нарушении, совершённом до расторжения, и не влечёт возврата исполненного: стороны не вправе требовать возвращения того, что было исполнено ими до расторжения, если иное не установлено законом или соглашением (статья 453 ГК РФ).",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+        ]
+      },
+      {
+        "task_id": "general-effects-bench-accrued-claims-survive-termination",
+        "passed": true,
+        "expected_outcomes": {
+          "only_accrued_claims_survive_termination": true,
+          "termination_ends_future_performance": true,
+          "contractual_claims_enforceable": true
+        },
+        "observed_outcomes": {
+          "only_accrued_claims_survive_termination": true,
+          "termination_ends_future_performance": true,
+          "contractual_claims_enforceable": true
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Договор расторгнут, поэтому обязательства сторон на будущее прекращены и требовать исполнения по нему нельзя. Это не отменяет вывод о нарушении, совершённом до расторжения, и не влечёт возврата исполненного: стороны не вправе требовать возвращения того, что было исполнено ими до расторжения, если иное не установлено законом или соглашением (статья 453 ГК РФ).",
+          "Расторжение пережили требования, возникшие до него: обязательства на будущее прекращены, но ответственность за нарушения, допущенные до расторжения, сохраняется, а сторона, для которой основанием расторжения послужило существенное нарушение договора, вправе требовать возмещения причинённых расторжением убытков (статья 453 ГК РФ).",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+        ]
+      },
+      {
         "task_id": "general-effects-bench-term-binds-all-participants",
         "passed": true,
         "expected_outcomes": {
@@ -373,8 +419,8 @@
   },
   "red_team_report": {
     "id": "general-effects-red-team-report-v0",
-    "total": 13,
-    "blocked": 13,
+    "total": 16,
+    "blocked": 16,
     "unblocked": 0,
     "results": [
       {
@@ -517,6 +563,50 @@
         "reasons_ru": [
           "Договор не порождает правовых последствий как основание требований сторон; выводы специальных институтов о нарушении его условий правового эффекта не имеют.",
           "Договор не считается заключённым: между сторонами не достигнуто соглашение по всем существенным условиям в требуемой форме, поэтому обязательства из него не возникли (статья 432 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "general-effects-red-termination-erases-past-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "breach_findings_without_effect": true
+        },
+        "observed_outcomes": {
+          "breach_findings_without_effect": false
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Договор расторгнут, поэтому обязательства сторон на будущее прекращены и требовать исполнения по нему нельзя. Это не отменяет вывод о нарушении, совершённом до расторжения, и не влечёт возврата исполненного: стороны не вправе требовать возвращения того, что было исполнено ими до расторжения, если иное не установлено законом или соглашением (статья 453 ГК РФ).",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+        ]
+      },
+      {
+        "case_id": "general-effects-red-termination-triggers-restitution",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "restitution_regime_applies": true
+        },
+        "observed_outcomes": {
+          "restitution_regime_applies": false
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Договор расторгнут, поэтому обязательства сторон на будущее прекращены и требовать исполнения по нему нельзя. Это не отменяет вывод о нарушении, совершённом до расторжения, и не влечёт возврата исполненного: стороны не вправе требовать возвращения того, что было исполнено ими до расторжения, если иное не установлено законом или соглашением (статья 453 ГК РФ).",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+        ]
+      },
+      {
+        "case_id": "general-effects-red-accrued-claims-survive-without-termination",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "only_accrued_claims_survive_termination": true
+        },
+        "observed_outcomes": {
+          "only_accrued_claims_survive_termination": false
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
         ]
       },
       {

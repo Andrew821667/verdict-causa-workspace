@@ -26460,6 +26460,7 @@
       "object_excluded_from_circulation": false,
       "breach_issue": true,
       "effective_termination": false,
+      "claims_accrued_before_termination": false,
       "creditor_delay_excuses_debtor": false,
       "obligation_discharged_full": true,
       "accrued_claims_preserved": true,
@@ -26469,7 +26470,7 @@
     },
     "general_effects_constraint_set": {
       "id": "general-effects-constraint-set:case-supply-1",
-      "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199-209-405-407-432-v10",
+      "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199-209-405-407-432-453-v11",
       "source_evaluations": [
         "formation_evaluation",
         "invalidity_evaluation",
@@ -26506,13 +26507,15 @@
         "debtor_delay_excused_by_creditor == breach_issue AND creditor_delay_excuses_debtor",
         "obligation_discharged_before_claim == obligation_discharged_full AND NOT accrued_claims_preserved",
         "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor OR obligation_discharged_before_claim)",
+        "termination_ends_future_performance == contract_legally_effective AND effective_termination",
+        "only_accrued_claims_survive_termination == termination_ends_future_performance AND claims_accrued_before_termination",
         "term_deprived_of_meeting_basis == contract_legally_effective AND contract_term_lacks_meeting_basis",
         "term_meeting_basis_challengeable == contract_legally_effective AND contract_term_basis_voidable",
         "term_binding_on_all_participants == contractual_claims_enforceable AND contract_term_binds_all_participants",
         "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
         "title_transfer_defeated == unauthorized_disposal_detected",
         "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-        "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable"
+        "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance"
       ]
     },
     "general_effects_evaluation": {
@@ -26536,6 +26539,8 @@
       "breach_findings_without_effect": false,
       "debtor_delay_excused_by_creditor": false,
       "obligation_discharged_before_claim": false,
+      "termination_ends_future_performance": false,
+      "only_accrued_claims_survive_termination": false,
       "term_deprived_of_meeting_basis": false,
       "term_meeting_basis_challengeable": false,
       "term_binding_on_all_participants": false,
@@ -33281,7 +33286,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.2.0",
+      "institutional_package_version": "contracts-ru-v0@1.3.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

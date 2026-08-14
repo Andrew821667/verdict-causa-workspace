@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.3.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Fixes a dead input: effective_termination was collected from the termination institute, validated and replayed into every artifact, and read by no expression of the layer since the layer appeared in 0.86.0.",
+            "Termination now ends the claim to future performance (article 453(2)) without touching the breach finding, which concerns conduct before termination, and without triggering restitution (article 453(4)) - that is what separates termination from invalidity.",
+            "The layer gains the input for claims that accrued before termination, so it can say what survives rather than only what ends.",
+            "A liveness test now fails if any declared layer input stops influencing every conclusion; the connectivity audit could not catch this, because it asks which institutes feed the layer, not whether an input reaches a conclusion.",
+        ],
+        notes_ru=[
+            "Исправлен мёртвый вход: `effective_termination` собирался из института расторжения, проверялся и воспроизводился в каждом артефакте, но не читался ни одним выражением слоя с самого его появления в `0.86.0`.",
+            "Расторжение теперь прекращает требование об исполнении на будущее (статья 453 пункт 2), не трогая вывод о нарушении, совершённом до расторжения, и не влечёт реституции (статья 453 пункт 4) — этим оно и отличается от недействительности.",
+            "Слой получил вход о требованиях, возникших до расторжения, и потому говорит не только что прекратилось, но и что сохранилось.",
+            "Добавлена проверка живости: она падает, если любой объявленный вход слоя перестал влиять хоть на один вывод. Аудит связности такого не ловил — он смотрит, какие институты питают слой, а не доходит ли вход до вывода.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.2.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

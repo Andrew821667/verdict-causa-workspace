@@ -2,6 +2,7 @@
 
 from causa.institutional.contracts.general_effects import (
     GENERAL_EFFECTS_MODEL_VERSION,
+    GeneralEffectsEvaluation,
     GeneralEffectsInputs,
     build_general_effects_constraint_set,
     build_general_effects_inputs,
@@ -210,6 +211,7 @@ def test_general_effects_never_displaces_an_effective_contract() -> None:
         object_excluded_from_circulation=False,
         breach_issue=True,
         effective_termination=False,
+        claims_accrued_before_termination=False,
         creditor_delay_excuses_debtor=False,
         obligation_discharged_full=False,
         accrued_claims_preserved=False,
@@ -226,11 +228,92 @@ def test_general_effects_never_displaces_an_effective_contract() -> None:
     assert evaluation.contractual_claims_enforceable is True
 
 
+def test_no_declared_layer_input_is_dead() -> None:
+    """Вход, который ни на что не влияет, — не связь, а её видимость.
+
+    `effective_termination` собирался из института расторжения, проверялся,
+    воспроизводился в каждом артефакте и не читался ни одним выражением слоя с
+    самого его появления в `0.86.0`. Аудит связности такого не ловит: он смотрит,
+    какие институты питают слой, а не доходит ли вход хоть до одного вывода.
+
+    Проверка ищет для каждого входа пару наборов, различающихся только им, при
+    которых расходится хотя бы один вывод. Наборы подобраны, а не случайны:
+    большинство входов срабатывает только при действующем договоре, и проба из
+    одних нулей и одних единиц пропустила бы почти все.
+    """
+    fields = list(GeneralEffectsInputs.model_fields)
+    outcomes = [
+        name
+        for name in GeneralEffectsEvaluation.model_fields
+        if name not in {"constraint_set_id", "satisfiable", "reasons_ru", "warnings_ru"}
+    ]
+
+    def evaluate(values: dict[str, bool]):
+        inputs = GeneralEffectsInputs(**values)
+        return evaluate_general_effects_constraints(
+            build_general_effects_constraint_set(inputs, "case-liveness"), inputs
+        )
+
+    off_base = dict.fromkeys(fields, False)
+    on_base = dict.fromkeys(fields, True)
+    # Договор действует: без этого набора не оживает почти ни один вход.
+    effective = {**off_base, "contract_concluded_prerequisites": True}
+    bases = [
+        off_base,
+        on_base,
+        effective,
+        {**effective, "breach_issue": True},
+        {**effective, "limitation_defense_available": True},
+        {**effective, "effective_termination": True},
+        {**effective, "obligation_discharged_full": True},
+    ]
+
+    dead = []
+    for field in fields:
+        alive = False
+        for base in bases:
+            without = evaluate({**base, field: False})
+            with_it = evaluate({**base, field: True})
+            if any(getattr(without, name) != getattr(with_it, name) for name in outcomes):
+                alive = True
+                break
+        if not alive:
+            dead.append(field)
+
+    assert dead == [], "Входы слоя не влияют ни на один вывод: " + ", ".join(dead)
+
+
+def test_the_liveness_check_would_notice_a_dead_input() -> None:
+    """Проверка обязана уметь провалиться, иначе она ничего не стоит.
+
+    Мёртвый вход подделывается моделью, в которой поле объявлено, но выражение
+    его не использует: так и выглядел `effective_termination` до выпуска `1.3.0`.
+    """
+    inputs = GeneralEffectsInputs(**dict.fromkeys(GeneralEffectsInputs.model_fields, False))
+    live = evaluate_general_effects_constraints(
+        build_general_effects_constraint_set(inputs, "case-alive"), inputs
+    )
+    with_termination = GeneralEffectsInputs(
+        **{
+            **dict.fromkeys(GeneralEffectsInputs.model_fields, False),
+            "contract_concluded_prerequisites": True,
+            "effective_termination": True,
+        }
+    )
+    terminated = evaluate_general_effects_constraints(
+        build_general_effects_constraint_set(with_termination, "case-terminated"), with_termination
+    )
+
+    # До выпуска 1.3.0 эти два разбора не отличались ничем.
+    assert live.termination_ends_future_performance is False
+    assert terminated.termination_ends_future_performance is True
+
+
 def test_general_effects_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_general_effects_benchmark_suite()
     red_team = run_general_effects_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 13
+    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 15
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 13
+    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 16
     assert red_team.blocked == red_team.total

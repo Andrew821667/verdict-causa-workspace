@@ -1952,6 +1952,26 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.2.0",
+        to_version="1.3.0",
+        reasons=[
+            "The general-effects layer reads effective_termination for the first time: termination ends the claim to future performance (article 453(2)) without erasing a breach committed before it and without triggering restitution (article 453(4)).",
+            "The layer gains the input for claims accrued before termination, so it reports what survives and not only what ends.",
+            "Artifacts produced while the input was dead must be regenerated: their layer evaluation lacks both conclusions.",
+        ],
+        reasons_ru=[
+            "Слой общих положений впервые читает `effective_termination`: расторжение прекращает требование об исполнении на будущее (статья 453 пункт 2), не стирая нарушение, совершённое до него, и не влекя реституции (статья 453 пункт 4).",
+            "Слой получил вход о требованиях, возникших до расторжения, и сообщает не только что прекратилось, но и что сохранилось.",
+            "Артефакты, собранные, пока вход был мёртвым, требуют пересборки: в их оценке слоя обоих выводов нет.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_general_effects_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

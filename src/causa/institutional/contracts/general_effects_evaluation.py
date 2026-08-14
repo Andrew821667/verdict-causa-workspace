@@ -202,6 +202,31 @@ SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS = (
         },
     ),
     GeneralEffectsEvaluationTask(
+        id="general-effects-bench-termination-ends-future-performance",
+        title_ru="Договор расторгнут — требовать исполнения на будущее нельзя",
+        inputs=_inputs(**_EFFECTIVE, effective_termination=True, breach_issue=True),
+        expected_outcomes={
+            "termination_ends_future_performance": True,
+            # Расторжение не стирает нарушение, совершённое до него.
+            "breach_findings_without_effect": False,
+            # И не влечёт возврата исполненного (статья 453 пункт 4).
+            "restitution_regime_applies": False,
+            "requires_human_general_effects_assessment": True,
+        },
+    ),
+    GeneralEffectsEvaluationTask(
+        id="general-effects-bench-accrued-claims-survive-termination",
+        title_ru="Расторжение пережили требования, возникшие до него",
+        inputs=_inputs(
+            **_EFFECTIVE, effective_termination=True, claims_accrued_before_termination=True
+        ),
+        expected_outcomes={
+            "only_accrued_claims_survive_termination": True,
+            "termination_ends_future_performance": True,
+            "contractual_claims_enforceable": True,
+        },
+    ),
+    GeneralEffectsEvaluationTask(
         id="general-effects-bench-term-binds-all-participants",
         title_ru="Условие принято действительным решением — связывает всех участников",
         inputs=_inputs(**_EFFECTIVE, contract_term_binds_all_participants=True),
@@ -274,6 +299,24 @@ SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES = (
         title_ru="Пропустить экспертизу при вытеснении договорного эффекта",
         inputs=_inputs(contract_concluded_prerequisites=False),
         forbidden_outcomes={"requires_human_general_effects_assessment": False},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-termination-erases-past-breach",
+        title_ru="Расторжение выдано за обесценивание вывода о прошлом нарушении",
+        inputs=_inputs(**_EFFECTIVE, effective_termination=True, breach_issue=True),
+        forbidden_outcomes={"breach_findings_without_effect": True},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-termination-triggers-restitution",
+        title_ru="Расторжение спутано с недействительностью и влечёт реституцию",
+        inputs=_inputs(**_EFFECTIVE, effective_termination=True, restitution_required=True),
+        forbidden_outcomes={"restitution_regime_applies": True},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-accrued-claims-survive-without-termination",
+        title_ru="Требования признаны пережившими нерасторгнутый договор",
+        inputs=_inputs(**_EFFECTIVE, claims_accrued_before_termination=True),
+        forbidden_outcomes={"only_accrued_claims_survive_termination": True},
     ),
     GeneralEffectsRedTeamCase(
         id="general-effects-red-strip-term-basis-without-the-link",

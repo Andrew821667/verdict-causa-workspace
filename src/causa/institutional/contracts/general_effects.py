@@ -49,7 +49,17 @@
 - статьи 181.3 и 181.5 ГК РФ — недействительное решение собрания
   недействительно с момента принятия, а ничтожность по статье 181.5 не зависит
   от признания судом, поэтому договорное условие, которое держится на таком
-  решении, лишается основания (дело 45-КГ23-2-К7).
+  решении, лишается основания (дело 45-КГ23-2-К7);
+- статья 453 ГК РФ — при расторжении договора обязательства сторон прекращаются
+  (пункт 2), но стороны не вправе требовать возвращения исполненного до
+  расторжения (пункт 4), а сторона, для которой основанием расторжения послужило
+  существенное нарушение, вправе требовать возмещения убытков (пункт 5).
+
+Расторжение поэтому прекращает требование об исполнении **на будущее** и не
+трогает ни вывод о нарушении, совершённом до расторжения, ни требования,
+возникшие до него. Смешать расторжение с недействительностью — типичная ошибка:
+недействительная сделка возвращает стороны в первоначальное положение,
+расторгнутый договор — нет.
 
 Про условие, потерявшее основание, слой говорит ровно то, что знает: спорное
 условие держалось на решении собрания, и этого решения в правовом смысле нет.
@@ -62,7 +72,7 @@ from z3 import And, Bool, Not, Or, Solver, sat
 
 GENERAL_EFFECTS_MODEL_VERSION = (
     "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199"
-    "-209-405-407-432-v10"
+    "-209-405-407-432-453-v11"
 )
 
 
@@ -97,7 +107,9 @@ class GeneralEffectsInputs(BaseModel):
     object_excluded_from_circulation: bool
     # Нарушение обязательства и прекращение договора (статьи 309–328, 450–453).
     breach_issue: bool
+    # Расторжение договора (статьи 450–453) и судьба возникших до него требований.
     effective_termination: bool
+    claims_accrued_before_termination: bool
     # Просрочка кредитора снимает просрочку должника (статья 405 пункт 3).
     creditor_delay_excuses_debtor: bool
     # Прекращение обязательства по главе 26 и судьба возникших требований.
@@ -140,6 +152,8 @@ class GeneralEffectsEvaluation(BaseModel):
     breach_findings_without_effect: bool
     debtor_delay_excused_by_creditor: bool
     obligation_discharged_before_claim: bool
+    termination_ends_future_performance: bool
+    only_accrued_claims_survive_termination: bool
     term_deprived_of_meeting_basis: bool
     term_meeting_basis_challengeable: bool
     term_binding_on_all_participants: bool
@@ -186,6 +200,7 @@ def build_general_effects_inputs(
         object_excluded_from_circulation=(objects_evaluation.object_excluded_from_circulation),
         breach_issue=constraint_evaluation.breach_issue,
         effective_termination=termination_evaluation.effective_termination,
+        claims_accrued_before_termination=(termination_evaluation.accrued_claims_preserved),
         creditor_delay_excuses_debtor=(attribution_delay_evaluation.creditor_delay_excuses_debtor),
         obligation_discharged_full=obligation_dynamics_evaluation.obligation_discharged_full,
         accrued_claims_preserved=obligation_dynamics_evaluation.accrued_claims_preserved,
@@ -241,13 +256,15 @@ def build_general_effects_constraint_set(
             "debtor_delay_excused_by_creditor == breach_issue AND creditor_delay_excuses_debtor",
             "obligation_discharged_before_claim == obligation_discharged_full AND NOT accrued_claims_preserved",
             "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor OR obligation_discharged_before_claim)",
+            "termination_ends_future_performance == contract_legally_effective AND effective_termination",
+            "only_accrued_claims_survive_termination == termination_ends_future_performance AND claims_accrued_before_termination",
             "term_deprived_of_meeting_basis == contract_legally_effective AND contract_term_lacks_meeting_basis",
             "term_meeting_basis_challengeable == contract_legally_effective AND contract_term_basis_voidable",
             "term_binding_on_all_participants == contractual_claims_enforceable AND contract_term_binds_all_participants",
             "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
             "title_transfer_defeated == unauthorized_disposal_detected",
             "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-            "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable",
+            "requires_human_general_effects_assessment == institute_conclusions_displaced OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance",
         ],
     )
 
@@ -279,6 +296,8 @@ def evaluate_general_effects_constraints(
     breach_findings_without_effect = Bool("breach_findings_without_effect")
     debtor_delay_excused_by_creditor = Bool("debtor_delay_excused_by_creditor")
     obligation_discharged_before_claim = Bool("obligation_discharged_before_claim")
+    termination_ends_future_performance = Bool("termination_ends_future_performance")
+    only_accrued_claims_survive_termination = Bool("only_accrued_claims_survive_termination")
     term_deprived_of_meeting_basis = Bool("term_deprived_of_meeting_basis")
     term_meeting_basis_challengeable = Bool("term_meeting_basis_challengeable")
     term_binding_on_all_participants = Bool("term_binding_on_all_participants")
@@ -373,6 +392,25 @@ def evaluate_general_effects_constraints(
             ),
         )
     )
+    # При расторжении договора обязательства сторон прекращаются (статья 453
+    # пункт 2): требовать исполнения на будущее нельзя. Вывод о нарушении при
+    # этом своей силы не теряет — нарушение совершено до расторжения, и в
+    # `breach_findings_without_effect` расторжение намеренно не входит.
+    solver.add(
+        termination_ends_future_performance
+        == And(contract_legally_effective, variables["effective_termination"])
+    )
+    # Что именно переживает расторжение: требования, возникшие до него. Реституции
+    # расторжение не влечёт — стороны не вправе требовать возвращения
+    # исполненного до расторжения (статья 453 пункт 4), и этим оно отличается от
+    # недействительности.
+    solver.add(
+        only_accrued_claims_survive_termination
+        == And(
+            termination_ends_future_performance,
+            variables["claims_accrued_before_termination"],
+        )
+    )
     # Условие договора, принятое решением собрания, разделяет судьбу этого
     # решения (статьи 181.3 и 181.5). Смысл вывод имеет только там, где договор
     # вообще действует: если он вытеснен целиком, судьба отдельного условия уже
@@ -413,6 +451,7 @@ def evaluate_general_effects_constraints(
             limitation_conclusion_unreliable,
             term_deprived_of_meeting_basis,
             term_meeting_basis_challengeable,
+            termination_ends_future_performance,
         )
     )
 
@@ -438,6 +477,8 @@ def evaluate_general_effects_constraints(
             breach_findings_without_effect=False,
             debtor_delay_excused_by_creditor=False,
             obligation_discharged_before_claim=False,
+            termination_ends_future_performance=False,
+            only_accrued_claims_survive_termination=False,
             term_deprived_of_meeting_basis=False,
             term_meeting_basis_challengeable=False,
             term_binding_on_all_participants=False,
@@ -542,6 +583,22 @@ def evaluate_general_effects_constraints(
             "специальных институтов о нарушении его условий не могут быть положены в основание "
             "присуждения (статьи 167, 199 и 432 ГК РФ)."
         )
+    if truth(termination_ends_future_performance):
+        reasons_ru.append(
+            "Договор расторгнут, поэтому обязательства сторон на будущее прекращены и "
+            "требовать исполнения по нему нельзя. Это не отменяет вывод о нарушении, "
+            "совершённом до расторжения, и не влечёт возврата исполненного: стороны не "
+            "вправе требовать возвращения того, что было исполнено ими до расторжения, "
+            "если иное не установлено законом или соглашением (статья 453 ГК РФ)."
+        )
+    if truth(only_accrued_claims_survive_termination):
+        reasons_ru.append(
+            "Расторжение пережили требования, возникшие до него: обязательства на будущее "
+            "прекращены, но ответственность за нарушения, допущенные до расторжения, "
+            "сохраняется, а сторона, для которой основанием расторжения послужило "
+            "существенное нарушение договора, вправе требовать возмещения причинённых "
+            "расторжением убытков (статья 453 ГК РФ)."
+        )
     if truth(term_deprived_of_meeting_basis):
         reasons_ru.append(
             "Условие договора держится на решении общего собрания, которое ничтожно либо не "
@@ -615,6 +672,8 @@ def evaluate_general_effects_constraints(
         breach_findings_without_effect=truth(breach_findings_without_effect),
         debtor_delay_excused_by_creditor=truth(debtor_delay_excused_by_creditor),
         obligation_discharged_before_claim=truth(obligation_discharged_before_claim),
+        termination_ends_future_performance=truth(termination_ends_future_performance),
+        only_accrued_claims_survive_termination=truth(only_accrued_claims_survive_termination),
         term_deprived_of_meeting_basis=truth(term_deprived_of_meeting_basis),
         term_meeting_basis_challengeable=truth(term_meeting_basis_challengeable),
         term_binding_on_all_participants=truth(term_binding_on_all_participants),
