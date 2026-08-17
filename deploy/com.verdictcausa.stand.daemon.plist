@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+Служба уровня системы (LaunchDaemon), а не пользователя (LaunchAgent).
+
+Разница решающая. LaunchAgent живёт в сессии вошедшего пользователя: по ssh
+такой сессии нет, домен `gui/<uid>` недоступен, и `launchctl` молча отказывает —
+ровно это и произошло при установке. LaunchDaemon стартует при загрузке машины,
+до и независимо от чьего-либо входа в систему.
+
+Процесс всё равно работает от обычного пользователя (`UserName`), а не от root:
+права суперпользователя нужны только чтобы служба запускалась при старте, и
+давать их самому стенду незачем.
+
+Файл собирается ./deploy/autostart.sh — заглушки подставляются там.
+-->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.verdictcausa.stand</string>
+
+	<key>UserName</key>
+	<string>ПОЛЬЗОВАТЕЛЬ</string>
+
+	<key>ProgramArguments</key>
+	<array>
+		<string>КАТАЛОГ_ПРОЕКТА/.venv/bin/python</string>
+		<string>-m</string>
+		<string>causa.ui.server</string>
+	</array>
+
+	<key>WorkingDirectory</key>
+	<string>КАТАЛОГ_ПРОЕКТА</string>
+
+	<key>EnvironmentVariables</key>
+	<dict>
+		<!-- Только локальный адрес: наружу выпускает обратный прокси с паролем. -->
+		<key>CAUSA_UI_HOST</key>
+		<string>127.0.0.1</string>
+		<key>CAUSA_UI_PORT</key>
+		<string>ПОРТ_СТЕНДА</string>
+		<key>PYTHONUNBUFFERED</key>
+		<string>1</string>
+	</dict>
+
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+
+	<!-- Сборка стола занимает секунды; без паузы KeepAlive крутил бы падающий
+	     процесс в цикле и залил бы журнал. -->
+	<key>ThrottleInterval</key>
+	<integer>10</integer>
+
+	<key>StandardOutPath</key>
+	<string>КАТАЛОГ_ЖУРНАЛОВ/verdict-causa-stand.log</string>
+	<key>StandardErrorPath</key>
+	<string>КАТАЛОГ_ЖУРНАЛОВ/verdict-causa-stand-error.log</string>
+</dict>
+</plist>
