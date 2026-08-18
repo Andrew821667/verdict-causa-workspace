@@ -1,4 +1,4 @@
-"""Основное окно: линия вывода, спор вокруг неё и три регистра изложения.
+"""Основное окно: линия вывода, спор вокруг неё и изложение результата.
 
 ## Два вида одного результата
 
@@ -28,6 +28,32 @@
 
 Разница существенная, и она названа в интерфейсе прямо: это не спор агентов, а
 разбор одного пути с трёх сторон.
+
+## Почему изложение отделено от трассировки
+
+Слой перевода даёт три уровня, но адресаты у них разные, и смешивать их в
+одной вкладке нельзя.
+
+`EXECUTIVE` и `PROFESSIONAL` — тексты для человека, решающего юридический
+вопрос: коротко для решения и разбор для юриста. Это и есть «Изложение».
+
+`FORENSIC` называется «forensic-трассировка», и содержимое у него
+соответствующее: координаты воспроизведения, `constraint set`, provenance,
+governance-журнал, все восемьдесят утверждений формальной проверки. Это
+протокол работы машины, а не документ в дело, и правила проверки самого
+конвейера это подтверждают: для этого уровня снижен порог кириллицы
+(0.20 против 0.55) и снята проверка `machine_detail_leak`, запрещающая
+`=True`, `=False` и `sha256:` во всех остальных уровнях. Уровень, которому
+намеренно разрешена машинная деталь, — это уровень наладки.
+
+Поэтому трассировка вынесена отдельным полем `trace` и показывается в
+служебном разделе интерфейса, а не рядом с текстом для юриста. Она никуда не
+исчезает: воспроизводимость вывода — свойство системы, за которое отвечает
+тот, кто её проверяет.
+
+Настоящий текст для суда — отдельный жанр (`causa.ui.court_filing`): проект
+процессуального документа со ссылками на статьи и доказательства и без единого
+имени предиката.
 
 ## Почему линия задана списком, а не выведена
 
@@ -120,8 +146,20 @@ class RegisterText(BaseModel):
 LEVEL_LABELS_RU = {
     TranslationLevel.EXECUTIVE: "коротко для решения",
     TranslationLevel.PROFESSIONAL: "для юриста",
-    TranslationLevel.FORENSIC: "для суда, с координатами",
+    # Прежняя подпись «для суда, с координатами» вводила в заблуждение: судья
+    # такой текст не читает и читать не должен. Уровень называется по тому, чем
+    # он является.
+    TranslationLevel.FORENSIC: "машинная трассировка — для наладки системы",
 }
+
+#: Уровни, которые читает человек, решающий юридический вопрос.
+READABLE_LEVELS: tuple[TranslationLevel, ...] = (
+    TranslationLevel.EXECUTIVE,
+    TranslationLevel.PROFESSIONAL,
+)
+
+#: Уровень машинной трассировки. Он один, и он не для юридической работы.
+TRACE_LEVEL = TranslationLevel.FORENSIC
 
 
 class ReasoningView(BaseModel):
@@ -132,7 +170,10 @@ class ReasoningView(BaseModel):
     version: str = REASONING_VIEW_VERSION
     line: list[ConclusionStep] = Field(default_factory=list)
     debate: DebateView
+    #: Изложение для человека: коротко для решения и разбор для юриста.
     registers: list[RegisterText] = Field(default_factory=list)
+    #: Машинная трассировка. Служебный материал, а не текст в дело.
+    trace: RegisterText | None = None
     #: Все 80 утверждений — не скрыты, а убраны на второй план.
     all_assertions: list[ConclusionStep] = Field(default_factory=list)
     notes_ru: list[str] = Field(default_factory=list)
@@ -192,18 +233,22 @@ def build_reasoning_view(
     critic_points.append(comparison.selection_reason_ru)
 
     registers: list[RegisterText] = []
+    trace: RegisterText | None = None
     if bundle is not None:
-        for level in TranslationLevel:
-            artifact = bundle.artifact_for(level)
-            registers.append(
-                RegisterText(
-                    level=level,
-                    level_ru=LEVEL_LABELS_RU[level],
-                    text=artifact.text,
-                    faithfulness_passed=artifact.faithfulness_passed,
-                    usability_passed=artifact.usability_passed,
-                )
+        ready = bundle
+
+        def register(level: TranslationLevel) -> RegisterText:
+            artifact = ready.artifact_for(level)
+            return RegisterText(
+                level=level,
+                level_ru=LEVEL_LABELS_RU[level],
+                text=artifact.text,
+                faithfulness_passed=artifact.faithfulness_passed,
+                usability_passed=artifact.usability_passed,
             )
+
+        registers = [register(level) for level in READABLE_LEVELS]
+        trace = register(TRACE_LEVEL)
 
     notes: list[str] = []
     if missing:
@@ -214,8 +259,9 @@ def build_reasoning_view(
         )
     if not registers:
         notes.append(
-            "Регистры изложения не собраны: bundle Translation Layer для этого "
-            "дела не передан. Текст для суда не подменяется текстом для юриста."
+            "Изложение не собрано: bundle Translation Layer для этого дела не "
+            "передан. Один уровень не подменяется другим — короткий текст не "
+            "выдаётся за разбор для юриста."
         )
 
     return ReasoningView(
@@ -244,6 +290,7 @@ def build_reasoning_view(
             ),
         ),
         registers=registers,
+        trace=trace,
         all_assertions=[_step(assertion, "полный список утверждений") for assertion in assertions],
         notes_ru=notes,
     )

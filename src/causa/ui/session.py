@@ -29,6 +29,7 @@ from causa.institutional.contracts.reviewed_analysis import (
 )
 from causa.reasoning.counterfactual import CounterfactualBudget
 from causa.translation_pipeline import TranslationBundle
+from causa.ui.document_text import ExtractedText, extract_text
 from causa.ui.documents import GapClosure, UploadedDocument, apply_closure, document_source
 from causa.ui.reconciliation import (
     UNRECONCILABLE_RU,
@@ -194,6 +195,8 @@ class CaseSession:
         self.inputs = inputs
         self.budget = budget or CounterfactualBudget()
         self.documents: list[UploadedDocument] = []
+        #: Текст приложенных файлов. Пусто для тех, из которых его не достали.
+        self.texts: list[ExtractedText] = []
         self.closures: list[GapClosure] = []
         self.remarks: list[OperatorRemark] = []
         self.reconciliations: list[ReconciliationReport] = []
@@ -212,7 +215,17 @@ class CaseSession:
                 return document
         raise KeyError(f"Документ {document_id} к делу {self.inputs.case_id} не приложен.")
 
-    def add_document(self, document: UploadedDocument) -> UploadedDocument:
+    def add_document(
+        self,
+        document: UploadedDocument,
+        content: bytes | None = None,
+    ) -> UploadedDocument:
+        """Приложить файл к делу и, если передано содержимое, достать из него текст.
+
+        Извлечение текста ничего не меняет в фактах дела: оно даёт оператору
+        возможность прочитать нужное место здесь, а не в другом окне. Вывод
+        по-прежнему меняет только его утверждение.
+        """
         if document.case_id != self.inputs.case_id:
             raise ValueError("Документ относится к другому делу.")
         for existing in self.documents:
@@ -221,6 +234,8 @@ class CaseSession:
                 return existing
         self.documents.append(document)
         self._sources.append(document_source(document))
+        if content is not None:
+            self.texts.append(extract_text(document, content))
         return document
 
     def close_gap(self, closure: GapClosure, *, reconcile_dependents: bool = False):
@@ -303,6 +318,7 @@ class CaseSession:
             caveat_ru=self.inputs.caveat_ru,
             documents=self.documents,
             closures=self.closures,
+            texts=self.texts,
         )
 
 

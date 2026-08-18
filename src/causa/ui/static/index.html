@@ -48,6 +48,16 @@
 
     <p class="caveat" id="case-caveat" hidden></p>
 
+    <!-- Фабула стоит раньше разбора: вопрос читается раньше ответа. -->
+    <section class="story" id="case-story" hidden>
+      <h2>Фабула дела</h2>
+      <p class="story__summary" id="story-summary"></p>
+      <details class="story__details">
+        <summary id="story-toggle">Подробное описание обстоятельств</summary>
+        <div id="story-body"></div>
+      </details>
+    </section>
+
     <div class="columns">
 
       <aside class="col col--materials">
@@ -64,12 +74,14 @@
           <button role="tab" class="tab" data-view="debate">Спор</button>
           <button role="tab" class="tab" data-view="registers">Изложение</button>
           <button role="tab" class="tab" data-view="map">Карта разбора</button>
+          <button role="tab" class="tab" data-view="diagnostics">Наладка</button>
         </div>
 
         <section class="panel" id="panel-line"></section>
         <section class="panel" id="panel-debate" hidden></section>
         <section class="panel" id="panel-registers" hidden></section>
         <section class="panel" id="panel-map" hidden></section>
+        <section class="panel" id="panel-diagnostics" hidden></section>
       </div>
 
       <aside class="col col--side">

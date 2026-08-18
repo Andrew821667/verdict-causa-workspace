@@ -5,7 +5,7 @@ import pytest
 from causa.phase0.demo_trace import build_supply_dispute_demo_trace
 from causa.translation import TranslationAssertionCode, TranslationLevel
 from causa.ui.gaps import GapKind, build_gap_queue
-from causa.ui.reasoning import CONCLUSION_SPINE, build_reasoning_view
+from causa.ui.reasoning import CONCLUSION_SPINE, READABLE_LEVELS, build_reasoning_view
 
 
 @pytest.fixture(scope="module")
@@ -94,16 +94,35 @@ def test_opposing_side_comes_from_the_solver(trace) -> None:
 
 
 def test_registers_are_absent_without_a_bundle_and_said_so(trace) -> None:
-    """Текст для суда не подменяется текстом для юриста."""
+    """Один уровень изложения не подменяется другим — этого просто нет."""
     without = build_reasoning_view(trace.analysis_request, trace.analysis_result)
     with_bundle = build_reasoning_view(
         trace.analysis_request, trace.analysis_result, trace.translation_bundle
     )
 
     assert without.registers == []
-    assert any("не собраны" in note for note in without.notes_ru)
-    assert [register.level for register in with_bundle.registers] == list(TranslationLevel)
+    assert without.trace is None
+    assert any("не собрано" in note for note in without.notes_ru)
+    assert [register.level for register in with_bundle.registers] == list(READABLE_LEVELS)
     assert with_bundle.notes_ru == []
+
+
+def test_the_machine_trace_is_not_shown_as_a_text_for_the_court(trace) -> None:
+    """Forensic-уровень — это протокол наладки, и подпись у него соответствующая.
+
+    Проверяется не формулировка, а граница: уровень, которому правила конвейера
+    намеренно разрешают машинную деталь, не должен стоять среди текстов, по
+    которым юрист работает.
+    """
+    view = build_reasoning_view(
+        trace.analysis_request, trace.analysis_result, trace.translation_bundle
+    )
+
+    assert view.trace is not None
+    assert view.trace.level is TranslationLevel.FORENSIC
+    assert TranslationLevel.FORENSIC not in [register.level for register in view.registers]
+    assert "суд" not in view.trace.level_ru.lower()
+    assert "наладк" in view.trace.level_ru
 
 
 def test_a_missing_spine_link_is_shown_as_missing(trace) -> None:

@@ -11,6 +11,11 @@ import { Qualification } from "@/components/Qualification";
 import { Remarks } from "@/components/Remarks";
 import { DebateView, Registers } from "@/components/DebateView";
 import { CaseMap } from "@/components/CaseMap";
+import { CaseStoryView } from "@/components/CaseStoryView";
+import { CourtFilingView } from "@/components/CourtFilingView";
+import { RelationSchemeView } from "@/components/RelationSchemeView";
+import { DocumentsView } from "@/components/DocumentsView";
+import { Diagnostics } from "@/components/Diagnostics";
 import { ChangePanel } from "@/components/ChangePanel";
 import { detectApi } from "@/lib/api";
 
@@ -21,12 +26,22 @@ import { detectApi } from "@/lib/api";
  */
 const dataset = raw as unknown as Dataset;
 
+/**
+ * Вкладки в порядке работы юриста, а не в порядке устройства системы.
+ *
+ * «Наладка» стоит последней и названа по своему назначению: там машинная
+ * трассировка и полный список утверждений. Раньше этот материал лежал в
+ * «Изложении» под подписью «для суда» — подпись вводила в заблуждение, потому
+ * что в суд такой текст не идёт.
+ */
 const TABS = [
   ["overview", "Обзор"],
   ["reasoning", "Разбор"],
   ["debate", "Спор"],
   ["registers", "Изложение"],
   ["map", "Карта"],
+  ["documents", "Материалы"],
+  ["diagnostics", "Наладка"],
 ] as const;
 
 type TabId = (typeof TABS)[number][0];
@@ -101,6 +116,7 @@ export default function Page() {
 
           {tab === "overview" && (
             <div className="space-y-5">
+              <CaseStoryView story={view.story} />
               <VerdictHero verdict={view.verdict} />
               {change && (
                 <ChangePanel
@@ -136,8 +152,32 @@ export default function Page() {
 
           {tab === "reasoning" && <ReasoningLine view={view} />}
           {tab === "debate" && <DebateView reasoning={view.reasoning} />}
-          {tab === "registers" && <Registers reasoning={view.reasoning} />}
-          {tab === "map" && <CaseMap view={view} />}
+          {tab === "registers" && (
+            <div className="space-y-4">
+              <Registers reasoning={view.reasoning} />
+              <CourtFilingView filing={view.filing} />
+            </div>
+          )}
+          {tab === "map" && (
+            <div className="space-y-4">
+              <RelationSchemeView scheme={view.scheme} />
+              <CaseMap view={view} />
+            </div>
+          )}
+          {tab === "documents" && (
+            <DocumentsView
+              view={view}
+              live={live}
+              caseKey={selected}
+              onUploaded={(payload) =>
+                setOverride({
+                  ...override,
+                  [selected]: payload.case as unknown as CaseView,
+                })
+              }
+            />
+          )}
+          {tab === "diagnostics" && <Diagnostics view={view} />}
 
           <footer className="mt-10 max-w-[80ch] border-t border-line pt-4 text-[12px] leading-relaxed text-faint">
             Формальный результат не является судебным выводом или юридической

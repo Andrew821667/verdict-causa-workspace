@@ -189,7 +189,12 @@ class DesktopService:
         return apply_remark(remark).model_dump(mode="json")
 
     def add_document(self, workspace_id: str, case_id: str, body: dict) -> dict:
-        """Принять файл. Содержимое не разбирается — только считается отпечаток."""
+        """Принять файл, достать из него текст и найти места под открытые вопросы.
+
+        Текст извлекается, но фактов из него не выводится: найденные места —
+        совпадения по словам. Чтобы документ повлиял на вывод, оператор должен
+        указать, какой пробел он закрывает, и что именно этим утверждает.
+        """
         session = self.session(workspace_id, case_id)
         try:
             content = base64.b64decode(body["content_base64"], validate=True)
@@ -203,14 +208,25 @@ class DesktopService:
                 uploaded_by=self.state.desk.operator.id,
                 media_type=body.get("media_type", "application/octet-stream"),
                 uploaded_on=date.today(),
-            )
+            ),
+            content,
+        )
+        # Окно пересобирается: без этого извлечённый текст и найденные места
+        # существовали бы в сессии, но не доходили до оператора.
+        self._replace_view(session.build_view())
+        extracted = next(
+            (item for item in session.texts if item.document_id == document.id),
+            None,
         )
         return {
             "document": document.model_dump(mode="json"),
+            "text": extracted.model_dump(mode="json") if extracted is not None else None,
             "note_ru": (
-                "Файл приобщён к делу. Система его не читает: чтобы он повлиял на "
-                "вывод, укажите, какой пробел он закрывает."
+                "Файл приобщён к делу, текст из него извлечён. Выводов из текста "
+                "система не делает: чтобы документ повлиял на вывод, укажите, "
+                "какой пробел он закрывает."
             ),
+            "case": self.case_payload(workspace_id, case_id),
         }
 
     def close_gap(self, workspace_id: str, case_id: str, body: dict) -> dict:

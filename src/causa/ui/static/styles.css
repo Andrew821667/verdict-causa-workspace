@@ -329,3 +329,81 @@ p { margin: 0 0 10px; }
   .rail { position: static; min-height: 0; border-right: none;
           border-bottom: 1px solid var(--line); }
 }
+
+/* ── Фабула дела ─────────────────────────────────────────────────── */
+/* Стоит раньше разбора: вопрос читается раньше ответа. */
+
+.story {
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+}
+
+.story h2 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.story__summary {
+  margin: 0;
+  max-width: 75ch;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.story__details {
+  margin-top: 10px;
+}
+
+.story__details > summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.story__section {
+  margin: 12px 0 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.story__facts {
+  margin: 0;
+  padding-left: 18px;
+  list-style: none;
+}
+
+.story__fact {
+  position: relative;
+  padding: 2px 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.story__fact::before {
+  content: "•";
+  position: absolute;
+  left: -14px;
+  color: var(--accent);
+}
+
+/* «Не установлено» — не отрицание по существу, и выглядеть должно тише. */
+.story__fact--missing {
+  color: var(--ink-faint);
+}
+
+.story__fact--missing::before {
+  content: "◦";
+  color: var(--line);
+}

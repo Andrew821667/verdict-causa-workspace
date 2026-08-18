@@ -33,12 +33,16 @@ from causa.institutional.contracts.synthetic_reviewed_analysis import (
 from causa.phase0.demo_trace import build_supply_dispute_demo_trace
 from causa.translation_pipeline import TranslationBundle
 from causa.ui.case_map import CaseMap, NodeKind, build_case_map
+from causa.ui.case_story import CaseStory, build_case_story
+from causa.ui.court_filing import CourtFiling, build_court_filing
 from causa.ui.gaps import GapQueue, build_gap_queue
+from causa.ui.document_text import ExtractedText, GapEvidenceHints, build_gap_hints
 from causa.ui.documents import GapClosure, UploadedDocument
 from causa.ui.institute_titles import INSTITUTE_TITLES_RU
 from causa.ui.labels import SourceLabel, source_labels
 from causa.ui.qualification import CaseQualification, build_case_qualification
 from causa.ui.reasoning import ReasoningView, build_reasoning_view
+from causa.ui.relation_scheme import RelationScheme, build_relation_scheme
 from causa.ui.remarks import OperatorRemark, RemarkLedger, build_remark_ledger
 from causa.ui.session import CaseInputs, CaseSession
 from causa.ui.verdict import CaseVerdict, build_case_verdict
@@ -69,12 +73,16 @@ class CaseView(BaseModel):
     workspace_id: str
     #: Оговорка о том, чем этот разбор является. Пусто для демонстрационного дела.
     caveat_ru: str = ""
-    #: Главный ответ по делу — то, что читается первым.
+    #: Фабула: что произошло. Читается раньше вердикта — вопрос раньше ответа.
+    story: CaseStory
+    #: Главный ответ по делу.
     verdict: CaseVerdict
     qualification: CaseQualification
     reasoning: ReasoningView
     gaps: GapQueue
     map: CaseMap
+    #: Схема правоотношения: кто кому что должен и чем это кончилось.
+    scheme: RelationScheme
     remarks: RemarkLedger
     #: Подписи к идентификаторам источников, на которых держится линия вывода.
     sources: list[SourceLabel] = Field(default_factory=list)
@@ -82,6 +90,12 @@ class CaseView(BaseModel):
     documents: list[UploadedDocument] = Field(default_factory=list)
     #: Пробелы, которые оператор закрыл документом.
     closures: list[GapClosure] = Field(default_factory=list)
+    #: Текст приложенных документов — то, что оператор может прочитать здесь.
+    document_texts: list[ExtractedText] = Field(default_factory=list)
+    #: Места в документах, совпавшие со словами открытых вопросов.
+    hints: list[GapEvidenceHints] = Field(default_factory=list)
+    #: Проект процессуального документа по выводу системы.
+    filing: CourtFiling
 
     @property
     def open_debt_ru(self) -> list[str]:
@@ -116,27 +130,44 @@ def build_case_view(
     caveat_ru: str = "",
     documents: list[UploadedDocument] | None = None,
     closures: list[GapClosure] | None = None,
+    texts: list[ExtractedText] | None = None,
 ) -> CaseView:
     """Собрать окно дела из результата конвейера."""
     qualification = build_case_qualification(result)
     gaps = build_gap_queue(result)
     case_map = build_case_map(request, result)
+    verdict = build_case_verdict(result, qualification, gaps)
+    story = build_case_story(result, qualification)
+    reasoning = build_reasoning_view(request, result, bundle)
     return CaseView(
         case_id=case_id,
         title_ru=title_ru,
         workspace_id=workspace_id,
         caveat_ru=caveat_ru,
-        verdict=build_case_verdict(result, qualification, gaps),
+        story=story,
+        verdict=verdict,
         qualification=qualification,
-        reasoning=build_reasoning_view(request, result, bundle),
+        reasoning=reasoning,
         gaps=gaps,
         map=case_map,
+        scheme=build_relation_scheme(result, qualification, verdict),
         remarks=build_remark_ledger(case_id, remarks or []),
         sources=source_labels(
             [node.title_ru for node in case_map.nodes if node.kind is NodeKind.SOURCE]
         ),
         documents=list(documents or []),
         closures=list(closures or []),
+        document_texts=list(texts or []),
+        hints=build_gap_hints(gaps.gaps, list(texts or [])),
+        filing=build_court_filing(
+            result=result,
+            story=story,
+            line=reasoning.line,
+            qualification=qualification,
+            verdict=verdict,
+            gaps=gaps,
+            documents=list(documents or []),
+        ),
     )
 
 

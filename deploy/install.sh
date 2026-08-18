@@ -21,7 +21,10 @@ if [ ! -d .venv ]; then
 fi
 ./.venv/bin/python -m pip install --quiet --upgrade pip
 echo "→ ставлю пакет"
-./.venv/bin/python -m pip install --quiet -e .
+# Дополнение documents ставится вместе с пакетом: без него стенд не прочитает
+# PDF и честно об этом скажет, но материалы клиентов чаще всего приходят
+# именно в PDF, и отказ на первом же файле выглядел бы поломкой.
+./.venv/bin/python -m pip install --quiet -e '.[documents]'
 
 echo "→ собираю данные разбора"
 ./.venv/bin/python -m causa.ui.snapshot --json web/data/desktop.json

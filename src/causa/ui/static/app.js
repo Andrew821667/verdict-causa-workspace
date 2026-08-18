@@ -150,10 +150,11 @@ function renderCase() {
   if (debts > 0) {
     badges.append(el("span", "badge badge--stop", `разрывов без обоснования: ${debts}`));
   }
-  if (view.reasoning.registers.length === 3) {
-    badges.append(el("span", "badge", "три регистра изложения"));
+  if (view.reasoning.registers.length > 0) {
+    badges.append(el("span", "badge", `изложение: ${view.reasoning.registers.length} уровня`));
   }
 
+  renderStory();
   renderMaterials();
   renderQualification();
   renderGaps();
@@ -266,7 +267,41 @@ function renderTabs() {
     debate: renderDebate,
     registers: renderRegisters,
     map: renderMap,
+    diagnostics: renderDiagnostics,
   })[state.tab]();
+}
+
+/* Фабула: три предложения сверху, подробности под раскрытием.
+   Все формулировки приходят из Python; здесь они только размещаются. */
+function renderStory() {
+  const story = state.view.story;
+  const section = $("case-story");
+  if (!story) {
+    section.hidden = true;
+    return;
+  }
+  section.hidden = false;
+  $("story-summary").textContent = story.summary_ru;
+
+  const body = $("story-body");
+  body.replaceChildren();
+  let established = 0;
+  let total = 0;
+  for (const part of story.sections) {
+    body.append(el("h3", "story__section", part.title_ru));
+    const list = el("ul", "story__facts");
+    for (const fact of part.facts) {
+      total += 1;
+      if (fact.established) established += 1;
+      list.append(
+        el("li", fact.established ? "story__fact" : "story__fact story__fact--missing", fact.text_ru)
+      );
+    }
+    body.append(list);
+  }
+  appendNotes(body, story.notes_ru);
+  $("story-toggle").textContent =
+    `Подробное описание обстоятельств — подтверждено ${established} из ${total}`;
 }
 
 function renderLine() {
@@ -321,10 +356,7 @@ function renderRegisters() {
   panel.replaceChildren();
   const registers = state.view.reasoning.registers;
   if (registers.length === 0) {
-    panel.append(
-      el("p", "disclaimer", "Регистры изложения для этого дела не собраны.")
-    );
-    return;
+    panel.append(el("p", "disclaimer", "Изложение для этого дела не собрано."));
   }
   for (const register of registers) {
     const box = el("div", "register");
@@ -350,11 +382,138 @@ function renderRegisters() {
     box.append(el("pre", null, register.text));
     panel.append(box);
   }
+  renderFiling(panel);
+}
+
+/* Проект процессуального документа — другой жанр, а не четвёртый регистр:
+   обстоятельства, правовое обоснование, требование, доказательства. */
+function renderFiling(panel) {
+  const filing = state.view.filing;
+  if (!filing) return;
+  const box = el("div", "register");
+  const head = el("div", "register__head");
+  head.append(el("strong", null, filing.title_ru));
+  head.append(
+    el(
+      "span",
+      filing.ready_to_file ? "badge badge--ok" : "badge badge--warn",
+      filing.ready_to_file ? "проверки пройдены" : "не готов к подаче"
+    )
+  );
+  box.append(head);
+  for (const section of filing.sections) {
+    box.append(el("h3", "story__section", section.title_ru));
+    for (const paragraph of section.paragraphs_ru) {
+      box.append(el("p", "step__text", paragraph));
+    }
+  }
+  const checks = el("ul", "story__facts");
+  for (const check of filing.checks) {
+    checks.append(
+      el(
+        "li",
+        check.passed ? "story__fact" : "story__fact story__fact--missing",
+        check.detail_ru ? `${check.title_ru} — ${check.detail_ru}` : check.title_ru
+      )
+    );
+  }
+  box.append(el("h3", "story__section", "Проверки жанра"));
+  box.append(checks);
+  panel.append(box);
+}
+
+/* Наладка: машинная трассировка и полный список утверждений.
+   Раньше этот материал стоял в «Изложении» под подписью «для суда»; подпись
+   вводила в заблуждение — в суд такой текст не идёт. */
+function renderDiagnostics() {
+  const panel = $("panel-diagnostics");
+  panel.replaceChildren();
+  panel.append(
+    el(
+      "p",
+      "disclaimer",
+      "Служебный раздел: нужен при наладке системы и проверке воспроизводимости " +
+        "вывода, а не при решении юридического вопроса."
+    )
+  );
+
+  const trace = state.view.reasoning.trace;
+  if (trace) {
+    const box = el("div", "register");
+    const head = el("div", "register__head");
+    head.append(el("strong", null, "Машинная трассировка"));
+    head.append(el("span", "badge", trace.level_ru));
+    box.append(head);
+    box.append(el("pre", null, trace.text));
+    panel.append(box);
+  } else {
+    panel.append(el("p", "disclaimer", "Машинная трассировка для этого дела не собрана."));
+  }
+
+  const assertions = state.view.reasoning.all_assertions || [];
+  panel.append(el("h3", "story__section", `Полная проверка — ${assertions.length}`));
+  const list = el("ul", "story__facts");
+  for (const assertion of assertions) {
+    list.append(
+      el(
+        "li",
+        assertion.value === true ? "story__fact" : "story__fact story__fact--missing",
+        `${assertion.text_ru} · ${assertion.code}`
+      )
+    );
+  }
+  panel.append(list);
+}
+
+/* Схема правоотношения: кто кому что должен и чем это кончилось.
+   Карта отвечает на вопрос об устройстве системы, схема — на вопрос юриста. */
+function renderScheme(panel) {
+  const scheme = state.view.scheme;
+  if (!scheme) return;
+  const group = el("div", "map-group");
+  group.append(el("h3", null, "Правоотношение"));
+  for (const link of scheme.links) {
+    const from = scheme.parties.find((party) => party.id === link.source);
+    const to = scheme.parties.find((party) => party.id === link.target);
+    const row = el("div", link.state === "absent" ? "map-node map-node--break" : "map-node");
+    row.append(
+      el("strong", null, `${from ? from.title_ru : link.source} → ${to ? to.title_ru : link.target}: ${link.title_ru}`)
+    );
+    row.append(
+      el(
+        "span",
+        "map-node__why",
+        `${link.state_ru} · ${link.detail_ru}${link.articles_ru ? " · " + link.articles_ru : ""}`
+      )
+    );
+    group.append(row);
+  }
+  panel.append(group);
+
+  const chain = el("div", "map-group");
+  chain.append(el("h3", null, "От факта к результату"));
+  const list = el("ul", "story__facts");
+  for (const stage of scheme.stages) {
+    list.append(
+      el(
+        "li",
+        stage.reached ? "story__fact" : "story__fact story__fact--missing",
+        `${stage.title_ru} — ${stage.detail_ru}`
+      )
+    );
+  }
+  chain.append(list);
+  chain.append(el("h3", null, "Итог"));
+  chain.append(el("p", "story__summary", scheme.outcome_ru));
+  chain.append(el("p", "step__text", scheme.outcome_detail_ru));
+  panel.append(chain);
+  appendNotes(panel, scheme.notes_ru);
 }
 
 function renderMap() {
   const panel = $("panel-map");
   panel.replaceChildren();
+  renderScheme(panel);
   const map = state.view.map;
   const byId = new Map(map.nodes.map((node) => [node.id, node]));
 
@@ -540,7 +699,7 @@ async function start() {
     panel.hidden = !panel.hidden;
     event.currentTarget.setAttribute("aria-expanded", String(!panel.hidden));
   });
-  const known = new Set(["line", "debate", "registers", "map"]);
+  const known = new Set(["line", "debate", "registers", "map", "diagnostics"]);
   const fromHash = location.hash.replace("#", "");
   if (known.has(fromHash)) state.tab = fromHash;
   for (const tab of document.querySelectorAll(".tab")) {

@@ -283,11 +283,20 @@ The interface a lawyer actually uses lives in [`web/`](web/README.md) — Next.j
 cd web && npm install && npm run dev
 ```
 
-It opens with the verdict on the case — what is established, what qualifies it,
-what to do next — and only then the steps of the analysis, the typed gaps as
-tasks, the three-sided argument, the three translation registers and the map of
-what reaches the final conclusions and what does not. Five cases ship with it:
-the synthetic supply dispute and four Supreme Court cases.
+It opens with the facts of the case — a three-sentence summary, with the full
+list of established and unestablished circumstances behind a disclosure — and
+then the verdict: what is established, what qualifies it, what to do next. After
+that come the steps of the analysis, the typed gaps as tasks, the three-sided
+argument, the two reading registers plus a draft court filing, a diagram of the
+legal relation and the chain that leads to the outcome, the uploaded materials
+with their extracted text, and a diagnostics tab holding the machine trace.
+Five cases ship with it: the synthetic supply dispute and four Supreme Court
+cases.
+
+The stand extracts text from uploaded documents and points at places that may
+bear on an open question, but it draws no conclusions from that text: the
+operator still asserts the fact, and the file stays the recorded basis of that
+assertion.
 
 The data is computed by Python and baked into the build, so the front end never
 restates a rule — and, for the same reason, it does not analyse new cases.

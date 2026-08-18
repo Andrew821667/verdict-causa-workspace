@@ -59,6 +59,14 @@ export interface DebateSide {
   points_ru: string[];
 }
 
+export interface RegisterText {
+  level: string;
+  level_ru: string;
+  text: string;
+  faithfulness_passed: boolean;
+  usability_passed: boolean;
+}
+
 export interface ReasoningView {
   line: ConclusionStep[];
   debate: {
@@ -67,15 +75,91 @@ export interface ReasoningView {
     opposing: DebateSide;
     critic: DebateSide;
   };
-  registers: {
-    level: string;
-    level_ru: string;
-    text: string;
-    faithfulness_passed: boolean;
-    usability_passed: boolean;
-  }[];
+  /** Изложение для человека: коротко для решения и разбор для юриста. */
+  registers: RegisterText[];
+  /** Машинная трассировка. Служебный материал, а не текст в дело. */
+  trace: RegisterText | null;
   all_assertions: ConclusionStep[];
   notes_ru: string[];
+}
+
+/** Фабула дела: что произошло, изложенное из проверенных фактов. */
+export interface StoryFact {
+  fact: string;
+  text_ru: string;
+  established: boolean;
+  source_refs: string[];
+}
+
+export interface CaseStory {
+  summary_ru: string;
+  question_ru: string;
+  sections: { title_ru: string; facts: StoryFact[] }[];
+  notes_ru: string[];
+}
+
+/** Проект процессуального документа. */
+export interface CourtFiling {
+  kind: string;
+  title_ru: string;
+  sections: { title_ru: string; paragraphs_ru: string[] }[];
+  checks: { code: string; title_ru: string; passed: boolean; detail_ru: string }[];
+  ready_to_file: boolean;
+  blocker_ru: string;
+  text: string;
+}
+
+/** Схема правоотношения и цепочка до итога. */
+export type LinkState = "performed" | "breached" | "established" | "absent";
+
+export interface RelationScheme {
+  parties: { id: string; title_ru: string; role_ru: string }[];
+  links: {
+    id: string;
+    source: string;
+    target: string;
+    title_ru: string;
+    state: LinkState;
+    state_ru: string;
+    detail_ru: string;
+    articles_ru: string;
+  }[];
+  stages: { id: string; title_ru: string; reached: boolean; detail_ru: string }[];
+  outcome_ru: string;
+  outcome_detail_ru: string;
+  notes_ru: string[];
+}
+
+/** Текст приложенного документа — или запись о том, почему его нет. */
+export interface ExtractedText {
+  document_id: string;
+  filename: string;
+  extracted: boolean;
+  format_ru: string;
+  text: string;
+  characters: number;
+  truncated: boolean;
+  note_ru: string;
+}
+
+/** Места в документах, совпавшие со словами открытого вопроса. */
+export interface GapEvidenceHints {
+  gap_id: string;
+  fragments: {
+    document_id: string;
+    filename: string;
+    matched_ru: string;
+    quote_ru: string;
+    position: number;
+  }[];
+  dates: {
+    document_id: string;
+    filename: string;
+    value: string;
+    quote_ru: string;
+    position: number;
+  }[];
+  note_ru: string;
 }
 
 export interface TypedGap {
@@ -134,15 +218,20 @@ export interface CaseView {
   title_ru: string;
   workspace_id: string;
   caveat_ru: string;
+  story: CaseStory;
   verdict: CaseVerdict;
   qualification: CaseQualification;
   reasoning: ReasoningView;
   gaps: { gaps: TypedGap[]; notes_ru: string[] };
   map: { nodes: MapNode[]; edges: MapEdge[]; notes_ru: string[] };
+  scheme: RelationScheme;
   remarks: { outcomes: RemarkOutcome[] };
   sources: SourceLabel[];
   documents: { id: string; filename: string; size_bytes: number; sha256: string }[];
   closures: { gap_id: string; document_id: string; statement_ru: string }[];
+  document_texts: ExtractedText[];
+  hints: GapEvidenceHints[];
+  filing: CourtFiling;
 }
 
 export interface CaseCard {

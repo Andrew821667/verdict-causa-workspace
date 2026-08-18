@@ -37,11 +37,17 @@ def _upload(service, filename="Дополнительное соглашение
     )
 
 
-def test_the_system_says_plainly_that_it_does_not_read_the_file(service) -> None:
-    """Файл, из которого система якобы что-то поняла, — худший вид обмана здесь."""
+def test_the_system_says_plainly_that_it_draws_no_conclusions_from_the_file(service) -> None:
+    """Файл, из которого система якобы что-то поняла, — худший вид обмана здесь.
+
+    Текст из документа стенд теперь достаёт и показывает. Выводов из него он
+    по-прежнему не делает, и разница названа в ответе прямо: иначе извлечение
+    текста читалось бы как понимание.
+    """
     uploaded = _upload(service)
 
-    assert "не читает" in uploaded["note_ru"]
+    assert "выводов из текста" in uploaded["note_ru"].lower()
+    assert "не делает" in uploaded["note_ru"]
     assert uploaded["document"]["sha256"]
 
 

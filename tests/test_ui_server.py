@@ -113,7 +113,10 @@ def test_case_endpoint_returns_the_whole_window(base_url) -> None:
 
     assert status == 200
     assert payload["reasoning"]["line"]
-    assert len(payload["reasoning"]["registers"]) == 3
+    # Два уровня изложения, а не три: машинная трассировка ушла в отдельное
+    # поле и в служебный раздел — по вкладке «Изложение» работает юрист.
+    assert len(payload["reasoning"]["registers"]) == 2
+    assert payload["reasoning"]["trace"]["level"] == "forensic"
     assert payload["gaps"]["gaps"]
     assert payload["map"]["nodes"]
     assert payload["qualification"]["primary"]["institute"] == "supply"
