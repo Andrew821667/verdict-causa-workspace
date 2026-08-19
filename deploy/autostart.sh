@@ -4,6 +4,15 @@
 #   ./deploy/autostart.sh          установить и запустить
 #   ./deploy/autostart.sh --remove снять
 #
+# Стенд может стоять под служебным пользователем, а ставить службу будет
+# администратор — это разные люди, и по умолчанию скрипт брал того, кто его
+# запустил. На машине с несколькими проектами это молча даёт службу от чужого
+# пользователя, которая не найдёт ни каталога, ни окружения. Поэтому:
+#
+#   sudo CAUSA_USER=openclaw ./deploy/autostart.sh
+#
+# Без CAUSA_USER берётся текущий пользователь — как раньше.
+#
 # Ставится служба уровня системы (LaunchDaemon). LaunchAgent здесь не подходит:
 # он живёт в сессии вошедшего пользователя, а по ssh такой сессии нет — при
 # установке `launchctl` на нём отказал молча. LaunchDaemon стартует при загрузке
@@ -19,6 +28,15 @@ root="$(pwd)"
 
 label="com.verdictcausa.stand"
 target="/Library/LaunchDaemons/$label.plist"
+
+# Под кем работает сам стенд. Не тот, кто запускает скрипт: права root нужны
+# только чтобы служба поднималась при старте, и давать их стенду незачем.
+user="${CAUSA_USER:-$(id -un)}"
+if ! id -u "$user" > /dev/null 2>&1; then
+	echo "Пользователь «$user» на этой машине не найден." >&2
+	exit 1
+fi
+home="$(eval echo "~$user")"
 
 if [ "${1:-}" = "--remove" ]; then
 	sudo launchctl bootout "system/$label" 2> /dev/null || true
@@ -38,24 +56,27 @@ if [ ! -x "$root/.venv/bin/python" ]; then
 	exit 1
 fi
 
-logs="$HOME/Library/Logs"
+# Журналы кладутся в домашний каталог того, от кого работает стенд, а не того,
+# кто ставит службу: иначе они уедут в /var/root и станут никому не видны.
+logs="$home/Library/Logs"
 mkdir -p "$logs"
+chown "$user" "$logs" 2> /dev/null || true
 
 echo "Служба:       $label"
-echo "Пользователь: $(id -un)"
+echo "Пользователь: $user"
 echo "Каталог:      $root"
 echo "Порт:         $port (только 127.0.0.1)"
 echo
 
 # Прежний LaunchAgent, если он остался от установки, снимается: две службы с
 # одной меткой — источник путаницы, а не запаса прочности.
-launchctl bootout "gui/$(id -u)/$label" 2> /dev/null || true
-launchctl unload "$HOME/Library/LaunchAgents/$label.plist" 2> /dev/null || true
-rm -f "$HOME/Library/LaunchAgents/$label.plist"
+launchctl bootout "gui/$(id -u "$user")/$label" 2> /dev/null || true
+launchctl unload "$home/Library/LaunchAgents/$label.plist" 2> /dev/null || true
+rm -f "$home/Library/LaunchAgents/$label.plist"
 
 tmp="$(mktemp -t verdict-causa-daemon)"
 sed \
-	-e "s|ПОЛЬЗОВАТЕЛЬ|$(id -un)|g" \
+	-e "s|ПОЛЬЗОВАТЕЛЬ|$user|g" \
 	-e "s|КАТАЛОГ_ПРОЕКТА|$root|g" \
 	-e "s|КАТАЛОГ_ЖУРНАЛОВ|$logs|g" \
 	-e "s|ПОРТ_СТЕНДА|$port|g" \
