@@ -665,6 +665,15 @@ def _to_z3(node: Node, symbols: dict[str, object]):
     return And(*parts) if kind == "and" else Or(*parts)
 
 
+def compile_to_z3(node: Node, symbols: dict[str, object]):
+    """Собрать выражение Z3 по разобранному правилу.
+
+    Публичная точка входа: правило стало данными, и считать по нему собирается
+    не только сверка (`causa.reasoning.three_valued`).
+    """
+    return _to_z3(node, symbols)
+
+
 def equivalent(declared: Node, executed: Node) -> dict[str, bool] | None:
     """`None` — правила совпадают. Иначе набор фактов, на котором они расходятся.
 
