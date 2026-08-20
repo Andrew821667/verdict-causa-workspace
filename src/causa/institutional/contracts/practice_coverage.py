@@ -130,7 +130,24 @@ INSTITUTE_ARTICLE_RANGES: dict[str, tuple[tuple[str, str], ...]] = {
 #: что её не покрывает ни один институт, и названа причина.
 KNOWN_GAPS_RU: dict[str, str] = {
     "420": "понятие договора: статья лежит между моделью обязательств и моделью свободы договора",
+    # Статьи с точкой сразу за верхней границей института. Их легко принять за
+    # покрытые — номер отличается от покрытого на долю, — но моделируют они
+    # другое, и расширять диапазон ради красивой цифры значило бы объявить
+    # покрытым то, чего в предикатах нет.
+    "53.1": (
+        "ответственность лица, уполномоченного выступать от имени юридического лица: "
+        "модель лиц (17–53) разбирает правоспособность и полномочия органа, но не "
+        "убытки, взыскиваемые с директора"
+    ),
+    "449.1": (
+        "публичные торги при обращении взыскания: модель порядка заключения (445–449) "
+        "разбирает обязательное заключение договора и торги как способ заключения, а не "
+        "исполнительную продажу имущества должника"
+    ),
 }
+
+#: Ответ, который выдаётся вместо причины, когда причины нет ни в одной карте.
+GAP_REASON_UNKNOWN_RU = "Причина непокрытия не записана — это дефект карты, а не ответ."
 
 
 #: Области ГК, которых пакет не покрывает, с причиной.
@@ -179,7 +196,7 @@ def uncovered_domain_ru(article: str) -> str:
     known = KNOWN_GAPS_RU.get(normalize_article(article))
     if known:
         return _as_sentence(known)
-    return "Причина непокрытия не записана — это дефект карты, а не ответ."
+    return GAP_REASON_UNKNOWN_RU
 
 
 def article_sort_key(article: str) -> tuple[int, int]:
@@ -259,23 +276,28 @@ def measure_practice_coverage(inventory: PracticeBaseInventory) -> PracticeCover
     )
     distinct = {article for entry in covered for article in entry.articles}
     checkable = sum(entry.fully_covered and entry.outcome_is_final for entry in covered)
-    unexplained = [article for article in uncovered if article not in KNOWN_GAPS_RU]
+    # Причина спрашивается у одной функции, а не у одной из двух карт. Пока
+    # отчёт читал только KNOWN_GAPS_RU, статьи 113, 114 и 125 объявлялись
+    # необъяснёнными, хотя главы 4 и 5 прямо названы непокрытыми в
+    # UNCOVERED_DOMAINS_RU. Расхождение вскрылось на второй выгрузке: первая
+    # просто не заходила за статью 53.
+    reasons = {article: uncovered_domain_ru(article) for article in uncovered}
+    unexplained = [
+        article for article in uncovered if reasons[article] == GAP_REASON_UNKNOWN_RU
+    ]
 
     notes: list[str] = []
     if uncovered:
         notes.append(
             "Статьи без института: "
-            + ", ".join(
-                f"{article} — {KNOWN_GAPS_RU.get(article, 'причина не установлена')}"
-                for article in uncovered
-            )
-            + "."
+            + "; ".join(f"{article} — {reasons[article]}" for article in uncovered)
         )
     if unexplained:
         notes.append(
             "Пробелы без объяснения: "
             + ", ".join(unexplained)
-            + ". Их нужно либо закрыть институтом, либо назвать причину в KNOWN_GAPS_RU."
+            + ". Их нужно либо закрыть институтом, либо назвать причину в KNOWN_GAPS_RU "
+            "или в UNCOVERED_DOMAINS_RU."
         )
     notes.append(
         f"Дел, пригодных для полной сверки: {checkable} из {len(covered)}. Полная сверка "

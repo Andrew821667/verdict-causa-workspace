@@ -65,14 +65,18 @@ def test_the_stand_carries_both_workspaces(desktop) -> None:
     ids = [workspace.id for workspace in desktop.desk.organisation.workspaces]
 
     assert ids == [DEMO_WORKSPACE_ID, PRACTICE_WORKSPACE_ID]
-    assert len(desktop.case_views) == 5
+    assert len(desktop.case_views) == 10
 
 
 def test_practice_cases_carry_the_caveat(desktop) -> None:
     """Без оговорки стенд внушал бы, что система решила дело как суд."""
     practice = [v for v in desktop.case_views if v.workspace_id == PRACTICE_WORKSPACE_ID]
 
-    assert len(practice) == 4
+    # Дел в наборе двенадцать, окон девять: три дела конвейер отвергает на сверке
+    # входов, и они названы в PIPELINE_REJECTION_REASONS_RU. Спор о
+    # незаключённости или недействительности нельзя наложить на дело, где договор
+    # заключён и действителен, — окна для него не существует.
+    assert len(practice) == 9
     for view in practice:
         assert "наложены на демонстрационное дело" in view.caveat_ru
         assert "Позиция суда:" in view.caveat_ru

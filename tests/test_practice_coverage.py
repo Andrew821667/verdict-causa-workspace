@@ -6,12 +6,14 @@ import pytest
 
 from causa.institutional.contracts.practice_base import PRACTICE_BASE_PATH, load_practice_base
 from causa.institutional.contracts.practice_coverage import (
+    GAP_REASON_UNKNOWN_RU,
     INSTITUTE_ARTICLE_RANGES,
     KNOWN_GAPS_RU,
     article_sort_key,
     cover_case,
     institutes_for_article,
     measure_practice_coverage,
+    uncovered_domain_ru,
 )
 
 
@@ -50,6 +52,20 @@ def test_liability_chapter_is_not_swallowed_by_obligation_dynamics() -> None:
     assert institutes_for_article("404") == ["attribution_delay"]
 
 
+def test_point_gaps_answer_for_articles_just_past_an_institute() -> None:
+    """Статья с точкой сразу за границей института объяснена, а не покрыта.
+
+    Ловушка здесь в том, что номер отличается от покрытого на долю: 53.1 стоит
+    вплотную к модели лиц (17–53), 449.1 — к модели порядка заключения
+    (445–449). Расширить диапазон на такую статью означало бы объявить
+    покрытым то, чего в предикатах нет.
+    """
+    for article in ("53.1", "449.1"):
+        assert institutes_for_article(article) == [], article
+        assert article in KNOWN_GAPS_RU, article
+        assert uncovered_domain_ru(article) != GAP_REASON_UNKNOWN_RU, article
+
+
 def test_repository_export_has_no_unexplained_gaps() -> None:
     """Каждая непокрытая статья реальной практики либо закрыта, либо объяснена."""
     if not PRACTICE_BASE_PATH.exists():
@@ -59,7 +75,11 @@ def test_repository_export_has_no_unexplained_gaps() -> None:
 
     assert report.total_cases > 0
     assert report.unexplained_gaps == []
-    assert all(article in KNOWN_GAPS_RU for article in report.uncovered_articles)
+    # Причина спрашивается у `uncovered_domain_ru`, а не у одной из двух карт:
+    # статью может объяснять и точечная запись KNOWN_GAPS_RU, и целая
+    # непокрытая область UNCOVERED_DOMAINS_RU.
+    for article in report.uncovered_articles:
+        assert uncovered_domain_ru(article) != GAP_REASON_UNKNOWN_RU, article
 
 
 def test_case_coverage_names_the_missing_article() -> None:
@@ -74,4 +94,5 @@ def test_case_coverage_names_the_missing_article() -> None:
     assert incomplete, "В выгрузке нет ни одного дела с непокрытой статьёй — проверьте карту."
     for entry in incomplete:
         assert entry.uncovered_articles
-        assert all(article in KNOWN_GAPS_RU for article in entry.uncovered_articles)
+        for article in entry.uncovered_articles:
+            assert uncovered_domain_ru(article) != GAP_REASON_UNKNOWN_RU, article

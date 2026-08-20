@@ -35,9 +35,11 @@
 
 from pydantic import BaseModel, Field
 
+from causa.institutional.contracts.fact_consistency import FactConsistencyError
 from causa.institutional.contracts.general_effects import GeneralEffectsInputs
 from causa.institutional.contracts.real_case_pipeline_expectations import (
     LAYER_SILENCE_REASONS_RU,
+    PIPELINE_REJECTION_REASONS_RU,
     UNREACHABLE_INSTITUTES_RU,
 )
 from causa.institutional.contracts.real_case_scenarios import (
@@ -94,6 +96,7 @@ class RealCasePipelineResult(BaseModel):
     case_number: str
     institute: str
     accepted: bool
+    rejection_explained: bool = True
     institute_conclusions_unchanged: bool
     changed_institute_fields: list[str] = Field(default_factory=list)
     layer_changes: dict[str, bool] = Field(default_factory=dict)
@@ -107,6 +110,7 @@ class RealCasePipelineReport(BaseModel):
     version: str = REAL_CASE_PIPELINE_VERSION
     total: int = 0
     accepted: int = 0
+    rejected: int = 0
     reaching_the_layer: int = 0
     results: list[RealCasePipelineResult] = Field(default_factory=list)
     institutes_that_cannot_reach_the_layer: list[str] = Field(default_factory=list)
@@ -137,11 +141,18 @@ def _layer_fields() -> list[str]:
 
 
 def institutes_that_cannot_reach_the_layer() -> list[str]:
-    """Институты, чьи выводы не могут дойти до слоя общих положений."""
+    """Институты набора реальных дел, чьи выводы не могут дойти до слоя.
+
+    Считается по институтам переведённых дел, а не по всем раннерам. Раннер
+    есть у каждого смоделированного института — их больше восьмидесяти, — и
+    перечислять недоходимость всех значило бы измерять устройство слоя, а не
+    набор дел. Здесь спрашивается о делах, которые действительно прогоняются.
+    """
     declared = set(GeneralEffectsInputs.model_fields)
     if not declared:  # pragma: no cover - защита от пустой модели входов
         raise ValueError("Слой общих положений не объявил ни одного входа.")
-    return sorted(name for name in INSTITUTE_RUNNERS if name not in LAYER_FED_BY)
+    used = {scenario.institute for scenario in REAL_CASE_SCENARIOS}
+    return sorted(name for name in used if name not in LAYER_FED_BY)
 
 
 def run_real_case_through_pipeline(
@@ -153,7 +164,26 @@ def run_real_case_through_pipeline(
     from causa.institutional.contracts.real_case_scenarios import run_real_case_scenario
 
     standalone = run_real_case_scenario(scenario)
-    result = run_reviewed_contract_analysis(build_real_case_request(scenario), sources)
+    try:
+        result = run_reviewed_contract_analysis(build_real_case_request(scenario), sources)
+    except FactConsistencyError as error:
+        # Отказ конвейера — это измерение, а не сбой: смесь фактов реального
+        # дела с остальными контрактами демонстрационного дела признана
+        # противоречивой. Падать здесь означало бы потерять результат.
+        reason = PIPELINE_REJECTION_REASONS_RU.get(scenario.case_id)
+        return RealCasePipelineResult(
+            case_id=scenario.case_id,
+            case_number=scenario.case_number,
+            institute=scenario.institute,
+            accepted=False,
+            rejection_explained=bool(reason),
+            institute_conclusions_unchanged=True,
+            notes_ru=[
+                "Конвейер отверг дело на сверке входов: "
+                + "; ".join(str(error).splitlines()[1:]) + ".",
+                reason or "Причина отказа не записана — это дефект набора, а не ответ.",
+            ],
+        )
 
     inside = getattr(result, _INSTITUTE_EVALUATION_FIELD[scenario.institute])
     changed = [
@@ -208,6 +238,7 @@ def run_real_case_pipeline_suite() -> RealCasePipelineReport:
     ]
     unreachable = institutes_that_cannot_reach_the_layer()
     reaching = sum(entry.layer_reached for entry in results)
+    rejected = [entry for entry in results if not entry.accepted]
     notes = [
         "Дело накладывается на демонстрационное дело о поставке: заменяются факты "
         "одного института, остальные контракты данных остаются прежними. Поэтому "
@@ -215,6 +246,14 @@ def run_real_case_pipeline_suite() -> RealCasePipelineReport:
         f"Дошли до слоя общих положений: {reaching} из {len(results)}. Молчание слоя "
         "по остальным делам обязано быть объяснено, и объяснения проверяются тестом.",
     ]
+    if rejected:
+        notes.append(
+            f"Отвергнуто конвейером: {len(rejected)} из {len(results)}. Отказ означает, "
+            "что факты дела несовместимы с остальными контрактами демонстрационного "
+            "дела, а не что модель ошиблась по существу спора: "
+            + ", ".join(sorted(entry.case_number for entry in rejected))
+            + "."
+        )
     if unreachable:
         notes.append(
             "Институты этого набора, чьи выводы не могут дойти до слоя: "
@@ -227,6 +266,7 @@ def run_real_case_pipeline_suite() -> RealCasePipelineReport:
     return RealCasePipelineReport(
         total=len(results),
         accepted=sum(entry.accepted for entry in results),
+        rejected=len(rejected),
         reaching_the_layer=reaching,
         results=results,
         institutes_that_cannot_reach_the_layer=unreachable,

@@ -12,9 +12,10 @@
 **Демонстрация** — синтетическое дело о поставке. На нём видно, как выглядит
 разбор, дошедший до итоговых выводов.
 
-**Реальная практика** — четыре дела Верховного Суда из `data/practice`. Факты
-дела накладываются на демонстрационное дело: полностью собрать реальное дело
-нельзя, выгрузка не содержит фактов для остальных институтов. Оговорка
+**Реальная практика** — переведённые дела из `data/practice`: четыре определения
+Верховного Суда и восемь постановлений кассационных судов. Факты дела
+накладываются на демонстрационное дело: полностью собрать реальное дело нельзя,
+выгрузка не содержит фактов для остальных институтов. Оговорка
 записана в карточке каждого дела, а не спрятана в спецификации, — иначе стенд
 внушал бы, что система «решила дело как суд».
 """
@@ -22,6 +23,9 @@
 from pydantic import BaseModel, ConfigDict, Field
 
 from causa.institutional.contracts.real_case_pipeline import build_real_case_request
+from causa.institutional.contracts.real_case_pipeline_expectations import (
+    PIPELINE_REJECTION_REASONS_RU,
+)
 from causa.institutional.contracts.real_case_scenarios import REAL_CASE_SCENARIOS
 from causa.institutional.contracts.reviewed_analysis import (
     ReviewedContractAnalysisRequest,
@@ -220,7 +224,7 @@ _PRACTICE_CAVEAT = (
 
 
 def build_practice_case_inputs() -> list[CaseInputs]:
-    """Входы четырёх дел Верховного Суда."""
+    """Входы дел практики, для которых конвейер может построить окно."""
     sources = build_synthetic_supply_analysis_sources()
     return [
         CaseInputs(
@@ -232,11 +236,24 @@ def build_practice_case_inputs() -> list[CaseInputs]:
             caveat_ru=f"{_PRACTICE_CAVEAT} Позиция суда: {scenario.court_holding_ru}",
         )
         for scenario in REAL_CASE_SCENARIOS
+        if scenario.case_id not in PIPELINE_REJECTION_REASONS_RU
     ]
 
 
 def build_practice_case_views() -> list[CaseView]:
-    """Четыре дела Верховного Суда, прогнанные через весь конвейер."""
+    """Переведённые дела практики, прогнанные через весь конвейер.
+
+    Дела, стоящие в очереди на перевод, на стенде не появляются: показывать
+    дело, для которого фактов ещё нет, значило бы показывать чужой разбор под
+    его номером.
+
+    Не появляются и дела, которые конвейер отвергает на сверке входов, — они
+    названы в `PIPELINE_REJECTION_REASONS_RU` с причиной. Спор о
+    незаключённости или недействительности сносит основание всего разбора:
+    остальные семь контрактов демонстрационного дела утверждают, что договор
+    заключён и действителен. Окно для такого дела построить нельзя, и подменять
+    отказ пустой карточкой было бы хуже, чем не показывать его вовсе.
+    """
     return [CaseSession(inputs).build_view() for inputs in build_practice_case_inputs()]
 
 

@@ -9,6 +9,7 @@ from causa.institutional.contracts.real_case_pipeline import (
 )
 from causa.institutional.contracts.real_case_pipeline_expectations import (
     LAYER_SILENCE_REASONS_RU,
+    PIPELINE_REJECTION_REASONS_RU,
     UNREACHABLE_INSTITUTES_RU,
 )
 from causa.institutional.contracts.real_case_scenarios import REAL_CASE_SCENARIOS
@@ -18,12 +19,48 @@ from causa.institutional.contracts.synthetic_reviewed_analysis import (
 )
 
 
-def test_every_real_case_passes_the_whole_pipeline() -> None:
-    """Факты реальных дел не отвергаются сверками входов."""
+def test_every_rejection_by_the_pipeline_is_explained() -> None:
+    """Отказ конвейера — измеренный результат, а не сбой.
+
+    Дело накладывается на демонстрационное дело о поставке, и сверка входов
+    может признать смесь противоречивой. Раньше такого дела в наборе не было и
+    отказ означал бы падение; теперь он обязан быть записан с причиной, иначе
+    поломка стала бы неотличима от границы приёма.
+    """
     report = run_real_case_pipeline_suite()
 
     assert report.total == len(REAL_CASE_SCENARIOS)
-    assert report.accepted == report.total
+    assert report.accepted + report.rejected == report.total
+    assert report.accepted >= 1
+
+    for entry in report.results:
+        assert entry.accepted or entry.rejection_explained, entry.case_number
+    # Обратная сторона: запись об отказе обязана соответствовать делу, которое
+    # конвейер действительно отвергает. Иначе стенд молча потерял бы окно, а
+    # причина отказа осталась бы стоять как объяснение несуществующего события.
+    rejected = {entry.case_id for entry in report.results if not entry.accepted}
+    for case_id in PIPELINE_REJECTION_REASONS_RU:
+        assert any(s.case_id == case_id for s in REAL_CASE_SCENARIOS), case_id
+        assert case_id in rejected, case_id
+
+
+def test_a_case_about_non_conclusion_cannot_be_overlaid_on_a_concluded_contract() -> None:
+    """Граница приёма наложения названа и проверена, а не только описана.
+
+    Дело о незаключённости сносит основание всего разбора: семь контрактов
+    демонстрационного дела утверждают, что договор заключён. Это ограничение
+    самого приёма «одно дело — один институт», и его следует держать видимым:
+    иначе очередное такое дело выглядело бы поломкой конвейера.
+    """
+    report = run_real_case_pipeline_suite()
+
+    rejected = {entry.case_number for entry in report.results if not entry.accepted}
+
+    assert "А37-976/2025" in rejected
+    assert "А67-8637/2022" in rejected
+    for entry in report.results:
+        if entry.case_number in rejected:
+            assert "сверке входов" in entry.notes_ru[0]
 
 
 def test_institute_conclusions_do_not_depend_on_the_surrounding_case() -> None:
@@ -35,6 +72,8 @@ def test_institute_conclusions_do_not_depend_on_the_surrounding_case() -> None:
     report = run_real_case_pipeline_suite()
 
     for entry in report.results:
+        if not entry.accepted:
+            continue
         assert entry.institute_conclusions_unchanged, (
             entry.case_number,
             entry.changed_institute_fields,
@@ -50,6 +89,8 @@ def test_layer_silence_is_always_explained() -> None:
     report = run_real_case_pipeline_suite()
 
     for entry in report.results:
+        if not entry.accepted:
+            continue
         assert entry.layer_reached or entry.silence_explained, entry.case_number
     for case_id in LAYER_SILENCE_REASONS_RU:
         assert any(s.case_id == case_id for s in REAL_CASE_SCENARIOS), case_id
@@ -90,6 +131,9 @@ def test_institutes_that_cannot_reach_the_layer_are_named() -> None:
     """Недоходимость до слоя — измеренный факт, а не умолчание."""
     unreachable = institutes_that_cannot_reach_the_layer()
 
+    # Считается по институтам переведённых дел, а не по всем раннерам: раннер
+    # есть у каждого смоделированного института, и перечень всех недоходимых
+    # описывал бы устройство слоя, а не набор дел.
     assert unreachable == ["freedom"]
     for name in unreachable:
         assert name in UNREACHABLE_INSTITUTES_RU, name
