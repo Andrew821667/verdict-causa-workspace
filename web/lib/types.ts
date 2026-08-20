@@ -136,6 +136,49 @@ export interface RelationScheme {
   notes_ru: string[];
 }
 
+/** Что выводится, когда часть фактов не установлена, и кто отвечает за недоказанное. */
+export type OutcomeStatus = "proven" | "refuted" | "depends";
+
+export interface OutcomeVerdict {
+  outcome: string;
+  label_ru: string;
+  status: OutcomeStatus;
+  status_ru: string;
+  /** Значение после применения бремени доказывания. */
+  resolved: boolean;
+  /** Неизвестные факты, от которых вывод зависит. */
+  driven_by: string[];
+  resolution_ru: string;
+}
+
+export interface ThreeValuedEvaluation {
+  unknown_facts: string[];
+  outcomes: OutcomeVerdict[];
+  notes_ru: string[];
+}
+
+/** Спор как расхождение мира истца и мира ответчика. */
+export interface ContestedFact {
+  fact: string;
+  label_ru: string;
+  claimant_value: boolean;
+  respondent_value: boolean;
+  switches: string[];
+}
+
+export interface WorldConclusion {
+  outcome: string;
+  label_ru: string;
+  in_claimant_world: boolean;
+  in_respondent_world: boolean;
+}
+
+export interface TwoWorldDebate {
+  contested: ContestedFact[];
+  conclusions: WorldConclusion[];
+  notes_ru: string[];
+}
+
 /** Текст приложенного документа — или запись о том, почему его нет. */
 export interface ExtractedText {
   document_id: string;
@@ -231,6 +274,8 @@ export interface CaseView {
   gaps: { gaps: TypedGap[]; notes_ru: string[] };
   map: { nodes: MapNode[]; edges: MapEdge[]; notes_ru: string[] };
   scheme: RelationScheme;
+  uncertainty: ThreeValuedEvaluation;
+  worlds: TwoWorldDebate;
   remarks: { outcomes: RemarkOutcome[] };
   sources: SourceLabel[];
   documents: { id: string; filename: string; size_bytes: number; sha256: string }[];

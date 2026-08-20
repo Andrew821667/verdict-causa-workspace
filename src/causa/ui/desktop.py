@@ -32,6 +32,12 @@ from causa.institutional.contracts.synthetic_reviewed_analysis import (
 )
 from causa.phase0.demo_trace import build_supply_dispute_demo_trace
 from causa.translation_pipeline import TranslationBundle
+from causa.reasoning.adversarial import (
+    TwoWorldDebate,
+    build_two_world_debate,
+    contested_without_documents,
+)
+from causa.reasoning.three_valued import ThreeValuedEvaluation, evaluate_with_unknowns
 from causa.ui.case_map import CaseMap, NodeKind, build_case_map
 from causa.ui.case_story import CaseStory, build_case_story
 from causa.ui.court_filing import CourtFiling, build_court_filing
@@ -83,6 +89,10 @@ class CaseView(BaseModel):
     map: CaseMap
     #: Схема правоотношения: кто кому что должен и чем это кончилось.
     scheme: RelationScheme
+    #: Что выводится при неустановленных фактах и кто отвечает за недоказанное.
+    uncertainty: ThreeValuedEvaluation
+    #: Спор как расхождение мира истца и мира ответчика.
+    worlds: TwoWorldDebate
     remarks: RemarkLedger
     #: Подписи к идентификаторам источников, на которых держится линия вывода.
     sources: list[SourceLabel] = Field(default_factory=list)
@@ -132,6 +142,7 @@ def build_case_view(
     closures: list[GapClosure] | None = None,
     texts: list[ExtractedText] | None = None,
     claimed_articles: list[str] | None = None,
+    unknown_facts: list[str] | None = None,
 ) -> CaseView:
     """Собрать окно дела из результата конвейера."""
     qualification = build_case_qualification(result, claimed_articles)
@@ -152,6 +163,16 @@ def build_case_view(
         gaps=gaps,
         map=case_map,
         scheme=build_relation_scheme(result, qualification, verdict),
+        uncertainty=evaluate_with_unknowns(
+            result.constraint_set,
+            result.evidence_mapping.facts,
+            set(unknown_facts or ()),
+        ),
+        worlds=build_two_world_debate(
+            result.constraint_set,
+            result.evidence_mapping.facts,
+            contested_without_documents(result),
+        ),
         remarks=build_remark_ledger(case_id, remarks or []),
         sources=source_labels(
             [node.title_ru for node in case_map.nodes if node.kind is NodeKind.SOURCE]

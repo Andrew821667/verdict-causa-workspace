@@ -2815,6 +2815,249 @@
      "Связь, помеченная «не заявлено», означает, что этого в деле не утверждали, а не что этого не было."
     ]
    },
+   "uncertainty": {
+    "version": "reasoning-three-valued-v0",
+    "unknown_facts": [],
+    "outcomes": [
+     {
+      "outcome": "breach_issue",
+      "label_ru": "Вопрос о нарушении обязательства",
+      "status": "proven",
+      "status_ru": "да при любом доопределении неизвестного",
+      "resolved": true,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "late_performance_issue",
+      "label_ru": "Просрочка исполнения",
+      "status": "proven",
+      "status_ru": "да при любом доопределении неизвестного",
+      "resolved": true,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "defect_issue",
+      "label_ru": "Ненадлежащее исполнение",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "payment_default_issue",
+      "label_ru": "Просрочка платежа",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "damages_remedy_available",
+      "label_ru": "Формальная доступность требования убытков",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "causation_evidence_gap",
+      "label_ru": "Пробел причинной связи",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "limitation_bar",
+      "label_ru": "Барьер исковой давности",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     }
+    ],
+    "notes_ru": [
+     "Неустановленных фактов по делу нет: третье значение ни на что не влияет."
+    ]
+   },
+   "worlds": {
+    "version": "reasoning-two-worlds-v0",
+    "contested": [
+     {
+      "fact": "causation_established",
+      "label_ru": "Установленная причинная связь",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "causation_evidence_gap",
+       "damages_remedy_available"
+      ]
+     },
+     {
+      "fact": "limitation_period_expired",
+      "label_ru": "Истечение срока исковой давности",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "damages_remedy_available",
+       "limitation_bar"
+      ]
+     },
+     {
+      "fact": "remedy_requested",
+      "label_ru": "Заявленный способ защиты",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "damages_remedy_available",
+       "limitation_bar"
+      ]
+     },
+     {
+      "fact": "due_date_missed",
+      "label_ru": "Пропуск срока",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "duty_exists",
+      "label_ru": "Наличие обязанности",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "loss_claimed",
+      "label_ru": "Заявление об убытках",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "damages_remedy_available"
+      ]
+     },
+     {
+      "fact": "payment_defense_applies",
+      "label_ru": "Применимое возражение против платежа",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_due",
+      "label_ru": "Наступление срока оплаты",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_duty_exists",
+      "label_ru": "Наличие обязанности по оплате",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_missed",
+      "label_ru": "Пропуск платежа",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "performance_completed",
+      "label_ru": "Завершение исполнения",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "defect_issue"
+      ]
+     },
+     {
+      "fact": "valid_exception_applies",
+      "label_ru": "Применимое основание освобождения",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "performance_nonconforming",
+      "label_ru": "Ненадлежащее исполнение",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": []
+     }
+    ],
+    "conclusions": [
+     {
+      "outcome": "breach_issue",
+      "label_ru": "Вопрос о нарушении обязательства",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "late_performance_issue",
+      "label_ru": "Просрочка исполнения",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "defect_issue",
+      "label_ru": "Ненадлежащее исполнение",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "payment_default_issue",
+      "label_ru": "Просрочка платежа",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "damages_remedy_available",
+      "label_ru": "Формальная доступность требования убытков",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "causation_evidence_gap",
+      "label_ru": "Пробел причинной связи",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "limitation_bar",
+      "label_ru": "Барьер исковой давности",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     }
+    ],
+    "notes_ru": [
+     "Спор вычислен из дела: это расхождение двух допустимых толкований спорных фактов, а не сочинённое возражение.",
+     "Это не состязательный разбор пяти агентов из раздела 8.2 концепции. Здесь три роли из пяти; доктрины и калибратора нет, и они не имитируются."
+    ]
+   },
    "remarks": {
     "version": "ui-remarks-v0",
     "case_id": "case-supply-1",
@@ -5772,6 +6015,249 @@
      "Связь, помеченная «не заявлено», означает, что этого в деле не утверждали, а не что этого не было."
     ]
    },
+   "uncertainty": {
+    "version": "reasoning-three-valued-v0",
+    "unknown_facts": [],
+    "outcomes": [
+     {
+      "outcome": "breach_issue",
+      "label_ru": "Вопрос о нарушении обязательства",
+      "status": "proven",
+      "status_ru": "да при любом доопределении неизвестного",
+      "resolved": true,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "late_performance_issue",
+      "label_ru": "Просрочка исполнения",
+      "status": "proven",
+      "status_ru": "да при любом доопределении неизвестного",
+      "resolved": true,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "defect_issue",
+      "label_ru": "Ненадлежащее исполнение",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "payment_default_issue",
+      "label_ru": "Просрочка платежа",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "damages_remedy_available",
+      "label_ru": "Формальная доступность требования убытков",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "causation_evidence_gap",
+      "label_ru": "Пробел причинной связи",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "limitation_bar",
+      "label_ru": "Барьер исковой давности",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     }
+    ],
+    "notes_ru": [
+     "Неустановленных фактов по делу нет: третье значение ни на что не влияет."
+    ]
+   },
+   "worlds": {
+    "version": "reasoning-two-worlds-v0",
+    "contested": [
+     {
+      "fact": "causation_established",
+      "label_ru": "Установленная причинная связь",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "causation_evidence_gap",
+       "damages_remedy_available"
+      ]
+     },
+     {
+      "fact": "limitation_period_expired",
+      "label_ru": "Истечение срока исковой давности",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "damages_remedy_available",
+       "limitation_bar"
+      ]
+     },
+     {
+      "fact": "remedy_requested",
+      "label_ru": "Заявленный способ защиты",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "damages_remedy_available",
+       "limitation_bar"
+      ]
+     },
+     {
+      "fact": "due_date_missed",
+      "label_ru": "Пропуск срока",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "duty_exists",
+      "label_ru": "Наличие обязанности",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "loss_claimed",
+      "label_ru": "Заявление об убытках",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "damages_remedy_available"
+      ]
+     },
+     {
+      "fact": "payment_defense_applies",
+      "label_ru": "Применимое возражение против платежа",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_due",
+      "label_ru": "Наступление срока оплаты",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_duty_exists",
+      "label_ru": "Наличие обязанности по оплате",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_missed",
+      "label_ru": "Пропуск платежа",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "performance_completed",
+      "label_ru": "Завершение исполнения",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "defect_issue"
+      ]
+     },
+     {
+      "fact": "valid_exception_applies",
+      "label_ru": "Применимое основание освобождения",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "performance_nonconforming",
+      "label_ru": "Ненадлежащее исполнение",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": []
+     }
+    ],
+    "conclusions": [
+     {
+      "outcome": "breach_issue",
+      "label_ru": "Вопрос о нарушении обязательства",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "late_performance_issue",
+      "label_ru": "Просрочка исполнения",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "defect_issue",
+      "label_ru": "Ненадлежащее исполнение",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "payment_default_issue",
+      "label_ru": "Просрочка платежа",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "damages_remedy_available",
+      "label_ru": "Формальная доступность требования убытков",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "causation_evidence_gap",
+      "label_ru": "Пробел причинной связи",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "limitation_bar",
+      "label_ru": "Барьер исковой давности",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     }
+    ],
+    "notes_ru": [
+     "Спор вычислен из дела: это расхождение двух допустимых толкований спорных фактов, а не сочинённое возражение.",
+     "Это не состязательный разбор пяти агентов из раздела 8.2 концепции. Здесь три роли из пяти; доктрины и калибратора нет, и они не имитируются."
+    ]
+   },
    "remarks": {
     "version": "ui-remarks-v0",
     "case_id": "vs-4-kg22-2-k1",
@@ -8692,6 +9178,249 @@
     "notes_ru": [
      "Стороны названы ролями: имён сторон во входах модели нет, и подставлять их системе неоткуда.",
      "Связь, помеченная «не заявлено», означает, что этого в деле не утверждали, а не что этого не было."
+    ]
+   },
+   "uncertainty": {
+    "version": "reasoning-three-valued-v0",
+    "unknown_facts": [],
+    "outcomes": [
+     {
+      "outcome": "breach_issue",
+      "label_ru": "Вопрос о нарушении обязательства",
+      "status": "proven",
+      "status_ru": "да при любом доопределении неизвестного",
+      "resolved": true,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "late_performance_issue",
+      "label_ru": "Просрочка исполнения",
+      "status": "proven",
+      "status_ru": "да при любом доопределении неизвестного",
+      "resolved": true,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "defect_issue",
+      "label_ru": "Ненадлежащее исполнение",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "payment_default_issue",
+      "label_ru": "Просрочка платежа",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "damages_remedy_available",
+      "label_ru": "Формальная доступность требования убытков",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "causation_evidence_gap",
+      "label_ru": "Пробел причинной связи",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "limitation_bar",
+      "label_ru": "Барьер исковой давности",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     }
+    ],
+    "notes_ru": [
+     "Неустановленных фактов по делу нет: третье значение ни на что не влияет."
+    ]
+   },
+   "worlds": {
+    "version": "reasoning-two-worlds-v0",
+    "contested": [
+     {
+      "fact": "causation_established",
+      "label_ru": "Установленная причинная связь",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "causation_evidence_gap",
+       "damages_remedy_available"
+      ]
+     },
+     {
+      "fact": "limitation_period_expired",
+      "label_ru": "Истечение срока исковой давности",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "damages_remedy_available",
+       "limitation_bar"
+      ]
+     },
+     {
+      "fact": "remedy_requested",
+      "label_ru": "Заявленный способ защиты",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "damages_remedy_available",
+       "limitation_bar"
+      ]
+     },
+     {
+      "fact": "due_date_missed",
+      "label_ru": "Пропуск срока",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "duty_exists",
+      "label_ru": "Наличие обязанности",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "loss_claimed",
+      "label_ru": "Заявление об убытках",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "damages_remedy_available"
+      ]
+     },
+     {
+      "fact": "payment_defense_applies",
+      "label_ru": "Применимое возражение против платежа",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_due",
+      "label_ru": "Наступление срока оплаты",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_duty_exists",
+      "label_ru": "Наличие обязанности по оплате",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_missed",
+      "label_ru": "Пропуск платежа",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "performance_completed",
+      "label_ru": "Завершение исполнения",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "defect_issue"
+      ]
+     },
+     {
+      "fact": "valid_exception_applies",
+      "label_ru": "Применимое основание освобождения",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "performance_nonconforming",
+      "label_ru": "Ненадлежащее исполнение",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": []
+     }
+    ],
+    "conclusions": [
+     {
+      "outcome": "breach_issue",
+      "label_ru": "Вопрос о нарушении обязательства",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "late_performance_issue",
+      "label_ru": "Просрочка исполнения",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "defect_issue",
+      "label_ru": "Ненадлежащее исполнение",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "payment_default_issue",
+      "label_ru": "Просрочка платежа",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "damages_remedy_available",
+      "label_ru": "Формальная доступность требования убытков",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "causation_evidence_gap",
+      "label_ru": "Пробел причинной связи",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "limitation_bar",
+      "label_ru": "Барьер исковой давности",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     }
+    ],
+    "notes_ru": [
+     "Спор вычислен из дела: это расхождение двух допустимых толкований спорных фактов, а не сочинённое возражение.",
+     "Это не состязательный разбор пяти агентов из раздела 8.2 концепции. Здесь три роли из пяти; доктрины и калибратора нет, и они не имитируются."
     ]
    },
    "remarks": {
@@ -11689,6 +12418,249 @@
      "Связь, помеченная «не заявлено», означает, что этого в деле не утверждали, а не что этого не было."
     ]
    },
+   "uncertainty": {
+    "version": "reasoning-three-valued-v0",
+    "unknown_facts": [],
+    "outcomes": [
+     {
+      "outcome": "breach_issue",
+      "label_ru": "Вопрос о нарушении обязательства",
+      "status": "proven",
+      "status_ru": "да при любом доопределении неизвестного",
+      "resolved": true,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "late_performance_issue",
+      "label_ru": "Просрочка исполнения",
+      "status": "proven",
+      "status_ru": "да при любом доопределении неизвестного",
+      "resolved": true,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "defect_issue",
+      "label_ru": "Ненадлежащее исполнение",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "payment_default_issue",
+      "label_ru": "Просрочка платежа",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "damages_remedy_available",
+      "label_ru": "Формальная доступность требования убытков",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "causation_evidence_gap",
+      "label_ru": "Пробел причинной связи",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "limitation_bar",
+      "label_ru": "Барьер исковой давности",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     }
+    ],
+    "notes_ru": [
+     "Неустановленных фактов по делу нет: третье значение ни на что не влияет."
+    ]
+   },
+   "worlds": {
+    "version": "reasoning-two-worlds-v0",
+    "contested": [
+     {
+      "fact": "causation_established",
+      "label_ru": "Установленная причинная связь",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "causation_evidence_gap",
+       "damages_remedy_available"
+      ]
+     },
+     {
+      "fact": "limitation_period_expired",
+      "label_ru": "Истечение срока исковой давности",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "damages_remedy_available",
+       "limitation_bar"
+      ]
+     },
+     {
+      "fact": "remedy_requested",
+      "label_ru": "Заявленный способ защиты",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "damages_remedy_available",
+       "limitation_bar"
+      ]
+     },
+     {
+      "fact": "due_date_missed",
+      "label_ru": "Пропуск срока",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "duty_exists",
+      "label_ru": "Наличие обязанности",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "loss_claimed",
+      "label_ru": "Заявление об убытках",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "damages_remedy_available"
+      ]
+     },
+     {
+      "fact": "payment_defense_applies",
+      "label_ru": "Применимое возражение против платежа",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_due",
+      "label_ru": "Наступление срока оплаты",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_duty_exists",
+      "label_ru": "Наличие обязанности по оплате",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_missed",
+      "label_ru": "Пропуск платежа",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "performance_completed",
+      "label_ru": "Завершение исполнения",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "defect_issue"
+      ]
+     },
+     {
+      "fact": "valid_exception_applies",
+      "label_ru": "Применимое основание освобождения",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "performance_nonconforming",
+      "label_ru": "Ненадлежащее исполнение",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": []
+     }
+    ],
+    "conclusions": [
+     {
+      "outcome": "breach_issue",
+      "label_ru": "Вопрос о нарушении обязательства",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "late_performance_issue",
+      "label_ru": "Просрочка исполнения",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "defect_issue",
+      "label_ru": "Ненадлежащее исполнение",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "payment_default_issue",
+      "label_ru": "Просрочка платежа",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "damages_remedy_available",
+      "label_ru": "Формальная доступность требования убытков",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "causation_evidence_gap",
+      "label_ru": "Пробел причинной связи",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "limitation_bar",
+      "label_ru": "Барьер исковой давности",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     }
+    ],
+    "notes_ru": [
+     "Спор вычислен из дела: это расхождение двух допустимых толкований спорных фактов, а не сочинённое возражение.",
+     "Это не состязательный разбор пяти агентов из раздела 8.2 концепции. Здесь три роли из пяти; доктрины и калибратора нет, и они не имитируются."
+    ]
+   },
    "remarks": {
     "version": "ui-remarks-v0",
     "case_id": "vs-5-kg24-43-k2",
@@ -14610,6 +15582,249 @@
     "notes_ru": [
      "Стороны названы ролями: имён сторон во входах модели нет, и подставлять их системе неоткуда.",
      "Связь, помеченная «не заявлено», означает, что этого в деле не утверждали, а не что этого не было."
+    ]
+   },
+   "uncertainty": {
+    "version": "reasoning-three-valued-v0",
+    "unknown_facts": [],
+    "outcomes": [
+     {
+      "outcome": "breach_issue",
+      "label_ru": "Вопрос о нарушении обязательства",
+      "status": "proven",
+      "status_ru": "да при любом доопределении неизвестного",
+      "resolved": true,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "late_performance_issue",
+      "label_ru": "Просрочка исполнения",
+      "status": "proven",
+      "status_ru": "да при любом доопределении неизвестного",
+      "resolved": true,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "defect_issue",
+      "label_ru": "Ненадлежащее исполнение",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "payment_default_issue",
+      "label_ru": "Просрочка платежа",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "damages_remedy_available",
+      "label_ru": "Формальная доступность требования убытков",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "causation_evidence_gap",
+      "label_ru": "Пробел причинной связи",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     },
+     {
+      "outcome": "limitation_bar",
+      "label_ru": "Барьер исковой давности",
+      "status": "refuted",
+      "status_ru": "нет при любом доопределении неизвестного",
+      "resolved": false,
+      "driven_by": [],
+      "resolution_ru": ""
+     }
+    ],
+    "notes_ru": [
+     "Неустановленных фактов по делу нет: третье значение ни на что не влияет."
+    ]
+   },
+   "worlds": {
+    "version": "reasoning-two-worlds-v0",
+    "contested": [
+     {
+      "fact": "causation_established",
+      "label_ru": "Установленная причинная связь",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "causation_evidence_gap",
+       "damages_remedy_available"
+      ]
+     },
+     {
+      "fact": "limitation_period_expired",
+      "label_ru": "Истечение срока исковой давности",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "damages_remedy_available",
+       "limitation_bar"
+      ]
+     },
+     {
+      "fact": "remedy_requested",
+      "label_ru": "Заявленный способ защиты",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "damages_remedy_available",
+       "limitation_bar"
+      ]
+     },
+     {
+      "fact": "due_date_missed",
+      "label_ru": "Пропуск срока",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "duty_exists",
+      "label_ru": "Наличие обязанности",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "loss_claimed",
+      "label_ru": "Заявление об убытках",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "damages_remedy_available"
+      ]
+     },
+     {
+      "fact": "payment_defense_applies",
+      "label_ru": "Применимое возражение против платежа",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_due",
+      "label_ru": "Наступление срока оплаты",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_duty_exists",
+      "label_ru": "Наличие обязанности по оплате",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "payment_missed",
+      "label_ru": "Пропуск платежа",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": [
+       "payment_default_issue"
+      ]
+     },
+     {
+      "fact": "performance_completed",
+      "label_ru": "Завершение исполнения",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "defect_issue"
+      ]
+     },
+     {
+      "fact": "valid_exception_applies",
+      "label_ru": "Применимое основание освобождения",
+      "claimant_value": false,
+      "respondent_value": true,
+      "switches": [
+       "late_performance_issue"
+      ]
+     },
+     {
+      "fact": "performance_nonconforming",
+      "label_ru": "Ненадлежащее исполнение",
+      "claimant_value": true,
+      "respondent_value": false,
+      "switches": []
+     }
+    ],
+    "conclusions": [
+     {
+      "outcome": "breach_issue",
+      "label_ru": "Вопрос о нарушении обязательства",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "late_performance_issue",
+      "label_ru": "Просрочка исполнения",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "defect_issue",
+      "label_ru": "Ненадлежащее исполнение",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "payment_default_issue",
+      "label_ru": "Просрочка платежа",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "damages_remedy_available",
+      "label_ru": "Формальная доступность требования убытков",
+      "in_claimant_world": true,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "causation_evidence_gap",
+      "label_ru": "Пробел причинной связи",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     },
+     {
+      "outcome": "limitation_bar",
+      "label_ru": "Барьер исковой давности",
+      "in_claimant_world": false,
+      "in_respondent_world": false
+     }
+    ],
+    "notes_ru": [
+     "Спор вычислен из дела: это расхождение двух допустимых толкований спорных фактов, а не сочинённое возражение.",
+     "Это не состязательный разбор пяти агентов из раздела 8.2 концепции. Здесь три роли из пяти; доктрины и калибратора нет, и они не имитируются."
     ]
    },
    "remarks": {

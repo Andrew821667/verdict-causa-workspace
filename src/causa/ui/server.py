@@ -76,6 +76,7 @@ _POST_ACTIONS: dict[str, tuple[str, int]] = {
     "remark": ("add_remark", MAX_REMARK_BODY_BYTES),
     "document": ("add_document", 2 * MAX_DOCUMENT_BYTES),
     "close-gap": ("close_gap", MAX_REMARK_BODY_BYTES),
+    "unknown-facts": ("declare_unknown", MAX_REMARK_BODY_BYTES),
 }
 
 
@@ -225,6 +226,23 @@ class DesktopService:
                 "Файл приобщён к делу, текст из него извлечён. Выводов из текста "
                 "система не делает: чтобы документ повлиял на вывод, укажите, "
                 "какой пробел он закрывает."
+            ),
+            "case": self.case_payload(workspace_id, case_id),
+        }
+
+    def declare_unknown(self, workspace_id: str, case_id: str, body: dict) -> dict:
+        """Объявить перечисленные факты неустановленными и пересчитать дело."""
+        session = self.session(workspace_id, case_id)
+        facts = body.get("facts")
+        if not isinstance(facts, list) or not all(isinstance(item, str) for item in facts):
+            raise ValueError("Ожидается список имён фактов в поле «facts».")
+        view = session.declare_unknown(facts)
+        self._replace_view(view)
+        return {
+            "unknown_facts": list(view.uncertainty.unknown_facts),
+            "note_ru": (
+                "Неустановленное не считается опровергнутым: вывод, который от "
+                "него зависит, разрешается по бремени доказывания."
             ),
             "case": self.case_payload(workspace_id, case_id),
         }

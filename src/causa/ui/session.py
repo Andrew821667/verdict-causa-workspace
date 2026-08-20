@@ -28,6 +28,7 @@ from causa.institutional.contracts.reviewed_analysis import (
     run_reviewed_contract_analysis,
 )
 from causa.reasoning.counterfactual import CounterfactualBudget
+from causa.reasoning.three_valued import BURDEN_BY_FACT, UnknownFactError
 from causa.translation_pipeline import TranslationBundle
 from causa.ui.document_text import ExtractedText, extract_text
 from causa.ui.documents import GapClosure, UploadedDocument, apply_closure, document_source
@@ -62,6 +63,10 @@ class CaseInputs(BaseModel):
     #: Статьи ГК, на которые ссылается само дело. Нужны, чтобы отличить
     #: «материалов не хватает» от «это не моя отрасль».
     claimed_articles: list[str] = Field(default_factory=list)
+    #: Факты, о которых по делу не установлено ничего. Не выводятся из
+    #: отсутствия документа: отсутствие документа и неустановленность — разные
+    #: вещи, и вторую утверждает юрист.
+    unknown_facts: list[str] = Field(default_factory=list)
 
     @property
     def key(self) -> str:
@@ -198,6 +203,8 @@ class CaseSession:
         self.inputs = inputs
         self.budget = budget or CounterfactualBudget()
         self.documents: list[UploadedDocument] = []
+        #: Факты, объявленные неустановленными. Меняются оператором по ходу дела.
+        self.unknown_facts: list[str] = list(inputs.unknown_facts)
         #: Текст приложенных файлов. Пусто для тех, из которых его не достали.
         self.texts: list[ExtractedText] = []
         self.closures: list[GapClosure] = []
@@ -240,6 +247,22 @@ class CaseSession:
         if content is not None:
             self.texts.append(extract_text(document, content))
         return document
+
+    def declare_unknown(self, facts: list[str]):
+        """Объявить факты неустановленными и пересобрать окно дела.
+
+        Это утверждение юриста, а не вывод из отсутствия документа: документа
+        может не быть у доказанного обстоятельства, и наоборот. Поэтому список
+        приходит извне и нигде не выводится.
+        """
+        strangers = sorted(set(facts) - set(BURDEN_BY_FACT))
+        if strangers:
+            raise UnknownFactError(
+                "Эти факты нельзя объявить неустановленными — для них не "
+                "записано бремя доказывания: " + ", ".join(strangers)
+            )
+        self.unknown_facts = sorted(set(facts))
+        return self.build_view()
 
     def close_gap(self, closure: GapClosure, *, reconcile_dependents: bool = False):
         """Внести утверждение оператора в факты дела и пересчитать его целиком.
@@ -323,6 +346,7 @@ class CaseSession:
             closures=self.closures,
             texts=self.texts,
             claimed_articles=list(self.inputs.claimed_articles),
+            unknown_facts=list(self.unknown_facts),
         )
 
 

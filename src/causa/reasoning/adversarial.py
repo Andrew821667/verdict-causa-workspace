@@ -154,6 +154,29 @@ class TwoWorldDebate(BaseModel):
         return any(not item.stable for item in self.conclusions)
 
 
+#: Приставка идентификатора документа, приложенного оператором.
+_DOCUMENT_PREFIX = "doc:"
+
+
+def contested_without_documents(result) -> set[str]:
+    """Факты, за которыми не стоит ни одного приложенного документа.
+
+    Это и есть спорное в обычном смысле: пока факт держится только на
+    утверждении, противная сторона вправе прочитать его иначе. Как только
+    оператор закрывает факт документом, идентификатор документа попадает в
+    `source_refs`, и факт перестаёт быть спорным.
+
+    Определение намеренно грубое и проверяемое. Тонкое — «документ слабый»,
+    «документ оспорим» — потребовало бы оценки доказательства, которой система
+    не делает и делать не должна.
+    """
+    return {
+        item.fact_name
+        for item in result.evidence_mapping.provenance
+        if not any(str(ref).startswith(_DOCUMENT_PREFIX) for ref in item.source_refs)
+    }
+
+
 def build_two_world_debate(
     constraint_set: ConstraintSet,
     facts: ObligationFactSet,

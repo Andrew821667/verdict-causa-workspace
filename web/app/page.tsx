@@ -10,6 +10,7 @@ import { GapQueue } from "@/components/GapQueue";
 import { Qualification } from "@/components/Qualification";
 import { Remarks } from "@/components/Remarks";
 import { DebateView, Registers } from "@/components/DebateView";
+import { DisputeView } from "@/components/DisputeView";
 import { CaseMap } from "@/components/CaseMap";
 import { CaseStoryView } from "@/components/CaseStoryView";
 import { CourtFilingView } from "@/components/CourtFilingView";
@@ -151,7 +152,22 @@ export default function Page() {
           )}
 
           {tab === "reasoning" && <ReasoningLine view={view} />}
-          {tab === "debate" && <DebateView reasoning={view.reasoning} />}
+          {tab === "debate" && (
+            <div className="space-y-4">
+              <DisputeView
+                view={view}
+                live={live}
+                caseKey={selected}
+                onChanged={(payload) =>
+                  setOverride({
+                    ...override,
+                    [selected]: payload.case as unknown as CaseView,
+                  })
+                }
+              />
+              <DebateView reasoning={view.reasoning} />
+            </div>
+          )}
           {tab === "registers" && (
             <div className="space-y-4">
               <Registers reasoning={view.reasoning} />
