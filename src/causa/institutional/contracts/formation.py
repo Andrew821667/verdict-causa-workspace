@@ -185,15 +185,17 @@ def build_formation_constraint_set(
         id=f"formation-constraint-set:{mapping.evidence_id}",
         legal_source_refs=mapping.legal_source_refs,
         expressions=[
-            "essential_terms_defined_in_offer == subject_matter_defined_in_offer AND statutory_essential_terms_defined_in_offer AND party_declared_essential_terms_defined_in_offer",
-            "valid_offer == proposal_made AND proposal_addressed_to_counterparty AND intent_to_be_bound AND essential_terms_defined_in_offer",
-            "express_acceptance_valid == valid_offer AND acceptance_received AND acceptance_full_and_unconditional AND acceptance_within_period AND NOT acceptance_on_other_terms",
             "conduct_acceptance_valid == valid_offer AND acceptance_by_conduct AND performance_conduct_started_in_time AND NOT acceptance_on_other_terms",
-            "silence_acceptance_valid == valid_offer AND silence_only AND silence_acceptance_basis_exists AND acceptance_within_period",
+            "contract_concluded_prerequisites == required_form_observed AND essential_terms_agreed",
             "counteroffer_detected == acceptance_on_other_terms",
             "essential_terms_agreed == valid_offer AND (express_acceptance_valid OR conduct_acceptance_valid OR silence_acceptance_valid)",
-            "contract_concluded_prerequisites == required_form_observed AND essential_terms_agreed",
+            "essential_terms_defined_in_offer == subject_matter_defined_in_offer AND statutory_essential_terms_defined_in_offer AND party_declared_essential_terms_defined_in_offer",
+            "express_acceptance_valid == valid_offer AND acceptance_received AND acceptance_full_and_unconditional AND acceptance_within_period AND NOT acceptance_on_other_terms",
+            "formation_evidence_gap == proposal_made AND NOT contract_concluded_prerequisites",
             "non_conclusion_objection_barred == performance_accepted_without_objection AND bad_faith_non_conclusion_objection",
+            "requires_human_formation_assessment == formation_evidence_gap OR counteroffer_detected OR non_conclusion_objection_barred",
+            "silence_acceptance_valid == valid_offer AND silence_only AND silence_acceptance_basis_exists AND acceptance_within_period",
+            "valid_offer == proposal_made AND proposal_addressed_to_counterparty AND intent_to_be_bound AND essential_terms_defined_in_offer",
         ],
     )
 

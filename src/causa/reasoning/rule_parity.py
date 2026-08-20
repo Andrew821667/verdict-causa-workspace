@@ -193,10 +193,45 @@ def parse_rule(line: str) -> tuple[str, Node] | None:
 _MAX_ALIAS_DEPTH = 64
 
 
+def _expand_arguments(
+    arguments: list[ast.AST],
+    aliases: dict[str, ast.AST],
+    lists: dict[str, list[ast.AST]],
+    depth: int,
+) -> list[Node]:
+    """Раскрыть аргументы `And`/`Or`, включая распакованные списки."""
+    parts: list[Node] = []
+    for argument in arguments:
+        if not isinstance(argument, ast.Starred):
+            parts.append(_translate_call(argument, aliases, depth + 1, lists))
+            continue
+        inner = argument.value
+        if isinstance(inner, ast.Name) and inner.id in lists:
+            parts.extend(
+                _translate_call(element, aliases, depth + 1, lists) for element in lists[inner.id]
+            )
+            continue
+        if isinstance(inner, ast.ListComp):
+            name = _pairwise_list(inner)
+            if name is not None and name in lists:
+                elements = [
+                    _translate_call(element, aliases, depth + 1, lists) for element in lists[name]
+                ]
+                parts.extend(
+                    ("and", [left, right])
+                    for index, left in enumerate(elements)
+                    for right in elements[index + 1 :]
+                )
+                continue
+        raise ExpressionSyntaxError(f"непереводимое выражение: {ast.unparse(argument)}")
+    return parts
+
+
 def _translate_call(
     node: ast.AST,
     aliases: dict[str, ast.AST] | None = None,
     depth: int = 0,
+    lists: dict[str, list[ast.AST]] | None = None,
 ) -> Node:
     """Перевести выражение Z3 из исходника в тот же вид, что и объявленное.
 
@@ -205,11 +240,12 @@ def _translate_call(
     и сравнение сравнивало бы формулу с именем.
     """
     aliases = aliases or {}
+    lists = lists or {}
     if depth > _MAX_ALIAS_DEPTH:
         raise ExpressionSyntaxError("промежуточные формулы ссылаются друг на друга по кругу")
     if isinstance(node, ast.Name):
         if node.id in aliases:
-            return _translate_call(aliases[node.id], aliases, depth + 1)
+            return _translate_call(aliases[node.id], aliases, depth + 1, lists)
         return ("var", node.id)
     if isinstance(node, ast.Subscript):
         # variables["имя_факта"] либо outputs["имя_вывода"]
@@ -220,17 +256,72 @@ def _translate_call(
     if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
         name = node.func.id
         if name == "Not" and len(node.args) == 1:
-            return ("not", _translate_call(node.args[0], aliases, depth + 1))
+            return ("not", _translate_call(node.args[0], aliases, depth + 1, lists))
         if name in {"And", "Or"}:
-            return (
-                name.lower(),
-                [_translate_call(argument, aliases, depth + 1) for argument in node.args],
-            )
+            parts = _expand_arguments(list(node.args), aliases, lists, depth)
+            if not parts:
+                raise ExpressionSyntaxError(f"пустое {name}: {ast.unparse(node)}")
+            return (name.lower(), parts) if len(parts) > 1 else parts[0]
     raise ExpressionSyntaxError(f"непереводимое выражение: {ast.unparse(node)}")
 
 
+def _pairwise_list(node: ast.ListComp) -> str | None:
+    """Имя списка, если это перебор всех пар его элементов.
+
+    Три института спрашивают «не сработали ли два основания сразу» и пишут это
+    одинаково: `[And(left, right) for index, left in enumerate(paths)
+    for right in paths[index + 1:]]`. Форма узкая, повторяется дословно, и
+    поддержать её дешевле, чем оставить три правила непрочитанными.
+    """
+    if len(node.generators) != 2:
+        return None
+    first, second = node.generators
+    if not (
+        isinstance(first.iter, ast.Call)
+        and isinstance(first.iter.func, ast.Name)
+        and first.iter.func.id == "enumerate"
+        and isinstance(first.iter.args[0], ast.Name)
+    ):
+        return None
+    name = first.iter.args[0].id
+    if not (
+        isinstance(second.iter, ast.Subscript)
+        and isinstance(second.iter.value, ast.Name)
+        and second.iter.value.id == name
+        and isinstance(second.iter.slice, ast.Slice)
+    ):
+        return None
+    element = node.elt
+    if not (
+        isinstance(element, ast.Call)
+        and isinstance(element.func, ast.Name)
+        and element.func.id == "And"
+        and len(element.args) == 2
+    ):
+        return None
+    return name
+
+
+def _lists(function: ast.FunctionDef) -> dict[str, list[ast.AST]]:
+    """Списки формул: `full_paths = [...]`, раскрываемые через `Or(*full_paths)`."""
+    found: dict[str, list[ast.AST]] = {}
+    for node in ast.walk(function):
+        if not isinstance(node, ast.Assign) or len(node.targets) != 1:
+            continue
+        target, value = node.targets[0], node.value
+        if isinstance(target, ast.Name) and isinstance(value, ast.List):
+            found[target.id] = list(value.elts)
+    return found
+
+
 def _aliases(function: ast.FunctionDef) -> dict[str, ast.AST]:
-    """Промежуточные формулы: `имя = And(...)` и подобные."""
+    """Промежуточные имена: и формулы, и короткие псевдонимы входов.
+
+    Псевдоним входа (`pretrial = variables["pretrial_order_satisfied"]`) так же
+    обязателен к раскрытию, как и формула: иначе сверка сравнивала бы короткое
+    имя из кода с полным именем из объявления и объявляла бы расхождение там,
+    где его нет.
+    """
     found: dict[str, ast.AST] = {}
     for node in ast.walk(function):
         if not isinstance(node, ast.Assign) or len(node.targets) != 1:
@@ -244,6 +335,10 @@ def _aliases(function: ast.FunctionDef) -> dict[str, ast.AST]:
             and value.func.id in {"And", "Or", "Not"}
         ):
             found[target.id] = value
+        elif isinstance(value, ast.Subscript) and isinstance(value.value, ast.Name):
+            index = value.slice
+            if isinstance(index, ast.Constant) and isinstance(index.value, str):
+                found[target.id] = value
     return found
 
 
@@ -310,16 +405,35 @@ def _bool_names(function: ast.FunctionDef) -> set[str]:
     return names
 
 
-def _left_name(node: ast.AST, bool_names: set[str]) -> str | None:
+def _left_name(
+    node: ast.AST,
+    bool_names: set[str],
+    aliases: dict[str, ast.AST] | None = None,
+) -> str | None:
     """Имя выхода слева от `==`, если это выход, а не что-то другое.
 
-    Модули пишут выходы двумя способами: отдельным именем (`x = Bool("x")`) и
-    словарём (`outputs["x"]`). Второй способ пропускался, и шестнадцать правил
-    расторжения договора выглядели необъявленными, хотя объявлены. Поддержаны
-    оба.
+    Способов записи выхода накопилось три, и каждый пропущенный даёт не пустой
+    результат, а ложное обвинение:
+
+    * отдельное имя — `x = Bool("x")`;
+    * словарь — `outputs["x"]`;
+    * короткое имя словарного выхода — `breach_ground = outputs["substantial_
+      breach_ground_satisfied"]`, а дальше `solver.add(breach_ground == ...)`.
+
+    Третий способ я пропустил в первой версии, и двенадцать правил расторжения
+    договора выглядели ненаписанными, хотя написаны. Сверка, ошибающаяся в свою
+    пользу, хуже отсутствия сверки.
     """
+    aliases = aliases or {}
     if isinstance(node, ast.Name):
-        return node.id if node.id in bool_names else None
+        if node.id in bool_names:
+            return node.id
+        alias = aliases.get(node.id)
+        if isinstance(alias, ast.Subscript):
+            index = alias.slice
+            if isinstance(index, ast.Constant) and isinstance(index.value, str):
+                return index.value
+        return None
     if isinstance(node, ast.Subscript):
         index = node.slice
         if isinstance(index, ast.Constant) and isinstance(index.value, str):
@@ -480,11 +594,12 @@ def collect_executed(tree: ast.Module) -> dict[str, tuple[dict[str, Node], list[
         institute = _institute_of(node.name)
         outputs = _bool_names(node)
         aliases = _aliases(node)
+        lists = _lists(node)
         rules: dict[str, Node] = {}
         problems: list[Divergence] = []
         for name, expression in _dict_rules(node).items():
             try:
-                rules[name] = _translate_call(expression, aliases)
+                rules[name] = _translate_call(expression, aliases, lists=lists)
             except ExpressionSyntaxError as error:
                 problems.append(
                     Divergence(
@@ -510,11 +625,11 @@ def collect_executed(tree: ast.Module) -> dict[str, tuple[dict[str, Node], list[
             ):
                 # Ограничение, не являющееся определением выхода.
                 continue
-            name = _left_name(argument.left, outputs)
+            name = _left_name(argument.left, outputs, aliases)
             if name is None or _is_input_binding(argument.comparators[0]):
                 continue
             try:
-                rules[name] = _translate_call(argument.comparators[0], aliases)
+                rules[name] = _translate_call(argument.comparators[0], aliases, lists=lists)
             except ExpressionSyntaxError as error:
                 problems.append(
                     Divergence(
@@ -668,6 +783,56 @@ def audit_rule_parity(root: Path | None = None) -> ParityReport:
                 )
             )
     return ParityReport(institutes=institutes)
+
+
+# --- Обратный перевод -------------------------------------------------------
+
+
+def render_expression(node: Node) -> str:
+    """Записать формулу грамматикой объявленных правил.
+
+    Скобки ставятся только там, где без них меняется смысл: приоритет
+    `NOT` → `AND` → `OR` тот же, что и при разборе.
+    """
+    kind = node[0]
+    if kind == "var":
+        return node[1]
+    if kind == "not":
+        inner = node[1]
+        text = render_expression(inner)
+        return f"NOT ({text})" if inner[0] in {"and", "or"} else f"NOT {text}"
+    if kind == "and":
+        parts = [
+            f"({render_expression(part)})" if part[0] == "or" else render_expression(part)
+            for part in node[1]
+        ]
+        return " AND ".join(parts)
+    return " OR ".join(render_expression(part) for part in node[1])
+
+
+def render_rule(name: str, node: Node) -> str:
+    """Строка правила в том виде, в каком она объявляется."""
+    return f"{name} == {render_expression(node)}"
+
+
+def lost_conditions(declared: dict[str, Node], executed: dict[str, Node]) -> dict[str, list[str]]:
+    """Условия, объявленные когда-то и отсутствующие в модели.
+
+    Это единственная часть расхождения, которую нельзя закрыть механически.
+    Имя, которое кто-то написал в правиле, а модель о нём не знает, — либо
+    описка, либо условие, которое забыли реализовать. Второе решает юрист, и
+    молча стереть такое имя, переписав объявленное по исполняемому, значит
+    потерять чьё-то юридическое утверждение.
+    """
+    known = set(executed)
+    for rule in executed.values():
+        known |= symbols_of(rule)
+    lost: dict[str, list[str]] = {}
+    for output, rule in sorted(declared.items()):
+        strangers = sorted(symbols_of(rule) - known)
+        if strangers:
+            lost[output] = strangers
+    return lost
 
 
 # --- Отчёт ------------------------------------------------------------------

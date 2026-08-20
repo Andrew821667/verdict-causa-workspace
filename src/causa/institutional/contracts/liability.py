@@ -185,16 +185,18 @@ def build_liability_constraint_set(
         id=f"liability-constraint-set:{mapping.evidence_id}",
         legal_source_refs=mapping.legal_source_refs,
         expressions=[
+            "exemption_prerequisites_satisfied == breach_established AND (NOT debtor_acting_in_business AND fault_rebutted OR debtor_acting_in_business AND force_majeure_qualified)",
             "fault_rebutted == fault_rebuttal_asserted AND reasonable_care_proven AND all_reasonable_measures_proven",
-            "force_majeure_qualified == force_majeure_claimed AND extraordinary_event_proven AND unavoidable_event_proven AND beyond_debtor_control_proven AND force_majeure_causal_link_proven AND NOT excluded_commercial_risk_only AND NOT intentional_breach",
-            "exemption_prerequisites_satisfied == breach_established AND ((NOT debtor_acting_in_business AND fault_rebutted) OR (debtor_acting_in_business AND force_majeure_qualified))",
-            "liability_issue == breach_established AND NOT exemption_prerequisites_satisfied",
             "force_majeure_notice_gap == force_majeure_qualified AND NOT notice_and_mitigation_proven",
+            "force_majeure_qualified == force_majeure_claimed AND extraordinary_event_proven AND unavoidable_event_proven AND beyond_debtor_control_proven AND force_majeure_causal_link_proven AND NOT excluded_commercial_risk_only AND NOT intentional_breach",
             "intentional_exclusion_invalid == intentional_breach AND advance_liability_exclusion_clause",
+            "invalid_penalty_reduction_basis == penalty_claimed AND only_excluded_reduction_reasons",
+            "liability_issue == breach_established AND NOT exemption_prerequisites_satisfied",
+            "liability_survives_penalty_reduction == liability_issue AND penalty_reduction_prerequisites_satisfied",
+            "penalty_reduction_prerequisites_satisfied == penalty_reduction_procedurally_available AND penalty_reduction_substantively_supported",
             "penalty_reduction_procedurally_available == penalty_claimed AND (NOT debtor_acting_in_business OR penalty_reduction_requested)",
             "penalty_reduction_substantively_supported == penalty_claimed AND manifest_disproportionality_proven AND NOT only_excluded_reduction_reasons AND (NOT (debtor_acting_in_business AND contractual_penalty) OR unjustified_benefit_risk_proven)",
-            "penalty_reduction_prerequisites_satisfied == penalty_reduction_procedurally_available AND penalty_reduction_substantively_supported",
-            "liability_survives_penalty_reduction == liability_issue AND penalty_reduction_prerequisites_satisfied",
+            "requires_judicial_assessment == penalty_claimed",
         ],
     )
 

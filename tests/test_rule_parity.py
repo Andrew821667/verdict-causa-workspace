@@ -10,11 +10,15 @@
 неспособная провалиться, ничего не проверяет, и этот тест доказывает, что она
 способна.
 
-Третий — храповик. Расхождений сейчас 302 в девяти институтах из 88; это
-измерение, а не приговор, и оно записано здесь числами. Тест не требует
-исправить всё сразу — он требует, чтобы число не росло и чтобы чистый институт
-не становился грязным. Один зафиксированный уровень честнее, чем красный тест,
-который научатся не замечать.
+Третий — инвариант. Расхождений было 302 в девяти институтах из 88; объявленный
+текст переписан по исполняемому, и сейчас их ноль. Значит храповик больше не
+нужен: правило простое и проверяемое — объявленное и исполняемое совпадают
+всегда. Институт, у которого они разойдутся, ломает сборку в том же коммите,
+в котором разошёлся.
+
+Условия, исчезнувшие из объявленного текста при примирении, не потеряны:
+имена, которым не нашлось соответствия в модели, вынесены в
+`docs/rule-parity-open-questions.md` как вопросы юристу.
 """
 
 import ast
@@ -35,21 +39,9 @@ from causa.reasoning.rule_parity import (
     report_payload,
 )
 
-#: Расхождения на момент первой сверки. Число может только уменьшаться.
-BASELINE_DIVERGENCES: dict[str, int] = {
-    "sale": 70,
-    "supply": 55,
-    "performance_remedies": 51,
-    "obligation_dynamics": 49,
-    "security": 35,
-    "invalidity": 19,
-    "termination": 19,
-    "formation": 2,
-    "liability": 2,
-}
-
-#: Институтов без единого расхождения на момент первой сверки.
-BASELINE_CLEAN_INSTITUTES = 79
+#: Правил, объявленных и исполняемых, на момент примирения. Число может расти
+#: вместе с пакетом; важно, что обе стороны считают одинаково.
+BASELINE_RULES = 1111
 
 
 @pytest.fixture(scope="module")
@@ -187,24 +179,24 @@ def test_equivalence_is_proved_for_all_facts_and_not_only_the_checked_ones() -> 
 # --- Храповик ---------------------------------------------------------------
 
 
-def test_divergences_do_not_grow(report) -> None:
-    """Число расхождений может уменьшаться. Расти оно не имеет права."""
-    current = {
-        institute.institute: len(institute.divergences)
-        for institute in report.institutes
-        if institute.divergences
-    }
-    grown = {
-        name: (count, BASELINE_DIVERGENCES.get(name, 0))
-        for name, count in current.items()
-        if count > BASELINE_DIVERGENCES.get(name, 0)
-    }
+def test_the_printed_rule_is_the_rule_that_computes_the_answer(report) -> None:
+    """Инвариант пакета: объявленное и исполняемое совпадают везде.
 
-    assert not grown, f"расхождений стало больше: {grown}"
+    Расхождение здесь означает, что человеку показывают одно правило, а ответ
+    считают по другому. Такое обязано ломать сборку сразу, а не жить годами.
+    """
+    lines = [divergence.line_ru for divergence in report.divergences]
+
+    assert not lines, "объявленное правило разошлось с исполняемым:\n" + "\n".join(lines)
 
 
-def test_a_clean_institute_does_not_become_dirty(report) -> None:
-    assert len(report.clean_institutes) >= BASELINE_CLEAN_INSTITUTES
+def test_every_institute_is_clean(report) -> None:
+    assert len(report.clean_institutes) == len(report.institutes)
+
+
+def test_both_sides_state_the_same_number_of_rules(report) -> None:
+    """Правило, которое считается и не объявлено, — тоже расхождение."""
+    assert report.declared_total == report.executed_total == BASELINE_RULES
 
 
 def test_the_report_names_the_defect_and_not_only_its_count(report) -> None:
@@ -212,8 +204,11 @@ def test_the_report_names_the_defect_and_not_only_its_count(report) -> None:
     text = render_report_ru(report)
 
     assert "СВЕРКА ОБЪЯВЛЕННОГО ПРАВИЛА С ИСПОЛНЯЕМЫМ" in text
-    for divergence in report.divergences[:20]:
-        assert divergence.output in text
+    if report.divergences:
+        for divergence in report.divergences[:20]:
+            assert divergence.output in text
+    else:
+        assert "Расхождений нет" in text
 
 
 def test_the_payload_carries_every_divergence(report) -> None:

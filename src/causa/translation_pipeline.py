@@ -1594,6 +1594,45 @@ def build_translation_assertions(
     return assertions
 
 
+#: Предел длины строки, за которым проверка структуры справедливо ругается:
+#: строку длиннее нельзя прочитать при аудите, не прокручивая её вбок.
+_AUDIT_LINE_LIMIT = 200
+
+
+def wrap_rule_lines(prefix: str, expressions: list[str]) -> list[str]:
+    """Записать правила строками, пригодными для чтения при аудите.
+
+    До сверки объявленного с исполняемым правила были сокращённым пересказом и
+    в строку помещались. Теперь они полные, и самое длинное занимает больше
+    трёх тысяч знаков. Переносить их обязательно: правило, уехавшее за край
+    экрана, не проверит никто, и проверка структуры права, когда на это ругается.
+
+    Перенос идёт по связкам выражения — по границам смысла, а не по числу
+    знаков.
+    """
+    lines: list[str] = []
+    for expression in expressions:
+        text = f"{prefix}{expression}."
+        if len(text) <= _AUDIT_LINE_LIMIT:
+            lines.append(text)
+            continue
+        head, separator, tail = expression.partition(" == ")
+        if not separator:
+            lines.append(text)
+            continue
+        lines.append(f"{prefix}{head} ==")
+        current = ""
+        for token in tail.split(" "):
+            candidate = f"{current} {token}" if current else f"    {token}"
+            if current and len(candidate) > _AUDIT_LINE_LIMIT:
+                lines.append(current)
+                current = f"        {token}"
+            else:
+                current = candidate
+        lines.append(f"{current}.")
+    return lines
+
+
 def build_reasoning_path_comparison(
     request: ReviewedContractAnalysisRequest,
     result: ReviewedContractAnalysisResult,
@@ -1699,7 +1738,7 @@ def _render_context(
         [
             f"- Formal rule: {result.formal_translation.obligation_rule.id}.",
             f"- Constraint set: {result.constraint_set.id}.",
-            *[f"- {expression}." for expression in result.constraint_set.expressions],
+            *wrap_rule_lines("- ", list(result.constraint_set.expressions)),
         ]
     )
     authority_trace_ru = "\n".join(
@@ -1798,10 +1837,7 @@ def _render_context(
             f"- Model version: {result.formation_constraint_set.model_version}.",
             f"- Evidence mapping: {result.formation_evidence_mapping.mapping_version}.",
             f"- Legal sources: {', '.join(result.formation_evidence_mapping.legal_source_refs)}.",
-            *[
-                f"- Rule: {expression}."
-                for expression in result.formation_constraint_set.expressions
-            ],
+            *wrap_rule_lines("- Rule: ", list(result.formation_constraint_set.expressions)),
             *[
                 f"- Fact {item.fact_name}: assertion={item.assertion_id}; "
                 f"sources={', '.join(item.source_refs)}."
@@ -1824,10 +1860,7 @@ def _render_context(
             f"- Версия модели: {result.invalidity_constraint_set.model_version}.",
             f"- Отображение доказательств: {result.invalidity_evidence_mapping.mapping_version}.",
             f"- Правовые источники: {', '.join(result.invalidity_evidence_mapping.legal_source_refs)}.",
-            *[
-                f"- Правило: {expression}."
-                for expression in result.invalidity_constraint_set.expressions
-            ],
+            *wrap_rule_lines("- Правило: ", list(result.invalidity_constraint_set.expressions)),
             *[
                 f"- Факт {item.fact_name}: assertion={item.assertion_id}; "
                 f"источники={', '.join(item.source_refs)}."
@@ -1850,10 +1883,10 @@ def _render_context(
             f"- Версия модели: {result.security_constraint_set.model_version}.",
             f"- Отображение доказательств: {result.security_evidence_mapping.mapping_version}.",
             f"- Правовые источники: {', '.join(result.security_evidence_mapping.legal_source_refs)}.",
-            *[
-                f"- Правило формальной модели обеспечения: {expression}."
-                for expression in result.security_constraint_set.expressions
-            ],
+            *wrap_rule_lines(
+                "- Правило формальной модели обеспечения: ",
+                list(result.security_constraint_set.expressions),
+            ),
             *[
                 f"- Проверенный факт {item.fact_name}: исходное утверждение="
                 f"{item.assertion_id}; доказательственные источники="
@@ -1878,10 +1911,10 @@ def _render_context(
             f"- Версия модели: {result.obligation_dynamics_constraint_set.model_version}.",
             f"- Отображение доказательств: {result.obligation_dynamics_evidence_mapping.mapping_version}.",
             f"- Правовые источники: {', '.join(result.obligation_dynamics_evidence_mapping.legal_source_refs)}.",
-            *[
-                f"- Правило формальной модели динамики обязательства: {expression}."
-                for expression in result.obligation_dynamics_constraint_set.expressions
-            ],
+            *wrap_rule_lines(
+                "- Правило формальной модели динамики обязательства: ",
+                list(result.obligation_dynamics_constraint_set.expressions),
+            ),
             *[
                 f"- Проверенный факт {item.fact_name}: исходное утверждение="
                 f"{item.assertion_id}; доказательственные источники="
@@ -1906,10 +1939,10 @@ def _render_context(
             f"- Версия модели: {result.performance_remedies_constraint_set.model_version}.",
             f"- Отображение доказательств: {result.performance_remedies_evidence_mapping.mapping_version}.",
             f"- Правовые источники: {', '.join(result.performance_remedies_evidence_mapping.legal_source_refs)}.",
-            *[
-                f"- Правило модели исполнения и средств защиты: {expression}."
-                for expression in result.performance_remedies_constraint_set.expressions
-            ],
+            *wrap_rule_lines(
+                "- Правило модели исполнения и средств защиты: ",
+                list(result.performance_remedies_constraint_set.expressions),
+            ),
             *[
                 f"- Проверенный факт {item.fact_name}: исходное утверждение="
                 f"{item.assertion_id}; доказательственные источники="
@@ -1934,10 +1967,10 @@ def _render_context(
             f"- Версия модели: {result.sale_constraint_set.model_version}.",
             f"- Отображение доказательств: {result.sale_evidence_mapping.mapping_version}.",
             f"- Правовые источники: {', '.join(result.sale_evidence_mapping.legal_source_refs)}.",
-            *[
-                f"- Правило общей модели купли-продажи: {expression}."
-                for expression in result.sale_constraint_set.expressions
-            ],
+            *wrap_rule_lines(
+                "- Правило общей модели купли-продажи: ",
+                list(result.sale_constraint_set.expressions),
+            ),
             *[
                 f"- Проверенный факт {item.fact_name}: исходное утверждение="
                 f"{item.assertion_id}; доказательственные источники="
@@ -1962,10 +1995,10 @@ def _render_context(
             f"- Версия модели: {result.supply_constraint_set.model_version}.",
             f"- Отображение доказательств: {result.supply_evidence_mapping.mapping_version}.",
             f"- Правовые источники: {', '.join(result.supply_evidence_mapping.legal_source_refs)}.",
-            *[
-                f"- Правило специальной модели поставки: {expression}."
-                for expression in result.supply_constraint_set.expressions
-            ],
+            *wrap_rule_lines(
+                "- Правило специальной модели поставки: ",
+                list(result.supply_constraint_set.expressions),
+            ),
             *[
                 f"- Проверенный факт {item.fact_name}: исходное утверждение="
                 f"{item.assertion_id}; доказательственные источники="
@@ -1989,10 +2022,7 @@ def _render_context(
             f"- Версия модели: {result.termination_constraint_set.model_version}.",
             f"- Отображение доказательств: {result.termination_evidence_mapping.mapping_version}.",
             f"- Правовые источники: {', '.join(result.termination_evidence_mapping.legal_source_refs)}.",
-            *[
-                f"- Правило: {expression}."
-                for expression in result.termination_constraint_set.expressions
-            ],
+            *wrap_rule_lines("- Правило: ", list(result.termination_constraint_set.expressions)),
             *[
                 f"- Факт {item.fact_name}: assertion={item.assertion_id}; "
                 f"источники={', '.join(item.source_refs)}."
@@ -2015,10 +2045,7 @@ def _render_context(
             f"- Model version: {result.liability_constraint_set.model_version}.",
             f"- Evidence mapping: {result.liability_evidence_mapping.mapping_version}.",
             f"- Legal sources: {', '.join(result.liability_evidence_mapping.legal_source_refs)}.",
-            *[
-                f"- Rule: {expression}."
-                for expression in result.liability_constraint_set.expressions
-            ],
+            *wrap_rule_lines("- Rule: ", list(result.liability_constraint_set.expressions)),
             *[
                 f"- Fact {item.fact_name}: assertion={item.assertion_id}; "
                 f"sources={', '.join(item.source_refs)}."

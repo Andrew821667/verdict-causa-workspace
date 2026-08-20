@@ -372,7 +372,7 @@
         "src/causa/management/policy_registry.py",
         "examples/synthetic_management_policy_registry_report.json",
         "policy-snapshot:phase0-standard-t3@1",
-        "sha256:d9550ea2600404358e4b933f26376cfdd6d34eb505cf1c1a435a1840ea7dc005"
+        "sha256:3ae00857433d12f12acc74e473548b24a294eba6b8db7ccf599e6090be6c43da"
       ],
       "remaining_work": [
         "Заменить локальное атомарное JSON-хранилище транзакционным production backend."

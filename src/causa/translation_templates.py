@@ -73,7 +73,7 @@ def compute_translation_template_hash(
 
 
 def build_russian_translation_template_set() -> TranslationTemplateSet:
-    version = "translation-template-ru-v11"
+    version = "translation-template-ru-v12"
     templates = (
         TranslationTemplateDefinition(
             level=TranslationLevel.EXECUTIVE,
@@ -184,7 +184,13 @@ def build_russian_translation_template_set() -> TranslationTemplateSet:
                 "Ограничения",
             ),
             min_characters=1_600,
-            max_characters=185_000,
+            # Верхняя граница поднята вместе со сверкой объявленного правила с
+            # исполняемым. До неё forensic-трассировка печатала сокращённый
+            # пересказ правила — 902 строки на весь пакет; теперь она печатает
+            # правило целиком, все 1111 строк. Прежний предел 185 000 знаков
+            # был мерой сокращённого текста, а не полного, и оставить его
+            # значило бы снова печатать неполное правило.
+            max_characters=400_000,
         ),
     )
     return TranslationTemplateSet(
