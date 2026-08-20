@@ -42,7 +42,12 @@ from causa.institutional.contracts.layer_connectivity import (
     LAYER_CONNECTIVITY_AUDIT,
     ConnectivityVerdict,
 )
-from causa.institutional.contracts.practice_coverage import INSTITUTE_ARTICLE_RANGES
+from causa.institutional.contracts.practice_coverage import (
+    INSTITUTE_ARTICLE_RANGES,
+    article_sort_key,
+    institutes_for_article,
+    uncovered_domain_ru,
+)
 from causa.institutional.contracts.reviewed_analysis import ReviewedContractAnalysisResult
 from causa.ui.institute_titles import INSTITUTE_TITLES_RU
 
@@ -66,10 +71,13 @@ NOT_A_CLUSTER_PREDICATE_RU: dict[str, str] = {
 #: вид купли-продажи (статья 506), прокат — вид аренды (статья 626), бытовой
 #: подряд — вид подряда (статья 730). Без этой связи конкуренция квалификаций
 #: выглядела бы противоречием, хотя она и есть нормальное устройство кодекса.
+#: Розничная купля-продажа и поставка для государственных нужд отсюда убраны.
+#: У них нет предиката квалификации: ни `retail_sale_qualified`, ни
+#: `state_supply_qualified` в модели не существует, поэтому вытеснять они
+#: никогда ничего не могли, и обе записи были мёртвым кодом. Вернуть их сюда
+#: следует вместе с предикатом, а не раньше; тест это охраняет.
 SPECIALISATION: dict[str, str] = {
-    "retail_sale": "sale",
     "supply": "sale",
-    "state_supply": "supply",
     "contractation": "sale",
     "energy_supply": "sale",
     "real_estate_sale": "sale",
@@ -91,6 +99,24 @@ SPECIALISATION: dict[str, str] = {
     "commercial_credit": "loan",
     "credit": "loan",
     "factoring": "loan",
+}
+
+
+class CaseScope(str, Enum):
+    """Относится ли дело к тому, что система вообще умеет разбирать."""
+
+    #: Сработал хотя бы один предикат квалификации.
+    IN_SCOPE = "in_scope"
+    #: Заявленные по делу статьи не покрыты ни одним институтом.
+    OUT_OF_SCOPE_SUSPECTED = "out_of_scope_suspected"
+    #: Ничего не сработало, а статьи не заявлены: судить не о чем.
+    UNDETERMINED = "undetermined"
+
+
+SCOPE_LABELS_RU = {
+    CaseScope.IN_SCOPE: "дело относится к смоделированной области",
+    CaseScope.OUT_OF_SCOPE_SUSPECTED: "дело, похоже, вне смоделированной области",
+    CaseScope.UNDETERMINED: "область дела не определена",
 }
 
 
@@ -147,6 +173,10 @@ class CaseQualification(BaseModel):
     candidates: list[ClusterCandidate] = Field(default_factory=list)
     primary: ClusterCandidate | None = None
     competing: bool = False
+    #: Относится ли дело к тому, что система умеет разбирать.
+    scope: CaseScope = CaseScope.UNDETERMINED
+    #: Статьи, заявленные по делу и не покрытые ни одним институтом.
+    uncovered_articles: list[str] = Field(default_factory=list)
     notes_ru: list[str] = Field(default_factory=list)
 
 
@@ -200,8 +230,17 @@ def _human_review_flag(evaluation) -> bool:
     return False
 
 
-def build_case_qualification(result: ReviewedContractAnalysisResult) -> CaseQualification:
-    """Собрать квалификацию дела из сработавших предикатов."""
+def build_case_qualification(
+    result: ReviewedContractAnalysisResult,
+    claimed_articles: list[str] | None = None,
+) -> CaseQualification:
+    """Собрать квалификацию дела из сработавших предикатов.
+
+    `claimed_articles` — статьи ГК, на которые ссылается само дело. Они нужны
+    ровно для одного: отличить «материалов не хватает» от «это не моя отрасль».
+    Без них система молчала о разнице, а вердикт заполнял молчание неправдой —
+    по делу о наследстве утверждал, что договор недействителен.
+    """
     raw: list[tuple[str, str, ClusterGroup, bool]] = []
     for key, predicate in qualification_predicates().items():
         institute = key.split(":", 1)[0]
@@ -266,11 +305,40 @@ def build_case_qualification(result: ReviewedContractAnalysisResult) -> CaseQual
         remaining = [c for c in candidates if not c.displaced_by_special_rule]
         primary = remaining[0] if len(remaining) == 1 else None
 
+    uncovered = sorted(
+        {article for article in (claimed_articles or []) if not institutes_for_article(article)},
+        key=article_sort_key,
+    )
+    if candidates:
+        scope = CaseScope.IN_SCOPE
+    elif uncovered:
+        scope = CaseScope.OUT_OF_SCOPE_SUSPECTED
+    else:
+        scope = CaseScope.UNDETERMINED
+
     notes: list[str] = []
-    if not candidates:
+    if scope is CaseScope.OUT_OF_SCOPE_SUSPECTED:
+        domains = sorted({uncovered_domain_ru(article) for article in uncovered})
         notes.append(
-            "Ни один предикат квалификации не сработал: материалов недостаточно, "
-            "чтобы отнести дело к кластеру. Это ответ, а не сбой."
+            "Заявленные по делу статьи не покрыты ни одним институтом: "
+            + ", ".join(uncovered)
+            + ". "
+            + " ".join(domains)
+            + " Это не нехватка материалов, а граница компетенции системы."
+        )
+    elif uncovered:
+        # Квалификация состоялась, но дело ссылается и на то, чего в модели нет.
+        # Молчать об этом нельзя: разбор будет верным лишь в своей части.
+        notes.append(
+            "Часть заявленных по делу статей не покрыта ни одним институтом: "
+            + ", ".join(uncovered)
+            + ". Разбор относится только к покрытой части спора."
+        )
+    elif not candidates:
+        notes.append(
+            "Ни один предикат квалификации не сработал. Статьи по делу не "
+            "заявлены, поэтому нельзя сказать, чего не хватает — материалов "
+            "или самого института. Это ответ, а не сбой."
         )
     if displaced:
         pairs = ", ".join(
@@ -297,5 +365,7 @@ def build_case_qualification(result: ReviewedContractAnalysisResult) -> CaseQual
         candidates=candidates,
         primary=primary,
         competing=any(count > 1 for count in unresolved.values()),
+        scope=scope,
+        uncovered_articles=uncovered,
         notes_ru=notes,
     )

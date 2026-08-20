@@ -131,9 +131,10 @@ def build_case_view(
     documents: list[UploadedDocument] | None = None,
     closures: list[GapClosure] | None = None,
     texts: list[ExtractedText] | None = None,
+    claimed_articles: list[str] | None = None,
 ) -> CaseView:
     """Собрать окно дела из результата конвейера."""
-    qualification = build_case_qualification(result)
+    qualification = build_case_qualification(result, claimed_articles)
     gaps = build_gap_queue(result)
     case_map = build_case_map(request, result)
     verdict = build_case_verdict(result, qualification, gaps)

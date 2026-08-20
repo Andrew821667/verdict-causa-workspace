@@ -59,6 +59,9 @@ class CaseInputs(BaseModel):
     request: ReviewedContractAnalysisRequest
     sources: list[LegalSource]
     bundle: TranslationBundle | None = None
+    #: Статьи ГК, на которые ссылается само дело. Нужны, чтобы отличить
+    #: «материалов не хватает» от «это не моя отрасль».
+    claimed_articles: list[str] = Field(default_factory=list)
 
     @property
     def key(self) -> str:
@@ -319,6 +322,7 @@ class CaseSession:
             documents=self.documents,
             closures=self.closures,
             texts=self.texts,
+            claimed_articles=list(self.inputs.claimed_articles),
         )
 
 

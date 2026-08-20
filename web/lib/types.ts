@@ -38,10 +38,16 @@ export interface ClusterCandidate {
   displaced_by_special_rule: boolean;
 }
 
+/** Относится ли дело к тому, что система умеет разбирать. */
+export type CaseScope = "in_scope" | "out_of_scope_suspected" | "undetermined";
+
 export interface CaseQualification {
   candidates: ClusterCandidate[];
   primary: ClusterCandidate | null;
   competing: boolean;
+  scope: CaseScope;
+  /** Заявленные по делу статьи, не покрытые ни одним институтом. */
+  uncovered_articles: string[];
   notes_ru: string[];
 }
 

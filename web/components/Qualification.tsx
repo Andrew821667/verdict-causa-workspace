@@ -21,6 +21,21 @@ export function Qualification({ qualification }: { qualification: CaseQualificat
         Квалификация
       </SectionTitle>
 
+      {qualification.scope !== "in_scope" && (
+        <div className="mb-3 rounded-lg border-l-2 border-stop bg-stop-soft px-4 py-3">
+          <p className="text-[13.5px] leading-relaxed text-text">
+            {qualification.scope === "out_of_scope_suspected"
+              ? "Дело, похоже, вне смоделированной области: статьи, на которые оно ссылается, не покрыты ни одним институтом."
+              : "Область дела не определена: ни один предикат не сработал, статьи по делу не заявлены."}
+          </p>
+          {qualification.uncovered_articles.length > 0 && (
+            <p className="mt-1 text-[12.5px] text-muted">
+              Не покрыты: {qualification.uncovered_articles.join(", ")}.
+            </p>
+          )}
+        </div>
+      )}
+
       <ul className="space-y-2.5">
         {qualification.candidates.map((candidate) => (
           <li

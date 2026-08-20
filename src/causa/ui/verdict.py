@@ -37,7 +37,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from causa.institutional.contracts.reviewed_analysis import ReviewedContractAnalysisResult
 from causa.ui.gaps import GapQueue
-from causa.ui.qualification import CaseQualification
+from causa.ui.qualification import CaseQualification, CaseScope
 
 VERDICT_VERSION = "ui-verdict-v0"
 
@@ -47,6 +47,10 @@ class VerdictState(str, Enum):
     NO_BREACH = "no_breach"
     CLAIM_BARRED = "claim_barred"
     FINDINGS_WITHOUT_EFFECT = "findings_without_effect"
+    #: Дело относится к части кодекса, которой в модели нет.
+    OUT_OF_SCOPE = "out_of_scope"
+    #: По делу не подтверждено ни одного обстоятельства.
+    NOTHING_ESTABLISHED = "nothing_established"
 
 
 class Tone(str, Enum):
@@ -108,7 +112,37 @@ def build_case_verdict(
     flagged = _needs_human(result)
     blocking = gaps.blocking_count
 
-    if layer.institute_conclusions_displaced or layer.breach_findings_without_effect:
+    facts = result.evidence_mapping.facts
+    nothing_established = not any(
+        bool(getattr(facts, field_name)) for field_name in type(facts).model_fields
+    )
+
+    # Порядок проверок здесь решает больше, чем кажется. Пока «выводы не имеют
+    # эффекта» стояли первыми, дело о наследстве получало вердикт «договор не
+    # заключён либо недействителен» — про договор, которого в деле нет вовсе.
+    # Утверждение «оно вне моей области» обязано опережать любое утверждение
+    # о судьбе сделки.
+    if qualification.scope is CaseScope.OUT_OF_SCOPE_SUSPECTED:
+        state = VerdictState.OUT_OF_SCOPE
+        tone = Tone.STOP
+        headline = "Дело вне смоделированной области"
+        detail = (
+            "Статьи, на которые ссылается дело, не покрыты ни одним институтом "
+            "пакета: " + ", ".join(qualification.uncovered_articles) + ". Система "
+            "не разбирает этот спор и не делает вид, что разбирает."
+        )
+        next_step = "Передать дело юристу вне системы: своей компетенции здесь у неё нет."
+    elif nothing_established:
+        state = VerdictState.NOTHING_ESTABLISHED
+        tone = Tone.STOP
+        headline = "По делу не подтверждено ни одного обстоятельства"
+        detail = (
+            "Ни один факт обязательства не установлен. Любой вывод по такому "
+            "делу держался бы на пустоте, поэтому его нет — в том числе вывода "
+            "о судьбе сделки."
+        )
+        next_step = "Внести обстоятельства дела: пока их нет, разбирать нечего."
+    elif layer.institute_conclusions_displaced or layer.breach_findings_without_effect:
         state = VerdictState.FINDINGS_WITHOUT_EFFECT
         tone = Tone.STOP
         headline = "Выводы о нарушении не имеют эффекта"
@@ -179,6 +213,12 @@ def build_case_verdict(
             "Решение собрания, на котором держится условие договора, оспоримо: условие "
             "действует, пока суд не признал решение недействительным (статья 181.4 ГК РФ)."
         )
+    if qualification.uncovered_articles and state is not VerdictState.OUT_OF_SCOPE:
+        qualifiers.append(
+            "Дело ссылается на статьи, не покрытые ни одним институтом ("
+            + ", ".join(qualification.uncovered_articles)
+            + "): вывод относится только к покрытой части спора."
+        )
     if flagged:
         qualifiers.append(
             "Институт запросил юридическую оценку человека — вывод нельзя "
@@ -190,7 +230,10 @@ def build_case_verdict(
         VerdictMetric(
             label_ru="Тип договора",
             value_ru=primary.title_ru if primary else "не определён",
-            tone=Tone.NEUTRAL if primary else Tone.WARN,
+            # Отсутствие квалификации — не мелкое замечание. Пока тон был
+            # «предупреждение», карточка дела вне компетенции выглядела почти
+            # нормальной.
+            tone=Tone.NEUTRAL if primary else Tone.STOP,
             hint_ru=primary.articles_ru if primary else "ни один предикат квалификации не сработал",
         ),
         VerdictMetric(
