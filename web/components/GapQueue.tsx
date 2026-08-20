@@ -6,6 +6,9 @@ const KIND_TONE = {
   decisive_fact: "warn",
   human_review: "stop",
   not_explored: "neutral",
+  // Найденное обходом — тоже факт, от которого зависит вывод. Отличается оно
+  // не важностью, а происхождением: этот вопрос никто заранее не записывал.
+  found_by_sweep: "warn",
 } as const;
 
 /**

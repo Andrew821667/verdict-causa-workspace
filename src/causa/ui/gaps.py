@@ -21,12 +21,37 @@
     Оператор пропущен: не выполнены предпосылки либо исчерпан бюджет
     контрфактов. Непроверенное не должно выглядеть проверенным.
 
+`FOUND_BY_SWEEP`
+    Факт, который переворачивает вывод, но не входит ни в один из семи
+    операторов библиотеки. Найден однофакторным обходом
+    (`causa.reasoning.sensitivity`), а не выбран из списка.
+
+    Разница не техническая. Библиотека спрашивает то, что кто-то заранее
+    написал; обход спрашивает обо всём. Три факта из тринадцати в библиотеку не
+    входят вовсе, и это три главных возражения ответчика: «обязанности не
+    было», «я исполнил», «у меня есть возражение против платежа». Первое
+    переворачивает вывод почти в половине возможных конфигураций дела, и до
+    обхода система не задавала его никогда.
+
 ## Почему пробел несёт цену
 
 Пробел без последствия — это просьба донести документ «на всякий случай». Здесь
-у каждого пробела типа `DECISIVE_FACT` записано, какие именно выводы изменятся,
-если факт установить. Оператор видит не «не хватает данных», а «от этого
-зависит вывод о нарушении обязательства».
+у каждого пробела записано, какие именно выводы изменятся, если факт
+установить. Оператор видит не «не хватает данных», а «от этого зависит вывод о
+нарушении обязательства».
+
+## Что означает пометка «блокирует вывод»
+
+Раньше — ничего. Она ставилась по признаку «сценарий входит в список
+критических», а этот список по построению **совпадал** со списком материальных
+сценариев, из которых пробелы и собираются. То есть пометка стояла у каждого
+пробела всегда, а охраняющий её тест проверял тавтологию.
+
+Теперь она означает проверяемое: факт меняет судьбу требования, а не
+подробность о нём. Судьбу решают три вывода — возникает ли вопрос о нарушении,
+доступно ли требование убытков, перекрыто ли требование давностью
+(`DECISIVE_OUTCOMES`). Пробел, который переворачивает только доказательственную
+подробность внутри уже возникшего вопроса, блокирующим не считается.
 """
 
 from enum import Enum
@@ -35,6 +60,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from causa.institutional.contracts.legal_operators import build_contract_legal_operator_library
 from causa.institutional.contracts.reviewed_analysis import ReviewedContractAnalysisResult
+from causa.reasoning.sensitivity import DECISIVE_OUTCOMES, sweep_obligation_facts
 from causa.ui.documents import DERIVED_FACTS_RU, ClosureKind
 from causa.ui.institute_titles import INSTITUTE_TITLES_RU
 
@@ -45,12 +71,14 @@ class GapKind(str, Enum):
     DECISIVE_FACT = "decisive_fact"
     HUMAN_REVIEW = "human_review"
     NOT_EXPLORED = "not_explored"
+    FOUND_BY_SWEEP = "found_by_sweep"
 
 
 GAP_KIND_LABELS_RU = {
     GapKind.DECISIVE_FACT: "факт, от которого зависит вывод",
     GapKind.HUMAN_REVIEW: "система остановилась и просит человека",
     GapKind.NOT_EXPLORED: "вопрос не проверялся",
+    GapKind.FOUND_BY_SWEEP: "факт найден обходом, а не выбран из списка",
 }
 
 
@@ -100,7 +128,6 @@ def _decisive_fact_gaps(result: ReviewedContractAnalysisResult) -> list[TypedGap
     library = {
         operator.id: operator for operator in build_contract_legal_operator_library().operators
     }
-    critical = set(report.critical_scenario_ids)
     gaps: list[TypedGap] = []
     for scenario in report.scenarios:
         if not scenario.material:
@@ -121,7 +148,9 @@ def _decisive_fact_gaps(result: ReviewedContractAnalysisResult) -> list[TypedGap
                 closes_with_ru=list(operator.required_evidence_ru) if operator else [],
                 institute="constraint",
                 institute_ru=INSTITUTE_TITLES_RU["constraint"],
-                blocking=scenario.id in critical,
+                blocking=any(
+                    delta.field_name in DECISIVE_OUTCOMES for delta in scenario.outcome_deltas
+                ),
                 closure_kind=closure_kind,
                 fact_updates={} if derived else fact_updates,
             )
@@ -194,11 +223,64 @@ def _not_explored_gaps(result: ReviewedContractAnalysisResult) -> list[TypedGap]
     return gaps
 
 
+def _library_covered_facts() -> set[str]:
+    """Факты, о которых библиотека операторов вообще умеет спрашивать."""
+    return {
+        field
+        for operator in build_contract_legal_operator_library().operators
+        for field in operator.fact_patch
+    }
+
+
+def _swept_fact_gaps(result: ReviewedContractAnalysisResult) -> list[TypedGap]:
+    """Факты, переворачивающие вывод, о которых библиотека не спрашивает.
+
+    Формулировка вопроса здесь собрана из подписи факта, а не написана юристом,
+    и об этом сказано в самом пробеле. Выдавать сгенерированную фразу за
+    юридический вопрос нельзя: у операторов библиотеки есть и формулировка, и
+    перечень доказательств, а здесь — только измерение.
+    """
+    covered = _library_covered_facts()
+    gaps: list[TypedGap] = []
+    for sensitivity in sweep_obligation_facts(result):
+        if sensitivity.fact in covered:
+            continue
+        gaps.append(
+            TypedGap(
+                id=f"gap:sweep:{sensitivity.fact}",
+                kind=GapKind.FOUND_BY_SWEEP,
+                kind_ru=GAP_KIND_LABELS_RU[GapKind.FOUND_BY_SWEEP],
+                question_ru=sensitivity.question_ru,
+                consequence_ru=[flip.line_ru for flip in sensitivity.flips],
+                closes_with_ru=[
+                    "документ, подтверждающий или опровергающий этот факт",
+                    "формулировка вопроса здесь собрана системой: юридической "
+                    "постановки для него в библиотеке операторов нет",
+                ],
+                institute="constraint",
+                institute_ru=INSTITUTE_TITLES_RU["constraint"],
+                blocking=sensitivity.decisive,
+                closure_kind=(
+                    ClosureKind.SUPPLIED_DATE
+                    if sensitivity.fact in DERIVED_FACTS_RU
+                    else ClosureKind.ASSERTED_FACT
+                ),
+                fact_updates=(
+                    {}
+                    if sensitivity.fact in DERIVED_FACTS_RU
+                    else {sensitivity.fact: sensitivity.to_value}
+                ),
+            )
+        )
+    return gaps
+
+
 def build_gap_queue(result: ReviewedContractAnalysisResult) -> GapQueue:
     """Собрать очередь пробелов по делу."""
     gaps = [
         *_human_review_gaps(result),
         *_decisive_fact_gaps(result),
+        *_swept_fact_gaps(result),
         *_not_explored_gaps(result),
     ]
     notes: list[str] = []

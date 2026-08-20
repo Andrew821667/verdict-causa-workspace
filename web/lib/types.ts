@@ -170,7 +170,7 @@ export interface GapEvidenceHints {
 
 export interface TypedGap {
   id: string;
-  kind: "decisive_fact" | "human_review" | "not_explored";
+  kind: "decisive_fact" | "human_review" | "not_explored" | "found_by_sweep";
   kind_ru: string;
   question_ru: string;
   consequence_ru: string[];
