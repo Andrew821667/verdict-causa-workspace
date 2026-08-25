@@ -1,0 +1,956 @@
+{
+  "abbreviations_resolved": 46,
+  "notes_ru": [
+    "Закрыто вопросов: 50. Ни одно объявленное имя не оказалось забытым условием: все они — переименования или сводки нескольких предикатов.",
+    "Разрешено сокращений: 46. Они не были вопросами, но без них объявленное правило не с чем сравнивать.",
+    "Правил, где исполняемое строже объявленного: 11 из 30. Поэтому доказывается следование, а не равенство: равенство объявило бы дефектом каждое уточнение, добавленное к правилу после того, как объявление написали.",
+    "Доказано соответствие объявленного и исполняемого, а не правильность исполняемого. Верно ли правило передаёт норму ГК РФ — вопрос к юристу, и ответ записан рядом с каждым условием по-русски, со ссылкой на статью."
+  ],
+  "open_questions_closed": 50,
+  "rules": [
+    {
+      "conditions": [
+        {
+          "declared_name": "accessory_security_created",
+          "declared_rule": "accessory_security_displaced_by_main_invalidity",
+          "model_expression": "(penalty_agreed OR pledge_created OR suretyship_created OR payment_transferred_at_conclusion AND payment_identified_as_deposit_in_writing AND NOT deposit_nature_doubtful OR security_payment_agreed)",
+          "reason_ru": "Сводка всех акцессорных способов обеспечения. Пункт 3 статьи 329 ГК РФ связывает их судьбу с судьбой основного обязательства; исключение — независимая гарантия, и её в этом перечне намеренно нет.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "accessory_security_displaced_by_main_invalidity",
+      "executed_rule": "accessory_security_displaced_by_main_invalidity",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "documented_expenses",
+          "declared_rule": "article_520_cover",
+          "model_expression": "substitute_expenses_reasonable_documented",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "substitute_purchase",
+          "declared_rule": "article_520_cover",
+          "model_expression": "buyer_acquired_substitute",
+          "reason_ru": "Переименование. Пункт 1 статьи 520 ГК РФ говорит о приобретении непоставленных товаров у других лиц; слово «замещающая покупка» в объявлении путало эту статью с замещающей сделкой пункта 1 статьи 393.1.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "unremedied_nonconformity",
+          "declared_rule": "article_520_cover",
+          "model_expression": "(quantity_shortfall AND NOT actual_replenishment_completed OR quality_defect AND NOT defect_promptly_cured_or_replaced OR incomplete_goods AND NOT incompleteness_promptly_cured_or_replaced)",
+          "reason_ru": "Сводка трёх видов неисполнения с их устранением. Пункт 1 статьи 520 ГК РФ даёт право на приобретение у другого лица при недопоставке (статья 511), невыполнении требований о замене недоброкачественного товара (статья 518) и о доукомплектовании (статья 519).",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "article_520_cover",
+      "executed_rule": "cover_purchase_cost_recovery",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "unremedied_quality_or_completeness",
+          "declared_rule": "article_520_withholding",
+          "model_expression": "(quality_defect AND NOT defect_promptly_cured_or_replaced OR incomplete_goods AND NOT incompleteness_promptly_cured_or_replaced)",
+          "reason_ru": "Сводка. Пункт 2 статьи 520 ГК РФ даёт право отказаться от оплаты товаров ненадлежащего качества и некомплектных — только этих двух видов, недопоставка сюда не входит. Объявление их не разделяло.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "article_520_withholding",
+      "executed_rule": "payment_withholding_available",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "assignment_agreement",
+          "declared_rule": "assignment_effective",
+          "model_expression": "assignment_agreement_concluded",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "form",
+          "declared_rule": "assignment_effective",
+          "model_expression": "assignment_form_observed",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "identifiable_claim",
+          "declared_rule": "assignment_effective",
+          "model_expression": "(assigned_claim_exists AND assigned_claim_identified OR future_claim_determinable)",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "required_consent",
+          "declared_rule": "assignment_effective",
+          "model_expression": "(NOT debtor_consent_required OR debtor_consent_obtained)",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "transferable_claim",
+          "declared_rule": "assignment_effective",
+          "model_expression": "NOT claim_personal_to_creditor AND NOT assignment_prohibited_by_law",
+          "reason_ru": "Сводка двух запретов. Уступка невозможна, если требование неразрывно связано с личностью кредитора (статья 383 ГК РФ) или её запрещает закон. Объявление называло это положительным словом «передаваемое требование», и по нему нельзя было увидеть, что запретов два.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "assignment_effective",
+      "executed_rule": "assignment_effective",
+      "implication_proven": true,
+      "stricter_than_declared": true
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "all_parties_consent",
+          "declared_rule": "contract_transfer_effective",
+          "model_expression": "all_parties_consented_contract_transfer",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "required_forms",
+          "declared_rule": "contract_transfer_effective",
+          "model_expression": "assignment_form_observed AND debt_transfer_form_observed",
+          "reason_ru": "Сводка. Статья 392.3 ГК РФ применяет к передаче договора правила и об уступке требования, и о переводе долга, поэтому форм здесь две, а не одна. Множественное число в объявлении на это намекало, но проверить по нему было нечего.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "contract_transfer_effective",
+      "executed_rule": "contract_transfer_effective",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "delivered_notice",
+          "declared_rule": "counterperformance_suspension",
+          "model_expression": "suspension_notice_delivered",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "nonperformance_risk",
+          "declared_rule": "counterperformance_suspension",
+          "model_expression": "(counterparty_failed_due_performance OR clear_future_nonperformance)",
+          "reason_ru": "Сводка двух оснований. Пункт 2 статьи 328 ГК РФ допускает приостановление и при состоявшемся неисполнении, и при обстоятельствах, очевидно свидетельствующих о том, что исполнение не будет произведено в срок.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "reciprocal_due",
+          "declared_rule": "counterperformance_suspension",
+          "model_expression": "reciprocal_obligations AND counterperformance_due",
+          "reason_ru": "",
+          "was_open_question": false
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "counterperformance_suspension",
+      "executed_rule": "counterperformance_suspension_available",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "breach",
+          "declared_rule": "damages",
+          "model_expression": "breach_established",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "causation",
+          "declared_rule": "damages",
+          "model_expression": "causation_proven",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "claimed_loss",
+          "declared_rule": "damages",
+          "model_expression": "loss_claimed",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "proven_loss_type",
+          "declared_rule": "damages",
+          "model_expression": "(actual_loss_proven OR lost_profit_claimed AND lost_profit_measures_proven)",
+          "reason_ru": "Сводка с несимметричным доказыванием. Реальный ущерб доказывается сам по себе, а упущенная выгода требует ещё и доказательств приготовлений и мер для её получения (пункт 4 статьи 393 ГК РФ). Объявление называло обе части одним словом «доказанный вид убытков» и стирало это различие.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "damages",
+      "executed_rule": "damages_prerequisites_satisfied",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "commercial_gift_bar",
+          "declared_rule": "debt_forgiveness_effective",
+          "model_expression": "forgiveness_gift_bar",
+          "reason_ru": "Переименование. Прощение долга с намерением одарить между коммерческими организациями упирается в запрет дарения (подпункт 4 пункта 1 статьи 575 ГК РФ); модель выводит этот запрет отдельным правилом из намерения и состава сторон.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "forgiveness_notice",
+          "declared_rule": "debt_forgiveness_effective",
+          "model_expression": "debt_forgiveness_declared AND debt_forgiveness_notice_delivered",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "objection",
+          "declared_rule": "debt_forgiveness_effective",
+          "model_expression": "debtor_objected_forgiveness",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "third_party_prejudice",
+          "declared_rule": "debt_forgiveness_effective",
+          "model_expression": "third_party_rights_prejudiced",
+          "reason_ru": "",
+          "was_open_question": false
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "debt_forgiveness_effective",
+      "executed_rule": "debt_forgiveness_effective",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "buyer_knowledge",
+          "declared_rule": "eviction_remedy",
+          "model_expression": "buyer_knew_withdrawal_ground",
+          "reason_ru": "Переименование. Осведомлённость покупателя об основании изъятия освобождает продавца от ответственности (пункт 1 статьи 461 ГК РФ); имя уточнено, чтобы не путать с осведомлённостью о чём угодно ещё.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "preventable_procedure_gap",
+          "declared_rule": "eviction_remedy",
+          "model_expression": "third_party_eviction_claim_filed AND NOT buyer_joined_seller_to_eviction_case AND seller_could_prevent_withdrawal",
+          "reason_ru": "Сводка трёх фактов в одно слово. Статья 462 ГК РФ снимает ответственность продавца, если покупатель не привлёк его к делу и продавец доказал, что мог бы предотвратить изъятие. Объявление прятало за словом «пробел» и непривлечение, и предотвратимость.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "withdrawal_on_pretransfer_ground",
+          "declared_rule": "eviction_remedy",
+          "model_expression": "withdrawal_ground_predates_transfer",
+          "reason_ru": "Переименование. Статья 461 ГК РФ отвечает за изъятие по основанию, возникшему до передачи товара; модель называет это условие прямо, объявление — через предлог.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "eviction_remedy",
+      "executed_rule": "eviction_loss_remedy_available",
+      "implication_proven": true,
+      "stricter_than_declared": true
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "abuse",
+          "declared_rule": "guarantee_demand_payable",
+          "model_expression": "beneficiary_abuse_proven",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "effective_independent_guarantee",
+          "declared_rule": "guarantee_demand_payable",
+          "model_expression": "guarantee_formally_effective",
+          "reason_ru": "Переименование. Модель выводит действительность гарантии отдельным правилом из выдачи, воспроизводимой формы, определимости условий (статьи 368 и 373 ГК РФ) и неистечения срока.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "timely_compliant_demand",
+          "declared_rule": "guarantee_demand_payable",
+          "model_expression": "creditor_demand_made AND guarantee_demand_timely AND guarantee_demand_complies",
+          "reason_ru": "Сводка трёх фактов. Требование должно быть предъявлено, предъявлено до окончания срока гарантии и соответствовать её условиям (статья 374 ГК РФ). Объявление сцепляло срок и соответствие, теряя сам факт предъявления.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "guarantee_demand_payable",
+      "executed_rule": "guarantee_demand_payable",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "amount_method",
+          "declared_rule": "indemnity",
+          "model_expression": "indemnity_amount_or_method_agreed",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "bad_faith",
+          "declared_rule": "indemnity",
+          "model_expression": "indemnity_bad_faith_bar",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "business_agreement",
+          "declared_rule": "indemnity",
+          "model_expression": "indemnity_agreement AND indemnity_business_context",
+          "reason_ru": "Сводка. Пункт 1 статьи 406.1 ГК РФ допускает возмещение потерь только по соглашению и только между сторонами, действующими при осуществлении предпринимательской деятельности.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "clear_nonbreach_trigger",
+          "declared_rule": "indemnity",
+          "model_expression": "indemnity_clear AND indemnity_trigger_unrelated_to_breach",
+          "reason_ru": "Сводка. Соглашение о возмещении потерь должно быть явным (пункт 1 статьи 406.1), а обстоятельство — не связанным с нарушением обязательства: иначе это убытки, а не возмещение потерь.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "occurred_loss",
+          "declared_rule": "indemnity",
+          "model_expression": "indemnity_loss_occurred",
+          "reason_ru": "",
+          "was_open_question": false
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "indemnity",
+      "executed_rule": "indemnity_prerequisites_satisfied",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "installment_default",
+          "declared_rule": "installment_refusal",
+          "model_expression": "installment_payment_due AND NOT installment_payment_made",
+          "reason_ru": "Сводка. Просрочка очередного платежа — это наступивший срок и неуплата (пункт 2 статьи 489 ГК РФ), два факта, а не один.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "more_than_half_paid",
+          "declared_rule": "installment_refusal",
+          "model_expression": "paid_amount_exceeds_half_price",
+          "reason_ru": "Переименование. Пункт 2 статьи 489 ГК РФ запрещает отказ, когда сумма полученных платежей превышает половину цены товара.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "seller_refusal",
+          "declared_rule": "installment_refusal",
+          "model_expression": "seller_chose_installment_refusal",
+          "reason_ru": "",
+          "was_open_question": false
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "installment_refusal",
+      "executed_rule": "installment_refusal_available",
+      "implication_proven": true,
+      "stricter_than_declared": true
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "judicial_ground",
+          "declared_rule": "judicial_termination_prerequisites",
+          "model_expression": "(substantial_breach_ground_satisfied OR other_legal_or_contractual_ground_proven OR changed_circumstances_ground_satisfied)",
+          "reason_ru": "Сводка трёх оснований судебного расторжения: существенное нарушение (подпункт 1 пункта 2 статьи 450 ГК РФ), иной случай, предусмотренный законом или договором (подпункт 2), и существенное изменение обстоятельств (статья 451). Объявление называло их «судебным основанием» и не позволяло увидеть, что оснований три.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "pretrial_order_satisfied",
+          "declared_rule": "judicial_termination_prerequisites",
+          "model_expression": "pretrial_order_satisfied",
+          "reason_ru": "",
+          "was_open_question": false
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "judicial_termination_prerequisites",
+      "executed_rule": "judicial_termination_prerequisites",
+      "implication_proven": true,
+      "stricter_than_declared": true
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "timely_response_or_refusal",
+          "declared_rule": "negotiation_response_breach",
+          "model_expression": "thirty_day_response_or_refusal",
+          "reason_ru": "Переименование. Пункт 1 статьи 507 ГК РФ задаёт именно тридцатидневный срок; слово «своевременный» его скрывало.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "negotiation_response_breach",
+      "executed_rule": "negotiation_response_breach",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "deposit_made",
+          "declared_rule": "notary_deposit_discharge",
+          "model_expression": "notary_or_court_deposit_made",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "statutory_deposit_ground",
+          "declared_rule": "notary_deposit_discharge",
+          "model_expression": "deposit_ground_creditor_absent_or_evasive",
+          "reason_ru": "Переименование. Пункт 1 статьи 327 ГК РФ перечисляет основания внесения в депозит — отсутствие кредитора, его недееспособность, неопределённость и уклонение от принятия; модель сводит их к одному предикату, а объявление называло «законным основанием».",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "notary_deposit_discharge",
+      "executed_rule": "notary_deposit_discharge",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "late_notice",
+          "declared_rule": "notice_defense",
+          "model_expression": "NOT prompt_notice_given",
+          "reason_ru": "Переименование с обратным знаком. Модель хранит положительный факт — извещение дано своевременно (статья 483 ГК РФ), — а объявление называло его отрицание. Хранить положительный факт правильнее: бремя доказать своевременность лежит на покупателе.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "proven_prejudice",
+          "declared_rule": "notice_defense",
+          "model_expression": "seller_proved_notice_prejudice",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "seller_knowledge",
+          "declared_rule": "notice_defense",
+          "model_expression": "seller_knew_or_should_have_known_discrepancy",
+          "reason_ru": "",
+          "was_open_question": false
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "notice_defense",
+      "executed_rule": "notice_defense_available",
+      "implication_proven": true,
+      "stricter_than_declared": true
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "agreement",
+          "declared_rule": "novation_effective",
+          "model_expression": "novation_agreed",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "clear_replacement_intent",
+          "declared_rule": "novation_effective",
+          "model_expression": "novation_intent_clear",
+          "reason_ru": "Переименование. Из соглашения должно определённо следовать намерение заменить первоначальное обязательство (статья 414 ГК РФ).",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "form",
+          "declared_rule": "novation_effective",
+          "model_expression": "novation_form_observed",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "new_terms",
+          "declared_rule": "novation_effective",
+          "model_expression": "new_obligation_terms_agreed",
+          "reason_ru": "",
+          "was_open_question": false
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "novation_effective",
+      "executed_rule": "novation_effective",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "breach",
+          "declared_rule": "penalty_security_enforceable",
+          "model_expression": "main_obligation_breached",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "trigger",
+          "declared_rule": "penalty_security_enforceable",
+          "model_expression": "penalty_trigger_occurred",
+          "reason_ru": "Переименование: наступление обстоятельства, с которым договор связывает начисление неустойки.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "valid_main_obligation",
+          "declared_rule": "penalty_security_enforceable",
+          "model_expression": "main_obligation_exists AND NOT main_obligation_invalid",
+          "reason_ru": "Сводка. Существование обязательства и его действительность — разные факты, и модель их разделяет: недействительность основного обязательства влечёт недействительность обеспечения (пункт 3 статьи 329 ГК РФ), а несуществование делает обеспечение беспредметным.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "written_penalty",
+          "declared_rule": "penalty_security_enforceable",
+          "model_expression": "penalty_agreed AND penalty_writing_observed",
+          "reason_ru": "Сводка. Соглашение о неустойке и его письменная форма — два факта; несоблюдение формы влечёт недействительность соглашения (статья 331 ГК РФ), а не его отсутствие.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "penalty_security_enforceable",
+      "executed_rule": "penalty_security_enforceable",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "amount_proven",
+          "declared_rule": "pledge_foreclosure_prerequisites",
+          "model_expression": "secured_amount_proven",
+          "reason_ru": "Переименование. Размер обеспеченного залогом требования подлежит доказыванию при обращении взыскания; без него нельзя проверить несоразмерность по пункту 2 статьи 348 ГК РФ.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "bar",
+          "declared_rule": "pledge_foreclosure_prerequisites",
+          "model_expression": "pledge_foreclosure_bar",
+          "reason_ru": "Переименование. Пункт 2 статьи 348 ГК РФ не допускает обращения взыскания при одновременном совпадении двух условий — незначительности нарушения и явной несоразмерности требований стоимости заложенного имущества; модель выводит запрет отдельным правилом именно как совпадение, а не как любое из двух.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "breach",
+          "declared_rule": "pledge_foreclosure_prerequisites",
+          "model_expression": "main_obligation_breached",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "foreclosure_ground",
+          "declared_rule": "pledge_foreclosure_prerequisites",
+          "model_expression": "foreclosure_ground_exists",
+          "reason_ru": "Переименование: неисполнение или ненадлежащее исполнение обеспеченного залогом обязательства (пункт 1 статьи 348 ГК РФ).",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "pledge_valid_between_parties",
+          "declared_rule": "pledge_foreclosure_prerequisites",
+          "model_expression": "pledge_valid_between_parties",
+          "reason_ru": "",
+          "was_open_question": false
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "pledge_foreclosure_prerequisites",
+      "executed_rule": "pledge_foreclosure_prerequisites",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "asset",
+          "declared_rule": "pledge_valid_between_parties",
+          "model_expression": "pledged_asset_identified",
+          "reason_ru": "Переименование: определённость предмета залога как существенного условия договора (пункт 1 статьи 339 ГК РФ).",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "authority",
+          "declared_rule": "pledge_valid_between_parties",
+          "model_expression": "pledgor_owns_or_authorized",
+          "reason_ru": "Переименование. Залогодателем может быть собственник вещи либо лицо, имеющее иное право распоряжения ею (пункт 2 статьи 335 ГК РФ). Голое слово «полномочие» скрывало, что речь именно о праве распоряжения предметом залога, а не о полномочии подписать договор.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "form",
+          "declared_rule": "pledge_valid_between_parties",
+          "model_expression": "pledge_form_observed",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "valid_main_obligation",
+          "declared_rule": "pledge_valid_between_parties",
+          "model_expression": "main_obligation_exists AND NOT main_obligation_invalid",
+          "reason_ru": "Сводка, та же что и в неустойке. Залог следует судьбе основного обязательства (пункт 3 статьи 329 ГК РФ), и модель разделяет его существование и действительность.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "pledge_valid_between_parties",
+      "executed_rule": "pledge_valid_between_parties",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "conforming_subject_quality_quantity_time_place_recipient",
+          "declared_rule": "proper_performance",
+          "model_expression": "subject_conforms AND quality_quantity_conform AND performance_at_due_time AND performance_at_proper_place AND performance_to_proper_recipient",
+          "reason_ru": "Сводка пяти условий надлежащего исполнения в одно имя длиной в строку. Статьи 309, 311, 312, 314 и 316 ГК РФ отвечают за предмет, количество и качество, срок, место и надлежащего получателя. Объявление сцепляло их так, что нельзя было сказать, какое именно нарушено.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "tendered",
+          "declared_rule": "proper_performance",
+          "model_expression": "performance_tendered",
+          "reason_ru": "",
+          "was_open_question": false
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "proper_performance",
+      "executed_rule": "proper_performance",
+      "implication_proven": true,
+      "stricter_than_declared": true
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "applicable_causation_burden",
+          "declared_rule": "quality_remedy",
+          "model_expression": "(seller_warranty_given AND warranty_period_active AND NOT seller_proved_posttransfer_defect_cause OR NOT (seller_warranty_given AND warranty_period_active) AND buyer_proved_pretransfer_defect_cause)",
+          "reason_ru": "Сводка целого правила распределения бремени. Пункт 1 статьи 476 ГК РФ возлагает доказывание на покупателя, пункт 2 — на продавца, если дана гарантия и срок не истёк. Объявление называло это одним словом «применимое бремя», из-за чего было неясно, чьё именно.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "defect",
+          "declared_rule": "quality_remedy",
+          "model_expression": "quality_defect",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "timely_claim",
+          "declared_rule": "quality_remedy",
+          "model_expression": "defect_discovered_within_applicable_period",
+          "reason_ru": "",
+          "was_open_question": false
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "quality_remedy",
+      "executed_rule": "quality_remedies_available",
+      "implication_proven": true,
+      "stricter_than_declared": true
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "acceptance_duty",
+          "declared_rule": "sale_contract",
+          "model_expression": "buyer_acceptance_duty",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "concluded",
+          "declared_rule": "sale_contract",
+          "model_expression": "contract_concluded",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "goods_subject",
+          "declared_rule": "sale_contract",
+          "model_expression": "goods_existing_or_future",
+          "reason_ru": "Переименование. Пункт 2 статьи 455 ГК РФ допускает продажу как имеющегося, так и будущего товара; модель называет это условие прямо, объявление — обобщённо.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "name",
+          "declared_rule": "sale_contract",
+          "model_expression": "goods_name_agreed",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "payment_duty",
+          "declared_rule": "sale_contract",
+          "model_expression": "buyer_payment_duty",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "quantity",
+          "declared_rule": "sale_contract",
+          "model_expression": "quantity_determinable",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "transfer_ownership_duty",
+          "declared_rule": "sale_contract",
+          "model_expression": "seller_transfer_ownership_duty",
+          "reason_ru": "",
+          "was_open_question": false
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "sale_contract",
+      "executed_rule": "sale_contract_qualified",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "delivered_notice",
+          "declared_rule": "sale_refusal",
+          "model_expression": "unilateral_refusal_notice_delivered",
+          "reason_ru": "Переименование. Здесь имеется в виду уведомление об одностороннем отказе (пункт 1 статьи 450.1 ГК РФ), а не уведомление вообще.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "statutory_refusal_ground",
+          "declared_rule": "sale_refusal",
+          "model_expression": "(seller_refused_goods_transfer AND buyer_chose_contract_refusal_for_nontransfer OR (accessories_required AND NOT accessories_transferred OR documents_required AND NOT documents_transferred) AND buyer_set_reasonable_document_term AND seller_failed_document_term AND buyer_refused_goods_for_documents OR quality_defect AND defect_material AND (seller_warranty_given AND warranty_period_active AND NOT seller_proved_posttransfer_defect_cause OR NOT (seller_warranty_given AND warranty_period_active) AND buyer_proved_pretransfer_defect_cause) AND defect_discovered_within_applicable_period AND buyer_chose_contract_refusal_for_defect OR incomplete_goods AND buyer_requested_completion AND NOT seller_completed_reasonable_time AND buyer_chose_contract_refusal_for_incompleteness OR buyer_failed_acceptance AND seller_chose_contract_refusal_for_nonacceptance OR installment_sale AND installment_payment_due AND NOT installment_payment_made AND NOT paid_amount_exceeds_half_price AND seller_chose_installment_refusal OR insurance_duty_allocated AND insurance_duty_due AND NOT insurance_obtained AND counterparty_chose_insurance_refusal)",
+          "reason_ru": "Сводка семи самостоятельных оснований отказа в одно слово: непередача товара (статья 463), непередача принадлежностей и документов (статья 464), существенный недостаток (пункт 2 статьи 475), некомплектность (пункт 2 статьи 480), непринятие товара (статья 484), просрочка платежа в рассрочку (пункт 2 статьи 489) и неисполнение обязанности страхования (статья 490). Объявление называло их «законным основанием», не перечисляя, — и по нему нельзя было проверить, все ли учтены.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "sale_refusal",
+      "executed_rule": "sale_contract_refusal_effective",
+      "implication_proven": true,
+      "stricter_than_declared": true
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "active_security_payment",
+          "declared_rule": "security_payment_credit_available",
+          "model_expression": "security_payment_active",
+          "reason_ru": "Переименование. Обеспечительный платёж должен быть внесён и не возвращён к моменту наступления обстоятельства (пункт 1 статьи 381.1 ГК РФ); модель называет это действующим платежом.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "secured_event",
+          "declared_rule": "security_payment_credit_available",
+          "model_expression": "secured_circumstance_occurred",
+          "reason_ru": "Переименование. Пункт 1 статьи 381.1 ГК РФ говорит о наступлении обстоятельств, предусмотренных договором, при которых сумма платежа засчитывается в счёт исполнения.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "security_payment_credit_available",
+      "executed_rule": "security_payment_credit_available",
+      "implication_proven": true,
+      "stricter_than_declared": true
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "amount_proven",
+          "declared_rule": "setoff_effective",
+          "model_expression": "set_off_amount_proven",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "bar",
+          "declared_rule": "setoff_effective",
+          "model_expression": "setoff_bar",
+          "reason_ru": "Переименование. Статья 411 ГК РФ перечисляет случаи недопустимости зачёта, и истечение давности по активному требованию — один из них; модель выводит запрет отдельным правилом.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "declaration_delivered",
+          "declared_rule": "setoff_effective",
+          "model_expression": "set_off_declared AND set_off_notice_delivered",
+          "reason_ru": "Сводка. Зачёт производится заявлением, и заявление должно быть получено другой стороной (статья 410 ГК РФ): объявление и доставка — два факта.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "mutual_homogeneous_due_claims",
+          "declared_rule": "setoff_effective",
+          "model_expression": "counterclaims_mutual AND counterclaims_homogeneous AND active_claim_due AND passive_claim_due_or_early_allowed",
+          "reason_ru": "Сводка четырёх условий статьи 410 ГК РФ: встречность, однородность, наступление срока по активному требованию и наступление срока либо допустимость досрочного исполнения по пассивному. Объявление склеивало их в одно имя, и потерю любого из них было бы не заметить.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "setoff_effective",
+      "executed_rule": "setoff_effective",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "scope",
+          "declared_rule": "surety_enforceable",
+          "model_expression": "surety_scope_proven",
+          "reason_ru": "Переименование: доказанность объёма ответственности поручителя (статья 363 ГК РФ).",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "terminated",
+          "declared_rule": "surety_enforceable",
+          "model_expression": "surety_terminated",
+          "reason_ru": "Переименование. Поручительство прекращается по основаниям статьи 367 ГК РФ — прекращением основного обязательства, истечением срока и другими; модель сводит их к одному факту прекращения.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "valid_main_obligation",
+          "declared_rule": "surety_enforceable",
+          "model_expression": "main_obligation_exists AND NOT main_obligation_invalid",
+          "reason_ru": "Сводка, та же что и в неустойке и залоге. Поручительство акцессорно (пункт 3 статьи 329 ГК РФ), и модель разделяет существование основного обязательства и его действительность.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "written_surety",
+          "declared_rule": "surety_enforceable",
+          "model_expression": "suretyship_created AND suretyship_writing_observed",
+          "reason_ru": "Сводка. Договор поручительства и его письменная форма — два факта; несоблюдение формы влечёт недействительность (статья 362 ГК РФ).",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "surety_enforceable",
+      "executed_rule": "surety_enforceable",
+      "implication_proven": true,
+      "stricter_than_declared": true
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "personal_performance",
+          "declared_rule": "third_party_acceptance",
+          "model_expression": "personal_performance_required",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "statutory_acceptance_ground",
+          "declared_rule": "third_party_acceptance",
+          "model_expression": "(debtor_assigned_third_party_performance OR debtor_monetary_delay OR third_party_property_right_at_risk)",
+          "reason_ru": "Сводка трёх оснований статьи 313 ГК РФ: возложение исполнения должником (пункт 1), просрочка должника по денежному обязательству и опасность утраты третьим лицом права на имущество должника (пункт 2).",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "third_party_tendered",
+          "declared_rule": "third_party_acceptance",
+          "model_expression": "third_party_performance_tendered",
+          "reason_ru": "",
+          "was_open_question": false
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "third_party_acceptance",
+      "executed_rule": "third_party_performance_acceptance_required",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "retained_title",
+          "declared_rule": "title_return",
+          "model_expression": "title_retention_agreed",
+          "reason_ru": "Переименование. Статья 491 ГК РФ говорит о сохранении права собственности за продавцом по условию договора; модель хранит факт согласования такого условия.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "seller_return_demand",
+          "declared_rule": "title_return",
+          "model_expression": "seller_required_goods_return",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "unmet_condition",
+          "declared_rule": "title_return",
+          "model_expression": "NOT title_condition_met",
+          "reason_ru": "Переименование с обратным знаком. Модель хранит наступление условия перехода права (обычно оплаты), объявление — его ненаступление.",
+          "was_open_question": true
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "title_return",
+      "executed_rule": "title_return_remedy",
+      "implication_proven": true,
+      "stricter_than_declared": true
+    },
+    {
+      "conditions": [
+        {
+          "declared_name": "availability",
+          "declared_rule": "transfer_duty",
+          "model_expression": "NOT delivery_obligation AND NOT shipment_contract AND goods_made_available",
+          "reason_ru": "Сводка. Предоставление товара в распоряжение покупателя (абзац третий пункта 1 статьи 458 ГК РФ) — не третий равноправный способ, а остаточный: он применяется, когда нет ни обязанности доставки, ни условия о перевозке. Объявление перечисляло три способа через ИЛИ и теряло эту очерёдность.",
+          "was_open_question": true
+        },
+        {
+          "declared_name": "carrier_handover",
+          "declared_rule": "transfer_duty",
+          "model_expression": "shipment_contract AND goods_handed_to_carrier",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "completed",
+          "declared_rule": "transfer_duty",
+          "model_expression": "goods_transfer_completed",
+          "reason_ru": "",
+          "was_open_question": false
+        },
+        {
+          "declared_name": "delivery",
+          "declared_rule": "transfer_duty",
+          "model_expression": "delivery_obligation AND goods_delivered_to_buyer",
+          "reason_ru": "",
+          "was_open_question": false
+        }
+      ],
+      "counterexample": {},
+      "declared_rule": "transfer_duty",
+      "executed_rule": "transfer_duty_performed",
+      "implication_proven": true,
+      "stricter_than_declared": false
+    }
+  ],
+  "unproven": [],
+  "version": "rule-closure-v0"
+}
