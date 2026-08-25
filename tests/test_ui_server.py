@@ -68,6 +68,29 @@ def test_the_stand_carries_both_workspaces(desktop) -> None:
     assert len(desktop.case_views) == 41
 
 
+def test_the_practice_workspace_is_named_after_what_it_actually_holds(desktop) -> None:
+    """Название пространства обязано сходиться с составом дел.
+
+    Пространство называлось «Практика Верховного Суда» и после второй выгрузки
+    стало обещать не тот источник: из сорока дел стенда актов Верховного Суда
+    четыре, остальные тридцать шесть — кассационные. Ошибка держалась потому,
+    что название ничем не было связано с данными: строку правил человек, а дела
+    менялись сами.
+    """
+    from causa.institutional.contracts.practice_base import load_practice_base
+    from causa.ui.desktop import build_practice_case_inputs
+
+    workspace = next(
+        w for w in desktop.desk.organisation.workspaces if w.id == PRACTICE_WORKSPACE_ID
+    )
+    base = {case.id: case for case in load_practice_base().cases}
+    instances = [base[inputs.case_id].instance for inputs in build_practice_case_inputs()]
+
+    supreme = sum(instance == "ВС РФ" for instance in instances)
+    if supreme * 2 <= len(instances):
+        assert "Верховного Суда" not in workspace.title_ru, workspace.title_ru
+
+
 def test_practice_cases_carry_the_caveat(desktop) -> None:
     """Без оговорки стенд внушал бы, что система решила дело как суд."""
     practice = [v for v in desktop.case_views if v.workspace_id == PRACTICE_WORKSPACE_ID]
