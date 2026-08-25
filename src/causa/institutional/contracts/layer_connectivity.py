@@ -62,6 +62,7 @@ class ConnectivityVerdict(str, Enum):
     DUPLICATED_UPSTREAM = "duplicated_upstream"
     REMEDY_SCOPE = "remedy_scope"
     FORMATION_STAGE = "formation_stage"
+    BLOCKED_BY_DATA_CONTRACT = "blocked_by_data_contract"
     SHOULD_BE_WIRED = "should_be_wired"
 
 
@@ -70,6 +71,9 @@ VERDICT_LABELS_RU = {
     ConnectivityVerdict.DUPLICATED_UPSTREAM: "результат уже поступает от другого института",
     ConnectivityVerdict.REMEDY_SCOPE: "средства защиты и размер, а не судьба требования",
     ConnectivityVerdict.FORMATION_STAGE: "стадия заключения, попадает в слой как заключённость",
+    ConnectivityVerdict.BLOCKED_BY_DATA_CONTRACT: (
+        "связь обоснована, но контракт данных её не выражает"
+    ),
     ConnectivityVerdict.SHOULD_BE_WIRED: "обоснования нет — открытый долг",
 }
 
@@ -77,6 +81,7 @@ _SPECIAL = ConnectivityVerdict.SPECIAL_TYPE
 _DUP = ConnectivityVerdict.DUPLICATED_UPSTREAM
 _REMEDY = ConnectivityVerdict.REMEDY_SCOPE
 _STAGE = ConnectivityVerdict.FORMATION_STAGE
+_BLOCKED = ConnectivityVerdict.BLOCKED_BY_DATA_CONTRACT
 _DEBT = ConnectivityVerdict.SHOULD_BE_WIRED
 
 _SPECIAL_TYPE_REASON = (
@@ -90,6 +95,23 @@ LAYER_CONNECTIVITY_AUDIT: dict[str, tuple[ConnectivityVerdict, str]] = {
     # Пусто. Все три института, попавшие сюда при первом аудите, проведены в
     # слой: `attribution_delay` выпуском 1.0.0, `obligation_dynamics` — 1.1.0,
     # `meeting_decisions` — 1.2.0.
+    # --- Связь обоснована, но контракт данных её не выражает -----------------
+    # Категория появилась вместе с институтом юридически значимых сообщений и
+    # называет положение, которого прежние графы не различали: связь нужна, но
+    # провести её сейчас нельзя не по правовой причине, а по устройству данных.
+    #
+    # Записать это долгом было бы неправдой — обоснование есть. Записать
+    # дублированием или специальным типом — тоже: результат ниоткуда больше не
+    # приходит.
+    "messages": (
+        _BLOCKED,
+        "доставка сообщения решает, наступили ли последствия отказа от договора, "
+        "зачёта, приостановления встречного исполнения — то есть прямо влияет на "
+        "судьбу требования. Но институт отвечает об одном сообщении, а контракт "
+        "данных даёт один блок доказательств на институт: какое из двадцати "
+        "уведомлений пакета проверено, вывод не сообщает. Провести его в слой "
+        "значило бы отнести доставку одного сообщения ко всем сразу",
+    ),
     # --- Дублирование: тот же результат приходит от другого института --------
     "freedom": (
         _DUP,

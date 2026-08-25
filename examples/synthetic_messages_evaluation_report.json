@@ -1,0 +1,468 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка юридически значимых сообщений по статье 165.1 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-messages-evidence-supply-1-v0",
+    "schema_version": "contracts.messages-evidence.v0",
+    "mapping_version": "contracts-reviewed-messages-to-facts-v0",
+    "facts": {
+      "message_asserted": true,
+      "consequences_attached_by_law_or_transaction": true,
+      "sent_to_statutory_or_agreed_address": true,
+      "sender_and_addressee_identifiable": true,
+      "form_matches_message_nature": true,
+      "handed_to_addressee_or_representative": true,
+      "arrived_at_addressee": true,
+      "non_receipt_due_to_addressee": false,
+      "law_sets_other_delivery_rule": false,
+      "transaction_sets_other_delivery_rule": false,
+      "custom_or_practice_sets_other_delivery_rule": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk1651-legally-significant-messages-v1",
+      "synthetic-ru-plenum25-63-67-message-delivery-risk-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "arrived_at_addressee",
+        "assertion_id": "messages-evidence-arrived_at_addressee",
+        "source_refs": [
+          "synthetic-case-supply-1-messages-evidence"
+        ]
+      },
+      {
+        "fact_name": "consequences_attached_by_law_or_transaction",
+        "assertion_id": "messages-evidence-consequences_attached_by_law_or_transaction",
+        "source_refs": [
+          "synthetic-case-supply-1-messages-evidence"
+        ]
+      },
+      {
+        "fact_name": "custom_or_practice_sets_other_delivery_rule",
+        "assertion_id": "messages-evidence-custom_or_practice_sets_other_delivery_rule",
+        "source_refs": [
+          "synthetic-case-supply-1-messages-evidence"
+        ]
+      },
+      {
+        "fact_name": "form_matches_message_nature",
+        "assertion_id": "messages-evidence-form_matches_message_nature",
+        "source_refs": [
+          "synthetic-case-supply-1-messages-evidence"
+        ]
+      },
+      {
+        "fact_name": "handed_to_addressee_or_representative",
+        "assertion_id": "messages-evidence-handed_to_addressee_or_representative",
+        "source_refs": [
+          "synthetic-case-supply-1-messages-evidence"
+        ]
+      },
+      {
+        "fact_name": "law_sets_other_delivery_rule",
+        "assertion_id": "messages-evidence-law_sets_other_delivery_rule",
+        "source_refs": [
+          "synthetic-case-supply-1-messages-evidence"
+        ]
+      },
+      {
+        "fact_name": "message_asserted",
+        "assertion_id": "messages-evidence-message_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-messages-evidence"
+        ]
+      },
+      {
+        "fact_name": "non_receipt_due_to_addressee",
+        "assertion_id": "messages-evidence-non_receipt_due_to_addressee",
+        "source_refs": [
+          "synthetic-case-supply-1-messages-evidence"
+        ]
+      },
+      {
+        "fact_name": "sender_and_addressee_identifiable",
+        "assertion_id": "messages-evidence-sender_and_addressee_identifiable",
+        "source_refs": [
+          "synthetic-case-supply-1-messages-evidence"
+        ]
+      },
+      {
+        "fact_name": "sent_to_statutory_or_agreed_address",
+        "assertion_id": "messages-evidence-sent_to_statutory_or_agreed_address",
+        "source_refs": [
+          "synthetic-case-supply-1-messages-evidence"
+        ]
+      },
+      {
+        "fact_name": "transaction_sets_other_delivery_rule",
+        "assertion_id": "messages-evidence-transaction_sets_other_delivery_rule",
+        "source_refs": [
+          "synthetic-case-supply-1-messages-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "messages-constraint-set:reviewed-messages-evidence-supply-1-v0",
+    "model_version": "contracts-messages-article-165-1-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk1651-legally-significant-messages-v1",
+      "synthetic-ru-plenum25-63-67-message-delivery-risk-v1"
+    ],
+    "expressions": [
+      "message_qualified == message_asserted AND consequences_attached_by_law_or_transaction",
+      "default_rule_displaced == message_qualified AND (law_sets_other_delivery_rule OR transaction_sets_other_delivery_rule OR custom_or_practice_sets_other_delivery_rule)",
+      "properly_addressed == message_qualified AND sent_to_statutory_or_agreed_address AND sender_and_addressee_identifiable AND form_matches_message_nature",
+      "delivered_by_handover == message_qualified AND handed_to_addressee_or_representative",
+      "delivered_by_addressee_risk == properly_addressed AND arrived_at_addressee AND non_receipt_due_to_addressee AND NOT handed_to_addressee_or_representative",
+      "message_delivered == (delivered_by_handover OR delivered_by_addressee_risk) AND NOT default_rule_displaced",
+      "consequences_effective == message_delivered",
+      "delivery_not_established == message_qualified AND NOT message_delivered",
+      "requires_human_message_assessment == default_rule_displaced OR delivery_not_established OR delivered_by_addressee_risk"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "messages-constraint-set:reviewed-messages-evidence-supply-1-v0",
+    "satisfiable": true,
+    "message_qualified": true,
+    "properly_addressed": true,
+    "delivered_by_handover": true,
+    "delivered_by_addressee_risk": false,
+    "default_rule_displaced": false,
+    "message_delivered": true,
+    "consequences_effective": true,
+    "delivery_not_established": false,
+    "requires_human_message_assessment": false,
+    "reasons_ru": [
+      "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+      "Сообщение вручено адресату или его представителю, поэтому оно доставлено независимо от того, по какому адресу направлялось (пункт 1 статьи 165.1 ГК РФ).",
+      "Гражданско-правовые последствия сообщения наступили для адресата с момента доставки (пункт 1 статьи 165.1 ГК РФ)."
+    ],
+    "warnings_ru": [
+      "Модель отвечает об одном сообщении — том, о котором идёт спор. Доставку каждого уведомления, упомянутого в других институтах, она не проверяет: контракт данных даёт один блок доказательств на институт.",
+      "Момент доставки модель не определяет: она устанавливает сам факт доставки, а дату вручения или поступления вносит человек.",
+      "Зависимость обстоятельств невручения от адресата — вопрос оценки доказательств, а не вывода из фактов."
+    ]
+  },
+  "benchmark_report": {
+    "id": "messages-benchmark-report-v0",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "messages-bench-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "message_qualified": false,
+          "message_delivered": false,
+          "delivery_not_established": false,
+          "requires_human_message_assessment": false
+        },
+        "observed_outcomes": {
+          "message_qualified": false,
+          "message_delivered": false,
+          "delivery_not_established": false,
+          "requires_human_message_assessment": false
+        },
+        "reasons_ru": [
+          "Юридически значимое сообщение в деле не заявлено: либо сообщения нет, либо закон и сделка не связывают с ним последствий для другого лица."
+        ]
+      },
+      {
+        "task_id": "messages-bench-handover",
+        "passed": true,
+        "expected_outcomes": {
+          "delivered_by_handover": true,
+          "properly_addressed": false,
+          "message_delivered": true,
+          "consequences_effective": true,
+          "requires_human_message_assessment": false
+        },
+        "observed_outcomes": {
+          "delivered_by_handover": true,
+          "properly_addressed": false,
+          "message_delivered": true,
+          "consequences_effective": true,
+          "requires_human_message_assessment": false
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Сообщение вручено адресату или его представителю, поэтому оно доставлено независимо от того, по какому адресу направлялось (пункт 1 статьи 165.1 ГК РФ).",
+          "Надлежащее направление не подтверждено: сообщение либо послано не по адресу из реестра, месту жительства или указанному самим адресатом, либо не позволяет достоверно установить отправителя и адресата, либо направлено в форме, не соответствующей характеру сообщения (пункты 63, 65 и 67 постановления Пленума Верховного Суда РФ от 23.06.2015 № 25). Доставка по риску неполучения без этого не выводится.",
+          "Гражданско-правовые последствия сообщения наступили для адресата с момента доставки (пункт 1 статьи 165.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "messages-bench-representative",
+        "passed": true,
+        "expected_outcomes": {
+          "delivered_by_handover": true,
+          "message_delivered": true,
+          "consequences_effective": true
+        },
+        "observed_outcomes": {
+          "delivered_by_handover": true,
+          "message_delivered": true,
+          "consequences_effective": true
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Сообщение вручено адресату или его представителю, поэтому оно доставлено независимо от того, по какому адресу направлялось (пункт 1 статьи 165.1 ГК РФ).",
+          "Гражданско-правовые последствия сообщения наступили для адресата с момента доставки (пункт 1 статьи 165.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "messages-bench-addressee-risk",
+        "passed": true,
+        "expected_outcomes": {
+          "delivered_by_handover": false,
+          "delivered_by_addressee_risk": true,
+          "message_delivered": true,
+          "consequences_effective": true,
+          "requires_human_message_assessment": true
+        },
+        "observed_outcomes": {
+          "delivered_by_handover": false,
+          "delivered_by_addressee_risk": true,
+          "message_delivered": true,
+          "consequences_effective": true,
+          "requires_human_message_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Сообщение не вручено, но считается доставленным: оно поступило адресату и не было вручено либо адресат с ним не ознакомился по обстоятельствам, зависящим от него самого. Риск неполучения несёт адресат (пункт 1 статьи 165.1 ГК РФ, пункты 63 и 67 постановления Пленума Верховного Суда РФ от 23.06.2015 № 25).",
+          "Гражданско-правовые последствия сообщения наступили для адресата с момента доставки (пункт 1 статьи 165.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "messages-bench-arrived-not-addressee-fault",
+        "passed": true,
+        "expected_outcomes": {
+          "delivered_by_addressee_risk": false,
+          "message_delivered": false,
+          "delivery_not_established": true
+        },
+        "observed_outcomes": {
+          "delivered_by_addressee_risk": false,
+          "message_delivered": false,
+          "delivery_not_established": true
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Доставка не установлена, поэтому последствия сообщения для адресата не наступили. Это утверждение о доказанности доставки, а не о том, что сообщение не посылалось."
+        ]
+      },
+      {
+        "task_id": "messages-bench-wrong-address",
+        "passed": true,
+        "expected_outcomes": {
+          "properly_addressed": false,
+          "delivered_by_addressee_risk": false,
+          "message_delivered": false,
+          "delivery_not_established": true
+        },
+        "observed_outcomes": {
+          "properly_addressed": false,
+          "delivered_by_addressee_risk": false,
+          "message_delivered": false,
+          "delivery_not_established": true
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Надлежащее направление не подтверждено: сообщение либо послано не по адресу из реестра, месту жительства или указанному самим адресатом, либо не позволяет достоверно установить отправителя и адресата, либо направлено в форме, не соответствующей характеру сообщения (пункты 63, 65 и 67 постановления Пленума Верховного Суда РФ от 23.06.2015 № 25). Доставка по риску неполучения без этого не выводится.",
+          "Доставка не установлена, поэтому последствия сообщения для адресата не наступили. Это утверждение о доказанности доставки, а не о том, что сообщение не посылалось."
+        ]
+      },
+      {
+        "task_id": "messages-bench-sender-unidentifiable",
+        "passed": true,
+        "expected_outcomes": {
+          "properly_addressed": false,
+          "delivered_by_addressee_risk": false,
+          "message_delivered": false
+        },
+        "observed_outcomes": {
+          "properly_addressed": false,
+          "delivered_by_addressee_risk": false,
+          "message_delivered": false
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Надлежащее направление не подтверждено: сообщение либо послано не по адресу из реестра, месту жительства или указанному самим адресатом, либо не позволяет достоверно установить отправителя и адресата, либо направлено в форме, не соответствующей характеру сообщения (пункты 63, 65 и 67 постановления Пленума Верховного Суда РФ от 23.06.2015 № 25). Доставка по риску неполучения без этого не выводится.",
+          "Доставка не установлена, поэтому последствия сообщения для адресата не наступили. Это утверждение о доказанности доставки, а не о том, что сообщение не посылалось."
+        ]
+      },
+      {
+        "task_id": "messages-bench-transaction-other-rule",
+        "passed": true,
+        "expected_outcomes": {
+          "delivered_by_handover": true,
+          "default_rule_displaced": true,
+          "message_delivered": false,
+          "consequences_effective": false,
+          "requires_human_message_assessment": true
+        },
+        "observed_outcomes": {
+          "delivered_by_handover": true,
+          "default_rule_displaced": true,
+          "message_delivered": false,
+          "consequences_effective": false,
+          "requires_human_message_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Сообщение вручено адресату или его представителю, поэтому оно доставлено независимо от того, по какому адресу направлялось (пункт 1 статьи 165.1 ГК РФ).",
+          "Надлежащее направление не подтверждено: сообщение либо послано не по адресу из реестра, месту жительства или указанному самим адресатом, либо не позволяет достоверно установить отправителя и адресата, либо направлено в форме, не соответствующей характеру сообщения (пункты 63, 65 и 67 постановления Пленума Верховного Суда РФ от 23.06.2015 № 25). Доставка по риску неполучения без этого не выводится.",
+          "Общее правило доставки вытеснено: иное предусмотрено законом либо условиями сделки либо следует из обычая или из установившейся во взаимоотношениях сторон практики (пункт 2 статьи 165.1 ГК РФ). Содержание этого иного правила модель не разбирает.",
+          "Доставка не установлена, поэтому последствия сообщения для адресата не наступили. Это утверждение о доказанности доставки, а не о том, что сообщение не посылалось."
+        ]
+      },
+      {
+        "task_id": "messages-bench-custom-other-rule",
+        "passed": true,
+        "expected_outcomes": {
+          "delivered_by_addressee_risk": true,
+          "default_rule_displaced": true,
+          "message_delivered": false
+        },
+        "observed_outcomes": {
+          "delivered_by_addressee_risk": true,
+          "default_rule_displaced": true,
+          "message_delivered": false
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Сообщение не вручено, но считается доставленным: оно поступило адресату и не было вручено либо адресат с ним не ознакомился по обстоятельствам, зависящим от него самого. Риск неполучения несёт адресат (пункт 1 статьи 165.1 ГК РФ, пункты 63 и 67 постановления Пленума Верховного Суда РФ от 23.06.2015 № 25).",
+          "Общее правило доставки вытеснено: иное предусмотрено законом либо условиями сделки либо следует из обычая или из установившейся во взаимоотношениях сторон практики (пункт 2 статьи 165.1 ГК РФ). Содержание этого иного правила модель не разбирает.",
+          "Доставка не установлена, поэтому последствия сообщения для адресата не наступили. Это утверждение о доказанности доставки, а не о том, что сообщение не посылалось."
+        ]
+      },
+      {
+        "task_id": "messages-bench-nothing-sent",
+        "passed": true,
+        "expected_outcomes": {
+          "message_qualified": true,
+          "message_delivered": false,
+          "delivery_not_established": true,
+          "requires_human_message_assessment": true
+        },
+        "observed_outcomes": {
+          "message_qualified": true,
+          "message_delivered": false,
+          "delivery_not_established": true,
+          "requires_human_message_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Доставка не установлена, поэтому последствия сообщения для адресата не наступили. Это утверждение о доказанности доставки, а не о том, что сообщение не посылалось."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "messages-red-team-report-v0",
+    "total": 6,
+    "blocked": 6,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "messages-red-arrival-alone",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "message_delivered": true,
+          "consequences_effective": true
+        },
+        "observed_outcomes": {
+          "message_delivered": false,
+          "consequences_effective": false
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Доставка не установлена, поэтому последствия сообщения для адресата не наступили. Это утверждение о доказанности доставки, а не о том, что сообщение не посылалось."
+        ]
+      },
+      {
+        "case_id": "messages-red-address-alone",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "delivered_by_addressee_risk": true,
+          "message_delivered": true
+        },
+        "observed_outcomes": {
+          "delivered_by_addressee_risk": false,
+          "message_delivered": false
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Доставка не установлена, поэтому последствия сообщения для адресата не наступили. Это утверждение о доказанности доставки, а не о том, что сообщение не посылалось."
+        ]
+      },
+      {
+        "case_id": "messages-red-risk-without-address",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "delivered_by_addressee_risk": true
+        },
+        "observed_outcomes": {
+          "delivered_by_addressee_risk": false
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Надлежащее направление не подтверждено: сообщение либо послано не по адресу из реестра, месту жительства или указанному самим адресатом, либо не позволяет достоверно установить отправителя и адресата, либо направлено в форме, не соответствующей характеру сообщения (пункты 63, 65 и 67 постановления Пленума Верховного Суда РФ от 23.06.2015 № 25). Доставка по риску неполучения без этого не выводится.",
+          "Доставка не установлена, поэтому последствия сообщения для адресата не наступили. Это утверждение о доказанности доставки, а не о том, что сообщение не посылалось."
+        ]
+      },
+      {
+        "case_id": "messages-red-consequences-without-qualification",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "consequences_effective": true,
+          "message_delivered": true
+        },
+        "observed_outcomes": {
+          "consequences_effective": false,
+          "message_delivered": false
+        },
+        "reasons_ru": [
+          "Юридически значимое сообщение в деле не заявлено: либо сообщения нет, либо закон и сделка не связывают с ним последствий для другого лица."
+        ]
+      },
+      {
+        "case_id": "messages-red-displaced-rule-still-delivers",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "message_delivered": true,
+          "consequences_effective": true
+        },
+        "observed_outcomes": {
+          "message_delivered": false,
+          "consequences_effective": false
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Сообщение вручено адресату или его представителю, поэтому оно доставлено независимо от того, по какому адресу направлялось (пункт 1 статьи 165.1 ГК РФ).",
+          "Общее правило доставки вытеснено: иное предусмотрено законом либо условиями сделки либо следует из обычая или из установившейся во взаимоотношениях сторон практики (пункт 2 статьи 165.1 ГК РФ). Содержание этого иного правила модель не разбирает.",
+          "Доставка не установлена, поэтому последствия сообщения для адресата не наступили. Это утверждение о доказанности доставки, а не о том, что сообщение не посылалось."
+        ]
+      },
+      {
+        "case_id": "messages-red-silent-non-delivery",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_message_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_message_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено сообщение, с которым закон или сделка связывает гражданско-правовые последствия для другого лица, — юридически значимое сообщение (пункт 1 статьи 165.1 ГК РФ).",
+          "Доставка не установлена, поэтому последствия сообщения для адресата не наступили. Это утверждение о доказанности доставки, а не о том, что сообщение не посылалось."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95820/"
+  ]
+}

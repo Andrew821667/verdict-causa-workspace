@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.4.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Adds the institute of legally significant messages (article 165.1) - the first institute found by walking the Code rather than by measuring court practice.",
+            "More than twenty predicates across the package record that a notice was delivered; until now the rule deciding when a message counts as delivered was modelled nowhere, and every such predicate took delivery on trust.",
+            "The model separates two routes that a single predicate conflated: handover to the addressee or a representative, and delivery deemed to have occurred because the message reached the addressee and went unclaimed for reasons within their control.",
+        ],
+        notes_ru=[
+            "Добавлен институт юридически значимых сообщений (статья 165.1) — первый институт, найденный обходом кодекса, а не измерением судебной практики.",
+            "В пакете больше двадцати предикатов о доставленном уведомлении; правило, по которому сообщение считается доставленным, не было смоделировано нигде, и каждый такой предикат принимал доставку на веру.",
+            "Модель разделяет два пути, которые сливались в одном предикате: вручение адресату или представителю и доставку, признанную состоявшейся из-за того, что сообщение поступило и не было получено по обстоятельствам, зависящим от адресата.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.3.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -1457,6 +1457,21 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-messages",
+            title="Проверка юридически значимого сообщения",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.messages_evidence_mapping.evidence_id,
+                trace.analysis_result.messages_constraint_set.id,
+                *trace.analysis_result.messages_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.messages_evaluation.reasons_ru,
+                "Вручение адресату или его представителю и доставка, признанная состоявшейся из-за невручения по обстоятельствам, зависящим от адресата, проверяются раздельно: первый путь не требует надлежащего адреса, второй — требует (статья 165.1 ГК РФ, пункты 63, 65 и 67 постановления Пленума Верховного Суда РФ от 23.06.2015 № 25).",
+                "Момент доставки, зависимость обстоятельств невручения от адресата и содержание иного правила доставки, установленного законом, сделкой, обычаем или практикой сторон, оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-attribution-delay",
             title="Проверка возложения ответственности и просрочки сторон",
             status=PipelineStepStatus.PASSED,

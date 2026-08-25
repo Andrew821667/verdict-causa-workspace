@@ -1972,6 +1972,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.3.0",
+        to_version="1.4.0",
+        reasons=[
+            "The analysis request gains a required evidence block for legally significant messages (article 165.1); artifacts produced without it cannot be replayed.",
+            "The first institute found by walking the Code rather than by measuring practice: article 165.1 was claimed by no institute while more than twenty predicates recorded a delivered notice.",
+        ],
+        reasons_ru=[
+            "Запрос анализа получил обязательный блок доказательств о юридически значимом сообщении (статья 165.1); артефакты, собранные без него, не воспроизводятся.",
+            "Первый институт, найденный обходом кодекса, а не измерением практики: статья 165.1 не была заявлена ни одним институтом, притом что больше двадцати предикатов записывали доставленное уведомление.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_messages_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

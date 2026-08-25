@@ -155,6 +155,11 @@ from causa.institutional.contracts.persons import (
     PersonsEvidencePredicate,
     ReviewedPersonsEvidence,
 )
+from causa.institutional.contracts.messages import (
+    MessagesEvidenceAssertion,
+    MessagesEvidencePredicate,
+    ReviewedMessagesEvidence,
+)
 from causa.institutional.contracts.attribution_delay import (
     AttributionDelayEvidenceAssertion,
     AttributionDelayEvidencePredicate,
@@ -639,6 +644,9 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk402-404-attribution-of-liability-and-creditor-fault-v1",
     "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
     "synthetic-case-supply-1-attribution-delay-evidence",
+    "synthetic-ru-gk1651-legally-significant-messages-v1",
+    "synthetic-ru-plenum25-63-67-message-delivery-risk-v1",
+    "synthetic-case-supply-1-messages-evidence",
     "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
     "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1",
     "synthetic-case-supply-1-meeting-decisions-evidence",
@@ -3131,6 +3139,52 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-meeting-decisions-reviewer",
+        ),
+        messages_evidence=ReviewedMessagesEvidence(
+            id="reviewed-messages-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                MessagesEvidenceAssertion(
+                    id=f"messages-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-messages-evidence",),
+                )
+                for predicate, value in (
+                    (MessagesEvidencePredicate.MESSAGE_ASSERTED, True),
+                    (
+                        MessagesEvidencePredicate.CONSEQUENCES_ATTACHED_BY_LAW_OR_TRANSACTION,
+                        True,
+                    ),
+                    (
+                        MessagesEvidencePredicate.SENT_TO_STATUTORY_OR_AGREED_ADDRESS,
+                        True,
+                    ),
+                    (MessagesEvidencePredicate.SENDER_AND_ADDRESSEE_IDENTIFIABLE, True),
+                    (MessagesEvidencePredicate.FORM_MATCHES_MESSAGE_NATURE, True),
+                    (
+                        MessagesEvidencePredicate.HANDED_TO_ADDRESSEE_OR_REPRESENTATIVE,
+                        True,
+                    ),
+                    (MessagesEvidencePredicate.ARRIVED_AT_ADDRESSEE, True),
+                    (MessagesEvidencePredicate.NON_RECEIPT_DUE_TO_ADDRESSEE, False),
+                    (MessagesEvidencePredicate.LAW_SETS_OTHER_DELIVERY_RULE, False),
+                    (
+                        MessagesEvidencePredicate.TRANSACTION_SETS_OTHER_DELIVERY_RULE,
+                        False,
+                    ),
+                    (
+                        MessagesEvidencePredicate.CUSTOM_OR_PRACTICE_SETS_OTHER_DELIVERY_RULE,
+                        False,
+                    ),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk1651-legally-significant-messages-v1",
+                "synthetic-ru-plenum25-63-67-message-delivery-risk-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-messages-reviewer",
         ),
         attribution_delay_evidence=ReviewedAttributionDelayEvidence(
             id="reviewed-attribution-delay-evidence-supply-1-v0",
