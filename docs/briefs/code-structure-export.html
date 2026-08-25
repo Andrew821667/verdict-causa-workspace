@@ -1,0 +1,556 @@
+<title>Выгрузка структуры ГК</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #F6F7F9;
+    --card: #FFFFFF;
+    --ink: #15181E;
+    --ink-soft: #4C5563;
+    --ink-faint: #757F8E;
+    --rule: #DDE1E8;
+    --rule-strong: #C3C9D4;
+    --indigo: #243B6B;
+    --indigo-soft: #E8ECF5;
+    --alarm: #8C2F27;
+    --alarm-bg: #FBF0EE;
+    --alarm-rule: #D9B4AE;
+    --code-bg: #F0F2F6;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #101319;
+      --card: #171B23;
+      --ink: #E7EAF0;
+      --ink-soft: #A5AEBD;
+      --ink-faint: #798291;
+      --rule: #272C37;
+      --rule-strong: #39404E;
+      --indigo: #93A9DF;
+      --indigo-soft: #1B2438;
+      --alarm: #E8938A;
+      --alarm-bg: #241715;
+      --alarm-rule: #5A322C;
+      --code-bg: #1C212B;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #101319;
+    --card: #171B23;
+    --ink: #E7EAF0;
+    --ink-soft: #A5AEBD;
+    --ink-faint: #798291;
+    --rule: #272C37;
+    --rule-strong: #39404E;
+    --indigo: #93A9DF;
+    --indigo-soft: #1B2438;
+    --alarm: #E8938A;
+    --alarm-bg: #241715;
+    --alarm-rule: #5A322C;
+    --code-bg: #1C212B;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 61rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1.1rem, 4vw, 3rem) 6rem;
+  }
+
+  /* ── шапка ─────────────────────────────────────────────── */
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  h1 {
+    font-family: Spectral, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 4.6vw, 2.9rem);
+    line-height: 1.16;
+    text-wrap: balance;
+    margin: 0.5rem 0 0;
+    letter-spacing: -0.01em;
+  }
+
+  .standfirst {
+    font-family: Spectral, Georgia, serif;
+    font-size: clamp(1.02rem, 2vw, 1.18rem);
+    color: var(--ink-soft);
+    max-width: 40rem;
+    margin-top: 1rem;
+  }
+
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 2.2rem;
+    margin-top: 2rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--rule);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+  }
+
+  .facts b {
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+
+  /* ── запрет ────────────────────────────────────────────── */
+
+  .prohibition {
+    margin: 2.6rem 0 3.4rem;
+    background: var(--alarm-bg);
+    border: 1px solid var(--alarm-rule);
+    border-left-width: 4px;
+    border-radius: 2px;
+    padding: 1.5rem clamp(1.1rem, 3vw, 1.9rem);
+  }
+
+  .prohibition h2 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--alarm);
+    margin: 0 0 0.7rem;
+  }
+
+  .prohibition p {
+    margin: 0;
+    font-size: 1.02rem;
+    color: var(--ink);
+  }
+
+  .prohibition p + p { margin-top: 0.8rem; }
+
+  /* ── разделы с висячими номерами ───────────────────────── */
+
+  section {
+    display: grid;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: 0 1.4rem;
+    padding-top: 2.6rem;
+    margin-top: 2.6rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  section:first-of-type { border-top: none; }
+
+  .num {
+    font-family: Spectral, Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--indigo);
+    line-height: 1.1;
+    padding-top: 0.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .body { min-width: 0; }
+
+  h2:not(.prohibition h2) {
+    font-family: Spectral, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.3rem, 2.6vw, 1.62rem);
+    line-height: 1.24;
+    text-wrap: balance;
+    margin: 0 0 0.9rem;
+  }
+
+  h3 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    margin: 1.9rem 0 0.6rem;
+    color: var(--ink);
+  }
+
+  p { margin: 0 0 1rem; max-width: 40rem; }
+  p:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 600; }
+
+  em {
+    font-family: Spectral, Georgia, serif;
+    font-style: italic;
+  }
+
+  code {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.86em;
+    background: var(--code-bg);
+    padding: 0.1em 0.36em;
+    border-radius: 2px;
+  }
+
+  /* ── таблица полей ─────────────────────────────────────── */
+
+  .scroll {
+    overflow-x: auto;
+    margin: 1.2rem 0 1.4rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: var(--card);
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.88rem;
+    min-width: 30rem;
+  }
+
+  th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--rule-strong);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 0.68rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    color: var(--ink-soft);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td:first-child {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.82rem;
+    color: var(--indigo);
+    white-space: nowrap;
+  }
+
+  /* ── блоки кода ────────────────────────────────────────── */
+
+  pre {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 1.05rem 1.2rem;
+    overflow-x: auto;
+    margin: 1.2rem 0 1.4rem;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.82rem;
+    line-height: 1.62;
+    color: var(--ink-soft);
+  }
+
+  /* ── списки ────────────────────────────────────────────── */
+
+  ul { margin: 0 0 1rem; padding-left: 1.15rem; max-width: 40rem; }
+  li { margin-bottom: 0.62rem; padding-left: 0.2rem; }
+  li::marker { color: var(--ink-faint); }
+  li:last-child { margin-bottom: 0; }
+
+  ol.steps {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    max-width: 40rem;
+  }
+
+  ol.steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.85rem;
+  }
+
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.06em;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: var(--indigo);
+    background: var(--indigo-soft);
+    width: 1.4rem;
+    height: 1.4rem;
+    display: grid;
+    place-items: center;
+    border-radius: 2px;
+  }
+
+  /* ── врезка «почему» ───────────────────────────────────── */
+
+  .aside {
+    border-left: 2px solid var(--rule-strong);
+    padding: 0.15rem 0 0.15rem 1.1rem;
+    margin: 1.4rem 0;
+    color: var(--ink-soft);
+    font-family: Spectral, Georgia, serif;
+    font-size: 1rem;
+    max-width: 38rem;
+  }
+
+  .aside p { margin-bottom: 0.7rem; }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--rule);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    line-height: 1.75;
+  }
+
+  @media (max-width: 44rem) {
+    section {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+    .num {
+      font-size: 1.05rem;
+      padding-top: 0;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="sheet">
+
+  <header>
+    <div class="eyebrow">Задание агенту · Mac mini</div>
+    <h1>Выгрузка структуры Гражданского кодекса</h1>
+    <p class="standfirst">
+      Нужны номера статей, их названия и разбивка по главам и разделам — частей
+      первой и второй. Тексты норм не нужны.
+    </p>
+    <div class="facts">
+      <span><b>репозиторий</b> verdict-causa-workspace</span>
+      <span><b>ветка</b> data/code-structure-export</span>
+      <span><b>основывать на</b> main</span>
+      <span><b>источник</b> КонсультантПлюс, локально</span>
+    </div>
+  </header>
+
+  <div class="prohibition">
+    <h2>Запрет, который важнее задания</h2>
+    <p>
+      <strong>Не использовать для работы ключ API какой-либо LLM</strong> — ни
+      свой, ни системный, ни из окружения, ни из <code>.env</code>, ни из связки
+      ключей. Работать только на ресурсах подписки.
+    </p>
+    <p>
+      Нельзя брать ключи или конфигурацию из этого проекта и из соседних проектов
+      на машине. Нельзя запускать ничего, что тарифицируется как платный API.
+      Если задачу без такого ключа выполнить нельзя — остановись и напиши
+      человеку.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Зачем это нужно</h2>
+      <p>
+        Пакет объявляет, какие статьи ГК РФ разбирает каждый институт, —
+        диапазонами номеров. До сих пор пробелы находились только по судебной
+        практике: если суды на статью не ссылались, её отсутствие в модели никто
+        не замечал.
+      </p>
+      <p>
+        Обход самого кодекса это измерение переворачивает: он не зависит от того,
+        какие дела мы отобрали. Черновой обход по номерам уже нашёл три статьи,
+        которые практика не подсвечивала ни разу, — <code>306</code>,
+        <code>427</code> и <code>444</code>.
+      </p>
+      <div class="aside">
+        <p>
+          Но черновой обход знает только номера, которые назвал человек по
+          памяти. Он не видит статей с точкой, которых никто не назвал: между
+          449 и 450 может лежать 449.1, и её отсутствие незаметно.
+        </p>
+        <p>Поэтому нужен полный список статей из первоисточника.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Что выгрузить</h2>
+      <p>
+        Структуру частей <strong>первой и второй</strong> ГК РФ. Файл
+        <code>data/code/gk_articles.jsonl</code>, UTF-8, по одному объекту JSON
+        на строку — одна строка на статью.
+      </p>
+
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr><th>Поле</th><th>Что в нём</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>number</td><td>номер статьи строкой: <code>"7"</code>, <code>"16.1"</code>, <code>"123.28"</code></td></tr>
+            <tr><td>title_ru</td><td>название статьи дословно</td></tr>
+            <tr><td>part</td><td><code>1</code> или <code>2</code></td></tr>
+            <tr><td>section_ru</td><td>раздел, к которому статья относится</td></tr>
+            <tr><td>chapter_number</td><td>номер главы строкой: <code>"9"</code>, <code>"9.1"</code>, <code>"17.1"</code></td></tr>
+            <tr><td>chapter_title_ru</td><td>название главы дословно</td></tr>
+            <tr><td>paragraph_ru</td><td>параграф внутри главы, если он есть; иначе пустая строка</td></tr>
+            <tr><td>in_force</td><td><code>false</code>, если статья утратила силу</td></tr>
+            <tr><td>source_ref</td><td>устойчивая ссылка на запись в базе</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Пример строки</h3>
+      <pre><code>{
+  "number": "287.5",
+  "title_ru": "Общее имущество собственников помещений, машино-мест в здании или сооружении",
+  "part": 1,
+  "section_ru": "Раздел II. Право собственности и другие вещные права",
+  "chapter_number": "17.1",
+  "chapter_title_ru": "Право собственности и другие вещные права на здания, сооружения, объекты незавершенного строительства, помещения и машино-места",
+  "paragraph_ru": "",
+  "in_force": true,
+  "source_ref": "consultant:GK1:287.5"
+}</code></pre>
+
+      <div class="aside">
+        <p>
+          <strong>Утратившие силу статьи включать обязательно</strong> с
+          <code>in_force: false</code>. Иначе в нумерации появится дыра, и обход
+          примет её за непокрытое место.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Опись</h2>
+      <p>
+        Рядом — <code>data/code/inventory.md</code>, и в ней ответы на четыре
+        вопроса:
+      </p>
+      <ol class="steps">
+        <li><strong>Откуда взято.</strong> Какая база, какая редакция, на какую дату.</li>
+        <li><strong>Сколько статей</strong> в каждой части, сколько из них утратили силу, сколько с точкой в номере.</li>
+        <li>
+          <strong>Как проверено.</strong> Главы обязаны покрывать часть без
+          разрывов и без наложений: последняя статья главы и первая статья
+          следующей должны идти подряд. Напиши, чем ты это проверил и сошлось ли.
+        </li>
+        <li>
+          <strong>Чего в выгрузке нет.</strong> Например: части третья и
+          четвёртая не выгружались — пакет их не моделирует.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Чего делать не нужно</h2>
+      <ul>
+        <li>
+          <strong>Не выгружай тексты статей.</strong> Нужны номера, названия и
+          структура. Тексты — это объём, который здесь не нужен, и лицензионный
+          вопрос, который не нужен тем более.
+        </li>
+        <li>
+          <strong>Не выгружай подзаконные акты и федеральные законы.</strong>
+          Отдельная задача, и критерий отбора для неё ещё не выработан.
+        </li>
+        <li>
+          <strong>Не придумывай статьи, которых не нашёл.</strong> Пропуск,
+          названный пропуском, полезнее выдуманной полноты. Если раздел не
+          открылся — так и напиши в описи.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">5</div>
+    <div class="body">
+      <h2>Как сдать</h2>
+      <p>
+        Ветка <code>data/code-structure-export</code>, коммит с двумя файлами,
+        push в <code>verdict-causa-workspace</code>.
+      </p>
+      <div class="aside">
+        <p>
+          Ветку основывай <strong>на текущем <code>main</code></strong>. Прошлая
+          выгрузка практики пришла на ветке от старого состояния, и слияние
+          целиком удалило бы всё, что сделано после него.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">6</div>
+    <div class="body">
+      <h2>Как проверить себя до сдачи</h2>
+      <pre><code>python - &lt;&lt;'PY'
+import json, collections
+rows = [json.loads(l) for l in open("data/code/gk_articles.jsonl", encoding="utf-8") if l.strip()]
+print("статей:", len(rows))
+print("по частям:", collections.Counter(r["part"] for r in rows))
+print("утратили силу:", sum(not r["in_force"] for r in rows))
+print("с точкой в номере:", sum("." in r["number"] for r in rows))
+print("уникальных номеров:", len({(r["part"], r["number"]) for r in rows}))
+chapters = {}
+for r in rows:
+    chapters.setdefault((r["part"], r["chapter_number"]), []).append(r["number"])
+print("глав:", len(chapters))
+PY</code></pre>
+      <p>
+        Сойтись должно так: уникальных номеров столько же, сколько строк; частей
+        две; глав в части первой около тридцати, в части второй около тридцати
+        одной.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Verdict&nbsp;Causa · задание сформировано 25 августа 2026 года<br>
+    Текстовая версия: <code>docs/code-structure-export-brief.md</code>
+  </footer>
+
+</div>

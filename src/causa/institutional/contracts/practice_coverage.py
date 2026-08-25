@@ -199,10 +199,22 @@ def uncovered_domain_ru(article: str) -> str:
     return GAP_REASON_UNKNOWN_RU
 
 
-def article_sort_key(article: str) -> tuple[int, int]:
-    """Ключ порядка статей: 157 < 157.1 < 158, 308 < 308.3 < 309."""
-    major, _, minor = normalize_article(article).partition(".")
-    return int(major), int(minor) if minor else 0
+def article_sort_key(article: str) -> tuple[int, int, int]:
+    """Ключ порядка статей: 157 < 157.1 < 158, 123.20 < 123.20-4 < 123.21.
+
+    Уровней три, а не два. Третий — «123.20-4» — открылся на выгрузке структуры
+    кодекса: в главе 4 таких статей двенадцать, и до выгрузки пакет отвергал их
+    номера как недопустимые. Практика туда не заходила, поэтому дефект держался
+    незамеченным.
+
+    Ключ остаётся кортежем целых, поэтому сравнение по-прежнему лексикографическое
+    и по-прежнему не превращает номер в число: «123.7» и «123.16» сравниваются
+    как 7 и 16, а не как 0.7 и 0.16.
+    """
+    text = normalize_article(article)
+    head, _, sub = text.partition("-")
+    major, _, minor = head.partition(".")
+    return int(major), int(minor) if minor else 0, int(sub) if sub else 0
 
 
 def institutes_for_article(article: str) -> list[str]:
