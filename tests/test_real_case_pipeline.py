@@ -8,6 +8,7 @@ from causa.institutional.contracts.real_case_pipeline import (
     run_real_case_pipeline_suite,
 )
 from causa.institutional.contracts.real_case_pipeline_expectations import (
+    LAYER_CONFIRMATION_ONLY_RU,
     LAYER_SILENCE_REASONS_RU,
     PIPELINE_REJECTION_REASONS_RU,
     UNREACHABLE_INSTITUTES_RU,
@@ -106,9 +107,21 @@ def test_at_least_one_case_reaches_the_final_conclusions() -> None:
 
     assert report.reaching_the_layer >= 1
     reaching = [entry for entry in report.results if entry.layer_reached]
+
+    # Изменение слоя бывает двух родов. Порочащее требует юриста; подтверждающее
+    # — например, действительное решение собрания, которое связывает условие
+    # договора, — не требует, и такие дела названы поимённо. Требовать флаг от
+    # каждого означало бы считать пороком всякое влияние института на слой.
     for entry in reaching:
         assert entry.layer_changes
-        assert entry.requires_human_resolution is True
+        if entry.case_id in LAYER_CONFIRMATION_ONLY_RU:
+            assert entry.requires_human_resolution is False, entry.case_number
+        else:
+            assert entry.requires_human_resolution is True, entry.case_number
+
+    assert any(entry.requires_human_resolution for entry in reaching)
+    for case_id in LAYER_CONFIRMATION_ONLY_RU:
+        assert any(e.case_id == case_id and e.layer_reached for e in report.results), case_id
 
 
 def test_the_set_of_layer_inputs_is_pinned() -> None:
@@ -134,7 +147,7 @@ def test_institutes_that_cannot_reach_the_layer_are_named() -> None:
     # Считается по институтам переведённых дел, а не по всем раннерам: раннер
     # есть у каждого смоделированного института, и перечень всех недоходимых
     # описывал бы устройство слоя, а не набор дел.
-    assert unreachable == ["freedom"]
+    assert unreachable == ["freedom", "performance_remedies"]
     for name in unreachable:
         assert name in UNREACHABLE_INSTITUTES_RU, name
         assert len(UNREACHABLE_INSTITUTES_RU[name]) > 40
