@@ -11,3 +11,7 @@ build/
 *.egg-info/
 # Собранная конфигурация стенда: внутри хэш пароля и путь машины.
 deploy/local/
+
+# Снимок стенда одним файлом: 5,5 МБ, собирается из web/data/desktop.json
+# командой python -m causa.ui.snapshot. В репозитории не хранится.
+examples/ui_snapshot.html
