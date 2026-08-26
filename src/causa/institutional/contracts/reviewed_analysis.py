@@ -605,6 +605,16 @@ from causa.institutional.contracts.special_accounts import (
     evaluate_special_accounts_constraints,
     map_reviewed_special_accounts_evidence,
 )
+from causa.institutional.contracts.escrow_deposit import (
+    ESCROW_DEPOSIT_EVIDENCE_SCHEMA_VERSION,
+    EscrowDepositConstraintSet,
+    EscrowDepositEvaluation,
+    EscrowDepositEvidenceMappingResult,
+    ReviewedEscrowDepositEvidence,
+    build_escrow_deposit_constraint_set,
+    evaluate_escrow_deposit_constraints,
+    map_reviewed_escrow_deposit_evidence,
+)
 from causa.institutional.contracts.terms import (
     TERMS_EVIDENCE_SCHEMA_VERSION,
     ReviewedTermsEvidence,
@@ -1080,6 +1090,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     attribution_delay_evidence: ReviewedAttributionDelayEvidence
     messages_evidence: ReviewedMessagesEvidence
     special_accounts_evidence: ReviewedSpecialAccountsEvidence
+    escrow_deposit_evidence: ReviewedEscrowDepositEvidence
     meeting_decisions_evidence: ReviewedMeetingDecisionsEvidence
     transactions_evidence: ReviewedTransactionsEvidence
     civil_principles_evidence: ReviewedCivilPrinciplesEvidence
@@ -1329,6 +1340,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     special_accounts_evidence_mapping: SpecialAccountsEvidenceMappingResult
     special_accounts_constraint_set: SpecialAccountsConstraintSet
     special_accounts_evaluation: SpecialAccountsEvaluation
+    escrow_deposit_evidence_mapping: EscrowDepositEvidenceMappingResult
+    escrow_deposit_constraint_set: EscrowDepositConstraintSet
+    escrow_deposit_evaluation: EscrowDepositEvaluation
     meeting_decisions_evidence_mapping: MeetingDecisionsEvidenceMappingResult
     meeting_decisions_constraint_set: MeetingDecisionsConstraintSet
     meeting_decisions_evaluation: MeetingDecisionsEvaluation
@@ -2162,6 +2176,21 @@ class ReviewedContractAnalysisResult(BaseModel):
             raise ValueError(
                 "Special-accounts evaluation does not replay from reviewed evidence."
             )
+        expected_escrow_deposit_set = build_escrow_deposit_constraint_set(
+            self.escrow_deposit_evidence_mapping
+        )
+        if self.escrow_deposit_constraint_set != expected_escrow_deposit_set:
+            raise ValueError(
+                "Escrow-deposit constraint set does not replay from reviewed evidence."
+            )
+        expected_escrow_deposit_evaluation = evaluate_escrow_deposit_constraints(
+            expected_escrow_deposit_set,
+            self.escrow_deposit_evidence_mapping.facts,
+        )
+        if self.escrow_deposit_evaluation != expected_escrow_deposit_evaluation:
+            raise ValueError(
+                "Escrow-deposit evaluation does not replay from reviewed evidence."
+            )
         expected_attribution_delay_set = build_attribution_delay_constraint_set(
             self.attribution_delay_evidence_mapping
         )
@@ -2861,6 +2890,10 @@ def _validate_request_integrity(
         raise ValueError(
             "Special-accounts evidence case_id does not match the analysis request."
         )
+    if request.escrow_deposit_evidence.case_id != request.case_id:
+        raise ValueError(
+            "Escrow-deposit evidence case_id does not match the analysis request."
+        )
     if request.attribution_delay_evidence.case_id != request.case_id:
         raise ValueError(
             "Attribution and delay evidence case_id does not match the analysis request."
@@ -3094,6 +3127,11 @@ def _validate_request_integrity(
     ):
         raise ValueError("Special-accounts evidence uses an unsupported schema version.")
     if (
+        request.escrow_deposit_evidence.schema_version
+        != ESCROW_DEPOSIT_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Escrow-deposit evidence uses an unsupported schema version.")
+    if (
         request.attribution_delay_evidence.schema_version
         != ATTRIBUTION_DELAY_EVIDENCE_SCHEMA_VERSION
     ):
@@ -3208,6 +3246,7 @@ def _validate_request_integrity(
         *request.attribution_delay_evidence.legal_source_refs,
         *request.messages_evidence.legal_source_refs,
         *request.special_accounts_evidence.legal_source_refs,
+        *request.escrow_deposit_evidence.legal_source_refs,
         *request.meeting_decisions_evidence.legal_source_refs,
         *request.transactions_evidence.legal_source_refs,
         *request.civil_principles_evidence.legal_source_refs,
@@ -3361,6 +3400,8 @@ def _validate_request_integrity(
     for assertion in request.messages_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.special_accounts_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.escrow_deposit_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.meeting_decisions_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -4116,6 +4157,17 @@ def _validate_request_integrity(
             "Special-accounts legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_special_accounts_legal_sources))
         )
+    invalid_escrow_deposit_legal_sources = [
+        source_id
+        for source_id in request.escrow_deposit_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_escrow_deposit_legal_sources:
+        raise ValueError(
+            "Escrow-deposit legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_escrow_deposit_legal_sources))
+        )
     invalid_attribution_delay_legal_sources = [
         source_id
         for source_id in request.attribution_delay_evidence.legal_source_refs
@@ -4789,6 +4841,11 @@ def run_reviewed_contract_analysis(
         review_status=request.special_accounts_evidence.review_status,
         reviewer_id=request.special_accounts_evidence.reviewer_id,
     )
+    escrow_deposit_reviewer_id = _require_reviewed(
+        artifact_name="Escrow-deposit evidence",
+        review_status=request.escrow_deposit_evidence.review_status,
+        reviewer_id=request.escrow_deposit_evidence.reviewer_id,
+    )
     attribution_delay_reviewer_id = _require_reviewed(
         artifact_name="Attribution and delay evidence",
         review_status=request.attribution_delay_evidence.review_status,
@@ -5436,6 +5493,16 @@ def run_reviewed_contract_analysis(
         special_accounts_constraint_set,
         special_accounts_evidence_mapping.facts,
     )
+    escrow_deposit_evidence_mapping = map_reviewed_escrow_deposit_evidence(
+        request.escrow_deposit_evidence
+    )
+    escrow_deposit_constraint_set = build_escrow_deposit_constraint_set(
+        escrow_deposit_evidence_mapping
+    )
+    escrow_deposit_evaluation = evaluate_escrow_deposit_constraints(
+        escrow_deposit_constraint_set,
+        escrow_deposit_evidence_mapping.facts,
+    )
     attribution_delay_evidence_mapping = map_reviewed_attribution_delay_evidence(
         request.attribution_delay_evidence
     )
@@ -5968,6 +6035,7 @@ def run_reviewed_contract_analysis(
         or attribution_delay_evaluation.requires_human_attribution_assessment
         or messages_evaluation.requires_human_message_assessment
         or special_accounts_evaluation.requires_human_special_accounts_assessment
+        or escrow_deposit_evaluation.requires_human_escrow_deposit_assessment
         or meeting_decisions_evaluation.requires_human_meeting_decision_assessment
         or transactions_evaluation.requires_human_transactions_assessment
         or civil_principles_evaluation.requires_human_civil_principles_assessment
@@ -6066,6 +6134,7 @@ def run_reviewed_contract_analysis(
                 attribution_delay_reviewer_id,
                 messages_reviewer_id,
                 special_accounts_reviewer_id,
+                escrow_deposit_reviewer_id,
                 meeting_decisions_reviewer_id,
                 transactions_reviewer_id,
                 civil_principles_reviewer_id,
@@ -6293,6 +6362,9 @@ def run_reviewed_contract_analysis(
         special_accounts_evidence_mapping=special_accounts_evidence_mapping,
         special_accounts_constraint_set=special_accounts_constraint_set,
         special_accounts_evaluation=special_accounts_evaluation,
+        escrow_deposit_evidence_mapping=escrow_deposit_evidence_mapping,
+        escrow_deposit_constraint_set=escrow_deposit_constraint_set,
+        escrow_deposit_evaluation=escrow_deposit_evaluation,
         meeting_decisions_evidence_mapping=meeting_decisions_evidence_mapping,
         meeting_decisions_constraint_set=meeting_decisions_constraint_set,
         meeting_decisions_evaluation=meeting_decisions_evaluation,

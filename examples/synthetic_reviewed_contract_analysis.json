@@ -3116,6 +3116,37 @@
       }
     },
     {
+      "id": "synthetic-ru-gk9261-9268-escrow-deposit-v1",
+      "title": "Синтетическая проверенная модель условного депонирования (эскроу) по статьям 926.1–926.8 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: по договору эскроу депонент передаёт эскроу-агенту имущество для передачи бенефициару при наступлении предусмотренных договором оснований; сторонами договора выступают депонент, бенефициар и эскроу-агент; договор подлежит нотариальному удостоверению, кроме депонирования исключительно безналичных денег и (или) бездокументарных ценных бумаг; срок депонирования не может превышать пять лет, а без указания срока или при большем сроке договор считается заключённым на пять лет; эскроу-агент вправе на вознаграждение, обязан обособить депонированное имущество и не вправе им пользоваться и распоряжаться, если иное не предусмотрено договором или не следует из существа обязательства; при депонировании вещей право собственности на них сохраняется за депонентом до наступления оснований передачи, а после этого переходит к бенефициару, и агент отвечает за их утрату, недостачу или повреждение, если не докажет непреодолимую силу, неизвестное ему свойство вещей либо умысел или грубую неосторожность депонента; при депонировании безналичных денег эскроу-агентом, не являющимся банком, деньги депонируются на его номинальном счёте; обращение взыскания, арест и обеспечительные меры по долгам эскроу-агента и депонента на депонированное имущество не допускаются, а по долгам бенефициара взыскание может быть обращено на его право требования к агенту (статьи 926.1–926.8 ГК РФ).",
+      "valid_from": "2018-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "escrow_deposit_articles_926_1_926_8",
+        "legal_reference": "ГК РФ, статьи 926.1-926.8",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-escrow-deposit-evidence",
+      "title": "Синтетическая проверенная запись фактов об условном депонировании по делу",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: расчёты по договору поставки велись обычным платёжным поручением; договор условного депонирования (эскроу) стороны не заключали. Институт в деле не заявлен.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "escrow_deposit_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
       "title": "Синтетическая проверенная модель последствий и порядка принятия решения собрания по статьям 181.1–181.2 ГК РФ",
       "source_type": "statute",
@@ -10876,6 +10907,282 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-special-accounts-reviewer"
     },
+    "escrow_deposit_evidence": {
+      "id": "reviewed-escrow-deposit-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.escrow-deposit-evidence.v0",
+      "assertions": [
+        {
+          "id": "escrow-deposit-evidence-escrow_deposit_asserted",
+          "predicate": "escrow_deposit_asserted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-deposited_things",
+          "predicate": "deposited_things",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-deposited_cashless_money",
+          "predicate": "deposited_cashless_money",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-deposited_uncertificated_securities",
+          "predicate": "deposited_uncertificated_securities",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-deposit_term_missing_or_excessive",
+          "predicate": "deposit_term_missing_or_excessive",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-notarization_performed",
+          "predicate": "notarization_performed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-escrow_deposit_grounds_defined",
+          "predicate": "escrow_deposit_grounds_defined",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-grounds_for_transfer_occurred",
+          "predicate": "grounds_for_transfer_occurred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-remuneration_waived_by_contract",
+          "predicate": "remuneration_waived_by_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-remuneration_liability_several_by_contract",
+          "predicate": "remuneration_liability_several_by_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-agent_setoff_permitted_by_contract",
+          "predicate": "agent_setoff_permitted_by_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-agent_withheld_or_setoff_deposited_property",
+          "predicate": "agent_withheld_or_setoff_deposited_property",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-document_check_required_by_contract",
+          "predicate": "document_check_required_by_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-documents_facially_doubtful",
+          "predicate": "documents_facially_doubtful",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-transfer_despite_doubt_permitted_by_contract",
+          "predicate": "transfer_despite_doubt_permitted_by_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-agent_transferred_property_despite_doubt",
+          "predicate": "agent_transferred_property_despite_doubt",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-substantive_check_agreed_by_contract",
+          "predicate": "substantive_check_agreed_by_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-agent_transferred_without_verifying_grounds",
+          "predicate": "agent_transferred_without_verifying_grounds",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-deposited_property_commingled_with_agents_own",
+          "predicate": "deposited_property_commingled_with_agents_own",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-use_or_disposal_permitted_by_contract_or_nature",
+          "predicate": "use_or_disposal_permitted_by_contract_or_nature",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-agent_used_or_disposed_deposited_property",
+          "predicate": "agent_used_or_disposed_deposited_property",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-thing_lost_damaged_or_short",
+          "predicate": "thing_lost_damaged_or_short",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-agent_proved_force_majeure",
+          "predicate": "agent_proved_force_majeure",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-agent_proved_inherent_defect_unknown_to_agent",
+          "predicate": "agent_proved_inherent_defect_unknown_to_agent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-agent_proved_depositor_fault",
+          "predicate": "agent_proved_depositor_fault",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-securities_exercise_permitted_by_contract",
+          "predicate": "securities_exercise_permitted_by_contract",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-agent_disposed_or_exercised_rights_on_securities",
+          "predicate": "agent_disposed_or_exercised_rights_on_securities",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-escrow_agent_is_bank",
+          "predicate": "escrow_agent_is_bank",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-seizure_or_debit_for_agent_or_depositor_debt",
+          "predicate": "seizure_or_debit_for_agent_or_depositor_debt",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-seizure_for_beneficiary_debt",
+          "predicate": "seizure_for_beneficiary_debt",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-agent_personal_termination_ground",
+          "predicate": "agent_personal_termination_ground",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-deposit_term_expired",
+          "predicate": "deposit_term_expired",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "id": "escrow-deposit-evidence-contract_transferred_under_article_392_3",
+          "predicate": "contract_transferred_under_article_392_3",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk9261-9268-escrow-deposit-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-escrow-deposit-reviewer"
+    },
     "meeting_decisions_evidence": {
       "id": "reviewed-meeting-decisions-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -17105,6 +17412,7 @@
       "synthetic-energy-supply-reviewer",
       "synthetic-enterprise-lease-reviewer",
       "synthetic-enterprise-sale-reviewer",
+      "synthetic-escrow-deposit-reviewer",
       "synthetic-factoring-reviewer",
       "synthetic-form-reviewer",
       "synthetic-formation-reviewer",
@@ -17196,6 +17504,7 @@
       "synthetic-case-supply-1-energy-supply-evidence",
       "synthetic-case-supply-1-enterprise-lease-evidence",
       "synthetic-case-supply-1-enterprise-sale-evidence",
+      "synthetic-case-supply-1-escrow-deposit-evidence",
       "synthetic-case-supply-1-factoring-evidence",
       "synthetic-case-supply-1-form-evidence",
       "synthetic-case-supply-1-formation-evidence",
@@ -17441,6 +17750,7 @@
       "synthetic-ru-gk912-918-warehouse-documents-and-goods-release-v1",
       "synthetic-ru-gk919-923-special-storage-pawnshop-bank-and-lockers-v1",
       "synthetic-ru-gk924-926-special-storage-cloakroom-hotel-and-sequestration-v1",
+      "synthetic-ru-gk9261-9268-escrow-deposit-v1",
       "synthetic-ru-gk927-938-insurance-forms-interests-and-parties-v1",
       "synthetic-ru-gk939-943-insurance-contract-form-and-terms-v1",
       "synthetic-ru-gk944-959-insurance-settlement-disclosure-sum-and-premium-v1",
@@ -26554,6 +26864,353 @@
         "Модель отвечает об одном специальном счёте: контракт данных даёт один блок доказательств на институт."
       ]
     },
+    "escrow_deposit_evidence_mapping": {
+      "evidence_id": "reviewed-escrow-deposit-evidence-supply-1-v0",
+      "schema_version": "contracts.escrow-deposit-evidence.v0",
+      "mapping_version": "contracts-reviewed-escrow-deposit-to-facts-v0",
+      "facts": {
+        "escrow_deposit_asserted": false,
+        "deposited_things": false,
+        "deposited_cashless_money": false,
+        "deposited_uncertificated_securities": false,
+        "deposit_term_missing_or_excessive": false,
+        "notarization_performed": false,
+        "escrow_deposit_grounds_defined": false,
+        "grounds_for_transfer_occurred": false,
+        "remuneration_waived_by_contract": false,
+        "remuneration_liability_several_by_contract": false,
+        "agent_setoff_permitted_by_contract": false,
+        "agent_withheld_or_setoff_deposited_property": false,
+        "document_check_required_by_contract": false,
+        "documents_facially_doubtful": false,
+        "transfer_despite_doubt_permitted_by_contract": false,
+        "agent_transferred_property_despite_doubt": false,
+        "substantive_check_agreed_by_contract": false,
+        "agent_transferred_without_verifying_grounds": false,
+        "deposited_property_commingled_with_agents_own": false,
+        "use_or_disposal_permitted_by_contract_or_nature": false,
+        "agent_used_or_disposed_deposited_property": false,
+        "thing_lost_damaged_or_short": false,
+        "agent_proved_force_majeure": false,
+        "agent_proved_inherent_defect_unknown_to_agent": false,
+        "agent_proved_depositor_fault": false,
+        "securities_exercise_permitted_by_contract": false,
+        "agent_disposed_or_exercised_rights_on_securities": false,
+        "escrow_agent_is_bank": false,
+        "seizure_or_debit_for_agent_or_depositor_debt": false,
+        "seizure_for_beneficiary_debt": false,
+        "agent_personal_termination_ground": false,
+        "deposit_term_expired": false,
+        "contract_transferred_under_article_392_3": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk9261-9268-escrow-deposit-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "agent_disposed_or_exercised_rights_on_securities",
+          "assertion_id": "escrow-deposit-evidence-agent_disposed_or_exercised_rights_on_securities",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "agent_personal_termination_ground",
+          "assertion_id": "escrow-deposit-evidence-agent_personal_termination_ground",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "agent_proved_depositor_fault",
+          "assertion_id": "escrow-deposit-evidence-agent_proved_depositor_fault",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "agent_proved_force_majeure",
+          "assertion_id": "escrow-deposit-evidence-agent_proved_force_majeure",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "agent_proved_inherent_defect_unknown_to_agent",
+          "assertion_id": "escrow-deposit-evidence-agent_proved_inherent_defect_unknown_to_agent",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "agent_setoff_permitted_by_contract",
+          "assertion_id": "escrow-deposit-evidence-agent_setoff_permitted_by_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "agent_transferred_property_despite_doubt",
+          "assertion_id": "escrow-deposit-evidence-agent_transferred_property_despite_doubt",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "agent_transferred_without_verifying_grounds",
+          "assertion_id": "escrow-deposit-evidence-agent_transferred_without_verifying_grounds",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "agent_used_or_disposed_deposited_property",
+          "assertion_id": "escrow-deposit-evidence-agent_used_or_disposed_deposited_property",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "agent_withheld_or_setoff_deposited_property",
+          "assertion_id": "escrow-deposit-evidence-agent_withheld_or_setoff_deposited_property",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_transferred_under_article_392_3",
+          "assertion_id": "escrow-deposit-evidence-contract_transferred_under_article_392_3",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposit_term_expired",
+          "assertion_id": "escrow-deposit-evidence-deposit_term_expired",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposit_term_missing_or_excessive",
+          "assertion_id": "escrow-deposit-evidence-deposit_term_missing_or_excessive",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposited_cashless_money",
+          "assertion_id": "escrow-deposit-evidence-deposited_cashless_money",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposited_property_commingled_with_agents_own",
+          "assertion_id": "escrow-deposit-evidence-deposited_property_commingled_with_agents_own",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposited_things",
+          "assertion_id": "escrow-deposit-evidence-deposited_things",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "deposited_uncertificated_securities",
+          "assertion_id": "escrow-deposit-evidence-deposited_uncertificated_securities",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "document_check_required_by_contract",
+          "assertion_id": "escrow-deposit-evidence-document_check_required_by_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "documents_facially_doubtful",
+          "assertion_id": "escrow-deposit-evidence-documents_facially_doubtful",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "escrow_agent_is_bank",
+          "assertion_id": "escrow-deposit-evidence-escrow_agent_is_bank",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "escrow_deposit_asserted",
+          "assertion_id": "escrow-deposit-evidence-escrow_deposit_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "escrow_deposit_grounds_defined",
+          "assertion_id": "escrow-deposit-evidence-escrow_deposit_grounds_defined",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "grounds_for_transfer_occurred",
+          "assertion_id": "escrow-deposit-evidence-grounds_for_transfer_occurred",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "notarization_performed",
+          "assertion_id": "escrow-deposit-evidence-notarization_performed",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "remuneration_liability_several_by_contract",
+          "assertion_id": "escrow-deposit-evidence-remuneration_liability_several_by_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "remuneration_waived_by_contract",
+          "assertion_id": "escrow-deposit-evidence-remuneration_waived_by_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "securities_exercise_permitted_by_contract",
+          "assertion_id": "escrow-deposit-evidence-securities_exercise_permitted_by_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "seizure_for_beneficiary_debt",
+          "assertion_id": "escrow-deposit-evidence-seizure_for_beneficiary_debt",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "seizure_or_debit_for_agent_or_depositor_debt",
+          "assertion_id": "escrow-deposit-evidence-seizure_or_debit_for_agent_or_depositor_debt",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "substantive_check_agreed_by_contract",
+          "assertion_id": "escrow-deposit-evidence-substantive_check_agreed_by_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "thing_lost_damaged_or_short",
+          "assertion_id": "escrow-deposit-evidence-thing_lost_damaged_or_short",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "transfer_despite_doubt_permitted_by_contract",
+          "assertion_id": "escrow-deposit-evidence-transfer_despite_doubt_permitted_by_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "use_or_disposal_permitted_by_contract_or_nature",
+          "assertion_id": "escrow-deposit-evidence-use_or_disposal_permitted_by_contract_or_nature",
+          "source_refs": [
+            "synthetic-case-supply-1-escrow-deposit-evidence"
+          ]
+        }
+      ]
+    },
+    "escrow_deposit_constraint_set": {
+      "id": "escrow-deposit-constraint-set:reviewed-escrow-deposit-evidence-supply-1-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk9261-9268-escrow-deposit-v1"
+      ],
+      "expressions": [
+        "escrow_deposit_qualified == escrow_deposit_asserted AND (deposited_things OR deposited_cashless_money OR deposited_uncertificated_securities)",
+        "escrow_deposit_kind_undetermined == escrow_deposit_asserted AND NOT deposited_things AND NOT deposited_cashless_money AND NOT deposited_uncertificated_securities",
+        "deposit_term_deemed_five_years == escrow_deposit_qualified AND deposit_term_missing_or_excessive",
+        "notarization_required == escrow_deposit_qualified AND deposited_things",
+        "notarization_missing_makes_void == notarization_required AND NOT notarization_performed",
+        "remuneration_owed == escrow_deposit_qualified AND NOT remuneration_waived_by_contract",
+        "remuneration_liability_joint_and_several == escrow_deposit_qualified AND NOT remuneration_liability_several_by_contract",
+        "agent_setoff_breached == escrow_deposit_qualified AND NOT agent_setoff_permitted_by_contract AND agent_withheld_or_setoff_deposited_property",
+        "document_check_breach == escrow_deposit_qualified AND document_check_required_by_contract AND documents_facially_doubtful AND agent_transferred_property_despite_doubt AND NOT transfer_despite_doubt_permitted_by_contract",
+        "substantive_check_breach == escrow_deposit_qualified AND substantive_check_agreed_by_contract AND agent_transferred_without_verifying_grounds",
+        "segregation_breach == escrow_deposit_qualified AND deposited_property_commingled_with_agents_own",
+        "use_or_disposal_breach == escrow_deposit_qualified AND NOT use_or_disposal_permitted_by_contract_or_nature AND agent_used_or_disposed_deposited_property",
+        "depositor_retains_title == escrow_deposit_qualified AND deposited_things AND NOT grounds_for_transfer_occurred",
+        "title_passed_to_beneficiary == escrow_deposit_qualified AND deposited_things AND grounds_for_transfer_occurred",
+        "agent_liability_for_things_breached == escrow_deposit_qualified AND deposited_things AND thing_lost_damaged_or_short AND NOT agent_proved_force_majeure AND NOT agent_proved_inherent_defect_unknown_to_agent AND NOT agent_proved_depositor_fault",
+        "securities_disposal_breach == escrow_deposit_qualified AND deposited_uncertificated_securities AND NOT securities_exercise_permitted_by_contract AND agent_disposed_or_exercised_rights_on_securities",
+        "cashless_money_requires_nominal_account == escrow_deposit_qualified AND deposited_cashless_money AND NOT escrow_agent_is_bank",
+        "deposited_property_insulated_from_agent_or_depositor_creditors == escrow_deposit_qualified",
+        "insulation_breach == deposited_property_insulated_from_agent_or_depositor_creditors AND seizure_or_debit_for_agent_or_depositor_debt",
+        "beneficiary_creditor_may_reach_claim_right == escrow_deposit_qualified AND seizure_for_beneficiary_debt",
+        "termination_ground_present == escrow_deposit_qualified AND (agent_personal_termination_ground OR deposit_term_expired)",
+        "contract_transferred_to_new_agent == termination_ground_present AND contract_transferred_under_article_392_3",
+        "return_to_depositor_due == termination_ground_present AND NOT contract_transferred_to_new_agent AND NOT grounds_for_transfer_occurred",
+        "transfer_to_beneficiary_due_on_termination == termination_ground_present AND NOT contract_transferred_to_new_agent AND grounds_for_transfer_occurred",
+        "requires_human_escrow_deposit_assessment == escrow_deposit_kind_undetermined OR notarization_missing_makes_void OR agent_setoff_breached OR document_check_breach OR substantive_check_breach OR segregation_breach OR use_or_disposal_breach OR agent_liability_for_things_breached OR securities_disposal_breach OR insulation_breach OR cashless_money_requires_nominal_account OR termination_ground_present"
+      ]
+    },
+    "escrow_deposit_evaluation": {
+      "constraint_set_id": "escrow-deposit-constraint-set:reviewed-escrow-deposit-evidence-supply-1-v0",
+      "satisfiable": true,
+      "escrow_deposit_qualified": false,
+      "escrow_deposit_kind_undetermined": false,
+      "deposit_term_deemed_five_years": false,
+      "notarization_required": false,
+      "notarization_missing_makes_void": false,
+      "remuneration_owed": false,
+      "remuneration_liability_joint_and_several": false,
+      "agent_setoff_breached": false,
+      "document_check_breach": false,
+      "substantive_check_breach": false,
+      "segregation_breach": false,
+      "use_or_disposal_breach": false,
+      "depositor_retains_title": false,
+      "title_passed_to_beneficiary": false,
+      "agent_liability_for_things_breached": false,
+      "securities_disposal_breach": false,
+      "cashless_money_requires_nominal_account": false,
+      "deposited_property_insulated_from_agent_or_depositor_creditors": false,
+      "insulation_breach": false,
+      "beneficiary_creditor_may_reach_claim_right": false,
+      "termination_ground_present": false,
+      "contract_transferred_to_new_agent": false,
+      "return_to_depositor_due": false,
+      "transfer_to_beneficiary_due_on_termination": false,
+      "requires_human_escrow_deposit_assessment": false,
+      "reasons_ru": [
+        "Договор условного депонирования в деле не заявлен."
+      ],
+      "warnings_ru": [
+        "Наступление оснований передачи имущества бенефициару по существу оценивает эскроу-агент по условиям договора, а по спору — суд и эксперт: модель принимает результат этой оценки как установленный факт.",
+        "Размер и точный состав депонированного имущества модель не определяет.",
+        "Иные основания прекращения договора эскроу, предусмотренные кодексом за пределами обстоятельств на стороне агента и истечения срока, модель не перечисляет — это открытый перечень статьи 926.8 ГК РФ.",
+        "Модель отвечает об одном договоре эскроу: контракт данных даёт один блок доказательств на институт."
+      ]
+    },
     "meeting_decisions_evidence_mapping": {
       "evidence_id": "reviewed-meeting-decisions-evidence-supply-1-v0",
       "schema_version": "contracts.meeting-decisions-evidence.v1",
@@ -34331,7 +34988,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.5.0",
+      "institutional_package_version": "contracts-ru-v0@1.6.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

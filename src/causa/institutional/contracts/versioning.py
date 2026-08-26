@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.6.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Adds the institute of conditional deposit (escrow), articles 926.1-926.8: chapter 47.1 in full, claimed by no institute at all rather than left short by one already in place.",
+            "The chapter sits between safekeeping (chapter 47) and insurance (chapter 48) in the Code, and a walk by chapter order stepped over it.",
+            "Broader than the escrow bank account (articles 860.7-860.10): the escrow-agent here need not be a bank, and the deposited property need not be money - it can be things or uncertificated securities. Article 926.6 marks the seam between the two institutes directly: when the escrow-agent is not a bank, deposited cashless money passes through its nominal account (articles 860.1-860.6) rather than through an escrow bank account.",
+        ],
+        notes_ru=[
+            "Добавлен институт условного депонирования (эскроу), статьи 926.1–926.8: глава 47.1 целиком, не заявленная никаким институтом вовсе, а не институтом, который до неё не дошёл.",
+            "Глава стоит в кодексе между хранением (глава 47) и страхованием (глава 48), и обход по порядку глав через неё перешагнул.",
+            "Шире счёта эскроу (статьи 860.7–860.10): эскроу-агентом здесь не обязательно банк, а депонировать можно не только деньги, но и вещи, и бездокументарные ценные бумаги. Статья 926.6 прямо указывает на стык двух институтов: если эскроу-агент не банк, депонируемые безналичные деньги идут через его номинальный счёт (статьи 860.1–860.6), а не через счёт эскроу.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.5.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

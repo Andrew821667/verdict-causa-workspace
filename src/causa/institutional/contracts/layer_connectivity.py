@@ -257,6 +257,7 @@ _SPECIAL_TYPE_INSTITUTES = (
     "energy_supply",
     "enterprise_lease",
     "enterprise_sale",
+    "escrow_deposit",
     "factoring",
     "forwarding",
     "franchise",

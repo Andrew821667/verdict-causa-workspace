@@ -2008,6 +2008,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.5.0",
+        to_version="1.6.0",
+        reasons=[
+            "The analysis request gains a required evidence block for conditional deposit (escrow), articles 926.1-926.8; artifacts produced without it cannot be replayed.",
+            "The gap was not inside a declared institute but outside every one of them: chapter 47.1 sits between safekeeping and insurance, and the Code walk stepped over it in full.",
+        ],
+        reasons_ru=[
+            "Запрос анализа получил обязательный блок доказательств об условном депонировании (эскроу), статьи 926.1–926.8; артефакты, собранные без него, не воспроизводятся.",
+            "Пробел лежал не внутри объявленного института, а за пределами всех институтов сразу: глава 47.1 стоит между хранением и страхованием, и обход кодекса перешагнул её целиком.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_escrow_deposit_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

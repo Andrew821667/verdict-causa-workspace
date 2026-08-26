@@ -13,6 +13,7 @@ INSTITUTE_TITLES_RU: dict[str, str] = {
     "attribution_delay": "Возложение ответственности и просрочка сторон",
     "messages": "Юридически значимые сообщения",
     "special_accounts": "Специальные виды банковских счетов",
+    "escrow_deposit": "Условное депонирование (эскроу)",
     "authority": "Юридическая сила источников",
     "bank_account": "Банковский счёт",
     "bank_deposit": "Банковский вклад",

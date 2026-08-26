@@ -1488,6 +1488,22 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-escrow-deposit",
+            title="Проверка условного депонирования (эскроу)",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.escrow_deposit_evidence_mapping.evidence_id,
+                trace.analysis_result.escrow_deposit_constraint_set.id,
+                *trace.analysis_result.escrow_deposit_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.escrow_deposit_evaluation.reasons_ru,
+                "Договор эскроу заключается депонентом, бенефициаром и эскроу-агентом одновременно и шире счёта эскроу: агентом может быть любое лицо, а депонировать можно вещи и бездокументарные ценные бумаги, а не только деньги (статьи 926.1 и 926.6 ГК РФ).",
+                "Нотариальная форма обязательна, если в состав депонируемого имущества входят вещи, и не требуется только тогда, когда депонируются исключительно безналичные деньги и (или) бездокументарные ценные бумаги (пункт 1 статьи 926.1 ГК РФ).",
+                "Наступление оснований передачи имущества бенефициару по существу и точный состав депонированного имущества оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-attribution-delay",
             title="Проверка возложения ответственности и просрочки сторон",
             status=PipelineStepStatus.PASSED,

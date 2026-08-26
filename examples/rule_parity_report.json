@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1140,
+  "declared_rules": 1165,
   "divergences_total": 0,
-  "executed_rules": 1140,
+  "executed_rules": 1165,
   "institutes": [
     {
       "declared_rules": 5,
@@ -162,6 +162,14 @@
       "institute": "enterprise_sale",
       "matched": 11,
       "module": "enterprise_sale.py"
+    },
+    {
+      "declared_rules": 25,
+      "divergences": [],
+      "executed_rules": 25,
+      "institute": "escrow_deposit",
+      "matched": 25,
+      "module": "escrow_deposit.py"
     },
     {
       "declared_rules": 11,
@@ -724,8 +732,8 @@
       "module": "formal_checks.py"
     }
   ],
-  "institutes_clean": 90,
-  "institutes_total": 90,
-  "matched_rules": 1140,
+  "institutes_clean": 91,
+  "institutes_total": 91,
+  "matched_rules": 1165,
   "version": "reasoning-rule-parity-v0"
 }

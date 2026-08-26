@@ -1,0 +1,1141 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка условного депонирования (эскроу) по статьям 926.1–926.8 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-escrow-deposit-evidence-supply-1-v0",
+    "schema_version": "contracts.escrow-deposit-evidence.v0",
+    "mapping_version": "contracts-reviewed-escrow-deposit-to-facts-v0",
+    "facts": {
+      "escrow_deposit_asserted": false,
+      "deposited_things": false,
+      "deposited_cashless_money": false,
+      "deposited_uncertificated_securities": false,
+      "deposit_term_missing_or_excessive": false,
+      "notarization_performed": false,
+      "escrow_deposit_grounds_defined": false,
+      "grounds_for_transfer_occurred": false,
+      "remuneration_waived_by_contract": false,
+      "remuneration_liability_several_by_contract": false,
+      "agent_setoff_permitted_by_contract": false,
+      "agent_withheld_or_setoff_deposited_property": false,
+      "document_check_required_by_contract": false,
+      "documents_facially_doubtful": false,
+      "transfer_despite_doubt_permitted_by_contract": false,
+      "agent_transferred_property_despite_doubt": false,
+      "substantive_check_agreed_by_contract": false,
+      "agent_transferred_without_verifying_grounds": false,
+      "deposited_property_commingled_with_agents_own": false,
+      "use_or_disposal_permitted_by_contract_or_nature": false,
+      "agent_used_or_disposed_deposited_property": false,
+      "thing_lost_damaged_or_short": false,
+      "agent_proved_force_majeure": false,
+      "agent_proved_inherent_defect_unknown_to_agent": false,
+      "agent_proved_depositor_fault": false,
+      "securities_exercise_permitted_by_contract": false,
+      "agent_disposed_or_exercised_rights_on_securities": false,
+      "escrow_agent_is_bank": false,
+      "seizure_or_debit_for_agent_or_depositor_debt": false,
+      "seizure_for_beneficiary_debt": false,
+      "agent_personal_termination_ground": false,
+      "deposit_term_expired": false,
+      "contract_transferred_under_article_392_3": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk9261-9268-escrow-deposit-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "agent_disposed_or_exercised_rights_on_securities",
+        "assertion_id": "escrow-deposit-evidence-agent_disposed_or_exercised_rights_on_securities",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "agent_personal_termination_ground",
+        "assertion_id": "escrow-deposit-evidence-agent_personal_termination_ground",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "agent_proved_depositor_fault",
+        "assertion_id": "escrow-deposit-evidence-agent_proved_depositor_fault",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "agent_proved_force_majeure",
+        "assertion_id": "escrow-deposit-evidence-agent_proved_force_majeure",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "agent_proved_inherent_defect_unknown_to_agent",
+        "assertion_id": "escrow-deposit-evidence-agent_proved_inherent_defect_unknown_to_agent",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "agent_setoff_permitted_by_contract",
+        "assertion_id": "escrow-deposit-evidence-agent_setoff_permitted_by_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "agent_transferred_property_despite_doubt",
+        "assertion_id": "escrow-deposit-evidence-agent_transferred_property_despite_doubt",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "agent_transferred_without_verifying_grounds",
+        "assertion_id": "escrow-deposit-evidence-agent_transferred_without_verifying_grounds",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "agent_used_or_disposed_deposited_property",
+        "assertion_id": "escrow-deposit-evidence-agent_used_or_disposed_deposited_property",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "agent_withheld_or_setoff_deposited_property",
+        "assertion_id": "escrow-deposit-evidence-agent_withheld_or_setoff_deposited_property",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_transferred_under_article_392_3",
+        "assertion_id": "escrow-deposit-evidence-contract_transferred_under_article_392_3",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "deposit_term_expired",
+        "assertion_id": "escrow-deposit-evidence-deposit_term_expired",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "deposit_term_missing_or_excessive",
+        "assertion_id": "escrow-deposit-evidence-deposit_term_missing_or_excessive",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "deposited_cashless_money",
+        "assertion_id": "escrow-deposit-evidence-deposited_cashless_money",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "deposited_property_commingled_with_agents_own",
+        "assertion_id": "escrow-deposit-evidence-deposited_property_commingled_with_agents_own",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "deposited_things",
+        "assertion_id": "escrow-deposit-evidence-deposited_things",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "deposited_uncertificated_securities",
+        "assertion_id": "escrow-deposit-evidence-deposited_uncertificated_securities",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "document_check_required_by_contract",
+        "assertion_id": "escrow-deposit-evidence-document_check_required_by_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "documents_facially_doubtful",
+        "assertion_id": "escrow-deposit-evidence-documents_facially_doubtful",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "escrow_agent_is_bank",
+        "assertion_id": "escrow-deposit-evidence-escrow_agent_is_bank",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "escrow_deposit_asserted",
+        "assertion_id": "escrow-deposit-evidence-escrow_deposit_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "escrow_deposit_grounds_defined",
+        "assertion_id": "escrow-deposit-evidence-escrow_deposit_grounds_defined",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "grounds_for_transfer_occurred",
+        "assertion_id": "escrow-deposit-evidence-grounds_for_transfer_occurred",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "notarization_performed",
+        "assertion_id": "escrow-deposit-evidence-notarization_performed",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "remuneration_liability_several_by_contract",
+        "assertion_id": "escrow-deposit-evidence-remuneration_liability_several_by_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "remuneration_waived_by_contract",
+        "assertion_id": "escrow-deposit-evidence-remuneration_waived_by_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "securities_exercise_permitted_by_contract",
+        "assertion_id": "escrow-deposit-evidence-securities_exercise_permitted_by_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "seizure_for_beneficiary_debt",
+        "assertion_id": "escrow-deposit-evidence-seizure_for_beneficiary_debt",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "seizure_or_debit_for_agent_or_depositor_debt",
+        "assertion_id": "escrow-deposit-evidence-seizure_or_debit_for_agent_or_depositor_debt",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "substantive_check_agreed_by_contract",
+        "assertion_id": "escrow-deposit-evidence-substantive_check_agreed_by_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "thing_lost_damaged_or_short",
+        "assertion_id": "escrow-deposit-evidence-thing_lost_damaged_or_short",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "transfer_despite_doubt_permitted_by_contract",
+        "assertion_id": "escrow-deposit-evidence-transfer_despite_doubt_permitted_by_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "use_or_disposal_permitted_by_contract_or_nature",
+        "assertion_id": "escrow-deposit-evidence-use_or_disposal_permitted_by_contract_or_nature",
+        "source_refs": [
+          "synthetic-case-supply-1-escrow-deposit-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "escrow-deposit-constraint-set:reviewed-escrow-deposit-evidence-supply-1-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk9261-9268-escrow-deposit-v1"
+    ],
+    "expressions": [
+      "escrow_deposit_qualified == escrow_deposit_asserted AND (deposited_things OR deposited_cashless_money OR deposited_uncertificated_securities)",
+      "escrow_deposit_kind_undetermined == escrow_deposit_asserted AND NOT deposited_things AND NOT deposited_cashless_money AND NOT deposited_uncertificated_securities",
+      "deposit_term_deemed_five_years == escrow_deposit_qualified AND deposit_term_missing_or_excessive",
+      "notarization_required == escrow_deposit_qualified AND deposited_things",
+      "notarization_missing_makes_void == notarization_required AND NOT notarization_performed",
+      "remuneration_owed == escrow_deposit_qualified AND NOT remuneration_waived_by_contract",
+      "remuneration_liability_joint_and_several == escrow_deposit_qualified AND NOT remuneration_liability_several_by_contract",
+      "agent_setoff_breached == escrow_deposit_qualified AND NOT agent_setoff_permitted_by_contract AND agent_withheld_or_setoff_deposited_property",
+      "document_check_breach == escrow_deposit_qualified AND document_check_required_by_contract AND documents_facially_doubtful AND agent_transferred_property_despite_doubt AND NOT transfer_despite_doubt_permitted_by_contract",
+      "substantive_check_breach == escrow_deposit_qualified AND substantive_check_agreed_by_contract AND agent_transferred_without_verifying_grounds",
+      "segregation_breach == escrow_deposit_qualified AND deposited_property_commingled_with_agents_own",
+      "use_or_disposal_breach == escrow_deposit_qualified AND NOT use_or_disposal_permitted_by_contract_or_nature AND agent_used_or_disposed_deposited_property",
+      "depositor_retains_title == escrow_deposit_qualified AND deposited_things AND NOT grounds_for_transfer_occurred",
+      "title_passed_to_beneficiary == escrow_deposit_qualified AND deposited_things AND grounds_for_transfer_occurred",
+      "agent_liability_for_things_breached == escrow_deposit_qualified AND deposited_things AND thing_lost_damaged_or_short AND NOT agent_proved_force_majeure AND NOT agent_proved_inherent_defect_unknown_to_agent AND NOT agent_proved_depositor_fault",
+      "securities_disposal_breach == escrow_deposit_qualified AND deposited_uncertificated_securities AND NOT securities_exercise_permitted_by_contract AND agent_disposed_or_exercised_rights_on_securities",
+      "cashless_money_requires_nominal_account == escrow_deposit_qualified AND deposited_cashless_money AND NOT escrow_agent_is_bank",
+      "deposited_property_insulated_from_agent_or_depositor_creditors == escrow_deposit_qualified",
+      "insulation_breach == deposited_property_insulated_from_agent_or_depositor_creditors AND seizure_or_debit_for_agent_or_depositor_debt",
+      "beneficiary_creditor_may_reach_claim_right == escrow_deposit_qualified AND seizure_for_beneficiary_debt",
+      "termination_ground_present == escrow_deposit_qualified AND (agent_personal_termination_ground OR deposit_term_expired)",
+      "contract_transferred_to_new_agent == termination_ground_present AND contract_transferred_under_article_392_3",
+      "return_to_depositor_due == termination_ground_present AND NOT contract_transferred_to_new_agent AND NOT grounds_for_transfer_occurred",
+      "transfer_to_beneficiary_due_on_termination == termination_ground_present AND NOT contract_transferred_to_new_agent AND grounds_for_transfer_occurred",
+      "requires_human_escrow_deposit_assessment == escrow_deposit_kind_undetermined OR notarization_missing_makes_void OR agent_setoff_breached OR document_check_breach OR substantive_check_breach OR segregation_breach OR use_or_disposal_breach OR agent_liability_for_things_breached OR securities_disposal_breach OR insulation_breach OR cashless_money_requires_nominal_account OR termination_ground_present"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "escrow-deposit-constraint-set:reviewed-escrow-deposit-evidence-supply-1-v0",
+    "satisfiable": true,
+    "escrow_deposit_qualified": false,
+    "escrow_deposit_kind_undetermined": false,
+    "deposit_term_deemed_five_years": false,
+    "notarization_required": false,
+    "notarization_missing_makes_void": false,
+    "remuneration_owed": false,
+    "remuneration_liability_joint_and_several": false,
+    "agent_setoff_breached": false,
+    "document_check_breach": false,
+    "substantive_check_breach": false,
+    "segregation_breach": false,
+    "use_or_disposal_breach": false,
+    "depositor_retains_title": false,
+    "title_passed_to_beneficiary": false,
+    "agent_liability_for_things_breached": false,
+    "securities_disposal_breach": false,
+    "cashless_money_requires_nominal_account": false,
+    "deposited_property_insulated_from_agent_or_depositor_creditors": false,
+    "insulation_breach": false,
+    "beneficiary_creditor_may_reach_claim_right": false,
+    "termination_ground_present": false,
+    "contract_transferred_to_new_agent": false,
+    "return_to_depositor_due": false,
+    "transfer_to_beneficiary_due_on_termination": false,
+    "requires_human_escrow_deposit_assessment": false,
+    "reasons_ru": [
+      "Договор условного депонирования в деле не заявлен."
+    ],
+    "warnings_ru": [
+      "Наступление оснований передачи имущества бенефициару по существу оценивает эскроу-агент по условиям договора, а по спору — суд и эксперт: модель принимает результат этой оценки как установленный факт.",
+      "Размер и точный состав депонированного имущества модель не определяет.",
+      "Иные основания прекращения договора эскроу, предусмотренные кодексом за пределами обстоятельств на стороне агента и истечения срока, модель не перечисляет — это открытый перечень статьи 926.8 ГК РФ.",
+      "Модель отвечает об одном договоре эскроу: контракт данных даёт один блок доказательств на институт."
+    ]
+  },
+  "benchmark_report": {
+    "id": "escrow-deposit-benchmark-report-v0",
+    "total": 31,
+    "passed": 31,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "escrow-deposit-bench-kind-undetermined",
+        "passed": true,
+        "expected_outcomes": {
+          "escrow_deposit_qualified": false,
+          "escrow_deposit_kind_undetermined": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "escrow_deposit_qualified": false,
+          "escrow_deposit_kind_undetermined": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор эскроу в деле заявлен, но предмет депонирования не установлен: вещи, безналичные деньги и бездокументарные ценные бумаги влекут разные правила (статьи 926.5 и 926.6 ГК РФ), и без предмета модель их не выводит."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-not-asserted",
+        "passed": true,
+        "expected_outcomes": {
+          "escrow_deposit_qualified": false,
+          "escrow_deposit_kind_undetermined": false,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "observed_outcomes": {
+          "escrow_deposit_qualified": false,
+          "escrow_deposit_kind_undetermined": false,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "reasons_ru": [
+          "Договор условного депонирования в деле не заявлен."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-things-notarized-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "escrow_deposit_qualified": true,
+          "notarization_required": true,
+          "notarization_missing_makes_void": false,
+          "depositor_retains_title": true,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "observed_outcomes": {
+          "escrow_deposit_qualified": true,
+          "notarization_required": true,
+          "notarization_missing_makes_void": false,
+          "depositor_retains_title": true,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-things-not-notarized-void",
+        "passed": true,
+        "expected_outcomes": {
+          "notarization_required": true,
+          "notarization_missing_makes_void": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "notarization_required": true,
+          "notarization_missing_makes_void": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Нотариальное удостоверение не выполнено там, где оно обязательно; несоблюдение нотариальной формы, когда закон её требует, влечёт ничтожность сделки (пункт 3 статьи 163 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-money-only-no-notary",
+        "passed": true,
+        "expected_outcomes": {
+          "notarization_required": false,
+          "notarization_missing_makes_void": false,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "observed_outcomes": {
+          "notarization_required": false,
+          "notarization_missing_makes_void": false,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (безналичные деньги) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-securities-only-no-notary",
+        "passed": true,
+        "expected_outcomes": {
+          "notarization_required": false,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "observed_outcomes": {
+          "notarization_required": false,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (бездокументарные ценные бумаги) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-things-plus-money-needs-notary",
+        "passed": true,
+        "expected_outcomes": {
+          "notarization_required": true,
+          "notarization_missing_makes_void": false
+        },
+        "observed_outcomes": {
+          "notarization_required": true,
+          "notarization_missing_makes_void": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи, безналичные деньги) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Эскроу-агент не банк, поэтому депонируемые безналичные деньги должны находиться на его номинальном счёте, а не на счёте эскроу (пункт 3 статьи 926.6 ГК РФ). Режим этого номинального счёта отдельно проверяет институт специальных видов банковских счетов (статьи 860.1–860.6 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-term-deemed-five-years",
+        "passed": true,
+        "expected_outcomes": {
+          "deposit_term_deemed_five_years": true,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "observed_outcomes": {
+          "deposit_term_deemed_five_years": true,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Срок депонирования не указан либо превышает пять лет: закон подставляет вместо него срок пять лет, а не признаёт условие о сроке недействительным (пункт 4 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-remuneration-default",
+        "passed": true,
+        "expected_outcomes": {
+          "remuneration_owed": true,
+          "remuneration_liability_joint_and_several": true
+        },
+        "observed_outcomes": {
+          "remuneration_owed": true,
+          "remuneration_liability_joint_and_several": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-remuneration-waived",
+        "passed": true,
+        "expected_outcomes": {
+          "remuneration_owed": false
+        },
+        "observed_outcomes": {
+          "remuneration_owed": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-setoff-breach",
+        "passed": true,
+        "expected_outcomes": {
+          "agent_setoff_breached": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "agent_setoff_breached": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Эскроу-агент удержал или зачёл депонированное имущество в счёт своего вознаграждения, хотя договор ему этого не позволял (пункт 3 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-setoff-permitted",
+        "passed": true,
+        "expected_outcomes": {
+          "agent_setoff_breached": false,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "observed_outcomes": {
+          "agent_setoff_breached": false,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-document-check-breach",
+        "passed": true,
+        "expected_outcomes": {
+          "document_check_breach": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "document_check_breach": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Эскроу-агент передал имущество бенефициару, хотя предъявленные документы по внешним признакам вызывали разумные сомнения в достоверности, и договор не разрешал передачу в таком случае (пункт 1 статьи 926.3 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-document-check-permitted",
+        "passed": true,
+        "expected_outcomes": {
+          "document_check_breach": false
+        },
+        "observed_outcomes": {
+          "document_check_breach": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-substantive-check-breach",
+        "passed": true,
+        "expected_outcomes": {
+          "substantive_check_breach": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "substantive_check_breach": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Договор возложил на эскроу-агента обязанность проверить наступление оснований передачи по существу, но агент передал имущество, не проверив их (пункт 2 статьи 926.3 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-segregation-breach",
+        "passed": true,
+        "expected_outcomes": {
+          "segregation_breach": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "segregation_breach": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Депонированное имущество смешано с имуществом эскроу-агента; это нарушает обязанность обособленного учёта, хотя само по себе не прекращает обязательства агента перед депонентом и бенефициаром (пункты 1 и 2 статьи 926.4 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-use-or-disposal-breach",
+        "passed": true,
+        "expected_outcomes": {
+          "use_or_disposal_breach": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "use_or_disposal_breach": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Эскроу-агент использовал депонированное имущество или распорядился им, хотя договор этого не допускал и существо обязательства этого не требовало (пункт 3 статьи 926.4 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-use-or-disposal-permitted",
+        "passed": true,
+        "expected_outcomes": {
+          "use_or_disposal_breach": false
+        },
+        "observed_outcomes": {
+          "use_or_disposal_breach": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-title-passes-on-grounds",
+        "passed": true,
+        "expected_outcomes": {
+          "depositor_retains_title": false,
+          "title_passed_to_beneficiary": true
+        },
+        "observed_outcomes": {
+          "depositor_retains_title": false,
+          "title_passed_to_beneficiary": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи перешло к бенефициару с даты наступления оснований передачи (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-agent-liability-for-loss",
+        "passed": true,
+        "expected_outcomes": {
+          "agent_liability_for_things_breached": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "agent_liability_for_things_breached": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Эскроу-агент отвечает за утрату, недостачу или повреждение депонированных вещей: он не доказал непреодолимую силу, неизвестное ему свойство вещей или умысел либо грубую неосторожность депонента (пункт 2 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-agent-liability-force-majeure",
+        "passed": true,
+        "expected_outcomes": {
+          "agent_liability_for_things_breached": false,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "observed_outcomes": {
+          "agent_liability_for_things_breached": false,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-securities-disposal-breach",
+        "passed": true,
+        "expected_outcomes": {
+          "securities_disposal_breach": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "securities_disposal_breach": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (бездокументарные ценные бумаги) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Эскроу-агент распорядился депонированными бездокументарными ценными бумагами или осуществил права по ним, хотя договор ему этого не разрешал (пункт 2 статьи 926.6 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-securities-disposal-permitted",
+        "passed": true,
+        "expected_outcomes": {
+          "securities_disposal_breach": false
+        },
+        "observed_outcomes": {
+          "securities_disposal_breach": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (бездокументарные ценные бумаги) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-money-agent-not-bank",
+        "passed": true,
+        "expected_outcomes": {
+          "cashless_money_requires_nominal_account": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "cashless_money_requires_nominal_account": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (безналичные деньги) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Эскроу-агент не банк, поэтому депонируемые безналичные деньги должны находиться на его номинальном счёте, а не на счёте эскроу (пункт 3 статьи 926.6 ГК РФ). Режим этого номинального счёта отдельно проверяет институт специальных видов банковских счетов (статьи 860.1–860.6 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-money-agent-is-bank",
+        "passed": true,
+        "expected_outcomes": {
+          "cashless_money_requires_nominal_account": false,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "observed_outcomes": {
+          "cashless_money_requires_nominal_account": false,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (безналичные деньги) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-insulation-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "deposited_property_insulated_from_agent_or_depositor_creditors": true,
+          "insulation_breach": false
+        },
+        "observed_outcomes": {
+          "deposited_property_insulated_from_agent_or_depositor_creditors": true,
+          "insulation_breach": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-insulation-breached",
+        "passed": true,
+        "expected_outcomes": {
+          "insulation_breach": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "insulation_breach": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ).",
+          "Защита нарушена: по долгу эскроу-агента или депонента на депонированное имущество обращено взыскание или наложен арест, что законом не допускается."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-beneficiary-creditor-claim-right",
+        "passed": true,
+        "expected_outcomes": {
+          "beneficiary_creditor_may_reach_claim_right": true,
+          "insulation_breach": false
+        },
+        "observed_outcomes": {
+          "beneficiary_creditor_may_reach_claim_right": true,
+          "insulation_breach": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ).",
+          "По долгу бенефициара взыскание может быть обращено — но не на само депонированное имущество, а на его право требования к эскроу-агенту о передаче этого имущества (пункт 2 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-termination-return-to-depositor",
+        "passed": true,
+        "expected_outcomes": {
+          "termination_ground_present": true,
+          "return_to_depositor_due": true,
+          "transfer_to_beneficiary_due_on_termination": false
+        },
+        "observed_outcomes": {
+          "termination_ground_present": true,
+          "return_to_depositor_due": true,
+          "transfer_to_beneficiary_due_on_termination": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ).",
+          "Договор эскроу прекращён: наступило одно из оснований статьи 926.8 ГК РФ — обстоятельство на стороне эскроу-агента или истечение срока депонирования.",
+          "Депонированное имущество подлежит возврату депоненту: основания для его передачи бенефициару не наступили (пункт 2 статьи 926.8 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-termination-transfer-to-beneficiary",
+        "passed": true,
+        "expected_outcomes": {
+          "termination_ground_present": true,
+          "return_to_depositor_due": false,
+          "transfer_to_beneficiary_due_on_termination": true
+        },
+        "observed_outcomes": {
+          "termination_ground_present": true,
+          "return_to_depositor_due": false,
+          "transfer_to_beneficiary_due_on_termination": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи перешло к бенефициару с даты наступления оснований передачи (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ).",
+          "Договор эскроу прекращён: наступило одно из оснований статьи 926.8 ГК РФ — обстоятельство на стороне эскроу-агента или истечение срока депонирования.",
+          "Депонированное имущество подлежит передаче бенефициару: основания для передачи уже наступили к моменту прекращения договора (пункт 2 статьи 926.8 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "escrow-deposit-bench-termination-transferred-to-new-agent",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_transferred_to_new_agent": true,
+          "return_to_depositor_due": false,
+          "transfer_to_beneficiary_due_on_termination": false
+        },
+        "observed_outcomes": {
+          "contract_transferred_to_new_agent": true,
+          "return_to_depositor_due": false,
+          "transfer_to_beneficiary_due_on_termination": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ).",
+          "Договор эскроу прекращён: наступило одно из оснований статьи 926.8 ГК РФ — обстоятельство на стороне эскроу-агента или истечение срока депонирования.",
+          "Договор до наступления этого обстоятельства передан другому лицу в порядке статьи 392.3 ГК РФ, поэтому прекращения не происходит."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "escrow-deposit-red-team-report-v0",
+    "total": 8,
+    "blocked": 8,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "escrow-deposit-red-kind-from-assertion",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "escrow_deposit_qualified": true
+        },
+        "observed_outcomes": {
+          "escrow_deposit_qualified": false
+        },
+        "reasons_ru": [
+          "Договор эскроу в деле заявлен, но предмет депонирования не установлен: вещи, безналичные деньги и бездокументарные ценные бумаги влекут разные правила (статьи 926.5 и 926.6 ГК РФ), и без предмета модель их не выводит."
+        ]
+      },
+      {
+        "case_id": "escrow-deposit-red-money-does-not-need-notary",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "notarization_required": true
+        },
+        "observed_outcomes": {
+          "notarization_required": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (безналичные деньги) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Эскроу-агент не банк, поэтому депонируемые безналичные деньги должны находиться на его номинальном счёте, а не на счёте эскроу (пункт 3 статьи 926.6 ГК РФ). Режим этого номинального счёта отдельно проверяет институт специальных видов банковских счетов (статьи 860.1–860.6 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "escrow-deposit-red-excess-term-is-not-void",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "notarization_missing_makes_void": true,
+          "requires_human_escrow_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "notarization_missing_makes_void": false,
+          "requires_human_escrow_deposit_assessment": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Срок депонирования не указан либо превышает пять лет: закон подставляет вместо него срок пять лет, а не признаёт условие о сроке недействительным (пункт 4 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "escrow-deposit-red-things-rules-to-securities",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "depositor_retains_title": true,
+          "title_passed_to_beneficiary": true,
+          "agent_liability_for_things_breached": true
+        },
+        "observed_outcomes": {
+          "depositor_retains_title": false,
+          "title_passed_to_beneficiary": false,
+          "agent_liability_for_things_breached": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (бездокументарные ценные бумаги) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "escrow-deposit-red-beneficiary-seizure-is-not-a-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "insulation_breach": true
+        },
+        "observed_outcomes": {
+          "insulation_breach": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Нотариальное удостоверение не выполнено там, где оно обязательно; несоблюдение нотариальной формы, когда закон её требует, влечёт ничтожность сделки (пункт 3 статьи 163 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Право собственности на депонированные вещи сохраняется за депонентом: основания для их передачи бенефициару ещё не наступили (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ).",
+          "По долгу бенефициара взыскание может быть обращено — но не на само депонированное имущество, а на его право требования к эскроу-агенту о передаче этого имущества (пункт 2 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "escrow-deposit-red-bank-agent-does-not-need-nominal-account",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "cashless_money_requires_nominal_account": true
+        },
+        "observed_outcomes": {
+          "cashless_money_requires_nominal_account": false
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (безналичные деньги) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "escrow-deposit-red-commingling-does-not-discharge-agent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "title_passed_to_beneficiary": false
+        },
+        "observed_outcomes": {
+          "title_passed_to_beneficiary": true
+        },
+        "reasons_ru": [
+          "Договор эскроу квалифицирован: депонент передал эскроу-агенту имущество (вещи) для передачи бенефициару при наступлении предусмотренных договором оснований (пункт 1 статьи 926.1 ГК РФ).",
+          "Требуется нотариальное удостоверение договора: в состав депонируемого имущества входят вещи, а исключение сделано только для депонирования исключительно безналичных денег и бездокументарных ценных бумаг (пункт 1 статьи 926.1 ГК РФ).",
+          "Эскроу-агент вправе требовать вознаграждение за исполнение своих обязанностей — договор его не исключил (пункт 1 статьи 926.2 ГК РФ).",
+          "Обязанность депонента и бенефициара уплатить вознаграждение — солидарная: договор не установил иного (пункт 2 статьи 926.2 ГК РФ).",
+          "Депонированное имущество смешано с имуществом эскроу-агента; это нарушает обязанность обособленного учёта, хотя само по себе не прекращает обязательства агента перед депонентом и бенефициаром (пункты 1 и 2 статьи 926.4 ГК РФ).",
+          "Право собственности на депонированные вещи перешло к бенефициару с даты наступления оснований передачи (пункт 1 статьи 926.5 ГК РФ).",
+          "Депонированное имущество недоступно кредиторам эскроу-агента и депонента: обращение взыскания, арест и обеспечительные меры по их долгам не допускаются (пункт 1 статьи 926.7 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "escrow-deposit-red-no-breach-without-qualification",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "agent_setoff_breached": true,
+          "segregation_breach": true,
+          "use_or_disposal_breach": true
+        },
+        "observed_outcomes": {
+          "agent_setoff_breached": false,
+          "segregation_breach": false,
+          "use_or_disposal_breach": false
+        },
+        "reasons_ru": [
+          "Договор условного депонирования в деле не заявлен."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95820/"
+  ]
+}
