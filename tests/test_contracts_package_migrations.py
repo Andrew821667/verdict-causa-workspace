@@ -120,6 +120,7 @@ MIGRATION_FIXTURES = (
     ("1.7.0", "contracts-ru-v0-1.7.0-phase0-trace.json", "статьи 427"),
     ("1.8.0", "contracts-ru-v0-1.8.0-phase0-trace.json", "обязательные предикаты разом"),
     ("1.9.0", "contracts-ru-v0-1.9.0-phase0-trace.json", "статьи 174.1"),
+    ("1.10.0", "contracts-ru-v0-1.10.0-phase0-trace.json", "с восьми записей до четырнадцати"),
 )
 
 
@@ -149,7 +150,7 @@ def test_legacy_artifact_requires_ordered_replay(
     report = build_contracts_package_migration_report(artifact)
 
     assert report.disposition == MigrationDisposition.REQUIRES_REGENERATION
-    assert report.target_package_version == "1.10.0"
+    assert report.target_package_version == "1.11.0"
     assert [(step.from_version, step.to_version) for step in report.steps] == _expected_path(
         source_version
     )
@@ -166,7 +167,7 @@ def test_legacy_artifact_requires_ordered_replay(
 )
 def test_exported_migration_report_is_valid(source_version: str, fixture_name: str) -> None:
     report_path = Path(
-        f"examples/migrations/contracts-ru-v0-{source_version}-to-1.10.0-migration-report.json"
+        f"examples/migrations/contracts-ru-v0-{source_version}-to-1.11.0-migration-report.json"
     )
     report = PackageMigrationReport.model_validate_json(report_path.read_text(encoding="utf-8"))
     artifact = PackageArtifactEnvelope.model_validate_json(
@@ -175,7 +176,7 @@ def test_exported_migration_report_is_valid(source_version: str, fixture_name: s
     regenerated_report = build_contracts_package_migration_report(artifact)
 
     assert report.source_package_version == source_version
-    assert report.target_package_version == "1.10.0"
+    assert report.target_package_version == "1.11.0"
     assert report.disposition_label_ru == "Требуется повторное формирование"
     assert len(report.steps) == len(_expected_path(source_version))
     assert report == regenerated_report
@@ -186,7 +187,7 @@ def test_current_contracts_artifact_does_not_require_migration() -> None:
         id="current-report",
         artifact_type="benchmark_suite_report",
         package_id="contracts-ru-v0",
-        package_version="1.10.0",
+        package_version="1.11.0",
     )
 
     report = build_contracts_package_migration_report(artifact)

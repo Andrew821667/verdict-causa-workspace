@@ -46,6 +46,23 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.11.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Extends the article 165.1 message-role registry from 8 roles to 14: every predicate in the package whose name asserts delivery of a notice or a demand - not merely its existence, timeliness, or form - now has a role. The six added roles cover termination's pretrial proposal, sale's excess-quantity notice, supply's refused-goods and readiness notices, assignment's debtor notice, and performance-remedies' creditor demand.",
+            "The boundary is deliberate, not a remaining gap: roles are not added for predicates asking whether a notice existed at all, whether it was timely, whether it observed written form, or for a party's decision merely expressed through a message. Negative-polarity 'not notified' predicates are named as a residual limitation - the fact-consistency check compares by direct equality, and inverting that comparison is a separate piece of work, not done here.",
+        ],
+        notes_ru=[
+            "Реестр ролей сообщений статьи 165.1 доведён с 8 ролей до 14: роль заведена для каждого предиката пакета, чьё имя утверждает именно доставку уведомления или требования — а не его существование, своевременность или форму. Шесть новых ролей закрывают досудебное предложение в расторжении, уведомление об избытке количества в купле-продаже, уведомления о непринятых товарах и о готовности в поставке, уведомление должника об уступке и требование кредитора в средствах защиты.",
+            "Граница проведена сознательно, а не оставлена как долг: роль не заводится для предикатов о том, было ли уведомление вообще, вовремя ли, в письменной ли форме, — и для решения стороны, лишь выраженного сообщением. Предикаты отрицательной полярности («не уведомлён») названы остаточным ограничением: сверка сравнивает по прямому равенству, а обращение сравнения — отдельная задача, не решённая здесь.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.10.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

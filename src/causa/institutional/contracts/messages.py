@@ -12,13 +12,15 @@
 никто не замечал. Обход идёт от закона и нашёл статью 165.1 незаявленной ни
 одним институтом — при том что она лежит под доброй половиной модели.
 
-В предикатах пакета больше двадцати фактов о доставленном уведомлении: об
-отказе от договора (`unilateral_refusal_notice_delivered`), о зачёте
-(`set_off_notice_delivered`), о приостановлении встречного исполнения
+В предикатах пакета около полусотни фактов об уведомлениях; четырнадцать из
+них — не о том, было ли уведомление или в какой оно форме, а именно о
+**доставке**: об отказе от договора (`unilateral_refusal_notice_delivered`), о
+зачёте (`set_off_notice_delivered`), о приостановлении встречного исполнения
 (`suspension_notice_delivered`), о прощении долга
-(`debt_forgiveness_notice_delivered`), о переуступке (`debtor_notified`). Каждый
-из них принимал доставку на веру от того, кто заполняет факты, — а правило, по
-которому сообщение считается доставленным, не было смоделировано нигде.
+(`debt_forgiveness_notice_delivered`), о переуступке (`debtor_notified`) — и
+ещё девять того же рода в шести институтах. Каждый из них принимал доставку на
+веру от того, кто заполняет факты, — а правило, по которому сообщение
+считается доставленным, не было смоделировано нигде.
 
 **Что даёт модель.** Она разделяет два пути доставки, которые в одном предикате
 сливаются:
@@ -35,10 +37,17 @@
 сообщение доставлено независимо от того, куда его посылали.
 
 **Оговорка об объёме.** Модель отвечает на вопрос об **одном** сообщении — том,
-о котором идёт спор. Она не проверяет доставку каждого уведомления, упомянутого
-в других институтах: контракт данных даёт один блок доказательств на институт, и
-нескольких сообщений в нём не выразить. Связать вывод с двадцатью предикатами
-других институтов — открытый вопрос, названный в спецификации.
+о котором идёт спор. Она не проверяет доставку каждого уведомления,
+упомянутого в других институтах: контракт данных даёт один блок доказательств
+на институт, и нескольких сообщений в нём не выразить. Поле `message_role`
+(`MessageRole`) называет, каким именно предикатом какого института спорное
+сообщение представлено, и вывод сверяется с ним — механизм закрыт в версии
+1.10.0 и доведён до всех предикатов **доставки** в версии 1.11.0: четырнадцать
+из примерно сорока пяти. Оставшиеся — не пробел: они утверждают не доставку, а
+существование уведомления, его своевременность, форму или решение стороны,
+выраженное сообщением, — вопросы, которые статья 165.1 не решает и которые
+`MESSAGE_ROLE_PREDICATES` поэтому сознательно не называет (граница объяснена
+в комментарии над реестром).
 
 **Чего модель не делает.** Пункт 2 статьи 165.1 допускает иное правило доставки
 — в законе, в условиях сделки, в обычае или в установившейся практике сторон.
@@ -105,36 +114,65 @@ class MessageRole(str, Enum):
 
     OTHER = "other"
     TERMINATION_UNILATERAL_NOTICE = "termination_unilateral_notice"
+    TERMINATION_PRETRIAL_PROPOSAL = "termination_pretrial_proposal"
     SALE_UNILATERAL_REFUSAL_NOTICE = "sale_unilateral_refusal_notice"
+    SALE_EXCESS_QUANTITY_NOTICE = "sale_excess_quantity_notice"
     SUPPLY_UNILATERAL_REFUSAL_NOTICE = "supply_unilateral_refusal_notice"
+    SUPPLY_REFUSED_GOODS_NOTICE = "supply_refused_goods_notice"
+    SUPPLY_READINESS_NOTICE = "supply_readiness_notice"
     SET_OFF_NOTICE = "set_off_notice"
     DEBT_FORGIVENESS_NOTICE = "debt_forgiveness_notice"
+    ASSIGNMENT_DEBTOR_NOTICE = "assignment_debtor_notice"
     SUSPENSION_NOTICE = "suspension_notice"
     PERFORMANCE_REFUSAL_NOTICE = "performance_refusal_notice"
+    PERFORMANCE_DEMAND_NOTICE = "performance_demand_notice"
     FORECLOSURE_NOTICE = "foreclosure_notice"
 
 
 #: Роль сообщения → институт и его предикат, утверждающий доставку.
 #:
-#: Здесь перечислены не все предикаты об уведомлениях — их в пакете полсотни, —
-#: а только те, которые утверждают именно **доставку** сообщения, то есть тот
-#: самый факт, о котором говорит пункт 1 статьи 165.1 ГК РФ. Остальные отвечают
-#: на другие вопросы: было ли уведомление вообще, вовремя ли, в письменной ли
-#: форме. Их разбирают собственные институты, и статья 165.1 их не замещает.
+#: Здесь перечислены не все предикаты об уведомлениях — их в пакете около
+#: сорока пяти, — а только те, которые утверждают именно **доставку**
+#: сообщения, то есть тот самый факт, о котором говорит пункт 1 статьи 165.1
+#: ГК РФ: имя предиката прямо называет доставку («…_delivered») или состояние
+#: адресата как свершившийся факт («…_notified», в положительной полярности).
+#: Остальные тридцать с лишним отвечают на другие вопросы, которые статья
+#: 165.1 не решает:
+#:
+#: - было ли уведомление вообще («…_not_given», «…_not_notified» — отрицание
+#:   меняет форму сравнения: «не уведомлён» не превращается в «доставлено»
+#:   простым равенством, это отдельная задача, не решённая здесь);
+#: - вовремя ли («prompt_notice_given», «…_reasonable_time»);
+#: - в письменной ли форме («creditors_notified_in_writing»);
+#: - решение стороны, выраженное сообщением, а не сам факт доставки
+#:   («…_demanded_*», «…_requested_*», «…_chose_*» — таких в пакете на
+#:   порядок больше, и почти любое можно назвать «сообщением» в широком
+#:   смысле статьи 165.1, но именовать доставку они не намерены).
+#:
+#: Эти три исключения — не пробел, который решает следующая правка: третий
+#: пункт принципиально не сводится к предикату «доставлено ли», и добавлять
+#: его значило бы стереть разницу между «сторона сообщила» и «адресат
+#: получил», ровно ту разницу, которую статья 165.1 и вводит.
 MESSAGE_ROLE_PREDICATES: dict["MessageRole", tuple[str, str]] = {
     MessageRole.TERMINATION_UNILATERAL_NOTICE: ("termination", "unilateral_notice_delivered"),
+    MessageRole.TERMINATION_PRETRIAL_PROPOSAL: ("termination", "pretrial_proposal_delivered"),
     MessageRole.SALE_UNILATERAL_REFUSAL_NOTICE: ("sale", "unilateral_refusal_notice_delivered"),
+    MessageRole.SALE_EXCESS_QUANTITY_NOTICE: ("sale", "buyer_notified_excess"),
     MessageRole.SUPPLY_UNILATERAL_REFUSAL_NOTICE: (
         "supply",
         "unilateral_refusal_notice_delivered",
     ),
+    MessageRole.SUPPLY_REFUSED_GOODS_NOTICE: ("supply", "supplier_notified"),
+    MessageRole.SUPPLY_READINESS_NOTICE: ("supply", "supplier_notified_readiness"),
     MessageRole.SET_OFF_NOTICE: ("obligation_dynamics", "set_off_notice_delivered"),
     MessageRole.DEBT_FORGIVENESS_NOTICE: (
         "obligation_dynamics",
         "debt_forgiveness_notice_delivered",
     ),
+    MessageRole.ASSIGNMENT_DEBTOR_NOTICE: ("obligation_dynamics", "debtor_notified"),
     MessageRole.SUSPENSION_NOTICE: ("performance_remedies", "suspension_notice_delivered"),
     MessageRole.PERFORMANCE_REFUSAL_NOTICE: ("performance_remedies", "refusal_notice_delivered"),
+    MessageRole.PERFORMANCE_DEMAND_NOTICE: ("performance_remedies", "creditor_demand_delivered"),
     MessageRole.FORECLOSURE_NOTICE: ("security", "foreclosure_notice_delivered"),
 }
 

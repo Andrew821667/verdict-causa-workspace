@@ -263,3 +263,36 @@ def test_role_dependent_key_is_reconciled_to_the_target_the_case_names() -> None
     # Согласованный запрос обязан проходить анализ: иначе согласование только
     # переставило противоречие с места на место.
     run_reviewed_contract_analysis(fixed, sources)
+
+
+def test_a_role_added_for_the_delivery_sweep_resolves_too() -> None:
+    """Роль, добавленная при доведении реестра до всех уведомлений о доставке.
+
+    Прежний тест проверял первую роль, заведённую под 165.1; этот — одну из
+    четырнадцати, а не восемь: резолвер не должен был остаться зашитым под
+    единственный институт, который у него был на момент первой проверки.
+    """
+    from causa.institutional.contracts.fact_consistency import FactConsistencyError
+    from causa.institutional.contracts.messages import MessageRole
+    from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
+    from causa.institutional.contracts.synthetic_reviewed_analysis import (
+        build_synthetic_supply_analysis_sources,
+    )
+
+    request = build_synthetic_supply_analysis_request()
+    sources = build_synthetic_supply_analysis_sources()
+    evidence = request.messages_evidence.model_copy(
+        update={"message_role": MessageRole.ASSIGNMENT_DEBTOR_NOTICE}
+    )
+    broken = request.model_copy(update={"messages_evidence": evidence})
+
+    with pytest.raises(FactConsistencyError) as failure:
+        run_reviewed_contract_analysis(broken, sources)
+
+    fixed, alignments, blocked = reconcile(broken, failure.value.mismatches)
+
+    assert blocked == []
+    assert [(item.evidence_field, item.predicate) for item in alignments] == [
+        ("obligation_dynamics_evidence", "debtor_notified")
+    ]
+    run_reviewed_contract_analysis(fixed, sources)

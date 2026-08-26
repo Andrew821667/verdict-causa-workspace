@@ -1,0 +1,60 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-1.9.0:to-1.11.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-1.9.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "1.9.0",
+  "target_package_version": "1.11.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "1.9.0",
+      "to_version": "1.10.0",
+      "reasons": [
+        "The invalidity evidence gains three required predicates for article 174.1 and the form evidence two for article 434(3); the messages evidence gains a required role naming which notice of the case is being checked. Artifacts produced without them cannot be replayed.",
+        "The messages evidence schema moves to contracts.messages-evidence.v1: the role is part of the data contract, not an optional annotation.",
+        "Two conclusions change meaning rather than merely gaining company: a judicial prohibition under article 174.1(2) now suppresses the article 168 grounds, and written form can be satisfied by acceptance through conduct without any signed document."
+      ],
+      "reasons_ru": [
+        "Контракт данных о недействительности получил три обязательных предиката для статьи 174.1, контракт о форме — два для пункта 3 статьи 434, а контракт о сообщении — обязательную роль, называющую, какое уведомление дела проверяется. Артефакты, собранные без них, не воспроизводятся.",
+        "Схема доказательств о сообщении перешла на contracts.messages-evidence.v1: роль входит в контракт данных, а не в необязательное примечание.",
+        "Два прежних вывода не просто получили соседей, а изменили смысл: судебный запрет по пункту 2 статьи 174.1 снимает основания статьи 168, а письменная форма может быть соблюдена акцептом действиями без подписанного документа."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_invalidity_evaluation.py",
+        "python scripts/export_synthetic_form_evaluation.py",
+        "python scripts/export_synthetic_messages_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.10.0",
+      "to_version": "1.11.0",
+      "reasons": [
+        "The message role registry grows from 8 entries to 14, covering every predicate in the package that names delivery of a notice or a demand rather than its existence, timeliness, or form. This is purely additive: MessageRole gains six values, existing cases and artifacts using the prior eight roles or OTHER replay unchanged.",
+        "No evidence contract gains a required predicate; only the allowed set of message_role values grows."
+      ],
+      "reasons_ru": [
+        "Реестр ролей сообщений вырос с восьми записей до четырнадцати — по одной на каждый предикат пакета, чьё имя называет доставку уведомления или требования, а не его существование, своевременность или форму. Изменение чисто аддитивное: MessageRole получил шесть новых значений, а дела и артефакты, использующие прежние восемь ролей или OTHER, воспроизводятся без изменений.",
+        "Ни один контракт доказательств не получил нового обязательного предиката — вырос только допустимый набор значений message_role."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_messages_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

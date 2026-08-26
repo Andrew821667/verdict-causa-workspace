@@ -245,3 +245,37 @@ def test_the_role_check_rejects_a_message_that_contradicts_its_institute() -> No
         )
 
     assert "message_delivery_agreement" in failure.value.keys
+
+
+def test_a_role_added_for_the_delivery_sweep_is_checked_too() -> None:
+    """Реестр ролей закрыт не для одного института, а для всех предикатов доставки.
+
+    Восемь ролей были заведены под связность 165.1; ещё шесть добавлены, когда
+    реестр довели до всех предикатов, называющих именно доставку (а не
+    существование, срок или форму уведомления) — этот тест берёт одну из
+    новых, в институте, которого не было среди первых восьми.
+    """
+    import pytest as _pytest
+
+    from causa.institutional.contracts.fact_consistency import FactConsistencyError
+    from causa.institutional.contracts.messages import MessageRole
+    from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
+    from causa.institutional.contracts.synthetic_reviewed_analysis import (
+        build_synthetic_supply_analysis_request,
+        build_synthetic_supply_analysis_sources,
+    )
+
+    request = build_synthetic_supply_analysis_request()
+    # Спорное сообщение доставлено, а претензионное предложение об изменении
+    # или расторжении договора в институте termination — нет.
+    evidence = request.messages_evidence.model_copy(
+        update={"message_role": MessageRole.TERMINATION_PRETRIAL_PROPOSAL}
+    )
+
+    with _pytest.raises(FactConsistencyError) as failure:
+        run_reviewed_contract_analysis(
+            request.model_copy(update={"messages_evidence": evidence}),
+            build_synthetic_supply_analysis_sources(),
+        )
+
+    assert "message_delivery_agreement" in failure.value.keys

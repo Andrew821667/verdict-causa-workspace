@@ -2110,6 +2110,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.10.0",
+        to_version="1.11.0",
+        reasons=[
+            "The message role registry grows from 8 entries to 14, covering every predicate in the package that names delivery of a notice or a demand rather than its existence, timeliness, or form. This is purely additive: MessageRole gains six values, existing cases and artifacts using the prior eight roles or OTHER replay unchanged.",
+            "No evidence contract gains a required predicate; only the allowed set of message_role values grows.",
+        ],
+        reasons_ru=[
+            "Реестр ролей сообщений вырос с восьми записей до четырнадцати — по одной на каждый предикат пакета, чьё имя называет доставку уведомления или требования, а не его существование, своевременность или форму. Изменение чисто аддитивное: MessageRole получил шесть новых значений, а дела и артефакты, использующие прежние восемь ролей или OTHER, воспроизводятся без изменений.",
+            "Ни один контракт доказательств не получил нового обязательного предиката — вырос только допустимый набор значений message_role.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_messages_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 
