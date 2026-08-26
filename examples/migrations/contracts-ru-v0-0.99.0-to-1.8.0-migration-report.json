@@ -1,0 +1,191 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-0.99.0:to-1.8.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-0.99.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "0.99.0",
+  "target_package_version": "1.8.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "0.99.0",
+      "to_version": "1.0.0",
+      "reasons": [
+        "The general-effects layer gains the creditor-delay input from the attribution-delay institute and a conclusion that the debtor's delay is excused (article 405(3)).",
+        "Artifacts produced before the wiring existed must be regenerated."
+      ],
+      "reasons_ru": [
+        "Слой общих положений получил вход о просрочке кредитора из института возложения ответственности и вывод о снятии просрочки должника (статья 405 пункт 3 ГК РФ).",
+        "Артефакты, собранные до проводки, требуют пересборки."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_general_effects_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.0.0",
+      "to_version": "1.1.0",
+      "reasons": [
+        "The general-effects layer gains the discharge inputs from the obligation-dynamics institute and a conclusion that the claim to performance is extinguished (chapter 26).",
+        "Artifacts produced before the wiring existed must be regenerated."
+      ],
+      "reasons_ru": [
+        "Слой общих положений получил входы о прекращении обязательства из института перемены лиц и прекращения обязательств и вывод о прекращении требования (глава 26 ГК РФ).",
+        "Артефакты, собранные до проводки, требуют пересборки."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_general_effects_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.1.0",
+      "to_version": "1.2.0",
+      "reasons": [
+        "The general-effects layer gains the meeting-decisions inputs: a contract term resting on a void or unadopted decision loses its basis (articles 181.3 and 181.5).",
+        "The meeting-decisions evidence contract gains the predicate that links a decision to a contract term and moves to contracts.meeting-decisions-evidence.v1.",
+        "Artifacts produced before the wiring existed must be regenerated."
+      ],
+      "reasons_ru": [
+        "Слой общих положений получил входы о решениях собраний: договорное условие, которое держится на ничтожном или непринятом решении, лишается основания (статьи 181.3 и 181.5 ГК РФ).",
+        "Контракт данных о решениях собраний получил предикат связи решения с договорным условием и перешёл на `contracts.meeting-decisions-evidence.v1`.",
+        "Артефакты, собранные до проводки, требуют пересборки."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_meeting_decisions_evaluation.py",
+        "python scripts/export_synthetic_general_effects_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.2.0",
+      "to_version": "1.3.0",
+      "reasons": [
+        "The general-effects layer reads effective_termination for the first time: termination ends the claim to future performance (article 453(2)) without erasing a breach committed before it and without triggering restitution (article 453(4)).",
+        "The layer gains the input for claims accrued before termination, so it reports what survives and not only what ends.",
+        "Artifacts produced while the input was dead must be regenerated: their layer evaluation lacks both conclusions."
+      ],
+      "reasons_ru": [
+        "Слой общих положений впервые читает `effective_termination`: расторжение прекращает требование об исполнении на будущее (статья 453 пункт 2), не стирая нарушение, совершённое до него, и не влекя реституции (статья 453 пункт 4).",
+        "Слой получил вход о требованиях, возникших до расторжения, и сообщает не только что прекратилось, но и что сохранилось.",
+        "Артефакты, собранные, пока вход был мёртвым, требуют пересборки: в их оценке слоя обоих выводов нет."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_general_effects_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.3.0",
+      "to_version": "1.4.0",
+      "reasons": [
+        "The analysis request gains a required evidence block for legally significant messages (article 165.1); artifacts produced without it cannot be replayed.",
+        "The first institute found by walking the Code rather than by measuring practice: article 165.1 was claimed by no institute while more than twenty predicates recorded a delivered notice."
+      ],
+      "reasons_ru": [
+        "Запрос анализа получил обязательный блок доказательств о юридически значимом сообщении (статья 165.1); артефакты, собранные без него, не воспроизводятся.",
+        "Первый институт, найденный обходом кодекса, а не измерением практики: статья 165.1 не была заявлена ни одним институтом, притом что больше двадцати предикатов записывали доставленное уведомление."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_messages_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.4.0",
+      "to_version": "1.5.0",
+      "reasons": [
+        "The analysis request gains a required evidence block for the special kinds of bank account (articles 860.1-860.15); artifacts produced without it cannot be replayed.",
+        "The gap sat inside a declared institute: the bank-account model claims articles 845-860 and stopped before the nominal account, the escrow account and the public deposit account of the same chapter 45."
+      ],
+      "reasons_ru": [
+        "Запрос анализа получил обязательный блок доказательств о специальном виде банковского счёта (статьи 860.1–860.15); артефакты, собранные без него, не воспроизводятся.",
+        "Пробел лежал внутри объявленного института: модель банковского счёта заявляет статьи 845–860 и останавливалась перед номинальным счётом, счётом эскроу и публичным депозитным счётом той же главы 45."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_special_accounts_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.5.0",
+      "to_version": "1.6.0",
+      "reasons": [
+        "The analysis request gains a required evidence block for conditional deposit (escrow), articles 926.1-926.8; artifacts produced without it cannot be replayed.",
+        "The gap was not inside a declared institute but outside every one of them: chapter 47.1 sits between safekeeping and insurance, and the Code walk stepped over it in full."
+      ],
+      "reasons_ru": [
+        "Запрос анализа получил обязательный блок доказательств об условном депонировании (эскроу), статьи 926.1–926.8; артефакты, собранные без него, не воспроизводятся.",
+        "Пробел лежал не внутри объявленного института, а за пределами всех институтов сразу: глава 47.1 стоит между хранением и страхованием, и обход кодекса перешагнул её целиком."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_escrow_deposit_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.6.0",
+      "to_version": "1.7.0",
+      "reasons": [
+        "The invalidity evidence schema gains four required predicates for the article 431.1(2) prohibition against inconsistent conduct in entrepreneurial contracts; artifacts produced without them cannot be replayed.",
+        "The gap sat inside the invalidity institute, articles 166-181, not beyond it: the same kind of estoppel as article 166(5), for entrepreneurial contracts, and never modelled as its own rule.",
+        "Closing the exception split article 174 into two separate conclusions, authority_restriction_voidable_ground (paragraph 1) and entity_damage_voidable_ground (paragraph 2), because only paragraph 1 is excepted from the article 431.1(2) bar."
+      ],
+      "reasons_ru": [
+        "Контракт данных о недействительности получил четыре обязательных предиката для запрета противоречивого поведения по пункту 2 статьи 431.1 в предпринимательских договорах; артефакты, собранные без них, не воспроизводятся.",
+        "Пробел лежал внутри института недействительности, статьи 166–181, а не за его пределами: тот же по природе эстоппель, что и пункт 5 статьи 166, но для предпринимательских договоров, и никогда не смоделированный отдельным правилом.",
+        "Закрытие исключения развело статью 174 на два раздельных вывода — authority_restriction_voidable_ground (пункт 1) и entity_damage_voidable_ground (пункт 2), потому что из запрета статьи 431.1 исключён только пункт 1."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_invalidity_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.7.0",
+      "to_version": "1.8.0",
+      "reasons": [
+        "The freedom evidence schema gains six required predicates for article 427 and the article 421(4)-(5) hierarchy of contract-term sources; artifacts produced without them cannot be replayed.",
+        "The gap sat between two already-declared institutes of the same chapter 27: freedom of contract claims articles 421-424 and stops right before it, interpretation begins at article 431, and the one article between them fell through.",
+        "Closing it exposed a missing step in the institute's own logic: the model had never modelled article 421(4)-(5) even though it already claimed the whole of article 421 - the institute now carries both the term-source hierarchy and article 427's standard terms together."
+      ],
+      "reasons_ru": [
+        "Контракт данных о свободе договора получил шесть обязательных предикатов для статьи 427 и иерархии источников условия договора по пунктам 4–5 статьи 421; артефакты, собранные без них, не воспроизводятся.",
+        "Пробел лежал между двумя уже объявленными институтами одной и той же главы 27: свобода договора заявляет статьи 421–424 и останавливается ровно перед ней, толкование начинается со статьи 431, и одна статья между ними выпала.",
+        "Закрытие вскрыло недостающий шаг в логике самого института: модель никогда не моделировала пункты 4–5 статьи 421, хотя уже заявляла статью 421 целиком, — теперь институт несёт вместе и иерархию источников условия, и примерные условия статьи 427."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_freedom_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

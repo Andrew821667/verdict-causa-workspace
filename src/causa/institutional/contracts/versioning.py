@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.8.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Closes article 427: a gap between two already-declared institutes of the same chapter 27 - the freedom-of-contract institute claims articles 421-424 and stops right before it, interpretation begins at article 431, and the one article between them fell through.",
+            "Article 427(1): a contract may provide that its individual terms are determined by standard terms developed for contracts of that kind and published in print - incorporated by reference. Article 427(2): where the contract makes no such reference, those standard terms apply to the parties' relations as a custom, but only if they meet the requirements of article 5 and article 421(5).",
+            "Closing this exposed a missing step in the institute's own logic rather than an adjacent institute's imprecision: the freedom-of-contract model had never modelled article 421(4)-(5), the hierarchy of sources for a contract term (party agreement, then a dispositive norm, then custom), even though it already claimed the whole of article 421. The institute now carries both layers together.",
+        ],
+        notes_ru=[
+            "Закрыта статья 427: пробел между двумя уже объявленными институтами одной и той же главы 27 — институт свободы договора заявляет статьи 421–424 и останавливается ровно перед ней, толкование начинается со статьи 431, и одна статья между ними выпала.",
+            "Пункт 1 статьи 427: договор может предусматривать, что его отдельные условия определяются примерными условиями, разработанными для договоров соответствующего вида и опубликованными в печати, — они входят в договор по отсылке. Пункт 2 статьи 427: если договор такой отсылки не содержит, примерные условия применяются к отношениям сторон как обычай, но лишь если отвечают требованиям статьи 5 и пункта 5 статьи 421 ГК РФ.",
+            "Закрытие вскрыло не смежную неточность другого института, а недостающий шаг в логике самого института: модель свободы договора никогда не моделировала пункты 4–5 статьи 421 — иерархию источников условия договора (соглашение сторон, затем диспозитивная норма, затем обычай), — хотя уже заявляла статью 421 целиком. Институт получил оба уровня разом.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.7.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

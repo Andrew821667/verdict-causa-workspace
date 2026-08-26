@@ -509,6 +509,7 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-case-supply-1-framework-evidence",
     "synthetic-ru-gk421-422-freedom-of-contract-v1",
     "synthetic-ru-gk423-424-onerousness-and-price-v1",
+    "synthetic-ru-gk427-standard-terms-v1",
     "synthetic-case-supply-1-freedom-evidence",
     "synthetic-ru-gk445-446-mandatory-conclusion-v1",
     "synthetic-ru-gk447-449-auction-v1",
@@ -1381,11 +1382,24 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
                     (FreedomEvidencePredicate.PRICE_AGREED_BY_PARTIES, True),
                     (FreedomEvidencePredicate.REGULATED_PRICE_MANDATED, False),
                     (FreedomEvidencePredicate.COMPARABLE_PRICE_AVAILABLE, False),
+                    (FreedomEvidencePredicate.TERM_NOT_DETERMINED_BY_PARTIES, False),
+                    (FreedomEvidencePredicate.TERM_NOT_COVERED_BY_DISPOSITIVE_NORM, False),
+                    (FreedomEvidencePredicate.STANDARD_TERMS_ASSERTED, False),
+                    (
+                        FreedomEvidencePredicate.STANDARD_TERMS_PUBLISHED_FOR_CONTRACT_TYPE,
+                        False,
+                    ),
+                    (FreedomEvidencePredicate.CONTRACT_REFERS_TO_STANDARD_TERMS, False),
+                    (
+                        FreedomEvidencePredicate.STANDARD_TERMS_MEET_CUSTOM_REQUIREMENTS,
+                        False,
+                    ),
                 )
             ),
             legal_source_refs=(
                 "synthetic-ru-gk421-422-freedom-of-contract-v1",
                 "synthetic-ru-gk423-424-onerousness-and-price-v1",
+                "synthetic-ru-gk427-standard-terms-v1",
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-freedom-reviewer",

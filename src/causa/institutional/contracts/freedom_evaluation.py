@@ -165,6 +165,90 @@ SYNTHETIC_FREEDOM_BENCHMARKS = (
             "requires_human_freedom_assessment": True,
         },
     ),
+    FreedomEvaluationTask(
+        id="freedom-bench-standard-terms-by-reference",
+        title_ru="Договор отсылает к опубликованным примерным условиям своего вида",
+        facts=_facts(
+            price_agreed_by_parties=True,
+            standard_terms_asserted=True,
+            standard_terms_published_for_contract_type=True,
+            contract_refers_to_standard_terms=True,
+        ),
+        expected_outcomes={
+            "standard_terms_incorporated_by_reference": True,
+            "standard_terms_applied_as_custom": False,
+            "standard_terms_govern_the_term": True,
+            "requires_human_freedom_assessment": True,
+        },
+    ),
+    FreedomEvaluationTask(
+        id="freedom-bench-standard-terms-as-custom",
+        title_ru="Без отсылки примерные условия восполняют пробел как обычай",
+        facts=_facts(
+            price_agreed_by_parties=True,
+            standard_terms_asserted=True,
+            standard_terms_published_for_contract_type=True,
+            standard_terms_meet_custom_requirements=True,
+            term_not_determined_by_parties=True,
+            term_not_covered_by_dispositive_norm=True,
+        ),
+        expected_outcomes={
+            "term_gap_open_for_custom": True,
+            "standard_terms_incorporated_by_reference": False,
+            "standard_terms_applied_as_custom": True,
+            "standard_terms_govern_the_term": True,
+        },
+    ),
+    FreedomEvaluationTask(
+        id="freedom-bench-standard-terms-displaced-by-dispositive-norm",
+        title_ru="Диспозитивная норма покрывает условие — обычай не применяется",
+        facts=_facts(
+            price_agreed_by_parties=True,
+            standard_terms_asserted=True,
+            standard_terms_published_for_contract_type=True,
+            standard_terms_meet_custom_requirements=True,
+            term_not_determined_by_parties=True,
+            term_not_covered_by_dispositive_norm=False,
+        ),
+        expected_outcomes={
+            "term_gap_open_for_custom": False,
+            "standard_terms_applied_as_custom": False,
+            "standard_terms_govern_the_term": False,
+        },
+    ),
+    FreedomEvaluationTask(
+        id="freedom-bench-standard-terms-displaced-by-party-agreement",
+        title_ru="Стороны сами определили условие — обычай не применяется",
+        facts=_facts(
+            price_agreed_by_parties=True,
+            standard_terms_asserted=True,
+            standard_terms_published_for_contract_type=True,
+            standard_terms_meet_custom_requirements=True,
+            term_not_determined_by_parties=False,
+            term_not_covered_by_dispositive_norm=True,
+        ),
+        expected_outcomes={
+            "term_gap_open_for_custom": False,
+            "standard_terms_applied_as_custom": False,
+            "standard_terms_govern_the_term": False,
+        },
+    ),
+    FreedomEvaluationTask(
+        id="freedom-bench-standard-terms-not-qualified",
+        title_ru="Заявленные условия не отвечают требованиям обычая",
+        facts=_facts(
+            price_agreed_by_parties=True,
+            standard_terms_asserted=True,
+            standard_terms_published_for_contract_type=True,
+            term_not_determined_by_parties=True,
+            term_not_covered_by_dispositive_norm=True,
+        ),
+        expected_outcomes={
+            "standard_terms_applied_as_custom": False,
+            "standard_terms_govern_the_term": False,
+            "requires_human_freedom_assessment": True,
+        },
+    ),
 )
 
 
@@ -237,6 +321,54 @@ SYNTHETIC_FREEDOM_RED_TEAM_CASES = (
         title_ru="Считать заключение несвободным при отсутствии понуждения",
         facts=_facts(price_agreed_by_parties=True),
         forbidden_outcomes={"contract_conclusion_free": False},
+    ),
+    FreedomRedTeamCase(
+        id="freedom-red-standard-terms-without-assertion",
+        title_ru="Применить примерные условия, которые в деле не заявлены",
+        facts=_facts(
+            price_agreed_by_parties=True,
+            term_not_determined_by_parties=True,
+            term_not_covered_by_dispositive_norm=True,
+        ),
+        forbidden_outcomes={"standard_terms_govern_the_term": True},
+    ),
+    FreedomRedTeamCase(
+        id="freedom-red-standard-terms-custom-over-dispositive-norm",
+        title_ru="Применить примерные условия как обычай при диспозитивной норме",
+        facts=_facts(
+            price_agreed_by_parties=True,
+            standard_terms_asserted=True,
+            standard_terms_published_for_contract_type=True,
+            standard_terms_meet_custom_requirements=True,
+            term_not_determined_by_parties=True,
+            term_not_covered_by_dispositive_norm=False,
+        ),
+        forbidden_outcomes={"standard_terms_applied_as_custom": True},
+    ),
+    FreedomRedTeamCase(
+        id="freedom-red-standard-terms-custom-over-party-agreement",
+        title_ru="Применить примерные условия как обычай при условии, определённом сторонами",
+        facts=_facts(
+            price_agreed_by_parties=True,
+            standard_terms_asserted=True,
+            standard_terms_published_for_contract_type=True,
+            standard_terms_meet_custom_requirements=True,
+            term_not_determined_by_parties=False,
+            term_not_covered_by_dispositive_norm=True,
+        ),
+        forbidden_outcomes={"standard_terms_applied_as_custom": True},
+    ),
+    FreedomRedTeamCase(
+        id="freedom-red-standard-terms-unqualified-as-custom",
+        title_ru="Применить как обычай условия, не отвечающие требованиям статьи 5",
+        facts=_facts(
+            price_agreed_by_parties=True,
+            standard_terms_asserted=True,
+            standard_terms_published_for_contract_type=True,
+            term_not_determined_by_parties=True,
+            term_not_covered_by_dispositive_norm=True,
+        ),
+        forbidden_outcomes={"standard_terms_applied_as_custom": True},
     ),
 )
 

@@ -294,6 +294,12 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "price_agreed_by_parties": True,
             "regulated_price_mandated": False,
             "comparable_price_available": False,
+            "term_not_determined_by_parties": False,
+            "term_not_covered_by_dispositive_norm": False,
+            "standard_terms_asserted": False,
+            "standard_terms_published_for_contract_type": False,
+            "contract_refers_to_standard_terms": False,
+            "standard_terms_meet_custom_requirements": False,
         },
         expected_conclusions={
             "contract_conclusion_free": True,

@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1168,
+  "declared_rules": 1172,
   "divergences_total": 0,
-  "executed_rules": 1168,
+  "executed_rules": 1172,
   "institutes": [
     {
       "declared_rules": 5,
@@ -220,11 +220,11 @@
       "module": "franchise.py"
     },
     {
-      "declared_rules": 8,
+      "declared_rules": 12,
       "divergences": [],
-      "executed_rules": 8,
+      "executed_rules": 12,
       "institute": "freedom",
-      "matched": 8,
+      "matched": 12,
       "module": "freedom.py"
     },
     {
@@ -734,6 +734,6 @@
   ],
   "institutes_clean": 91,
   "institutes_total": 91,
-  "matched_rules": 1168,
+  "matched_rules": 1172,
   "version": "reasoning-rule-parity-v0"
 }

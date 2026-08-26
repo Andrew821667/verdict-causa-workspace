@@ -2046,6 +2046,26 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.7.0",
+        to_version="1.8.0",
+        reasons=[
+            "The freedom evidence schema gains six required predicates for article 427 and the article 421(4)-(5) hierarchy of contract-term sources; artifacts produced without them cannot be replayed.",
+            "The gap sat between two already-declared institutes of the same chapter 27: freedom of contract claims articles 421-424 and stops right before it, interpretation begins at article 431, and the one article between them fell through.",
+            "Closing it exposed a missing step in the institute's own logic: the model had never modelled article 421(4)-(5) even though it already claimed the whole of article 421 - the institute now carries both the term-source hierarchy and article 427's standard terms together.",
+        ],
+        reasons_ru=[
+            "Контракт данных о свободе договора получил шесть обязательных предикатов для статьи 427 и иерархии источников условия договора по пунктам 4–5 статьи 421; артефакты, собранные без них, не воспроизводятся.",
+            "Пробел лежал между двумя уже объявленными институтами одной и той же главы 27: свобода договора заявляет статьи 421–424 и останавливается ровно перед ней, толкование начинается со статьи 431, и одна статья между ними выпала.",
+            "Закрытие вскрыло недостающий шаг в логике самого института: модель никогда не моделировала пункты 4–5 статьи 421, хотя уже заявляла статью 421 целиком, — теперь институт несёт вместе и иерархию источников условия, и примерные условия статьи 427.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_freedom_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

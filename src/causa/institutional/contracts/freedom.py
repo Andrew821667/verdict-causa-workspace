@@ -8,7 +8,7 @@ from causa.core.bootstrap import BootstrapReviewStatus
 
 FREEDOM_EVIDENCE_SCHEMA_VERSION = "contracts.freedom-evidence.v0"
 FREEDOM_MAPPING_VERSION = "contracts-reviewed-freedom-to-facts-v0"
-FREEDOM_MODEL_VERSION = "contracts-freedom-price-articles-421-424-v0"
+FREEDOM_MODEL_VERSION = "contracts-freedom-price-articles-421-424-427-v0"
 
 
 class FreedomEvidencePredicate(str, Enum):
@@ -26,6 +26,14 @@ class FreedomEvidencePredicate(str, Enum):
     PRICE_AGREED_BY_PARTIES = "price_agreed_by_parties"
     REGULATED_PRICE_MANDATED = "regulated_price_mandated"
     COMPARABLE_PRICE_AVAILABLE = "comparable_price_available"
+    # Восполнение пробела в условии и примерные условия (пункты 4-5 статьи 421,
+    # статья 427 ГК РФ).
+    TERM_NOT_DETERMINED_BY_PARTIES = "term_not_determined_by_parties"
+    TERM_NOT_COVERED_BY_DISPOSITIVE_NORM = "term_not_covered_by_dispositive_norm"
+    STANDARD_TERMS_ASSERTED = "standard_terms_asserted"
+    STANDARD_TERMS_PUBLISHED_FOR_CONTRACT_TYPE = "standard_terms_published_for_contract_type"
+    CONTRACT_REFERS_TO_STANDARD_TERMS = "contract_refers_to_standard_terms"
+    STANDARD_TERMS_MEET_CUSTOM_REQUIREMENTS = "standard_terms_meet_custom_requirements"
 
 
 REQUIRED_FREEDOM_PREDICATES = frozenset(FreedomEvidencePredicate)
@@ -75,11 +83,27 @@ class FreedomFactSet(BaseModel):
     price_agreed_by_parties: bool
     regulated_price_mandated: bool
     comparable_price_available: bool
+    term_not_determined_by_parties: bool
+    term_not_covered_by_dispositive_norm: bool
+    standard_terms_asserted: bool
+    standard_terms_published_for_contract_type: bool
+    contract_refers_to_standard_terms: bool
+    standard_terms_meet_custom_requirements: bool
 
     @model_validator(mode="after")
     def validate_consistency(self) -> "FreedomFactSet":
         if self.new_law_given_retroactive_effect and not self.new_mandatory_law_after_conclusion:
             raise ValueError("Обратная сила невозможна без принятого после заключения закона.")
+        if self.contract_refers_to_standard_terms and not self.standard_terms_asserted:
+            raise ValueError("Отсылка к примерным условиям невозможна без их заявления в деле.")
+        if self.standard_terms_published_for_contract_type and not self.standard_terms_asserted:
+            raise ValueError(
+                "Квалификация примерных условий невозможна без их заявления в деле."
+            )
+        if self.standard_terms_meet_custom_requirements and not self.standard_terms_asserted:
+            raise ValueError(
+                "Соответствие требованиям обычая невозможно без заявленных примерных условий."
+            )
         return self
 
 
@@ -115,6 +139,10 @@ class FreedomEvaluation(BaseModel):
     prior_terms_survive_new_law: bool
     contract_presumed_onerous: bool
     price_determined: bool
+    term_gap_open_for_custom: bool
+    standard_terms_incorporated_by_reference: bool
+    standard_terms_applied_as_custom: bool
+    standard_terms_govern_the_term: bool
     requires_human_freedom_assessment: bool
     reasons_ru: list[str] = Field(default_factory=list)
     warnings_ru: list[str] = Field(default_factory=list)
@@ -169,7 +197,11 @@ def build_freedom_constraint_set(
             "prior_terms_survive_new_law == new_mandatory_law_after_conclusion AND NOT new_law_given_retroactive_effect",
             "contract_presumed_onerous == NOT contract_gratuitous_by_nature",
             "price_determined == price_agreed_by_parties OR regulated_price_mandated OR (contract_presumed_onerous AND comparable_price_available)",
-            "requires_human_freedom_assessment == contract_type_unnamed OR mixed_contract_elements OR (new_mandatory_law_after_conclusion AND new_law_given_retroactive_effect) OR (contract_presumed_onerous AND NOT price_agreed_by_parties AND NOT regulated_price_mandated)",
+            "term_gap_open_for_custom == term_not_determined_by_parties AND term_not_covered_by_dispositive_norm",
+            "standard_terms_incorporated_by_reference == standard_terms_asserted AND standard_terms_published_for_contract_type AND contract_refers_to_standard_terms",
+            "standard_terms_applied_as_custom == standard_terms_asserted AND standard_terms_published_for_contract_type AND NOT contract_refers_to_standard_terms AND standard_terms_meet_custom_requirements AND term_gap_open_for_custom",
+            "standard_terms_govern_the_term == standard_terms_incorporated_by_reference OR standard_terms_applied_as_custom",
+            "requires_human_freedom_assessment == contract_type_unnamed OR mixed_contract_elements OR (new_mandatory_law_after_conclusion AND new_law_given_retroactive_effect) OR (contract_presumed_onerous AND NOT price_agreed_by_parties AND NOT regulated_price_mandated) OR standard_terms_asserted",
         ],
     )
 
@@ -186,6 +218,10 @@ def evaluate_freedom_constraints(
     prior_terms_survive_new_law = Bool("prior_terms_survive_new_law")
     contract_presumed_onerous = Bool("contract_presumed_onerous")
     price_determined = Bool("price_determined")
+    term_gap_open_for_custom = Bool("term_gap_open_for_custom")
+    standard_terms_incorporated_by_reference = Bool("standard_terms_incorporated_by_reference")
+    standard_terms_applied_as_custom = Bool("standard_terms_applied_as_custom")
+    standard_terms_govern_the_term = Bool("standard_terms_govern_the_term")
     requires_human_freedom_assessment = Bool("requires_human_freedom_assessment")
 
     solver = Solver()
@@ -214,6 +250,35 @@ def evaluate_freedom_constraints(
         )
     )
     solver.add(
+        term_gap_open_for_custom
+        == And(
+            variables["term_not_determined_by_parties"],
+            variables["term_not_covered_by_dispositive_norm"],
+        )
+    )
+    solver.add(
+        standard_terms_incorporated_by_reference
+        == And(
+            variables["standard_terms_asserted"],
+            variables["standard_terms_published_for_contract_type"],
+            variables["contract_refers_to_standard_terms"],
+        )
+    )
+    solver.add(
+        standard_terms_applied_as_custom
+        == And(
+            variables["standard_terms_asserted"],
+            variables["standard_terms_published_for_contract_type"],
+            Not(variables["contract_refers_to_standard_terms"]),
+            variables["standard_terms_meet_custom_requirements"],
+            term_gap_open_for_custom,
+        )
+    )
+    solver.add(
+        standard_terms_govern_the_term
+        == Or(standard_terms_incorporated_by_reference, standard_terms_applied_as_custom)
+    )
+    solver.add(
         requires_human_freedom_assessment
         == Or(
             variables["contract_type_unnamed"],
@@ -227,6 +292,7 @@ def evaluate_freedom_constraints(
                 Not(variables["price_agreed_by_parties"]),
                 Not(variables["regulated_price_mandated"]),
             ),
+            variables["standard_terms_asserted"],
         )
     )
 
@@ -242,6 +308,10 @@ def evaluate_freedom_constraints(
             prior_terms_survive_new_law=False,
             contract_presumed_onerous=False,
             price_determined=False,
+            term_gap_open_for_custom=False,
+            standard_terms_incorporated_by_reference=False,
+            standard_terms_applied_as_custom=False,
+            standard_terms_govern_the_term=False,
             requires_human_freedom_assessment=True,
             reasons_ru=["Набор фактов о свободе договора и цене противоречив."],
             warnings_ru=["Требуется проверка исходных доказательств юристом."],
@@ -289,6 +359,26 @@ def evaluate_freedom_constraints(
             "Цена исполнения определена соглашением, регулируемой ценой либо ценой за "
             "сопоставимые товары, работы или услуги (статья 424 ГК РФ)."
         )
+    if truth(standard_terms_incorporated_by_reference):
+        reasons_ru.append(
+            "Договор содержит отсылку к примерным условиям, разработанным для договоров "
+            "соответствующего вида и опубликованным в печати, — эти условия входят в "
+            "содержание договора по отсылке (пункт 1 статьи 427 ГК РФ)."
+        )
+    elif truth(standard_terms_applied_as_custom):
+        reasons_ru.append(
+            "Договор не содержит отсылки к примерным условиям, но условие, ими "
+            "охватываемое, не определено ни сторонами, ни диспозитивной нормой — "
+            "примерные условия применяются к отношениям сторон как обычай (пункт 2 "
+            "статьи 427, пункт 5 статьи 421 ГК РФ)."
+        )
+    elif truth(variables["standard_terms_asserted"]):
+        reasons_ru.append(
+            "Примерные условия заявлены, но договор ими не определяется: либо они не "
+            "отвечают требованиям обычая или квалификации по пункту 1 статьи 427 ГК РФ, "
+            "либо условие уже определено сторонами или диспозитивной нормой и восполнения "
+            "не требует (пункт 5 статьи 421 ГК РФ)."
+        )
     return FreedomEvaluation(
         constraint_set_id=constraint_set.id,
         satisfiable=True,
@@ -299,12 +389,20 @@ def evaluate_freedom_constraints(
         prior_terms_survive_new_law=truth(prior_terms_survive_new_law),
         contract_presumed_onerous=truth(contract_presumed_onerous),
         price_determined=truth(price_determined),
+        term_gap_open_for_custom=truth(term_gap_open_for_custom),
+        standard_terms_incorporated_by_reference=truth(standard_terms_incorporated_by_reference),
+        standard_terms_applied_as_custom=truth(standard_terms_applied_as_custom),
+        standard_terms_govern_the_term=truth(standard_terms_govern_the_term),
         requires_human_freedom_assessment=truth(requires_human_freedom_assessment),
         reasons_ru=reasons_ru,
         warnings_ru=[
             "Модель проверяет только формальные правила о свободе договора, его "
-            "соответствии закону и определении цены и не заменяет судебную оценку.",
+            "соответствии закону, определении цены и восполнении пробела в условии и не "
+            "заменяет судебную оценку.",
             "Квалификация непоименованного и смешанного договора, императивность норм и "
             "размер цены оцениваются экспертом и судом.",
+            "Соответствие примерных условий требованиям обычая по статье 5 ГК РФ и "
+            "содержание диспозитивной нормы, покрывающей условие, модель не разбирает — "
+            "она принимает эти оценки как установленный факт.",
         ],
     )

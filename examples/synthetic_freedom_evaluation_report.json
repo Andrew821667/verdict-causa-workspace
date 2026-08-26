@@ -16,11 +16,18 @@
       "contract_gratuitous_by_nature": false,
       "price_agreed_by_parties": true,
       "regulated_price_mandated": false,
-      "comparable_price_available": false
+      "comparable_price_available": false,
+      "term_not_determined_by_parties": false,
+      "term_not_covered_by_dispositive_norm": false,
+      "standard_terms_asserted": false,
+      "standard_terms_published_for_contract_type": false,
+      "contract_refers_to_standard_terms": false,
+      "standard_terms_meet_custom_requirements": false
     },
     "legal_source_refs": [
       "synthetic-ru-gk421-422-freedom-of-contract-v1",
-      "synthetic-ru-gk423-424-onerousness-and-price-v1"
+      "synthetic-ru-gk423-424-onerousness-and-price-v1",
+      "synthetic-ru-gk427-standard-terms-v1"
     ],
     "provenance": [
       {
@@ -47,6 +54,13 @@
       {
         "fact_name": "contract_gratuitous_by_nature",
         "assertion_id": "freedom-evidence-contract_gratuitous_by_nature",
+        "source_refs": [
+          "synthetic-case-supply-1-freedom-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_refers_to_standard_terms",
+        "assertion_id": "freedom-evidence-contract_refers_to_standard_terms",
         "source_refs": [
           "synthetic-case-supply-1-freedom-evidence"
         ]
@@ -94,6 +108,41 @@
         ]
       },
       {
+        "fact_name": "standard_terms_asserted",
+        "assertion_id": "freedom-evidence-standard_terms_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-freedom-evidence"
+        ]
+      },
+      {
+        "fact_name": "standard_terms_meet_custom_requirements",
+        "assertion_id": "freedom-evidence-standard_terms_meet_custom_requirements",
+        "source_refs": [
+          "synthetic-case-supply-1-freedom-evidence"
+        ]
+      },
+      {
+        "fact_name": "standard_terms_published_for_contract_type",
+        "assertion_id": "freedom-evidence-standard_terms_published_for_contract_type",
+        "source_refs": [
+          "synthetic-case-supply-1-freedom-evidence"
+        ]
+      },
+      {
+        "fact_name": "term_not_covered_by_dispositive_norm",
+        "assertion_id": "freedom-evidence-term_not_covered_by_dispositive_norm",
+        "source_refs": [
+          "synthetic-case-supply-1-freedom-evidence"
+        ]
+      },
+      {
+        "fact_name": "term_not_determined_by_parties",
+        "assertion_id": "freedom-evidence-term_not_determined_by_parties",
+        "source_refs": [
+          "synthetic-case-supply-1-freedom-evidence"
+        ]
+      },
+      {
         "fact_name": "terms_prescribed_by_mandatory_norm",
         "assertion_id": "freedom-evidence-terms_prescribed_by_mandatory_norm",
         "source_refs": [
@@ -104,10 +153,11 @@
   },
   "constraint_set": {
     "id": "freedom-constraint-set:reviewed-freedom-evidence-supply-1-v0",
-    "model_version": "contracts-freedom-price-articles-421-424-v0",
+    "model_version": "contracts-freedom-price-articles-421-424-427-v0",
     "legal_source_refs": [
       "synthetic-ru-gk421-422-freedom-of-contract-v1",
-      "synthetic-ru-gk423-424-onerousness-and-price-v1"
+      "synthetic-ru-gk423-424-onerousness-and-price-v1",
+      "synthetic-ru-gk427-standard-terms-v1"
     ],
     "expressions": [
       "contract_conclusion_free == NOT contract_conclusion_compelled_by_law",
@@ -117,7 +167,11 @@
       "prior_terms_survive_new_law == new_mandatory_law_after_conclusion AND NOT new_law_given_retroactive_effect",
       "contract_presumed_onerous == NOT contract_gratuitous_by_nature",
       "price_determined == price_agreed_by_parties OR regulated_price_mandated OR (contract_presumed_onerous AND comparable_price_available)",
-      "requires_human_freedom_assessment == contract_type_unnamed OR mixed_contract_elements OR (new_mandatory_law_after_conclusion AND new_law_given_retroactive_effect) OR (contract_presumed_onerous AND NOT price_agreed_by_parties AND NOT regulated_price_mandated)"
+      "term_gap_open_for_custom == term_not_determined_by_parties AND term_not_covered_by_dispositive_norm",
+      "standard_terms_incorporated_by_reference == standard_terms_asserted AND standard_terms_published_for_contract_type AND contract_refers_to_standard_terms",
+      "standard_terms_applied_as_custom == standard_terms_asserted AND standard_terms_published_for_contract_type AND NOT contract_refers_to_standard_terms AND standard_terms_meet_custom_requirements AND term_gap_open_for_custom",
+      "standard_terms_govern_the_term == standard_terms_incorporated_by_reference OR standard_terms_applied_as_custom",
+      "requires_human_freedom_assessment == contract_type_unnamed OR mixed_contract_elements OR (new_mandatory_law_after_conclusion AND new_law_given_retroactive_effect) OR (contract_presumed_onerous AND NOT price_agreed_by_parties AND NOT regulated_price_mandated) OR standard_terms_asserted"
     ]
   },
   "reviewed_evaluation": {
@@ -130,6 +184,10 @@
     "prior_terms_survive_new_law": false,
     "contract_presumed_onerous": true,
     "price_determined": true,
+    "term_gap_open_for_custom": false,
+    "standard_terms_incorporated_by_reference": false,
+    "standard_terms_applied_as_custom": false,
+    "standard_terms_govern_the_term": false,
     "requires_human_freedom_assessment": false,
     "reasons_ru": [
       "Стороны свободны в заключении договора; понуждение не допускается (пункт 1 статьи 421 ГК РФ).",
@@ -139,14 +197,15 @@
       "Цена исполнения определена соглашением, регулируемой ценой либо ценой за сопоставимые товары, работы или услуги (статья 424 ГК РФ)."
     ],
     "warnings_ru": [
-      "Модель проверяет только формальные правила о свободе договора, его соответствии закону и определении цены и не заменяет судебную оценку.",
-      "Квалификация непоименованного и смешанного договора, императивность норм и размер цены оцениваются экспертом и судом."
+      "Модель проверяет только формальные правила о свободе договора, его соответствии закону, определении цены и восполнении пробела в условии и не заменяет судебную оценку.",
+      "Квалификация непоименованного и смешанного договора, императивность норм и размер цены оцениваются экспертом и судом.",
+      "Соответствие примерных условий требованиям обычая по статье 5 ГК РФ и содержание диспозитивной нормы, покрывающей условие, модель не разбирает — она принимает эти оценки как установленный факт."
     ]
   },
   "benchmark_report": {
     "id": "freedom-benchmark-report-v0",
-    "total": 10,
-    "passed": 10,
+    "total": 15,
+    "passed": 15,
     "failed": 0,
     "results": [
       {
@@ -324,13 +383,122 @@
           "Договор предполагается возмездным, если из закона, содержания или существа договора не вытекает иное (пункт 3 статьи 423 ГК РФ).",
           "Цена исполнения определена соглашением, регулируемой ценой либо ценой за сопоставимые товары, работы или услуги (статья 424 ГК РФ)."
         ]
+      },
+      {
+        "task_id": "freedom-bench-standard-terms-by-reference",
+        "passed": true,
+        "expected_outcomes": {
+          "standard_terms_incorporated_by_reference": true,
+          "standard_terms_applied_as_custom": false,
+          "standard_terms_govern_the_term": true,
+          "requires_human_freedom_assessment": true
+        },
+        "observed_outcomes": {
+          "standard_terms_incorporated_by_reference": true,
+          "standard_terms_applied_as_custom": false,
+          "standard_terms_govern_the_term": true,
+          "requires_human_freedom_assessment": true
+        },
+        "reasons_ru": [
+          "Стороны свободны в заключении договора; понуждение не допускается (пункт 1 статьи 421 ГК РФ).",
+          "Условия договора определяются по усмотрению сторон, кроме случаев, когда содержание условия предписано законом (пункт 4 статьи 421 ГК РФ).",
+          "Договор предполагается возмездным, если из закона, содержания или существа договора не вытекает иное (пункт 3 статьи 423 ГК РФ).",
+          "Цена исполнения определена соглашением, регулируемой ценой либо ценой за сопоставимые товары, работы или услуги (статья 424 ГК РФ).",
+          "Договор содержит отсылку к примерным условиям, разработанным для договоров соответствующего вида и опубликованным в печати, — эти условия входят в содержание договора по отсылке (пункт 1 статьи 427 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "freedom-bench-standard-terms-as-custom",
+        "passed": true,
+        "expected_outcomes": {
+          "term_gap_open_for_custom": true,
+          "standard_terms_incorporated_by_reference": false,
+          "standard_terms_applied_as_custom": true,
+          "standard_terms_govern_the_term": true
+        },
+        "observed_outcomes": {
+          "term_gap_open_for_custom": true,
+          "standard_terms_incorporated_by_reference": false,
+          "standard_terms_applied_as_custom": true,
+          "standard_terms_govern_the_term": true
+        },
+        "reasons_ru": [
+          "Стороны свободны в заключении договора; понуждение не допускается (пункт 1 статьи 421 ГК РФ).",
+          "Условия договора определяются по усмотрению сторон, кроме случаев, когда содержание условия предписано законом (пункт 4 статьи 421 ГК РФ).",
+          "Договор предполагается возмездным, если из закона, содержания или существа договора не вытекает иное (пункт 3 статьи 423 ГК РФ).",
+          "Цена исполнения определена соглашением, регулируемой ценой либо ценой за сопоставимые товары, работы или услуги (статья 424 ГК РФ).",
+          "Договор не содержит отсылки к примерным условиям, но условие, ими охватываемое, не определено ни сторонами, ни диспозитивной нормой — примерные условия применяются к отношениям сторон как обычай (пункт 2 статьи 427, пункт 5 статьи 421 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "freedom-bench-standard-terms-displaced-by-dispositive-norm",
+        "passed": true,
+        "expected_outcomes": {
+          "term_gap_open_for_custom": false,
+          "standard_terms_applied_as_custom": false,
+          "standard_terms_govern_the_term": false
+        },
+        "observed_outcomes": {
+          "term_gap_open_for_custom": false,
+          "standard_terms_applied_as_custom": false,
+          "standard_terms_govern_the_term": false
+        },
+        "reasons_ru": [
+          "Стороны свободны в заключении договора; понуждение не допускается (пункт 1 статьи 421 ГК РФ).",
+          "Условия договора определяются по усмотрению сторон, кроме случаев, когда содержание условия предписано законом (пункт 4 статьи 421 ГК РФ).",
+          "Договор предполагается возмездным, если из закона, содержания или существа договора не вытекает иное (пункт 3 статьи 423 ГК РФ).",
+          "Цена исполнения определена соглашением, регулируемой ценой либо ценой за сопоставимые товары, работы или услуги (статья 424 ГК РФ).",
+          "Примерные условия заявлены, но договор ими не определяется: либо они не отвечают требованиям обычая или квалификации по пункту 1 статьи 427 ГК РФ, либо условие уже определено сторонами или диспозитивной нормой и восполнения не требует (пункт 5 статьи 421 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "freedom-bench-standard-terms-displaced-by-party-agreement",
+        "passed": true,
+        "expected_outcomes": {
+          "term_gap_open_for_custom": false,
+          "standard_terms_applied_as_custom": false,
+          "standard_terms_govern_the_term": false
+        },
+        "observed_outcomes": {
+          "term_gap_open_for_custom": false,
+          "standard_terms_applied_as_custom": false,
+          "standard_terms_govern_the_term": false
+        },
+        "reasons_ru": [
+          "Стороны свободны в заключении договора; понуждение не допускается (пункт 1 статьи 421 ГК РФ).",
+          "Условия договора определяются по усмотрению сторон, кроме случаев, когда содержание условия предписано законом (пункт 4 статьи 421 ГК РФ).",
+          "Договор предполагается возмездным, если из закона, содержания или существа договора не вытекает иное (пункт 3 статьи 423 ГК РФ).",
+          "Цена исполнения определена соглашением, регулируемой ценой либо ценой за сопоставимые товары, работы или услуги (статья 424 ГК РФ).",
+          "Примерные условия заявлены, но договор ими не определяется: либо они не отвечают требованиям обычая или квалификации по пункту 1 статьи 427 ГК РФ, либо условие уже определено сторонами или диспозитивной нормой и восполнения не требует (пункт 5 статьи 421 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "freedom-bench-standard-terms-not-qualified",
+        "passed": true,
+        "expected_outcomes": {
+          "standard_terms_applied_as_custom": false,
+          "standard_terms_govern_the_term": false,
+          "requires_human_freedom_assessment": true
+        },
+        "observed_outcomes": {
+          "standard_terms_applied_as_custom": false,
+          "standard_terms_govern_the_term": false,
+          "requires_human_freedom_assessment": true
+        },
+        "reasons_ru": [
+          "Стороны свободны в заключении договора; понуждение не допускается (пункт 1 статьи 421 ГК РФ).",
+          "Условия договора определяются по усмотрению сторон, кроме случаев, когда содержание условия предписано законом (пункт 4 статьи 421 ГК РФ).",
+          "Договор предполагается возмездным, если из закона, содержания или существа договора не вытекает иное (пункт 3 статьи 423 ГК РФ).",
+          "Цена исполнения определена соглашением, регулируемой ценой либо ценой за сопоставимые товары, работы или услуги (статья 424 ГК РФ).",
+          "Примерные условия заявлены, но договор ими не определяется: либо они не отвечают требованиям обычая или квалификации по пункту 1 статьи 427 ГК РФ, либо условие уже определено сторонами или диспозитивной нормой и восполнения не требует (пункт 5 статьи 421 ГК РФ)."
+        ]
       }
     ]
   },
   "red_team_report": {
     "id": "freedom-red-team-report-v0",
-    "total": 10,
-    "blocked": 10,
+    "total": 14,
+    "blocked": 14,
     "unblocked": 0,
     "results": [
       {
@@ -484,6 +652,73 @@
           "Условия договора определяются по усмотрению сторон, кроме случаев, когда содержание условия предписано законом (пункт 4 статьи 421 ГК РФ).",
           "Договор предполагается возмездным, если из закона, содержания или существа договора не вытекает иное (пункт 3 статьи 423 ГК РФ).",
           "Цена исполнения определена соглашением, регулируемой ценой либо ценой за сопоставимые товары, работы или услуги (статья 424 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "freedom-red-standard-terms-without-assertion",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "standard_terms_govern_the_term": true
+        },
+        "observed_outcomes": {
+          "standard_terms_govern_the_term": false
+        },
+        "reasons_ru": [
+          "Стороны свободны в заключении договора; понуждение не допускается (пункт 1 статьи 421 ГК РФ).",
+          "Условия договора определяются по усмотрению сторон, кроме случаев, когда содержание условия предписано законом (пункт 4 статьи 421 ГК РФ).",
+          "Договор предполагается возмездным, если из закона, содержания или существа договора не вытекает иное (пункт 3 статьи 423 ГК РФ).",
+          "Цена исполнения определена соглашением, регулируемой ценой либо ценой за сопоставимые товары, работы или услуги (статья 424 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "freedom-red-standard-terms-custom-over-dispositive-norm",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "standard_terms_applied_as_custom": true
+        },
+        "observed_outcomes": {
+          "standard_terms_applied_as_custom": false
+        },
+        "reasons_ru": [
+          "Стороны свободны в заключении договора; понуждение не допускается (пункт 1 статьи 421 ГК РФ).",
+          "Условия договора определяются по усмотрению сторон, кроме случаев, когда содержание условия предписано законом (пункт 4 статьи 421 ГК РФ).",
+          "Договор предполагается возмездным, если из закона, содержания или существа договора не вытекает иное (пункт 3 статьи 423 ГК РФ).",
+          "Цена исполнения определена соглашением, регулируемой ценой либо ценой за сопоставимые товары, работы или услуги (статья 424 ГК РФ).",
+          "Примерные условия заявлены, но договор ими не определяется: либо они не отвечают требованиям обычая или квалификации по пункту 1 статьи 427 ГК РФ, либо условие уже определено сторонами или диспозитивной нормой и восполнения не требует (пункт 5 статьи 421 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "freedom-red-standard-terms-custom-over-party-agreement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "standard_terms_applied_as_custom": true
+        },
+        "observed_outcomes": {
+          "standard_terms_applied_as_custom": false
+        },
+        "reasons_ru": [
+          "Стороны свободны в заключении договора; понуждение не допускается (пункт 1 статьи 421 ГК РФ).",
+          "Условия договора определяются по усмотрению сторон, кроме случаев, когда содержание условия предписано законом (пункт 4 статьи 421 ГК РФ).",
+          "Договор предполагается возмездным, если из закона, содержания или существа договора не вытекает иное (пункт 3 статьи 423 ГК РФ).",
+          "Цена исполнения определена соглашением, регулируемой ценой либо ценой за сопоставимые товары, работы или услуги (статья 424 ГК РФ).",
+          "Примерные условия заявлены, но договор ими не определяется: либо они не отвечают требованиям обычая или квалификации по пункту 1 статьи 427 ГК РФ, либо условие уже определено сторонами или диспозитивной нормой и восполнения не требует (пункт 5 статьи 421 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "freedom-red-standard-terms-unqualified-as-custom",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "standard_terms_applied_as_custom": true
+        },
+        "observed_outcomes": {
+          "standard_terms_applied_as_custom": false
+        },
+        "reasons_ru": [
+          "Стороны свободны в заключении договора; понуждение не допускается (пункт 1 статьи 421 ГК РФ).",
+          "Условия договора определяются по усмотрению сторон, кроме случаев, когда содержание условия предписано законом (пункт 4 статьи 421 ГК РФ).",
+          "Договор предполагается возмездным, если из закона, содержания или существа договора не вытекает иное (пункт 3 статьи 423 ГК РФ).",
+          "Цена исполнения определена соглашением, регулируемой ценой либо ценой за сопоставимые товары, работы или услуги (статья 424 ГК РФ).",
+          "Примерные условия заявлены, но договор ими не определяется: либо они не отвечают требованиям обычая или квалификации по пункту 1 статьи 427 ГК РФ, либо условие уже определено сторонами или диспозитивной нормой и восполнения не требует (пункт 5 статьи 421 ГК РФ)."
         ]
       }
     ]

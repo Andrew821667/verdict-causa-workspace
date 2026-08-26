@@ -130,9 +130,9 @@ def test_freedom_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_freedom_benchmark_suite()
     red_team = run_freedom_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_FREEDOM_BENCHMARKS) == 10
+    assert benchmark.total == len(SYNTHETIC_FREEDOM_BENCHMARKS) == 15
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_FREEDOM_RED_TEAM_CASES) == 10
+    assert red_team.total == len(SYNTHETIC_FREEDOM_RED_TEAM_CASES) == 14
     assert red_team.blocked == red_team.total
 
 
