@@ -192,6 +192,80 @@ SYNTHETIC_INVALIDITY_BENCHMARKS = (
             "voidable_invalidity_effective": False,
         },
     ),
+    InvalidityEvaluationTask(
+        id="invalidity-bench-entrepreneurial-estoppel",
+        title_ru="Пункт 2 статьи 431.1: сторона приняла исполнение и знала об основании",
+        facts=_voidable_claim(
+            violates_law=True,
+            performance_accepted_under_entrepreneurial_contract=True,
+            claimant_did_not_reciprocate_performance=True,
+            claimant_knew_ground_at_performance_acceptance=True,
+        ),
+        expected_outcomes={
+            "entrepreneurial_estoppel_bar": True,
+            "voidable_invalidity_prerequisites": False,
+            "voidable_invalidity_effective": False,
+        },
+    ),
+    InvalidityEvaluationTask(
+        id="invalidity-bench-entrepreneurial-estoppel-exception-179",
+        title_ru="Исключение по статье 179: обман не подпадает под запрет 431.1",
+        facts=_voidable_claim(
+            deception_proven=True,
+            performance_accepted_under_entrepreneurial_contract=True,
+            claimant_did_not_reciprocate_performance=True,
+            claimant_knew_ground_at_performance_acceptance=True,
+        ),
+        expected_outcomes={
+            "entrepreneurial_estoppel_bar": False,
+            "voidable_invalidity_effective": True,
+        },
+    ),
+    InvalidityEvaluationTask(
+        id="invalidity-bench-entrepreneurial-estoppel-exception-174-1",
+        title_ru="Исключение по пункту 1 статьи 174: ограничение полномочий",
+        facts=_voidable_claim(
+            authority_restriction_violated=True,
+            counterparty_knew_authority_restriction=True,
+            performance_accepted_under_entrepreneurial_contract=True,
+            claimant_did_not_reciprocate_performance=True,
+            claimant_knew_ground_at_performance_acceptance=True,
+        ),
+        expected_outcomes={
+            "entrepreneurial_estoppel_bar": False,
+            "voidable_invalidity_effective": True,
+        },
+    ),
+    InvalidityEvaluationTask(
+        id="invalidity-bench-entrepreneurial-estoppel-not-174-2",
+        title_ru="Пункт 2 статьи 174 запретом 431.1 не исключён",
+        facts=_voidable_claim(
+            obvious_entity_damage_proven=True,
+            counterparty_knew_obvious_damage=True,
+            performance_accepted_under_entrepreneurial_contract=True,
+            claimant_did_not_reciprocate_performance=True,
+            claimant_knew_ground_at_performance_acceptance=True,
+        ),
+        expected_outcomes={
+            "entrepreneurial_estoppel_bar": True,
+            "voidable_invalidity_effective": False,
+        },
+    ),
+    InvalidityEvaluationTask(
+        id="invalidity-bench-entrepreneurial-estoppel-public-interest",
+        title_ru="Исключение: исполнение нарушает публичные интересы",
+        facts=_voidable_claim(
+            violates_law=True,
+            performance_accepted_under_entrepreneurial_contract=True,
+            claimant_did_not_reciprocate_performance=True,
+            claimant_knew_ground_at_performance_acceptance=True,
+            performance_violates_third_party_or_public_interests=True,
+        ),
+        expected_outcomes={
+            "entrepreneurial_estoppel_bar": False,
+            "voidable_invalidity_effective": True,
+        },
+    ),
 )
 
 
@@ -309,6 +383,37 @@ SYNTHETIC_INVALIDITY_RED_TEAM_CASES = (
         title_ru="Присудить дополнительные убытки без причинной связи",
         facts=_facts(sham_intent_proven=True, additional_damages_claimed=True),
         forbidden_outcomes={"additional_damages_issue": True},
+    ),
+    InvalidityRedTeamCase(
+        id="invalidity-red-estoppel-without-acceptance",
+        title_ru="Применить запрет 431.1 без принятого исполнения",
+        facts=_voidable_claim(
+            violates_law=True,
+            claimant_did_not_reciprocate_performance=False,
+            claimant_knew_ground_at_performance_acceptance=False,
+        ),
+        forbidden_outcomes={"entrepreneurial_estoppel_bar": True},
+    ),
+    InvalidityRedTeamCase(
+        id="invalidity-red-estoppel-without-knowledge",
+        title_ru="Применить запрет 431.1, не зная об основании при получении исполнения",
+        facts=_voidable_claim(
+            violates_law=True,
+            performance_accepted_under_entrepreneurial_contract=True,
+            claimant_did_not_reciprocate_performance=True,
+        ),
+        forbidden_outcomes={"entrepreneurial_estoppel_bar": True},
+    ),
+    InvalidityRedTeamCase(
+        id="invalidity-red-estoppel-over-mistake",
+        title_ru="Распространить запрет 431.1 на существенное заблуждение (статья 178)",
+        facts=_voidable_claim(
+            material_mistake_proven=True,
+            performance_accepted_under_entrepreneurial_contract=True,
+            claimant_did_not_reciprocate_performance=True,
+            claimant_knew_ground_at_performance_acceptance=True,
+        ),
+        forbidden_outcomes={"entrepreneurial_estoppel_bar": True},
     ),
 )
 

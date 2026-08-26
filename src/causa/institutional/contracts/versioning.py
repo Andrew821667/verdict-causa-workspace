@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.7.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Closes article 431.1(2): a gap inside the invalidity institute (articles 166-181), not beyond it - the same kind of prohibition against inconsistent conduct as article 166(5), but for entrepreneurial contracts, and never modelled as its own rule.",
+            "A party who accepted performance under a contract linked to both parties' entrepreneurial activity, in full or in part, without performing its own obligation or having provided disproportionate counter-performance, may not seek invalidity on a ground it knew or should have known about when accepting that performance - except for the grounds of article 173, article 174(1), article 178 and article 179, and except where accepting the performance violates protected third-party or public interests.",
+            "Closing this exception exposed an adjacent imprecision: the model had merged article 174(1) and 174(2) into a single conclusion, though only 174(1) is excepted from the article 431.1(2) bar. The two are now separate conclusions, authority_restriction_voidable_ground and entity_damage_voidable_ground, kept alongside their aggregate for compatibility.",
+        ],
+        notes_ru=[
+            "Закрыта статья 431.1 пункт 2: пробел внутри института недействительности (статьи 166–181), а не за его пределами — тот же по природе запрет противоречивого поведения, что и пункт 5 статьи 166, но для предпринимательских договоров, и никогда не смоделированный отдельным правилом.",
+            "Сторона, принявшая исполнение по договору, связанному с осуществлением обеими сторонами предпринимательской деятельности, полностью или частично, и не исполнившая своё обязательство либо предоставившая неравноценное встречное исполнение, не вправе требовать признания договора недействительным по основанию, о котором знала или должна была знать при получении исполнения — за исключением оснований статьи 173, пункта 1 статьи 174, статей 178 и 179, а также случаев, когда принятие исполнения нарушает охраняемые законом интересы третьих лиц или публичные интересы.",
+            "Закрытие исключения вскрыло смежную неточность: модель сливала пункты 1 и 2 статьи 174 в один вывод, хотя из запрета статьи 431.1 исключён только пункт 1. Теперь это два раздельных вывода — authority_restriction_voidable_ground и entity_damage_voidable_ground, а их агрегат сохранён для совместимости.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.6.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

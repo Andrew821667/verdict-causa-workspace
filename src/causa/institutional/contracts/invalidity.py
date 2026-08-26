@@ -8,7 +8,7 @@ from causa.core.bootstrap import BootstrapReviewStatus
 
 INVALIDITY_EVIDENCE_SCHEMA_VERSION = "contracts.invalidity-evidence.v0"
 INVALIDITY_MAPPING_VERSION = "contracts-reviewed-invalidity-to-facts-v0"
-INVALIDITY_MODEL_VERSION = "contracts-transaction-invalidity-articles-166-181-v0"
+INVALIDITY_MODEL_VERSION = "contracts-transaction-invalidity-articles-166-181-431-1-v0"
 
 
 class InvalidityEvidencePredicate(str, Enum):
@@ -23,6 +23,16 @@ class InvalidityEvidencePredicate(str, Enum):
     GOOD_FAITH_RELIANCE_CREATED = "good_faith_reliance_created"
     PARTY_CONFIRMED_VOIDABLE_TRANSACTION = "party_confirmed_voidable_transaction"
     GROUND_KNOWN_AT_CONFIRMATION = "ground_known_at_confirmation"
+    PERFORMANCE_ACCEPTED_UNDER_ENTREPRENEURIAL_CONTRACT = (
+        "performance_accepted_under_entrepreneurial_contract"
+    )
+    CLAIMANT_DID_NOT_RECIPROCATE_PERFORMANCE = "claimant_did_not_reciprocate_performance"
+    CLAIMANT_KNEW_GROUND_AT_PERFORMANCE_ACCEPTANCE = (
+        "claimant_knew_ground_at_performance_acceptance"
+    )
+    PERFORMANCE_VIOLATES_THIRD_PARTY_OR_PUBLIC_INTERESTS = (
+        "performance_violates_third_party_or_public_interests"
+    )
     VIOLATES_LAW = "violates_law"
     PUBLIC_INTERESTS_OR_THIRD_RIGHTS_AFFECTED = "public_interests_or_third_rights_affected"
     LAW_EXPRESSLY_MAKES_VOID = "law_expressly_makes_void"
@@ -112,6 +122,10 @@ class InvalidityFactSet(BaseModel):
     good_faith_reliance_created: bool
     party_confirmed_voidable_transaction: bool
     ground_known_at_confirmation: bool
+    performance_accepted_under_entrepreneurial_contract: bool
+    claimant_did_not_reciprocate_performance: bool
+    claimant_knew_ground_at_performance_acceptance: bool
+    performance_violates_third_party_or_public_interests: bool
     violates_law: bool
     public_interests_or_third_rights_affected: bool
     law_expressly_makes_void: bool
@@ -159,6 +173,30 @@ class InvalidityFactSet(BaseModel):
             raise ValueError("An effective invalidity judgment requires a claim.")
         if self.ground_known_at_confirmation and not self.party_confirmed_voidable_transaction:
             raise ValueError("Known ground requires confirmation of the voidable transaction.")
+        if (
+            self.claimant_did_not_reciprocate_performance
+            and not self.performance_accepted_under_entrepreneurial_contract
+        ):
+            raise ValueError(
+                "Unreciprocated performance requires accepted performance under an "
+                "entrepreneurial contract."
+            )
+        if (
+            self.claimant_knew_ground_at_performance_acceptance
+            and not self.performance_accepted_under_entrepreneurial_contract
+        ):
+            raise ValueError(
+                "Knowledge of the ground at acceptance requires accepted performance under "
+                "an entrepreneurial contract."
+            )
+        if (
+            self.performance_violates_third_party_or_public_interests
+            and not self.performance_accepted_under_entrepreneurial_contract
+        ):
+            raise ValueError(
+                "A violation of third-party or public interests presupposes accepted "
+                "performance under an entrepreneurial contract."
+            )
         if self.counterparty_knew_consent_absent and not self.required_consent_absent:
             raise ValueError("Knowledge of missing consent requires absent consent.")
         if self.counterparty_knew_authority_restriction and not self.authority_restriction_violated:
@@ -221,6 +259,8 @@ class InvalidityEvaluation(BaseModel):
     feigned_void_ground: bool
     capacity_void_ground: bool
     consent_voidable_ground: bool
+    authority_restriction_voidable_ground: bool
+    entity_damage_voidable_ground: bool
     authority_voidable_ground: bool
     entity_purpose_voidable_ground: bool
     mistake_voidable_ground: bool
@@ -228,6 +268,7 @@ class InvalidityEvaluation(BaseModel):
     capacity_voidable_ground: bool
     void_ground_detected: bool
     voidable_ground_detected: bool
+    entrepreneurial_estoppel_bar: bool
     voidable_claimant_has_standing: bool
     nullity_consequence_claimant_has_standing: bool
     voidable_invalidity_prerequisites: bool
@@ -291,7 +332,8 @@ def build_invalidity_constraint_set(
         legal_source_refs=mapping.legal_source_refs,
         expressions=[
             "additional_damages_issue == contractual_effect_displaced AND additional_damages_claimed AND additional_damages_causally_linked",
-            "authority_voidable_ground == authority_restriction_violated AND counterparty_knew_authority_restriction OR obvious_entity_damage_proven AND counterparty_knew_obvious_damage",
+            "authority_restriction_voidable_ground == authority_restriction_violated AND counterparty_knew_authority_restriction",
+            "authority_voidable_ground == authority_restriction_voidable_ground OR entity_damage_voidable_ground",
             "capacity_void_ground == incapacitated_person_transaction OR minor_under_14_transaction",
             "capacity_voidable_ground == unable_to_understand_actions_proven OR limited_capacity_without_consent OR minor_14_18_without_consent",
             "coercion_voidable_ground == deception_proven OR violence_or_threat_proven OR adverse_circumstances_proven AND extremely_unfavorable_terms_proven AND counterparty_exploited_circumstances",
@@ -299,7 +341,9 @@ def build_invalidity_constraint_set(
             "contractual_effect_displaced == transaction_concluded AND (void_ground_detected OR voidable_invalidity_effective)",
             "disguised_transaction_rules_required == feigned_intent_proven AND disguised_transaction_identified",
             "entire_transaction_affected == contractual_effect_displaced AND NOT partial_invalidity_only",
+            "entity_damage_voidable_ground == obvious_entity_damage_proven AND counterparty_knew_obvious_damage",
             "entity_purpose_voidable_ground == entity_beyond_statutory_purpose AND counterparty_knew_beyond_purpose",
+            "entrepreneurial_estoppel_bar == performance_accepted_under_entrepreneurial_contract AND claimant_did_not_reciprocate_performance AND claimant_knew_ground_at_performance_acceptance AND NOT (entity_purpose_voidable_ground OR authority_restriction_voidable_ground OR mistake_voidable_ground OR coercion_voidable_ground) AND NOT performance_violates_third_party_or_public_interests",
             "estoppel_bar == good_faith_reliance_created OR party_confirmed_voidable_transaction AND ground_known_at_confirmation",
             "feigned_void_ground == feigned_intent_proven",
             "immoral_void_ground == immoral_purpose_proven",
@@ -309,7 +353,7 @@ def build_invalidity_constraint_set(
             "nullity_consequences_prerequisites == transaction_concluded AND void_ground_detected AND nullity_consequence_claimant_has_standing AND NOT void_limitation_period_expired",
             "partial_invalidity_only == contractual_effect_displaced AND invalid_part_separable AND remainder_preserves_transaction_purpose",
             "public_recovery_issue == immoral_void_ground AND both_parties_intentional_immoral_purpose",
-            "requires_human_invalidity_assessment == void_ground_detected OR voidable_ground_detected OR invalidity_claim_made OR nullity_consequences_requested OR estoppel_bar OR contractual_effect_displaced OR restitution_required OR benefit_to_incapacitated_or_minor_proven",
+            "requires_human_invalidity_assessment == void_ground_detected OR voidable_ground_detected OR invalidity_claim_made OR nullity_consequences_requested OR estoppel_bar OR entrepreneurial_estoppel_bar OR contractual_effect_displaced OR restitution_required OR benefit_to_incapacitated_or_minor_proven",
             "restitution_in_kind == restitution_required AND return_in_kind_possible",
             "restitution_required == contractual_effect_displaced AND (party_a_performed OR party_b_performed)",
             "sham_void_ground == sham_intent_proven",
@@ -320,7 +364,7 @@ def build_invalidity_constraint_set(
             "voidable_claimant_has_standing == invalidity_claim_made AND (claimant_is_transaction_party OR claimant_legally_authorized) AND claimant_rights_or_interests_affected",
             "voidable_ground_detected == unlawful_voidable_ground OR consent_voidable_ground OR authority_voidable_ground OR entity_purpose_voidable_ground OR mistake_voidable_ground OR coercion_voidable_ground OR capacity_voidable_ground",
             "voidable_invalidity_effective == voidable_invalidity_prerequisites AND court_decision_entered_into_force",
-            "voidable_invalidity_prerequisites == transaction_concluded AND voidable_ground_detected AND voidable_claimant_has_standing AND NOT estoppel_bar AND NOT voidable_limitation_period_expired",
+            "voidable_invalidity_prerequisites == transaction_concluded AND voidable_ground_detected AND voidable_claimant_has_standing AND NOT estoppel_bar AND NOT entrepreneurial_estoppel_bar AND NOT voidable_limitation_period_expired",
         ],
     )
 
@@ -381,16 +425,24 @@ def evaluate_invalidity_constraints(
         )
     )
     solver.add(
+        outputs["authority_restriction_voidable_ground"]
+        == And(
+            variables["authority_restriction_violated"],
+            variables["counterparty_knew_authority_restriction"],
+        )
+    )
+    solver.add(
+        outputs["entity_damage_voidable_ground"]
+        == And(
+            variables["obvious_entity_damage_proven"],
+            variables["counterparty_knew_obvious_damage"],
+        )
+    )
+    solver.add(
         outputs["authority_voidable_ground"]
         == Or(
-            And(
-                variables["authority_restriction_violated"],
-                variables["counterparty_knew_authority_restriction"],
-            ),
-            And(
-                variables["obvious_entity_damage_proven"],
-                variables["counterparty_knew_obvious_damage"],
-            ),
+            outputs["authority_restriction_voidable_ground"],
+            outputs["entity_damage_voidable_ground"],
         )
     )
     solver.add(
@@ -422,6 +474,23 @@ def evaluate_invalidity_constraints(
             variables["unable_to_understand_actions_proven"],
             variables["limited_capacity_without_consent"],
             variables["minor_14_18_without_consent"],
+        )
+    )
+    solver.add(
+        outputs["entrepreneurial_estoppel_bar"]
+        == And(
+            variables["performance_accepted_under_entrepreneurial_contract"],
+            variables["claimant_did_not_reciprocate_performance"],
+            variables["claimant_knew_ground_at_performance_acceptance"],
+            Not(
+                Or(
+                    outputs["entity_purpose_voidable_ground"],
+                    outputs["authority_restriction_voidable_ground"],
+                    outputs["mistake_voidable_ground"],
+                    outputs["coercion_voidable_ground"],
+                )
+            ),
+            Not(variables["performance_violates_third_party_or_public_interests"]),
         )
     )
     solver.add(
@@ -475,6 +544,7 @@ def evaluate_invalidity_constraints(
             outputs["voidable_ground_detected"],
             outputs["voidable_claimant_has_standing"],
             Not(outputs["estoppel_bar"]),
+            Not(outputs["entrepreneurial_estoppel_bar"]),
             Not(variables["voidable_limitation_period_expired"]),
         )
     )
@@ -566,6 +636,7 @@ def evaluate_invalidity_constraints(
             variables["invalidity_claim_made"],
             variables["nullity_consequences_requested"],
             outputs["estoppel_bar"],
+            outputs["entrepreneurial_estoppel_bar"],
             outputs["contractual_effect_displaced"],
             outputs["restitution_required"],
             variables["benefit_to_incapacitated_or_minor_proven"],
@@ -606,6 +677,16 @@ def evaluate_invalidity_constraints(
     if values["estoppel_bar"]:
         reasons_ru.append(
             "Выявлен запрет противоречивой или недобросовестной ссылки на недействительность."
+        )
+    if values["entrepreneurial_estoppel_bar"]:
+        reasons_ru.append(
+            "Сторона, принявшая исполнение по предпринимательскому договору и не исполнившая "
+            "своё обязательство либо предоставившая неравноценное встречное исполнение, не "
+            "вправе требовать признания договора недействительным по основанию, о котором "
+            "знала или должна была знать при получении исполнения (пункт 2 статьи 431.1 ГК "
+            "РФ). Основания статьи 173, пункта 1 статьи 174, статей 178 и 179, а также случаи "
+            "нарушения охраняемых законом интересов третьих лиц или публичных интересов из "
+            "этого запрета исключены."
         )
     if values["transaction_presumed_effective"]:
         reasons_ru.append("Договорные последствия сделки текущей моделью не устранены.")

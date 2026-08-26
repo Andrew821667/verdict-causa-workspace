@@ -167,9 +167,9 @@ def test_invalidity_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_invalidity_benchmark_suite()
     red_team = run_invalidity_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_INVALIDITY_BENCHMARKS) == 14
+    assert benchmark.total == len(SYNTHETIC_INVALIDITY_BENCHMARKS) == 19
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_INVALIDITY_RED_TEAM_CASES) == 14
+    assert red_team.total == len(SYNTHETIC_INVALIDITY_RED_TEAM_CASES) == 17
     assert red_team.blocked == red_team.total
 
 

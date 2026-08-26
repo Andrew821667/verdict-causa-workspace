@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1165,
+  "declared_rules": 1168,
   "divergences_total": 0,
-  "executed_rules": 1165,
+  "executed_rules": 1168,
   "institutes": [
     {
       "declared_rules": 5,
@@ -300,11 +300,11 @@
       "module": "interpretation.py"
     },
     {
-      "declared_rules": 31,
+      "declared_rules": 34,
       "divergences": [],
-      "executed_rules": 31,
+      "executed_rules": 34,
       "institute": "invalidity",
-      "matched": 31,
+      "matched": 34,
       "module": "invalidity.py"
     },
     {
@@ -734,6 +734,6 @@
   ],
   "institutes_clean": 91,
   "institutes_total": 91,
-  "matched_rules": 1165,
+  "matched_rules": 1168,
   "version": "reasoning-rule-parity-v0"
 }
