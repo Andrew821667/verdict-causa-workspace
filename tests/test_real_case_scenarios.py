@@ -1,7 +1,10 @@
 """Тесты прогона модели на реальных делах из выгрузки судебной практики."""
 
+from unittest import mock
+
 import pytest
 
+from causa.institutional.contracts import real_case_scenarios
 from causa.institutional.contracts.practice_base import PRACTICE_BASE_PATH, load_practice_base
 from causa.institutional.contracts.real_case_scenarios import (
     INSTITUTE_RUNNERS,
@@ -9,6 +12,8 @@ from causa.institutional.contracts.real_case_scenarios import (
     REAL_CASE_SCENARIOS,
     RUNNERLESS_EVIDENCE_RU,
     UNMAPPED_FINAL_CASES_RU,
+    audit_scenario_fact_coverage,
+    render_scenario_fact_coverage_ru,
     run_real_case_suite,
 )
 from causa.institutional.contracts.synthetic_reviewed_analysis import (
@@ -110,14 +115,42 @@ def test_declared_facts_cover_the_whole_evidence_contract() -> None:
 
     Частичная подмена оставила бы остальные значения из демонстрационного дела о
     поставке, и вывод относился бы к смеси двух дел.
-    """
-    request = build_synthetic_supply_analysis_request()
 
-    for scenario in REAL_CASE_SCENARIOS:
-        runner = INSTITUTE_RUNNERS[scenario.institute]
-        evidence = getattr(request, runner.evidence_field)
-        contract = {assertion.predicate.value for assertion in evidence.assertions}
-        assert scenario.facts.keys() == contract, scenario.case_id
+    Отчёт собирается по всем делам сразу и называет недостающие и лишние
+    предикаты поимённо. Падение на первом же деле с сообщением из одного
+    `case_id` заставляло чинить расширенный контракт данных по одному делу за
+    одиннадцатиминутный прогон и не говорило, чего именно не хватает.
+    """
+    report = audit_scenario_fact_coverage()
+
+    assert report.complete, render_scenario_fact_coverage_ru(report)
+
+
+def test_the_fact_coverage_audit_is_able_to_fail() -> None:
+    """Аудит обязан находить расхождение, а не всегда докладывать «сошлось».
+
+    Проверка, неспособная провалиться, ничего не проверяет. Здесь у дела
+    отбирается один предикат, и аудит обязан назвать и дело, и институт, и имя
+    отобранного предиката.
+    """
+    scenario = REAL_CASE_SCENARIOS[0]
+    removed = sorted(scenario.facts)[0]
+    crippled = scenario.model_copy(
+        update={"facts": {k: v for k, v in scenario.facts.items() if k != removed}}
+    )
+
+    with mock.patch.object(
+        real_case_scenarios, "REAL_CASE_SCENARIOS", (crippled, *REAL_CASE_SCENARIOS[1:])
+    ):
+        report = audit_scenario_fact_coverage()
+        rendered = render_scenario_fact_coverage_ru(report)
+
+    assert report.complete is False
+    assert [gap.case_id for gap in report.gaps] == [scenario.case_id]
+    assert report.gaps[0].missing == [removed]
+    assert report.institutes_affected == [scenario.institute]
+    assert removed in rendered
+    assert scenario.case_number in rendered
 
 
 def test_mapping_notes_are_written() -> None:

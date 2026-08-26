@@ -3528,3 +3528,107 @@ def run_real_case_suite() -> RealCaseReport:
             "подтверждений, сколько дел.",
         ],
     )
+
+
+class ScenarioFactGap(BaseModel):
+    """Расхождение состава предикатов одного дела с контрактом данных института."""
+
+    case_id: str
+    case_number: str
+    institute: str
+    missing: list[str] = Field(default_factory=list)
+    unknown: list[str] = Field(default_factory=list)
+
+
+class ScenarioFactCoverageReport(BaseModel):
+    version: str = "contracts-scenario-fact-coverage-v0"
+    total: int = 0
+    complete: bool = True
+    gaps: list[ScenarioFactGap] = Field(default_factory=list)
+    institutes_affected: list[str] = Field(default_factory=list)
+
+
+def audit_scenario_fact_coverage() -> ScenarioFactCoverageReport:
+    """Сверить состав предикатов каждого дела с контрактом данных его института.
+
+    **Зачем отдельный аудит.** Институт, получивший новый предикат, ломает все
+    дела своего института разом: их факты записаны явным словарём, а не через
+    хелпер с умолчанием. Прежняя проверка падала на первом же деле с сообщением
+    из одного `case_id` — и чинить приходилось по одному делу за
+    одиннадцатиминутный прогон, не зная ни сколько дел затронуто, ни каких
+    предикатов не хватает.
+
+    Отчёт называет и то и другое сразу и стоит доли секунды: запускать его
+    следует сразу после правки института, не дожидаясь полного прогона.
+    """
+    request = build_synthetic_supply_analysis_request()
+    gaps: list[ScenarioFactGap] = []
+    for scenario in REAL_CASE_SCENARIOS:
+        runner = INSTITUTE_RUNNERS[scenario.institute]
+        evidence = getattr(request, runner.evidence_field)
+        contract = {assertion.predicate.value for assertion in evidence.assertions}
+        missing = sorted(contract - scenario.facts.keys())
+        unknown = sorted(scenario.facts.keys() - contract)
+        if missing or unknown:
+            gaps.append(
+                ScenarioFactGap(
+                    case_id=scenario.case_id,
+                    case_number=scenario.case_number,
+                    institute=scenario.institute,
+                    missing=missing,
+                    unknown=unknown,
+                )
+            )
+    return ScenarioFactCoverageReport(
+        total=len(REAL_CASE_SCENARIOS),
+        complete=not gaps,
+        gaps=gaps,
+        institutes_affected=sorted({gap.institute for gap in gaps}),
+    )
+
+
+def render_scenario_fact_coverage_ru(report: ScenarioFactCoverageReport) -> str:
+    """Отчёт об аудите по-русски — он же текст падения теста."""
+    if report.complete:
+        return (
+            f"Состав предикатов сходится с контрактом данных во всех "
+            f"{report.total} делах."
+        )
+    lines = [
+        f"Состав предикатов разошёлся с контрактом данных: {len(report.gaps)} дел "
+        f"из {report.total}.",
+        "Институты: " + ", ".join(report.institutes_affected) + ".",
+        "",
+    ]
+    for gap in report.gaps:
+        lines.append(f"{gap.case_number} ({gap.institute}, {gap.case_id}):")
+        if gap.missing:
+            lines.append("  не задано в деле: " + ", ".join(gap.missing))
+        if gap.unknown:
+            lines.append("  нет в контракте данных: " + ", ".join(gap.unknown))
+    missing_by_institute = {
+        institute: sorted({name for gap in report.gaps if gap.institute == institute
+                           for name in gap.missing})
+        for institute in report.institutes_affected
+    }
+    for institute, names in missing_by_institute.items():
+        if not names:
+            continue
+        lines.extend(
+            [
+                "",
+                f"Строки для дел института «{institute}» "
+                f"({len([g for g in report.gaps if g.institute == institute])} шт.):",
+            ]
+        )
+        lines.extend(f'            "{name}": False,' for name in names)
+    if any(missing_by_institute.values()):
+        lines.extend(
+            [
+                "",
+                "False здесь — предположение, а не вывод: новый предикат обычно не "
+                "относится к делу, которое переводили до его появления. Проверьте "
+                "по фабуле каждого дела, прежде чем вставлять.",
+            ]
+        )
+    return "\n".join(lines)
