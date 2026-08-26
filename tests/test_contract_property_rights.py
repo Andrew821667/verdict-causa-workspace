@@ -177,9 +177,9 @@ def test_property_rights_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_property_rights_benchmark_suite()
     red_team = run_property_rights_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_PROPERTY_RIGHTS_BENCHMARKS) == 10
+    assert benchmark.total == len(SYNTHETIC_PROPERTY_RIGHTS_BENCHMARKS) == 12
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_PROPERTY_RIGHTS_RED_TEAM_CASES) == 10
+    assert red_team.total == len(SYNTHETIC_PROPERTY_RIGHTS_RED_TEAM_CASES) == 12
     assert red_team.blocked == red_team.total
 
 

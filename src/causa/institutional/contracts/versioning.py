@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.9.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Closes the last three gaps of the Code walk - articles 306, 449.1 and 844.1 - each a single article inside an institute that already claimed its neighbours. The walk now reports zero real gaps; everything still unclaimed is a declared boundary of the model.",
+            "Article 306: where a federal law terminates ownership, the owner's losses - including the value of the property - are compensated by the state. This is the only conclusion in the property-rights institute whose obligor is the state rather than the opposing party.",
+            "Article 449.1 turns a predicate the model took on trust into a rule: the auction-invalidity conclusion rested on a single input fact 'auction rules were violated'. For public auctions the article names the requirements outright - the organiser's authority, the notice, the participation ban on the debtor and its valuers, the protocol - and the model now derives them from facts.",
+            "Article 844.1 corrected an error in our own gap register, which described it as the deposit certified by a savings certificate; certificates are article 844, long modelled, while 844.1 governs deposits in precious metals. The register entry had been written from the article number rather than the exported title. The rule matters: article 840 on deposit insurance does not apply to such deposits, so the model no longer reproaches a bank for a duty the law expressly lifts, and instead checks the warning duty article 844.1(3) puts in its place.",
+        ],
+        notes_ru=[
+            "Закрыты последние три пробела обхода кодекса — статьи 306, 449.1 и 844.1, каждая по одной статье внутри института, который уже заявлял её соседей. Обход показывает ноль настоящих пробелов; всё, что осталось незаявленным, — объявленные границы модели.",
+            "Статья 306: если принят закон, прекращающий право собственности, убытки собственника, включая стоимость имущества, возмещает государство. Это единственный вывод института вещных прав, где обязанным лицом выступает государство, а не другая сторона спора.",
+            "Статья 449.1 превращает в правило предикат, который модель принимала на веру: вывод о недействительности торгов опирался на единственный входной факт «правила торгов нарушены». Для публичных торгов статья называет требования прямо — полномочие организатора, содержание извещения, запрет участия должника и его оценщиков, состав протокола, — и модель теперь выводит их из фактов.",
+            "Статья 844.1 исправила ошибку в нашем же реестре пробелов, где она была описана как вклад, удостоверенный сберегательным сертификатом; сертификаты — это статья 844, давно смоделированная, а 844.1 регулирует вклад в драгоценных металлах. Запись делалась по номеру статьи, а не по заголовку из выгрузки. Правило оказалось существенным: правила статьи 840 о страховании вкладов к такому вкладу не применяются, поэтому модель больше не упрекает банк в обязанности, от которой закон его прямо освободил, и вместо этого проверяет обязанность предупредить, поставленную пунктом 3 статьи 844.1 на её место.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.8.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

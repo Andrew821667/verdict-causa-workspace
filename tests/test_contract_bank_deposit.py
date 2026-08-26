@@ -133,9 +133,9 @@ def test_bank_deposit_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_bank_deposit_benchmark_suite()
     red_team = run_bank_deposit_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_BANK_DEPOSIT_BENCHMARKS) == 10
+    assert benchmark.total == len(SYNTHETIC_BANK_DEPOSIT_BENCHMARKS) == 15
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_BANK_DEPOSIT_RED_TEAM_CASES) == 10
+    assert red_team.total == len(SYNTHETIC_BANK_DEPOSIT_RED_TEAM_CASES) == 13
     assert red_team.blocked == red_team.total
 
 

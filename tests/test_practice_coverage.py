@@ -56,14 +56,21 @@ def test_point_gaps_answer_for_articles_just_past_an_institute() -> None:
     """Статья с точкой сразу за границей института объяснена, а не покрыта.
 
     Ловушка здесь в том, что номер отличается от покрытого на долю: 53.1 стоит
-    вплотную к модели лиц (17–53), 449.1 — к модели порядка заключения
-    (445–449). Расширить диапазон на такую статью означало бы объявить
-    покрытым то, чего в предикатах нет.
+    вплотную к модели лиц (17–53). Расширить диапазон на такую статью означало
+    бы объявить покрытым то, чего в предикатах нет.
+
+    Статья 449.1 была вторым таким случаем — вплотную к модели порядка
+    заключения (445–449). В версии 1.9.0 она смоделирована, и диапазон расширен
+    вместе с предикатами; поэтому она проверяется ниже как покрытая, а не как
+    объяснённая.
     """
-    for article in ("53.1", "449.1"):
+    for article in ("53.1",):
         assert institutes_for_article(article) == [], article
         assert article in KNOWN_GAPS_RU, article
         assert uncovered_domain_ru(article) != GAP_REASON_UNKNOWN_RU, article
+
+    assert institutes_for_article("449.1") == ["procedure"]
+    assert "449.1" not in KNOWN_GAPS_RU
 
 
 def test_repository_export_has_no_unexplained_gaps() -> None:

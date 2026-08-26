@@ -194,6 +194,82 @@ SYNTHETIC_PROCEDURE_BENCHMARKS = (
             "requires_human_procedure_assessment": False,
         },
     ),
+    ProcedureEvaluationTask(
+        id="procedure-bench-public-auction-clean",
+        title_ru="Публичные торги проведены с соблюдением статьи 449.1",
+        facts=_facts(
+            contract_concluded_at_auction=True,
+            winner_determined=True,
+            results_protocol_signed=True,
+            public_auction_asserted=True,
+            public_auction_organiser_authorised=True,
+            public_auction_notice_names_owner=True,
+            public_auction_protocol_lists_bids=True,
+        ),
+        expected_outcomes={
+            "public_auction_qualified": True,
+            "public_auction_rules_violated": False,
+            "auction_voidable": False,
+        },
+    ),
+    ProcedureEvaluationTask(
+        id="procedure-bench-public-auction-barred-person",
+        title_ru="В публичных торгах участвовал должник",
+        facts=_facts(
+            contract_concluded_at_auction=True,
+            winner_determined=True,
+            results_protocol_signed=True,
+            public_auction_asserted=True,
+            public_auction_organiser_authorised=True,
+            public_auction_notice_names_owner=True,
+            public_auction_protocol_lists_bids=True,
+            barred_person_participated=True,
+            interested_party_challenge=True,
+        ),
+        expected_outcomes={
+            "public_auction_participation_ban_breached": True,
+            "public_auction_rules_violated": True,
+            "auction_voidable": True,
+            "auction_contract_invalid": True,
+        },
+    ),
+    ProcedureEvaluationTask(
+        id="procedure-bench-public-auction-organiser-defect",
+        title_ru="Организатор публичных торгов не уполномочен законом",
+        facts=_facts(
+            contract_concluded_at_auction=True,
+            winner_determined=True,
+            results_protocol_signed=True,
+            public_auction_asserted=True,
+            public_auction_notice_names_owner=True,
+            public_auction_protocol_lists_bids=True,
+            interested_party_challenge=True,
+        ),
+        expected_outcomes={
+            "public_auction_organiser_defect": True,
+            "public_auction_rules_violated": True,
+            "auction_voidable": True,
+        },
+    ),
+    ProcedureEvaluationTask(
+        id="procedure-bench-public-auction-defect-without-challenge",
+        title_ru="Нарушение правил публичных торгов без иска заинтересованного лица",
+        facts=_facts(
+            contract_concluded_at_auction=True,
+            winner_determined=True,
+            results_protocol_signed=True,
+            public_auction_asserted=True,
+            public_auction_organiser_authorised=True,
+            public_auction_notice_names_owner=True,
+            public_auction_protocol_lists_bids=True,
+            barred_person_participated=True,
+        ),
+        expected_outcomes={
+            "public_auction_rules_violated": True,
+            "auction_voidable": False,
+            "auction_contract_invalid": False,
+        },
+    ),
 )
 
 
@@ -290,6 +366,32 @@ SYNTHETIC_PROCEDURE_RED_TEAM_CASES = (
             interested_party_challenge=True,
         ),
         forbidden_outcomes={"requires_human_procedure_assessment": False},
+    ),
+    ProcedureRedTeamCase(
+        id="procedure-red-public-rules-on-ordinary-auction",
+        title_ru="Применить требования статьи 449.1 к обычным торгам",
+        facts=_facts(
+            contract_concluded_at_auction=True,
+            winner_determined=True,
+            results_protocol_signed=True,
+            interested_party_challenge=True,
+        ),
+        forbidden_outcomes={"public_auction_rules_violated": True},
+    ),
+    ProcedureRedTeamCase(
+        id="procedure-red-public-auction-voidable-without-challenge",
+        title_ru="Признать публичные торги оспоримыми без иска заинтересованного лица",
+        facts=_facts(
+            contract_concluded_at_auction=True,
+            winner_determined=True,
+            results_protocol_signed=True,
+            public_auction_asserted=True,
+            public_auction_organiser_authorised=True,
+            public_auction_notice_names_owner=True,
+            public_auction_protocol_lists_bids=True,
+            barred_person_participated=True,
+        ),
+        forbidden_outcomes={"auction_voidable": True},
     ),
 )
 

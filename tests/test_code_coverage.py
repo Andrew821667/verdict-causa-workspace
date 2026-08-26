@@ -2,6 +2,7 @@
 
 import pytest
 
+from causa.institutional.contracts import code_coverage
 from causa.institutional.contracts.code_coverage import (
     CODE_GAP_REASONS_RU,
     CODE_STRUCTURE_PATH,
@@ -11,7 +12,10 @@ from causa.institutional.contracts.code_coverage import (
     measure_code_coverage,
 )
 from causa.institutional.contracts.practice_base import normalize_article
-from causa.institutional.contracts.practice_coverage import article_sort_key
+from causa.institutional.contracts.practice_coverage import (
+    article_sort_key,
+    institutes_for_article,
+)
 
 
 def test_article_numbers_have_three_levels_not_two() -> None:
@@ -94,46 +98,80 @@ def test_boundary_and_gap_are_kept_apart() -> None:
         pytest.skip("Выгрузка структуры кодекса ещё не получена.")
 
     assert report.declared_boundaries > 0
-    assert report.real_gaps > 0
     assert report.declared_boundaries + report.real_gaps == len(report.gaps)
+    for gap in report.gaps:
+        assert gap.kind_ru in {"граница", "пробел"}, gap.span
+        assert gap.reason_ru.strip(), gap.span
 
 
-def test_a_gap_inside_a_claimed_institute_is_named_as_such() -> None:
-    """Пробел внутри объявленного института — не граница модели.
+def test_the_code_walk_leaves_no_open_gap() -> None:
+    """Все восемь пробелов первого обхода закрыты; новый обязан упасть здесь.
 
-    Институт банковского вклада заявляет 834–844 и обрывается на статье 844.1:
-    номер отличается на долю, и статья выпала незамеченной. Практика туда не
-    заходила, и без обхода это не открылось бы.
-
-    Самый крупный пробел такого рода — статьи 860.1–860.15 внутри главы 45,
-    которую институт банковского счёта заявляет своей, — закрыт в версии 1.5.0.
+    Это храповик, а не констатация: пока утверждение стоит, статья, выпавшая из
+    диапазонов после правки карты или пополнения выгрузки, ломает сборку в том
+    же коммите. Прежняя редакция требовала обратного — `real_gaps > 0` — и
+    молча зеленела бы на любом числе пробелов, кроме нуля.
     """
     report = measure_code_coverage(load_code_structure())
     if not report.present:
         pytest.skip("Выгрузка структуры кодекса ещё не получена.")
 
-    inside = [gap for gap in report.gaps if gap.span == "844.1"]
-    assert len(inside) == 1
-    assert inside[0].kind_ru == "пробел"
-    assert len(inside[0].articles) == 1
+    assert report.real_gaps == 0, [
+        (gap.span, gap.reason_ru) for gap in report.gaps if gap.kind_ru == "пробел"
+    ]
+    assert report.unexplained == []
 
 
-def test_a_reason_is_found_per_article_not_per_chapter() -> None:
+def test_every_gap_the_walk_found_is_now_claimed() -> None:
+    """Восемь пробелов обхода поимённо: каждый закрыт институтом.
+
+    Список записан явно, а не выведен из карты причин: запись о пробеле при
+    закрытии удаляется, и проверка «чего нет в карте» прошла бы даже тогда,
+    когда статью просто вычеркнули, не смоделировав.
+    """
+    closed = {
+        "165.1": "messages",
+        "306": "property_rights",
+        "427": "freedom",
+        "431.1": "invalidity",
+        "449.1": "procedure",
+        "844.1": "bank_deposit",
+        "860.1": "special_accounts",
+        "926.1": "escrow_deposit",
+    }
+    for article, institute in closed.items():
+        assert institute in institutes_for_article(article), article
+
+
+def test_a_reason_is_found_per_article_not_per_chapter(monkeypatch) -> None:
     """В одной главе могут стоять рядом граница и пробел.
 
-    Глава 28: статья 444 — объявленная граница, статья 449.1 — пробел. Обе
-    статьи главы 27 — 420 и 427 — были такой же парой до версии 1.7.0, когда
-    примерные условия договора вошли в модель свободы договора как правило
-    восполнения пробела в условии. Поиск причины по участку, который вывела
-    группировка, эти записи не нашёл бы.
+    Ловушка, ради которой поиск идёт по статье, а не по участку: группировка
+    сводит соседние непокрытые статьи главы в один диапазон, и общий ключ на
+    них не найдётся, если причины у них разные.
+
+    Живая карта причин сейчас состоит из одних границ — все пробелы закрыты, —
+    поэтому различение видов проверяется на подставленной карте. Иначе тест
+    молча перестал бы проверять то, ради чего написан.
     """
+    # Живая карта: и точечный ключ, и диапазонный отвечают за свою статью.
     assert gap_reason_ru("444")[0] == "граница"
-    assert gap_reason_ru("449.1")[0] == "пробел"
-    # Диапазонный ключ отвечает за каждую статью внутри себя, будь то пробел
-    # или граница — статья 152.1 не выделена ключом сама по себе, только
-    # диапазоном "152.1–152.2".
+    assert gap_reason_ru("420")[0] == "граница"
     assert gap_reason_ru("152.1")[0] == "граница"
     assert gap_reason_ru("100")[0] == "граница"
+
+    monkeypatch.setattr(
+        code_coverage,
+        "CODE_GAP_REASONS_RU",
+        {
+            "444": ("граница", "место заключения договора не моделируется"),
+            "449.1": ("пробел", "публичные торги пропущены"),
+            "152.1\u2013152.2": ("граница", "изображение и частная жизнь"),
+        },
+    )
+    assert code_coverage.gap_reason_ru("444")[0] == "граница"
+    assert code_coverage.gap_reason_ru("449.1")[0] == "пробел"
+    assert code_coverage.gap_reason_ru("152.2")[0] == "граница"
 
 
 def test_no_institute_claims_an_article_the_code_does_not_have() -> None:

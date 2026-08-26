@@ -257,6 +257,8 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "vindication_rules_breached": True,
             "good_faith_purchaser_protection_disregarded": True,
             "negatory_or_possessor_claim_breached": False,
+            "ownership_terminated_by_federal_law": False,
+            "losses_from_statutory_termination_proven": False,
         },
         expected_conclusions={
             "property_rights_qualified": True,
@@ -466,6 +468,8 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "vindication_rules_breached": False,
             "good_faith_purchaser_protection_disregarded": False,
             "negatory_or_possessor_claim_breached": False,
+            "ownership_terminated_by_federal_law": False,
+            "losses_from_statutory_termination_proven": False,
         },
         expected_conclusions={
             "property_rights_qualified": True,

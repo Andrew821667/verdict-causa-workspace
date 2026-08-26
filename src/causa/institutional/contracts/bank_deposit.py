@@ -1,14 +1,14 @@
 from enum import Enum
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
-from z3 import And, Bool, Or, Solver, sat
+from z3 import And, Bool, Not, Or, Solver, sat
 
 from causa.core.bootstrap import BootstrapReviewStatus
 
 
 BANK_DEPOSIT_EVIDENCE_SCHEMA_VERSION = "contracts.bank-deposit-evidence.v0"
 BANK_DEPOSIT_MAPPING_VERSION = "contracts-reviewed-bank-deposit-to-facts-v0"
-BANK_DEPOSIT_MODEL_VERSION = "contracts-bank-deposit-articles-834-844-v0"
+BANK_DEPOSIT_MODEL_VERSION = "contracts-bank-deposit-articles-834-844-1-v0"
 
 
 class BankDepositEvidencePredicate(str, Enum):
@@ -30,6 +30,11 @@ class BankDepositEvidencePredicate(str, Enum):
     THIRD_PARTY_DEPOSIT_RIGHTS_DISREGARDED = "third_party_deposit_rights_disregarded"
     # Сберегательная книжка и сберегательный сертификат (статьи 843 и 844 ГК РФ).
     SAVINGS_DOCUMENT_RULES_BREACHED = "savings_document_rules_breached"
+    # Вклад в драгоценных металлах (статья 844.1 ГК РФ).
+    PRECIOUS_METAL_DEPOSIT_ASSERTED = "precious_metal_deposit_asserted"
+    PRECIOUS_METAL_DEPOSIT_TERMS_AGREED = "precious_metal_deposit_terms_agreed"
+    PRECIOUS_METAL_RETURN_BREACHED = "precious_metal_return_breached"
+    INSURANCE_EXCLUSION_NOT_DISCLOSED_TO_CITIZEN = "insurance_exclusion_not_disclosed_to_citizen"
 
 
 REQUIRED_BANK_DEPOSIT_PREDICATES = frozenset(BankDepositEvidencePredicate)
@@ -78,6 +83,10 @@ class BankDepositFactSet(BaseModel):
     deposit_repayment_security_not_ensured: bool
     third_party_deposit_rights_disregarded: bool
     savings_document_rules_breached: bool
+    precious_metal_deposit_asserted: bool
+    precious_metal_deposit_terms_agreed: bool
+    precious_metal_return_breached: bool
+    insurance_exclusion_not_disclosed_to_citizen: bool
 
     @model_validator(mode="after")
     def validate_consistency(self) -> "BankDepositFactSet":
@@ -95,6 +104,32 @@ class BankDepositFactSet(BaseModel):
         ):
             raise ValueError(
                 "Несоблюдение письменной формы относится только к договору банковского вклада."
+            )
+        if (
+            self.precious_metal_deposit_asserted
+            and not self.deposit_accepted_for_return_with_interest
+        ):
+            raise ValueError(
+                "Вклад в драгоценных металлах — вид банковского вклада: банк возвращает металл "
+                "или эквивалент его стоимости и выплачивает проценты (статья 844.1 ГК РФ)."
+            )
+        if self.precious_metal_return_breached and not self.precious_metal_deposit_asserted:
+            raise ValueError(
+                "Нарушение возврата металла или эквивалента возможно только по заявленному "
+                "вкладу в драгоценных металлах."
+            )
+        if (
+            self.insurance_exclusion_not_disclosed_to_citizen
+            and not self.precious_metal_deposit_asserted
+        ):
+            raise ValueError(
+                "Обязанность предупредить о неприменении страхования вкладов установлена "
+                "статьёй 844.1 ГК РФ только для вклада в драгоценных металлах."
+            )
+        if self.precious_metal_deposit_terms_agreed and not self.precious_metal_deposit_asserted:
+            raise ValueError(
+                "Существенные условия вклада в драгоценных металлах имеют смысл только для "
+                "заявленного вклада такого вида."
             )
         return self
 
@@ -134,6 +169,13 @@ class BankDepositEvaluation(BaseModel):
     repayment_security_duty_breached: bool
     third_party_deposit_rights_breached: bool
     savings_document_duty_breached: bool
+    precious_metal_deposit_qualified: bool
+    precious_metal_deposit_terms_missing: bool
+    precious_metal_return_duty_breached: bool
+    # Ключевое следствие статьи 844.1: правила статьи 840 о страховании вкладов
+    # к такому вкладу не применяются.
+    deposit_insurance_excluded: bool
+    insurance_exclusion_disclosure_breached: bool
     requires_human_bank_deposit_assessment: bool
     reasons_ru: list[str] = Field(default_factory=list)
     warnings_ru: list[str] = Field(default_factory=list)
@@ -190,10 +232,15 @@ def build_bank_deposit_constraint_set(
             "early_repayment_interest_breached == bank_deposit_qualified AND citizen_deposit_on_demand_repayment_breached AND early_repayment_interest_miscalculated",
             "interest_payment_duty_breached == bank_deposit_qualified AND deposit_interest_not_paid_as_agreed",
             "term_rate_reduction_prohibited == bank_deposit_qualified AND term_deposit_interest_rate_unilaterally_reduced",
-            "repayment_security_duty_breached == bank_deposit_qualified AND deposit_repayment_security_not_ensured",
+            "precious_metal_deposit_qualified == bank_deposit_qualified AND precious_metal_deposit_asserted",
+            "deposit_insurance_excluded == precious_metal_deposit_qualified",
+            "precious_metal_deposit_terms_missing == precious_metal_deposit_qualified AND NOT precious_metal_deposit_terms_agreed",
+            "precious_metal_return_duty_breached == precious_metal_deposit_qualified AND precious_metal_return_breached",
+            "insurance_exclusion_disclosure_breached == precious_metal_deposit_qualified AND insurance_exclusion_not_disclosed_to_citizen",
+            "repayment_security_duty_breached == bank_deposit_qualified AND deposit_repayment_security_not_ensured AND NOT deposit_insurance_excluded",
             "third_party_deposit_rights_breached == bank_deposit_qualified AND third_party_deposit_rights_disregarded",
             "savings_document_duty_breached == bank_deposit_qualified AND savings_document_rules_breached",
-            "requires_human_bank_deposit_assessment == deposit_acceptance_unauthorised OR deposit_form_void OR on_demand_repayment_duty_breached OR interest_payment_duty_breached OR term_rate_reduction_prohibited OR repayment_security_duty_breached OR third_party_deposit_rights_breached OR savings_document_duty_breached",
+            "requires_human_bank_deposit_assessment == deposit_acceptance_unauthorised OR deposit_form_void OR on_demand_repayment_duty_breached OR interest_payment_duty_breached OR term_rate_reduction_prohibited OR repayment_security_duty_breached OR third_party_deposit_rights_breached OR savings_document_duty_breached OR precious_metal_deposit_qualified",
         ],
     )
 
@@ -213,6 +260,11 @@ def evaluate_bank_deposit_constraints(
     repayment_security_duty_breached = Bool("repayment_security_duty_breached")
     third_party_deposit_rights_breached = Bool("third_party_deposit_rights_breached")
     savings_document_duty_breached = Bool("savings_document_duty_breached")
+    precious_metal_deposit_qualified = Bool("precious_metal_deposit_qualified")
+    precious_metal_deposit_terms_missing = Bool("precious_metal_deposit_terms_missing")
+    precious_metal_return_duty_breached = Bool("precious_metal_return_duty_breached")
+    deposit_insurance_excluded = Bool("deposit_insurance_excluded")
+    insurance_exclusion_disclosure_breached = Bool("insurance_exclusion_disclosure_breached")
     requires_human_bank_deposit_assessment = Bool("requires_human_bank_deposit_assessment")
 
     solver = Solver()
@@ -248,8 +300,35 @@ def evaluate_bank_deposit_constraints(
         == And(bank_deposit_qualified, variables["term_deposit_interest_rate_unilaterally_reduced"])
     )
     solver.add(
+        precious_metal_deposit_qualified
+        == And(bank_deposit_qualified, variables["precious_metal_deposit_asserted"])
+    )
+    solver.add(deposit_insurance_excluded == precious_metal_deposit_qualified)
+    solver.add(
+        precious_metal_deposit_terms_missing
+        == And(
+            precious_metal_deposit_qualified,
+            Not(variables["precious_metal_deposit_terms_agreed"]),
+        )
+    )
+    solver.add(
+        precious_metal_return_duty_breached
+        == And(precious_metal_deposit_qualified, variables["precious_metal_return_breached"])
+    )
+    solver.add(
+        insurance_exclusion_disclosure_breached
+        == And(
+            precious_metal_deposit_qualified,
+            variables["insurance_exclusion_not_disclosed_to_citizen"],
+        )
+    )
+    solver.add(
         repayment_security_duty_breached
-        == And(bank_deposit_qualified, variables["deposit_repayment_security_not_ensured"])
+        == And(
+            bank_deposit_qualified,
+            variables["deposit_repayment_security_not_ensured"],
+            Not(deposit_insurance_excluded),
+        )
     )
     solver.add(
         third_party_deposit_rights_breached
@@ -270,6 +349,7 @@ def evaluate_bank_deposit_constraints(
             repayment_security_duty_breached,
             third_party_deposit_rights_breached,
             savings_document_duty_breached,
+            precious_metal_deposit_qualified,
         )
     )
 
@@ -288,6 +368,11 @@ def evaluate_bank_deposit_constraints(
             repayment_security_duty_breached=False,
             third_party_deposit_rights_breached=False,
             savings_document_duty_breached=False,
+            precious_metal_deposit_qualified=False,
+            precious_metal_deposit_terms_missing=False,
+            precious_metal_return_duty_breached=False,
+            deposit_insurance_excluded=False,
+            insurance_exclusion_disclosure_breached=False,
             requires_human_bank_deposit_assessment=True,
             reasons_ru=["Набор фактов о банковском вкладе противоречив."],
             warnings_ru=["Требуется проверка исходных доказательств юристом."],
@@ -350,6 +435,38 @@ def evaluate_bank_deposit_constraints(
             "способы обеспечения возврата вкладов юридических лиц определяются договором "
             "(статья 840 ГК РФ)."
         )
+    if truth(precious_metal_deposit_qualified):
+        reasons_ru.append(
+            "Вклад квалифицирован как вклад в драгоценных металлах: банк обязуется возвратить "
+            "имеющийся во вкладе драгоценный металл того же наименования и той же массы либо "
+            "выдать денежные средства в сумме, эквивалентной стоимости этого металла, и "
+            "выплатить предусмотренные договором проценты (пункт 1 статьи 844.1 ГК РФ)."
+        )
+    if truth(deposit_insurance_excluded):
+        reasons_ru.append(
+            "К такому вкладу правила статьи 840 ГК РФ о страховании вкладов не применяются: "
+            "возврат вклада системой страхования не гарантирован (пункт 3 статьи 844.1 ГК РФ). "
+            "Поэтому упрёк в необеспечении возврата вклада по статье 840 модель здесь не "
+            "выводит — закон прямо освобождает банк от этой обязанности, а не оставляет её "
+            "неисполненной."
+        )
+    if truth(insurance_exclusion_disclosure_breached):
+        reasons_ru.append(
+            "Банк не уведомил гражданина в письменной форме о том, что вклад в драгоценных "
+            "металлах не застрахован, и не получил письменного подтверждения такого "
+            "уведомления до заключения договора (пункт 3 статьи 844.1 ГК РФ)."
+        )
+    if truth(precious_metal_deposit_terms_missing):
+        reasons_ru.append(
+            "В договоре вклада в драгоценных металлах не согласованы обязательные условия: "
+            "наименование драгоценного металла, размер процентов, форма их получения и порядок "
+            "расчёта суммы денежных средств, подлежащих выдаче (пункт 2 статьи 844.1 ГК РФ)."
+        )
+    if truth(precious_metal_return_duty_breached):
+        reasons_ru.append(
+            "Нарушена обязанность возвратить драгоценный металл того же наименования и той же "
+            "массы либо выдать эквивалент его стоимости (пункт 1 статьи 844.1 ГК РФ)."
+        )
     if truth(third_party_deposit_rights_breached):
         reasons_ru.append(
             "Денежные средства, поступившие в банк на имя вкладчика от третьих лиц, зачисляются "
@@ -377,6 +494,11 @@ def evaluate_bank_deposit_constraints(
         repayment_security_duty_breached=truth(repayment_security_duty_breached),
         third_party_deposit_rights_breached=truth(third_party_deposit_rights_breached),
         savings_document_duty_breached=truth(savings_document_duty_breached),
+        precious_metal_deposit_qualified=truth(precious_metal_deposit_qualified),
+        precious_metal_deposit_terms_missing=truth(precious_metal_deposit_terms_missing),
+        precious_metal_return_duty_breached=truth(precious_metal_return_duty_breached),
+        deposit_insurance_excluded=truth(deposit_insurance_excluded),
+        insurance_exclusion_disclosure_breached=truth(insurance_exclusion_disclosure_breached),
         requires_human_bank_deposit_assessment=truth(requires_human_bank_deposit_assessment),
         reasons_ru=reasons_ru,
         warnings_ru=[
@@ -385,5 +507,8 @@ def evaluate_bank_deposit_constraints(
             "Наличие у банка права привлекать вклады, достаточность обеспечения возврата и "
             "содержание условий о процентах оцениваются экспертом и судом "
             "(статьи 835, 838 и 840 ГК РФ).",
+            "Массу и наименование драгоценного металла, а также расчёт эквивалента его "
+            "стоимости модель не проверяет: она отвечает о режиме вклада, а не о величине "
+            "требования (статья 844.1 ГК РФ).",
         ],
     )

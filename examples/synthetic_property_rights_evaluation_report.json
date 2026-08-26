@@ -15,11 +15,14 @@
       "common_property_rules_breached": false,
       "vindication_rules_breached": false,
       "good_faith_purchaser_protection_disregarded": false,
-      "negatory_or_possessor_claim_breached": false
+      "negatory_or_possessor_claim_breached": false,
+      "ownership_terminated_by_federal_law": false,
+      "losses_from_statutory_termination_proven": false
     },
     "legal_source_refs": [
       "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
-      "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1"
+      "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+      "synthetic-ru-gk306-statutory-termination-compensation-v1"
     ],
     "provenance": [
       {
@@ -58,6 +61,13 @@
         ]
       },
       {
+        "fact_name": "losses_from_statutory_termination_proven",
+        "assertion_id": "property-rights-evidence-losses_from_statutory_termination_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
         "fact_name": "negatory_or_possessor_claim_breached",
         "assertion_id": "property-rights-evidence-negatory_or_possessor_claim_breached",
         "source_refs": [
@@ -67,6 +77,13 @@
       {
         "fact_name": "ownership_powers_breached",
         "assertion_id": "property-rights-evidence-ownership_powers_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
+        "fact_name": "ownership_terminated_by_federal_law",
+        "assertion_id": "property-rights-evidence-ownership_terminated_by_federal_law",
         "source_refs": [
           "synthetic-case-supply-1-property-rights-evidence"
         ]
@@ -96,10 +113,11 @@
   },
   "constraint_set": {
     "id": "property-rights-constraint-set:reviewed-property-rights-evidence-supply-1-v0",
-    "model_version": "contracts-property-rights-articles-209-305-v0",
+    "model_version": "contracts-property-rights-articles-209-306-v0",
     "legal_source_refs": [
       "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
-      "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1"
+      "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+      "synthetic-ru-gk306-statutory-termination-compensation-v1"
     ],
     "expressions": [
       "property_rights_qualified == property_right_asserted",
@@ -112,7 +130,9 @@
       "vindication_duty_breached == property_rights_qualified AND vindication_rules_breached",
       "good_faith_purchaser_breached == property_rights_qualified AND vindication_rules_breached AND good_faith_purchaser_protection_disregarded",
       "negatory_claim_duty_breached == property_rights_qualified AND negatory_or_possessor_claim_breached",
-      "requires_human_property_rights_assessment == ownership_powers_duty_breached OR unauthorized_disposal_detected OR risk_and_burden_duty_breached OR acquisition_moment_duty_breached OR acquisitive_prescription_duty_breached OR common_property_duty_breached OR vindication_duty_breached OR negatory_claim_duty_breached"
+      "statutory_termination_of_ownership == property_rights_qualified AND ownership_terminated_by_federal_law",
+      "state_compensation_duty == statutory_termination_of_ownership AND losses_from_statutory_termination_proven",
+      "requires_human_property_rights_assessment == ownership_powers_duty_breached OR unauthorized_disposal_detected OR risk_and_burden_duty_breached OR acquisition_moment_duty_breached OR acquisitive_prescription_duty_breached OR common_property_duty_breached OR vindication_duty_breached OR negatory_claim_duty_breached OR statutory_termination_of_ownership"
     ]
   },
   "reviewed_evaluation": {
@@ -128,19 +148,22 @@
     "vindication_duty_breached": false,
     "good_faith_purchaser_breached": false,
     "negatory_claim_duty_breached": false,
+    "statutory_termination_of_ownership": false,
+    "state_compensation_duty": false,
     "requires_human_property_rights_assessment": false,
     "reasons_ru": [
       "Вещное право на спорное имущество не заявлено."
     ],
     "warnings_ru": [
       "Модель проверяет только формальные правила о праве собственности и его защите и не заменяет судебную оценку.",
-      "Добросовестность приобретателя, обстоятельства выбытия имущества из владения собственника и давностное владение оцениваются экспертом и судом (статьи 234, 302 и 305 ГК РФ)."
+      "Добросовестность приобретателя, обстоятельства выбытия имущества из владения собственника и давностное владение оцениваются экспертом и судом (статьи 234, 302 и 305 ГК РФ).",
+      "Размер убытков от прекращения права собственности в силу закона модель не считает: она отвечает о наличии обязанности государства, а не о сумме возмещения (статья 306 ГК РФ)."
     ]
   },
   "benchmark_report": {
     "id": "property-rights-benchmark-report-v0",
-    "total": 10,
-    "passed": 10,
+    "total": 12,
+    "passed": 12,
     "failed": 0,
     "results": [
       {
@@ -301,13 +324,51 @@
           "Собственник вправе истребовать своё имущество из чужого незаконного владения (статья 301 ГК РФ).",
           "Если имущество возмездно приобретено у лица, которое не имело права его отчуждать, о чём приобретатель не знал и не мог знать, собственник вправе истребовать это имущество только в случаях, когда оно утеряно собственником, похищено либо выбыло из его владения иным путём помимо его воли; деньги и ценные бумаги на предъявителя у добросовестного приобретателя истребованы быть не могут (статья 302 ГК РФ)."
         ]
+      },
+      {
+        "task_id": "property-rights-bench-statutory-termination-with-losses",
+        "passed": true,
+        "expected_outcomes": {
+          "statutory_termination_of_ownership": true,
+          "state_compensation_duty": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "observed_outcomes": {
+          "statutory_termination_of_ownership": true,
+          "state_compensation_duty": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Право собственности прекращено принятием закона Российской Федерации. Убытки, причинённые собственнику принятием этого акта, в том числе стоимость имущества, возмещаются государством (статья 306 ГК РФ). Это единственный случай в институте, где обязанным лицом выступает государство, а не частная сторона спора.",
+          "Убытки от прекращения права собственности в силу закона доказаны, поэтому обязанность их возмещения лежит на государстве; спор о возмещении разрешается судом (статья 306 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "property-rights-bench-statutory-termination-without-losses",
+        "passed": true,
+        "expected_outcomes": {
+          "statutory_termination_of_ownership": true,
+          "state_compensation_duty": false,
+          "requires_human_property_rights_assessment": true
+        },
+        "observed_outcomes": {
+          "statutory_termination_of_ownership": true,
+          "state_compensation_duty": false,
+          "requires_human_property_rights_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Право собственности прекращено принятием закона Российской Федерации. Убытки, причинённые собственнику принятием этого акта, в том числе стоимость имущества, возмещаются государством (статья 306 ГК РФ). Это единственный случай в институте, где обязанным лицом выступает государство, а не частная сторона спора.",
+          "Размер убытков от прекращения права собственности не доказан, поэтому обязанность государства возместить их модель не выводит. Это утверждение о доказанности убытков, а не о том, что право на возмещение отсутствует."
+        ]
       }
     ]
   },
   "red_team_report": {
     "id": "property-rights-red-team-report-v0",
-    "total": 10,
-    "blocked": 10,
+    "total": 12,
+    "blocked": 12,
     "unblocked": 0,
     "results": [
       {
@@ -446,6 +507,35 @@
         "reasons_ru": [
           "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
           "Собственник может требовать устранения всяких нарушений его права, хотя бы эти нарушения и не были соединены с лишением владения; такая защита принадлежит также лицу, владеющему имуществом по иному основанию, предусмотренному законом или договором, в том числе против самого собственника (статьи 304 и 305 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "property-rights-red-state-duty-without-statute",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "state_compensation_duty": true
+        },
+        "observed_outcomes": {
+          "state_compensation_duty": false
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Собственник вправе истребовать своё имущество из чужого незаконного владения (статья 301 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "property-rights-red-state-duty-without-losses",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "state_compensation_duty": true
+        },
+        "observed_outcomes": {
+          "state_compensation_duty": false
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Право собственности прекращено принятием закона Российской Федерации. Убытки, причинённые собственнику принятием этого акта, в том числе стоимость имущества, возмещаются государством (статья 306 ГК РФ). Это единственный случай в институте, где обязанным лицом выступает государство, а не частная сторона спора.",
+          "Размер убытков от прекращения права собственности не доказан, поэтому обязанность государства возместить их модель не выводит. Это утверждение о доказанности убытков, а не о том, что право на возмещение отсутствует."
         ]
       }
     ]

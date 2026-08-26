@@ -1,14 +1,14 @@
 from enum import Enum
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
-from z3 import And, Bool, Or, Solver, sat
+from z3 import And, Bool, Not, Or, Solver, sat
 
 from causa.core.bootstrap import BootstrapReviewStatus
 
 
 PROCEDURE_EVIDENCE_SCHEMA_VERSION = "contracts.procedure-evidence.v0"
 PROCEDURE_MAPPING_VERSION = "contracts-reviewed-procedure-to-facts-v0"
-PROCEDURE_MODEL_VERSION = "contracts-conclusion-procedure-articles-445-449-v0"
+PROCEDURE_MODEL_VERSION = "contracts-conclusion-procedure-articles-445-449-1-v0"
 
 
 class ProcedureEvidencePredicate(str, Enum):
@@ -26,6 +26,12 @@ class ProcedureEvidencePredicate(str, Enum):
     # Недействительность торгов (статья 449 ГК РФ).
     AUCTION_RULES_VIOLATED = "auction_rules_violated"
     INTERESTED_PARTY_CHALLENGE = "interested_party_challenge"
+    # Публичные торги в исполнительном производстве (статья 449.1 ГК РФ).
+    PUBLIC_AUCTION_ASSERTED = "public_auction_asserted"
+    PUBLIC_AUCTION_ORGANISER_AUTHORISED = "public_auction_organiser_authorised"
+    PUBLIC_AUCTION_NOTICE_NAMES_OWNER = "public_auction_notice_names_owner"
+    BARRED_PERSON_PARTICIPATED = "barred_person_participated"
+    PUBLIC_AUCTION_PROTOCOL_LISTS_BIDS = "public_auction_protocol_lists_bids"
 
 
 REQUIRED_PROCEDURE_PREDICATES = frozenset(ProcedureEvidencePredicate)
@@ -75,6 +81,11 @@ class ProcedureFactSet(BaseModel):
     winner_evaded_signing: bool
     auction_rules_violated: bool
     interested_party_challenge: bool
+    public_auction_asserted: bool
+    public_auction_organiser_authorised: bool
+    public_auction_notice_names_owner: bool
+    barred_person_participated: bool
+    public_auction_protocol_lists_bids: bool
 
     @model_validator(mode="after")
     def validate_consistency(self) -> "ProcedureFactSet":
@@ -84,6 +95,16 @@ class ProcedureFactSet(BaseModel):
             raise ValueError("Протокол о результатах невозможен без определённого победителя.")
         if self.winner_evaded_signing and not self.winner_determined:
             raise ValueError("Уклонение победителя невозможно без определённого победителя.")
+        if self.barred_person_participated and not self.public_auction_asserted:
+            raise ValueError(
+                "Запрет участия в торгах установлен статьёй 449.1 ГК РФ для публичных торгов; "
+                "без заявленных публичных торгов он не применяется."
+            )
+        if self.public_auction_organiser_authorised and not self.public_auction_asserted:
+            raise ValueError(
+                "Полномочие организатора публичных торгов имеет смысл только для заявленных "
+                "публичных торгов."
+            )
         return self
 
 
@@ -119,6 +140,14 @@ class ProcedureEvaluation(BaseModel):
     winner_liable_for_evasion: bool
     auction_voidable: bool
     auction_contract_invalid: bool
+    public_auction_qualified: bool
+    public_auction_organiser_defect: bool
+    public_auction_notice_defect: bool
+    public_auction_participation_ban_breached: bool
+    public_auction_protocol_defect: bool
+    # Нарушение правил именно публичных торгов: статья 449.1 называет их прямо,
+    # тогда как общий предикат нарушения правил торгов модель принимает на веру.
+    public_auction_rules_violated: bool
     requires_human_procedure_assessment: bool
     reasons_ru: list[str] = Field(default_factory=list)
     warnings_ru: list[str] = Field(default_factory=list)
@@ -171,9 +200,15 @@ def build_procedure_constraint_set(
             "damages_for_mandatory_evasion == conclusion_mandatory_for_party AND obliged_party_evaded",
             "auction_contract_formed == contract_concluded_at_auction AND winner_determined AND results_protocol_signed",
             "winner_liable_for_evasion == winner_determined AND winner_evaded_signing",
-            "auction_voidable == auction_rules_violated AND interested_party_challenge",
-            "auction_contract_invalid == auction_rules_violated AND interested_party_challenge",
-            "requires_human_procedure_assessment == precontractual_dispute_submitted_to_court OR (conclusion_mandatory_for_party AND obliged_party_evaded) OR winner_evaded_signing OR (auction_rules_violated AND interested_party_challenge)",
+            "public_auction_qualified == contract_concluded_at_auction AND public_auction_asserted",
+            "public_auction_organiser_defect == public_auction_qualified AND NOT public_auction_organiser_authorised",
+            "public_auction_notice_defect == public_auction_qualified AND NOT public_auction_notice_names_owner",
+            "public_auction_participation_ban_breached == public_auction_qualified AND barred_person_participated",
+            "public_auction_protocol_defect == public_auction_qualified AND NOT public_auction_protocol_lists_bids",
+            "public_auction_rules_violated == public_auction_organiser_defect OR public_auction_notice_defect OR public_auction_participation_ban_breached OR public_auction_protocol_defect",
+            "auction_voidable == (auction_rules_violated OR public_auction_rules_violated) AND interested_party_challenge",
+            "auction_contract_invalid == (auction_rules_violated OR public_auction_rules_violated) AND interested_party_challenge",
+            "requires_human_procedure_assessment == precontractual_dispute_submitted_to_court OR (conclusion_mandatory_for_party AND obliged_party_evaded) OR winner_evaded_signing OR ((auction_rules_violated OR public_auction_rules_violated) AND interested_party_challenge) OR public_auction_qualified",
         ],
     )
 
@@ -190,6 +225,12 @@ def evaluate_procedure_constraints(
     winner_liable_for_evasion = Bool("winner_liable_for_evasion")
     auction_voidable = Bool("auction_voidable")
     auction_contract_invalid = Bool("auction_contract_invalid")
+    public_auction_qualified = Bool("public_auction_qualified")
+    public_auction_organiser_defect = Bool("public_auction_organiser_defect")
+    public_auction_notice_defect = Bool("public_auction_notice_defect")
+    public_auction_participation_ban_breached = Bool("public_auction_participation_ban_breached")
+    public_auction_protocol_defect = Bool("public_auction_protocol_defect")
+    public_auction_rules_violated = Bool("public_auction_rules_violated")
     requires_human_procedure_assessment = Bool("requires_human_procedure_assessment")
 
     solver = Solver()
@@ -226,12 +267,59 @@ def evaluate_procedure_constraints(
         == And(variables["winner_determined"], variables["winner_evaded_signing"])
     )
     solver.add(
+        public_auction_qualified
+        == And(
+            variables["contract_concluded_at_auction"],
+            variables["public_auction_asserted"],
+        )
+    )
+    solver.add(
+        public_auction_organiser_defect
+        == And(
+            public_auction_qualified,
+            Not(variables["public_auction_organiser_authorised"]),
+        )
+    )
+    solver.add(
+        public_auction_notice_defect
+        == And(
+            public_auction_qualified,
+            Not(variables["public_auction_notice_names_owner"]),
+        )
+    )
+    solver.add(
+        public_auction_participation_ban_breached
+        == And(public_auction_qualified, variables["barred_person_participated"])
+    )
+    solver.add(
+        public_auction_protocol_defect
+        == And(
+            public_auction_qualified,
+            Not(variables["public_auction_protocol_lists_bids"]),
+        )
+    )
+    solver.add(
+        public_auction_rules_violated
+        == Or(
+            public_auction_organiser_defect,
+            public_auction_notice_defect,
+            public_auction_participation_ban_breached,
+            public_auction_protocol_defect,
+        )
+    )
+    solver.add(
         auction_voidable
-        == And(variables["auction_rules_violated"], variables["interested_party_challenge"])
+        == And(
+            Or(variables["auction_rules_violated"], public_auction_rules_violated),
+            variables["interested_party_challenge"],
+        )
     )
     solver.add(
         auction_contract_invalid
-        == And(variables["auction_rules_violated"], variables["interested_party_challenge"])
+        == And(
+            Or(variables["auction_rules_violated"], public_auction_rules_violated),
+            variables["interested_party_challenge"],
+        )
     )
     solver.add(
         requires_human_procedure_assessment
@@ -242,7 +330,11 @@ def evaluate_procedure_constraints(
                 variables["obliged_party_evaded"],
             ),
             variables["winner_evaded_signing"],
-            And(variables["auction_rules_violated"], variables["interested_party_challenge"]),
+            And(
+                Or(variables["auction_rules_violated"], public_auction_rules_violated),
+                variables["interested_party_challenge"],
+            ),
+            public_auction_qualified,
         )
     )
 
@@ -258,6 +350,12 @@ def evaluate_procedure_constraints(
             winner_liable_for_evasion=False,
             auction_voidable=False,
             auction_contract_invalid=False,
+            public_auction_qualified=False,
+            public_auction_organiser_defect=False,
+            public_auction_notice_defect=False,
+            public_auction_participation_ban_breached=False,
+            public_auction_protocol_defect=False,
+            public_auction_rules_violated=False,
             requires_human_procedure_assessment=True,
             reasons_ru=["Набор фактов о порядке заключения договора противоречив."],
             warnings_ru=["Требуется проверка исходных доказательств юристом."],
@@ -299,6 +397,38 @@ def evaluate_procedure_constraints(
             "судом недействительными по иску заинтересованного лица; это влечёт "
             "недействительность договора (статья 449 ГК РФ)."
         )
+    if truth(public_auction_qualified):
+        reasons_ru.append(
+            "Торги квалифицированы как публичные: они проводятся в целях исполнения решения "
+            "суда или исполнительных документов в порядке исполнительного производства. "
+            "Правила статей 448 и 449 применяются к ним субсидиарно — если иное не "
+            "установлено Кодексом и процессуальным законодательством (пункт 1 статьи 449.1 "
+            "ГК РФ)."
+        )
+    if truth(public_auction_organiser_defect):
+        reasons_ru.append(
+            "Организатор публичных торгов не уполномочен отчуждать имущество в порядке "
+            "исполнительного производства (пункт 2 статьи 449.1 ГК РФ)."
+        )
+    if truth(public_auction_notice_defect):
+        reasons_ru.append(
+            "Извещение о публичных торгах не отвечает требованиям: помимо сведений пункта 2 "
+            "статьи 448 ГК РФ оно должно указывать собственника имущества и размещаться на "
+            "сайте органа, осуществляющего исполнительное производство (пункт 4 статьи 449.1 "
+            "ГК РФ)."
+        )
+    if truth(public_auction_participation_ban_breached):
+        reasons_ru.append(
+            "Нарушен запрет участия в публичных торгах: в них не могут участвовать должник, "
+            "организации, на которые возложены оценка и реализация его имущества, и их "
+            "работники, должностные лица органов власти, чьё участие может повлиять на условия "
+            "и результаты торгов, а также члены семей этих лиц (пункт 5 статьи 449.1 ГК РФ)."
+        )
+    if truth(public_auction_protocol_defect):
+        reasons_ru.append(
+            "Протокол о результатах публичных торгов не содержит всех участников и внесённых "
+            "ими предложений о цене (пункт 6 статьи 449.1 ГК РФ)."
+        )
     if not reasons_ru:
         reasons_ru.append(
             "Формальные предпосылки понуждения к заключению или недействительности "
@@ -314,6 +444,12 @@ def evaluate_procedure_constraints(
         winner_liable_for_evasion=truth(winner_liable_for_evasion),
         auction_voidable=truth(auction_voidable),
         auction_contract_invalid=truth(auction_contract_invalid),
+        public_auction_qualified=truth(public_auction_qualified),
+        public_auction_organiser_defect=truth(public_auction_organiser_defect),
+        public_auction_notice_defect=truth(public_auction_notice_defect),
+        public_auction_participation_ban_breached=truth(public_auction_participation_ban_breached),
+        public_auction_protocol_defect=truth(public_auction_protocol_defect),
+        public_auction_rules_violated=truth(public_auction_rules_violated),
         requires_human_procedure_assessment=truth(requires_human_procedure_assessment),
         reasons_ru=reasons_ru,
         warnings_ru=[
@@ -321,5 +457,9 @@ def evaluate_procedure_constraints(
             "обязательном порядке и на торгах и не заменяет судебную оценку.",
             "Обязательность заключения, соблюдение правил торгов и размер убытков "
             "оцениваются экспертом и судом.",
+            "Для публичных торгов модель проверяет прямо названные статьёй 449.1 ГК РФ "
+            "требования — полномочие организатора, содержание извещения, запрет участия и "
+            "состав протокола. Иные нарушения порядка исполнительного производства она "
+            "принимает через общий предикат нарушения правил торгов.",
         ],
     )

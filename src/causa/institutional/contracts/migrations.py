@@ -2066,6 +2066,28 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.8.0",
+        to_version="1.9.0",
+        reasons=[
+            "Three evidence contracts gain required predicates at once: property rights (article 306), conclusion procedure (article 449.1) and bank deposit (article 844.1); artifacts produced without them cannot be replayed.",
+            "These were the last three gaps of the Code walk, each a single article inside an institute that already claimed its neighbours. The walk now reports zero real gaps.",
+            "Two existing conclusions change meaning rather than merely gaining company: auction invalidity now also follows from the specific public-auction defects of article 449.1, and the article 840 reproach for unsecured repayment is suppressed for deposits in precious metals, which article 844.1(3) excludes from deposit insurance.",
+        ],
+        reasons_ru=[
+            "Три контракта данных получили обязательные предикаты разом: вещные права (статья 306), порядок заключения (статья 449.1) и банковский вклад (статья 844.1); артефакты, собранные без них, не воспроизводятся.",
+            "Это последние три пробела обхода кодекса, каждый по одной статье внутри института, который уже заявлял её соседей. Обход показывает ноль настоящих пробелов.",
+            "Два прежних вывода не просто получили соседей, а изменили смысл: недействительность торгов теперь следует и из специальных пороков публичных торгов по статье 449.1, а упрёк по статье 840 за необеспеченный возврат снимается для вклада в драгоценных металлах, который пункт 3 статьи 844.1 выводит из-под страхования вкладов.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_property_rights_evaluation.py",
+            "python scripts/export_synthetic_procedure_evaluation.py",
+            "python scripts/export_synthetic_bank_deposit_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

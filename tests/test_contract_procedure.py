@@ -129,9 +129,9 @@ def test_procedure_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_procedure_benchmark_suite()
     red_team = run_procedure_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_PROCEDURE_BENCHMARKS) == 10
+    assert benchmark.total == len(SYNTHETIC_PROCEDURE_BENCHMARKS) == 14
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_PROCEDURE_RED_TEAM_CASES) == 10
+    assert red_team.total == len(SYNTHETIC_PROCEDURE_RED_TEAM_CASES) == 12
     assert red_team.blocked == red_team.total
 
 

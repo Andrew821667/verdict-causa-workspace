@@ -155,6 +155,33 @@ SYNTHETIC_PROPERTY_RIGHTS_BENCHMARKS = (
             "requires_human_property_rights_assessment": True,
         },
     ),
+    PropertyRightsEvaluationTask(
+        id="property-rights-bench-statutory-termination-with-losses",
+        title_ru="Право собственности прекращено законом, убытки доказаны",
+        facts=_facts(
+            property_right_asserted=True,
+            ownership_terminated_by_federal_law=True,
+            losses_from_statutory_termination_proven=True,
+        ),
+        expected_outcomes={
+            "statutory_termination_of_ownership": True,
+            "state_compensation_duty": True,
+            "requires_human_property_rights_assessment": True,
+        },
+    ),
+    PropertyRightsEvaluationTask(
+        id="property-rights-bench-statutory-termination-without-losses",
+        title_ru="Закон прекратил право собственности, размер убытков не доказан",
+        facts=_facts(
+            property_right_asserted=True,
+            ownership_terminated_by_federal_law=True,
+        ),
+        expected_outcomes={
+            "statutory_termination_of_ownership": True,
+            "state_compensation_duty": False,
+            "requires_human_property_rights_assessment": True,
+        },
+    ),
 )
 
 
@@ -218,6 +245,21 @@ SYNTHETIC_PROPERTY_RIGHTS_RED_TEAM_CASES = (
         title_ru="Пропустить экспертизу при нарушении негаторной защиты",
         facts=_facts(property_right_asserted=True, negatory_or_possessor_claim_breached=True),
         forbidden_outcomes={"requires_human_property_rights_assessment": False},
+    ),
+    PropertyRightsRedTeamCase(
+        id="property-rights-red-state-duty-without-statute",
+        title_ru="Возложить возмещение на государство без закона, прекратившего право",
+        facts=_facts(property_right_asserted=True, vindication_rules_breached=True),
+        forbidden_outcomes={"state_compensation_duty": True},
+    ),
+    PropertyRightsRedTeamCase(
+        id="property-rights-red-state-duty-without-losses",
+        title_ru="Присудить возмещение государством без доказанных убытков",
+        facts=_facts(
+            property_right_asserted=True,
+            ownership_terminated_by_federal_law=True,
+        ),
+        forbidden_outcomes={"state_compensation_duty": True},
     ),
 )
 

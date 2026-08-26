@@ -15,11 +15,16 @@
       "term_deposit_interest_rate_unilaterally_reduced": false,
       "deposit_repayment_security_not_ensured": false,
       "third_party_deposit_rights_disregarded": false,
-      "savings_document_rules_breached": false
+      "savings_document_rules_breached": false,
+      "precious_metal_deposit_asserted": false,
+      "precious_metal_deposit_terms_agreed": false,
+      "precious_metal_return_breached": false,
+      "insurance_exclusion_not_disclosed_to_citizen": false
     },
     "legal_source_refs": [
       "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
-      "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1"
+      "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+      "synthetic-ru-gk844-1-precious-metal-deposit-v1"
     ],
     "provenance": [
       {
@@ -72,6 +77,34 @@
         ]
       },
       {
+        "fact_name": "insurance_exclusion_not_disclosed_to_citizen",
+        "assertion_id": "bank-deposit-evidence-insurance_exclusion_not_disclosed_to_citizen",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "precious_metal_deposit_asserted",
+        "assertion_id": "bank-deposit-evidence-precious_metal_deposit_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "precious_metal_deposit_terms_agreed",
+        "assertion_id": "bank-deposit-evidence-precious_metal_deposit_terms_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      },
+      {
+        "fact_name": "precious_metal_return_breached",
+        "assertion_id": "bank-deposit-evidence-precious_metal_return_breached",
+        "source_refs": [
+          "synthetic-case-supply-1-bank-deposit-evidence"
+        ]
+      },
+      {
         "fact_name": "savings_document_rules_breached",
         "assertion_id": "bank-deposit-evidence-savings_document_rules_breached",
         "source_refs": [
@@ -96,10 +129,11 @@
   },
   "constraint_set": {
     "id": "bank-deposit-constraint-set:reviewed-bank-deposit-evidence-supply-1-v0",
-    "model_version": "contracts-bank-deposit-articles-834-844-v0",
+    "model_version": "contracts-bank-deposit-articles-834-844-1-v0",
     "legal_source_refs": [
       "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
-      "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1"
+      "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+      "synthetic-ru-gk844-1-precious-metal-deposit-v1"
     ],
     "expressions": [
       "bank_deposit_qualified == deposit_accepted_for_return_with_interest",
@@ -109,10 +143,15 @@
       "early_repayment_interest_breached == bank_deposit_qualified AND citizen_deposit_on_demand_repayment_breached AND early_repayment_interest_miscalculated",
       "interest_payment_duty_breached == bank_deposit_qualified AND deposit_interest_not_paid_as_agreed",
       "term_rate_reduction_prohibited == bank_deposit_qualified AND term_deposit_interest_rate_unilaterally_reduced",
-      "repayment_security_duty_breached == bank_deposit_qualified AND deposit_repayment_security_not_ensured",
+      "precious_metal_deposit_qualified == bank_deposit_qualified AND precious_metal_deposit_asserted",
+      "deposit_insurance_excluded == precious_metal_deposit_qualified",
+      "precious_metal_deposit_terms_missing == precious_metal_deposit_qualified AND NOT precious_metal_deposit_terms_agreed",
+      "precious_metal_return_duty_breached == precious_metal_deposit_qualified AND precious_metal_return_breached",
+      "insurance_exclusion_disclosure_breached == precious_metal_deposit_qualified AND insurance_exclusion_not_disclosed_to_citizen",
+      "repayment_security_duty_breached == bank_deposit_qualified AND deposit_repayment_security_not_ensured AND NOT deposit_insurance_excluded",
       "third_party_deposit_rights_breached == bank_deposit_qualified AND third_party_deposit_rights_disregarded",
       "savings_document_duty_breached == bank_deposit_qualified AND savings_document_rules_breached",
-      "requires_human_bank_deposit_assessment == deposit_acceptance_unauthorised OR deposit_form_void OR on_demand_repayment_duty_breached OR interest_payment_duty_breached OR term_rate_reduction_prohibited OR repayment_security_duty_breached OR third_party_deposit_rights_breached OR savings_document_duty_breached"
+      "requires_human_bank_deposit_assessment == deposit_acceptance_unauthorised OR deposit_form_void OR on_demand_repayment_duty_breached OR interest_payment_duty_breached OR term_rate_reduction_prohibited OR repayment_security_duty_breached OR third_party_deposit_rights_breached OR savings_document_duty_breached OR precious_metal_deposit_qualified"
     ]
   },
   "reviewed_evaluation": {
@@ -128,19 +167,25 @@
     "repayment_security_duty_breached": false,
     "third_party_deposit_rights_breached": false,
     "savings_document_duty_breached": false,
+    "precious_metal_deposit_qualified": false,
+    "precious_metal_deposit_terms_missing": false,
+    "precious_metal_return_duty_breached": false,
+    "deposit_insurance_excluded": false,
+    "insurance_exclusion_disclosure_breached": false,
     "requires_human_bank_deposit_assessment": false,
     "reasons_ru": [
       "Отношения не квалифицированы как договор банковского вклада."
     ],
     "warnings_ru": [
       "Модель проверяет только формальные правила о банковском вкладе и не заменяет судебную оценку.",
-      "Наличие у банка права привлекать вклады, достаточность обеспечения возврата и содержание условий о процентах оцениваются экспертом и судом (статьи 835, 838 и 840 ГК РФ)."
+      "Наличие у банка права привлекать вклады, достаточность обеспечения возврата и содержание условий о процентах оцениваются экспертом и судом (статьи 835, 838 и 840 ГК РФ).",
+      "Массу и наименование драгоценного металла, а также расчёт эквивалента его стоимости модель не проверяет: она отвечает о режиме вклада, а не о величине требования (статья 844.1 ГК РФ)."
     ]
   },
   "benchmark_report": {
     "id": "bank-deposit-benchmark-report-v0",
-    "total": 10,
-    "passed": 10,
+    "total": 15,
+    "passed": 15,
     "failed": 0,
     "results": [
       {
@@ -301,13 +346,102 @@
           "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
           "Выдача вклада, выплата процентов и исполнение распоряжений вкладчика о перечислении денежных средств осуществляются при предъявлении сберегательной книжки, а права по сберегательному сертификату удостоверяются самим сертификатом на предусмотренных законом условиях (статьи 843 и 844 ГК РФ)."
         ]
+      },
+      {
+        "task_id": "bank-deposit-bench-precious-metal-excludes-insurance",
+        "passed": true,
+        "expected_outcomes": {
+          "precious_metal_deposit_qualified": true,
+          "deposit_insurance_excluded": true,
+          "repayment_security_duty_breached": false
+        },
+        "observed_outcomes": {
+          "precious_metal_deposit_qualified": true,
+          "deposit_insurance_excluded": true,
+          "repayment_security_duty_breached": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Вклад квалифицирован как вклад в драгоценных металлах: банк обязуется возвратить имеющийся во вкладе драгоценный металл того же наименования и той же массы либо выдать денежные средства в сумме, эквивалентной стоимости этого металла, и выплатить предусмотренные договором проценты (пункт 1 статьи 844.1 ГК РФ).",
+          "К такому вкладу правила статьи 840 ГК РФ о страховании вкладов не применяются: возврат вклада системой страхования не гарантирован (пункт 3 статьи 844.1 ГК РФ). Поэтому упрёк в необеспечении возврата вклада по статье 840 модель здесь не выводит — закон прямо освобождает банк от этой обязанности, а не оставляет её неисполненной."
+        ]
+      },
+      {
+        "task_id": "bank-deposit-bench-ordinary-deposit-keeps-insurance-duty",
+        "passed": true,
+        "expected_outcomes": {
+          "deposit_insurance_excluded": false,
+          "repayment_security_duty_breached": true
+        },
+        "observed_outcomes": {
+          "deposit_insurance_excluded": false,
+          "repayment_security_duty_breached": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Банк обязан обеспечивать возврат вкладов граждан путём обязательного страхования, а способы обеспечения возврата вкладов юридических лиц определяются договором (статья 840 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-deposit-bench-precious-metal-disclosure-breached",
+        "passed": true,
+        "expected_outcomes": {
+          "insurance_exclusion_disclosure_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "insurance_exclusion_disclosure_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Вклад квалифицирован как вклад в драгоценных металлах: банк обязуется возвратить имеющийся во вкладе драгоценный металл того же наименования и той же массы либо выдать денежные средства в сумме, эквивалентной стоимости этого металла, и выплатить предусмотренные договором проценты (пункт 1 статьи 844.1 ГК РФ).",
+          "К такому вкладу правила статьи 840 ГК РФ о страховании вкладов не применяются: возврат вклада системой страхования не гарантирован (пункт 3 статьи 844.1 ГК РФ). Поэтому упрёк в необеспечении возврата вклада по статье 840 модель здесь не выводит — закон прямо освобождает банк от этой обязанности, а не оставляет её неисполненной.",
+          "Банк не уведомил гражданина в письменной форме о том, что вклад в драгоценных металлах не застрахован, и не получил письменного подтверждения такого уведомления до заключения договора (пункт 3 статьи 844.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-deposit-bench-precious-metal-terms-missing",
+        "passed": true,
+        "expected_outcomes": {
+          "precious_metal_deposit_terms_missing": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "precious_metal_deposit_terms_missing": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Вклад квалифицирован как вклад в драгоценных металлах: банк обязуется возвратить имеющийся во вкладе драгоценный металл того же наименования и той же массы либо выдать денежные средства в сумме, эквивалентной стоимости этого металла, и выплатить предусмотренные договором проценты (пункт 1 статьи 844.1 ГК РФ).",
+          "К такому вкладу правила статьи 840 ГК РФ о страховании вкладов не применяются: возврат вклада системой страхования не гарантирован (пункт 3 статьи 844.1 ГК РФ). Поэтому упрёк в необеспечении возврата вклада по статье 840 модель здесь не выводит — закон прямо освобождает банк от этой обязанности, а не оставляет её неисполненной.",
+          "В договоре вклада в драгоценных металлах не согласованы обязательные условия: наименование драгоценного металла, размер процентов, форма их получения и порядок расчёта суммы денежных средств, подлежащих выдаче (пункт 2 статьи 844.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "bank-deposit-bench-precious-metal-return-breached",
+        "passed": true,
+        "expected_outcomes": {
+          "precious_metal_return_duty_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "observed_outcomes": {
+          "precious_metal_return_duty_breached": true,
+          "requires_human_bank_deposit_assessment": true
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Вклад квалифицирован как вклад в драгоценных металлах: банк обязуется возвратить имеющийся во вкладе драгоценный металл того же наименования и той же массы либо выдать денежные средства в сумме, эквивалентной стоимости этого металла, и выплатить предусмотренные договором проценты (пункт 1 статьи 844.1 ГК РФ).",
+          "К такому вкладу правила статьи 840 ГК РФ о страховании вкладов не применяются: возврат вклада системой страхования не гарантирован (пункт 3 статьи 844.1 ГК РФ). Поэтому упрёк в необеспечении возврата вклада по статье 840 модель здесь не выводит — закон прямо освобождает банк от этой обязанности, а не оставляет её неисполненной.",
+          "Нарушена обязанность возвратить драгоценный металл того же наименования и той же массы либо выдать эквивалент его стоимости (пункт 1 статьи 844.1 ГК РФ)."
+        ]
       }
     ]
   },
   "red_team_report": {
     "id": "bank-deposit-red-team-report-v0",
-    "total": 10,
-    "blocked": 10,
+    "total": 13,
+    "blocked": 13,
     "unblocked": 0,
     "results": [
       {
@@ -446,6 +580,48 @@
         "reasons_ru": [
           "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
           "Выдача вклада, выплата процентов и исполнение распоряжений вкладчика о перечислении денежных средств осуществляются при предъявлении сберегательной книжки, а права по сберегательному сертификату удостоверяются самим сертификатом на предусмотренных законом условиях (статьи 843 и 844 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-deposit-red-article-840-on-precious-metal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "repayment_security_duty_breached": true
+        },
+        "observed_outcomes": {
+          "repayment_security_duty_breached": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Вклад квалифицирован как вклад в драгоценных металлах: банк обязуется возвратить имеющийся во вкладе драгоценный металл того же наименования и той же массы либо выдать денежные средства в сумме, эквивалентной стоимости этого металла, и выплатить предусмотренные договором проценты (пункт 1 статьи 844.1 ГК РФ).",
+          "К такому вкладу правила статьи 840 ГК РФ о страховании вкладов не применяются: возврат вклада системой страхования не гарантирован (пункт 3 статьи 844.1 ГК РФ). Поэтому упрёк в необеспечении возврата вклада по статье 840 модель здесь не выводит — закон прямо освобождает банк от этой обязанности, а не оставляет её неисполненной."
+        ]
+      },
+      {
+        "case_id": "bank-deposit-red-insurance-excluded-for-ordinary-deposit",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "deposit_insurance_excluded": true
+        },
+        "observed_outcomes": {
+          "deposit_insurance_excluded": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ).",
+          "Банк обязан обеспечивать возврат вкладов граждан путём обязательного страхования, а способы обеспечения возврата вкладов юридических лиц определяются договором (статья 840 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "bank-deposit-red-precious-metal-rules-without-assertion",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "precious_metal_deposit_terms_missing": true
+        },
+        "observed_outcomes": {
+          "precious_metal_deposit_terms_missing": false
+        },
+        "reasons_ru": [
+          "Договор квалифицирован как договор банковского вклада: банк, принявший поступившую от вкладчика или для него денежную сумму, обязуется возвратить сумму вклада и выплатить проценты на условиях и в порядке, предусмотренных договором (статья 834 ГК РФ)."
         ]
       }
     ]

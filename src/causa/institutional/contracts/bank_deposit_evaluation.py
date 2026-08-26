@@ -176,6 +176,73 @@ SYNTHETIC_BANK_DEPOSIT_BENCHMARKS = (
             "requires_human_bank_deposit_assessment": True,
         },
     ),
+    BankDepositEvaluationTask(
+        id="bank-deposit-bench-precious-metal-excludes-insurance",
+        title_ru="Вклад в драгоценных металлах: правила статьи 840 не применяются",
+        facts=_facts(
+            deposit_accepted_for_return_with_interest=True,
+            precious_metal_deposit_asserted=True,
+            precious_metal_deposit_terms_agreed=True,
+            deposit_repayment_security_not_ensured=True,
+        ),
+        expected_outcomes={
+            "precious_metal_deposit_qualified": True,
+            "deposit_insurance_excluded": True,
+            "repayment_security_duty_breached": False,
+        },
+    ),
+    BankDepositEvaluationTask(
+        id="bank-deposit-bench-ordinary-deposit-keeps-insurance-duty",
+        title_ru="Обычный вклад: обязанность обеспечить возврат сохраняется",
+        facts=_facts(
+            deposit_accepted_for_return_with_interest=True,
+            deposit_repayment_security_not_ensured=True,
+        ),
+        expected_outcomes={
+            "deposit_insurance_excluded": False,
+            "repayment_security_duty_breached": True,
+        },
+    ),
+    BankDepositEvaluationTask(
+        id="bank-deposit-bench-precious-metal-disclosure-breached",
+        title_ru="Гражданина не предупредили об отсутствии страхования вклада",
+        facts=_facts(
+            deposit_accepted_for_return_with_interest=True,
+            precious_metal_deposit_asserted=True,
+            precious_metal_deposit_terms_agreed=True,
+            insurance_exclusion_not_disclosed_to_citizen=True,
+        ),
+        expected_outcomes={
+            "insurance_exclusion_disclosure_breached": True,
+            "requires_human_bank_deposit_assessment": True,
+        },
+    ),
+    BankDepositEvaluationTask(
+        id="bank-deposit-bench-precious-metal-terms-missing",
+        title_ru="В договоре вклада в металлах не согласованы обязательные условия",
+        facts=_facts(
+            deposit_accepted_for_return_with_interest=True,
+            precious_metal_deposit_asserted=True,
+        ),
+        expected_outcomes={
+            "precious_metal_deposit_terms_missing": True,
+            "requires_human_bank_deposit_assessment": True,
+        },
+    ),
+    BankDepositEvaluationTask(
+        id="bank-deposit-bench-precious-metal-return-breached",
+        title_ru="Банк не возвратил металл и не выдал эквивалент его стоимости",
+        facts=_facts(
+            deposit_accepted_for_return_with_interest=True,
+            precious_metal_deposit_asserted=True,
+            precious_metal_deposit_terms_agreed=True,
+            precious_metal_return_breached=True,
+        ),
+        expected_outcomes={
+            "precious_metal_return_duty_breached": True,
+            "requires_human_bank_deposit_assessment": True,
+        },
+    ),
 )
 
 
@@ -263,6 +330,32 @@ SYNTHETIC_BANK_DEPOSIT_RED_TEAM_CASES = (
             savings_document_rules_breached=True,
         ),
         forbidden_outcomes={"requires_human_bank_deposit_assessment": False},
+    ),
+    BankDepositRedTeamCase(
+        id="bank-deposit-red-article-840-on-precious-metal",
+        title_ru="Упрекнуть банк по статье 840 за вклад, который она не покрывает",
+        facts=_facts(
+            deposit_accepted_for_return_with_interest=True,
+            precious_metal_deposit_asserted=True,
+            precious_metal_deposit_terms_agreed=True,
+            deposit_repayment_security_not_ensured=True,
+        ),
+        forbidden_outcomes={"repayment_security_duty_breached": True},
+    ),
+    BankDepositRedTeamCase(
+        id="bank-deposit-red-insurance-excluded-for-ordinary-deposit",
+        title_ru="Освободить банк от страхования по обычному вкладу",
+        facts=_facts(
+            deposit_accepted_for_return_with_interest=True,
+            deposit_repayment_security_not_ensured=True,
+        ),
+        forbidden_outcomes={"deposit_insurance_excluded": True},
+    ),
+    BankDepositRedTeamCase(
+        id="bank-deposit-red-precious-metal-rules-without-assertion",
+        title_ru="Применить правила статьи 844.1 к вкладу, который металлическим не заявлен",
+        facts=_facts(deposit_accepted_for_return_with_interest=True),
+        forbidden_outcomes={"precious_metal_deposit_terms_missing": True},
     ),
 )
 

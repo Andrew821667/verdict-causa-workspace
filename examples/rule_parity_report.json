@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1172,
+  "declared_rules": 1185,
   "divergences_total": 0,
-  "executed_rules": 1172,
+  "executed_rules": 1185,
   "institutes": [
     {
       "declared_rules": 5,
@@ -44,11 +44,11 @@
       "module": "bank_account.py"
     },
     {
-      "declared_rules": 11,
+      "declared_rules": 16,
       "divergences": [],
-      "executed_rules": 11,
+      "executed_rules": 16,
       "institute": "bank_deposit",
-      "matched": 11,
+      "matched": 16,
       "module": "bank_deposit.py"
     },
     {
@@ -460,11 +460,11 @@
       "module": "preliminary.py"
     },
     {
-      "declared_rules": 8,
+      "declared_rules": 14,
       "divergences": [],
-      "executed_rules": 8,
+      "executed_rules": 14,
       "institute": "procedure",
-      "matched": 8,
+      "matched": 14,
       "module": "procedure.py"
     },
     {
@@ -476,11 +476,11 @@
       "module": "product_liability.py"
     },
     {
-      "declared_rules": 11,
+      "declared_rules": 13,
       "divergences": [],
-      "executed_rules": 11,
+      "executed_rules": 13,
       "institute": "property_rights",
-      "matched": 11,
+      "matched": 13,
       "module": "property_rights.py"
     },
     {
@@ -734,6 +734,6 @@
   ],
   "institutes_clean": 91,
   "institutes_total": 91,
-  "matched_rules": 1172,
+  "matched_rules": 1185,
   "version": "reasoning-rule-parity-v0"
 }

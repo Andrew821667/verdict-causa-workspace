@@ -8,7 +8,7 @@ from causa.core.bootstrap import BootstrapReviewStatus
 
 PROPERTY_RIGHTS_EVIDENCE_SCHEMA_VERSION = "contracts.property-rights-evidence.v0"
 PROPERTY_RIGHTS_MAPPING_VERSION = "contracts-reviewed-property-rights-to-facts-v0"
-PROPERTY_RIGHTS_MODEL_VERSION = "contracts-property-rights-articles-209-305-v0"
+PROPERTY_RIGHTS_MODEL_VERSION = "contracts-property-rights-articles-209-306-v0"
 
 
 class PropertyRightsEvidencePredicate(str, Enum):
@@ -29,6 +29,9 @@ class PropertyRightsEvidencePredicate(str, Enum):
     GOOD_FAITH_PURCHASER_PROTECTION_DISREGARDED = "good_faith_purchaser_protection_disregarded"
     # Защита прав владельца, не являющегося собственником (статьи 304 и 305 ГК РФ).
     NEGATORY_OR_POSSESSOR_CLAIM_BREACHED = "negatory_or_possessor_claim_breached"
+    # Прекращение права собственности в силу закона (статья 306 ГК РФ).
+    OWNERSHIP_TERMINATED_BY_FEDERAL_LAW = "ownership_terminated_by_federal_law"
+    LOSSES_FROM_STATUTORY_TERMINATION_PROVEN = "losses_from_statutory_termination_proven"
 
 
 REQUIRED_PROPERTY_RIGHTS_PREDICATES = frozenset(PropertyRightsEvidencePredicate)
@@ -77,6 +80,8 @@ class PropertyRightsFactSet(BaseModel):
     vindication_rules_breached: bool
     good_faith_purchaser_protection_disregarded: bool
     negatory_or_possessor_claim_breached: bool
+    ownership_terminated_by_federal_law: bool
+    losses_from_statutory_termination_proven: bool
 
     @model_validator(mode="after")
     def validate_consistency(self) -> "PropertyRightsFactSet":
@@ -88,6 +93,14 @@ class PropertyRightsFactSet(BaseModel):
         if self.ownership_powers_breached and not self.property_right_asserted:
             raise ValueError(
                 "Нарушение правомочий собственника относится только к заявленному вещному праву."
+            )
+        if (
+            self.losses_from_statutory_termination_proven
+            and not self.ownership_terminated_by_federal_law
+        ):
+            raise ValueError(
+                "Убытки от прекращения права собственности в силу закона возможны только "
+                "тогда, когда такой закон принят (статья 306 ГК РФ)."
             )
         return self
 
@@ -129,6 +142,10 @@ class PropertyRightsEvaluation(BaseModel):
     vindication_duty_breached: bool
     good_faith_purchaser_breached: bool
     negatory_claim_duty_breached: bool
+    statutory_termination_of_ownership: bool
+    # Единственный вывод института, где должник — государство, а не частное лицо
+    # (статья 306 ГК РФ).
+    state_compensation_duty: bool
     requires_human_property_rights_assessment: bool
     reasons_ru: list[str] = Field(default_factory=list)
     warnings_ru: list[str] = Field(default_factory=list)
@@ -190,7 +207,9 @@ def build_property_rights_constraint_set(
             "vindication_duty_breached == property_rights_qualified AND vindication_rules_breached",
             "good_faith_purchaser_breached == property_rights_qualified AND vindication_rules_breached AND good_faith_purchaser_protection_disregarded",
             "negatory_claim_duty_breached == property_rights_qualified AND negatory_or_possessor_claim_breached",
-            "requires_human_property_rights_assessment == ownership_powers_duty_breached OR unauthorized_disposal_detected OR risk_and_burden_duty_breached OR acquisition_moment_duty_breached OR acquisitive_prescription_duty_breached OR common_property_duty_breached OR vindication_duty_breached OR negatory_claim_duty_breached",
+            "statutory_termination_of_ownership == property_rights_qualified AND ownership_terminated_by_federal_law",
+            "state_compensation_duty == statutory_termination_of_ownership AND losses_from_statutory_termination_proven",
+            "requires_human_property_rights_assessment == ownership_powers_duty_breached OR unauthorized_disposal_detected OR risk_and_burden_duty_breached OR acquisition_moment_duty_breached OR acquisitive_prescription_duty_breached OR common_property_duty_breached OR vindication_duty_breached OR negatory_claim_duty_breached OR statutory_termination_of_ownership",
         ],
     )
 
@@ -210,6 +229,8 @@ def evaluate_property_rights_constraints(
     vindication_duty_breached = Bool("vindication_duty_breached")
     good_faith_purchaser_breached = Bool("good_faith_purchaser_breached")
     negatory_claim_duty_breached = Bool("negatory_claim_duty_breached")
+    statutory_termination_of_ownership = Bool("statutory_termination_of_ownership")
+    state_compensation_duty = Bool("state_compensation_duty")
     requires_human_property_rights_assessment = Bool("requires_human_property_rights_assessment")
 
     solver = Solver()
@@ -257,6 +278,17 @@ def evaluate_property_rights_constraints(
         == And(property_rights_qualified, variables["negatory_or_possessor_claim_breached"])
     )
     solver.add(
+        statutory_termination_of_ownership
+        == And(property_rights_qualified, variables["ownership_terminated_by_federal_law"])
+    )
+    solver.add(
+        state_compensation_duty
+        == And(
+            statutory_termination_of_ownership,
+            variables["losses_from_statutory_termination_proven"],
+        )
+    )
+    solver.add(
         requires_human_property_rights_assessment
         == Or(
             ownership_powers_duty_breached,
@@ -267,6 +299,7 @@ def evaluate_property_rights_constraints(
             common_property_duty_breached,
             vindication_duty_breached,
             negatory_claim_duty_breached,
+            statutory_termination_of_ownership,
         )
     )
 
@@ -285,6 +318,8 @@ def evaluate_property_rights_constraints(
             vindication_duty_breached=False,
             good_faith_purchaser_breached=False,
             negatory_claim_duty_breached=False,
+            statutory_termination_of_ownership=False,
+            state_compensation_duty=False,
             requires_human_property_rights_assessment=True,
             reasons_ru=["Набор фактов о вещных правах противоречив."],
             warnings_ru=["Требуется проверка исходных доказательств юристом."],
@@ -365,6 +400,25 @@ def evaluate_property_rights_constraints(
             "лицу, владеющему имуществом по иному основанию, предусмотренному законом или "
             "договором, в том числе против самого собственника (статьи 304 и 305 ГК РФ)."
         )
+    if truth(statutory_termination_of_ownership):
+        reasons_ru.append(
+            "Право собственности прекращено принятием закона Российской Федерации. Убытки, "
+            "причинённые собственнику принятием этого акта, в том числе стоимость имущества, "
+            "возмещаются государством (статья 306 ГК РФ). Это единственный случай в институте, "
+            "где обязанным лицом выступает государство, а не частная сторона спора."
+        )
+    if truth(state_compensation_duty):
+        reasons_ru.append(
+            "Убытки от прекращения права собственности в силу закона доказаны, поэтому "
+            "обязанность их возмещения лежит на государстве; спор о возмещении разрешается "
+            "судом (статья 306 ГК РФ)."
+        )
+    elif truth(statutory_termination_of_ownership):
+        reasons_ru.append(
+            "Размер убытков от прекращения права собственности не доказан, поэтому обязанность "
+            "государства возместить их модель не выводит. Это утверждение о доказанности "
+            "убытков, а не о том, что право на возмещение отсутствует."
+        )
     return PropertyRightsEvaluation(
         constraint_set_id=constraint_set.id,
         satisfiable=True,
@@ -378,6 +432,8 @@ def evaluate_property_rights_constraints(
         vindication_duty_breached=truth(vindication_duty_breached),
         good_faith_purchaser_breached=truth(good_faith_purchaser_breached),
         negatory_claim_duty_breached=truth(negatory_claim_duty_breached),
+        statutory_termination_of_ownership=truth(statutory_termination_of_ownership),
+        state_compensation_duty=truth(state_compensation_duty),
         requires_human_property_rights_assessment=truth(requires_human_property_rights_assessment),
         reasons_ru=reasons_ru,
         warnings_ru=[
@@ -386,5 +442,8 @@ def evaluate_property_rights_constraints(
             "Добросовестность приобретателя, обстоятельства выбытия имущества из владения "
             "собственника и давностное владение оцениваются экспертом и судом "
             "(статьи 234, 302 и 305 ГК РФ).",
+            "Размер убытков от прекращения права собственности в силу закона модель не "
+            "считает: она отвечает о наличии обязанности государства, а не о сумме "
+            "возмещения (статья 306 ГК РФ).",
         ],
     )

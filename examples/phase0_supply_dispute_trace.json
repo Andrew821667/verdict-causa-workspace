@@ -798,6 +798,22 @@
       }
     },
     {
+      "id": "synthetic-ru-gk449-1-public-auction-v1",
+      "title": "Синтетическая проверенная модель публичных торгов по статье 449.1 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: публичными признаются торги, проводимые в целях исполнения решения суда или исполнительных документов в порядке исполнительного производства, и правила статей 448 и 449 применяются к ним, если иное не установлено Кодексом и процессуальным законодательством; организатором выступает лицо, уполномоченное отчуждать имущество в порядке исполнительного производства; извещение размещается на сайте органа, осуществляющего исполнительное производство, и указывает собственника имущества; в торгах не могут участвовать должник, организации, на которые возложены оценка и реализация его имущества, и их работники, должностные лица, чьё участие может повлиять на условия и результаты торгов, а также члены их семей; протокол о результатах указывает всех участников и внесённые ими предложения о цене (статья 449.1 ГК РФ).",
+      "valid_from": "2015-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "public_auction_article_449_1",
+        "legal_reference": "ГК РФ, статья 449.1",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
       "id": "synthetic-case-supply-1-procedure-evidence",
       "title": "Синтетическая проверенная запись фактов о порядке заключения договора",
       "source_type": "fact",
@@ -2302,6 +2318,22 @@
       }
     },
     {
+      "id": "synthetic-ru-gk844-1-precious-metal-deposit-v1",
+      "title": "Синтетическая проверенная модель договора банковского вклада в драгоценных металлах по статье 844.1 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: по договору банковского вклада в драгоценных металлах банк обязуется возвратить имеющийся во вкладе драгоценный металл того же наименования и той же массы либо выдать денежные средства в сумме, эквивалентной стоимости этого металла, и выплатить предусмотренные договором проценты; договор должен указывать наименование металла, размер процентов, форму их получения и порядок расчёта выдаваемой суммы; правила статьи 840 ГК РФ о страховании вкладов к такому вкладу не применяются, и гражданин должен быть уведомлён об этом в письменной форме до заключения договора с получением от него письменного подтверждения (статья 844.1 ГК РФ).",
+      "valid_from": "2018-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "precious_metal_deposit_article_844_1",
+        "legal_reference": "ГК РФ, статья 844.1",
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
       "id": "synthetic-case-supply-1-bank-deposit-evidence",
       "title": "Синтетическая проверенная запись фактов о банковском вкладе",
       "source_type": "fact",
@@ -3331,6 +3363,22 @@
         "synthetic": true,
         "topic": "common_property_and_protection_of_rights_articles_244_305",
         "legal_reference": "ГК РФ, статьи 244–305",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk306-statutory-termination-compensation-v1",
+      "title": "Синтетическая проверенная модель последствий прекращения права собственности в силу закона по статье 306 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: в случае принятия Российской Федерацией закона, прекращающего право собственности, убытки, причинённые собственнику в результате принятия этого акта, в том числе стоимость имущества, возмещаются государством; споры о возмещении убытков разрешаются судом (статья 306 ГК РФ).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "statutory_termination_compensation_article_306",
+        "legal_reference": "ГК РФ, статья 306",
         "basis_url": "https://government.ru/docs/all/95820/",
         "review_required": true
       }
@@ -6293,11 +6341,52 @@
           "source_refs": [
             "synthetic-case-supply-1-procedure-evidence"
           ]
+        },
+        {
+          "id": "procedure-evidence-public_auction_asserted",
+          "predicate": "public_auction_asserted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-public_auction_organiser_authorised",
+          "predicate": "public_auction_organiser_authorised",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-public_auction_notice_names_owner",
+          "predicate": "public_auction_notice_names_owner",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-barred_person_participated",
+          "predicate": "barred_person_participated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "id": "procedure-evidence-public_auction_protocol_lists_bids",
+          "predicate": "public_auction_protocol_lists_bids",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
         }
       ],
       "legal_source_refs": [
         "synthetic-ru-gk445-446-mandatory-conclusion-v1",
-        "synthetic-ru-gk447-449-auction-v1"
+        "synthetic-ru-gk447-449-auction-v1",
+        "synthetic-ru-gk449-1-public-auction-v1"
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-procedure-reviewer"
@@ -9277,11 +9366,44 @@
           "source_refs": [
             "synthetic-case-supply-1-bank-deposit-evidence"
           ]
+        },
+        {
+          "id": "bank-deposit-evidence-precious_metal_deposit_asserted",
+          "predicate": "precious_metal_deposit_asserted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "id": "bank-deposit-evidence-precious_metal_deposit_terms_agreed",
+          "predicate": "precious_metal_deposit_terms_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "id": "bank-deposit-evidence-precious_metal_return_breached",
+          "predicate": "precious_metal_return_breached",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "id": "bank-deposit-evidence-insurance_exclusion_not_disclosed_to_citizen",
+          "predicate": "insurance_exclusion_not_disclosed_to_citizen",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
         }
       ],
       "legal_source_refs": [
         "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
-        "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1"
+        "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+        "synthetic-ru-gk844-1-precious-metal-deposit-v1"
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-bank-deposit-reviewer"
@@ -11667,11 +11789,28 @@
           "source_refs": [
             "synthetic-case-supply-1-property-rights-evidence"
           ]
+        },
+        {
+          "id": "property-rights-evidence-ownership_terminated_by_federal_law",
+          "predicate": "ownership_terminated_by_federal_law",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "id": "property-rights-evidence-losses_from_statutory_termination_proven",
+          "predicate": "losses_from_statutory_termination_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
         }
       ],
       "legal_source_refs": [
         "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
-        "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1"
+        "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+        "synthetic-ru-gk306-statutory-termination-compensation-v1"
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-property-rights-reviewer"
@@ -17736,6 +17875,7 @@
       "synthetic-ru-gk202-208-limitation-effects-v1",
       "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
       "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+      "synthetic-ru-gk306-statutory-termination-compensation-v1",
       "synthetic-ru-gk307-308-obligation-concept-v1",
       "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
       "synthetic-ru-gk309-328-performance-v1",
@@ -17783,6 +17923,7 @@
       "synthetic-ru-gk438-443-acceptance-model-v1",
       "synthetic-ru-gk445-446-mandatory-conclusion-v1",
       "synthetic-ru-gk447-449-auction-v1",
+      "synthetic-ru-gk449-1-public-auction-v1",
       "synthetic-ru-gk450-453-termination-model-v1",
       "synthetic-ru-gk454-464-sale-transfer-v1",
       "synthetic-ru-gk465-477-sale-conformity-v1",
@@ -17853,6 +17994,7 @@
       "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
       "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
       "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+      "synthetic-ru-gk844-1-precious-metal-deposit-v1",
       "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
       "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
       "synthetic-ru-gk8601-8606-nominal-account-v1",
@@ -20099,11 +20241,17 @@
         "results_protocol_signed": false,
         "winner_evaded_signing": false,
         "auction_rules_violated": false,
-        "interested_party_challenge": false
+        "interested_party_challenge": false,
+        "public_auction_asserted": false,
+        "public_auction_organiser_authorised": false,
+        "public_auction_notice_names_owner": false,
+        "barred_person_participated": false,
+        "public_auction_protocol_lists_bids": false
       },
       "legal_source_refs": [
         "synthetic-ru-gk445-446-mandatory-conclusion-v1",
-        "synthetic-ru-gk447-449-auction-v1"
+        "synthetic-ru-gk447-449-auction-v1",
+        "synthetic-ru-gk449-1-public-auction-v1"
       ],
       "provenance": [
         {
@@ -20116,6 +20264,13 @@
         {
           "fact_name": "auction_rules_violated",
           "assertion_id": "procedure-evidence-auction_rules_violated",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "barred_person_participated",
+          "assertion_id": "procedure-evidence-barred_person_participated",
           "source_refs": [
             "synthetic-case-supply-1-procedure-evidence"
           ]
@@ -20163,6 +20318,34 @@
           ]
         },
         {
+          "fact_name": "public_auction_asserted",
+          "assertion_id": "procedure-evidence-public_auction_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "public_auction_notice_names_owner",
+          "assertion_id": "procedure-evidence-public_auction_notice_names_owner",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "public_auction_organiser_authorised",
+          "assertion_id": "procedure-evidence-public_auction_organiser_authorised",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "public_auction_protocol_lists_bids",
+          "assertion_id": "procedure-evidence-public_auction_protocol_lists_bids",
+          "source_refs": [
+            "synthetic-case-supply-1-procedure-evidence"
+          ]
+        },
+        {
           "fact_name": "results_protocol_signed",
           "assertion_id": "procedure-evidence-results_protocol_signed",
           "source_refs": [
@@ -20187,10 +20370,11 @@
     },
     "procedure_constraint_set": {
       "id": "procedure-constraint-set:reviewed-procedure-evidence-supply-1-v0",
-      "model_version": "contracts-conclusion-procedure-articles-445-449-v0",
+      "model_version": "contracts-conclusion-procedure-articles-445-449-1-v0",
       "legal_source_refs": [
         "synthetic-ru-gk445-446-mandatory-conclusion-v1",
-        "synthetic-ru-gk447-449-auction-v1"
+        "synthetic-ru-gk447-449-auction-v1",
+        "synthetic-ru-gk449-1-public-auction-v1"
       ],
       "expressions": [
         "conclusion_compellable == conclusion_mandatory_for_party AND offer_or_draft_sent AND obliged_party_evaded",
@@ -20198,9 +20382,15 @@
         "damages_for_mandatory_evasion == conclusion_mandatory_for_party AND obliged_party_evaded",
         "auction_contract_formed == contract_concluded_at_auction AND winner_determined AND results_protocol_signed",
         "winner_liable_for_evasion == winner_determined AND winner_evaded_signing",
-        "auction_voidable == auction_rules_violated AND interested_party_challenge",
-        "auction_contract_invalid == auction_rules_violated AND interested_party_challenge",
-        "requires_human_procedure_assessment == precontractual_dispute_submitted_to_court OR (conclusion_mandatory_for_party AND obliged_party_evaded) OR winner_evaded_signing OR (auction_rules_violated AND interested_party_challenge)"
+        "public_auction_qualified == contract_concluded_at_auction AND public_auction_asserted",
+        "public_auction_organiser_defect == public_auction_qualified AND NOT public_auction_organiser_authorised",
+        "public_auction_notice_defect == public_auction_qualified AND NOT public_auction_notice_names_owner",
+        "public_auction_participation_ban_breached == public_auction_qualified AND barred_person_participated",
+        "public_auction_protocol_defect == public_auction_qualified AND NOT public_auction_protocol_lists_bids",
+        "public_auction_rules_violated == public_auction_organiser_defect OR public_auction_notice_defect OR public_auction_participation_ban_breached OR public_auction_protocol_defect",
+        "auction_voidable == (auction_rules_violated OR public_auction_rules_violated) AND interested_party_challenge",
+        "auction_contract_invalid == (auction_rules_violated OR public_auction_rules_violated) AND interested_party_challenge",
+        "requires_human_procedure_assessment == precontractual_dispute_submitted_to_court OR (conclusion_mandatory_for_party AND obliged_party_evaded) OR winner_evaded_signing OR ((auction_rules_violated OR public_auction_rules_violated) AND interested_party_challenge) OR public_auction_qualified"
       ]
     },
     "procedure_evaluation": {
@@ -20213,13 +20403,20 @@
       "winner_liable_for_evasion": false,
       "auction_voidable": false,
       "auction_contract_invalid": false,
+      "public_auction_qualified": false,
+      "public_auction_organiser_defect": false,
+      "public_auction_notice_defect": false,
+      "public_auction_participation_ban_breached": false,
+      "public_auction_protocol_defect": false,
+      "public_auction_rules_violated": false,
       "requires_human_procedure_assessment": false,
       "reasons_ru": [
         "Формальные предпосылки понуждения к заключению или недействительности торгов не подтверждены."
       ],
       "warnings_ru": [
         "Модель проверяет только формальные правила о заключении договора в обязательном порядке и на торгах и не заменяет судебную оценку.",
-        "Обязательность заключения, соблюдение правил торгов и размер убытков оцениваются экспертом и судом."
+        "Обязательность заключения, соблюдение правил торгов и размер убытков оцениваются экспертом и судом.",
+        "Для публичных торгов модель проверяет прямо названные статьёй 449.1 ГК РФ требования — полномочие организатора, содержание извещения, запрет участия и состав протокола. Иные нарушения порядка исполнительного производства она принимает через общий предикат нарушения правил торгов."
       ]
     },
     "general_obligations_evidence_mapping": {
@@ -24399,11 +24596,16 @@
         "term_deposit_interest_rate_unilaterally_reduced": false,
         "deposit_repayment_security_not_ensured": false,
         "third_party_deposit_rights_disregarded": false,
-        "savings_document_rules_breached": false
+        "savings_document_rules_breached": false,
+        "precious_metal_deposit_asserted": false,
+        "precious_metal_deposit_terms_agreed": false,
+        "precious_metal_return_breached": false,
+        "insurance_exclusion_not_disclosed_to_citizen": false
       },
       "legal_source_refs": [
         "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
-        "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1"
+        "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+        "synthetic-ru-gk844-1-precious-metal-deposit-v1"
       ],
       "provenance": [
         {
@@ -24456,6 +24658,34 @@
           ]
         },
         {
+          "fact_name": "insurance_exclusion_not_disclosed_to_citizen",
+          "assertion_id": "bank-deposit-evidence-insurance_exclusion_not_disclosed_to_citizen",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "precious_metal_deposit_asserted",
+          "assertion_id": "bank-deposit-evidence-precious_metal_deposit_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "precious_metal_deposit_terms_agreed",
+          "assertion_id": "bank-deposit-evidence-precious_metal_deposit_terms_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
+          "fact_name": "precious_metal_return_breached",
+          "assertion_id": "bank-deposit-evidence-precious_metal_return_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-bank-deposit-evidence"
+          ]
+        },
+        {
           "fact_name": "savings_document_rules_breached",
           "assertion_id": "bank-deposit-evidence-savings_document_rules_breached",
           "source_refs": [
@@ -24480,10 +24710,11 @@
     },
     "bank_deposit_constraint_set": {
       "id": "bank-deposit-constraint-set:reviewed-bank-deposit-evidence-supply-1-v0",
-      "model_version": "contracts-bank-deposit-articles-834-844-v0",
+      "model_version": "contracts-bank-deposit-articles-834-844-1-v0",
       "legal_source_refs": [
         "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
-        "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1"
+        "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+        "synthetic-ru-gk844-1-precious-metal-deposit-v1"
       ],
       "expressions": [
         "bank_deposit_qualified == deposit_accepted_for_return_with_interest",
@@ -24493,10 +24724,15 @@
         "early_repayment_interest_breached == bank_deposit_qualified AND citizen_deposit_on_demand_repayment_breached AND early_repayment_interest_miscalculated",
         "interest_payment_duty_breached == bank_deposit_qualified AND deposit_interest_not_paid_as_agreed",
         "term_rate_reduction_prohibited == bank_deposit_qualified AND term_deposit_interest_rate_unilaterally_reduced",
-        "repayment_security_duty_breached == bank_deposit_qualified AND deposit_repayment_security_not_ensured",
+        "precious_metal_deposit_qualified == bank_deposit_qualified AND precious_metal_deposit_asserted",
+        "deposit_insurance_excluded == precious_metal_deposit_qualified",
+        "precious_metal_deposit_terms_missing == precious_metal_deposit_qualified AND NOT precious_metal_deposit_terms_agreed",
+        "precious_metal_return_duty_breached == precious_metal_deposit_qualified AND precious_metal_return_breached",
+        "insurance_exclusion_disclosure_breached == precious_metal_deposit_qualified AND insurance_exclusion_not_disclosed_to_citizen",
+        "repayment_security_duty_breached == bank_deposit_qualified AND deposit_repayment_security_not_ensured AND NOT deposit_insurance_excluded",
         "third_party_deposit_rights_breached == bank_deposit_qualified AND third_party_deposit_rights_disregarded",
         "savings_document_duty_breached == bank_deposit_qualified AND savings_document_rules_breached",
-        "requires_human_bank_deposit_assessment == deposit_acceptance_unauthorised OR deposit_form_void OR on_demand_repayment_duty_breached OR interest_payment_duty_breached OR term_rate_reduction_prohibited OR repayment_security_duty_breached OR third_party_deposit_rights_breached OR savings_document_duty_breached"
+        "requires_human_bank_deposit_assessment == deposit_acceptance_unauthorised OR deposit_form_void OR on_demand_repayment_duty_breached OR interest_payment_duty_breached OR term_rate_reduction_prohibited OR repayment_security_duty_breached OR third_party_deposit_rights_breached OR savings_document_duty_breached OR precious_metal_deposit_qualified"
       ]
     },
     "bank_deposit_evaluation": {
@@ -24512,13 +24748,19 @@
       "repayment_security_duty_breached": false,
       "third_party_deposit_rights_breached": false,
       "savings_document_duty_breached": false,
+      "precious_metal_deposit_qualified": false,
+      "precious_metal_deposit_terms_missing": false,
+      "precious_metal_return_duty_breached": false,
+      "deposit_insurance_excluded": false,
+      "insurance_exclusion_disclosure_breached": false,
       "requires_human_bank_deposit_assessment": false,
       "reasons_ru": [
         "Отношения не квалифицированы как договор банковского вклада."
       ],
       "warnings_ru": [
         "Модель проверяет только формальные правила о банковском вкладе и не заменяет судебную оценку.",
-        "Наличие у банка права привлекать вклады, достаточность обеспечения возврата и содержание условий о процентах оцениваются экспертом и судом (статьи 835, 838 и 840 ГК РФ)."
+        "Наличие у банка права привлекать вклады, достаточность обеспечения возврата и содержание условий о процентах оцениваются экспертом и судом (статьи 835, 838 и 840 ГК РФ).",
+        "Массу и наименование драгоценного металла, а также расчёт эквивалента его стоимости модель не проверяет: она отвечает о режиме вклада, а не о величине требования (статья 844.1 ГК РФ)."
       ]
     },
     "bank_account_evidence_mapping": {
@@ -27859,11 +28101,14 @@
         "common_property_rules_breached": false,
         "vindication_rules_breached": false,
         "good_faith_purchaser_protection_disregarded": false,
-        "negatory_or_possessor_claim_breached": false
+        "negatory_or_possessor_claim_breached": false,
+        "ownership_terminated_by_federal_law": false,
+        "losses_from_statutory_termination_proven": false
       },
       "legal_source_refs": [
         "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
-        "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1"
+        "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+        "synthetic-ru-gk306-statutory-termination-compensation-v1"
       ],
       "provenance": [
         {
@@ -27902,6 +28147,13 @@
           ]
         },
         {
+          "fact_name": "losses_from_statutory_termination_proven",
+          "assertion_id": "property-rights-evidence-losses_from_statutory_termination_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
           "fact_name": "negatory_or_possessor_claim_breached",
           "assertion_id": "property-rights-evidence-negatory_or_possessor_claim_breached",
           "source_refs": [
@@ -27911,6 +28163,13 @@
         {
           "fact_name": "ownership_powers_breached",
           "assertion_id": "property-rights-evidence-ownership_powers_breached",
+          "source_refs": [
+            "synthetic-case-supply-1-property-rights-evidence"
+          ]
+        },
+        {
+          "fact_name": "ownership_terminated_by_federal_law",
+          "assertion_id": "property-rights-evidence-ownership_terminated_by_federal_law",
           "source_refs": [
             "synthetic-case-supply-1-property-rights-evidence"
           ]
@@ -27940,10 +28199,11 @@
     },
     "property_rights_constraint_set": {
       "id": "property-rights-constraint-set:reviewed-property-rights-evidence-supply-1-v0",
-      "model_version": "contracts-property-rights-articles-209-305-v0",
+      "model_version": "contracts-property-rights-articles-209-306-v0",
       "legal_source_refs": [
         "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
-        "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1"
+        "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+        "synthetic-ru-gk306-statutory-termination-compensation-v1"
       ],
       "expressions": [
         "property_rights_qualified == property_right_asserted",
@@ -27956,7 +28216,9 @@
         "vindication_duty_breached == property_rights_qualified AND vindication_rules_breached",
         "good_faith_purchaser_breached == property_rights_qualified AND vindication_rules_breached AND good_faith_purchaser_protection_disregarded",
         "negatory_claim_duty_breached == property_rights_qualified AND negatory_or_possessor_claim_breached",
-        "requires_human_property_rights_assessment == ownership_powers_duty_breached OR unauthorized_disposal_detected OR risk_and_burden_duty_breached OR acquisition_moment_duty_breached OR acquisitive_prescription_duty_breached OR common_property_duty_breached OR vindication_duty_breached OR negatory_claim_duty_breached"
+        "statutory_termination_of_ownership == property_rights_qualified AND ownership_terminated_by_federal_law",
+        "state_compensation_duty == statutory_termination_of_ownership AND losses_from_statutory_termination_proven",
+        "requires_human_property_rights_assessment == ownership_powers_duty_breached OR unauthorized_disposal_detected OR risk_and_burden_duty_breached OR acquisition_moment_duty_breached OR acquisitive_prescription_duty_breached OR common_property_duty_breached OR vindication_duty_breached OR negatory_claim_duty_breached OR statutory_termination_of_ownership"
       ]
     },
     "property_rights_evaluation": {
@@ -27972,13 +28234,16 @@
       "vindication_duty_breached": false,
       "good_faith_purchaser_breached": false,
       "negatory_claim_duty_breached": false,
+      "statutory_termination_of_ownership": false,
+      "state_compensation_duty": false,
       "requires_human_property_rights_assessment": false,
       "reasons_ru": [
         "Вещное право на спорное имущество не заявлено."
       ],
       "warnings_ru": [
         "Модель проверяет только формальные правила о праве собственности и его защите и не заменяет судебную оценку.",
-        "Добросовестность приобретателя, обстоятельства выбытия имущества из владения собственника и давностное владение оцениваются экспертом и судом (статьи 234, 302 и 305 ГК РФ)."
+        "Добросовестность приобретателя, обстоятельства выбытия имущества из владения собственника и давностное владение оцениваются экспертом и судом (статьи 234, 302 и 305 ГК РФ).",
+        "Размер убытков от прекращения права собственности в силу закона модель не считает: она отвечает о наличии обязанности государства, а не о сумме возмещения (статья 306 ГК РФ)."
       ]
     },
     "representation_evidence_mapping": {
@@ -35203,7 +35468,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.8.0",
+      "institutional_package_version": "contracts-ru-v0@1.9.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -37344,6 +37609,7 @@
           "synthetic-ru-gk202-208-limitation-effects-v1",
           "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
           "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+          "synthetic-ru-gk306-statutory-termination-compensation-v1",
           "synthetic-ru-gk307-308-obligation-concept-v1",
           "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
           "synthetic-ru-gk309-328-performance-v1",
@@ -37391,6 +37657,7 @@
           "synthetic-ru-gk438-443-acceptance-model-v1",
           "synthetic-ru-gk445-446-mandatory-conclusion-v1",
           "synthetic-ru-gk447-449-auction-v1",
+          "synthetic-ru-gk449-1-public-auction-v1",
           "synthetic-ru-gk450-453-termination-model-v1",
           "synthetic-ru-gk454-464-sale-transfer-v1",
           "synthetic-ru-gk465-477-sale-conformity-v1",
@@ -37461,6 +37728,7 @@
           "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
           "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
           "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+          "synthetic-ru-gk844-1-precious-metal-deposit-v1",
           "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
           "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
           "synthetic-ru-gk8601-8606-nominal-account-v1",
@@ -38638,6 +38906,7 @@
           "synthetic-ru-gk202-208-limitation-effects-v1",
           "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
           "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+          "synthetic-ru-gk306-statutory-termination-compensation-v1",
           "synthetic-ru-gk307-308-obligation-concept-v1",
           "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
           "synthetic-ru-gk309-328-performance-v1",
@@ -38685,6 +38954,7 @@
           "synthetic-ru-gk438-443-acceptance-model-v1",
           "synthetic-ru-gk445-446-mandatory-conclusion-v1",
           "synthetic-ru-gk447-449-auction-v1",
+          "synthetic-ru-gk449-1-public-auction-v1",
           "synthetic-ru-gk450-453-termination-model-v1",
           "synthetic-ru-gk454-464-sale-transfer-v1",
           "synthetic-ru-gk465-477-sale-conformity-v1",
@@ -38755,6 +39025,7 @@
           "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
           "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
           "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+          "synthetic-ru-gk844-1-precious-metal-deposit-v1",
           "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
           "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
           "synthetic-ru-gk8601-8606-nominal-account-v1",
@@ -39932,6 +40203,7 @@
           "synthetic-ru-gk202-208-limitation-effects-v1",
           "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
           "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+          "synthetic-ru-gk306-statutory-termination-compensation-v1",
           "synthetic-ru-gk307-308-obligation-concept-v1",
           "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
           "synthetic-ru-gk309-328-performance-v1",
@@ -39979,6 +40251,7 @@
           "synthetic-ru-gk438-443-acceptance-model-v1",
           "synthetic-ru-gk445-446-mandatory-conclusion-v1",
           "synthetic-ru-gk447-449-auction-v1",
+          "synthetic-ru-gk449-1-public-auction-v1",
           "synthetic-ru-gk450-453-termination-model-v1",
           "synthetic-ru-gk454-464-sale-transfer-v1",
           "synthetic-ru-gk465-477-sale-conformity-v1",
@@ -40049,6 +40322,7 @@
           "synthetic-ru-gk830-833-factoring-debtor-performance-and-settlements-v1",
           "synthetic-ru-gk834-839-bank-deposit-concept-form-and-interest-v1",
           "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
+          "synthetic-ru-gk844-1-precious-metal-deposit-v1",
           "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
           "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
           "synthetic-ru-gk8601-8606-nominal-account-v1",
@@ -40163,7 +40437,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@1.8.0",
+      "institutional_package_version": "contracts-ru-v0@1.9.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:3ae00857433d12f12acc74e473548b24a294eba6b8db7ccf599e6090be6c43da",
       "translation_template_version": "translation-template-ru-v12",
@@ -40812,6 +41086,19 @@
           "topic": "auction_articles_447_449",
           "legal_reference": "ГК РФ, статьи 447–449",
           "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk449-1-public-auction-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель публичных торгов по статье 449.1 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "public_auction_article_449_1",
+          "legal_reference": "ГК РФ, статья 449.1",
+          "basis_url": "https://government.ru/docs/all/95820/",
           "review_required": true
         }
       },
@@ -42032,6 +42319,19 @@
         }
       },
       {
+        "id": "synthetic-ru-gk844-1-precious-metal-deposit-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель договора банковского вклада в драгоценных металлах по статье 844.1 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "precious_metal_deposit_article_844_1",
+          "legal_reference": "ГК РФ, статья 844.1",
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
         "id": "synthetic-case-supply-1-bank-deposit-evidence",
         "layer": "source",
         "label": "Синтетическая проверенная запись фактов о банковском вкладе",
@@ -42863,6 +43163,19 @@
           "synthetic": true,
           "topic": "common_property_and_protection_of_rights_articles_244_305",
           "legal_reference": "ГК РФ, статьи 244–305",
+          "basis_url": "https://government.ru/docs/all/95820/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-gk306-statutory-termination-compensation-v1",
+        "layer": "source",
+        "label": "Синтетическая проверенная модель последствий прекращения права собственности в силу закона по статье 306 ГК РФ",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "statutory_termination_compensation_article_306",
+          "legal_reference": "ГК РФ, статья 306",
           "basis_url": "https://government.ru/docs/all/95820/",
           "review_required": true
         }
