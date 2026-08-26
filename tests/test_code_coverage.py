@@ -99,20 +99,23 @@ def test_boundary_and_gap_are_kept_apart() -> None:
 
 
 def test_a_gap_inside_a_claimed_institute_is_named_as_such() -> None:
-    """Самый показательный пробел лежит внутри объявленного института.
+    """Пробел внутри объявленного института — не граница модели.
 
-    Институт банковского счёта заявляет 845–860 и останавливается ровно перед
-    статьями 860.1–860.15 — специальными видами счетов той же главы 45. Практика
-    туда не заходила, и без обхода это не открылось бы.
+    Институт банковского вклада заявляет 834–844 и обрывается на статье 844.1:
+    номер отличается на долю, и статья выпала незамеченной. Практика туда не
+    заходила, и без обхода это не открылось бы.
+
+    Самый крупный пробел такого рода — статьи 860.1–860.15 внутри главы 45,
+    которую институт банковского счёта заявляет своей, — закрыт в версии 1.5.0.
     """
     report = measure_code_coverage(load_code_structure())
     if not report.present:
         pytest.skip("Выгрузка структуры кодекса ещё не получена.")
 
-    inside = [gap for gap in report.gaps if gap.span == "860.1–860.15"]
+    inside = [gap for gap in report.gaps if gap.span == "844.1"]
     assert len(inside) == 1
     assert inside[0].kind_ru == "пробел"
-    assert len(inside[0].articles) == 15
+    assert len(inside[0].articles) == 1
 
 
 def test_a_reason_is_found_per_article_not_per_chapter() -> None:
@@ -125,7 +128,7 @@ def test_a_reason_is_found_per_article_not_per_chapter() -> None:
     assert gap_reason_ru("427")[0] == "пробел"
     assert gap_reason_ru("431.1")[0] == "пробел"
     # Диапазонный ключ отвечает за каждую статью внутри себя.
-    assert gap_reason_ru("860.7")[0] == "пробел"
+    assert gap_reason_ru("926.4")[0] == "пробел"
     assert gap_reason_ru("100")[0] == "граница"
 
 

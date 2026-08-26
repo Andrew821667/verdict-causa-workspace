@@ -3053,6 +3053,69 @@
       }
     },
     {
+      "id": "synthetic-ru-gk8601-8606-nominal-account-v1",
+      "title": "Синтетическая проверенная модель номинального счёта по статьям 860.1–860.6 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: номинальный счёт открывается владельцу счёта для совершения операций с деньгами, права на которые принадлежат другому лицу — бенефициару; договор заключается в письменной форме путём составления одного документа, подписанного сторонами, несоблюдение формы влечёт ничтожность договора; существенным условием является указание бенефициара либо порядка получения сведений о нём; банк может принять на себя обязанность контролировать распоряжение деньгами в интересах бенефициара; бенефициар вправе требовать сведения по счёту; договор с участием бенефициара изменяется и расторгается только с его согласия; арест и списание по обязательствам владельца счёта не допускаются, но допускаются по обязательствам бенефициара (статьи 860.1–860.6 ГК РФ).",
+      "valid_from": "2014-07-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "nominal_account_articles_860_1_860_6",
+        "legal_reference": "ГК РФ, статьи 860.1-860.6",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk8607-86010-escrow-account-v1",
+      "title": "Синтетическая проверенная модель счёта эскроу по статьям 860.7–860.10 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: по договору счёта эскроу банк блокирует полученную от депонента сумму и передаёт её бенефициару при возникновении оснований, предусмотренных договором; до наступления этих оснований ни депонент, ни бенефициар не вправе распоряжаться деньгами на счёте; зачисление на счёт эскроу иных денег депонента не допускается; арест и списание по обязательствам владельца счёта не допускаются; при истечении срока договора без наступления оснований остаток возвращается депоненту, если договором не предусмотрено иное (статьи 860.7–860.10 ГК РФ).",
+      "valid_from": "2014-07-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "escrow_account_articles_860_7_860_10",
+        "legal_reference": "ГК РФ, статьи 860.7-860.10",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-gk86011-86015-public-deposit-account-v1",
+      "title": "Синтетическая проверенная модель публичного депозитного счёта по статьям 860.11–860.15 ГК РФ",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Синтетическое представление: публичный депозитный счёт открывается нотариусу, службе судебных приставов, суду или иному органу, которому закон разрешает принимать деньги в депозит, в банке, размер собственных средств которого отвечает установленному требованию; зачисление на счёт собственных денег владельца не допускается; на депонированную сумму начисляются проценты, которые выплачиваются бенефициару; арест, приостановление операций и списание не допускаются ни по обязательствам владельца счёта, ни по обязательствам бенефициара, ни по обязательствам депонента (статьи 860.11–860.15 ГК РФ).",
+      "valid_from": "2018-06-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "public_deposit_account_articles_860_11_860_15",
+        "legal_reference": "ГК РФ, статьи 860.11-860.15",
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-special-accounts-evidence",
+      "title": "Синтетическая проверенная запись фактов о специальном банковском счёте по делу",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: расчёты по договору поставки велись обычным платёжным поручением с расчётного счёта покупателя; ни номинального счёта, ни счёта эскроу, ни публичного депозитного счёта стороны не открывали. Специальный вид банковского счёта в деле не заявлен.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "special_accounts_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
       "title": "Синтетическая проверенная модель последствий и порядка принятия решения собрания по статьям 181.1–181.2 ГК РФ",
       "source_type": "statute",
@@ -10607,6 +10670,212 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-messages-reviewer"
     },
+    "special_accounts_evidence": {
+      "id": "reviewed-special-accounts-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.special-accounts-evidence.v0",
+      "assertions": [
+        {
+          "id": "special-accounts-evidence-special_account_asserted",
+          "predicate": "special_account_asserted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-nominal_account",
+          "predicate": "nominal_account",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-escrow_account",
+          "predicate": "escrow_account",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-public_deposit_account",
+          "predicate": "public_deposit_account",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-beneficiary_identified_or_determinable",
+          "predicate": "beneficiary_identified_or_determinable",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-nominal_form_single_signed_document",
+          "predicate": "nominal_form_single_signed_document",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-bank_control_duty_agreed",
+          "predicate": "bank_control_duty_agreed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-bank_control_duty_not_performed",
+          "predicate": "bank_control_duty_not_performed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-beneficiary_denied_account_information",
+          "predicate": "beneficiary_denied_account_information",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-nominal_change_without_beneficiary_consent",
+          "predicate": "nominal_change_without_beneficiary_consent",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-escrow_grounds_defined",
+          "predicate": "escrow_grounds_defined",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-escrow_grounds_occurred",
+          "predicate": "escrow_grounds_occurred",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-escrow_payment_to_beneficiary_delayed",
+          "predicate": "escrow_payment_to_beneficiary_delayed",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-disposal_attempted_before_grounds",
+          "predicate": "disposal_attempted_before_grounds",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-extra_funds_credited_to_escrow",
+          "predicate": "extra_funds_credited_to_escrow",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-escrow_term_expired_without_grounds",
+          "predicate": "escrow_term_expired_without_grounds",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-escrow_balance_withheld_from_depositor",
+          "predicate": "escrow_balance_withheld_from_depositor",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-holder_authorised_by_law",
+          "predicate": "holder_authorised_by_law",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-bank_meets_capital_requirement",
+          "predicate": "bank_meets_capital_requirement",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-own_funds_credited_to_public_account",
+          "predicate": "own_funds_credited_to_public_account",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-interest_withheld_from_beneficiary",
+          "predicate": "interest_withheld_from_beneficiary",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-seizure_or_debit_for_holder_debt",
+          "predicate": "seizure_or_debit_for_holder_debt",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-seizure_permitted_by_law",
+          "predicate": "seizure_permitted_by_law",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "id": "special-accounts-evidence-seizure_for_beneficiary_or_depositor_debt",
+          "predicate": "seizure_for_beneficiary_or_depositor_debt",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk8601-8606-nominal-account-v1",
+        "synthetic-ru-gk8607-86010-escrow-account-v1",
+        "synthetic-ru-gk86011-86015-public-deposit-account-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-special-accounts-reviewer"
+    },
     "meeting_decisions_evidence": {
       "id": "reviewed-meeting-decisions-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -16886,6 +17155,7 @@
       "synthetic-retail-sale-reviewer",
       "synthetic-security-reviewer",
       "synthetic-settlements-reviewer",
+      "synthetic-special-accounts-reviewer",
       "synthetic-special-storage-reviewer",
       "synthetic-special-supply-reviewer",
       "synthetic-state-supply-reviewer",
@@ -16976,6 +17246,7 @@
       "synthetic-case-supply-1-reviewed-evidence",
       "synthetic-case-supply-1-security-evidence",
       "synthetic-case-supply-1-settlements-evidence",
+      "synthetic-case-supply-1-special-accounts-evidence",
       "synthetic-case-supply-1-special-storage-evidence",
       "synthetic-case-supply-1-special-supply-evidence",
       "synthetic-case-supply-1-state-supply-evidence",
@@ -17159,6 +17430,9 @@
       "synthetic-ru-gk840-844-bank-deposit-security-third-parties-and-documents-v1",
       "synthetic-ru-gk845-853-bank-account-concept-operations-and-payment-v1",
       "synthetic-ru-gk854-860-bank-account-debiting-secrecy-and-termination-v1",
+      "synthetic-ru-gk8601-8606-nominal-account-v1",
+      "synthetic-ru-gk86011-86015-public-deposit-account-v1",
+      "synthetic-ru-gk8607-86010-escrow-account-v1",
       "synthetic-ru-gk861-876-settlements-forms-orders-credit-and-collection-v1",
       "synthetic-ru-gk877-885-settlements-cheque-rules-v1",
       "synthetic-ru-gk886-895-storage-concept-form-period-and-safekeeping-v1",
@@ -26010,6 +26284,276 @@
         "Зависимость обстоятельств невручения от адресата — вопрос оценки доказательств, а не вывода из фактов."
       ]
     },
+    "special_accounts_evidence_mapping": {
+      "evidence_id": "reviewed-special-accounts-evidence-supply-1-v0",
+      "schema_version": "contracts.special-accounts-evidence.v0",
+      "mapping_version": "contracts-reviewed-special-accounts-to-facts-v0",
+      "facts": {
+        "special_account_asserted": false,
+        "nominal_account": false,
+        "escrow_account": false,
+        "public_deposit_account": false,
+        "beneficiary_identified_or_determinable": false,
+        "nominal_form_single_signed_document": false,
+        "bank_control_duty_agreed": false,
+        "bank_control_duty_not_performed": false,
+        "beneficiary_denied_account_information": false,
+        "nominal_change_without_beneficiary_consent": false,
+        "escrow_grounds_defined": false,
+        "escrow_grounds_occurred": false,
+        "escrow_payment_to_beneficiary_delayed": false,
+        "disposal_attempted_before_grounds": false,
+        "extra_funds_credited_to_escrow": false,
+        "escrow_term_expired_without_grounds": false,
+        "escrow_balance_withheld_from_depositor": false,
+        "holder_authorised_by_law": false,
+        "bank_meets_capital_requirement": false,
+        "own_funds_credited_to_public_account": false,
+        "interest_withheld_from_beneficiary": false,
+        "seizure_or_debit_for_holder_debt": false,
+        "seizure_permitted_by_law": false,
+        "seizure_for_beneficiary_or_depositor_debt": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk8601-8606-nominal-account-v1",
+        "synthetic-ru-gk8607-86010-escrow-account-v1",
+        "synthetic-ru-gk86011-86015-public-deposit-account-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "bank_control_duty_agreed",
+          "assertion_id": "special-accounts-evidence-bank_control_duty_agreed",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "bank_control_duty_not_performed",
+          "assertion_id": "special-accounts-evidence-bank_control_duty_not_performed",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "bank_meets_capital_requirement",
+          "assertion_id": "special-accounts-evidence-bank_meets_capital_requirement",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "beneficiary_denied_account_information",
+          "assertion_id": "special-accounts-evidence-beneficiary_denied_account_information",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "beneficiary_identified_or_determinable",
+          "assertion_id": "special-accounts-evidence-beneficiary_identified_or_determinable",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "disposal_attempted_before_grounds",
+          "assertion_id": "special-accounts-evidence-disposal_attempted_before_grounds",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "escrow_account",
+          "assertion_id": "special-accounts-evidence-escrow_account",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "escrow_balance_withheld_from_depositor",
+          "assertion_id": "special-accounts-evidence-escrow_balance_withheld_from_depositor",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "escrow_grounds_defined",
+          "assertion_id": "special-accounts-evidence-escrow_grounds_defined",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "escrow_grounds_occurred",
+          "assertion_id": "special-accounts-evidence-escrow_grounds_occurred",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "escrow_payment_to_beneficiary_delayed",
+          "assertion_id": "special-accounts-evidence-escrow_payment_to_beneficiary_delayed",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "escrow_term_expired_without_grounds",
+          "assertion_id": "special-accounts-evidence-escrow_term_expired_without_grounds",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "extra_funds_credited_to_escrow",
+          "assertion_id": "special-accounts-evidence-extra_funds_credited_to_escrow",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "holder_authorised_by_law",
+          "assertion_id": "special-accounts-evidence-holder_authorised_by_law",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "interest_withheld_from_beneficiary",
+          "assertion_id": "special-accounts-evidence-interest_withheld_from_beneficiary",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "nominal_account",
+          "assertion_id": "special-accounts-evidence-nominal_account",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "nominal_change_without_beneficiary_consent",
+          "assertion_id": "special-accounts-evidence-nominal_change_without_beneficiary_consent",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "nominal_form_single_signed_document",
+          "assertion_id": "special-accounts-evidence-nominal_form_single_signed_document",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "own_funds_credited_to_public_account",
+          "assertion_id": "special-accounts-evidence-own_funds_credited_to_public_account",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "public_deposit_account",
+          "assertion_id": "special-accounts-evidence-public_deposit_account",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "seizure_for_beneficiary_or_depositor_debt",
+          "assertion_id": "special-accounts-evidence-seizure_for_beneficiary_or_depositor_debt",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "seizure_or_debit_for_holder_debt",
+          "assertion_id": "special-accounts-evidence-seizure_or_debit_for_holder_debt",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "seizure_permitted_by_law",
+          "assertion_id": "special-accounts-evidence-seizure_permitted_by_law",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        },
+        {
+          "fact_name": "special_account_asserted",
+          "assertion_id": "special-accounts-evidence-special_account_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-special-accounts-evidence"
+          ]
+        }
+      ]
+    },
+    "special_accounts_constraint_set": {
+      "id": "special-accounts-constraint-set:reviewed-special-accounts-evidence-supply-1-v0",
+      "model_version": "contracts-special-accounts-articles-860-1-860-15-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk8601-8606-nominal-account-v1",
+        "synthetic-ru-gk8607-86010-escrow-account-v1",
+        "synthetic-ru-gk86011-86015-public-deposit-account-v1"
+      ],
+      "expressions": [
+        "special_account_qualified == special_account_asserted AND (nominal_account OR escrow_account OR public_deposit_account)",
+        "account_kind_undetermined == special_account_asserted AND NOT nominal_account AND NOT escrow_account AND NOT public_deposit_account",
+        "funds_insulated_from_holder_creditors == special_account_qualified",
+        "insulation_breached == funds_insulated_from_holder_creditors AND seizure_or_debit_for_holder_debt AND NOT seizure_permitted_by_law",
+        "public_wider_insulation_breached == special_account_qualified AND public_deposit_account AND seizure_for_beneficiary_or_depositor_debt",
+        "nominal_essential_term_missing == special_account_qualified AND nominal_account AND NOT beneficiary_identified_or_determinable",
+        "nominal_form_defect_makes_void == special_account_qualified AND nominal_account AND NOT nominal_form_single_signed_document",
+        "nominal_control_duty_breached == special_account_qualified AND nominal_account AND bank_control_duty_agreed AND bank_control_duty_not_performed",
+        "nominal_information_duty_breached == special_account_qualified AND nominal_account AND beneficiary_denied_account_information",
+        "nominal_change_duty_breached == special_account_qualified AND nominal_account AND nominal_change_without_beneficiary_consent",
+        "escrow_payment_duty_arisen == special_account_qualified AND escrow_account AND escrow_grounds_defined AND escrow_grounds_occurred",
+        "escrow_payment_duty_breached == escrow_payment_duty_arisen AND escrow_payment_to_beneficiary_delayed",
+        "escrow_disposal_restriction_breached == special_account_qualified AND escrow_account AND disposal_attempted_before_grounds AND NOT escrow_grounds_occurred",
+        "escrow_extra_funds_breached == special_account_qualified AND escrow_account AND extra_funds_credited_to_escrow",
+        "escrow_return_duty_breached == special_account_qualified AND escrow_account AND escrow_term_expired_without_grounds AND escrow_balance_withheld_from_depositor",
+        "public_holder_not_authorised == special_account_qualified AND public_deposit_account AND NOT holder_authorised_by_law",
+        "public_bank_requirement_breached == special_account_qualified AND public_deposit_account AND NOT bank_meets_capital_requirement",
+        "public_own_funds_prohibition_breached == special_account_qualified AND public_deposit_account AND own_funds_credited_to_public_account",
+        "public_interest_duty_breached == special_account_qualified AND public_deposit_account AND interest_withheld_from_beneficiary",
+        "requires_human_special_accounts_assessment == account_kind_undetermined OR insulation_breached OR public_wider_insulation_breached OR nominal_essential_term_missing OR nominal_form_defect_makes_void OR nominal_control_duty_breached OR nominal_information_duty_breached OR nominal_change_duty_breached OR escrow_payment_duty_breached OR escrow_disposal_restriction_breached OR escrow_extra_funds_breached OR escrow_return_duty_breached OR public_holder_not_authorised OR public_bank_requirement_breached OR public_own_funds_prohibition_breached OR public_interest_duty_breached"
+      ]
+    },
+    "special_accounts_evaluation": {
+      "constraint_set_id": "special-accounts-constraint-set:reviewed-special-accounts-evidence-supply-1-v0",
+      "satisfiable": true,
+      "special_account_qualified": false,
+      "account_kind_undetermined": false,
+      "funds_insulated_from_holder_creditors": false,
+      "insulation_breached": false,
+      "public_wider_insulation_breached": false,
+      "nominal_essential_term_missing": false,
+      "nominal_form_defect_makes_void": false,
+      "nominal_control_duty_breached": false,
+      "nominal_information_duty_breached": false,
+      "nominal_change_duty_breached": false,
+      "escrow_payment_duty_arisen": false,
+      "escrow_payment_duty_breached": false,
+      "escrow_disposal_restriction_breached": false,
+      "escrow_extra_funds_breached": false,
+      "escrow_return_duty_breached": false,
+      "public_holder_not_authorised": false,
+      "public_bank_requirement_breached": false,
+      "public_own_funds_prohibition_breached": false,
+      "public_interest_duty_breached": false,
+      "requires_human_special_accounts_assessment": false,
+      "reasons_ru": [
+        "Специальный вид банковского счёта в деле не заявлен: спор разрешается по общим правилам о банковском счёте (статьи 845–860 ГК РФ)."
+      ],
+      "warnings_ru": [
+        "Размер депонированной суммы модель не определяет: она отвечает о режиме счёта, а не о расчёте задолженности.",
+        "Наступление оснований передачи депонированной суммы по существу проверяет человек: модель принимает его как установленный факт из доказательств.",
+        "Достаточность собственных средств банка модель не считает — требование статьи 860.11 ГК РФ она принимает как проверенный факт.",
+        "Модель отвечает об одном специальном счёте: контракт данных даёт один блок доказательств на институт."
+      ]
+    },
     "meeting_decisions_evidence_mapping": {
       "evidence_id": "reviewed-meeting-decisions-evidence-supply-1-v0",
       "schema_version": "contracts.meeting-decisions-evidence.v1",
@@ -33787,7 +34331,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.4.0",
+      "institutional_package_version": "contracts-ru-v0@1.5.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

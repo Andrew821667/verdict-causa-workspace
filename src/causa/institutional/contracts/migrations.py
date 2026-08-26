@@ -1990,6 +1990,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.4.0",
+        to_version="1.5.0",
+        reasons=[
+            "The analysis request gains a required evidence block for the special kinds of bank account (articles 860.1-860.15); artifacts produced without it cannot be replayed.",
+            "The gap sat inside a declared institute: the bank-account model claims articles 845-860 and stopped before the nominal account, the escrow account and the public deposit account of the same chapter 45.",
+        ],
+        reasons_ru=[
+            "Запрос анализа получил обязательный блок доказательств о специальном виде банковского счёта (статьи 860.1–860.15); артефакты, собранные без него, не воспроизводятся.",
+            "Пробел лежал внутри объявленного института: модель банковского счёта заявляет статьи 845–860 и останавливалась перед номинальным счётом, счётом эскроу и публичным депозитным счётом той же главы 45.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_special_accounts_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

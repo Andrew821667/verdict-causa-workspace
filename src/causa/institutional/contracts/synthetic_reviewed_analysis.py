@@ -160,6 +160,11 @@ from causa.institutional.contracts.messages import (
     MessagesEvidencePredicate,
     ReviewedMessagesEvidence,
 )
+from causa.institutional.contracts.special_accounts import (
+    ReviewedSpecialAccountsEvidence,
+    SpecialAccountsEvidenceAssertion,
+    SpecialAccountsEvidencePredicate,
+)
 from causa.institutional.contracts.attribution_delay import (
     AttributionDelayEvidenceAssertion,
     AttributionDelayEvidencePredicate,
@@ -647,6 +652,10 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-gk1651-legally-significant-messages-v1",
     "synthetic-ru-plenum25-63-67-message-delivery-risk-v1",
     "synthetic-case-supply-1-messages-evidence",
+    "synthetic-ru-gk8601-8606-nominal-account-v1",
+    "synthetic-ru-gk8607-86010-escrow-account-v1",
+    "synthetic-ru-gk86011-86015-public-deposit-account-v1",
+    "synthetic-case-supply-1-special-accounts-evidence",
     "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
     "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1",
     "synthetic-case-supply-1-meeting-decisions-evidence",
@@ -3185,6 +3194,51 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-messages-reviewer",
+        ),
+        special_accounts_evidence=ReviewedSpecialAccountsEvidence(
+            id="reviewed-special-accounts-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                SpecialAccountsEvidenceAssertion(
+                    id=f"special-accounts-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=value,
+                    source_refs=("synthetic-case-supply-1-special-accounts-evidence",),
+                )
+                for predicate, value in (
+                    (SpecialAccountsEvidencePredicate.SPECIAL_ACCOUNT_ASSERTED, False),
+                    (SpecialAccountsEvidencePredicate.NOMINAL_ACCOUNT, False),
+                    (SpecialAccountsEvidencePredicate.ESCROW_ACCOUNT, False),
+                    (SpecialAccountsEvidencePredicate.PUBLIC_DEPOSIT_ACCOUNT, False),
+                    (SpecialAccountsEvidencePredicate.BENEFICIARY_IDENTIFIED_OR_DETERMINABLE, False),
+                    (SpecialAccountsEvidencePredicate.NOMINAL_FORM_SINGLE_SIGNED_DOCUMENT, False),
+                    (SpecialAccountsEvidencePredicate.BANK_CONTROL_DUTY_AGREED, False),
+                    (SpecialAccountsEvidencePredicate.BANK_CONTROL_DUTY_NOT_PERFORMED, False),
+                    (SpecialAccountsEvidencePredicate.BENEFICIARY_DENIED_ACCOUNT_INFORMATION, False),
+                    (SpecialAccountsEvidencePredicate.NOMINAL_CHANGE_WITHOUT_BENEFICIARY_CONSENT, False),
+                    (SpecialAccountsEvidencePredicate.ESCROW_GROUNDS_DEFINED, False),
+                    (SpecialAccountsEvidencePredicate.ESCROW_GROUNDS_OCCURRED, False),
+                    (SpecialAccountsEvidencePredicate.ESCROW_PAYMENT_TO_BENEFICIARY_DELAYED, False),
+                    (SpecialAccountsEvidencePredicate.DISPOSAL_ATTEMPTED_BEFORE_GROUNDS, False),
+                    (SpecialAccountsEvidencePredicate.EXTRA_FUNDS_CREDITED_TO_ESCROW, False),
+                    (SpecialAccountsEvidencePredicate.ESCROW_TERM_EXPIRED_WITHOUT_GROUNDS, False),
+                    (SpecialAccountsEvidencePredicate.ESCROW_BALANCE_WITHHELD_FROM_DEPOSITOR, False),
+                    (SpecialAccountsEvidencePredicate.HOLDER_AUTHORISED_BY_LAW, False),
+                    (SpecialAccountsEvidencePredicate.BANK_MEETS_CAPITAL_REQUIREMENT, False),
+                    (SpecialAccountsEvidencePredicate.OWN_FUNDS_CREDITED_TO_PUBLIC_ACCOUNT, False),
+                    (SpecialAccountsEvidencePredicate.INTEREST_WITHHELD_FROM_BENEFICIARY, False),
+                    (SpecialAccountsEvidencePredicate.SEIZURE_OR_DEBIT_FOR_HOLDER_DEBT, False),
+                    (SpecialAccountsEvidencePredicate.SEIZURE_PERMITTED_BY_LAW, False),
+                    (SpecialAccountsEvidencePredicate.SEIZURE_FOR_BENEFICIARY_OR_DEPOSITOR_DEBT, False),
+                )
+            ),
+            legal_source_refs=(
+                "synthetic-ru-gk8601-8606-nominal-account-v1",
+                "synthetic-ru-gk8607-86010-escrow-account-v1",
+                "synthetic-ru-gk86011-86015-public-deposit-account-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-special-accounts-reviewer",
         ),
         attribution_delay_evidence=ReviewedAttributionDelayEvidence(
             id="reviewed-attribution-delay-evidence-supply-1-v0",

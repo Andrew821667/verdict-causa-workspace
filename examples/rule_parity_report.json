@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1120,
+  "declared_rules": 1140,
   "divergences_total": 0,
-  "executed_rules": 1120,
+  "executed_rules": 1140,
   "institutes": [
     {
       "declared_rules": 5,
@@ -572,6 +572,14 @@
       "module": "settlements.py"
     },
     {
+      "declared_rules": 20,
+      "divergences": [],
+      "executed_rules": 20,
+      "institute": "special_accounts",
+      "matched": 20,
+      "module": "special_accounts.py"
+    },
+    {
       "declared_rules": 11,
       "divergences": [],
       "executed_rules": 11,
@@ -716,8 +724,8 @@
       "module": "formal_checks.py"
     }
   ],
-  "institutes_clean": 89,
-  "institutes_total": 89,
-  "matched_rules": 1120,
+  "institutes_clean": 90,
+  "institutes_total": 90,
+  "matched_rules": 1140,
   "version": "reasoning-rule-parity-v0"
 }

@@ -355,7 +355,7 @@
         "examples/migrations/contracts-ru-v0-0.59.0-to-0.62.0-migration-report.json",
         "examples/migrations/contracts-ru-v0-0.60.0-to-0.62.0-migration-report.json",
         "examples/migrations/contracts-ru-v0-0.61.0-to-0.62.0-migration-report.json",
-        "contracts-ru-v0@1.4.0"
+        "contracts-ru-v0@1.5.0"
       ],
       "remaining_work": [
         "Расширить правила юридической силы и временные правила за пределы поставки.",
@@ -689,7 +689,7 @@
         "src/causa/institutional/contracts/synthetic_pilot.py",
         "docs/pilot-data-admission-spec.md",
         "examples/synthetic_pilot_rehearsal_report.json",
-        "pilot-gate:pilot-intake-5a1e0001:461cab546806",
+        "pilot-gate:pilot-intake-5a1e0001:a338d74c22e3",
         "contracts-pilot-gate-benchmark-v1",
         "contracts-pilot-gate-red-team-v1",
         "synthetic-privacy-safe-pilot-utility-report-v1"

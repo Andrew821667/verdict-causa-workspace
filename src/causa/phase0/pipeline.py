@@ -1472,6 +1472,22 @@ def run_supply_dispute_pipeline() -> Phase0PipelineResult:
             ],
         ),
         PipelineStepResult(
+            id="evaluate-special-accounts",
+            title="Проверка специального вида банковского счёта",
+            status=PipelineStepStatus.PASSED,
+            artifact_refs=[
+                trace.analysis_result.special_accounts_evidence_mapping.evidence_id,
+                trace.analysis_result.special_accounts_constraint_set.id,
+                *trace.analysis_result.special_accounts_constraint_set.legal_source_refs,
+            ],
+            notes=[
+                *trace.analysis_result.special_accounts_evaluation.reasons_ru,
+                "Номинальный счёт, счёт эскроу и публичный депозитный счёт проверяются раздельно: это разные договоры § 2, 3 и 4 главы 45 ГК РФ, и правила одного на другой не переносятся (статьи 860.1–860.15 ГК РФ).",
+                "Недоступность денег кредиторам владельца счёта выводится для всех трёх видов один раз, а более широкая защита публичного депозитного счёта — арест не допускается и по обязательствам бенефициара и депонента — отмечается отдельно (статьи 860.5, 860.8 и 860.14 ГК РФ).",
+                "Размер депонированной суммы, наступление оснований передачи по существу и достаточность собственных средств банка оцениваются экспертом и судом.",
+            ],
+        ),
+        PipelineStepResult(
             id="evaluate-attribution-delay",
             title="Проверка возложения ответственности и просрочки сторон",
             status=PipelineStepStatus.PASSED,

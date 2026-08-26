@@ -39,6 +39,7 @@ INSTITUTE_ARTICLE_RANGES: dict[str, tuple[tuple[str, str], ...]] = {
     "form": (("158", "165"), ("434", "434")),
     "invalidity": (("166", "181"),),
     "messages": (("165.1", "165.1"),),
+    "special_accounts": (("860.1", "860.15"),),
     "meeting_decisions": (("181.1", "181.5"),),
     "representation": (("182", "189"),),
     "terms": (("190", "194"),),

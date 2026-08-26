@@ -282,6 +282,7 @@ _SPECIAL_TYPE_INSTITUTES = (
     "special_storage",
     "state_supply",
     "state_work",
+    "special_accounts",
     "storage",
     "supply",
     "trust_management",

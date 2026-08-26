@@ -1,0 +1,863 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка специальных видов банковских счетов по статьям 860.1–860.15 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-special-accounts-evidence-supply-1-v0",
+    "schema_version": "contracts.special-accounts-evidence.v0",
+    "mapping_version": "contracts-reviewed-special-accounts-to-facts-v0",
+    "facts": {
+      "special_account_asserted": false,
+      "nominal_account": false,
+      "escrow_account": false,
+      "public_deposit_account": false,
+      "beneficiary_identified_or_determinable": false,
+      "nominal_form_single_signed_document": false,
+      "bank_control_duty_agreed": false,
+      "bank_control_duty_not_performed": false,
+      "beneficiary_denied_account_information": false,
+      "nominal_change_without_beneficiary_consent": false,
+      "escrow_grounds_defined": false,
+      "escrow_grounds_occurred": false,
+      "escrow_payment_to_beneficiary_delayed": false,
+      "disposal_attempted_before_grounds": false,
+      "extra_funds_credited_to_escrow": false,
+      "escrow_term_expired_without_grounds": false,
+      "escrow_balance_withheld_from_depositor": false,
+      "holder_authorised_by_law": false,
+      "bank_meets_capital_requirement": false,
+      "own_funds_credited_to_public_account": false,
+      "interest_withheld_from_beneficiary": false,
+      "seizure_or_debit_for_holder_debt": false,
+      "seizure_permitted_by_law": false,
+      "seizure_for_beneficiary_or_depositor_debt": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk8601-8606-nominal-account-v1",
+      "synthetic-ru-gk8607-86010-escrow-account-v1",
+      "synthetic-ru-gk86011-86015-public-deposit-account-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "bank_control_duty_agreed",
+        "assertion_id": "special-accounts-evidence-bank_control_duty_agreed",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "bank_control_duty_not_performed",
+        "assertion_id": "special-accounts-evidence-bank_control_duty_not_performed",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "bank_meets_capital_requirement",
+        "assertion_id": "special-accounts-evidence-bank_meets_capital_requirement",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "beneficiary_denied_account_information",
+        "assertion_id": "special-accounts-evidence-beneficiary_denied_account_information",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "beneficiary_identified_or_determinable",
+        "assertion_id": "special-accounts-evidence-beneficiary_identified_or_determinable",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "disposal_attempted_before_grounds",
+        "assertion_id": "special-accounts-evidence-disposal_attempted_before_grounds",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "escrow_account",
+        "assertion_id": "special-accounts-evidence-escrow_account",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "escrow_balance_withheld_from_depositor",
+        "assertion_id": "special-accounts-evidence-escrow_balance_withheld_from_depositor",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "escrow_grounds_defined",
+        "assertion_id": "special-accounts-evidence-escrow_grounds_defined",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "escrow_grounds_occurred",
+        "assertion_id": "special-accounts-evidence-escrow_grounds_occurred",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "escrow_payment_to_beneficiary_delayed",
+        "assertion_id": "special-accounts-evidence-escrow_payment_to_beneficiary_delayed",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "escrow_term_expired_without_grounds",
+        "assertion_id": "special-accounts-evidence-escrow_term_expired_without_grounds",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "extra_funds_credited_to_escrow",
+        "assertion_id": "special-accounts-evidence-extra_funds_credited_to_escrow",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "holder_authorised_by_law",
+        "assertion_id": "special-accounts-evidence-holder_authorised_by_law",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "interest_withheld_from_beneficiary",
+        "assertion_id": "special-accounts-evidence-interest_withheld_from_beneficiary",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "nominal_account",
+        "assertion_id": "special-accounts-evidence-nominal_account",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "nominal_change_without_beneficiary_consent",
+        "assertion_id": "special-accounts-evidence-nominal_change_without_beneficiary_consent",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "nominal_form_single_signed_document",
+        "assertion_id": "special-accounts-evidence-nominal_form_single_signed_document",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "own_funds_credited_to_public_account",
+        "assertion_id": "special-accounts-evidence-own_funds_credited_to_public_account",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "public_deposit_account",
+        "assertion_id": "special-accounts-evidence-public_deposit_account",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "seizure_for_beneficiary_or_depositor_debt",
+        "assertion_id": "special-accounts-evidence-seizure_for_beneficiary_or_depositor_debt",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "seizure_or_debit_for_holder_debt",
+        "assertion_id": "special-accounts-evidence-seizure_or_debit_for_holder_debt",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "seizure_permitted_by_law",
+        "assertion_id": "special-accounts-evidence-seizure_permitted_by_law",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      },
+      {
+        "fact_name": "special_account_asserted",
+        "assertion_id": "special-accounts-evidence-special_account_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-special-accounts-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "special-accounts-constraint-set:reviewed-special-accounts-evidence-supply-1-v0",
+    "model_version": "contracts-special-accounts-articles-860-1-860-15-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk8601-8606-nominal-account-v1",
+      "synthetic-ru-gk8607-86010-escrow-account-v1",
+      "synthetic-ru-gk86011-86015-public-deposit-account-v1"
+    ],
+    "expressions": [
+      "special_account_qualified == special_account_asserted AND (nominal_account OR escrow_account OR public_deposit_account)",
+      "account_kind_undetermined == special_account_asserted AND NOT nominal_account AND NOT escrow_account AND NOT public_deposit_account",
+      "funds_insulated_from_holder_creditors == special_account_qualified",
+      "insulation_breached == funds_insulated_from_holder_creditors AND seizure_or_debit_for_holder_debt AND NOT seizure_permitted_by_law",
+      "public_wider_insulation_breached == special_account_qualified AND public_deposit_account AND seizure_for_beneficiary_or_depositor_debt",
+      "nominal_essential_term_missing == special_account_qualified AND nominal_account AND NOT beneficiary_identified_or_determinable",
+      "nominal_form_defect_makes_void == special_account_qualified AND nominal_account AND NOT nominal_form_single_signed_document",
+      "nominal_control_duty_breached == special_account_qualified AND nominal_account AND bank_control_duty_agreed AND bank_control_duty_not_performed",
+      "nominal_information_duty_breached == special_account_qualified AND nominal_account AND beneficiary_denied_account_information",
+      "nominal_change_duty_breached == special_account_qualified AND nominal_account AND nominal_change_without_beneficiary_consent",
+      "escrow_payment_duty_arisen == special_account_qualified AND escrow_account AND escrow_grounds_defined AND escrow_grounds_occurred",
+      "escrow_payment_duty_breached == escrow_payment_duty_arisen AND escrow_payment_to_beneficiary_delayed",
+      "escrow_disposal_restriction_breached == special_account_qualified AND escrow_account AND disposal_attempted_before_grounds AND NOT escrow_grounds_occurred",
+      "escrow_extra_funds_breached == special_account_qualified AND escrow_account AND extra_funds_credited_to_escrow",
+      "escrow_return_duty_breached == special_account_qualified AND escrow_account AND escrow_term_expired_without_grounds AND escrow_balance_withheld_from_depositor",
+      "public_holder_not_authorised == special_account_qualified AND public_deposit_account AND NOT holder_authorised_by_law",
+      "public_bank_requirement_breached == special_account_qualified AND public_deposit_account AND NOT bank_meets_capital_requirement",
+      "public_own_funds_prohibition_breached == special_account_qualified AND public_deposit_account AND own_funds_credited_to_public_account",
+      "public_interest_duty_breached == special_account_qualified AND public_deposit_account AND interest_withheld_from_beneficiary",
+      "requires_human_special_accounts_assessment == account_kind_undetermined OR insulation_breached OR public_wider_insulation_breached OR nominal_essential_term_missing OR nominal_form_defect_makes_void OR nominal_control_duty_breached OR nominal_information_duty_breached OR nominal_change_duty_breached OR escrow_payment_duty_breached OR escrow_disposal_restriction_breached OR escrow_extra_funds_breached OR escrow_return_duty_breached OR public_holder_not_authorised OR public_bank_requirement_breached OR public_own_funds_prohibition_breached OR public_interest_duty_breached"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "special-accounts-constraint-set:reviewed-special-accounts-evidence-supply-1-v0",
+    "satisfiable": true,
+    "special_account_qualified": false,
+    "account_kind_undetermined": false,
+    "funds_insulated_from_holder_creditors": false,
+    "insulation_breached": false,
+    "public_wider_insulation_breached": false,
+    "nominal_essential_term_missing": false,
+    "nominal_form_defect_makes_void": false,
+    "nominal_control_duty_breached": false,
+    "nominal_information_duty_breached": false,
+    "nominal_change_duty_breached": false,
+    "escrow_payment_duty_arisen": false,
+    "escrow_payment_duty_breached": false,
+    "escrow_disposal_restriction_breached": false,
+    "escrow_extra_funds_breached": false,
+    "escrow_return_duty_breached": false,
+    "public_holder_not_authorised": false,
+    "public_bank_requirement_breached": false,
+    "public_own_funds_prohibition_breached": false,
+    "public_interest_duty_breached": false,
+    "requires_human_special_accounts_assessment": false,
+    "reasons_ru": [
+      "Специальный вид банковского счёта в деле не заявлен: спор разрешается по общим правилам о банковском счёте (статьи 845–860 ГК РФ)."
+    ],
+    "warnings_ru": [
+      "Размер депонированной суммы модель не определяет: она отвечает о режиме счёта, а не о расчёте задолженности.",
+      "Наступление оснований передачи депонированной суммы по существу проверяет человек: модель принимает его как установленный факт из доказательств.",
+      "Достаточность собственных средств банка модель не считает — требование статьи 860.11 ГК РФ она принимает как проверенный факт.",
+      "Модель отвечает об одном специальном счёте: контракт данных даёт один блок доказательств на институт."
+    ]
+  },
+  "benchmark_report": {
+    "id": "special-accounts-benchmark-report-v0",
+    "total": 24,
+    "passed": 24,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "special-accounts-bench-kind-undetermined",
+        "passed": true,
+        "expected_outcomes": {
+          "special_account_qualified": false,
+          "account_kind_undetermined": true,
+          "funds_insulated_from_holder_creditors": false,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "special_account_qualified": false,
+          "account_kind_undetermined": true,
+          "funds_insulated_from_holder_creditors": false,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Специальный счёт в деле заявлен, но его вид не установлен. Номинальный счёт, счёт эскроу и публичный депозитный счёт — разные договоры § 2, 3 и 4 главы 45 ГК РФ с разными последствиями; без вида счёта модель их не выводит."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-no-special-account",
+        "passed": true,
+        "expected_outcomes": {
+          "special_account_qualified": false,
+          "account_kind_undetermined": false,
+          "funds_insulated_from_holder_creditors": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "observed_outcomes": {
+          "special_account_qualified": false,
+          "account_kind_undetermined": false,
+          "funds_insulated_from_holder_creditors": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "reasons_ru": [
+          "Специальный вид банковского счёта в деле не заявлен: спор разрешается по общим правилам о банковском счёте (статьи 845–860 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-nominal-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "special_account_qualified": true,
+          "funds_insulated_from_holder_creditors": true,
+          "nominal_essential_term_missing": false,
+          "nominal_form_defect_makes_void": false,
+          "insulation_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "observed_outcomes": {
+          "special_account_qualified": true,
+          "funds_insulated_from_holder_creditors": true,
+          "nominal_essential_term_missing": false,
+          "nominal_form_defect_makes_void": false,
+          "insulation_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как номинальный: он открыт владельцу счёта для совершения операций с деньгами, права на которые принадлежат другому лицу — бенефициару (пункт 1 статьи 860.1 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-nominal-no-beneficiary",
+        "passed": true,
+        "expected_outcomes": {
+          "special_account_qualified": true,
+          "nominal_essential_term_missing": true,
+          "nominal_form_defect_makes_void": false,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "special_account_qualified": true,
+          "nominal_essential_term_missing": true,
+          "nominal_form_defect_makes_void": false,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как номинальный: он открыт владельцу счёта для совершения операций с деньгами, права на которые принадлежат другому лицу — бенефициару (пункт 1 статьи 860.1 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "В договоре номинального счёта не указан бенефициар и не определён порядок получения сведений о нём — существенное условие отсутствует (пункт 1 статьи 860.2 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-nominal-form-void",
+        "passed": true,
+        "expected_outcomes": {
+          "special_account_qualified": true,
+          "nominal_form_defect_makes_void": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "special_account_qualified": true,
+          "nominal_form_defect_makes_void": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как номинальный: он открыт владельцу счёта для совершения операций с деньгами, права на которые принадлежат другому лицу — бенефициару (пункт 1 статьи 860.1 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "Договор номинального счёта заключён не в форме единого документа, подписанного сторонами; несоблюдение этой формы влечёт ничтожность договора (пункты 1 и 2 статьи 860.2 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-nominal-control-breach",
+        "passed": true,
+        "expected_outcomes": {
+          "nominal_control_duty_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "nominal_control_duty_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как номинальный: он открыт владельцу счёта для совершения операций с деньгами, права на которые принадлежат другому лицу — бенефициару (пункт 1 статьи 860.1 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "Банк не исполнил принятую на себя договором обязанность контролировать распоряжение деньгами в интересах бенефициара (статья 860.4 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-nominal-no-control-agreed",
+        "passed": true,
+        "expected_outcomes": {
+          "nominal_control_duty_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "observed_outcomes": {
+          "nominal_control_duty_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как номинальный: он открыт владельцу счёта для совершения операций с деньгами, права на которые принадлежат другому лицу — бенефициару (пункт 1 статьи 860.1 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-nominal-change-without-consent",
+        "passed": true,
+        "expected_outcomes": {
+          "nominal_change_duty_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "nominal_change_duty_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как номинальный: он открыт владельцу счёта для совершения операций с деньгами, права на которые принадлежат другому лицу — бенефициару (пункт 1 статьи 860.1 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "Договор номинального счёта с участием бенефициара изменён или расторгнут без его согласия (пункт 1 статьи 860.6 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-nominal-information-denied",
+        "passed": true,
+        "expected_outcomes": {
+          "nominal_information_duty_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "nominal_information_duty_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как номинальный: он открыт владельцу счёта для совершения операций с деньгами, права на которые принадлежат другому лицу — бенефициару (пункт 1 статьи 860.1 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "Бенефициару отказано в сведениях, составляющих банковскую тайну номинального счёта, хотя он вправе их требовать (статья 860.3 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-escrow-grounds-not-occurred",
+        "passed": true,
+        "expected_outcomes": {
+          "special_account_qualified": true,
+          "funds_insulated_from_holder_creditors": true,
+          "escrow_payment_duty_arisen": false,
+          "escrow_payment_duty_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "observed_outcomes": {
+          "special_account_qualified": true,
+          "funds_insulated_from_holder_creditors": true,
+          "escrow_payment_duty_arisen": false,
+          "escrow_payment_duty_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как счёт эскроу: банк блокирует полученную от депонента сумму и передаёт её бенефициару при наступлении оснований, предусмотренных договором (пункт 1 статьи 860.7 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-escrow-duty-arisen",
+        "passed": true,
+        "expected_outcomes": {
+          "escrow_payment_duty_arisen": true,
+          "escrow_payment_duty_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "observed_outcomes": {
+          "escrow_payment_duty_arisen": true,
+          "escrow_payment_duty_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как счёт эскроу: банк блокирует полученную от депонента сумму и передаёт её бенефициару при наступлении оснований, предусмотренных договором (пункт 1 статьи 860.7 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "Основания передачи депонированной суммы наступили, поэтому у банка возникла обязанность передать её бенефициару (пункт 1 статьи 860.7, статья 860.8 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-escrow-payment-delayed",
+        "passed": true,
+        "expected_outcomes": {
+          "escrow_payment_duty_arisen": true,
+          "escrow_payment_duty_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "escrow_payment_duty_arisen": true,
+          "escrow_payment_duty_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как счёт эскроу: банк блокирует полученную от депонента сумму и передаёт её бенефициару при наступлении оснований, предусмотренных договором (пункт 1 статьи 860.7 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "Основания передачи депонированной суммы наступили, поэтому у банка возникла обязанность передать её бенефициару (пункт 1 статьи 860.7, статья 860.8 ГК РФ).",
+          "Обязанность передать депонированную сумму бенефициару нарушена просрочкой."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-escrow-disposal-before-grounds",
+        "passed": true,
+        "expected_outcomes": {
+          "escrow_disposal_restriction_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "escrow_disposal_restriction_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как счёт эскроу: банк блокирует полученную от депонента сумму и передаёт её бенефициару при наступлении оснований, предусмотренных договором (пункт 1 статьи 860.7 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "Нарушен запрет распоряжения депонированной суммой: до наступления оснований передачи ни депонент, ни бенефициар распоряжаться деньгами на счёте эскроу не вправе (пункт 1 статьи 860.8 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-escrow-extra-funds",
+        "passed": true,
+        "expected_outcomes": {
+          "escrow_extra_funds_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "escrow_extra_funds_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как счёт эскроу: банк блокирует полученную от депонента сумму и передаёт её бенефициару при наступлении оснований, предусмотренных договором (пункт 1 статьи 860.7 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "На счёт эскроу зачислены иные деньги помимо депонируемой суммы, что законом не допускается (пункт 3 статьи 860.8 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-escrow-balance-withheld",
+        "passed": true,
+        "expected_outcomes": {
+          "escrow_return_duty_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "escrow_return_duty_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как счёт эскроу: банк блокирует полученную от депонента сумму и передаёт её бенефициару при наступлении оснований, предусмотренных договором (пункт 1 статьи 860.7 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "Срок действия договора счёта эскроу истёк без наступления оснований передачи, но остаток не возвращён депоненту (пункт 1 статьи 860.10 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-public-clean",
+        "passed": true,
+        "expected_outcomes": {
+          "special_account_qualified": true,
+          "funds_insulated_from_holder_creditors": true,
+          "public_holder_not_authorised": false,
+          "public_bank_requirement_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "observed_outcomes": {
+          "special_account_qualified": true,
+          "funds_insulated_from_holder_creditors": true,
+          "public_holder_not_authorised": false,
+          "public_bank_requirement_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как публичный депозитный: он открыт владельцу для депонирования денег, вносимых в депозит нотариуса, службы судебных приставов или суда (пункт 1 статьи 860.11 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-public-holder-not-authorised",
+        "passed": true,
+        "expected_outcomes": {
+          "public_holder_not_authorised": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "public_holder_not_authorised": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как публичный депозитный: он открыт владельцу для депонирования денег, вносимых в депозит нотариуса, службы судебных приставов или суда (пункт 1 статьи 860.11 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "Владелец публичного депозитного счёта не относится к лицам, которым закон разрешает его открывать, — нотариусу, службе судебных приставов, суду или иному уполномоченному органу (пункт 1 статьи 860.11 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-public-bank-capital",
+        "passed": true,
+        "expected_outcomes": {
+          "public_bank_requirement_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "public_bank_requirement_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как публичный депозитный: он открыт владельцу для депонирования денег, вносимых в депозит нотариуса, службы судебных приставов или суда (пункт 1 статьи 860.11 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "Публичный депозитный счёт открыт в банке, не отвечающем требованию к размеру собственных средств (пункт 1 статьи 860.11 ГК РФ). Достаточность капитала модель принимает как установленный факт, а не считает сама."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-public-own-funds",
+        "passed": true,
+        "expected_outcomes": {
+          "public_own_funds_prohibition_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "public_own_funds_prohibition_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как публичный депозитный: он открыт владельцу для депонирования денег, вносимых в депозит нотариуса, службы судебных приставов или суда (пункт 1 статьи 860.11 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "На публичный депозитный счёт зачислены собственные деньги владельца счёта, что прямо запрещено (пункт 3 статьи 860.11 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-public-interest-withheld",
+        "passed": true,
+        "expected_outcomes": {
+          "public_interest_duty_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "public_interest_duty_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как публичный депозитный: он открыт владельцу для депонирования денег, вносимых в депозит нотариуса, службы судебных приставов или суда (пункт 1 статьи 860.11 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "Бенефициару не выплачены проценты, начисленные на депонированную сумму на публичном депозитном счёте (статья 860.13 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-insulation-breached",
+        "passed": true,
+        "expected_outcomes": {
+          "funds_insulated_from_holder_creditors": true,
+          "insulation_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "funds_insulated_from_holder_creditors": true,
+          "insulation_breached": true,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как номинальный: он открыт владельцу счёта для совершения операций с деньгами, права на которые принадлежат другому лицу — бенефициару (пункт 1 статьи 860.1 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "Защита нарушена: по обязательствам владельца счёта произведён арест или списание, а случая, когда закон это допускает, в деле не установлено."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-seizure-permitted",
+        "passed": true,
+        "expected_outcomes": {
+          "funds_insulated_from_holder_creditors": true,
+          "insulation_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "observed_outcomes": {
+          "funds_insulated_from_holder_creditors": true,
+          "insulation_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как номинальный: он открыт владельцу счёта для совершения операций с деньгами, права на которые принадлежат другому лицу — бенефициару (пункт 1 статьи 860.1 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-nominal-beneficiary-seizure-allowed",
+        "passed": true,
+        "expected_outcomes": {
+          "insulation_breached": false,
+          "public_wider_insulation_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "observed_outcomes": {
+          "insulation_breached": false,
+          "public_wider_insulation_breached": false,
+          "requires_human_special_accounts_assessment": false
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как номинальный: он открыт владельцу счёта для совершения операций с деньгами, права на которые принадлежат другому лицу — бенефициару (пункт 1 статьи 860.1 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат."
+        ]
+      },
+      {
+        "task_id": "special-accounts-bench-public-wider-insulation",
+        "passed": true,
+        "expected_outcomes": {
+          "public_wider_insulation_breached": true,
+          "insulation_breached": false,
+          "requires_human_special_accounts_assessment": true
+        },
+        "observed_outcomes": {
+          "public_wider_insulation_breached": true,
+          "insulation_breached": false,
+          "requires_human_special_accounts_assessment": true
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как публичный депозитный: он открыт владельцу для депонирования денег, вносимых в депозит нотариуса, службы судебных приставов или суда (пункт 1 статьи 860.11 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат.",
+          "Нарушена широкая защита публичного депозитного счёта: по статье 860.14 ГК РФ арест и списание не допускаются и по обязательствам бенефициара и депонента, а не только владельца счёта. У номинального счёта такой широты нет — статья 860.5 ГК РФ прямо допускает арест по обязательствам бенефициара."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "special-accounts-red-team-report-v0",
+    "total": 8,
+    "blocked": 8,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "special-accounts-red-kind-from-assertion",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "special_account_qualified": true,
+          "funds_insulated_from_holder_creditors": true
+        },
+        "observed_outcomes": {
+          "special_account_qualified": false,
+          "funds_insulated_from_holder_creditors": false
+        },
+        "reasons_ru": [
+          "Специальный счёт в деле заявлен, но его вид не установлен. Номинальный счёт, счёт эскроу и публичный депозитный счёт — разные договоры § 2, 3 и 4 главы 45 ГК РФ с разными последствиями; без вида счёта модель их не выводит."
+        ]
+      },
+      {
+        "case_id": "special-accounts-red-escrow-duty-without-grounds",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "escrow_payment_duty_arisen": true,
+          "escrow_payment_duty_breached": true
+        },
+        "observed_outcomes": {
+          "escrow_payment_duty_arisen": false,
+          "escrow_payment_duty_breached": false
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как счёт эскроу: банк блокирует полученную от депонента сумму и передаёт её бенефициару при наступлении оснований, предусмотренных договором (пункт 1 статьи 860.7 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат."
+        ]
+      },
+      {
+        "case_id": "special-accounts-red-nominal-rules-to-escrow",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "nominal_essential_term_missing": true,
+          "nominal_form_defect_makes_void": true
+        },
+        "observed_outcomes": {
+          "nominal_essential_term_missing": false,
+          "nominal_form_defect_makes_void": false
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как счёт эскроу: банк блокирует полученную от депонента сумму и передаёт её бенефициару при наступлении оснований, предусмотренных договором (пункт 1 статьи 860.7 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат."
+        ]
+      },
+      {
+        "case_id": "special-accounts-red-public-rules-to-nominal",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "public_holder_not_authorised": true,
+          "public_bank_requirement_breached": true
+        },
+        "observed_outcomes": {
+          "public_holder_not_authorised": false,
+          "public_bank_requirement_breached": false
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как номинальный: он открыт владельцу счёта для совершения операций с деньгами, права на которые принадлежат другому лицу — бенефициару (пункт 1 статьи 860.1 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат."
+        ]
+      },
+      {
+        "case_id": "special-accounts-red-wider-insulation-to-escrow",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "public_wider_insulation_breached": true
+        },
+        "observed_outcomes": {
+          "public_wider_insulation_breached": false
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как счёт эскроу: банк блокирует полученную от депонента сумму и передаёт её бенефициару при наступлении оснований, предусмотренных договором (пункт 1 статьи 860.7 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат."
+        ]
+      },
+      {
+        "case_id": "special-accounts-red-insulation-without-special-account",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "funds_insulated_from_holder_creditors": true,
+          "insulation_breached": true
+        },
+        "observed_outcomes": {
+          "funds_insulated_from_holder_creditors": false,
+          "insulation_breached": false
+        },
+        "reasons_ru": [
+          "Специальный вид банковского счёта в деле не заявлен: спор разрешается по общим правилам о банковском счёте (статьи 845–860 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "special-accounts-red-return-without-expiry",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "escrow_return_duty_breached": true
+        },
+        "observed_outcomes": {
+          "escrow_return_duty_breached": false
+        },
+        "reasons_ru": [
+          "Счёт квалифицирован как счёт эскроу: банк блокирует полученную от депонента сумму и передаёт её бенефициару при наступлении оснований, предусмотренных договором (пункт 1 статьи 860.7 ГК РФ).",
+          "Деньги на счёте недоступны кредиторам владельца счёта: арест, приостановление операций и списание по его собственным обязательствам не допускаются (статьи 860.5, 860.8 и 860.14 ГК РФ). Это общее последствие всех трёх видов специальных счетов — деньги на них владельцу счёта не принадлежат."
+        ]
+      },
+      {
+        "case_id": "special-accounts-red-breach-without-qualification",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "nominal_information_duty_breached": true,
+          "escrow_extra_funds_breached": true,
+          "public_own_funds_prohibition_breached": true,
+          "public_interest_duty_breached": true
+        },
+        "observed_outcomes": {
+          "nominal_information_duty_breached": false,
+          "escrow_extra_funds_breached": false,
+          "public_own_funds_prohibition_breached": false,
+          "public_interest_duty_breached": false
+        },
+        "reasons_ru": [
+          "Специальный вид банковского счёта в деле не заявлен: спор разрешается по общим правилам о банковском счёте (статьи 845–860 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95820/"
+  ]
+}

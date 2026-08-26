@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.5.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Adds the institute of the special kinds of bank account (articles 860.1-860.15): the nominal account, the escrow account and the public deposit account.",
+            "The largest gap the Code walk found, and it sat inside a declared institute rather than beyond it: the bank-account model claims articles 845-860 and stops immediately before the special kinds of account in the same chapter 45.",
+            "All three accounts share one consequence, and the model draws it once: the money is not the account holder's, so it is out of reach of the holder's creditors (articles 860.5, 860.8, 860.14). The public deposit account is protected more widely - seizure is barred for the beneficiary's and the depositor's debts too (article 860.14), whereas article 860.5 expressly allows seizure for the debts of a nominal account's beneficiary.",
+        ],
+        notes_ru=[
+            "Добавлен институт специальных видов банковского счёта (статьи 860.1–860.15): номинальный счёт, счёт эскроу и публичный депозитный счёт.",
+            "Самый крупный пробел обхода кодекса, и лежал он не за границей модели, а внутри объявленного института: модель банковского счёта заявляет статьи 845–860 и останавливается ровно перед специальными видами счетов той же главы 45.",
+            "У всех трёх счетов одно общее последствие, и модель выводит его один раз: деньги на счёте владельцу не принадлежат и потому недоступны его кредиторам (статьи 860.5, 860.8, 860.14). Публичный депозитный счёт защищён шире — арест не допускается и по обязательствам бенефициара и депонента (статья 860.14), тогда как статья 860.5 прямо допускает арест по обязательствам бенефициара номинального счёта.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.4.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],
