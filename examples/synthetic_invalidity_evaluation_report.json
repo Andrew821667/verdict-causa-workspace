@@ -22,6 +22,9 @@
       "claimant_knew_ground_at_performance_acceptance": false,
       "performance_violates_third_party_or_public_interests": false,
       "violates_law": false,
+      "statutory_disposal_prohibition_violated": false,
+      "judicial_disposal_prohibition_violated": false,
+      "acquirer_knew_of_disposal_prohibition": false,
       "public_interests_or_third_rights_affected": false,
       "law_expressly_makes_void": false,
       "immoral_purpose_proven": false,
@@ -71,6 +74,13 @@
       "synthetic-ru-plenum25-invalidity-guidance-v1"
     ],
     "provenance": [
+      {
+        "fact_name": "acquirer_knew_of_disposal_prohibition",
+        "assertion_id": "invalidity-evidence-acquirer_knew_of_disposal_prohibition",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
       {
         "fact_name": "additional_damages_causally_linked",
         "assertion_id": "invalidity-evidence-additional_damages_causally_linked",
@@ -275,6 +285,13 @@
         ]
       },
       {
+        "fact_name": "judicial_disposal_prohibition_violated",
+        "assertion_id": "invalidity-evidence-judicial_disposal_prohibition_violated",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
         "fact_name": "law_expressly_makes_void",
         "assertion_id": "invalidity-evidence-law_expressly_makes_void",
         "source_refs": [
@@ -408,6 +425,13 @@
         ]
       },
       {
+        "fact_name": "statutory_disposal_prohibition_violated",
+        "assertion_id": "invalidity-evidence-statutory_disposal_prohibition_violated",
+        "source_refs": [
+          "synthetic-case-supply-1-invalidity-evidence"
+        ]
+      },
+      {
         "fact_name": "transaction_concluded",
         "assertion_id": "invalidity-evidence-transaction_concluded",
         "source_refs": [
@@ -460,7 +484,7 @@
   },
   "constraint_set": {
     "id": "invalidity-constraint-set:reviewed-invalidity-evidence-supply-1-v0",
-    "model_version": "contracts-transaction-invalidity-articles-166-181-431-1-v0",
+    "model_version": "contracts-transaction-invalidity-articles-166-181-174-1-431-1-v0",
     "legal_source_refs": [
       "synthetic-ru-gk166-168-invalidity-framework-v1",
       "synthetic-ru-gk169-172-void-transactions-v1",
@@ -492,14 +516,17 @@
       "nullity_consequences_prerequisites == transaction_concluded AND void_ground_detected AND nullity_consequence_claimant_has_standing AND NOT void_limitation_period_expired",
       "partial_invalidity_only == contractual_effect_displaced AND invalid_part_separable AND remainder_preserves_transaction_purpose",
       "public_recovery_issue == immoral_void_ground AND both_parties_intentional_immoral_purpose",
-      "requires_human_invalidity_assessment == void_ground_detected OR voidable_ground_detected OR invalidity_claim_made OR nullity_consequences_requested OR estoppel_bar OR entrepreneurial_estoppel_bar OR contractual_effect_displaced OR restitution_required OR benefit_to_incapacitated_or_minor_proven",
+      "requires_human_invalidity_assessment == void_ground_detected OR voidable_ground_detected OR invalidity_claim_made OR nullity_consequences_requested OR estoppel_bar OR entrepreneurial_estoppel_bar OR contractual_effect_displaced OR restitution_required OR benefit_to_incapacitated_or_minor_proven OR judicial_prohibition_does_not_void",
       "restitution_in_kind == restitution_required AND return_in_kind_possible",
       "restitution_required == contractual_effect_displaced AND (party_a_performed OR party_b_performed)",
       "sham_void_ground == sham_intent_proven",
       "transaction_presumed_effective == transaction_concluded AND NOT contractual_effect_displaced",
-      "unlawful_void_ground == violates_law AND (public_interests_or_third_rights_affected OR law_expressly_makes_void)",
-      "unlawful_voidable_ground == violates_law AND NOT unlawful_void_ground",
-      "void_ground_detected == unlawful_void_ground OR immoral_void_ground OR sham_void_ground OR feigned_void_ground OR capacity_void_ground",
+      "disposal_prohibition_nullity == transaction_concluded AND statutory_disposal_prohibition_violated",
+      "judicial_prohibition_does_not_void == transaction_concluded AND judicial_disposal_prohibition_violated",
+      "secured_creditor_rights_survive == judicial_prohibition_does_not_void AND acquirer_knew_of_disposal_prohibition",
+      "unlawful_void_ground == violates_law AND (public_interests_or_third_rights_affected OR law_expressly_makes_void) AND NOT judicial_prohibition_does_not_void",
+      "unlawful_voidable_ground == violates_law AND NOT unlawful_void_ground AND NOT judicial_prohibition_does_not_void",
+      "void_ground_detected == unlawful_void_ground OR immoral_void_ground OR sham_void_ground OR feigned_void_ground OR capacity_void_ground OR disposal_prohibition_nullity",
       "voidable_claimant_has_standing == invalidity_claim_made AND (claimant_is_transaction_party OR claimant_legally_authorized) AND claimant_rights_or_interests_affected",
       "voidable_ground_detected == unlawful_voidable_ground OR consent_voidable_ground OR authority_voidable_ground OR entity_purpose_voidable_ground OR mistake_voidable_ground OR coercion_voidable_ground OR capacity_voidable_ground",
       "voidable_invalidity_effective == voidable_invalidity_prerequisites AND court_decision_entered_into_force",
@@ -512,6 +539,9 @@
     "estoppel_bar": false,
     "unlawful_void_ground": false,
     "unlawful_voidable_ground": false,
+    "disposal_prohibition_nullity": false,
+    "judicial_prohibition_does_not_void": false,
+    "secured_creditor_rights_survive": false,
     "immoral_void_ground": false,
     "sham_void_ground": false,
     "feigned_void_ground": false,
@@ -551,13 +581,14 @@
     "warnings_ru": [
       "Квалификация основания ничтожности или оспоримости требует правовой оценки.",
       "Модель не признает сделку недействительной и не определяет размер реституции автоматически.",
-      "Специальные основания и последствия отдельных сделок проверяются отдельно."
+      "Специальные основания и последствия отдельных сделок проверяются отдельно.",
+      "Объём прав кредитора, обеспеченных запретом распоряжения, модель не считает: пункт 5 статьи 334 ГК РФ даёт ему права залогодержателя с момента вступления в силу решения суда, и это территория института обеспечения."
     ]
   },
   "benchmark_report": {
     "id": "invalidity-benchmark-report-v0",
-    "total": 19,
-    "passed": 19,
+    "total": 23,
+    "passed": 23,
     "failed": 0,
     "results": [
       {
@@ -886,13 +917,92 @@
           "Формальная модель выявила основание оспоримости сделки.",
           "Обычные договорные последствия сделки формально устранены."
         ]
+      },
+      {
+        "task_id": "invalidity-bench-statutory-disposal-prohibition",
+        "passed": true,
+        "expected_outcomes": {
+          "disposal_prohibition_nullity": true,
+          "void_ground_detected": true
+        },
+        "observed_outcomes": {
+          "disposal_prohibition_nullity": true,
+          "void_ground_detected": true
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Сделка совершена с нарушением запрета или ограничения распоряжения имуществом, вытекающих из закона, в частности из законодательства о банкротстве: она ничтожна в той части, в какой предусматривает распоряжение таким имуществом (пункт 1 статьи 174.1 и статья 180 ГК РФ).",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-judicial-prohibition-does-not-void",
+        "passed": true,
+        "expected_outcomes": {
+          "judicial_prohibition_does_not_void": true,
+          "unlawful_void_ground": false,
+          "unlawful_voidable_ground": false,
+          "void_ground_detected": false
+        },
+        "observed_outcomes": {
+          "judicial_prohibition_does_not_void": true,
+          "unlawful_void_ground": false,
+          "unlawful_voidable_ground": false,
+          "void_ground_detected": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Основание оспоримости сделки не выявлено.",
+          "Запрет распоряжения наложен в судебном или ином установленном законом порядке в пользу кредитора, и его нарушение недействительности сделки не влечёт: сделка не препятствует реализации прав кредитора, которые обеспечивались запретом (пункт 2 статьи 174.1 ГК РФ). Поэтому основания статьи 168 из такого нарушения модель не выводит — это прямое исключение закона, а не пробел в фактах. Пункты 1 и 2 статьи 174.1 дают противоположные последствия, и модель их не смешивает.",
+          "Осведомлённость приобретателя о запрете не установлена, поэтому исключение пункта 2 статьи 174.1 ГК РФ в его пользу не снято и права кредитора против него не выводятся.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-secured-creditor-rights-survive",
+        "passed": true,
+        "expected_outcomes": {
+          "secured_creditor_rights_survive": true,
+          "void_ground_detected": false
+        },
+        "observed_outcomes": {
+          "secured_creditor_rights_survive": true,
+          "void_ground_detected": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Основание оспоримости сделки не выявлено.",
+          "Запрет распоряжения наложен в судебном или ином установленном законом порядке в пользу кредитора, и его нарушение недействительности сделки не влечёт: сделка не препятствует реализации прав кредитора, которые обеспечивались запретом (пункт 2 статьи 174.1 ГК РФ). Поэтому основания статьи 168 из такого нарушения модель не выводит — это прямое исключение закона, а не пробел в фактах. Пункты 1 и 2 статьи 174.1 дают противоположные последствия, и модель их не смешивает.",
+          "Приобретатель знал или должен был знать о запрете, поэтому права кредитора, обеспеченные запретом, сохраняются и реализуются в отношении имущества, перешедшего к приобретателю (пункт 2 статьи 174.1 ГК РФ). Объём этих прав — права и обязанности залогодержателя с момента вступления в силу решения суда — определяет пункт 5 статьи 334 ГК РФ; модель обеспечения его отдельно не разбирает.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "task_id": "invalidity-bench-prohibition-unaware-acquirer",
+        "passed": true,
+        "expected_outcomes": {
+          "judicial_prohibition_does_not_void": true,
+          "secured_creditor_rights_survive": false
+        },
+        "observed_outcomes": {
+          "judicial_prohibition_does_not_void": true,
+          "secured_creditor_rights_survive": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Основание оспоримости сделки не выявлено.",
+          "Запрет распоряжения наложен в судебном или ином установленном законом порядке в пользу кредитора, и его нарушение недействительности сделки не влечёт: сделка не препятствует реализации прав кредитора, которые обеспечивались запретом (пункт 2 статьи 174.1 ГК РФ). Поэтому основания статьи 168 из такого нарушения модель не выводит — это прямое исключение закона, а не пробел в фактах. Пункты 1 и 2 статьи 174.1 дают противоположные последствия, и модель их не смешивает.",
+          "Осведомлённость приобретателя о запрете не установлена, поэтому исключение пункта 2 статьи 174.1 ГК РФ в его пользу не снято и права кредитора против него не выводятся.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
       }
     ]
   },
   "red_team_report": {
     "id": "invalidity-red-team-report-v0",
-    "total": 17,
-    "blocked": 17,
+    "total": 21,
+    "blocked": 21,
     "unblocked": 0,
     "results": [
       {
@@ -1148,6 +1258,71 @@
         "reasons_ru": [
           "Основание ничтожности сделки не выявлено.",
           "Формальная модель выявила основание оспоримости сделки.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-article-168-from-judicial-prohibition",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unlawful_void_ground": true
+        },
+        "observed_outcomes": {
+          "unlawful_void_ground": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Основание оспоримости сделки не выявлено.",
+          "Запрет распоряжения наложен в судебном или ином установленном законом порядке в пользу кредитора, и его нарушение недействительности сделки не влечёт: сделка не препятствует реализации прав кредитора, которые обеспечивались запретом (пункт 2 статьи 174.1 ГК РФ). Поэтому основания статьи 168 из такого нарушения модель не выводит — это прямое исключение закона, а не пробел в фактах. Пункты 1 и 2 статьи 174.1 дают противоположные последствия, и модель их не смешивает.",
+          "Осведомлённость приобретателя о запрете не установлена, поэтому исключение пункта 2 статьи 174.1 ГК РФ в его пользу не снято и права кредитора против него не выводятся.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-creditor-rights-without-knowledge",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "secured_creditor_rights_survive": true
+        },
+        "observed_outcomes": {
+          "secured_creditor_rights_survive": false
+        },
+        "reasons_ru": [
+          "Основание ничтожности сделки не выявлено.",
+          "Основание оспоримости сделки не выявлено.",
+          "Запрет распоряжения наложен в судебном или ином установленном законом порядке в пользу кредитора, и его нарушение недействительности сделки не влечёт: сделка не препятствует реализации прав кредитора, которые обеспечивались запретом (пункт 2 статьи 174.1 ГК РФ). Поэтому основания статьи 168 из такого нарушения модель не выводит — это прямое исключение закона, а не пробел в фактах. Пункты 1 и 2 статьи 174.1 дают противоположные последствия, и модель их не смешивает.",
+          "Осведомлённость приобретателя о запрете не установлена, поэтому исключение пункта 2 статьи 174.1 ГК РФ в его пользу не снято и права кредитора против него не выводятся.",
+          "Договорные последствия сделки текущей моделью не устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-suppress-168-for-ordinary-violation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unlawful_void_ground": false
+        },
+        "observed_outcomes": {
+          "unlawful_void_ground": true
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Обычные договорные последствия сделки формально устранены."
+        ]
+      },
+      {
+        "case_id": "invalidity-red-statutory-prohibition-as-non-void",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "disposal_prohibition_nullity": false
+        },
+        "observed_outcomes": {
+          "disposal_prohibition_nullity": true
+        },
+        "reasons_ru": [
+          "Формальная модель выявила основание ничтожности сделки.",
+          "Основание оспоримости сделки не выявлено.",
+          "Сделка совершена с нарушением запрета или ограничения распоряжения имуществом, вытекающих из закона, в частности из законодательства о банкротстве: она ничтожна в той части, в какой предусматривает распоряжение таким имуществом (пункт 1 статьи 174.1 и статья 180 ГК РФ).",
           "Обычные договорные последствия сделки формально устранены."
         ]
       }

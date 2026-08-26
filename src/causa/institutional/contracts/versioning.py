@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.10.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Closes the three legal questions the specs had left open, each found by a real case rather than by a walk.",
+            "Article 174.1: paragraphs 1 and 2 of one article carry opposite consequences, so the model now carries two predicates. A statutory prohibition voids the transaction in the part disposing of the property (paragraph 1); a judicial prohibition imposed in a creditor's favour does not void it at all (paragraph 2) and instead suppresses the article 168 grounds. Before this, the translator had to know which prohibitions void a transaction and set violates_law to False by hand; the model now makes that call itself.",
+            "Article 434(3) with article 438(3): written form is observed when a written offer is accepted by performing its terms. The offer must be written - an invariant rejects a translation where conduct accepts an oral offer.",
+            "The article 165.1 connectivity debt is closed as far as it is closable: the messages evidence now names the role of the disputed message, tying the institute's conclusion to a specific delivery predicate of a specific institute, and a disagreement between them is rejected by the fact-consistency layer instead of being silently resolved. The residual - one message per case, the rest taken on trust - is now measured by name rather than stated as a caveat.",
+        ],
+        notes_ru=[
+            "Закрыты три правовых вопроса, оставленных в спецификациях открытыми; каждый нашёлся на живом деле, а не обходом.",
+            "Статья 174.1: пункты 1 и 2 одной статьи дают противоположные последствия, поэтому и предиката теперь два. Запрет из закона влечёт ничтожность в части распоряжения (пункт 1); запрет, наложенный судом в пользу кредитора, недействительности не влечёт вовсе (пункт 2) и снимает основания статьи 168. Прежде переводчик обязан был знать, какие запреты ведут к недействительности, и вручную ставить violates_law в False; теперь это решение принимает модель.",
+            "Пункт 3 статьи 434 во взаимосвязи с пунктом 3 статьи 438: письменная форма соблюдена, когда письменная оферта принята совершением действий по выполнению её условий. Оферта обязана быть письменной — инвариант отвергает перевод, где действиями принято устное предложение.",
+            "Долг связности статьи 165.1 закрыт в той части, в какой он закрываем: доказательства о сообщении теперь называют его роль, привязывая вывод института к конкретному предикату доставки конкретного института, и расхождение между ними слой сверки фактов отвергает, а не разрешает молча. Остаток — одно сообщение на дело, остальные на веру — стал измеримым: уведомления дела называются поимённо, а не оговоркой.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.9.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -190,3 +190,58 @@ def test_the_constraint_set_declares_what_it_executes() -> None:
 
     assert len(expressions) == 9
     assert any(line.startswith("message_delivered ==") for line in expressions)
+
+
+def test_every_message_role_names_a_predicate_that_actually_exists() -> None:
+    """Реестр ролей обязан ломаться, когда институт переименовал свой предикат.
+
+    Роль связывает вывод статьи 165.1 с предикатом чужого института. Если тот
+    предикат исчезнет или сменит имя, сверка молча перестанет что-либо
+    проверять — и долг связности вернётся незамеченным.
+    """
+    from causa.institutional.contracts.messages import (
+        MESSAGE_ROLE_PREDICATES,
+        MessageRole,
+    )
+    from causa.institutional.contracts.reviewed_analysis import (
+        ReviewedContractAnalysisRequest,
+    )
+
+    for role, (institute, predicate) in MESSAGE_ROLE_PREDICATES.items():
+        field = ReviewedContractAnalysisRequest.model_fields.get(f"{institute}_evidence")
+        assert field is not None, role
+        enum_field = field.annotation.model_fields["assertions"]
+        predicate_enum = enum_field.annotation.__args__[0].model_fields["predicate"].annotation
+        assert predicate in {item.value for item in predicate_enum}, (role, predicate)
+
+    # OTHER — единственная роль без предиката: сообщение, доставку которого
+    # ни один институт отдельно не утверждает.
+    assert set(MessageRole) - set(MESSAGE_ROLE_PREDICATES) == {MessageRole.OTHER}
+
+
+def test_the_role_check_rejects_a_message_that_contradicts_its_institute() -> None:
+    """Сверка, неспособная отвергнуть противоречие, ничего не проверяет."""
+    import pytest as _pytest
+
+    from causa.institutional.contracts.fact_consistency import FactConsistencyError
+    from causa.institutional.contracts.messages import MessageRole
+    from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
+    from causa.institutional.contracts.synthetic_reviewed_analysis import (
+        build_synthetic_supply_analysis_request,
+        build_synthetic_supply_analysis_sources,
+    )
+
+    request = build_synthetic_supply_analysis_request()
+    # Спорное сообщение доставлено (вручено под подпись), а предикат поставки о
+    # доставке уведомления об отказе говорит обратное.
+    evidence = request.messages_evidence.model_copy(
+        update={"message_role": MessageRole.SUPPLY_UNILATERAL_REFUSAL_NOTICE}
+    )
+
+    with _pytest.raises(FactConsistencyError) as failure:
+        run_reviewed_contract_analysis(
+            request.model_copy(update={"messages_evidence": evidence}),
+            build_synthetic_supply_analysis_sources(),
+        )
+
+    assert "message_delivery_agreement" in failure.value.keys

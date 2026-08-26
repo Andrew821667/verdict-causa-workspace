@@ -388,6 +388,9 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "value_of_performance_proven": True,
             "additional_damages_claimed": False,
             "additional_damages_causally_linked": False,
+            "statutory_disposal_prohibition_violated": False,
+            "judicial_disposal_prohibition_violated": False,
+            "acquirer_knew_of_disposal_prohibition": False,
         },
         expected_conclusions={
             "capacity_void_ground": True,
@@ -1109,6 +1112,9 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "value_of_performance_proven": False,
             "additional_damages_claimed": False,
             "additional_damages_causally_linked": False,
+            "statutory_disposal_prohibition_violated": False,
+            "judicial_disposal_prohibition_violated": False,
+            "acquirer_knew_of_disposal_prohibition": False,
         },
         expected_conclusions={
             "capacity_void_ground": True,
@@ -1195,6 +1201,9 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "value_of_performance_proven": False,
             "additional_damages_claimed": False,
             "additional_damages_causally_linked": False,
+            "statutory_disposal_prohibition_violated": False,
+            "judicial_disposal_prohibition_violated": False,
+            "acquirer_knew_of_disposal_prohibition": False,
         },
         expected_conclusions={
             "capacity_void_ground": True,
@@ -2201,6 +2210,8 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "notarial_form_observed": False,
             "written_noncompliance_invalidates_by_law_or_agreement": False,
             "performance_or_written_proof_available": False,
+            "written_offer_made": False,
+            "offer_terms_performed_as_acceptance": False,
         },
         expected_conclusions={
             "written_form_satisfied": False,
@@ -2239,6 +2250,8 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "notarial_form_observed": False,
             "written_noncompliance_invalidates_by_law_or_agreement": False,
             "performance_or_written_proof_available": True,
+            "written_offer_made": False,
+            "offer_terms_performed_as_acceptance": False,
         },
         expected_conclusions={
             "written_form_satisfied": False,
@@ -2278,6 +2291,8 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "notarial_form_observed": False,
             "written_noncompliance_invalidates_by_law_or_agreement": False,
             "performance_or_written_proof_available": False,
+            "written_offer_made": False,
+            "offer_terms_performed_as_acceptance": False,
         },
         expected_conclusions={
             "written_form_satisfied": False,
@@ -2732,6 +2747,9 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "value_of_performance_proven": False,
             "additional_damages_claimed": False,
             "additional_damages_causally_linked": False,
+            "statutory_disposal_prohibition_violated": False,
+            "judicial_disposal_prohibition_violated": False,
+            "acquirer_knew_of_disposal_prohibition": False,
         },
         expected_conclusions={
             "consent_voidable_ground": False,
@@ -2816,6 +2834,9 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "value_of_performance_proven": False,
             "additional_damages_claimed": False,
             "additional_damages_causally_linked": False,
+            "statutory_disposal_prohibition_violated": False,
+            "judicial_disposal_prohibition_violated": False,
+            "acquirer_knew_of_disposal_prohibition": False,
         },
         expected_conclusions={
             "voidable_ground_detected": False,
@@ -2899,6 +2920,9 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "value_of_performance_proven": False,
             "additional_damages_claimed": False,
             "additional_damages_causally_linked": False,
+            "statutory_disposal_prohibition_violated": False,
+            "judicial_disposal_prohibition_violated": False,
+            "acquirer_knew_of_disposal_prohibition": False,
         },
         expected_conclusions={
             "consent_voidable_ground": False,
@@ -2980,6 +3004,9 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "value_of_performance_proven": False,
             "additional_damages_claimed": False,
             "additional_damages_causally_linked": False,
+            "statutory_disposal_prohibition_violated": False,
+            "judicial_disposal_prohibition_violated": False,
+            "acquirer_knew_of_disposal_prohibition": False,
         },
         expected_conclusions={
             "sham_void_ground": False,
@@ -3062,6 +3089,9 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "value_of_performance_proven": False,
             "additional_damages_claimed": False,
             "additional_damages_causally_linked": False,
+            "statutory_disposal_prohibition_violated": False,
+            "judicial_disposal_prohibition_violated": False,
+            "acquirer_knew_of_disposal_prohibition": False,
         },
         expected_conclusions={
             "void_ground_detected": False,
@@ -3082,13 +3112,17 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "запрете. Существенных нарушений порядка торгов не установлено; в иске отказано."
         ),
         mapping_note_ru=(
-            "Здесь перевод потребовал решения, которое стоит назвать прямо. Запрет распоряжения "
-            "нарушен, но `violates_law` поставлен в False, потому что этот предикат ведёт только к "
-            "основаниям статьи 168 ГК РФ, а пункт 2 статьи 174.1 устанавливает другое последствие "
-            "— права залогодержателя вместо недействительности. Поставить True означало бы "
-            "заставить модель вывести оспоримость там, где закон её прямо исключает. Предиката "
-            "«нарушение запрета с иным законным последствием» в модели нет, и это её пробел, "
-            "записанный как открытый вопрос."
+            "Дело, которым закрыт открытый вопрос о нарушении запрета с иным законным "
+            "последствием. Прежде перевод обходил модель: `violates_law` ставился в False, хотя "
+            "запрет был нарушен, — иначе модель вывела бы оспоримость там, где закон её прямо "
+            "исключает. Обход держался на том, что переводчик знал, какие запреты ведут к "
+            "недействительности, а какие нет. Теперь этого знания от него не требуется: "
+            "`violates_law` поставлен в True честно, а `judicial_disposal_prohibition_violated` "
+            "называет запрет пунктом 2 статьи 174.1, и модель сама снимает основания статьи 168. "
+            "Запрет наложен определением суда в пользу кредитора — это пункт 2, а не пункт 1: "
+            "запрет из закона дал бы ничтожность в части. Осведомлённость приобретателя суд "
+            "условием назвал, но не установил — иск отклонён по другому основанию, — поэтому "
+            "предикат оставлен в False, и права кредитора против приобретателя модель не выводит."
         ),
         facts={
             "transaction_concluded": True,
@@ -3106,7 +3140,7 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "claimant_did_not_reciprocate_performance": False,
             "claimant_knew_ground_at_performance_acceptance": False,
             "performance_violates_third_party_or_public_interests": False,
-            "violates_law": False,
+            "violates_law": True,
             "public_interests_or_third_rights_affected": False,
             "law_expressly_makes_void": False,
             "immoral_purpose_proven": False,
@@ -3146,12 +3180,17 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "value_of_performance_proven": False,
             "additional_damages_claimed": False,
             "additional_damages_causally_linked": False,
+            "statutory_disposal_prohibition_violated": False,
+            "judicial_disposal_prohibition_violated": True,
+            "acquirer_knew_of_disposal_prohibition": False,
         },
         expected_conclusions={
             "unlawful_void_ground": False,
             "unlawful_voidable_ground": False,
             "void_ground_detected": False,
             "transaction_presumed_effective": True,
+            "judicial_prohibition_does_not_void": True,
+            "secured_creditor_rights_survive": False,
         },
     ),
     RealCaseScenario(
@@ -3229,6 +3268,9 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "value_of_performance_proven": False,
             "additional_damages_claimed": False,
             "additional_damages_causally_linked": False,
+            "statutory_disposal_prohibition_violated": False,
+            "judicial_disposal_prohibition_violated": False,
+            "acquirer_knew_of_disposal_prohibition": False,
         },
         expected_conclusions={
             "unlawful_void_ground": True,

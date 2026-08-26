@@ -266,6 +266,51 @@ SYNTHETIC_INVALIDITY_BENCHMARKS = (
             "voidable_invalidity_effective": True,
         },
     ),
+    InvalidityEvaluationTask(
+        id="invalidity-bench-statutory-disposal-prohibition",
+        title_ru="Пункт 1 статьи 174.1: запрет из закона — ничтожность в части",
+        facts=_facts(statutory_disposal_prohibition_violated=True),
+        expected_outcomes={
+            "disposal_prohibition_nullity": True,
+            "void_ground_detected": True,
+        },
+    ),
+    InvalidityEvaluationTask(
+        id="invalidity-bench-judicial-prohibition-does-not-void",
+        title_ru="Пункт 2 статьи 174.1: судебный запрет недействительности не влечёт",
+        facts=_facts(
+            violates_law=True,
+            public_interests_or_third_rights_affected=True,
+            judicial_disposal_prohibition_violated=True,
+        ),
+        expected_outcomes={
+            "judicial_prohibition_does_not_void": True,
+            "unlawful_void_ground": False,
+            "unlawful_voidable_ground": False,
+            "void_ground_detected": False,
+        },
+    ),
+    InvalidityEvaluationTask(
+        id="invalidity-bench-secured-creditor-rights-survive",
+        title_ru="Приобретатель знал о запрете — права кредитора сохраняются",
+        facts=_facts(
+            judicial_disposal_prohibition_violated=True,
+            acquirer_knew_of_disposal_prohibition=True,
+        ),
+        expected_outcomes={
+            "secured_creditor_rights_survive": True,
+            "void_ground_detected": False,
+        },
+    ),
+    InvalidityEvaluationTask(
+        id="invalidity-bench-prohibition-unaware-acquirer",
+        title_ru="Приобретатель не знал о запрете — права кредитора не выводятся",
+        facts=_facts(judicial_disposal_prohibition_violated=True),
+        expected_outcomes={
+            "judicial_prohibition_does_not_void": True,
+            "secured_creditor_rights_survive": False,
+        },
+    ),
 )
 
 
@@ -414,6 +459,34 @@ SYNTHETIC_INVALIDITY_RED_TEAM_CASES = (
             claimant_knew_ground_at_performance_acceptance=True,
         ),
         forbidden_outcomes={"entrepreneurial_estoppel_bar": True},
+    ),
+    InvalidityRedTeamCase(
+        id="invalidity-red-article-168-from-judicial-prohibition",
+        title_ru="Вывести основание статьи 168 из запрета пункта 2 статьи 174.1",
+        facts=_facts(
+            violates_law=True,
+            public_interests_or_third_rights_affected=True,
+            judicial_disposal_prohibition_violated=True,
+        ),
+        forbidden_outcomes={"unlawful_void_ground": True},
+    ),
+    InvalidityRedTeamCase(
+        id="invalidity-red-creditor-rights-without-knowledge",
+        title_ru="Дать кредитору права против приобретателя, не знавшего о запрете",
+        facts=_facts(judicial_disposal_prohibition_violated=True),
+        forbidden_outcomes={"secured_creditor_rights_survive": True},
+    ),
+    InvalidityRedTeamCase(
+        id="invalidity-red-suppress-168-for-ordinary-violation",
+        title_ru="Снять основание статьи 168 с обычного нарушения закона",
+        facts=_facts(violates_law=True, public_interests_or_third_rights_affected=True),
+        forbidden_outcomes={"unlawful_void_ground": False},
+    ),
+    InvalidityRedTeamCase(
+        id="invalidity-red-statutory-prohibition-as-non-void",
+        title_ru="Отнести запрет из закона к пункту 2 и не выводить ничтожности",
+        facts=_facts(statutory_disposal_prohibition_violated=True),
+        forbidden_outcomes={"disposal_prohibition_nullity": False},
     ),
 )
 

@@ -53,7 +53,7 @@ from z3 import And, Bool, Not, Or, Solver, sat
 
 from causa.core.bootstrap import BootstrapReviewStatus
 
-MESSAGES_EVIDENCE_SCHEMA_VERSION = "contracts.messages-evidence.v0"
+MESSAGES_EVIDENCE_SCHEMA_VERSION = "contracts.messages-evidence.v1"
 MESSAGES_MAPPING_VERSION = "contracts-reviewed-messages-to-facts-v0"
 MESSAGES_MODEL_VERSION = "contracts-messages-article-165-1-v0"
 
@@ -88,6 +88,77 @@ class MessagesEvidenceAssertion(BaseModel):
     source_refs: tuple[str, ...] = Field(min_length=1)
 
 
+class MessageRole(str, Enum):
+    """Какое уведомление дела представляет спорное сообщение.
+
+    Без этого поля вывод института висел в воздухе: он отвечал о доставке
+    какого-то сообщения, а два десятка предикатов других институтов
+    утверждали доставку своих уведомлений, и связать одно с другим было
+    нечем. Роль привязывает вывод к конкретному предикату конкретного
+    института, и тогда расхождение между ними становится проверяемым.
+
+    `OTHER` — не отговорка, а честный ответ для сообщения, доставку которого
+    ни один институт отдельно не утверждает: претензии, ответа на неё,
+    извещения о готовности. Такое сообщение институт проверяет, но сверять
+    его не с чем.
+    """
+
+    OTHER = "other"
+    TERMINATION_UNILATERAL_NOTICE = "termination_unilateral_notice"
+    SALE_UNILATERAL_REFUSAL_NOTICE = "sale_unilateral_refusal_notice"
+    SUPPLY_UNILATERAL_REFUSAL_NOTICE = "supply_unilateral_refusal_notice"
+    SET_OFF_NOTICE = "set_off_notice"
+    DEBT_FORGIVENESS_NOTICE = "debt_forgiveness_notice"
+    SUSPENSION_NOTICE = "suspension_notice"
+    PERFORMANCE_REFUSAL_NOTICE = "performance_refusal_notice"
+    FORECLOSURE_NOTICE = "foreclosure_notice"
+
+
+#: Роль сообщения → институт и его предикат, утверждающий доставку.
+#:
+#: Здесь перечислены не все предикаты об уведомлениях — их в пакете полсотни, —
+#: а только те, которые утверждают именно **доставку** сообщения, то есть тот
+#: самый факт, о котором говорит пункт 1 статьи 165.1 ГК РФ. Остальные отвечают
+#: на другие вопросы: было ли уведомление вообще, вовремя ли, в письменной ли
+#: форме. Их разбирают собственные институты, и статья 165.1 их не замещает.
+MESSAGE_ROLE_PREDICATES: dict["MessageRole", tuple[str, str]] = {
+    MessageRole.TERMINATION_UNILATERAL_NOTICE: ("termination", "unilateral_notice_delivered"),
+    MessageRole.SALE_UNILATERAL_REFUSAL_NOTICE: ("sale", "unilateral_refusal_notice_delivered"),
+    MessageRole.SUPPLY_UNILATERAL_REFUSAL_NOTICE: (
+        "supply",
+        "unilateral_refusal_notice_delivered",
+    ),
+    MessageRole.SET_OFF_NOTICE: ("obligation_dynamics", "set_off_notice_delivered"),
+    MessageRole.DEBT_FORGIVENESS_NOTICE: (
+        "obligation_dynamics",
+        "debt_forgiveness_notice_delivered",
+    ),
+    MessageRole.SUSPENSION_NOTICE: ("performance_remedies", "suspension_notice_delivered"),
+    MessageRole.PERFORMANCE_REFUSAL_NOTICE: ("performance_remedies", "refusal_notice_delivered"),
+    MessageRole.FORECLOSURE_NOTICE: ("security", "foreclosure_notice_delivered"),
+}
+
+
+def asserted_delivery_predicates(request) -> list[tuple[str, str]]:
+    """Уведомления дела, доставку которых институты утверждают сами.
+
+    Возвращает пары «институт, предикат» для тех записей реестра, где
+    доказательства дела утверждают доставку. Нужна, чтобы назвать остаток
+    долга числом: сколько уведомлений в деле принимают доставку на веру и
+    сколько из них проверено статьёй 165.1 (не больше одного — контракт
+    данных несёт один блок доказательств на институт).
+    """
+    found: list[tuple[str, str]] = []
+    for institute, predicate in sorted(set(MESSAGE_ROLE_PREDICATES.values())):
+        evidence = getattr(request, f"{institute}_evidence", None)
+        if evidence is None:
+            continue
+        for assertion in evidence.assertions:
+            if assertion.predicate.value == predicate and assertion.value:
+                found.append((institute, predicate))
+    return found
+
+
 class ReviewedMessagesEvidence(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -98,6 +169,9 @@ class ReviewedMessagesEvidence(BaseModel):
     legal_source_refs: tuple[str, ...] = Field(min_length=2)
     review_status: BootstrapReviewStatus = BootstrapReviewStatus.DRAFT
     reviewer_id: str | None = None
+    #: Какое уведомление дела проверяется. Значение по умолчанию не выбрано
+    #: намеренно: роль обязан назвать переводчик фабулы.
+    message_role: MessageRole = MessageRole.OTHER
 
     @model_validator(mode="after")
     def reject_duplicates(self) -> "ReviewedMessagesEvidence":

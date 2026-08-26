@@ -14,6 +14,7 @@ from causa.institutional.contracts.synthetic_reviewed_analysis import (
 from causa.ui.documents import build_document
 from causa.ui.reconciliation import (
     RECONCILABLE_FACTS,
+    ROLE_DEPENDENT_FACTS,
     UNRECONCILABLE_RU,
     reconcile,
 )
@@ -43,11 +44,20 @@ def _gap(service, code: str):
 
 
 def test_every_consistency_key_is_classified() -> None:
-    """Ключ без записи означал бы, что согласование где-то молча не сработает."""
-    classified = set(RECONCILABLE_FACTS) | set(UNRECONCILABLE_RU)
+    """Ключ без записи означал бы, что согласование где-то молча не сработает.
+
+    Классов три: согласуемое по постоянной паре, согласуемое по цели, которую
+    называет само дело, и несогласуемое механически. Пересекаться они не имеют
+    права — иначе непонятно, какое правило сработает.
+    """
+    classified = set(RECONCILABLE_FACTS) | set(ROLE_DEPENDENT_FACTS) | set(UNRECONCILABLE_RU)
 
     assert classified == set(FACT_CONSISTENCY_VOCABULARY)
     assert set(RECONCILABLE_FACTS).isdisjoint(UNRECONCILABLE_RU)
+    assert set(ROLE_DEPENDENT_FACTS).isdisjoint(RECONCILABLE_FACTS)
+    assert set(ROLE_DEPENDENT_FACTS).isdisjoint(UNRECONCILABLE_RU)
+    for reason in ROLE_DEPENDENT_FACTS.values():
+        assert len(reason) > 40
 
 
 def test_every_unreconcilable_key_carries_a_reason() -> None:
@@ -217,3 +227,39 @@ def test_a_closure_blocked_only_by_unreconcilable_keys_says_which() -> None:
     payload = failure.value.payload()
     assert payload["blocked_ru"]
     assert any("nonconformity" in line for line in payload["blocked_ru"])
+
+
+def test_role_dependent_key_is_reconciled_to_the_target_the_case_names() -> None:
+    """Цель берётся из роли сообщения, а не из постоянной таблицы.
+
+    Проверка обязана видеть именно тот институт, который назвала роль: если
+    резолвер вернёт что-то другое, согласование молча исправит чужой предикат.
+    """
+    from causa.institutional.contracts.fact_consistency import FactConsistencyError
+    from causa.institutional.contracts.messages import MessageRole
+    from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
+    from causa.institutional.contracts.synthetic_reviewed_analysis import (
+        build_synthetic_supply_analysis_sources,
+    )
+
+    request = build_synthetic_supply_analysis_request()
+    sources = build_synthetic_supply_analysis_sources()
+    evidence = request.messages_evidence.model_copy(
+        update={"message_role": MessageRole.SUPPLY_UNILATERAL_REFUSAL_NOTICE}
+    )
+    broken = request.model_copy(update={"messages_evidence": evidence})
+
+    with pytest.raises(FactConsistencyError) as failure:
+        run_reviewed_contract_analysis(broken, sources)
+
+    fixed, alignments, blocked = reconcile(broken, failure.value.mismatches)
+
+    assert blocked == []
+    assert [(item.evidence_field, item.predicate) for item in alignments] == [
+        ("supply_evidence", "unilateral_refusal_notice_delivered")
+    ]
+    assert alignments[0].before is False
+    assert alignments[0].after is True
+    # Согласованный запрос обязан проходить анализ: иначе согласование только
+    # переставило противоречие с места на место.
+    run_reviewed_contract_analysis(fixed, sources)

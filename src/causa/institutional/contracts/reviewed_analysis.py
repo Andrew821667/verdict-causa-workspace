@@ -586,7 +586,9 @@ from causa.institutional.contracts.attribution_delay import (
     map_reviewed_attribution_delay_evidence,
 )
 from causa.institutional.contracts.messages import (
+    MESSAGE_ROLE_PREDICATES,
     MESSAGES_EVIDENCE_SCHEMA_VERSION,
+    MessageRole,
     MessagesConstraintSet,
     MessagesEvaluation,
     MessagesEvidenceMappingResult,
@@ -5483,6 +5485,25 @@ def run_reviewed_contract_analysis(
         messages_constraint_set,
         messages_evidence_mapping.facts,
     )
+    # Долг связности статьи 165.1: институт отвечает о доставке одного сообщения,
+    # а два десятка предикатов пакета утверждают доставку своих уведомлений.
+    # Роль сообщения называет, о каком именно уведомлении идёт спор, и тогда
+    # расхождение перестаёт быть неразличимым: продолжить анализ, приняв обе
+    # версии сразу, нельзя — решателю пришлось бы выбрать одну молча.
+    message_role = request.messages_evidence.message_role
+    if message_role is not MessageRole.OTHER:
+        role_institute, role_predicate = MESSAGE_ROLE_PREDICATES[message_role]
+        role_evidence = getattr(request, f"{role_institute}_evidence")
+        asserted_delivery = next(
+            assertion.value
+            for assertion in role_evidence.assertions
+            if assertion.predicate.value == role_predicate
+        )
+        facts_agree.equal(
+            "message_delivery_agreement",
+            asserted_delivery,
+            messages_evaluation.message_delivered,
+        )
     special_accounts_evidence_mapping = map_reviewed_special_accounts_evidence(
         request.special_accounts_evidence
     )

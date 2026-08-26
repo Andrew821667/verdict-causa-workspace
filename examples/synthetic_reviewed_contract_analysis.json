@@ -5396,6 +5396,22 @@
           ]
         },
         {
+          "id": "form-evidence-written_offer_made",
+          "predicate": "written_offer_made",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
+          "id": "form-evidence-offer_terms_performed_as_acceptance",
+          "predicate": "offer_terms_performed_as_acceptance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
           "id": "form-evidence-notarial_form_observed",
           "predicate": "notarial_form_observed",
           "value": false,
@@ -10806,7 +10822,7 @@
     "messages_evidence": {
       "id": "reviewed-messages-evidence-supply-1-v0",
       "case_id": "case-supply-1",
-      "schema_version": "contracts.messages-evidence.v0",
+      "schema_version": "contracts.messages-evidence.v1",
       "assertions": [
         {
           "id": "messages-evidence-message_asserted",
@@ -10902,7 +10918,8 @@
         "synthetic-ru-plenum25-63-67-message-delivery-risk-v1"
       ],
       "review_status": "reviewed",
-      "reviewer_id": "synthetic-messages-reviewer"
+      "reviewer_id": "synthetic-messages-reviewer",
+      "message_role": "other"
     },
     "special_accounts_evidence": {
       "id": "reviewed-special-accounts-evidence-supply-1-v0",
@@ -12966,6 +12983,30 @@
         {
           "id": "invalidity-evidence-violates_law",
           "predicate": "violates_law",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-invalidity-evidence"
+          ]
+        },
+        {
+          "id": "invalidity-evidence-statutory_disposal_prohibition_violated",
+          "predicate": "statutory_disposal_prohibition_violated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-invalidity-evidence"
+          ]
+        },
+        {
+          "id": "invalidity-evidence-judicial_disposal_prohibition_violated",
+          "predicate": "judicial_disposal_prohibition_violated",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-invalidity-evidence"
+          ]
+        },
+        {
+          "id": "invalidity-evidence-acquirer_knew_of_disposal_prohibition",
+          "predicate": "acquirer_knew_of_disposal_prohibition",
           "value": false,
           "source_refs": [
             "synthetic-case-supply-1-invalidity-evidence"
@@ -18958,6 +18999,8 @@
         "document_signed_by_parties": true,
         "exchange_of_documents": false,
         "electronic_signature_valid": false,
+        "written_offer_made": false,
+        "offer_terms_performed_as_acceptance": false,
         "notarial_form_observed": false,
         "written_noncompliance_invalidates_by_law_or_agreement": false,
         "performance_or_written_proof_available": true
@@ -19003,6 +19046,13 @@
           ]
         },
         {
+          "fact_name": "offer_terms_performed_as_acceptance",
+          "assertion_id": "form-evidence-offer_terms_performed_as_acceptance",
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
+        },
+        {
           "fact_name": "oral_form_permitted",
           "assertion_id": "form-evidence-oral_form_permitted",
           "source_refs": [
@@ -19036,19 +19086,27 @@
           "source_refs": [
             "synthetic-case-supply-1-form-evidence"
           ]
+        },
+        {
+          "fact_name": "written_offer_made",
+          "assertion_id": "form-evidence-written_offer_made",
+          "source_refs": [
+            "synthetic-case-supply-1-form-evidence"
+          ]
         }
       ]
     },
     "form_constraint_set": {
       "id": "form-constraint-set:reviewed-form-evidence-supply-1-v0",
-      "model_version": "contracts-form-articles-158-165-434-v0",
+      "model_version": "contracts-form-articles-158-165-434-3-v0",
       "legal_source_refs": [
         "synthetic-ru-gk158-165-form-framework-v1",
         "synthetic-ru-gk160-434-written-form-model-v1"
       ],
       "expressions": [
         "written_form_method_valid == document_signed_by_parties OR exchange_of_documents OR electronic_signature_valid",
-        "written_form_satisfied == NOT simple_written_form_required OR (simple_written_form_observed AND written_form_method_valid)",
+        "acceptance_by_conduct_observes_written_form == written_offer_made AND offer_terms_performed_as_acceptance",
+        "written_form_satisfied == NOT simple_written_form_required OR (simple_written_form_observed AND written_form_method_valid) OR acceptance_by_conduct_observes_written_form",
         "notarial_form_satisfied == NOT notarial_form_required OR notarial_form_observed",
         "form_requirement_satisfied == written_form_satisfied AND notarial_form_satisfied",
         "witness_testimony_barred == simple_written_form_required AND NOT written_form_satisfied",
@@ -19061,6 +19119,7 @@
       "constraint_set_id": "form-constraint-set:reviewed-form-evidence-supply-1-v0",
       "satisfiable": true,
       "written_form_method_valid": true,
+      "acceptance_by_conduct_observes_written_form": false,
       "written_form_satisfied": true,
       "notarial_form_satisfied": true,
       "form_requirement_satisfied": true,
@@ -19073,7 +19132,8 @@
       ],
       "warnings_ru": [
         "Модель проверяет только формальные правила о форме сделки и не заменяет судебную оценку.",
-        "Достаточность доказательств формы и соблюдение способа ее совершения оцениваются экспертом и судом."
+        "Достаточность доказательств формы и соблюдение способа ее совершения оцениваются экспертом и судом.",
+        "Совершены ли действия именно по выполнению условий оферты и в срок, установленный для акцепта, оценивает человек: модель принимает это как установленный факт (пункт 3 статьи 438 ГК РФ)."
       ]
     },
     "preliminary_evidence_mapping": {
@@ -26870,7 +26930,7 @@
     },
     "messages_evidence_mapping": {
       "evidence_id": "reviewed-messages-evidence-supply-1-v0",
-      "schema_version": "contracts.messages-evidence.v0",
+      "schema_version": "contracts.messages-evidence.v1",
       "mapping_version": "contracts-reviewed-messages-to-facts-v0",
       "facts": {
         "message_asserted": true,
@@ -29874,6 +29934,9 @@
         "claimant_knew_ground_at_performance_acceptance": false,
         "performance_violates_third_party_or_public_interests": false,
         "violates_law": false,
+        "statutory_disposal_prohibition_violated": false,
+        "judicial_disposal_prohibition_violated": false,
+        "acquirer_knew_of_disposal_prohibition": false,
         "public_interests_or_third_rights_affected": false,
         "law_expressly_makes_void": false,
         "immoral_purpose_proven": false,
@@ -29923,6 +29986,13 @@
         "synthetic-ru-plenum25-invalidity-guidance-v1"
       ],
       "provenance": [
+        {
+          "fact_name": "acquirer_knew_of_disposal_prohibition",
+          "assertion_id": "invalidity-evidence-acquirer_knew_of_disposal_prohibition",
+          "source_refs": [
+            "synthetic-case-supply-1-invalidity-evidence"
+          ]
+        },
         {
           "fact_name": "additional_damages_causally_linked",
           "assertion_id": "invalidity-evidence-additional_damages_causally_linked",
@@ -30127,6 +30197,13 @@
           ]
         },
         {
+          "fact_name": "judicial_disposal_prohibition_violated",
+          "assertion_id": "invalidity-evidence-judicial_disposal_prohibition_violated",
+          "source_refs": [
+            "synthetic-case-supply-1-invalidity-evidence"
+          ]
+        },
+        {
           "fact_name": "law_expressly_makes_void",
           "assertion_id": "invalidity-evidence-law_expressly_makes_void",
           "source_refs": [
@@ -30260,6 +30337,13 @@
           ]
         },
         {
+          "fact_name": "statutory_disposal_prohibition_violated",
+          "assertion_id": "invalidity-evidence-statutory_disposal_prohibition_violated",
+          "source_refs": [
+            "synthetic-case-supply-1-invalidity-evidence"
+          ]
+        },
+        {
           "fact_name": "transaction_concluded",
           "assertion_id": "invalidity-evidence-transaction_concluded",
           "source_refs": [
@@ -30312,7 +30396,7 @@
     },
     "invalidity_constraint_set": {
       "id": "invalidity-constraint-set:reviewed-invalidity-evidence-supply-1-v0",
-      "model_version": "contracts-transaction-invalidity-articles-166-181-431-1-v0",
+      "model_version": "contracts-transaction-invalidity-articles-166-181-174-1-431-1-v0",
       "legal_source_refs": [
         "synthetic-ru-gk166-168-invalidity-framework-v1",
         "synthetic-ru-gk169-172-void-transactions-v1",
@@ -30344,14 +30428,17 @@
         "nullity_consequences_prerequisites == transaction_concluded AND void_ground_detected AND nullity_consequence_claimant_has_standing AND NOT void_limitation_period_expired",
         "partial_invalidity_only == contractual_effect_displaced AND invalid_part_separable AND remainder_preserves_transaction_purpose",
         "public_recovery_issue == immoral_void_ground AND both_parties_intentional_immoral_purpose",
-        "requires_human_invalidity_assessment == void_ground_detected OR voidable_ground_detected OR invalidity_claim_made OR nullity_consequences_requested OR estoppel_bar OR entrepreneurial_estoppel_bar OR contractual_effect_displaced OR restitution_required OR benefit_to_incapacitated_or_minor_proven",
+        "requires_human_invalidity_assessment == void_ground_detected OR voidable_ground_detected OR invalidity_claim_made OR nullity_consequences_requested OR estoppel_bar OR entrepreneurial_estoppel_bar OR contractual_effect_displaced OR restitution_required OR benefit_to_incapacitated_or_minor_proven OR judicial_prohibition_does_not_void",
         "restitution_in_kind == restitution_required AND return_in_kind_possible",
         "restitution_required == contractual_effect_displaced AND (party_a_performed OR party_b_performed)",
         "sham_void_ground == sham_intent_proven",
         "transaction_presumed_effective == transaction_concluded AND NOT contractual_effect_displaced",
-        "unlawful_void_ground == violates_law AND (public_interests_or_third_rights_affected OR law_expressly_makes_void)",
-        "unlawful_voidable_ground == violates_law AND NOT unlawful_void_ground",
-        "void_ground_detected == unlawful_void_ground OR immoral_void_ground OR sham_void_ground OR feigned_void_ground OR capacity_void_ground",
+        "disposal_prohibition_nullity == transaction_concluded AND statutory_disposal_prohibition_violated",
+        "judicial_prohibition_does_not_void == transaction_concluded AND judicial_disposal_prohibition_violated",
+        "secured_creditor_rights_survive == judicial_prohibition_does_not_void AND acquirer_knew_of_disposal_prohibition",
+        "unlawful_void_ground == violates_law AND (public_interests_or_third_rights_affected OR law_expressly_makes_void) AND NOT judicial_prohibition_does_not_void",
+        "unlawful_voidable_ground == violates_law AND NOT unlawful_void_ground AND NOT judicial_prohibition_does_not_void",
+        "void_ground_detected == unlawful_void_ground OR immoral_void_ground OR sham_void_ground OR feigned_void_ground OR capacity_void_ground OR disposal_prohibition_nullity",
         "voidable_claimant_has_standing == invalidity_claim_made AND (claimant_is_transaction_party OR claimant_legally_authorized) AND claimant_rights_or_interests_affected",
         "voidable_ground_detected == unlawful_voidable_ground OR consent_voidable_ground OR authority_voidable_ground OR entity_purpose_voidable_ground OR mistake_voidable_ground OR coercion_voidable_ground OR capacity_voidable_ground",
         "voidable_invalidity_effective == voidable_invalidity_prerequisites AND court_decision_entered_into_force",
@@ -30364,6 +30451,9 @@
       "estoppel_bar": false,
       "unlawful_void_ground": false,
       "unlawful_voidable_ground": false,
+      "disposal_prohibition_nullity": false,
+      "judicial_prohibition_does_not_void": false,
+      "secured_creditor_rights_survive": false,
       "immoral_void_ground": false,
       "sham_void_ground": false,
       "feigned_void_ground": false,
@@ -30403,7 +30493,8 @@
       "warnings_ru": [
         "Квалификация основания ничтожности или оспоримости требует правовой оценки.",
         "Модель не признает сделку недействительной и не определяет размер реституции автоматически.",
-        "Специальные основания и последствия отдельных сделок проверяются отдельно."
+        "Специальные основания и последствия отдельных сделок проверяются отдельно.",
+        "Объём прав кредитора, обеспеченных запретом распоряжения, модель не считает: пункт 5 статьи 334 ГК РФ даёт ему права залогодержателя с момента вступления в силу решения суда, и это территория института обеспечения."
       ]
     },
     "security_evidence_mapping": {
@@ -35468,7 +35559,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.9.0",
+      "institutional_package_version": "contracts-ru-v0@1.10.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -36065,6 +36156,7 @@
       "Квалификация основания ничтожности или оспоримости требует правовой оценки.",
       "Модель не признает сделку недействительной и не определяет размер реституции автоматически.",
       "Специальные основания и последствия отдельных сделок проверяются отдельно.",
+      "Объём прав кредитора, обеспеченных запретом распоряжения, модель не считает: пункт 5 статьи 334 ГК РФ даёт ему права залогодержателя с момента вступления в силу решения суда, и это территория института обеспечения.",
       "Модель не определяет стоимость предмета залога и размер обеспеченного требования.",
       "Добросовестность, злоупотребление, несоразмерность и порядок реализации оценивает юрист.",
       "Специальные правила ипотеки, банкротства и отдельных гарантий проверяются отдельно.",

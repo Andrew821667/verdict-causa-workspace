@@ -8,7 +8,7 @@ from causa.core.bootstrap import BootstrapReviewStatus
 
 INVALIDITY_EVIDENCE_SCHEMA_VERSION = "contracts.invalidity-evidence.v0"
 INVALIDITY_MAPPING_VERSION = "contracts-reviewed-invalidity-to-facts-v0"
-INVALIDITY_MODEL_VERSION = "contracts-transaction-invalidity-articles-166-181-431-1-v0"
+INVALIDITY_MODEL_VERSION = "contracts-transaction-invalidity-articles-166-181-174-1-431-1-v0"
 
 
 class InvalidityEvidencePredicate(str, Enum):
@@ -34,6 +34,11 @@ class InvalidityEvidencePredicate(str, Enum):
         "performance_violates_third_party_or_public_interests"
     )
     VIOLATES_LAW = "violates_law"
+    # Распоряжение имуществом вопреки запрету (статья 174.1 ГК РФ). Пункты 1 и 2
+    # дают противоположные последствия, поэтому и предиката два.
+    STATUTORY_DISPOSAL_PROHIBITION_VIOLATED = "statutory_disposal_prohibition_violated"
+    JUDICIAL_DISPOSAL_PROHIBITION_VIOLATED = "judicial_disposal_prohibition_violated"
+    ACQUIRER_KNEW_OF_DISPOSAL_PROHIBITION = "acquirer_knew_of_disposal_prohibition"
     PUBLIC_INTERESTS_OR_THIRD_RIGHTS_AFFECTED = "public_interests_or_third_rights_affected"
     LAW_EXPRESSLY_MAKES_VOID = "law_expressly_makes_void"
     IMMORAL_PURPOSE_PROVEN = "immoral_purpose_proven"
@@ -127,6 +132,9 @@ class InvalidityFactSet(BaseModel):
     claimant_knew_ground_at_performance_acceptance: bool
     performance_violates_third_party_or_public_interests: bool
     violates_law: bool
+    statutory_disposal_prohibition_violated: bool
+    judicial_disposal_prohibition_violated: bool
+    acquirer_knew_of_disposal_prohibition: bool
     public_interests_or_third_rights_affected: bool
     law_expressly_makes_void: bool
     immoral_purpose_proven: bool
@@ -173,6 +181,14 @@ class InvalidityFactSet(BaseModel):
             raise ValueError("An effective invalidity judgment requires a claim.")
         if self.ground_known_at_confirmation and not self.party_confirmed_voidable_transaction:
             raise ValueError("Known ground requires confirmation of the voidable transaction.")
+        if (
+            self.acquirer_knew_of_disposal_prohibition
+            and not self.judicial_disposal_prohibition_violated
+        ):
+            raise ValueError(
+                "Осведомлённость приобретателя о запрете имеет смысл только для запрета, "
+                "наложенного в пользу кредитора (пункт 2 статьи 174.1 ГК РФ)."
+            )
         if (
             self.claimant_did_not_reciprocate_performance
             and not self.performance_accepted_under_entrepreneurial_contract
@@ -254,6 +270,11 @@ class InvalidityEvaluation(BaseModel):
     estoppel_bar: bool
     unlawful_void_ground: bool
     unlawful_voidable_ground: bool
+    # Пункт 1 статьи 174.1: запрет из закона — ничтожность в части распоряжения.
+    disposal_prohibition_nullity: bool
+    # Пункт 2 той же статьи: запрет в пользу кредитора недействительности не влечёт.
+    judicial_prohibition_does_not_void: bool
+    secured_creditor_rights_survive: bool
     immoral_void_ground: bool
     sham_void_ground: bool
     feigned_void_ground: bool
@@ -353,14 +374,17 @@ def build_invalidity_constraint_set(
             "nullity_consequences_prerequisites == transaction_concluded AND void_ground_detected AND nullity_consequence_claimant_has_standing AND NOT void_limitation_period_expired",
             "partial_invalidity_only == contractual_effect_displaced AND invalid_part_separable AND remainder_preserves_transaction_purpose",
             "public_recovery_issue == immoral_void_ground AND both_parties_intentional_immoral_purpose",
-            "requires_human_invalidity_assessment == void_ground_detected OR voidable_ground_detected OR invalidity_claim_made OR nullity_consequences_requested OR estoppel_bar OR entrepreneurial_estoppel_bar OR contractual_effect_displaced OR restitution_required OR benefit_to_incapacitated_or_minor_proven",
+            "requires_human_invalidity_assessment == void_ground_detected OR voidable_ground_detected OR invalidity_claim_made OR nullity_consequences_requested OR estoppel_bar OR entrepreneurial_estoppel_bar OR contractual_effect_displaced OR restitution_required OR benefit_to_incapacitated_or_minor_proven OR judicial_prohibition_does_not_void",
             "restitution_in_kind == restitution_required AND return_in_kind_possible",
             "restitution_required == contractual_effect_displaced AND (party_a_performed OR party_b_performed)",
             "sham_void_ground == sham_intent_proven",
             "transaction_presumed_effective == transaction_concluded AND NOT contractual_effect_displaced",
-            "unlawful_void_ground == violates_law AND (public_interests_or_third_rights_affected OR law_expressly_makes_void)",
-            "unlawful_voidable_ground == violates_law AND NOT unlawful_void_ground",
-            "void_ground_detected == unlawful_void_ground OR immoral_void_ground OR sham_void_ground OR feigned_void_ground OR capacity_void_ground",
+            "disposal_prohibition_nullity == transaction_concluded AND statutory_disposal_prohibition_violated",
+            "judicial_prohibition_does_not_void == transaction_concluded AND judicial_disposal_prohibition_violated",
+            "secured_creditor_rights_survive == judicial_prohibition_does_not_void AND acquirer_knew_of_disposal_prohibition",
+            "unlawful_void_ground == violates_law AND (public_interests_or_third_rights_affected OR law_expressly_makes_void) AND NOT judicial_prohibition_does_not_void",
+            "unlawful_voidable_ground == violates_law AND NOT unlawful_void_ground AND NOT judicial_prohibition_does_not_void",
+            "void_ground_detected == unlawful_void_ground OR immoral_void_ground OR sham_void_ground OR feigned_void_ground OR capacity_void_ground OR disposal_prohibition_nullity",
             "voidable_claimant_has_standing == invalidity_claim_made AND (claimant_is_transaction_party OR claimant_legally_authorized) AND claimant_rights_or_interests_affected",
             "voidable_ground_detected == unlawful_voidable_ground OR consent_voidable_ground OR authority_voidable_ground OR entity_purpose_voidable_ground OR mistake_voidable_ground OR coercion_voidable_ground OR capacity_voidable_ground",
             "voidable_invalidity_effective == voidable_invalidity_prerequisites AND court_decision_entered_into_force",
@@ -394,6 +418,27 @@ def evaluate_invalidity_constraints(
         )
     )
     solver.add(
+        outputs["disposal_prohibition_nullity"]
+        == And(
+            variables["transaction_concluded"],
+            variables["statutory_disposal_prohibition_violated"],
+        )
+    )
+    solver.add(
+        outputs["judicial_prohibition_does_not_void"]
+        == And(
+            variables["transaction_concluded"],
+            variables["judicial_disposal_prohibition_violated"],
+        )
+    )
+    solver.add(
+        outputs["secured_creditor_rights_survive"]
+        == And(
+            outputs["judicial_prohibition_does_not_void"],
+            variables["acquirer_knew_of_disposal_prohibition"],
+        )
+    )
+    solver.add(
         outputs["unlawful_void_ground"]
         == And(
             variables["violates_law"],
@@ -401,11 +446,16 @@ def evaluate_invalidity_constraints(
                 variables["public_interests_or_third_rights_affected"],
                 variables["law_expressly_makes_void"],
             ),
+            Not(outputs["judicial_prohibition_does_not_void"]),
         )
     )
     solver.add(
         outputs["unlawful_voidable_ground"]
-        == And(variables["violates_law"], Not(outputs["unlawful_void_ground"]))
+        == And(
+            variables["violates_law"],
+            Not(outputs["unlawful_void_ground"]),
+            Not(outputs["judicial_prohibition_does_not_void"]),
+        )
     )
     solver.add(outputs["immoral_void_ground"] == variables["immoral_purpose_proven"])
     solver.add(outputs["sham_void_ground"] == variables["sham_intent_proven"])
@@ -501,6 +551,7 @@ def evaluate_invalidity_constraints(
             outputs["sham_void_ground"],
             outputs["feigned_void_ground"],
             outputs["capacity_void_ground"],
+            outputs["disposal_prohibition_nullity"],
         )
     )
     solver.add(
@@ -640,6 +691,7 @@ def evaluate_invalidity_constraints(
             outputs["contractual_effect_displaced"],
             outputs["restitution_required"],
             variables["benefit_to_incapacitated_or_minor_proven"],
+            outputs["judicial_prohibition_does_not_void"],
         )
     )
 
@@ -688,6 +740,35 @@ def evaluate_invalidity_constraints(
             "нарушения охраняемых законом интересов третьих лиц или публичных интересов из "
             "этого запрета исключены."
         )
+    if values["disposal_prohibition_nullity"]:
+        reasons_ru.append(
+            "Сделка совершена с нарушением запрета или ограничения распоряжения имуществом, "
+            "вытекающих из закона, в частности из законодательства о банкротстве: она ничтожна "
+            "в той части, в какой предусматривает распоряжение таким имуществом (пункт 1 статьи "
+            "174.1 и статья 180 ГК РФ)."
+        )
+    if values["judicial_prohibition_does_not_void"]:
+        reasons_ru.append(
+            "Запрет распоряжения наложен в судебном или ином установленном законом порядке в "
+            "пользу кредитора, и его нарушение недействительности сделки не влечёт: сделка не "
+            "препятствует реализации прав кредитора, которые обеспечивались запретом (пункт 2 "
+            "статьи 174.1 ГК РФ). Поэтому основания статьи 168 из такого нарушения модель не "
+            "выводит — это прямое исключение закона, а не пробел в фактах. Пункты 1 и 2 статьи "
+            "174.1 дают противоположные последствия, и модель их не смешивает."
+        )
+    if values["secured_creditor_rights_survive"]:
+        reasons_ru.append(
+            "Приобретатель знал или должен был знать о запрете, поэтому права кредитора, "
+            "обеспеченные запретом, сохраняются и реализуются в отношении имущества, перешедшего "
+            "к приобретателю (пункт 2 статьи 174.1 ГК РФ). Объём этих прав — права и обязанности "
+            "залогодержателя с момента вступления в силу решения суда — определяет пункт 5 статьи "
+            "334 ГК РФ; модель обеспечения его отдельно не разбирает."
+        )
+    elif values["judicial_prohibition_does_not_void"]:
+        reasons_ru.append(
+            "Осведомлённость приобретателя о запрете не установлена, поэтому исключение пункта 2 "
+            "статьи 174.1 ГК РФ в его пользу не снято и права кредитора против него не выводятся."
+        )
     if values["transaction_presumed_effective"]:
         reasons_ru.append("Договорные последствия сделки текущей моделью не устранены.")
     if values["contractual_effect_displaced"]:
@@ -701,5 +782,8 @@ def evaluate_invalidity_constraints(
             "Квалификация основания ничтожности или оспоримости требует правовой оценки.",
             "Модель не признает сделку недействительной и не определяет размер реституции автоматически.",
             "Специальные основания и последствия отдельных сделок проверяются отдельно.",
+            "Объём прав кредитора, обеспеченных запретом распоряжения, модель не считает: "
+            "пункт 5 статьи 334 ГК РФ даёт ему права залогодержателя с момента вступления "
+            "в силу решения суда, и это территория института обеспечения.",
         ],
     )

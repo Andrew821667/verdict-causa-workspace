@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1185,
+  "declared_rules": 1189,
   "divergences_total": 0,
-  "executed_rules": 1185,
+  "executed_rules": 1189,
   "institutes": [
     {
       "declared_rules": 5,
@@ -180,11 +180,11 @@
       "module": "factoring.py"
     },
     {
-      "declared_rules": 8,
+      "declared_rules": 9,
       "divergences": [],
-      "executed_rules": 8,
+      "executed_rules": 9,
       "institute": "form",
-      "matched": 8,
+      "matched": 9,
       "module": "form.py"
     },
     {
@@ -300,11 +300,11 @@
       "module": "interpretation.py"
     },
     {
-      "declared_rules": 34,
+      "declared_rules": 37,
       "divergences": [],
-      "executed_rules": 34,
+      "executed_rules": 37,
       "institute": "invalidity",
-      "matched": 34,
+      "matched": 37,
       "module": "invalidity.py"
     },
     {
@@ -734,6 +734,6 @@
   ],
   "institutes_clean": 91,
   "institutes_total": 91,
-  "matched_rules": 1185,
+  "matched_rules": 1189,
   "version": "reasoning-rule-parity-v0"
 }

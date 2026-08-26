@@ -13,6 +13,8 @@
       "document_signed_by_parties": true,
       "exchange_of_documents": false,
       "electronic_signature_valid": false,
+      "written_offer_made": false,
+      "offer_terms_performed_as_acceptance": false,
       "notarial_form_observed": false,
       "written_noncompliance_invalidates_by_law_or_agreement": false,
       "performance_or_written_proof_available": true
@@ -58,6 +60,13 @@
         ]
       },
       {
+        "fact_name": "offer_terms_performed_as_acceptance",
+        "assertion_id": "form-evidence-offer_terms_performed_as_acceptance",
+        "source_refs": [
+          "synthetic-case-supply-1-form-evidence"
+        ]
+      },
+      {
         "fact_name": "oral_form_permitted",
         "assertion_id": "form-evidence-oral_form_permitted",
         "source_refs": [
@@ -91,19 +100,27 @@
         "source_refs": [
           "synthetic-case-supply-1-form-evidence"
         ]
+      },
+      {
+        "fact_name": "written_offer_made",
+        "assertion_id": "form-evidence-written_offer_made",
+        "source_refs": [
+          "synthetic-case-supply-1-form-evidence"
+        ]
       }
     ]
   },
   "constraint_set": {
     "id": "form-constraint-set:reviewed-form-evidence-supply-1-v0",
-    "model_version": "contracts-form-articles-158-165-434-v0",
+    "model_version": "contracts-form-articles-158-165-434-3-v0",
     "legal_source_refs": [
       "synthetic-ru-gk158-165-form-framework-v1",
       "synthetic-ru-gk160-434-written-form-model-v1"
     ],
     "expressions": [
       "written_form_method_valid == document_signed_by_parties OR exchange_of_documents OR electronic_signature_valid",
-      "written_form_satisfied == NOT simple_written_form_required OR (simple_written_form_observed AND written_form_method_valid)",
+      "acceptance_by_conduct_observes_written_form == written_offer_made AND offer_terms_performed_as_acceptance",
+      "written_form_satisfied == NOT simple_written_form_required OR (simple_written_form_observed AND written_form_method_valid) OR acceptance_by_conduct_observes_written_form",
       "notarial_form_satisfied == NOT notarial_form_required OR notarial_form_observed",
       "form_requirement_satisfied == written_form_satisfied AND notarial_form_satisfied",
       "witness_testimony_barred == simple_written_form_required AND NOT written_form_satisfied",
@@ -116,6 +133,7 @@
     "constraint_set_id": "form-constraint-set:reviewed-form-evidence-supply-1-v0",
     "satisfiable": true,
     "written_form_method_valid": true,
+    "acceptance_by_conduct_observes_written_form": false,
     "written_form_satisfied": true,
     "notarial_form_satisfied": true,
     "form_requirement_satisfied": true,
@@ -128,13 +146,14 @@
     ],
     "warnings_ru": [
       "Модель проверяет только формальные правила о форме сделки и не заменяет судебную оценку.",
-      "Достаточность доказательств формы и соблюдение способа ее совершения оцениваются экспертом и судом."
+      "Достаточность доказательств формы и соблюдение способа ее совершения оцениваются экспертом и судом.",
+      "Совершены ли действия именно по выполнению условий оферты и в срок, установленный для акцепта, оценивает человек: модель принимает это как установленный факт (пункт 3 статьи 438 ГК РФ)."
     ]
   },
   "benchmark_report": {
     "id": "form-benchmark-report-v0",
-    "total": 10,
-    "passed": 10,
+    "total": 12,
+    "passed": 12,
     "failed": 0,
     "results": [
       {
@@ -284,13 +303,49 @@
           "Требования к форме сделки не соблюдены.",
           "Несоблюдение простой письменной формы лишает права ссылаться на свидетельские показания, но само по себе не влечет недействительности (статья 162 ГК РФ)."
         ]
+      },
+      {
+        "task_id": "form-bench-acceptance-by-conduct",
+        "passed": true,
+        "expected_outcomes": {
+          "acceptance_by_conduct_observes_written_form": true,
+          "written_form_satisfied": true,
+          "form_requirement_satisfied": true,
+          "transaction_void_for_form": false
+        },
+        "observed_outcomes": {
+          "acceptance_by_conduct_observes_written_form": true,
+          "written_form_satisfied": true,
+          "form_requirement_satisfied": true,
+          "transaction_void_for_form": false
+        },
+        "reasons_ru": [
+          "Требования к форме сделки соблюдены.",
+          "Письменная форма договора считается соблюдённой: письменное предложение заключить договор принято совершением действий по выполнению указанных в нём условий — отгрузкой товара, выполнением работ, уплатой суммы и тому подобным (пункт 3 статьи 434 и пункт 3 статьи 438 ГК РФ). Подписанного сторонами документа для этого не требуется, и его отсутствие само по себе о несоблюдении формы не говорит."
+        ]
+      },
+      {
+        "task_id": "form-bench-conduct-without-written-offer",
+        "passed": true,
+        "expected_outcomes": {
+          "acceptance_by_conduct_observes_written_form": false,
+          "written_form_satisfied": false
+        },
+        "observed_outcomes": {
+          "acceptance_by_conduct_observes_written_form": false,
+          "written_form_satisfied": false
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение простой письменной формы лишает права ссылаться на свидетельские показания, но само по себе не влечет недействительности (статья 162 ГК РФ)."
+        ]
       }
     ]
   },
   "red_team_report": {
     "id": "form-red-team-report-v0",
-    "total": 10,
-    "blocked": 10,
+    "total": 11,
+    "blocked": 11,
     "unblocked": 0,
     "results": [
       {
@@ -427,6 +482,20 @@
         },
         "observed_outcomes": {
           "oral_form_valid": false
+        },
+        "reasons_ru": [
+          "Требования к форме сделки не соблюдены.",
+          "Несоблюдение простой письменной формы лишает права ссылаться на свидетельские показания, но само по себе не влечет недействительности (статья 162 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "form-red-conduct-without-offer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "acceptance_by_conduct_observes_written_form": true
+        },
+        "observed_outcomes": {
+          "acceptance_by_conduct_observes_written_form": false
         },
         "reasons_ru": [
           "Требования к форме сделки не соблюдены.",

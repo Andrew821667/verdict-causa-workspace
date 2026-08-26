@@ -129,9 +129,9 @@ def test_form_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_form_benchmark_suite()
     red_team = run_form_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_FORM_BENCHMARKS) == 10
+    assert benchmark.total == len(SYNTHETIC_FORM_BENCHMARKS) == 12
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_FORM_RED_TEAM_CASES) == 10
+    assert red_team.total == len(SYNTHETIC_FORM_RED_TEAM_CASES) == 11
     assert red_team.blocked == red_team.total
 
 

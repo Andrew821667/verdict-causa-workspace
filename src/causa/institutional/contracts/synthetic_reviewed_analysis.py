@@ -1084,6 +1084,8 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
                     (FormEvidencePredicate.DOCUMENT_SIGNED_BY_PARTIES, True),
                     (FormEvidencePredicate.EXCHANGE_OF_DOCUMENTS, False),
                     (FormEvidencePredicate.ELECTRONIC_SIGNATURE_VALID, False),
+                    (FormEvidencePredicate.WRITTEN_OFFER_MADE, False),
+                    (FormEvidencePredicate.OFFER_TERMS_PERFORMED_AS_ACCEPTANCE, False),
                     (FormEvidencePredicate.NOTARIAL_FORM_OBSERVED, False),
                     (
                         FormEvidencePredicate.WRITTEN_NONCOMPLIANCE_INVALIDATES_BY_LAW_OR_AGREEMENT,

@@ -171,6 +171,30 @@ SYNTHETIC_FORM_BENCHMARKS = (
             "requires_human_form_assessment": False,
         },
     ),
+    FormEvaluationTask(
+        id="form-bench-acceptance-by-conduct",
+        title_ru="Письменная оферта принята действиями по выполнению её условий",
+        facts=_facts(
+            simple_written_form_required=True,
+            written_offer_made=True,
+            offer_terms_performed_as_acceptance=True,
+        ),
+        expected_outcomes={
+            "acceptance_by_conduct_observes_written_form": True,
+            "written_form_satisfied": True,
+            "form_requirement_satisfied": True,
+            "transaction_void_for_form": False,
+        },
+    ),
+    FormEvaluationTask(
+        id="form-bench-conduct-without-written-offer",
+        title_ru="Действия совершены, но письменной оферты не было",
+        facts=_facts(simple_written_form_required=True, written_offer_made=True),
+        expected_outcomes={
+            "acceptance_by_conduct_observes_written_form": False,
+            "written_form_satisfied": False,
+        },
+    ),
 )
 
 
@@ -249,6 +273,12 @@ SYNTHETIC_FORM_RED_TEAM_CASES = (
         title_ru="Признать устную форму действительной при обязательной письменной",
         facts=_facts(simple_written_form_required=True),
         forbidden_outcomes={"oral_form_valid": True},
+    ),
+    FormRedTeamCase(
+        id="form-red-conduct-without-offer",
+        title_ru="Вывести соблюдение формы из действий без письменной оферты",
+        facts=_facts(simple_written_form_required=True),
+        forbidden_outcomes={"acceptance_by_conduct_observes_written_form": True},
     ),
 )
 

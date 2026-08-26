@@ -3,7 +3,7 @@
   "disclaimer_ru": "Синтетическая проверка юридически значимых сообщений по статье 165.1 ГК РФ. Не устанавливает судебный факт и не является юридической консультацией.",
   "reviewed_mapping": {
     "evidence_id": "reviewed-messages-evidence-supply-1-v0",
-    "schema_version": "contracts.messages-evidence.v0",
+    "schema_version": "contracts.messages-evidence.v1",
     "mapping_version": "contracts-reviewed-messages-to-facts-v0",
     "facts": {
       "message_asserted": true,

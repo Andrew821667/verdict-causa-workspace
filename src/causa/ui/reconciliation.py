@@ -30,7 +30,19 @@
 или два факта разных институтов. Там «привести в согласие» означало бы выбрать
 версию — ровно то, что запрещено. Такие ключи перечислены в
 `UNRECONCILABLE_RU` с причиной, и тест не даёт оставить ключ без записи ни в
-одном из двух списков.
+одном из трёх списков.
+
+## Третий класс: цель называет само дело
+
+Обычно ключ сверки указывает на постоянную пару «набор фактов, предикат». Но
+сверка доставки сообщения устроена иначе: какой именно предикат исправлять,
+зависит от роли сообщения, которую назвал переводчик фабулы. Один и тот же ключ
+ведёт то в поставку, то в расторжение, то в обеспечение.
+
+Записать такой ключ постоянной парой значило бы соврать, а объявить
+несогласуемым — тоже: он согласуем совершенно механически, просто цель берётся
+из дела. Поэтому у него свой список `ROLE_DEPENDENT_FACTS`, где записано, откуда
+берётся цель.
 """
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -39,6 +51,7 @@ from causa.institutional.contracts.fact_consistency import (
     FACT_CONSISTENCY_VOCABULARY,
     FactConsistencyMismatch,
 )
+from causa.institutional.contracts.messages import MESSAGE_ROLE_PREDICATES, MessageRole
 from causa.institutional.contracts.reviewed_analysis import ReviewedContractAnalysisRequest
 from causa.ui.documents import UploadedDocument
 
@@ -99,6 +112,18 @@ _BOTH_REVIEWER = (
     "решает, какой из них верен"
 )
 
+#: Ключи, цель которых называет само дело, и откуда она берётся.
+#:
+#: Согласование здесь такое же механическое, как и по постоянной паре, — меняется
+#: лишь то, что предикат ищется не в таблице, а в данных дела.
+ROLE_DEPENDENT_FACTS: dict[str, str] = {
+    "message_delivery_agreement": (
+        "предикат доставки называет роль сообщения, объявленная в доказательствах "
+        "по статье 165.1: она указывает институт и его предикат"
+    ),
+}
+
+
 #: Ключи, которые согласовать механически нельзя, и почему.
 UNRECONCILABLE_RU: dict[str, str] = {
     "contractual_duty": _COMPOSITE,
@@ -146,6 +171,19 @@ class UnreconcilableMismatchError(ValueError):
         )
 
 
+def _target(key: str, request: ReviewedContractAnalysisRequest) -> tuple[str, str]:
+    """Куда писать согласованное значение: постоянная пара или цель из дела."""
+    if key not in ROLE_DEPENDENT_FACTS:
+        return RECONCILABLE_FACTS[key]
+    role = request.messages_evidence.message_role
+    if role is MessageRole.OTHER:
+        raise KeyError(
+            "Сверка доставки сообщения не могла сработать без роли: согласовывать нечего."
+        )
+    institute, predicate = MESSAGE_ROLE_PREDICATES[role]
+    return f"{institute}_evidence", predicate
+
+
 def reconcile(
     request: ReviewedContractAnalysisRequest,
     mismatches: list[FactConsistencyMismatch],
@@ -162,7 +200,9 @@ def reconcile(
     unknown = [
         mismatch.key
         for mismatch in mismatches
-        if mismatch.key not in RECONCILABLE_FACTS and mismatch.key not in UNRECONCILABLE_RU
+        if mismatch.key not in RECONCILABLE_FACTS
+        and mismatch.key not in ROLE_DEPENDENT_FACTS
+        and mismatch.key not in UNRECONCILABLE_RU
     ]
     if unknown:
         raise KeyError("Сверки без записи о согласовании: " + ", ".join(sorted(set(unknown))))
@@ -176,7 +216,7 @@ def reconcile(
             # которого они выведены. Поэтому они не останавливают проход, а
             # возвращаются вызывающему: решение принимает он.
             continue
-        field, predicate = RECONCILABLE_FACTS[mismatch.key]
+        field, predicate = _target(mismatch.key, request)
         updates.setdefault(field, {})[predicate] = mismatch.expected
         alignments.append(
             FactAlignment(

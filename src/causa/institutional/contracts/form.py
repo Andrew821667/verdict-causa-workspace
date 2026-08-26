@@ -8,7 +8,7 @@ from causa.core.bootstrap import BootstrapReviewStatus
 
 FORM_EVIDENCE_SCHEMA_VERSION = "contracts.form-evidence.v0"
 FORM_MAPPING_VERSION = "contracts-reviewed-form-to-facts-v0"
-FORM_MODEL_VERSION = "contracts-form-articles-158-165-434-v0"
+FORM_MODEL_VERSION = "contracts-form-articles-158-165-434-3-v0"
 
 
 class FormEvidencePredicate(str, Enum):
@@ -21,6 +21,10 @@ class FormEvidencePredicate(str, Enum):
     DOCUMENT_SIGNED_BY_PARTIES = "document_signed_by_parties"
     EXCHANGE_OF_DOCUMENTS = "exchange_of_documents"
     ELECTRONIC_SIGNATURE_VALID = "electronic_signature_valid"
+    # Акцепт конклюдентными действиями (пункт 3 статьи 434 во взаимосвязи с
+    # пунктом 3 статьи 438 ГК РФ).
+    WRITTEN_OFFER_MADE = "written_offer_made"
+    OFFER_TERMS_PERFORMED_AS_ACCEPTANCE = "offer_terms_performed_as_acceptance"
     NOTARIAL_FORM_OBSERVED = "notarial_form_observed"
     # Последствия несоблюдения формы (статьи 162, 163 ГК РФ).
     WRITTEN_NONCOMPLIANCE_INVALIDATES_BY_LAW_OR_AGREEMENT = (
@@ -72,6 +76,8 @@ class FormFactSet(BaseModel):
     document_signed_by_parties: bool
     exchange_of_documents: bool
     electronic_signature_valid: bool
+    written_offer_made: bool
+    offer_terms_performed_as_acceptance: bool
     notarial_form_observed: bool
     written_noncompliance_invalidates_by_law_or_agreement: bool
     performance_or_written_proof_available: bool
@@ -84,6 +90,12 @@ class FormFactSet(BaseModel):
             raise ValueError("Oral form cannot be permitted when a stricter form is required.")
         if self.notarial_form_required and not self.simple_written_form_required:
             raise ValueError("Notarial form presupposes a mandatory written form.")
+        if self.offer_terms_performed_as_acceptance and not self.written_offer_made:
+            raise ValueError(
+                "Письменную форму соблюдает акцепт действиями именно письменной оферты: "
+                "устное предложение, принятое действиями, письменной формы не даёт "
+                "(пункт 3 статьи 434 ГК РФ)."
+            )
         return self
 
 
@@ -113,6 +125,7 @@ class FormEvaluation(BaseModel):
     constraint_set_id: str
     satisfiable: bool
     written_form_method_valid: bool
+    acceptance_by_conduct_observes_written_form: bool
     written_form_satisfied: bool
     notarial_form_satisfied: bool
     form_requirement_satisfied: bool
@@ -165,7 +178,8 @@ def build_form_constraint_set(
         legal_source_refs=mapping.legal_source_refs,
         expressions=[
             "written_form_method_valid == document_signed_by_parties OR exchange_of_documents OR electronic_signature_valid",
-            "written_form_satisfied == NOT simple_written_form_required OR (simple_written_form_observed AND written_form_method_valid)",
+            "acceptance_by_conduct_observes_written_form == written_offer_made AND offer_terms_performed_as_acceptance",
+            "written_form_satisfied == NOT simple_written_form_required OR (simple_written_form_observed AND written_form_method_valid) OR acceptance_by_conduct_observes_written_form",
             "notarial_form_satisfied == NOT notarial_form_required OR notarial_form_observed",
             "form_requirement_satisfied == written_form_satisfied AND notarial_form_satisfied",
             "witness_testimony_barred == simple_written_form_required AND NOT written_form_satisfied",
@@ -182,6 +196,9 @@ def evaluate_form_constraints(
 ) -> FormEvaluation:
     variables = {field_name: Bool(field_name) for field_name in FormFactSet.model_fields}
     written_form_method_valid = Bool("written_form_method_valid")
+    acceptance_by_conduct_observes_written_form = Bool(
+        "acceptance_by_conduct_observes_written_form"
+    )
     written_form_satisfied = Bool("written_form_satisfied")
     notarial_form_satisfied = Bool("notarial_form_satisfied")
     form_requirement_satisfied = Bool("form_requirement_satisfied")
@@ -202,10 +219,18 @@ def evaluate_form_constraints(
         )
     )
     solver.add(
+        acceptance_by_conduct_observes_written_form
+        == And(
+            variables["written_offer_made"],
+            variables["offer_terms_performed_as_acceptance"],
+        )
+    )
+    solver.add(
         written_form_satisfied
         == Or(
             Not(variables["simple_written_form_required"]),
             And(variables["simple_written_form_observed"], written_form_method_valid),
+            acceptance_by_conduct_observes_written_form,
         )
     )
     solver.add(
@@ -259,6 +284,7 @@ def evaluate_form_constraints(
             constraint_set_id=constraint_set.id,
             satisfiable=False,
             written_form_method_valid=False,
+            acceptance_by_conduct_observes_written_form=False,
             written_form_satisfied=False,
             notarial_form_satisfied=False,
             form_requirement_satisfied=False,
@@ -292,10 +318,21 @@ def evaluate_form_constraints(
             "Несоблюдение простой письменной формы лишает права ссылаться на свидетельские "
             "показания, но само по себе не влечет недействительности (статья 162 ГК РФ)."
         )
+    if truth(acceptance_by_conduct_observes_written_form):
+        reasons_ru.append(
+            "Письменная форма договора считается соблюдённой: письменное предложение заключить "
+            "договор принято совершением действий по выполнению указанных в нём условий — "
+            "отгрузкой товара, выполнением работ, уплатой суммы и тому подобным (пункт 3 статьи "
+            "434 и пункт 3 статьи 438 ГК РФ). Подписанного сторонами документа для этого не "
+            "требуется, и его отсутствие само по себе о несоблюдении формы не говорит."
+        )
     return FormEvaluation(
         constraint_set_id=constraint_set.id,
         satisfiable=True,
         written_form_method_valid=truth(written_form_method_valid),
+        acceptance_by_conduct_observes_written_form=truth(
+            acceptance_by_conduct_observes_written_form
+        ),
         written_form_satisfied=truth(written_form_satisfied),
         notarial_form_satisfied=truth(notarial_form_satisfied),
         form_requirement_satisfied=truth(form_requirement_satisfied),
@@ -307,5 +344,8 @@ def evaluate_form_constraints(
         warnings_ru=[
             "Модель проверяет только формальные правила о форме сделки и не заменяет судебную оценку.",
             "Достаточность доказательств формы и соблюдение способа ее совершения оцениваются экспертом и судом.",
+            "Совершены ли действия именно по выполнению условий оферты и в срок, установленный "
+            "для акцепта, оценивает человек: модель принимает это как установленный факт "
+            "(пункт 3 статьи 438 ГК РФ).",
         ],
     )
