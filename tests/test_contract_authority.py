@@ -31,6 +31,23 @@ def test_lex_specialis_selects_special_source_regardless_of_candidate_order() ->
     )
 
 
+def test_bankruptcy_special_source_prevails_over_general_performance_duty() -> None:
+    general_source = get_synthetic_contract_source("synthetic-ru-contract-general-performance-duty")
+    bankruptcy_source = get_synthetic_contract_source("synthetic-ru-127fz-5-current-payments-v1")
+
+    evaluation = evaluate_lex_specialis([general_source, bankruptcy_source])
+
+    assert evaluation.selected_source_id == bankruptcy_source.id
+    assert evaluation.candidate_source_ids == [general_source.id, bankruptcy_source.id]
+    assert (
+        "Special source prevails over general source at the same authority level."
+        in evaluation.reasons
+    )
+    assert authority_level_for_source(bankruptcy_source) == authority_level_for_source(
+        general_source
+    )
+
+
 def test_lex_specialis_keeps_general_source_when_no_special_source_exists() -> None:
     general_source = get_synthetic_contract_source("synthetic-ru-contract-general-performance-duty")
 

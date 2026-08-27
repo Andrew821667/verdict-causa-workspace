@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.13.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "First release of the bankruptcy institute work: source only, no model logic yet. Adds eleven LegalSource entries citing Federal Law No. 127-FZ (articles 1, 5, 61.1, 61.2, 61.3, 61.9, 63, 134, 135, 138, 142) with verbatim statute text, marked specificity='special' so lex specialis resolves them over general civil-law sources at the same statutory authority level. No predicate, evidence contract, or existing institute changes.",
+            "Corrects two coverage-map claims found while sourcing the new entries. practice_coverage.py no longer claims article 25 (a citizen's insolvency) as covered by the persons institute, which models legal capacity, not bankruptcy. code_coverage.py gives articles 25 and 65 their own exact-key gap reasons pointing to the future bankruptcy institute, instead of falling back to a neighboring range's unrelated corporate-law reason.",
+            "Fixes a data-quality defect found in the delivered 127-FZ text export: a page-navigation fragment ('previous article / next article') had leaked into the trailing paragraph of 518 of 565 articles. Cleaned deterministically in data/laws/127fz_articles.jsonl before any text reached a LegalSource - the fragment sits only at the very end of each article, separated by a blank line, so the boundary is unambiguous and the fix does not risk the mid-text data loss found earlier this session in the Plenum guidance export.",
+        ],
+        notes_ru=[
+            "Первый релиз работы над институтом банкротства: источник, без модели. Добавляет одиннадцать источников LegalSource со ссылкой на Федеральный закон № 127-ФЗ (статьи 1, 5, 61.1, 61.2, 61.3, 61.9, 63, 134, 135, 138, 142) с дословным текстом статей, помеченных specificity='special' — правило lex specialis выбирает их над общими нормами гражданского права на том же уровне статутной силы. Ни один предикат, контракт доказательств или существующий институт не изменён.",
+            "Исправляет две неточные записи в картах покрытия, найденные при подготовке новых источников. practice_coverage.py больше не объявляет статью 25 (несостоятельность гражданина) покрытой институтом лиц, который разбирает право- и дееспособность, а не банкротство. code_coverage.py получил для статей 25 и 65 отдельные точные причины со ссылкой на будущий институт банкротства вместо причины соседнего диапазона про корпоративное право.",
+            "Устраняет дефект качества данных, найденный в выгрузке текста 127-ФЗ: обрывок постраничной навигации («предыдущая статья / следующая статья») просочился в последний абзац 518 из 565 статей. Вычищен детерминированно в data/laws/127fz_articles.jsonl до того, как текст попал хоть в один LegalSource — обрывок сидит строго в конце статьи, отделён пустой строкой, граница однозначна, и правка не несёт риска потери текста в середине, найденного ранее в этой же сессии на выгрузке Пленума.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.12.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

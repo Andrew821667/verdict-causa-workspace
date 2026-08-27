@@ -2146,6 +2146,23 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.12.0",
+        to_version="1.13.0",
+        reasons=[
+            "SYNTHETIC_CONTRACT_SOURCES grows from 309 to 320 entries: eleven new LegalSource records cite Federal Law No. 127-FZ articles (1, 5, 61.1, 61.2, 61.3, 61.9, 63, 134, 135, 138, 142) with verbatim statute text and specificity='special'. No predicate or evidence contract changes; artifacts embedding the full source list must be regenerated so they carry the new entries rather than a stale count.",
+            "Two coverage maps change what they report, not what they require: practice_coverage.py no longer claims article 25 under the persons institute, and code_coverage.py now gives articles 25 and 65 their own exact-key gap reason instead of a neighboring range's unrelated one. Neither is part of any evidence contract or replay artifact.",
+        ],
+        reasons_ru=[
+            "SYNTHETIC_CONTRACT_SOURCES вырос с 309 до 320 записей: одиннадцать новых LegalSource ссылаются на статьи 127-ФЗ (1, 5, 61.1, 61.2, 61.3, 61.9, 63, 134, 135, 138, 142) с дословным текстом и specificity='special'. Ни один предикат или контракт доказательств не изменён; артефакты, встраивающие полный список источников, нужно пересобрать, чтобы они несли новые записи, а не устаревшее число.",
+            "Две карты покрытия меняют то, что сообщают, а не то, что требуют: practice_coverage.py больше не объявляет статью 25 покрытой институтом лиц, а code_coverage.py даёт статьям 25 и 65 собственную точную причину вместо причины соседнего диапазона. Ни то ни другое не входит ни в один контракт доказательств или артефакт воспроизведения.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

@@ -73,6 +73,21 @@ def test_point_gaps_answer_for_articles_just_past_an_institute() -> None:
     assert "449.1" not in KNOWN_GAPS_RU
 
 
+def test_bankruptcy_article_is_not_swallowed_by_persons_institute() -> None:
+    """Статья 25 (банкротство гражданина) не выдаётся за покрытую институтом лиц.
+
+    Строка версии модели лиц заявляет статьи 17–53 целиком, но предикаты
+    разбирают право- и дееспособность, а не банкротство — до появления
+    отдельного института банкротства (127-ФЗ) статья 25 объявлялась
+    покрытой, хотя ни один предикат её не разбирал.
+    """
+    assert institutes_for_article("25") == []
+    assert "25" in KNOWN_GAPS_RU
+    assert uncovered_domain_ru("25") != GAP_REASON_UNKNOWN_RU
+    assert institutes_for_article("24") == ["persons"]
+    assert institutes_for_article("26") == ["persons"]
+
+
 def test_repository_export_has_no_unexplained_gaps() -> None:
     """Каждая непокрытая статья реальной практики либо закрыта, либо объяснена."""
     if not PRACTICE_BASE_PATH.exists():

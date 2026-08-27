@@ -104,6 +104,25 @@ def test_boundary_and_gap_are_kept_apart() -> None:
         assert gap.reason_ru.strip(), gap.span
 
 
+def test_bankruptcy_articles_have_their_own_exact_reason_not_the_range_fallback() -> None:
+    """Статьи 25 и 65 объяснены отдельно, а не общей причиной соседнего диапазона.
+
+    Обе статьи — не о правоспособности лиц (25) и не о корпоративном праве (65),
+    а об отсылке к 127-ФЗ. Без точного ключа они попадали бы под диапазонный
+    ответ соседей («юридические лица», «правоспособность») и звучали бы так,
+    будто пакет считает банкротство темой этих институтов, а не отдельного
+    института банкротства.
+    """
+    kind_25, reason_25 = gap_reason_ru("25")
+    kind_65, reason_65 = gap_reason_ru("65")
+
+    assert kind_25 == "граница"
+    assert "127-ФЗ" in reason_25
+    assert kind_65 == "граница"
+    assert "127-ФЗ" in reason_65
+    assert reason_65 != CODE_GAP_REASONS_RU["53.1–123.28"][1]
+
+
 def test_the_code_walk_leaves_no_open_gap() -> None:
     """Все восемь пробелов первого обхода закрыты; новый обязан упасть здесь.
 
