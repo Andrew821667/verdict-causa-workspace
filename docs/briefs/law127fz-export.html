@@ -1,0 +1,549 @@
+<title>Выгрузка 127-ФЗ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #F6F7F9;
+    --card: #FFFFFF;
+    --ink: #15181E;
+    --ink-soft: #4C5563;
+    --ink-faint: #757F8E;
+    --rule: #DDE1E8;
+    --rule-strong: #C3C9D4;
+    --indigo: #243B6B;
+    --indigo-soft: #E8ECF5;
+    --alarm: #8C2F27;
+    --alarm-bg: #FBF0EE;
+    --alarm-rule: #D9B4AE;
+    --code-bg: #F0F2F6;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #101319;
+      --card: #171B23;
+      --ink: #E7EAF0;
+      --ink-soft: #A5AEBD;
+      --ink-faint: #798291;
+      --rule: #272C37;
+      --rule-strong: #39404E;
+      --indigo: #93A9DF;
+      --indigo-soft: #1B2438;
+      --alarm: #E8938A;
+      --alarm-bg: #241715;
+      --alarm-rule: #5A322C;
+      --code-bg: #1C212B;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #101319;
+    --card: #171B23;
+    --ink: #E7EAF0;
+    --ink-soft: #A5AEBD;
+    --ink-faint: #798291;
+    --rule: #272C37;
+    --rule-strong: #39404E;
+    --indigo: #93A9DF;
+    --indigo-soft: #1B2438;
+    --alarm: #E8938A;
+    --alarm-bg: #241715;
+    --alarm-rule: #5A322C;
+    --code-bg: #1C212B;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 61rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1.1rem, 4vw, 3rem) 6rem;
+  }
+
+  /* ── шапка ─────────────────────────────────────────────── */
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  h1 {
+    font-family: Spectral, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 4.6vw, 2.9rem);
+    line-height: 1.16;
+    text-wrap: balance;
+    margin: 0.5rem 0 0;
+    letter-spacing: -0.01em;
+  }
+
+  .standfirst {
+    font-family: Spectral, Georgia, serif;
+    font-size: clamp(1.02rem, 2vw, 1.18rem);
+    color: var(--ink-soft);
+    max-width: 40rem;
+    margin-top: 1rem;
+  }
+
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 2.2rem;
+    margin-top: 2rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--rule);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+  }
+
+  .facts b {
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+
+  /* ── запрет ────────────────────────────────────────────── */
+
+  .prohibition {
+    margin: 2.6rem 0 3.4rem;
+    background: var(--alarm-bg);
+    border: 1px solid var(--alarm-rule);
+    border-left-width: 4px;
+    border-radius: 2px;
+    padding: 1.5rem clamp(1.1rem, 3vw, 1.9rem);
+  }
+
+  .prohibition h2 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--alarm);
+    margin: 0 0 0.7rem;
+  }
+
+  .prohibition p {
+    margin: 0;
+    font-size: 1.02rem;
+    color: var(--ink);
+  }
+
+  .prohibition p + p { margin-top: 0.8rem; }
+
+  /* ── разделы с висячими номерами ───────────────────────── */
+
+  section {
+    display: grid;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: 0 1.4rem;
+    padding-top: 2.6rem;
+    margin-top: 2.6rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  section:first-of-type { border-top: none; }
+
+  .num {
+    font-family: Spectral, Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--indigo);
+    line-height: 1.1;
+    padding-top: 0.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .body { min-width: 0; }
+
+  h2:not(.prohibition h2) {
+    font-family: Spectral, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.3rem, 2.6vw, 1.62rem);
+    line-height: 1.24;
+    text-wrap: balance;
+    margin: 0 0 0.9rem;
+  }
+
+  h3 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    margin: 1.9rem 0 0.6rem;
+    color: var(--ink);
+  }
+
+  p { margin: 0 0 1rem; max-width: 40rem; }
+  p:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 600; }
+
+  em {
+    font-family: Spectral, Georgia, serif;
+    font-style: italic;
+  }
+
+  code {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.86em;
+    background: var(--code-bg);
+    padding: 0.1em 0.36em;
+    border-radius: 2px;
+  }
+
+  /* ── таблица полей ─────────────────────────────────────── */
+
+  .scroll {
+    overflow-x: auto;
+    margin: 1.2rem 0 1.4rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: var(--card);
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.88rem;
+    min-width: 30rem;
+  }
+
+  th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--rule-strong);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 0.68rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    color: var(--ink-soft);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td:first-child {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.82rem;
+    color: var(--indigo);
+    white-space: nowrap;
+  }
+
+  /* ── блоки кода ────────────────────────────────────────── */
+
+  pre {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 1.05rem 1.2rem;
+    overflow-x: auto;
+    margin: 1.2rem 0 1.4rem;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.82rem;
+    line-height: 1.62;
+    color: var(--ink-soft);
+  }
+
+  /* ── списки ────────────────────────────────────────────── */
+
+  ul { margin: 0 0 1rem; padding-left: 1.15rem; max-width: 40rem; }
+  li { margin-bottom: 0.62rem; padding-left: 0.2rem; }
+  li::marker { color: var(--ink-faint); }
+  li:last-child { margin-bottom: 0; }
+
+  ol.steps {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    max-width: 40rem;
+  }
+
+  ol.steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.85rem;
+  }
+
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.06em;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: var(--indigo);
+    background: var(--indigo-soft);
+    width: 1.4rem;
+    height: 1.4rem;
+    display: grid;
+    place-items: center;
+    border-radius: 2px;
+  }
+
+  /* ── врезка «почему» ───────────────────────────────────── */
+
+  .aside {
+    border-left: 2px solid var(--rule-strong);
+    padding: 0.15rem 0 0.15rem 1.1rem;
+    margin: 1.4rem 0;
+    color: var(--ink-soft);
+    font-family: Spectral, Georgia, serif;
+    font-size: 1rem;
+    max-width: 38rem;
+  }
+
+  .aside p { margin-bottom: 0.7rem; }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--rule);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    line-height: 1.75;
+  }
+
+  @media (max-width: 44rem) {
+    section {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+    .num {
+      font-size: 1.05rem;
+      padding-top: 0;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+<div class="sheet">
+
+  <header>
+    <div class="eyebrow">Задание агенту · Mac mini</div>
+    <h1>Выгрузка закона о банкротстве и связанной базы</h1>
+    <p class="standfirst">
+      Взять 127-ФЗ и то, что КонсультантПлюс сам показывает как связанные
+      документы, — прямо из подписки на этой машине, тем же способом, каким
+      бралась вторая выгрузка практики.
+    </p>
+    <div class="facts">
+      <span><b>репозиторий</b> verdict-causa-workspace</span>
+      <span><b>ветка</b> data/law127fz-export</span>
+      <span><b>основывать на</b> main</span>
+      <span><b>источник</b> подписка КонсультантПлюс, Mac mini</span>
+    </div>
+  </header>
+
+  <div class="prohibition">
+    <h2>Запрет, который важнее задания</h2>
+    <p>
+      <strong>Не использовать для работы ключ API какой-либо LLM</strong> — ни
+      свой, ни системный, ни из окружения, ни из <code>.env</code>, ни из
+      связки ключей. Работать только на ресурсах подписки. Это не про
+      КонсультантПлюс — доступ к нему уже есть на машине, лицензирован и
+      использовался для прошлых выгрузок. Запрет — про модели, которые
+      тарифицируются как платный API.
+    </p>
+    <p>
+      Нельзя брать ключи или конфигурацию из этого проекта и из соседних
+      проектов на машине. Если задачу без API-ключа LLM выполнить нельзя —
+      остановись и напиши человеку. Задача целиком решается поиском и
+      экспортом из КонсультантПлюс: текст переносится дословно, а не
+      суммаризируется.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Зачем это нужно</h2>
+      <p>
+        Пакет строит институт банкротства — что несостоятельность делает с
+        договорным требованием: режим предъявления, очерёдность, оспаривание
+        сделок должника, сальдирование против зачёта. Материя целиком лежит в
+        Федеральном законе от 26.10.2002 № 127-ФЗ, а не в ГК.
+      </p>
+      <p>
+        Прошлое задание просило поискать 127-ФЗ в уже сохранённых локальных
+        снимках — и, если не нашёлся, честно написать «не найден». Этот заход
+        отдельный и целевой: взять закон прямо из подписки, тем же способом,
+        каким бралась вторая выгрузка практики.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Полный текст 127-ФЗ</h2>
+      <p>
+        Каталог <code>LAW</code>, документ «О несостоятельности (банкротстве)»
+        от 26.10.2002 № 127-ФЗ, действующая редакция. Экспортировать
+        <strong>постатейно</strong>, с сохранением структуры «часть → глава →
+        параграф → статья» и нумерации пунктов внутри статьи.
+      </p>
+      <p>Файл: <code>data/laws/127fz_articles.jsonl</code>, UTF-8, по объекту JSON на строку.</p>
+<pre><code>{
+  "number": "61.2",
+  "title_ru": "Оспаривание подозрительных сделок должника",
+  "chapter_number": "III.1",
+  "chapter_title_ru": "Оспаривание сделок должника",
+  "in_force": true,
+  "text_ru": "1. Сделка, совершенная должником в течение одного года...",
+  "edition_date": "2026-XX-XX",
+  "source_ref": "consultant:127FZ:61.2"
+}</code></pre>
+      <p>
+        Приоритет — если постатейный экспорт целиком почему-то невозможен, эти
+        главы обязаны войти первыми:
+      </p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>статьи</th><th>о чём</th></tr></thead>
+          <tbody>
+            <tr><td>5</td><td>текущие платежи</td></tr>
+            <tr><td>63</td><td>последствия введения наблюдения для требований</td></tr>
+            <tr><td>61.1–61.9</td><td>оспаривание сделок должника</td></tr>
+            <tr><td>134–138</td><td>очерёдность, залоговый кредитор</td></tr>
+            <tr><td>142</td><td>порядок расчётов с кредиторами</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Связанные документы — только из панели связи</h2>
+      <p>
+        У карточки 127-ФЗ в системе есть панель связанных документов. Возьми
+        из неё — не открытым поиском по всей базе — документы только двух
+        родов: постановления Пленума / Президиума ВС РФ (и сохранившие силу
+        постановления Пленума ВАС РФ) и обзоры судебной практики,
+        непосредственно разъясняющие институт банкротства. Не бери
+        комментарии, статьи, консультации специалистов и типовые формы — это
+        не источник права для модели.
+      </p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>документ</th><th>зачем</th></tr></thead>
+          <tbody>
+            <tr><td>Постановление Пленума ВАС РФ № 63 от 23.12.2010</td><td>толкование главы III.1 — оспаривание сделок должника</td></tr>
+            <tr><td>Постановление Пленума ВАС РФ № 35 от 22.06.2012</td><td>процессуальные вопросы: предъявление требований, реестр</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Оба нужны точно, если система покажет их связанными. Обзор ВС РФ от
+        29.01.2020 о субординации уже запрошен прошлым заданием — повторно
+        можно не брать, если он там уже лежит.
+      </p>
+      <div class="aside">
+        <p>
+          Остальные документы — по тому же критерию: прямая связь с
+          банкротством как таковым, а не с субсидиарной ответственностью
+          контролирующих лиц или банкротством граждан вне общего режима
+          требований — они за пределами объёма, который строит пакет. Если
+          сомневаешься — включи и отметь сомнение в описи; вычеркнуть лишнее
+          проще, чем найти пропущенное.
+        </p>
+      </div>
+      <p>
+        Каталог: <code>data/guidance/</code> — тот же, что в прошлом задании,
+        не создавай параллельный. Имя файла — устойчивый слаг
+        (<code>plenum-vas-63-2010.md</code>). Пополни существующий
+        <code>data/guidance/index.jsonl</code>, а не переписывай его.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Опись</h2>
+      <p><code>data/law127fz-inventory.md</code>. Ответы на четыре вопроса.</p>
+      <ol class="steps">
+        <li><strong>Редакция и дата.</strong> На какую дату сохранён снимок 127-ФЗ, каким актом заканчивается перечень изменяющих документов.</li>
+        <li><strong>Сколько статей выгружено</strong>, сколько с пустым текстом и почему.</li>
+        <li><strong>Что взято из связанных документов</strong> — список с источником (панель связи, а не отдельный поиск) — и что сознательно не взято, с причиной.</li>
+        <li><strong>Чего не нашлось.</strong> Если сам 127-ФЗ или названные постановления не обнаружены — прямо так и написать, не подменяя и не восстанавливая по памяти.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">5</div>
+    <div class="body">
+      <h2>Как сдать и как проверить себя</h2>
+      <p>
+        Ветка <code>data/law127fz-export</code>, основанная на текущем
+        <code>main</code>. Коммит с файлами выгрузки и описью, push в
+        <code>verdict-causa-workspace</code>. Пул-реквест не открывай.
+      </p>
+      <p>
+        Если ветка <code>data/norm-texts-export</code> из прошлого задания уже
+        существует и не слита — не трогай её и не наследуй от неё: основывайся
+        на <code>main</code>, чтобы два захода не зависели друг от друга по
+        порядку выполнения.
+      </p>
+<pre><code>python - &lt;&lt;'PY'
+import json
+
+articles = [json.loads(l) for l in open("data/laws/127fz_articles.jsonl", encoding="utf-8") if l.strip()]
+print("статей 127-ФЗ:", len(articles))
+print("пустой text_ru:", sum(1 for r in articles if not r["text_ru"].strip()))
+required = {"5", "63", "61.1", "61.2", "61.3", "61.9", "134", "135", "138", "142"}
+present = {r["number"] for r in articles}
+print("обязательных статей не хватает:", sorted(required - present))
+lens = sorted(len(r["text_ru"]) for r in articles if r["text_ru"].strip())
+if lens:
+    print("длина текста: мин", lens[0], "| медиана", lens[len(lens)//2], "| макс", lens[-1])
+
+guidance = [json.loads(l) for l in open("data/guidance/index.jsonl", encoding="utf-8") if l.strip()]
+print("документов в index.jsonl:", len(guidance))
+PY</code></pre>
+      <p>
+        «Обязательных статей не хватает» должно выйти пустым списком; если
+        что-то пропущено — либо статья утратила силу (тогда так и отметь в
+        описи), либо экспорт задел не всё, что требовалось.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Задание для агента на Mac mini · verdict-causa-workspace · ветка data/law127fz-export<br>
+    Текстовая версия задания: docs/law127fz-export-brief.md
+  </footer>
+
+</div>
