@@ -12,15 +12,16 @@
 никто не замечал. Обход идёт от закона и нашёл статью 165.1 незаявленной ни
 одним институтом — при том что она лежит под доброй половиной модели.
 
-В предикатах пакета около полусотни фактов об уведомлениях; четырнадцать из
+В предикатах пакета около полусотни фактов об уведомлениях; девятнадцать из
 них — не о том, было ли уведомление или в какой оно форме, а именно о
 **доставке**: об отказе от договора (`unilateral_refusal_notice_delivered`), о
 зачёте (`set_off_notice_delivered`), о приостановлении встречного исполнения
 (`suspension_notice_delivered`), о прощении долга
 (`debt_forgiveness_notice_delivered`), о переуступке (`debtor_notified`) — и
-ещё девять того же рода в шести институтах. Каждый из них принимал доставку на
-веру от того, кто заполняет факты, — а правило, по которому сообщение
-считается доставленным, не было смоделировано нигде.
+ещё четырнадцать того же рода в одиннадцати институтах, пять из них названы от
+противного (`creditors_not_notified`, «не уведомлены» значит `True`). Каждый
+из них принимал доставку на веру от того, кто заполняет факты, — а правило, по
+которому сообщение считается доставленным, не было смоделировано нигде.
 
 **Что даёт модель.** Она разделяет два пути доставки, которые в одном предикате
 сливаются:
@@ -42,12 +43,15 @@
 на институт, и нескольких сообщений в нём не выразить. Поле `message_role`
 (`MessageRole`) называет, каким именно предикатом какого института спорное
 сообщение представлено, и вывод сверяется с ним — механизм закрыт в версии
-1.10.0 и доведён до всех предикатов **доставки** в версии 1.11.0: четырнадцать
-из примерно сорока пяти. Оставшиеся — не пробел: они утверждают не доставку, а
-существование уведомления, его своевременность, форму или решение стороны,
-выраженное сообщением, — вопросы, которые статья 165.1 не решает и которые
-`MESSAGE_ROLE_PREDICATES` поэтому сознательно не называет (граница объяснена
-в комментарии над реестром).
+1.10.0, доведён до всех предикатов **доставки** в версии 1.11.0 и до
+предикатов доставки отрицательной полярности в версии 1.12.0: девятнадцать из
+примерно сорока пяти. Пять из них названы в законе от противного («не
+уведомлён») — реестр несёт для них флаг `negated` и сравнивает не сырое
+значение предиката, а его отрицание. Оставшиеся — не пробел: они утверждают не
+доставку, а своевременность, форму или решение стороны, выраженное сообщением,
+— вопросы, которые статья 165.1 не решает и которые `MESSAGE_ROLE_PREDICATES`
+поэтому сознательно не называет (граница объяснена в комментарии над
+реестром).
 
 **Чего модель не делает.** Пункт 2 статьи 165.1 допускает иное правило доставки
 — в законе, в условиях сделки, в обычае или в установившейся практике сторон.
@@ -56,6 +60,7 @@
 """
 
 from enum import Enum
+from typing import NamedTuple
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from z3 import And, Bool, Not, Or, Solver, sat
@@ -127,21 +132,38 @@ class MessageRole(str, Enum):
     PERFORMANCE_REFUSAL_NOTICE = "performance_refusal_notice"
     PERFORMANCE_DEMAND_NOTICE = "performance_demand_notice"
     FORECLOSURE_NOTICE = "foreclosure_notice"
+    ENTERPRISE_LEASE_CREDITORS_NOTICE = "enterprise_lease_creditors_notice"
+    FACTORING_DEBTOR_NOTICE = "factoring_debtor_notice"
+    LEASING_SELLER_PURPOSE_NOTICE = "leasing_seller_purpose_notice"
+    STORAGE_CONDITIONS_NOTICE = "storage_conditions_notice"
+    WAREHOUSE_STORAGE_CONDITIONS_NOTICE = "warehouse_storage_conditions_notice"
 
 
-#: Роль сообщения → институт и его предикат, утверждающий доставку.
+class MessageRoleTarget(NamedTuple):
+    """Институт, предикат и полярность, в которой его читать.
+
+    `negated=True` значит, что предикат назван от противного («не уведомлён»):
+    значение `True` означает, что доставки не было. Сверка всегда сравнивает в
+    полярности «доставлено», поэтому сырое значение предиката читается через
+    отрицание, а не напрямую.
+    """
+
+    institute: str
+    predicate: str
+    negated: bool = False
+
+
+#: Роль сообщения → институт, предикат и полярность, в которой он утверждает
+#: доставку.
 #:
 #: Здесь перечислены не все предикаты об уведомлениях — их в пакете около
 #: сорока пяти, — а только те, которые утверждают именно **доставку**
 #: сообщения, то есть тот самый факт, о котором говорит пункт 1 статьи 165.1
-#: ГК РФ: имя предиката прямо называет доставку («…_delivered») или состояние
-#: адресата как свершившийся факт («…_notified», в положительной полярности).
-#: Остальные тридцать с лишним отвечают на другие вопросы, которые статья
-#: 165.1 не решает:
+#: ГК РФ: имя предиката прямо называет доставку («…_delivered»), состояние
+#: адресата как свершившийся факт («…_notified») или его отсутствие
+#: («…_not_notified» — с `negated=True`). Остальные отвечают на другие
+#: вопросы, которые статья 165.1 не решает:
 #:
-#: - было ли уведомление вообще («…_not_given», «…_not_notified» — отрицание
-#:   меняет форму сравнения: «не уведомлён» не превращается в «доставлено»
-#:   простым равенством, это отдельная задача, не решённая здесь);
 #: - вовремя ли («prompt_notice_given», «…_reasonable_time»);
 #: - в письменной ли форме («creditors_notified_in_writing»);
 #: - решение стороны, выраженное сообщением, а не сам факт доставки
@@ -149,31 +171,62 @@ class MessageRole(str, Enum):
 #:   порядок больше, и почти любое можно назвать «сообщением» в широком
 #:   смысле статьи 165.1, но именовать доставку они не намерены).
 #:
-#: Эти три исключения — не пробел, который решает следующая правка: третий
+#: Эти два исключения — не пробел, который решает следующая правка: второй
 #: пункт принципиально не сводится к предикату «доставлено ли», и добавлять
 #: его значило бы стереть разницу между «сторона сообщила» и «адресат
 #: получил», ровно ту разницу, которую статья 165.1 и вводит.
-MESSAGE_ROLE_PREDICATES: dict["MessageRole", tuple[str, str]] = {
-    MessageRole.TERMINATION_UNILATERAL_NOTICE: ("termination", "unilateral_notice_delivered"),
-    MessageRole.TERMINATION_PRETRIAL_PROPOSAL: ("termination", "pretrial_proposal_delivered"),
-    MessageRole.SALE_UNILATERAL_REFUSAL_NOTICE: ("sale", "unilateral_refusal_notice_delivered"),
-    MessageRole.SALE_EXCESS_QUANTITY_NOTICE: ("sale", "buyer_notified_excess"),
-    MessageRole.SUPPLY_UNILATERAL_REFUSAL_NOTICE: (
-        "supply",
-        "unilateral_refusal_notice_delivered",
+MESSAGE_ROLE_PREDICATES: dict["MessageRole", MessageRoleTarget] = {
+    MessageRole.TERMINATION_UNILATERAL_NOTICE: MessageRoleTarget(
+        "termination", "unilateral_notice_delivered"
     ),
-    MessageRole.SUPPLY_REFUSED_GOODS_NOTICE: ("supply", "supplier_notified"),
-    MessageRole.SUPPLY_READINESS_NOTICE: ("supply", "supplier_notified_readiness"),
-    MessageRole.SET_OFF_NOTICE: ("obligation_dynamics", "set_off_notice_delivered"),
-    MessageRole.DEBT_FORGIVENESS_NOTICE: (
-        "obligation_dynamics",
-        "debt_forgiveness_notice_delivered",
+    MessageRole.TERMINATION_PRETRIAL_PROPOSAL: MessageRoleTarget(
+        "termination", "pretrial_proposal_delivered"
     ),
-    MessageRole.ASSIGNMENT_DEBTOR_NOTICE: ("obligation_dynamics", "debtor_notified"),
-    MessageRole.SUSPENSION_NOTICE: ("performance_remedies", "suspension_notice_delivered"),
-    MessageRole.PERFORMANCE_REFUSAL_NOTICE: ("performance_remedies", "refusal_notice_delivered"),
-    MessageRole.PERFORMANCE_DEMAND_NOTICE: ("performance_remedies", "creditor_demand_delivered"),
-    MessageRole.FORECLOSURE_NOTICE: ("security", "foreclosure_notice_delivered"),
+    MessageRole.SALE_UNILATERAL_REFUSAL_NOTICE: MessageRoleTarget(
+        "sale", "unilateral_refusal_notice_delivered"
+    ),
+    MessageRole.SALE_EXCESS_QUANTITY_NOTICE: MessageRoleTarget("sale", "buyer_notified_excess"),
+    MessageRole.SUPPLY_UNILATERAL_REFUSAL_NOTICE: MessageRoleTarget(
+        "supply", "unilateral_refusal_notice_delivered"
+    ),
+    MessageRole.SUPPLY_REFUSED_GOODS_NOTICE: MessageRoleTarget("supply", "supplier_notified"),
+    MessageRole.SUPPLY_READINESS_NOTICE: MessageRoleTarget(
+        "supply", "supplier_notified_readiness"
+    ),
+    MessageRole.SET_OFF_NOTICE: MessageRoleTarget(
+        "obligation_dynamics", "set_off_notice_delivered"
+    ),
+    MessageRole.DEBT_FORGIVENESS_NOTICE: MessageRoleTarget(
+        "obligation_dynamics", "debt_forgiveness_notice_delivered"
+    ),
+    MessageRole.ASSIGNMENT_DEBTOR_NOTICE: MessageRoleTarget(
+        "obligation_dynamics", "debtor_notified"
+    ),
+    MessageRole.SUSPENSION_NOTICE: MessageRoleTarget(
+        "performance_remedies", "suspension_notice_delivered"
+    ),
+    MessageRole.PERFORMANCE_REFUSAL_NOTICE: MessageRoleTarget(
+        "performance_remedies", "refusal_notice_delivered"
+    ),
+    MessageRole.PERFORMANCE_DEMAND_NOTICE: MessageRoleTarget(
+        "performance_remedies", "creditor_demand_delivered"
+    ),
+    MessageRole.FORECLOSURE_NOTICE: MessageRoleTarget("security", "foreclosure_notice_delivered"),
+    MessageRole.ENTERPRISE_LEASE_CREDITORS_NOTICE: MessageRoleTarget(
+        "enterprise_lease", "creditors_not_notified", negated=True
+    ),
+    MessageRole.FACTORING_DEBTOR_NOTICE: MessageRoleTarget(
+        "factoring", "debtor_not_notified_of_assignment", negated=True
+    ),
+    MessageRole.LEASING_SELLER_PURPOSE_NOTICE: MessageRoleTarget(
+        "leasing", "seller_not_notified_of_leasing_purpose", negated=True
+    ),
+    MessageRole.STORAGE_CONDITIONS_NOTICE: MessageRoleTarget(
+        "storage", "storage_change_or_transfer_not_notified", negated=True
+    ),
+    MessageRole.WAREHOUSE_STORAGE_CONDITIONS_NOTICE: MessageRoleTarget(
+        "warehouse_storage", "storage_conditions_change_not_notified", negated=True
+    ),
 }
 
 
@@ -187,13 +240,16 @@ def asserted_delivery_predicates(request) -> list[tuple[str, str]]:
     данных несёт один блок доказательств на институт).
     """
     found: list[tuple[str, str]] = []
-    for institute, predicate in sorted(set(MESSAGE_ROLE_PREDICATES.values())):
-        evidence = getattr(request, f"{institute}_evidence", None)
+    for target in sorted(set(MESSAGE_ROLE_PREDICATES.values())):
+        evidence = getattr(request, f"{target.institute}_evidence", None)
         if evidence is None:
             continue
         for assertion in evidence.assertions:
-            if assertion.predicate.value == predicate and assertion.value:
-                found.append((institute, predicate))
+            if assertion.predicate.value != target.predicate:
+                continue
+            delivered_asserted = not assertion.value if target.negated else assertion.value
+            if delivered_asserted:
+                found.append((target.institute, target.predicate))
     return found
 
 

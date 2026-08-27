@@ -2128,6 +2128,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.11.0",
+        to_version="1.12.0",
+        reasons=[
+            "The message role registry grows from 14 entries to 19, covering the negative-polarity 'not notified' predicates named as a residual limitation in 1.11.0. Each entry now carries a negated flag; the fact-consistency check and the reconciliation resolver both interpret it through negation. This is purely additive: MessageRole gains five values, existing cases and artifacts using the prior fourteen roles or OTHER replay unchanged.",
+            "No evidence contract gains a required predicate; only the allowed set of message_role values grows, and the interpretation of the registry's tuple values changes from a bare pair to a named target carrying polarity.",
+        ],
+        reasons_ru=[
+            "Реестр ролей сообщений вырос с 14 записей до 19, охватив предикаты отрицательной полярности («не уведомлён»), названные остаточным ограничением в 1.11.0. Каждая запись теперь несёт флаг negated; и сверка фактов, и резолвер согласования читают такой предикат через отрицание. Изменение чисто аддитивное: MessageRole получил пять новых значений, а дела и артефакты, использующие прежние четырнадцать ролей или OTHER, воспроизводятся без изменений.",
+            "Ни один контракт доказательств не получил нового обязательного предиката — вырос только допустимый набор значений message_role, а толкование значений реестра сменилось с голой пары на именованную цель, несущую полярность.",
+        ],
+        replay_commands=[
+            "python scripts/export_synthetic_messages_evaluation.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_phase0_demo_trace.py",
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

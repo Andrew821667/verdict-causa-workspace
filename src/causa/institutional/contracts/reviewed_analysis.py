@@ -5492,13 +5492,17 @@ def run_reviewed_contract_analysis(
     # версии сразу, нельзя — решателю пришлось бы выбрать одну молча.
     message_role = request.messages_evidence.message_role
     if message_role is not MessageRole.OTHER:
-        role_institute, role_predicate = MESSAGE_ROLE_PREDICATES[message_role]
-        role_evidence = getattr(request, f"{role_institute}_evidence")
-        asserted_delivery = next(
+        role_target = MESSAGE_ROLE_PREDICATES[message_role]
+        role_evidence = getattr(request, f"{role_target.institute}_evidence")
+        asserted_raw = next(
             assertion.value
             for assertion in role_evidence.assertions
-            if assertion.predicate.value == role_predicate
+            if assertion.predicate.value == role_target.predicate
         )
+        # Часть предикатов названа от противного («не уведомлён»): сверка
+        # всегда сравнивает в полярности «доставлено», поэтому такой предикат
+        # читается через отрицание.
+        asserted_delivery = not asserted_raw if role_target.negated else asserted_raw
         facts_agree.equal(
             "message_delivery_agreement",
             asserted_delivery,

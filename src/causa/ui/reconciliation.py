@@ -43,6 +43,11 @@
 несогласуемым — тоже: он согласуем совершенно механически, просто цель берётся
 из дела. Поэтому у него свой список `ROLE_DEPENDENT_FACTS`, где записано, откуда
 берётся цель.
+
+Часть ролей называет предикат от противного («не уведомлён»): значение `True`
+там значит отсутствие доставки. Согласование пишет в такой предикат не вывод
+модели напрямую, а его отрицание — резолвер цели сообщает полярность вместе с
+институтом и предикатом.
 """
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -171,17 +176,23 @@ class UnreconcilableMismatchError(ValueError):
         )
 
 
-def _target(key: str, request: ReviewedContractAnalysisRequest) -> tuple[str, str]:
-    """Куда писать согласованное значение: постоянная пара или цель из дела."""
+def _target(key: str, request: ReviewedContractAnalysisRequest) -> tuple[str, str, bool]:
+    """Куда и в какой полярности писать согласованное значение.
+
+    Третий элемент — `negated`: цель из постоянной пары всегда `False`, а цель
+    из дела берёт полярность предиката у самой роли. Предикат от противного
+    («не уведомлён») получает не вывод модели напрямую, а его отрицание.
+    """
     if key not in ROLE_DEPENDENT_FACTS:
-        return RECONCILABLE_FACTS[key]
+        field, predicate = RECONCILABLE_FACTS[key]
+        return field, predicate, False
     role = request.messages_evidence.message_role
     if role is MessageRole.OTHER:
         raise KeyError(
             "Сверка доставки сообщения не могла сработать без роли: согласовывать нечего."
         )
-    institute, predicate = MESSAGE_ROLE_PREDICATES[role]
-    return f"{institute}_evidence", predicate
+    target = MESSAGE_ROLE_PREDICATES[role]
+    return f"{target.institute}_evidence", target.predicate, target.negated
 
 
 def reconcile(
@@ -216,8 +227,9 @@ def reconcile(
             # которого они выведены. Поэтому они не останавливают проход, а
             # возвращаются вызывающему: решение принимает он.
             continue
-        field, predicate = _target(mismatch.key, request)
-        updates.setdefault(field, {})[predicate] = mismatch.expected
+        field, predicate, negated = _target(mismatch.key, request)
+        value = not mismatch.expected if negated else mismatch.expected
+        updates.setdefault(field, {})[predicate] = value
         alignments.append(
             FactAlignment(
                 key=mismatch.key,

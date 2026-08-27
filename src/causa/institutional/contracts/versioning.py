@@ -46,6 +46,23 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.12.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Closes the residual limitation named in 1.11.0: the message-role registry now covers negative-polarity 'not notified' predicates, growing from 14 roles to 19. Each such predicate carries a negated flag; the fact-consistency check and the reconciliation resolver both read it through negation rather than by direct equality.",
+            "The five added roles cover enterprise lease's creditor notice, factoring's debtor notice, leasing's seller-purpose notice, and both storage institutes' change-of-conditions notice. No evidence contract gains a required predicate - the change extends how existing predicates are interpreted, not what is required.",
+        ],
+        notes_ru=[
+            "Закрывает остаточное ограничение, названное в 1.11.0: реестр ролей сообщений теперь охватывает предикаты отрицательной полярности («не уведомлён»), вырастая с 14 ролей до 19. Каждый такой предикат несёт флаг negated; и сверка фактов, и резолвер согласования читают его через отрицание, а не по прямому равенству.",
+            "Пять новых ролей закрывают уведомление кредиторов в аренде предприятия, уведомление должника в факторинге, уведомление продавца о цели в лизинге и уведомления об изменении условий в обоих институтах хранения. Ни один контракт доказательств не получил нового обязательного предиката — меняется толкование уже существующих, а не их состав.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.11.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -296,3 +296,58 @@ def test_a_role_added_for_the_delivery_sweep_resolves_too() -> None:
         ("obligation_dynamics_evidence", "debtor_notified")
     ]
     run_reviewed_contract_analysis(fixed, sources)
+
+
+def test_a_negated_role_is_reconciled_to_its_negation() -> None:
+    """Согласование пишет отрицание вывода модели, а не вывод напрямую.
+
+    Предикат `creditors_not_notified` назван от противного: `True` значит
+    «не уведомлены». Дело так и утверждает, хотя статья 165.1 признаёт
+    сообщение доставленным. Если бы согласование записало вывод модели
+    (`True`, «доставлено») напрямую в этот предикат, оно объявило бы
+    кредиторов неуведомлёнными — ровно обратное тому, что установлено.
+    """
+    from causa.institutional.contracts.fact_consistency import FactConsistencyError
+    from causa.institutional.contracts.messages import MessageRole
+    from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
+    from causa.institutional.contracts.synthetic_reviewed_analysis import (
+        build_synthetic_supply_analysis_sources,
+    )
+
+    request = build_synthetic_supply_analysis_request()
+    sources = build_synthetic_supply_analysis_sources()
+    evidence = request.messages_evidence.model_copy(
+        update={"message_role": MessageRole.ENTERPRISE_LEASE_CREDITORS_NOTICE}
+    )
+    lease_assertions = tuple(
+        assertion.model_copy(update={"value": True})
+        if assertion.predicate.value == "creditors_not_notified"
+        else assertion
+        for assertion in request.enterprise_lease_evidence.assertions
+    )
+    lease_evidence = request.enterprise_lease_evidence.model_copy(
+        update={"assertions": lease_assertions}
+    )
+    broken = request.model_copy(
+        update={"messages_evidence": evidence, "enterprise_lease_evidence": lease_evidence}
+    )
+
+    with pytest.raises(FactConsistencyError) as failure:
+        run_reviewed_contract_analysis(broken, sources)
+
+    fixed, alignments, blocked = reconcile(broken, failure.value.mismatches)
+
+    assert blocked == []
+    assert [(item.evidence_field, item.predicate) for item in alignments] == [
+        ("enterprise_lease_evidence", "creditors_not_notified")
+    ]
+    # Отчёт говорит о доставке («да»), но в предикат от противного обязано
+    # уйти отрицание: доставлено = True → «не уведомлены» = False.
+    assert alignments[0].before is False
+    assert alignments[0].after is True
+    assert fixed.enterprise_lease_evidence.assertions[
+        [a.predicate.value for a in fixed.enterprise_lease_evidence.assertions].index(
+            "creditors_not_notified"
+        )
+    ].value is False
+    run_reviewed_contract_analysis(fixed, sources)

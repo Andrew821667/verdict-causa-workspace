@@ -207,12 +207,12 @@ def test_every_message_role_names_a_predicate_that_actually_exists() -> None:
         ReviewedContractAnalysisRequest,
     )
 
-    for role, (institute, predicate) in MESSAGE_ROLE_PREDICATES.items():
-        field = ReviewedContractAnalysisRequest.model_fields.get(f"{institute}_evidence")
+    for role, target in MESSAGE_ROLE_PREDICATES.items():
+        field = ReviewedContractAnalysisRequest.model_fields.get(f"{target.institute}_evidence")
         assert field is not None, role
         enum_field = field.annotation.model_fields["assertions"]
         predicate_enum = enum_field.annotation.__args__[0].model_fields["predicate"].annotation
-        assert predicate in {item.value for item in predicate_enum}, (role, predicate)
+        assert target.predicate in {item.value for item in predicate_enum}, (role, target)
 
     # OTHER — единственная роль без предиката: сообщение, доставку которого
     # ни один институт отдельно не утверждает.
@@ -275,6 +275,50 @@ def test_a_role_added_for_the_delivery_sweep_is_checked_too() -> None:
     with _pytest.raises(FactConsistencyError) as failure:
         run_reviewed_contract_analysis(
             request.model_copy(update={"messages_evidence": evidence}),
+            build_synthetic_supply_analysis_sources(),
+        )
+
+    assert "message_delivery_agreement" in failure.value.keys
+
+
+def test_a_negated_role_is_read_through_its_negation() -> None:
+    """Предикат от противного не сравнивается напрямую — сверка отрицает его.
+
+    Пять из девятнадцати ролей называют предикат от противного («не
+    уведомлён»): дело утверждает, что должника об уступке не уведомили, а
+    статья 165.1 по тем же обстоятельствам признаёт сообщение доставленным.
+    Сравнение в сырых значениях (True против True) прошло бы мимо; сверка
+    обязана читать предикат через отрицание и увидеть расхождение.
+    """
+    import pytest as _pytest
+
+    from causa.institutional.contracts.fact_consistency import FactConsistencyError
+    from causa.institutional.contracts.messages import MessageRole
+    from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
+    from causa.institutional.contracts.synthetic_reviewed_analysis import (
+        build_synthetic_supply_analysis_request,
+        build_synthetic_supply_analysis_sources,
+    )
+
+    request = build_synthetic_supply_analysis_request()
+    evidence = request.messages_evidence.model_copy(
+        update={"message_role": MessageRole.FACTORING_DEBTOR_NOTICE}
+    )
+    factoring_assertions = tuple(
+        assertion.model_copy(update={"value": True})
+        if assertion.predicate.value == "debtor_not_notified_of_assignment"
+        else assertion
+        for assertion in request.factoring_evidence.assertions
+    )
+    factoring_evidence = request.factoring_evidence.model_copy(
+        update={"assertions": factoring_assertions}
+    )
+
+    with _pytest.raises(FactConsistencyError) as failure:
+        run_reviewed_contract_analysis(
+            request.model_copy(
+                update={"messages_evidence": evidence, "factoring_evidence": factoring_evidence}
+            ),
             build_synthetic_supply_analysis_sources(),
         )
 
