@@ -1,0 +1,82 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-1.12.0:to-1.16.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-1.12.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "1.12.0",
+  "target_package_version": "1.16.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "1.12.0",
+      "to_version": "1.13.0",
+      "reasons": [
+        "SYNTHETIC_CONTRACT_SOURCES grows from 309 to 320 entries: eleven new LegalSource records cite Federal Law No. 127-FZ articles (1, 5, 61.1, 61.2, 61.3, 61.9, 63, 134, 135, 138, 142) with verbatim statute text and specificity='special'. No predicate or evidence contract changes; artifacts embedding the full source list must be regenerated so they carry the new entries rather than a stale count.",
+        "Two coverage maps change what they report, not what they require: practice_coverage.py no longer claims article 25 under the persons institute, and code_coverage.py now gives articles 25 and 65 their own exact-key gap reason instead of a neighboring range's unrelated one. Neither is part of any evidence contract or replay artifact."
+      ],
+      "reasons_ru": [
+        "SYNTHETIC_CONTRACT_SOURCES вырос с 309 до 320 записей: одиннадцать новых LegalSource ссылаются на статьи 127-ФЗ (1, 5, 61.1, 61.2, 61.3, 61.9, 63, 134, 135, 138, 142) с дословным текстом и specificity='special'. Ни один предикат или контракт доказательств не изменён; артефакты, встраивающие полный список источников, нужно пересобрать, чтобы они несли новые записи, а не устаревшее число.",
+        "Две карты покрытия меняют то, что сообщают, а не то, что требуют: practice_coverage.py больше не объявляет статью 25 покрытой институтом лиц, а code_coverage.py даёт статьям 25 и 65 собственную точную причину вместо причины соседнего диапазона. Ни то ни другое не входит ни в один контракт доказательств или артефакт воспроизведения."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.13.0",
+      "to_version": "1.14.0",
+      "reasons": [
+        "A new standalone module, bankruptcy_claims.py, is added: it is not required by any existing evidence contract, but any artifact that expects to find it absent needs regeneration to reflect the package now shipping a claim-regime model.",
+        "No existing predicate, evidence contract, or evaluation changes. The new model is not wired into reviewed_analysis.py or into the GK-numbered coverage maps in this release."
+      ],
+      "reasons_ru": [
+        "Добавлен новый самостоятельный модуль bankruptcy_claims.py: он не требуется ни одним существующим контрактом доказательств, но артефакт, ожидающий его отсутствия, нуждается в пересборке, чтобы отразить, что пакет теперь поставляет модель режима требования.",
+        "Ни один существующий предикат, контракт доказательств или сверка не изменены. Новая модель не подключена к reviewed_analysis.py и к картам покрытия, нумерованным по ГК, в этом релизе."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.14.0",
+      "to_version": "1.15.0",
+      "reasons": [
+        "A new standalone module, bankruptcy_ranking.py, is added: it is not required by any existing evidence contract, but any artifact that expects to find it absent needs regeneration to reflect the package now shipping a creditor-ranking model.",
+        "No existing predicate, evidence contract, or evaluation changes. The new model is not wired into reviewed_analysis.py or into the GK-numbered coverage maps in this release."
+      ],
+      "reasons_ru": [
+        "Добавлен новый самостоятельный модуль bankruptcy_ranking.py: он не требуется ни одним существующим контрактом доказательств, но артефакт, ожидающий его отсутствия, нуждается в пересборке, чтобы отразить, что пакет теперь поставляет модель очерёдности требований кредиторов.",
+        "Ни один существующий предикат, контракт доказательств или сверка не изменены. Новая модель не подключена к reviewed_analysis.py и к картам покрытия, нумерованным по ГК, в этом релизе."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.15.0",
+      "to_version": "1.16.0",
+      "reasons": [
+        "A new standalone module, bankruptcy_contest.py, is added: it is not required by any existing evidence contract, but any artifact that expects to find it absent needs regeneration to reflect the package now shipping a transaction-avoidance model.",
+        "No existing predicate, evidence contract, or evaluation changes. The new model is not wired into reviewed_analysis.py or into the GK-numbered coverage maps in this release."
+      ],
+      "reasons_ru": [
+        "Добавлен новый самостоятельный модуль bankruptcy_contest.py: он не требуется ни одним существующим контрактом доказательств, но артефакт, ожидающий его отсутствия, нуждается в пересборке, чтобы отразить, что пакет теперь поставляет модель оспаривания сделок должника.",
+        "Ни один существующий предикат, контракт доказательств или сверка не изменены. Новая модель не подключена к reviewed_analysis.py и к картам покрытия, нумерованным по ГК, в этом релизе."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

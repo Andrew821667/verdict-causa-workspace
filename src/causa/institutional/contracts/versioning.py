@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.16.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Fourth release of the bankruptcy institute work: adds the transaction-avoidance model on top of the 127-FZ sources shipped in 1.13.0-1.15.0. A new standalone module, bankruptcy_contest.py, evaluates both grounds for avoiding a debtor's transaction under Chapter III.1 127-FZ - a suspicious transaction (article 61.2: unequal consideration within one year, or intent to harm creditors within three years with the counterparty's knowledge) and a preference to one creditor over others (article 61.3: void without further condition within one month before or after the petition; void within six months only given the narrow security/priority-change ground or the counterparty's knowledge of insolvency) - plus standing to file under article 61.9 (the administrator, or a creditor holding over ten percent of registered debt).",
+            "Every finding that rests on a legal standard the model cannot adjudicate is flagged for mandatory human review: whether a price difference is 'material' (article 61.2(1)), and the two rebuttable presumptions of knowledge - of the harmful purpose (article 61.2(2)) and of insolvency (article 61.3(3)). The short-window preference ground (article 61.3(2)) is a bright-line rule once the facts are established and is deliberately not flagged.",
+            "Like 1.14.0-1.15.0, this release is deliberately not yet wired into the central reviewed-analysis pipeline or into the GK-numbered coverage maps. It also does not model the general Civil Code invalidity grounds article 61.1(1) refers to - that is the existing invalidity institute's territory - and it treats 'this transaction was avoided' as an input fact for bankruptcy_ranking.py's subordination category, not something it feeds automatically. Tested directly: benchmark 11/11, red-team 8/8, plus source, duplicate-rejection, and two window-consistency tests in tests/test_contract_bankruptcy_contest.py. The automatic rule-parity audit picked up the new module on its own: 9 declared rules, 9 executed, 0 divergences.",
+        ],
+        notes_ru=[
+            "Четвёртый релиз работы над институтом банкротства: добавляет модель оспаривания сделок должника поверх источников 127-ФЗ, поставленных в 1.13.0–1.15.0. Новый самостоятельный модуль bankruptcy_contest.py разбирает оба основания оспаривания по главе III.1 127-ФЗ — подозрительную сделку (статья 61.2: неравноценное встречное исполнение в пределах года, либо цель причинения вреда кредиторам в пределах трёх лет с осведомлённостью контрагента) и сделку с предпочтением одному кредитору перед другими (статья 61.3: недействительна без дополнительных условий в пределах месяца до или после подачи заявления; недействительна в пределах шести месяцев только при узком основании обеспечения/смены очерёдности либо при осведомлённости контрагента о неплатёжеспособности) — а также право на подачу заявления по статье 61.9 (управляющий либо кредитор с долей свыше десяти процентов реестровой задолженности).",
+            "Каждый вывод, опирающийся на оценочный стандарт, которого модель не разрешает, помечен обязательной проверкой юристом: существенность отличия цены (пункт 1 статьи 61.2) и две опровержимые презумпции осведомлённости — о цели причинения вреда (пункт 2 статьи 61.2) и о неплатёжеспособности (пункт 3 статьи 61.3). Основание предпочтения в коротком окне (пункт 2 статьи 61.3) — чёткое правило при установленных фактах, и сознательно не помечено.",
+            "Как и 1.14.0–1.15.0, релиз сознательно не подключён ни к центральному конвейеру сверки, ни к картам покрытия, нумерованным по ГК. Он также не разбирает общие основания недействительности ГК РФ, к которым отсылает пункт 1 статьи 61.1, — это территория существующего института invalidity, — и принимает факт «сделка оспорена» как входной для категории субординации bankruptcy_ranking.py, а не передаёт его туда автоматически. Проверено напрямую: benchmark 11 из 11, red-team 8 из 8, плюс тесты источников, отклонения дублей и согласованности временных окон в tests/test_contract_bankruptcy_contest.py. Автоматический аудит паритета правил сам подхватил новый модуль: 9 объявленных правил, 9 исполняемых, 0 расхождений.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.15.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],
