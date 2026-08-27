@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1189,
+  "declared_rules": 1193,
   "divergences_total": 0,
-  "executed_rules": 1189,
+  "executed_rules": 1193,
   "institutes": [
     {
       "declared_rules": 5,
@@ -50,6 +50,14 @@
       "institute": "bank_deposit",
       "matched": 16,
       "module": "bank_deposit.py"
+    },
+    {
+      "declared_rules": 4,
+      "divergences": [],
+      "executed_rules": 4,
+      "institute": "bankruptcy_claims",
+      "matched": 4,
+      "module": "bankruptcy_claims.py"
     },
     {
       "declared_rules": 9,
@@ -732,8 +740,8 @@
       "module": "formal_checks.py"
     }
   ],
-  "institutes_clean": 91,
-  "institutes_total": 91,
-  "matched_rules": 1189,
+  "institutes_clean": 92,
+  "institutes_total": 92,
+  "matched_rules": 1193,
   "version": "reasoning-rule-parity-v0"
 }

@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.14.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Second release of the bankruptcy institute work: adds the claim-regime model on top of the 127-FZ sources shipped in 1.13.0. A new standalone module, bankruptcy_claims.py, classifies a claim as current or registered under article 5(1) 127-FZ from the sole fact that matters - whether the obligation arose before or after the court accepted the bankruptcy petition - and derives the article 63(1) consequence of observation: individual enforcement of a registered claim is suspended once observation is introduced, with the narrow article 63(1) exception for pre-observation enforcement documents on wages, authorship remuneration, replevin, and harm to life or health.",
+            "Every current-claim conclusion is flagged for mandatory human review: articles 5(2) and 5(3), which the model relies on for the current-claim consequences, were found partially inconsistent with the Constitution by Constitutional Court rulings No. 11-P (2024-03-19) and No. 28-P (2023-05-31), and the transitional regulation pending a legislative fix is not something this model resolves.",
+            "This release is deliberately not yet wired into the central reviewed-analysis pipeline (reviewed_analysis.py) or into the GK-numbered coverage maps (practice_coverage.py, code_coverage.py) - those track Civil Code articles by number, and a bare '5' or '63' there would collide with the unrelated GK articles of the same number. The model is tested directly: benchmark and red-team suites of 7 cases each, both passing 7/7, plus source, duplicate-rejection, and fact-consistency tests in tests/test_contract_bankruptcy_claims.py. Wiring into the shared pipeline is deferred to a later release, following the same staged pattern already used for meeting_decisions before its 1.2.0 wiring.",
+        ],
+        notes_ru=[
+            "Второй релиз работы над институтом банкротства: добавляет модель режима требования поверх источников 127-ФЗ, поставленных в 1.13.0. Новый самостоятельный модуль bankruptcy_claims.py классифицирует требование как текущее или реестровое по пункту 1 статьи 5 127-ФЗ — по единственному значимому факту: возникло обязательство до или после принятия судом заявления о банкротстве, — и выводит последствие пункта 1 статьи 63 при наблюдении: индивидуальное взыскание по реестровому требованию приостанавливается с введением наблюдения, с узким исключением пункта 1 статьи 63 для вступивших в силу до наблюдения исполнительных документов о зарплате, авторском вознаграждении, истребовании имущества и вреде жизни или здоровью.",
+            "Каждый вывод о текущем требовании помечен обязательной проверкой юристом: пункты 2 и 3 статьи 5, на которые модель опирается для последствий текущего требования, признаны частично не соответствующими Конституции постановлениями КС РФ № 11-П от 19.03.2024 и № 28-П от 31.05.2023, а переходное регулирование до законодательных изменений модель не разрешает.",
+            "Релиз сознательно пока не подключён ни к центральному конвейеру сверки (reviewed_analysis.py), ни к картам покрытия, нумерованным по ГК (practice_coverage.py, code_coverage.py) — они считают статьи Гражданского кодекса по номеру, и голая «5» или «63» там столкнулась бы с не связанными статьями ГК тех же номеров. Модель проверена напрямую: стенды benchmark и red-team по 7 случаев каждый, оба 7 из 7, плюс тесты источников, отклонения дублей и непротиворечивости фактов в tests/test_contract_bankruptcy_claims.py. Подключение к общему конвейеру отложено до отдельного релиза — тем же поэтапным способом, каким институт решений собраний существовал до подключения в 1.2.0.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.13.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],
