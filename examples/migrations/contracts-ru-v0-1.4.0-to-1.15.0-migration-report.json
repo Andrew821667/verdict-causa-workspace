@@ -1,0 +1,223 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-1.4.0:to-1.15.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-1.4.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "1.4.0",
+  "target_package_version": "1.15.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "1.4.0",
+      "to_version": "1.5.0",
+      "reasons": [
+        "The analysis request gains a required evidence block for the special kinds of bank account (articles 860.1-860.15); artifacts produced without it cannot be replayed.",
+        "The gap sat inside a declared institute: the bank-account model claims articles 845-860 and stopped before the nominal account, the escrow account and the public deposit account of the same chapter 45."
+      ],
+      "reasons_ru": [
+        "Запрос анализа получил обязательный блок доказательств о специальном виде банковского счёта (статьи 860.1–860.15); артефакты, собранные без него, не воспроизводятся.",
+        "Пробел лежал внутри объявленного института: модель банковского счёта заявляет статьи 845–860 и останавливалась перед номинальным счётом, счётом эскроу и публичным депозитным счётом той же главы 45."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_special_accounts_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.5.0",
+      "to_version": "1.6.0",
+      "reasons": [
+        "The analysis request gains a required evidence block for conditional deposit (escrow), articles 926.1-926.8; artifacts produced without it cannot be replayed.",
+        "The gap was not inside a declared institute but outside every one of them: chapter 47.1 sits between safekeeping and insurance, and the Code walk stepped over it in full."
+      ],
+      "reasons_ru": [
+        "Запрос анализа получил обязательный блок доказательств об условном депонировании (эскроу), статьи 926.1–926.8; артефакты, собранные без него, не воспроизводятся.",
+        "Пробел лежал не внутри объявленного института, а за пределами всех институтов сразу: глава 47.1 стоит между хранением и страхованием, и обход кодекса перешагнул её целиком."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_escrow_deposit_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.6.0",
+      "to_version": "1.7.0",
+      "reasons": [
+        "The invalidity evidence schema gains four required predicates for the article 431.1(2) prohibition against inconsistent conduct in entrepreneurial contracts; artifacts produced without them cannot be replayed.",
+        "The gap sat inside the invalidity institute, articles 166-181, not beyond it: the same kind of estoppel as article 166(5), for entrepreneurial contracts, and never modelled as its own rule.",
+        "Closing the exception split article 174 into two separate conclusions, authority_restriction_voidable_ground (paragraph 1) and entity_damage_voidable_ground (paragraph 2), because only paragraph 1 is excepted from the article 431.1(2) bar."
+      ],
+      "reasons_ru": [
+        "Контракт данных о недействительности получил четыре обязательных предиката для запрета противоречивого поведения по пункту 2 статьи 431.1 в предпринимательских договорах; артефакты, собранные без них, не воспроизводятся.",
+        "Пробел лежал внутри института недействительности, статьи 166–181, а не за его пределами: тот же по природе эстоппель, что и пункт 5 статьи 166, но для предпринимательских договоров, и никогда не смоделированный отдельным правилом.",
+        "Закрытие исключения развело статью 174 на два раздельных вывода — authority_restriction_voidable_ground (пункт 1) и entity_damage_voidable_ground (пункт 2), потому что из запрета статьи 431.1 исключён только пункт 1."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_invalidity_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.7.0",
+      "to_version": "1.8.0",
+      "reasons": [
+        "The freedom evidence schema gains six required predicates for article 427 and the article 421(4)-(5) hierarchy of contract-term sources; artifacts produced without them cannot be replayed.",
+        "The gap sat between two already-declared institutes of the same chapter 27: freedom of contract claims articles 421-424 and stops right before it, interpretation begins at article 431, and the one article between them fell through.",
+        "Closing it exposed a missing step in the institute's own logic: the model had never modelled article 421(4)-(5) even though it already claimed the whole of article 421 - the institute now carries both the term-source hierarchy and article 427's standard terms together."
+      ],
+      "reasons_ru": [
+        "Контракт данных о свободе договора получил шесть обязательных предикатов для статьи 427 и иерархии источников условия договора по пунктам 4–5 статьи 421; артефакты, собранные без них, не воспроизводятся.",
+        "Пробел лежал между двумя уже объявленными институтами одной и той же главы 27: свобода договора заявляет статьи 421–424 и останавливается ровно перед ней, толкование начинается со статьи 431, и одна статья между ними выпала.",
+        "Закрытие вскрыло недостающий шаг в логике самого института: модель никогда не моделировала пункты 4–5 статьи 421, хотя уже заявляла статью 421 целиком, — теперь институт несёт вместе и иерархию источников условия, и примерные условия статьи 427."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_freedom_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.8.0",
+      "to_version": "1.9.0",
+      "reasons": [
+        "Three evidence contracts gain required predicates at once: property rights (article 306), conclusion procedure (article 449.1) and bank deposit (article 844.1); artifacts produced without them cannot be replayed.",
+        "These were the last three gaps of the Code walk, each a single article inside an institute that already claimed its neighbours. The walk now reports zero real gaps.",
+        "Two existing conclusions change meaning rather than merely gaining company: auction invalidity now also follows from the specific public-auction defects of article 449.1, and the article 840 reproach for unsecured repayment is suppressed for deposits in precious metals, which article 844.1(3) excludes from deposit insurance."
+      ],
+      "reasons_ru": [
+        "Три контракта данных получили обязательные предикаты разом: вещные права (статья 306), порядок заключения (статья 449.1) и банковский вклад (статья 844.1); артефакты, собранные без них, не воспроизводятся.",
+        "Это последние три пробела обхода кодекса, каждый по одной статье внутри института, который уже заявлял её соседей. Обход показывает ноль настоящих пробелов.",
+        "Два прежних вывода не просто получили соседей, а изменили смысл: недействительность торгов теперь следует и из специальных пороков публичных торгов по статье 449.1, а упрёк по статье 840 за необеспеченный возврат снимается для вклада в драгоценных металлах, который пункт 3 статьи 844.1 выводит из-под страхования вкладов."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_property_rights_evaluation.py",
+        "python scripts/export_synthetic_procedure_evaluation.py",
+        "python scripts/export_synthetic_bank_deposit_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.9.0",
+      "to_version": "1.10.0",
+      "reasons": [
+        "The invalidity evidence gains three required predicates for article 174.1 and the form evidence two for article 434(3); the messages evidence gains a required role naming which notice of the case is being checked. Artifacts produced without them cannot be replayed.",
+        "The messages evidence schema moves to contracts.messages-evidence.v1: the role is part of the data contract, not an optional annotation.",
+        "Two conclusions change meaning rather than merely gaining company: a judicial prohibition under article 174.1(2) now suppresses the article 168 grounds, and written form can be satisfied by acceptance through conduct without any signed document."
+      ],
+      "reasons_ru": [
+        "Контракт данных о недействительности получил три обязательных предиката для статьи 174.1, контракт о форме — два для пункта 3 статьи 434, а контракт о сообщении — обязательную роль, называющую, какое уведомление дела проверяется. Артефакты, собранные без них, не воспроизводятся.",
+        "Схема доказательств о сообщении перешла на contracts.messages-evidence.v1: роль входит в контракт данных, а не в необязательное примечание.",
+        "Два прежних вывода не просто получили соседей, а изменили смысл: судебный запрет по пункту 2 статьи 174.1 снимает основания статьи 168, а письменная форма может быть соблюдена акцептом действиями без подписанного документа."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_invalidity_evaluation.py",
+        "python scripts/export_synthetic_form_evaluation.py",
+        "python scripts/export_synthetic_messages_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.10.0",
+      "to_version": "1.11.0",
+      "reasons": [
+        "The message role registry grows from 8 entries to 14, covering every predicate in the package that names delivery of a notice or a demand rather than its existence, timeliness, or form. This is purely additive: MessageRole gains six values, existing cases and artifacts using the prior eight roles or OTHER replay unchanged.",
+        "No evidence contract gains a required predicate; only the allowed set of message_role values grows."
+      ],
+      "reasons_ru": [
+        "Реестр ролей сообщений вырос с восьми записей до четырнадцати — по одной на каждый предикат пакета, чьё имя называет доставку уведомления или требования, а не его существование, своевременность или форму. Изменение чисто аддитивное: MessageRole получил шесть новых значений, а дела и артефакты, использующие прежние восемь ролей или OTHER, воспроизводятся без изменений.",
+        "Ни один контракт доказательств не получил нового обязательного предиката — вырос только допустимый набор значений message_role."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_messages_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.11.0",
+      "to_version": "1.12.0",
+      "reasons": [
+        "The message role registry grows from 14 entries to 19, covering the negative-polarity 'not notified' predicates named as a residual limitation in 1.11.0. Each entry now carries a negated flag; the fact-consistency check and the reconciliation resolver both interpret it through negation. This is purely additive: MessageRole gains five values, existing cases and artifacts using the prior fourteen roles or OTHER replay unchanged.",
+        "No evidence contract gains a required predicate; only the allowed set of message_role values grows, and the interpretation of the registry's tuple values changes from a bare pair to a named target carrying polarity."
+      ],
+      "reasons_ru": [
+        "Реестр ролей сообщений вырос с 14 записей до 19, охватив предикаты отрицательной полярности («не уведомлён»), названные остаточным ограничением в 1.11.0. Каждая запись теперь несёт флаг negated; и сверка фактов, и резолвер согласования читают такой предикат через отрицание. Изменение чисто аддитивное: MessageRole получил пять новых значений, а дела и артефакты, использующие прежние четырнадцать ролей или OTHER, воспроизводятся без изменений.",
+        "Ни один контракт доказательств не получил нового обязательного предиката — вырос только допустимый набор значений message_role, а толкование значений реестра сменилось с голой пары на именованную цель, несущую полярность."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_messages_evaluation.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.12.0",
+      "to_version": "1.13.0",
+      "reasons": [
+        "SYNTHETIC_CONTRACT_SOURCES grows from 309 to 320 entries: eleven new LegalSource records cite Federal Law No. 127-FZ articles (1, 5, 61.1, 61.2, 61.3, 61.9, 63, 134, 135, 138, 142) with verbatim statute text and specificity='special'. No predicate or evidence contract changes; artifacts embedding the full source list must be regenerated so they carry the new entries rather than a stale count.",
+        "Two coverage maps change what they report, not what they require: practice_coverage.py no longer claims article 25 under the persons institute, and code_coverage.py now gives articles 25 and 65 their own exact-key gap reason instead of a neighboring range's unrelated one. Neither is part of any evidence contract or replay artifact."
+      ],
+      "reasons_ru": [
+        "SYNTHETIC_CONTRACT_SOURCES вырос с 309 до 320 записей: одиннадцать новых LegalSource ссылаются на статьи 127-ФЗ (1, 5, 61.1, 61.2, 61.3, 61.9, 63, 134, 135, 138, 142) с дословным текстом и specificity='special'. Ни один предикат или контракт доказательств не изменён; артефакты, встраивающие полный список источников, нужно пересобрать, чтобы они несли новые записи, а не устаревшее число.",
+        "Две карты покрытия меняют то, что сообщают, а не то, что требуют: practice_coverage.py больше не объявляет статью 25 покрытой институтом лиц, а code_coverage.py даёт статьям 25 и 65 собственную точную причину вместо причины соседнего диапазона. Ни то ни другое не входит ни в один контракт доказательств или артефакт воспроизведения."
+      ],
+      "replay_commands": [
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_phase0_demo_trace.py",
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.13.0",
+      "to_version": "1.14.0",
+      "reasons": [
+        "A new standalone module, bankruptcy_claims.py, is added: it is not required by any existing evidence contract, but any artifact that expects to find it absent needs regeneration to reflect the package now shipping a claim-regime model.",
+        "No existing predicate, evidence contract, or evaluation changes. The new model is not wired into reviewed_analysis.py or into the GK-numbered coverage maps in this release."
+      ],
+      "reasons_ru": [
+        "Добавлен новый самостоятельный модуль bankruptcy_claims.py: он не требуется ни одним существующим контрактом доказательств, но артефакт, ожидающий его отсутствия, нуждается в пересборке, чтобы отразить, что пакет теперь поставляет модель режима требования.",
+        "Ни один существующий предикат, контракт доказательств или сверка не изменены. Новая модель не подключена к reviewed_analysis.py и к картам покрытия, нумерованным по ГК, в этом релизе."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.14.0",
+      "to_version": "1.15.0",
+      "reasons": [
+        "A new standalone module, bankruptcy_ranking.py, is added: it is not required by any existing evidence contract, but any artifact that expects to find it absent needs regeneration to reflect the package now shipping a creditor-ranking model.",
+        "No existing predicate, evidence contract, or evaluation changes. The new model is not wired into reviewed_analysis.py or into the GK-numbered coverage maps in this release."
+      ],
+      "reasons_ru": [
+        "Добавлен новый самостоятельный модуль bankruptcy_ranking.py: он не требуется ни одним существующим контрактом доказательств, но артефакт, ожидающий его отсутствия, нуждается в пересборке, чтобы отразить, что пакет теперь поставляет модель очерёдности требований кредиторов.",
+        "Ни один существующий предикат, контракт доказательств или сверка не изменены. Новая модель не подключена к reviewed_analysis.py и к картам покрытия, нумерованным по ГК, в этом релизе."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

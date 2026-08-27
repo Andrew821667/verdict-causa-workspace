@@ -2178,6 +2178,21 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.14.0",
+        to_version="1.15.0",
+        reasons=[
+            "A new standalone module, bankruptcy_ranking.py, is added: it is not required by any existing evidence contract, but any artifact that expects to find it absent needs regeneration to reflect the package now shipping a creditor-ranking model.",
+            "No existing predicate, evidence contract, or evaluation changes. The new model is not wired into reviewed_analysis.py or into the GK-numbered coverage maps in this release.",
+        ],
+        reasons_ru=[
+            "Добавлен новый самостоятельный модуль bankruptcy_ranking.py: он не требуется ни одним существующим контрактом доказательств, но артефакт, ожидающий его отсутствия, нуждается в пересборке, чтобы отразить, что пакет теперь поставляет модель очерёдности требований кредиторов.",
+            "Ни один существующий предикат, контракт доказательств или сверка не изменены. Новая модель не подключена к reviewed_analysis.py и к картам покрытия, нумерованным по ГК, в этом релизе.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

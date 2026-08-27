@@ -4,7 +4,7 @@ from causa.institutional.package import InstitutionalPackageManifest
 CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
     id="contracts-ru-v0",
     legal_institute="Договорные отношения: общие положения об обязательствах, свобода договора, цена, заключение, заключение в обязательном порядке и на торгах, предварительный договор, опцион на заключение договора, рамочный договор, абонентский договор, публичный договор, договор присоединения, договор в пользу третьего лица, форма, заверения об обстоятельствах, преддоговорная ответственность, толкование, действие во времени, исковая давность, юридически значимые сообщения, действительность, обеспечение, перемена лиц, исполнение, купля-продажа, розничная купля-продажа, поставка, поставка для государственных нужд, контрактация, энергоснабжение, продажа недвижимости, продажа предприятия, мена, дарение, рента и пожизненное содержание, изменение, расторжение, прекращение и ответственность",
-    version="1.14.0",
+    version="1.15.0",
     core_compatibility=">=0.1,<0.2",
     vocabulary_refs=["src/causa/institutional/contracts/vocabulary.py"],
     authority_model_refs=["src/causa/institutional/contracts/authority_model.py"],
@@ -122,6 +122,7 @@ CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
         "src/causa/institutional/contracts/termination.py",
         "src/causa/institutional/contracts/liability.py",
         "src/causa/institutional/contracts/bankruptcy_claims.py",
+        "src/causa/institutional/contracts/bankruptcy_ranking.py",
     ],
     mapping_rule_refs=[
         "docs/bootstrap-pipeline-spec.md#translation-status",
@@ -236,6 +237,7 @@ CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
         "src/causa/institutional/contracts/termination.py",
         "src/causa/institutional/contracts/liability.py",
         "src/causa/institutional/contracts/bankruptcy_claims.py",
+        "src/causa/institutional/contracts/bankruptcy_ranking.py",
     ],
     contradiction_taxonomy_refs=["src/causa/institutional/contracts/contradiction_taxonomy.py"],
     legal_operator_refs=["src/causa/institutional/contracts/legal_operators.py"],
@@ -328,6 +330,7 @@ CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
         "src/causa/institutional/contracts/termination_evaluation.py",
         "src/causa/institutional/contracts/liability_evaluation.py",
         "src/causa/institutional/contracts/bankruptcy_claims_evaluation.py",
+        "src/causa/institutional/contracts/bankruptcy_ranking_evaluation.py",
         "src/causa/institutional/contracts/pilot_evaluation.py",
     ],
     red_team_refs=[
@@ -419,6 +422,7 @@ CONTRACTS_PACKAGE_MANIFEST = InstitutionalPackageManifest(
         "src/causa/institutional/contracts/termination_evaluation.py",
         "src/causa/institutional/contracts/liability_evaluation.py",
         "src/causa/institutional/contracts/bankruptcy_claims_evaluation.py",
+        "src/causa/institutional/contracts/bankruptcy_ranking_evaluation.py",
         "src/causa/institutional/contracts/pilot_evaluation.py",
     ],
     confidence_policy_refs=["docs/management-plane-spec.md#confidence-and-activation-policies"],

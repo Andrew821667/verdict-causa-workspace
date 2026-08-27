@@ -42,7 +42,7 @@ from causa.reasoning.rule_parity import (
 
 #: Правил, объявленных и исполняемых, на момент примирения. Число может расти
 #: вместе с пакетом; важно, что обе стороны считают одинаково.
-BASELINE_RULES = 1193
+BASELINE_RULES = 1200
 
 
 @pytest.fixture(scope="module")

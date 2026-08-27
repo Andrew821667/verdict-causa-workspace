@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.15.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Third release of the bankruptcy institute work: adds the creditor-ranking model on top of the 127-FZ sources shipped in 1.13.0-1.14.0. A new standalone module, bankruptcy_ranking.py, classifies a registered claim into the three tiers of paragraph 4 article 134 127-FZ (life/health harm claims capitalized under article 135; wage, severance, and authorship-remuneration claims; ordinary creditors) plus three special tracks that fall outside the tier system: claims secured by a pledge, satisfied from the sale proceeds under article 138; claims arising from a transaction avoided under article 61.2(2) or 61.3(3), subordinated below the third tier; and perpetual-bond claims, satisfied last of all.",
+            "Claims secured by a pledge or from life/health harm are flagged for mandatory human review: the model classifies the tier correctly but does not compute the capitalization amount (article 135, parameters set by the Government) or the pledge-proceeds split (article 138: 70/80 percent to the secured creditor depending on whether the claim arises from a credit agreement, with the remainder earmarked for first- and second-tier shortfalls before the estate). Whether a claim in fact arises from an avoided transaction is taken as a given fact from elsewhere, not re-derived - that determination belongs to the future transaction-avoidance institute (articles 61.2, 61.3), planned as a later release.",
+            "Like 1.14.0, this release is deliberately not yet wired into the central reviewed-analysis pipeline or into the GK-numbered coverage maps, for the same reason: 127-FZ articles are numbered independently of the Civil Code. Tested directly: benchmark 7/7, red-team 8/8, plus source, duplicate-rejection, and mutual-exclusivity tests in tests/test_contract_bankruptcy_ranking.py. The automatic rule-parity audit picked up the new module on its own: 7 declared rules, 7 executed, 0 divergences.",
+        ],
+        notes_ru=[
+            "Третий релиз работы над институтом банкротства: добавляет модель очерёдности требований поверх источников 127-ФЗ, поставленных в 1.13.0–1.14.0. Новый самостоятельный модуль bankruptcy_ranking.py распределяет реестровое требование по трём очередям пункта 4 статьи 134 127-ФЗ (вред жизни или здоровью с капитализацией по статье 135; выходные пособия, оплата труда и вознаграждение автору; обычные кредиторы) плюс три особых трека вне очередей: требования, обеспеченные залогом, — удовлетворяются из выручки от продажи предмета залога по статье 138; требования из сделки, признанной недействительной по пункту 2 статьи 61.2 или пункту 3 статьи 61.3, — субординированы ниже третьей очереди; требования владельцев облигаций без срока погашения — удовлетворяются последними.",
+            "Залоговые требования и требования о вреде жизни или здоровью помечены обязательной проверкой юристом: модель верно определяет очередь, но не считает сумму капитализации (статья 135, параметры устанавливает Правительство РФ) и не считает раздел выручки от залога (статья 138: 70/80 процентов кредитору в зависимости от наличия кредитного договора, остаток — на погашение первой и второй очереди до пополнения конкурсной массы). Является ли требование в действительности требованием из недействительной сделки — модель принимает как готовый факт извне, а не устанавливает сама: это задача будущего института оспаривания сделок (статьи 61.2, 61.3), запланированного отдельным релизом.",
+            "Как и 1.14.0, релиз сознательно не подключён ни к центральному конвейеру сверки, ни к картам покрытия, нумерованным по ГК, — по той же причине: статьи 127-ФЗ нумеруются независимо от Гражданского кодекса. Проверено напрямую: benchmark 7 из 7, red-team 8 из 8, плюс тесты источников, отклонения дублей и взаимной исключительности категорий в tests/test_contract_bankruptcy_ranking.py. Автоматический аудит паритета правил сам подхватил новый модуль: 7 объявленных правил, 7 исполняемых, 0 расхождений.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.14.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],
