@@ -1,0 +1,501 @@
+<title>Экспорт Пленумов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #F6F7F9;
+    --card: #FFFFFF;
+    --ink: #15181E;
+    --ink-soft: #4C5563;
+    --ink-faint: #757F8E;
+    --rule: #DDE1E8;
+    --rule-strong: #C3C9D4;
+    --indigo: #243B6B;
+    --indigo-soft: #E8ECF5;
+    --alarm: #8C2F27;
+    --alarm-bg: #FBF0EE;
+    --alarm-rule: #D9B4AE;
+    --code-bg: #F0F2F6;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #101319;
+      --card: #171B23;
+      --ink: #E7EAF0;
+      --ink-soft: #A5AEBD;
+      --ink-faint: #798291;
+      --rule: #272C37;
+      --rule-strong: #39404E;
+      --indigo: #93A9DF;
+      --indigo-soft: #1B2438;
+      --alarm: #E8938A;
+      --alarm-bg: #241715;
+      --alarm-rule: #5A322C;
+      --code-bg: #1C212B;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #101319;
+    --card: #171B23;
+    --ink: #E7EAF0;
+    --ink-soft: #A5AEBD;
+    --ink-faint: #798291;
+    --rule: #272C37;
+    --rule-strong: #39404E;
+    --indigo: #93A9DF;
+    --indigo-soft: #1B2438;
+    --alarm: #E8938A;
+    --alarm-bg: #241715;
+    --alarm-rule: #5A322C;
+    --code-bg: #1C212B;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 61rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1.1rem, 4vw, 3rem) 6rem;
+  }
+
+  /* ── шапка ─────────────────────────────────────────────── */
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  h1 {
+    font-family: Spectral, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 4.6vw, 2.9rem);
+    line-height: 1.16;
+    text-wrap: balance;
+    margin: 0.5rem 0 0;
+    letter-spacing: -0.01em;
+  }
+
+  .standfirst {
+    font-family: Spectral, Georgia, serif;
+    font-size: clamp(1.02rem, 2vw, 1.18rem);
+    color: var(--ink-soft);
+    max-width: 40rem;
+    margin-top: 1rem;
+  }
+
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 2.2rem;
+    margin-top: 2rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--rule);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+  }
+
+  .facts b {
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+
+  /* ── запрет ────────────────────────────────────────────── */
+
+  .prohibition {
+    margin: 2.6rem 0 3.4rem;
+    background: var(--alarm-bg);
+    border: 1px solid var(--alarm-rule);
+    border-left-width: 4px;
+    border-radius: 2px;
+    padding: 1.5rem clamp(1.1rem, 3vw, 1.9rem);
+  }
+
+  .prohibition h2 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--alarm);
+    margin: 0 0 0.7rem;
+  }
+
+  .prohibition p {
+    margin: 0;
+    font-size: 1.02rem;
+    color: var(--ink);
+  }
+
+  .prohibition p + p { margin-top: 0.8rem; }
+
+  /* ── разделы с висячими номерами ───────────────────────── */
+
+  section {
+    display: grid;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: 0 1.4rem;
+    padding-top: 2.6rem;
+    margin-top: 2.6rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  section:first-of-type { border-top: none; }
+
+  .num {
+    font-family: Spectral, Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--indigo);
+    line-height: 1.1;
+    padding-top: 0.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .body { min-width: 0; }
+
+  h2:not(.prohibition h2) {
+    font-family: Spectral, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.3rem, 2.6vw, 1.62rem);
+    line-height: 1.24;
+    text-wrap: balance;
+    margin: 0 0 0.9rem;
+  }
+
+  h3 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    margin: 1.9rem 0 0.6rem;
+    color: var(--ink);
+  }
+
+  p { margin: 0 0 1rem; max-width: 40rem; }
+  p:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 600; }
+
+  em {
+    font-family: Spectral, Georgia, serif;
+    font-style: italic;
+  }
+
+  code {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.86em;
+    background: var(--code-bg);
+    padding: 0.1em 0.36em;
+    border-radius: 2px;
+  }
+
+  /* ── таблица полей ─────────────────────────────────────── */
+
+  .scroll {
+    overflow-x: auto;
+    margin: 1.2rem 0 1.4rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: var(--card);
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.88rem;
+    min-width: 30rem;
+  }
+
+  th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--rule-strong);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 0.68rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    color: var(--ink-soft);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td:first-child {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.82rem;
+    color: var(--indigo);
+    white-space: nowrap;
+  }
+
+  /* ── блоки кода ────────────────────────────────────────── */
+
+  pre {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 1.05rem 1.2rem;
+    overflow-x: auto;
+    margin: 1.2rem 0 1.4rem;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.82rem;
+    line-height: 1.62;
+    color: var(--ink-soft);
+  }
+
+  /* ── списки ────────────────────────────────────────────── */
+
+  ul { margin: 0 0 1rem; padding-left: 1.15rem; max-width: 40rem; }
+  li { margin-bottom: 0.62rem; padding-left: 0.2rem; }
+  li::marker { color: var(--ink-faint); }
+  li:last-child { margin-bottom: 0; }
+
+  ol.steps {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    max-width: 40rem;
+  }
+
+  ol.steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.85rem;
+  }
+
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.06em;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: var(--indigo);
+    background: var(--indigo-soft);
+    width: 1.4rem;
+    height: 1.4rem;
+    display: grid;
+    place-items: center;
+    border-radius: 2px;
+  }
+
+  /* ── врезка «почему» ───────────────────────────────────── */
+
+  .aside {
+    border-left: 2px solid var(--rule-strong);
+    padding: 0.15rem 0 0.15rem 1.1rem;
+    margin: 1.4rem 0;
+    color: var(--ink-soft);
+    font-family: Spectral, Georgia, serif;
+    font-size: 1rem;
+    max-width: 38rem;
+  }
+
+  .aside p { margin-bottom: 0.7rem; }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--rule);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    line-height: 1.75;
+  }
+
+  @media (max-width: 44rem) {
+    section {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+    .num {
+      font-size: 1.05rem;
+      padding-top: 0;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+<div class="sheet">
+
+  <header>
+    <div class="eyebrow">Задание агенту · Mac mini</div>
+    <h1>Попунктный чистый экспорт постановлений Пленума</h1>
+    <p class="standfirst">
+      Пять постановлений уже лежат в data/guidance/ как сырой дамп HTML-страницы —
+      с тултипами похожих дел прямо внутри текста. Механическая очистка кодом
+      потеряла 65 пунктов одного документа. Нужен тот же чистый способ, каким
+      выгружен 127-ФЗ, применённый к постановлениям Пленума.
+    </p>
+    <div class="facts">
+      <span><b>репозиторий</b> verdict-causa-workspace</span>
+      <span><b>ветка</b> data/plenum-paragraphs-export</span>
+      <span><b>основывать на</b> main</span>
+      <span><b>источник</b> подписка КонсультантПлюс, Mac mini</span>
+    </div>
+  </header>
+
+  <div class="prohibition">
+    <h2>Запрет, который важнее задания</h2>
+    <p>
+      <strong>Не использовать для работы ключ API какой-либо LLM.</strong>
+      Работать только на ресурсах подписки. Задача решается экспортом из
+      локальной подписки тем же способом, каким выгружен 127-ФЗ, —
+      детерминированно, без модели. Если без API-ключа LLM задачу выполнить
+      нельзя — остановись и напиши человеку.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Почему это отдельное задание, а не повтор прошлого</h2>
+      <p>
+        Пять постановлений Пленума уже лежат в <code>data/guidance/</code> —
+        но выгружены другим способом: это сырой дамп HTML-страницы
+        КонсультантПлюс в Markdown, с всплывающими подсказками похожих дел,
+        вставленными прямо внутри текста постановления (<code>&lt;div&gt;</code>,
+        ссылки на карточки дел с тултипами в несколько килобайт каждая). Для
+        чтения человеком через веб-интерфейс это нормально — подсказки скрыты
+        по умолчанию. Как текст источника права для модели — нет.
+      </p>
+      <div class="aside">
+        <p>
+          Попытка механически вычистить разметку кодом нашла место, где 65
+          пунктов постановления № 25/2015 (с 15-го по 79-й) пропали при
+          удалении одной такой подсказки, и обрывки текста тех же подсказок
+          остаются вплетены в текст даже там, где нумерация пунктов не
+          пострадала.
+        </p>
+      </div>
+      <p>
+        127-ФЗ выгружен <strong>другим</strong> способом — постатейно, из
+        карточки закона, без этого мусора. Нужен тот же способ, применённый к
+        постановлениям Пленума: не дамп HTML-страницы, а чистый попунктный
+        экспорт.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Пять документов, которые уже определены</h2>
+      <p>
+        Тем же способом, каким выгружен 127-ФЗ — попунктно, из карточки
+        документа, без разметки страницы и без всплывающих подсказок:
+      </p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>документ</th><th>зачем</th></tr></thead>
+          <tbody>
+            <tr><td>Пленум ВС РФ № 25 от 23.06.2015</td><td>пункты 63-68 (доставка сообщения, ст. 165.1) + раздел о недействительности сделок</td></tr>
+            <tr><td>Пленум ВС РФ № 54 от 21.12.2017</td><td>целиком — перемена лиц в обязательстве</td></tr>
+            <tr><td>Пленум ВС РФ № 45 от 24.12.2020</td><td>целиком — поручительство</td></tr>
+            <tr><td>Пленум ВС РФ № 23 от 27.06.2023</td><td>целиком — залог вещей</td></tr>
+            <tr><td>Пленум ВС РФ № 6 от 11.06.2020</td><td>целиком — прекращение обязательств</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Файл: <code>data/guidance/plenum_paragraphs.jsonl</code>, по объекту JSON на строку — одна строка на пункт:</p>
+<pre><code>{
+  "document_slug": "plenum-vs-45-2020",
+  "paragraph": "1",
+  "text_ru": "1. В соответствии со статьей 361 Гражданского кодекса Российской Федерации...",
+  "section_ru": "Общие положения",
+  "source_ref": "consultant:LAW:372286:1"
+}</code></pre>
+      <p>
+        Четыре монотематичных постановления (№ 54/2017, № 45/2020, № 23/2023,
+        № 6/2020) выгружаются целиком — каждое посвящено ровно одному
+        вопросу. У № 25/2015 разделов много, поэтому по нему — только два:
+        пункты 63-68 и раздел о недействительности сделок целиком (найди его
+        по оглавлению документа).
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Пять документов, которых пока нет вовсе</h2>
+      <p>Поищи в подписке по номеру и дате:</p>
+      <ul>
+        <li>Пленум ВС РФ № 49 от 25.12.2018</li>
+        <li>Пленум ВС РФ № 54 от 22.11.2016 (не путать с № 54 от 21.12.2017 — два разных документа с совпадающим номером)</li>
+        <li>Пленум ВС РФ № 18 от 22.06.2021</li>
+        <li>Пленум ВС РФ № 7 от 24.03.2016</li>
+        <li>Пленум ВАС РФ № 18 от 22.10.1997</li>
+      </ul>
+      <p>
+        Если найдёшь — выгрузи целиком тем же способом, добавь в оба файла.
+        Если не найдёшь — не восстанавливай по памяти и не бери с сайта
+        интернета: честно напиши в опись «не найден».
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Опись и как сдать</h2>
+      <p><code>data/plenum-paragraphs-inventory.md</code> — как выгружено и чем отличается от прошлого дампа (тот дамп не трогать), сколько пунктов по каждому документу, как проверена нумерация без разрывов, что не нашлось.</p>
+      <p>
+        Ветка <code>data/plenum-paragraphs-export</code>, основанная на
+        текущем <code>main</code>. Коммит, push в
+        <code>verdict-causa-workspace</code>. Пул-реквест не открывай.
+      </p>
+<pre><code>python - &lt;&lt;'PY'
+import json
+from collections import defaultdict
+
+rows = [json.loads(l) for l in open("data/guidance/plenum_paragraphs.jsonl", encoding="utf-8") if l.strip()]
+by_doc = defaultdict(list)
+for r in rows:
+    by_doc[r["document_slug"]].append(r)
+
+for slug, items in sorted(by_doc.items()):
+    empty = sum(1 for r in items if not r["text_ru"].strip())
+    noise = sum(1 for r in items if "&lt;div" in r["text_ru"] or "](" in r["text_ru"] or "http" in r["text_ru"])
+    print(f"{slug}: {len(items)} пунктов, пустых {empty}, с остатками разметки {noise}")
+PY</code></pre>
+      <p>«С остатками разметки» должно выйти нулём для каждого документа.</p>
+    </div>
+  </section>
+
+  <footer>
+    Задание для агента на Mac mini · verdict-causa-workspace · ветка data/plenum-paragraphs-export<br>
+    Текстовая версия задания: docs/plenum-guidance-texts-export-brief.md
+  </footer>
+
+</div>
