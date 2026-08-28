@@ -180,7 +180,8 @@ def run_real_case_through_pipeline(
             institute_conclusions_unchanged=True,
             notes_ru=[
                 "Конвейер отверг дело на сверке входов: "
-                + "; ".join(str(error).splitlines()[1:]) + ".",
+                + "; ".join(str(error).splitlines()[1:])
+                + ".",
                 reason or "Причина отказа не записана — это дефект набора, а не ответ.",
             ],
         )

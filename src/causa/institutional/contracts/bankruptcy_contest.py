@@ -43,9 +43,7 @@ class BankruptcyContestEvidencePredicate(str, Enum):
     # Сделка с предпочтением (статья 61.3): окна в один месяц/после подачи
     # заявления и в шесть месяцев, основание предпочтения (общее и узкое —
     # абзацы второй и третий пункта 1) и осведомлённость о неплатёжеспособности.
-    TRANSACTION_WITHIN_SIX_MONTHS_BEFORE_PETITION = (
-        "transaction_within_six_months_before_petition"
-    )
+    TRANSACTION_WITHIN_SIX_MONTHS_BEFORE_PETITION = "transaction_within_six_months_before_petition"
     TRANSACTION_AFTER_PETITION_OR_WITHIN_ONE_MONTH_BEFORE = (
         "transaction_after_petition_or_within_one_month_before"
     )
@@ -54,9 +52,7 @@ class BankruptcyContestEvidencePredicate(str, Enum):
     COUNTERPARTY_KNEW_OF_INSOLVENCY_SIGNS = "counterparty_knew_of_insolvency_signs"
     # Право на подачу заявления (статья 61.9).
     APPLICANT_IS_ADMINISTRATOR = "applicant_is_administrator"
-    APPLICANT_CREDITOR_SHARE_PERCENT_EXCEEDS_TEN = (
-        "applicant_creditor_share_percent_exceeds_ten"
-    )
+    APPLICANT_CREDITOR_SHARE_PERCENT_EXCEEDS_TEN = "applicant_creditor_share_percent_exceeds_ten"
 
 
 REQUIRED_BANKRUPTCY_CONTEST_PREDICATES = frozenset(BankruptcyContestEvidencePredicate)
@@ -175,8 +171,7 @@ def map_reviewed_bankruptcy_contest_evidence(
         raise ValueError("Bankruptcy-contest evidence requires a reviewer_id before analysis.")
     assertions = {assertion.predicate: assertion for assertion in evidence.assertions}
     missing = sorted(
-        predicate.value
-        for predicate in REQUIRED_BANKRUPTCY_CONTEST_PREDICATES - assertions.keys()
+        predicate.value for predicate in REQUIRED_BANKRUPTCY_CONTEST_PREDICATES - assertions.keys()
     )
     if missing:
         raise ValueError(
@@ -402,8 +397,7 @@ def evaluate_bankruptcy_contest_constraints(
         )
     else:
         reasons_ru.append(
-            "У заявителя нет права на подачу заявления об оспаривании сделки по статье 61.9 "
-            "127-ФЗ."
+            "У заявителя нет права на подачу заявления об оспаривании сделки по статье 61.9 127-ФЗ."
         )
     if truth(requires_human_bankruptcy_contest_assessment):
         reasons_ru.append(

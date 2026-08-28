@@ -48,9 +48,7 @@ from causa.institutional.contracts.practice_coverage import (
 
 CODE_COVERAGE_VERSION = "contracts-code-coverage-v0"
 
-CODE_STRUCTURE_PATH = (
-    Path(__file__).resolve().parents[4] / "data" / "code" / "gk_articles.jsonl"
-)
+CODE_STRUCTURE_PATH = Path(__file__).resolve().parents[4] / "data" / "code" / "gk_articles.jsonl"
 
 #: Почему статья не заявлена ни одним институтом.
 #:

@@ -307,9 +307,7 @@ def measure_practice_coverage(inventory: PracticeBaseInventory) -> PracticeCover
     # UNCOVERED_DOMAINS_RU. Расхождение вскрылось на второй выгрузке: первая
     # просто не заходила за статью 53.
     reasons = {article: uncovered_domain_ru(article) for article in uncovered}
-    unexplained = [
-        article for article in uncovered if reasons[article] == GAP_REASON_UNKNOWN_RU
-    ]
+    unexplained = [article for article in uncovered if reasons[article] == GAP_REASON_UNKNOWN_RU]
 
     notes: list[str] = []
     if uncovered:

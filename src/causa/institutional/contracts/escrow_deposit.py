@@ -76,9 +76,7 @@ class EscrowDepositEvidencePredicate(str, Enum):
     SUBSTANTIVE_CHECK_AGREED_BY_CONTRACT = "substantive_check_agreed_by_contract"
     AGENT_TRANSFERRED_WITHOUT_VERIFYING_GROUNDS = "agent_transferred_without_verifying_grounds"
     # Обособление и распоряжение имуществом (статья 926.4 ГК РФ).
-    DEPOSITED_PROPERTY_COMMINGLED_WITH_AGENTS_OWN = (
-        "deposited_property_commingled_with_agents_own"
-    )
+    DEPOSITED_PROPERTY_COMMINGLED_WITH_AGENTS_OWN = "deposited_property_commingled_with_agents_own"
     USE_OR_DISPOSAL_PERMITTED_BY_CONTRACT_OR_NATURE = (
         "use_or_disposal_permitted_by_contract_or_nature"
     )
@@ -86,9 +84,7 @@ class EscrowDepositEvidencePredicate(str, Enum):
     # Депонирование вещей (статья 926.5 ГК РФ).
     THING_LOST_DAMAGED_OR_SHORT = "thing_lost_damaged_or_short"
     AGENT_PROVED_FORCE_MAJEURE = "agent_proved_force_majeure"
-    AGENT_PROVED_INHERENT_DEFECT_UNKNOWN_TO_AGENT = (
-        "agent_proved_inherent_defect_unknown_to_agent"
-    )
+    AGENT_PROVED_INHERENT_DEFECT_UNKNOWN_TO_AGENT = "agent_proved_inherent_defect_unknown_to_agent"
     AGENT_PROVED_DEPOSITOR_FAULT = "agent_proved_depositor_fault"
     # Депонирование ценных бумаг и безналичных денег (статья 926.6 ГК РФ).
     SECURITIES_EXERCISE_PERMITTED_BY_CONTRACT = "securities_exercise_permitted_by_contract"
@@ -168,13 +164,16 @@ class EscrowDepositFactSet(BaseModel):
 
     @model_validator(mode="after")
     def validate_consistency(self) -> "EscrowDepositFactSet":
-        if any(
-            [
-                self.deposited_things,
-                self.deposited_cashless_money,
-                self.deposited_uncertificated_securities,
-            ]
-        ) and not self.escrow_deposit_asserted:
+        if (
+            any(
+                [
+                    self.deposited_things,
+                    self.deposited_cashless_money,
+                    self.deposited_uncertificated_securities,
+                ]
+            )
+            and not self.escrow_deposit_asserted
+        ):
             raise ValueError(
                 "Предмет депонирования назван, а сам договор эскроу в деле не заявлен."
             )
@@ -315,9 +314,7 @@ def map_reviewed_escrow_deposit_evidence(
                 assertion_id=assertions[predicate].id,
                 source_refs=list(assertions[predicate].source_refs),
             )
-            for predicate in sorted(
-                REQUIRED_ESCROW_DEPOSIT_PREDICATES, key=lambda item: item.value
-            )
+            for predicate in sorted(REQUIRED_ESCROW_DEPOSIT_PREDICATES, key=lambda item: item.value)
         ],
     )
 
@@ -384,15 +381,11 @@ def evaluate_escrow_deposit_constraints(
         "deposited_property_insulated_from_agent_or_depositor_creditors"
     )
     insulation_breach = Bool("insulation_breach")
-    beneficiary_creditor_may_reach_claim_right = Bool(
-        "beneficiary_creditor_may_reach_claim_right"
-    )
+    beneficiary_creditor_may_reach_claim_right = Bool("beneficiary_creditor_may_reach_claim_right")
     termination_ground_present = Bool("termination_ground_present")
     contract_transferred_to_new_agent = Bool("contract_transferred_to_new_agent")
     return_to_depositor_due = Bool("return_to_depositor_due")
-    transfer_to_beneficiary_due_on_termination = Bool(
-        "transfer_to_beneficiary_due_on_termination"
-    )
+    transfer_to_beneficiary_due_on_termination = Bool("transfer_to_beneficiary_due_on_termination")
     requires_human_escrow_deposit_assessment = Bool("requires_human_escrow_deposit_assessment")
 
     solver = Solver()
@@ -468,9 +461,7 @@ def evaluate_escrow_deposit_constraints(
     )
     solver.add(
         segregation_breach
-        == And(
-            escrow_deposit_qualified, variables["deposited_property_commingled_with_agents_own"]
-        )
+        == And(escrow_deposit_qualified, variables["deposited_property_commingled_with_agents_own"])
     )
     solver.add(
         use_or_disposal_breach
@@ -525,8 +516,7 @@ def evaluate_escrow_deposit_constraints(
         )
     )
     solver.add(
-        deposited_property_insulated_from_agent_or_depositor_creditors
-        == escrow_deposit_qualified
+        deposited_property_insulated_from_agent_or_depositor_creditors == escrow_deposit_qualified
     )
     solver.add(
         insulation_breach
@@ -551,9 +541,7 @@ def evaluate_escrow_deposit_constraints(
     )
     solver.add(
         contract_transferred_to_new_agent
-        == And(
-            termination_ground_present, variables["contract_transferred_under_article_392_3"]
-        )
+        == And(termination_ground_present, variables["contract_transferred_under_article_392_3"])
     )
     solver.add(
         return_to_depositor_due
@@ -811,9 +799,7 @@ def evaluate_escrow_deposit_constraints(
         transfer_to_beneficiary_due_on_termination=truth(
             transfer_to_beneficiary_due_on_termination
         ),
-        requires_human_escrow_deposit_assessment=truth(
-            requires_human_escrow_deposit_assessment
-        ),
+        requires_human_escrow_deposit_assessment=truth(requires_human_escrow_deposit_assessment),
         reasons_ru=reasons_ru,
         warnings_ru=[
             "Наступление оснований передачи имущества бенефициару по существу "

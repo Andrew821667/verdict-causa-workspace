@@ -97,9 +97,7 @@ class FreedomFactSet(BaseModel):
         if self.contract_refers_to_standard_terms and not self.standard_terms_asserted:
             raise ValueError("Отсылка к примерным условиям невозможна без их заявления в деле.")
         if self.standard_terms_published_for_contract_type and not self.standard_terms_asserted:
-            raise ValueError(
-                "Квалификация примерных условий невозможна без их заявления в деле."
-            )
+            raise ValueError("Квалификация примерных условий невозможна без их заявления в деле.")
         if self.standard_terms_meet_custom_requirements and not self.standard_terms_asserted:
             raise ValueError(
                 "Соответствие требованиям обычая невозможно без заявленных примерных условий."

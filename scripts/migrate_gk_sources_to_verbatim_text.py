@@ -33,9 +33,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SRC_PATH = ROOT / "src" / "causa" / "institutional" / "contracts" / "synthetic_sources.py"
 
-ARTICLE_SPAN = re.compile(
-    r"стать[ьия]+\s+((?:\d+(?:\.\d+)*)(?:\s*(?:[–\-,]|и)\s*\d+(?:\.\d+)*)*)"
-)
+ARTICLE_SPAN = re.compile(r"стать[ьия]+\s+((?:\d+(?:\.\d+)*)(?:\s*(?:[–\-,]|и)\s*\d+(?:\.\d+)*)*)")
 
 
 def article_sort_key(num: str) -> tuple:
@@ -95,7 +93,9 @@ def literal_lines(text: str, indent: str) -> list[str]:
     lines = []
     for i, para in enumerate(paragraphs):
         suffix = "\n\n" if i < len(paragraphs) - 1 else ""
-        wrapped = textwrap.wrap(para, width=96, break_long_words=False, break_on_hyphens=False) or [""]
+        wrapped = textwrap.wrap(para, width=96, break_long_words=False, break_on_hyphens=False) or [
+            ""
+        ]
         for j, chunk in enumerate(wrapped):
             piece = chunk
             if j < len(wrapped) - 1:
@@ -112,13 +112,16 @@ def literal_lines(text: str, indent: str) -> list[str]:
 
 
 def main() -> None:
-    structure = [json.loads(line) for line in (ROOT / "data/code/gk_articles.jsonl").open(encoding="utf-8")]
+    structure = [
+        json.loads(line) for line in (ROOT / "data/code/gk_articles.jsonl").open(encoding="utf-8")
+    ]
     titles = {r["number"]: r["title_ru"] for r in structure}
     all_numbers = sorted({r["number"] for r in structure}, key=article_sort_key)
     texts = {
         r["number"]: r["text_ru"]
         for r in (
-            json.loads(line) for line in (ROOT / "data/code/gk_article_texts.jsonl").open(encoding="utf-8")
+            json.loads(line)
+            for line in (ROOT / "data/code/gk_article_texts.jsonl").open(encoding="utf-8")
         )
     }
 
@@ -136,7 +139,11 @@ def main() -> None:
 
     targets = {}
     for node in ast.walk(tree):
-        if not (isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "LegalSource"):
+        if not (
+            isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Name)
+            and node.func.id == "LegalSource"
+        ):
             continue
         kw = {k.arg: k.value for k in node.keywords}
         id_node = kw.get("id")
@@ -167,7 +174,9 @@ def main() -> None:
             continue
         combined = build_combined_text(numbers, titles, texts)
         joined = "\n".join(literal_lines(combined, "            "))
-        new_text_src = joined[len("            ") :]  # первая строка: отступ уже в исходнике до start
+        new_text_src = joined[
+            len("            ") :
+        ]  # первая строка: отступ уже в исходнике до start
 
         start = byte_offset(text_node.lineno, text_node.col_offset)
         end = byte_offset(text_node.end_lineno, text_node.end_col_offset)

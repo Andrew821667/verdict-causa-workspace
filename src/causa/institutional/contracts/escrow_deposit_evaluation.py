@@ -147,7 +147,9 @@ SYNTHETIC_ESCROW_DEPOSIT_BENCHMARKS = (
     EscrowDepositEvaluationTask(
         id="escrow-deposit-bench-term-deemed-five-years",
         title_ru="Срок не указан — закон подставляет пять лет, это не порок сделки",
-        facts=_facts(**_THINGS, notarization_performed=True, deposit_term_missing_or_excessive=True),
+        facts=_facts(
+            **_THINGS, notarization_performed=True, deposit_term_missing_or_excessive=True
+        ),
         expected_outcomes={
             "deposit_term_deemed_five_years": True,
             "requires_human_escrow_deposit_assessment": False,
@@ -286,9 +288,7 @@ SYNTHETIC_ESCROW_DEPOSIT_BENCHMARKS = (
     EscrowDepositEvaluationTask(
         id="escrow-deposit-bench-agent-liability-for-loss",
         title_ru="Агент отвечает за утрату вещи без доказанных оснований освобождения",
-        facts=_facts(
-            **_THINGS, notarization_performed=True, thing_lost_damaged_or_short=True
-        ),
+        facts=_facts(**_THINGS, notarization_performed=True, thing_lost_damaged_or_short=True),
         expected_outcomes={
             "agent_liability_for_things_breached": True,
             "requires_human_escrow_deposit_assessment": True,
@@ -311,9 +311,7 @@ SYNTHETIC_ESCROW_DEPOSIT_BENCHMARKS = (
     EscrowDepositEvaluationTask(
         id="escrow-deposit-bench-securities-disposal-breach",
         title_ru="Агент распорядился ценными бумагами без разрешения договора",
-        facts=_facts(
-            **_SECURITIES, agent_disposed_or_exercised_rights_on_securities=True
-        ),
+        facts=_facts(**_SECURITIES, agent_disposed_or_exercised_rights_on_securities=True),
         expected_outcomes={
             "securities_disposal_breach": True,
             "requires_human_escrow_deposit_assessment": True,
@@ -372,9 +370,7 @@ SYNTHETIC_ESCROW_DEPOSIT_BENCHMARKS = (
     EscrowDepositEvaluationTask(
         id="escrow-deposit-bench-beneficiary-creditor-claim-right",
         title_ru="По долгу бенефициара взыскание обращено на его право требования",
-        facts=_facts(
-            **_THINGS, notarization_performed=True, seizure_for_beneficiary_debt=True
-        ),
+        facts=_facts(**_THINGS, notarization_performed=True, seizure_for_beneficiary_debt=True),
         expected_outcomes={
             "beneficiary_creditor_may_reach_claim_right": True,
             "insulation_breach": False,
@@ -443,7 +439,9 @@ SYNTHETIC_ESCROW_DEPOSIT_RED_TEAM_CASES = (
     EscrowDepositRedTeamCase(
         id="escrow-deposit-red-excess-term-is-not-void",
         title_ru="Превышение пятилетнего срока — не порок сделки, а подстановка закона",
-        facts=_facts(**_THINGS, notarization_performed=True, deposit_term_missing_or_excessive=True),
+        facts=_facts(
+            **_THINGS, notarization_performed=True, deposit_term_missing_or_excessive=True
+        ),
         forbidden_outcomes={
             "notarization_missing_makes_void": True,
             "requires_human_escrow_deposit_assessment": True,

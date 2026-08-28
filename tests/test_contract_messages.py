@@ -91,9 +91,7 @@ def test_a_wrong_address_blocks_the_risk_route_only() -> None:
             non_receipt_due_to_addressee=True,
         )
     )
-    by_handover = _evaluate(
-        _facts(**QUALIFIED, handed_to_addressee_or_representative=True)
-    )
+    by_handover = _evaluate(_facts(**QUALIFIED, handed_to_addressee_or_representative=True))
 
     assert by_risk.message_delivered is False
     assert by_handover.message_delivered is True

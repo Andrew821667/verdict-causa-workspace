@@ -165,7 +165,9 @@ def test_transfer_of_the_contract_prevents_termination() -> None:
 
 def test_grounds_cannot_occur_before_the_contract_defines_them() -> None:
     with pytest.raises(ValueError, match="определены договором эскроу"):
-        _facts(escrow_deposit_asserted=True, deposited_things=True, grounds_for_transfer_occurred=True)
+        _facts(
+            escrow_deposit_asserted=True, deposited_things=True, grounds_for_transfer_occurred=True
+        )
 
 
 def test_a_defence_to_loss_requires_a_loss_to_defend_against() -> None:

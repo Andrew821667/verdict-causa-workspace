@@ -148,8 +148,7 @@ def map_reviewed_bankruptcy_ranking_evidence(
         raise ValueError("Bankruptcy-ranking evidence requires a reviewer_id before analysis.")
     assertions = {assertion.predicate: assertion for assertion in evidence.assertions}
     missing = sorted(
-        predicate.value
-        for predicate in REQUIRED_BANKRUPTCY_RANKING_PREDICATES - assertions.keys()
+        predicate.value for predicate in REQUIRED_BANKRUPTCY_RANKING_PREDICATES - assertions.keys()
     )
     if missing:
         raise ValueError(
@@ -236,13 +235,9 @@ def evaluate_bankruptcy_ranking_constraints(
             Not(variables["is_perpetual_bond_claim"]),
         )
     )
-    solver.add(
-        subordinated_after_third_tier == variables["is_claim_from_avoided_transaction"]
-    )
+    solver.add(subordinated_after_third_tier == variables["is_claim_from_avoided_transaction"])
     solver.add(satisfied_from_pledge_proceeds == variables["is_secured_by_pledge"])
-    solver.add(
-        satisfied_last_after_all_other_creditors == variables["is_perpetual_bond_claim"]
-    )
+    solver.add(satisfied_last_after_all_other_creditors == variables["is_perpetual_bond_claim"])
     solver.add(
         requires_human_bankruptcy_ranking_assessment
         == Or(variables["is_secured_by_pledge"], variables["is_life_or_health_harm_claim"])
@@ -321,9 +316,7 @@ def evaluate_bankruptcy_ranking_constraints(
         third_tier=truth(third_tier),
         subordinated_after_third_tier=truth(subordinated_after_third_tier),
         satisfied_from_pledge_proceeds=truth(satisfied_from_pledge_proceeds),
-        satisfied_last_after_all_other_creditors=truth(
-            satisfied_last_after_all_other_creditors
-        ),
+        satisfied_last_after_all_other_creditors=truth(satisfied_last_after_all_other_creditors),
         requires_human_bankruptcy_ranking_assessment=truth(
             requires_human_bankruptcy_ranking_assessment
         ),

@@ -345,9 +345,12 @@ def test_a_negated_role_is_reconciled_to_its_negation() -> None:
     # уйти отрицание: доставлено = True → «не уведомлены» = False.
     assert alignments[0].before is False
     assert alignments[0].after is True
-    assert fixed.enterprise_lease_evidence.assertions[
-        [a.predicate.value for a in fixed.enterprise_lease_evidence.assertions].index(
-            "creditors_not_notified"
-        )
-    ].value is False
+    assert (
+        fixed.enterprise_lease_evidence.assertions[
+            [a.predicate.value for a in fixed.enterprise_lease_evidence.assertions].index(
+                "creditors_not_notified"
+            )
+        ].value
+        is False
+    )
     run_reviewed_contract_analysis(fixed, sources)

@@ -185,6 +185,4 @@ def test_the_constraint_set_declares_what_it_executes() -> None:
     expressions = build_special_accounts_constraint_set(mapping).expressions
 
     assert len(expressions) == 20
-    assert any(
-        line.startswith("funds_insulated_from_holder_creditors ==") for line in expressions
-    )
+    assert any(line.startswith("funds_insulated_from_holder_creditors ==") for line in expressions)

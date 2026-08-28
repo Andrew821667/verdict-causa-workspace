@@ -60,7 +60,9 @@ def literal_lines(text: str, indent: str) -> list[str]:
     lines = []
     for i, para in enumerate(paragraphs):
         suffix = "\n\n" if i < len(paragraphs) - 1 else ""
-        wrapped = textwrap.wrap(para, width=96, break_long_words=False, break_on_hyphens=False) or [""]
+        wrapped = textwrap.wrap(para, width=96, break_long_words=False, break_on_hyphens=False) or [
+            ""
+        ]
         for j, chunk in enumerate(wrapped):
             piece = chunk
             if j < len(wrapped) - 1:
@@ -93,8 +95,7 @@ def main() -> None:
     index = {
         row["slug"]: row
         for row in (
-            json.loads(line)
-            for line in (ROOT / "data/guidance/index.jsonl").open(encoding="utf-8")
+            json.loads(line) for line in (ROOT / "data/guidance/index.jsonl").open(encoding="utf-8")
         )
     }
     paragraphs: dict[str, dict[int, str]] = {}
@@ -113,7 +114,11 @@ def main() -> None:
 
     targets = {}
     for node in ast.walk(tree):
-        if not (isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "LegalSource"):
+        if not (
+            isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Name)
+            and node.func.id == "LegalSource"
+        ):
             continue
         kw = {k.arg: k.value for k in node.keywords}
         id_node = kw.get("id")

@@ -54,8 +54,7 @@ RULE_CLOSURE_VERSION = "rule-closure-v0"
 #: после того, как документ перепишут.
 DECLARED_RULES: dict[str, str] = {
     "eviction_remedy": (
-        "withdrawal_on_pretransfer_ground AND NOT buyer_knowledge "
-        "AND NOT preventable_procedure_gap"
+        "withdrawal_on_pretransfer_ground AND NOT buyer_knowledge AND NOT preventable_procedure_gap"
     ),
     "installment_refusal": "installment_default AND seller_refusal AND NOT more_than_half_paid",
     "notice_defense": "late_notice AND proven_prejudice AND NOT seller_knowledge",
@@ -71,9 +70,7 @@ DECLARED_RULES: dict[str, str] = {
         "unremedied_nonconformity AND substitute_purchase AND documented_expenses"
     ),
     "article_520_withholding": "unremedied_quality_or_completeness AND payment_withheld",
-    "negotiation_response_breach": (
-        "disagreements_received AND NOT timely_response_or_refusal"
-    ),
+    "negotiation_response_breach": ("disagreements_received AND NOT timely_response_or_refusal"),
     "counterperformance_suspension": (
         "reciprocal_due AND nonperformance_risk AND delivered_notice"
     ),
@@ -96,16 +93,13 @@ DECLARED_RULES: dict[str, str] = {
         "AND transferable_claim AND required_consent"
     ),
     "contract_transfer_effective": (
-        "obligation_exists AND contract_transfer_agreed AND all_parties_consent "
-        "AND required_forms"
+        "obligation_exists AND contract_transfer_agreed AND all_parties_consent AND required_forms"
     ),
     "debt_forgiveness_effective": (
         "obligation_exists AND forgiveness_notice AND NOT objection "
         "AND NOT third_party_prejudice AND NOT commercial_gift_bar"
     ),
-    "notary_deposit_discharge": (
-        "obligation_exists AND deposit_made AND statutory_deposit_ground"
-    ),
+    "notary_deposit_discharge": ("obligation_exists AND deposit_made AND statutory_deposit_ground"),
     "novation_effective": (
         "obligation_exists AND agreement AND clear_replacement_intent AND new_subject_or_basis "
         "AND new_terms AND form"
@@ -131,9 +125,7 @@ DECLARED_RULES: dict[str, str] = {
         "valid_main_obligation AND pledge_created AND form AND asset AND authority"
     ),
     "security_payment_credit_available": "active_security_payment AND secured_event",
-    "surety_enforceable": (
-        "valid_main_obligation AND written_surety AND scope AND NOT terminated"
-    ),
+    "surety_enforceable": ("valid_main_obligation AND written_surety AND scope AND NOT terminated"),
     "judicial_termination_prerequisites": (
         "contract_formed AND judicial_request_targets_termination AND pretrial_order_satisfied "
         "AND judicial_ground"
@@ -557,8 +549,7 @@ OPEN_QUESTION_MEANINGS_RU: dict[str, dict[str, tuple[str, str]]] = {
         ),
         "scope": (
             "surety_scope_proven",
-            "Переименование: доказанность объёма ответственности поручителя "
-            "(статья 363 ГК РФ).",
+            "Переименование: доказанность объёма ответственности поручителя (статья 363 ГК РФ).",
         ),
         "terminated": (
             "surety_terminated",
@@ -757,12 +748,7 @@ def _executed_rules(institute: str) -> dict[str, Node]:
     """
     from causa.reasoning.rule_parity import collect_executed
 
-    path = (
-        Path(__file__).resolve().parents[1]
-        / "institutional"
-        / "contracts"
-        / f"{institute}.py"
-    )
+    path = Path(__file__).resolve().parents[1] / "institutional" / "contracts" / f"{institute}.py"
     tree = ast.parse(path.read_text(encoding="utf-8"))
     rules: dict[str, Node] = {}
     for _, (found, _problems) in collect_executed(tree).items():

@@ -190,9 +190,7 @@ MESSAGE_ROLE_PREDICATES: dict["MessageRole", MessageRoleTarget] = {
         "supply", "unilateral_refusal_notice_delivered"
     ),
     MessageRole.SUPPLY_REFUSED_GOODS_NOTICE: MessageRoleTarget("supply", "supplier_notified"),
-    MessageRole.SUPPLY_READINESS_NOTICE: MessageRoleTarget(
-        "supply", "supplier_notified_readiness"
-    ),
+    MessageRole.SUPPLY_READINESS_NOTICE: MessageRoleTarget("supply", "supplier_notified_readiness"),
     MessageRole.SET_OFF_NOTICE: MessageRoleTarget(
         "obligation_dynamics", "set_off_notice_delivered"
     ),

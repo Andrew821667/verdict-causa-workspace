@@ -124,7 +124,10 @@ def test_mapping_and_constraint_set_carry_versions() -> None:
 
 
 def test_bankruptcy_claims_sources_are_verbatim_127fz_text() -> None:
-    sources = [get_synthetic_contract_source(source_id) for source_id in BANKRUPTCY_CLAIMS_LEGAL_SOURCE_REFS]
+    sources = [
+        get_synthetic_contract_source(source_id)
+        for source_id in BANKRUPTCY_CLAIMS_LEGAL_SOURCE_REFS
+    ]
 
     assert all(source.metadata["text_verbatim"] is True for source in sources)
     assert all(source.metadata["specificity"] == "special" for source in sources)

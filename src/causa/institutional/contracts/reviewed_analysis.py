@@ -2154,9 +2154,7 @@ class ReviewedContractAnalysisResult(BaseModel):
             raise ValueError("Terms evaluation does not replay from reviewed evidence.")
         expected_messages_set = build_messages_constraint_set(self.messages_evidence_mapping)
         if self.messages_constraint_set != expected_messages_set:
-            raise ValueError(
-                "Messages constraint set does not replay from reviewed evidence."
-            )
+            raise ValueError("Messages constraint set does not replay from reviewed evidence.")
         expected_messages_evaluation = evaluate_messages_constraints(
             expected_messages_set,
             self.messages_evidence_mapping.facts,
@@ -2175,9 +2173,7 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.special_accounts_evidence_mapping.facts,
         )
         if self.special_accounts_evaluation != expected_special_accounts_evaluation:
-            raise ValueError(
-                "Special-accounts evaluation does not replay from reviewed evidence."
-            )
+            raise ValueError("Special-accounts evaluation does not replay from reviewed evidence.")
         expected_escrow_deposit_set = build_escrow_deposit_constraint_set(
             self.escrow_deposit_evidence_mapping
         )
@@ -2190,9 +2186,7 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.escrow_deposit_evidence_mapping.facts,
         )
         if self.escrow_deposit_evaluation != expected_escrow_deposit_evaluation:
-            raise ValueError(
-                "Escrow-deposit evaluation does not replay from reviewed evidence."
-            )
+            raise ValueError("Escrow-deposit evaluation does not replay from reviewed evidence.")
         expected_attribution_delay_set = build_attribution_delay_constraint_set(
             self.attribution_delay_evidence_mapping
         )
@@ -2889,13 +2883,9 @@ def _validate_request_integrity(
     if request.messages_evidence.case_id != request.case_id:
         raise ValueError("Messages evidence case_id does not match the analysis request.")
     if request.special_accounts_evidence.case_id != request.case_id:
-        raise ValueError(
-            "Special-accounts evidence case_id does not match the analysis request."
-        )
+        raise ValueError("Special-accounts evidence case_id does not match the analysis request.")
     if request.escrow_deposit_evidence.case_id != request.case_id:
-        raise ValueError(
-            "Escrow-deposit evidence case_id does not match the analysis request."
-        )
+        raise ValueError("Escrow-deposit evidence case_id does not match the analysis request.")
     if request.attribution_delay_evidence.case_id != request.case_id:
         raise ValueError(
             "Attribution and delay evidence case_id does not match the analysis request."
@@ -3123,15 +3113,9 @@ def _validate_request_integrity(
         raise ValueError("Terms evidence uses an unsupported schema version.")
     if request.messages_evidence.schema_version != MESSAGES_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Messages evidence uses an unsupported schema version.")
-    if (
-        request.special_accounts_evidence.schema_version
-        != SPECIAL_ACCOUNTS_EVIDENCE_SCHEMA_VERSION
-    ):
+    if request.special_accounts_evidence.schema_version != SPECIAL_ACCOUNTS_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Special-accounts evidence uses an unsupported schema version.")
-    if (
-        request.escrow_deposit_evidence.schema_version
-        != ESCROW_DEPOSIT_EVIDENCE_SCHEMA_VERSION
-    ):
+    if request.escrow_deposit_evidence.schema_version != ESCROW_DEPOSIT_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Escrow-deposit evidence uses an unsupported schema version.")
     if (
         request.attribution_delay_evidence.schema_version

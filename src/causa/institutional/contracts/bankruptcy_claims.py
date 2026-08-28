@@ -144,8 +144,7 @@ def map_reviewed_bankruptcy_claims_evidence(
         raise ValueError("Bankruptcy-claims evidence requires a reviewer_id before analysis.")
     assertions = {assertion.predicate: assertion for assertion in evidence.assertions}
     missing = sorted(
-        predicate.value
-        for predicate in REQUIRED_BANKRUPTCY_CLAIMS_PREDICATES - assertions.keys()
+        predicate.value for predicate in REQUIRED_BANKRUPTCY_CLAIMS_PREDICATES - assertions.keys()
     )
     if missing:
         raise ValueError(
@@ -218,20 +217,14 @@ def evaluate_bankruptcy_claims_constraints(
     solver = Solver()
     for field_name, variable in variables.items():
         solver.add(variable == getattr(facts, field_name))
-    solver.add(
-        claim_is_current == Not(variables["obligation_arose_before_petition_accepted"])
-    )
+    solver.add(claim_is_current == Not(variables["obligation_arose_before_petition_accepted"]))
     solver.add(
         individual_enforcement_suspended
         == And(
             variables["observation_introduced"],
             variables["obligation_arose_before_petition_accepted"],
             variables["creditor_seeks_individual_enforcement"],
-            Not(
-                variables[
-                    "enforcement_document_predates_observation_and_is_exempt_category"
-                ]
-            ),
+            Not(variables["enforcement_document_predates_observation_and_is_exempt_category"]),
         )
     )
     solver.add(
@@ -242,9 +235,7 @@ def evaluate_bankruptcy_claims_constraints(
             variables["enforcement_document_predates_observation_and_is_exempt_category"],
         )
     )
-    solver.add(
-        requires_human_bankruptcy_claims_assessment == claim_is_current
-    )
+    solver.add(requires_human_bankruptcy_claims_assessment == claim_is_current)
 
     satisfiable = solver.check() == sat
     if not satisfiable:

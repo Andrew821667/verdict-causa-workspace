@@ -3497,7 +3497,7 @@ def fact_configurations() -> dict[tuple[str, frozenset[str]], list[str]]:
     давать модели один и тот же набор предикатов: пять дел выгрузки об
     управлении домом сводятся к трём наборам, пять дел о просрочке кредитора —
     к двум, три дела о злоупотреблении правом — к одному.
-    
+
     Совпадение не ошибка перевода, а свойство корпуса вместе с грубостью
     модели, и прятать его нельзя: без этой меры «сошлись все 54» звучало бы как
     54 независимых подтверждения, которых на деле меньше.
@@ -3636,10 +3636,7 @@ def audit_scenario_fact_coverage() -> ScenarioFactCoverageReport:
 def render_scenario_fact_coverage_ru(report: ScenarioFactCoverageReport) -> str:
     """Отчёт об аудите по-русски — он же текст падения теста."""
     if report.complete:
-        return (
-            f"Состав предикатов сходится с контрактом данных во всех "
-            f"{report.total} делах."
-        )
+        return f"Состав предикатов сходится с контрактом данных во всех {report.total} делах."
     lines = [
         f"Состав предикатов разошёлся с контрактом данных: {len(report.gaps)} дел "
         f"из {report.total}.",
@@ -3653,8 +3650,9 @@ def render_scenario_fact_coverage_ru(report: ScenarioFactCoverageReport) -> str:
         if gap.unknown:
             lines.append("  нет в контракте данных: " + ", ".join(gap.unknown))
     missing_by_institute = {
-        institute: sorted({name for gap in report.gaps if gap.institute == institute
-                           for name in gap.missing})
+        institute: sorted(
+            {name for gap in report.gaps if gap.institute == institute for name in gap.missing}
+        )
         for institute in report.institutes_affected
     }
     for institute, names in missing_by_institute.items():
