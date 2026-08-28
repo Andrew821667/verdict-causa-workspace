@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.17.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Fifth and final planned release of the bankruptcy institute work: adds the setoff-during-observation model, grounded entirely in text already sourced in 1.13.0-1.15.0 (no new LegalSource entries). A new standalone module, bankruptcy_setoff.py, applies the single rule stated in article 63(1) 127-FZ (abzats six): setoff of a mutual homogeneous claim is barred once observation is introduced if it would disturb the article 134(4) priority order, with one narrow, textually named exception - termination of financial-contract obligations through netting under article 4.1, whose own text is not sourced in this package and is treated as an external input fact rather than a modeled norm.",
+            "Every finding of a prohibited or priority-neutral setoff is flagged for mandatory human review: the model takes the classification of an operation as 'setoff of a mutual homogeneous claim' as a given fact, and does not resolve whether it is in substance an independent-claims setoff under article 410 GK or a single synallagmatic contract's balance settlement (the netting-versus-setoff distinction developed in Russian Supreme Court practice) - that legal characterization question is named explicitly rather than answered by assumption.",
+            "Like 1.14.0-1.16.0, this release is not wired into the central reviewed-analysis pipeline or the GK-numbered coverage maps. Tested directly: benchmark 5/5, red-team 6/6, plus source, duplicate-rejection, and two fact-consistency tests in tests/test_contract_bankruptcy_setoff.py. The automatic rule-parity audit picked up the new module on its own: 4 declared rules, 4 executed, 0 divergences. This closes the five-release bankruptcy institute plan (source, claim regime, ranking, transaction avoidance, setoff); wiring all five into the shared pipeline remains open future work.",
+        ],
+        notes_ru=[
+            "Пятый и последний из запланированных релизов работы над институтом банкротства: добавляет модель зачёта при наблюдении, целиком опирающуюся на текст, уже источникованный в 1.13.0–1.15.0 (без новых записей LegalSource). Новый самостоятельный модуль bankruptcy_setoff.py применяет единственное правило абзаца шестого пункта 1 статьи 63 127-ФЗ: зачёт встречного однородного требования не допускается с момента введения наблюдения, если он нарушает очерёдность пункта 4 статьи 134, с единственным узким, прямо названным в тексте исключением — прекращением обязательств из финансовых договоров через нетто-обязательство по статье 4.1, чей собственный текст в пакете не источникован и принимается как внешний факт, а не как смоделированная норма.",
+            "Каждый вывод о запрещённом или нейтральном к очерёдности зачёте помечен обязательной проверкой юристом: модель принимает саму квалификацию операции как «зачёт встречного однородного требования» готовым фактом и не разрешает, является ли она по существу зачётом независимых требований по статье 410 ГК или определением сальдо по единому встречному предоставлению одного двустороннего договора (различие сальдирования и зачёта, выработанное практикой Верховного Суда) — этот вопрос правовой квалификации назван прямо, а не решён предположением.",
+            "Как и 1.14.0–1.16.0, релиз не подключён к центральному конвейеру сверки и к картам покрытия, нумерованным по ГК. Проверено напрямую: benchmark 5 из 5, red-team 6 из 6, плюс тесты источников, отклонения дублей и непротиворечивости фактов в tests/test_contract_bankruptcy_setoff.py. Автоматический аудит паритета правил сам подхватил новый модуль: 4 объявленных правила, 4 исполняемых, 0 расхождений. Этим закрывается пятирелизный план института банкротства (источник, режим требования, очерёдность, оспаривание сделок, зачёт); подключение всех пяти к общему конвейеру остаётся будущей задачей.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.16.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],
