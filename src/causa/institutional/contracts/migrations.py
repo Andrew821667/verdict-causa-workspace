@@ -2223,6 +2223,21 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.17.0",
+        to_version="1.18.0",
+        reasons=[
+            "All four bankruptcy institutes (bankruptcy_claims, bankruptcy_ranking, bankruptcy_contest, bankruptcy_setoff) are wired into reviewed_analysis.py. ReviewedContractAnalysisRequest gains four required evidence blocks and ReviewedContractAnalysisResult gains twelve fields, so every stored request and result artifact from an earlier version is structurally incomplete and must be regenerated.",
+            "Two institutes gain a new required predicate that changes their evaluation: bankruptcy_claims gains bankruptcy_case_opened and bankruptcy_ranking gains claim_filed_in_bankruptcy_register. Without them an all-false fact set asserted that a claim was a current payment and belonged to the third tier of a bankruptcy register - conclusions about a proceeding that does not exist. Any stored evaluation of these two institutes must be replayed.",
+        ],
+        reasons_ru=[
+            "Все четыре института банкротства (bankruptcy_claims, bankruptcy_ranking, bankruptcy_contest, bankruptcy_setoff) подключены к reviewed_analysis.py. ReviewedContractAnalysisRequest получает четыре обязательных блока доказательств, ReviewedContractAnalysisResult — двенадцать полей, поэтому любой сохранённый запрос или результат прежней версии структурно неполон и подлежит пересборке.",
+            "Два института получают новый обязательный предикат, меняющий их вывод: bankruptcy_claims — bankruptcy_case_opened, bankruptcy_ranking — claim_filed_in_bankruptcy_register. Без них набор фактов, где всё ложно, утверждал, что требование является текущим платежом и относится к третьей очереди реестра, — выводы о производстве, которого нет. Любая сохранённая сверка этих двух институтов подлежит повторному прогону.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

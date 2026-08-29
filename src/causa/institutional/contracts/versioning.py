@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.18.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "The four bankruptcy institutes shipped standalone in 1.14.0-1.17.0 are wired into the central reviewed-analysis pipeline. ReviewedContractAnalysisRequest gains four required evidence blocks and ReviewedContractAnalysisResult gains the matching mapping, constraint-set, and evaluation fields, following the shape every other institute already uses: one dispute, one evidence block per institute. A bankruptcy case with many claims and many challenged transactions is not what this shape describes - that remains the job of bankruptcy_case_map.py, which orchestrates the same evaluate_* functions over a whole case.",
+            "Wiring exposed a real defect in two of the four institutes, fixed here. bankruptcy_claims read an all-false fact set as 'the obligation arose after the petition was accepted', concluded the claim was a current payment, and raised the Constitutional Court transitional-period flag - in a supply dispute with no bankruptcy anywhere in it, which turned requires_human_resolution permanently true and destroyed the pipeline's main call-a-lawyer signal. bankruptcy_ranking read the same all-false set as 'third tier of the register'. Both institutes now carry an explicit gate predicate - bankruptcy_case_opened and claim_filed_in_bankruptcy_register - because articles 5 and 134 operate only inside an opened case; the precondition was always there, merely unstated while the modules stood alone.",
+            "Both institutes now say why they are silent instead of falling through to a default conclusion, and both fact sets reject facts that presuppose a case that was never opened. Benchmark and red-team suites grew accordingly: bankruptcy_claims 8/8 and 9/9, bankruptcy_ranking 8/8 and 9/9, with cases covering the gate itself. The rule-parity audit stays at its previous count with 0 divergences - the two changed rules gained a conjunct, they were not added.",
+            "The layer-connectivity audit gains a category, different_proceeding, and all four institutes are recorded under it: a bankruptcy institute takes the fate of the obligation as a given input and rules on its treatment inside a separate collective proceeding, so it has nothing to contribute to the general-provisions layer, which exists to reconcile conclusions about that fate. Recording this is what keeps 'does not reach the layer' distinguishable from 'we forgot to wire it'.",
+        ],
+        notes_ru=[
+            "Четыре института банкротства, поставленные отдельно в 1.14.0–1.17.0, подключены к центральному конвейеру сверки. ReviewedContractAnalysisRequest получает четыре обязательных блока доказательств, ReviewedContractAnalysisResult — соответствующие поля отображения, набора ограничений и сверки, по той же форме, что уже используют все прочие институты: один спор, один блок доказательств на институт. Дело о банкротстве с десятками требований и сделок этой формой не описывается — это остаётся задачей bankruptcy_case_map.py, который прогоняет те же функции evaluate_* по всему делу.",
+            "Подключение обнажило настоящий дефект в двух институтах из четырёх, здесь же исправленный. bankruptcy_claims читал набор фактов, где всё ложно, как «обязательство возникло после принятия заявления», объявлял требование текущим платежом и поднимал флаг переходного периода по постановлениям КС РФ — в споре о поставке, где банкротства нет вовсе, отчего requires_human_resolution становился вечно истинным, а главный сигнал «зови юриста» терял смысл. bankruptcy_ranking читал тот же набор как «третья очередь реестра». Оба института получили явный предикат-ворота — bankruptcy_case_opened и claim_filed_in_bankruptcy_register: статьи 5 и 134 действуют только внутри возбуждённого дела, и эта предпосылка существовала всегда, просто не была названа, пока модули стояли отдельно.",
+            "Оба института теперь говорят, почему молчат, вместо того чтобы проваливаться в вывод по умолчанию, и оба набора фактов отклоняют факты, предполагающие невозбуждённое дело. Наборы benchmark и red-team выросли соответственно: bankruptcy_claims 8 из 8 и 9 из 9, bankruptcy_ranking 8 из 8 и 9 из 9, со случаями на сами ворота. Аудит паритета правил остаётся на прежнем числе правил с 0 расхождений — два изменённых правила получили конъюнкт, а не появились заново.",
+            "Аудит связности со слоем общих положений получает категорию different_proceeding, и все четыре института записаны в неё: институт банкротства принимает судьбу обязательства готовым входом и решает, как с ним обойтись внутри отдельного коллективного производства, — значит, слою, который сводит выводы об этой судьбе, ему предложить нечего. Именно такая запись и отличает «не доходит до слоя» от «забыли провести».",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.17.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

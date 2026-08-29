@@ -1,0 +1,65 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-1.15.0:to-1.18.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-1.15.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "1.15.0",
+  "target_package_version": "1.18.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "1.15.0",
+      "to_version": "1.16.0",
+      "reasons": [
+        "A new standalone module, bankruptcy_contest.py, is added: it is not required by any existing evidence contract, but any artifact that expects to find it absent needs regeneration to reflect the package now shipping a transaction-avoidance model.",
+        "No existing predicate, evidence contract, or evaluation changes. The new model is not wired into reviewed_analysis.py or into the GK-numbered coverage maps in this release."
+      ],
+      "reasons_ru": [
+        "Добавлен новый самостоятельный модуль bankruptcy_contest.py: он не требуется ни одним существующим контрактом доказательств, но артефакт, ожидающий его отсутствия, нуждается в пересборке, чтобы отразить, что пакет теперь поставляет модель оспаривания сделок должника.",
+        "Ни один существующий предикат, контракт доказательств или сверка не изменены. Новая модель не подключена к reviewed_analysis.py и к картам покрытия, нумерованным по ГК, в этом релизе."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.16.0",
+      "to_version": "1.17.0",
+      "reasons": [
+        "A new standalone module, bankruptcy_setoff.py, is added: it is not required by any existing evidence contract, but any artifact that expects to find it absent needs regeneration to reflect the package now shipping a setoff-during-observation model.",
+        "No existing predicate, evidence contract, or evaluation changes. The new model is not wired into reviewed_analysis.py or into the GK-numbered coverage maps in this release."
+      ],
+      "reasons_ru": [
+        "Добавлен новый самостоятельный модуль bankruptcy_setoff.py: он не требуется ни одним существующим контрактом доказательств, но артефакт, ожидающий его отсутствия, нуждается в пересборке, чтобы отразить, что пакет теперь поставляет модель зачёта при наблюдении.",
+        "Ни один существующий предикат, контракт доказательств или сверка не изменены. Новая модель не подключена к reviewed_analysis.py и к картам покрытия, нумерованным по ГК, в этом релизе."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.17.0",
+      "to_version": "1.18.0",
+      "reasons": [
+        "All four bankruptcy institutes (bankruptcy_claims, bankruptcy_ranking, bankruptcy_contest, bankruptcy_setoff) are wired into reviewed_analysis.py. ReviewedContractAnalysisRequest gains four required evidence blocks and ReviewedContractAnalysisResult gains twelve fields, so every stored request and result artifact from an earlier version is structurally incomplete and must be regenerated.",
+        "Two institutes gain a new required predicate that changes their evaluation: bankruptcy_claims gains bankruptcy_case_opened and bankruptcy_ranking gains claim_filed_in_bankruptcy_register. Without them an all-false fact set asserted that a claim was a current payment and belonged to the third tier of a bankruptcy register - conclusions about a proceeding that does not exist. Any stored evaluation of these two institutes must be replayed."
+      ],
+      "reasons_ru": [
+        "Все четыре института банкротства (bankruptcy_claims, bankruptcy_ranking, bankruptcy_contest, bankruptcy_setoff) подключены к reviewed_analysis.py. ReviewedContractAnalysisRequest получает четыре обязательных блока доказательств, ReviewedContractAnalysisResult — двенадцать полей, поэтому любой сохранённый запрос или результат прежней версии структурно неполон и подлежит пересборке.",
+        "Два института получают новый обязательный предикат, меняющий их вывод: bankruptcy_claims — bankruptcy_case_opened, bankruptcy_ranking — claim_filed_in_bankruptcy_register. Без них набор фактов, где всё ложно, утверждал, что требование является текущим платежом и относится к третьей очереди реестра, — выводы о производстве, которого нет. Любая сохранённая сверка этих двух институтов подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

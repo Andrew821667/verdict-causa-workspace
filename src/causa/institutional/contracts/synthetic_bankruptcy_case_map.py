@@ -103,13 +103,18 @@ def _setoff_evaluation(artifact_id: str, **facts: bool):
 
 
 def _default_claims_facts(**overrides: bool) -> dict[str, bool]:
+    # Карта строится по уже возбуждённому делу, поэтому ворота статьи 5
+    # открыты по умолчанию — иначе разбор всех требований оказался бы пустым.
     values = {field_name: False for field_name in BankruptcyClaimsFactSet.model_fields}
+    values["bankruptcy_case_opened"] = True
     values.update(overrides)
     return values
 
 
 def _default_ranking_facts(**overrides: bool) -> dict[str, bool]:
+    # Все шесть требований карты заявлены в деле и включены в реестр.
     values = {field_name: False for field_name in BankruptcyRankingFactSet.model_fields}
+    values["claim_filed_in_bankruptcy_register"] = True
     values.update(overrides)
     return values
 

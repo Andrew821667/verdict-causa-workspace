@@ -22,6 +22,13 @@ BANKRUPTCY_RANKING_LEGAL_SOURCE_REFS = (
 
 
 class BankruptcyRankingEvidencePredicate(str, Enum):
+    # Включено ли требование в реестр требований кредиторов по возбуждённому
+    # делу о банкротстве. Предпосылка всего пункта 4 статьи 134: очерёдность
+    # существует только внутри конкурсного производства и только для реестровых
+    # требований. Без этого факта модель по умолчанию (все категории — «нет»)
+    # относила бы любое требование к третьей очереди, включая требования по
+    # делам, где банкротства нет вовсе.
+    CLAIM_FILED_IN_BANKRUPTCY_REGISTER = "claim_filed_in_bankruptcy_register"
     # Первая очередь — вред жизни или здоровью, капитализация повременных
     # платежей (абзац второй пункта 4 статьи 134, статья 135).
     IS_LIFE_OR_HEALTH_HARM_CLAIM = "is_life_or_health_harm_claim"
@@ -79,6 +86,7 @@ class ReviewedBankruptcyRankingEvidence(BaseModel):
 class BankruptcyRankingFactSet(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
+    claim_filed_in_bankruptcy_register: bool
     is_life_or_health_harm_claim: bool
     is_wage_severance_or_authorship_claim: bool
     is_secured_by_pledge: bool
@@ -99,6 +107,11 @@ class BankruptcyRankingFactSet(BaseModel):
                 "Требование не может одновременно относиться к нескольким особым "
                 "категориям пункта 4 статьи 134 и статьи 138 — категории взаимно "
                 "исключают друг друга для целей очерёдности."
+            )
+        if any(flags) and not self.claim_filed_in_bankruptcy_register:
+            raise ValueError(
+                "Категория очерёдности определяется только для требования, включённого "
+                "в реестр требований кредиторов по возбуждённому делу о банкротстве."
             )
         return self
 
@@ -188,7 +201,8 @@ def build_bankruptcy_ranking_constraint_set(
             "first_tier == is_life_or_health_harm_claim",
             "second_tier == is_wage_severance_or_authorship_claim",
             (
-                "third_tier == NOT is_life_or_health_harm_claim AND "
+                "third_tier == claim_filed_in_bankruptcy_register AND "
+                "NOT is_life_or_health_harm_claim AND "
                 "NOT is_wage_severance_or_authorship_claim AND NOT is_secured_by_pledge AND "
                 "NOT is_claim_from_avoided_transaction AND NOT is_perpetual_bond_claim"
             ),
@@ -225,9 +239,13 @@ def evaluate_bankruptcy_ranking_constraints(
         solver.add(variable == getattr(facts, field_name))
     solver.add(first_tier == variables["is_life_or_health_harm_claim"])
     solver.add(second_tier == variables["is_wage_severance_or_authorship_claim"])
+    # Третья очередь — остаточная категория, и только она нуждается в явных
+    # воротах: остальные пять треков включаются положительным признаком, а тот
+    # без реестра запрещён проверкой непротиворечивости фактов.
     solver.add(
         third_tier
         == And(
+            variables["claim_filed_in_bankruptcy_register"],
             Not(variables["is_life_or_health_harm_claim"]),
             Not(variables["is_wage_severance_or_authorship_claim"]),
             Not(variables["is_secured_by_pledge"]),
@@ -264,6 +282,14 @@ def evaluate_bankruptcy_ranking_constraints(
         return bool(model.eval(variable, model_completion=True))
 
     reasons_ru = []
+    if not truth(variables["claim_filed_in_bankruptcy_register"]):
+        # Пустой вывод без объяснения читался бы как «очередь не определена»,
+        # тогда как верно другое: очерёдности здесь нет предмета.
+        reasons_ru.append(
+            "Требование не включено в реестр требований кредиторов по делу о банкротстве — "
+            "очерёдность удовлетворения (пункт 4 статьи 134, статьи 135 и 138 127-ФЗ) "
+            "к нему не применяется."
+        )
     if truth(first_tier):
         reasons_ru.append(
             "Требование удовлетворяется в первую очередь: расчёты по вреду жизни или "

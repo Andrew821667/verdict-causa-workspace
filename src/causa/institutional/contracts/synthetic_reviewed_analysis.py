@@ -170,6 +170,26 @@ from causa.institutional.contracts.escrow_deposit import (
     EscrowDepositEvidencePredicate,
     ReviewedEscrowDepositEvidence,
 )
+from causa.institutional.contracts.bankruptcy_claims import (
+    BankruptcyClaimsEvidenceAssertion,
+    BankruptcyClaimsEvidencePredicate,
+    ReviewedBankruptcyClaimsEvidence,
+)
+from causa.institutional.contracts.bankruptcy_ranking import (
+    BankruptcyRankingEvidenceAssertion,
+    BankruptcyRankingEvidencePredicate,
+    ReviewedBankruptcyRankingEvidence,
+)
+from causa.institutional.contracts.bankruptcy_contest import (
+    BankruptcyContestEvidenceAssertion,
+    BankruptcyContestEvidencePredicate,
+    ReviewedBankruptcyContestEvidence,
+)
+from causa.institutional.contracts.bankruptcy_setoff import (
+    BankruptcySetoffEvidenceAssertion,
+    BankruptcySetoffEvidencePredicate,
+    ReviewedBankruptcySetoffEvidence,
+)
 from causa.institutional.contracts.attribution_delay import (
     AttributionDelayEvidenceAssertion,
     AttributionDelayEvidencePredicate,
@@ -666,6 +686,19 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-case-supply-1-special-accounts-evidence",
     "synthetic-ru-gk9261-9268-escrow-deposit-v1",
     "synthetic-case-supply-1-escrow-deposit-evidence",
+    "synthetic-ru-127fz-5-current-payments-v1",
+    "synthetic-ru-127fz-63-observation-effects-v1",
+    "synthetic-ru-127fz-134-creditor-ranking-v1",
+    "synthetic-ru-127fz-135-first-rank-claims-v1",
+    "synthetic-ru-127fz-138-secured-creditor-claims-v1",
+    "synthetic-ru-127fz-61.1-contest-transactions-general-v1",
+    "synthetic-ru-127fz-61.2-contest-suspicious-transaction-v1",
+    "synthetic-ru-127fz-61.3-contest-preference-transaction-v1",
+    "synthetic-ru-127fz-61.9-contest-standing-v1",
+    "synthetic-case-supply-1-bankruptcy-claims-evidence",
+    "synthetic-case-supply-1-bankruptcy-ranking-evidence",
+    "synthetic-case-supply-1-bankruptcy-contest-evidence",
+    "synthetic-case-supply-1-bankruptcy-setoff-evidence",
     "synthetic-ru-gk1811-1812-meeting-decision-effect-and-adoption-v1",
     "synthetic-ru-gk1813-1815-meeting-decision-invalidity-v1",
     "synthetic-case-supply-1-meeting-decisions-evidence",
@@ -3384,6 +3417,85 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             legal_source_refs=("synthetic-ru-gk9261-9268-escrow-deposit-v1",),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-escrow-deposit-reviewer",
+        ),
+        bankruptcy_claims_evidence=ReviewedBankruptcyClaimsEvidence(
+            id="reviewed-bankruptcy-claims-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                BankruptcyClaimsEvidenceAssertion(
+                    id=f"bankruptcy-claims-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=False,
+                    source_refs=("synthetic-case-supply-1-bankruptcy-claims-evidence",),
+                )
+                for predicate in BankruptcyClaimsEvidencePredicate
+            ),
+            legal_source_refs=(
+                "synthetic-ru-127fz-5-current-payments-v1",
+                "synthetic-ru-127fz-63-observation-effects-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-bankruptcy-claims-reviewer",
+        ),
+        bankruptcy_ranking_evidence=ReviewedBankruptcyRankingEvidence(
+            id="reviewed-bankruptcy-ranking-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                BankruptcyRankingEvidenceAssertion(
+                    id=f"bankruptcy-ranking-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=False,
+                    source_refs=("synthetic-case-supply-1-bankruptcy-ranking-evidence",),
+                )
+                for predicate in BankruptcyRankingEvidencePredicate
+            ),
+            legal_source_refs=(
+                "synthetic-ru-127fz-134-creditor-ranking-v1",
+                "synthetic-ru-127fz-135-first-rank-claims-v1",
+                "synthetic-ru-127fz-138-secured-creditor-claims-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-bankruptcy-ranking-reviewer",
+        ),
+        bankruptcy_contest_evidence=ReviewedBankruptcyContestEvidence(
+            id="reviewed-bankruptcy-contest-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                BankruptcyContestEvidenceAssertion(
+                    id=f"bankruptcy-contest-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=False,
+                    source_refs=("synthetic-case-supply-1-bankruptcy-contest-evidence",),
+                )
+                for predicate in BankruptcyContestEvidencePredicate
+            ),
+            legal_source_refs=(
+                "synthetic-ru-127fz-61.1-contest-transactions-general-v1",
+                "synthetic-ru-127fz-61.2-contest-suspicious-transaction-v1",
+                "synthetic-ru-127fz-61.3-contest-preference-transaction-v1",
+                "synthetic-ru-127fz-61.9-contest-standing-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-bankruptcy-contest-reviewer",
+        ),
+        bankruptcy_setoff_evidence=ReviewedBankruptcySetoffEvidence(
+            id="reviewed-bankruptcy-setoff-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            assertions=tuple(
+                BankruptcySetoffEvidenceAssertion(
+                    id=f"bankruptcy-setoff-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=False,
+                    source_refs=("synthetic-case-supply-1-bankruptcy-setoff-evidence",),
+                )
+                for predicate in BankruptcySetoffEvidencePredicate
+            ),
+            legal_source_refs=(
+                "synthetic-ru-127fz-63-observation-effects-v1",
+                "synthetic-ru-127fz-134-creditor-ranking-v1",
+            ),
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-bankruptcy-setoff-reviewer",
         ),
         attribution_delay_evidence=ReviewedAttributionDelayEvidence(
             id="reviewed-attribution-delay-evidence-supply-1-v0",

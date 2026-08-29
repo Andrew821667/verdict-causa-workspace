@@ -58,7 +58,13 @@ class BankruptcyClaimsRedTeamReport(BaseModel):
 
 
 def _facts(**updates: bool) -> BankruptcyClaimsFactSet:
+    """Факты по требованию внутри возбуждённого дела о банкротстве.
+
+    `bankruptcy_case_opened` по умолчанию истинно: все случаи ниже, кроме прямо
+    проверяющих сами ворота, разбирают требование в уже открытом деле.
+    """
     values = {field_name: False for field_name in BankruptcyClaimsFactSet.model_fields}
+    values["bankruptcy_case_opened"] = True
     values.update(updates)
     return BankruptcyClaimsFactSet(**values)
 
@@ -143,6 +149,17 @@ SYNTHETIC_BANKRUPTCY_CLAIMS_BENCHMARKS = (
             "individual_enforcement_permitted_by_exception": False,
         },
     ),
+    BankruptcyClaimsEvaluationTask(
+        id="bankruptcy-claims-bench-no-bankruptcy-case",
+        title_ru="Дело о банкротстве не возбуждено — статья 5 не применяется",
+        facts=_facts(bankruptcy_case_opened=False),
+        expected_outcomes={
+            "claim_is_current": False,
+            "individual_enforcement_suspended": False,
+            "individual_enforcement_permitted_by_exception": False,
+            "requires_human_bankruptcy_claims_assessment": False,
+        },
+    ),
 )
 
 
@@ -202,6 +219,18 @@ SYNTHETIC_BANKRUPTCY_CLAIMS_RED_TEAM_CASES = (
         id="bankruptcy-claims-red-human-flag-on-registered",
         title_ru="Требовать проверку юристом по обычному реестровому требованию",
         facts=_facts(obligation_arose_before_petition_accepted=True),
+        forbidden_outcomes={"requires_human_bankruptcy_claims_assessment": True},
+    ),
+    BankruptcyClaimsRedTeamCase(
+        id="bankruptcy-claims-red-current-without-bankruptcy-case",
+        title_ru="Объявить требование текущим платежом там, где банкротства нет",
+        facts=_facts(bankruptcy_case_opened=False),
+        forbidden_outcomes={"claim_is_current": True},
+    ),
+    BankruptcyClaimsRedTeamCase(
+        id="bankruptcy-claims-red-human-flag-without-bankruptcy-case",
+        title_ru="Поднять флаг проверки юристом по делу без банкротства",
+        facts=_facts(bankruptcy_case_opened=False),
         forbidden_outcomes={"requires_human_bankruptcy_claims_assessment": True},
     ),
 )

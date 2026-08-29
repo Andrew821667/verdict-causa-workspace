@@ -8,6 +8,7 @@ from causa.institutional.contracts.bankruptcy_claims import (
     BANKRUPTCY_CLAIMS_MAPPING_VERSION,
     BANKRUPTCY_CLAIMS_MODEL_VERSION,
     BankruptcyClaimsEvidenceAssertion,
+    BankruptcyClaimsEvidenceMappingResult,
     BankruptcyClaimsEvidencePredicate,
     BankruptcyClaimsFactSet,
     ReviewedBankruptcyClaimsEvidence,
@@ -26,6 +27,7 @@ from causa.institutional.contracts.synthetic_sources import get_synthetic_contra
 
 def _evidence(**overrides) -> ReviewedBankruptcyClaimsEvidence:
     values = {
+        BankruptcyClaimsEvidencePredicate.BANKRUPTCY_CASE_OPENED: True,
         BankruptcyClaimsEvidencePredicate.OBLIGATION_AROSE_BEFORE_PETITION_ACCEPTED: True,
         BankruptcyClaimsEvidencePredicate.OBSERVATION_INTRODUCED: True,
         BankruptcyClaimsEvidencePredicate.CREDITOR_SEEKS_INDIVIDUAL_ENFORCEMENT: True,
@@ -87,9 +89,58 @@ def test_evidence_rejects_duplicate_predicates_and_source_refs() -> None:
         )
 
 
+def test_no_bankruptcy_case_yields_no_conclusions_at_all() -> None:
+    """Спор без банкротства не должен получать вывод по статье 5.
+
+    Это регрессия на реальный дефект: до появления предиката-ворот модель
+    читала «все факты ложны» как «обязательство возникло после принятия
+    заявления», объявляла требование текущим и поднимала флаг проверки
+    юристом по переходному периоду КС РФ — в деле, где банкротства нет.
+    """
+    values = {field_name: False for field_name in BankruptcyClaimsFactSet.model_fields}
+    facts = BankruptcyClaimsFactSet(**values)
+
+    mapping = BankruptcyClaimsEvidenceMappingResult(
+        evidence_id="no-bankruptcy",
+        schema_version=BANKRUPTCY_CLAIMS_EVIDENCE_SCHEMA_VERSION,
+        mapping_version=BANKRUPTCY_CLAIMS_MAPPING_VERSION,
+        facts=facts,
+        legal_source_refs=list(BANKRUPTCY_CLAIMS_LEGAL_SOURCE_REFS),
+    )
+    evaluation = evaluate_bankruptcy_claims_constraints(
+        build_bankruptcy_claims_constraint_set(mapping), facts
+    )
+
+    assert evaluation.satisfiable is True
+    assert evaluation.claim_is_current is False
+    assert evaluation.individual_enforcement_suspended is False
+    assert evaluation.individual_enforcement_permitted_by_exception is False
+    assert evaluation.requires_human_bankruptcy_claims_assessment is False
+    # Молчание неотличимо от поломки: модель обязана сказать, почему молчит.
+    assert any("не возбуждено" in reason for reason in evaluation.reasons_ru)
+
+
+def test_fact_consistency_rejects_petition_date_without_a_bankruptcy_case() -> None:
+    """«До принятия заявления» вне дела о банкротстве — не факт, а бессмыслица."""
+    values = {field_name: False for field_name in BankruptcyClaimsFactSet.model_fields}
+    values.update(obligation_arose_before_petition_accepted=True)
+
+    with pytest.raises(ValidationError, match="возбуждённом деле о банкротстве"):
+        BankruptcyClaimsFactSet(**values)
+
+
+def test_fact_consistency_rejects_observation_without_a_bankruptcy_case() -> None:
+    values = {field_name: False for field_name in BankruptcyClaimsFactSet.model_fields}
+    values.update(observation_introduced=True)
+
+    with pytest.raises(ValidationError, match="без принятого заявления"):
+        BankruptcyClaimsFactSet(**values)
+
+
 def test_fact_consistency_rejects_exception_without_enforcement_attempt() -> None:
     values = {field_name: False for field_name in BankruptcyClaimsFactSet.model_fields}
     values.update(
+        bankruptcy_case_opened=True,
         observation_introduced=True,
         enforcement_document_predates_observation_and_is_exempt_category=True,
     )
@@ -100,6 +151,7 @@ def test_fact_consistency_rejects_exception_without_enforcement_attempt() -> Non
 def test_fact_consistency_rejects_exception_without_observation() -> None:
     values = {field_name: False for field_name in BankruptcyClaimsFactSet.model_fields}
     values.update(
+        bankruptcy_case_opened=True,
         creditor_seeks_individual_enforcement=True,
         enforcement_document_predates_observation_and_is_exempt_category=True,
     )
@@ -138,7 +190,7 @@ def test_bankruptcy_claims_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_bankruptcy_claims_benchmark_suite()
     red_team = run_bankruptcy_claims_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_BANKRUPTCY_CLAIMS_BENCHMARKS) == 7
+    assert benchmark.total == len(SYNTHETIC_BANKRUPTCY_CLAIMS_BENCHMARKS) == 8
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_BANKRUPTCY_CLAIMS_RED_TEAM_CASES) == 7
+    assert red_team.total == len(SYNTHETIC_BANKRUPTCY_CLAIMS_RED_TEAM_CASES) == 9
     assert red_team.blocked == red_team.total

@@ -617,6 +617,46 @@ from causa.institutional.contracts.escrow_deposit import (
     evaluate_escrow_deposit_constraints,
     map_reviewed_escrow_deposit_evidence,
 )
+from causa.institutional.contracts.bankruptcy_claims import (
+    BANKRUPTCY_CLAIMS_EVIDENCE_SCHEMA_VERSION,
+    BankruptcyClaimsConstraintSet,
+    BankruptcyClaimsEvaluation,
+    BankruptcyClaimsEvidenceMappingResult,
+    ReviewedBankruptcyClaimsEvidence,
+    build_bankruptcy_claims_constraint_set,
+    evaluate_bankruptcy_claims_constraints,
+    map_reviewed_bankruptcy_claims_evidence,
+)
+from causa.institutional.contracts.bankruptcy_ranking import (
+    BANKRUPTCY_RANKING_EVIDENCE_SCHEMA_VERSION,
+    BankruptcyRankingConstraintSet,
+    BankruptcyRankingEvaluation,
+    BankruptcyRankingEvidenceMappingResult,
+    ReviewedBankruptcyRankingEvidence,
+    build_bankruptcy_ranking_constraint_set,
+    evaluate_bankruptcy_ranking_constraints,
+    map_reviewed_bankruptcy_ranking_evidence,
+)
+from causa.institutional.contracts.bankruptcy_contest import (
+    BANKRUPTCY_CONTEST_EVIDENCE_SCHEMA_VERSION,
+    BankruptcyContestConstraintSet,
+    BankruptcyContestEvaluation,
+    BankruptcyContestEvidenceMappingResult,
+    ReviewedBankruptcyContestEvidence,
+    build_bankruptcy_contest_constraint_set,
+    evaluate_bankruptcy_contest_constraints,
+    map_reviewed_bankruptcy_contest_evidence,
+)
+from causa.institutional.contracts.bankruptcy_setoff import (
+    BANKRUPTCY_SETOFF_EVIDENCE_SCHEMA_VERSION,
+    BankruptcySetoffConstraintSet,
+    BankruptcySetoffEvaluation,
+    BankruptcySetoffEvidenceMappingResult,
+    ReviewedBankruptcySetoffEvidence,
+    build_bankruptcy_setoff_constraint_set,
+    evaluate_bankruptcy_setoff_constraints,
+    map_reviewed_bankruptcy_setoff_evidence,
+)
 from causa.institutional.contracts.terms import (
     TERMS_EVIDENCE_SCHEMA_VERSION,
     ReviewedTermsEvidence,
@@ -1093,6 +1133,10 @@ class ReviewedContractAnalysisRequest(BaseModel):
     messages_evidence: ReviewedMessagesEvidence
     special_accounts_evidence: ReviewedSpecialAccountsEvidence
     escrow_deposit_evidence: ReviewedEscrowDepositEvidence
+    bankruptcy_claims_evidence: ReviewedBankruptcyClaimsEvidence
+    bankruptcy_ranking_evidence: ReviewedBankruptcyRankingEvidence
+    bankruptcy_contest_evidence: ReviewedBankruptcyContestEvidence
+    bankruptcy_setoff_evidence: ReviewedBankruptcySetoffEvidence
     meeting_decisions_evidence: ReviewedMeetingDecisionsEvidence
     transactions_evidence: ReviewedTransactionsEvidence
     civil_principles_evidence: ReviewedCivilPrinciplesEvidence
@@ -1345,6 +1389,18 @@ class ReviewedContractAnalysisResult(BaseModel):
     escrow_deposit_evidence_mapping: EscrowDepositEvidenceMappingResult
     escrow_deposit_constraint_set: EscrowDepositConstraintSet
     escrow_deposit_evaluation: EscrowDepositEvaluation
+    bankruptcy_claims_evidence_mapping: BankruptcyClaimsEvidenceMappingResult
+    bankruptcy_claims_constraint_set: BankruptcyClaimsConstraintSet
+    bankruptcy_claims_evaluation: BankruptcyClaimsEvaluation
+    bankruptcy_ranking_evidence_mapping: BankruptcyRankingEvidenceMappingResult
+    bankruptcy_ranking_constraint_set: BankruptcyRankingConstraintSet
+    bankruptcy_ranking_evaluation: BankruptcyRankingEvaluation
+    bankruptcy_contest_evidence_mapping: BankruptcyContestEvidenceMappingResult
+    bankruptcy_contest_constraint_set: BankruptcyContestConstraintSet
+    bankruptcy_contest_evaluation: BankruptcyContestEvaluation
+    bankruptcy_setoff_evidence_mapping: BankruptcySetoffEvidenceMappingResult
+    bankruptcy_setoff_constraint_set: BankruptcySetoffConstraintSet
+    bankruptcy_setoff_evaluation: BankruptcySetoffEvaluation
     meeting_decisions_evidence_mapping: MeetingDecisionsEvidenceMappingResult
     meeting_decisions_constraint_set: MeetingDecisionsConstraintSet
     meeting_decisions_evaluation: MeetingDecisionsEvaluation
@@ -2187,6 +2243,62 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.escrow_deposit_evaluation != expected_escrow_deposit_evaluation:
             raise ValueError("Escrow-deposit evaluation does not replay from reviewed evidence.")
+        expected_bankruptcy_claims_set = build_bankruptcy_claims_constraint_set(
+            self.bankruptcy_claims_evidence_mapping
+        )
+        if self.bankruptcy_claims_constraint_set != expected_bankruptcy_claims_set:
+            raise ValueError(
+                "Bankruptcy-claims constraint set does not replay from reviewed evidence."
+            )
+        expected_bankruptcy_claims_evaluation = evaluate_bankruptcy_claims_constraints(
+            expected_bankruptcy_claims_set,
+            self.bankruptcy_claims_evidence_mapping.facts,
+        )
+        if self.bankruptcy_claims_evaluation != expected_bankruptcy_claims_evaluation:
+            raise ValueError("Bankruptcy-claims evaluation does not replay from reviewed evidence.")
+        expected_bankruptcy_ranking_set = build_bankruptcy_ranking_constraint_set(
+            self.bankruptcy_ranking_evidence_mapping
+        )
+        if self.bankruptcy_ranking_constraint_set != expected_bankruptcy_ranking_set:
+            raise ValueError(
+                "Bankruptcy-ranking constraint set does not replay from reviewed evidence."
+            )
+        expected_bankruptcy_ranking_evaluation = evaluate_bankruptcy_ranking_constraints(
+            expected_bankruptcy_ranking_set,
+            self.bankruptcy_ranking_evidence_mapping.facts,
+        )
+        if self.bankruptcy_ranking_evaluation != expected_bankruptcy_ranking_evaluation:
+            raise ValueError(
+                "Bankruptcy-ranking evaluation does not replay from reviewed evidence."
+            )
+        expected_bankruptcy_contest_set = build_bankruptcy_contest_constraint_set(
+            self.bankruptcy_contest_evidence_mapping
+        )
+        if self.bankruptcy_contest_constraint_set != expected_bankruptcy_contest_set:
+            raise ValueError(
+                "Bankruptcy-contest constraint set does not replay from reviewed evidence."
+            )
+        expected_bankruptcy_contest_evaluation = evaluate_bankruptcy_contest_constraints(
+            expected_bankruptcy_contest_set,
+            self.bankruptcy_contest_evidence_mapping.facts,
+        )
+        if self.bankruptcy_contest_evaluation != expected_bankruptcy_contest_evaluation:
+            raise ValueError(
+                "Bankruptcy-contest evaluation does not replay from reviewed evidence."
+            )
+        expected_bankruptcy_setoff_set = build_bankruptcy_setoff_constraint_set(
+            self.bankruptcy_setoff_evidence_mapping
+        )
+        if self.bankruptcy_setoff_constraint_set != expected_bankruptcy_setoff_set:
+            raise ValueError(
+                "Bankruptcy-setoff constraint set does not replay from reviewed evidence."
+            )
+        expected_bankruptcy_setoff_evaluation = evaluate_bankruptcy_setoff_constraints(
+            expected_bankruptcy_setoff_set,
+            self.bankruptcy_setoff_evidence_mapping.facts,
+        )
+        if self.bankruptcy_setoff_evaluation != expected_bankruptcy_setoff_evaluation:
+            raise ValueError("Bankruptcy-setoff evaluation does not replay from reviewed evidence.")
         expected_attribution_delay_set = build_attribution_delay_constraint_set(
             self.attribution_delay_evidence_mapping
         )
@@ -2886,6 +2998,14 @@ def _validate_request_integrity(
         raise ValueError("Special-accounts evidence case_id does not match the analysis request.")
     if request.escrow_deposit_evidence.case_id != request.case_id:
         raise ValueError("Escrow-deposit evidence case_id does not match the analysis request.")
+    if request.bankruptcy_claims_evidence.case_id != request.case_id:
+        raise ValueError("Bankruptcy-claims evidence case_id does not match the analysis request.")
+    if request.bankruptcy_ranking_evidence.case_id != request.case_id:
+        raise ValueError("Bankruptcy-ranking evidence case_id does not match the analysis request.")
+    if request.bankruptcy_contest_evidence.case_id != request.case_id:
+        raise ValueError("Bankruptcy-contest evidence case_id does not match the analysis request.")
+    if request.bankruptcy_setoff_evidence.case_id != request.case_id:
+        raise ValueError("Bankruptcy-setoff evidence case_id does not match the analysis request.")
     if request.attribution_delay_evidence.case_id != request.case_id:
         raise ValueError(
             "Attribution and delay evidence case_id does not match the analysis request."
@@ -3118,6 +3238,26 @@ def _validate_request_integrity(
     if request.escrow_deposit_evidence.schema_version != ESCROW_DEPOSIT_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Escrow-deposit evidence uses an unsupported schema version.")
     if (
+        request.bankruptcy_claims_evidence.schema_version
+        != BANKRUPTCY_CLAIMS_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Bankruptcy-claims evidence uses an unsupported schema version.")
+    if (
+        request.bankruptcy_ranking_evidence.schema_version
+        != BANKRUPTCY_RANKING_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Bankruptcy-ranking evidence uses an unsupported schema version.")
+    if (
+        request.bankruptcy_contest_evidence.schema_version
+        != BANKRUPTCY_CONTEST_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Bankruptcy-contest evidence uses an unsupported schema version.")
+    if (
+        request.bankruptcy_setoff_evidence.schema_version
+        != BANKRUPTCY_SETOFF_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Bankruptcy-setoff evidence uses an unsupported schema version.")
+    if (
         request.attribution_delay_evidence.schema_version
         != ATTRIBUTION_DELAY_EVIDENCE_SCHEMA_VERSION
     ):
@@ -3233,6 +3373,10 @@ def _validate_request_integrity(
         *request.messages_evidence.legal_source_refs,
         *request.special_accounts_evidence.legal_source_refs,
         *request.escrow_deposit_evidence.legal_source_refs,
+        *request.bankruptcy_claims_evidence.legal_source_refs,
+        *request.bankruptcy_ranking_evidence.legal_source_refs,
+        *request.bankruptcy_contest_evidence.legal_source_refs,
+        *request.bankruptcy_setoff_evidence.legal_source_refs,
         *request.meeting_decisions_evidence.legal_source_refs,
         *request.transactions_evidence.legal_source_refs,
         *request.civil_principles_evidence.legal_source_refs,
@@ -3388,6 +3532,14 @@ def _validate_request_integrity(
     for assertion in request.special_accounts_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.escrow_deposit_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.bankruptcy_claims_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.bankruptcy_ranking_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.bankruptcy_contest_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.bankruptcy_setoff_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.meeting_decisions_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -4154,6 +4306,50 @@ def _validate_request_integrity(
             "Escrow-deposit legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_escrow_deposit_legal_sources))
         )
+    invalid_bankruptcy_claims_legal_sources = [
+        source_id
+        for source_id in request.bankruptcy_claims_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_bankruptcy_claims_legal_sources:
+        raise ValueError(
+            "Bankruptcy-claims legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_bankruptcy_claims_legal_sources))
+        )
+    invalid_bankruptcy_ranking_legal_sources = [
+        source_id
+        for source_id in request.bankruptcy_ranking_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_bankruptcy_ranking_legal_sources:
+        raise ValueError(
+            "Bankruptcy-ranking legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_bankruptcy_ranking_legal_sources))
+        )
+    invalid_bankruptcy_contest_legal_sources = [
+        source_id
+        for source_id in request.bankruptcy_contest_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_bankruptcy_contest_legal_sources:
+        raise ValueError(
+            "Bankruptcy-contest legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_bankruptcy_contest_legal_sources))
+        )
+    invalid_bankruptcy_setoff_legal_sources = [
+        source_id
+        for source_id in request.bankruptcy_setoff_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_bankruptcy_setoff_legal_sources:
+        raise ValueError(
+            "Bankruptcy-setoff legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_bankruptcy_setoff_legal_sources))
+        )
     invalid_attribution_delay_legal_sources = [
         source_id
         for source_id in request.attribution_delay_evidence.legal_source_refs
@@ -4831,6 +5027,26 @@ def run_reviewed_contract_analysis(
         artifact_name="Escrow-deposit evidence",
         review_status=request.escrow_deposit_evidence.review_status,
         reviewer_id=request.escrow_deposit_evidence.reviewer_id,
+    )
+    bankruptcy_claims_reviewer_id = _require_reviewed(
+        artifact_name="Bankruptcy-claims evidence",
+        review_status=request.bankruptcy_claims_evidence.review_status,
+        reviewer_id=request.bankruptcy_claims_evidence.reviewer_id,
+    )
+    bankruptcy_ranking_reviewer_id = _require_reviewed(
+        artifact_name="Bankruptcy-ranking evidence",
+        review_status=request.bankruptcy_ranking_evidence.review_status,
+        reviewer_id=request.bankruptcy_ranking_evidence.reviewer_id,
+    )
+    bankruptcy_contest_reviewer_id = _require_reviewed(
+        artifact_name="Bankruptcy-contest evidence",
+        review_status=request.bankruptcy_contest_evidence.review_status,
+        reviewer_id=request.bankruptcy_contest_evidence.reviewer_id,
+    )
+    bankruptcy_setoff_reviewer_id = _require_reviewed(
+        artifact_name="Bankruptcy-setoff evidence",
+        review_status=request.bankruptcy_setoff_evidence.review_status,
+        reviewer_id=request.bankruptcy_setoff_evidence.reviewer_id,
     )
     attribution_delay_reviewer_id = _require_reviewed(
         artifact_name="Attribution and delay evidence",
@@ -5512,6 +5728,46 @@ def run_reviewed_contract_analysis(
         escrow_deposit_constraint_set,
         escrow_deposit_evidence_mapping.facts,
     )
+    bankruptcy_claims_evidence_mapping = map_reviewed_bankruptcy_claims_evidence(
+        request.bankruptcy_claims_evidence
+    )
+    bankruptcy_claims_constraint_set = build_bankruptcy_claims_constraint_set(
+        bankruptcy_claims_evidence_mapping
+    )
+    bankruptcy_claims_evaluation = evaluate_bankruptcy_claims_constraints(
+        bankruptcy_claims_constraint_set,
+        bankruptcy_claims_evidence_mapping.facts,
+    )
+    bankruptcy_ranking_evidence_mapping = map_reviewed_bankruptcy_ranking_evidence(
+        request.bankruptcy_ranking_evidence
+    )
+    bankruptcy_ranking_constraint_set = build_bankruptcy_ranking_constraint_set(
+        bankruptcy_ranking_evidence_mapping
+    )
+    bankruptcy_ranking_evaluation = evaluate_bankruptcy_ranking_constraints(
+        bankruptcy_ranking_constraint_set,
+        bankruptcy_ranking_evidence_mapping.facts,
+    )
+    bankruptcy_contest_evidence_mapping = map_reviewed_bankruptcy_contest_evidence(
+        request.bankruptcy_contest_evidence
+    )
+    bankruptcy_contest_constraint_set = build_bankruptcy_contest_constraint_set(
+        bankruptcy_contest_evidence_mapping
+    )
+    bankruptcy_contest_evaluation = evaluate_bankruptcy_contest_constraints(
+        bankruptcy_contest_constraint_set,
+        bankruptcy_contest_evidence_mapping.facts,
+    )
+    bankruptcy_setoff_evidence_mapping = map_reviewed_bankruptcy_setoff_evidence(
+        request.bankruptcy_setoff_evidence
+    )
+    bankruptcy_setoff_constraint_set = build_bankruptcy_setoff_constraint_set(
+        bankruptcy_setoff_evidence_mapping
+    )
+    bankruptcy_setoff_evaluation = evaluate_bankruptcy_setoff_constraints(
+        bankruptcy_setoff_constraint_set,
+        bankruptcy_setoff_evidence_mapping.facts,
+    )
     attribution_delay_evidence_mapping = map_reviewed_attribution_delay_evidence(
         request.attribution_delay_evidence
     )
@@ -6045,6 +6301,10 @@ def run_reviewed_contract_analysis(
         or messages_evaluation.requires_human_message_assessment
         or special_accounts_evaluation.requires_human_special_accounts_assessment
         or escrow_deposit_evaluation.requires_human_escrow_deposit_assessment
+        or bankruptcy_claims_evaluation.requires_human_bankruptcy_claims_assessment
+        or bankruptcy_ranking_evaluation.requires_human_bankruptcy_ranking_assessment
+        or bankruptcy_contest_evaluation.requires_human_bankruptcy_contest_assessment
+        or bankruptcy_setoff_evaluation.requires_human_bankruptcy_setoff_assessment
         or meeting_decisions_evaluation.requires_human_meeting_decision_assessment
         or transactions_evaluation.requires_human_transactions_assessment
         or civil_principles_evaluation.requires_human_civil_principles_assessment
@@ -6144,6 +6404,10 @@ def run_reviewed_contract_analysis(
                 messages_reviewer_id,
                 special_accounts_reviewer_id,
                 escrow_deposit_reviewer_id,
+                bankruptcy_claims_reviewer_id,
+                bankruptcy_ranking_reviewer_id,
+                bankruptcy_contest_reviewer_id,
+                bankruptcy_setoff_reviewer_id,
                 meeting_decisions_reviewer_id,
                 transactions_reviewer_id,
                 civil_principles_reviewer_id,
@@ -6374,6 +6638,18 @@ def run_reviewed_contract_analysis(
         escrow_deposit_evidence_mapping=escrow_deposit_evidence_mapping,
         escrow_deposit_constraint_set=escrow_deposit_constraint_set,
         escrow_deposit_evaluation=escrow_deposit_evaluation,
+        bankruptcy_claims_evidence_mapping=bankruptcy_claims_evidence_mapping,
+        bankruptcy_claims_constraint_set=bankruptcy_claims_constraint_set,
+        bankruptcy_claims_evaluation=bankruptcy_claims_evaluation,
+        bankruptcy_ranking_evidence_mapping=bankruptcy_ranking_evidence_mapping,
+        bankruptcy_ranking_constraint_set=bankruptcy_ranking_constraint_set,
+        bankruptcy_ranking_evaluation=bankruptcy_ranking_evaluation,
+        bankruptcy_contest_evidence_mapping=bankruptcy_contest_evidence_mapping,
+        bankruptcy_contest_constraint_set=bankruptcy_contest_constraint_set,
+        bankruptcy_contest_evaluation=bankruptcy_contest_evaluation,
+        bankruptcy_setoff_evidence_mapping=bankruptcy_setoff_evidence_mapping,
+        bankruptcy_setoff_constraint_set=bankruptcy_setoff_constraint_set,
+        bankruptcy_setoff_evaluation=bankruptcy_setoff_evaluation,
         meeting_decisions_evidence_mapping=meeting_decisions_evidence_mapping,
         meeting_decisions_constraint_set=meeting_decisions_constraint_set,
         meeting_decisions_evaluation=meeting_decisions_evaluation,

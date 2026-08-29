@@ -58,7 +58,13 @@ class BankruptcyRankingRedTeamReport(BaseModel):
 
 
 def _facts(**updates: bool) -> BankruptcyRankingFactSet:
+    """Факты по требованию, включённому в реестр требований кредиторов.
+
+    `claim_filed_in_bankruptcy_register` по умолчанию истинно: все случаи ниже,
+    кроме прямо проверяющих сами ворота, разбирают уже реестровое требование.
+    """
     values = {field_name: False for field_name in BankruptcyRankingFactSet.model_fields}
+    values["claim_filed_in_bankruptcy_register"] = True
     values.update(updates)
     return BankruptcyRankingFactSet(**values)
 
@@ -125,6 +131,20 @@ SYNTHETIC_BANKRUPTCY_RANKING_BENCHMARKS = (
         facts=_facts(is_wage_severance_or_authorship_claim=True),
         expected_outcomes={"requires_human_bankruptcy_ranking_assessment": False},
     ),
+    BankruptcyRankingEvaluationTask(
+        id="bankruptcy-ranking-bench-not-in-register",
+        title_ru="Требование не в реестре — очерёдность к нему не применяется",
+        facts=_facts(claim_filed_in_bankruptcy_register=False),
+        expected_outcomes={
+            "first_tier": False,
+            "second_tier": False,
+            "third_tier": False,
+            "subordinated_after_third_tier": False,
+            "satisfied_from_pledge_proceeds": False,
+            "satisfied_last_after_all_other_creditors": False,
+            "requires_human_bankruptcy_ranking_assessment": False,
+        },
+    ),
 )
 
 
@@ -176,6 +196,12 @@ SYNTHETIC_BANKRUPTCY_RANKING_RED_TEAM_CASES = (
         title_ru="Требовать проверку юристом по обычному требованию третьей очереди",
         facts=_facts(),
         forbidden_outcomes={"requires_human_bankruptcy_ranking_assessment": True},
+    ),
+    BankruptcyRankingRedTeamCase(
+        id="bankruptcy-ranking-red-third-tier-outside-register",
+        title_ru="Отнести к третьей очереди требование вне реестра",
+        facts=_facts(claim_filed_in_bankruptcy_register=False),
+        forbidden_outcomes={"third_tier": True},
     ),
 )
 

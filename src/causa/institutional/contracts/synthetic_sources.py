@@ -13712,6 +13712,74 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-case-supply-1-bankruptcy-claims-evidence",
+        title="Синтетическая проверенная запись фактов о режиме требований по делу",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: в отношении сторон спора о поставке производство по делу о "
+            "банкротстве не возбуждалось, наблюдение не вводилось. Институт режима текущих и "
+            "реестровых требований (127-ФЗ) в деле не заявлен."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "bankruptcy_claims_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-bankruptcy-ranking-evidence",
+        title="Синтетическая проверенная запись фактов об очерёдности требований по делу",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: реестр требований кредиторов по делу не формировался — "
+            "производство по делу о банкротстве не возбуждалось. Институт очерёдности удовлетворения "
+            "требований (127-ФЗ) в деле не заявлен."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "bankruptcy_ranking_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-bankruptcy-contest-evidence",
+        title="Синтетическая проверенная запись фактов об оспаривании сделок должника по делу",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: ни одна из сделок сторон спора о поставке не оспаривалась по "
+            "основаниям главы III.1 127-ФЗ — производство по делу о банкротстве не возбуждалось. "
+            "Институт оспаривания сделок должника в деле не заявлен."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "bankruptcy_contest_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
+        id="synthetic-case-supply-1-bankruptcy-setoff-evidence",
+        title="Синтетическая проверенная запись фактов о зачёте при наблюдении по делу",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: наблюдение по делу о банкротстве не вводилось, зачёт встречных "
+            "однородных требований сторонами не заявлялся. Институт зачёта при наблюдении (127-ФЗ) в "
+            "деле не заявлен."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "bankruptcy_setoff_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-case-supply-1-attribution-delay-evidence",
         title="Синтетическая проверенная запись фактов о возложении ответственности и просрочке по делу",
         source_type=SourceType.FACT,

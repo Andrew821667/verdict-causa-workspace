@@ -19,6 +19,15 @@ BANKRUPTCY_CLAIMS_LEGAL_SOURCE_REFS = (
 
 
 class BankruptcyClaimsEvidencePredicate(str, Enum):
+    # Возбуждено ли дело о банкротстве вообще — заявление о признании должника
+    # банкротом принято арбитражным судом. Предпосылка всей статьи 5: деление
+    # требований на текущие и реестровые существует только внутри дела о
+    # банкротстве, а «дата принятия заявления», от которой отсчитывается это
+    # деление, вне дела просто не наступает. Пока модель работала отдельно,
+    # предпосылка подразумевалась; в общем конвейере, который прогоняется по
+    # каждому делу, её приходится называть фактом — иначе спор без банкротства
+    # получает вывод «требование текущее» и флаг проверки юристом на пустом месте.
+    BANKRUPTCY_CASE_OPENED = "bankruptcy_case_opened"
     # Момент возникновения обязательства относительно даты принятия заявления
     # о банкротстве — единственное основание деления на текущие и реестровые
     # платежи (пункт 1 статьи 5 127-ФЗ).
@@ -76,6 +85,7 @@ class ReviewedBankruptcyClaimsEvidence(BaseModel):
 class BankruptcyClaimsFactSet(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
+    bankruptcy_case_opened: bool
     obligation_arose_before_petition_accepted: bool
     observation_introduced: bool
     creditor_seeks_individual_enforcement: bool
@@ -83,6 +93,16 @@ class BankruptcyClaimsFactSet(BaseModel):
 
     @model_validator(mode="after")
     def validate_consistency(self) -> "BankruptcyClaimsFactSet":
+        if self.obligation_arose_before_petition_accepted and not self.bankruptcy_case_opened:
+            raise ValueError(
+                "Момент возникновения обязательства относительно даты принятия заявления "
+                "определим только при возбуждённом деле о банкротстве."
+            )
+        if self.observation_introduced and not self.bankruptcy_case_opened:
+            raise ValueError(
+                "Наблюдение вводится внутри дела о банкротстве: без принятого заявления "
+                "процедура наблюдения существовать не может."
+            )
         if (
             self.enforcement_document_predates_observation_and_is_exempt_category
             and not self.creditor_seeks_individual_enforcement
@@ -181,7 +201,10 @@ def build_bankruptcy_claims_constraint_set(
         id=f"bankruptcy-claims-constraint-set:{mapping.evidence_id}",
         legal_source_refs=mapping.legal_source_refs,
         expressions=[
-            "claim_is_current == NOT obligation_arose_before_petition_accepted",
+            (
+                "claim_is_current == bankruptcy_case_opened AND "
+                "NOT obligation_arose_before_petition_accepted"
+            ),
             (
                 "individual_enforcement_suspended == observation_introduced AND "
                 "obligation_arose_before_petition_accepted AND "
@@ -217,7 +240,13 @@ def evaluate_bankruptcy_claims_constraints(
     solver = Solver()
     for field_name, variable in variables.items():
         solver.add(variable == getattr(facts, field_name))
-    solver.add(claim_is_current == Not(variables["obligation_arose_before_petition_accepted"]))
+    solver.add(
+        claim_is_current
+        == And(
+            variables["bankruptcy_case_opened"],
+            Not(variables["obligation_arose_before_petition_accepted"]),
+        )
+    )
     solver.add(
         individual_enforcement_suspended
         == And(
@@ -255,7 +284,16 @@ def evaluate_bankruptcy_claims_constraints(
         return bool(model.eval(variable, model_completion=True))
 
     reasons_ru = []
-    if truth(claim_is_current):
+    if not truth(variables["bankruptcy_case_opened"]):
+        # Молчаливое «требование реестровое» здесь было бы прямой неправдой:
+        # вне дела о банкротстве нет ни реестра, ни текущих платежей.
+        reasons_ru.append(
+            "Дело о банкротстве не возбуждено — заявление о признании должника банкротом "
+            "судом не принято. Деление требований на текущие и реестровые (статья 5 127-ФЗ) "
+            "и ограничения индивидуального взыскания (статья 63 127-ФЗ) к отношениям сторон "
+            "не применяются."
+        )
+    elif truth(claim_is_current):
         reasons_ru.append(
             "Обязательство возникло после даты принятия заявления о признании должника "
             "банкротом — требование текущее: не включается в реестр требований кредиторов, "
