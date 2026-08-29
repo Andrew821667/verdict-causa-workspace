@@ -1,0 +1,648 @@
+<title>Выгрузка обзора ВС РФ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* Оформление продолжает уже принятую в docs/briefs/ систему заданий:
+     те же токены, та же тройка шрифтов, те же компоненты. Новых оттенков
+     не вводится. */
+  :root {
+    --paper: #F6F7F9;
+    --card: #FFFFFF;
+    --ink: #15181E;
+    --ink-soft: #4C5563;
+    --ink-faint: #757F8E;
+    --rule: #DDE1E8;
+    --rule-strong: #C3C9D4;
+    --indigo: #243B6B;
+    --indigo-soft: #E8ECF5;
+    --alarm: #8C2F27;
+    --alarm-bg: #FBF0EE;
+    --alarm-rule: #D9B4AE;
+    --code-bg: #F0F2F6;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #101319;
+      --card: #171B23;
+      --ink: #E7EAF0;
+      --ink-soft: #A5AEBD;
+      --ink-faint: #798291;
+      --rule: #272C37;
+      --rule-strong: #39404E;
+      --indigo: #93A9DF;
+      --indigo-soft: #1B2438;
+      --alarm: #E8938A;
+      --alarm-bg: #241715;
+      --alarm-rule: #5A322C;
+      --code-bg: #1C212B;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #101319;
+    --card: #171B23;
+    --ink: #E7EAF0;
+    --ink-soft: #A5AEBD;
+    --ink-faint: #798291;
+    --rule: #272C37;
+    --rule-strong: #39404E;
+    --indigo: #93A9DF;
+    --indigo-soft: #1B2438;
+    --alarm: #E8938A;
+    --alarm-bg: #241715;
+    --alarm-rule: #5A322C;
+    --code-bg: #1C212B;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 61rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1.1rem, 4vw, 3rem) 6rem;
+  }
+
+  /* ── шапка ─────────────────────────────────────────────── */
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  h1 {
+    font-family: Spectral, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 4.6vw, 2.9rem);
+    line-height: 1.16;
+    text-wrap: balance;
+    margin: 0.5rem 0 0;
+    letter-spacing: -0.01em;
+  }
+
+  .standfirst {
+    font-family: Spectral, Georgia, serif;
+    font-size: clamp(1.02rem, 2vw, 1.18rem);
+    color: var(--ink-soft);
+    max-width: 40rem;
+    margin-top: 1rem;
+  }
+
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 2.2rem;
+    margin-top: 2rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--rule);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+  }
+
+  .facts b { font-weight: 500; color: var(--ink-soft); }
+
+  /* ── запрет ────────────────────────────────────────────── */
+
+  .prohibition {
+    margin: 2.6rem 0 3.4rem;
+    background: var(--alarm-bg);
+    border: 1px solid var(--alarm-rule);
+    border-left-width: 4px;
+    border-radius: 2px;
+    padding: 1.5rem clamp(1.1rem, 3vw, 1.9rem);
+  }
+
+  .prohibition h2 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--alarm);
+    margin: 0 0 0.7rem;
+  }
+
+  .prohibition p { margin: 0; font-size: 1.02rem; color: var(--ink); }
+  .prohibition p + p { margin-top: 0.8rem; }
+
+  /* ── разделы с висячими номерами ───────────────────────── */
+
+  section {
+    display: grid;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: 0 1.4rem;
+    padding-top: 2.6rem;
+    margin-top: 2.6rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  section:first-of-type { border-top: none; }
+
+  .num {
+    font-family: Spectral, Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--indigo);
+    line-height: 1.1;
+    padding-top: 0.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .body { min-width: 0; }
+
+  h2:not(.prohibition h2) {
+    font-family: Spectral, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.3rem, 2.6vw, 1.62rem);
+    line-height: 1.24;
+    text-wrap: balance;
+    margin: 0 0 0.9rem;
+  }
+
+  h3 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    margin: 1.9rem 0 0.6rem;
+    color: var(--ink);
+  }
+
+  p { margin: 0 0 1rem; max-width: 40rem; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; }
+  em { font-family: Spectral, Georgia, serif; font-style: italic; }
+
+  code {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.86em;
+    background: var(--code-bg);
+    padding: 0.1em 0.36em;
+    border-radius: 2px;
+  }
+
+  /* ── цитата пересказа ──────────────────────────────────── */
+
+  blockquote {
+    font-family: Spectral, Georgia, serif;
+    font-size: 1.08rem;
+    line-height: 1.5;
+    color: var(--ink);
+    border-left: 3px solid var(--indigo);
+    background: var(--indigo-soft);
+    margin: 1.3rem 0 1.6rem;
+    padding: 1rem 1.2rem;
+    border-radius: 0 2px 2px 0;
+    max-width: 40rem;
+  }
+
+  blockquote p { margin: 0; }
+
+  /* ── разбор фразы на две части ─────────────────────────── */
+  /* Единственный компонент, которого нет в прежних заданиях: суть этого
+     задания в том, что одна фраза источника склеила две разные вещи, и
+     только одна из них требует выгрузки. Разделение должно быть видно
+     раньше, чем прочитан текст. */
+
+  .split {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    margin: 1.4rem 0 1.6rem;
+  }
+
+  .half {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--rule-strong);
+    border-radius: 2px;
+    padding: 1.1rem 1.2rem;
+  }
+
+  .half--have { border-top-color: var(--indigo); }
+  .half--need { border-top-color: var(--alarm); }
+
+  .half__verdict {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .half--have .half__verdict { color: var(--indigo); }
+  .half--need .half__verdict { color: var(--alarm); }
+
+  .half__claim {
+    font-family: Spectral, Georgia, serif;
+    font-size: 1.02rem;
+    line-height: 1.42;
+    margin: 0 0 0.7rem;
+    color: var(--ink);
+  }
+
+  .half__why { font-size: 0.9rem; color: var(--ink-soft); margin: 0; }
+
+  /* ── таблица полей ─────────────────────────────────────── */
+
+  .scroll {
+    overflow-x: auto;
+    margin: 1.2rem 0 1.4rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: var(--card);
+  }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.88rem; min-width: 30rem; }
+
+  th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--rule-strong);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 0.68rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    color: var(--ink-soft);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td:first-child {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.82rem;
+    color: var(--indigo);
+    white-space: nowrap;
+  }
+
+  /* ── блоки кода ────────────────────────────────────────── */
+
+  pre {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 1.05rem 1.2rem;
+    overflow-x: auto;
+    margin: 1.2rem 0 1.4rem;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.82rem;
+    line-height: 1.62;
+    color: var(--ink-soft);
+  }
+
+  /* ── списки ────────────────────────────────────────────── */
+
+  ul { margin: 0 0 1rem; padding-left: 1.15rem; max-width: 40rem; }
+  li { margin-bottom: 0.62rem; padding-left: 0.2rem; }
+  li::marker { color: var(--ink-faint); }
+  li:last-child { margin-bottom: 0; }
+
+  ol.steps {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    max-width: 40rem;
+  }
+
+  ol.steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.85rem;
+  }
+
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.06em;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: var(--indigo);
+    background: var(--indigo-soft);
+    width: 1.4rem;
+    height: 1.4rem;
+    display: grid;
+    place-items: center;
+    border-radius: 2px;
+  }
+
+  .aside {
+    border-left: 2px solid var(--rule-strong);
+    padding: 0.15rem 0 0.15rem 1.1rem;
+    margin: 1.4rem 0;
+    color: var(--ink-soft);
+    font-family: Spectral, Georgia, serif;
+    font-size: 1rem;
+    max-width: 38rem;
+  }
+
+  .aside p { margin-bottom: 0.7rem; }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--rule);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    line-height: 1.75;
+  }
+
+  :focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+</style>
+
+<div class="sheet">
+  <header>
+    <div class="eyebrow">Задание для агента · выгрузка из подписки</div>
+    <h1>Обзор ВС РФ о недостатках товара</h1>
+    <p class="standfirst">
+      Последний источник пакета, который несёт наш пересказ вместо текста
+      первоисточника. Прежде чем его выгружать, нужно установить факт: в каком
+      обзоре и в каком пункте вообще изложена нужная позиция.
+    </p>
+    <div class="facts">
+      <span><b>источник:</b> synthetic-ru-vs-review2024-sale-quality-v1</span>
+      <span><b>ветка:</b> data/vs-review-sale-quality-export</span>
+      <span><b>файлов в коммите:</b> 2</span>
+      <span><b>осталось таких источников:</b> 1 из 216</span>
+    </div>
+  </header>
+
+  <div class="prohibition">
+    <h2>Запрет, который важнее задания</h2>
+    <p>
+      <strong>Агент не должен использовать проект для работы и в особенности
+      ключ АПИ любой ЛЛМ!!! Он должен работать используя ресурсы
+      подписки!</strong>
+    </p>
+    <p>
+      Задача решается экспортом из локальной подписки КонсультантПлюс тем же
+      способом, каким выгружены 127-ФЗ и постановления Пленума, —
+      детерминированно, без модели. Если без ключа API LLM задачу выполнить
+      нельзя — остановись и напиши человеку.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Что не так с этим источником</h2>
+      <p>
+        В пакете 216 источников с пометкой «дословный текст». 215 из них
+        пересажены на настоящий текст: 190 статей ГК, 11 статей 127-ФЗ,
+        14 постановлений Пленума. Остался один, и он до сих пор несёт пересказ:
+      </p>
+      <blockquote>
+        <p>
+          Гарантийный срок влияет на распределение бремени доказывания, а
+          безрезультатный гарантийный ремонт не прекращает предусмотренные
+          законом требования покупателя.
+        </p>
+      </blockquote>
+      <p>
+        Разбор показал, что эта одна фраза склеила две разные вещи. Выгрузки
+        требует только вторая:
+      </p>
+
+      <div class="split">
+        <div class="half half--have">
+          <div class="half__verdict">уже есть дословно</div>
+          <p class="half__claim">
+            «гарантийный срок влияет на распределение бремени доказывания»
+          </p>
+          <p class="half__why">
+            Это не позиция суда, а пункт 2 статьи 476 ГК РФ, и он уже лежит
+            настоящим текстом в источнике
+            <code>synthetic-ru-gk465-477-sale-conformity-v1</code>. Обзор эту
+            норму не создаёт, а применяет.
+          </p>
+        </div>
+        <div class="half half--need">
+          <div class="half__verdict">первоисточника нет</div>
+          <p class="half__claim">
+            «безрезультатный гарантийный ремонт не прекращает требования
+            покупателя»
+          </p>
+          <p class="half__why">
+            Вот это действительно позиция ВС РФ. Ближайшая норма — абзац
+            пункта 2 статьи 475 о недостатках, «проявляющихся вновь после их
+            устранения», — говорит о существенности нарушения, а не о судьбе
+            требований после неудачного ремонта.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Почему нельзя просто выгрузить по ссылке</h2>
+      <p>Ссылка в источнике названа так:</p>
+      <blockquote>
+        <p>Обзор судебной практики ВС РФ № 2, 3 (2024), определение № 301-ЭС23-10631</p>
+      </blockquote>
+      <p>
+        Это <strong>три разных документа в одной строке</strong>: обзор № 2
+        (2024), обзор № 3 (2024) и определение по конкретному делу. Какой пункт
+        какого обзора имеется в виду, из ссылки не следует.
+      </p>
+      <div class="aside">
+        <p>
+          Ровно та же неоднозначность встречалась при пересадке постановлений
+          Пленума: два разных постановления № 54 отличались только годом, и
+          различать их пришлось явной таблицей соответствий, а не догадкой по
+          тексту ссылки.
+        </p>
+      </div>
+      <p>
+        Поэтому первая часть задания — не выгрузка, а установление факта.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Найти пункт</h2>
+      <p>Найди в КонсультантПлюс оба документа:</p>
+      <ul>
+        <li>Обзор судебной практики Верховного Суда Российской Федерации № 2 (2024)</li>
+        <li>Обзор судебной практики Верховного Суда Российской Федерации № 3 (2024)</li>
+      </ul>
+      <p>
+        В разделе по экономическим спорам найди пункт, излагающий позицию:
+        безрезультатный (неудачный) гарантийный ремонт не лишает покупателя
+        требований, предусмотренных законом. Проверь, основан ли этот пункт на
+        определении № 301-ЭС23-10631.
+      </p>
+      <p>
+        <strong>Если пункта нет ни в одном из двух обзоров</strong> — не
+        подгоняй, а напиши об этом прямо и приложи оглавления обоих обзоров по
+        разделу экономических споров. Отрицательный результат здесь тоже
+        результат: он будет означать, что ссылка в источнике неверна и
+        исправлять надо её, а не выгрузку делать.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Выгрузить текст</h2>
+      <p>
+        Файл <code>data/guidance/vs_review_paragraphs.jsonl</code>, UTF-8, по
+        объекту JSON на строку — одна строка на пункт обзора:
+      </p>
+      <pre><code>{
+  "document_slug": "vs-review-3-2024",
+  "document_title_ru": "Обзор судебной практики Верховного Суда Российской Федерации № 3 (2024)",
+  "approved_date": "2024-11-27",
+  "paragraph": "12",
+  "section_ru": "Практика применения законодательства об обязательствах",
+  "text_ru": "текст пункта дословно",
+  "case_ref": "Определение № 301-ЭС23-10631",
+  "source_ref": "consultant:LAW:XXXXXX:12"
+}</code></pre>
+
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr><th>поле</th><th>что в нём</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>document_slug</td><td><code>vs-review-2-2024</code> либо <code>vs-review-3-2024</code></td></tr>
+            <tr><td>document_title_ru</td><td>полное название обзора, как в карточке документа</td></tr>
+            <tr><td>approved_date</td><td>дата утверждения Президиумом ВС РФ, <code>ГГГГ-ММ-ДД</code></td></tr>
+            <tr><td>paragraph</td><td>номер пункта строкой, как в документе</td></tr>
+            <tr><td>section_ru</td><td>название раздела обзора, в котором стоит пункт</td></tr>
+            <tr><td>text_ru</td><td>текст пункта дословно, без разметки страницы</td></tr>
+            <tr><td>case_ref</td><td>номер определения, если пункт его называет; иначе пустая строка</td></tr>
+            <tr><td>source_ref</td><td>ссылка на карточку в КонсультантПлюс</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Выгрузи <strong>весь раздел</strong> обзора, в котором нашёлся нужный
+        пункт, а не один пункт: соседние пункты того же раздела почти наверняка
+        понадобятся, а повторная выгрузка стоит дороже, чем лишние двадцать
+        строк сейчас.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">5</div>
+    <div class="body">
+      <h2>Чего в тексте быть не должно</h2>
+      <p>
+        Это главное требование, и оно выведено из трёх уже случившихся порч
+        выгрузок — не из осторожности вообще. Не дамп HTML-страницы, а
+        постатейная выгрузка из карточки документа. В <code>text_ru</code> не
+        должно быть:
+      </p>
+      <ul>
+        <li>
+          всплывающих подсказок похожих дел (<code>&lt;div&gt;</code>, карточки
+          дел) — на этом однажды потерялись 65 пунктов постановления Пленума
+          № 25/2015 при попытке вычистить разметку кодом;
+        </li>
+        <li>
+          обрывков постраничной навигации («Статья N. Название&nbsp;&nbsp;Статья M.
+          Название», склеенных двойным пробелом) — этим оказались испорчены
+          518 из 565 статей первой выгрузки 127-ФЗ;
+        </li>
+        <li>
+          редакционного аппарата КонсультантПлюс: блоков «Путеводитель по
+          судебной практике … по ст. N» со списком вопросов пунктами
+          <code>- …</code> и подписей гиперссылок «(см. текст в предыдущей
+          редакции)» — этим оказался засорён 141 источник из 215, и нашлось
+          это только на третий заход.
+        </li>
+      </ul>
+      <p>
+        Пометки вида «(п. 1 в ред. Федерального закона от 17.12.1999 N 213-ФЗ)»
+        — законодательные, часть официального текста; их <strong>оставляй</strong>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">6</div>
+    <div class="body">
+      <h2>Как проверить себя до отправки</h2>
+      <ol class="steps">
+        <li>
+          Число строк в файле равно числу пунктов выгруженного раздела — сверь
+          по оглавлению документа, а не по ощущению.
+        </li>
+        <li>
+          Номера пунктов идут подряд, без пропусков. Пропуск номера — признак
+          того, что пункт исчез при очистке разметки; именно так была поймана
+          потеря 65 пунктов у Пленума.
+        </li>
+        <li>
+          Ни в одном <code>text_ru</code> нет подстрок <code>Путеводитель</code>,
+          <code>(см. текст в предыдущей редакции)</code>, <code>&lt;div</code>,
+          <code>&lt;a href</code>, а также абзацев, начинающихся с <code>- </code>.
+        </li>
+        <li>
+          Ни один <code>text_ru</code> не пуст и не короче 200 символов.
+        </li>
+      </ol>
+      <p>
+        Отчёт напиши по-русски: сколько пунктов выгружено, из какого обзора,
+        какой пункт содержит искомую позицию, подтвердилась ли связь с
+        определением № 301-ЭС23-10631 и какие из четырёх самопроверок ты
+        прогнал.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">7</div>
+    <div class="body">
+      <h2>Ветка и коммит</h2>
+      <p>
+        Ветка <code>data/vs-review-sale-quality-export</code>. В коммите — ровно
+        два файла: <code>data/guidance/vs_review_paragraphs.jsonl</code> и
+        запись о документе в <code>data/guidance/index.jsonl</code>. Ничего в
+        <code>src/</code> не трогай: пересадка источника на этот текст —
+        отдельная работа на стороне проекта.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Задание к пакету contracts-ru-v0 · текст задания также лежит в
+    docs/vs-review-sale-quality-export-brief.md
+  </footer>
+</div>

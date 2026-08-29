@@ -1,0 +1,35 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-1.18.0:to-1.19.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-1.18.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "1.18.0",
+  "target_package_version": "1.19.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "1.18.0",
+      "to_version": "1.19.0",
+      "reasons": [
+        "The verbatim text of 141 legal sources changed: KonsultantPlyus editorial apparatus that had travelled in with the export is removed - 219 'Putevoditel po sudebnoy praktike' headers with their 788 question bullets, and 467 dangling '(see the previous edition text)' hyperlink labels. Any artifact embedding source text carries the old mixture and must be regenerated.",
+        "No predicate, evidence contract, rule, or evaluation changes: no model reads source .text programmatically. What changes is what a lawyer reads when opening a source - a reference publisher's question list no longer sits where the article's own text should begin."
+      ],
+      "reasons_ru": [
+        "Изменился дословный текст 141 источника: снят редакционный аппарат КонсультантПлюс, приехавший вместе с выгрузкой, — 219 заголовков «Путеводитель по судебной практике» с 788 пунктами-вопросами и 467 повисших подписей гиперссылки «(см. текст в предыдущей редакции)». Любой артефакт, встраивающий текст источников, хранит прежнюю смесь и подлежит пересборке.",
+        "Ни один предикат, контракт доказательств, правило или сверка не изменены: ни одна модель не читает .text источника программно. Меняется то, что читает юрист, открыв источник, — список вопросов коммерческого справочника больше не стоит там, где должен начинаться текст статьи."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

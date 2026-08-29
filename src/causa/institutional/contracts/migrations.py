@@ -2238,6 +2238,21 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.18.0",
+        to_version="1.19.0",
+        reasons=[
+            "The verbatim text of 141 legal sources changed: KonsultantPlyus editorial apparatus that had travelled in with the export is removed - 219 'Putevoditel po sudebnoy praktike' headers with their 788 question bullets, and 467 dangling '(see the previous edition text)' hyperlink labels. Any artifact embedding source text carries the old mixture and must be regenerated.",
+            "No predicate, evidence contract, rule, or evaluation changes: no model reads source .text programmatically. What changes is what a lawyer reads when opening a source - a reference publisher's question list no longer sits where the article's own text should begin.",
+        ],
+        reasons_ru=[
+            "Изменился дословный текст 141 источника: снят редакционный аппарат КонсультантПлюс, приехавший вместе с выгрузкой, — 219 заголовков «Путеводитель по судебной практике» с 788 пунктами-вопросами и 467 повисших подписей гиперссылки «(см. текст в предыдущей редакции)». Любой артефакт, встраивающий текст источников, хранит прежнюю смесь и подлежит пересборке.",
+            "Ни один предикат, контракт доказательств, правило или сверка не изменены: ни одна модель не читает .text источника программно. Меняется то, что читает юрист, открыв источник, — список вопросов коммерческого справочника больше не стоит там, где должен начинаться текст статьи.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

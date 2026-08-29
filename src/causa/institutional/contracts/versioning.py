@@ -46,6 +46,29 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.19.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "A third kind of corruption is found and removed from the verbatim source texts. The two earlier cleanups each looked for their own defect - tooltip debris in the Plenum export, page-navigation tails in the 127-FZ export - and neither asked the general question: is everything in a source's text actually the text of a norm. It was not. Of 215 sources flagged text_verbatim, 141 carried KonsultantPlyus editorial apparatus interleaved with the law: 16.6% of all paragraphs, 122678 characters.",
+            "Two forms are removed. 'Putevoditel po sudebnoy praktike ... po st. N GK RF' headers (219) with the question bullets that follow them (788) are a separate commercial product of the reference publisher, inserted between an article's heading and its first paragraph - so a lawyer opening the source for article 492 GK read '- Is a purchase by legal entities for their own needs recognized as retail sale' exactly where the article's own text should begin. And 467 dangling '(see the previous edition text)' hyperlink labels, meaningless away from the hyperlink. The neighbouring '(para 1 as amended by Federal Law of 17.12.1999 N 213-FZ)' annotations are legislative, part of the official text, and are left untouched.",
+            "The 'KonsultantPlyus: note.' blocks are kept on purpose. Their framing is editorial too, but their content is legal and important: norms held unconstitutional, transitional provisions, references to Constitutional Court rulings. Deleting them would trade legal information for tidiness. The decision is pinned by a test so that 'kept' stays distinguishable from 'not noticed'.",
+            "Safety is demonstrated, not assumed. The one real risk was a '- ' bullet outside a guide block, which could have been a norm's own text: the check found 788 bullets under a guide header and zero outside, and the script still removes a bullet only inside an already-opened block rather than on the paragraph's shape alone. The result was compared against a baseline computed independently of the file-editing script: 141 sources changed, none emptied, and none lost its first paragraph, so every article heading survived. The same cleanup is applied to data/laws/127fz_articles.jsonl (341 of 565 articles), or the next migration would bring the apparatus back.",
+            "No predicate, evidence contract, rule, or evaluation changes: no model reads source .text programmatically. Six tests in tests/test_verbatim_source_texts.py guard the return of the apparatus, in the sources and in the export alike.",
+        ],
+        notes_ru=[
+            "Найдена и снята третья по счёту порча дословных текстов источников. Обе прежние чистки искали каждая своё — обрывки тултипов у Пленума, постраничную навигацию у 127-ФЗ, — и ни одна не задавала общего вопроса: всё ли в тексте источника вообще является текстом нормы. Не всё. Из 215 источников с пометкой text_verbatim 141 нёс вперемешку с законом редакционный аппарат КонсультантПлюс: 16,6% всех абзацев, 122 678 символов.",
+            "Снято два вида. Заголовки «Путеводитель по судебной практике ... по ст. N ГК РФ» (219) вместе с идущими за ними пунктами-вопросами (788) — это отдельный коммерческий продукт справочника, вставленный между заголовком статьи и её первым пунктом: юрист, открывший источник статьи 492 ГК, читал «- Признается ли розничной куплей-продажей приобретение юрлицами товаров для собственных нужд» ровно там, где должен начинаться текст статьи. И 467 повисших подписей гиперссылки «(см. текст в предыдущей редакции)», в отрыве от неё не значащих ничего. Соседние пометки «(п. 1 в ред. Федерального закона от 17.12.1999 N 213-ФЗ)» — законодательные, часть официального текста, и не тронуты.",
+            "Блоки «КонсультантПлюс: примечание.» оставлены сознательно. Обрамление у них тоже редакционное, но содержание правовое и важное: нормы, признанные не соответствующими Конституции РФ, переходные положения, отсылки к постановлениям КС РФ. Удалить их значило бы обменять правовую информацию на чистоту формы. Решение закреплено тестом, чтобы «оставлено» осталось отличимым от «не заметили».",
+            "Безопасность доказана, а не предположена. Единственный настоящий риск — пункт «- ...» вне блока Путеводителя, который мог бы оказаться текстом нормы: проверка дала 788 пунктов под заголовком Путеводителя и ноль вне его, а скрипт всё равно снимает пункт только внутри уже открытого блока, а не по одному виду абзаца. Результат сверен с эталоном, посчитанным независимо от скрипта правки файла: изменился 141 источник, ни один не опустел и ни у одного не сменился первый абзац — заголовки статей уцелели все. Та же чистка применена к data/laws/127fz_articles.jsonl (341 статья из 565), иначе следующая пересадка вернула бы аппарат обратно.",
+            "Ни один предикат, контракт доказательств, правило или сверка не изменены: ни одна модель не читает .text источника программно. Шесть тестов в tests/test_verbatim_source_texts.py стерегут возврат аппарата — и в источниках, и в выгрузке.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.18.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],
