@@ -6551,6 +6551,14 @@
       "schema_version": "contracts.freedom-evidence.v0",
       "assertions": [
         {
+          "id": "freedom-evidence-contract_asserted",
+          "predicate": "contract_asserted",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
           "id": "freedom-evidence-contract_conclusion_compelled_by_law",
           "predicate": "contract_conclusion_compelled_by_law",
           "value": false,
@@ -20808,6 +20816,7 @@
       "schema_version": "contracts.freedom-evidence.v0",
       "mapping_version": "contracts-reviewed-freedom-to-facts-v0",
       "facts": {
+        "contract_asserted": true,
         "contract_conclusion_compelled_by_law": false,
         "contract_type_unnamed": false,
         "mixed_contract_elements": false,
@@ -20835,6 +20844,13 @@
         {
           "fact_name": "comparable_price_available",
           "assertion_id": "freedom-evidence-comparable_price_available",
+          "source_refs": [
+            "synthetic-case-supply-1-freedom-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_asserted",
+          "assertion_id": "freedom-evidence-contract_asserted",
           "source_refs": [
             "synthetic-case-supply-1-freedom-evidence"
           ]
@@ -20962,12 +20978,12 @@
         "synthetic-ru-gk427-standard-terms-v1"
       ],
       "expressions": [
-        "contract_conclusion_free == NOT contract_conclusion_compelled_by_law",
-        "terms_by_party_discretion == NOT terms_prescribed_by_mandatory_norm",
+        "contract_conclusion_free == contract_asserted AND NOT contract_conclusion_compelled_by_law",
+        "terms_by_party_discretion == contract_asserted AND NOT terms_prescribed_by_mandatory_norm",
         "mixed_contract_rules_apply == mixed_contract_elements",
         "contract_valid_against_mandatory_rules == contract_conforms_mandatory_rules",
         "prior_terms_survive_new_law == new_mandatory_law_after_conclusion AND NOT new_law_given_retroactive_effect",
-        "contract_presumed_onerous == NOT contract_gratuitous_by_nature",
+        "contract_presumed_onerous == contract_asserted AND NOT contract_gratuitous_by_nature",
         "price_determined == price_agreed_by_parties OR regulated_price_mandated OR (contract_presumed_onerous AND comparable_price_available)",
         "term_gap_open_for_custom == term_not_determined_by_parties AND term_not_covered_by_dispositive_norm",
         "standard_terms_incorporated_by_reference == standard_terms_asserted AND standard_terms_published_for_contract_type AND contract_refers_to_standard_terms",
@@ -35195,7 +35211,7 @@
         "payment_default == payment_due AND NOT buyer_paid",
         "prepaid_buyer_remedies == prepayment_made AND seller_failed_after_prepayment AND (buyer_requested_prepaid_delivery OR buyer_requested_prepayment_return)",
         "prepayment_default == prepayment_required AND prepayment_due AND NOT prepayment_made",
-        "price_general_default_required == NOT price_agreed AND NOT price_determinable",
+        "price_general_default_required == sale_contract_qualified AND NOT price_agreed AND NOT price_determinable",
         "price_revision_requires_review == price_revision_formula_agreed AND NOT price_revision_inputs_proven",
         "property_right_sale_rules_applicable == property_right_subject AND NOT property_right_nature_excludes_sale_rules",
         "quality_inspection_gap == inspection_required AND buyer_received_goods AND (NOT inspection_timely OR NOT inspection_method_complied)",
@@ -36684,7 +36700,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.19.0",
+      "institutional_package_version": "contracts-ru-v0@1.20.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

@@ -2253,6 +2253,21 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.19.0",
+        to_version="1.20.0",
+        reasons=[
+            "The freedom institute gains a required predicate, contract_asserted, so every stored freedom evidence block is structurally incomplete and must be regenerated. The sale institute changes one rule without changing its data contract.",
+            "Both changes close the same defect an audit of all 92 institutes found: on an all-false fact set they asserted conclusions about a case that is not there - sale that the price falls to the article 424(3) default, freedom that the contract was concluded freely and is presumed onerous - and both raised their requires_human flag through it. Any stored evaluation of these two institutes must be replayed.",
+        ],
+        reasons_ru=[
+            "Институт свободы договора получает обязательный предикат contract_asserted, поэтому любой сохранённый блок доказательств по нему структурно неполон и подлежит пересборке. Институт купли-продажи меняет одно правило, не меняя контракта данных.",
+            "Обе правки закрывают один дефект, найденный аудитом всех 92 институтов: на наборе фактов, где всё ложно, они утверждали выводы о деле, которого нет, — купля-продажа, что цена определяется по общему правилу пункта 3 статьи 424, свобода договора, что договор заключён свободно и предполагается возмездным, — и через это поднимали флаг проверки юристом. Любая сохранённая сверка этих двух институтов подлежит повторному прогону.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

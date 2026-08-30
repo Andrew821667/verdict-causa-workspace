@@ -1,0 +1,110 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-1.14.0:to-1.20.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-1.14.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "1.14.0",
+  "target_package_version": "1.20.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "1.14.0",
+      "to_version": "1.15.0",
+      "reasons": [
+        "A new standalone module, bankruptcy_ranking.py, is added: it is not required by any existing evidence contract, but any artifact that expects to find it absent needs regeneration to reflect the package now shipping a creditor-ranking model.",
+        "No existing predicate, evidence contract, or evaluation changes. The new model is not wired into reviewed_analysis.py or into the GK-numbered coverage maps in this release."
+      ],
+      "reasons_ru": [
+        "Добавлен новый самостоятельный модуль bankruptcy_ranking.py: он не требуется ни одним существующим контрактом доказательств, но артефакт, ожидающий его отсутствия, нуждается в пересборке, чтобы отразить, что пакет теперь поставляет модель очерёдности требований кредиторов.",
+        "Ни один существующий предикат, контракт доказательств или сверка не изменены. Новая модель не подключена к reviewed_analysis.py и к картам покрытия, нумерованным по ГК, в этом релизе."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.15.0",
+      "to_version": "1.16.0",
+      "reasons": [
+        "A new standalone module, bankruptcy_contest.py, is added: it is not required by any existing evidence contract, but any artifact that expects to find it absent needs regeneration to reflect the package now shipping a transaction-avoidance model.",
+        "No existing predicate, evidence contract, or evaluation changes. The new model is not wired into reviewed_analysis.py or into the GK-numbered coverage maps in this release."
+      ],
+      "reasons_ru": [
+        "Добавлен новый самостоятельный модуль bankruptcy_contest.py: он не требуется ни одним существующим контрактом доказательств, но артефакт, ожидающий его отсутствия, нуждается в пересборке, чтобы отразить, что пакет теперь поставляет модель оспаривания сделок должника.",
+        "Ни один существующий предикат, контракт доказательств или сверка не изменены. Новая модель не подключена к reviewed_analysis.py и к картам покрытия, нумерованным по ГК, в этом релизе."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.16.0",
+      "to_version": "1.17.0",
+      "reasons": [
+        "A new standalone module, bankruptcy_setoff.py, is added: it is not required by any existing evidence contract, but any artifact that expects to find it absent needs regeneration to reflect the package now shipping a setoff-during-observation model.",
+        "No existing predicate, evidence contract, or evaluation changes. The new model is not wired into reviewed_analysis.py or into the GK-numbered coverage maps in this release."
+      ],
+      "reasons_ru": [
+        "Добавлен новый самостоятельный модуль bankruptcy_setoff.py: он не требуется ни одним существующим контрактом доказательств, но артефакт, ожидающий его отсутствия, нуждается в пересборке, чтобы отразить, что пакет теперь поставляет модель зачёта при наблюдении.",
+        "Ни один существующий предикат, контракт доказательств или сверка не изменены. Новая модель не подключена к reviewed_analysis.py и к картам покрытия, нумерованным по ГК, в этом релизе."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.17.0",
+      "to_version": "1.18.0",
+      "reasons": [
+        "All four bankruptcy institutes (bankruptcy_claims, bankruptcy_ranking, bankruptcy_contest, bankruptcy_setoff) are wired into reviewed_analysis.py. ReviewedContractAnalysisRequest gains four required evidence blocks and ReviewedContractAnalysisResult gains twelve fields, so every stored request and result artifact from an earlier version is structurally incomplete and must be regenerated.",
+        "Two institutes gain a new required predicate that changes their evaluation: bankruptcy_claims gains bankruptcy_case_opened and bankruptcy_ranking gains claim_filed_in_bankruptcy_register. Without them an all-false fact set asserted that a claim was a current payment and belonged to the third tier of a bankruptcy register - conclusions about a proceeding that does not exist. Any stored evaluation of these two institutes must be replayed."
+      ],
+      "reasons_ru": [
+        "Все четыре института банкротства (bankruptcy_claims, bankruptcy_ranking, bankruptcy_contest, bankruptcy_setoff) подключены к reviewed_analysis.py. ReviewedContractAnalysisRequest получает четыре обязательных блока доказательств, ReviewedContractAnalysisResult — двенадцать полей, поэтому любой сохранённый запрос или результат прежней версии структурно неполон и подлежит пересборке.",
+        "Два института получают новый обязательный предикат, меняющий их вывод: bankruptcy_claims — bankruptcy_case_opened, bankruptcy_ranking — claim_filed_in_bankruptcy_register. Без них набор фактов, где всё ложно, утверждал, что требование является текущим платежом и относится к третьей очереди реестра, — выводы о производстве, которого нет. Любая сохранённая сверка этих двух институтов подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.18.0",
+      "to_version": "1.19.0",
+      "reasons": [
+        "The verbatim text of 141 legal sources changed: KonsultantPlyus editorial apparatus that had travelled in with the export is removed - 219 'Putevoditel po sudebnoy praktike' headers with their 788 question bullets, and 467 dangling '(see the previous edition text)' hyperlink labels. Any artifact embedding source text carries the old mixture and must be regenerated.",
+        "No predicate, evidence contract, rule, or evaluation changes: no model reads source .text programmatically. What changes is what a lawyer reads when opening a source - a reference publisher's question list no longer sits where the article's own text should begin."
+      ],
+      "reasons_ru": [
+        "Изменился дословный текст 141 источника: снят редакционный аппарат КонсультантПлюс, приехавший вместе с выгрузкой, — 219 заголовков «Путеводитель по судебной практике» с 788 пунктами-вопросами и 467 повисших подписей гиперссылки «(см. текст в предыдущей редакции)». Любой артефакт, встраивающий текст источников, хранит прежнюю смесь и подлежит пересборке.",
+        "Ни один предикат, контракт доказательств, правило или сверка не изменены: ни одна модель не читает .text источника программно. Меняется то, что читает юрист, открыв источник, — список вопросов коммерческого справочника больше не стоит там, где должен начинаться текст статьи."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.19.0",
+      "to_version": "1.20.0",
+      "reasons": [
+        "The freedom institute gains a required predicate, contract_asserted, so every stored freedom evidence block is structurally incomplete and must be regenerated. The sale institute changes one rule without changing its data contract.",
+        "Both changes close the same defect an audit of all 92 institutes found: on an all-false fact set they asserted conclusions about a case that is not there - sale that the price falls to the article 424(3) default, freedom that the contract was concluded freely and is presumed onerous - and both raised their requires_human flag through it. Any stored evaluation of these two institutes must be replayed."
+      ],
+      "reasons_ru": [
+        "Институт свободы договора получает обязательный предикат contract_asserted, поэтому любой сохранённый блок доказательств по нему структурно неполон и подлежит пересборке. Институт купли-продажи меняет одно правило, не меняя контракта данных.",
+        "Обе правки закрывают один дефект, найденный аудитом всех 92 институтов: на наборе фактов, где всё ложно, они утверждали выводы о деле, которого нет, — купля-продажа, что цена определяется по общему правилу пункта 3 статьи 424, свобода договора, что договор заключён свободно и предполагается возмездным, — и через это поднимали флаг проверки юристом. Любая сохранённая сверка этих двух институтов подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

@@ -285,6 +285,7 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "именно поэтому стороны были вправе установить их сами."
         ),
         facts={
+            "contract_asserted": True,
             "contract_conclusion_compelled_by_law": False,
             "contract_type_unnamed": False,
             "mixed_contract_elements": False,

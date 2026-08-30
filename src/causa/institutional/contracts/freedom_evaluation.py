@@ -57,7 +57,13 @@ class FreedomRedTeamReport(BaseModel):
 
 
 def _facts(**updates: bool) -> FreedomFactSet:
+    """Факты по заявленному в деле договору.
+
+    `contract_asserted` по умолчанию истинно: все случаи ниже, кроме прямо
+    проверяющих сами ворота, разбирают уже заявленный договор.
+    """
     values = {field_name: False for field_name in FreedomFactSet.model_fields}
+    values["contract_asserted"] = True
     values.update(updates)
     return FreedomFactSet(**values)
 

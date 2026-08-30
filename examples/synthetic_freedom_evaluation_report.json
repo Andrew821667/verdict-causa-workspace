@@ -6,6 +6,7 @@
     "schema_version": "contracts.freedom-evidence.v0",
     "mapping_version": "contracts-reviewed-freedom-to-facts-v0",
     "facts": {
+      "contract_asserted": true,
       "contract_conclusion_compelled_by_law": false,
       "contract_type_unnamed": false,
       "mixed_contract_elements": false,
@@ -33,6 +34,13 @@
       {
         "fact_name": "comparable_price_available",
         "assertion_id": "freedom-evidence-comparable_price_available",
+        "source_refs": [
+          "synthetic-case-supply-1-freedom-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_asserted",
+        "assertion_id": "freedom-evidence-contract_asserted",
         "source_refs": [
           "synthetic-case-supply-1-freedom-evidence"
         ]
@@ -160,12 +168,12 @@
       "synthetic-ru-gk427-standard-terms-v1"
     ],
     "expressions": [
-      "contract_conclusion_free == NOT contract_conclusion_compelled_by_law",
-      "terms_by_party_discretion == NOT terms_prescribed_by_mandatory_norm",
+      "contract_conclusion_free == contract_asserted AND NOT contract_conclusion_compelled_by_law",
+      "terms_by_party_discretion == contract_asserted AND NOT terms_prescribed_by_mandatory_norm",
       "mixed_contract_rules_apply == mixed_contract_elements",
       "contract_valid_against_mandatory_rules == contract_conforms_mandatory_rules",
       "prior_terms_survive_new_law == new_mandatory_law_after_conclusion AND NOT new_law_given_retroactive_effect",
-      "contract_presumed_onerous == NOT contract_gratuitous_by_nature",
+      "contract_presumed_onerous == contract_asserted AND NOT contract_gratuitous_by_nature",
       "price_determined == price_agreed_by_parties OR regulated_price_mandated OR (contract_presumed_onerous AND comparable_price_available)",
       "term_gap_open_for_custom == term_not_determined_by_parties AND term_not_covered_by_dispositive_norm",
       "standard_terms_incorporated_by_reference == standard_terms_asserted AND standard_terms_published_for_contract_type AND contract_refers_to_standard_terms",

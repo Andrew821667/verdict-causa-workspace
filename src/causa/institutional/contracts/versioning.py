@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.20.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "All 92 institutes that follow the shared naming convention were audited for one defect: what does the institute conclude when its fact block is entirely false, that is, when the institute has nothing to do with the case. The question came from 1.18.0, where wiring the bankruptcy institutes turned requires_human_resolution permanently true in a supply dispute with no bankruptcy in it. While institutes were few, an empty fact block was rare; with 95 wired, almost every institute is irrelevant to any given case, so an empty block is now the normal input and the cost of this defect has grown.",
+            "The audit found two genuine defects and seven lawful defaults. sale concluded 'the price falls to the article 424(3) default' - an assertion about an existing contract of sale - because the rule was a bare negation of price_agreed and price_determinable; it is now gated on sale_contract_qualified, which the module already computed. freedom concluded that the contract was concluded freely and is presumed onerous, and had no predicate at all for whether a contract is asserted in the case; it gains contract_asserted, and articles 421 and 423(3) are gated on it, because both are judgments about a contract. Both institutes raised their requires_human flag through those spurious conclusions.",
+            "The seven other affirmative outputs are lawful and are kept: 'written form is satisfied when no written form is required' (form), 'an interruption is lawful when there was no interruption' (energy_supply), 'uniform terms are satisfied when the public-contract regime does not apply' (public_contract), 'the claim is not subject to limitation' (limitation, a plain negation of its input). These state the absence of a violation, not the existence of a relationship. Telling the two apart is a lawyer's judgment rather than a regular expression, so the list is maintained by hand and every entry must carry its reason.",
+            "tests/test_empty_facts_yield_no_conclusions.py makes the audit permanent: every institute is run on an all-false fact set, none may raise a requires_human flag, and any new affirmative conclusion must be declared with a reason or fixed. The freedom data contract changes (one new required predicate), the sale data contract does not.",
+        ],
+        notes_ru=[
+            "Все 92 института, следующие общему соглашению об именах, проверены на один дефект: что институт заключает, когда его блок фактов целиком ложен, то есть когда институт к делу не относится вовсе. Вопрос пришёл из 1.18.0, где подключение институтов банкротства сделало requires_human_resolution вечно истинным в споре о поставке, где банкротства нет. Пока институтов было немного, пустой блок был редкостью; при 95 подключённых почти каждый институт не относится к любому конкретному делу, поэтому пустой блок стал обычным входом, а цена дефекта выросла.",
+            "Аудит нашёл два настоящих дефекта и семь правомерных умолчаний. Купля-продажа заключала «цена определяется по общему правилу пункта 3 статьи 424» — утверждение о существующем договоре купли-продажи, — потому что правило было голым отрицанием price_agreed и price_determinable; теперь оно загачено квалификацией sale_contract_qualified, которую модуль и так вычислял. Свобода договора заключала, что договор заключён свободно и предполагается возмездным, и не имела ни одного предиката о том, заявлен ли договор в деле вообще; она получает contract_asserted, и статьи 421 и пункт 3 статьи 423 загачены им, потому что оба — суждения о договоре. Оба института через эти ложные выводы поднимали флаг проверки юристом.",
+            "Семь остальных утвердительных выводов правомерны и сохранены: «письменная форма соблюдена, если она не требуется» (form), «перерыв правомерен, если перерыва не было» (energy_supply), «единство условий соблюдено, если режим публичного договора не применяется» (public_contract), «требование не подлежит исковой давности» (limitation — прямое отрицание входа). Они говорят об отсутствии нарушения, а не о существовании отношения. Отличать одно от другого — работа юриста, а не регулярного выражения, поэтому список ведётся руками и каждая запись обязана нести причину.",
+            "tests/test_empty_facts_yield_no_conclusions.py делает аудит постоянным: каждый институт прогоняется на наборе фактов, где всё ложно, ни один не вправе поднять флаг проверки юристом, а любой новый утвердительный вывод обязан быть либо объяснён записью с причиной, либо исправлен. Контракт данных свободы договора меняется (один новый обязательный предикат), контракт купли-продажи — нет.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.19.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

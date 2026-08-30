@@ -1409,6 +1409,7 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
                     source_refs=("synthetic-case-supply-1-freedom-evidence",),
                 )
                 for predicate, value in (
+                    (FreedomEvidencePredicate.CONTRACT_ASSERTED, True),
                     (FreedomEvidencePredicate.CONTRACT_CONCLUSION_COMPELLED_BY_LAW, False),
                     (FreedomEvidencePredicate.CONTRACT_TYPE_UNNAMED, False),
                     (FreedomEvidencePredicate.MIXED_CONTRACT_ELEMENTS, False),

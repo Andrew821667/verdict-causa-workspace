@@ -12,6 +12,13 @@ FREEDOM_MODEL_VERSION = "contracts-freedom-price-articles-421-424-427-v0"
 
 
 class FreedomEvidencePredicate(str, Enum):
+    # Заявлен ли в деле договор вообще. Предпосылка всей модели: и свобода
+    # заключения (статья 421), и презумпция возмездности (пункт 3 статьи 423)
+    # — суждения О ДОГОВОРЕ. Пока институт стоял без ворот, набор фактов, где
+    # всё ложно, читался как «договор свободно заключён и предполагается
+    # возмездным», а через требование определить цену поднимал ещё и флаг
+    # проверки юристом — в деле, где договора нет вовсе.
+    CONTRACT_ASSERTED = "contract_asserted"
     # Свобода договора (статья 421 ГК РФ).
     CONTRACT_CONCLUSION_COMPELLED_BY_LAW = "contract_conclusion_compelled_by_law"
     CONTRACT_TYPE_UNNAMED = "contract_type_unnamed"
@@ -72,6 +79,7 @@ class ReviewedFreedomEvidence(BaseModel):
 class FreedomFactSet(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
+    contract_asserted: bool
     contract_conclusion_compelled_by_law: bool
     contract_type_unnamed: bool
     mixed_contract_elements: bool
@@ -188,12 +196,12 @@ def build_freedom_constraint_set(
         id=f"freedom-constraint-set:{mapping.evidence_id}",
         legal_source_refs=mapping.legal_source_refs,
         expressions=[
-            "contract_conclusion_free == NOT contract_conclusion_compelled_by_law",
-            "terms_by_party_discretion == NOT terms_prescribed_by_mandatory_norm",
+            "contract_conclusion_free == contract_asserted AND NOT contract_conclusion_compelled_by_law",
+            "terms_by_party_discretion == contract_asserted AND NOT terms_prescribed_by_mandatory_norm",
             "mixed_contract_rules_apply == mixed_contract_elements",
             "contract_valid_against_mandatory_rules == contract_conforms_mandatory_rules",
             "prior_terms_survive_new_law == new_mandatory_law_after_conclusion AND NOT new_law_given_retroactive_effect",
-            "contract_presumed_onerous == NOT contract_gratuitous_by_nature",
+            "contract_presumed_onerous == contract_asserted AND NOT contract_gratuitous_by_nature",
             "price_determined == price_agreed_by_parties OR regulated_price_mandated OR (contract_presumed_onerous AND comparable_price_available)",
             "term_gap_open_for_custom == term_not_determined_by_parties AND term_not_covered_by_dispositive_norm",
             "standard_terms_incorporated_by_reference == standard_terms_asserted AND standard_terms_published_for_contract_type AND contract_refers_to_standard_terms",
@@ -225,8 +233,20 @@ def evaluate_freedom_constraints(
     solver = Solver()
     for field_name, variable in variables.items():
         solver.add(variable == getattr(facts, field_name))
-    solver.add(contract_conclusion_free == Not(variables["contract_conclusion_compelled_by_law"]))
-    solver.add(terms_by_party_discretion == Not(variables["terms_prescribed_by_mandatory_norm"]))
+    solver.add(
+        contract_conclusion_free
+        == And(
+            variables["contract_asserted"],
+            Not(variables["contract_conclusion_compelled_by_law"]),
+        )
+    )
+    solver.add(
+        terms_by_party_discretion
+        == And(
+            variables["contract_asserted"],
+            Not(variables["terms_prescribed_by_mandatory_norm"]),
+        )
+    )
     solver.add(mixed_contract_rules_apply == variables["mixed_contract_elements"])
     solver.add(
         contract_valid_against_mandatory_rules == variables["contract_conforms_mandatory_rules"]
@@ -238,7 +258,13 @@ def evaluate_freedom_constraints(
             Not(variables["new_law_given_retroactive_effect"]),
         )
     )
-    solver.add(contract_presumed_onerous == Not(variables["contract_gratuitous_by_nature"]))
+    solver.add(
+        contract_presumed_onerous
+        == And(
+            variables["contract_asserted"],
+            Not(variables["contract_gratuitous_by_nature"]),
+        )
+    )
     solver.add(
         price_determined
         == Or(

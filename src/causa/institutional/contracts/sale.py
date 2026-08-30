@@ -711,7 +711,7 @@ def build_sale_constraint_set(mapping: SaleEvidenceMappingResult) -> SaleConstra
             "payment_default == payment_due AND NOT buyer_paid",
             "prepaid_buyer_remedies == prepayment_made AND seller_failed_after_prepayment AND (buyer_requested_prepaid_delivery OR buyer_requested_prepayment_return)",
             "prepayment_default == prepayment_required AND prepayment_due AND NOT prepayment_made",
-            "price_general_default_required == NOT price_agreed AND NOT price_determinable",
+            "price_general_default_required == sale_contract_qualified AND NOT price_agreed AND NOT price_determinable",
             "price_revision_requires_review == price_revision_formula_agreed AND NOT price_revision_inputs_proven",
             "property_right_sale_rules_applicable == property_right_subject AND NOT property_right_nature_excludes_sale_rules",
             "quality_inspection_gap == inspection_required AND buyer_received_goods AND (NOT inspection_timely OR NOT inspection_method_complied)",
@@ -1035,8 +1035,16 @@ def evaluate_sale_constraints(
                 variables["seller_chose_contract_refusal_for_nonacceptance"],
             ),
         ),
+        # Вывод «цена определяется по общему правилу пункта 3 статьи 424» —
+        # утверждение о существующем договоре купли-продажи, а не отсутствие
+        # нарушения. Без ворот квалификации он срабатывал на пустом наборе
+        # фактов, то есть в деле, где купли-продажи нет вовсе, и через
+        # requires_human_sale_assessment (ИЛИ по всем выводам) поднимал флаг
+        # проверки юристом на пустом месте.
         "price_general_default_required": And(
-            Not(variables["price_agreed"]), Not(variables["price_determinable"])
+            outputs["sale_contract_qualified"],
+            Not(variables["price_agreed"]),
+            Not(variables["price_determinable"]),
         ),
         "net_weight_price_controls": And(
             variables["price_based_on_weight"], variables["net_weight_proven"]
