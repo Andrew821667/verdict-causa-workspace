@@ -23,6 +23,10 @@
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from causa.institutional.contracts.bankruptcy_case_map import BankruptcyCaseMap
+from causa.institutional.contracts.synthetic_bankruptcy_case_map import (
+    build_synthetic_bankruptcy_case_map,
+)
 from causa.institutional.contracts.real_case_pipeline import build_real_case_request
 from causa.institutional.contracts.real_case_pipeline_expectations import (
     PIPELINE_REJECTION_REASONS_RU,
@@ -71,6 +75,7 @@ DESKTOP_VERSION = "ui-desktop-v0"
 DEMO_ORGANISATION_ID = "org-demo"
 DEMO_WORKSPACE_ID = "ws-demo-supply"
 PRACTICE_WORKSPACE_ID = "ws-practice-vs"
+BANKRUPTCY_WORKSPACE_ID = "ws-bankruptcy-map"
 
 
 class CaseView(BaseModel):
@@ -111,6 +116,11 @@ class CaseView(BaseModel):
     hints: list[GapEvidenceHints] = Field(default_factory=list)
     #: Проект процессуального документа по выводу системы.
     filing: CourtFiling
+    #: Сводная карта дела о банкротстве — только у дел, которые её имеют.
+    #: Конвейер разбирает один спор, а дело о банкротстве — это десятки
+    #: требований и сделок; поэтому карта не выводится здесь, а приходит
+    #: входом и лишь показывается.
+    bankruptcy_map: BankruptcyCaseMap | None = None
 
     @property
     def open_debt_ru(self) -> list[str]:
@@ -148,6 +158,7 @@ def build_case_view(
     texts: list[ExtractedText] | None = None,
     claimed_articles: list[str] | None = None,
     unknown_facts: list[str] | None = None,
+    bankruptcy_map: BankruptcyCaseMap | None = None,
 ) -> CaseView:
     """Собрать окно дела из результата конвейера."""
     qualification = build_case_qualification(result, claimed_articles)
@@ -195,6 +206,7 @@ def build_case_view(
             gaps=gaps,
             documents=list(documents or []),
         ),
+        bankruptcy_map=bankruptcy_map,
     )
 
 
@@ -222,6 +234,36 @@ _PRACTICE_CAVEAT = (
     "Проверяется, что правовая суть дела проходит конвейер и доходит до итога, "
     "а не то, что система решила дело так же, как суд."
 )
+
+
+_BANKRUPTCY_CAVEAT = (
+    "Карта дела настоящая: шесть требований, две сделки и зачёт проведены "
+    "через реальные функции четырёх институтов банкротства. Остальные вкладки "
+    "окна — разбор демонстрационного дела о поставке: конвейер разбирает один "
+    "спор, а дело о банкротстве — это десятки требований сразу, и одной формой "
+    "запроса они не описываются. Смешивать их молча было бы хуже, чем сказать "
+    "об этом здесь."
+)
+
+
+def build_bankruptcy_case_inputs() -> CaseInputs:
+    """Входы дела, у которого есть сводная карта банкротства."""
+    trace = build_supply_dispute_demo_trace()
+    return CaseInputs(
+        case_id="case-bankruptcy-map-demo",
+        title_ru="Банкротство ООО «Стройторг»: карта дела",
+        workspace_id=BANKRUPTCY_WORKSPACE_ID,
+        request=trace.analysis_request,
+        sources=list(trace.legal_sources),
+        bundle=trace.translation_bundle,
+        caveat_ru=_BANKRUPTCY_CAVEAT,
+        bankruptcy_map=build_synthetic_bankruptcy_case_map(),
+    )
+
+
+def build_bankruptcy_case_view() -> CaseView:
+    """Окно дела о банкротстве со сводной картой."""
+    return CaseSession(build_bankruptcy_case_inputs()).build_view()
 
 
 def build_practice_case_inputs() -> list[CaseInputs]:
@@ -261,7 +303,12 @@ def build_practice_case_views() -> list[CaseView]:
 def build_demo_sessions() -> list[CaseSession]:
     """Сессии всех дел стенда: они умеют пересчитываться, а окна — нет."""
     return [
-        CaseSession(inputs) for inputs in [build_demo_case_inputs(), *build_practice_case_inputs()]
+        CaseSession(inputs)
+        for inputs in [
+            build_demo_case_inputs(),
+            *build_practice_case_inputs(),
+            build_bankruptcy_case_inputs(),
+        ]
     ]
 
 
@@ -291,9 +338,14 @@ def build_demo_desktop(views: list[CaseView] | None = None) -> DesktopState:
     уже посчитанных окон, а не считает всё заново.
     """
     if views is None:
-        views = [build_demo_case_view(), *build_practice_case_views()]
+        views = [
+            build_demo_case_view(),
+            *build_practice_case_views(),
+            build_bankruptcy_case_view(),
+        ]
     demo_view = next(view for view in views if view.workspace_id == DEMO_WORKSPACE_ID)
     practice_views = [view for view in views if view.workspace_id == PRACTICE_WORKSPACE_ID]
+    bankruptcy_views = [view for view in views if view.workspace_id == BANKRUPTCY_WORKSPACE_ID]
 
     demo_workspace = Workspace(
         id=DEMO_WORKSPACE_ID,
@@ -316,6 +368,14 @@ def build_demo_desktop(views: list[CaseView] | None = None) -> DesktopState:
         risk_tier="t3_draft_letter",
         cases=[view.card() for view in practice_views],
     )
+    bankruptcy_workspace = Workspace(
+        id=BANKRUPTCY_WORKSPACE_ID,
+        title_ru="Банкротство: карта дела",
+        organisation_id=DEMO_ORGANISATION_ID,
+        sla_mode="deep",
+        risk_tier="t3_draft_letter",
+        cases=[view.card() for view in bankruptcy_views],
+    )
     operator = Operator(
         id="op-demo",
         display_name="Оператор стенда",
@@ -333,13 +393,17 @@ def build_demo_desktop(views: list[CaseView] | None = None) -> DesktopState:
                 role=OperatorRole.KNOWLEDGE_OWNER,
             ),
         ],
-        workspaces=[demo_workspace, practice_workspace],
+        workspaces=[demo_workspace, practice_workspace, bankruptcy_workspace],
     )
     return DesktopState(
         desk=Desk(
             organisation=organisation,
             operator=operator,
-            workspace_ids=[DEMO_WORKSPACE_ID, PRACTICE_WORKSPACE_ID],
+            workspace_ids=[
+                DEMO_WORKSPACE_ID,
+                PRACTICE_WORKSPACE_ID,
+                BANKRUPTCY_WORKSPACE_ID,
+            ],
         ),
-        case_views=[demo_view, *practice_views],
+        case_views=[demo_view, *practice_views, *bankruptcy_views],
     )

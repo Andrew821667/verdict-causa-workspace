@@ -407,3 +407,50 @@ p { margin: 0 0 10px; }
   content: "◦";
   color: var(--line);
 }
+
+/* ── Карта дела о банкротстве ──────────────────────────────────────── */
+/* Дело о банкротстве структурно запутано: десятки требований, у каждого
+   свой трек. Поэтому здесь строка на требование, а не сплошной текст, и
+   статус вынесен меткой — его видно раньше, чем прочитано описание. */
+
+.bk-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 12px; flex-wrap: wrap; margin-bottom: 4px;
+}
+.bk-head strong { font-family: "PT Sans", system-ui, sans-serif; font-size: 15px; }
+
+.bk-timeline { list-style: none; margin: 0 0 4px; padding: 0; display: grid; gap: 6px; }
+.bk-event {
+  display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 4px 10px;
+  align-items: baseline; padding-left: 12px; position: relative; font-size: 13.5px;
+}
+.bk-event::before {
+  content: ""; position: absolute; left: 0; top: 7px;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+}
+.bk-event__date {
+  font-family: "PT Sans", system-ui, sans-serif; font-size: 12px;
+  color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.bk-event__ref { grid-column: 2; font-size: 11.5px; color: var(--ink-faint); }
+
+.bk-row {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 10px 12px; margin-bottom: 8px; background: var(--panel);
+}
+.bk-row.is-voidable { border-left: 3px solid var(--stop); }
+.bk-row__top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.bk-row strong { font-family: "PT Sans", system-ui, sans-serif; font-size: 13.5px; }
+.bk-row__amount { font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 13px; }
+.bk-row__desc { font-size: 13.5px; margin: 3px 0 6px; }
+.bk-row .badges { justify-content: flex-start; }
+/* Метка статуса здесь — целое предложение со ссылкой на норму, а не одно
+   слово. Общий запрет переноса у .badge обрезал её на узкой колонке. */
+.bk-row .badge { white-space: normal; text-align: left; }
+
+.bk-why { margin-top: 6px; }
+.bk-why > summary { cursor: pointer; font-size: 12px; color: var(--accent); }
+.bk-why ul { margin: 7px 0 0; padding-left: 17px; font-size: 12.5px; color: var(--ink-soft); }
+.bk-why li { margin-bottom: 5px; }
+/* Граница модели — не основание вывода, и выглядеть должна тише. */
+.bk-why__limit { color: var(--ink-faint); }

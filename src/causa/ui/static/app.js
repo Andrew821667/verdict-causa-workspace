@@ -256,6 +256,12 @@ function renderGaps() {
 /* ── Вкладки ─────────────────────────────────────────────────────── */
 
 function renderTabs() {
+  // Вкладка карты дела есть не у каждого дела: у спора о поставке карты
+  // банкротства нет, и пустая вкладка обещала бы то, чего в деле нет.
+  const hasBankruptcy = Boolean(state.view.bankruptcy_map);
+  $("tab-bankruptcy").hidden = !hasBankruptcy;
+  if (!hasBankruptcy && state.tab === "bankruptcy") state.tab = "line";
+
   for (const tab of document.querySelectorAll(".tab")) {
     const active = tab.dataset.view === state.tab;
     tab.classList.toggle("is-active", active);
@@ -267,6 +273,7 @@ function renderTabs() {
     debate: renderDebate,
     registers: renderRegisters,
     map: renderMap,
+    bankruptcy: renderBankruptcy,
     diagnostics: renderDiagnostics,
   })[state.tab]();
 }
@@ -510,6 +517,119 @@ function renderScheme(panel) {
   appendNotes(panel, scheme.notes_ru);
 }
 
+/* Карта дела о банкротстве. Ни одной метки здесь не сочиняется: и статус
+   требования, и основание оспаривания приходят из Python готовой строкой —
+   вместе с полным выводом института, который её породил. */
+function renderBankruptcy() {
+  const panel = $("panel-bankruptcy");
+  panel.replaceChildren();
+  const map = state.view.bankruptcy_map;
+  if (!map) return;
+
+  const nameOf = (id) => {
+    const party = map.parties.find((p) => p.id === id);
+    return party ? party.name_ru : id;
+  };
+  const money = (value) =>
+    value === null || value === undefined
+      ? "—"
+      : new Intl.NumberFormat("ru-RU").format(value) + " ₽";
+
+  const head = el("div", "bk-head");
+  head.append(el("strong", null, map.debtor.name_ru));
+  head.append(el("span", "muted", `${map.parties.length} участников · ${map.case_id}`));
+  panel.append(head);
+
+  for (const note of map.notes_ru || []) panel.append(el("p", "disclaimer", note));
+
+  panel.append(el("h3", null, "Ход дела"));
+  const timeline = el("ol", "bk-timeline");
+  for (const event of map.timeline) {
+    const item = el("li", "bk-event");
+    item.append(el("span", "bk-event__date", event.date));
+    item.append(el("span", "bk-event__label", event.label_ru));
+    if (event.legal_reference_ru) {
+      item.append(el("span", "bk-event__ref", event.legal_reference_ru));
+    }
+    timeline.append(item);
+  }
+  panel.append(timeline);
+
+  panel.append(el("h3", null, `Требования (${map.claims.length})`));
+  for (const claim of map.claims) {
+    const row = el("div", "bk-row");
+    const top = el("div", "bk-row__top");
+    top.append(el("strong", null, nameOf(claim.creditor_id)));
+    top.append(el("span", "bk-row__amount", money(claim.amount)));
+    row.append(top);
+    row.append(el("div", "bk-row__desc", claim.description_ru));
+    const flags = el("div", "badges");
+    flags.append(el("span", "badge", claim.status_label_ru));
+    if (claim.requires_human_assessment) {
+      flags.append(el("span", "badge badge--warn", "требует юриста"));
+    }
+    row.append(flags);
+    row.append(reasonsBlock(claim.claims_evaluation, claim.ranking_evaluation));
+    panel.append(row);
+  }
+
+  panel.append(el("h3", null, `Оспариваемые сделки (${map.transactions.length})`));
+  for (const deal of map.transactions) {
+    const evaluation = deal.contest_evaluation;
+    const row = el("div", evaluation.transaction_voidable ? "bk-row is-voidable" : "bk-row");
+    row.append(el("strong", null, nameOf(deal.counterparty_id)));
+    row.append(el("div", "bk-row__desc", deal.description_ru));
+    const flags = el("div", "badges");
+    flags.append(
+      el("span", evaluation.transaction_voidable ? "badge badge--stop" : "badge", deal.status_label_ru)
+    );
+    if (deal.resulting_claim_id) {
+      const linked = map.claims.find((c) => c.id === deal.resulting_claim_id);
+      flags.append(
+        el(
+          "span",
+          "badge badge--propose",
+          "субординированное требование → " + (linked ? nameOf(linked.creditor_id) : deal.resulting_claim_id)
+        )
+      );
+    }
+    row.append(flags);
+    row.append(reasonsBlock(evaluation));
+    panel.append(row);
+  }
+
+  panel.append(el("h3", null, `Зачёты (${map.setoffs.length})`));
+  for (const setoff of map.setoffs) {
+    const evaluation = setoff.setoff_evaluation;
+    const row = el("div", evaluation.setoff_prohibited ? "bk-row is-voidable" : "bk-row");
+    row.append(el("strong", null, nameOf(setoff.creditor_id)));
+    row.append(el("div", "bk-row__desc", setoff.description_ru));
+    const flags = el("div", "badges");
+    flags.append(
+      el("span", evaluation.setoff_prohibited ? "badge badge--stop" : "badge", setoff.status_label_ru)
+    );
+    row.append(flags);
+    row.append(reasonsBlock(evaluation));
+    panel.append(row);
+  }
+}
+
+/* Основания и границы модели — под раскрытием: метка отвечает на вопрос
+   «что решено», а разворот — «почему» и «чего модель не решает». */
+function reasonsBlock(...evaluations) {
+  const details = el("details", "bk-why");
+  details.append(el("summary", null, "Основания и границы модели"));
+  const list = el("ul");
+  for (const evaluation of evaluations) {
+    for (const reason of evaluation.reasons_ru || []) list.append(el("li", null, reason));
+    for (const warning of evaluation.warnings_ru || []) {
+      list.append(el("li", "bk-why__limit", warning));
+    }
+  }
+  details.append(list);
+  return details;
+}
+
 function renderMap() {
   const panel = $("panel-map");
   panel.replaceChildren();
@@ -699,7 +819,7 @@ async function start() {
     panel.hidden = !panel.hidden;
     event.currentTarget.setAttribute("aria-expanded", String(!panel.hidden));
   });
-  const known = new Set(["line", "debate", "registers", "map", "diagnostics"]);
+  const known = new Set(["line", "debate", "registers", "map", "bankruptcy", "diagnostics"]);
   const fromHash = location.hash.replace("#", "");
   if (known.has(fromHash)) state.tab = fromHash;
   for (const tab of document.querySelectorAll(".tab")) {

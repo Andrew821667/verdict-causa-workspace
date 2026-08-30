@@ -216,3 +216,45 @@ def test_a_workspace_refuses_cases_of_another_workspace() -> None:
             organisation_id="org",
             cases=[CaseCard(case_id="c-2", title_ru="Чужое", workspace_id="ws-other")],
         )
+
+
+def test_the_bankruptcy_tab_exists_and_is_hidden_by_default() -> None:
+    """Вкладка карты дела объявлена скрытой: показать её решает JS по данным.
+
+    Дело о банкротстве есть на стенде одно; у остальных сорока одного карты
+    нет. Если бы вкладка была видна всегда, она обещала бы разбор, которого в
+    деле не существует, — та же ошибка, что и пустая карточка вместо отказа.
+    """
+    from pathlib import Path
+
+    markup = Path("src/causa/ui/static/index.html").read_text(encoding="utf-8")
+    script = Path("src/causa/ui/static/app.js").read_text(encoding="utf-8")
+
+    assert 'data-view="bankruptcy"' in markup
+    assert 'id="tab-bankruptcy"' in markup
+    # Скрыта в разметке, а не только гасится скриптом: без JS лишнего обещания
+    # на экране всё равно не будет.
+    tab_line = next(line for line in markup.splitlines() if 'id="tab-bankruptcy"' in line)
+    assert "hidden" in tab_line
+
+    assert 'id="panel-bankruptcy"' in markup
+    assert "renderBankruptcy" in script
+    assert "state.view.bankruptcy_map" in script
+
+
+def test_the_bankruptcy_view_shows_labels_computed_in_python() -> None:
+    """Метки статусов не сочиняются в браузере, а приходят готовыми.
+
+    Правовой вывод обязан рождаться там же, где правило, — иначе интерфейс
+    начнёт спорить с моделью, и разойтись они смогут молча.
+    """
+    from pathlib import Path
+
+    script = Path("src/causa/ui/static/app.js").read_text(encoding="utf-8")
+
+    assert "claim.status_label_ru" in script
+    assert "deal.status_label_ru" in script
+    assert "setoff.status_label_ru" in script
+    # Разворот показывает основания и границы модели из того же вывода.
+    assert "reasons_ru" in script
+    assert "warnings_ru" in script

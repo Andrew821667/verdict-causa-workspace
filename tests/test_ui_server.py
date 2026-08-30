@@ -9,6 +9,7 @@ from http.server import ThreadingHTTPServer
 import pytest
 
 from causa.ui.desktop import (
+    BANKRUPTCY_WORKSPACE_ID,
     DEMO_WORKSPACE_ID,
     PRACTICE_WORKSPACE_ID,
     build_demo_desktop,
@@ -60,12 +61,28 @@ def _post(url: str, payload: dict):
         return response.status, json.loads(response.read())
 
 
-def test_the_stand_carries_both_workspaces(desktop) -> None:
-    """Демонстрационное дело и реальная практика — разные контуры."""
+def test_the_stand_carries_all_three_workspaces(desktop) -> None:
+    """Демонстрация, реальная практика и карта банкротства — разные контуры."""
     ids = [workspace.id for workspace in desktop.desk.organisation.workspaces]
 
-    assert ids == [DEMO_WORKSPACE_ID, PRACTICE_WORKSPACE_ID]
-    assert len(desktop.case_views) == 41
+    assert ids == [DEMO_WORKSPACE_ID, PRACTICE_WORKSPACE_ID, BANKRUPTCY_WORKSPACE_ID]
+    assert len(desktop.case_views) == 42
+
+
+def test_only_the_bankruptcy_case_carries_a_case_map(desktop) -> None:
+    """Пустая вкладка обещала бы то, чего в деле нет.
+
+    Карта дела приходит входом, а не выводится конвейером, поэтому у спора о
+    поставке и у дел практики её нет — и быть не должно.
+    """
+    with_map = [view.case_id for view in desktop.case_views if view.bankruptcy_map is not None]
+
+    assert len(with_map) == 1
+    case = next(view for view in desktop.case_views if view.bankruptcy_map is not None)
+    assert case.workspace_id == BANKRUPTCY_WORKSPACE_ID
+    assert len(case.bankruptcy_map.claims) == 6
+    # Оговорка обязана сказать, что остальные вкладки — про другое дело.
+    assert "поставке" in case.caveat_ru
 
 
 def test_the_practice_workspace_is_named_after_what_it_actually_holds(desktop) -> None:
@@ -134,6 +151,7 @@ def test_desktop_endpoint_lists_only_accessible_workspaces(base_url) -> None:
     assert {ws["id"] for ws in payload["workspaces"]} == {
         DEMO_WORKSPACE_ID,
         PRACTICE_WORKSPACE_ID,
+        BANKRUPTCY_WORKSPACE_ID,
     }
 
 

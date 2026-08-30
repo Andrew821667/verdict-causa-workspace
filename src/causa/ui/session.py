@@ -23,6 +23,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from causa.core.models import LegalSource
 from causa.institutional.contracts.fact_consistency import FactConsistencyError
+from causa.institutional.contracts.bankruptcy_case_map import BankruptcyCaseMap
 from causa.institutional.contracts.reviewed_analysis import (
     ReviewedContractAnalysisRequest,
     run_reviewed_contract_analysis,
@@ -63,6 +64,11 @@ class CaseInputs(BaseModel):
     #: Статьи ГК, на которые ссылается само дело. Нужны, чтобы отличить
     #: «материалов не хватает» от «это не моя отрасль».
     claimed_articles: list[str] = Field(default_factory=list)
+    #: Сводная карта дела о банкротстве, если дело её имеет. Она не выводится
+    #: из результата конвейера: конвейер разбирает один спор, а дело о
+    #: банкротстве — это десятки требований и сделок сразу. Поэтому карта
+    #: приходит входом, а не вычисляется здесь.
+    bankruptcy_map: BankruptcyCaseMap | None = None
     #: Факты, о которых по делу не установлено ничего. Не выводятся из
     #: отсутствия документа: отсутствие документа и неустановленность — разные
     #: вещи, и вторую утверждает юрист.
@@ -347,6 +353,7 @@ class CaseSession:
             texts=self.texts,
             claimed_articles=list(self.inputs.claimed_articles),
             unknown_facts=list(self.unknown_facts),
+            bankruptcy_map=self.inputs.bankruptcy_map,
         )
 
 
