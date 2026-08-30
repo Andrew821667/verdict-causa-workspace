@@ -159,6 +159,25 @@ def test_sale_sources_have_official_basis_and_review_flag() -> None:
     assert all(source.metadata["basis_url"].startswith("https://") for source in sources)
 
 
+def test_vs_review_source_carries_verbatim_text_not_a_paraphrase() -> None:
+    """Последний источник пакета, пересаженный с пересказа на текст обзора.
+
+    Прежний пересказ склеивал две вещи: дословный пункт 2 статьи 476 ГК (уже
+    источникован отдельно) и настоящую позицию ВС РФ о безрезультатном
+    гарантийном ремонте. Ссылка называла сразу три документа («Обзор № 2, 3
+    (2024), определение № 301-ЭС23-10631») — выгрузка установила, что это один
+    документ и один пункт, а не выбор между обзором № 2 и обзором № 3.
+    """
+    source = get_synthetic_contract_source("synthetic-ru-vs-review2024-sale-quality-v1")
+
+    assert source.metadata["text_verbatim"] is True
+    assert source.metadata["document_slug"] == "vs-review-2-3-2024"
+    assert source.metadata["paragraph"] == "17"
+    assert "не должен лишаться прав" in source.text
+    assert "301-ЭС23-10631" in source.text
+    assert "N 2, 3 (2024)" in source.metadata["legal_reference"]
+
+
 def test_sale_benchmark_and_red_team_cover_articles_454_through_491() -> None:
     benchmark = run_sale_benchmark_suite()
     red_team = run_sale_red_team_suite()
