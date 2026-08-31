@@ -137301,7 +137301,7 @@
       "amount": 1200000.0,
       "currency": "RUB",
       "claims_evaluation": {
-       "constraint_set_id": "bankruptcy-claims-constraint-set:claim-a",
+       "constraint_set_id": "bankruptcy-claims-constraint-set:evidence-claim-a-claims",
        "satisfiable": true,
        "claim_is_current": false,
        "individual_enforcement_suspended": false,
@@ -137316,7 +137316,7 @@
        ]
       },
       "ranking_evaluation": {
-       "constraint_set_id": "bankruptcy-ranking-constraint-set:claim-a",
+       "constraint_set_id": "bankruptcy-ranking-constraint-set:evidence-claim-a-ranking",
        "satisfiable": true,
        "first_tier": true,
        "second_tier": false,
@@ -137344,7 +137344,7 @@
       "amount": 450000.0,
       "currency": "RUB",
       "claims_evaluation": {
-       "constraint_set_id": "bankruptcy-claims-constraint-set:claim-b",
+       "constraint_set_id": "bankruptcy-claims-constraint-set:evidence-claim-b-claims",
        "satisfiable": true,
        "claim_is_current": false,
        "individual_enforcement_suspended": false,
@@ -137359,7 +137359,7 @@
        ]
       },
       "ranking_evaluation": {
-       "constraint_set_id": "bankruptcy-ranking-constraint-set:claim-b",
+       "constraint_set_id": "bankruptcy-ranking-constraint-set:evidence-claim-b-ranking",
        "satisfiable": true,
        "first_tier": false,
        "second_tier": true,
@@ -137386,7 +137386,7 @@
       "amount": 18000000.0,
       "currency": "RUB",
       "claims_evaluation": {
-       "constraint_set_id": "bankruptcy-claims-constraint-set:claim-c",
+       "constraint_set_id": "bankruptcy-claims-constraint-set:evidence-claim-c-claims",
        "satisfiable": true,
        "claim_is_current": false,
        "individual_enforcement_suspended": false,
@@ -137401,7 +137401,7 @@
        ]
       },
       "ranking_evaluation": {
-       "constraint_set_id": "bankruptcy-ranking-constraint-set:claim-c",
+       "constraint_set_id": "bankruptcy-ranking-constraint-set:evidence-claim-c-ranking",
        "satisfiable": true,
        "first_tier": false,
        "second_tier": false,
@@ -137429,7 +137429,7 @@
       "amount": 620000.0,
       "currency": "RUB",
       "claims_evaluation": {
-       "constraint_set_id": "bankruptcy-claims-constraint-set:claim-d",
+       "constraint_set_id": "bankruptcy-claims-constraint-set:evidence-claim-d-claims",
        "satisfiable": true,
        "claim_is_current": true,
        "individual_enforcement_suspended": false,
@@ -137445,7 +137445,7 @@
        ]
       },
       "ranking_evaluation": {
-       "constraint_set_id": "bankruptcy-ranking-constraint-set:claim-d",
+       "constraint_set_id": "bankruptcy-ranking-constraint-set:evidence-claim-d-ranking",
        "satisfiable": true,
        "first_tier": false,
        "second_tier": false,
@@ -137472,7 +137472,7 @@
       "amount": 3500000.0,
       "currency": "RUB",
       "claims_evaluation": {
-       "constraint_set_id": "bankruptcy-claims-constraint-set:claim-e",
+       "constraint_set_id": "bankruptcy-claims-constraint-set:evidence-claim-e-claims",
        "satisfiable": true,
        "claim_is_current": false,
        "individual_enforcement_suspended": false,
@@ -137487,7 +137487,7 @@
        ]
       },
       "ranking_evaluation": {
-       "constraint_set_id": "bankruptcy-ranking-constraint-set:claim-e",
+       "constraint_set_id": "bankruptcy-ranking-constraint-set:evidence-claim-e-ranking",
        "satisfiable": true,
        "first_tier": false,
        "second_tier": false,
@@ -137514,7 +137514,7 @@
       "amount": 7000000.0,
       "currency": "RUB",
       "claims_evaluation": {
-       "constraint_set_id": "bankruptcy-claims-constraint-set:claim-f",
+       "constraint_set_id": "bankruptcy-claims-constraint-set:evidence-claim-f-claims",
        "satisfiable": true,
        "claim_is_current": false,
        "individual_enforcement_suspended": false,
@@ -137529,7 +137529,7 @@
        ]
       },
       "ranking_evaluation": {
-       "constraint_set_id": "bankruptcy-ranking-constraint-set:claim-f",
+       "constraint_set_id": "bankruptcy-ranking-constraint-set:evidence-claim-f-ranking",
        "satisfiable": true,
        "first_tier": false,
        "second_tier": false,
@@ -137556,7 +137556,7 @@
       "counterparty_id": "creditor-e",
       "description_ru": "Безвозмездная передача оборудования аффилированному лицу за четыре месяца до принятия заявления",
       "contest_evaluation": {
-       "constraint_set_id": "bankruptcy-contest-constraint-set:transaction-1",
+       "constraint_set_id": "bankruptcy-contest-constraint-set:evidence-transaction-1-contest",
        "satisfiable": true,
        "voidable_as_unequal_consideration": false,
        "voidable_as_harm_to_creditors": true,
@@ -137585,7 +137585,7 @@
       "counterparty_id": "creditor-d",
       "description_ru": "Платёж поставщику за две недели до принятия заявления, обеспечивший исполнение более раннего долга",
       "contest_evaluation": {
-       "constraint_set_id": "bankruptcy-contest-constraint-set:transaction-2",
+       "constraint_set_id": "bankruptcy-contest-constraint-set:evidence-transaction-2-contest",
        "satisfiable": true,
        "voidable_as_unequal_consideration": false,
        "voidable_as_harm_to_creditors": false,
@@ -137616,7 +137616,7 @@
       "creditor_id": "creditor-c",
       "description_ru": "Банк заявил о зачёте остатка на расчётном счёте против части требования по кредитному договору после введения наблюдения",
       "setoff_evaluation": {
-       "constraint_set_id": "bankruptcy-setoff-constraint-set:setoff-1",
+       "constraint_set_id": "bankruptcy-setoff-constraint-set:evidence-setoff-1-setoff",
        "satisfiable": true,
        "setoff_prohibited": true,
        "setoff_permitted_as_priority_neutral": false,
