@@ -1,0 +1,50 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-1.19.0:to-1.21.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-1.19.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "1.19.0",
+  "target_package_version": "1.21.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "1.19.0",
+      "to_version": "1.20.0",
+      "reasons": [
+        "The freedom institute gains a required predicate, contract_asserted, so every stored freedom evidence block is structurally incomplete and must be regenerated. The sale institute changes one rule without changing its data contract.",
+        "Both changes close the same defect an audit of all 92 institutes found: on an all-false fact set they asserted conclusions about a case that is not there - sale that the price falls to the article 424(3) default, freedom that the contract was concluded freely and is presumed onerous - and both raised their requires_human flag through it. Any stored evaluation of these two institutes must be replayed."
+      ],
+      "reasons_ru": [
+        "Институт свободы договора получает обязательный предикат contract_asserted, поэтому любой сохранённый блок доказательств по нему структурно неполон и подлежит пересборке. Институт купли-продажи меняет одно правило, не меняя контракта данных.",
+        "Обе правки закрывают один дефект, найденный аудитом всех 92 институтов: на наборе фактов, где всё ложно, они утверждали выводы о деле, которого нет, — купля-продажа, что цена определяется по общему правилу пункта 3 статьи 424, свобода договора, что договор заключён свободно и предполагается возмездным, — и через это поднимали флаг проверки юристом. Любая сохранённая сверка этих двух институтов подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    },
+    {
+      "from_version": "1.20.0",
+      "to_version": "1.21.0",
+      "reasons": [
+        "The bankruptcy-ranking institute gains seven required predicates for the priority of current payments (article 134, paragraphs 1.1, 2 and 2.1 of law 127-FZ), so every stored bankruptcy-ranking evidence block is structurally incomplete and must be regenerated.",
+        "Until now any current payment read as 'no tier determined', although the statute determines it precisely. A stored evaluation that ranked a current payment - or silently ranked it as a registry third-tier claim - states less than the law does and must be replayed. A new fact-consistency check also ties the reviewer's is_current_payment_claim to the conclusion of the claims model."
+      ],
+      "reasons_ru": [
+        "Институт очерёдности в банкротстве получает семь обязательных предикатов для очерёдности текущих платежей (пункты 1.1, 2 и 2.1 статьи 134 127-ФЗ), поэтому любой сохранённый блок доказательств по нему структурно неполон и подлежит пересборке.",
+        "До сих пор любой текущий платёж читался как «очередь не определена», хотя закон определяет её точно. Сохранённая сверка, отнёсшая текущий платёж к третьей очереди реестра или не отнёсшая никуда, говорит меньше закона и подлежит повторному прогону. Новая сверка фактов связывает признак рецензента is_current_payment_claim с выводом модели требований."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.21.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "The bankruptcy-ranking institute gains the priority of current payments: paragraphs 1.1, 2 and 2.1 of article 134 of law 127-FZ. Until now the model ranked registry claims only, and any current payment read as 'no tier determined' - although the statute determines it precisely, and the order of payment among current creditors is no less disputed than the order inside the register. The gap was declared in the module's own warnings; it is now closed.",
+            "Seven predicates and seven outputs: the five tiers of paragraph 2 (proceeding costs and the manager's fee; post-petition wages and severance; persons engaged at the manager's discretion; utility payments; all other current payments), the out-of-turn track of paragraph 1.1 for expenses that reduce the threat of a technogenic or ecological disaster, and the executive severance of paragraph 2.1, which the statute expressly excludes from current payments and ranks after third-tier registry creditors.",
+            "The fifth tier is a residual category and is gated like the registry third tier: without the gate every claim with no flag at all would fall into it. Two consistency rules are enforced by the fact contract: a claim cannot be both current and in the register (article 5(2)), and the five tiers are mutually exclusive. The calendar order inside one tier is stated as a limit, not silently omitted - the model has no dates in its facts.",
+            "A new fact-consistency check, bankruptcy_current_payment_status, ties the reviewer's is_current_payment_claim to the conclusion of the claims model. Two institutes describing the same fact differently is exactly what the consistency layer exists for. The bankruptcy-ranking data contract changes, so every stored ranking evidence block is structurally incomplete and must be regenerated.",
+        ],
+        notes_ru=[
+            "Институт очерёдности в банкротстве получает очерёдность текущих платежей: пункты 1.1, 2 и 2.1 статьи 134 127-ФЗ. До сих пор модель разбирала только реестровые требования, и любой текущий платёж читался как «очередь не определена» — хотя закон определяет её точно, а порядок расчётов между текущими кредиторами спорен не менее, чем порядок внутри реестра. Пробел был объявлен в предупреждениях самого модуля; теперь он закрыт.",
+            "Семь предикатов и семь выводов: пять очередей пункта 2 (расходы по делу и вознаграждение управляющего; оплата труда и выходные пособия после принятия заявления; лица, привлечённые управляющим по своему усмотрению; эксплуатационные платежи; иные текущие платежи), внеочередной трек пункта 1.1 для расходов на снижение угрозы техногенной или экологической катастрофы и выходное пособие руководителя по пункту 2.1, которое закон прямо исключает из текущих платежей и относит за третью очередь реестра.",
+            "Пятая очередь — остаточная категория, и она загачена так же, как третья очередь реестра: без ворот в неё попадало бы любое требование без единого признака. Две проверки непротиворечивости закреплены в контракте фактов: требование не может быть одновременно текущим и реестровым (пункт 2 статьи 5), и пять очередей взаимно исключают друг друга. Календарный порядок внутри одной очереди назван ограничением, а не обойдён молчанием: дат в фактах модели нет.",
+            "Новая сверка фактов bankruptcy_current_payment_status связывает признак рецензента is_current_payment_claim с выводом модели требований. Два института, описывающие один факт по-разному, — ровно то, ради чего слой сверки и существует. Контракт данных института очерёдности меняется, поэтому любой сохранённый блок доказательств по нему структурно неполон и подлежит пересборке.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.20.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

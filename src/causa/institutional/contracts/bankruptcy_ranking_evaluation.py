@@ -69,6 +69,20 @@ def _facts(**updates: bool) -> BankruptcyRankingFactSet:
     return BankruptcyRankingFactSet(**values)
 
 
+def _current(**updates: bool) -> BankruptcyRankingFactSet:
+    """Факты по требованию кредитора **по текущим платежам**.
+
+    Отдельный конструктор, а не флаг в `_facts`: текущее требование в реестр не
+    включается (пункт 2 статьи 5 127-ФЗ), и проверка непротиворечивости фактов
+    не даст заявить оба признака разом. Держать это различие видимым в самом
+    наборе оценки важнее краткости.
+    """
+    values = {field_name: False for field_name in BankruptcyRankingFactSet.model_fields}
+    values["is_current_payment_claim"] = True
+    values.update(updates)
+    return BankruptcyRankingFactSet(**values)
+
+
 SYNTHETIC_BANKRUPTCY_RANKING_BENCHMARKS = (
     BankruptcyRankingEvaluationTask(
         id="bankruptcy-ranking-bench-first-tier",
@@ -145,6 +159,84 @@ SYNTHETIC_BANKRUPTCY_RANKING_BENCHMARKS = (
             "requires_human_bankruptcy_ranking_assessment": False,
         },
     ),
+    BankruptcyRankingEvaluationTask(
+        id="bankruptcy-ranking-bench-current-first-tier",
+        title_ru="Вознаграждение управляющего — первая очередь текущих платежей",
+        facts=_current(is_proceeding_cost_or_mandatory_engagement=True),
+        expected_outcomes={
+            "current_payment_first_tier": True,
+            "current_payment_fifth_tier": False,
+            "third_tier": False,
+        },
+    ),
+    BankruptcyRankingEvaluationTask(
+        id="bankruptcy-ranking-bench-current-second-tier",
+        title_ru="Оплата труда после принятия заявления — вторая очередь текущих",
+        facts=_current(is_post_petition_labour_payment=True),
+        expected_outcomes={
+            "current_payment_second_tier": True,
+            "current_payment_fifth_tier": False,
+        },
+    ),
+    BankruptcyRankingEvaluationTask(
+        id="bankruptcy-ranking-bench-current-third-tier",
+        title_ru="Привлечённое управляющим лицо — третья очередь текущих",
+        facts=_current(is_discretionary_engagement_payment=True),
+        expected_outcomes={
+            "current_payment_third_tier": True,
+            "current_payment_first_tier": False,
+        },
+    ),
+    BankruptcyRankingEvaluationTask(
+        id="bankruptcy-ranking-bench-current-fourth-tier",
+        title_ru="Эксплуатационные платежи — четвёртая очередь текущих",
+        facts=_current(is_utility_payment=True),
+        expected_outcomes={
+            "current_payment_fourth_tier": True,
+            "current_payment_fifth_tier": False,
+        },
+    ),
+    BankruptcyRankingEvaluationTask(
+        id="bankruptcy-ranking-bench-current-fifth-tier-default",
+        title_ru="Текущий платёж без особых признаков — пятая очередь",
+        facts=_current(),
+        expected_outcomes={
+            "current_payment_fifth_tier": True,
+            "current_payment_first_tier": False,
+            "current_payment_fourth_tier": False,
+            "third_tier": False,
+        },
+    ),
+    BankruptcyRankingEvaluationTask(
+        id="bankruptcy-ranking-bench-current-technogenic",
+        title_ru="Снижение угрозы катастрофы — вперёд всех текущих платежей",
+        facts=_current(is_technogenic_risk_mitigation_expense=True),
+        expected_outcomes={
+            "current_payment_ahead_of_all_current": True,
+            "current_payment_fifth_tier": False,
+            "requires_human_bankruptcy_ranking_assessment": True,
+        },
+    ),
+    BankruptcyRankingEvaluationTask(
+        id="bankruptcy-ranking-bench-excess-executive-severance",
+        title_ru="Пособие руководителя сверх минимума — за третью очередь реестра",
+        facts=_facts(is_excess_executive_severance=True),
+        expected_outcomes={
+            "excess_executive_severance_after_third_tier": True,
+            "current_payment_fifth_tier": False,
+        },
+    ),
+    BankruptcyRankingEvaluationTask(
+        id="bankruptcy-ranking-bench-registry-claim-has-no-current-tier",
+        title_ru="Реестровое требование не получает очереди текущих платежей",
+        facts=_facts(),
+        expected_outcomes={
+            "third_tier": True,
+            "current_payment_first_tier": False,
+            "current_payment_fifth_tier": False,
+            "current_payment_ahead_of_all_current": False,
+        },
+    ),
 )
 
 
@@ -202,6 +294,42 @@ SYNTHETIC_BANKRUPTCY_RANKING_RED_TEAM_CASES = (
         title_ru="Отнести к третьей очереди требование вне реестра",
         facts=_facts(claim_filed_in_bankruptcy_register=False),
         forbidden_outcomes={"third_tier": True},
+    ),
+    BankruptcyRankingRedTeamCase(
+        id="bankruptcy-ranking-red-current-payment-into-registry-tier",
+        title_ru="Провести текущий платёж через третью очередь реестра",
+        facts=_current(),
+        forbidden_outcomes={"third_tier": True},
+    ),
+    BankruptcyRankingRedTeamCase(
+        id="bankruptcy-ranking-red-registry-claim-into-current-tier",
+        title_ru="Отнести реестровое требование к пятой очереди текущих платежей",
+        facts=_facts(),
+        forbidden_outcomes={"current_payment_fifth_tier": True},
+    ),
+    BankruptcyRankingRedTeamCase(
+        id="bankruptcy-ranking-red-technogenic-into-fifth-tier",
+        title_ru="Поставить расходы на снижение угрозы катастрофы в общую очередь текущих",
+        facts=_current(is_technogenic_risk_mitigation_expense=True),
+        forbidden_outcomes={"current_payment_fifth_tier": True},
+    ),
+    BankruptcyRankingRedTeamCase(
+        id="bankruptcy-ranking-red-utility-as-first-current-tier",
+        title_ru="Повысить эксплуатационный платёж до первой очереди текущих",
+        facts=_current(is_utility_payment=True),
+        forbidden_outcomes={"current_payment_first_tier": True},
+    ),
+    BankruptcyRankingRedTeamCase(
+        id="bankruptcy-ranking-red-excess-severance-as-current",
+        title_ru="Отнести пособие руководителя сверх минимума к текущим платежам",
+        facts=_facts(is_excess_executive_severance=True),
+        forbidden_outcomes={"current_payment_fifth_tier": True},
+    ),
+    BankruptcyRankingRedTeamCase(
+        id="bankruptcy-ranking-red-current-tier-without-current-claim",
+        title_ru="Дать очередь текущих платежей требованию, текущим не названному",
+        facts=_facts(claim_filed_in_bankruptcy_register=False),
+        forbidden_outcomes={"current_payment_fifth_tier": True},
     ),
 )
 

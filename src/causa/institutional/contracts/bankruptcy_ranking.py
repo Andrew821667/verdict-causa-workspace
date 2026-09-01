@@ -8,7 +8,7 @@ from causa.core.bootstrap import BootstrapReviewStatus
 
 BANKRUPTCY_RANKING_EVIDENCE_SCHEMA_VERSION = "contracts.bankruptcy-ranking-evidence.v0"
 BANKRUPTCY_RANKING_MAPPING_VERSION = "contracts-reviewed-bankruptcy-ranking-to-facts-v0"
-BANKRUPTCY_RANKING_MODEL_VERSION = "contracts-bankruptcy-ranking-articles-134-135-138-127fz-v0"
+BANKRUPTCY_RANKING_MODEL_VERSION = "contracts-bankruptcy-ranking-articles-134-135-138-127fz-v1"
 
 # Дословный текст статей 134, 135 и 138 127-ФЗ — synthetic_sources.py,
 # synthetic-ru-127fz-134-creditor-ranking-v1,
@@ -48,6 +48,38 @@ class BankruptcyRankingEvidencePredicate(str, Enum):
     # Требование владельца облигаций без срока погашения — удовлетворяется
     # после требований всех иных кредиторов (пункт 4 статьи 134).
     IS_PERPETUAL_BOND_CLAIM = "is_perpetual_bond_claim"
+    # --- Текущие платежи: пункты 1.1, 2 и 2.1 статьи 134 ---
+    # Требование по текущим платежам. Отдельные ворота, а не отрицание
+    # реестровых: текущее требование в реестр не включается (пункт 2 статьи 5),
+    # и очерёдность у него своя — пункт 2 статьи 134, а не пункт 4.
+    IS_CURRENT_PAYMENT_CLAIM = "is_current_payment_claim"
+    # Расходы на снижение угрозы техногенных или экологических катастроф либо
+    # гибели людей на опасном объекте — вне очереди преимущественно перед
+    # любыми другими текущими платежами (пункт 1.1 статьи 134).
+    IS_TECHNOGENIC_RISK_MITIGATION_EXPENSE = "is_technogenic_risk_mitigation_expense"
+    # Первая очередь текущих: судебные расходы по делу о банкротстве,
+    # вознаграждение арбитражному управляющему и лицам, исполнявшим его
+    # обязанности, оплата деятельности лиц, привлечение которых обязательно
+    # (абзац второй пункта 2 статьи 134).
+    IS_PROCEEDING_COST_OR_MANDATORY_ENGAGEMENT = "is_proceeding_cost_or_mandatory_engagement"
+    # Вторая очередь текущих: оплата труда лиц, работающих или работавших по
+    # трудовому договору после даты принятия заявления, и выходные пособия
+    # (абзац третий пункта 2 статьи 134).
+    IS_POST_PETITION_LABOUR_PAYMENT = "is_post_petition_labour_payment"
+    # Третья очередь текущих: оплата деятельности лиц, привлечённых
+    # управляющим для обеспечения исполнения обязанностей, кроме тех, чьё
+    # привлечение обязательно (абзац четвёртый пункта 2 статьи 134).
+    IS_DISCRETIONARY_ENGAGEMENT_PAYMENT = "is_discretionary_engagement_payment"
+    # Четвёртая очередь текущих: эксплуатационные платежи — коммунальные,
+    # по договорам энергоснабжения и иные аналогичные (абзац пятый пункта 2
+    # статьи 134).
+    IS_UTILITY_PAYMENT = "is_utility_payment"
+    # Выходное пособие или компенсация руководителю, его заместителям, членам
+    # коллегиального исполнительного органа, главному бухгалтеру и их
+    # заместителям в части, превышающей минимум трудового законодательства.
+    # Закон прямо исключает такое требование из текущих платежей и относит его
+    # за третью очередь реестра (пункт 2.1 статьи 134).
+    IS_EXCESS_EXECUTIVE_SEVERANCE = "is_excess_executive_severance"
 
 
 REQUIRED_BANKRUPTCY_RANKING_PREDICATES = frozenset(BankruptcyRankingEvidencePredicate)
@@ -92,6 +124,13 @@ class BankruptcyRankingFactSet(BaseModel):
     is_secured_by_pledge: bool
     is_claim_from_avoided_transaction: bool
     is_perpetual_bond_claim: bool
+    is_current_payment_claim: bool
+    is_technogenic_risk_mitigation_expense: bool
+    is_proceeding_cost_or_mandatory_engagement: bool
+    is_post_petition_labour_payment: bool
+    is_discretionary_engagement_payment: bool
+    is_utility_payment: bool
+    is_excess_executive_severance: bool
 
     @model_validator(mode="after")
     def validate_consistency(self) -> "BankruptcyRankingFactSet":
@@ -112,6 +151,38 @@ class BankruptcyRankingFactSet(BaseModel):
             raise ValueError(
                 "Категория очерёдности определяется только для требования, включённого "
                 "в реестр требований кредиторов по возбуждённому делу о банкротстве."
+            )
+        current_flags = (
+            self.is_proceeding_cost_or_mandatory_engagement,
+            self.is_post_petition_labour_payment,
+            self.is_discretionary_engagement_payment,
+            self.is_utility_payment,
+        )
+        if sum(current_flags) > 1:
+            raise ValueError(
+                "Требование по текущим платежам не может одновременно относиться к "
+                "нескольким очередям пункта 2 статьи 134 — они перечислены как "
+                "взаимно исключающие."
+            )
+        if (
+            any(current_flags) or self.is_technogenic_risk_mitigation_expense
+        ) and not self.is_current_payment_claim:
+            raise ValueError(
+                "Очерёдность пункта 2 статьи 134 определяется только для требования "
+                "по текущим платежам: у реестрового требования очередь своя, по "
+                "пункту 4 той же статьи."
+            )
+        if self.is_current_payment_claim and self.claim_filed_in_bankruptcy_register:
+            raise ValueError(
+                "Требование не может быть одновременно текущим и реестровым: "
+                "требования по текущим платежам в реестр не включаются "
+                "(пункт 2 статьи 5 127-ФЗ)."
+            )
+        if self.is_excess_executive_severance and self.is_current_payment_claim:
+            raise ValueError(
+                "Выходное пособие руководителя в части, превышающей минимум трудового "
+                "законодательства, законом прямо исключено из текущих платежей "
+                "(пункт 2.1 статьи 134 127-ФЗ)."
             )
         return self
 
@@ -147,6 +218,13 @@ class BankruptcyRankingEvaluation(BaseModel):
     subordinated_after_third_tier: bool
     satisfied_from_pledge_proceeds: bool
     satisfied_last_after_all_other_creditors: bool
+    current_payment_ahead_of_all_current: bool = False
+    current_payment_first_tier: bool = False
+    current_payment_second_tier: bool = False
+    current_payment_third_tier: bool = False
+    current_payment_fourth_tier: bool = False
+    current_payment_fifth_tier: bool = False
+    excess_executive_severance_after_third_tier: bool = False
     requires_human_bankruptcy_ranking_assessment: bool
     reasons_ru: list[str] = Field(default_factory=list)
     warnings_ru: list[str] = Field(default_factory=list)
@@ -210,8 +288,40 @@ def build_bankruptcy_ranking_constraint_set(
             "satisfied_from_pledge_proceeds == is_secured_by_pledge",
             "satisfied_last_after_all_other_creditors == is_perpetual_bond_claim",
             (
+                "current_payment_ahead_of_all_current == is_current_payment_claim AND "
+                "is_technogenic_risk_mitigation_expense"
+            ),
+            (
+                "current_payment_first_tier == is_current_payment_claim AND "
+                "NOT is_technogenic_risk_mitigation_expense AND "
+                "is_proceeding_cost_or_mandatory_engagement"
+            ),
+            (
+                "current_payment_second_tier == is_current_payment_claim AND "
+                "NOT is_technogenic_risk_mitigation_expense AND "
+                "is_post_petition_labour_payment"
+            ),
+            (
+                "current_payment_third_tier == is_current_payment_claim AND "
+                "NOT is_technogenic_risk_mitigation_expense AND "
+                "is_discretionary_engagement_payment"
+            ),
+            (
+                "current_payment_fourth_tier == is_current_payment_claim AND "
+                "NOT is_technogenic_risk_mitigation_expense AND is_utility_payment"
+            ),
+            (
+                "current_payment_fifth_tier == is_current_payment_claim AND "
+                "NOT is_technogenic_risk_mitigation_expense AND "
+                "NOT is_proceeding_cost_or_mandatory_engagement AND "
+                "NOT is_post_petition_labour_payment AND "
+                "NOT is_discretionary_engagement_payment AND NOT is_utility_payment"
+            ),
+            "excess_executive_severance_after_third_tier == is_excess_executive_severance",
+            (
                 "requires_human_bankruptcy_ranking_assessment == is_secured_by_pledge OR "
-                "is_life_or_health_harm_claim"
+                "is_life_or_health_harm_claim OR (is_current_payment_claim AND "
+                "is_technogenic_risk_mitigation_expense)"
             ),
         ],
     )
@@ -230,6 +340,15 @@ def evaluate_bankruptcy_ranking_constraints(
     subordinated_after_third_tier = Bool("subordinated_after_third_tier")
     satisfied_from_pledge_proceeds = Bool("satisfied_from_pledge_proceeds")
     satisfied_last_after_all_other_creditors = Bool("satisfied_last_after_all_other_creditors")
+    current_payment_ahead_of_all_current = Bool("current_payment_ahead_of_all_current")
+    current_payment_first_tier = Bool("current_payment_first_tier")
+    current_payment_second_tier = Bool("current_payment_second_tier")
+    current_payment_third_tier = Bool("current_payment_third_tier")
+    current_payment_fourth_tier = Bool("current_payment_fourth_tier")
+    current_payment_fifth_tier = Bool("current_payment_fifth_tier")
+    excess_executive_severance_after_third_tier = Bool(
+        "excess_executive_severance_after_third_tier"
+    )
     requires_human_bankruptcy_ranking_assessment = Bool(
         "requires_human_bankruptcy_ranking_assessment"
     )
@@ -256,9 +375,57 @@ def evaluate_bankruptcy_ranking_constraints(
     solver.add(subordinated_after_third_tier == variables["is_claim_from_avoided_transaction"])
     solver.add(satisfied_from_pledge_proceeds == variables["is_secured_by_pledge"])
     solver.add(satisfied_last_after_all_other_creditors == variables["is_perpetual_bond_claim"])
+
+    # Текущие платежи: пункты 1.1, 2 и 2.1 статьи 134. Ворота те же по замыслу,
+    # что и у реестровых очередей, но свои: очерёдность текущих платежей
+    # существует только внутри самой категории текущих, и путать её с реестровой
+    # нельзя — она применяется вне очереди, преимущественно перед реестром.
+    current = variables["is_current_payment_claim"]
+    # Расходы пункта 1.1 идут преимущественно перед любыми другими текущими,
+    # поэтому они вытесняют пять очередей пункта 2, а не встают в одну из них.
+    outside_the_five = And(current, Not(variables["is_technogenic_risk_mitigation_expense"]))
+    solver.add(
+        current_payment_ahead_of_all_current
+        == And(current, variables["is_technogenic_risk_mitigation_expense"])
+    )
+    solver.add(
+        current_payment_first_tier
+        == And(outside_the_five, variables["is_proceeding_cost_or_mandatory_engagement"])
+    )
+    solver.add(
+        current_payment_second_tier
+        == And(outside_the_five, variables["is_post_petition_labour_payment"])
+    )
+    solver.add(
+        current_payment_third_tier
+        == And(outside_the_five, variables["is_discretionary_engagement_payment"])
+    )
+    solver.add(
+        current_payment_fourth_tier == And(outside_the_five, variables["is_utility_payment"])
+    )
+    # Пятая очередь — «иные текущие платежи», остаточная категория пункта 2.
+    # Как и третья очередь реестра, она нуждается в явных воротах: без них
+    # любое требование без единого признака попадало бы в неё.
+    solver.add(
+        current_payment_fifth_tier
+        == And(
+            outside_the_five,
+            Not(variables["is_proceeding_cost_or_mandatory_engagement"]),
+            Not(variables["is_post_petition_labour_payment"]),
+            Not(variables["is_discretionary_engagement_payment"]),
+            Not(variables["is_utility_payment"]),
+        )
+    )
+    solver.add(
+        excess_executive_severance_after_third_tier == variables["is_excess_executive_severance"]
+    )
     solver.add(
         requires_human_bankruptcy_ranking_assessment
-        == Or(variables["is_secured_by_pledge"], variables["is_life_or_health_harm_claim"])
+        == Or(
+            variables["is_secured_by_pledge"],
+            variables["is_life_or_health_harm_claim"],
+            And(current, variables["is_technogenic_risk_mitigation_expense"]),
+        )
     )
 
     satisfiable = solver.check() == sat
@@ -272,6 +439,13 @@ def evaluate_bankruptcy_ranking_constraints(
             subordinated_after_third_tier=False,
             satisfied_from_pledge_proceeds=False,
             satisfied_last_after_all_other_creditors=False,
+            current_payment_ahead_of_all_current=False,
+            current_payment_first_tier=False,
+            current_payment_second_tier=False,
+            current_payment_third_tier=False,
+            current_payment_fourth_tier=False,
+            current_payment_fifth_tier=False,
+            excess_executive_severance_after_third_tier=False,
             requires_human_bankruptcy_ranking_assessment=True,
             reasons_ru=["Набор фактов об очерёдности требования кредитора противоречив."],
             warnings_ru=["Требуется проверка исходных доказательств юристом."],
@@ -282,13 +456,15 @@ def evaluate_bankruptcy_ranking_constraints(
         return bool(model.eval(variable, model_completion=True))
 
     reasons_ru = []
-    if not truth(variables["claim_filed_in_bankruptcy_register"]):
+    if not truth(variables["claim_filed_in_bankruptcy_register"]) and not truth(
+        variables["is_current_payment_claim"]
+    ):
         # Пустой вывод без объяснения читался бы как «очередь не определена»,
         # тогда как верно другое: очерёдности здесь нет предмета.
         reasons_ru.append(
-            "Требование не включено в реестр требований кредиторов по делу о банкротстве — "
-            "очерёдность удовлетворения (пункт 4 статьи 134, статьи 135 и 138 127-ФЗ) "
-            "к нему не применяется."
+            "Требование не включено в реестр требований кредиторов по делу о банкротстве "
+            "и не заявлено как текущий платёж — очерёдность удовлетворения (пункты 2 и 4 "
+            "статьи 134, статьи 135 и 138 127-ФЗ) к нему не применяется."
         )
     if truth(first_tier):
         reasons_ru.append(
@@ -326,6 +502,57 @@ def evaluate_bankruptcy_ranking_constraints(
             "Требование владельца облигаций без срока погашения удовлетворяется после "
             "требований всех иных кредиторов (абзац пункта 4 статьи 134 127-ФЗ)."
         )
+    if truth(current_payment_ahead_of_all_current):
+        reasons_ru.append(
+            "Расходы на мероприятия по снижению угрозы техногенных или экологических "
+            "катастроф либо гибели людей на опасном объекте погашаются вне очереди "
+            "преимущественно перед любыми другими требованиями по текущим платежам "
+            "(пункт 1.1 статьи 134 127-ФЗ)."
+        )
+    if truth(current_payment_first_tier):
+        reasons_ru.append(
+            "Текущий платёж первой очереди: судебные расходы по делу о банкротстве, "
+            "вознаграждение арбитражному управляющему или оплата деятельности лиц, "
+            "привлечение которых обязательно (абзац второй пункта 2 статьи 134 127-ФЗ)."
+        )
+    if truth(current_payment_second_tier):
+        reasons_ru.append(
+            "Текущий платёж второй очереди: оплата труда лиц, работающих или работавших "
+            "по трудовому договору после принятия заявления, и выходные пособия "
+            "(абзац третий пункта 2 статьи 134 127-ФЗ)."
+        )
+    if truth(current_payment_third_tier):
+        reasons_ru.append(
+            "Текущий платёж третьей очереди: оплата деятельности лиц, привлечённых "
+            "управляющим для обеспечения исполнения его обязанностей, кроме тех, чьё "
+            "привлечение обязательно (абзац четвёртый пункта 2 статьи 134 127-ФЗ)."
+        )
+    if truth(current_payment_fourth_tier):
+        reasons_ru.append(
+            "Текущий платёж четвёртой очереди: эксплуатационные платежи — коммунальные, "
+            "по договорам энергоснабжения и иные аналогичные (абзац пятый пункта 2 "
+            "статьи 134 127-ФЗ)."
+        )
+    if truth(current_payment_fifth_tier):
+        reasons_ru.append(
+            "Текущий платёж пятой очереди: иные текущие платежи (абзац шестой пункта 2 "
+            "статьи 134 127-ФЗ). Это остаточная категория — требование не отнесено ни к "
+            "одной из четырёх предшествующих."
+        )
+    if truth(variables["is_current_payment_claim"]):
+        reasons_ru.append(
+            "Очерёдность внутри одной очереди текущих платежей — календарная (абзац "
+            "седьмой пункта 2 статьи 134 127-ФЗ). Даты возникновения требований модель "
+            "не сравнивает: они не входят в её факты."
+        )
+    if truth(excess_executive_severance_after_third_tier):
+        reasons_ru.append(
+            "Выходное пособие или компенсация руководителю, его заместителям, членам "
+            "коллегиального исполнительного органа либо главному бухгалтеру в части, "
+            "превышающей минимум трудового законодательства, к текущим платежам не "
+            "относится и удовлетворяется после расчётов с кредиторами третьей очереди "
+            "реестра (пункт 2.1 статьи 134 127-ФЗ)."
+        )
     if truth(requires_human_bankruptcy_ranking_assessment):
         reasons_ru.append(
             "Модель определяет только очередь требования, а не сумму удовлетворения: "
@@ -343,15 +570,25 @@ def evaluate_bankruptcy_ranking_constraints(
         subordinated_after_third_tier=truth(subordinated_after_third_tier),
         satisfied_from_pledge_proceeds=truth(satisfied_from_pledge_proceeds),
         satisfied_last_after_all_other_creditors=truth(satisfied_last_after_all_other_creditors),
+        current_payment_ahead_of_all_current=truth(current_payment_ahead_of_all_current),
+        current_payment_first_tier=truth(current_payment_first_tier),
+        current_payment_second_tier=truth(current_payment_second_tier),
+        current_payment_third_tier=truth(current_payment_third_tier),
+        current_payment_fourth_tier=truth(current_payment_fourth_tier),
+        current_payment_fifth_tier=truth(current_payment_fifth_tier),
+        excess_executive_severance_after_third_tier=truth(
+            excess_executive_severance_after_third_tier
+        ),
         requires_human_bankruptcy_ranking_assessment=truth(
             requires_human_bankruptcy_ranking_assessment
         ),
         reasons_ru=reasons_ru,
         warnings_ru=[
-            "Модель разбирает очерёдность реестровых требований по пункту 4 статьи 134, "
-            "статье 135 и статье 138 127-ФЗ и не определяет очередность требований по "
-            "текущим платежам (пункт 2 статьи 134) — это отдельный, ещё не смоделированный "
-            "вопрос.",
+            "Модель разбирает очерёдность и реестровых требований (пункт 4 статьи 134, "
+            "статьи 135 и 138 127-ФЗ), и требований по текущим платежам (пункты 1.1, 2 "
+            "и 2.1 статьи 134). Внутри одной очереди текущих платежей закон устанавливает "
+            "календарный порядок, и его модель не определяет: дат возникновения требований "
+            "в её фактах нет.",
             "Отнесение требования к категории 'из недействительной сделки' модель "
             "принимает как готовый факт: сама проверка недействительности по статьям "
             "61.2 и 61.3 — задача отдельного института оспаривания сделок должника.",

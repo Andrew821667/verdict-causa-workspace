@@ -80,7 +80,7 @@ def test_only_the_bankruptcy_case_carries_a_case_map(desktop) -> None:
     assert len(with_map) == 1
     case = next(view for view in desktop.case_views if view.bankruptcy_map is not None)
     assert case.workspace_id == BANKRUPTCY_WORKSPACE_ID
-    assert len(case.bankruptcy_map.claims) == 6
+    assert len(case.bankruptcy_map.claims) == 8
     # Оговорка обязана сказать, что остальные вкладки — про другое дело.
     assert "поставке" in case.caveat_ru
 

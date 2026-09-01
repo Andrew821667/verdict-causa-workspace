@@ -18,8 +18,8 @@ def test_synthetic_case_map_builds_and_round_trips() -> None:
 
     assert isinstance(case, BankruptcyCaseMap)
     assert case.debtor.id == "debtor"
-    assert len(case.parties) == 8
-    assert len(case.claims) == 6
+    assert len(case.parties) == 9
+    assert len(case.claims) == 8
     assert len(case.transactions) == 2
     assert len(case.setoffs) == 1
 
@@ -61,7 +61,10 @@ def test_claim_status_prefers_current_over_ranking_tier() -> None:
     label = summarize_claim_status_ru(claims_evaluation, ranking_evaluation)
 
     assert "текущее" in label
-    assert "первая очередь" not in label
+    # Реестровая первая очередь к текущему платежу не применяется, но своя
+    # очередь у него есть: без неё строка сообщала бы меньше, чем закон.
+    assert "вред жизни" not in label
+    assert "очередь не определена" in label
 
 
 def test_transaction_status_names_the_ground_not_just_voidable() -> None:

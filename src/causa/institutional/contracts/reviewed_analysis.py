@@ -2256,6 +2256,11 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.bankruptcy_claims_evaluation != expected_bankruptcy_claims_evaluation:
             raise ValueError("Bankruptcy-claims evaluation does not replay from reviewed evidence.")
+        facts_agree.equal(
+            "bankruptcy_current_payment_status",
+            self.bankruptcy_ranking_evidence_mapping.facts.is_current_payment_claim,
+            self.bankruptcy_claims_evaluation.claim_is_current,
+        )
         expected_bankruptcy_ranking_set = build_bankruptcy_ranking_constraint_set(
             self.bankruptcy_ranking_evidence_mapping
         )
@@ -5740,6 +5745,11 @@ def run_reviewed_contract_analysis(
     )
     bankruptcy_ranking_evidence_mapping = map_reviewed_bankruptcy_ranking_evidence(
         request.bankruptcy_ranking_evidence
+    )
+    facts_agree.equal(
+        "bankruptcy_current_payment_status",
+        bankruptcy_ranking_evidence_mapping.facts.is_current_payment_claim,
+        bankruptcy_claims_evaluation.claim_is_current,
     )
     bankruptcy_ranking_constraint_set = build_bankruptcy_ranking_constraint_set(
         bankruptcy_ranking_evidence_mapping

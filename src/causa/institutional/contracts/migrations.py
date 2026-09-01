@@ -2268,6 +2268,21 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.20.0",
+        to_version="1.21.0",
+        reasons=[
+            "The bankruptcy-ranking institute gains seven required predicates for the priority of current payments (article 134, paragraphs 1.1, 2 and 2.1 of law 127-FZ), so every stored bankruptcy-ranking evidence block is structurally incomplete and must be regenerated.",
+            "Until now any current payment read as 'no tier determined', although the statute determines it precisely. A stored evaluation that ranked a current payment - or silently ranked it as a registry third-tier claim - states less than the law does and must be replayed. A new fact-consistency check also ties the reviewer's is_current_payment_claim to the conclusion of the claims model.",
+        ],
+        reasons_ru=[
+            "Институт очерёдности в банкротстве получает семь обязательных предикатов для очерёдности текущих платежей (пункты 1.1, 2 и 2.1 статьи 134 127-ФЗ), поэтому любой сохранённый блок доказательств по нему структурно неполон и подлежит пересборке.",
+            "До сих пор любой текущий платёж читался как «очередь не определена», хотя закон определяет её точно. Сохранённая сверка, отнёсшая текущий платёж к третьей очереди реестра или не отнёсшая никуда, говорит меньше закона и подлежит повторному прогону. Новая сверка фактов связывает признак рецензента is_current_payment_claim с выводом модели требований.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

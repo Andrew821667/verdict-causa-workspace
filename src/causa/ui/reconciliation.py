@@ -68,6 +68,10 @@ RECONCILIATION_VERSION = "ui-fact-reconciliation-v0"
 #: пропущенный ключ означал бы, что согласование где-то не сработает без
 #: объяснения.
 RECONCILABLE_FACTS: dict[str, tuple[str, str]] = {
+    "bankruptcy_current_payment_status": (
+        "bankruptcy_ranking_evidence",
+        "is_current_payment_claim",
+    ),
     "dynamics_breach_status": ("obligation_dynamics_evidence", "obligation_breached"),
     "dynamics_obligation_status": ("obligation_dynamics_evidence", "obligation_exists"),
     "dynamics_performance_status": ("obligation_dynamics_evidence", "performance_rendered"),

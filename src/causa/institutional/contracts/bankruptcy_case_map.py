@@ -119,6 +119,31 @@ class BankruptcyCaseMap(BaseModel):
     notes_ru: list[str] = Field(default_factory=list)
 
 
+def _current_payment_tier_ru(ranking_evaluation: BankruptcyRankingEvaluation) -> str:
+    """Очередь текущего платежа по пункту 2 статьи 134 — словами.
+
+    Пятая очередь названа своим номером, а не «прочее»: закон её так и вводит
+    («иные текущие платежи»), и подменять номер словом значило бы прятать от
+    читателя, что требование в очереди стоит.
+    """
+    if ranking_evaluation.current_payment_ahead_of_all_current:
+        return "вперёд всех текущих: снижение угрозы катастрофы (п. 1.1 ст. 134 127-ФЗ)"
+    if ranking_evaluation.current_payment_first_tier:
+        return "первая очередь (расходы по делу и вознаграждение управляющего)"
+    if ranking_evaluation.current_payment_second_tier:
+        return "вторая очередь (оплата труда после принятия заявления)"
+    if ranking_evaluation.current_payment_third_tier:
+        return "третья очередь (привлечённые управляющим лица)"
+    if ranking_evaluation.current_payment_fourth_tier:
+        return "четвёртая очередь (эксплуатационные платежи)"
+    if ranking_evaluation.current_payment_fifth_tier:
+        return "пятая очередь (иные текущие платежи)"
+    return (
+        "очередь не определена: требование названо текущим в модели статьи 5, "
+        "но ни к одной очереди пункта 2 статьи 134 не отнесено"
+    )
+
+
 def summarize_claim_status_ru(
     claims_evaluation: BankruptcyClaimsEvaluation,
     ranking_evaluation: BankruptcyRankingEvaluation,
@@ -126,13 +151,17 @@ def summarize_claim_status_ru(
     """Одна строка вместо двух Evaluation — только для отображения в таблице.
 
     Порядок проверки — не произвольный: текущий статус (claims) исключает
-    вопрос об очереди вообще (пункт 2 статьи 5 127-ФЗ — текущие платежи не
-    включаются в реестр), поэтому проверяется первым. Дальше — особые треки
+    вопрос о реестровой очереди вообще (пункт 2 статьи 5 127-ФЗ — текущие
+    платежи не включаются в реестр), поэтому проверяется первым. Но «текущее»
+    — ещё не ответ: у текущих платежей своя очерёдность, пункт 2 статьи 134, и
+    называть её надо так же точно, как реестровую. Дальше — особые треки
     ranking в порядке их именования в самом абзаце пункта 4 статьи 134:
     первая очередь, вторая, залог, субординация, последняя очередь, третья.
     """
     if claims_evaluation.claim_is_current:
-        return "текущее требование (вне очереди, п. 2 ст. 5 127-ФЗ)"
+        return "текущее требование, " + _current_payment_tier_ru(ranking_evaluation)
+    if ranking_evaluation.excess_executive_severance_after_third_tier:
+        return "за третьей очередью реестра: пособие руководителя сверх минимума (п. 2.1 ст. 134)"
     if ranking_evaluation.first_tier:
         return "реестровое, первая очередь (вред жизни/здоровью)"
     if ranking_evaluation.second_tier:

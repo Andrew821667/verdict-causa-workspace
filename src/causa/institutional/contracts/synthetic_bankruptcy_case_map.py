@@ -155,6 +155,9 @@ PARTIES = (
     CaseParty(id="creditor-d", name_ru="ООО «Поставщик»", role_ru="кредитор"),
     CaseParty(id="creditor-e", name_ru="ООО «Аффилированная компания»", role_ru="кредитор"),
     CaseParty(id="creditor-f", name_ru="Держатель бессрочных облигаций", role_ru="кредитор"),
+    CaseParty(
+        id="creditor-g", name_ru="АО «Горэнергосбыт»", role_ru="кредитор по текущим платежам"
+    ),
     CaseParty(id="manager", name_ru="Сидоров С. С.", role_ru="конкурсный управляющий"),
 )
 
@@ -245,9 +248,49 @@ def build_synthetic_bankruptcy_case_evidence() -> ReviewedBankruptcyCaseEvidence
                     "bankruptcy_case_opened",
                     "observation_introduced",
                 ),
+                # Текущее требование в реестр не включается (пункт 2 статьи 5),
+                # и очередь у него своя: поставка материалов — не расходы по
+                # делу, не оплата труда, не привлечённое управляющим лицо и не
+                # эксплуатационный платёж, поэтому пятая, «иные текущие».
                 ranking_evidence=_ranking_evidence(
                     "claim-d",
-                    "claim_filed_in_bankruptcy_register",
+                    "is_current_payment_claim",
+                ),
+            ),
+            CaseClaimEvidence(
+                id="claim-g",
+                creditor_id="creditor-g",
+                description_ru="Коммунальные платежи за производственный корпус после наблюдения",
+                amount=310_000,
+                claims_evidence=_claims_evidence(
+                    "claim-g",
+                    "bankruptcy_case_opened",
+                    "observation_introduced",
+                ),
+                # Эксплуатационные платежи названы в законе прямо: четвёртая
+                # очередь текущих (абзац пятый пункта 2 статьи 134 127-ФЗ).
+                ranking_evidence=_ranking_evidence(
+                    "claim-g",
+                    "is_current_payment_claim",
+                    "is_utility_payment",
+                ),
+            ),
+            CaseClaimEvidence(
+                id="claim-h",
+                creditor_id="manager",
+                description_ru="Вознаграждение арбитражного управляющего за процедуру наблюдения",
+                amount=180_000,
+                claims_evidence=_claims_evidence(
+                    "claim-h",
+                    "bankruptcy_case_opened",
+                    "observation_introduced",
+                ),
+                # Первая очередь текущих платежей: вознаграждение управляющего
+                # названо в абзаце втором пункта 2 статьи 134 127-ФЗ.
+                ranking_evidence=_ranking_evidence(
+                    "claim-h",
+                    "is_current_payment_claim",
+                    "is_proceeding_cost_or_mandatory_engagement",
                 ),
             ),
             CaseClaimEvidence(

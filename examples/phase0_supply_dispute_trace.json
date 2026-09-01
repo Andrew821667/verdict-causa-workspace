@@ -11946,6 +11946,62 @@
           "source_refs": [
             "synthetic-case-supply-1-bankruptcy-ranking-evidence"
           ]
+        },
+        {
+          "id": "bankruptcy-ranking-evidence-is_current_payment_claim",
+          "predicate": "is_current_payment_claim",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
+          "id": "bankruptcy-ranking-evidence-is_technogenic_risk_mitigation_expense",
+          "predicate": "is_technogenic_risk_mitigation_expense",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
+          "id": "bankruptcy-ranking-evidence-is_proceeding_cost_or_mandatory_engagement",
+          "predicate": "is_proceeding_cost_or_mandatory_engagement",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
+          "id": "bankruptcy-ranking-evidence-is_post_petition_labour_payment",
+          "predicate": "is_post_petition_labour_payment",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
+          "id": "bankruptcy-ranking-evidence-is_discretionary_engagement_payment",
+          "predicate": "is_discretionary_engagement_payment",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
+          "id": "bankruptcy-ranking-evidence-is_utility_payment",
+          "predicate": "is_utility_payment",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
+          "id": "bankruptcy-ranking-evidence-is_excess_executive_severance",
+          "predicate": "is_excess_executive_severance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
         }
       ],
       "legal_source_refs": [
@@ -28514,7 +28570,14 @@
         "is_wage_severance_or_authorship_claim": false,
         "is_secured_by_pledge": false,
         "is_claim_from_avoided_transaction": false,
-        "is_perpetual_bond_claim": false
+        "is_perpetual_bond_claim": false,
+        "is_current_payment_claim": false,
+        "is_technogenic_risk_mitigation_expense": false,
+        "is_proceeding_cost_or_mandatory_engagement": false,
+        "is_post_petition_labour_payment": false,
+        "is_discretionary_engagement_payment": false,
+        "is_utility_payment": false,
+        "is_excess_executive_severance": false
       },
       "legal_source_refs": [
         "synthetic-ru-127fz-134-creditor-ranking-v1",
@@ -28537,6 +28600,27 @@
           ]
         },
         {
+          "fact_name": "is_current_payment_claim",
+          "assertion_id": "bankruptcy-ranking-evidence-is_current_payment_claim",
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "is_discretionary_engagement_payment",
+          "assertion_id": "bankruptcy-ranking-evidence-is_discretionary_engagement_payment",
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "is_excess_executive_severance",
+          "assertion_id": "bankruptcy-ranking-evidence-is_excess_executive_severance",
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
           "fact_name": "is_life_or_health_harm_claim",
           "assertion_id": "bankruptcy-ranking-evidence-is_life_or_health_harm_claim",
           "source_refs": [
@@ -28551,8 +28635,36 @@
           ]
         },
         {
+          "fact_name": "is_post_petition_labour_payment",
+          "assertion_id": "bankruptcy-ranking-evidence-is_post_petition_labour_payment",
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "is_proceeding_cost_or_mandatory_engagement",
+          "assertion_id": "bankruptcy-ranking-evidence-is_proceeding_cost_or_mandatory_engagement",
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
           "fact_name": "is_secured_by_pledge",
           "assertion_id": "bankruptcy-ranking-evidence-is_secured_by_pledge",
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "is_technogenic_risk_mitigation_expense",
+          "assertion_id": "bankruptcy-ranking-evidence-is_technogenic_risk_mitigation_expense",
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "is_utility_payment",
+          "assertion_id": "bankruptcy-ranking-evidence-is_utility_payment",
           "source_refs": [
             "synthetic-case-supply-1-bankruptcy-ranking-evidence"
           ]
@@ -28568,7 +28680,7 @@
     },
     "bankruptcy_ranking_constraint_set": {
       "id": "bankruptcy-ranking-constraint-set:reviewed-bankruptcy-ranking-evidence-supply-1-v0",
-      "model_version": "contracts-bankruptcy-ranking-articles-134-135-138-127fz-v0",
+      "model_version": "contracts-bankruptcy-ranking-articles-134-135-138-127fz-v1",
       "legal_source_refs": [
         "synthetic-ru-127fz-134-creditor-ranking-v1",
         "synthetic-ru-127fz-135-first-rank-claims-v1",
@@ -28581,7 +28693,14 @@
         "subordinated_after_third_tier == is_claim_from_avoided_transaction",
         "satisfied_from_pledge_proceeds == is_secured_by_pledge",
         "satisfied_last_after_all_other_creditors == is_perpetual_bond_claim",
-        "requires_human_bankruptcy_ranking_assessment == is_secured_by_pledge OR is_life_or_health_harm_claim"
+        "current_payment_ahead_of_all_current == is_current_payment_claim AND is_technogenic_risk_mitigation_expense",
+        "current_payment_first_tier == is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND is_proceeding_cost_or_mandatory_engagement",
+        "current_payment_second_tier == is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND is_post_petition_labour_payment",
+        "current_payment_third_tier == is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND is_discretionary_engagement_payment",
+        "current_payment_fourth_tier == is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND is_utility_payment",
+        "current_payment_fifth_tier == is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND NOT is_proceeding_cost_or_mandatory_engagement AND NOT is_post_petition_labour_payment AND NOT is_discretionary_engagement_payment AND NOT is_utility_payment",
+        "excess_executive_severance_after_third_tier == is_excess_executive_severance",
+        "requires_human_bankruptcy_ranking_assessment == is_secured_by_pledge OR is_life_or_health_harm_claim OR (is_current_payment_claim AND is_technogenic_risk_mitigation_expense)"
       ]
     },
     "bankruptcy_ranking_evaluation": {
@@ -28593,12 +28712,19 @@
       "subordinated_after_third_tier": false,
       "satisfied_from_pledge_proceeds": false,
       "satisfied_last_after_all_other_creditors": false,
+      "current_payment_ahead_of_all_current": false,
+      "current_payment_first_tier": false,
+      "current_payment_second_tier": false,
+      "current_payment_third_tier": false,
+      "current_payment_fourth_tier": false,
+      "current_payment_fifth_tier": false,
+      "excess_executive_severance_after_third_tier": false,
       "requires_human_bankruptcy_ranking_assessment": false,
       "reasons_ru": [
-        "Требование не включено в реестр требований кредиторов по делу о банкротстве — очерёдность удовлетворения (пункт 4 статьи 134, статьи 135 и 138 127-ФЗ) к нему не применяется."
+        "Требование не включено в реестр требований кредиторов по делу о банкротстве и не заявлено как текущий платёж — очерёдность удовлетворения (пункты 2 и 4 статьи 134, статьи 135 и 138 127-ФЗ) к нему не применяется."
       ],
       "warnings_ru": [
-        "Модель разбирает очерёдность реестровых требований по пункту 4 статьи 134, статье 135 и статье 138 127-ФЗ и не определяет очередность требований по текущим платежам (пункт 2 статьи 134) — это отдельный, ещё не смоделированный вопрос.",
+        "Модель разбирает очерёдность и реестровых требований (пункт 4 статьи 134, статьи 135 и 138 127-ФЗ), и требований по текущим платежам (пункты 1.1, 2 и 2.1 статьи 134). Внутри одной очереди текущих платежей закон устанавливает календарный порядок, и его модель не определяет: дат возникновения требований в её фактах нет.",
         "Отнесение требования к категории 'из недействительной сделки' модель принимает как готовый факт: сама проверка недействительности по статьям 61.2 и 61.3 — задача отдельного института оспаривания сделок должника."
       ]
     },
@@ -36700,7 +36826,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.20.0",
+      "institutional_package_version": "contracts-ru-v0@1.21.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -41709,7 +41835,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@1.20.0",
+      "institutional_package_version": "contracts-ru-v0@1.21.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:3ae00857433d12f12acc74e473548b24a294eba6b8db7ccf599e6090be6c43da",
       "translation_template_version": "translation-template-ru-v12",
