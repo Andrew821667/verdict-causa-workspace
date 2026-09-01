@@ -66,7 +66,7 @@ def test_the_stand_carries_all_three_workspaces(desktop) -> None:
     ids = [workspace.id for workspace in desktop.desk.organisation.workspaces]
 
     assert ids == [DEMO_WORKSPACE_ID, PRACTICE_WORKSPACE_ID, BANKRUPTCY_WORKSPACE_ID]
-    assert len(desktop.case_views) == 42
+    assert len(desktop.case_views) == 56
 
 
 def test_only_the_bankruptcy_case_carries_a_case_map(desktop) -> None:
@@ -112,13 +112,13 @@ def test_practice_cases_carry_the_caveat(desktop) -> None:
     """Без оговорки стенд внушал бы, что система решила дело как суд."""
     practice = [v for v in desktop.case_views if v.workspace_id == PRACTICE_WORKSPACE_ID]
 
-    # Дел в наборе пятьдесят четыре, окон сорок: четырнадцать дел конвейер
-    # отвергает на сверке входов, и все они названы в
-    # PIPELINE_REJECTION_REASONS_RU. Спор о незаключённости, недействительности,
-    # прекращении обязательства или возмещении убытков нельзя наложить на дело,
-    # где договор заключён, действителен, не прекращён и убытки описаны иначе, —
-    # окна для такого дела не существует.
-    assert len(practice) == 40
+    # Дел в наборе пятьдесят четыре, и окон столько же. Раньше их было сорок:
+    # четырнадцать дел о незаключённости, недействительности, прекращении
+    # обязательства и убытках конвейер отвергал на сверке входов. Теперь каждое
+    # такое дело объявляет следствия позиции суда за пределами своего института,
+    # и окно строится для всех. Расхождение этих двух чисел означало бы, что
+    # стенд снова молча теряет дела.
+    assert len(practice) == 54
     for view in practice:
         assert "наложены на демонстрационное дело" in view.caveat_ru
         assert "Позиция суда:" in view.caveat_ru

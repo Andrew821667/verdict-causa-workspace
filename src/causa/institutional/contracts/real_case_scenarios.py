@@ -29,7 +29,7 @@ import importlib
 from collections.abc import Callable
 from typing import Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from causa.institutional.contracts.synthetic_reviewed_analysis import (
     build_synthetic_supply_analysis_request,
@@ -106,6 +106,62 @@ class RealCaseScenario(BaseModel):
     mapping_note_ru: str
     facts: dict[str, bool]
     expected_conclusions: dict[str, bool]
+    #: Факты других контрактов данных, которые следуют из той же позиции суда.
+    #:
+    #: Дело даёт факты одному институту, но правовой вывод суда почти никогда
+    #: не остаётся внутри одного института: признанная ничтожной сделка не
+    #: порождает договорной обязанности, а прекращённое зачётом обязательство
+    #: не может быть одновременно исполненным. Пока такие следствия не были
+    #: записаны, конвейер справедливо отвергал дело: сверка входов видела, что
+    #: факты дела противоречат остальным контрактам демонстрационного дела.
+    #:
+    #: Записываются они здесь, а не выводятся кодом, намеренно. Слой сверки
+    #: отказывается выбирать версию факта за рецензента, и автоматическое
+    #: «приведение в согласие» на стороне набора дел было бы тем же выбором,
+    #: только спрятанным. Каждое значение ниже — утверждение переводчика
+    #: фабулы о том, что следует из позиции суда, и обосновано в
+    #: `dependent_facts_note_ru`.
+    dependent_facts: dict[str, dict[str, bool]] = Field(default_factory=dict)
+    #: Собственная временная рамка дела, если позиция суда меняет и её.
+    #:
+    #: Сроки лежат не в контракте фактов, а в отдельном блоке дат, поэтому и
+    #: объявляются отдельно. Ключ — поле `ReviewedTemporalEvidence`, значение —
+    #: дата в формате ISO либо `None` («срок в разборе не участвует»). Дату
+    #: оценки менять нельзя: она сверяется с датой применимости источника.
+    dependent_timeline: dict[str, str | None] = Field(default_factory=dict)
+    #: Почему эти факты следуют из позиции суда, а не подогнаны под конвейер.
+    dependent_facts_note_ru: str = ""
+
+    @model_validator(mode="after")
+    def validate_dependent_facts(self) -> "RealCaseScenario":
+        if (self.dependent_facts or self.dependent_timeline) and (
+            len(self.dependent_facts_note_ru) < 80
+        ):
+            raise ValueError(
+                f"Дело {self.case_id}: зависимые факты объявлены без обоснования. "
+                "Правка чужого контракта данных без записанной причины неотличима "
+                "от подгонки под конвейер."
+            )
+        for key in self.dependent_timeline:
+            if key not in ("agreed_due_date", "actual_performance_date"):
+                raise ValueError(
+                    f"Дело {self.case_id}: дату {key!r} набор дел не переопределяет. "
+                    "Дата оценки сверяется с датой применимости источника, и её "
+                    "подмена сломала бы проверку выбора нормы."
+                )
+        if self.dependent_facts_note_ru and not (self.dependent_facts or self.dependent_timeline):
+            raise ValueError(
+                f"Дело {self.case_id}: обоснование зависимых фактов есть, а самих фактов нет."
+            )
+        for field in self.dependent_facts:
+            if not field.endswith("_evidence"):
+                raise ValueError(f"Дело {self.case_id}: {field!r} не похоже на контракт данных.")
+            if field == f"{self.institute}_evidence":
+                raise ValueError(
+                    f"Дело {self.case_id}: факты собственного института дела "
+                    "записываются в `facts`, а не в `dependent_facts`."
+                )
+        return self
 
 
 #: Дела с окончательным исходом, которые в набор не вошли, и почему.
@@ -404,6 +460,43 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "nullity_consequences_prerequisites": True,
             "transaction_presumed_effective": False,
         },
+        dependent_facts={
+            "case_evidence": {
+                "duty_exists": False,
+            },
+            "obligation_dynamics_evidence": {
+                "obligation_exists": False,
+                "obligation_breached": False,
+                "accrued_claims_exist": False,
+            },
+            "performance_remedies_evidence": {
+                "obligation_exists": False,
+                "breach_established": False,
+            },
+            "security_evidence": {
+                "main_obligation_invalid": True,
+                "main_obligation_breached": False,
+            },
+            "liability_evidence": {
+                "breach_established": False,
+                "penalty_claimed": False,
+                "contractual_penalty": False,
+                "penalty_reduction_requested": False,
+                "manifest_disproportionality_proven": False,
+                "fault_rebuttal_asserted": False,
+                "force_majeure_claimed": False,
+                "excluded_commercial_risk_only": False,
+            },
+        },
+        dependent_facts_note_ru=(
+            "Ничтожная сделка не влечёт юридических последствий, кроме тех, что связаны с её "
+            "недействительностью (пункт 1 статьи 167 ГК РФ). Всё, что объявлено здесь, — следствие "
+            "этого одного вывода суда, а не подгонка под конвейер: раз договорной обязанности нет, то "
+            "нет ни её нарушения, ни неустойки за нарушение, ни обязательства, которое можно было бы "
+            "обеспечить, — и обеспечиваемое обязательство модель обеспечения обязана считать "
+            "недействительным. Взысканы по реституции деньги, уплаченные подопечной, — то есть суд "
+            "применил именно последствия недействительности, а не договорную ответственность."
+        ),
     ),
     RealCaseScenario(
         case_id="a45-3827-2019-cass-azs-208498",
@@ -530,6 +623,58 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "formation_evidence_gap": True,
             "non_conclusion_objection_barred": False,
         },
+        dependent_facts={
+            "temporal_effect_evidence": {
+                "acceptance_received_by_offeror": False,
+            },
+            "invalidity_evidence": {
+                "transaction_concluded": False,
+            },
+            "case_evidence": {
+                "duty_exists": False,
+            },
+            "sale_evidence": {
+                "contract_concluded": False,
+            },
+            "supply_evidence": {
+                "contract_concluded": False,
+            },
+            "termination_evidence": {
+                "contract_formed": False,
+            },
+            "security_evidence": {
+                "main_obligation_exists": False,
+                "main_obligation_breached": False,
+            },
+            "obligation_dynamics_evidence": {
+                "obligation_exists": False,
+                "obligation_breached": False,
+                "accrued_claims_exist": False,
+            },
+            "performance_remedies_evidence": {
+                "obligation_exists": False,
+                "breach_established": False,
+            },
+            "liability_evidence": {
+                "breach_established": False,
+                "penalty_claimed": False,
+                "contractual_penalty": False,
+                "penalty_reduction_requested": False,
+                "manifest_disproportionality_proven": False,
+                "fault_rebuttal_asserted": False,
+                "force_majeure_claimed": False,
+                "excluded_commercial_risk_only": False,
+            },
+        },
+        dependent_facts_note_ru=(
+            "Договор не заключён, поэтому момент заключения не установлен (статьи 432 и 433 ГК РФ): "
+            "акцепт оферент не получил. Отсюда и остальное — незаключённый договор не существует ни "
+            "для купли-продажи, ни для поставки, ни для расторжения, ни для обеспечения, ни для "
+            "недействительности: нельзя признать недействительной сделку, которой нет. Нет договора — "
+            "нет и договорной обязанности, а с ней ни нарушения, ни неустойки. Суд отказал в иске "
+            "именно потому, что проект договора не подписан, акцепт не доказан и конклюдентных "
+            "действий не совершено: акт сверки задолженности не подтверждает."
+        ),
     ),
     RealCaseScenario(
         case_id="a51-8801-2025-cass-adv-143320",
@@ -623,6 +768,59 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "formation_evidence_gap": True,
             "non_conclusion_objection_barred": False,
         },
+        dependent_facts={
+            "temporal_effect_evidence": {
+                "acceptance_received_by_offeror": False,
+            },
+            "invalidity_evidence": {
+                "transaction_concluded": False,
+            },
+            "case_evidence": {
+                "duty_exists": False,
+            },
+            "sale_evidence": {
+                "contract_concluded": False,
+            },
+            "supply_evidence": {
+                "contract_concluded": False,
+            },
+            "termination_evidence": {
+                "contract_formed": False,
+            },
+            "security_evidence": {
+                "main_obligation_exists": False,
+                "main_obligation_breached": False,
+            },
+            "obligation_dynamics_evidence": {
+                "obligation_exists": False,
+                "obligation_breached": False,
+                "accrued_claims_exist": False,
+            },
+            "performance_remedies_evidence": {
+                "obligation_exists": False,
+                "breach_established": False,
+            },
+            "liability_evidence": {
+                "breach_established": False,
+                "penalty_claimed": False,
+                "contractual_penalty": False,
+                "penalty_reduction_requested": False,
+                "manifest_disproportionality_proven": False,
+                "fault_rebuttal_asserted": False,
+                "force_majeure_claimed": False,
+                "excluded_commercial_risk_only": False,
+            },
+        },
+        dependent_facts_note_ru=(
+            "Договор не заключён, поэтому момент заключения не установлен (статьи 432 и 433 ГК РФ): "
+            "акцепт оферент не получил. Отсюда и остальное — незаключённый договор не существует ни "
+            "для купли-продажи, ни для поставки, ни для расторжения, ни для обеспечения, ни для "
+            "недействительности: нельзя признать недействительной сделку, которой нет. Нет договора — "
+            "нет и договорной обязанности, а с ней ни нарушения, ни неустойки. Спецификация №2 не "
+            "подписана, поэтому обязательства поставить товар на заявленную сумму не возникло; "
+            "состоявшиеся предоставления суд оценил как обменную сделку в их собственных пределах, а "
+            "не как заключение договора."
+        ),
     ),
     RealCaseScenario(
         case_id="a51-10070-2023-cass-adv-136103",
@@ -1126,6 +1324,44 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "monetary_restitution_issue": False,
             "nullity_consequences_prerequisites": True,
         },
+        dependent_facts={
+            "case_evidence": {
+                "duty_exists": False,
+            },
+            "obligation_dynamics_evidence": {
+                "obligation_exists": False,
+                "obligation_breached": False,
+                "accrued_claims_exist": False,
+            },
+            "performance_remedies_evidence": {
+                "obligation_exists": False,
+                "breach_established": False,
+            },
+            "security_evidence": {
+                "main_obligation_invalid": True,
+                "main_obligation_breached": False,
+            },
+            "liability_evidence": {
+                "breach_established": False,
+                "penalty_claimed": False,
+                "contractual_penalty": False,
+                "penalty_reduction_requested": False,
+                "manifest_disproportionality_proven": False,
+                "fault_rebuttal_asserted": False,
+                "force_majeure_claimed": False,
+                "excluded_commercial_risk_only": False,
+            },
+        },
+        dependent_facts_note_ru=(
+            "Ничтожная сделка не влечёт юридических последствий, кроме тех, что связаны с её "
+            "недействительностью (пункт 1 статьи 167 ГК РФ). Всё, что объявлено здесь, — следствие "
+            "этого одного вывода суда, а не подгонка под конвейер: раз договорной обязанности нет, то "
+            "нет ни её нарушения, ни неустойки за нарушение, ни обязательства, которое можно было бы "
+            "обеспечить, — и обеспечиваемое обязательство модель обеспечения обязана считать "
+            "недействительным. Взыскано фактически полученное по кредитному договору за вычетом "
+            "платежей — реституция, а не долг по договору: обязанности вернуть кредит в договорном "
+            "смысле у гражданина не возникло."
+        ),
     ),
     RealCaseScenario(
         case_id="88-14968-2026-cass-ksoj004-253200",
@@ -1215,6 +1451,43 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "transaction_presumed_effective": False,
             "nullity_consequences_prerequisites": False,
         },
+        dependent_facts={
+            "case_evidence": {
+                "duty_exists": False,
+            },
+            "obligation_dynamics_evidence": {
+                "obligation_exists": False,
+                "obligation_breached": False,
+                "accrued_claims_exist": False,
+            },
+            "performance_remedies_evidence": {
+                "obligation_exists": False,
+                "breach_established": False,
+            },
+            "security_evidence": {
+                "main_obligation_invalid": True,
+                "main_obligation_breached": False,
+            },
+            "liability_evidence": {
+                "breach_established": False,
+                "penalty_claimed": False,
+                "contractual_penalty": False,
+                "penalty_reduction_requested": False,
+                "manifest_disproportionality_proven": False,
+                "fault_rebuttal_asserted": False,
+                "force_majeure_claimed": False,
+                "excluded_commercial_risk_only": False,
+            },
+        },
+        dependent_facts_note_ru=(
+            "Ничтожная сделка не влечёт юридических последствий, кроме тех, что связаны с её "
+            "недействительностью (пункт 1 статьи 167 ГК РФ). Всё, что объявлено здесь, — следствие "
+            "этого одного вывода суда, а не подгонка под конвейер: раз договорной обязанности нет, то "
+            "нет ни её нарушения, ни неустойки за нарушение, ни обязательства, которое можно было бы "
+            "обеспечить, — и обеспечиваемое обязательство модель обеспечения обязана считать "
+            "недействительным. Суд прямо сказал, что предварительный договор недееспособной правовых "
+            "последствий не порождает и перехода права собственности не влечёт."
+        ),
     ),
     RealCaseScenario(
         case_id="a12-3652-2019-cass-apv-181344",
@@ -1622,6 +1895,28 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "setoff_full_discharge": False,
             "obligation_discharged_full": False,
         },
+        dependent_facts={
+            "case_evidence": {
+                "performance_completed": False,
+            },
+            "performance_remedies_evidence": {
+                "performance_tendered": False,
+            },
+            "sale_evidence": {
+                "goods_transfer_completed": False,
+            },
+            "supply_evidence": {
+                "delivery_completed": False,
+            },
+        },
+        dependent_facts_note_ru=(
+            "Обязательство прекращено зачётом встречного однородного требования (статья 410 ГК РФ), а "
+            "не исполнением, — и прекращено ретроспективно, с момента зачётопригодности. Прекращённое "
+            "обязательство не может быть одновременно исполненным: демонстрационное дело считает "
+            "поставку состоявшейся, а по позиции суда обязательство погашено другим способом, а не "
+            "исполнением. Поэтому передача товара и предложение исполнения объявлены несостоявшимися "
+            "во всех контрактах данных сразу, а не в одном."
+        ),
     ),
     RealCaseScenario(
         case_id="a73-9126-2023-cass-adv-134721",
@@ -1730,6 +2025,28 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "setoff_partial_discharge": True,
             "setoff_full_discharge": False,
         },
+        dependent_facts={
+            "case_evidence": {
+                "performance_completed": False,
+            },
+            "performance_remedies_evidence": {
+                "performance_tendered": False,
+            },
+            "sale_evidence": {
+                "goods_transfer_completed": False,
+            },
+            "supply_evidence": {
+                "delivery_completed": False,
+            },
+        },
+        dependent_facts_note_ru=(
+            "Обязательство перевозчика уплатить неустойку прекращено зачётом в счёт провозной платы "
+            "(статьи 407 и 410 ГК РФ), а не исполнением. Прекращённое обязательство не может быть "
+            "одновременно исполненным: демонстрационное дело считает поставку состоявшейся, а по "
+            "позиции суда обязательство погашено другим способом, а не исполнением. Поэтому передача "
+            "товара и предложение исполнения объявлены несостоявшимися во всех контрактах данных "
+            "сразу, а не в одном."
+        ),
     ),
     RealCaseScenario(
         case_id="a33-28136-2024-cass-avs-136444",
@@ -1838,6 +2155,50 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "novation_effective": True,
             "obligation_discharged_full": True,
         },
+        dependent_facts={
+            "case_evidence": {
+                "performance_completed": False,
+            },
+            "performance_remedies_evidence": {
+                "performance_tendered": False,
+                "breach_established": False,
+            },
+            "sale_evidence": {
+                "goods_transfer_completed": False,
+                "delivery_late": False,
+            },
+            "supply_evidence": {
+                "delivery_completed": False,
+                "delivery_late": False,
+            },
+            "security_evidence": {
+                "main_obligation_breached": False,
+            },
+            "liability_evidence": {
+                "breach_established": False,
+                "penalty_claimed": False,
+                "contractual_penalty": False,
+                "penalty_reduction_requested": False,
+                "manifest_disproportionality_proven": False,
+                "fault_rebuttal_asserted": False,
+                "force_majeure_claimed": False,
+                "excluded_commercial_risk_only": False,
+            },
+        },
+        dependent_timeline={
+            "agreed_due_date": None,
+        },
+        dependent_facts_note_ru=(
+            "Обязательство покупателя оплатить прекращено новацией в заёмное (статья 414 ГК РФ), и "
+            "именно поэтому суд отказал в расторжении договора и возврате имущества: нарушать больше "
+            "нечего. Отсюда и снятые нарушение, неустойка и просрочка. Срок первоначального "
+            "обязательства выбывает из разбора вместе с самим обязательством: новый срок — шестьдесят "
+            "месяцев — на дату оценки не наступил, поэтому просрочки нет по обоим прочтениям. "
+            "Прекращённое обязательство не может быть одновременно исполненным: демонстрационное дело "
+            "считает поставку состоявшейся, а по позиции суда обязательство погашено другим способом, "
+            "а не исполнением. Поэтому передача товара и предложение исполнения объявлены "
+            "несостоявшимися во всех контрактах данных сразу, а не в одном."
+        ),
     ),
     RealCaseScenario(
         case_id="a39-4009-2023-cass-avv-124719",
@@ -1946,6 +2307,50 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "novation_effective": True,
             "obligation_discharged_full": True,
         },
+        dependent_facts={
+            "case_evidence": {
+                "performance_completed": False,
+            },
+            "performance_remedies_evidence": {
+                "performance_tendered": False,
+                "breach_established": False,
+            },
+            "sale_evidence": {
+                "goods_transfer_completed": False,
+                "delivery_late": False,
+            },
+            "supply_evidence": {
+                "delivery_completed": False,
+                "delivery_late": False,
+            },
+            "security_evidence": {
+                "main_obligation_breached": False,
+            },
+            "liability_evidence": {
+                "breach_established": False,
+                "penalty_claimed": False,
+                "contractual_penalty": False,
+                "penalty_reduction_requested": False,
+                "manifest_disproportionality_proven": False,
+                "fault_rebuttal_asserted": False,
+                "force_majeure_claimed": False,
+                "excluded_commercial_risk_only": False,
+            },
+        },
+        dependent_timeline={
+            "agreed_due_date": None,
+        },
+        dependent_facts_note_ru=(
+            "Задолженность по генеральному подряду прекращена новацией в заёмное обязательство с "
+            "процентами и собственным сроком возврата (статья 414 ГК РФ): первоначального "
+            "обязательства больше нет, а с ним нет ни его нарушения, ни неустойки за нарушение. Срок "
+            "исполнения выбывает из разбора вместе с первоначальным обязательством, а срок возврата "
+            "займа на дату оценки не наступил. Прекращённое обязательство не может быть одновременно "
+            "исполненным: демонстрационное дело считает поставку состоявшейся, а по позиции суда "
+            "обязательство погашено другим способом, а не исполнением. Поэтому передача товара и "
+            "предложение исполнения объявлены несостоявшимися во всех контрактах данных сразу, а не в "
+            "одном."
+        ),
     ),
     RealCaseScenario(
         case_id="a79-3098-2023-cass-avv-128859",
@@ -2054,6 +2459,49 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "debt_forgiveness_effective": True,
             "obligation_discharged_full": True,
         },
+        dependent_facts={
+            "case_evidence": {
+                "performance_completed": False,
+            },
+            "performance_remedies_evidence": {
+                "performance_tendered": False,
+                "breach_established": False,
+            },
+            "sale_evidence": {
+                "goods_transfer_completed": False,
+                "delivery_late": False,
+            },
+            "supply_evidence": {
+                "delivery_completed": False,
+                "delivery_late": False,
+            },
+            "security_evidence": {
+                "main_obligation_breached": False,
+            },
+            "liability_evidence": {
+                "breach_established": False,
+                "penalty_claimed": False,
+                "contractual_penalty": False,
+                "penalty_reduction_requested": False,
+                "manifest_disproportionality_proven": False,
+                "fault_rebuttal_asserted": False,
+                "force_majeure_claimed": False,
+                "excluded_commercial_risk_only": False,
+            },
+        },
+        dependent_timeline={
+            "agreed_due_date": None,
+        },
+        dependent_facts_note_ru=(
+            "Долг по четырём договорам займа прощён, и суд отказался признать соглашение "
+            "недействительным: обязательство прекращено полностью (статья 415 ГК РФ). Прощённый долг "
+            "не может быть просроченным или нарушенным, и неустойки за его нарушение не бывает; срока "
+            "исполнения у прекращённого обязательства не остаётся. Прекращённое обязательство не может "
+            "быть одновременно исполненным: демонстрационное дело считает поставку состоявшейся, а по "
+            "позиции суда обязательство погашено другим способом, а не исполнением. Поэтому передача "
+            "товара и предложение исполнения объявлены несостоявшимися во всех контрактах данных "
+            "сразу, а не в одном."
+        ),
     ),
     RealCaseScenario(
         case_id="a04-4768-2025-cass-adv-143671",
@@ -2425,6 +2873,36 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "lost_profit_supported": False,
             "creditor_fault_reduction_issue": False,
         },
+        dependent_facts={
+            "case_evidence": {
+                "performance_completed": False,
+                "loss_claimed": True,
+                "remedy_requested": True,
+                "causation_established": True,
+            },
+            "obligation_dynamics_evidence": {
+                "performance_rendered": False,
+                "performance_accepted_as_proper": False,
+                "creditor_issued_receipt": False,
+            },
+            "sale_evidence": {
+                "goods_transfer_completed": False,
+                "loss_claimed": True,
+                "causation_proven": True,
+            },
+            "supply_evidence": {
+                "delivery_completed": False,
+                "loss_claimed": True,
+                "causation_proven": True,
+            },
+        },
+        dependent_facts_note_ru=(
+            "Требование убытков описано не только в модели средств защиты, но и в данных самого дела, "
+            "поэтому спор об убытках обязан быть описан одинаково всюду. Суд взыскал реальный ущерб: "
+            "убытки заявлены, требование предъявлено, причинная связь установлена экспертизой — "
+            "производственные и конструктивные причины отказа колонки. Исполнение при этом надлежащим "
+            "не признано, поэтому передача товара и предложение исполнения объявлены несостоявшимися."
+        ),
     ),
     RealCaseScenario(
         case_id="a43-1461-2023-cass-avv-129804",
@@ -2549,6 +3027,33 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "damages_prerequisites_satisfied": False,
             "current_price_damages": False,
         },
+        dependent_facts={
+            "case_evidence": {
+                "performance_completed": False,
+                "loss_claimed": True,
+                "remedy_requested": True,
+            },
+            "obligation_dynamics_evidence": {
+                "performance_rendered": False,
+                "performance_accepted_as_proper": False,
+                "creditor_issued_receipt": False,
+            },
+            "sale_evidence": {
+                "goods_transfer_completed": False,
+                "loss_claimed": True,
+            },
+            "supply_evidence": {
+                "delivery_completed": False,
+                "loss_claimed": True,
+            },
+        },
+        dependent_facts_note_ru=(
+            "Требование убытков описано не только в модели средств защиты, но и в данных самого дела, "
+            "поэтому спор об убытках обязан быть описан одинаково всюду. Убытки заявлены и требование "
+            "предъявлено, но причинная связь и противоправность поведения покупателя не доказаны — суд "
+            "прямо на это указал, отказывая во встречном иске. Поэтому причинная связь остаётся "
+            "неустановленной во всех контрактах данных."
+        ),
     ),
     RealCaseScenario(
         case_id="a82-7717-2024-cass-avv-131271",
@@ -2673,6 +3178,33 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "lost_profit_supported": False,
             "liability_limit_issue": True,
         },
+        dependent_facts={
+            "case_evidence": {
+                "performance_completed": False,
+                "loss_claimed": True,
+                "remedy_requested": True,
+            },
+            "obligation_dynamics_evidence": {
+                "performance_rendered": False,
+                "performance_accepted_as_proper": False,
+                "creditor_issued_receipt": False,
+            },
+            "sale_evidence": {
+                "goods_transfer_completed": False,
+                "loss_claimed": True,
+            },
+            "supply_evidence": {
+                "delivery_completed": False,
+                "loss_claimed": True,
+            },
+        },
+        dependent_facts_note_ru=(
+            "Требование убытков описано не только в модели средств защиты, но и в данных самого дела, "
+            "поэтому спор об убытках обязан быть описан одинаково всюду. Убытки заявлены и требование "
+            "предъявлено, а причинная связь между отключением и повреждениями здания не доказана — так "
+            "решил суд. Ограничение ответственности пунктом 1 статьи 547 ГК РФ к этим фактам отношения "
+            "не имеет: оно разбирается внутри института."
+        ),
     ),
     RealCaseScenario(
         case_id="a33-9999-2023-cass-avs-133159",
@@ -3281,6 +3813,44 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "restitution_in_kind": True,
             "nullity_consequences_prerequisites": True,
         },
+        dependent_facts={
+            "case_evidence": {
+                "duty_exists": False,
+            },
+            "obligation_dynamics_evidence": {
+                "obligation_exists": False,
+                "obligation_breached": False,
+                "accrued_claims_exist": False,
+            },
+            "performance_remedies_evidence": {
+                "obligation_exists": False,
+                "breach_established": False,
+            },
+            "security_evidence": {
+                "main_obligation_invalid": True,
+                "main_obligation_breached": False,
+            },
+            "liability_evidence": {
+                "breach_established": False,
+                "penalty_claimed": False,
+                "contractual_penalty": False,
+                "penalty_reduction_requested": False,
+                "manifest_disproportionality_proven": False,
+                "fault_rebuttal_asserted": False,
+                "force_majeure_claimed": False,
+                "excluded_commercial_risk_only": False,
+            },
+        },
+        dependent_facts_note_ru=(
+            "Ничтожная сделка не влечёт юридических последствий, кроме тех, что связаны с её "
+            "недействительностью (пункт 1 статьи 167 ГК РФ). Всё, что объявлено здесь, — следствие "
+            "этого одного вывода суда, а не подгонка под конвейер: раз договорной обязанности нет, то "
+            "нет ни её нарушения, ни неустойки за нарушение, ни обязательства, которое можно было бы "
+            "обеспечить, — и обеспечиваемое обязательство модель обеспечения обязана считать "
+            "недействительным. Стороны обязаны возвратить друг другу полученное по сделке — "
+            "обязательство здесь возникает из недействительности, а не из договора об отчуждении "
+            "ограниченного в обороте имущества."
+        ),
     ),
     RealCaseScenario(
         case_id="a32-52528-2022-cass-ask-214685",

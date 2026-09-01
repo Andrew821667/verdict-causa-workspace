@@ -45,23 +45,70 @@ def test_every_rejection_by_the_pipeline_is_explained() -> None:
         assert case_id in rejected, case_id
 
 
-def test_a_case_about_non_conclusion_cannot_be_overlaid_on_a_concluded_contract() -> None:
-    """Граница приёма наложения названа и проверена, а не только описана.
+def test_a_case_about_non_conclusion_carries_its_own_consequences() -> None:
+    """Дело о незаключённости больше не ломается о конвейер, а описывает себя.
 
-    Дело о незаключённости сносит основание всего разбора: семь контрактов
-    демонстрационного дела утверждают, что договор заключён. Это ограничение
-    самого приёма «одно дело — один институт», и его следует держать видимым:
-    иначе очередное такое дело выглядело бы поломкой конвейера.
+    Раньше оно отвергалось: семь контрактов демонстрационного дела утверждали,
+    что договор заключён, и сверка входов признавала смесь противоречивой. Это
+    была граница приёма «одно дело — один институт», и чинить её следовало не
+    исключением, а тем, чтобы дело объявило следствия позиции суда за пределами
+    своего института.
+    """
+    scenario = next(s for s in REAL_CASE_SCENARIOS if s.case_number == "А37-976/2025")
+
+    # Все семь расхождений, на которых конвейер обрывался, теперь названы делом.
+    assert set(scenario.dependent_facts) >= {
+        "temporal_effect_evidence",
+        "invalidity_evidence",
+        "case_evidence",
+        "sale_evidence",
+        "supply_evidence",
+        "security_evidence",
+        "termination_evidence",
+    }
+
+    report = run_real_case_pipeline_suite()
+    entry = next(e for e in report.results if e.case_id == scenario.case_id)
+
+    assert entry.accepted, entry.notes_ru
+    # И правовая суть дошла до слоя: незаключённость вытесняет договор.
+    assert entry.layer_changes.get("formation_defect_displaces_contract") is True
+    assert entry.layer_changes.get("contract_legally_effective") is False
+
+
+def test_dependent_facts_are_declared_with_a_reason_and_stay_outside_the_institute() -> None:
+    """Правка чужого контракта данных обязана нести причину.
+
+    Без этого механизм зависимых фактов превратился бы в тихое приведение
+    данных к тому, что нужно конвейеру, — ровно в тот выбор версии факта за
+    рецензента, от которого слой сверки отказывается.
+    """
+    declaring = [s for s in REAL_CASE_SCENARIOS if s.dependent_facts or s.dependent_timeline]
+
+    assert len(declaring) == 14
+    for scenario in declaring:
+        assert len(scenario.dependent_facts_note_ru) > 200, scenario.case_id
+        # Факты своего института живут в `facts`; смешение двух мест сделало бы
+        # непонятным, что здесь перевод фабулы, а что — его следствие.
+        assert f"{scenario.institute}_evidence" not in scenario.dependent_facts, scenario.case_id
+        for field in scenario.dependent_facts:
+            assert field.endswith("_evidence"), (scenario.case_id, field)
+        for key in scenario.dependent_timeline:
+            assert key in ("agreed_due_date", "actual_performance_date"), scenario.case_id
+
+
+def test_the_whole_practice_set_now_reaches_the_pipeline() -> None:
+    """Ни одно переведённое дело не теряется на сверке входов.
+
+    Четырнадцать дел из пятидесяти четырёх конвейер отвергал целиком, и по ним
+    юрист не видел ни одного вывода. Утверждение здесь сильное намеренно: если
+    очередное дело снова начнёт отвергаться, это должно быть видно сразу и
+    объяснено в `PIPELINE_REJECTION_REASONS_RU`, а не пройти незамеченным.
     """
     report = run_real_case_pipeline_suite()
 
-    rejected = {entry.case_number for entry in report.results if not entry.accepted}
-
-    assert "А37-976/2025" in rejected
-    assert "А67-8637/2022" in rejected
-    for entry in report.results:
-        if entry.case_number in rejected:
-            assert "сверке входов" in entry.notes_ru[0]
+    assert report.rejected == len(PIPELINE_REJECTION_REASONS_RU)
+    assert report.accepted == report.total == len(REAL_CASE_SCENARIOS)
 
 
 def test_institute_conclusions_do_not_depend_on_the_surrounding_case() -> None:
