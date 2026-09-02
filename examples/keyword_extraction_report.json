@@ -1,0 +1,83 @@
+{
+  "version": "ui-extraction-evaluation-v0",
+  "documents": 55,
+  "documents_without_any_proposal": [
+    "a40-19629-14-142-170-cass-ams-221014"
+  ],
+  "proposals": 194,
+  "correct": 124,
+  "wrong": 68,
+  "undetermined": 2,
+  "per_predicate": [
+    {
+      "predicate": "remedy_requested",
+      "proposed": 48,
+      "correct": 47
+    },
+    {
+      "predicate": "payment_duty_exists",
+      "proposed": 23,
+      "correct": 15
+    },
+    {
+      "predicate": "performance_completed",
+      "proposed": 21,
+      "correct": 12
+    },
+    {
+      "predicate": "payment_missed",
+      "proposed": 21,
+      "correct": 12
+    },
+    {
+      "predicate": "duty_exists",
+      "proposed": 17,
+      "correct": 12
+    },
+    {
+      "predicate": "payment_defense_applies",
+      "proposed": 16,
+      "correct": 3
+    },
+    {
+      "predicate": "causation_established",
+      "proposed": 12,
+      "correct": 1
+    },
+    {
+      "predicate": "loss_claimed",
+      "proposed": 12,
+      "correct": 7
+    },
+    {
+      "predicate": "limitation_period_expired",
+      "proposed": 9,
+      "correct": 8
+    },
+    {
+      "predicate": "payment_due",
+      "proposed": 8,
+      "correct": 5
+    },
+    {
+      "predicate": "performance_nonconforming",
+      "proposed": 7,
+      "correct": 2
+    }
+  ],
+  "miss_kinds": {
+    "факт_отвергнут_судом": 23,
+    "омоним": 23,
+    "договор_ничтожен_или_незаключён": 11,
+    "смежное_понятие": 11,
+    "факт_другого_обязательства": 2
+  },
+  "unlabelled": [],
+  "stale_labels": [],
+  "recall_remedy_requested": 0.8727272727272727,
+  "notes_ru": [
+    "Корпус — судебные акты, а не договоры и претензии, под которые собирался словарь. Точность на договорах может отличаться; переносится не число, а перечень способов промаха.",
+    "Полнота измерена по одному предикату — `remedy_requested`: в каждой записи выгрузки требование заявлено, потому что все они разрешают спор по иску. Эталона на отрицательных примерах по остальным предикатам нет, и полноту по ним измерением здесь не подменяется.",
+    "Разметка сделана вручную, причина записана по каждой записи. Это её ограничение и одновременно единственный доступный источник истины."
+  ]
+}

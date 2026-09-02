@@ -1,0 +1,194 @@
+{"case_id": "88-10752-2023-cass-ksoj002-108217", "predicate": "performance_nonconforming", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «без надлежащих полномочий», «ненадлежащий способ защиты»"}
+{"case_id": "88-10752-2023-cass-ksoj002-108217", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о признании сделки недействительной заявлен"}
+{"case_id": "88-11704-2025-cass-ksoj008-167443", "predicate": "performance_completed", "verdict": "не определено", "kind": "омоним", "reason_ru": "омоним: «решение не принято»; об исполнении по договору управления документ прямо не говорит"}
+{"case_id": "88-11704-2025-cass-ksoj008-167443", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "исковые требования к управляющей организации заявлены"}
+{"case_id": "88-11827-2023-cass-ksoj007-89604", "predicate": "duty_exists", "verdict": "да", "kind": null, "reason_ru": "суд: товарищество обязано оплатить оказанные услуги"}
+{"case_id": "88-11827-2023-cass-ksoj007-89604", "predicate": "payment_defense_applies", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «встречный иск»"}
+{"case_id": "88-11827-2023-cass-ksoj007-89604", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "обязанность оплатить услуги установлена судом"}
+{"case_id": "88-11827-2023-cass-ksoj007-89604", "predicate": "payment_missed", "verdict": "да", "kind": null, "reason_ru": "задолженность взыскана"}
+{"case_id": "88-11827-2023-cass-ksoj007-89604", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании задолженности и неустойки заявлен"}
+{"case_id": "88-12081-2024-cass-ksoj007-119496", "predicate": "causation_established", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «вследствие психического расстройства»"}
+{"case_id": "88-12081-2024-cass-ksoj007-119496", "predicate": "payment_defense_applies", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «встречный иск» — не встречное однородное требование и не зачёт"}
+{"case_id": "88-12081-2024-cass-ksoj007-119496", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск банка и встречный иск заявлены"}
+{"case_id": "88-12844-2024-cass-ksoj001-173181", "predicate": "duty_exists", "verdict": "да", "kind": null, "reason_ru": "обязанность собственников вносить плату по договору управления"}
+{"case_id": "88-12844-2024-cass-ksoj001-173181", "predicate": "payment_defense_applies", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «встречный иск»"}
+{"case_id": "88-12844-2024-cass-ksoj001-173181", "predicate": "payment_missed", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "суд признал начисление незаконным и обязал аннулировать задолженность"}
+{"case_id": "88-12844-2024-cass-ksoj001-173181", "predicate": "performance_completed", "verdict": "да", "kind": null, "reason_ru": "услуги оказывались, собственники их оплачивали по тарифу собрания"}
+{"case_id": "88-12844-2024-cass-ksoj001-173181", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании задолженности и пеней заявлен"}
+{"case_id": "88-14968-2026-cass-ksoj004-253200", "predicate": "causation_established", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «вследствие психического расстройства»"}
+{"case_id": "88-15461-2025-cass-ksoj003-151203", "predicate": "duty_exists", "verdict": "да", "kind": null, "reason_ru": "обязанность вносить плату по договору управления существует"}
+{"case_id": "88-15461-2025-cass-ksoj003-151203", "predicate": "performance_completed", "verdict": "не определено", "kind": "омоним", "reason_ru": "омоним: «решение не было принято»; об исполнении документ прямо не говорит"}
+{"case_id": "88-15461-2025-cass-ksoj003-151203", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "требования о признании действий незаконными заявлены"}
+{"case_id": "88-16698-2026-cass-ksoj001-256023", "predicate": "causation_established", "verdict": "нет", "kind": "смежное_понятие", "reason_ru": "«в результате чего образовалась задолженность» — не причинная связь убытков"}
+{"case_id": "88-16698-2026-cass-ksoj001-256023", "predicate": "duty_exists", "verdict": "да", "kind": null, "reason_ru": "обязанность собственника вносить плату по договору управления"}
+{"case_id": "88-16698-2026-cass-ksoj001-256023", "predicate": "payment_defense_applies", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «встречный иск»"}
+{"case_id": "88-16698-2026-cass-ksoj001-256023", "predicate": "payment_missed", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "во взыскании задолженности по завышенному тарифу отказано"}
+{"case_id": "88-16698-2026-cass-ksoj001-256023", "predicate": "performance_completed", "verdict": "да", "kind": null, "reason_ru": "услуги оказывались, суд обязал начислить плату по тарифу собрания"}
+{"case_id": "88-16698-2026-cass-ksoj001-256023", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "первоначальный и встречный иски заявлены"}
+{"case_id": "88-19251-2024-cass-ksoj008-144573", "predicate": "payment_missed", "verdict": "да", "kind": null, "reason_ru": "задолженность образовалась и частично взыскана"}
+{"case_id": "88-19251-2024-cass-ksoj008-144573", "predicate": "performance_completed", "verdict": "да", "kind": null, "reason_ru": "услуги по содержанию оказывались, задолженность за них взыскана"}
+{"case_id": "88-19251-2024-cass-ksoj008-144573", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании задолженности и пеней заявлен"}
+{"case_id": "88-26046-2023-cass-ksoj002-125208", "predicate": "causation_established", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «недееспособным вследствие психического расстройства»"}
+{"case_id": "88-26046-2023-cass-ksoj002-125208", "predicate": "duty_exists", "verdict": "нет", "kind": "договор_ничтожен_или_незаключён", "reason_ru": "«обязана возвратить» — реституционная обязанность из ничтожности, а не договорная"}
+{"case_id": "88-26046-2023-cass-ksoj002-125208", "predicate": "payment_duty_exists", "verdict": "нет", "kind": "договор_ничтожен_или_незаключён", "reason_ru": "«возместить стоимость» — реституция; договорная обязанность ничтожна"}
+{"case_id": "88-26046-2023-cass-ksoj002-125208", "predicate": "performance_completed", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «решение было принято» о судебном акте"}
+{"case_id": "88-26046-2023-cass-ksoj002-125208", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "исковые требования заявлены и частично удовлетворены"}
+{"case_id": "88-4580-2026-cass-ksoj008-184804", "predicate": "payment_defense_applies", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «встречный иск»"}
+{"case_id": "88-4580-2026-cass-ksoj008-184804", "predicate": "payment_missed", "verdict": "нет", "kind": "договор_ничтожен_или_незаключён", "reason_ru": "договор для ответчика незаключён, требование о взыскании задолженности отклонено"}
+{"case_id": "88-4580-2026-cass-ksoj008-184804", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "первоначальный и встречный иски заявлены"}
+{"case_id": "a03-19562-2024-cass-azs-218301", "predicate": "duty_exists", "verdict": "да", "kind": null, "reason_ru": "договор подряда заключён, обязанности сторон установлены"}
+{"case_id": "a03-19562-2024-cass-azs-218301", "predicate": "payment_defense_applies", "verdict": "да", "kind": null, "reason_ru": "зачёт зачётопригодного требования применён судом"}
+{"case_id": "a03-19562-2024-cass-azs-218301", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "обязанность заказчика оплатить работы установлена"}
+{"case_id": "a03-19562-2024-cass-azs-218301", "predicate": "payment_missed", "verdict": "да", "kind": null, "reason_ru": "заказчик не оплатил в полном объёме, задолженность взыскана"}
+{"case_id": "a03-19562-2024-cass-azs-218301", "predicate": "performance_completed", "verdict": "да", "kind": null, "reason_ru": "подрядчик выполнил работы и предъявил документы на оплату"}
+{"case_id": "a03-19562-2024-cass-azs-218301", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "первоначальный и встречный иски заявлены"}
+{"case_id": "a04-4768-2025-cass-adv-143671", "predicate": "duty_exists", "verdict": "да", "kind": null, "reason_ru": "договор поставки, обязанность полной оплаты установлена"}
+{"case_id": "a04-4768-2025-cass-adv-143671", "predicate": "payment_defense_applies", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «встречный иск»"}
+{"case_id": "a04-4768-2025-cass-adv-143671", "predicate": "payment_due", "verdict": "да", "kind": null, "reason_ru": "предоплата 50% внесена, срок оставшейся оплаты наступил"}
+{"case_id": "a04-4768-2025-cass-adv-143671", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "обязанность оплатить оставшуюся часть стоимости"}
+{"case_id": "a04-4768-2025-cass-adv-143671", "predicate": "performance_completed", "verdict": "да", "kind": null, "reason_ru": "товар поставлен по акту приёма-передачи и принят без возражений"}
+{"case_id": "a04-4768-2025-cass-adv-143671", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании долга и неустойки заявлен"}
+{"case_id": "a12-3652-2019-cass-apv-181344", "predicate": "duty_exists", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "контрагент исключён из ЕГРЮЛ, его действия сделками не признаются"}
+{"case_id": "a12-3652-2019-cass-apv-181344", "predicate": "performance_nonconforming", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «в качестве юридических лиц»"}
+{"case_id": "a12-3652-2019-cass-apv-181344", "predicate": "remedy_requested", "verdict": "нет", "kind": "смежное_понятие", "reason_ru": "«штраф» — налоговая санкция, а не требование стороны по спорному обязательству"}
+{"case_id": "a19-26528-2022-cass-avs-127653", "predicate": "causation_established", "verdict": "нет", "kind": "смежное_понятие", "reason_ru": "«вследствие просрочки кредитора» — не причинная связь убытков; упущенная выгода не признана"}
+{"case_id": "a19-26528-2022-cass-avs-127653", "predicate": "loss_claimed", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании упущенной выгоды заявлен"}
+{"case_id": "a19-26528-2022-cass-avs-127653", "predicate": "payment_defense_applies", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «встречный иск»"}
+{"case_id": "a19-26528-2022-cass-avs-127653", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "договор подряда, обязанность оплатить работы по актам"}
+{"case_id": "a19-26528-2022-cass-avs-127653", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иски о взыскании заявлены"}
+{"case_id": "a32-52528-2022-cass-ask-214685", "predicate": "payment_due", "verdict": "да", "kind": null, "reason_ru": "срок предоплаты наступил, оплата произведена"}
+{"case_id": "a32-52528-2022-cass-ask-214685", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "договор поставки с условием 100% предоплаты, истец оплатил"}
+{"case_id": "a32-52528-2022-cass-ask-214685", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о возврате предоплаты заявлен"}
+{"case_id": "a33-28136-2024-cass-avs-136444", "predicate": "causation_established", "verdict": "нет", "kind": "смежное_понятие", "reason_ru": "омоним: «в результате судебные акты оставлены без изменения»"}
+{"case_id": "a33-28136-2024-cass-avs-136444", "predicate": "duty_exists", "verdict": "да", "kind": null, "reason_ru": "покупатель обязался уплатить 15 000 000 рублей"}
+{"case_id": "a33-28136-2024-cass-avs-136444", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "обязанность оплатить товар существовала до новации"}
+{"case_id": "a33-28136-2024-cass-avs-136444", "predicate": "payment_missed", "verdict": "нет", "kind": "факт_другого_обязательства", "reason_ru": "задолженность по налогам относится к другому обязательству; спорное прекращено новацией"}
+{"case_id": "a33-9999-2023-cass-avs-133159", "predicate": "loss_claimed", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "ущерб заявлен как основание оспаривания; суд его не установил"}
+{"case_id": "a33-9999-2023-cass-avs-133159", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "денежное обязательство по договорам займа существовало"}
+{"case_id": "a33-9999-2023-cass-avs-133159", "predicate": "payment_missed", "verdict": "да", "kind": null, "reason_ru": "кредиторская задолженность существовала и погашалась отступным"}
+{"case_id": "a33-9999-2023-cass-avs-133159", "predicate": "performance_completed", "verdict": "да", "kind": null, "reason_ru": "общество передало предпринимателю два земельных участка по отступному"}
+{"case_id": "a33-9999-2023-cass-avs-133159", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "исковые требования заявлены"}
+{"case_id": "a35-3775-2020-cass-acn-151105", "predicate": "duty_exists", "verdict": "нет", "kind": "договор_ничтожен_или_незаключён", "reason_ru": "«общество обязано принять товар» — реституция; договор ничтожен, договорной обязанности нет"}
+{"case_id": "a35-3775-2020-cass-acn-151105", "predicate": "payment_defense_applies", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «встречный иск»"}
+{"case_id": "a35-3775-2020-cass-acn-151105", "predicate": "payment_due", "verdict": "нет", "kind": "договор_ничтожен_или_незаключён", "reason_ru": "срок платежа по ничтожному договору не наступает"}
+{"case_id": "a35-3775-2020-cass-acn-151105", "predicate": "payment_duty_exists", "verdict": "нет", "kind": "договор_ничтожен_или_незаключён", "reason_ru": "договор ничтожен по ограниченной оборотоспособности предмета"}
+{"case_id": "a35-3775-2020-cass-acn-151105", "predicate": "payment_missed", "verdict": "да", "kind": null, "reason_ru": "ответчик оставшуюся часть не оплатил — факт установлен"}
+{"case_id": "a35-3775-2020-cass-acn-151105", "predicate": "performance_completed", "verdict": "да", "kind": null, "reason_ru": "«истец поставил товар» — передача установлена как факт"}
+{"case_id": "a35-3775-2020-cass-acn-151105", "predicate": "performance_nonconforming", "verdict": "да", "kind": null, "reason_ru": "суд выявил несоответствие товара требованиям качества"}
+{"case_id": "a35-3775-2020-cass-acn-151105", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании долга, процентов и неустойки заявлен"}
+{"case_id": "a37-976-2025-cass-adv-143227", "predicate": "payment_duty_exists", "verdict": "нет", "kind": "договор_ничтожен_или_незаключён", "reason_ru": "договор не заключён, обязанности оплатить нет"}
+{"case_id": "a37-976-2025-cass-adv-143227", "predicate": "payment_missed", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "фраза отрицает: акт сверки «не подтверждает задолженность»"}
+{"case_id": "a37-976-2025-cass-adv-143227", "predicate": "performance_completed", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "суд: исполнение не подтверждено первичными документами"}
+{"case_id": "a39-4009-2023-cass-avv-124719", "predicate": "limitation_period_expired", "verdict": "да", "kind": null, "reason_ru": "суд указал на пропуск срока исковой давности"}
+{"case_id": "a39-4009-2023-cass-avv-124719", "predicate": "payment_missed", "verdict": "да", "kind": null, "reason_ru": "задолженность по генеральному подряду существовала и заменена новацией"}
+{"case_id": "a39-4009-2023-cass-avv-124719", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о признании соглашения незаключённым заявлен"}
+{"case_id": "a40-180691-2024-cass-ams-578542", "predicate": "duty_exists", "verdict": "да", "kind": null, "reason_ru": "поставщик обязан направить расчётно-калькуляционные материалы в срок"}
+{"case_id": "a40-180691-2024-cass-ams-578542", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании неустойки заявлен"}
+{"case_id": "a40-252357-2016-cass-ams-301832", "predicate": "duty_exists", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "суд: правоотношения по поставке не доказаны, сделка недействительна"}
+{"case_id": "a40-252357-2016-cass-ams-301832", "predicate": "payment_defense_applies", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «встречный иск»"}
+{"case_id": "a40-252357-2016-cass-ams-301832", "predicate": "payment_duty_exists", "verdict": "нет", "kind": "договор_ничтожен_или_незаключён", "reason_ru": "обязанность оплатить не возникла: сделка признана недействительной"}
+{"case_id": "a40-252357-2016-cass-ams-301832", "predicate": "performance_completed", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "суд: факт получения товара не доказан, акт подписан неустановленным лицом"}
+{"case_id": "a40-252357-2016-cass-ams-301832", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании долга и пеней заявлен"}
+{"case_id": "a40-265730-2022-cass-ams-519159", "predicate": "loss_claimed", "verdict": "да", "kind": null, "reason_ru": "заявлено требование о взыскании ущерба"}
+{"case_id": "a40-265730-2022-cass-ams-519159", "predicate": "payment_missed", "verdict": "да", "kind": null, "reason_ru": "задолженность по арендным платежам установлена и взыскана"}
+{"case_id": "a40-265730-2022-cass-ams-519159", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "требования о взыскании заявлены"}
+{"case_id": "a40-87930-2024-cass-ams-575831", "predicate": "duty_exists", "verdict": "да", "kind": null, "reason_ru": "договор поставки, обязанность покупателя принять и оплатить товар"}
+{"case_id": "a40-87930-2024-cass-ams-575831", "predicate": "payment_defense_applies", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «встречный иск»"}
+{"case_id": "a40-87930-2024-cass-ams-575831", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "обязанность оплатить поставленный товар установлена"}
+{"case_id": "a40-87930-2024-cass-ams-575831", "predicate": "payment_missed", "verdict": "да", "kind": null, "reason_ru": "задолженность покупателя подтверждена и взыскана"}
+{"case_id": "a40-87930-2024-cass-ams-575831", "predicate": "performance_completed", "verdict": "да", "kind": null, "reason_ru": "товар поставлен, суд обязал покупателя его принять"}
+{"case_id": "a40-87930-2024-cass-ams-575831", "predicate": "performance_nonconforming", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "экспертиза: существенных дефектов нет, доводы о качестве опровергнуты"}
+{"case_id": "a40-87930-2024-cass-ams-575831", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "первоначальный и встречный иски заявлены"}
+{"case_id": "a41-25109-2016-cass-ams-262071", "predicate": "payment_missed", "verdict": "да", "kind": null, "reason_ru": "задолженность за фактически потреблённую энергию взыскана ранее"}
+{"case_id": "a41-25109-2016-cass-ams-262071", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о признании сделки недействительной заявлен"}
+{"case_id": "a43-11257-2024-cass-avv-128073", "predicate": "payment_missed", "verdict": "нет", "kind": "факт_другого_обязательства", "reason_ru": "задолженность относится к другому обязательству — исполнительному производству, а не к спорному"}
+{"case_id": "a43-11257-2024-cass-avv-128073", "predicate": "performance_completed", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «приняты обеспечительные меры», об исполнении договора ничего"}
+{"case_id": "a43-11257-2024-cass-avv-128073", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о признании торгов и договора недействительными заявлен"}
+{"case_id": "a43-1461-2023-cass-avv-129804", "predicate": "causation_established", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "суд прямо: причинно-следственная связь не доказана"}
+{"case_id": "a43-1461-2023-cass-avv-129804", "predicate": "loss_claimed", "verdict": "да", "kind": null, "reason_ru": "встречный иск о взыскании убытков в виде разницы цен"}
+{"case_id": "a43-1461-2023-cass-avv-129804", "predicate": "payment_defense_applies", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «встречный иск», а не встречное однородное требование"}
+{"case_id": "a43-1461-2023-cass-avv-129804", "predicate": "payment_due", "verdict": "да", "kind": null, "reason_ru": "срок второго авансового платежа наступил, платёж не внесён"}
+{"case_id": "a43-1461-2023-cass-avv-129804", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "договор купли-продажи крана, обязанность внести авансовые платежи"}
+{"case_id": "a43-1461-2023-cass-avv-129804", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "претензия и иски заявлены"}
+{"case_id": "a43-549-2022-cass-avv-119249", "predicate": "loss_claimed", "verdict": "да", "kind": null, "reason_ru": "заявлены реальный ущерб и упущенная выгода"}
+{"case_id": "a43-549-2022-cass-avv-119249", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании убытков заявлен"}
+{"case_id": "a45-3827-2019-cass-azs-208498", "predicate": "loss_claimed", "verdict": "нет", "kind": "смежное_понятие", "reason_ru": "«в ущерб независимым кредиторам» — характеристика цели сделок, а не заявленные убытки"}
+{"case_id": "a45-3827-2019-cass-azs-208498", "predicate": "payment_missed", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "задолженность признана фиктивной, реальность сделок не подтверждена"}
+{"case_id": "a45-3827-2019-cass-azs-208498", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "заявление о включении требования в реестр подано"}
+{"case_id": "a51-10070-2023-cass-adv-136103", "predicate": "limitation_period_expired", "verdict": "да", "kind": null, "reason_ru": "суд установил пропуск годичного срока исковой давности"}
+{"case_id": "a51-10070-2023-cass-adv-136103", "predicate": "loss_claimed", "verdict": "нет", "kind": "смежное_понятие", "reason_ru": "ущерб заявлен как основание оспаривания крупной сделки, а не как требование убытков"}
+{"case_id": "a51-10070-2023-cass-adv-136103", "predicate": "payment_due", "verdict": "да", "kind": null, "reason_ru": "предоплата произведена"}
+{"case_id": "a51-10070-2023-cass-adv-136103", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "договор поставки на условиях полной предоплаты, покупатель перечислил 20 млн"}
+{"case_id": "a51-21000-2015-cass-adv-139014", "predicate": "payment_missed", "verdict": "да", "kind": null, "reason_ru": "задолженность перед банком существовала и погашалась из выручки"}
+{"case_id": "a51-21000-2015-cass-adv-139014", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "требования о признании сделок недействительными заявлены"}
+{"case_id": "a51-8801-2025-cass-adv-143320", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "договор подряда признан заключённым, оплата по счёту произведена"}
+{"case_id": "a51-8801-2025-cass-adv-143320", "predicate": "performance_completed", "verdict": "да", "kind": null, "reason_ru": "конструкции изготовлены, переданы и установлены — суд установил исполнение"}
+{"case_id": "a51-8801-2025-cass-adv-143320", "predicate": "performance_nonconforming", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "истец сослался на качество, но суд недостатка не установил и в иске отказал"}
+{"case_id": "a51-8801-2025-cass-adv-143320", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "претензия направлена, иск заявлен"}
+{"case_id": "a53-32148-2023-cass-ask-203585", "predicate": "loss_claimed", "verdict": "нет", "kind": "смежное_понятие", "reason_ru": "ущерб заявлен как основание оспаривания сделки, а не как требование убытков"}
+{"case_id": "a55-1232-2025-cass-apv-244369", "predicate": "causation_established", "verdict": "нет", "kind": "смежное_понятие", "reason_ru": "«вследствие просрочки кредитора» — причинная связь просрочки, а не убытков; убытки не заявлены"}
+{"case_id": "a55-1232-2025-cass-apv-244369", "predicate": "payment_defense_applies", "verdict": "да", "kind": null, "reason_ru": "«встречные обязательства» заказчика не исполнены — просрочка кредитора снимает неустойку"}
+{"case_id": "a55-1232-2025-cass-apv-244369", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании пеней и штрафа заявлен"}
+{"case_id": "a55-19956-2022-cass-apv-227301", "predicate": "loss_claimed", "verdict": "да", "kind": null, "reason_ru": "заявлено требование о взыскании убытков"}
+{"case_id": "a55-19956-2022-cass-apv-227301", "predicate": "payment_missed", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "фраза отрицает: «задолженность по алиментам отсутствовала»"}
+{"case_id": "a55-19956-2022-cass-apv-227301", "predicate": "performance_completed", "verdict": "да", "kind": null, "reason_ru": "имущество реально передано обществу и используется им"}
+{"case_id": "a55-19956-2022-cass-apv-227301", "predicate": "performance_nonconforming", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «в качестве вклада»"}
+{"case_id": "a55-19956-2022-cass-apv-227301", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "исковые требования заявлены"}
+{"case_id": "a55-20451-2025-cass-apv-247074", "predicate": "payment_defense_applies", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «переговоры приостановились», а не приостановление исполнения"}
+{"case_id": "a55-20451-2025-cass-apv-247074", "predicate": "payment_duty_exists", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "фраза отрицает: «истец не выставлял счет на оплату»; договор незаключён"}
+{"case_id": "a55-20451-2025-cass-apv-247074", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "претензия и иск о штрафе заявлены"}
+{"case_id": "a55-27686-2023-cass-apv-236669", "predicate": "limitation_period_expired", "verdict": "да", "kind": null, "reason_ru": "суд установил пропуск трёхлетнего срока"}
+{"case_id": "a55-27686-2023-cass-apv-236669", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании неустойки заявлен"}
+{"case_id": "a55-6599-2023-cass-apv-236114", "predicate": "limitation_period_expired", "verdict": "да", "kind": null, "reason_ru": "по требованиям за 2019 год срок истёк"}
+{"case_id": "a55-6599-2023-cass-apv-236114", "predicate": "payment_missed", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "суд: факт оказания услуг не доказан, долга нет"}
+{"case_id": "a55-6599-2023-cass-apv-236114", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании долга и неустойки заявлен"}
+{"case_id": "a59-4738-2023-cass-adv-139015", "predicate": "limitation_period_expired", "verdict": "да", "kind": null, "reason_ru": "суд установил пропуск срока исковой давности"}
+{"case_id": "a59-4738-2023-cass-adv-139015", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "сделка признана возмездной и исполненной, расходы возмещены"}
+{"case_id": "a59-4738-2023-cass-adv-139015", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о признании сделки недействительной и взыскании заявлен"}
+{"case_id": "a60-47243-2018-cass-aur-207691", "predicate": "payment_due", "verdict": "нет", "kind": "договор_ничтожен_или_незаключён", "reason_ru": "срок платежа по незаключённому договору не наступает"}
+{"case_id": "a60-47243-2018-cass-aur-207691", "predicate": "payment_duty_exists", "verdict": "нет", "kind": "договор_ничтожен_или_незаключён", "reason_ru": "договор признан незаключённым, договорной обязанности оплатить нет"}
+{"case_id": "a60-47243-2018-cass-aur-207691", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "требования о взыскании заявлены"}
+{"case_id": "a67-10172-2021-cass-azs-212429", "predicate": "limitation_period_expired", "verdict": "да", "kind": null, "reason_ru": "суд установил пропуск срока по части требований"}
+{"case_id": "a67-10172-2021-cass-azs-212429", "predicate": "payment_missed", "verdict": "да", "kind": null, "reason_ru": "задолженность установлена, часть требования признана обоснованной"}
+{"case_id": "a67-10172-2021-cass-azs-212429", "predicate": "performance_completed", "verdict": "да", "kind": null, "reason_ru": "товар передан по счетам-фактурам, акты выполненных работ подписаны"}
+{"case_id": "a67-10172-2021-cass-azs-212429", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "заявление о включении требований подано"}
+{"case_id": "a67-8637-2022-cass-azs-203400", "predicate": "duty_exists", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "фраза отрицает обязанность: «Покупатель не обязан вносить предоплату»"}
+{"case_id": "a67-8637-2022-cass-azs-203400", "predicate": "payment_due", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "суд прямо: покупатель не обязан вносить предоплату"}
+{"case_id": "a67-8637-2022-cass-azs-203400", "predicate": "payment_duty_exists", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "суд: обязательство на заявленную сумму не возникло"}
+{"case_id": "a67-8637-2022-cass-azs-203400", "predicate": "performance_completed", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "по спорному обязательству исполнения нет: покупатель отказался принять партию"}
+{"case_id": "a67-8637-2022-cass-azs-203400", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "истец потребовал оплату и штраф"}
+{"case_id": "a73-9126-2023-cass-adv-134721", "predicate": "payment_defense_applies", "verdict": "да", "kind": null, "reason_ru": "перевозчик заявил зачёт, суд признал обязательство прекращённым"}
+{"case_id": "a73-9126-2023-cass-adv-134721", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "обязанность заказчика внести провозную плату установлена"}
+{"case_id": "a73-9126-2023-cass-adv-134721", "predicate": "payment_missed", "verdict": "да", "kind": null, "reason_ru": "задолженность по провозной плате 2 519 749 руб. установлена"}
+{"case_id": "a73-9126-2023-cass-adv-134721", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "заказчик потребовал штраф, иск заявлен"}
+{"case_id": "a75-15673-2023-cass-azs-216426", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "договор купли-продажи автомобиля стоимостью 1 990 000 руб., обязанность оплатить"}
+{"case_id": "a75-15705-2025-cass-azs-221575", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании неустойки заявлен"}
+{"case_id": "a79-1019-2023-cass-avv-122293", "predicate": "payment_duty_exists", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "«доказательств оплаты по договору не представлено»; сам договор сфальсифицирован"}
+{"case_id": "a79-1019-2023-cass-avv-122293", "predicate": "performance_completed", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "слово из «акта приема-передачи», который суд признал сфальсифицированным: передача не установлена"}
+{"case_id": "a79-1019-2023-cass-avv-122293", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "виндикационный иск заявлен"}
+{"case_id": "a79-3098-2023-cass-avv-128859", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "заявление финансового управляющего о недействительности подано"}
+{"case_id": "a82-7717-2024-cass-avv-131271", "predicate": "causation_established", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "суд прямо: причинно-следственная связь не доказана"}
+{"case_id": "a82-7717-2024-cass-avv-131271", "predicate": "duty_exists", "verdict": "да", "kind": null, "reason_ru": "договор энергоснабжения заключён, обязанность подавать энергию установлена судом"}
+{"case_id": "a82-7717-2024-cass-avv-131271", "predicate": "limitation_period_expired", "verdict": "да", "kind": null, "reason_ru": "суд установил пропуск трёхлетнего срока"}
+{"case_id": "a82-7717-2024-cass-avv-131271", "predicate": "loss_claimed", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании реального ущерба и упущенной выгоды"}
+{"case_id": "a82-7717-2024-cass-avv-131271", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании реального ущерба и упущенной выгоды заявлен"}
+{"case_id": "vs-18-kg17-121", "predicate": "causation_established", "verdict": "да", "kind": null, "reason_ru": "изъятие участка повлекло убытки покупателя, иск удовлетворён"}
+{"case_id": "vs-18-kg17-121", "predicate": "duty_exists", "verdict": "да", "kind": null, "reason_ru": "ВС: продавец обязан возместить покупателю убытки при изъятии товара"}
+{"case_id": "vs-18-kg17-121", "predicate": "limitation_period_expired", "verdict": "нет", "kind": "факт_отвергнут_судом", "reason_ru": "ВС: срок течёт с момента вступления решения в силу и не истёк"}
+{"case_id": "vs-18-kg17-121", "predicate": "loss_claimed", "verdict": "да", "kind": null, "reason_ru": "требование о возмещении убытков заявлено и удовлетворено"}
+{"case_id": "vs-18-kg17-121", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "требование о возмещении заявлено"}
+{"case_id": "vs-310-es15-4563", "predicate": "causation_established", "verdict": "нет", "kind": "договор_ничтожен_или_незаключён", "reason_ru": "«уничтожен в результате поджога» — не причинная связь заявленного требования"}
+{"case_id": "vs-310-es15-4563", "predicate": "loss_claimed", "verdict": "нет", "kind": "смежное_понятие", "reason_ru": "требование заявлено как неосновательное обогащение, а не как убытки"}
+{"case_id": "vs-310-es15-4563", "predicate": "payment_defense_applies", "verdict": "нет", "kind": "смежное_понятие", "reason_ru": "«удержание средств» — возражение против возврата, а не против платежа"}
+{"case_id": "vs-310-es15-4563", "predicate": "payment_due", "verdict": "да", "kind": null, "reason_ru": "аванс и лизинговые платежи уплачены, срок наступил"}
+{"case_id": "vs-310-es15-4563", "predicate": "payment_duty_exists", "verdict": "да", "kind": null, "reason_ru": "договор лизинга, обязанность вносить лизинговые платежи"}
+{"case_id": "vs-310-es15-4563", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "требование о взыскании заявлено"}
+{"case_id": "vs-4-kg22-2-k1", "predicate": "performance_completed", "verdict": "да", "kind": null, "reason_ru": "квартира передана истцу 4 декабря 2020 года"}
+{"case_id": "vs-4-kg22-2-k1", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "иск о взыскании неустойки заявлен"}
+{"case_id": "vs-41-kg21-49-k4", "predicate": "causation_established", "verdict": "нет", "kind": "смежное_понятие", "reason_ru": "«в результате ДТП» — не причинная связь заявленных убытков; требование о страховой выплате"}
+{"case_id": "vs-41-kg21-49-k4", "predicate": "duty_exists", "verdict": "да", "kind": null, "reason_ru": "обязанность страховщика организовать восстановительный ремонт"}
+{"case_id": "vs-41-kg21-49-k4", "predicate": "performance_nonconforming", "verdict": "да", "kind": null, "reason_ru": "суд: страховщик ненадлежащим образом исполнил обязанность"}
+{"case_id": "vs-41-kg21-49-k4", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "претензии направлены, иск заявлен"}
+{"case_id": "vs-5-kg24-43-k2", "predicate": "limitation_period_expired", "verdict": "да", "kind": null, "reason_ru": "ВС: истцом пропущен срок исковой давности"}
+{"case_id": "vs-5-kg24-43-k2", "predicate": "performance_completed", "verdict": "нет", "kind": "омоним", "reason_ru": "омоним: «по принятию мер», «принято новое решение»"}
+{"case_id": "vs-5-kg24-43-k2", "predicate": "remedy_requested", "verdict": "да", "kind": null, "reason_ru": "требования об истребовании и признании права заявлены"}
