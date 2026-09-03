@@ -27,8 +27,23 @@ def test_gold_covers_exactly_what_the_extractor_proposes() -> None:
     report = run_keyword_extraction_evaluation()
 
     assert report.unlabelled == [], report.unlabelled
-    assert report.stale_labels == [], report.stale_labels
     assert report.proposals == report.correct + report.wrong + report.undetermined
+    # Эталон шире, чем нынешняя выдача: в нём остались подсказки, снятые
+    # стоп-фразами. Это не мусор, а регрессия на сами правила.
+    assert len(load_gold()) == report.proposals + len(report.suppressed_by_rules)
+
+
+def test_the_stop_phrases_removed_only_wrong_proposals() -> None:
+    """Правило, снимающее верную подсказку, отнимает больше, чем даёт.
+
+    Стоп-фразы вводились ровно на этом условии: они убирают шум, а не полноту.
+    Проверка держит условие, а не однажды измеренную цифру: расширить список
+    оборотов и потерять верную подсказку молча нельзя.
+    """
+    report = run_keyword_extraction_evaluation()
+
+    assert report.wrongly_suppressed == [], report.wrongly_suppressed
+    assert len(report.suppressed_by_rules) == 24
 
 
 def test_every_label_states_a_reason() -> None:
@@ -47,9 +62,11 @@ def test_the_measured_numbers_are_pinned() -> None:
     report = run_keyword_extraction_evaluation()
 
     assert report.documents == 55
-    assert report.proposals == 194
+    # Предложений было 194 при точности 64 %; стоп-фразы сняли 24 подсказки,
+    # все до одной ошибочные, и точность поднялась до 73 %.
+    assert report.proposals == 170
     assert report.correct == 124
-    assert 0.63 < report.precision < 0.65
+    assert 0.72 < report.precision < 0.74
     # Полнота измерена по одному предикату, где эталон известен без разметки:
     # все 55 записей — судебные акты по заявленным требованиям.
     assert 0.86 < report.recall_remedy_requested < 0.88
@@ -58,15 +75,15 @@ def test_the_measured_numbers_are_pinned() -> None:
 def test_the_worst_predicates_are_named_not_averaged() -> None:
     """Средняя точность прячет то, ради чего измерение и делалось.
 
-    Причинная связь и возражение против платежа промахиваются почти всегда:
-    слова «вследствие» и «встречный» в русском юридическом тексте почти никогда
-    не значат того, что ищет модель. Общая цифра это скрывает.
+    Причинная связь промахивается чаще всех: «вследствие» в русском юридическом
+    тексте почти никогда не связывает нарушение с убытками. Стоп-фразы подняли
+    её с 8 % до 20 %, и это по-прежнему худший предикат набора — списком слов
+    отрицание и смежные понятия не берутся. Общая цифра это скрывает.
     """
     report = run_keyword_extraction_evaluation()
     scores = {item.predicate: item for item in report.per_predicate}
 
-    assert scores["causation_established"].precision < 0.15
-    assert scores["payment_defense_applies"].precision < 0.25
+    assert scores["causation_established"].precision < 0.25
     # А там, где слово однозначно, поиск по словам работает хорошо.
     assert scores["remedy_requested"].precision > 0.95
 

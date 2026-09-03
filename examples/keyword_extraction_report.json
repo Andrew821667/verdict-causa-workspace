@@ -2,12 +2,13 @@
   "version": "ui-extraction-evaluation-v0",
   "documents": 55,
   "documents_without_any_proposal": [
+    "88-14968-2026-cass-ksoj004-253200",
     "a40-19629-14-142-170-cass-ams-221014"
   ],
-  "proposals": 194,
+  "proposals": 170,
   "correct": 124,
-  "wrong": 68,
-  "undetermined": 2,
+  "wrong": 45,
+  "undetermined": 1,
   "per_predicate": [
     {
       "predicate": "remedy_requested",
@@ -20,29 +21,19 @@
       "correct": 15
     },
     {
-      "predicate": "performance_completed",
+      "predicate": "payment_missed",
       "proposed": 21,
       "correct": 12
     },
     {
-      "predicate": "payment_missed",
-      "proposed": 21,
+      "predicate": "performance_completed",
+      "proposed": 18,
       "correct": 12
     },
     {
       "predicate": "duty_exists",
       "proposed": 17,
       "correct": 12
-    },
-    {
-      "predicate": "payment_defense_applies",
-      "proposed": 16,
-      "correct": 3
-    },
-    {
-      "predicate": "causation_established",
-      "proposed": 12,
-      "correct": 1
     },
     {
       "predicate": "loss_claimed",
@@ -60,24 +51,61 @@
       "correct": 5
     },
     {
+      "predicate": "payment_defense_applies",
+      "proposed": 5,
+      "correct": 3
+    },
+    {
+      "predicate": "causation_established",
+      "proposed": 5,
+      "correct": 1
+    },
+    {
       "predicate": "performance_nonconforming",
-      "proposed": 7,
+      "proposed": 4,
       "correct": 2
     }
   ],
   "miss_kinds": {
     "факт_отвергнут_судом": 23,
-    "омоним": 23,
     "договор_ничтожен_или_незаключён": 11,
-    "смежное_понятие": 11,
+    "смежное_понятие": 7,
+    "омоним": 3,
     "факт_другого_обязательства": 2
   },
   "unlabelled": [],
-  "stale_labels": [],
+  "suppressed_by_rules": [
+    "88-10752-2023-cass-ksoj002-108217:performance_nonconforming",
+    "88-11827-2023-cass-ksoj007-89604:payment_defense_applies",
+    "88-12081-2024-cass-ksoj007-119496:causation_established",
+    "88-12081-2024-cass-ksoj007-119496:payment_defense_applies",
+    "88-12844-2024-cass-ksoj001-173181:payment_defense_applies",
+    "88-14968-2026-cass-ksoj004-253200:causation_established",
+    "88-15461-2025-cass-ksoj003-151203:performance_completed",
+    "88-16698-2026-cass-ksoj001-256023:causation_established",
+    "88-16698-2026-cass-ksoj001-256023:payment_defense_applies",
+    "88-26046-2023-cass-ksoj002-125208:causation_established",
+    "88-26046-2023-cass-ksoj002-125208:performance_completed",
+    "88-4580-2026-cass-ksoj008-184804:payment_defense_applies",
+    "a04-4768-2025-cass-adv-143671:payment_defense_applies",
+    "a12-3652-2019-cass-apv-181344:performance_nonconforming",
+    "a19-26528-2022-cass-avs-127653:causation_established",
+    "a19-26528-2022-cass-avs-127653:payment_defense_applies",
+    "a33-28136-2024-cass-avs-136444:causation_established",
+    "a35-3775-2020-cass-acn-151105:payment_defense_applies",
+    "a40-252357-2016-cass-ams-301832:payment_defense_applies",
+    "a40-87930-2024-cass-ams-575831:payment_defense_applies",
+    "a43-1461-2023-cass-avv-129804:payment_defense_applies",
+    "a55-19956-2022-cass-apv-227301:performance_nonconforming",
+    "vs-41-kg21-49-k4:causation_established",
+    "vs-5-kg24-43-k2:performance_completed"
+  ],
+  "wrongly_suppressed": [],
   "recall_remedy_requested": 0.8727272727272727,
   "notes_ru": [
     "Корпус — судебные акты, а не договоры и претензии, под которые собирался словарь. Точность на договорах может отличаться; переносится не число, а перечень способов промаха.",
     "Полнота измерена по одному предикату — `remedy_requested`: в каждой записи выгрузки требование заявлено, потому что все они разрешают спор по иску. Эталона на отрицательных примерах по остальным предикатам нет, и полноту по ним измерением здесь не подменяется.",
-    "Разметка сделана вручную, причина записана по каждой записи. Это её ограничение и одновременно единственный доступный источник истины."
+    "Разметка сделана вручную, причина записана по каждой записи. Это её ограничение и одновременно единственный доступный источник истины.",
+    "Эталон размечен до введения стоп-фраз и потому работает регрессией на них: снятая подсказка остаётся в нём с решением, и если правило снимет верную, это будет видно поимённо, а не растворится в средней цифре."
   ]
 }

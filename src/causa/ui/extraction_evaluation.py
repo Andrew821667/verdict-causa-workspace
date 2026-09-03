@@ -35,6 +35,14 @@
 этих текстах нет. Причина записана по каждой записи, поэтому спорить с разметкой
 можно предметно, а не в целом.
 
+## Эталон как регрессия на правила
+
+Разметка сделана до того, как в извлекатель добавили стоп-фразы, и потому годится
+не только для измерения точности. Снятая правилом подсказка не исчезает из
+эталона — она остаётся там со своим решением, и отчёт называет поимённо, что
+именно снято. Если правило когда-нибудь снимет **верную** подсказку, это будет
+видно в `wrongly_suppressed`, а не растворится в улучшившейся средней цифре.
+
 ## Что делает проверка невозможной подгонку
 
 Эталон привязан к паре «дело — предикат». Если словарь изменится и извлекатель
@@ -132,8 +140,12 @@ class KeywordExtractionReport(BaseModel):
     miss_kinds: dict[str, int] = Field(default_factory=dict)
     #: Предложения, для которых эталона нет. Непустой список — дефект набора.
     unlabelled: list[str] = Field(default_factory=list)
-    #: Эталонные записи, которых извлекатель больше не выдаёт.
-    stale_labels: list[str] = Field(default_factory=list)
+    #: Размеченные предложения, которых извлекатель больше не выдаёт: их сняли
+    #: стоп-фразы. Список не дефект, а мера — видно, сколько шума убрано.
+    suppressed_by_rules: list[str] = Field(default_factory=list)
+    #: Из снятых — те, что были верны. Обязан быть пуст: правило, снимающее
+    #: верную подсказку, отнимает у юриста больше, чем даёт.
+    wrongly_suppressed: list[str] = Field(default_factory=list)
     recall_remedy_requested: float = 0.0
     notes_ru: list[str] = Field(default_factory=list)
 
@@ -221,7 +233,12 @@ def run_keyword_extraction_evaluation() -> KeywordExtractionReport:
             if label.kind:
                 miss_kinds[label.kind] += 1
 
-    stale = sorted(f"{case}:{predicate}" for case, predicate in gold.keys() - seen)
+    suppressed = sorted(gold.keys() - seen)
+    wrongly = sorted(
+        f"{case}:{predicate}"
+        for case, predicate in suppressed
+        if gold[(case, predicate)].verdict == "да"
+    )
     proposals_total = sum(verdicts.values()) + len(unlabelled)
     scores = [
         PredicateScore(predicate=name, proposed=sum(counts.values()), correct=counts["да"])
@@ -237,6 +254,9 @@ def run_keyword_extraction_evaluation() -> KeywordExtractionReport:
         "по ним измерением здесь не подменяется.",
         "Разметка сделана вручную, причина записана по каждой записи. Это её "
         "ограничение и одновременно единственный доступный источник истины.",
+        "Эталон размечен до введения стоп-фраз и потому работает регрессией на "
+        "них: снятая подсказка остаётся в нём с решением, и если правило снимет "
+        "верную, это будет видно поимённо, а не растворится в средней цифре.",
     ]
     if unlabelled:
         notes.append(
@@ -253,7 +273,8 @@ def run_keyword_extraction_evaluation() -> KeywordExtractionReport:
         per_predicate=scores,
         miss_kinds=dict(sorted(miss_kinds.items(), key=lambda kv: -kv[1])),
         unlabelled=sorted(unlabelled),
-        stale_labels=stale,
+        suppressed_by_rules=[f"{case}:{predicate}" for case, predicate in suppressed],
+        wrongly_suppressed=wrongly,
         recall_remedy_requested=remedy_hits / len(documents) if documents else 0.0,
         notes_ru=notes,
     )
