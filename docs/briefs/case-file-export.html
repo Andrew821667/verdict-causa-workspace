@@ -1,0 +1,719 @@
+<title>Корпус материалов дел</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* Оформление продолжает уже принятую в docs/briefs/ систему заданий:
+     те же токены, та же тройка шрифтов, те же компоненты. Новых оттенков
+     не вводится. */
+  :root {
+    --paper: #F6F7F9;
+    --card: #FFFFFF;
+    --ink: #15181E;
+    --ink-soft: #4C5563;
+    --ink-faint: #757F8E;
+    --rule: #DDE1E8;
+    --rule-strong: #C3C9D4;
+    --indigo: #243B6B;
+    --indigo-soft: #E8ECF5;
+    --alarm: #8C2F27;
+    --alarm-bg: #FBF0EE;
+    --alarm-rule: #D9B4AE;
+    --code-bg: #F0F2F6;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #101319;
+      --card: #171B23;
+      --ink: #E7EAF0;
+      --ink-soft: #A5AEBD;
+      --ink-faint: #798291;
+      --rule: #272C37;
+      --rule-strong: #39404E;
+      --indigo: #93A9DF;
+      --indigo-soft: #1B2438;
+      --alarm: #E8938A;
+      --alarm-bg: #241715;
+      --alarm-rule: #5A322C;
+      --code-bg: #1C212B;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #101319;
+    --card: #171B23;
+    --ink: #E7EAF0;
+    --ink-soft: #A5AEBD;
+    --ink-faint: #798291;
+    --rule: #272C37;
+    --rule-strong: #39404E;
+    --indigo: #93A9DF;
+    --indigo-soft: #1B2438;
+    --alarm: #E8938A;
+    --alarm-bg: #241715;
+    --alarm-rule: #5A322C;
+    --code-bg: #1C212B;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 61rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1.1rem, 4vw, 3rem) 6rem;
+  }
+
+  /* ── шапка ─────────────────────────────────────────────── */
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  h1 {
+    font-family: Spectral, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 4.6vw, 2.9rem);
+    line-height: 1.16;
+    text-wrap: balance;
+    margin: 0.5rem 0 0;
+    letter-spacing: -0.01em;
+  }
+
+  .standfirst {
+    font-family: Spectral, Georgia, serif;
+    font-size: clamp(1.02rem, 2vw, 1.18rem);
+    color: var(--ink-soft);
+    max-width: 40rem;
+    margin-top: 1rem;
+  }
+
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 2.2rem;
+    margin-top: 2rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--rule);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+  }
+
+  .facts b { font-weight: 500; color: var(--ink-soft); }
+
+  /* ── запрет ────────────────────────────────────────────── */
+
+  .prohibition {
+    margin: 2.6rem 0 3.4rem;
+    background: var(--alarm-bg);
+    border: 1px solid var(--alarm-rule);
+    border-left-width: 4px;
+    border-radius: 2px;
+    padding: 1.5rem clamp(1.1rem, 3vw, 1.9rem);
+  }
+
+  .prohibition h2 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--alarm);
+    margin: 0 0 0.7rem;
+  }
+
+  .prohibition p { margin: 0; font-size: 1.02rem; color: var(--ink); }
+  .prohibition p + p { margin-top: 0.8rem; }
+
+  /* ── разделы с висячими номерами ───────────────────────── */
+
+  section {
+    display: grid;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: 0 1.4rem;
+    padding-top: 2.6rem;
+    margin-top: 2.6rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  section:first-of-type { border-top: none; }
+
+  .num {
+    font-family: Spectral, Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--indigo);
+    line-height: 1.1;
+    padding-top: 0.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .body { min-width: 0; }
+
+  h2:not(.prohibition h2) {
+    font-family: Spectral, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.3rem, 2.6vw, 1.62rem);
+    line-height: 1.24;
+    text-wrap: balance;
+    margin: 0 0 0.9rem;
+  }
+
+  h3 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    margin: 1.9rem 0 0.6rem;
+    color: var(--ink);
+  }
+
+  p { margin: 0 0 1rem; max-width: 40rem; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; }
+  em { font-family: Spectral, Georgia, serif; font-style: italic; }
+
+  code {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.86em;
+    background: var(--code-bg);
+    padding: 0.1em 0.36em;
+    border-radius: 2px;
+  }
+
+  /* ── цитата пересказа ──────────────────────────────────── */
+
+  blockquote {
+    font-family: Spectral, Georgia, serif;
+    font-size: 1.08rem;
+    line-height: 1.5;
+    color: var(--ink);
+    border-left: 3px solid var(--indigo);
+    background: var(--indigo-soft);
+    margin: 1.3rem 0 1.6rem;
+    padding: 1rem 1.2rem;
+    border-radius: 0 2px 2px 0;
+    max-width: 40rem;
+  }
+
+  blockquote p { margin: 0; }
+
+  /* ── таблица полей ─────────────────────────────────────── */
+
+  .scroll {
+    overflow-x: auto;
+    margin: 1.2rem 0 1.4rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: var(--card);
+  }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.88rem; min-width: 30rem; }
+
+  th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--rule-strong);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 0.68rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    color: var(--ink-soft);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td:first-child {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.82rem;
+    color: var(--indigo);
+    white-space: nowrap;
+  }
+
+  /* ── блоки кода ────────────────────────────────────────── */
+
+  pre {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 1.05rem 1.2rem;
+    overflow-x: auto;
+    margin: 1.2rem 0 1.4rem;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.82rem;
+    line-height: 1.62;
+    color: var(--ink-soft);
+  }
+
+  /* ── списки ────────────────────────────────────────────── */
+
+  ul { margin: 0 0 1rem; padding-left: 1.15rem; max-width: 40rem; }
+  li { margin-bottom: 0.62rem; padding-left: 0.2rem; }
+  li::marker { color: var(--ink-faint); }
+  li:last-child { margin-bottom: 0; }
+
+  ol.steps {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    max-width: 40rem;
+  }
+
+  ol.steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.85rem;
+  }
+
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.06em;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: var(--indigo);
+    background: var(--indigo-soft);
+    width: 1.4rem;
+    height: 1.4rem;
+    display: grid;
+    place-items: center;
+    border-radius: 2px;
+  }
+
+  .aside {
+    border-left: 2px solid var(--rule-strong);
+    padding: 0.15rem 0 0.15rem 1.1rem;
+    margin: 1.4rem 0;
+    color: var(--ink-soft);
+    font-family: Spectral, Georgia, serif;
+    font-size: 1rem;
+    max-width: 38rem;
+  }
+
+  .aside p { margin-bottom: 0.7rem; }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--rule);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    line-height: 1.75;
+  }
+
+  :focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+</style>
+<style>
+  /* ── покрытие признаков по видам документов ────────────── */
+  /* Единственный компонент, которого нет в прежних заданиях. Довод этого
+     задания — «единица выгрузки комплект, а не документ» — держится на одном
+     наблюдении: договор устанавливает три признака из двенадцати. Наблюдение
+     должно читаться раньше текста, поэтому оно нарисовано, а не рассказано. */
+
+  .coverage {
+    display: grid;
+    gap: 0;
+    margin: 1.4rem 0 1.6rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: var(--card);
+    overflow: hidden;
+  }
+
+  .cov-row {
+    display: grid;
+    grid-template-columns: minmax(9rem, 12rem) minmax(0, 1fr) 3.4rem;
+    gap: 0 1rem;
+    align-items: center;
+    padding: 0.8rem 1.1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .cov-row:last-child { border-bottom: none; }
+
+  .cov-row__name {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.8rem;
+    color: var(--indigo);
+    line-height: 1.35;
+  }
+
+  .cov-row__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.32rem;
+    min-width: 0;
+  }
+
+  .chip {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    padding: 0.1rem 0.42rem;
+    border-radius: 2px;
+    background: var(--indigo-soft);
+    color: var(--indigo);
+    white-space: nowrap;
+  }
+
+  .chip--claim { background: var(--alarm-bg); color: var(--alarm); }
+
+  .cov-row__count {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.86rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-faint);
+    text-align: right;
+  }
+
+  .cov-legend {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    margin: -0.8rem 0 1.4rem;
+  }
+
+  @media (max-width: 34rem) {
+    .cov-row { grid-template-columns: minmax(0, 1fr) 3rem; }
+    .cov-row__facts { grid-column: 1 / -1; }
+  }
+</style>
+
+<div class="sheet">
+  <header>
+    <div class="eyebrow">Задание для агента · выгрузка публичных документов</div>
+    <h1>Корпус материалов дел</h1>
+    <p class="standfirst">
+      Тридцать комплектов документов по тридцати спорам: договор, документы
+      исполнения, претензия. Нужны, чтобы проверить на своём жанре то, что
+      измерено на чужом.
+    </p>
+    <div class="facts">
+      <span><b>файл:</b> data/documents/case_files.jsonl</span>
+      <span><b>ветка:</b> data/case-file-corpus</span>
+      <span><b>комплектов:</b> 30</span>
+      <span><b>проверка до отправки:</b> scripts/check_case_file_corpus.py</span>
+    </div>
+  </header>
+
+  <div class="prohibition">
+    <h2>Запрет, который важнее задания</h2>
+    <p>
+      <strong>Агент не должен использовать проект для работы и в особенности
+      ключ АПИ любой ЛЛМ!!! Он должен работать используя ресурсы
+      подписки!</strong>
+    </p>
+    <p>
+      Задача решается выгрузкой публичных документов теми же средствами, какими
+      выгружены 127-ФЗ, постановления Пленума и база практики, — руками и
+      детерминированно, без модели. Если без ключа API LLM задачу выполнить
+      нельзя — остановись и напиши человеку.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Что уже измерено и почему этого мало</h2>
+      <p>
+        Система достаёт текст из приложенного документа и предлагает юристу,
+        какие факты в нём могут быть установлены. Точность этих предложений
+        измерена на 55 реальных документах: <strong>73 % верных</strong> после
+        того, как из словаря убрали устойчивые обороты-омонимы.
+      </p>
+      <p>
+        Измерена она <strong>не на том жанре</strong>. В репозитории есть только
+        судебные акты, а словарь собирался под договоры и претензии. Разница не
+        косметическая:
+      </p>
+      <ul>
+        <li>
+          договор <strong>устанавливает</strong> обстоятельство — «Поставщик
+          обязуется передать товар не позднее 15 января»;
+        </li>
+        <li>
+          судебный акт часто его <strong>отрицает</strong> — «задолженность не
+          подтверждена», «причинная связь не доказана».
+        </li>
+      </ul>
+      <p>
+        Поиск по словам отрицания не видит. На судебных актах это дало 23 промаха
+        из 46 — половину всех оставшихся. На договорах такого класса ошибок почти
+        не будет, а появятся другие. Какие и сколько — неизвестно, и решать по
+        чужому жанру, годится ли извлекатель для работы, нельзя.
+      </p>
+      <div class="aside">
+        <p>
+          Вторая причина не менее важная. Обороты-омонимы выведены по тому же
+          корпусу, на котором измерены, — это оценка сверху, а не честная
+          проверка. Второй корпус закрывает обе дыры разом: он и нужного жанра, и
+          в подгонке правил не участвовал.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Единица выгрузки — комплект, а не документ</h2>
+      <p>
+        Проверяемых признаков двенадцать, и ни один документ не устанавливает их
+        все. Договор говорит об обязанности, сроке и цене — и молчит о том,
+        произведено ли исполнение и заявлены ли убытки. Вот сколько признаков
+        покрывает каждый вид документа:
+      </p>
+
+      <div class="coverage">
+        <div class="cov-row">
+          <div class="cov-row__name">договор</div>
+          <div class="cov-row__facts">
+            <span class="chip">обязанность есть</span>
+            <span class="chip">денежная обязанность</span>
+            <span class="chip">основание освобождения</span>
+          </div>
+          <div class="cov-row__count">3 / 12</div>
+        </div>
+        <div class="cov-row">
+          <div class="cov-row__name">накладная,<br>акт, счёт</div>
+          <div class="cov-row__facts">
+            <span class="chip">исполнение произведено</span>
+            <span class="chip">недостаток исполнения</span>
+            <span class="chip">срок платежа наступил</span>
+            <span class="chip">платёж не произведён</span>
+          </div>
+          <div class="cov-row__count">4 / 12</div>
+        </div>
+        <div class="cov-row">
+          <div class="cov-row__name">претензия</div>
+          <div class="cov-row__facts">
+            <span class="chip chip--claim">заявлены убытки</span>
+            <span class="chip chip--claim">причинная связь</span>
+            <span class="chip chip--claim">требование заявлено</span>
+            <span class="chip">платёж не произведён</span>
+          </div>
+          <div class="cov-row__count">4 / 12</div>
+        </div>
+        <div class="cov-row">
+          <div class="cov-row__name">ответ на претензию</div>
+          <div class="cov-row__facts">
+            <span class="chip">возражение против платежа</span>
+          </div>
+          <div class="cov-row__count">1 / 12</div>
+        </div>
+      </div>
+      <p class="cov-legend">
+        Красным — признаки, которые устанавливает только претензия и больше
+        ничто.
+      </p>
+
+      <p>
+        Отсюда состав комплекта. <strong>Обязательно:</strong> договор любого
+        вида — поставка, подряд, услуги, аренда, энергоснабжение — и хотя бы один
+        документ сверх него.
+      </p>
+      <p>
+        <strong>Самое ценное — претензия.</strong> Это единственный документ, где
+        заявляются убытки, называется причинная связь и предъявляется требование.
+        Комплект с претензией стоит двух комплектов без неё.
+      </p>
+      <p>
+        Не гонись за полнотой комплекта. Два документа лучше, чем ничего; шесть
+        лучше, чем два; но тридцать комплектов по два документа полезнее, чем
+        пять по шесть.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Откуда брать</h2>
+      <ol class="steps">
+        <li>
+          <strong>Единая информационная система в сфере закупок.</strong>
+          Государственные контракты и документы об их исполнении публикуются по
+          закону: там лежат настоящие договоры с настоящими датами, суммами и
+          сторонами, а к ним — документы о приёмке. Лучший источник, потому что
+          документы одновременно реальные и публичные.
+        </li>
+        <li>
+          <strong>Формы и образцы из справочно-правовой базы.</strong> Хуже,
+          потому что в типовой форме вместо фактов стоят пропуски («не позднее
+          <code>___</code>»), а измеряется как раз поиск фактов. Брать только
+          заполненные образцы, а не бланки.
+        </li>
+        <li>
+          <strong>Иной публичный источник</strong> — документ, опубликованный
+          самим правообладателем или обязательный к опубликованию. Ссылка
+          обязательна.
+        </li>
+      </ol>
+      <p>
+        <strong>Персональные данные граждан не брать вовсе.</strong> Не
+        обезличивать — не брать. Обезличивание чужого документа силами
+        выгружающей стороны это ещё одна правка текста, за которую никто не
+        отвечает, а измеряется здесь именно текст.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Чего делать не нужно</h2>
+      <p>
+        <strong>Не размечай документы.</strong> Не пиши, какие факты документ
+        устанавливает, не проставляй признаки, не оценивай. Разметку делает
+        приёмная сторона — ровно так же, как с базой практики. Если бы разметку
+        присылала выгружающая сторона, эталон перестал бы быть независимым от
+        того, что он проверяет.
+      </p>
+      <p>
+        <strong>Не правь текст.</strong> Ни сокращений, ни пересказа, ни
+        «приведения к единому виду». Измеряется поиск по словам; пересказ измерял
+        бы слова пересказчика. Единственное исключение — редакционный аппарат
+        справочно-правовой базы («Путеводитель по …», «(см. текст в предыдущей
+        редакции)», «КонсультантПлюс: примечание»): он не часть документа, и
+        приёмка его отвергает.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">5</div>
+    <div class="body">
+      <h2>Формат</h2>
+      <p>
+        Файл <code>data/documents/case_files.jsonl</code>, по одному комплекту на
+        строку, UTF-8.
+      </p>
+      <pre><code>{
+  "id": "case-supply-01",
+  "title_ru": "Поставка медицинского оборудования для областной больницы",
+  "dispute_ru": "Поставщик нарушил срок поставки, заказчик начислил неустойку.",
+  "documents": [
+    {
+      "id": "case-supply-01-contract",
+      "kind": "договор",
+      "title_ru": "Государственный контракт № 0173100000123000001 от 12.03.2024",
+      "text": "&lt;дословный текст документа&gt;",
+      "source_ref": "0173100000123000001",
+      "source_kind": "еис_закупки",
+      "contains_personal_data": false
+    },
+    {
+      "id": "case-supply-01-claim",
+      "kind": "претензия",
+      "title_ru": "Претензия об уплате неустойки от 20.01.2025",
+      "text": "&lt;дословный текст документа&gt;",
+      "source_ref": "0173100000123000001",
+      "source_kind": "еис_закупки",
+      "contains_personal_data": false
+    }
+  ],
+  "notes_ru": []
+}</code></pre>
+
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr><th>поле</th><th>что в нём</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>kind</td><td>вид документа из закрытого списка; неизвестное значение приёмка отвергает с перечнем допустимых</td></tr>
+            <tr><td>text</td><td>дословный текст, не короче 400 знаков — иначе это название документа, а не документ</td></tr>
+            <tr><td>source_ref</td><td>реестровый номер, идентификатор карточки или ссылка — по чему документ можно найти заново</td></tr>
+            <tr><td>source_kind</td><td>еис_закупки · справочно_правовая_база · иной_публичный_источник</td></tr>
+            <tr><td>contains_personal_data</td><td>всегда ложь: документы с персональными данными в корпус не берутся</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Допустимые значения перечислены в
+        <code>src/causa/ui/case_file_corpus.py</code>, и там же по-русски
+        написано, что каждый вид документа способен установить.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">6</div>
+    <div class="body">
+      <h2>Проверь себя до отправки</h2>
+      <p>
+        В репозитории лежит скрипт, который говорит, примет ли приёмная сторона
+        файл:
+      </p>
+      <pre><code>.venv/bin/python scripts/check_case_file_corpus.py</code></pre>
+      <p>
+        Он называет каждую претензию по-русски и с номером строки, а в конце
+        печатает, чего в корпусе не хватает: каких видов документов нет вовсе и
+        сколько комплектов осталось без претензии. Прогони его до отправки —
+        тогда разбор не превратится в переписку.
+      </p>
+      <h3>Как отдать</h3>
+      <ul>
+        <li>ветка <code>data/case-file-corpus</code>, от актуального <code>main</code>;</li>
+        <li>в коммите ровно один файл — <code>data/documents/case_files.jsonl</code>;</li>
+        <li>push без создания pull request;</li>
+        <li>в сообщении коммита — сколько комплектов, сколько документов, из каких источников.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">7</div>
+    <div class="body">
+      <h2>Неполная выгрузка — тоже результат</h2>
+      <p>
+        Тридцать комплектов с претензиями может не набраться: претензии
+        публикуются редко, и это известно заранее. Неполная выгрузка
+        принимается, если сказано прямо, <strong>чего найти не удалось и
+        почему</strong>. Пятнадцать комплектов с честным отчётом полезнее
+        тридцати, добранных бланками вместо документов: бланк без фактов измеряет
+        не то, а отчёт о нехватке измеряет границу источника.
+      </p>
+      <p>
+        Отдельно напиши, до каких источников удалось добраться, а до каких нет.
+        Если единая информационная система закупок недоступна, это меняет всё
+        задание, и лучше узнать об этом сразу.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Полный текст задания — docs/case-file-export-brief.md<br>
+    Контракт данных и разбор видов документов — src/causa/ui/case_file_corpus.py<br>
+    Что уже измерено на судебных актах — docs/keyword-extraction-measurement.md
+  </footer>
+</div>
