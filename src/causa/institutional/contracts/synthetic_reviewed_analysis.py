@@ -165,6 +165,12 @@ from causa.institutional.contracts.special_accounts import (
     SpecialAccountsEvidenceAssertion,
     SpecialAccountsEvidencePredicate,
 )
+from causa.institutional.contracts.management_liability import (
+    MANAGEMENT_LIABILITY_LEGAL_SOURCE_REFS,
+    ManagementLiabilityEvidenceAssertion,
+    ManagementLiabilityEvidencePredicate,
+    ReviewedManagementLiabilityEvidence,
+)
 from causa.institutional.contracts.escrow_deposit import (
     EscrowDepositEvidenceAssertion,
     EscrowDepositEvidencePredicate,
@@ -686,6 +692,8 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-case-supply-1-special-accounts-evidence",
     "synthetic-ru-gk9261-9268-escrow-deposit-v1",
     "synthetic-case-supply-1-escrow-deposit-evidence",
+    "synthetic-ru-gk53-1-management-liability-v1",
+    "synthetic-case-supply-1-management-liability-evidence",
     "synthetic-ru-127fz-5-current-payments-v1",
     "synthetic-ru-127fz-63-observation-effects-v1",
     "synthetic-ru-127fz-134-creditor-ranking-v1",
@@ -3329,6 +3337,26 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             ),
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-special-accounts-reviewer",
+        ),
+        management_liability_evidence=ReviewedManagementLiabilityEvidence(
+            id="reviewed-management-liability-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            # Все признаки ложны: спор о поставке ведут две организации, и
+            # требований к директору или контролирующему лицу в деле нет.
+            # Институт обязан промолчать на таком наборе — это проверяет аудит
+            # «пустые факты не дают выводов».
+            assertions=tuple(
+                ManagementLiabilityEvidenceAssertion(
+                    id=f"management-liability-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=False,
+                    source_refs=("synthetic-case-supply-1-management-liability-evidence",),
+                )
+                for predicate in ManagementLiabilityEvidencePredicate
+            ),
+            legal_source_refs=MANAGEMENT_LIABILITY_LEGAL_SOURCE_REFS,
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-management-liability-reviewer",
         ),
         escrow_deposit_evidence=ReviewedEscrowDepositEvidence(
             id="reviewed-escrow-deposit-evidence-supply-1-v0",

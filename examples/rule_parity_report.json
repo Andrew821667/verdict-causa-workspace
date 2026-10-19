@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1220,
+  "declared_rules": 1230,
   "divergences_total": 0,
-  "executed_rules": 1220,
+  "executed_rules": 1230,
   "institutes": [
     {
       "declared_rules": 5,
@@ -378,6 +378,14 @@
       "institute": "loan",
       "matched": 11,
       "module": "loan.py"
+    },
+    {
+      "declared_rules": 10,
+      "divergences": [],
+      "executed_rules": 10,
+      "institute": "management_liability",
+      "matched": 10,
+      "module": "management_liability.py"
     },
     {
       "declared_rules": 11,
@@ -764,8 +772,8 @@
       "module": "formal_checks.py"
     }
   ],
-  "institutes_clean": 95,
-  "institutes_total": 95,
-  "matched_rules": 1220,
+  "institutes_clean": 96,
+  "institutes_total": 96,
+  "matched_rules": 1230,
   "version": "reasoning-rule-parity-v0"
 }

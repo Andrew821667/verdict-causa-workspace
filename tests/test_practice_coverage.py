@@ -52,22 +52,23 @@ def test_liability_chapter_is_not_swallowed_by_obligation_dynamics() -> None:
     assert institutes_for_article("404") == ["attribution_delay"]
 
 
-def test_point_gaps_answer_for_articles_just_past_an_institute() -> None:
-    """Статья с точкой сразу за границей института объяснена, а не покрыта.
+def test_point_articles_are_not_swallowed_by_the_neighbouring_institute() -> None:
+    """Статья с точкой за границей института покрыта своими предикатами, а не чужими.
 
     Ловушка здесь в том, что номер отличается от покрытого на долю: 53.1 стоит
-    вплотную к модели лиц (17–53). Расширить диапазон на такую статью означало
-    бы объявить покрытым то, чего в предикатах нет.
+    вплотную к модели лиц (17–53), 449.1 — вплотную к модели порядка заключения
+    (445–449). Расширить соседний диапазон на такую статью означало бы объявить
+    покрытым то, чего в его предикатах нет.
 
-    Статья 449.1 была вторым таким случаем — вплотную к модели порядка
-    заключения (445–449). В версии 1.9.0 она смоделирована, и диапазон расширен
-    вместе с предикатами; поэтому она проверяется ниже как покрытая, а не как
-    объяснённая.
+    Обе статьи прошли один путь: сначала точечный пробел с названной причиной,
+    затем собственные предикаты. Статья 449.1 смоделирована в версии 1.9.0
+    институтом порядка заключения, статья 53.1 — отдельным институтом
+    ответственности управляющих лиц. Поэтому обе проверяются как покрытые,
+    и проверяется именно то, кто их покрывает: не сосед по номеру.
     """
-    for article in ("53.1",):
-        assert institutes_for_article(article) == [], article
-        assert article in KNOWN_GAPS_RU, article
-        assert uncovered_domain_ru(article) != GAP_REASON_UNKNOWN_RU, article
+    assert institutes_for_article("53.1") == ["management_liability"]
+    assert "53.1" not in KNOWN_GAPS_RU
+    assert institutes_for_article("53") == ["persons"]
 
     assert institutes_for_article("449.1") == ["procedure"]
     assert "449.1" not in KNOWN_GAPS_RU

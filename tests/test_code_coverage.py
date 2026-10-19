@@ -120,7 +120,7 @@ def test_bankruptcy_articles_have_their_own_exact_reason_not_the_range_fallback(
     assert "127-ФЗ" in reason_25
     assert kind_65 == "граница"
     assert "127-ФЗ" in reason_65
-    assert reason_65 != CODE_GAP_REASONS_RU["53.1–123.28"][1]
+    assert reason_65 != CODE_GAP_REASONS_RU["53.2–123.28"][1]
 
 
 def test_the_code_walk_leaves_no_open_gap() -> None:

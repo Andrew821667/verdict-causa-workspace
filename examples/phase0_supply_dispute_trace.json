@@ -3330,6 +3330,40 @@
       }
     },
     {
+      "id": "synthetic-ru-gk53-1-management-liability-v1",
+      "title": "ГК РФ, статья 53.1: ответственность лица, уполномоченного выступать от имени юридического лица, членов коллегиальных органов и лиц, определяющих его действия",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Статья 53.1. Ответственность лица, уполномоченного выступать от имени юридического лица, членов коллегиальных органов юридического лица и лиц, определяющих действия юридического лица.\n\n1. Лицо, которое в силу закона, иного правового акта или учредительного документа юридического лица уполномочено выступать от его имени (пункт 3 статьи 53), обязано возместить по требованию юридического лица, его учредителей (участников), выступающих в интересах юридического лица, убытки, причиненные по его вине юридическому лицу.\n\nЛицо, которое в силу закона, иного правового акта или учредительного документа юридического лица уполномочено выступать от его имени, несет ответственность, если будет доказано, что при осуществлении своих прав и исполнении своих обязанностей оно действовало недобросовестно или неразумно, в том числе если его действия (бездействие) не соответствовали обычным условиям гражданского оборота или обычному предпринимательскому риску.\n\n2. Ответственность, предусмотренную пунктом 1 настоящей статьи, несут также члены коллегиальных органов юридического лица, за исключением тех из них, кто голосовал против решения, которое повлекло причинение юридическому лицу убытков, или, действуя добросовестно, не принимал участия в голосовании.\n\n3. Лицо, имеющее фактическую возможность определять действия юридического лица, в том числе возможность давать указания лицам, названным в пунктах 1 и 2 настоящей статьи, обязано действовать в интересах юридического лица разумно и добросовестно и несет ответственность за убытки, причиненные по его вине юридическому лицу.\n\n4. В случае совместного причинения убытков юридическому лицу лица, указанные в пунктах 1 - 3 настоящей статьи, обязаны возместить убытки солидарно.\n\n5. Соглашение об устранении или ограничении ответственности лиц, указанных в пунктах 1 и 2 настоящей статьи, за совершение недобросовестных действий, а в публичном обществе за совершение недобросовестных и неразумных действий (пункт 3 статьи 53) ничтожно.\n\nСоглашение об устранении или ограничении ответственности лица, указанного в пункте 3 настоящей статьи, ничтожно.",
+      "valid_from": "2014-09-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "management_liability_article_53_1",
+        "legal_reference": "ГК РФ, статья 53.1",
+        "specificity": "special",
+        "text_verbatim": true,
+        "basis_url": "https://government.ru/docs/all/95820/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-management-liability-evidence",
+      "title": "Синтетическая проверенная запись фактов об ответственности управляющих лиц",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спор о поставке ведут две организации, требований о возмещении убытков к директору, членам коллегиального органа или контролирующему лицу по статье 53.1 ГК РФ в деле не заявлено. Институт в деле не заявлен.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "management_liability_case_evidence",
+        "case_id": "case-supply-1",
+        "review_required": true
+      }
+    },
+    {
       "id": "synthetic-ru-127fz-5-current-payments-v1",
       "title": "127-ФЗ, статья 5: текущие платежи",
       "source_type": "statute",
@@ -11842,6 +11876,147 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-escrow-deposit-reviewer"
     },
+    "management_liability_evidence": {
+      "id": "reviewed-management-liability-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.management-liability-evidence.v0",
+      "assertions": [
+        {
+          "id": "management-liability-evidence-authorised_to_act_for_entity",
+          "predicate": "authorised_to_act_for_entity",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-member_of_collegial_body",
+          "predicate": "member_of_collegial_body",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-has_actual_ability_to_determine_actions",
+          "predicate": "has_actual_ability_to_determine_actions",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-claim_brought_by_entity_or_participant",
+          "predicate": "claim_brought_by_entity_or_participant",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-losses_caused_to_entity",
+          "predicate": "losses_caused_to_entity",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-fault_proven",
+          "predicate": "fault_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-losses_caused_jointly_with_others",
+          "predicate": "losses_caused_jointly_with_others",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-bad_faith_proven",
+          "predicate": "bad_faith_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-unreasonableness_proven",
+          "predicate": "unreasonableness_proven",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-conduct_outside_ordinary_course_or_risk",
+          "predicate": "conduct_outside_ordinary_course_or_risk",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-voted_against_the_harmful_decision",
+          "predicate": "voted_against_the_harmful_decision",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-abstained_in_good_faith",
+          "predicate": "abstained_in_good_faith",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-liability_limitation_agreement_made",
+          "predicate": "liability_limitation_agreement_made",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-entity_is_public_company",
+          "predicate": "entity_is_public_company",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-agreement_covers_bad_faith_conduct",
+          "predicate": "agreement_covers_bad_faith_conduct",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "id": "management-liability-evidence-agreement_covers_unreasonable_conduct",
+          "predicate": "agreement_covers_unreasonable_conduct",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk53-1-management-liability-v1",
+        "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-management-liability-reviewer"
+    },
     "bankruptcy_claims_evidence": {
       "id": "reviewed-bankruptcy-claims-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -18498,6 +18673,7 @@
       "synthetic-liability-reviewer",
       "synthetic-limitation-reviewer",
       "synthetic-loan-reviewer",
+      "synthetic-management-liability-reviewer",
       "synthetic-mandate-reviewer",
       "synthetic-meeting-decisions-reviewer",
       "synthetic-messages-reviewer",
@@ -18594,6 +18770,7 @@
       "synthetic-case-supply-1-liability-evidence",
       "synthetic-case-supply-1-limitation-evidence",
       "synthetic-case-supply-1-loan-evidence",
+      "synthetic-case-supply-1-management-liability-evidence",
       "synthetic-case-supply-1-mandate-evidence",
       "synthetic-case-supply-1-meeting-decisions-evidence",
       "synthetic-case-supply-1-messages-evidence",
@@ -18760,6 +18937,7 @@
       "synthetic-ru-gk518-524-supply-remedies-v1",
       "synthetic-ru-gk525-528-state-contract-v1",
       "synthetic-ru-gk529-534-state-supply-performance-v1",
+      "synthetic-ru-gk53-1-management-liability-v1",
       "synthetic-ru-gk535-536-contractation-concept-v1",
       "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
       "synthetic-ru-gk539-542-energy-supply-concept-v1",
@@ -28482,6 +28660,189 @@
         "Модель отвечает об одном договоре эскроу: контракт данных даёт один блок доказательств на институт."
       ]
     },
+    "management_liability_evidence_mapping": {
+      "evidence_id": "reviewed-management-liability-evidence-supply-1-v0",
+      "schema_version": "contracts.management-liability-evidence.v0",
+      "mapping_version": "contracts-reviewed-management-liability-to-facts-v0",
+      "facts": {
+        "authorised_to_act_for_entity": false,
+        "member_of_collegial_body": false,
+        "has_actual_ability_to_determine_actions": false,
+        "claim_brought_by_entity_or_participant": false,
+        "losses_caused_to_entity": false,
+        "fault_proven": false,
+        "losses_caused_jointly_with_others": false,
+        "bad_faith_proven": false,
+        "unreasonableness_proven": false,
+        "conduct_outside_ordinary_course_or_risk": false,
+        "voted_against_the_harmful_decision": false,
+        "abstained_in_good_faith": false,
+        "liability_limitation_agreement_made": false,
+        "entity_is_public_company": false,
+        "agreement_covers_bad_faith_conduct": false,
+        "agreement_covers_unreasonable_conduct": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk53-1-management-liability-v1",
+        "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "abstained_in_good_faith",
+          "assertion_id": "management-liability-evidence-abstained_in_good_faith",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "agreement_covers_bad_faith_conduct",
+          "assertion_id": "management-liability-evidence-agreement_covers_bad_faith_conduct",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "agreement_covers_unreasonable_conduct",
+          "assertion_id": "management-liability-evidence-agreement_covers_unreasonable_conduct",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "authorised_to_act_for_entity",
+          "assertion_id": "management-liability-evidence-authorised_to_act_for_entity",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "bad_faith_proven",
+          "assertion_id": "management-liability-evidence-bad_faith_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "claim_brought_by_entity_or_participant",
+          "assertion_id": "management-liability-evidence-claim_brought_by_entity_or_participant",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "conduct_outside_ordinary_course_or_risk",
+          "assertion_id": "management-liability-evidence-conduct_outside_ordinary_course_or_risk",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "entity_is_public_company",
+          "assertion_id": "management-liability-evidence-entity_is_public_company",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "fault_proven",
+          "assertion_id": "management-liability-evidence-fault_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "has_actual_ability_to_determine_actions",
+          "assertion_id": "management-liability-evidence-has_actual_ability_to_determine_actions",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "liability_limitation_agreement_made",
+          "assertion_id": "management-liability-evidence-liability_limitation_agreement_made",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "losses_caused_jointly_with_others",
+          "assertion_id": "management-liability-evidence-losses_caused_jointly_with_others",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "losses_caused_to_entity",
+          "assertion_id": "management-liability-evidence-losses_caused_to_entity",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "member_of_collegial_body",
+          "assertion_id": "management-liability-evidence-member_of_collegial_body",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "unreasonableness_proven",
+          "assertion_id": "management-liability-evidence-unreasonableness_proven",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        },
+        {
+          "fact_name": "voted_against_the_harmful_decision",
+          "assertion_id": "management-liability-evidence-voted_against_the_harmful_decision",
+          "source_refs": [
+            "synthetic-case-supply-1-management-liability-evidence"
+          ]
+        }
+      ]
+    },
+    "management_liability_constraint_set": {
+      "id": "management-liability-constraint-set:reviewed-management-liability-evidence-supply-1-v0",
+      "model_version": "contracts-management-liability-article-53-1-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk53-1-management-liability-v1",
+        "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1"
+      ],
+      "expressions": [
+        "person_within_article_53_1 == authorised_to_act_for_entity OR member_of_collegial_body OR has_actual_ability_to_determine_actions",
+        "standard_of_conduct_breached == bad_faith_proven OR unreasonableness_proven OR conduct_outside_ordinary_course_or_risk",
+        "collegial_member_exempt == member_of_collegial_body AND (voted_against_the_harmful_decision OR abstained_in_good_faith)",
+        "liability_of_authorised_person == authorised_to_act_for_entity AND claim_brought_by_entity_or_participant AND losses_caused_to_entity AND fault_proven AND standard_of_conduct_breached",
+        "liability_of_collegial_member == member_of_collegial_body AND claim_brought_by_entity_or_participant AND losses_caused_to_entity AND fault_proven AND standard_of_conduct_breached AND NOT collegial_member_exempt",
+        "liability_of_controlling_person == has_actual_ability_to_determine_actions AND losses_caused_to_entity AND fault_proven AND standard_of_conduct_breached",
+        "joint_and_several_liability == losses_caused_jointly_with_others AND (liability_of_authorised_person OR liability_of_collegial_member OR liability_of_controlling_person)",
+        "liability_limitation_agreement_void == liability_limitation_agreement_made AND ((has_actual_ability_to_determine_actions) OR ((authorised_to_act_for_entity OR member_of_collegial_body) AND (agreement_covers_bad_faith_conduct OR (entity_is_public_company AND agreement_covers_unreasonable_conduct))))",
+        "limitation_of_unreasonable_conduct_permitted == liability_limitation_agreement_made AND agreement_covers_unreasonable_conduct AND NOT agreement_covers_bad_faith_conduct AND NOT entity_is_public_company AND (authorised_to_act_for_entity OR member_of_collegial_body) AND NOT has_actual_ability_to_determine_actions",
+        "requires_human_management_liability_assessment == (person_within_article_53_1 AND conduct_outside_ordinary_course_or_risk) OR (member_of_collegial_body AND abstained_in_good_faith) OR joint_and_several_liability"
+      ]
+    },
+    "management_liability_evaluation": {
+      "constraint_set_id": "management-liability-constraint-set:reviewed-management-liability-evidence-supply-1-v0",
+      "satisfiable": true,
+      "person_within_article_53_1": false,
+      "standard_of_conduct_breached": false,
+      "collegial_member_exempt": false,
+      "liability_of_authorised_person": false,
+      "liability_of_collegial_member": false,
+      "liability_of_controlling_person": false,
+      "joint_and_several_liability": false,
+      "liability_limitation_agreement_void": false,
+      "limitation_of_unreasonable_conduct_permitted": false,
+      "requires_human_management_liability_assessment": false,
+      "reasons_ru": [
+        "Лицо не отнесено ни к одному из субъектов статьи 53.1 ГК РФ: оно не уполномочено выступать от имени юридического лица, не входит в его коллегиальный орган и не имеет фактической возможности определять его действия. Ответственность по этой статье к нему не применяется."
+      ],
+      "warnings_ru": [
+        "Модель разбирает ответственность одного лица по одному требованию и не определяет размер убытков: статья 53.1 говорит об обязанности возместить, а не о её исчислении.",
+        "Пункт 4 устанавливает солидарность, но не доли: распределение между солидарными должниками лежит вне этой модели.",
+        "Полномочия лица по существу проверяют институт лиц (статьи 17–53) и институт представительства; здесь принадлежность к субъектам статьи 53.1 принимается как проверенный факт."
+      ]
+    },
     "bankruptcy_claims_evidence_mapping": {
       "evidence_id": "reviewed-bankruptcy-claims-evidence-supply-1-v0",
       "schema_version": "contracts.bankruptcy-claims-evidence.v0",
@@ -36830,7 +37191,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.22.0",
+      "institutional_package_version": "contracts-ru-v0@1.23.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -38880,6 +39241,7 @@
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-loan-evidence",
+          "synthetic-case-supply-1-management-liability-evidence",
           "synthetic-case-supply-1-mandate-evidence",
           "synthetic-case-supply-1-meeting-decisions-evidence",
           "synthetic-case-supply-1-messages-evidence",
@@ -39046,6 +39408,7 @@
           "synthetic-ru-gk518-524-supply-remedies-v1",
           "synthetic-ru-gk525-528-state-contract-v1",
           "synthetic-ru-gk529-534-state-supply-performance-v1",
+          "synthetic-ru-gk53-1-management-liability-v1",
           "synthetic-ru-gk535-536-contractation-concept-v1",
           "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
           "synthetic-ru-gk539-542-energy-supply-concept-v1",
@@ -40190,6 +40553,7 @@
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-loan-evidence",
+          "synthetic-case-supply-1-management-liability-evidence",
           "synthetic-case-supply-1-mandate-evidence",
           "synthetic-case-supply-1-meeting-decisions-evidence",
           "synthetic-case-supply-1-messages-evidence",
@@ -40356,6 +40720,7 @@
           "synthetic-ru-gk518-524-supply-remedies-v1",
           "synthetic-ru-gk525-528-state-contract-v1",
           "synthetic-ru-gk529-534-state-supply-performance-v1",
+          "synthetic-ru-gk53-1-management-liability-v1",
           "synthetic-ru-gk535-536-contractation-concept-v1",
           "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
           "synthetic-ru-gk539-542-energy-supply-concept-v1",
@@ -41500,6 +41865,7 @@
           "synthetic-case-supply-1-liability-evidence",
           "synthetic-case-supply-1-limitation-evidence",
           "synthetic-case-supply-1-loan-evidence",
+          "synthetic-case-supply-1-management-liability-evidence",
           "synthetic-case-supply-1-mandate-evidence",
           "synthetic-case-supply-1-meeting-decisions-evidence",
           "synthetic-case-supply-1-messages-evidence",
@@ -41666,6 +42032,7 @@
           "synthetic-ru-gk518-524-supply-remedies-v1",
           "synthetic-ru-gk525-528-state-contract-v1",
           "synthetic-ru-gk529-534-state-supply-performance-v1",
+          "synthetic-ru-gk53-1-management-liability-v1",
           "synthetic-ru-gk535-536-contractation-concept-v1",
           "synthetic-ru-gk537-538-contractation-duties-and-liability-v1",
           "synthetic-ru-gk539-542-energy-supply-concept-v1",
@@ -41839,7 +42206,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@1.22.0",
+      "institutional_package_version": "contracts-ru-v0@1.23.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:3ae00857433d12f12acc74e473548b24a294eba6b8db7ccf599e6090be6c43da",
       "translation_template_version": "translation-template-ru-v12",
@@ -44565,6 +44932,34 @@
         }
       },
       {
+        "id": "synthetic-ru-gk53-1-management-liability-v1",
+        "layer": "source",
+        "label": "ГК РФ, статья 53.1: ответственность лица, уполномоченного выступать от имени юридического лица, членов коллегиальных органов и лиц, определяющих его действия",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "management_liability_article_53_1",
+          "legal_reference": "ГК РФ, статья 53.1",
+          "specificity": "special",
+          "text_verbatim": true,
+          "basis_url": "https://government.ru/docs/all/95820/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-management-liability-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов об ответственности управляющих лиц",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "management_liability_case_evidence",
+          "case_id": "case-supply-1",
+          "review_required": true
+        }
+      },
+      {
         "id": "synthetic-ru-127fz-5-current-payments-v1",
         "layer": "source",
         "label": "127-ФЗ, статья 5: текущие платежи",
@@ -46069,6 +46464,7 @@
             "synthetic-liability-reviewer",
             "synthetic-limitation-reviewer",
             "synthetic-loan-reviewer",
+            "synthetic-management-liability-reviewer",
             "synthetic-mandate-reviewer",
             "synthetic-meeting-decisions-reviewer",
             "synthetic-messages-reviewer",

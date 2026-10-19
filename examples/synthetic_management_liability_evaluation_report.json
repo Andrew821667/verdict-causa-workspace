@@ -1,0 +1,645 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка ответственности управляющих лиц юридического лица по статье 53.1 ГК РФ. В демонстрационном деле о поставке требований к директору или контролирующему лицу нет, поэтому все признаки ложны и институт молчит: это и есть ожидаемый результат для такого дела. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-management-liability-evidence-supply-1-v0",
+    "schema_version": "contracts.management-liability-evidence.v0",
+    "mapping_version": "contracts-reviewed-management-liability-to-facts-v0",
+    "facts": {
+      "authorised_to_act_for_entity": false,
+      "member_of_collegial_body": false,
+      "has_actual_ability_to_determine_actions": false,
+      "claim_brought_by_entity_or_participant": false,
+      "losses_caused_to_entity": false,
+      "fault_proven": false,
+      "losses_caused_jointly_with_others": false,
+      "bad_faith_proven": false,
+      "unreasonableness_proven": false,
+      "conduct_outside_ordinary_course_or_risk": false,
+      "voted_against_the_harmful_decision": false,
+      "abstained_in_good_faith": false,
+      "liability_limitation_agreement_made": false,
+      "entity_is_public_company": false,
+      "agreement_covers_bad_faith_conduct": false,
+      "agreement_covers_unreasonable_conduct": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk53-1-management-liability-v1",
+      "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "abstained_in_good_faith",
+        "assertion_id": "management-liability-evidence-abstained_in_good_faith",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "agreement_covers_bad_faith_conduct",
+        "assertion_id": "management-liability-evidence-agreement_covers_bad_faith_conduct",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "agreement_covers_unreasonable_conduct",
+        "assertion_id": "management-liability-evidence-agreement_covers_unreasonable_conduct",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "authorised_to_act_for_entity",
+        "assertion_id": "management-liability-evidence-authorised_to_act_for_entity",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "bad_faith_proven",
+        "assertion_id": "management-liability-evidence-bad_faith_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "claim_brought_by_entity_or_participant",
+        "assertion_id": "management-liability-evidence-claim_brought_by_entity_or_participant",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "conduct_outside_ordinary_course_or_risk",
+        "assertion_id": "management-liability-evidence-conduct_outside_ordinary_course_or_risk",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "entity_is_public_company",
+        "assertion_id": "management-liability-evidence-entity_is_public_company",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "fault_proven",
+        "assertion_id": "management-liability-evidence-fault_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "has_actual_ability_to_determine_actions",
+        "assertion_id": "management-liability-evidence-has_actual_ability_to_determine_actions",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "liability_limitation_agreement_made",
+        "assertion_id": "management-liability-evidence-liability_limitation_agreement_made",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "losses_caused_jointly_with_others",
+        "assertion_id": "management-liability-evidence-losses_caused_jointly_with_others",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "losses_caused_to_entity",
+        "assertion_id": "management-liability-evidence-losses_caused_to_entity",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "member_of_collegial_body",
+        "assertion_id": "management-liability-evidence-member_of_collegial_body",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "unreasonableness_proven",
+        "assertion_id": "management-liability-evidence-unreasonableness_proven",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      },
+      {
+        "fact_name": "voted_against_the_harmful_decision",
+        "assertion_id": "management-liability-evidence-voted_against_the_harmful_decision",
+        "source_refs": [
+          "synthetic-case-supply-1-management-liability-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "management-liability-constraint-set:reviewed-management-liability-evidence-supply-1-v0",
+    "model_version": "contracts-management-liability-article-53-1-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk53-1-management-liability-v1",
+      "synthetic-ru-gk49-53-capacity-registration-and-bodies-of-legal-entities-v1"
+    ],
+    "expressions": [
+      "person_within_article_53_1 == authorised_to_act_for_entity OR member_of_collegial_body OR has_actual_ability_to_determine_actions",
+      "standard_of_conduct_breached == bad_faith_proven OR unreasonableness_proven OR conduct_outside_ordinary_course_or_risk",
+      "collegial_member_exempt == member_of_collegial_body AND (voted_against_the_harmful_decision OR abstained_in_good_faith)",
+      "liability_of_authorised_person == authorised_to_act_for_entity AND claim_brought_by_entity_or_participant AND losses_caused_to_entity AND fault_proven AND standard_of_conduct_breached",
+      "liability_of_collegial_member == member_of_collegial_body AND claim_brought_by_entity_or_participant AND losses_caused_to_entity AND fault_proven AND standard_of_conduct_breached AND NOT collegial_member_exempt",
+      "liability_of_controlling_person == has_actual_ability_to_determine_actions AND losses_caused_to_entity AND fault_proven AND standard_of_conduct_breached",
+      "joint_and_several_liability == losses_caused_jointly_with_others AND (liability_of_authorised_person OR liability_of_collegial_member OR liability_of_controlling_person)",
+      "liability_limitation_agreement_void == liability_limitation_agreement_made AND ((has_actual_ability_to_determine_actions) OR ((authorised_to_act_for_entity OR member_of_collegial_body) AND (agreement_covers_bad_faith_conduct OR (entity_is_public_company AND agreement_covers_unreasonable_conduct))))",
+      "limitation_of_unreasonable_conduct_permitted == liability_limitation_agreement_made AND agreement_covers_unreasonable_conduct AND NOT agreement_covers_bad_faith_conduct AND NOT entity_is_public_company AND (authorised_to_act_for_entity OR member_of_collegial_body) AND NOT has_actual_ability_to_determine_actions",
+      "requires_human_management_liability_assessment == (person_within_article_53_1 AND conduct_outside_ordinary_course_or_risk) OR (member_of_collegial_body AND abstained_in_good_faith) OR joint_and_several_liability"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "management-liability-constraint-set:reviewed-management-liability-evidence-supply-1-v0",
+    "satisfiable": true,
+    "person_within_article_53_1": false,
+    "standard_of_conduct_breached": false,
+    "collegial_member_exempt": false,
+    "liability_of_authorised_person": false,
+    "liability_of_collegial_member": false,
+    "liability_of_controlling_person": false,
+    "joint_and_several_liability": false,
+    "liability_limitation_agreement_void": false,
+    "limitation_of_unreasonable_conduct_permitted": false,
+    "requires_human_management_liability_assessment": false,
+    "reasons_ru": [
+      "Лицо не отнесено ни к одному из субъектов статьи 53.1 ГК РФ: оно не уполномочено выступать от имени юридического лица, не входит в его коллегиальный орган и не имеет фактической возможности определять его действия. Ответственность по этой статье к нему не применяется."
+    ],
+    "warnings_ru": [
+      "Модель разбирает ответственность одного лица по одному требованию и не определяет размер убытков: статья 53.1 говорит об обязанности возместить, а не о её исчислении.",
+      "Пункт 4 устанавливает солидарность, но не доли: распределение между солидарными должниками лежит вне этой модели.",
+      "Полномочия лица по существу проверяют институт лиц (статьи 17–53) и институт представительства; здесь принадлежность к субъектам статьи 53.1 принимается как проверенный факт."
+    ]
+  },
+  "benchmark_report": {
+    "id": "management-liability-benchmark-report-v0",
+    "total": 15,
+    "passed": 15,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "management-liability-bench-director",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_of_authorised_person": true,
+          "standard_of_conduct_breached": true,
+          "person_within_article_53_1": true
+        },
+        "observed_outcomes": {
+          "liability_of_authorised_person": true,
+          "standard_of_conduct_breached": true,
+          "person_within_article_53_1": true
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность.",
+          "Лицо, уполномоченное выступать от имени юридического лица, обязано возместить причинённые по его вине убытки по требованию юридического лица или его участников, выступающих в его интересах (пункт 1 статьи 53.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-unreasonableness-is-enough",
+        "passed": true,
+        "expected_outcomes": {
+          "standard_of_conduct_breached": true,
+          "liability_of_authorised_person": true
+        },
+        "observed_outcomes": {
+          "standard_of_conduct_breached": true,
+          "liability_of_authorised_person": true
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана неразумность.",
+          "Лицо, уполномоченное выступать от имени юридического лица, обязано возместить причинённые по его вине убытки по требованию юридического лица или его участников, выступающих в его интересах (пункт 1 статьи 53.1 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-ordinary-course-is-an-instance",
+        "passed": true,
+        "expected_outcomes": {
+          "standard_of_conduct_breached": true,
+          "liability_of_authorised_person": true,
+          "requires_human_management_liability_assessment": true
+        },
+        "observed_outcomes": {
+          "standard_of_conduct_breached": true,
+          "liability_of_authorised_person": true,
+          "requires_human_management_liability_assessment": true
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: действия (бездействие) не соответствовали обычным условиям гражданского оборота или обычному предпринимательскому риску.",
+          "Лицо, уполномоченное выступать от имени юридического лица, обязано возместить причинённые по его вине убытки по требованию юридического лица или его участников, выступающих в его интересах (пункт 1 статьи 53.1 ГК РФ).",
+          "Требуется оценка юриста. Что считать обычными условиями гражданского оборота и обычным предпринимательским риском, а равно добросовестность неучастия в голосовании, устанавливает суд, а не модель; распределение солидарно причинённых убытков между должниками статья 53.1 не определяет."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-no-claim-no-duty-to-compensate",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_of_authorised_person": false,
+          "standard_of_conduct_breached": true
+        },
+        "observed_outcomes": {
+          "liability_of_authorised_person": false,
+          "standard_of_conduct_breached": true
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-no-fault-no-liability",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_of_authorised_person": false
+        },
+        "observed_outcomes": {
+          "liability_of_authorised_person": false
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-member-liable",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_of_collegial_member": true,
+          "collegial_member_exempt": false
+        },
+        "observed_outcomes": {
+          "liability_of_collegial_member": true,
+          "collegial_member_exempt": false
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность.",
+          "Член коллегиального органа несёт ответственность, предусмотренную пунктом 1 статьи 53.1 ГК РФ: ни одно из исключений пункта 2 к нему не относится."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-member-voted-against",
+        "passed": true,
+        "expected_outcomes": {
+          "collegial_member_exempt": true,
+          "liability_of_collegial_member": false
+        },
+        "observed_outcomes": {
+          "collegial_member_exempt": true,
+          "liability_of_collegial_member": false
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность.",
+          "Член коллегиального органа освобождён от ответственности по исключению пункта 2 статьи 53.1 ГК РФ: голосовал против решения, повлёкшего причинение убытков."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-member-abstained-in-good-faith",
+        "passed": true,
+        "expected_outcomes": {
+          "collegial_member_exempt": true,
+          "liability_of_collegial_member": false,
+          "requires_human_management_liability_assessment": true
+        },
+        "observed_outcomes": {
+          "collegial_member_exempt": true,
+          "liability_of_collegial_member": false,
+          "requires_human_management_liability_assessment": true
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность.",
+          "Член коллегиального органа освобождён от ответственности по исключению пункта 2 статьи 53.1 ГК РФ: действуя добросовестно, не принимал участия в голосовании.",
+          "Требуется оценка юриста. Что считать обычными условиями гражданского оборота и обычным предпринимательским риском, а равно добросовестность неучастия в голосовании, устанавливает суд, а не модель; распределение солидарно причинённых убытков между должниками статья 53.1 не определяет."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-controlling-person-without-claim",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_of_controlling_person": true
+        },
+        "observed_outcomes": {
+          "liability_of_controlling_person": true
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана неразумность.",
+          "Лицо, имеющее фактическую возможность определять действия юридического лица, обязано действовать в его интересах разумно и добросовестно и несёт ответственность за причинённые по его вине убытки (пункт 3 статьи 53.1 ГК РФ). Требования юридического лица пункт 3 условием не называет, в отличие от пункта 1."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-joint-liability",
+        "passed": true,
+        "expected_outcomes": {
+          "joint_and_several_liability": true,
+          "requires_human_management_liability_assessment": true
+        },
+        "observed_outcomes": {
+          "joint_and_several_liability": true,
+          "requires_human_management_liability_assessment": true
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность.",
+          "Лицо, уполномоченное выступать от имени юридического лица, обязано возместить причинённые по его вине убытки по требованию юридического лица или его участников, выступающих в его интересах (пункт 1 статьи 53.1 ГК РФ).",
+          "Убытки причинены совместно, поэтому лица пунктов 1–3 обязаны возместить их солидарно (пункт 4 статьи 53.1 ГК РФ). Доли между ними статья не устанавливает, и модель их не определяет.",
+          "Требуется оценка юриста. Что считать обычными условиями гражданского оборота и обычным предпринимательским риском, а равно добросовестность неучастия в голосовании, устанавливает суд, а не модель; распределение солидарно причинённых убытков между должниками статья 53.1 не определяет."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-agreement-void-for-bad-faith",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_limitation_agreement_void": true
+        },
+        "observed_outcomes": {
+          "liability_limitation_agreement_void": true
+        },
+        "reasons_ru": [
+          "Соглашение об устранении или ограничении ответственности ничтожно: соглашение охватывает недобросовестные действия (пункт 5 абзац 1)."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-public-company-extends-voidness",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_limitation_agreement_void": true,
+          "limitation_of_unreasonable_conduct_permitted": false
+        },
+        "observed_outcomes": {
+          "liability_limitation_agreement_void": true,
+          "limitation_of_unreasonable_conduct_permitted": false
+        },
+        "reasons_ru": [
+          "Соглашение об устранении или ограничении ответственности ничтожно: общество публичное, и ничтожность распространяется на неразумные действия наравне с недобросовестными (пункт 5 абзац 1)."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-non-public-limitation-permitted",
+        "passed": true,
+        "expected_outcomes": {
+          "limitation_of_unreasonable_conduct_permitted": true,
+          "liability_limitation_agreement_void": false
+        },
+        "observed_outcomes": {
+          "limitation_of_unreasonable_conduct_permitted": true,
+          "liability_limitation_agreement_void": false
+        },
+        "reasons_ru": [
+          "Соглашение ограничивает ответственность за неразумные, но добросовестные действия, общество не публичное — ничтожным по пункту 5 статьи 53.1 ГК РФ такое соглашение не является. Вывод назван прямо, потому что он следует из отрицания и легко теряется при чтении."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-controlling-agreement-always-void",
+        "passed": true,
+        "expected_outcomes": {
+          "liability_limitation_agreement_void": true,
+          "limitation_of_unreasonable_conduct_permitted": false
+        },
+        "observed_outcomes": {
+          "liability_limitation_agreement_void": true,
+          "limitation_of_unreasonable_conduct_permitted": false
+        },
+        "reasons_ru": [
+          "Соглашение об устранении или ограничении ответственности ничтожно: для лица, имеющего фактическую возможность определять действия юридического лица, ничтожно любое такое соглашение (пункт 5 абзац 2)."
+        ]
+      },
+      {
+        "task_id": "management-liability-bench-outside-the-article",
+        "passed": true,
+        "expected_outcomes": {
+          "person_within_article_53_1": false,
+          "liability_of_authorised_person": false,
+          "liability_of_collegial_member": false,
+          "liability_of_controlling_person": false,
+          "requires_human_management_liability_assessment": false
+        },
+        "observed_outcomes": {
+          "person_within_article_53_1": false,
+          "liability_of_authorised_person": false,
+          "liability_of_collegial_member": false,
+          "liability_of_controlling_person": false,
+          "requires_human_management_liability_assessment": false
+        },
+        "reasons_ru": [
+          "Лицо не отнесено ни к одному из субъектов статьи 53.1 ГК РФ: оно не уполномочено выступать от имени юридического лица, не входит в его коллегиальный орган и не имеет фактической возможности определять его действия. Ответственность по этой статье к нему не применяется.",
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность."
+        ]
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "management-liability-red-team-report-v0",
+    "total": 14,
+    "blocked": 14,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "management-liability-red-liability-without-fault",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_of_authorised_person": true
+        },
+        "observed_outcomes": {
+          "liability_of_authorised_person": false
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность."
+        ]
+      },
+      {
+        "case_id": "management-liability-red-liability-without-standard-breach",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_of_authorised_person": true
+        },
+        "observed_outcomes": {
+          "liability_of_authorised_person": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "case_id": "management-liability-red-liability-without-losses",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_of_authorised_person": true
+        },
+        "observed_outcomes": {
+          "liability_of_authorised_person": false
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность."
+        ]
+      },
+      {
+        "case_id": "management-liability-red-director-duty-without-claim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_of_authorised_person": true
+        },
+        "observed_outcomes": {
+          "liability_of_authorised_person": false
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность."
+        ]
+      },
+      {
+        "case_id": "management-liability-red-ignore-vote-against",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_of_collegial_member": true
+        },
+        "observed_outcomes": {
+          "liability_of_collegial_member": false
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность.",
+          "Член коллегиального органа освобождён от ответственности по исключению пункта 2 статьи 53.1 ГК РФ: голосовал против решения, повлёкшего причинение убытков."
+        ]
+      },
+      {
+        "case_id": "management-liability-red-ignore-good-faith-abstention",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_of_collegial_member": true
+        },
+        "observed_outcomes": {
+          "liability_of_collegial_member": false
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность.",
+          "Член коллегиального органа освобождён от ответственности по исключению пункта 2 статьи 53.1 ГК РФ: действуя добросовестно, не принимал участия в голосовании.",
+          "Требуется оценка юриста. Что считать обычными условиями гражданского оборота и обычным предпринимательским риском, а равно добросовестность неучастия в голосовании, устанавливает суд, а не модель; распределение солидарно причинённых убытков между должниками статья 53.1 не определяет."
+        ]
+      },
+      {
+        "case_id": "management-liability-red-exemption-spills-to-other-grounds",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_of_authorised_person": false
+        },
+        "observed_outcomes": {
+          "liability_of_authorised_person": true
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность.",
+          "Член коллегиального органа освобождён от ответственности по исключению пункта 2 статьи 53.1 ГК РФ: голосовал против решения, повлёкшего причинение убытков.",
+          "Лицо, уполномоченное выступать от имени юридического лица, обязано возместить причинённые по его вине убытки по требованию юридического лица или его участников, выступающих в его интересах (пункт 1 статьи 53.1 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "management-liability-red-void-non-public-unreasonableness",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_limitation_agreement_void": true
+        },
+        "observed_outcomes": {
+          "liability_limitation_agreement_void": false
+        },
+        "reasons_ru": [
+          "Соглашение ограничивает ответственность за неразумные, но добросовестные действия, общество не публичное — ничтожным по пункту 5 статьи 53.1 ГК РФ такое соглашение не является. Вывод назван прямо, потому что он следует из отрицания и легко теряется при чтении."
+        ]
+      },
+      {
+        "case_id": "management-liability-red-permit-limitation-for-bad-faith",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "limitation_of_unreasonable_conduct_permitted": true
+        },
+        "observed_outcomes": {
+          "limitation_of_unreasonable_conduct_permitted": false
+        },
+        "reasons_ru": [
+          "Соглашение об устранении или ограничении ответственности ничтожно: соглашение охватывает недобросовестные действия (пункт 5 абзац 1)."
+        ]
+      },
+      {
+        "case_id": "management-liability-red-permit-limitation-for-controlling-person",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "limitation_of_unreasonable_conduct_permitted": true,
+          "liability_limitation_agreement_void": false
+        },
+        "observed_outcomes": {
+          "limitation_of_unreasonable_conduct_permitted": false,
+          "liability_limitation_agreement_void": true
+        },
+        "reasons_ru": [
+          "Соглашение об устранении или ограничении ответственности ничтожно: для лица, имеющего фактическую возможность определять действия юридического лица, ничтожно любое такое соглашение (пункт 5 абзац 2)."
+        ]
+      },
+      {
+        "case_id": "management-liability-red-joint-liability-without-liability",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "joint_and_several_liability": true
+        },
+        "observed_outcomes": {
+          "joint_and_several_liability": false
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность."
+        ]
+      },
+      {
+        "case_id": "management-liability-red-liability-outside-the-article",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liability_of_authorised_person": true,
+          "liability_of_collegial_member": true,
+          "liability_of_controlling_person": true
+        },
+        "observed_outcomes": {
+          "liability_of_authorised_person": false,
+          "liability_of_collegial_member": false,
+          "liability_of_controlling_person": false
+        },
+        "reasons_ru": [
+          "Лицо не отнесено ни к одному из субъектов статьи 53.1 ГК РФ: оно не уполномочено выступать от имени юридического лица, не входит в его коллегиальный орган и не имеет фактической возможности определять его действия. Ответственность по этой статье к нему не применяется.",
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность."
+        ]
+      },
+      {
+        "case_id": "management-liability-red-skip-human-on-ordinary-course",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_management_liability_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_management_liability_assessment": true
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: действия (бездействие) не соответствовали обычным условиям гражданского оборота или обычному предпринимательскому риску.",
+          "Лицо, уполномоченное выступать от имени юридического лица, обязано возместить причинённые по его вине убытки по требованию юридического лица или его участников, выступающих в его интересах (пункт 1 статьи 53.1 ГК РФ).",
+          "Требуется оценка юриста. Что считать обычными условиями гражданского оборота и обычным предпринимательским риском, а равно добросовестность неучастия в голосовании, устанавливает суд, а не модель; распределение солидарно причинённых убытков между должниками статья 53.1 не определяет."
+        ]
+      },
+      {
+        "case_id": "management-liability-red-human-flag-on-plain-bad-faith",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_management_liability_assessment": true
+        },
+        "observed_outcomes": {
+          "requires_human_management_liability_assessment": false
+        },
+        "reasons_ru": [
+          "Нарушен стандарт пункта 1 абзаца 2 статьи 53.1 ГК РФ: доказана недобросовестность.",
+          "Лицо, уполномоченное выступать от имени юридического лица, обязано возместить причинённые по его вине убытки по требованию юридического лица или его участников, выступающих в его интересах (пункт 1 статьи 53.1 ГК РФ)."
+        ]
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95820/"
+  ]
+}
