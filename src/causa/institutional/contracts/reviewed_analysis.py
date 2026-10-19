@@ -596,6 +596,7 @@ from causa.institutional.contracts.messages import (
     build_messages_constraint_set,
     evaluate_messages_constraints,
     map_reviewed_messages_evidence,
+    message_delivery_consistency_key,
 )
 from causa.institutional.contracts.special_accounts import (
     SPECIAL_ACCOUNTS_EVIDENCE_SCHEMA_VERSION,
@@ -1131,6 +1132,15 @@ class ReviewedContractAnalysisRequest(BaseModel):
     terms_evidence: ReviewedTermsEvidence
     attribution_delay_evidence: ReviewedAttributionDelayEvidence
     messages_evidence: ReviewedMessagesEvidence
+    #: Остальные юридически значимые сообщения дела, кроме спорного.
+    #:
+    #: В реальном споре сообщений несколько: претензия, отказ от договора,
+    #: заявление о зачёте. Пока блок был один, доставку проверяло только одно
+    #: из них, а остальные шли на веру — долг связности статьи 165.1, названный
+    #: в `layer_connectivity`. Каждый блок здесь обязан назвать свою роль, и
+    #: роли не повторяются: два блока об одном уведомлении означали бы, что
+    #: решателю надо молча выбрать, какой считать тем самым.
+    additional_messages_evidence: tuple[ReviewedMessagesEvidence, ...] = ()
     special_accounts_evidence: ReviewedSpecialAccountsEvidence
     escrow_deposit_evidence: ReviewedEscrowDepositEvidence
     bankruptcy_claims_evidence: ReviewedBankruptcyClaimsEvidence
@@ -1381,6 +1391,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     attribution_delay_constraint_set: AttributionDelayConstraintSet
     attribution_delay_evaluation: AttributionDelayEvaluation
     messages_evidence_mapping: MessagesEvidenceMappingResult
+    additional_messages_evidence_mappings: tuple[MessagesEvidenceMappingResult, ...] = ()
+    additional_messages_constraint_sets: tuple[MessagesConstraintSet, ...] = ()
+    additional_messages_evaluations: tuple[MessagesEvaluation, ...] = ()
     messages_constraint_set: MessagesConstraintSet
     messages_evaluation: MessagesEvaluation
     special_accounts_evidence_mapping: SpecialAccountsEvidenceMappingResult
@@ -2217,6 +2230,26 @@ class ReviewedContractAnalysisResult(BaseModel):
         )
         if self.messages_evaluation != expected_messages_evaluation:
             raise ValueError("Messages evaluation does not replay from reviewed evidence.")
+        if len(self.additional_messages_constraint_sets) != len(
+            self.additional_messages_evidence_mappings
+        ) or len(self.additional_messages_evaluations) != len(
+            self.additional_messages_evidence_mappings
+        ):
+            raise ValueError(
+                "Additional messages artefacts do not line up with their evidence mappings."
+            )
+        for index, mapping in enumerate(self.additional_messages_evidence_mappings):
+            expected_set = build_messages_constraint_set(mapping)
+            if self.additional_messages_constraint_sets[index] != expected_set:
+                raise ValueError(
+                    "Additional messages constraint set does not replay from reviewed evidence."
+                )
+            if self.additional_messages_evaluations[index] != evaluate_messages_constraints(
+                expected_set, mapping.facts
+            ):
+                raise ValueError(
+                    "Additional messages evaluation does not replay from reviewed evidence."
+                )
         expected_special_accounts_set = build_special_accounts_constraint_set(
             self.special_accounts_evidence_mapping
         )
@@ -2999,6 +3032,11 @@ def _validate_request_integrity(
         raise ValueError("Terms evidence case_id does not match the analysis request.")
     if request.messages_evidence.case_id != request.case_id:
         raise ValueError("Messages evidence case_id does not match the analysis request.")
+    for extra_message in request.additional_messages_evidence:
+        if extra_message.case_id != request.case_id:
+            raise ValueError(
+                "Additional messages evidence case_id does not match the analysis request."
+            )
     if request.special_accounts_evidence.case_id != request.case_id:
         raise ValueError("Special-accounts evidence case_id does not match the analysis request.")
     if request.escrow_deposit_evidence.case_id != request.case_id:
@@ -3238,6 +3276,9 @@ def _validate_request_integrity(
         raise ValueError("Terms evidence uses an unsupported schema version.")
     if request.messages_evidence.schema_version != MESSAGES_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Messages evidence uses an unsupported schema version.")
+    for extra_message in request.additional_messages_evidence:
+        if extra_message.schema_version != MESSAGES_EVIDENCE_SCHEMA_VERSION:
+            raise ValueError("Additional messages evidence uses an unsupported schema version.")
     if request.special_accounts_evidence.schema_version != SPECIAL_ACCOUNTS_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Special-accounts evidence uses an unsupported schema version.")
     if request.escrow_deposit_evidence.schema_version != ESCROW_DEPOSIT_EVIDENCE_SCHEMA_VERSION:
@@ -3376,6 +3417,11 @@ def _validate_request_integrity(
         *request.terms_evidence.legal_source_refs,
         *request.attribution_delay_evidence.legal_source_refs,
         *request.messages_evidence.legal_source_refs,
+        *(
+            source_id
+            for extra_message in request.additional_messages_evidence
+            for source_id in extra_message.legal_source_refs
+        ),
         *request.special_accounts_evidence.legal_source_refs,
         *request.escrow_deposit_evidence.legal_source_refs,
         *request.bankruptcy_claims_evidence.legal_source_refs,
@@ -3534,6 +3580,9 @@ def _validate_request_integrity(
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.messages_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
+    for extra_message in request.additional_messages_evidence:
+        for assertion in extra_message.assertions:
+            referenced_source_ids.update(assertion.source_refs)
     for assertion in request.special_accounts_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.escrow_deposit_evidence.assertions:
@@ -4280,7 +4329,8 @@ def _validate_request_integrity(
         )
     invalid_messages_legal_sources = [
         source_id
-        for source_id in request.messages_evidence.legal_source_refs
+        for extra_message in (request.messages_evidence, *request.additional_messages_evidence)
+        for source_id in extra_message.legal_source_refs
         if source_registry[source_id].source_type == SourceType.FACT
         or not source_registry[source_id].metadata.get("legal_reference")
     ]
@@ -5023,6 +5073,14 @@ def run_reviewed_contract_analysis(
         review_status=request.messages_evidence.review_status,
         reviewer_id=request.messages_evidence.reviewer_id,
     )
+    additional_messages_reviewer_ids = [
+        _require_reviewed(
+            artifact_name=f"Additional messages evidence {extra_message.id}",
+            review_status=extra_message.review_status,
+            reviewer_id=extra_message.reviewer_id,
+        )
+        for extra_message in request.additional_messages_evidence
+    ]
     special_accounts_reviewer_id = _require_reviewed(
         artifact_name="Special-accounts evidence",
         review_status=request.special_accounts_evidence.review_status,
@@ -5695,9 +5753,64 @@ def run_reviewed_contract_analysis(
     # Роль сообщения называет, о каком именно уведомлении идёт спор, и тогда
     # расхождение перестаёт быть неразличимым: продолжить анализ, приняв обе
     # версии сразу, нельзя — решателю пришлось бы выбрать одну молча.
-    message_role = request.messages_evidence.message_role
-    if message_role is not MessageRole.OTHER:
-        role_target = MESSAGE_ROLE_PREDICATES[message_role]
+    additional_messages_mappings: list[MessagesEvidenceMappingResult] = []
+    additional_messages_sets: list[MessagesConstraintSet] = []
+    additional_messages_evaluations: list[MessagesEvaluation] = []
+    for extra_message in request.additional_messages_evidence:
+        extra_mapping = map_reviewed_messages_evidence(extra_message)
+        extra_set = build_messages_constraint_set(extra_mapping)
+        additional_messages_mappings.append(extra_mapping)
+        additional_messages_sets.append(extra_set)
+        additional_messages_evaluations.append(
+            evaluate_messages_constraints(extra_set, extra_mapping.facts)
+        )
+
+    # Роли не повторяются. Два блока об одном уведомлении означали бы, что
+    # решателю надо молча выбрать, какой из них считать тем самым, — ровно тот
+    # выбор, от которого слой сверки и отказывается.
+    declared_roles = [
+        message.message_role
+        for message in (request.messages_evidence, *request.additional_messages_evidence)
+        if message.message_role is not MessageRole.OTHER
+    ]
+    if len(declared_roles) != len(set(declared_roles)):
+        duplicated = sorted(
+            {role.value for role in declared_roles if declared_roles.count(role) > 1}
+        )
+        raise ValueError(
+            "Дело несёт несколько блоков об одном и том же уведомлении: "
+            + ", ".join(duplicated)
+            + ". Какое из них считать спорным, система не выбирает."
+        )
+    # Блок без роли проверять не с чем: его вывод не привязан ни к одному
+    # уведомлению дела. Для основного блока это допустимо — он может отвечать о
+    # сообщении, которого ни один институт не описывает; для дополнительного
+    # нет: он для этого и добавлен.
+    roleless = [
+        message.id
+        for message in request.additional_messages_evidence
+        if message.message_role is MessageRole.OTHER
+    ]
+    if roleless:
+        raise ValueError(
+            "Дополнительные блоки сообщений обязаны назвать роль: "
+            + ", ".join(roleless)
+            + ". Иначе вывод о доставке не относится ни к одному уведомлению дела."
+        )
+
+    # Долг связности статьи 165.1: институт отвечает о доставке одного
+    # сообщения, а девятнадцать предикатов пакета утверждают доставку своих
+    # уведомлений. Теперь сообщений в деле может быть несколько, и каждое
+    # сверяется со своим предикатом — ключ сверки несёт роль, поэтому
+    # расхождение называет, какое именно уведомление расошлось.
+    for message, evaluation in zip(
+        (request.messages_evidence, *request.additional_messages_evidence),
+        (messages_evaluation, *additional_messages_evaluations),
+        strict=True,
+    ):
+        if message.message_role is MessageRole.OTHER:
+            continue
+        role_target = MESSAGE_ROLE_PREDICATES[message.message_role]
         role_evidence = getattr(request, f"{role_target.institute}_evidence")
         asserted_raw = next(
             assertion.value
@@ -5709,9 +5822,9 @@ def run_reviewed_contract_analysis(
         # читается через отрицание.
         asserted_delivery = not asserted_raw if role_target.negated else asserted_raw
         facts_agree.equal(
-            "message_delivery_agreement",
+            message_delivery_consistency_key(message.message_role),
             asserted_delivery,
-            messages_evaluation.message_delivered,
+            evaluation.message_delivered,
         )
     special_accounts_evidence_mapping = map_reviewed_special_accounts_evidence(
         request.special_accounts_evidence
@@ -6309,6 +6422,10 @@ def run_reviewed_contract_analysis(
         or terms_evaluation.requires_human_terms_assessment
         or attribution_delay_evaluation.requires_human_attribution_assessment
         or messages_evaluation.requires_human_message_assessment
+        or any(
+            evaluation.requires_human_message_assessment
+            for evaluation in additional_messages_evaluations
+        )
         or special_accounts_evaluation.requires_human_special_accounts_assessment
         or escrow_deposit_evaluation.requires_human_escrow_deposit_assessment
         or bankruptcy_claims_evaluation.requires_human_bankruptcy_claims_assessment
@@ -6412,6 +6529,7 @@ def run_reviewed_contract_analysis(
                 terms_reviewer_id,
                 attribution_delay_reviewer_id,
                 messages_reviewer_id,
+                *additional_messages_reviewer_ids,
                 special_accounts_reviewer_id,
                 escrow_deposit_reviewer_id,
                 bankruptcy_claims_reviewer_id,
@@ -6642,6 +6760,9 @@ def run_reviewed_contract_analysis(
         messages_evidence_mapping=messages_evidence_mapping,
         messages_constraint_set=messages_constraint_set,
         messages_evaluation=messages_evaluation,
+        additional_messages_evidence_mappings=tuple(additional_messages_mappings),
+        additional_messages_constraint_sets=tuple(additional_messages_sets),
+        additional_messages_evaluations=tuple(additional_messages_evaluations),
         special_accounts_evidence_mapping=special_accounts_evidence_mapping,
         special_accounts_constraint_set=special_accounts_constraint_set,
         special_accounts_evaluation=special_accounts_evaluation,

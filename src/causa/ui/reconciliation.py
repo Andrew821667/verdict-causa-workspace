@@ -56,7 +56,12 @@ from causa.institutional.contracts.fact_consistency import (
     FACT_CONSISTENCY_VOCABULARY,
     FactConsistencyMismatch,
 )
-from causa.institutional.contracts.messages import MESSAGE_ROLE_PREDICATES, MessageRole
+from causa.institutional.contracts.messages import (
+    MESSAGE_ROLE_LABELS_RU,
+    MESSAGE_ROLE_PREDICATES,
+    MessageRole,
+    message_delivery_consistency_key,
+)
 from causa.institutional.contracts.reviewed_analysis import ReviewedContractAnalysisRequest
 from causa.ui.documents import UploadedDocument
 
@@ -121,15 +126,21 @@ _BOTH_REVIEWER = (
     "решает, какой из них верен"
 )
 
-#: Ключи, цель которых называет само дело, и откуда она берётся.
+#: Ключи, цель которых названа самим ключом, и откуда она берётся.
 #:
 #: Согласование здесь такое же механическое, как и по постоянной паре, — меняется
-#: лишь то, что предикат ищется не в таблице, а в данных дела.
+#: лишь то, что предикат ищется не в таблице, а по роли сообщения.
+#:
+#: Раньше ключ был один на дело, и роль приходилось брать из блока
+#: доказательств: при одном сообщении другого места не было. Теперь дело несёт
+#: несколько сообщений, и роль стоит в самом ключе — цель перестала зависеть от
+#: того, какой блок считать «тем самым».
 ROLE_DEPENDENT_FACTS: dict[str, str] = {
-    "message_delivery_agreement": (
-        "предикат доставки называет роль сообщения, объявленная в доказательствах "
-        "по статье 165.1: она указывает институт и его предикат"
-    ),
+    message_delivery_consistency_key(_role): (
+        f"ключ называет роль сообщения ({_label_ru}), а реестр роли — институт, "
+        "его предикат доставки и полярность"
+    )
+    for _role, _label_ru in MESSAGE_ROLE_LABELS_RU.items()
 }
 
 
@@ -184,17 +195,17 @@ def _target(key: str, request: ReviewedContractAnalysisRequest) -> tuple[str, st
     """Куда и в какой полярности писать согласованное значение.
 
     Третий элемент — `negated`: цель из постоянной пары всегда `False`, а цель
-    из дела берёт полярность предиката у самой роли. Предикат от противного
+    по роли сообщения берёт полярность у самой роли. Предикат от противного
     («не уведомлён») получает не вывод модели напрямую, а его отрицание.
+
+    Запрос здесь больше не нужен для роли — она стоит в ключе, — но параметр
+    сохранён: он остаётся частью подписи для постоянных пар и для будущих
+    ключей, цель которых придётся искать в данных дела.
     """
     if key not in ROLE_DEPENDENT_FACTS:
         field, predicate = RECONCILABLE_FACTS[key]
         return field, predicate, False
-    role = request.messages_evidence.message_role
-    if role is MessageRole.OTHER:
-        raise KeyError(
-            "Сверка доставки сообщения не могла сработать без роли: согласовывать нечего."
-        )
+    role = MessageRole(key.split(":", 1)[1])
     target = MESSAGE_ROLE_PREDICATES[role]
     return f"{target.institute}_evidence", target.predicate, target.negated
 

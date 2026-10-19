@@ -2283,6 +2283,21 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_phase0_readiness_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.21.0",
+        to_version="1.22.0",
+        reasons=[
+            "The analysis request gains an optional field, additional_messages_evidence, and the result gains three: the mappings, constraint sets and evaluations of the remaining messages of the case. Stored artefacts remain structurally valid - the field defaults to empty - but any stored analysis of a case that had several notices states less than the pipeline now states, because delivery was verified for one notice and taken on trust for the others.",
+            "The fact-consistency key for delivery changed shape: message_delivery_agreement becomes message_delivery_agreement:<role>. A stored rejection carrying the old key no longer names a check the package knows, so its reasons must be replayed. Article 4.1 of law 127-FZ also becomes a package source and joins the declared references of the setoff institute.",
+        ],
+        reasons_ru=[
+            "Запрос анализа получает необязательное поле additional_messages_evidence, а результат — три: разборы, наборы ограничений и выводы по остальным сообщениям дела. Сохранённые артефакты остаются структурно годными — поле по умолчанию пусто, — но сохранённый анализ дела, в котором уведомлений было несколько, говорит меньше, чем говорит конвейер теперь: доставка проверялась у одного уведомления, а у остальных принималась на веру.",
+            "Ключ сверки о доставке сменил форму: message_delivery_agreement стал message_delivery_agreement:<роль>. Сохранённый отказ со старым ключом больше не называет известную пакету сверку, поэтому его причины подлежат повторному прогону. Статья 4.1 127-ФЗ также становится источником пакета и входит в объявленные ссылки института зачёта.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+        ],
+    ),
 ]
 
 

@@ -11359,6 +11359,7 @@
       "reviewer_id": "synthetic-messages-reviewer",
       "message_role": "other"
     },
+    "additional_messages_evidence": [],
     "special_accounts_evidence": {
       "id": "reviewed-special-accounts-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -27819,6 +27820,9 @@
         }
       ]
     },
+    "additional_messages_evidence_mappings": [],
+    "additional_messages_constraint_sets": [],
+    "additional_messages_evaluations": [],
     "messages_constraint_set": {
       "id": "messages-constraint-set:reviewed-messages-evidence-supply-1-v0",
       "model_version": "contracts-messages-article-165-1-v0",
@@ -28951,7 +28955,7 @@
         "Ни зачёт встречного однородного требования, ни определение нетто-обязательства по финансовым договорам не заявлены — статья 63 127-ФЗ к прекращению этого обязательства не применяется."
       ],
       "warnings_ru": [
-        "Модель разбирает только запрет зачёта абзаца шестого пункта 1 статьи 63 127-ФЗ и названное в нём же исключение для нетто-обязательств по финансовым договорам — текст статьи 4.1 127-ФЗ, к которой эта статья отсылает, в пакете не источникован, и признак 'нетто-обязательство по статье 4.1' модель принимает как внешний факт, а не проверяет самостоятельно.",
+        "Модель разбирает только запрет зачёта абзаца шестого пункта 1 статьи 63 127-ФЗ и названное в нём же исключение для нетто-обязательств по финансовым договорам. Текст статьи 4.1 127-ФЗ, к которой эта статья отсылает, в пакете есть дословно, но её условия — генеральное соглашение, правила организованных торгов и клиринга, закрытый перечень лиц — модель не проверяет: это отдельный институт. Признак 'нетто-обязательство по статье 4.1' остаётся проверенным фактом рецензента, а не выводом модели.",
         "Модель не разрешает вопрос о том, является ли операция по существу зачётом двух независимых требований (статья 410 ГК РФ) или определением сальдо взаимных предоставлений по одному договору — это открытый вопрос квалификации, а не отдельная норма настоящей модели."
       ]
     },
@@ -36826,7 +36830,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.21.0",
+      "institutional_package_version": "contracts-ru-v0@1.22.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

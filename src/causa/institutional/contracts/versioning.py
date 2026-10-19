@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.22.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "A case now carries as many legally significant messages as it has. The request gains additional_messages_evidence: the primary block plus the rest, each naming its own role, roles distinct. This closes the one connectivity debt the layer audit still held open - messages was the single institute marked blocked_by_data_contract, because the contract gave one evidence block per institute and the consistency layer could therefore tie exactly one of nineteen notices to the article 165.1 model while the other eighteen took delivery on trust.",
+            "The consistency key now carries the role: message_delivery_agreement:<role> instead of one key for the whole case, with a Russian name per notice drawn from MESSAGE_ROLE_LABELS_RU. With one message a single key was enough; with several it would have shown the lawyer two identical lines reading 'notice delivered' without saying which notice diverged - the setoff declaration or the refusal of the contract. The same device already serves the sale/supply fact pairs.",
+            "Reconciliation resolves its target from the key rather than from the evidence block, so it no longer depends on which block counts as 'the' message. The messages entry in the connectivity audit moves from blocked_by_data_contract to duplicated_upstream: delivery reaches the layer through the institute that owns the notice, and that path is now verified for every notice rather than for one. The blocked category is kept though empty - the distinction between 'cannot by law' and 'cannot by data contract' should outlive its emptying.",
+            "Article 4.1 of law 127-FZ is sourced. The setoff institute cited it for the netting exception of article 63(1) while the package held no text for it: the reference went nowhere. The text was already in data/laws/127fz_articles.jsonl and only needed to become a package source; tests/test_institute_source_refs_resolve.py now requires every declared reference to resolve, across institute constants and the demo request alike.",
+        ],
+        notes_ru=[
+            "Дело несёт столько юридически значимых сообщений, сколько их в деле. Запрос получает additional_messages_evidence: основной блок и остальные, каждый со своей ролью, роли не повторяются. Этим закрыт единственный долг связности, который аудит слоя ещё держал открытым: институт сообщений был единственным с вердиктом «заблокирован контрактом данных» — блок доказательств на институт был один, и сверка могла связать с моделью статьи 165.1 ровно одно уведомление из девятнадцати, а остальные восемнадцать принимали доставку на веру.",
+            "Ключ сверки несёт роль: message_delivery_agreement:<роль> вместо одного ключа на всё дело, и русское имя уведомления берётся из MESSAGE_ROLE_LABELS_RU. При одном сообщении одного ключа хватало; при нескольких он показал бы юристу две одинаковые строки «уведомление доставлено», не сказав, какое именно разошлось — заявление о зачёте или отказ от договора. Тот же приём уже служит парам купли-продажи и поставки.",
+            "Согласование берёт цель из ключа, а не из блока доказательств, и перестало зависеть от того, какой блок считать «тем самым». Запись института сообщений в аудите связности переходит из «заблокирован контрактом данных» в «дублирование»: доставка приходит в слой через тот институт, которому уведомление принадлежит, и этот путь теперь достоверен для каждого уведомления, а не для одного. Категория «заблокирован» оставлена пустой — различие между «нельзя по праву» и «нельзя по контракту данных» должно пережить своё опустение.",
+            "Статья 4.1 127-ФЗ источникована. Институт зачёта ссылался на неё ради исключения о нетто-обязательствах из абзаца шестого пункта 1 статьи 63, а текста в пакете не было: ссылка уходила в пустоту. Текст уже лежал в data/laws/127fz_articles.jsonl и оставалось лишь сделать его источником пакета; tests/test_institute_source_refs_resolve.py теперь требует, чтобы разрешалась каждая объявленная ссылка — и в константах институтов, и в демонстрационном запросе.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.21.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

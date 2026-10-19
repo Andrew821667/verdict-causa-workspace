@@ -48,6 +48,11 @@
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from causa.institutional.contracts.messages import (
+    MESSAGE_ROLE_LABELS_RU,
+    message_delivery_consistency_key,
+)
+
 FACT_CONSISTENCY_VERSION = "contracts-fact-consistency-v0"
 
 
@@ -106,11 +111,6 @@ FACT_CONSISTENCY_VOCABULARY: dict[str, tuple[str, str]] = {
         "действие договора во времени: момент заключения установлен",
         "момент заключения не может быть установлен, пока модель статей 432–443 "
         "ГК РФ не подтвердила формальные предпосылки заключения договора",
-    ),
-    "message_delivery_agreement": (
-        "юридически значимое сообщение: уведомление доставлено",
-        "доставка уведомления выводится моделью статьи 165.1 ГК РФ, и институт, "
-        "которому это уведомление принадлежит, обязан утверждать о нём то же самое",
     ),
     "invalidity_transaction_status": (
         "недействительность: сделка совершена",
@@ -299,6 +299,21 @@ SALE_SUPPLY_PAIR_LABELS_RU: dict[str, str] = {
     "payment": "произведённый платёж",
     "termination": "расторжение договора",
 }
+
+#: Сверки о доставке: по одной на каждое уведомление, а не одна на дело.
+#:
+#: Пока контракт данных несла один блок сообщений, ключ был один, и этого
+#: хватало. Теперь дело может нести несколько сообщений сразу, и один ключ
+#: означал бы, что юрист видит несколько одинаковых строк «уведомление
+#: доставлено» и не знает, какая из них о зачёте, а какая об отказе от
+#: договора. Ключ несёт роль, а описание — имя уведомления по-русски.
+for _role, _role_label_ru in MESSAGE_ROLE_LABELS_RU.items():
+    FACT_CONSISTENCY_VOCABULARY[message_delivery_consistency_key(_role)] = (
+        f"юридически значимое сообщение: {_role_label_ru} доставлено",
+        "доставка выводится моделью статьи 165.1 ГК РФ, и институт, которому это "
+        "уведомление принадлежит, обязан утверждать о нём то же самое",
+    )
+
 
 for _label, _label_ru in SALE_SUPPLY_PAIR_LABELS_RU.items():
     FACT_CONSISTENCY_VOCABULARY[f"sale_supply_pair:{_label}"] = (

@@ -7,6 +7,7 @@ from causa.institutional.contracts.messages import (
     MessagesFactSet,
     build_messages_constraint_set,
     evaluate_messages_constraints,
+    message_delivery_consistency_key,
 )
 from causa.institutional.contracts.messages_evaluation import (
     run_messages_benchmark_suite,
@@ -242,7 +243,9 @@ def test_the_role_check_rejects_a_message_that_contradicts_its_institute() -> No
             build_synthetic_supply_analysis_sources(),
         )
 
-    assert "message_delivery_agreement" in failure.value.keys
+    # Ключ несёт роль сообщения: при нескольких сообщениях в деле один общий
+    # ключ не сказал бы, какое из них разошлось.
+    assert failure.value.keys == [message_delivery_consistency_key(evidence.message_role)]
 
 
 def test_a_role_added_for_the_delivery_sweep_is_checked_too() -> None:
@@ -276,7 +279,9 @@ def test_a_role_added_for_the_delivery_sweep_is_checked_too() -> None:
             build_synthetic_supply_analysis_sources(),
         )
 
-    assert "message_delivery_agreement" in failure.value.keys
+    # Ключ несёт роль сообщения: при нескольких сообщениях в деле один общий
+    # ключ не сказал бы, какое из них разошлось.
+    assert failure.value.keys == [message_delivery_consistency_key(evidence.message_role)]
 
 
 def test_a_negated_role_is_read_through_its_negation() -> None:
@@ -320,4 +325,6 @@ def test_a_negated_role_is_read_through_its_negation() -> None:
             build_synthetic_supply_analysis_sources(),
         )
 
-    assert "message_delivery_agreement" in failure.value.keys
+    # Ключ несёт роль сообщения: при нескольких сообщениях в деле один общий
+    # ключ не сказал бы, какое из них разошлось.
+    assert failure.value.keys == [message_delivery_consistency_key(evidence.message_role)]
