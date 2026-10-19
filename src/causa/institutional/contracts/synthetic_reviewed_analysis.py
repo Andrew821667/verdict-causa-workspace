@@ -165,6 +165,12 @@ from causa.institutional.contracts.special_accounts import (
     SpecialAccountsEvidenceAssertion,
     SpecialAccountsEvidencePredicate,
 )
+from causa.institutional.contracts.citizen_ranking import (
+    CITIZEN_RANKING_LEGAL_SOURCE_REFS,
+    CitizenRankingEvidenceAssertion,
+    CitizenRankingEvidencePredicate,
+    ReviewedCitizenRankingEvidence,
+)
 from causa.institutional.contracts.citizen_bankruptcy import (
     CITIZEN_BANKRUPTCY_LEGAL_SOURCE_REFS,
     CitizenBankruptcyEvidenceAssertion,
@@ -712,6 +718,7 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
     "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
     "synthetic-case-supply-1-citizen-bankruptcy-evidence",
+    "synthetic-case-supply-1-citizen-ranking-evidence",
     "synthetic-ru-127fz-5-current-payments-v1",
     "synthetic-ru-127fz-63-observation-effects-v1",
     "synthetic-ru-127fz-134-creditor-ranking-v1",
@@ -3375,6 +3382,24 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             legal_source_refs=MANAGEMENT_LIABILITY_LEGAL_SOURCE_REFS,
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-management-liability-reviewer",
+        ),
+        citizen_ranking_evidence=ReviewedCitizenRankingEvidence(
+            id="reviewed-citizen-ranking-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            # Все признаки ложны: дела о банкротстве гражданина нет, и требование
+            # в нём не заявлено. Институт обязан промолчать на таком наборе.
+            assertions=tuple(
+                CitizenRankingEvidenceAssertion(
+                    id=f"citizen-ranking-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=False,
+                    source_refs=("synthetic-case-supply-1-citizen-ranking-evidence",),
+                )
+                for predicate in CitizenRankingEvidencePredicate
+            ),
+            legal_source_refs=CITIZEN_RANKING_LEGAL_SOURCE_REFS,
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-citizen-ranking-reviewer",
         ),
         citizen_bankruptcy_evidence=ReviewedCitizenBankruptcyEvidence(
             id="reviewed-citizen-bankruptcy-evidence-supply-1-v0",

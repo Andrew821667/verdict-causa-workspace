@@ -628,6 +628,16 @@ from causa.institutional.contracts.management_liability import (
     evaluate_management_liability_constraints,
     map_reviewed_management_liability_evidence,
 )
+from causa.institutional.contracts.citizen_ranking import (
+    CITIZEN_RANKING_EVIDENCE_SCHEMA_VERSION,
+    CitizenRankingConstraintSet,
+    CitizenRankingEvaluation,
+    CitizenRankingEvidenceMappingResult,
+    ReviewedCitizenRankingEvidence,
+    build_citizen_ranking_constraint_set,
+    evaluate_citizen_ranking_constraints,
+    map_reviewed_citizen_ranking_evidence,
+)
 from causa.institutional.contracts.citizen_bankruptcy import (
     CITIZEN_BANKRUPTCY_EVIDENCE_SCHEMA_VERSION,
     CitizenBankruptcyConstraintSet,
@@ -1176,6 +1186,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     management_liability_evidence: ReviewedManagementLiabilityEvidence
     contract_concept_evidence: ReviewedContractConceptEvidence
     citizen_bankruptcy_evidence: ReviewedCitizenBankruptcyEvidence
+    citizen_ranking_evidence: ReviewedCitizenRankingEvidence
     bankruptcy_claims_evidence: ReviewedBankruptcyClaimsEvidence
     bankruptcy_ranking_evidence: ReviewedBankruptcyRankingEvidence
     bankruptcy_contest_evidence: ReviewedBankruptcyContestEvidence
@@ -1444,6 +1455,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     citizen_bankruptcy_evidence_mapping: CitizenBankruptcyEvidenceMappingResult
     citizen_bankruptcy_constraint_set: CitizenBankruptcyConstraintSet
     citizen_bankruptcy_evaluation: CitizenBankruptcyEvaluation
+    citizen_ranking_evidence_mapping: CitizenRankingEvidenceMappingResult
+    citizen_ranking_constraint_set: CitizenRankingConstraintSet
+    citizen_ranking_evaluation: CitizenRankingEvaluation
     bankruptcy_claims_evidence_mapping: BankruptcyClaimsEvidenceMappingResult
     bankruptcy_claims_constraint_set: BankruptcyClaimsConstraintSet
     bankruptcy_claims_evaluation: BankruptcyClaimsEvaluation
@@ -2366,6 +2380,24 @@ class ReviewedContractAnalysisResult(BaseModel):
             raise ValueError(
                 "Citizen-bankruptcy evaluation does not replay from reviewed evidence."
             )
+        expected_citizen_ranking_set = build_citizen_ranking_constraint_set(
+            self.citizen_ranking_evidence_mapping
+        )
+        if self.citizen_ranking_constraint_set != expected_citizen_ranking_set:
+            raise ValueError(
+                "Citizen-ranking constraint set does not replay from reviewed evidence."
+            )
+        expected_citizen_ranking_evaluation = evaluate_citizen_ranking_constraints(
+            expected_citizen_ranking_set,
+            self.citizen_ranking_evidence_mapping.facts,
+        )
+        if self.citizen_ranking_evaluation != expected_citizen_ranking_evaluation:
+            raise ValueError("Citizen-ranking evaluation does not replay from reviewed evidence.")
+        facts_agree.equal(
+            "citizen_ranking_debtor_regime",
+            self.citizen_ranking_evidence_mapping.facts.debtor_is_a_citizen_under_chapter_10,
+            self.citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies,
+        )
         expected_bankruptcy_claims_set = build_bankruptcy_claims_constraint_set(
             self.bankruptcy_claims_evidence_mapping
         )
@@ -2388,6 +2420,18 @@ class ReviewedContractAnalysisResult(BaseModel):
             "citizen_bankruptcy_debtor_regime",
             self.bankruptcy_ranking_evidence_mapping.facts.debtor_is_a_citizen_under_chapter_10,
             self.citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies,
+        )
+        facts_agree.implies(
+            "citizen_ranking_claim_in_register",
+            self.citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies
+            and self.bankruptcy_ranking_evidence_mapping.facts.claim_filed_in_bankruptcy_register,
+            self.citizen_ranking_evidence_mapping.facts.claim_filed_in_bankruptcy_register,
+        )
+        facts_agree.implies(
+            "citizen_ranking_current_payment",
+            self.citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies
+            and self.bankruptcy_ranking_evidence_mapping.facts.is_current_payment_claim,
+            self.citizen_ranking_evidence_mapping.facts.is_current_payment_claim,
         )
         expected_bankruptcy_ranking_set = build_bankruptcy_ranking_constraint_set(
             self.bankruptcy_ranking_evidence_mapping
@@ -3144,6 +3188,8 @@ def _validate_request_integrity(
         raise ValueError("Contract-concept evidence case_id does not match the analysis request.")
     if request.citizen_bankruptcy_evidence.case_id != request.case_id:
         raise ValueError("Citizen-bankruptcy evidence case_id does not match the analysis request.")
+    if request.citizen_ranking_evidence.case_id != request.case_id:
+        raise ValueError("Citizen-ranking evidence case_id does not match the analysis request.")
     if request.bankruptcy_claims_evidence.case_id != request.case_id:
         raise ValueError("Bankruptcy-claims evidence case_id does not match the analysis request.")
     if request.bankruptcy_ranking_evidence.case_id != request.case_id:
@@ -3398,6 +3444,8 @@ def _validate_request_integrity(
         != CITIZEN_BANKRUPTCY_EVIDENCE_SCHEMA_VERSION
     ):
         raise ValueError("Citizen-bankruptcy evidence uses an unsupported schema version.")
+    if request.citizen_ranking_evidence.schema_version != CITIZEN_RANKING_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Citizen-ranking evidence uses an unsupported schema version.")
     if (
         request.bankruptcy_claims_evidence.schema_version
         != BANKRUPTCY_CLAIMS_EVIDENCE_SCHEMA_VERSION
@@ -3542,6 +3590,7 @@ def _validate_request_integrity(
         *request.management_liability_evidence.legal_source_refs,
         *request.contract_concept_evidence.legal_source_refs,
         *request.citizen_bankruptcy_evidence.legal_source_refs,
+        *request.citizen_ranking_evidence.legal_source_refs,
         *request.bankruptcy_claims_evidence.legal_source_refs,
         *request.bankruptcy_ranking_evidence.legal_source_refs,
         *request.bankruptcy_contest_evidence.legal_source_refs,
@@ -3710,6 +3759,8 @@ def _validate_request_integrity(
     for assertion in request.contract_concept_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.citizen_bankruptcy_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.citizen_ranking_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.bankruptcy_claims_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -4518,6 +4569,17 @@ def _validate_request_integrity(
             "Citizen-bankruptcy legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_citizen_bankruptcy_legal_sources))
         )
+    invalid_citizen_ranking_legal_sources = [
+        source_id
+        for source_id in request.citizen_ranking_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_citizen_ranking_legal_sources:
+        raise ValueError(
+            "Citizen-ranking legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_citizen_ranking_legal_sources))
+        )
     invalid_bankruptcy_claims_legal_sources = [
         source_id
         for source_id in request.bankruptcy_claims_evidence.legal_source_refs
@@ -5262,6 +5324,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Citizen-bankruptcy evidence",
         review_status=request.citizen_bankruptcy_evidence.review_status,
         reviewer_id=request.citizen_bankruptcy_evidence.reviewer_id,
+    )
+    citizen_ranking_reviewer_id = _require_reviewed(
+        artifact_name="Citizen-ranking evidence",
+        review_status=request.citizen_ranking_evidence.review_status,
+        reviewer_id=request.citizen_ranking_evidence.reviewer_id,
     )
     bankruptcy_claims_reviewer_id = _require_reviewed(
         artifact_name="Bankruptcy-claims evidence",
@@ -6056,6 +6123,24 @@ def run_reviewed_contract_analysis(
         citizen_bankruptcy_constraint_set,
         citizen_bankruptcy_evidence_mapping.facts,
     )
+    citizen_ranking_evidence_mapping = map_reviewed_citizen_ranking_evidence(
+        request.citizen_ranking_evidence
+    )
+    citizen_ranking_constraint_set = build_citizen_ranking_constraint_set(
+        citizen_ranking_evidence_mapping
+    )
+    citizen_ranking_evaluation = evaluate_citizen_ranking_constraints(
+        citizen_ranking_constraint_set,
+        citizen_ranking_evidence_mapping.facts,
+    )
+    # Тот же признак режима, что у института очерёдности статьи 134, и тот же
+    # вывод модели статьи 25. Два института отвечают об одном требовании по
+    # разным сводам правил, и расходиться в том, какой свод применим, им нельзя.
+    facts_agree.equal(
+        "citizen_ranking_debtor_regime",
+        citizen_ranking_evidence_mapping.facts.debtor_is_a_citizen_under_chapter_10,
+        citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies,
+    )
     bankruptcy_claims_evidence_mapping = map_reviewed_bankruptcy_claims_evidence(
         request.bankruptcy_claims_evidence
     )
@@ -6083,6 +6168,22 @@ def run_reviewed_contract_analysis(
         bankruptcy_ranking_evidence_mapping.facts.debtor_is_a_citizen_under_chapter_10,
         citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies,
     )
+    # Разделение институтов создаёт свой риск: институт статьи 134 для гражданина
+    # очередь снимает, а институт статьи 213.27 её определяет — и если требование
+    # есть у одного блока и отсутствует у другого, оно остаётся без очереди вовсе.
+    facts_agree.implies(
+        "citizen_ranking_claim_in_register",
+        citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies
+        and bankruptcy_ranking_evidence_mapping.facts.claim_filed_in_bankruptcy_register,
+        citizen_ranking_evidence_mapping.facts.claim_filed_in_bankruptcy_register,
+    )
+    facts_agree.implies(
+        "citizen_ranking_current_payment",
+        citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies
+        and bankruptcy_ranking_evidence_mapping.facts.is_current_payment_claim,
+        citizen_ranking_evidence_mapping.facts.is_current_payment_claim,
+    )
+
     bankruptcy_ranking_constraint_set = build_bankruptcy_ranking_constraint_set(
         bankruptcy_ranking_evidence_mapping
     )
@@ -6650,6 +6751,7 @@ def run_reviewed_contract_analysis(
         or management_liability_evaluation.requires_human_management_liability_assessment
         or contract_concept_evaluation.requires_human_contract_concept_assessment
         or citizen_bankruptcy_evaluation.requires_human_citizen_bankruptcy_assessment
+        or citizen_ranking_evaluation.requires_human_citizen_ranking_assessment
         or bankruptcy_claims_evaluation.requires_human_bankruptcy_claims_assessment
         or bankruptcy_ranking_evaluation.requires_human_bankruptcy_ranking_assessment
         or bankruptcy_contest_evaluation.requires_human_bankruptcy_contest_assessment
@@ -6757,6 +6859,7 @@ def run_reviewed_contract_analysis(
                 management_liability_reviewer_id,
                 contract_concept_reviewer_id,
                 citizen_bankruptcy_reviewer_id,
+                citizen_ranking_reviewer_id,
                 bankruptcy_claims_reviewer_id,
                 bankruptcy_ranking_reviewer_id,
                 bankruptcy_contest_reviewer_id,
@@ -7003,6 +7106,9 @@ def run_reviewed_contract_analysis(
         citizen_bankruptcy_evidence_mapping=citizen_bankruptcy_evidence_mapping,
         citizen_bankruptcy_constraint_set=citizen_bankruptcy_constraint_set,
         citizen_bankruptcy_evaluation=citizen_bankruptcy_evaluation,
+        citizen_ranking_evidence_mapping=citizen_ranking_evidence_mapping,
+        citizen_ranking_constraint_set=citizen_ranking_constraint_set,
+        citizen_ranking_evaluation=citizen_ranking_evaluation,
         bankruptcy_claims_evidence_mapping=bankruptcy_claims_evidence_mapping,
         bankruptcy_claims_constraint_set=bankruptcy_claims_constraint_set,
         bankruptcy_claims_evaluation=bankruptcy_claims_evaluation,

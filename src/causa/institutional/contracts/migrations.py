@@ -2346,6 +2346,22 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_synthetic_citizen_bankruptcy_evaluation.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.25.0",
+        to_version="1.26.0",
+        reasons=[
+            "The analysis request gains a required field, citizen_ranking_evidence, and the result gains three: the mapping, the constraint set and the evaluation of the article 213.27 institute. A stored request does not carry the field and cannot be replayed as it stands.",
+            "A stored analysis of a citizen's claim states 'no tier determined' plus a human flag, which the package now answers: the tier is determined by the article 213.27 institute, and the flag on the article 134 institute is dropped. Those analyses understate what the pipeline now states and must be replayed. Two new fact-consistency checks also require the article 213.27 evidence block to see the same claim as the article 134 block.",
+        ],
+        reasons_ru=[
+            "Запрос анализа получает обязательное поле citizen_ranking_evidence, а результат — три: разбор, набор ограничений и вывод института статьи 213.27. Сохранённый запрос этого поля не несёт и в прежнем виде повторно прогнан быть не может.",
+            "Сохранённый анализ требования гражданина говорит «очередь не определена» и поднимает флаг юриста, тогда как пакет теперь отвечает: очередь определяет институт статьи 213.27, а флаг у института статьи 134 снят. Такие выводы говорят меньше, чем говорит конвейер, и подлежат повторному прогону. Две новые сверки фактов, кроме того, требуют, чтобы блок доказательств статьи 213.27 видел то же требование, что блок статьи 134.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_citizen_ranking_evaluation.py",
+        ],
+    ),
 ]
 
 

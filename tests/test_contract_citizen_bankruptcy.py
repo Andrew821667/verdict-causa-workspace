@@ -254,6 +254,10 @@ def test_the_liquidation_ranking_is_withheld_from_a_citizens_claim() -> None:
     гражданина-должника и не поднимал флага: предиката об алиментах у него нет,
     и требование падало в остаточную категорию. Пункт 3 статьи 213.27 относит
     его к **первой** очереди реестра. Это был неверный ответ, а не пробел.
+
+    В версии 1.25.0 ворота снимали ответ и поднимали флаг юриста. В версии
+    1.26.0 статья 213.27 смоделирована своим институтом, и флаг снят: вопрос не
+    остаётся без ответа, а разбирается по применимому своду правил.
     """
     citizen = _rank(
         _ranking(
@@ -266,7 +270,7 @@ def test_the_liquidation_ranking_is_withheld_from_a_citizens_claim() -> None:
     assert citizen.first_tier is False
     assert citizen.second_tier is False
     assert citizen.third_tier is False
-    assert citizen.requires_human_bankruptcy_ranking_assessment is True
+    assert citizen.requires_human_bankruptcy_ranking_assessment is False
     assert any("213.27" in reason for reason in citizen.reasons_ru)
 
 
@@ -282,7 +286,9 @@ def test_the_gate_withholds_the_current_payment_tiers_too() -> None:
 
     assert citizen.current_payment_fourth_tier is False
     assert citizen.current_payment_fifth_tier is False
-    assert citizen.requires_human_bankruptcy_ranking_assessment is True
+    # Флага нет с версии 1.26.0: очередь текущего платежа гражданина определяет
+    # пункт 2 статьи 213.27, и его институт на этот вопрос отвечает.
+    assert citizen.requires_human_bankruptcy_ranking_assessment is False
 
 
 def test_the_gate_withholds_the_pledge_track_of_article_138() -> None:

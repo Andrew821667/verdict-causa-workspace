@@ -3466,6 +3466,21 @@
       }
     },
     {
+      "id": "synthetic-case-supply-1-citizen-ranking-evidence",
+      "title": "Синтетическая проверенная запись фактов об очерёдности требований гражданина",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спор о поставке ведут две организации, дела о банкротстве гражданина нет, требование ни реестровым, ни текущим в таком деле не заявлено. Все признаки института статьи 213.27 закона 127-ФЗ ложны, и институт обязан промолчать.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "citizen_ranking_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-127fz-5-current-payments-v1",
       "title": "127-ФЗ, статья 5: текущие платежи",
       "source_type": "statute",
@@ -12325,6 +12340,125 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-citizen-bankruptcy-reviewer"
     },
+    "citizen_ranking_evidence": {
+      "id": "reviewed-citizen-ranking-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.citizen-ranking-evidence.v0",
+      "assertions": [
+        {
+          "id": "citizen-ranking-evidence-debtor_is_a_citizen_under_chapter_10",
+          "predicate": "debtor_is_a_citizen_under_chapter_10",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "id": "citizen-ranking-evidence-claim_filed_in_bankruptcy_register",
+          "predicate": "claim_filed_in_bankruptcy_register",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "id": "citizen-ranking-evidence-is_current_payment_claim",
+          "predicate": "is_current_payment_claim",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "id": "citizen-ranking-evidence-is_life_or_health_harm_claim",
+          "predicate": "is_life_or_health_harm_claim",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "id": "citizen-ranking-evidence-is_maintenance_claim",
+          "predicate": "is_maintenance_claim",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "id": "citizen-ranking-evidence-is_labour_or_severance_claim",
+          "predicate": "is_labour_or_severance_claim",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "id": "citizen-ranking-evidence-is_proceeding_cost_or_manager_fee",
+          "predicate": "is_proceeding_cost_or_manager_fee",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "id": "citizen-ranking-evidence-is_housing_or_utility_payment",
+          "predicate": "is_housing_or_utility_payment",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "id": "citizen-ranking-evidence-is_secured_by_pledge",
+          "predicate": "is_secured_by_pledge",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "id": "citizen-ranking-evidence-pledge_proceeds_insufficient_for_the_secured_claim",
+          "predicate": "pledge_proceeds_insufficient_for_the_secured_claim",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "id": "citizen-ranking-evidence-other_property_insufficient_for_first_and_second_tiers",
+          "predicate": "other_property_insufficient_for_first_and_second_tiers",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "id": "citizen-ranking-evidence-claim_unsatisfied_for_want_of_property",
+          "predicate": "claim_unsatisfied_for_want_of_property",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "id": "citizen-ranking-evidence-statutory_exception_to_discharge_applies",
+          "predicate": "statutory_exception_to_discharge_applies",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+        "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+        "synthetic-ru-127fz-134-creditor-ranking-v1",
+        "synthetic-ru-gk25-citizen-insolvency-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-citizen-ranking-reviewer"
+    },
     "bankruptcy_claims_evidence": {
       "id": "reviewed-bankruptcy-claims-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -18957,6 +19091,7 @@
       "synthetic-carriage-reviewer",
       "synthetic-case-evidence-reviewer",
       "synthetic-citizen-bankruptcy-reviewer",
+      "synthetic-citizen-ranking-reviewer",
       "synthetic-civil-principles-reviewer",
       "synthetic-commercial-credit-reviewer",
       "synthetic-commission-reviewer",
@@ -19056,6 +19191,7 @@
       "synthetic-case-supply-1-building-lease-evidence",
       "synthetic-case-supply-1-carriage-evidence",
       "synthetic-case-supply-1-citizen-bankruptcy-evidence",
+      "synthetic-case-supply-1-citizen-ranking-evidence",
       "synthetic-case-supply-1-civil-principles-evidence",
       "synthetic-case-supply-1-commercial-credit-evidence",
       "synthetic-case-supply-1-commission-evidence",
@@ -29463,6 +29599,178 @@
         "Условия банкротства юридического лица даёт статья 65 ГК РФ, а не статья 25: модель о гражданине и молчит о юридическом лице."
       ]
     },
+    "citizen_ranking_evidence_mapping": {
+      "evidence_id": "reviewed-citizen-ranking-evidence-supply-1-v0",
+      "schema_version": "contracts.citizen-ranking-evidence.v0",
+      "mapping_version": "contracts-reviewed-citizen-ranking-to-facts-v0",
+      "facts": {
+        "debtor_is_a_citizen_under_chapter_10": false,
+        "claim_filed_in_bankruptcy_register": false,
+        "is_current_payment_claim": false,
+        "is_life_or_health_harm_claim": false,
+        "is_maintenance_claim": false,
+        "is_labour_or_severance_claim": false,
+        "is_proceeding_cost_or_manager_fee": false,
+        "is_housing_or_utility_payment": false,
+        "is_secured_by_pledge": false,
+        "pledge_proceeds_insufficient_for_the_secured_claim": false,
+        "other_property_insufficient_for_first_and_second_tiers": false,
+        "claim_unsatisfied_for_want_of_property": false,
+        "statutory_exception_to_discharge_applies": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+        "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+        "synthetic-ru-127fz-134-creditor-ranking-v1",
+        "synthetic-ru-gk25-citizen-insolvency-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "claim_filed_in_bankruptcy_register",
+          "assertion_id": "citizen-ranking-evidence-claim_filed_in_bankruptcy_register",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "claim_unsatisfied_for_want_of_property",
+          "assertion_id": "citizen-ranking-evidence-claim_unsatisfied_for_want_of_property",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_is_a_citizen_under_chapter_10",
+          "assertion_id": "citizen-ranking-evidence-debtor_is_a_citizen_under_chapter_10",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "is_current_payment_claim",
+          "assertion_id": "citizen-ranking-evidence-is_current_payment_claim",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "is_housing_or_utility_payment",
+          "assertion_id": "citizen-ranking-evidence-is_housing_or_utility_payment",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "is_labour_or_severance_claim",
+          "assertion_id": "citizen-ranking-evidence-is_labour_or_severance_claim",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "is_life_or_health_harm_claim",
+          "assertion_id": "citizen-ranking-evidence-is_life_or_health_harm_claim",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "is_maintenance_claim",
+          "assertion_id": "citizen-ranking-evidence-is_maintenance_claim",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "is_proceeding_cost_or_manager_fee",
+          "assertion_id": "citizen-ranking-evidence-is_proceeding_cost_or_manager_fee",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "is_secured_by_pledge",
+          "assertion_id": "citizen-ranking-evidence-is_secured_by_pledge",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "other_property_insufficient_for_first_and_second_tiers",
+          "assertion_id": "citizen-ranking-evidence-other_property_insufficient_for_first_and_second_tiers",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "pledge_proceeds_insufficient_for_the_secured_claim",
+          "assertion_id": "citizen-ranking-evidence-pledge_proceeds_insufficient_for_the_secured_claim",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "statutory_exception_to_discharge_applies",
+          "assertion_id": "citizen-ranking-evidence-statutory_exception_to_discharge_applies",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-ranking-evidence"
+          ]
+        }
+      ]
+    },
+    "citizen_ranking_constraint_set": {
+      "id": "citizen-ranking-constraint-set:reviewed-citizen-ranking-evidence-supply-1-v0",
+      "model_version": "contracts-citizen-ranking-article-213-27-127fz-v0",
+      "legal_source_refs": [
+        "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+        "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+        "synthetic-ru-127fz-134-creditor-ranking-v1",
+        "synthetic-ru-gk25-citizen-insolvency-v1"
+      ],
+      "expressions": [
+        "current_payments_paid_ahead_of_registry_claims == debtor_is_a_citizen_under_chapter_10 AND is_current_payment_claim",
+        "current_payment_first_tier == debtor_is_a_citizen_under_chapter_10 AND is_current_payment_claim AND (is_maintenance_claim OR is_proceeding_cost_or_manager_fee)",
+        "current_payment_second_tier == debtor_is_a_citizen_under_chapter_10 AND is_current_payment_claim AND is_labour_or_severance_claim",
+        "current_payment_third_tier == debtor_is_a_citizen_under_chapter_10 AND is_current_payment_claim AND is_housing_or_utility_payment",
+        "current_payment_fourth_tier == debtor_is_a_citizen_under_chapter_10 AND is_current_payment_claim AND NOT is_maintenance_claim AND NOT is_proceeding_cost_or_manager_fee AND NOT is_labour_or_severance_claim AND NOT is_housing_or_utility_payment",
+        "registry_first_tier == debtor_is_a_citizen_under_chapter_10 AND claim_filed_in_bankruptcy_register AND (is_life_or_health_harm_claim OR is_maintenance_claim)",
+        "registry_second_tier == debtor_is_a_citizen_under_chapter_10 AND claim_filed_in_bankruptcy_register AND is_labour_or_severance_claim",
+        "registry_third_tier == debtor_is_a_citizen_under_chapter_10 AND claim_filed_in_bankruptcy_register AND NOT is_life_or_health_harm_claim AND NOT is_maintenance_claim AND NOT is_labour_or_severance_claim AND NOT is_secured_by_pledge",
+        "capitalisation_not_performed == debtor_is_a_citizen_under_chapter_10 AND claim_filed_in_bankruptcy_register AND is_life_or_health_harm_claim",
+        "secured_claim_takes_eighty_percent_of_pledge_proceeds == debtor_is_a_citizen_under_chapter_10 AND is_secured_by_pledge",
+        "pledge_remainder_reserved_for_first_and_second_tiers == debtor_is_a_citizen_under_chapter_10 AND is_secured_by_pledge AND other_property_insufficient_for_first_and_second_tiers",
+        "unsecured_remainder_of_the_pledge_claim_joins_the_third_tier == debtor_is_a_citizen_under_chapter_10 AND is_secured_by_pledge AND pledge_proceeds_insufficient_for_the_secured_claim",
+        "claim_deemed_discharged_for_want_of_property == debtor_is_a_citizen_under_chapter_10 AND claim_unsatisfied_for_want_of_property AND NOT statutory_exception_to_discharge_applies",
+        "discharge_withheld_by_statutory_exception == debtor_is_a_citizen_under_chapter_10 AND claim_unsatisfied_for_want_of_property AND statutory_exception_to_discharge_applies",
+        "requires_human_citizen_ranking_assessment == discharge_withheld_by_statutory_exception OR secured_claim_takes_eighty_percent_of_pledge_proceeds"
+      ]
+    },
+    "citizen_ranking_evaluation": {
+      "constraint_set_id": "citizen-ranking-constraint-set:reviewed-citizen-ranking-evidence-supply-1-v0",
+      "satisfiable": true,
+      "current_payments_paid_ahead_of_registry_claims": false,
+      "current_payment_first_tier": false,
+      "current_payment_second_tier": false,
+      "current_payment_third_tier": false,
+      "current_payment_fourth_tier": false,
+      "registry_first_tier": false,
+      "registry_second_tier": false,
+      "registry_third_tier": false,
+      "capitalisation_not_performed": false,
+      "secured_claim_takes_eighty_percent_of_pledge_proceeds": false,
+      "pledge_remainder_reserved_for_first_and_second_tiers": false,
+      "unsecured_remainder_of_the_pledge_claim_joins_the_third_tier": false,
+      "claim_deemed_discharged_for_want_of_property": false,
+      "discharge_withheld_by_statutory_exception": false,
+      "requires_human_citizen_ranking_assessment": false,
+      "reasons_ru": [],
+      "warnings_ru": [
+        "Модель определяет очередь требования, а не его размер: восемьдесят и десять процентов пункта 5 названы как правила, но не вычислены — денежных величин в фактах модели нет.",
+        "Календарный порядок внутри одной очереди текущих платежей (пункт 2) остаётся вне модели: дат в её фактах нет. То же ограничение у института очерёдности статьи 134.",
+        "Перечень исключений из погашения требований даёт статья 213.28 закона, и пакет его не моделирует: заявленное исключение снимает вывод о погашении и поднимает флаг юриста.",
+        "Движение денег по специальному банковскому счёту гражданина, возврат остатков в конкурсную массу и расходы пункта 6 статьи 138 — распределение, а не квалификация требования, и лежат вне этой модели."
+      ]
+    },
     "bankruptcy_claims_evidence_mapping": {
       "evidence_id": "reviewed-bankruptcy-claims-evidence-supply-1-v0",
       "schema_version": "contracts.bankruptcy-claims-evidence.v0",
@@ -29694,7 +30002,7 @@
         "current_payment_fourth_tier == article_134_ranking_applies AND is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND is_utility_payment",
         "current_payment_fifth_tier == article_134_ranking_applies AND is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND NOT is_proceeding_cost_or_mandatory_engagement AND NOT is_post_petition_labour_payment AND NOT is_discretionary_engagement_payment AND NOT is_utility_payment",
         "excess_executive_severance_after_third_tier == article_134_ranking_applies AND is_excess_executive_severance",
-        "requires_human_bankruptcy_ranking_assessment == debtor_is_a_citizen_under_chapter_10 OR (article_134_ranking_applies AND (is_secured_by_pledge OR is_life_or_health_harm_claim OR (is_current_payment_claim AND is_technogenic_risk_mitigation_expense)))"
+        "requires_human_bankruptcy_ranking_assessment == article_134_ranking_applies AND (is_secured_by_pledge OR is_life_or_health_harm_claim OR (is_current_payment_claim AND is_technogenic_risk_mitigation_expense))"
       ]
     },
     "bankruptcy_ranking_evaluation": {
@@ -37821,7 +38129,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.25.0",
+      "institutional_package_version": "contracts-ru-v0@1.26.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

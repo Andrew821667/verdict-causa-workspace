@@ -244,7 +244,9 @@ SYNTHETIC_BANKRUPTCY_RANKING_BENCHMARKS = (
         expected_outcomes={
             "article_134_ranking_applies": False,
             "third_tier": False,
-            "requires_human_bankruptcy_ranking_assessment": True,
+            # Флага нет: очередь определяет институт статьи 213.27, и вопрос не
+            # остаётся без ответа.
+            "requires_human_bankruptcy_ranking_assessment": False,
         },
     ),
     BankruptcyRankingEvaluationTask(
@@ -255,7 +257,7 @@ SYNTHETIC_BANKRUPTCY_RANKING_BENCHMARKS = (
             "article_134_ranking_applies": False,
             "current_payment_fourth_tier": False,
             "current_payment_fifth_tier": False,
-            "requires_human_bankruptcy_ranking_assessment": True,
+            "requires_human_bankruptcy_ranking_assessment": False,
         },
     ),
     BankruptcyRankingEvaluationTask(
@@ -392,10 +394,13 @@ SYNTHETIC_BANKRUPTCY_RANKING_RED_TEAM_CASES = (
         forbidden_outcomes={"satisfied_from_pledge_proceeds": True},
     ),
     BankruptcyRankingRedTeamCase(
-        id="bankruptcy-ranking-red-citizen-displacement-is-not-silent",
-        title_ru="Снять очередь у гражданина, не подняв флага юриста",
+        id="bankruptcy-ranking-red-citizen-keeps-the-article-134-gate-open",
+        title_ru="Оставить ворота статьи 134 открытыми для должника-гражданина",
+        # Прежняя редакция случая требовала флага юриста. Он был правомерен, пока
+        # статья 213.27 не была смоделирована; теперь очередь определяет её
+        # институт, и флаг здесь был бы ложной тревогой.
         facts=_facts(debtor_is_a_citizen_under_chapter_10=True),
-        forbidden_outcomes={"requires_human_bankruptcy_ranking_assessment": False},
+        forbidden_outcomes={"article_134_ranking_applies": True},
     ),
 )
 

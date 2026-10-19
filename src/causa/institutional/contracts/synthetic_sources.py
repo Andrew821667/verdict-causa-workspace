@@ -2280,6 +2280,24 @@ SYNTHETIC_CONTRACT_SOURCES = [
         },
     ),
     LegalSource(
+        id="synthetic-case-supply-1-citizen-ranking-evidence",
+        title="Синтетическая проверенная запись фактов об очерёдности требований гражданина",
+        source_type=SourceType.FACT,
+        text=(
+            "Синтетическая запись: спор о поставке ведут две организации, дела о "
+            "банкротстве гражданина нет, требование ни реестровым, ни текущим в таком "
+            "деле не заявлено. Все признаки института статьи 213.27 закона 127-ФЗ "
+            "ложны, и институт обязан промолчать."
+        ),
+        valid_from="2026-01-01",
+        metadata={
+            "synthetic": True,
+            "non_authoritative": True,
+            "topic": "citizen_ranking_case_evidence",
+            "case_id": "case-supply-1",
+        },
+    ),
+    LegalSource(
         id="synthetic-case-supply-1-citizen-bankruptcy-evidence",
         title="Синтетическая проверенная запись фактов о банкротстве гражданина",
         source_type=SourceType.FACT,

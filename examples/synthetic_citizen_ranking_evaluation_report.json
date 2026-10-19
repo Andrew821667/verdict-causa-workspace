@@ -1,0 +1,707 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка очерёдности удовлетворения требований кредиторов гражданина по статье 213.27 закона 127-ФЗ. В демонстрационном деле спор о поставке ведут две организации, дела о банкротстве гражданина нет, и институт молчит: это и есть ожидаемый результат для такого дела. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-citizen-ranking-evidence-supply-1-v0",
+    "schema_version": "contracts.citizen-ranking-evidence.v0",
+    "mapping_version": "contracts-reviewed-citizen-ranking-to-facts-v0",
+    "facts": {
+      "debtor_is_a_citizen_under_chapter_10": false,
+      "claim_filed_in_bankruptcy_register": false,
+      "is_current_payment_claim": false,
+      "is_life_or_health_harm_claim": false,
+      "is_maintenance_claim": false,
+      "is_labour_or_severance_claim": false,
+      "is_proceeding_cost_or_manager_fee": false,
+      "is_housing_or_utility_payment": false,
+      "is_secured_by_pledge": false,
+      "pledge_proceeds_insufficient_for_the_secured_claim": false,
+      "other_property_insufficient_for_first_and_second_tiers": false,
+      "claim_unsatisfied_for_want_of_property": false,
+      "statutory_exception_to_discharge_applies": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+      "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+      "synthetic-ru-127fz-134-creditor-ranking-v1",
+      "synthetic-ru-gk25-citizen-insolvency-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "claim_filed_in_bankruptcy_register",
+        "assertion_id": "citizen-ranking-evidence-claim_filed_in_bankruptcy_register",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-ranking-evidence"
+        ]
+      },
+      {
+        "fact_name": "claim_unsatisfied_for_want_of_property",
+        "assertion_id": "citizen-ranking-evidence-claim_unsatisfied_for_want_of_property",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-ranking-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_is_a_citizen_under_chapter_10",
+        "assertion_id": "citizen-ranking-evidence-debtor_is_a_citizen_under_chapter_10",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-ranking-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_current_payment_claim",
+        "assertion_id": "citizen-ranking-evidence-is_current_payment_claim",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-ranking-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_housing_or_utility_payment",
+        "assertion_id": "citizen-ranking-evidence-is_housing_or_utility_payment",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-ranking-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_labour_or_severance_claim",
+        "assertion_id": "citizen-ranking-evidence-is_labour_or_severance_claim",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-ranking-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_life_or_health_harm_claim",
+        "assertion_id": "citizen-ranking-evidence-is_life_or_health_harm_claim",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-ranking-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_maintenance_claim",
+        "assertion_id": "citizen-ranking-evidence-is_maintenance_claim",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-ranking-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_proceeding_cost_or_manager_fee",
+        "assertion_id": "citizen-ranking-evidence-is_proceeding_cost_or_manager_fee",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-ranking-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_secured_by_pledge",
+        "assertion_id": "citizen-ranking-evidence-is_secured_by_pledge",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-ranking-evidence"
+        ]
+      },
+      {
+        "fact_name": "other_property_insufficient_for_first_and_second_tiers",
+        "assertion_id": "citizen-ranking-evidence-other_property_insufficient_for_first_and_second_tiers",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-ranking-evidence"
+        ]
+      },
+      {
+        "fact_name": "pledge_proceeds_insufficient_for_the_secured_claim",
+        "assertion_id": "citizen-ranking-evidence-pledge_proceeds_insufficient_for_the_secured_claim",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-ranking-evidence"
+        ]
+      },
+      {
+        "fact_name": "statutory_exception_to_discharge_applies",
+        "assertion_id": "citizen-ranking-evidence-statutory_exception_to_discharge_applies",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-ranking-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "citizen-ranking-constraint-set:reviewed-citizen-ranking-evidence-supply-1-v0",
+    "model_version": "contracts-citizen-ranking-article-213-27-127fz-v0",
+    "legal_source_refs": [
+      "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+      "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+      "synthetic-ru-127fz-134-creditor-ranking-v1",
+      "synthetic-ru-gk25-citizen-insolvency-v1"
+    ],
+    "expressions": [
+      "current_payments_paid_ahead_of_registry_claims == debtor_is_a_citizen_under_chapter_10 AND is_current_payment_claim",
+      "current_payment_first_tier == debtor_is_a_citizen_under_chapter_10 AND is_current_payment_claim AND (is_maintenance_claim OR is_proceeding_cost_or_manager_fee)",
+      "current_payment_second_tier == debtor_is_a_citizen_under_chapter_10 AND is_current_payment_claim AND is_labour_or_severance_claim",
+      "current_payment_third_tier == debtor_is_a_citizen_under_chapter_10 AND is_current_payment_claim AND is_housing_or_utility_payment",
+      "current_payment_fourth_tier == debtor_is_a_citizen_under_chapter_10 AND is_current_payment_claim AND NOT is_maintenance_claim AND NOT is_proceeding_cost_or_manager_fee AND NOT is_labour_or_severance_claim AND NOT is_housing_or_utility_payment",
+      "registry_first_tier == debtor_is_a_citizen_under_chapter_10 AND claim_filed_in_bankruptcy_register AND (is_life_or_health_harm_claim OR is_maintenance_claim)",
+      "registry_second_tier == debtor_is_a_citizen_under_chapter_10 AND claim_filed_in_bankruptcy_register AND is_labour_or_severance_claim",
+      "registry_third_tier == debtor_is_a_citizen_under_chapter_10 AND claim_filed_in_bankruptcy_register AND NOT is_life_or_health_harm_claim AND NOT is_maintenance_claim AND NOT is_labour_or_severance_claim AND NOT is_secured_by_pledge",
+      "capitalisation_not_performed == debtor_is_a_citizen_under_chapter_10 AND claim_filed_in_bankruptcy_register AND is_life_or_health_harm_claim",
+      "secured_claim_takes_eighty_percent_of_pledge_proceeds == debtor_is_a_citizen_under_chapter_10 AND is_secured_by_pledge",
+      "pledge_remainder_reserved_for_first_and_second_tiers == debtor_is_a_citizen_under_chapter_10 AND is_secured_by_pledge AND other_property_insufficient_for_first_and_second_tiers",
+      "unsecured_remainder_of_the_pledge_claim_joins_the_third_tier == debtor_is_a_citizen_under_chapter_10 AND is_secured_by_pledge AND pledge_proceeds_insufficient_for_the_secured_claim",
+      "claim_deemed_discharged_for_want_of_property == debtor_is_a_citizen_under_chapter_10 AND claim_unsatisfied_for_want_of_property AND NOT statutory_exception_to_discharge_applies",
+      "discharge_withheld_by_statutory_exception == debtor_is_a_citizen_under_chapter_10 AND claim_unsatisfied_for_want_of_property AND statutory_exception_to_discharge_applies",
+      "requires_human_citizen_ranking_assessment == discharge_withheld_by_statutory_exception OR secured_claim_takes_eighty_percent_of_pledge_proceeds"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "citizen-ranking-constraint-set:reviewed-citizen-ranking-evidence-supply-1-v0",
+    "satisfiable": true,
+    "current_payments_paid_ahead_of_registry_claims": false,
+    "current_payment_first_tier": false,
+    "current_payment_second_tier": false,
+    "current_payment_third_tier": false,
+    "current_payment_fourth_tier": false,
+    "registry_first_tier": false,
+    "registry_second_tier": false,
+    "registry_third_tier": false,
+    "capitalisation_not_performed": false,
+    "secured_claim_takes_eighty_percent_of_pledge_proceeds": false,
+    "pledge_remainder_reserved_for_first_and_second_tiers": false,
+    "unsecured_remainder_of_the_pledge_claim_joins_the_third_tier": false,
+    "claim_deemed_discharged_for_want_of_property": false,
+    "discharge_withheld_by_statutory_exception": false,
+    "requires_human_citizen_ranking_assessment": false,
+    "reasons_ru": [],
+    "warnings_ru": [
+      "Модель определяет очередь требования, а не его размер: восемьдесят и десять процентов пункта 5 названы как правила, но не вычислены — денежных величин в фактах модели нет.",
+      "Календарный порядок внутри одной очереди текущих платежей (пункт 2) остаётся вне модели: дат в её фактах нет. То же ограничение у института очерёдности статьи 134.",
+      "Перечень исключений из погашения требований даёт статья 213.28 закона, и пакет его не моделирует: заявленное исключение снимает вывод о погашении и поднимает флаг юриста.",
+      "Движение денег по специальному банковскому счёту гражданина, возврат остатков в конкурсную массу и расходы пункта 6 статьи 138 — распределение, а не квалификация требования, и лежат вне этой модели."
+    ]
+  },
+  "benchmark_report": {
+    "id": "citizen-ranking-benchmark-report-v0",
+    "total": 17,
+    "passed": 17,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "citizen-ranking-bench-registry-maintenance-is-first",
+        "passed": true,
+        "expected_outcomes": {
+          "registry_first_tier": true,
+          "registry_second_tier": false,
+          "registry_third_tier": false
+        },
+        "observed_outcomes": {
+          "registry_first_tier": true,
+          "registry_second_tier": false,
+          "registry_third_tier": false
+        },
+        "reasons_ru": [
+          "Первая очередь реестра: взыскание алиментов (пункт 3 статьи 213.27 закона). Требование о взыскании алиментов пункт 3 ставит в первую очередь наравне с вредом жизни и здоровью, тогда как пункт 4 статьи 134 такой категории не знает вовсе."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-registry-harm-is-first",
+        "passed": true,
+        "expected_outcomes": {
+          "registry_first_tier": true,
+          "capitalisation_not_performed": true
+        },
+        "observed_outcomes": {
+          "registry_first_tier": true,
+          "capitalisation_not_performed": true
+        },
+        "reasons_ru": [
+          "Первая очередь реестра: ответственность гражданина за причинение вреда жизни или здоровью (пункт 3 статьи 213.27 закона). Требование о взыскании алиментов пункт 3 ставит в первую очередь наравне с вредом жизни и здоровью, тогда как пункт 4 статьи 134 такой категории не знает вовсе.",
+          "Капитализация повременных платежей при удовлетворении требований о возмещении вреда жизни или здоровью не производится (пункт 4 статьи 213.27 закона). Вывод назван прямо, потому что следует из отрицания: для юридического лица статья 135 капитализацию предписывает, и перенос того правила на гражданина был бы ошибкой в пользу кредитора первой очереди за счёт остальных."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-registry-labour-is-second",
+        "passed": true,
+        "expected_outcomes": {
+          "registry_second_tier": true,
+          "registry_first_tier": false,
+          "registry_third_tier": false
+        },
+        "observed_outcomes": {
+          "registry_second_tier": true,
+          "registry_first_tier": false,
+          "registry_third_tier": false
+        },
+        "reasons_ru": [
+          "Вторая очередь реестра: расчёты по выплате выходных пособий и оплате труда лиц, работающих или работавших по трудовому договору (пункт 3 статьи 213.27 закона). Вознаграждения авторам результатов интеллектуальной деятельности пункт 3 в эту очередь не включает, в отличие от пункта 4 статьи 134."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-registry-other-is-third",
+        "passed": true,
+        "expected_outcomes": {
+          "registry_third_tier": true,
+          "registry_first_tier": false,
+          "registry_second_tier": false
+        },
+        "observed_outcomes": {
+          "registry_third_tier": true,
+          "registry_first_tier": false,
+          "registry_second_tier": false
+        },
+        "reasons_ru": [
+          "Третья очередь реестра: расчёты с другими кредиторами (пункт 3 статьи 213.27 закона)."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-current-payments-go-ahead-of-registry",
+        "passed": true,
+        "expected_outcomes": {
+          "current_payments_paid_ahead_of_registry_claims": true,
+          "registry_third_tier": false
+        },
+        "observed_outcomes": {
+          "current_payments_paid_ahead_of_registry_claims": true,
+          "registry_third_tier": false
+        },
+        "reasons_ru": [
+          "Требование по текущим платежам погашается вне очереди за счёт конкурсной массы, преимущественно перед кредиторами, требования которых возникли до принятия заявления о признании должника банкротом (пункт 1 статьи 213.27 закона 127-ФЗ).",
+          "Четвёртая очередь текущих платежей: иные текущие платежи (пункт 2 статьи 213.27 закона)."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-current-maintenance-is-first",
+        "passed": true,
+        "expected_outcomes": {
+          "current_payment_first_tier": true,
+          "current_payment_fourth_tier": false
+        },
+        "observed_outcomes": {
+          "current_payment_first_tier": true,
+          "current_payment_fourth_tier": false
+        },
+        "reasons_ru": [
+          "Требование по текущим платежам погашается вне очереди за счёт конкурсной массы, преимущественно перед кредиторами, требования которых возникли до принятия заявления о признании должника банкротом (пункт 1 статьи 213.27 закона 127-ФЗ).",
+          "Первая очередь текущих платежей: уплата алиментов (пункт 2 статьи 213.27 закона)."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-current-proceeding-cost-is-first",
+        "passed": true,
+        "expected_outcomes": {
+          "current_payment_first_tier": true
+        },
+        "observed_outcomes": {
+          "current_payment_first_tier": true
+        },
+        "reasons_ru": [
+          "Требование по текущим платежам погашается вне очереди за счёт конкурсной массы, преимущественно перед кредиторами, требования которых возникли до принятия заявления о признании должника банкротом (пункт 1 статьи 213.27 закона 127-ФЗ).",
+          "Первая очередь текущих платежей: судебные расходы по делу о банкротстве гражданина, вознаграждение финансовому управляющему либо вознаграждение привлечённым им лицам (пункт 2 статьи 213.27 закона)."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-current-labour-is-second",
+        "passed": true,
+        "expected_outcomes": {
+          "current_payment_second_tier": true,
+          "current_payment_first_tier": false
+        },
+        "observed_outcomes": {
+          "current_payment_second_tier": true,
+          "current_payment_first_tier": false
+        },
+        "reasons_ru": [
+          "Требование по текущим платежам погашается вне очереди за счёт конкурсной массы, преимущественно перед кредиторами, требования которых возникли до принятия заявления о признании должника банкротом (пункт 1 статьи 213.27 закона 127-ФЗ).",
+          "Вторая очередь текущих платежей: выплата выходных пособий и оплата труда лиц, работающих или работавших по трудовым договорам (пункт 2 статьи 213.27 закона)."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-current-housing-is-third",
+        "passed": true,
+        "expected_outcomes": {
+          "current_payment_third_tier": true,
+          "current_payment_fourth_tier": false
+        },
+        "observed_outcomes": {
+          "current_payment_third_tier": true,
+          "current_payment_fourth_tier": false
+        },
+        "reasons_ru": [
+          "Требование по текущим платежам погашается вне очереди за счёт конкурсной массы, преимущественно перед кредиторами, требования которых возникли до принятия заявления о признании должника банкротом (пункт 1 статьи 213.27 закона 127-ФЗ).",
+          "Третья очередь текущих платежей: плата за жилое помещение и коммунальные услуги, в том числе взнос на капитальный ремонт общего имущества в многоквартирном доме (пункт 2 статьи 213.27 закона). У очерёдности конкурсного производства такой очереди нет: пункт 2 статьи 134 относит эксплуатационные платежи к четвёртой очереди."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-current-other-is-fourth",
+        "passed": true,
+        "expected_outcomes": {
+          "current_payment_fourth_tier": true,
+          "current_payment_first_tier": false,
+          "current_payment_second_tier": false,
+          "current_payment_third_tier": false
+        },
+        "observed_outcomes": {
+          "current_payment_fourth_tier": true,
+          "current_payment_first_tier": false,
+          "current_payment_second_tier": false,
+          "current_payment_third_tier": false
+        },
+        "reasons_ru": [
+          "Требование по текущим платежам погашается вне очереди за счёт конкурсной массы, преимущественно перед кредиторами, требования которых возникли до принятия заявления о признании должника банкротом (пункт 1 статьи 213.27 закона 127-ФЗ).",
+          "Четвёртая очередь текущих платежей: иные текущие платежи (пункт 2 статьи 213.27 закона)."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-pledge-takes-eighty-percent",
+        "passed": true,
+        "expected_outcomes": {
+          "secured_claim_takes_eighty_percent_of_pledge_proceeds": true,
+          "registry_third_tier": false,
+          "requires_human_citizen_ranking_assessment": true
+        },
+        "observed_outcomes": {
+          "secured_claim_takes_eighty_percent_of_pledge_proceeds": true,
+          "registry_third_tier": false,
+          "requires_human_citizen_ranking_assessment": true
+        },
+        "reasons_ru": [
+          "Восемьдесят процентов суммы, вырученной от реализации предмета залога, направляются на погашение требования, обеспеченного залогом имущества должника (пункт 5 статьи 213.27 закона). Остальное распределяется по правилам того же пункта, и этого распределения модель не считает.",
+          "Требуется оценка юриста. Исключения из погашения требований (статья 213.28 закона) в пакете не смоделированы; распределение выручки от реализации предмета залога модель называет правилами, но не считает — денежных величин в её фактах нет."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-pledge-remainder-reserved",
+        "passed": true,
+        "expected_outcomes": {
+          "pledge_remainder_reserved_for_first_and_second_tiers": true
+        },
+        "observed_outcomes": {
+          "pledge_remainder_reserved_for_first_and_second_tiers": true
+        },
+        "reasons_ru": [
+          "Восемьдесят процентов суммы, вырученной от реализации предмета залога, направляются на погашение требования, обеспеченного залогом имущества должника (пункт 5 статьи 213.27 закона). Остальное распределяется по правилам того же пункта, и этого распределения модель не считает.",
+          "Десять процентов суммы, вырученной от реализации предмета залога, резервируются на погашение требований кредиторов первой и второй очереди: иного имущества гражданина для них недостаточно (пункт 5 статьи 213.27 закона).",
+          "Требуется оценка юриста. Исключения из погашения требований (статья 213.28 закона) в пакете не смоделированы; распределение выручки от реализации предмета залога модель называет правилами, но не считает — денежных величин в её фактах нет."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-pledge-shortfall-joins-the-third-tier",
+        "passed": true,
+        "expected_outcomes": {
+          "unsecured_remainder_of_the_pledge_claim_joins_the_third_tier": true
+        },
+        "observed_outcomes": {
+          "unsecured_remainder_of_the_pledge_claim_joins_the_third_tier": true
+        },
+        "reasons_ru": [
+          "Восемьдесят процентов суммы, вырученной от реализации предмета залога, направляются на погашение требования, обеспеченного залогом имущества должника (пункт 5 статьи 213.27 закона). Остальное распределяется по правилам того же пункта, и этого распределения модель не считает.",
+          "Часть требования, не погашенная за счёт стоимости предмета залога, удовлетворяется в составе требований кредиторов третьей очереди (пункт 5 статьи 213.27 закона), а не сохраняет залоговый приоритет.",
+          "Требуется оценка юриста. Исключения из погашения требований (статья 213.28 закона) в пакете не смоделированы; распределение выручки от реализации предмета залога модель называет правилами, но не считает — денежных величин в её фактах нет."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-unsatisfied-claim-is-discharged",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_deemed_discharged_for_want_of_property": true,
+          "discharge_withheld_by_statutory_exception": false,
+          "requires_human_citizen_ranking_assessment": false
+        },
+        "observed_outcomes": {
+          "claim_deemed_discharged_for_want_of_property": true,
+          "discharge_withheld_by_statutory_exception": false,
+          "requires_human_citizen_ranking_assessment": false
+        },
+        "reasons_ru": [
+          "Третья очередь реестра: расчёты с другими кредиторами (пункт 3 статьи 213.27 закона).",
+          "Требование, не удовлетворённое по причине недостаточности имущества гражданина, считается погашенным (пункт 6 статьи 213.27 закона)."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-statutory-exception-withholds-discharge",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_deemed_discharged_for_want_of_property": false,
+          "discharge_withheld_by_statutory_exception": true,
+          "requires_human_citizen_ranking_assessment": true
+        },
+        "observed_outcomes": {
+          "claim_deemed_discharged_for_want_of_property": false,
+          "discharge_withheld_by_statutory_exception": true,
+          "requires_human_citizen_ranking_assessment": true
+        },
+        "reasons_ru": [
+          "Третья очередь реестра: расчёты с другими кредиторами (пункт 3 статьи 213.27 закона).",
+          "Погашение не наступает: заявлен случай, предусмотренный законом (пункт 6 статьи 213.27 закона). Перечень таких случаев даёт статья 213.28 и соседние с ней, и его модель не разбирает — требуется проверка юристом.",
+          "Требуется оценка юриста. Исключения из погашения требований (статья 213.28 закона) в пакете не смоделированы; распределение выручки от реализации предмета залога модель называет правилами, но не считает — денежных величин в её фактах нет."
+        ]
+      },
+      {
+        "task_id": "citizen-ranking-bench-entity-debtor-is-silent",
+        "passed": true,
+        "expected_outcomes": {
+          "registry_first_tier": false,
+          "registry_third_tier": false,
+          "requires_human_citizen_ranking_assessment": false
+        },
+        "observed_outcomes": {
+          "registry_first_tier": false,
+          "registry_third_tier": false,
+          "requires_human_citizen_ranking_assessment": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "task_id": "citizen-ranking-bench-empty-facts-say-nothing",
+        "passed": true,
+        "expected_outcomes": {
+          "current_payments_paid_ahead_of_registry_claims": false,
+          "current_payment_first_tier": false,
+          "current_payment_fourth_tier": false,
+          "registry_first_tier": false,
+          "registry_third_tier": false,
+          "capitalisation_not_performed": false,
+          "secured_claim_takes_eighty_percent_of_pledge_proceeds": false,
+          "claim_deemed_discharged_for_want_of_property": false,
+          "requires_human_citizen_ranking_assessment": false
+        },
+        "observed_outcomes": {
+          "current_payments_paid_ahead_of_registry_claims": false,
+          "current_payment_first_tier": false,
+          "current_payment_fourth_tier": false,
+          "registry_first_tier": false,
+          "registry_third_tier": false,
+          "capitalisation_not_performed": false,
+          "secured_claim_takes_eighty_percent_of_pledge_proceeds": false,
+          "claim_deemed_discharged_for_want_of_property": false,
+          "requires_human_citizen_ranking_assessment": false
+        },
+        "reasons_ru": []
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "citizen-ranking-red-team-report-v0",
+    "total": 15,
+    "blocked": 15,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "citizen-ranking-red-maintenance-as-third-tier",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "registry_third_tier": true,
+          "registry_first_tier": false
+        },
+        "observed_outcomes": {
+          "registry_third_tier": false,
+          "registry_first_tier": true
+        },
+        "reasons_ru": [
+          "Первая очередь реестра: взыскание алиментов (пункт 3 статьи 213.27 закона). Требование о взыскании алиментов пункт 3 ставит в первую очередь наравне с вредом жизни и здоровью, тогда как пункт 4 статьи 134 такой категории не знает вовсе."
+        ]
+      },
+      {
+        "case_id": "citizen-ranking-red-housing-as-fourth-current-tier",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "current_payment_fourth_tier": true,
+          "current_payment_third_tier": false
+        },
+        "observed_outcomes": {
+          "current_payment_fourth_tier": false,
+          "current_payment_third_tier": true
+        },
+        "reasons_ru": [
+          "Требование по текущим платежам погашается вне очереди за счёт конкурсной массы, преимущественно перед кредиторами, требования которых возникли до принятия заявления о признании должника банкротом (пункт 1 статьи 213.27 закона 127-ФЗ).",
+          "Третья очередь текущих платежей: плата за жилое помещение и коммунальные услуги, в том числе взнос на капитальный ремонт общего имущества в многоквартирном доме (пункт 2 статьи 213.27 закона). У очерёдности конкурсного производства такой очереди нет: пункт 2 статьи 134 относит эксплуатационные платежи к четвёртой очереди."
+        ]
+      },
+      {
+        "case_id": "citizen-ranking-red-capitalisation-performed-for-a-citizen",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "capitalisation_not_performed": false
+        },
+        "observed_outcomes": {
+          "capitalisation_not_performed": true
+        },
+        "reasons_ru": [
+          "Первая очередь реестра: ответственность гражданина за причинение вреда жизни или здоровью (пункт 3 статьи 213.27 закона). Требование о взыскании алиментов пункт 3 ставит в первую очередь наравне с вредом жизни и здоровью, тогда как пункт 4 статьи 134 такой категории не знает вовсе.",
+          "Капитализация повременных платежей при удовлетворении требований о возмещении вреда жизни или здоровью не производится (пункт 4 статьи 213.27 закона). Вывод назван прямо, потому что следует из отрицания: для юридического лица статья 135 капитализацию предписывает, и перенос того правила на гражданина был бы ошибкой в пользу кредитора первой очереди за счёт остальных."
+        ]
+      },
+      {
+        "case_id": "citizen-ranking-red-five-current-tiers",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "current_payment_first_tier": true,
+          "current_payment_second_tier": true,
+          "current_payment_third_tier": true
+        },
+        "observed_outcomes": {
+          "current_payment_first_tier": false,
+          "current_payment_second_tier": false,
+          "current_payment_third_tier": false
+        },
+        "reasons_ru": [
+          "Требование по текущим платежам погашается вне очереди за счёт конкурсной массы, преимущественно перед кредиторами, требования которых возникли до принятия заявления о признании должника банкротом (пункт 1 статьи 213.27 закона 127-ФЗ).",
+          "Четвёртая очередь текущих платежей: иные текущие платежи (пункт 2 статьи 213.27 закона)."
+        ]
+      },
+      {
+        "case_id": "citizen-ranking-red-registry-tier-for-a-current-payment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "registry_first_tier": true,
+          "registry_third_tier": true
+        },
+        "observed_outcomes": {
+          "registry_first_tier": false,
+          "registry_third_tier": false
+        },
+        "reasons_ru": [
+          "Требование по текущим платежам погашается вне очереди за счёт конкурсной массы, преимущественно перед кредиторами, требования которых возникли до принятия заявления о признании должника банкротом (пункт 1 статьи 213.27 закона 127-ФЗ).",
+          "Первая очередь текущих платежей: уплата алиментов (пункт 2 статьи 213.27 закона)."
+        ]
+      },
+      {
+        "case_id": "citizen-ranking-red-current-tier-for-a-registry-claim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "current_payment_first_tier": true,
+          "current_payment_fourth_tier": true,
+          "current_payments_paid_ahead_of_registry_claims": true
+        },
+        "observed_outcomes": {
+          "current_payment_first_tier": false,
+          "current_payment_fourth_tier": false,
+          "current_payments_paid_ahead_of_registry_claims": false
+        },
+        "reasons_ru": [
+          "Первая очередь реестра: взыскание алиментов (пункт 3 статьи 213.27 закона). Требование о взыскании алиментов пункт 3 ставит в первую очередь наравне с вредом жизни и здоровью, тогда как пункт 4 статьи 134 такой категории не знает вовсе."
+        ]
+      },
+      {
+        "case_id": "citizen-ranking-red-pledge-claim-in-the-residual-third-tier",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "registry_third_tier": true
+        },
+        "observed_outcomes": {
+          "registry_third_tier": false
+        },
+        "reasons_ru": [
+          "Восемьдесят процентов суммы, вырученной от реализации предмета залога, направляются на погашение требования, обеспеченного залогом имущества должника (пункт 5 статьи 213.27 закона). Остальное распределяется по правилам того же пункта, и этого распределения модель не считает.",
+          "Требуется оценка юриста. Исключения из погашения требований (статья 213.28 закона) в пакете не смоделированы; распределение выручки от реализации предмета залога модель называет правилами, но не считает — денежных величин в её фактах нет."
+        ]
+      },
+      {
+        "case_id": "citizen-ranking-red-pledge-keeps-priority-over-the-shortfall",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "unsecured_remainder_of_the_pledge_claim_joins_the_third_tier": false
+        },
+        "observed_outcomes": {
+          "unsecured_remainder_of_the_pledge_claim_joins_the_third_tier": true
+        },
+        "reasons_ru": [
+          "Восемьдесят процентов суммы, вырученной от реализации предмета залога, направляются на погашение требования, обеспеченного залогом имущества должника (пункт 5 статьи 213.27 закона). Остальное распределяется по правилам того же пункта, и этого распределения модель не считает.",
+          "Часть требования, не погашенная за счёт стоимости предмета залога, удовлетворяется в составе требований кредиторов третьей очереди (пункт 5 статьи 213.27 закона), а не сохраняет залоговый приоритет.",
+          "Требуется оценка юриста. Исключения из погашения требований (статья 213.28 закона) в пакете не смоделированы; распределение выручки от реализации предмета залога модель называет правилами, но не считает — денежных величин в её фактах нет."
+        ]
+      },
+      {
+        "case_id": "citizen-ranking-red-reserve-without-the-condition",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "pledge_remainder_reserved_for_first_and_second_tiers": true
+        },
+        "observed_outcomes": {
+          "pledge_remainder_reserved_for_first_and_second_tiers": false
+        },
+        "reasons_ru": [
+          "Восемьдесят процентов суммы, вырученной от реализации предмета залога, направляются на погашение требования, обеспеченного залогом имущества должника (пункт 5 статьи 213.27 закона). Остальное распределяется по правилам того же пункта, и этого распределения модель не считает.",
+          "Требуется оценка юриста. Исключения из погашения требований (статья 213.28 закона) в пакете не смоделированы; распределение выручки от реализации предмета залога модель называет правилами, но не считает — денежных величин в её фактах нет."
+        ]
+      },
+      {
+        "case_id": "citizen-ranking-red-discharge-despite-the-exception",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "claim_deemed_discharged_for_want_of_property": true,
+          "requires_human_citizen_ranking_assessment": false
+        },
+        "observed_outcomes": {
+          "claim_deemed_discharged_for_want_of_property": false,
+          "requires_human_citizen_ranking_assessment": true
+        },
+        "reasons_ru": [
+          "Третья очередь реестра: расчёты с другими кредиторами (пункт 3 статьи 213.27 закона).",
+          "Погашение не наступает: заявлен случай, предусмотренный законом (пункт 6 статьи 213.27 закона). Перечень таких случаев даёт статья 213.28 и соседние с ней, и его модель не разбирает — требуется проверка юристом.",
+          "Требуется оценка юриста. Исключения из погашения требований (статья 213.28 закона) в пакете не смоделированы; распределение выручки от реализации предмета залога модель называет правилами, но не считает — денежных величин в её фактах нет."
+        ]
+      },
+      {
+        "case_id": "citizen-ranking-red-discharge-without-insufficiency",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "claim_deemed_discharged_for_want_of_property": true
+        },
+        "observed_outcomes": {
+          "claim_deemed_discharged_for_want_of_property": false
+        },
+        "reasons_ru": [
+          "Третья очередь реестра: расчёты с другими кредиторами (пункт 3 статьи 213.27 закона)."
+        ]
+      },
+      {
+        "case_id": "citizen-ranking-red-tier-without-a-claim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "registry_third_tier": true,
+          "current_payment_fourth_tier": true
+        },
+        "observed_outcomes": {
+          "registry_third_tier": false,
+          "current_payment_fourth_tier": false
+        },
+        "reasons_ru": [
+          "Требование не включено в реестр требований кредиторов и не заявлено как текущий платёж — очерёдность статьи 213.27 закона 127-ФЗ к нему не применяется."
+        ]
+      },
+      {
+        "case_id": "citizen-ranking-red-entity-debtor-gets-citizen-tiers",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "registry_first_tier": true
+        },
+        "observed_outcomes": {
+          "registry_first_tier": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "case_id": "citizen-ranking-red-pledge-distribution-is-not-silent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_ranking_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_ranking_assessment": true
+        },
+        "reasons_ru": [
+          "Восемьдесят процентов суммы, вырученной от реализации предмета залога, направляются на погашение требования, обеспеченного залогом имущества должника (пункт 5 статьи 213.27 закона). Остальное распределяется по правилам того же пункта, и этого распределения модель не считает.",
+          "Требуется оценка юриста. Исключения из погашения требований (статья 213.28 закона) в пакете не смоделированы; распределение выручки от реализации предмета залога модель называет правилами, но не считает — денежных величин в её фактах нет."
+        ]
+      },
+      {
+        "case_id": "citizen-ranking-red-empty-facts-raise-no-flag",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_ranking_assessment": true
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_ranking_assessment": false
+        },
+        "reasons_ru": []
+      }
+    ]
+  },
+  "source_urls": [
+    "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527"
+  ]
+}

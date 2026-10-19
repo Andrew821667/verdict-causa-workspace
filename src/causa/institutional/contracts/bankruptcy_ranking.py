@@ -362,10 +362,9 @@ def build_bankruptcy_ranking_constraint_set(
             ),
             (
                 "requires_human_bankruptcy_ranking_assessment == "
-                "debtor_is_a_citizen_under_chapter_10 OR "
-                "(article_134_ranking_applies AND (is_secured_by_pledge OR "
+                "article_134_ranking_applies AND (is_secured_by_pledge OR "
                 "is_life_or_health_harm_claim OR (is_current_payment_claim AND "
-                "is_technogenic_risk_mitigation_expense)))"
+                "is_technogenic_risk_mitigation_expense))"
             ),
         ],
     )
@@ -408,11 +407,12 @@ def evaluate_bankruptcy_ranking_constraints(
     # договора, и который этот аудит поймал здесь.
     #
     # Ворота всего института: для должника-гражданина очерёдность статьи 134
-    # вытеснена статьёй 213.27 закона 127-ФЗ (пункт 1 статьи 213.1). Статью
-    # 213.27 пакет не моделирует, поэтому ворота снимают ответ и поднимают флаг
-    # юриста, а не подставляют другую очередь: «очередь не определена, и вот
-    # чем её определять» — честный ответ, «третья очередь» вместо первой —
-    # неверный.
+    # вытеснена статьёй 213.27 закона 127-ФЗ (пункт 1 статьи 213.1). В выпуске
+    # 1.25.0 ворота снимали ответ и поднимали флаг юриста, потому что статья
+    # 213.27 не была смоделирована. Теперь она смоделирована институтом
+    # `citizen_ranking`, и флаг снят: вопрос не остаётся без ответа, а уходит в
+    # тот институт, которому принадлежит. Сверки `citizen_ranking_*` не дают
+    # требованию потеряться между двумя институтами.
     solver.add(
         article_134_ranking_applies
         == And(
@@ -505,15 +505,12 @@ def evaluate_bankruptcy_ranking_constraints(
     )
     solver.add(
         requires_human_bankruptcy_ranking_assessment
-        == Or(
-            variables["debtor_is_a_citizen_under_chapter_10"],
-            And(
-                article_134_ranking_applies,
-                Or(
-                    variables["is_secured_by_pledge"],
-                    variables["is_life_or_health_harm_claim"],
-                    And(current, variables["is_technogenic_risk_mitigation_expense"]),
-                ),
+        == And(
+            article_134_ranking_applies,
+            Or(
+                variables["is_secured_by_pledge"],
+                variables["is_life_or_health_harm_claim"],
+                And(current, variables["is_technogenic_risk_mitigation_expense"]),
             ),
         )
     )
@@ -558,8 +555,9 @@ def evaluate_bankruptcy_ranking_constraints(
             "деятельности статья 134 относит ко второй очереди, а статья 213.27 его не "
             "называет; плату за жилое помещение и коммунальные услуги статья 213.27 "
             "пункт 2 выделяет в третью очередь текущих платежей, которой пять очередей "
-            "статьи 134 не знают. Статью 213.27 эта модель не разбирает, поэтому "
-            "очерёдность здесь не определяется: названо лишь то, чем её определять."
+            "статьи 134 не знают. Очерёдность этого требования определяет институт "
+            "статьи 213.27, а не эта модель: вопрос не остаётся без ответа, а "
+            "разбирается по применимому своду правил."
         )
     if not truth(variables["debtor_is_a_citizen_under_chapter_10"]) and (
         not truth(variables["claim_filed_in_bankruptcy_register"])
