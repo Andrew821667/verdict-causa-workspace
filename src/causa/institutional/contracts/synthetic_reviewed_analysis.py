@@ -165,6 +165,12 @@ from causa.institutional.contracts.special_accounts import (
     SpecialAccountsEvidenceAssertion,
     SpecialAccountsEvidencePredicate,
 )
+from causa.institutional.contracts.citizen_release import (
+    CITIZEN_RELEASE_LEGAL_SOURCE_REFS,
+    CitizenReleaseEvidenceAssertion,
+    CitizenReleaseEvidencePredicate,
+    ReviewedCitizenReleaseEvidence,
+)
 from causa.institutional.contracts.citizen_ranking import (
     CITIZEN_RANKING_LEGAL_SOURCE_REFS,
     CitizenRankingEvidenceAssertion,
@@ -719,6 +725,8 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
     "synthetic-case-supply-1-citizen-bankruptcy-evidence",
     "synthetic-case-supply-1-citizen-ranking-evidence",
+    "synthetic-ru-127fz-213.28-citizen-release-from-obligations-v1",
+    "synthetic-case-supply-1-citizen-release-evidence",
     "synthetic-ru-127fz-5-current-payments-v1",
     "synthetic-ru-127fz-63-observation-effects-v1",
     "synthetic-ru-127fz-134-creditor-ranking-v1",
@@ -3382,6 +3390,24 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             legal_source_refs=MANAGEMENT_LIABILITY_LEGAL_SOURCE_REFS,
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-management-liability-reviewer",
+        ),
+        citizen_release_evidence=ReviewedCitizenReleaseEvidence(
+            id="reviewed-citizen-release-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            # Все признаки ложны: гражданин банкротом не признавался, определения
+            # о завершении реализации имущества нет. Институт обязан промолчать.
+            assertions=tuple(
+                CitizenReleaseEvidenceAssertion(
+                    id=f"citizen-release-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=False,
+                    source_refs=("synthetic-case-supply-1-citizen-release-evidence",),
+                )
+                for predicate in CitizenReleaseEvidencePredicate
+            ),
+            legal_source_refs=CITIZEN_RELEASE_LEGAL_SOURCE_REFS,
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-citizen-release-reviewer",
         ),
         citizen_ranking_evidence=ReviewedCitizenRankingEvidence(
             id="reviewed-citizen-ranking-evidence-supply-1-v0",

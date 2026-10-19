@@ -1,0 +1,780 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка освобождения гражданина от обязательств по статье 213.28 закона 127-ФЗ. В демонстрационном деле спор о поставке ведут две организации, гражданин банкротом не признавался, и институт молчит: это и есть ожидаемый результат для такого дела. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-citizen-release-evidence-supply-1-v0",
+    "schema_version": "contracts.citizen-release-evidence.v0",
+    "mapping_version": "contracts-reviewed-citizen-release-to-facts-v0",
+    "facts": {
+      "citizen_declared_bankrupt": false,
+      "property_realisation_completed_by_court_ruling": false,
+      "held_liable_for_bankruptcy_offence_in_this_case": false,
+      "withheld_or_falsified_information_established_by_court": false,
+      "acted_unlawfully_in_the_obligation_relied_on": false,
+      "claim_filed_in_bankruptcy_register": false,
+      "is_current_payment_claim": false,
+      "is_claim_named_in_paragraph_five": false,
+      "is_other_claim_inseparable_from_the_creditors_person": false,
+      "is_subsidiary_liability_claim": false,
+      "is_damages_claim_under_articles_53_and_53_1": false,
+      "is_manager_damages_claim": false,
+      "is_property_damage_claim": false,
+      "is_avoided_transaction_consequences_claim": false,
+      "caused_intentionally_or_by_gross_negligence": false,
+      "creditors_did_not_know_and_should_not_have_known": false,
+      "separate_settlement_under_article_213_10_1_approved": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-127fz-213.28-citizen-release-from-obligations-v1",
+      "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+      "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+      "synthetic-ru-gk53-1-management-liability-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "acted_unlawfully_in_the_obligation_relied_on",
+        "assertion_id": "citizen-release-evidence-acted_unlawfully_in_the_obligation_relied_on",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "caused_intentionally_or_by_gross_negligence",
+        "assertion_id": "citizen-release-evidence-caused_intentionally_or_by_gross_negligence",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "citizen_declared_bankrupt",
+        "assertion_id": "citizen-release-evidence-citizen_declared_bankrupt",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "claim_filed_in_bankruptcy_register",
+        "assertion_id": "citizen-release-evidence-claim_filed_in_bankruptcy_register",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "creditors_did_not_know_and_should_not_have_known",
+        "assertion_id": "citizen-release-evidence-creditors_did_not_know_and_should_not_have_known",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "held_liable_for_bankruptcy_offence_in_this_case",
+        "assertion_id": "citizen-release-evidence-held_liable_for_bankruptcy_offence_in_this_case",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_avoided_transaction_consequences_claim",
+        "assertion_id": "citizen-release-evidence-is_avoided_transaction_consequences_claim",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_claim_named_in_paragraph_five",
+        "assertion_id": "citizen-release-evidence-is_claim_named_in_paragraph_five",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_current_payment_claim",
+        "assertion_id": "citizen-release-evidence-is_current_payment_claim",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_damages_claim_under_articles_53_and_53_1",
+        "assertion_id": "citizen-release-evidence-is_damages_claim_under_articles_53_and_53_1",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_manager_damages_claim",
+        "assertion_id": "citizen-release-evidence-is_manager_damages_claim",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_other_claim_inseparable_from_the_creditors_person",
+        "assertion_id": "citizen-release-evidence-is_other_claim_inseparable_from_the_creditors_person",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_property_damage_claim",
+        "assertion_id": "citizen-release-evidence-is_property_damage_claim",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "is_subsidiary_liability_claim",
+        "assertion_id": "citizen-release-evidence-is_subsidiary_liability_claim",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_realisation_completed_by_court_ruling",
+        "assertion_id": "citizen-release-evidence-property_realisation_completed_by_court_ruling",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "separate_settlement_under_article_213_10_1_approved",
+        "assertion_id": "citizen-release-evidence-separate_settlement_under_article_213_10_1_approved",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      },
+      {
+        "fact_name": "withheld_or_falsified_information_established_by_court",
+        "assertion_id": "citizen-release-evidence-withheld_or_falsified_information_established_by_court",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-release-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "citizen-release-constraint-set:reviewed-citizen-release-evidence-supply-1-v0",
+    "model_version": "contracts-citizen-release-article-213-28-127fz-v0",
+    "legal_source_refs": [
+      "synthetic-ru-127fz-213.28-citizen-release-from-obligations-v1",
+      "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+      "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+      "synthetic-ru-gk53-1-management-liability-v1"
+    ],
+    "expressions": [
+      "release_barred_by_bankruptcy_offence == citizen_declared_bankrupt AND property_realisation_completed_by_court_ruling AND held_liable_for_bankruptcy_offence_in_this_case",
+      "release_barred_by_withheld_information == citizen_declared_bankrupt AND property_realisation_completed_by_court_ruling AND withheld_or_falsified_information_established_by_court",
+      "release_barred_by_unlawful_conduct_in_the_obligation == citizen_declared_bankrupt AND property_realisation_completed_by_court_ruling AND acted_unlawfully_in_the_obligation_relied_on",
+      "release_not_applied_at_all == release_barred_by_bankruptcy_offence OR release_barred_by_withheld_information OR release_barred_by_unlawful_conduct_in_the_obligation",
+      "citizen_released_from_obligations == citizen_declared_bankrupt AND property_realisation_completed_by_court_ruling AND NOT release_not_applied_at_all",
+      "claim_survives_as_personally_bound == citizen_declared_bankrupt AND property_realisation_completed_by_court_ruling AND (is_current_payment_claim OR is_claim_named_in_paragraph_five OR is_other_claim_inseparable_from_the_creditors_person)",
+      "claim_survives_under_paragraph_six == citizen_declared_bankrupt AND property_realisation_completed_by_court_ruling AND (is_subsidiary_liability_claim OR is_avoided_transaction_consequences_claim OR ((is_damages_claim_under_articles_53_and_53_1 OR is_manager_damages_claim OR is_property_damage_claim) AND caused_intentionally_or_by_gross_negligence))",
+      "claim_survives_as_unknown_to_creditors == citizen_declared_bankrupt AND property_realisation_completed_by_court_ruling AND creditors_did_not_know_and_should_not_have_known",
+      "claim_survives_under_separate_settlement == citizen_declared_bankrupt AND property_realisation_completed_by_court_ruling AND separate_settlement_under_article_213_10_1_approved",
+      "claim_discharged == citizen_released_from_obligations AND NOT claim_survives_as_personally_bound AND NOT claim_survives_under_paragraph_six AND NOT claim_survives_as_unknown_to_creditors AND NOT claim_survives_under_separate_settlement",
+      "writ_of_execution_issued_for_the_surviving_registered_claim == claim_filed_in_bankruptcy_register AND (claim_survives_as_personally_bound OR claim_survives_under_paragraph_six)",
+      "discharge_exception_applies_to_this_claim == release_not_applied_at_all OR claim_survives_as_personally_bound OR claim_survives_under_paragraph_six OR claim_survives_as_unknown_to_creditors OR claim_survives_under_separate_settlement",
+      "requires_human_citizen_release_assessment == release_barred_by_unlawful_conduct_in_the_obligation OR (claim_survives_as_personally_bound AND is_other_claim_inseparable_from_the_creditors_person) OR claim_survives_as_unknown_to_creditors OR (claim_survives_under_paragraph_six AND caused_intentionally_or_by_gross_negligence)"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "citizen-release-constraint-set:reviewed-citizen-release-evidence-supply-1-v0",
+    "satisfiable": true,
+    "citizen_released_from_obligations": false,
+    "release_barred_by_bankruptcy_offence": false,
+    "release_barred_by_withheld_information": false,
+    "release_barred_by_unlawful_conduct_in_the_obligation": false,
+    "release_not_applied_at_all": false,
+    "claim_survives_as_personally_bound": false,
+    "claim_survives_under_paragraph_six": false,
+    "claim_survives_as_unknown_to_creditors": false,
+    "claim_survives_under_separate_settlement": false,
+    "claim_discharged": false,
+    "writ_of_execution_issued_for_the_surviving_registered_claim": false,
+    "discharge_exception_applies_to_this_claim": false,
+    "requires_human_citizen_release_assessment": false,
+    "reasons_ru": [],
+    "warnings_ru": [
+      "Модель отвечает, достигает ли освобождение этого требования, а не каков его размер: статья говорит о предъявлении требования в непогашенной части, а не об её исчислении.",
+      "Процедуру отчёта финансового управляющего и его рассмотрения (пункты 1 и 2) модель не разбирает: определение о завершении реализации имущества принимается как проверенный факт.",
+      "Субсидиарная ответственность (глава III.2), ответственность арбитражного управляющего и оспаривание сделок по статьям 61.2 и 61.3 названы пунктом 6 как категории требований и в пакете не смоделированы.",
+      "Пункт 6 называет статьи 53 и 53.1 ГК РФ, и модель ответственности управляющих лиц в пакете есть, но связи между ними нет сознательно: та статья отвечает, возникла ли ответственность, а эта — достигает ли освобождение требования о ней, и формы вины у них разные — недобросовестность и неразумность против умысла и грубой неосторожности."
+    ]
+  },
+  "benchmark_report": {
+    "id": "citizen-release-benchmark-report-v0",
+    "total": 18,
+    "passed": 18,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "citizen-release-bench-release-after-completion",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_released_from_obligations": true,
+          "claim_discharged": true,
+          "discharge_exception_applies_to_this_claim": false,
+          "requires_human_citizen_release_assessment": false
+        },
+        "observed_outcomes": {
+          "citizen_released_from_obligations": true,
+          "claim_discharged": true,
+          "discharge_exception_applies_to_this_claim": false,
+          "requires_human_citizen_release_assessment": false
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование погашено освобождением гражданина от обязательств: ни одно из изъятий пунктов 3–6 статьи 213.28 закона к нему не относится."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-no-release-before-the-ruling",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_released_from_obligations": false,
+          "claim_discharged": false,
+          "requires_human_citizen_release_assessment": false
+        },
+        "observed_outcomes": {
+          "citizen_released_from_obligations": false,
+          "claim_discharged": false,
+          "requires_human_citizen_release_assessment": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "task_id": "citizen-release-bench-barred-by-bankruptcy-offence",
+        "passed": true,
+        "expected_outcomes": {
+          "release_barred_by_bankruptcy_offence": true,
+          "release_not_applied_at_all": true,
+          "citizen_released_from_obligations": false,
+          "claim_discharged": false
+        },
+        "observed_outcomes": {
+          "release_barred_by_bankruptcy_offence": true,
+          "release_not_applied_at_all": true,
+          "citizen_released_from_obligations": false,
+          "claim_discharged": false
+        },
+        "reasons_ru": [
+          "Освобождение от обязательств не допускается: вступившим в законную силу судебным актом гражданин привлечён к ответственности за неправомерные действия при банкротстве, преднамеренное или фиктивное банкротство, и правонарушения совершены в данном деле (пункт 4 статьи 213.28 закона). Оговорка о «данном деле» существенна: прошлое банкротное правонарушение основанием не является.",
+          "Правило об освобождении от исполнения обязательств не применяется к гражданину вовсе: он не освобождается ни от одного требования. Суд указывает на это в определении о завершении реализации имущества либо выносит отдельное определение, если основание выявлено позже (пункт 4 статьи 213.28 закона)."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-barred-by-withheld-information",
+        "passed": true,
+        "expected_outcomes": {
+          "release_barred_by_withheld_information": true,
+          "release_not_applied_at_all": true,
+          "citizen_released_from_obligations": false
+        },
+        "observed_outcomes": {
+          "release_barred_by_withheld_information": true,
+          "release_not_applied_at_all": true,
+          "citizen_released_from_obligations": false
+        },
+        "reasons_ru": [
+          "Освобождение от обязательств не допускается: гражданин не предоставил необходимые сведения либо предоставил заведомо недостоверные финансовому управляющему или суду, и это установлено судебным актом по данному делу (пункт 4 статьи 213.28 закона).",
+          "Правило об освобождении от исполнения обязательств не применяется к гражданину вовсе: он не освобождается ни от одного требования. Суд указывает на это в определении о завершении реализации имущества либо выносит отдельное определение, если основание выявлено позже (пункт 4 статьи 213.28 закона)."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-barred-by-unlawful-conduct",
+        "passed": true,
+        "expected_outcomes": {
+          "release_barred_by_unlawful_conduct_in_the_obligation": true,
+          "release_not_applied_at_all": true,
+          "requires_human_citizen_release_assessment": true
+        },
+        "observed_outcomes": {
+          "release_barred_by_unlawful_conduct_in_the_obligation": true,
+          "release_not_applied_at_all": true,
+          "requires_human_citizen_release_assessment": true
+        },
+        "reasons_ru": [
+          "Освобождение от обязательств не допускается: доказано, что при возникновении или исполнении обязательства, на котором кредитор основал требование, гражданин действовал незаконно — мошенничество, злостное уклонение от погашения задолженности, уклонение от уплаты налогов, заведомо ложные сведения при получении кредита, сокрытие или умышленное уничтожение имущества (пункт 4 статьи 213.28 закона). Доказанность незаконного поведения устанавливает суд, а не модель.",
+          "Правило об освобождении от исполнения обязательств не применяется к гражданину вовсе: он не освобождается ни от одного требования. Суд указывает на это в определении о завершении реализации имущества либо выносит отдельное определение, если основание выявлено позже (пункт 4 статьи 213.28 закона).",
+          "Требуется оценка юриста. Доказанность незаконного поведения гражданина (пункт 4), неразрывную связь требования с личностью кредитора (пункт 5), незнание кредитора о требовании (абзац второй пункта 3) и форму вины — умысел либо грубую неосторожность (пункт 6) — устанавливает суд, а не модель."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-named-claim-survives",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_survives_as_personally_bound": true,
+          "claim_discharged": false,
+          "citizen_released_from_obligations": true,
+          "writ_of_execution_issued_for_the_surviving_registered_claim": true,
+          "requires_human_citizen_release_assessment": false
+        },
+        "observed_outcomes": {
+          "claim_survives_as_personally_bound": true,
+          "claim_discharged": false,
+          "citizen_released_from_obligations": true,
+          "writ_of_execution_issued_for_the_surviving_registered_claim": true,
+          "requires_human_citizen_release_assessment": false
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу и может быть предъявлено после окончания производства по делу в непогашенной части: требование о возмещении вреда жизни или здоровью, о выплате заработной платы или выходного пособия, о возмещении морального вреда либо о взыскании алиментов (пункт 5 статьи 213.28 закона). Освобождение гражданина от обязательств его не достигает.",
+          "На сохранившее силу требование, включённое в реестр требований кредиторов, арбитражный суд выдаёт исполнительный лист в непогашенной части (абзац второй пункта 5 статьи 213.28 закона)."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-current-payment-survives",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_survives_as_personally_bound": true,
+          "writ_of_execution_issued_for_the_surviving_registered_claim": false
+        },
+        "observed_outcomes": {
+          "claim_survives_as_personally_bound": true,
+          "writ_of_execution_issued_for_the_surviving_registered_claim": false
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу и может быть предъявлено после окончания производства по делу в непогашенной части: требование по текущим платежам (пункт 5 статьи 213.28 закона). Освобождение гражданина от обязательств его не достигает."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-other-personally-bound-claim-needs-a-lawyer",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_survives_as_personally_bound": true,
+          "requires_human_citizen_release_assessment": true
+        },
+        "observed_outcomes": {
+          "claim_survives_as_personally_bound": true,
+          "requires_human_citizen_release_assessment": true
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу и может быть предъявлено после окончания производства по делу в непогашенной части: иное требование, неразрывно связанное с личностью кредитора (пункт 5 статьи 213.28 закона). Освобождение гражданина от обязательств его не достигает.",
+          "Требуется оценка юриста. Доказанность незаконного поведения гражданина (пункт 4), неразрывную связь требования с личностью кредитора (пункт 5), незнание кредитора о требовании (абзац второй пункта 3) и форму вины — умысел либо грубую неосторожность (пункт 6) — устанавливает суд, а не модель."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-subsidiary-liability-needs-no-fault",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_survives_under_paragraph_six": true,
+          "claim_discharged": false,
+          "requires_human_citizen_release_assessment": false
+        },
+        "observed_outcomes": {
+          "claim_survives_under_paragraph_six": true,
+          "claim_discharged": false,
+          "requires_human_citizen_release_assessment": false
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу по правилу пункта 5, распространённому пунктом 6 статьи 213.28 закона: привлечение гражданина как контролирующего лица к субсидиарной ответственности (глава III.2 закона); формы вины пункт 6 здесь не требует."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-avoidance-consequences-need-no-fault",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_survives_under_paragraph_six": true,
+          "claim_discharged": false
+        },
+        "observed_outcomes": {
+          "claim_survives_under_paragraph_six": true,
+          "claim_discharged": false
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу по правилу пункта 5, распространённому пунктом 6 статьи 213.28 закона: применение последствий недействительности сделки, признанной недействительной по статье 61.2 или 61.3 закона; формы вины пункт 6 здесь не требует."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-article-53-1-damages-need-fault",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_survives_under_paragraph_six": true,
+          "claim_discharged": false,
+          "requires_human_citizen_release_assessment": true
+        },
+        "observed_outcomes": {
+          "claim_survives_under_paragraph_six": true,
+          "claim_discharged": false,
+          "requires_human_citizen_release_assessment": true
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу по правилу пункта 5, распространённому пунктом 6 статьи 213.28 закона: возмещение убытков, причинённых юридическому лицу, участником или членом коллегиальных органов которого был гражданин (статьи 53 и 53.1 ГК РФ), умышленно или по грубой неосторожности.",
+          "Требуется оценка юриста. Доказанность незаконного поведения гражданина (пункт 4), неразрывную связь требования с личностью кредитора (пункт 5), незнание кредитора о требовании (абзац второй пункта 3) и форму вины — умысел либо грубую неосторожность (пункт 6) — устанавливает суд, а не модель."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-article-53-1-damages-without-fault-are-discharged",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_survives_under_paragraph_six": false,
+          "claim_discharged": true
+        },
+        "observed_outcomes": {
+          "claim_survives_under_paragraph_six": false,
+          "claim_discharged": true
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование погашено освобождением гражданина от обязательств: ни одно из изъятий пунктов 3–6 статьи 213.28 закона к нему не относится."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-property-damage-needs-fault",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_survives_under_paragraph_six": true
+        },
+        "observed_outcomes": {
+          "claim_survives_under_paragraph_six": true
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу по правилу пункта 5, распространённому пунктом 6 статьи 213.28 закона: возмещение вреда имуществу, причинённого умышленно или по грубой неосторожности.",
+          "Требуется оценка юриста. Доказанность незаконного поведения гражданина (пункт 4), неразрывную связь требования с личностью кредитора (пункт 5), незнание кредитора о требовании (абзац второй пункта 3) и форму вины — умысел либо грубую неосторожность (пункт 6) — устанавливает суд, а не модель."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-manager-damages-need-fault",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_survives_under_paragraph_six": true
+        },
+        "observed_outcomes": {
+          "claim_survives_under_paragraph_six": true
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу по правилу пункта 5, распространённому пунктом 6 статьи 213.28 закона: возмещение убытков, причинённых гражданином как арбитражным управляющим умышленно или по грубой неосторожности.",
+          "Требуется оценка юриста. Доказанность незаконного поведения гражданина (пункт 4), неразрывную связь требования с личностью кредитора (пункт 5), незнание кредитора о требовании (абзац второй пункта 3) и форму вины — умысел либо грубую неосторожность (пункт 6) — устанавливает суд, а не модель."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-claim-unknown-to-creditors-survives",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_survives_as_unknown_to_creditors": true,
+          "claim_discharged": false,
+          "requires_human_citizen_release_assessment": true
+        },
+        "observed_outcomes": {
+          "claim_survives_as_unknown_to_creditors": true,
+          "claim_discharged": false,
+          "requires_human_citizen_release_assessment": true
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу: кредиторы о нём не знали и не должны были знать к моменту принятия определения о завершении реализации имущества (абзац второй пункта 3 статьи 213.28 закона). Что кредитор не должен был знать, устанавливает суд.",
+          "Требуется оценка юриста. Доказанность незаконного поведения гражданина (пункт 4), неразрывную связь требования с личностью кредитора (пункт 5), незнание кредитора о требовании (абзац второй пункта 3) и форму вины — умысел либо грубую неосторожность (пункт 6) — устанавливает суд, а не модель."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-separate-settlement-survives",
+        "passed": true,
+        "expected_outcomes": {
+          "claim_survives_under_separate_settlement": true,
+          "claim_discharged": false,
+          "requires_human_citizen_release_assessment": false
+        },
+        "observed_outcomes": {
+          "claim_survives_under_separate_settlement": true,
+          "claim_discharged": false,
+          "requires_human_citizen_release_assessment": false
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу: в целях его удовлетворения гражданином заключено утверждённое арбитражным судом отдельное мировое соглашение по статье 213.10-1 закона (абзац второй пункта 3 статьи 213.28)."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-exception-collects-both-levels",
+        "passed": true,
+        "expected_outcomes": {
+          "discharge_exception_applies_to_this_claim": true,
+          "release_not_applied_at_all": false
+        },
+        "observed_outcomes": {
+          "discharge_exception_applies_to_this_claim": true,
+          "release_not_applied_at_all": false
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу и может быть предъявлено после окончания производства по делу в непогашенной части: требование о возмещении вреда жизни или здоровью, о выплате заработной платы или выходного пособия, о возмещении морального вреда либо о взыскании алиментов (пункт 5 статьи 213.28 закона). Освобождение гражданина от обязательств его не достигает."
+        ]
+      },
+      {
+        "task_id": "citizen-release-bench-empty-facts-say-nothing",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_released_from_obligations": false,
+          "release_not_applied_at_all": false,
+          "claim_survives_as_personally_bound": false,
+          "claim_survives_under_paragraph_six": false,
+          "claim_survives_as_unknown_to_creditors": false,
+          "claim_survives_under_separate_settlement": false,
+          "claim_discharged": false,
+          "writ_of_execution_issued_for_the_surviving_registered_claim": false,
+          "discharge_exception_applies_to_this_claim": false,
+          "requires_human_citizen_release_assessment": false
+        },
+        "observed_outcomes": {
+          "citizen_released_from_obligations": false,
+          "release_not_applied_at_all": false,
+          "claim_survives_as_personally_bound": false,
+          "claim_survives_under_paragraph_six": false,
+          "claim_survives_as_unknown_to_creditors": false,
+          "claim_survives_under_separate_settlement": false,
+          "claim_discharged": false,
+          "writ_of_execution_issued_for_the_surviving_registered_claim": false,
+          "discharge_exception_applies_to_this_claim": false,
+          "requires_human_citizen_release_assessment": false
+        },
+        "reasons_ru": []
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "citizen-release-red-team-report-v0",
+    "total": 16,
+    "blocked": 16,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "citizen-release-red-surviving-claim-bars-the-whole-release",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "release_not_applied_at_all": true,
+          "citizen_released_from_obligations": false
+        },
+        "observed_outcomes": {
+          "release_not_applied_at_all": false,
+          "citizen_released_from_obligations": true
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу и может быть предъявлено после окончания производства по делу в непогашенной части: требование о возмещении вреда жизни или здоровью, о выплате заработной платы или выходного пособия, о возмещении морального вреда либо о взыскании алиментов (пункт 5 статьи 213.28 закона). Освобождение гражданина от обязательств его не достигает."
+        ]
+      },
+      {
+        "case_id": "citizen-release-red-release-discharges-every-claim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "claim_discharged": true
+        },
+        "observed_outcomes": {
+          "claim_discharged": false
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу по правилу пункта 5, распространённому пунктом 6 статьи 213.28 закона: привлечение гражданина как контролирующего лица к субсидиарной ответственности (глава III.2 закона); формы вины пункт 6 здесь не требует."
+        ]
+      },
+      {
+        "case_id": "citizen-release-red-bar-discharges-the-claim-anyway",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "claim_discharged": true,
+          "citizen_released_from_obligations": true
+        },
+        "observed_outcomes": {
+          "claim_discharged": false,
+          "citizen_released_from_obligations": false
+        },
+        "reasons_ru": [
+          "Освобождение от обязательств не допускается: вступившим в законную силу судебным актом гражданин привлечён к ответственности за неправомерные действия при банкротстве, преднамеренное или фиктивное банкротство, и правонарушения совершены в данном деле (пункт 4 статьи 213.28 закона). Оговорка о «данном деле» существенна: прошлое банкротное правонарушение основанием не является.",
+          "Правило об освобождении от исполнения обязательств не применяется к гражданину вовсе: он не освобождается ни от одного требования. Суд указывает на это в определении о завершении реализации имущества либо выносит отдельное определение, если основание выявлено позже (пункт 4 статьи 213.28 закона)."
+        ]
+      },
+      {
+        "case_id": "citizen-release-red-fault-clause-reaches-subsidiary-liability",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "claim_survives_under_paragraph_six": false
+        },
+        "observed_outcomes": {
+          "claim_survives_under_paragraph_six": true
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу по правилу пункта 5, распространённому пунктом 6 статьи 213.28 закона: привлечение гражданина как контролирующего лица к субсидиарной ответственности (глава III.2 закона); формы вины пункт 6 здесь не требует."
+        ]
+      },
+      {
+        "case_id": "citizen-release-red-fault-clause-reaches-avoidance-consequences",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "claim_survives_under_paragraph_six": false
+        },
+        "observed_outcomes": {
+          "claim_survives_under_paragraph_six": true
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу по правилу пункта 5, распространённому пунктом 6 статьи 213.28 закона: применение последствий недействительности сделки, признанной недействительной по статье 61.2 или 61.3 закона; формы вины пункт 6 здесь не требует."
+        ]
+      },
+      {
+        "case_id": "citizen-release-red-damages-survive-without-fault",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "claim_survives_under_paragraph_six": true
+        },
+        "observed_outcomes": {
+          "claim_survives_under_paragraph_six": false
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование погашено освобождением гражданина от обязательств: ни одно из изъятий пунктов 3–6 статьи 213.28 закона к нему не относится."
+        ]
+      },
+      {
+        "case_id": "citizen-release-red-property-damage-survives-without-fault",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "claim_survives_under_paragraph_six": true
+        },
+        "observed_outcomes": {
+          "claim_survives_under_paragraph_six": false
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование погашено освобождением гражданина от обязательств: ни одно из изъятий пунктов 3–6 статьи 213.28 закона к нему не относится."
+        ]
+      },
+      {
+        "case_id": "citizen-release-red-release-before-the-completion-ruling",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "citizen_released_from_obligations": true,
+          "claim_discharged": true,
+          "discharge_exception_applies_to_this_claim": true
+        },
+        "observed_outcomes": {
+          "citizen_released_from_obligations": false,
+          "claim_discharged": false,
+          "discharge_exception_applies_to_this_claim": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "case_id": "citizen-release-red-bar-without-a-bankruptcy-case",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "release_not_applied_at_all": true,
+          "release_barred_by_bankruptcy_offence": true
+        },
+        "observed_outcomes": {
+          "release_not_applied_at_all": false,
+          "release_barred_by_bankruptcy_offence": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "case_id": "citizen-release-red-writ-for-a-current-payment",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "writ_of_execution_issued_for_the_surviving_registered_claim": true
+        },
+        "observed_outcomes": {
+          "writ_of_execution_issued_for_the_surviving_registered_claim": false
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу и может быть предъявлено после окончания производства по делу в непогашенной части: требование по текущим платежам (пункт 5 статьи 213.28 закона). Освобождение гражданина от обязательств его не достигает."
+        ]
+      },
+      {
+        "case_id": "citizen-release-red-writ-for-a-discharged-claim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "writ_of_execution_issued_for_the_surviving_registered_claim": true
+        },
+        "observed_outcomes": {
+          "writ_of_execution_issued_for_the_surviving_registered_claim": false
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование погашено освобождением гражданина от обязательств: ни одно из изъятий пунктов 3–6 статьи 213.28 закона к нему не относится."
+        ]
+      },
+      {
+        "case_id": "citizen-release-red-unlawful-conduct-is-not-silent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_release_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_release_assessment": true
+        },
+        "reasons_ru": [
+          "Освобождение от обязательств не допускается: доказано, что при возникновении или исполнении обязательства, на котором кредитор основал требование, гражданин действовал незаконно — мошенничество, злостное уклонение от погашения задолженности, уклонение от уплаты налогов, заведомо ложные сведения при получении кредита, сокрытие или умышленное уничтожение имущества (пункт 4 статьи 213.28 закона). Доказанность незаконного поведения устанавливает суд, а не модель.",
+          "Правило об освобождении от исполнения обязательств не применяется к гражданину вовсе: он не освобождается ни от одного требования. Суд указывает на это в определении о завершении реализации имущества либо выносит отдельное определение, если основание выявлено позже (пункт 4 статьи 213.28 закона).",
+          "Требуется оценка юриста. Доказанность незаконного поведения гражданина (пункт 4), неразрывную связь требования с личностью кредитора (пункт 5), незнание кредитора о требовании (абзац второй пункта 3) и форму вины — умысел либо грубую неосторожность (пункт 6) — устанавливает суд, а не модель."
+        ]
+      },
+      {
+        "case_id": "citizen-release-red-evaluative-personal-claim-is-not-silent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_release_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_release_assessment": true
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу и может быть предъявлено после окончания производства по делу в непогашенной части: иное требование, неразрывно связанное с личностью кредитора (пункт 5 статьи 213.28 закона). Освобождение гражданина от обязательств его не достигает.",
+          "Требуется оценка юриста. Доказанность незаконного поведения гражданина (пункт 4), неразрывную связь требования с личностью кредитора (пункт 5), незнание кредитора о требовании (абзац второй пункта 3) и форму вины — умысел либо грубую неосторожность (пункт 6) — устанавливает суд, а не модель."
+        ]
+      },
+      {
+        "case_id": "citizen-release-red-unknown-claim-is-not-silent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_release_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_release_assessment": true
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу: кредиторы о нём не знали и не должны были знать к моменту принятия определения о завершении реализации имущества (абзац второй пункта 3 статьи 213.28 закона). Что кредитор не должен был знать, устанавливает суд.",
+          "Требуется оценка юриста. Доказанность незаконного поведения гражданина (пункт 4), неразрывную связь требования с личностью кредитора (пункт 5), незнание кредитора о требовании (абзац второй пункта 3) и форму вины — умысел либо грубую неосторожность (пункт 6) — устанавливает суд, а не модель."
+        ]
+      },
+      {
+        "case_id": "citizen-release-red-named-claim-raises-a-spurious-flag",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_release_assessment": true
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_release_assessment": false
+        },
+        "reasons_ru": [
+          "После завершения расчётов с кредиторами гражданин, признанный банкротом, освобождается от дальнейшего исполнения требований кредиторов, в том числе не заявленных при введении реструктуризации долгов или реализации имущества (пункт 3 статьи 213.28 закона 127-ФЗ).",
+          "Требование сохраняет силу и может быть предъявлено после окончания производства по делу в непогашенной части: требование о возмещении вреда жизни или здоровью, о выплате заработной платы или выходного пособия, о возмещении морального вреда либо о взыскании алиментов (пункт 5 статьи 213.28 закона). Освобождение гражданина от обязательств его не достигает."
+        ]
+      },
+      {
+        "case_id": "citizen-release-red-empty-facts-raise-no-flag",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_release_assessment": true
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_release_assessment": false
+        },
+        "reasons_ru": []
+      }
+    ]
+  },
+  "source_urls": [
+    "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527"
+  ]
+}

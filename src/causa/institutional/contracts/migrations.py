@@ -2362,6 +2362,22 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_synthetic_citizen_ranking_evaluation.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.26.0",
+        to_version="1.27.0",
+        reasons=[
+            "The analysis request gains a required field, citizen_release_evidence, and the result gains three: the mapping, the constraint set and the evaluation of the article 213.28 institute. A stored request does not carry the field and cannot be replayed as it stands.",
+            "Two new fact-consistency checks reject stored data that the pipeline previously accepted: the ranking institute's statutory_exception_to_discharge_applies must now agree with the article 213.28 conclusion, and the register status of the claim must be described alike in both blocks. A stored analysis that asserted the exception without a carve-out of article 213.28, or described the claim's register status differently in the two blocks, must be brought into agreement.",
+        ],
+        reasons_ru=[
+            "Запрос анализа получает обязательное поле citizen_release_evidence, а результат — три: разбор, набор ограничений и вывод института статьи 213.28. Сохранённый запрос этого поля не несёт и в прежнем виде повторно прогнан быть не может.",
+            "Две новые сверки фактов отвергают данные, которые конвейер прежде принимал: признак statutory_exception_to_discharge_applies института очерёдности обязан совпасть с выводом модели статьи 213.28, а реестровый статус требования — быть описан одинаково в двух блоках. Сохранённый анализ, заявлявший изъятие без изъятия статьи 213.28 либо описавший реестровый статус по-разному, подлежит приведению в согласие.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_citizen_release_evaluation.py",
+        ],
+    ),
 ]
 
 
