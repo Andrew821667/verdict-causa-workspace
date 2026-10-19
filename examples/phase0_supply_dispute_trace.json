@@ -3364,6 +3364,39 @@
       }
     },
     {
+      "id": "synthetic-ru-gk420-contract-concept-v1",
+      "title": "ГК РФ, статья 420: понятие договора и правила, применяемые к нему и к возникшим из него обязательствам",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Статья 420. Понятие договора.\n\n1. Договором признается соглашение двух или нескольких лиц об установлении, изменении или прекращении гражданских прав и обязанностей.\n\n2. К договорам применяются правила о двух- и многосторонних сделках, предусмотренные главой 9 настоящего Кодекса, если иное не установлено настоящим Кодексом.\n\n(в ред. Федерального закона от 08.03.2015 N 42-ФЗ)\n\n3. К обязательствам, возникшим из договора, применяются общие положения об обязательствах (статьи 307 - 419), если иное не предусмотрено правилами настоящей главы и правилами об отдельных видах договоров, содержащимися в настоящем Кодексе.\n\n4. К договорам, заключаемым более чем двумя сторонами, общие положения о договоре применяются, если это не противоречит многостороннему характеру таких договоров.",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "contract_concept_article_420",
+        "legal_reference": "ГК РФ, статья 420",
+        "specificity": "general",
+        "text_verbatim": true,
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-contract-concept-evidence",
+      "title": "Синтетическая проверенная запись фактов о понятии договора",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спор ведут две организации по договору поставки — соглашение двух лиц, направленное на установление гражданских прав и обязанностей, и спорное обязательство возникло из этого договора. Сторон в договоре две, поэтому правило пункта 4 статьи 420 о многосторонних договорах беспредметно. Ни правило главы 27, ни правило о поставке не вытесняют то общее положение об обязательствах, на которое опирается разбор: правила о поставке его дополняют. Вытеснения правил Кодекса соглашением сторон по делу не заявлено.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "contract_concept_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-127fz-5-current-payments-v1",
       "title": "127-ФЗ, статья 5: текущие платежи",
       "source_type": "statute",
@@ -12017,6 +12050,125 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-management-liability-reviewer"
     },
+    "contract_concept_evidence": {
+      "id": "reviewed-contract-concept-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.contract-concept-evidence.v0",
+      "assertions": [
+        {
+          "id": "contract-concept-evidence-agreement_of_two_or_more_persons",
+          "predicate": "agreement_of_two_or_more_persons",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "id": "contract-concept-evidence-single_person_disposition_asserted",
+          "predicate": "single_person_disposition_asserted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "id": "contract-concept-evidence-directed_at_establishing_rights_and_duties",
+          "predicate": "directed_at_establishing_rights_and_duties",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "id": "contract-concept-evidence-directed_at_changing_rights_and_duties",
+          "predicate": "directed_at_changing_rights_and_duties",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "id": "contract-concept-evidence-directed_at_terminating_rights_and_duties",
+          "predicate": "directed_at_terminating_rights_and_duties",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "id": "contract-concept-evidence-rights_and_duties_lie_outside_civil_law",
+          "predicate": "rights_and_duties_lie_outside_civil_law",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "id": "contract-concept-evidence-code_provides_otherwise_for_transaction_rules",
+          "predicate": "code_provides_otherwise_for_transaction_rules",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "id": "contract-concept-evidence-obligation_arose_from_the_contract",
+          "predicate": "obligation_arose_from_the_contract",
+          "value": true,
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "id": "contract-concept-evidence-chapter_27_rule_provides_otherwise",
+          "predicate": "chapter_27_rule_provides_otherwise",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "id": "contract-concept-evidence-specific_contract_type_rule_provides_otherwise",
+          "predicate": "specific_contract_type_rule_provides_otherwise",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "id": "contract-concept-evidence-displacement_asserted_by_agreement_not_by_code",
+          "predicate": "displacement_asserted_by_agreement_not_by_code",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "id": "contract-concept-evidence-contract_has_more_than_two_parties",
+          "predicate": "contract_has_more_than_two_parties",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "id": "contract-concept-evidence-general_contract_provision_contradicts_multilateral_nature",
+          "predicate": "general_contract_provision_contradicts_multilateral_nature",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk420-contract-concept-v1",
+        "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+        "synthetic-ru-gk307-308-obligation-concept-v1",
+        "synthetic-ru-gk421-422-freedom-of-contract-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-contract-concept-reviewer"
+    },
     "bankruptcy_claims_evidence": {
       "id": "reviewed-bankruptcy-claims-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -18645,6 +18797,7 @@
       "synthetic-commission-reviewer",
       "synthetic-construction-contract-reviewer",
       "synthetic-consumer-work-reviewer",
+      "synthetic-contract-concept-reviewer",
       "synthetic-contractation-reviewer",
       "synthetic-credit-reviewer",
       "synthetic-design-work-reviewer",
@@ -18742,6 +18895,7 @@
       "synthetic-case-supply-1-commission-evidence",
       "synthetic-case-supply-1-construction-contract-evidence",
       "synthetic-case-supply-1-consumer-work-evidence",
+      "synthetic-case-supply-1-contract-concept-evidence",
       "synthetic-case-supply-1-contractation-evidence",
       "synthetic-case-supply-1-credit-evidence",
       "synthetic-case-supply-1-design-work-evidence",
@@ -18895,6 +19049,7 @@
       "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
       "synthetic-ru-gk407-413-discharge-v1",
       "synthetic-ru-gk414-419-discharge-v1",
+      "synthetic-ru-gk420-contract-concept-v1",
       "synthetic-ru-gk421-422-freedom-of-contract-v1",
       "synthetic-ru-gk423-424-onerousness-and-price-v1",
       "synthetic-ru-gk425-contract-effect-model-v1",
@@ -28843,6 +28998,172 @@
         "Полномочия лица по существу проверяют институт лиц (статьи 17–53) и институт представительства; здесь принадлежность к субъектам статьи 53.1 принимается как проверенный факт."
       ]
     },
+    "contract_concept_evidence_mapping": {
+      "evidence_id": "reviewed-contract-concept-evidence-supply-1-v0",
+      "schema_version": "contracts.contract-concept-evidence.v0",
+      "mapping_version": "contracts-reviewed-contract-concept-to-facts-v0",
+      "facts": {
+        "agreement_of_two_or_more_persons": true,
+        "single_person_disposition_asserted": false,
+        "directed_at_establishing_rights_and_duties": true,
+        "directed_at_changing_rights_and_duties": false,
+        "directed_at_terminating_rights_and_duties": false,
+        "rights_and_duties_lie_outside_civil_law": false,
+        "code_provides_otherwise_for_transaction_rules": false,
+        "obligation_arose_from_the_contract": true,
+        "chapter_27_rule_provides_otherwise": false,
+        "specific_contract_type_rule_provides_otherwise": false,
+        "displacement_asserted_by_agreement_not_by_code": false,
+        "contract_has_more_than_two_parties": false,
+        "general_contract_provision_contradicts_multilateral_nature": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk420-contract-concept-v1",
+        "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+        "synthetic-ru-gk307-308-obligation-concept-v1",
+        "synthetic-ru-gk421-422-freedom-of-contract-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "agreement_of_two_or_more_persons",
+          "assertion_id": "contract-concept-evidence-agreement_of_two_or_more_persons",
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "fact_name": "chapter_27_rule_provides_otherwise",
+          "assertion_id": "contract-concept-evidence-chapter_27_rule_provides_otherwise",
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "fact_name": "code_provides_otherwise_for_transaction_rules",
+          "assertion_id": "contract-concept-evidence-code_provides_otherwise_for_transaction_rules",
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "fact_name": "contract_has_more_than_two_parties",
+          "assertion_id": "contract-concept-evidence-contract_has_more_than_two_parties",
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "fact_name": "directed_at_changing_rights_and_duties",
+          "assertion_id": "contract-concept-evidence-directed_at_changing_rights_and_duties",
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "fact_name": "directed_at_establishing_rights_and_duties",
+          "assertion_id": "contract-concept-evidence-directed_at_establishing_rights_and_duties",
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "fact_name": "directed_at_terminating_rights_and_duties",
+          "assertion_id": "contract-concept-evidence-directed_at_terminating_rights_and_duties",
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "fact_name": "displacement_asserted_by_agreement_not_by_code",
+          "assertion_id": "contract-concept-evidence-displacement_asserted_by_agreement_not_by_code",
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "fact_name": "general_contract_provision_contradicts_multilateral_nature",
+          "assertion_id": "contract-concept-evidence-general_contract_provision_contradicts_multilateral_nature",
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "fact_name": "obligation_arose_from_the_contract",
+          "assertion_id": "contract-concept-evidence-obligation_arose_from_the_contract",
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "fact_name": "rights_and_duties_lie_outside_civil_law",
+          "assertion_id": "contract-concept-evidence-rights_and_duties_lie_outside_civil_law",
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "fact_name": "single_person_disposition_asserted",
+          "assertion_id": "contract-concept-evidence-single_person_disposition_asserted",
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        },
+        {
+          "fact_name": "specific_contract_type_rule_provides_otherwise",
+          "assertion_id": "contract-concept-evidence-specific_contract_type_rule_provides_otherwise",
+          "source_refs": [
+            "synthetic-case-supply-1-contract-concept-evidence"
+          ]
+        }
+      ]
+    },
+    "contract_concept_constraint_set": {
+      "id": "contract-concept-constraint-set:reviewed-contract-concept-evidence-supply-1-v0",
+      "model_version": "contracts-contract-concept-article-420-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk420-contract-concept-v1",
+        "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+        "synthetic-ru-gk307-308-obligation-concept-v1",
+        "synthetic-ru-gk421-422-freedom-of-contract-v1"
+      ],
+      "expressions": [
+        "contract_qualified_under_article_420 == agreement_of_two_or_more_persons AND (directed_at_establishing_rights_and_duties OR directed_at_changing_rights_and_duties OR directed_at_terminating_rights_and_duties) AND NOT rights_and_duties_lie_outside_civil_law",
+        "qualification_fails_for_lack_of_a_second_party == single_person_disposition_asserted",
+        "qualification_fails_for_non_civil_subject_matter == agreement_of_two_or_more_persons AND (directed_at_establishing_rights_and_duties OR directed_at_changing_rights_and_duties OR directed_at_terminating_rights_and_duties) AND rights_and_duties_lie_outside_civil_law",
+        "chapter_9_transaction_rules_apply == contract_qualified_under_article_420 AND NOT code_provides_otherwise_for_transaction_rules",
+        "general_obligation_provisions_apply == contract_qualified_under_article_420 AND obligation_arose_from_the_contract AND NOT chapter_27_rule_provides_otherwise AND NOT specific_contract_type_rule_provides_otherwise",
+        "special_rule_displaces_general_provisions == contract_qualified_under_article_420 AND obligation_arose_from_the_contract AND (chapter_27_rule_provides_otherwise OR specific_contract_type_rule_provides_otherwise)",
+        "agreement_cannot_displace_code_rules == displacement_asserted_by_agreement_not_by_code",
+        "general_contract_provisions_apply_to_multiparty_contract == contract_qualified_under_article_420 AND contract_has_more_than_two_parties AND NOT general_contract_provision_contradicts_multilateral_nature",
+        "general_contract_provisions_withheld_from_multiparty_contract == contract_qualified_under_article_420 AND contract_has_more_than_two_parties AND general_contract_provision_contradicts_multilateral_nature",
+        "requires_human_contract_concept_assessment == general_contract_provisions_withheld_from_multiparty_contract OR special_rule_displaces_general_provisions OR agreement_cannot_displace_code_rules"
+      ]
+    },
+    "contract_concept_evaluation": {
+      "constraint_set_id": "contract-concept-constraint-set:reviewed-contract-concept-evidence-supply-1-v0",
+      "satisfiable": true,
+      "contract_qualified_under_article_420": true,
+      "qualification_fails_for_lack_of_a_second_party": false,
+      "qualification_fails_for_non_civil_subject_matter": false,
+      "chapter_9_transaction_rules_apply": true,
+      "general_obligation_provisions_apply": true,
+      "special_rule_displaces_general_provisions": false,
+      "agreement_cannot_displace_code_rules": false,
+      "general_contract_provisions_apply_to_multiparty_contract": false,
+      "general_contract_provisions_withheld_from_multiparty_contract": false,
+      "requires_human_contract_concept_assessment": false,
+      "reasons_ru": [
+        "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+        "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+        "К обязательству, возникшему из договора, применяются общие положения об обязательствах (статьи 307–419 ГК РФ): ни правило главы 27, ни правило об отдельном виде договора того общего положения, на которое опирается разбор, не вытесняют (пункт 3 статьи 420 ГК РФ)."
+      ],
+      "warnings_ru": [
+        "Модель отвечает, какие своды правил к делу применяются, а не какая норма решает спор: вывод о применимости общих положений об обязательствах не предрешает ни одного вывода по существу.",
+        "Границы точности названы прямо: модель знает, что общее положение вытеснено специальным правилом, но не знает какое именно, и потому не снимает выводов конвейера на этом основании.",
+        "Диспозитивность нормы — вопрос статей 421 и 422 ГК РФ. Пункты 2 и 3 статьи 420 говорят о вытеснении одного свода правил другим, а не о праве сторон отступить от отдельной нормы.",
+        "Заключённость договора проверяет институт заключения (статья 432 ГК РФ): что перед нами договор и что он заключён — разные вопросы."
+      ]
+    },
     "bankruptcy_claims_evidence_mapping": {
       "evidence_id": "reviewed-bankruptcy-claims-evidence-supply-1-v0",
       "schema_version": "contracts.bankruptcy-claims-evidence.v0",
@@ -37191,7 +37512,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.23.0",
+      "institutional_package_version": "contracts-ru-v0@1.24.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -39213,6 +39534,7 @@
           "synthetic-case-supply-1-commission-evidence",
           "synthetic-case-supply-1-construction-contract-evidence",
           "synthetic-case-supply-1-consumer-work-evidence",
+          "synthetic-case-supply-1-contract-concept-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-credit-evidence",
           "synthetic-case-supply-1-design-work-evidence",
@@ -39366,6 +39688,7 @@
           "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
+          "synthetic-ru-gk420-contract-concept-v1",
           "synthetic-ru-gk421-422-freedom-of-contract-v1",
           "synthetic-ru-gk423-424-onerousness-and-price-v1",
           "synthetic-ru-gk425-contract-effect-model-v1",
@@ -40525,6 +40848,7 @@
           "synthetic-case-supply-1-commission-evidence",
           "synthetic-case-supply-1-construction-contract-evidence",
           "synthetic-case-supply-1-consumer-work-evidence",
+          "synthetic-case-supply-1-contract-concept-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-credit-evidence",
           "synthetic-case-supply-1-design-work-evidence",
@@ -40678,6 +41002,7 @@
           "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
+          "synthetic-ru-gk420-contract-concept-v1",
           "synthetic-ru-gk421-422-freedom-of-contract-v1",
           "synthetic-ru-gk423-424-onerousness-and-price-v1",
           "synthetic-ru-gk425-contract-effect-model-v1",
@@ -41837,6 +42162,7 @@
           "synthetic-case-supply-1-commission-evidence",
           "synthetic-case-supply-1-construction-contract-evidence",
           "synthetic-case-supply-1-consumer-work-evidence",
+          "synthetic-case-supply-1-contract-concept-evidence",
           "synthetic-case-supply-1-contractation-evidence",
           "synthetic-case-supply-1-credit-evidence",
           "synthetic-case-supply-1-design-work-evidence",
@@ -41990,6 +42316,7 @@
           "synthetic-ru-gk405-406-delay-of-the-debtor-and-of-the-creditor-v1",
           "synthetic-ru-gk407-413-discharge-v1",
           "synthetic-ru-gk414-419-discharge-v1",
+          "synthetic-ru-gk420-contract-concept-v1",
           "synthetic-ru-gk421-422-freedom-of-contract-v1",
           "synthetic-ru-gk423-424-onerousness-and-price-v1",
           "synthetic-ru-gk425-contract-effect-model-v1",
@@ -42206,7 +42533,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@1.23.0",
+      "institutional_package_version": "contracts-ru-v0@1.24.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:3ae00857433d12f12acc74e473548b24a294eba6b8db7ccf599e6090be6c43da",
       "translation_template_version": "translation-template-ru-v12",
@@ -44960,6 +45287,33 @@
         }
       },
       {
+        "id": "synthetic-ru-gk420-contract-concept-v1",
+        "layer": "source",
+        "label": "ГК РФ, статья 420: понятие договора и правила, применяемые к нему и к возникшим из него обязательствам",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "contract_concept_article_420",
+          "legal_reference": "ГК РФ, статья 420",
+          "specificity": "general",
+          "text_verbatim": true,
+          "basis_url": "https://government.ru/docs/all/95825/",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-contract-concept-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов о понятии договора",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "contract_concept_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-127fz-5-current-payments-v1",
         "layer": "source",
         "label": "127-ФЗ, статья 5: текущие платежи",
@@ -46436,6 +46790,7 @@
             "synthetic-commission-reviewer",
             "synthetic-construction-contract-reviewer",
             "synthetic-consumer-work-reviewer",
+            "synthetic-contract-concept-reviewer",
             "synthetic-contractation-reviewer",
             "synthetic-credit-reviewer",
             "synthetic-design-work-reviewer",

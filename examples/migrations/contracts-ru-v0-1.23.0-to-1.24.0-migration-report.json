@@ -1,0 +1,36 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-1.23.0:to-1.24.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-1.23.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "1.23.0",
+  "target_package_version": "1.24.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "1.23.0",
+      "to_version": "1.24.0",
+      "reasons": [
+        "The analysis request gains a required field, contract_concept_evidence, and the result gains three: the mapping, the constraint set and the evaluation of the article 420 institute. A stored request does not carry the field, so it cannot be replayed as it stands - the evidence block has to be assembled and reviewed before the pipeline will accept the case again.",
+        "A new fact-consistency check, contract_concept_qualification, ties the reviewer predicate contract_asserted of the freedom-of-contract institute to the conclusion of the article 420 model. A stored analysis whose freedom evidence asserted a contract while nothing in the case qualifies as one passed before and is now rejected, so its facts must be brought into agreement. Article 420 also leaves KNOWN_GAPS_RU and the code-walk boundary record and claims an article range of its own, so stored coverage measurements state something the package no longer holds."
+      ],
+      "reasons_ru": [
+        "Запрос анализа получает обязательное поле contract_concept_evidence, а результат — три: разбор, набор ограничений и вывод института статьи 420. Сохранённый запрос этого поля не несёт и в прежнем виде повторно прогнан быть не может: блок доказательств нужно собрать и проверить, прежде чем конвейер снова примет дело.",
+        "Новая сверка фактов contract_concept_qualification связывает предикат рецензента contract_asserted института свободы договора с выводом модели статьи 420. Сохранённый анализ, в котором рецензент заявлял договор, а квалифицировать как договор в деле нечего, прежде проходил, а теперь отвергается — его факты подлежат приведению в согласие. Статья 420 также выходит из KNOWN_GAPS_RU и из записи о границе обхода кодекса и получает собственный диапазон статей, поэтому сохранённые измерения покрытия говорят то, чего в пакете больше нет."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_contract_concept_evaluation.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

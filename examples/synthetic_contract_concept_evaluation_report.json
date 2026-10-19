@@ -1,0 +1,695 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка понятия договора и применимых к нему правил по статье 420 ГК РФ. В демонстрационном деле спор ведут две организации по договору поставки: акт отвечает понятию договора, правила главы 9 и общие положения об обязательствах применяются, вытеснения не заявлено. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-contract-concept-evidence-supply-1-v0",
+    "schema_version": "contracts.contract-concept-evidence.v0",
+    "mapping_version": "contracts-reviewed-contract-concept-to-facts-v0",
+    "facts": {
+      "agreement_of_two_or_more_persons": true,
+      "single_person_disposition_asserted": false,
+      "directed_at_establishing_rights_and_duties": true,
+      "directed_at_changing_rights_and_duties": false,
+      "directed_at_terminating_rights_and_duties": false,
+      "rights_and_duties_lie_outside_civil_law": false,
+      "code_provides_otherwise_for_transaction_rules": false,
+      "obligation_arose_from_the_contract": true,
+      "chapter_27_rule_provides_otherwise": false,
+      "specific_contract_type_rule_provides_otherwise": false,
+      "displacement_asserted_by_agreement_not_by_code": false,
+      "contract_has_more_than_two_parties": false,
+      "general_contract_provision_contradicts_multilateral_nature": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk420-contract-concept-v1",
+      "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+      "synthetic-ru-gk307-308-obligation-concept-v1",
+      "synthetic-ru-gk421-422-freedom-of-contract-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "agreement_of_two_or_more_persons",
+        "assertion_id": "contract-concept-evidence-agreement_of_two_or_more_persons",
+        "source_refs": [
+          "synthetic-case-supply-1-contract-concept-evidence"
+        ]
+      },
+      {
+        "fact_name": "chapter_27_rule_provides_otherwise",
+        "assertion_id": "contract-concept-evidence-chapter_27_rule_provides_otherwise",
+        "source_refs": [
+          "synthetic-case-supply-1-contract-concept-evidence"
+        ]
+      },
+      {
+        "fact_name": "code_provides_otherwise_for_transaction_rules",
+        "assertion_id": "contract-concept-evidence-code_provides_otherwise_for_transaction_rules",
+        "source_refs": [
+          "synthetic-case-supply-1-contract-concept-evidence"
+        ]
+      },
+      {
+        "fact_name": "contract_has_more_than_two_parties",
+        "assertion_id": "contract-concept-evidence-contract_has_more_than_two_parties",
+        "source_refs": [
+          "synthetic-case-supply-1-contract-concept-evidence"
+        ]
+      },
+      {
+        "fact_name": "directed_at_changing_rights_and_duties",
+        "assertion_id": "contract-concept-evidence-directed_at_changing_rights_and_duties",
+        "source_refs": [
+          "synthetic-case-supply-1-contract-concept-evidence"
+        ]
+      },
+      {
+        "fact_name": "directed_at_establishing_rights_and_duties",
+        "assertion_id": "contract-concept-evidence-directed_at_establishing_rights_and_duties",
+        "source_refs": [
+          "synthetic-case-supply-1-contract-concept-evidence"
+        ]
+      },
+      {
+        "fact_name": "directed_at_terminating_rights_and_duties",
+        "assertion_id": "contract-concept-evidence-directed_at_terminating_rights_and_duties",
+        "source_refs": [
+          "synthetic-case-supply-1-contract-concept-evidence"
+        ]
+      },
+      {
+        "fact_name": "displacement_asserted_by_agreement_not_by_code",
+        "assertion_id": "contract-concept-evidence-displacement_asserted_by_agreement_not_by_code",
+        "source_refs": [
+          "synthetic-case-supply-1-contract-concept-evidence"
+        ]
+      },
+      {
+        "fact_name": "general_contract_provision_contradicts_multilateral_nature",
+        "assertion_id": "contract-concept-evidence-general_contract_provision_contradicts_multilateral_nature",
+        "source_refs": [
+          "synthetic-case-supply-1-contract-concept-evidence"
+        ]
+      },
+      {
+        "fact_name": "obligation_arose_from_the_contract",
+        "assertion_id": "contract-concept-evidence-obligation_arose_from_the_contract",
+        "source_refs": [
+          "synthetic-case-supply-1-contract-concept-evidence"
+        ]
+      },
+      {
+        "fact_name": "rights_and_duties_lie_outside_civil_law",
+        "assertion_id": "contract-concept-evidence-rights_and_duties_lie_outside_civil_law",
+        "source_refs": [
+          "synthetic-case-supply-1-contract-concept-evidence"
+        ]
+      },
+      {
+        "fact_name": "single_person_disposition_asserted",
+        "assertion_id": "contract-concept-evidence-single_person_disposition_asserted",
+        "source_refs": [
+          "synthetic-case-supply-1-contract-concept-evidence"
+        ]
+      },
+      {
+        "fact_name": "specific_contract_type_rule_provides_otherwise",
+        "assertion_id": "contract-concept-evidence-specific_contract_type_rule_provides_otherwise",
+        "source_refs": [
+          "synthetic-case-supply-1-contract-concept-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "contract-concept-constraint-set:reviewed-contract-concept-evidence-supply-1-v0",
+    "model_version": "contracts-contract-concept-article-420-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk420-contract-concept-v1",
+      "synthetic-ru-gk153-157-transaction-concept-kinds-and-conditions-v1",
+      "synthetic-ru-gk307-308-obligation-concept-v1",
+      "synthetic-ru-gk421-422-freedom-of-contract-v1"
+    ],
+    "expressions": [
+      "contract_qualified_under_article_420 == agreement_of_two_or_more_persons AND (directed_at_establishing_rights_and_duties OR directed_at_changing_rights_and_duties OR directed_at_terminating_rights_and_duties) AND NOT rights_and_duties_lie_outside_civil_law",
+      "qualification_fails_for_lack_of_a_second_party == single_person_disposition_asserted",
+      "qualification_fails_for_non_civil_subject_matter == agreement_of_two_or_more_persons AND (directed_at_establishing_rights_and_duties OR directed_at_changing_rights_and_duties OR directed_at_terminating_rights_and_duties) AND rights_and_duties_lie_outside_civil_law",
+      "chapter_9_transaction_rules_apply == contract_qualified_under_article_420 AND NOT code_provides_otherwise_for_transaction_rules",
+      "general_obligation_provisions_apply == contract_qualified_under_article_420 AND obligation_arose_from_the_contract AND NOT chapter_27_rule_provides_otherwise AND NOT specific_contract_type_rule_provides_otherwise",
+      "special_rule_displaces_general_provisions == contract_qualified_under_article_420 AND obligation_arose_from_the_contract AND (chapter_27_rule_provides_otherwise OR specific_contract_type_rule_provides_otherwise)",
+      "agreement_cannot_displace_code_rules == displacement_asserted_by_agreement_not_by_code",
+      "general_contract_provisions_apply_to_multiparty_contract == contract_qualified_under_article_420 AND contract_has_more_than_two_parties AND NOT general_contract_provision_contradicts_multilateral_nature",
+      "general_contract_provisions_withheld_from_multiparty_contract == contract_qualified_under_article_420 AND contract_has_more_than_two_parties AND general_contract_provision_contradicts_multilateral_nature",
+      "requires_human_contract_concept_assessment == general_contract_provisions_withheld_from_multiparty_contract OR special_rule_displaces_general_provisions OR agreement_cannot_displace_code_rules"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "contract-concept-constraint-set:reviewed-contract-concept-evidence-supply-1-v0",
+    "satisfiable": true,
+    "contract_qualified_under_article_420": true,
+    "qualification_fails_for_lack_of_a_second_party": false,
+    "qualification_fails_for_non_civil_subject_matter": false,
+    "chapter_9_transaction_rules_apply": true,
+    "general_obligation_provisions_apply": true,
+    "special_rule_displaces_general_provisions": false,
+    "agreement_cannot_displace_code_rules": false,
+    "general_contract_provisions_apply_to_multiparty_contract": false,
+    "general_contract_provisions_withheld_from_multiparty_contract": false,
+    "requires_human_contract_concept_assessment": false,
+    "reasons_ru": [
+      "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+      "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+      "К обязательству, возникшему из договора, применяются общие положения об обязательствах (статьи 307–419 ГК РФ): ни правило главы 27, ни правило об отдельном виде договора того общего положения, на которое опирается разбор, не вытесняют (пункт 3 статьи 420 ГК РФ)."
+    ],
+    "warnings_ru": [
+      "Модель отвечает, какие своды правил к делу применяются, а не какая норма решает спор: вывод о применимости общих положений об обязательствах не предрешает ни одного вывода по существу.",
+      "Границы точности названы прямо: модель знает, что общее положение вытеснено специальным правилом, но не знает какое именно, и потому не снимает выводов конвейера на этом основании.",
+      "Диспозитивность нормы — вопрос статей 421 и 422 ГК РФ. Пункты 2 и 3 статьи 420 говорят о вытеснении одного свода правил другим, а не о праве сторон отступить от отдельной нормы.",
+      "Заключённость договора проверяет институт заключения (статья 432 ГК РФ): что перед нами договор и что он заключён — разные вопросы."
+    ]
+  },
+  "benchmark_report": {
+    "id": "contract-concept-benchmark-report-v0",
+    "total": 15,
+    "passed": 15,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "contract-concept-bench-qualified-by-establishing",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "qualification_fails_for_lack_of_a_second_party": false,
+          "qualification_fails_for_non_civil_subject_matter": false,
+          "requires_human_contract_concept_assessment": false
+        },
+        "observed_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "qualification_fails_for_lack_of_a_second_party": false,
+          "qualification_fails_for_non_civil_subject_matter": false,
+          "requires_human_contract_concept_assessment": false
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-qualified-by-terminating",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "chapter_9_transaction_rules_apply": true
+        },
+        "observed_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "chapter_9_transaction_rules_apply": true
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на прекращение гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-qualified-by-changing",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "chapter_9_transaction_rules_apply": true
+        },
+        "observed_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "chapter_9_transaction_rules_apply": true
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на изменение гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-unilateral-act-is-not-a-contract",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_qualified_under_article_420": false,
+          "qualification_fails_for_lack_of_a_second_party": true,
+          "chapter_9_transaction_rules_apply": false,
+          "requires_human_contract_concept_assessment": false
+        },
+        "observed_outcomes": {
+          "contract_qualified_under_article_420": false,
+          "qualification_fails_for_lack_of_a_second_party": true,
+          "chapter_9_transaction_rules_apply": false,
+          "requires_human_contract_concept_assessment": false
+        },
+        "reasons_ru": [
+          "Заявлена односторонняя сделка — распоряжение одного лица. Договором она не является, сколько бы гражданских прав ни устанавливала: пункт 1 статьи 420 ГК РФ требует соглашения двух или нескольких лиц. Правила о договорах к такому акту не применяются; его разбирают правила о сделках (глава 9)."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-non-civil-subject-matter",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_qualified_under_article_420": false,
+          "qualification_fails_for_non_civil_subject_matter": true,
+          "qualification_fails_for_lack_of_a_second_party": false,
+          "chapter_9_transaction_rules_apply": false
+        },
+        "observed_outcomes": {
+          "contract_qualified_under_article_420": false,
+          "qualification_fails_for_non_civil_subject_matter": true,
+          "qualification_fails_for_lack_of_a_second_party": false,
+          "chapter_9_transaction_rules_apply": false
+        },
+        "reasons_ru": [
+          "Соглашение направлено на права и обязанности, лежащие вне гражданского права. Понятие договора пункта 1 статьи 420 ГК РФ их не охватывает, и правила Кодекса о договорах к такому соглашению по этой статье не применяются."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-chapter-9-applies",
+        "passed": true,
+        "expected_outcomes": {
+          "chapter_9_transaction_rules_apply": true,
+          "requires_human_contract_concept_assessment": false
+        },
+        "observed_outcomes": {
+          "chapter_9_transaction_rules_apply": true,
+          "requires_human_contract_concept_assessment": false
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-code-displaces-chapter-9",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "chapter_9_transaction_rules_apply": false
+        },
+        "observed_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "chapter_9_transaction_rules_apply": false
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "Иное о применении правил главы 9 установлено самим Кодексом, и правила о сделках в этой части вытеснены (пункт 2 статьи 420 ГК РФ). Оговорка пункта 2 названа адресно: вытеснить их может только Кодекс."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-general-obligation-provisions-apply",
+        "passed": true,
+        "expected_outcomes": {
+          "general_obligation_provisions_apply": true,
+          "special_rule_displaces_general_provisions": false,
+          "requires_human_contract_concept_assessment": false
+        },
+        "observed_outcomes": {
+          "general_obligation_provisions_apply": true,
+          "special_rule_displaces_general_provisions": false,
+          "requires_human_contract_concept_assessment": false
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+          "К обязательству, возникшему из договора, применяются общие положения об обязательствах (статьи 307–419 ГК РФ): ни правило главы 27, ни правило об отдельном виде договора того общего положения, на которое опирается разбор, не вытесняют (пункт 3 статьи 420 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-chapter-27-displaces-general",
+        "passed": true,
+        "expected_outcomes": {
+          "general_obligation_provisions_apply": false,
+          "special_rule_displaces_general_provisions": true,
+          "requires_human_contract_concept_assessment": true
+        },
+        "observed_outcomes": {
+          "general_obligation_provisions_apply": false,
+          "special_rule_displaces_general_provisions": true,
+          "requires_human_contract_concept_assessment": true
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+          "Общее положение об обязательствах вытеснено правилом главы 27 (пункт 3 статьи 420 ГК РФ). Какое именно положение вытеснено, модель не называет: её предикаты говорят о сводах правил, а не об отдельных нормах, поэтому ни один вывод конвейера она на этом основании не снимает.",
+          "Требуется оценка юриста. Что противоречит многостороннему характеру договора, устанавливает суд; какое именно общее положение вытеснено специальным правилом, модель не называет; вопрос о диспозитивности нормы решают статьи 421 и 422 ГК РФ."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-specific-type-displaces-general",
+        "passed": true,
+        "expected_outcomes": {
+          "general_obligation_provisions_apply": false,
+          "special_rule_displaces_general_provisions": true,
+          "requires_human_contract_concept_assessment": true
+        },
+        "observed_outcomes": {
+          "general_obligation_provisions_apply": false,
+          "special_rule_displaces_general_provisions": true,
+          "requires_human_contract_concept_assessment": true
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+          "Общее положение об обязательствах вытеснено правилом об отдельном виде договора (пункт 3 статьи 420 ГК РФ). Какое именно положение вытеснено, модель не называет: её предикаты говорят о сводах правил, а не об отдельных нормах, поэтому ни один вывод конвейера она на этом основании не снимает.",
+          "Требуется оценка юриста. Что противоречит многостороннему характеру договора, устанавливает суд; какое именно общее положение вытеснено специальным правилом, модель не называет; вопрос о диспозитивности нормы решают статьи 421 и 422 ГК РФ."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-agreement-cannot-displace-the-code",
+        "passed": true,
+        "expected_outcomes": {
+          "agreement_cannot_displace_code_rules": true,
+          "chapter_9_transaction_rules_apply": true,
+          "requires_human_contract_concept_assessment": true
+        },
+        "observed_outcomes": {
+          "agreement_cannot_displace_code_rules": true,
+          "chapter_9_transaction_rules_apply": true,
+          "requires_human_contract_concept_assessment": true
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+          "Вытеснение правил Кодекса заявлено соглашением сторон. Пункты 2 и 3 статьи 420 ГК РФ называют вытесняющий источник адресно — «настоящим Кодексом» и «содержащимися в настоящем Кодексе», — и соглашения среди них нет. Может ли соглашение отступить от конкретной диспозитивной нормы, решают статьи 421 и 422 ГК РФ, а не статья 420.",
+          "Требуется оценка юриста. Что противоречит многостороннему характеру договора, устанавливает суд; какое именно общее положение вытеснено специальным правилом, модель не называет; вопрос о диспозитивности нормы решают статьи 421 и 422 ГК РФ."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-multiparty-general-provisions-apply",
+        "passed": true,
+        "expected_outcomes": {
+          "general_contract_provisions_apply_to_multiparty_contract": true,
+          "general_contract_provisions_withheld_from_multiparty_contract": false,
+          "requires_human_contract_concept_assessment": false
+        },
+        "observed_outcomes": {
+          "general_contract_provisions_apply_to_multiparty_contract": true,
+          "general_contract_provisions_withheld_from_multiparty_contract": false,
+          "requires_human_contract_concept_assessment": false
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+          "Договор заключается более чем двумя сторонами, и общие положения о договоре к нему применяются: многостороннему характеру это не противоречит (пункт 4 статьи 420 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-multiparty-provision-withheld",
+        "passed": true,
+        "expected_outcomes": {
+          "general_contract_provisions_apply_to_multiparty_contract": false,
+          "general_contract_provisions_withheld_from_multiparty_contract": true,
+          "requires_human_contract_concept_assessment": true
+        },
+        "observed_outcomes": {
+          "general_contract_provisions_apply_to_multiparty_contract": false,
+          "general_contract_provisions_withheld_from_multiparty_contract": true,
+          "requires_human_contract_concept_assessment": true
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+          "Применение общего положения о договоре противоречит многостороннему характеру договора, поэтому оно не применяется (пункт 4 статьи 420 ГК РФ).",
+          "Требуется оценка юриста. Что противоречит многостороннему характеру договора, устанавливает суд; какое именно общее положение вытеснено специальным правилом, модель не называет; вопрос о диспозитивности нормы решают статьи 421 и 422 ГК РФ."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-two-party-contract-has-no-multiparty-conclusion",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "general_contract_provisions_apply_to_multiparty_contract": false,
+          "general_contract_provisions_withheld_from_multiparty_contract": false
+        },
+        "observed_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "general_contract_provisions_apply_to_multiparty_contract": false,
+          "general_contract_provisions_withheld_from_multiparty_contract": false
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "contract-concept-bench-empty-facts-say-nothing",
+        "passed": true,
+        "expected_outcomes": {
+          "contract_qualified_under_article_420": false,
+          "qualification_fails_for_lack_of_a_second_party": false,
+          "qualification_fails_for_non_civil_subject_matter": false,
+          "chapter_9_transaction_rules_apply": false,
+          "general_obligation_provisions_apply": false,
+          "special_rule_displaces_general_provisions": false,
+          "agreement_cannot_displace_code_rules": false,
+          "general_contract_provisions_apply_to_multiparty_contract": false,
+          "general_contract_provisions_withheld_from_multiparty_contract": false,
+          "requires_human_contract_concept_assessment": false
+        },
+        "observed_outcomes": {
+          "contract_qualified_under_article_420": false,
+          "qualification_fails_for_lack_of_a_second_party": false,
+          "qualification_fails_for_non_civil_subject_matter": false,
+          "chapter_9_transaction_rules_apply": false,
+          "general_obligation_provisions_apply": false,
+          "special_rule_displaces_general_provisions": false,
+          "agreement_cannot_displace_code_rules": false,
+          "general_contract_provisions_apply_to_multiparty_contract": false,
+          "general_contract_provisions_withheld_from_multiparty_contract": false,
+          "requires_human_contract_concept_assessment": false
+        },
+        "reasons_ru": []
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "contract-concept-red-team-report-v0",
+    "total": 14,
+    "blocked": 14,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "contract-concept-red-agreement-without-any-aim",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "chapter_9_transaction_rules_apply": true
+        },
+        "observed_outcomes": {
+          "contract_qualified_under_article_420": false,
+          "chapter_9_transaction_rules_apply": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "case_id": "contract-concept-red-aim-without-agreement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "qualification_fails_for_lack_of_a_second_party": true
+        },
+        "observed_outcomes": {
+          "contract_qualified_under_article_420": false,
+          "qualification_fails_for_lack_of_a_second_party": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "case_id": "contract-concept-red-unilateral-act-does-not-get-contract-rules",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "chapter_9_transaction_rules_apply": true,
+          "general_contract_provisions_apply_to_multiparty_contract": true
+        },
+        "observed_outcomes": {
+          "contract_qualified_under_article_420": false,
+          "chapter_9_transaction_rules_apply": false,
+          "general_contract_provisions_apply_to_multiparty_contract": false
+        },
+        "reasons_ru": [
+          "Заявлена односторонняя сделка — распоряжение одного лица. Договором она не является, сколько бы гражданских прав ни устанавливала: пункт 1 статьи 420 ГК РФ требует соглашения двух или нескольких лиц. Правила о договорах к такому акту не применяются; его разбирают правила о сделках (глава 9)."
+        ]
+      },
+      {
+        "case_id": "contract-concept-red-non-civil-agreement-gets-no-code-rules",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_qualified_under_article_420": true,
+          "chapter_9_transaction_rules_apply": true
+        },
+        "observed_outcomes": {
+          "contract_qualified_under_article_420": false,
+          "chapter_9_transaction_rules_apply": false
+        },
+        "reasons_ru": [
+          "Соглашение направлено на права и обязанности, лежащие вне гражданского права. Понятие договора пункта 1 статьи 420 ГК РФ их не охватывает, и правила Кодекса о договорах к такому соглашению по этой статье не применяются."
+        ]
+      },
+      {
+        "case_id": "contract-concept-red-two-failures-are-not-the-same-failure",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "qualification_fails_for_lack_of_a_second_party": true
+        },
+        "observed_outcomes": {
+          "qualification_fails_for_lack_of_a_second_party": false
+        },
+        "reasons_ru": [
+          "Соглашение направлено на права и обязанности, лежащие вне гражданского права. Понятие договора пункта 1 статьи 420 ГК РФ их не охватывает, и правила Кодекса о договорах к такому соглашению по этой статье не применяются."
+        ]
+      },
+      {
+        "case_id": "contract-concept-red-general-provisions-need-a-contractual-obligation",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "general_obligation_provisions_apply": true,
+          "special_rule_displaces_general_provisions": true
+        },
+        "observed_outcomes": {
+          "general_obligation_provisions_apply": false,
+          "special_rule_displaces_general_provisions": false
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "contract-concept-red-displacement-does-not-also-apply-them",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "general_obligation_provisions_apply": true
+        },
+        "observed_outcomes": {
+          "general_obligation_provisions_apply": false
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+          "Общее положение об обязательствах вытеснено правилом главы 27 (пункт 3 статьи 420 ГК РФ). Какое именно положение вытеснено, модель не называет: её предикаты говорят о сводах правил, а не об отдельных нормах, поэтому ни один вывод конвейера она на этом основании не снимает.",
+          "Требуется оценка юриста. Что противоречит многостороннему характеру договора, устанавливает суд; какое именно общее положение вытеснено специальным правилом, модель не называет; вопрос о диспозитивности нормы решают статьи 421 и 422 ГК РФ."
+        ]
+      },
+      {
+        "case_id": "contract-concept-red-agreement-displacement-is-not-a-code-displacement",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "chapter_9_transaction_rules_apply": false,
+          "general_obligation_provisions_apply": false,
+          "special_rule_displaces_general_provisions": true
+        },
+        "observed_outcomes": {
+          "chapter_9_transaction_rules_apply": true,
+          "general_obligation_provisions_apply": true,
+          "special_rule_displaces_general_provisions": false
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+          "К обязательству, возникшему из договора, применяются общие положения об обязательствах (статьи 307–419 ГК РФ): ни правило главы 27, ни правило об отдельном виде договора того общего положения, на которое опирается разбор, не вытесняют (пункт 3 статьи 420 ГК РФ).",
+          "Вытеснение правил Кодекса заявлено соглашением сторон. Пункты 2 и 3 статьи 420 ГК РФ называют вытесняющий источник адресно — «настоящим Кодексом» и «содержащимися в настоящем Кодексе», — и соглашения среди них нет. Может ли соглашение отступить от конкретной диспозитивной нормы, решают статьи 421 и 422 ГК РФ, а не статья 420.",
+          "Требуется оценка юриста. Что противоречит многостороннему характеру договора, устанавливает суд; какое именно общее положение вытеснено специальным правилом, модель не называет; вопрос о диспозитивности нормы решают статьи 421 и 422 ГК РФ."
+        ]
+      },
+      {
+        "case_id": "contract-concept-red-code-displacement-touches-only-chapter-9",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "general_obligation_provisions_apply": false,
+          "special_rule_displaces_general_provisions": true
+        },
+        "observed_outcomes": {
+          "general_obligation_provisions_apply": true,
+          "special_rule_displaces_general_provisions": false
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "Иное о применении правил главы 9 установлено самим Кодексом, и правила о сделках в этой части вытеснены (пункт 2 статьи 420 ГК РФ). Оговорка пункта 2 названа адресно: вытеснить их может только Кодекс.",
+          "К обязательству, возникшему из договора, применяются общие положения об обязательствах (статьи 307–419 ГК РФ): ни правило главы 27, ни правило об отдельном виде договора того общего положения, на которое опирается разбор, не вытесняют (пункт 3 статьи 420 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "contract-concept-red-chapter-27-displacement-touches-only-article-3",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "chapter_9_transaction_rules_apply": false
+        },
+        "observed_outcomes": {
+          "chapter_9_transaction_rules_apply": true
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+          "Общее положение об обязательствах вытеснено правилом главы 27 (пункт 3 статьи 420 ГК РФ). Какое именно положение вытеснено, модель не называет: её предикаты говорят о сводах правил, а не об отдельных нормах, поэтому ни один вывод конвейера она на этом основании не снимает.",
+          "Требуется оценка юриста. Что противоречит многостороннему характеру договора, устанавливает суд; какое именно общее положение вытеснено специальным правилом, модель не называет; вопрос о диспозитивности нормы решают статьи 421 и 422 ГК РФ."
+        ]
+      },
+      {
+        "case_id": "contract-concept-red-multiparty-rule-needs-more-than-two-parties",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "general_contract_provisions_apply_to_multiparty_contract": true,
+          "general_contract_provisions_withheld_from_multiparty_contract": true
+        },
+        "observed_outcomes": {
+          "general_contract_provisions_apply_to_multiparty_contract": false,
+          "general_contract_provisions_withheld_from_multiparty_contract": false
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+          "К обязательству, возникшему из договора, применяются общие положения об обязательствах (статьи 307–419 ГК РФ): ни правило главы 27, ни правило об отдельном виде договора того общего положения, на которое опирается разбор, не вытесняют (пункт 3 статьи 420 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "contract-concept-red-multiparty-contradiction-is-not-silent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_contract_concept_assessment": false,
+          "general_contract_provisions_apply_to_multiparty_contract": true
+        },
+        "observed_outcomes": {
+          "requires_human_contract_concept_assessment": true,
+          "general_contract_provisions_apply_to_multiparty_contract": false
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+          "Применение общего положения о договоре противоречит многостороннему характеру договора, поэтому оно не применяется (пункт 4 статьи 420 ГК РФ).",
+          "Требуется оценка юриста. Что противоречит многостороннему характеру договора, устанавливает суд; какое именно общее положение вытеснено специальным правилом, модель не называет; вопрос о диспозитивности нормы решают статьи 421 и 422 ГК РФ."
+        ]
+      },
+      {
+        "case_id": "contract-concept-red-displacement-is-not-silent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_contract_concept_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_contract_concept_assessment": true
+        },
+        "reasons_ru": [
+          "Акт отвечает понятию договора: соглашение двух или нескольких лиц, направленное на установление гражданских прав и обязанностей (пункт 1 статьи 420 ГК РФ).",
+          "К договору применяются правила о двух- и многосторонних сделках главы 9 ГК РФ — о форме, о недействительности, о согласии третьего лица (пункт 2 статьи 420 ГК РФ).",
+          "Общее положение об обязательствах вытеснено правилом об отдельном виде договора (пункт 3 статьи 420 ГК РФ). Какое именно положение вытеснено, модель не называет: её предикаты говорят о сводах правил, а не об отдельных нормах, поэтому ни один вывод конвейера она на этом основании не снимает.",
+          "Требуется оценка юриста. Что противоречит многостороннему характеру договора, устанавливает суд; какое именно общее положение вытеснено специальным правилом, модель не называет; вопрос о диспозитивности нормы решают статьи 421 и 422 ГК РФ."
+        ]
+      },
+      {
+        "case_id": "contract-concept-red-empty-facts-raise-no-flag",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_contract_concept_assessment": true
+        },
+        "observed_outcomes": {
+          "requires_human_contract_concept_assessment": false
+        },
+        "reasons_ru": []
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

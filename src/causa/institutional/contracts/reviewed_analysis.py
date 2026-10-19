@@ -628,6 +628,16 @@ from causa.institutional.contracts.management_liability import (
     evaluate_management_liability_constraints,
     map_reviewed_management_liability_evidence,
 )
+from causa.institutional.contracts.contract_concept import (
+    CONTRACT_CONCEPT_EVIDENCE_SCHEMA_VERSION,
+    ContractConceptConstraintSet,
+    ContractConceptEvaluation,
+    ContractConceptEvidenceMappingResult,
+    ReviewedContractConceptEvidence,
+    build_contract_concept_constraint_set,
+    evaluate_contract_concept_constraints,
+    map_reviewed_contract_concept_evidence,
+)
 from causa.institutional.contracts.bankruptcy_claims import (
     BANKRUPTCY_CLAIMS_EVIDENCE_SCHEMA_VERSION,
     BankruptcyClaimsConstraintSet,
@@ -1154,6 +1164,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     special_accounts_evidence: ReviewedSpecialAccountsEvidence
     escrow_deposit_evidence: ReviewedEscrowDepositEvidence
     management_liability_evidence: ReviewedManagementLiabilityEvidence
+    contract_concept_evidence: ReviewedContractConceptEvidence
     bankruptcy_claims_evidence: ReviewedBankruptcyClaimsEvidence
     bankruptcy_ranking_evidence: ReviewedBankruptcyRankingEvidence
     bankruptcy_contest_evidence: ReviewedBankruptcyContestEvidence
@@ -1416,6 +1427,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     management_liability_evidence_mapping: ManagementLiabilityEvidenceMappingResult
     management_liability_constraint_set: ManagementLiabilityConstraintSet
     management_liability_evaluation: ManagementLiabilityEvaluation
+    contract_concept_evidence_mapping: ContractConceptEvidenceMappingResult
+    contract_concept_constraint_set: ContractConceptConstraintSet
+    contract_concept_evaluation: ContractConceptEvaluation
     bankruptcy_claims_evidence_mapping: BankruptcyClaimsEvidenceMappingResult
     bankruptcy_claims_constraint_set: BankruptcyClaimsConstraintSet
     bankruptcy_claims_evaluation: BankruptcyClaimsEvaluation
@@ -2305,6 +2319,24 @@ class ReviewedContractAnalysisResult(BaseModel):
             raise ValueError(
                 "Management-liability evaluation does not replay from reviewed evidence."
             )
+        expected_contract_concept_set = build_contract_concept_constraint_set(
+            self.contract_concept_evidence_mapping
+        )
+        if self.contract_concept_constraint_set != expected_contract_concept_set:
+            raise ValueError(
+                "Contract-concept constraint set does not replay from reviewed evidence."
+            )
+        expected_contract_concept_evaluation = evaluate_contract_concept_constraints(
+            expected_contract_concept_set,
+            self.contract_concept_evidence_mapping.facts,
+        )
+        if self.contract_concept_evaluation != expected_contract_concept_evaluation:
+            raise ValueError("Contract-concept evaluation does not replay from reviewed evidence.")
+        facts_agree.equal(
+            "contract_concept_qualification",
+            self.freedom_evidence_mapping.facts.contract_asserted,
+            self.contract_concept_evaluation.contract_qualified_under_article_420,
+        )
         expected_bankruptcy_claims_set = build_bankruptcy_claims_constraint_set(
             self.bankruptcy_claims_evidence_mapping
         )
@@ -3074,6 +3106,8 @@ def _validate_request_integrity(
         raise ValueError(
             "Management-liability evidence case_id does not match the analysis request."
         )
+    if request.contract_concept_evidence.case_id != request.case_id:
+        raise ValueError("Contract-concept evidence case_id does not match the analysis request.")
     if request.bankruptcy_claims_evidence.case_id != request.case_id:
         raise ValueError("Bankruptcy-claims evidence case_id does not match the analysis request.")
     if request.bankruptcy_ranking_evidence.case_id != request.case_id:
@@ -3321,6 +3355,8 @@ def _validate_request_integrity(
         != MANAGEMENT_LIABILITY_EVIDENCE_SCHEMA_VERSION
     ):
         raise ValueError("Management-liability evidence uses an unsupported schema version.")
+    if request.contract_concept_evidence.schema_version != CONTRACT_CONCEPT_EVIDENCE_SCHEMA_VERSION:
+        raise ValueError("Contract-concept evidence uses an unsupported schema version.")
     if (
         request.bankruptcy_claims_evidence.schema_version
         != BANKRUPTCY_CLAIMS_EVIDENCE_SCHEMA_VERSION
@@ -3463,6 +3499,7 @@ def _validate_request_integrity(
         *request.special_accounts_evidence.legal_source_refs,
         *request.escrow_deposit_evidence.legal_source_refs,
         *request.management_liability_evidence.legal_source_refs,
+        *request.contract_concept_evidence.legal_source_refs,
         *request.bankruptcy_claims_evidence.legal_source_refs,
         *request.bankruptcy_ranking_evidence.legal_source_refs,
         *request.bankruptcy_contest_evidence.legal_source_refs,
@@ -3627,6 +3664,8 @@ def _validate_request_integrity(
     for assertion in request.escrow_deposit_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.management_liability_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.contract_concept_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.bankruptcy_claims_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -4413,6 +4452,17 @@ def _validate_request_integrity(
             "Management-liability legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_management_liability_legal_sources))
         )
+    invalid_contract_concept_legal_sources = [
+        source_id
+        for source_id in request.contract_concept_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_contract_concept_legal_sources:
+        raise ValueError(
+            "Contract-concept legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_contract_concept_legal_sources))
+        )
     invalid_bankruptcy_claims_legal_sources = [
         source_id
         for source_id in request.bankruptcy_claims_evidence.legal_source_refs
@@ -5147,6 +5197,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Management-liability evidence",
         review_status=request.management_liability_evidence.review_status,
         reviewer_id=request.management_liability_evidence.reviewer_id,
+    )
+    contract_concept_reviewer_id = _require_reviewed(
+        artifact_name="Contract-concept evidence",
+        review_status=request.contract_concept_evidence.review_status,
+        reviewer_id=request.contract_concept_evidence.reviewer_id,
     )
     bankruptcy_claims_reviewer_id = _require_reviewed(
         artifact_name="Bankruptcy-claims evidence",
@@ -5913,6 +5968,24 @@ def run_reviewed_contract_analysis(
         management_liability_constraint_set,
         management_liability_evidence_mapping.facts,
     )
+    contract_concept_evidence_mapping = map_reviewed_contract_concept_evidence(
+        request.contract_concept_evidence
+    )
+    contract_concept_constraint_set = build_contract_concept_constraint_set(
+        contract_concept_evidence_mapping
+    )
+    contract_concept_evaluation = evaluate_contract_concept_constraints(
+        contract_concept_constraint_set,
+        contract_concept_evidence_mapping.facts,
+    )
+    # Признак рецензента «договор заявлен» института свободы договора и вывод
+    # модели статьи 420 — об одном и том же факте. До этой сверки предикат
+    # `contract_asserted` не сверялся ни с чем.
+    facts_agree.equal(
+        "contract_concept_qualification",
+        freedom_evidence_mapping.facts.contract_asserted,
+        contract_concept_evaluation.contract_qualified_under_article_420,
+    )
     bankruptcy_claims_evidence_mapping = map_reviewed_bankruptcy_claims_evidence(
         request.bankruptcy_claims_evidence
     )
@@ -6496,6 +6569,7 @@ def run_reviewed_contract_analysis(
         or special_accounts_evaluation.requires_human_special_accounts_assessment
         or escrow_deposit_evaluation.requires_human_escrow_deposit_assessment
         or management_liability_evaluation.requires_human_management_liability_assessment
+        or contract_concept_evaluation.requires_human_contract_concept_assessment
         or bankruptcy_claims_evaluation.requires_human_bankruptcy_claims_assessment
         or bankruptcy_ranking_evaluation.requires_human_bankruptcy_ranking_assessment
         or bankruptcy_contest_evaluation.requires_human_bankruptcy_contest_assessment
@@ -6601,6 +6675,7 @@ def run_reviewed_contract_analysis(
                 special_accounts_reviewer_id,
                 escrow_deposit_reviewer_id,
                 management_liability_reviewer_id,
+                contract_concept_reviewer_id,
                 bankruptcy_claims_reviewer_id,
                 bankruptcy_ranking_reviewer_id,
                 bankruptcy_contest_reviewer_id,
@@ -6841,6 +6916,9 @@ def run_reviewed_contract_analysis(
         management_liability_evidence_mapping=management_liability_evidence_mapping,
         management_liability_constraint_set=management_liability_constraint_set,
         management_liability_evaluation=management_liability_evaluation,
+        contract_concept_evidence_mapping=contract_concept_evidence_mapping,
+        contract_concept_constraint_set=contract_concept_constraint_set,
+        contract_concept_evaluation=contract_concept_evaluation,
         bankruptcy_claims_evidence_mapping=bankruptcy_claims_evidence_mapping,
         bankruptcy_claims_constraint_set=bankruptcy_claims_constraint_set,
         bankruptcy_claims_evaluation=bankruptcy_claims_evaluation,

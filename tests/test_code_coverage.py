@@ -175,7 +175,7 @@ def test_a_reason_is_found_per_article_not_per_chapter(monkeypatch) -> None:
     """
     # Живая карта: и точечный ключ, и диапазонный отвечают за свою статью.
     assert gap_reason_ru("444")[0] == "граница"
-    assert gap_reason_ru("420")[0] == "граница"
+    assert gap_reason_ru("65")[0] == "граница"
     assert gap_reason_ru("152.1")[0] == "граница"
     assert gap_reason_ru("100")[0] == "граница"
 

@@ -136,7 +136,7 @@ def test_the_absence_of_a_cluster_is_shown_as_a_stop_and_not_a_remark(empty_resu
         ("1112", "наследственное"),
         ("1235", "интеллектуальной"),
         ("96", "юридические лица"),
-        ("420", "понятие договора"),
+        ("25", "банкротство"),
     ],
 )
 def test_every_uncovered_area_carries_a_reason(article: str, expected: str) -> None:

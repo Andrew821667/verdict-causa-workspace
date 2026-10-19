@@ -165,6 +165,12 @@ from causa.institutional.contracts.special_accounts import (
     SpecialAccountsEvidenceAssertion,
     SpecialAccountsEvidencePredicate,
 )
+from causa.institutional.contracts.contract_concept import (
+    CONTRACT_CONCEPT_LEGAL_SOURCE_REFS,
+    ContractConceptEvidenceAssertion,
+    ContractConceptEvidencePredicate,
+    ReviewedContractConceptEvidence,
+)
 from causa.institutional.contracts.management_liability import (
     MANAGEMENT_LIABILITY_LEGAL_SOURCE_REFS,
     ManagementLiabilityEvidenceAssertion,
@@ -694,6 +700,8 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-case-supply-1-escrow-deposit-evidence",
     "synthetic-ru-gk53-1-management-liability-v1",
     "synthetic-case-supply-1-management-liability-evidence",
+    "synthetic-ru-gk420-contract-concept-v1",
+    "synthetic-case-supply-1-contract-concept-evidence",
     "synthetic-ru-127fz-5-current-payments-v1",
     "synthetic-ru-127fz-63-observation-effects-v1",
     "synthetic-ru-127fz-134-creditor-ranking-v1",
@@ -3357,6 +3365,33 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             legal_source_refs=MANAGEMENT_LIABILITY_LEGAL_SOURCE_REFS,
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-management-liability-reviewer",
+        ),
+        contract_concept_evidence=ReviewedContractConceptEvidence(
+            id="reviewed-contract-concept-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            # Спор ведут две организации по договору поставки: соглашение двух
+            # лиц, направленное на установление гражданских прав и обязанностей,
+            # и спорное обязательство возникло из этого договора. Правило об
+            # отдельном виде договора здесь общее положение не вытесняет:
+            # предикат спрашивает о вытеснении того положения, на которое
+            # опирается разбор, а правила о поставке его дополняют.
+            assertions=tuple(
+                ContractConceptEvidenceAssertion(
+                    id=f"contract-concept-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=predicate.value
+                    in {
+                        "agreement_of_two_or_more_persons",
+                        "directed_at_establishing_rights_and_duties",
+                        "obligation_arose_from_the_contract",
+                    },
+                    source_refs=("synthetic-case-supply-1-contract-concept-evidence",),
+                )
+                for predicate in ContractConceptEvidencePredicate
+            ),
+            legal_source_refs=CONTRACT_CONCEPT_LEGAL_SOURCE_REFS,
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-contract-concept-reviewer",
         ),
         escrow_deposit_evidence=ReviewedEscrowDepositEvidence(
             id="reviewed-escrow-deposit-evidence-supply-1-v0",

@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1230,
+  "declared_rules": 1240,
   "divergences_total": 0,
-  "executed_rules": 1230,
+  "executed_rules": 1240,
   "institutes": [
     {
       "declared_rules": 5,
@@ -146,6 +146,14 @@
       "institute": "consumer_work",
       "matched": 11,
       "module": "consumer_work.py"
+    },
+    {
+      "declared_rules": 10,
+      "divergences": [],
+      "executed_rules": 10,
+      "institute": "contract_concept",
+      "matched": 10,
+      "module": "contract_concept.py"
     },
     {
       "declared_rules": 8,
@@ -772,8 +780,8 @@
       "module": "formal_checks.py"
     }
   ],
-  "institutes_clean": 96,
-  "institutes_total": 96,
-  "matched_rules": 1230,
+  "institutes_clean": 97,
+  "institutes_total": 97,
+  "matched_rules": 1240,
   "version": "reasoning-rule-parity-v0"
 }
