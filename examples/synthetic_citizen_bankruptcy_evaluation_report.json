@@ -1,0 +1,667 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка несостоятельности (банкротства) гражданина по статье 25 ГК РФ. В демонстрационном деле спор о поставке ведут две организации, должник гражданином не является, и институт молчит: это и есть ожидаемый результат для такого дела. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-citizen-bankruptcy-evidence-supply-1-v0",
+    "schema_version": "contracts.citizen-bankruptcy-evidence.v0",
+    "mapping_version": "contracts-reviewed-citizen-bankruptcy-to-facts-v0",
+    "facts": {
+      "debtor_is_a_citizen": false,
+      "unable_to_satisfy_monetary_obligations": false,
+      "unable_to_pay_obligatory_payments": false,
+      "arbitration_court_declared_bankrupt": false,
+      "bankruptcy_asserted_without_a_court_decision": false,
+      "debtor_is_an_individual_entrepreneur": false,
+      "debtor_is_a_peasant_farm_holding": false,
+      "creditor_ranking_question_raised": false,
+      "liquidation_ranking_of_article_134_applied": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-gk25-citizen-insolvency-v1",
+      "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+      "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+      "synthetic-ru-127fz-134-creditor-ranking-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "arbitration_court_declared_bankrupt",
+        "assertion_id": "citizen-bankruptcy-evidence-arbitration_court_declared_bankrupt",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+        ]
+      },
+      {
+        "fact_name": "bankruptcy_asserted_without_a_court_decision",
+        "assertion_id": "citizen-bankruptcy-evidence-bankruptcy_asserted_without_a_court_decision",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+        ]
+      },
+      {
+        "fact_name": "creditor_ranking_question_raised",
+        "assertion_id": "citizen-bankruptcy-evidence-creditor_ranking_question_raised",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_is_a_citizen",
+        "assertion_id": "citizen-bankruptcy-evidence-debtor_is_a_citizen",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_is_a_peasant_farm_holding",
+        "assertion_id": "citizen-bankruptcy-evidence-debtor_is_a_peasant_farm_holding",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_is_an_individual_entrepreneur",
+        "assertion_id": "citizen-bankruptcy-evidence-debtor_is_an_individual_entrepreneur",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+        ]
+      },
+      {
+        "fact_name": "liquidation_ranking_of_article_134_applied",
+        "assertion_id": "citizen-bankruptcy-evidence-liquidation_ranking_of_article_134_applied",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+        ]
+      },
+      {
+        "fact_name": "unable_to_pay_obligatory_payments",
+        "assertion_id": "citizen-bankruptcy-evidence-unable_to_pay_obligatory_payments",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+        ]
+      },
+      {
+        "fact_name": "unable_to_satisfy_monetary_obligations",
+        "assertion_id": "citizen-bankruptcy-evidence-unable_to_satisfy_monetary_obligations",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "citizen-bankruptcy-constraint-set:reviewed-citizen-bankruptcy-evidence-supply-1-v0",
+    "model_version": "contracts-citizen-bankruptcy-article-25-v0",
+    "legal_source_refs": [
+      "synthetic-ru-gk25-citizen-insolvency-v1",
+      "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+      "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+      "synthetic-ru-127fz-134-creditor-ranking-v1"
+    ],
+    "expressions": [
+      "citizen_may_be_declared_bankrupt == debtor_is_a_citizen AND (unable_to_satisfy_monetary_obligations OR unable_to_pay_obligatory_payments)",
+      "citizen_declared_bankrupt == debtor_is_a_citizen AND arbitration_court_declared_bankrupt",
+      "bankruptcy_requires_a_court_decision == debtor_is_a_citizen AND bankruptcy_asserted_without_a_court_decision",
+      "insolvency_test_not_met == debtor_is_a_citizen AND NOT unable_to_satisfy_monetary_obligations AND NOT unable_to_pay_obligatory_payments",
+      "citizen_bankruptcy_regime_applies == debtor_is_a_citizen AND NOT debtor_is_a_peasant_farm_holding",
+      "entrepreneur_specifics_apply == debtor_is_an_individual_entrepreneur AND NOT debtor_is_a_peasant_farm_holding",
+      "citizen_regime_excluded_for_peasant_farm == debtor_is_a_citizen AND debtor_is_a_peasant_farm_holding",
+      "creditor_ranking_governed_by_bankruptcy_law == citizen_bankruptcy_regime_applies AND creditor_ranking_question_raised",
+      "liquidation_ranking_wrongly_applied_to_a_citizen == citizen_bankruptcy_regime_applies AND liquidation_ranking_of_article_134_applied",
+      "requires_human_citizen_bankruptcy_assessment == liquidation_ranking_wrongly_applied_to_a_citizen OR creditor_ranking_governed_by_bankruptcy_law OR entrepreneur_specifics_apply OR citizen_regime_excluded_for_peasant_farm"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "citizen-bankruptcy-constraint-set:reviewed-citizen-bankruptcy-evidence-supply-1-v0",
+    "satisfiable": true,
+    "citizen_may_be_declared_bankrupt": false,
+    "citizen_declared_bankrupt": false,
+    "bankruptcy_requires_a_court_decision": false,
+    "insolvency_test_not_met": false,
+    "citizen_bankruptcy_regime_applies": false,
+    "entrepreneur_specifics_apply": false,
+    "citizen_regime_excluded_for_peasant_farm": false,
+    "creditor_ranking_governed_by_bankruptcy_law": false,
+    "liquidation_ranking_wrongly_applied_to_a_citizen": false,
+    "requires_human_citizen_bankruptcy_assessment": false,
+    "reasons_ru": [],
+    "warnings_ru": [
+      "Модель отвечает, при каком условии гражданин может быть признан банкротом и каким законом его банкротство разбирается. Сами основания, порядок, последствия и очерёдность пункт 2 статьи 25 ГК РФ отдаёт закону 127-ФЗ, и глава X этого закона в пакете не смоделирована.",
+      "Пороги возбуждения дела — не менее пятисот тысяч рублей и три месяца неисполнения — устанавливает пункт 2 статьи 213.3 закона 127-ФЗ, а не статья 25: модель их не проверяет.",
+      "Процедуры дела о банкротстве гражданина (реструктуризация долгов, реализация имущества, мировое соглашение — статья 213.2 закона) и освобождение гражданина от обязательств (статья 213.28) лежат вне этой модели.",
+      "Условия банкротства юридического лица даёт статья 65 ГК РФ, а не статья 25: модель о гражданине и молчит о юридическом лице."
+    ]
+  },
+  "benchmark_report": {
+    "id": "citizen-bankruptcy-benchmark-report-v0",
+    "total": 15,
+    "passed": 15,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "citizen-bankruptcy-bench-monetary-inability",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_may_be_declared_bankrupt": true,
+          "insolvency_test_not_met": false,
+          "citizen_declared_bankrupt": false
+        },
+        "observed_outcomes": {
+          "citizen_may_be_declared_bankrupt": true,
+          "insolvency_test_not_met": false,
+          "citizen_declared_bankrupt": false
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону."
+        ]
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-obligatory-payments-inability",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_may_be_declared_bankrupt": true,
+          "insolvency_test_not_met": false
+        },
+        "observed_outcomes": {
+          "citizen_may_be_declared_bankrupt": true,
+          "insolvency_test_not_met": false
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить обязанность по уплате обязательных платежей. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону."
+        ]
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-both-inabilities",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_may_be_declared_bankrupt": true
+        },
+        "observed_outcomes": {
+          "citizen_may_be_declared_bankrupt": true
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам и обязанность по уплате обязательных платежей. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону."
+        ]
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-test-not-met",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_may_be_declared_bankrupt": false,
+          "insolvency_test_not_met": true,
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "observed_outcomes": {
+          "citizen_may_be_declared_bankrupt": false,
+          "insolvency_test_not_met": true,
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ не выполнено: неспособность удовлетворить требования кредиторов по денежным обязательствам либо исполнить обязанность по уплате обязательных платежей не установлена. Оснований признавать гражданина банкротом по этой статье нет.",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону."
+        ]
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-declared-by-court",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_declared_bankrupt": true,
+          "bankruptcy_requires_a_court_decision": false
+        },
+        "observed_outcomes": {
+          "citizen_declared_bankrupt": true,
+          "bankruptcy_requires_a_court_decision": false
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону."
+        ]
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-assertion-is-not-a-decision",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_declared_bankrupt": false,
+          "bankruptcy_requires_a_court_decision": true
+        },
+        "observed_outcomes": {
+          "citizen_declared_bankrupt": false,
+          "bankruptcy_requires_a_court_decision": true
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ не выполнено: неспособность удовлетворить требования кредиторов по денежным обязательствам либо исполнить обязанность по уплате обязательных платежей не установлена. Оснований признавать гражданина банкротом по этой статье нет.",
+          "Несостоятельность заявлена вне решения арбитражного суда. Банкротом гражданина делает только решение суда: пункт 1 статьи 25 ГК РФ иного пути не знает, и заявление кредитора, признание самого должника или внесудебный порядок решением не являются.",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону."
+        ]
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-chapter-10-regime",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_bankruptcy_regime_applies": true,
+          "citizen_regime_excluded_for_peasant_farm": false,
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "observed_outcomes": {
+          "citizen_bankruptcy_regime_applies": true,
+          "citizen_regime_excluded_for_peasant_farm": false,
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону."
+        ]
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-entrepreneur-specifics",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_bankruptcy_regime_applies": true,
+          "entrepreneur_specifics_apply": true,
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "observed_outcomes": {
+          "citizen_bankruptcy_regime_applies": true,
+          "entrepreneur_specifics_apply": true,
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону.",
+          "Должник — индивидуальный предприниматель: глава X применяется с особенностями (пункт 3 статьи 213.1 закона 127-ФЗ). Среди них, например, продажа предпринимательского имущества по правилам, установленным для юридических лиц (пункт 4 той же статьи). Особенности модель не разбирает.",
+          "Требуется оценка юриста. Очерёдность требований гражданина (статья 213.27 закона 127-ФЗ), особенности банкротства предпринимателя и банкротство крестьянского хозяйства в пакете не смоделированы: модель называет применимое правило, но не применяет его."
+        ]
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-peasant-farm-excluded",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_bankruptcy_regime_applies": false,
+          "citizen_regime_excluded_for_peasant_farm": true,
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "observed_outcomes": {
+          "citizen_bankruptcy_regime_applies": false,
+          "citizen_regime_excluded_for_peasant_farm": true,
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Должник — крестьянское (фермерское) хозяйство, и к его банкротству положения о банкротстве граждан не применяются вовсе (пункт 2 статьи 213.1 закона 127-ФЗ). Эту область пакет не моделирует.",
+          "Требуется оценка юриста. Очерёдность требований гражданина (статья 213.27 закона 127-ФЗ), особенности банкротства предпринимателя и банкротство крестьянского хозяйства в пакете не смоделированы: модель называет применимое правило, но не применяет его."
+        ]
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-entrepreneur-of-a-peasant-farm",
+        "passed": true,
+        "expected_outcomes": {
+          "entrepreneur_specifics_apply": false,
+          "citizen_regime_excluded_for_peasant_farm": true
+        },
+        "observed_outcomes": {
+          "entrepreneur_specifics_apply": false,
+          "citizen_regime_excluded_for_peasant_farm": true
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Должник — крестьянское (фермерское) хозяйство, и к его банкротству положения о банкротстве граждан не применяются вовсе (пункт 2 статьи 213.1 закона 127-ФЗ). Эту область пакет не моделирует.",
+          "Требуется оценка юриста. Очерёдность требований гражданина (статья 213.27 закона 127-ФЗ), особенности банкротства предпринимателя и банкротство крестьянского хозяйства в пакете не смоделированы: модель называет применимое правило, но не применяет его."
+        ]
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-ranking-governed-by-the-law",
+        "passed": true,
+        "expected_outcomes": {
+          "creditor_ranking_governed_by_bankruptcy_law": true,
+          "liquidation_ranking_wrongly_applied_to_a_citizen": false,
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "observed_outcomes": {
+          "creditor_ranking_governed_by_bankruptcy_law": true,
+          "liquidation_ranking_wrongly_applied_to_a_citizen": false,
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону.",
+          "Очерёдность удовлетворения требований кредиторов гражданина устанавливает закон о банкротстве, а не ГК РФ (пункт 2 статьи 25 ГК РФ): для гражданина это статья 213.27 закона 127-ФЗ. Эту статью пакет не моделирует, поэтому очерёдность здесь не определяется — называется лишь то, чем её определять.",
+          "Требуется оценка юриста. Очерёдность требований гражданина (статья 213.27 закона 127-ФЗ), особенности банкротства предпринимателя и банкротство крестьянского хозяйства в пакете не смоделированы: модель называет применимое правило, но не применяет его."
+        ]
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-article-134-displaced",
+        "passed": true,
+        "expected_outcomes": {
+          "liquidation_ranking_wrongly_applied_to_a_citizen": true,
+          "creditor_ranking_governed_by_bankruptcy_law": true,
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "observed_outcomes": {
+          "liquidation_ranking_wrongly_applied_to_a_citizen": true,
+          "creditor_ranking_governed_by_bankruptcy_law": true,
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону.",
+          "Очерёдность удовлетворения требований кредиторов гражданина устанавливает закон о банкротстве, а не ГК РФ (пункт 2 статьи 25 ГК РФ): для гражданина это статья 213.27 закона 127-ФЗ. Эту статью пакет не моделирует, поэтому очерёдность здесь не определяется — называется лишь то, чем её определять.",
+          "К требованию в деле о банкротстве гражданина применена очерёдность конкурсного производства (статья 134 закона 127-ФЗ). Для гражданина её вытесняет статья 213.27, и расхождение не редакционное: требование о взыскании алиментов статья 213.27 пункт 3 относит к первой очереди реестра, а у статьи 134 такой категории нет; вознаграждение автору результата интеллектуальной деятельности статья 134 относит ко второй очереди, а статья 213.27 его не называет; плату за жилое помещение и коммунальные услуги статья 213.27 пункт 2 выделяет в третью очередь текущих платежей, которой пять очередей статьи 134 не знают. Очерёдность подлежит определению заново.",
+          "Требуется оценка юриста. Очерёдность требований гражданина (статья 213.27 закона 127-ФЗ), особенности банкротства предпринимателя и банкротство крестьянского хозяйства в пакете не смоделированы: модель называет применимое правило, но не применяет его."
+        ]
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-peasant-farm-keeps-article-134",
+        "passed": true,
+        "expected_outcomes": {
+          "liquidation_ranking_wrongly_applied_to_a_citizen": false,
+          "creditor_ranking_governed_by_bankruptcy_law": false
+        },
+        "observed_outcomes": {
+          "liquidation_ranking_wrongly_applied_to_a_citizen": false,
+          "creditor_ranking_governed_by_bankruptcy_law": false
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Должник — крестьянское (фермерское) хозяйство, и к его банкротству положения о банкротстве граждан не применяются вовсе (пункт 2 статьи 213.1 закона 127-ФЗ). Эту область пакет не моделирует.",
+          "Требуется оценка юриста. Очерёдность требований гражданина (статья 213.27 закона 127-ФЗ), особенности банкротства предпринимателя и банкротство крестьянского хозяйства в пакете не смоделированы: модель называет применимое правило, но не применяет его."
+        ]
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-entity-debtor-is-silent",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_may_be_declared_bankrupt": false,
+          "insolvency_test_not_met": false,
+          "citizen_bankruptcy_regime_applies": false,
+          "creditor_ranking_governed_by_bankruptcy_law": false,
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "observed_outcomes": {
+          "citizen_may_be_declared_bankrupt": false,
+          "insolvency_test_not_met": false,
+          "citizen_bankruptcy_regime_applies": false,
+          "creditor_ranking_governed_by_bankruptcy_law": false,
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "task_id": "citizen-bankruptcy-bench-empty-facts-say-nothing",
+        "passed": true,
+        "expected_outcomes": {
+          "citizen_may_be_declared_bankrupt": false,
+          "citizen_declared_bankrupt": false,
+          "bankruptcy_requires_a_court_decision": false,
+          "insolvency_test_not_met": false,
+          "citizen_bankruptcy_regime_applies": false,
+          "entrepreneur_specifics_apply": false,
+          "citizen_regime_excluded_for_peasant_farm": false,
+          "creditor_ranking_governed_by_bankruptcy_law": false,
+          "liquidation_ranking_wrongly_applied_to_a_citizen": false,
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "observed_outcomes": {
+          "citizen_may_be_declared_bankrupt": false,
+          "citizen_declared_bankrupt": false,
+          "bankruptcy_requires_a_court_decision": false,
+          "insolvency_test_not_met": false,
+          "citizen_bankruptcy_regime_applies": false,
+          "entrepreneur_specifics_apply": false,
+          "citizen_regime_excluded_for_peasant_farm": false,
+          "creditor_ranking_governed_by_bankruptcy_law": false,
+          "liquidation_ranking_wrongly_applied_to_a_citizen": false,
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "reasons_ru": []
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "citizen-bankruptcy-red-team-report-v0",
+    "total": 14,
+    "blocked": 14,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "citizen-bankruptcy-red-inability-alone-is-not-bankruptcy",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "citizen_declared_bankrupt": true
+        },
+        "observed_outcomes": {
+          "citizen_declared_bankrupt": false
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону."
+        ]
+      },
+      {
+        "case_id": "citizen-bankruptcy-red-assertion-is-not-a-declaration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "citizen_declared_bankrupt": true,
+          "bankruptcy_requires_a_court_decision": false
+        },
+        "observed_outcomes": {
+          "citizen_declared_bankrupt": false,
+          "bankruptcy_requires_a_court_decision": true
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Несостоятельность заявлена вне решения арбитражного суда. Банкротом гражданина делает только решение суда: пункт 1 статьи 25 ГК РФ иного пути не знает, и заявление кредитора, признание самого должника или внесудебный порядок решением не являются.",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону."
+        ]
+      },
+      {
+        "case_id": "citizen-bankruptcy-red-entity-debtor-gets-nothing",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "citizen_bankruptcy_regime_applies": true,
+          "citizen_may_be_declared_bankrupt": true,
+          "insolvency_test_not_met": true,
+          "creditor_ranking_governed_by_bankruptcy_law": true
+        },
+        "observed_outcomes": {
+          "citizen_bankruptcy_regime_applies": false,
+          "citizen_may_be_declared_bankrupt": false,
+          "insolvency_test_not_met": false,
+          "creditor_ranking_governed_by_bankruptcy_law": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "case_id": "citizen-bankruptcy-red-test-not-met-is-not-a-difficulty",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ не выполнено: неспособность удовлетворить требования кредиторов по денежным обязательствам либо исполнить обязанность по уплате обязательных платежей не установлена. Оснований признавать гражданина банкротом по этой статье нет.",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону."
+        ]
+      },
+      {
+        "case_id": "citizen-bankruptcy-red-peasant-farm-is-not-chapter-10",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "citizen_bankruptcy_regime_applies": true,
+          "citizen_regime_excluded_for_peasant_farm": false
+        },
+        "observed_outcomes": {
+          "citizen_bankruptcy_regime_applies": false,
+          "citizen_regime_excluded_for_peasant_farm": true
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Должник — крестьянское (фермерское) хозяйство, и к его банкротству положения о банкротстве граждан не применяются вовсе (пункт 2 статьи 213.1 закона 127-ФЗ). Эту область пакет не моделирует.",
+          "Требуется оценка юриста. Очерёдность требований гражданина (статья 213.27 закона 127-ФЗ), особенности банкротства предпринимателя и банкротство крестьянского хозяйства в пакете не смоделированы: модель называет применимое правило, но не применяет его."
+        ]
+      },
+      {
+        "case_id": "citizen-bankruptcy-red-peasant-farm-blocks-entrepreneur-specifics",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "entrepreneur_specifics_apply": true
+        },
+        "observed_outcomes": {
+          "entrepreneur_specifics_apply": false
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Должник — крестьянское (фермерское) хозяйство, и к его банкротству положения о банкротстве граждан не применяются вовсе (пункт 2 статьи 213.1 закона 127-ФЗ). Эту область пакет не моделирует.",
+          "Требуется оценка юриста. Очерёдность требований гражданина (статья 213.27 закона 127-ФЗ), особенности банкротства предпринимателя и банкротство крестьянского хозяйства в пакете не смоделированы: модель называет применимое правило, но не применяет его."
+        ]
+      },
+      {
+        "case_id": "citizen-bankruptcy-red-ranking-needs-the-question",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "creditor_ranking_governed_by_bankruptcy_law": true,
+          "liquidation_ranking_wrongly_applied_to_a_citizen": true
+        },
+        "observed_outcomes": {
+          "creditor_ranking_governed_by_bankruptcy_law": false,
+          "liquidation_ranking_wrongly_applied_to_a_citizen": false
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону."
+        ]
+      },
+      {
+        "case_id": "citizen-bankruptcy-red-article-134-on-a-citizen-is-not-silent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_bankruptcy_assessment": false,
+          "liquidation_ranking_wrongly_applied_to_a_citizen": false
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_bankruptcy_assessment": true,
+          "liquidation_ranking_wrongly_applied_to_a_citizen": true
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону.",
+          "Очерёдность удовлетворения требований кредиторов гражданина устанавливает закон о банкротстве, а не ГК РФ (пункт 2 статьи 25 ГК РФ): для гражданина это статья 213.27 закона 127-ФЗ. Эту статью пакет не моделирует, поэтому очерёдность здесь не определяется — называется лишь то, чем её определять.",
+          "К требованию в деле о банкротстве гражданина применена очерёдность конкурсного производства (статья 134 закона 127-ФЗ). Для гражданина её вытесняет статья 213.27, и расхождение не редакционное: требование о взыскании алиментов статья 213.27 пункт 3 относит к первой очереди реестра, а у статьи 134 такой категории нет; вознаграждение автору результата интеллектуальной деятельности статья 134 относит ко второй очереди, а статья 213.27 его не называет; плату за жилое помещение и коммунальные услуги статья 213.27 пункт 2 выделяет в третью очередь текущих платежей, которой пять очередей статьи 134 не знают. Очерёдность подлежит определению заново.",
+          "Требуется оценка юриста. Очерёдность требований гражданина (статья 213.27 закона 127-ФЗ), особенности банкротства предпринимателя и банкротство крестьянского хозяйства в пакете не смоделированы: модель называет применимое правило, но не применяет его."
+        ]
+      },
+      {
+        "case_id": "citizen-bankruptcy-red-the-model-does-not-rank",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону.",
+          "Очерёдность удовлетворения требований кредиторов гражданина устанавливает закон о банкротстве, а не ГК РФ (пункт 2 статьи 25 ГК РФ): для гражданина это статья 213.27 закона 127-ФЗ. Эту статью пакет не моделирует, поэтому очерёдность здесь не определяется — называется лишь то, чем её определять.",
+          "Требуется оценка юриста. Очерёдность требований гражданина (статья 213.27 закона 127-ФЗ), особенности банкротства предпринимателя и банкротство крестьянского хозяйства в пакете не смоделированы: модель называет применимое правило, но не применяет его."
+        ]
+      },
+      {
+        "case_id": "citizen-bankruptcy-red-entrepreneur-specifics-are-not-silent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону.",
+          "Должник — индивидуальный предприниматель: глава X применяется с особенностями (пункт 3 статьи 213.1 закона 127-ФЗ). Среди них, например, продажа предпринимательского имущества по правилам, установленным для юридических лиц (пункт 4 той же статьи). Особенности модель не разбирает.",
+          "Требуется оценка юриста. Очерёдность требований гражданина (статья 213.27 закона 127-ФЗ), особенности банкротства предпринимателя и банкротство крестьянского хозяйства в пакете не смоделированы: модель называет применимое правило, но не применяет его."
+        ]
+      },
+      {
+        "case_id": "citizen-bankruptcy-red-peasant-farm-is-not-silent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Должник — крестьянское (фермерское) хозяйство, и к его банкротству положения о банкротстве граждан не применяются вовсе (пункт 2 статьи 213.1 закона 127-ФЗ). Эту область пакет не моделирует.",
+          "Требуется оценка юриста. Очерёдность требований гражданина (статья 213.27 закона 127-ФЗ), особенности банкротства предпринимателя и банкротство крестьянского хозяйства в пакете не смоделированы: модель называет применимое правило, но не применяет его."
+        ]
+      },
+      {
+        "case_id": "citizen-bankruptcy-red-declaration-does-not-imply-the-wrong-ranking",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "liquidation_ranking_wrongly_applied_to_a_citizen": true,
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "observed_outcomes": {
+          "liquidation_ranking_wrongly_applied_to_a_citizen": false,
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить требования кредиторов по денежным обязательствам. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Гражданин признан несостоятельным (банкротом) решением арбитражного суда (пункт 1 статьи 25 ГК РФ).",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону."
+        ]
+      },
+      {
+        "case_id": "citizen-bankruptcy-red-test-met-is-not-a-declaration",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "citizen_declared_bankrupt": true,
+          "insolvency_test_not_met": true
+        },
+        "observed_outcomes": {
+          "citizen_declared_bankrupt": false,
+          "insolvency_test_not_met": false
+        },
+        "reasons_ru": [
+          "Условие пункта 1 статьи 25 ГК РФ выполнено: гражданин не способен исполнить обязанность по уплате обязательных платежей. Признание банкротом при этом остаётся возможностью, а не следствием: статья говорит «может быть признан».",
+          "Отношения, связанные с банкротством этого должника, регулируются главой X закона 127-ФЗ, а в неурегулированной ею части — главами I–III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI (пункт 1 статьи 213.1 закона). Основания, порядок, последствия, очерёдность и порядок применения процедур пункт 2 статьи 25 ГК РФ отдаёт этому закону."
+        ]
+      },
+      {
+        "case_id": "citizen-bankruptcy-red-empty-facts-raise-no-flag",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_bankruptcy_assessment": true
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_bankruptcy_assessment": false
+        },
+        "reasons_ru": []
+      }
+    ]
+  },
+  "source_urls": [
+    "https://government.ru/docs/all/95825/"
+  ]
+}

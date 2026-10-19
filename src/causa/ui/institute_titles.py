@@ -16,6 +16,7 @@ INSTITUTE_TITLES_RU: dict[str, str] = {
     "escrow_deposit": "Условное депонирование (эскроу)",
     "management_liability": "Ответственность управляющих лиц юридического лица",
     "contract_concept": "Понятие договора и применимые к нему правила",
+    "citizen_bankruptcy": "Несостоятельность (банкротство) гражданина",
     "authority": "Юридическая сила источников",
     "bank_account": "Банковский счёт",
     "bank_deposit": "Банковский вклад",

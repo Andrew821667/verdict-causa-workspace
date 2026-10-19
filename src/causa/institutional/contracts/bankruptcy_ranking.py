@@ -80,6 +80,18 @@ class BankruptcyRankingEvidencePredicate(str, Enum):
     # Закон прямо исключает такое требование из текущих платежей и относит его
     # за третью очередь реестра (пункт 2.1 статьи 134).
     IS_EXCESS_EXECUTIVE_SEVERANCE = "is_excess_executive_severance"
+    # Должник — гражданин, и к отношениям применяется глава X закона 127-ФЗ
+    # (пункты 1 и 3 статьи 213.1). Очерёдность для гражданина устанавливает
+    # статья 213.27, и она вытесняет очерёдность конкурсного производства по
+    # существу, а не по редакции: алименты у неё в первой очереди реестра,
+    # вознаграждения автору среди очередей нет, а среди текущих платежей
+    # отдельной третьей очередью стоит плата за жилое помещение и коммунальные
+    # услуги. Без этого предиката институт отвечал «третья очередь» на
+    # требование об алиментах гражданина-должника и не поднимал флага — не
+    # пробел, а неверный ответ. Статью 213.27 пакет не моделирует, поэтому
+    # признак не переводит требование в другую очередь, а снимает ответ и
+    # называет применимое правило.
+    DEBTOR_IS_A_CITIZEN_UNDER_CHAPTER_10 = "debtor_is_a_citizen_under_chapter_10"
 
 
 REQUIRED_BANKRUPTCY_RANKING_PREDICATES = frozenset(BankruptcyRankingEvidencePredicate)
@@ -131,6 +143,7 @@ class BankruptcyRankingFactSet(BaseModel):
     is_discretionary_engagement_payment: bool
     is_utility_payment: bool
     is_excess_executive_severance: bool
+    debtor_is_a_citizen_under_chapter_10: bool
 
     @model_validator(mode="after")
     def validate_consistency(self) -> "BankruptcyRankingFactSet":
@@ -212,6 +225,9 @@ class BankruptcyRankingConstraintSet(BaseModel):
 class BankruptcyRankingEvaluation(BaseModel):
     constraint_set_id: str
     satisfiable: bool
+    #: Очерёдность статьи 134 к этому требованию применяется. Ложно для
+    #: должника-гражданина: его очерёдность устанавливает статья 213.27.
+    article_134_ranking_applies: bool
     first_tier: bool
     second_tier: bool
     third_tier: bool
@@ -276,52 +292,80 @@ def build_bankruptcy_ranking_constraint_set(
         id=f"bankruptcy-ranking-constraint-set:{mapping.evidence_id}",
         legal_source_refs=mapping.legal_source_refs,
         expressions=[
-            "first_tier == is_life_or_health_harm_claim",
-            "second_tier == is_wage_severance_or_authorship_claim",
             (
-                "third_tier == claim_filed_in_bankruptcy_register AND "
+                "article_134_ranking_applies == (claim_filed_in_bankruptcy_register OR "
+                "is_current_payment_claim OR is_excess_executive_severance) AND "
+                "NOT debtor_is_a_citizen_under_chapter_10"
+            ),
+            "first_tier == article_134_ranking_applies AND is_life_or_health_harm_claim",
+            (
+                "second_tier == article_134_ranking_applies AND "
+                "is_wage_severance_or_authorship_claim"
+            ),
+            (
+                "third_tier == article_134_ranking_applies AND "
+                "claim_filed_in_bankruptcy_register AND "
                 "NOT is_life_or_health_harm_claim AND "
                 "NOT is_wage_severance_or_authorship_claim AND NOT is_secured_by_pledge AND "
                 "NOT is_claim_from_avoided_transaction AND NOT is_perpetual_bond_claim"
             ),
-            "subordinated_after_third_tier == is_claim_from_avoided_transaction",
-            "satisfied_from_pledge_proceeds == is_secured_by_pledge",
-            "satisfied_last_after_all_other_creditors == is_perpetual_bond_claim",
             (
-                "current_payment_ahead_of_all_current == is_current_payment_claim AND "
-                "is_technogenic_risk_mitigation_expense"
+                "subordinated_after_third_tier == article_134_ranking_applies AND "
+                "is_claim_from_avoided_transaction"
             ),
             (
-                "current_payment_first_tier == is_current_payment_claim AND "
+                "satisfied_from_pledge_proceeds == article_134_ranking_applies AND "
+                "is_secured_by_pledge"
+            ),
+            (
+                "satisfied_last_after_all_other_creditors == article_134_ranking_applies AND "
+                "is_perpetual_bond_claim"
+            ),
+            (
+                "current_payment_ahead_of_all_current == article_134_ranking_applies AND "
+                "is_current_payment_claim AND is_technogenic_risk_mitigation_expense"
+            ),
+            (
+                "current_payment_first_tier == article_134_ranking_applies AND "
+                "is_current_payment_claim AND "
                 "NOT is_technogenic_risk_mitigation_expense AND "
                 "is_proceeding_cost_or_mandatory_engagement"
             ),
             (
-                "current_payment_second_tier == is_current_payment_claim AND "
+                "current_payment_second_tier == article_134_ranking_applies AND "
+                "is_current_payment_claim AND "
                 "NOT is_technogenic_risk_mitigation_expense AND "
                 "is_post_petition_labour_payment"
             ),
             (
-                "current_payment_third_tier == is_current_payment_claim AND "
+                "current_payment_third_tier == article_134_ranking_applies AND "
+                "is_current_payment_claim AND "
                 "NOT is_technogenic_risk_mitigation_expense AND "
                 "is_discretionary_engagement_payment"
             ),
             (
-                "current_payment_fourth_tier == is_current_payment_claim AND "
+                "current_payment_fourth_tier == article_134_ranking_applies AND "
+                "is_current_payment_claim AND "
                 "NOT is_technogenic_risk_mitigation_expense AND is_utility_payment"
             ),
             (
-                "current_payment_fifth_tier == is_current_payment_claim AND "
+                "current_payment_fifth_tier == article_134_ranking_applies AND "
+                "is_current_payment_claim AND "
                 "NOT is_technogenic_risk_mitigation_expense AND "
                 "NOT is_proceeding_cost_or_mandatory_engagement AND "
                 "NOT is_post_petition_labour_payment AND "
                 "NOT is_discretionary_engagement_payment AND NOT is_utility_payment"
             ),
-            "excess_executive_severance_after_third_tier == is_excess_executive_severance",
             (
-                "requires_human_bankruptcy_ranking_assessment == is_secured_by_pledge OR "
+                "excess_executive_severance_after_third_tier == article_134_ranking_applies AND "
+                "is_excess_executive_severance"
+            ),
+            (
+                "requires_human_bankruptcy_ranking_assessment == "
+                "debtor_is_a_citizen_under_chapter_10 OR "
+                "(article_134_ranking_applies AND (is_secured_by_pledge OR "
                 "is_life_or_health_harm_claim OR (is_current_payment_claim AND "
-                "is_technogenic_risk_mitigation_expense)"
+                "is_technogenic_risk_mitigation_expense)))"
             ),
         ],
     )
@@ -334,6 +378,7 @@ def evaluate_bankruptcy_ranking_constraints(
     variables = {
         field_name: Bool(field_name) for field_name in BankruptcyRankingFactSet.model_fields
     }
+    article_134_ranking_applies = Bool("article_134_ranking_applies")
     first_tier = Bool("first_tier")
     second_tier = Bool("second_tier")
     third_tier = Bool("third_tier")
@@ -356,14 +401,43 @@ def evaluate_bankruptcy_ranking_constraints(
     solver = Solver()
     for field_name, variable in variables.items():
         solver.add(variable == getattr(facts, field_name))
-    solver.add(first_tier == variables["is_life_or_health_harm_claim"])
-    solver.add(second_tier == variables["is_wage_severance_or_authorship_claim"])
+    # У ворот есть собственный предмет: без требования, которое надо ранжировать,
+    # утверждать «очерёдность статьи 134 применяется» не о чем. Голое отрицание
+    # признака о гражданине дало бы утвердительный вывод на пустых фактах — тот
+    # самый дефект, который аудит выпуска 1.20.0 нашёл у купли-продажи и свободы
+    # договора, и который этот аудит поймал здесь.
+    #
+    # Ворота всего института: для должника-гражданина очерёдность статьи 134
+    # вытеснена статьёй 213.27 закона 127-ФЗ (пункт 1 статьи 213.1). Статью
+    # 213.27 пакет не моделирует, поэтому ворота снимают ответ и поднимают флаг
+    # юриста, а не подставляют другую очередь: «очередь не определена, и вот
+    # чем её определять» — честный ответ, «третья очередь» вместо первой —
+    # неверный.
+    solver.add(
+        article_134_ranking_applies
+        == And(
+            Or(
+                variables["claim_filed_in_bankruptcy_register"],
+                variables["is_current_payment_claim"],
+                variables["is_excess_executive_severance"],
+            ),
+            Not(variables["debtor_is_a_citizen_under_chapter_10"]),
+        )
+    )
+    solver.add(
+        first_tier == And(article_134_ranking_applies, variables["is_life_or_health_harm_claim"])
+    )
+    solver.add(
+        second_tier
+        == And(article_134_ranking_applies, variables["is_wage_severance_or_authorship_claim"])
+    )
     # Третья очередь — остаточная категория, и только она нуждается в явных
     # воротах: остальные пять треков включаются положительным признаком, а тот
     # без реестра запрещён проверкой непротиворечивости фактов.
     solver.add(
         third_tier
         == And(
+            article_134_ranking_applies,
             variables["claim_filed_in_bankruptcy_register"],
             Not(variables["is_life_or_health_harm_claim"]),
             Not(variables["is_wage_severance_or_authorship_claim"]),
@@ -372,15 +446,24 @@ def evaluate_bankruptcy_ranking_constraints(
             Not(variables["is_perpetual_bond_claim"]),
         )
     )
-    solver.add(subordinated_after_third_tier == variables["is_claim_from_avoided_transaction"])
-    solver.add(satisfied_from_pledge_proceeds == variables["is_secured_by_pledge"])
-    solver.add(satisfied_last_after_all_other_creditors == variables["is_perpetual_bond_claim"])
+    solver.add(
+        subordinated_after_third_tier
+        == And(article_134_ranking_applies, variables["is_claim_from_avoided_transaction"])
+    )
+    solver.add(
+        satisfied_from_pledge_proceeds
+        == And(article_134_ranking_applies, variables["is_secured_by_pledge"])
+    )
+    solver.add(
+        satisfied_last_after_all_other_creditors
+        == And(article_134_ranking_applies, variables["is_perpetual_bond_claim"])
+    )
 
     # Текущие платежи: пункты 1.1, 2 и 2.1 статьи 134. Ворота те же по замыслу,
     # что и у реестровых очередей, но свои: очерёдность текущих платежей
     # существует только внутри самой категории текущих, и путать её с реестровой
     # нельзя — она применяется вне очереди, преимущественно перед реестром.
-    current = variables["is_current_payment_claim"]
+    current = And(article_134_ranking_applies, variables["is_current_payment_claim"])
     # Расходы пункта 1.1 идут преимущественно перед любыми другими текущими,
     # поэтому они вытесняют пять очередей пункта 2, а не встают в одну из них.
     outside_the_five = And(current, Not(variables["is_technogenic_risk_mitigation_expense"]))
@@ -417,14 +500,21 @@ def evaluate_bankruptcy_ranking_constraints(
         )
     )
     solver.add(
-        excess_executive_severance_after_third_tier == variables["is_excess_executive_severance"]
+        excess_executive_severance_after_third_tier
+        == And(article_134_ranking_applies, variables["is_excess_executive_severance"])
     )
     solver.add(
         requires_human_bankruptcy_ranking_assessment
         == Or(
-            variables["is_secured_by_pledge"],
-            variables["is_life_or_health_harm_claim"],
-            And(current, variables["is_technogenic_risk_mitigation_expense"]),
+            variables["debtor_is_a_citizen_under_chapter_10"],
+            And(
+                article_134_ranking_applies,
+                Or(
+                    variables["is_secured_by_pledge"],
+                    variables["is_life_or_health_harm_claim"],
+                    And(current, variables["is_technogenic_risk_mitigation_expense"]),
+                ),
+            ),
         )
     )
 
@@ -433,6 +523,7 @@ def evaluate_bankruptcy_ranking_constraints(
         return BankruptcyRankingEvaluation(
             constraint_set_id=constraint_set.id,
             satisfiable=False,
+            article_134_ranking_applies=False,
             first_tier=False,
             second_tier=False,
             third_tier=False,
@@ -456,8 +547,23 @@ def evaluate_bankruptcy_ranking_constraints(
         return bool(model.eval(variable, model_completion=True))
 
     reasons_ru = []
-    if not truth(variables["claim_filed_in_bankruptcy_register"]) and not truth(
-        variables["is_current_payment_claim"]
+    if truth(variables["debtor_is_a_citizen_under_chapter_10"]):
+        reasons_ru.append(
+            "Должник — гражданин, и очерёдность удовлетворения требований его "
+            "кредиторов устанавливает статья 213.27 закона 127-ФЗ, вытесняя "
+            "очерёдность конкурсного производства (пункт 1 статьи 213.1 закона). "
+            "Расхождение не редакционное: требование о взыскании алиментов статья "
+            "213.27 пункт 3 относит к первой очереди реестра, а у пункта 4 статьи 134 "
+            "такой категории нет; вознаграждение автору результата интеллектуальной "
+            "деятельности статья 134 относит ко второй очереди, а статья 213.27 его не "
+            "называет; плату за жилое помещение и коммунальные услуги статья 213.27 "
+            "пункт 2 выделяет в третью очередь текущих платежей, которой пять очередей "
+            "статьи 134 не знают. Статью 213.27 эта модель не разбирает, поэтому "
+            "очерёдность здесь не определяется: названо лишь то, чем её определять."
+        )
+    if not truth(variables["debtor_is_a_citizen_under_chapter_10"]) and (
+        not truth(variables["claim_filed_in_bankruptcy_register"])
+        and not truth(variables["is_current_payment_claim"])
     ):
         # Пустой вывод без объяснения читался бы как «очередь не определена»,
         # тогда как верно другое: очерёдности здесь нет предмета.
@@ -564,6 +670,7 @@ def evaluate_bankruptcy_ranking_constraints(
     return BankruptcyRankingEvaluation(
         constraint_set_id=constraint_set.id,
         satisfiable=True,
+        article_134_ranking_applies=truth(article_134_ranking_applies),
         first_tier=truth(first_tier),
         second_tier=truth(second_tier),
         third_tier=truth(third_tier),

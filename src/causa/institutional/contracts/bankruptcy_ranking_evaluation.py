@@ -237,6 +237,36 @@ SYNTHETIC_BANKRUPTCY_RANKING_BENCHMARKS = (
             "current_payment_ahead_of_all_current": False,
         },
     ),
+    BankruptcyRankingEvaluationTask(
+        id="bankruptcy-ranking-bench-citizen-debtor-is-not-ranked-here",
+        title_ru="У должника-гражданина очерёдность статьи 134 вытеснена статьёй 213.27",
+        facts=_facts(debtor_is_a_citizen_under_chapter_10=True),
+        expected_outcomes={
+            "article_134_ranking_applies": False,
+            "third_tier": False,
+            "requires_human_bankruptcy_ranking_assessment": True,
+        },
+    ),
+    BankruptcyRankingEvaluationTask(
+        id="bankruptcy-ranking-bench-citizen-current-payment-is-not-ranked-here",
+        title_ru="Текущий платёж гражданина очереди статьи 134 не получает",
+        facts=_current(is_utility_payment=True, debtor_is_a_citizen_under_chapter_10=True),
+        expected_outcomes={
+            "article_134_ranking_applies": False,
+            "current_payment_fourth_tier": False,
+            "current_payment_fifth_tier": False,
+            "requires_human_bankruptcy_ranking_assessment": True,
+        },
+    ),
+    BankruptcyRankingEvaluationTask(
+        id="bankruptcy-ranking-bench-entity-debtor-keeps-article-134",
+        title_ru="У должника-организации ворота ничего не меняют",
+        facts=_facts(),
+        expected_outcomes={
+            "article_134_ranking_applies": True,
+            "third_tier": True,
+        },
+    ),
 )
 
 
@@ -330,6 +360,42 @@ SYNTHETIC_BANKRUPTCY_RANKING_RED_TEAM_CASES = (
         title_ru="Дать очередь текущих платежей требованию, текущим не названному",
         facts=_facts(claim_filed_in_bankruptcy_register=False),
         forbidden_outcomes={"current_payment_fifth_tier": True},
+    ),
+    BankruptcyRankingRedTeamCase(
+        id="bankruptcy-ranking-red-citizen-alimony-as-third-tier",
+        title_ru="Отнести требование об алиментах гражданина к остаточной третьей очереди",
+        # Измеренный дефект до появления ворот: предиката об алиментах у
+        # института нет, и требование падало в третью очередь, тогда как пункт 3
+        # статьи 213.27 относит его к первой.
+        facts=_facts(debtor_is_a_citizen_under_chapter_10=True),
+        forbidden_outcomes={"third_tier": True},
+    ),
+    BankruptcyRankingRedTeamCase(
+        id="bankruptcy-ranking-red-citizen-authorship-as-second-tier",
+        title_ru="Отнести вознаграждение автору у гражданина ко второй очереди",
+        facts=_facts(
+            is_wage_severance_or_authorship_claim=True,
+            debtor_is_a_citizen_under_chapter_10=True,
+        ),
+        forbidden_outcomes={"second_tier": True},
+    ),
+    BankruptcyRankingRedTeamCase(
+        id="bankruptcy-ranking-red-citizen-utility-as-fourth-current-tier",
+        title_ru="Дать плате за ЖКУ гражданина четвёртую очередь текущих платежей",
+        facts=_current(is_utility_payment=True, debtor_is_a_citizen_under_chapter_10=True),
+        forbidden_outcomes={"current_payment_fourth_tier": True},
+    ),
+    BankruptcyRankingRedTeamCase(
+        id="bankruptcy-ranking-red-citizen-pledge-track-of-article-138",
+        title_ru="Применить к залогу гражданина схему статьи 138 вместо пункта 5 статьи 213.27",
+        facts=_facts(is_secured_by_pledge=True, debtor_is_a_citizen_under_chapter_10=True),
+        forbidden_outcomes={"satisfied_from_pledge_proceeds": True},
+    ),
+    BankruptcyRankingRedTeamCase(
+        id="bankruptcy-ranking-red-citizen-displacement-is-not-silent",
+        title_ru="Снять очередь у гражданина, не подняв флага юриста",
+        facts=_facts(debtor_is_a_citizen_under_chapter_10=True),
+        forbidden_outcomes={"requires_human_bankruptcy_ranking_assessment": False},
     ),
 )
 

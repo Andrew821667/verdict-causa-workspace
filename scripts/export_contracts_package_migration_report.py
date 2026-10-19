@@ -42,11 +42,12 @@ def main() -> None:
         ("contracts-ru-v0-1.21.0-phase0-trace.json", "1.21.0"),
         ("contracts-ru-v0-1.22.0-phase0-trace.json", "1.22.0"),
         ("contracts-ru-v0-1.23.0-phase0-trace.json", "1.23.0"),
+        ("contracts-ru-v0-1.24.0-phase0-trace.json", "1.24.0"),
     ]
     fixture_pairs = [
         (
             migrations_path / input_name,
-            migrations_path / f"contracts-ru-v0-{version}-to-1.24.0-migration-report.json",
+            migrations_path / f"contracts-ru-v0-{version}-to-1.25.0-migration-report.json",
         )
         for input_name, version in input_versions
     ]

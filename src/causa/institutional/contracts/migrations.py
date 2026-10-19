@@ -2330,6 +2330,22 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_synthetic_contract_concept_evaluation.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.24.0",
+        to_version="1.25.0",
+        reasons=[
+            "The analysis request gains a required field, citizen_bankruptcy_evidence, and the result gains three: the mapping, the constraint set and the evaluation of the article 25 institute. The bankruptcy-ranking institute also gains a required predicate, debtor_is_a_citizen_under_chapter_10, so every stored ranking evidence block is structurally incomplete and must be regenerated along with the request.",
+            "Stored rankings of a citizen's claims state a wrong tier, not a missing one: article 213.27 of law 127-FZ displaces the liquidation ranking for a citizen, and a maintenance claim it ranks first was answered as third. Those rankings must be replayed and then determined under article 213.27, which this package does not model. Article 25 also leaves KNOWN_GAPS_RU and the code-walk boundary record and claims an article range of its own.",
+        ],
+        reasons_ru=[
+            "Запрос анализа получает обязательное поле citizen_bankruptcy_evidence, а результат — три: разбор, набор ограничений и вывод института статьи 25. Институт очерёдности получает обязательный предикат debtor_is_a_citizen_under_chapter_10, поэтому любой сохранённый блок доказательств по очерёдности структурно неполон и подлежит пересборке вместе с запросом.",
+            "Сохранённая очерёдность по требованиям гражданина содержит не отсутствующий ответ, а неверный: статья 213.27 закона 127-ФЗ вытесняет для гражданина очерёдность конкурсного производства, и требование об алиментах, которое она относит к первой очереди, получало третью. Такие выводы подлежат повторному прогону и затем определению по статье 213.27, которую этот пакет не моделирует. Статья 25 также выходит из KNOWN_GAPS_RU и из записи о границе обхода кодекса и получает собственный диапазон статей.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_citizen_bankruptcy_evaluation.py",
+        ],
+    ),
 ]
 
 

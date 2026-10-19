@@ -3397,6 +3397,75 @@
       }
     },
     {
+      "id": "synthetic-ru-gk25-citizen-insolvency-v1",
+      "title": "ГК РФ, статья 25: несостоятельность (банкротство) гражданина — условие признания и отсылка к закону о банкротстве",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Статья 25. Несостоятельность (банкротство) гражданина.\n\n1. Гражданин, который не способен удовлетворить требования кредиторов по денежным обязательствам и (или) исполнить обязанность по уплате обязательных платежей, может быть признан несостоятельным (банкротом) по решению арбитражного суда.\n\n2. Основания, порядок и последствия признания арбитражным судом гражданина несостоятельным (банкротом), очередность удовлетворения требований кредиторов, порядок применения процедур в деле о несостоятельности (банкротстве) гражданина устанавливаются законом, регулирующим вопросы несостоятельности (банкротства).",
+      "valid_from": "1995-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "citizen_insolvency_article_25",
+        "legal_reference": "ГК РФ, статья 25",
+        "specificity": "general",
+        "text_verbatim": true,
+        "basis_url": "https://government.ru/docs/all/95825/",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+      "title": "127-ФЗ, статья 213.1: регулирование отношений, связанных с банкротством граждан",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Статья 213.1. Регулирование отношений, связанных с банкротством граждан.\n\n1. Отношения, связанные с банкротством граждан и не урегулированные настоящей главой, регулируются главами I - III.1, VII, VIII, параграфом 7 главы IX и параграфом 2 главы XI настоящего Федерального закона.\n\n2. Положения, предусмотренные настоящим параграфом, не применяются к отношениям, связанным с несостоятельностью (банкротством) крестьянских (фермерских) хозяйств.\n\n3. Положения, предусмотренные настоящим параграфом, применяются к отношениям, связанным с несостоятельностью (банкротством) индивидуальных предпринимателей, с учетом особенностей, предусмотренных пунктами 4 и 5 настоящей статьи и настоящим Федеральным законом. Отношения, связанные с банкротством индивидуальных предпринимателей, являющихся заемщиками по договору синдицированного кредита (займа), регулируются также главой X.1 настоящего Федерального закона.\n\n(в ред. Федерального закона от 22.12.2020 N 447-ФЗ)\n\n4. Имущество индивидуальных предпринимателей - должников или граждан, которые прекратили деятельность в качестве индивидуального предпринимателя, но денежные обязательства и (или) обязанность по уплате обязательных платежей которых возникли в результате осуществления ими предпринимательской деятельности, предназначенное для осуществления такими гражданами предпринимательской деятельности, подлежит продаже в порядке, установленном настоящим Федеральным законом в отношении продажи имущества юридических лиц.\n\n5. Судебные извещения и копии судебных актов по делу о банкротстве гражданина направляются арбитражным судом:\n\nгражданину;\n\nфинансовому управляющему;\n\nпредставителю собрания кредиторов (при наличии у арбитражного суда информации о его избрании);\n\nкаждому кредитору, требования которого включены в реестр требований кредиторов, если число таких кредиторов не превышает десяти;\n\nкаждому кредитору, совокупный размер включенных в реестр требований которого составляет более чем триста тысяч рублей, а если число указанных кредиторов превышает десять, - каждому кредитору, совокупный размер включенных в реестр требований которого превышает десять процентов от общего числа требований, включенных в реестр;\n\nлицу, если вопросы, рассматриваемые в судебном заседании, или судебный акт затрагивают непосредственно его права и обязанности.\n\nУказанные правила также применяются при направлении копий жалоб и заявлений о пересмотре судебных актов по делу о банкротстве гражданина.\n\n6. Супруг (бывший супруг) гражданина, в отношении которого возбуждено дело о банкротстве, приобретает статус лица, участвующего в деле о банкротстве.\n\n(п. 6 введен Федеральным законом от 29.05.2024 N 107-ФЗ)",
+      "valid_from": "2002-10-26",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "bankruptcy_article_213_1",
+        "legal_reference": "127-ФЗ, статья 213.1",
+        "specificity": "special",
+        "text_verbatim": true,
+        "basis_url": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+      "title": "127-ФЗ, статья 213.27: порядок удовлетворения требований кредиторов гражданина",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Статья 213.27. Порядок удовлетворения требований кредиторов гражданина.\n\n1. Вне очереди за счет конкурсной массы погашаются требования кредиторов по текущим платежам преимущественно перед кредиторами, требования которых возникли до принятия заявления о признании должника банкротом.\n\n2. Требования кредиторов по текущим платежам удовлетворяются в следующей очередности:\n\nв первую очередь удовлетворяются требования по текущим платежам, связанным с уплатой алиментов, судебными расходами по делу о банкротстве гражданина, выплатой вознаграждения финансовому управляющему, взысканием задолженности по выплате вознаграждения лицам, привлеченным финансовым управляющим для обеспечения возложенных на него обязанностей в деле о банкротстве гражданина;\n\nво вторую очередь удовлетворяются требования о выплате выходных пособий и об оплате труда лиц, работающих или работавших по трудовым договорам;\n\nв третью очередь удовлетворяются требования о внесении платы за жилое помещение и коммунальные услуги, в том числе об уплате взноса на капитальный ремонт общего имущества в многоквартирном доме;\n\nв четвертую очередь удовлетворяются требования по иным текущим платежам.\n\nТребования кредиторов по текущим платежам, относящиеся к одной очереди, удовлетворяются в порядке календарной очередности.\n\n3. Требования кредиторов, включенные в реестр требований кредиторов, удовлетворяются в следующей очередности:\n\nв первую очередь удовлетворяются требования граждан, перед которыми гражданин несет ответственность за причинение вреда жизни или здоровью, а также требования о взыскании алиментов;\n\nво вторую очередь производятся расчеты по выплате выходных пособий и оплате труда лиц, работающих или работавших по трудовому договору;\n\nв третью очередь производятся расчеты с другими кредиторами.\n\nРасчеты с кредиторами производятся в порядке, установленном настоящим Федеральным законом, с особенностями, предусмотренными настоящей статьей.\n\n4. При удовлетворении требований граждан, перед которыми гражданин несет ответственность за причинение вреда жизни или здоровью, капитализация повременных платежей не производится.\n\n5. Восемьдесят процентов суммы, вырученной от реализации предмета залога, направляется на погашение требований кредитора по обязательствам, обеспеченным залогом имущества должника.\n\nДенежные средства, оставшиеся от суммы, вырученной от реализации предмета залога, вносятся на специальный банковский счет гражданина, открытый в соответствии со статьей 138 настоящего Федерального закона, в следующем порядке:\n\nдесять процентов суммы, вырученной от реализации предмета залога, для погашения требований кредиторов первой и второй очереди в случае недостаточности иного имущества гражданина для погашения указанных требований;\n\nоставшиеся денежные средства для погашения судебных расходов, расходов на выплату вознаграждения финансовому управляющему, расходов на оплату услуг лиц, привлеченных финансовым управляющим в целях обеспечения исполнения возложенных на него обязанностей.\n\n(в ред. Федерального закона от 23.03.2026 N 62-ФЗ)\n\nДенежные средства, предназначавшиеся для погашения требований кредиторов первой и второй очереди и оставшиеся на специальном банковском счете гражданина после полного погашения указанных требований, включаются в конкурсную массу.\n\nДенежные средства, оставшиеся после полного погашения судебных расходов, расходов на выплату вознаграждения финансовому управляющему, расходов на оплату услуг лиц, привлеченных финансовым управляющим в целях обеспечения исполнения возложенных на него обязанностей, направляются на погашение части обеспеченных залогом имущества гражданина требований конкурсных кредиторов, не погашенной из стоимости предмета залога в соответствии с настоящим пунктом. Денежные средства, оставшиеся после полного погашения расходов, предусмотренных настоящим абзацем, и требований кредиторов, обеспеченных залогом реализованного имущества, включаются в конкурсную массу.\n\n(в ред. Федерального закона от 23.03.2026 N 62-ФЗ)\n\nНе удовлетворенные за счет стоимости предмета залога требования кредиторов по обязательствам, обеспеченным залогом имущества гражданина, удовлетворяются в составе требований кредиторов третьей очереди.\n\nРасходы, предусмотренные пунктом 6 статьи 138 настоящего Федерального закона, покрываются за счет денежных средств, вырученных от реализации предмета залога, до расходования этих средств в соответствии с абзацами первым - седьмым настоящего пункта.\n\n(абзац введен Федеральным законом от 23.03.2026 N 62-ФЗ)\n\n6. Требования кредиторов, не удовлетворенные по причине недостаточности имущества гражданина, считаются погашенными, за исключением случаев, предусмотренных настоящим Федеральным законом.",
+      "valid_from": "2002-10-26",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "bankruptcy_article_213_27",
+        "legal_reference": "127-ФЗ, статья 213.27",
+        "specificity": "special",
+        "text_verbatim": true,
+        "basis_url": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-citizen-bankruptcy-evidence",
+      "title": "Синтетическая проверенная запись фактов о банкротстве гражданина",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спор о поставке ведут две организации. Должник гражданином не является, дело о банкротстве гражданина не возбуждено, вопрос об очерёдности удовлетворения требований кредиторов гражданина в деле не поставлен. Все признаки института статьи 25 ГК РФ ложны, и институт обязан промолчать.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "citizen_bankruptcy_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-127fz-5-current-payments-v1",
       "title": "127-ФЗ, статья 5: текущие платежи",
       "source_type": "statute",
@@ -12169,6 +12238,93 @@
       "review_status": "reviewed",
       "reviewer_id": "synthetic-contract-concept-reviewer"
     },
+    "citizen_bankruptcy_evidence": {
+      "id": "reviewed-citizen-bankruptcy-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.citizen-bankruptcy-evidence.v0",
+      "assertions": [
+        {
+          "id": "citizen-bankruptcy-evidence-debtor_is_a_citizen",
+          "predicate": "debtor_is_a_citizen",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "id": "citizen-bankruptcy-evidence-unable_to_satisfy_monetary_obligations",
+          "predicate": "unable_to_satisfy_monetary_obligations",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "id": "citizen-bankruptcy-evidence-unable_to_pay_obligatory_payments",
+          "predicate": "unable_to_pay_obligatory_payments",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "id": "citizen-bankruptcy-evidence-arbitration_court_declared_bankrupt",
+          "predicate": "arbitration_court_declared_bankrupt",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "id": "citizen-bankruptcy-evidence-bankruptcy_asserted_without_a_court_decision",
+          "predicate": "bankruptcy_asserted_without_a_court_decision",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "id": "citizen-bankruptcy-evidence-debtor_is_an_individual_entrepreneur",
+          "predicate": "debtor_is_an_individual_entrepreneur",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "id": "citizen-bankruptcy-evidence-debtor_is_a_peasant_farm_holding",
+          "predicate": "debtor_is_a_peasant_farm_holding",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "id": "citizen-bankruptcy-evidence-creditor_ranking_question_raised",
+          "predicate": "creditor_ranking_question_raised",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "id": "citizen-bankruptcy-evidence-liquidation_ranking_of_article_134_applied",
+          "predicate": "liquidation_ranking_of_article_134_applied",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-gk25-citizen-insolvency-v1",
+        "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+        "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+        "synthetic-ru-127fz-134-creditor-ranking-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-citizen-bankruptcy-reviewer"
+    },
     "bankruptcy_claims_evidence": {
       "id": "reviewed-bankruptcy-claims-evidence-supply-1-v0",
       "case_id": "case-supply-1",
@@ -12326,6 +12482,14 @@
         {
           "id": "bankruptcy-ranking-evidence-is_excess_executive_severance",
           "predicate": "is_excess_executive_severance",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
+          "id": "bankruptcy-ranking-evidence-debtor_is_a_citizen_under_chapter_10",
+          "predicate": "debtor_is_a_citizen_under_chapter_10",
           "value": false,
           "source_refs": [
             "synthetic-case-supply-1-bankruptcy-ranking-evidence"
@@ -18792,6 +18956,7 @@
       "synthetic-building-lease-reviewer",
       "synthetic-carriage-reviewer",
       "synthetic-case-evidence-reviewer",
+      "synthetic-citizen-bankruptcy-reviewer",
       "synthetic-civil-principles-reviewer",
       "synthetic-commercial-credit-reviewer",
       "synthetic-commission-reviewer",
@@ -18890,6 +19055,7 @@
       "synthetic-case-supply-1-barter-evidence",
       "synthetic-case-supply-1-building-lease-evidence",
       "synthetic-case-supply-1-carriage-evidence",
+      "synthetic-case-supply-1-citizen-bankruptcy-evidence",
       "synthetic-case-supply-1-civil-principles-evidence",
       "synthetic-case-supply-1-commercial-credit-evidence",
       "synthetic-case-supply-1-commission-evidence",
@@ -18975,6 +19141,8 @@
       "synthetic-ru-127fz-134-creditor-ranking-v1",
       "synthetic-ru-127fz-135-first-rank-claims-v1",
       "synthetic-ru-127fz-138-secured-creditor-claims-v1",
+      "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+      "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
       "synthetic-ru-127fz-5-current-payments-v1",
       "synthetic-ru-127fz-61.1-contest-transactions-general-v1",
       "synthetic-ru-127fz-61.2-contest-suspicious-transaction-v1",
@@ -19030,6 +19198,7 @@
       "synthetic-ru-gk202-208-limitation-effects-v1",
       "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
       "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
+      "synthetic-ru-gk25-citizen-insolvency-v1",
       "synthetic-ru-gk306-statutory-termination-compensation-v1",
       "synthetic-ru-gk307-308-obligation-concept-v1",
       "synthetic-ru-gk3081-3083-obligation-types-and-protection-v1",
@@ -29164,6 +29333,136 @@
         "Заключённость договора проверяет институт заключения (статья 432 ГК РФ): что перед нами договор и что он заключён — разные вопросы."
       ]
     },
+    "citizen_bankruptcy_evidence_mapping": {
+      "evidence_id": "reviewed-citizen-bankruptcy-evidence-supply-1-v0",
+      "schema_version": "contracts.citizen-bankruptcy-evidence.v0",
+      "mapping_version": "contracts-reviewed-citizen-bankruptcy-to-facts-v0",
+      "facts": {
+        "debtor_is_a_citizen": false,
+        "unable_to_satisfy_monetary_obligations": false,
+        "unable_to_pay_obligatory_payments": false,
+        "arbitration_court_declared_bankrupt": false,
+        "bankruptcy_asserted_without_a_court_decision": false,
+        "debtor_is_an_individual_entrepreneur": false,
+        "debtor_is_a_peasant_farm_holding": false,
+        "creditor_ranking_question_raised": false,
+        "liquidation_ranking_of_article_134_applied": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-gk25-citizen-insolvency-v1",
+        "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+        "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+        "synthetic-ru-127fz-134-creditor-ranking-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "arbitration_court_declared_bankrupt",
+          "assertion_id": "citizen-bankruptcy-evidence-arbitration_court_declared_bankrupt",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "fact_name": "bankruptcy_asserted_without_a_court_decision",
+          "assertion_id": "citizen-bankruptcy-evidence-bankruptcy_asserted_without_a_court_decision",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_ranking_question_raised",
+          "assertion_id": "citizen-bankruptcy-evidence-creditor_ranking_question_raised",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_is_a_citizen",
+          "assertion_id": "citizen-bankruptcy-evidence-debtor_is_a_citizen",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_is_a_peasant_farm_holding",
+          "assertion_id": "citizen-bankruptcy-evidence-debtor_is_a_peasant_farm_holding",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_is_an_individual_entrepreneur",
+          "assertion_id": "citizen-bankruptcy-evidence-debtor_is_an_individual_entrepreneur",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "fact_name": "liquidation_ranking_of_article_134_applied",
+          "assertion_id": "citizen-bankruptcy-evidence-liquidation_ranking_of_article_134_applied",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "fact_name": "unable_to_pay_obligatory_payments",
+          "assertion_id": "citizen-bankruptcy-evidence-unable_to_pay_obligatory_payments",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        },
+        {
+          "fact_name": "unable_to_satisfy_monetary_obligations",
+          "assertion_id": "citizen-bankruptcy-evidence-unable_to_satisfy_monetary_obligations",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-bankruptcy-evidence"
+          ]
+        }
+      ]
+    },
+    "citizen_bankruptcy_constraint_set": {
+      "id": "citizen-bankruptcy-constraint-set:reviewed-citizen-bankruptcy-evidence-supply-1-v0",
+      "model_version": "contracts-citizen-bankruptcy-article-25-v0",
+      "legal_source_refs": [
+        "synthetic-ru-gk25-citizen-insolvency-v1",
+        "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+        "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+        "synthetic-ru-127fz-134-creditor-ranking-v1"
+      ],
+      "expressions": [
+        "citizen_may_be_declared_bankrupt == debtor_is_a_citizen AND (unable_to_satisfy_monetary_obligations OR unable_to_pay_obligatory_payments)",
+        "citizen_declared_bankrupt == debtor_is_a_citizen AND arbitration_court_declared_bankrupt",
+        "bankruptcy_requires_a_court_decision == debtor_is_a_citizen AND bankruptcy_asserted_without_a_court_decision",
+        "insolvency_test_not_met == debtor_is_a_citizen AND NOT unable_to_satisfy_monetary_obligations AND NOT unable_to_pay_obligatory_payments",
+        "citizen_bankruptcy_regime_applies == debtor_is_a_citizen AND NOT debtor_is_a_peasant_farm_holding",
+        "entrepreneur_specifics_apply == debtor_is_an_individual_entrepreneur AND NOT debtor_is_a_peasant_farm_holding",
+        "citizen_regime_excluded_for_peasant_farm == debtor_is_a_citizen AND debtor_is_a_peasant_farm_holding",
+        "creditor_ranking_governed_by_bankruptcy_law == citizen_bankruptcy_regime_applies AND creditor_ranking_question_raised",
+        "liquidation_ranking_wrongly_applied_to_a_citizen == citizen_bankruptcy_regime_applies AND liquidation_ranking_of_article_134_applied",
+        "requires_human_citizen_bankruptcy_assessment == liquidation_ranking_wrongly_applied_to_a_citizen OR creditor_ranking_governed_by_bankruptcy_law OR entrepreneur_specifics_apply OR citizen_regime_excluded_for_peasant_farm"
+      ]
+    },
+    "citizen_bankruptcy_evaluation": {
+      "constraint_set_id": "citizen-bankruptcy-constraint-set:reviewed-citizen-bankruptcy-evidence-supply-1-v0",
+      "satisfiable": true,
+      "citizen_may_be_declared_bankrupt": false,
+      "citizen_declared_bankrupt": false,
+      "bankruptcy_requires_a_court_decision": false,
+      "insolvency_test_not_met": false,
+      "citizen_bankruptcy_regime_applies": false,
+      "entrepreneur_specifics_apply": false,
+      "citizen_regime_excluded_for_peasant_farm": false,
+      "creditor_ranking_governed_by_bankruptcy_law": false,
+      "liquidation_ranking_wrongly_applied_to_a_citizen": false,
+      "requires_human_citizen_bankruptcy_assessment": false,
+      "reasons_ru": [],
+      "warnings_ru": [
+        "Модель отвечает, при каком условии гражданин может быть признан банкротом и каким законом его банкротство разбирается. Сами основания, порядок, последствия и очерёдность пункт 2 статьи 25 ГК РФ отдаёт закону 127-ФЗ, и глава X этого закона в пакете не смоделирована.",
+        "Пороги возбуждения дела — не менее пятисот тысяч рублей и три месяца неисполнения — устанавливает пункт 2 статьи 213.3 закона 127-ФЗ, а не статья 25: модель их не проверяет.",
+        "Процедуры дела о банкротстве гражданина (реструктуризация долгов, реализация имущества, мировое соглашение — статья 213.2 закона) и освобождение гражданина от обязательств (статья 213.28) лежат вне этой модели.",
+        "Условия банкротства юридического лица даёт статья 65 ГК РФ, а не статья 25: модель о гражданине и молчит о юридическом лице."
+      ]
+    },
     "bankruptcy_claims_evidence_mapping": {
       "evidence_id": "reviewed-bankruptcy-claims-evidence-supply-1-v0",
       "schema_version": "contracts.bankruptcy-claims-evidence.v0",
@@ -29263,7 +29562,8 @@
         "is_post_petition_labour_payment": false,
         "is_discretionary_engagement_payment": false,
         "is_utility_payment": false,
-        "is_excess_executive_severance": false
+        "is_excess_executive_severance": false,
+        "debtor_is_a_citizen_under_chapter_10": false
       },
       "legal_source_refs": [
         "synthetic-ru-127fz-134-creditor-ranking-v1",
@@ -29274,6 +29574,13 @@
         {
           "fact_name": "claim_filed_in_bankruptcy_register",
           "assertion_id": "bankruptcy-ranking-evidence-claim_filed_in_bankruptcy_register",
+          "source_refs": [
+            "synthetic-case-supply-1-bankruptcy-ranking-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_is_a_citizen_under_chapter_10",
+          "assertion_id": "bankruptcy-ranking-evidence-debtor_is_a_citizen_under_chapter_10",
           "source_refs": [
             "synthetic-case-supply-1-bankruptcy-ranking-evidence"
           ]
@@ -29373,25 +29680,27 @@
         "synthetic-ru-127fz-138-secured-creditor-claims-v1"
       ],
       "expressions": [
-        "first_tier == is_life_or_health_harm_claim",
-        "second_tier == is_wage_severance_or_authorship_claim",
-        "third_tier == claim_filed_in_bankruptcy_register AND NOT is_life_or_health_harm_claim AND NOT is_wage_severance_or_authorship_claim AND NOT is_secured_by_pledge AND NOT is_claim_from_avoided_transaction AND NOT is_perpetual_bond_claim",
-        "subordinated_after_third_tier == is_claim_from_avoided_transaction",
-        "satisfied_from_pledge_proceeds == is_secured_by_pledge",
-        "satisfied_last_after_all_other_creditors == is_perpetual_bond_claim",
-        "current_payment_ahead_of_all_current == is_current_payment_claim AND is_technogenic_risk_mitigation_expense",
-        "current_payment_first_tier == is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND is_proceeding_cost_or_mandatory_engagement",
-        "current_payment_second_tier == is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND is_post_petition_labour_payment",
-        "current_payment_third_tier == is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND is_discretionary_engagement_payment",
-        "current_payment_fourth_tier == is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND is_utility_payment",
-        "current_payment_fifth_tier == is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND NOT is_proceeding_cost_or_mandatory_engagement AND NOT is_post_petition_labour_payment AND NOT is_discretionary_engagement_payment AND NOT is_utility_payment",
-        "excess_executive_severance_after_third_tier == is_excess_executive_severance",
-        "requires_human_bankruptcy_ranking_assessment == is_secured_by_pledge OR is_life_or_health_harm_claim OR (is_current_payment_claim AND is_technogenic_risk_mitigation_expense)"
+        "article_134_ranking_applies == (claim_filed_in_bankruptcy_register OR is_current_payment_claim OR is_excess_executive_severance) AND NOT debtor_is_a_citizen_under_chapter_10",
+        "first_tier == article_134_ranking_applies AND is_life_or_health_harm_claim",
+        "second_tier == article_134_ranking_applies AND is_wage_severance_or_authorship_claim",
+        "third_tier == article_134_ranking_applies AND claim_filed_in_bankruptcy_register AND NOT is_life_or_health_harm_claim AND NOT is_wage_severance_or_authorship_claim AND NOT is_secured_by_pledge AND NOT is_claim_from_avoided_transaction AND NOT is_perpetual_bond_claim",
+        "subordinated_after_third_tier == article_134_ranking_applies AND is_claim_from_avoided_transaction",
+        "satisfied_from_pledge_proceeds == article_134_ranking_applies AND is_secured_by_pledge",
+        "satisfied_last_after_all_other_creditors == article_134_ranking_applies AND is_perpetual_bond_claim",
+        "current_payment_ahead_of_all_current == article_134_ranking_applies AND is_current_payment_claim AND is_technogenic_risk_mitigation_expense",
+        "current_payment_first_tier == article_134_ranking_applies AND is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND is_proceeding_cost_or_mandatory_engagement",
+        "current_payment_second_tier == article_134_ranking_applies AND is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND is_post_petition_labour_payment",
+        "current_payment_third_tier == article_134_ranking_applies AND is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND is_discretionary_engagement_payment",
+        "current_payment_fourth_tier == article_134_ranking_applies AND is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND is_utility_payment",
+        "current_payment_fifth_tier == article_134_ranking_applies AND is_current_payment_claim AND NOT is_technogenic_risk_mitigation_expense AND NOT is_proceeding_cost_or_mandatory_engagement AND NOT is_post_petition_labour_payment AND NOT is_discretionary_engagement_payment AND NOT is_utility_payment",
+        "excess_executive_severance_after_third_tier == article_134_ranking_applies AND is_excess_executive_severance",
+        "requires_human_bankruptcy_ranking_assessment == debtor_is_a_citizen_under_chapter_10 OR (article_134_ranking_applies AND (is_secured_by_pledge OR is_life_or_health_harm_claim OR (is_current_payment_claim AND is_technogenic_risk_mitigation_expense)))"
       ]
     },
     "bankruptcy_ranking_evaluation": {
       "constraint_set_id": "bankruptcy-ranking-constraint-set:reviewed-bankruptcy-ranking-evidence-supply-1-v0",
       "satisfiable": true,
+      "article_134_ranking_applies": false,
       "first_tier": false,
       "second_tier": false,
       "third_tier": false,
@@ -37512,7 +37821,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.24.0",
+      "institutional_package_version": "contracts-ru-v0@1.25.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

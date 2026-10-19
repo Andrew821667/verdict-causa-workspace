@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1240,
+  "declared_rules": 1251,
   "divergences_total": 0,
-  "executed_rules": 1240,
+  "executed_rules": 1251,
   "institutes": [
     {
       "declared_rules": 5,
@@ -68,11 +68,11 @@
       "module": "bankruptcy_contest.py"
     },
     {
-      "declared_rules": 14,
+      "declared_rules": 15,
       "divergences": [],
-      "executed_rules": 14,
+      "executed_rules": 15,
       "institute": "bankruptcy_ranking",
-      "matched": 14,
+      "matched": 15,
       "module": "bankruptcy_ranking.py"
     },
     {
@@ -106,6 +106,14 @@
       "institute": "carriage",
       "matched": 11,
       "module": "carriage.py"
+    },
+    {
+      "declared_rules": 10,
+      "divergences": [],
+      "executed_rules": 10,
+      "institute": "citizen_bankruptcy",
+      "matched": 10,
+      "module": "citizen_bankruptcy.py"
     },
     {
       "declared_rules": 11,
@@ -780,8 +788,8 @@
       "module": "formal_checks.py"
     }
   ],
-  "institutes_clean": 97,
-  "institutes_total": 97,
-  "matched_rules": 1240,
+  "institutes_clean": 98,
+  "institutes_total": 98,
+  "matched_rules": 1251,
   "version": "reasoning-rule-parity-v0"
 }

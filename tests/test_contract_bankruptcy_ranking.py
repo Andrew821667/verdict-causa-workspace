@@ -203,9 +203,9 @@ def test_bankruptcy_ranking_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_bankruptcy_ranking_benchmark_suite()
     red_team = run_bankruptcy_ranking_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_BANKRUPTCY_RANKING_BENCHMARKS) == 16
+    assert benchmark.total == len(SYNTHETIC_BANKRUPTCY_RANKING_BENCHMARKS) == 19
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_BANKRUPTCY_RANKING_RED_TEAM_CASES) == 15
+    assert red_team.total == len(SYNTHETIC_BANKRUPTCY_RANKING_RED_TEAM_CASES) == 20
     assert red_team.blocked == red_team.total
 
 

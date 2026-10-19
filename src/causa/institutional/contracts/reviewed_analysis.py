@@ -628,6 +628,16 @@ from causa.institutional.contracts.management_liability import (
     evaluate_management_liability_constraints,
     map_reviewed_management_liability_evidence,
 )
+from causa.institutional.contracts.citizen_bankruptcy import (
+    CITIZEN_BANKRUPTCY_EVIDENCE_SCHEMA_VERSION,
+    CitizenBankruptcyConstraintSet,
+    CitizenBankruptcyEvaluation,
+    CitizenBankruptcyEvidenceMappingResult,
+    ReviewedCitizenBankruptcyEvidence,
+    build_citizen_bankruptcy_constraint_set,
+    evaluate_citizen_bankruptcy_constraints,
+    map_reviewed_citizen_bankruptcy_evidence,
+)
 from causa.institutional.contracts.contract_concept import (
     CONTRACT_CONCEPT_EVIDENCE_SCHEMA_VERSION,
     ContractConceptConstraintSet,
@@ -1165,6 +1175,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     escrow_deposit_evidence: ReviewedEscrowDepositEvidence
     management_liability_evidence: ReviewedManagementLiabilityEvidence
     contract_concept_evidence: ReviewedContractConceptEvidence
+    citizen_bankruptcy_evidence: ReviewedCitizenBankruptcyEvidence
     bankruptcy_claims_evidence: ReviewedBankruptcyClaimsEvidence
     bankruptcy_ranking_evidence: ReviewedBankruptcyRankingEvidence
     bankruptcy_contest_evidence: ReviewedBankruptcyContestEvidence
@@ -1430,6 +1441,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     contract_concept_evidence_mapping: ContractConceptEvidenceMappingResult
     contract_concept_constraint_set: ContractConceptConstraintSet
     contract_concept_evaluation: ContractConceptEvaluation
+    citizen_bankruptcy_evidence_mapping: CitizenBankruptcyEvidenceMappingResult
+    citizen_bankruptcy_constraint_set: CitizenBankruptcyConstraintSet
+    citizen_bankruptcy_evaluation: CitizenBankruptcyEvaluation
     bankruptcy_claims_evidence_mapping: BankruptcyClaimsEvidenceMappingResult
     bankruptcy_claims_constraint_set: BankruptcyClaimsConstraintSet
     bankruptcy_claims_evaluation: BankruptcyClaimsEvaluation
@@ -2337,6 +2351,21 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.freedom_evidence_mapping.facts.contract_asserted,
             self.contract_concept_evaluation.contract_qualified_under_article_420,
         )
+        expected_citizen_bankruptcy_set = build_citizen_bankruptcy_constraint_set(
+            self.citizen_bankruptcy_evidence_mapping
+        )
+        if self.citizen_bankruptcy_constraint_set != expected_citizen_bankruptcy_set:
+            raise ValueError(
+                "Citizen-bankruptcy constraint set does not replay from reviewed evidence."
+            )
+        expected_citizen_bankruptcy_evaluation = evaluate_citizen_bankruptcy_constraints(
+            expected_citizen_bankruptcy_set,
+            self.citizen_bankruptcy_evidence_mapping.facts,
+        )
+        if self.citizen_bankruptcy_evaluation != expected_citizen_bankruptcy_evaluation:
+            raise ValueError(
+                "Citizen-bankruptcy evaluation does not replay from reviewed evidence."
+            )
         expected_bankruptcy_claims_set = build_bankruptcy_claims_constraint_set(
             self.bankruptcy_claims_evidence_mapping
         )
@@ -2354,6 +2383,11 @@ class ReviewedContractAnalysisResult(BaseModel):
             "bankruptcy_current_payment_status",
             self.bankruptcy_ranking_evidence_mapping.facts.is_current_payment_claim,
             self.bankruptcy_claims_evaluation.claim_is_current,
+        )
+        facts_agree.equal(
+            "citizen_bankruptcy_debtor_regime",
+            self.bankruptcy_ranking_evidence_mapping.facts.debtor_is_a_citizen_under_chapter_10,
+            self.citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies,
         )
         expected_bankruptcy_ranking_set = build_bankruptcy_ranking_constraint_set(
             self.bankruptcy_ranking_evidence_mapping
@@ -3108,6 +3142,8 @@ def _validate_request_integrity(
         )
     if request.contract_concept_evidence.case_id != request.case_id:
         raise ValueError("Contract-concept evidence case_id does not match the analysis request.")
+    if request.citizen_bankruptcy_evidence.case_id != request.case_id:
+        raise ValueError("Citizen-bankruptcy evidence case_id does not match the analysis request.")
     if request.bankruptcy_claims_evidence.case_id != request.case_id:
         raise ValueError("Bankruptcy-claims evidence case_id does not match the analysis request.")
     if request.bankruptcy_ranking_evidence.case_id != request.case_id:
@@ -3358,6 +3394,11 @@ def _validate_request_integrity(
     if request.contract_concept_evidence.schema_version != CONTRACT_CONCEPT_EVIDENCE_SCHEMA_VERSION:
         raise ValueError("Contract-concept evidence uses an unsupported schema version.")
     if (
+        request.citizen_bankruptcy_evidence.schema_version
+        != CITIZEN_BANKRUPTCY_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Citizen-bankruptcy evidence uses an unsupported schema version.")
+    if (
         request.bankruptcy_claims_evidence.schema_version
         != BANKRUPTCY_CLAIMS_EVIDENCE_SCHEMA_VERSION
     ):
@@ -3500,6 +3541,7 @@ def _validate_request_integrity(
         *request.escrow_deposit_evidence.legal_source_refs,
         *request.management_liability_evidence.legal_source_refs,
         *request.contract_concept_evidence.legal_source_refs,
+        *request.citizen_bankruptcy_evidence.legal_source_refs,
         *request.bankruptcy_claims_evidence.legal_source_refs,
         *request.bankruptcy_ranking_evidence.legal_source_refs,
         *request.bankruptcy_contest_evidence.legal_source_refs,
@@ -3666,6 +3708,8 @@ def _validate_request_integrity(
     for assertion in request.management_liability_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.contract_concept_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.citizen_bankruptcy_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.bankruptcy_claims_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -4463,6 +4507,17 @@ def _validate_request_integrity(
             "Contract-concept legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_contract_concept_legal_sources))
         )
+    invalid_citizen_bankruptcy_legal_sources = [
+        source_id
+        for source_id in request.citizen_bankruptcy_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_citizen_bankruptcy_legal_sources:
+        raise ValueError(
+            "Citizen-bankruptcy legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_citizen_bankruptcy_legal_sources))
+        )
     invalid_bankruptcy_claims_legal_sources = [
         source_id
         for source_id in request.bankruptcy_claims_evidence.legal_source_refs
@@ -5202,6 +5257,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Contract-concept evidence",
         review_status=request.contract_concept_evidence.review_status,
         reviewer_id=request.contract_concept_evidence.reviewer_id,
+    )
+    citizen_bankruptcy_reviewer_id = _require_reviewed(
+        artifact_name="Citizen-bankruptcy evidence",
+        review_status=request.citizen_bankruptcy_evidence.review_status,
+        reviewer_id=request.citizen_bankruptcy_evidence.reviewer_id,
     )
     bankruptcy_claims_reviewer_id = _require_reviewed(
         artifact_name="Bankruptcy-claims evidence",
@@ -5986,6 +6046,16 @@ def run_reviewed_contract_analysis(
         freedom_evidence_mapping.facts.contract_asserted,
         contract_concept_evaluation.contract_qualified_under_article_420,
     )
+    citizen_bankruptcy_evidence_mapping = map_reviewed_citizen_bankruptcy_evidence(
+        request.citizen_bankruptcy_evidence
+    )
+    citizen_bankruptcy_constraint_set = build_citizen_bankruptcy_constraint_set(
+        citizen_bankruptcy_evidence_mapping
+    )
+    citizen_bankruptcy_evaluation = evaluate_citizen_bankruptcy_constraints(
+        citizen_bankruptcy_constraint_set,
+        citizen_bankruptcy_evidence_mapping.facts,
+    )
     bankruptcy_claims_evidence_mapping = map_reviewed_bankruptcy_claims_evidence(
         request.bankruptcy_claims_evidence
     )
@@ -6003,6 +6073,15 @@ def run_reviewed_contract_analysis(
         "bankruptcy_current_payment_status",
         bankruptcy_ranking_evidence_mapping.facts.is_current_payment_claim,
         bankruptcy_claims_evaluation.claim_is_current,
+    )
+    # Признак рецензента «должник — гражданин под главой X» института
+    # очерёдности и вывод модели статьи 25 — об одном и том же режиме. Без
+    # сверки институт очерёдности мог бы снимать очередь там, где режим главы X
+    # не применяется, и применять статью 134 там, где он применяется.
+    facts_agree.equal(
+        "citizen_bankruptcy_debtor_regime",
+        bankruptcy_ranking_evidence_mapping.facts.debtor_is_a_citizen_under_chapter_10,
+        citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies,
     )
     bankruptcy_ranking_constraint_set = build_bankruptcy_ranking_constraint_set(
         bankruptcy_ranking_evidence_mapping
@@ -6570,6 +6649,7 @@ def run_reviewed_contract_analysis(
         or escrow_deposit_evaluation.requires_human_escrow_deposit_assessment
         or management_liability_evaluation.requires_human_management_liability_assessment
         or contract_concept_evaluation.requires_human_contract_concept_assessment
+        or citizen_bankruptcy_evaluation.requires_human_citizen_bankruptcy_assessment
         or bankruptcy_claims_evaluation.requires_human_bankruptcy_claims_assessment
         or bankruptcy_ranking_evaluation.requires_human_bankruptcy_ranking_assessment
         or bankruptcy_contest_evaluation.requires_human_bankruptcy_contest_assessment
@@ -6676,6 +6756,7 @@ def run_reviewed_contract_analysis(
                 escrow_deposit_reviewer_id,
                 management_liability_reviewer_id,
                 contract_concept_reviewer_id,
+                citizen_bankruptcy_reviewer_id,
                 bankruptcy_claims_reviewer_id,
                 bankruptcy_ranking_reviewer_id,
                 bankruptcy_contest_reviewer_id,
@@ -6919,6 +7000,9 @@ def run_reviewed_contract_analysis(
         contract_concept_evidence_mapping=contract_concept_evidence_mapping,
         contract_concept_constraint_set=contract_concept_constraint_set,
         contract_concept_evaluation=contract_concept_evaluation,
+        citizen_bankruptcy_evidence_mapping=citizen_bankruptcy_evidence_mapping,
+        citizen_bankruptcy_constraint_set=citizen_bankruptcy_constraint_set,
+        citizen_bankruptcy_evaluation=citizen_bankruptcy_evaluation,
         bankruptcy_claims_evidence_mapping=bankruptcy_claims_evidence_mapping,
         bankruptcy_claims_constraint_set=bankruptcy_claims_constraint_set,
         bankruptcy_claims_evaluation=bankruptcy_claims_evaluation,

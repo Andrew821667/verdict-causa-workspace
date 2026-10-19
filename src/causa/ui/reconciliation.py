@@ -77,6 +77,10 @@ RECONCILABLE_FACTS: dict[str, tuple[str, str]] = {
         "bankruptcy_ranking_evidence",
         "is_current_payment_claim",
     ),
+    "citizen_bankruptcy_debtor_regime": (
+        "bankruptcy_ranking_evidence",
+        "debtor_is_a_citizen_under_chapter_10",
+    ),
     "contract_concept_qualification": ("freedom_evidence", "contract_asserted"),
     "dynamics_breach_status": ("obligation_dynamics_evidence", "obligation_breached"),
     "dynamics_obligation_status": ("obligation_dynamics_evidence", "obligation_exists"),

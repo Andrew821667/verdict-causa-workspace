@@ -49,6 +49,7 @@ def test_claim_status_prefers_current_over_ranking_tier() -> None:
     ranking_evaluation = BankruptcyRankingEvaluation(
         constraint_set_id="x",
         satisfiable=True,
+        article_134_ranking_applies=True,
         first_tier=True,
         second_tier=False,
         third_tier=False,

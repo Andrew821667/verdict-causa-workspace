@@ -165,6 +165,12 @@ from causa.institutional.contracts.special_accounts import (
     SpecialAccountsEvidenceAssertion,
     SpecialAccountsEvidencePredicate,
 )
+from causa.institutional.contracts.citizen_bankruptcy import (
+    CITIZEN_BANKRUPTCY_LEGAL_SOURCE_REFS,
+    CitizenBankruptcyEvidenceAssertion,
+    CitizenBankruptcyEvidencePredicate,
+    ReviewedCitizenBankruptcyEvidence,
+)
 from causa.institutional.contracts.contract_concept import (
     CONTRACT_CONCEPT_LEGAL_SOURCE_REFS,
     ContractConceptEvidenceAssertion,
@@ -702,6 +708,10 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-case-supply-1-management-liability-evidence",
     "synthetic-ru-gk420-contract-concept-v1",
     "synthetic-case-supply-1-contract-concept-evidence",
+    "synthetic-ru-gk25-citizen-insolvency-v1",
+    "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+    "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
+    "synthetic-case-supply-1-citizen-bankruptcy-evidence",
     "synthetic-ru-127fz-5-current-payments-v1",
     "synthetic-ru-127fz-63-observation-effects-v1",
     "synthetic-ru-127fz-134-creditor-ranking-v1",
@@ -3365,6 +3375,26 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             legal_source_refs=MANAGEMENT_LIABILITY_LEGAL_SOURCE_REFS,
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-management-liability-reviewer",
+        ),
+        citizen_bankruptcy_evidence=ReviewedCitizenBankruptcyEvidence(
+            id="reviewed-citizen-bankruptcy-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            # Все признаки ложны: спор о поставке ведут две организации, должник
+            # гражданином не является, дело о банкротстве гражданина не
+            # возбуждено. Институт обязан промолчать на таком наборе — это
+            # проверяет аудит «пустые факты не дают выводов».
+            assertions=tuple(
+                CitizenBankruptcyEvidenceAssertion(
+                    id=f"citizen-bankruptcy-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=False,
+                    source_refs=("synthetic-case-supply-1-citizen-bankruptcy-evidence",),
+                )
+                for predicate in CitizenBankruptcyEvidencePredicate
+            ),
+            legal_source_refs=CITIZEN_BANKRUPTCY_LEGAL_SOURCE_REFS,
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-citizen-bankruptcy-reviewer",
         ),
         contract_concept_evidence=ReviewedContractConceptEvidence(
             id="reviewed-contract-concept-evidence-supply-1-v0",
