@@ -149,14 +149,15 @@ def test_a_peasant_farm_blocks_the_entrepreneur_specifics_too() -> None:
 def test_the_ranking_question_is_answered_by_naming_the_rule_not_the_tier() -> None:
     """Статья 25 отвечает, чем определять очерёдность, а не какова она.
 
-    Статья 213.27 в пакете не смоделирована, и модель это признаёт: называет
-    применимое правило и поднимает флаг юриста. «Очередь не определена, и вот
-    чем её определять» — честный ответ.
+    В выпуске 1.25.0 статья 213.27 не была смоделирована, и вывод поднимал флаг
+    юриста: «очередь не определена, и вот чем её определять». С выпуска 1.26.0
+    очередь определяет институт статьи 213.27, и флаг здесь был бы ложной
+    тревогой.
     """
     evaluation = _evaluate(_facts(**DECLARED, creditor_ranking_question_raised=True))
 
     assert evaluation.creditor_ranking_governed_by_bankruptcy_law is True
-    assert evaluation.requires_human_citizen_bankruptcy_assessment is True
+    assert evaluation.requires_human_citizen_bankruptcy_assessment is False
     assert any("213.27" in reason for reason in evaluation.reasons_ru)
 
 

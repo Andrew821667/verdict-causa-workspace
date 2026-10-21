@@ -19,6 +19,7 @@ INSTITUTE_TITLES_RU: dict[str, str] = {
     "citizen_bankruptcy": "Несостоятельность (банкротство) гражданина",
     "citizen_ranking": "Очерёдность требований кредиторов гражданина",
     "citizen_release": "Освобождение гражданина от обязательств",
+    "citizen_commencement": "Возбуждение дела о банкротстве гражданина",
     "authority": "Юридическая сила источников",
     "bank_account": "Банковский счёт",
     "bank_deposit": "Банковский вклад",

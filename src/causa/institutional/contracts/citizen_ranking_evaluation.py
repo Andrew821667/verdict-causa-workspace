@@ -230,7 +230,9 @@ SYNTHETIC_CITIZEN_RANKING_BENCHMARKS = (
         expected_outcomes={
             "claim_deemed_discharged_for_want_of_property": False,
             "discharge_withheld_by_statutory_exception": True,
-            "requires_human_citizen_ranking_assessment": True,
+            # Флага нет с выпуска 1.27.0: изъятие выводит институт статьи 213.28,
+            # и признак сверяется с его выводом.
+            "requires_human_citizen_ranking_assessment": False,
         },
     ),
     CitizenRankingEvaluationTask(
@@ -342,10 +344,9 @@ SYNTHETIC_CITIZEN_RANKING_RED_TEAM_CASES = (
             claim_unsatisfied_for_want_of_property=True,
             statutory_exception_to_discharge_applies=True,
         ),
-        forbidden_outcomes={
-            "claim_deemed_discharged_for_want_of_property": True,
-            "requires_human_citizen_ranking_assessment": False,
-        },
+        # Прежняя редакция требовала ещё и флага юриста. Он был правомерен, пока
+        # статья 213.28 не была смоделирована; теперь изъятие выводит её институт.
+        forbidden_outcomes={"claim_deemed_discharged_for_want_of_property": True},
     ),
     CitizenRankingRedTeamCase(
         id="citizen-ranking-red-discharge-without-insufficiency",

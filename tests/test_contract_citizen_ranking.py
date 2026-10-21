@@ -148,10 +148,12 @@ def test_the_pledge_track_of_paragraph_five_yields_three_consequences() -> None:
 
 
 def test_an_unsatisfied_claim_is_discharged_unless_the_law_excepts_it() -> None:
-    """Пункт 6: погашение — ответ, исключение — флаг.
+    """Пункт 6: погашение — ответ, и заявленное исключение — тоже ответ.
 
-    Перечень исключений даёт статья 213.28, и его пакет не моделирует: заявленное
-    исключение снимает вывод о погашении, а не подменяется догадкой.
+    Перечень исключений даёт статья 213.28. В выпуске 1.26.0 пакет его не
+    моделировал, и заявленное исключение поднимало флаг юриста. С выпуска 1.27.0
+    изъятия выводит институт статьи 213.28, признак исключения сверяется с его
+    выводом, и флаг здесь был бы ложной тревогой.
     """
     discharged = _evaluate(_registry(claim_unsatisfied_for_want_of_property=True))
     withheld = _evaluate(
@@ -165,7 +167,8 @@ def test_an_unsatisfied_claim_is_discharged_unless_the_law_excepts_it() -> None:
     assert discharged.requires_human_citizen_ranking_assessment is False
     assert withheld.claim_deemed_discharged_for_want_of_property is False
     assert withheld.discharge_withheld_by_statutory_exception is True
-    assert withheld.requires_human_citizen_ranking_assessment is True
+    assert withheld.requires_human_citizen_ranking_assessment is False
+    assert any("213.28" in reason for reason in withheld.reasons_ru)
 
 
 def test_a_claim_with_no_place_in_either_order_is_told_so() -> None:

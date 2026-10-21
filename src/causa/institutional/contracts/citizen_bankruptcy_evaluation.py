@@ -196,7 +196,8 @@ SYNTHETIC_CITIZEN_BANKRUPTCY_BENCHMARKS = (
         expected_outcomes={
             "creditor_ranking_governed_by_bankruptcy_law": True,
             "liquidation_ranking_wrongly_applied_to_a_citizen": False,
-            "requires_human_citizen_bankruptcy_assessment": True,
+            # Флага нет с выпуска 1.26.0: очередь определяет институт статьи 213.27.
+            "requires_human_citizen_bankruptcy_assessment": False,
         },
     ),
     CitizenBankruptcyEvaluationTask(
@@ -338,10 +339,13 @@ SYNTHETIC_CITIZEN_BANKRUPTCY_RED_TEAM_CASES = (
         },
     ),
     CitizenBankruptcyRedTeamCase(
-        id="citizen-bankruptcy-red-the-model-does-not-rank",
-        title_ru="Названная применимость статьи 213.27 не выдаётся за определённую очередь",
+        id="citizen-bankruptcy-red-ranking-question-is-not-a-misapplication",
+        title_ru="Поставленный вопрос об очерёдности не выдаётся за неверно применённую",
+        # Прежний случай требовал флага юриста, пока статья 213.27 не была
+        # смоделирована. Теперь проверяется другое: названное правило — не
+        # обвинение в том, что применено чужое.
         facts=_facts(**_DECLARED_BANKRUPT, creditor_ranking_question_raised=True),
-        forbidden_outcomes={"requires_human_citizen_bankruptcy_assessment": False},
+        forbidden_outcomes={"liquidation_ranking_wrongly_applied_to_a_citizen": True},
     ),
     CitizenBankruptcyRedTeamCase(
         id="citizen-bankruptcy-red-entrepreneur-specifics-are-not-silent",

@@ -1,0 +1,764 @@
+{
+  "locale": "ru-RU",
+  "disclaimer_ru": "Синтетическая проверка возбуждения дела о банкротстве гражданина по статьям 213.3–213.5 закона 127-ФЗ. В демонстрационном деле спор о поставке ведут две организации, заявления о признании гражданина банкротом никто не подавал, и институт молчит: это и есть ожидаемый результат для такого дела. Не устанавливает судебный факт и не является юридической консультацией.",
+  "reviewed_mapping": {
+    "evidence_id": "reviewed-citizen-commencement-evidence-supply-1-v0",
+    "schema_version": "contracts.citizen-commencement-evidence.v0",
+    "mapping_version": "contracts-reviewed-citizen-commencement-to-facts-v0",
+    "facts": {
+      "debtor_is_a_citizen_under_chapter_10": false,
+      "applicant_is_the_citizen": false,
+      "applicant_is_a_monetary_creditor": false,
+      "applicant_is_authorised_body": false,
+      "applicant_is_another_person": false,
+      "creditor_claim_excluded_from_competitive_creditors": false,
+      "debtor_is_an_individual_entrepreneur": false,
+      "notice_of_intent_published_at_least_15_days_before": false,
+      "claims_against_the_citizen_at_least_500k": false,
+      "claims_unpaid_for_three_months_after_due": false,
+      "paying_some_creditors_makes_full_performance_to_others_impossible": false,
+      "duty_deadline_of_30_working_days_missed": false,
+      "circumstances_obviously_show_inability_to_perform_on_time": false,
+      "signs_of_insolvency_or_insufficiency_of_property": false,
+      "claim_confirmed_by_court_decision_in_force": false,
+      "claim_listed_in_article_213_5_paragraph_2": false
+    },
+    "legal_source_refs": [
+      "synthetic-ru-127fz-213.3-citizen-case-commencement-v1",
+      "synthetic-ru-127fz-213.4-citizen-own-application-v1",
+      "synthetic-ru-127fz-213.5-creditor-application-v1",
+      "synthetic-ru-127fz-2-basic-definitions-v1",
+      "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1"
+    ],
+    "provenance": [
+      {
+        "fact_name": "applicant_is_a_monetary_creditor",
+        "assertion_id": "citizen-commencement-evidence-applicant_is_a_monetary_creditor",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "applicant_is_another_person",
+        "assertion_id": "citizen-commencement-evidence-applicant_is_another_person",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "applicant_is_authorised_body",
+        "assertion_id": "citizen-commencement-evidence-applicant_is_authorised_body",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "applicant_is_the_citizen",
+        "assertion_id": "citizen-commencement-evidence-applicant_is_the_citizen",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "circumstances_obviously_show_inability_to_perform_on_time",
+        "assertion_id": "citizen-commencement-evidence-circumstances_obviously_show_inability_to_perform_on_time",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "claim_confirmed_by_court_decision_in_force",
+        "assertion_id": "citizen-commencement-evidence-claim_confirmed_by_court_decision_in_force",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "claim_listed_in_article_213_5_paragraph_2",
+        "assertion_id": "citizen-commencement-evidence-claim_listed_in_article_213_5_paragraph_2",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "claims_against_the_citizen_at_least_500k",
+        "assertion_id": "citizen-commencement-evidence-claims_against_the_citizen_at_least_500k",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "claims_unpaid_for_three_months_after_due",
+        "assertion_id": "citizen-commencement-evidence-claims_unpaid_for_three_months_after_due",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "creditor_claim_excluded_from_competitive_creditors",
+        "assertion_id": "citizen-commencement-evidence-creditor_claim_excluded_from_competitive_creditors",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_is_a_citizen_under_chapter_10",
+        "assertion_id": "citizen-commencement-evidence-debtor_is_a_citizen_under_chapter_10",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "debtor_is_an_individual_entrepreneur",
+        "assertion_id": "citizen-commencement-evidence-debtor_is_an_individual_entrepreneur",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "duty_deadline_of_30_working_days_missed",
+        "assertion_id": "citizen-commencement-evidence-duty_deadline_of_30_working_days_missed",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "notice_of_intent_published_at_least_15_days_before",
+        "assertion_id": "citizen-commencement-evidence-notice_of_intent_published_at_least_15_days_before",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "paying_some_creditors_makes_full_performance_to_others_impossible",
+        "assertion_id": "citizen-commencement-evidence-paying_some_creditors_makes_full_performance_to_others_impossible",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      },
+      {
+        "fact_name": "signs_of_insolvency_or_insufficiency_of_property",
+        "assertion_id": "citizen-commencement-evidence-signs_of_insolvency_or_insufficiency_of_property",
+        "source_refs": [
+          "synthetic-case-supply-1-citizen-commencement-evidence"
+        ]
+      }
+    ]
+  },
+  "constraint_set": {
+    "id": "citizen-commencement-constraint-set:reviewed-citizen-commencement-evidence-supply-1-v0",
+    "model_version": "contracts-citizen-commencement-articles-213-3-213-5-127fz-v0",
+    "legal_source_refs": [
+      "synthetic-ru-127fz-213.3-citizen-case-commencement-v1",
+      "synthetic-ru-127fz-213.4-citizen-own-application-v1",
+      "synthetic-ru-127fz-213.5-creditor-application-v1",
+      "synthetic-ru-127fz-2-basic-definitions-v1",
+      "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1"
+    ],
+    "expressions": [
+      "applicant_is_competitive_creditor_under_article_2 == debtor_is_a_citizen_under_chapter_10 AND applicant_is_a_monetary_creditor AND NOT creditor_claim_excluded_from_competitive_creditors",
+      "applicant_has_standing == debtor_is_a_citizen_under_chapter_10 AND (applicant_is_the_citizen OR applicant_is_competitive_creditor_under_article_2 OR applicant_is_authorised_body)",
+      "applicant_lacks_standing == debtor_is_a_citizen_under_chapter_10 AND (applicant_is_another_person OR (applicant_is_a_monetary_creditor AND creditor_claim_excluded_from_competitive_creditors))",
+      "statutory_threshold_met == debtor_is_a_citizen_under_chapter_10 AND claims_against_the_citizen_at_least_500k AND claims_unpaid_for_three_months_after_due",
+      "debtor_obliged_to_file == debtor_is_a_citizen_under_chapter_10 AND paying_some_creditors_makes_full_performance_to_others_impossible AND claims_against_the_citizen_at_least_500k",
+      "debtor_duty_to_file_breached == debtor_obliged_to_file AND duty_deadline_of_30_working_days_missed",
+      "debtor_may_file_on_foreseen_bankruptcy == debtor_is_a_citizen_under_chapter_10 AND circumstances_obviously_show_inability_to_perform_on_time AND signs_of_insolvency_or_insufficiency_of_property",
+      "creditor_claim_basis_sufficient == debtor_is_a_citizen_under_chapter_10 AND (claim_confirmed_by_court_decision_in_force OR claim_listed_in_article_213_5_paragraph_2)",
+      "entrepreneur_notice_missing == debtor_is_a_citizen_under_chapter_10 AND debtor_is_an_individual_entrepreneur AND NOT notice_of_intent_published_at_least_15_days_before AND (applicant_is_the_citizen OR (applicant_is_competitive_creditor_under_article_2 AND NOT claim_confirmed_by_court_decision_in_force AND claim_listed_in_article_213_5_paragraph_2))",
+      "debtors_application_admissible == debtor_is_a_citizen_under_chapter_10 AND applicant_is_the_citizen AND (statutory_threshold_met OR debtor_obliged_to_file OR debtor_may_file_on_foreseen_bankruptcy) AND NOT entrepreneur_notice_missing",
+      "creditors_application_admissible == debtor_is_a_citizen_under_chapter_10 AND (applicant_is_competitive_creditor_under_article_2 OR applicant_is_authorised_body) AND creditor_claim_basis_sufficient AND statutory_threshold_met AND NOT entrepreneur_notice_missing",
+      "threshold_displaced_for_the_debtors_own_application == debtors_application_admissible AND NOT statutory_threshold_met",
+      "requires_human_citizen_commencement_assessment == threshold_displaced_for_the_debtors_own_application OR debtor_may_file_on_foreseen_bankruptcy"
+    ]
+  },
+  "reviewed_evaluation": {
+    "constraint_set_id": "citizen-commencement-constraint-set:reviewed-citizen-commencement-evidence-supply-1-v0",
+    "satisfiable": true,
+    "applicant_is_competitive_creditor_under_article_2": false,
+    "applicant_has_standing": false,
+    "applicant_lacks_standing": false,
+    "statutory_threshold_met": false,
+    "debtor_obliged_to_file": false,
+    "debtor_duty_to_file_breached": false,
+    "debtor_may_file_on_foreseen_bankruptcy": false,
+    "creditor_claim_basis_sufficient": false,
+    "entrepreneur_notice_missing": false,
+    "debtors_application_admissible": false,
+    "creditors_application_admissible": false,
+    "threshold_displaced_for_the_debtors_own_application": false,
+    "requires_human_citizen_commencement_assessment": false,
+    "reasons_ru": [],
+    "warnings_ru": [
+      "Модель отвечает, примет ли суд заявление, а не чем закончится его рассмотрение: обоснованность заявления и выбор процедуры (статья 213.6) лежат вне её.",
+      "Пятьсот тысяч рублей, три месяца, тридцать рабочих и пятнадцать календарных дней — проверенные признаки рецензента, а не вычисления: денежных величин и дат в фактах модели нет.",
+      "Комплект документов к заявлению (пункт 3 статьи 213.4, пункт 3 статьи 213.5) и внесение вознаграждения финансового управляющего на депозит суда — порядок подачи, а не право на неё; модель их не проверяет.",
+      "Вытеснение порога пункта 2 статьи 213.3 основаниями статьи 213.4 — прочтение структуры текста. Разъяснения Пленума Верховного Суда о банкротстве граждан среди материалов пакета нет, и на него модель не ссылается."
+    ]
+  },
+  "benchmark_report": {
+    "id": "citizen-commencement-benchmark-report-v0",
+    "total": 18,
+    "passed": 18,
+    "failed": 0,
+    "results": [
+      {
+        "task_id": "citizen-commencement-bench-creditor-with-court-decision",
+        "passed": true,
+        "expected_outcomes": {
+          "applicant_is_competitive_creditor_under_article_2": true,
+          "applicant_has_standing": true,
+          "creditor_claim_basis_sufficient": true,
+          "creditors_application_admissible": true,
+          "requires_human_citizen_commencement_assessment": false
+        },
+        "observed_outcomes": {
+          "applicant_is_competitive_creditor_under_article_2": true,
+          "applicant_has_standing": true,
+          "creditor_claim_basis_sufficient": true,
+          "creditors_application_admissible": true,
+          "requires_human_citizen_commencement_assessment": false
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Требование кредитора имеет основание: оно подтверждено вступившим в законную силу решением суда (пункт 1 статьи 213.5).",
+          "Заявление кредитора или уполномоченного органа о признании гражданина банкротом подлежит принятию арбитражным судом: заявитель вправе обратиться, требование имеет основание статьи 213.5, и порог пункта 2 статьи 213.3 выполнен."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-bank-loan-without-decision",
+        "passed": true,
+        "expected_outcomes": {
+          "creditor_claim_basis_sufficient": true,
+          "creditors_application_admissible": true
+        },
+        "observed_outcomes": {
+          "creditor_claim_basis_sufficient": true,
+          "creditors_application_admissible": true
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Требование кредитора имеет основание: оно подтверждено требованием из закрытого перечня пункта 2 статьи 213.5, подаваемым без решения суда.",
+          "Заявление кредитора или уполномоченного органа о признании гражданина банкротом подлежит принятию арбитражным судом: заявитель вправе обратиться, требование имеет основание статьи 213.5, и порог пункта 2 статьи 213.3 выполнен."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-tax-authority-without-decision",
+        "passed": true,
+        "expected_outcomes": {
+          "applicant_has_standing": true,
+          "creditors_application_admissible": true
+        },
+        "observed_outcomes": {
+          "applicant_has_standing": true,
+          "creditors_application_admissible": true
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Требование кредитора имеет основание: оно подтверждено требованием из закрытого перечня пункта 2 статьи 213.5, подаваемым без решения суда.",
+          "Заявление кредитора или уполномоченного органа о признании гражданина банкротом подлежит принятию арбитражным судом: заявитель вправе обратиться, требование имеет основание статьи 213.5, и порог пункта 2 статьи 213.3 выполнен."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-creditor-without-any-basis",
+        "passed": true,
+        "expected_outcomes": {
+          "applicant_has_standing": true,
+          "creditor_claim_basis_sufficient": false,
+          "creditors_application_admissible": false
+        },
+        "observed_outcomes": {
+          "applicant_has_standing": true,
+          "creditor_claim_basis_sufficient": false,
+          "creditors_application_admissible": false
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Заявление кредитора принятию не подлежит: нет ни решения суда, вступившего в законную силу, ни требования из перечня пункта 2 статьи 213.5."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-creditor-below-threshold",
+        "passed": true,
+        "expected_outcomes": {
+          "statutory_threshold_met": false,
+          "creditors_application_admissible": false
+        },
+        "observed_outcomes": {
+          "statutory_threshold_met": false,
+          "creditors_application_admissible": false
+        },
+        "reasons_ru": [
+          "Требование кредитора имеет основание: оно подтверждено вступившим в законную силу решением суда (пункт 1 статьи 213.5).",
+          "Заявление кредитора принятию не подлежит: порог пункта 2 статьи 213.3 не выполнен, а к заявлению кредитора он применяется без изъятий."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-creditor-before-three-months",
+        "passed": true,
+        "expected_outcomes": {
+          "statutory_threshold_met": false,
+          "creditors_application_admissible": false
+        },
+        "observed_outcomes": {
+          "statutory_threshold_met": false,
+          "creditors_application_admissible": false
+        },
+        "reasons_ru": [
+          "Требование кредитора имеет основание: оно подтверждено вступившим в законную силу решением суда (пункт 1 статьи 213.5).",
+          "Заявление кредитора принятию не подлежит: порог пункта 2 статьи 213.3 не выполнен, а к заявлению кредитора он применяется без изъятий."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-excluded-creditor-lacks-standing",
+        "passed": true,
+        "expected_outcomes": {
+          "applicant_is_competitive_creditor_under_article_2": false,
+          "applicant_lacks_standing": true,
+          "creditors_application_admissible": false
+        },
+        "observed_outcomes": {
+          "applicant_is_competitive_creditor_under_article_2": false,
+          "applicant_lacks_standing": true,
+          "creditors_application_admissible": false
+        },
+        "reasons_ru": [
+          "Права на обращение в суд с заявлением о признании гражданина банкротом нет: заявитель — кредитор, но его требование из исключённых статьёй 2: вред жизни или здоровью, компенсация сверх возмещения вреда по Градостроительному кодексу, вознаграждение автору либо обязательство из участия в должнике; конкурсным кредитором он не является (пункт 1 статьи 213.3 и статья 2 закона 127-ФЗ).",
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Требование кредитора имеет основание: оно подтверждено вступившим в законную силу решением суда (пункт 1 статьи 213.5)."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-another-person-lacks-standing",
+        "passed": true,
+        "expected_outcomes": {
+          "applicant_has_standing": false,
+          "applicant_lacks_standing": true
+        },
+        "observed_outcomes": {
+          "applicant_has_standing": false,
+          "applicant_lacks_standing": true
+        },
+        "reasons_ru": [
+          "Права на обращение в суд с заявлением о признании гражданина банкротом нет: заявитель не гражданин-должник, не кредитор по денежному обязательству и не уполномоченный орган (пункт 1 статьи 213.3 и статья 2 закона 127-ФЗ).",
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-citizen-with-threshold",
+        "passed": true,
+        "expected_outcomes": {
+          "debtors_application_admissible": true,
+          "threshold_displaced_for_the_debtors_own_application": false,
+          "requires_human_citizen_commencement_assessment": false
+        },
+        "observed_outcomes": {
+          "debtors_application_admissible": true,
+          "threshold_displaced_for_the_debtors_own_application": false,
+          "requires_human_citizen_commencement_assessment": false
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Заявление гражданина о признании его банкротом подлежит принятию арбитражным судом."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-debtor-duty",
+        "passed": true,
+        "expected_outcomes": {
+          "debtor_obliged_to_file": true,
+          "debtors_application_admissible": true,
+          "threshold_displaced_for_the_debtors_own_application": true,
+          "requires_human_citizen_commencement_assessment": true
+        },
+        "observed_outcomes": {
+          "debtor_obliged_to_file": true,
+          "debtors_application_admissible": true,
+          "threshold_displaced_for_the_debtors_own_application": true,
+          "requires_human_citizen_commencement_assessment": true
+        },
+        "reasons_ru": [
+          "Гражданин обязан обратиться в арбитражный суд с заявлением о признании его банкротом: удовлетворение требований одних кредиторов приводит к невозможности исполнения перед другими в полном объёме, и совокупный размер обязательств не менее пятисот тысяч рублей (пункт 1 статьи 213.4 закона). Срок — тридцать рабочих дней со дня, когда он узнал или должен был узнать об этом.",
+          "Заявление гражданина о признании его банкротом подлежит принятию арбитражным судом.",
+          "Заявление гражданина принимается без порога пункта 2 статьи 213.3: модель читает основания статьи 213.4 как то «иное», о котором говорит оговорка этого пункта, потому что обязанность пункта 1 надо исполнить в тридцать рабочих дней, а предвидение банкротства пункта 2 предшествует просрочке. Это прочтение структуры текста, а не прямая норма, и разъяснения Пленума о банкротстве граждан среди материалов пакета нет — требуется проверка юристом.",
+          "Требуется оценка юриста: очевидность неспособности исполнить обязательства в срок и вытеснение порога статьёй 213.4 модель не устанавливает, а называет."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-debtor-duty-breached",
+        "passed": true,
+        "expected_outcomes": {
+          "debtor_obliged_to_file": true,
+          "debtor_duty_to_file_breached": true
+        },
+        "observed_outcomes": {
+          "debtor_obliged_to_file": true,
+          "debtor_duty_to_file_breached": true
+        },
+        "reasons_ru": [
+          "Гражданин обязан обратиться в арбитражный суд с заявлением о признании его банкротом: удовлетворение требований одних кредиторов приводит к невозможности исполнения перед другими в полном объёме, и совокупный размер обязательств не менее пятисот тысяч рублей (пункт 1 статьи 213.4 закона). Срок — тридцать рабочих дней со дня, когда он узнал или должен был узнать об этом.",
+          "Обязанность обратиться в суд нарушена: тридцать рабочих дней истекли без заявления. Последствий нарушения статья 213.4 не называет, и модель называет только само нарушение.",
+          "Заявление гражданина о признании его банкротом подлежит принятию арбитражным судом.",
+          "Заявление гражданина принимается без порога пункта 2 статьи 213.3: модель читает основания статьи 213.4 как то «иное», о котором говорит оговорка этого пункта, потому что обязанность пункта 1 надо исполнить в тридцать рабочих дней, а предвидение банкротства пункта 2 предшествует просрочке. Это прочтение структуры текста, а не прямая норма, и разъяснения Пленума о банкротстве граждан среди материалов пакета нет — требуется проверка юристом.",
+          "Требуется оценка юриста: очевидность неспособности исполнить обязательства в срок и вытеснение порога статьёй 213.4 модель не устанавливает, а называет."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-foreseen-bankruptcy",
+        "passed": true,
+        "expected_outcomes": {
+          "debtor_may_file_on_foreseen_bankruptcy": true,
+          "debtors_application_admissible": true,
+          "requires_human_citizen_commencement_assessment": true
+        },
+        "observed_outcomes": {
+          "debtor_may_file_on_foreseen_bankruptcy": true,
+          "debtors_application_admissible": true,
+          "requires_human_citizen_commencement_assessment": true
+        },
+        "reasons_ru": [
+          "Гражданин вправе обратиться с заявлением при предвидении банкротства: обстоятельства очевидно свидетельствуют, что он не в состоянии исполнить обязательства в установленный срок, и он отвечает признакам неплатёжеспособности и (или) недостаточности имущества (пункт 2 статьи 213.4 закона). Что «очевидно свидетельствует», оценивает суд.",
+          "Заявление гражданина о признании его банкротом подлежит принятию арбитражным судом.",
+          "Заявление гражданина принимается без порога пункта 2 статьи 213.3: модель читает основания статьи 213.4 как то «иное», о котором говорит оговорка этого пункта, потому что обязанность пункта 1 надо исполнить в тридцать рабочих дней, а предвидение банкротства пункта 2 предшествует просрочке. Это прочтение структуры текста, а не прямая норма, и разъяснения Пленума о банкротстве граждан среди материалов пакета нет — требуется проверка юристом.",
+          "Требуется оценка юриста: очевидность неспособности исполнить обязательства в срок и вытеснение порога статьёй 213.4 модель не устанавливает, а называет."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-citizen-without-any-ground",
+        "passed": true,
+        "expected_outcomes": {
+          "applicant_has_standing": true,
+          "debtors_application_admissible": false
+        },
+        "observed_outcomes": {
+          "applicant_has_standing": true,
+          "debtors_application_admissible": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "task_id": "citizen-commencement-bench-entrepreneur-without-notice",
+        "passed": true,
+        "expected_outcomes": {
+          "entrepreneur_notice_missing": true,
+          "debtors_application_admissible": false
+        },
+        "observed_outcomes": {
+          "entrepreneur_notice_missing": true,
+          "debtors_application_admissible": false
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Должник — индивидуальный предприниматель, и право на заявление ещё не возникло: уведомление о намерении обратиться в суд не опубликовано в Едином федеральном реестре сведений о фактах деятельности юридических лиц не менее чем за пятнадцать календарных дней (пункт 2.1 статьи 213.4, пункт 2 статьи 213.5 закона)."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-entrepreneur-with-notice",
+        "passed": true,
+        "expected_outcomes": {
+          "entrepreneur_notice_missing": false,
+          "debtors_application_admissible": true
+        },
+        "observed_outcomes": {
+          "entrepreneur_notice_missing": false,
+          "debtors_application_admissible": true
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Заявление гражданина о признании его банкротом подлежит принятию арбитражным судом."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-entrepreneur-creditor-with-decision",
+        "passed": true,
+        "expected_outcomes": {
+          "entrepreneur_notice_missing": false,
+          "creditors_application_admissible": true
+        },
+        "observed_outcomes": {
+          "entrepreneur_notice_missing": false,
+          "creditors_application_admissible": true
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Требование кредитора имеет основание: оно подтверждено вступившим в законную силу решением суда (пункт 1 статьи 213.5).",
+          "Заявление кредитора или уполномоченного органа о признании гражданина банкротом подлежит принятию арбитражным судом: заявитель вправе обратиться, требование имеет основание статьи 213.5, и порог пункта 2 статьи 213.3 выполнен."
+        ]
+      },
+      {
+        "task_id": "citizen-commencement-bench-outside-chapter-10-is-silent",
+        "passed": true,
+        "expected_outcomes": {
+          "applicant_has_standing": false,
+          "creditors_application_admissible": false,
+          "requires_human_citizen_commencement_assessment": false
+        },
+        "observed_outcomes": {
+          "applicant_has_standing": false,
+          "creditors_application_admissible": false,
+          "requires_human_citizen_commencement_assessment": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "task_id": "citizen-commencement-bench-empty-facts-say-nothing",
+        "passed": true,
+        "expected_outcomes": {
+          "applicant_has_standing": false,
+          "applicant_lacks_standing": false,
+          "statutory_threshold_met": false,
+          "debtor_obliged_to_file": false,
+          "debtor_may_file_on_foreseen_bankruptcy": false,
+          "debtors_application_admissible": false,
+          "creditors_application_admissible": false,
+          "requires_human_citizen_commencement_assessment": false
+        },
+        "observed_outcomes": {
+          "applicant_has_standing": false,
+          "applicant_lacks_standing": false,
+          "statutory_threshold_met": false,
+          "debtor_obliged_to_file": false,
+          "debtor_may_file_on_foreseen_bankruptcy": false,
+          "debtors_application_admissible": false,
+          "creditors_application_admissible": false,
+          "requires_human_citizen_commencement_assessment": false
+        },
+        "reasons_ru": []
+      }
+    ]
+  },
+  "red_team_report": {
+    "id": "citizen-commencement-red-team-report-v0",
+    "total": 15,
+    "blocked": 15,
+    "unblocked": 0,
+    "results": [
+      {
+        "case_id": "citizen-commencement-red-every-creditor-has-standing",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "applicant_is_competitive_creditor_under_article_2": true,
+          "applicant_has_standing": true,
+          "creditors_application_admissible": true
+        },
+        "observed_outcomes": {
+          "applicant_is_competitive_creditor_under_article_2": false,
+          "applicant_has_standing": false,
+          "creditors_application_admissible": false
+        },
+        "reasons_ru": [
+          "Права на обращение в суд с заявлением о признании гражданина банкротом нет: заявитель — кредитор, но его требование из исключённых статьёй 2: вред жизни или здоровью, компенсация сверх возмещения вреда по Градостроительному кодексу, вознаграждение автору либо обязательство из участия в должнике; конкурсным кредитором он не является (пункт 1 статьи 213.3 и статья 2 закона 127-ФЗ).",
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Требование кредитора имеет основание: оно подтверждено вступившим в законную силу решением суда (пункт 1 статьи 213.5)."
+        ]
+      },
+      {
+        "case_id": "citizen-commencement-red-another-person-files",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "applicant_has_standing": true,
+          "creditors_application_admissible": true,
+          "debtors_application_admissible": true
+        },
+        "observed_outcomes": {
+          "applicant_has_standing": false,
+          "creditors_application_admissible": false,
+          "debtors_application_admissible": false
+        },
+        "reasons_ru": [
+          "Права на обращение в суд с заявлением о признании гражданина банкротом нет: заявитель не гражданин-должник, не кредитор по денежному обязательству и не уполномоченный орган (пункт 1 статьи 213.3 и статья 2 закона 127-ФЗ).",
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены."
+        ]
+      },
+      {
+        "case_id": "citizen-commencement-red-creditor-skips-the-threshold",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "creditors_application_admissible": true
+        },
+        "observed_outcomes": {
+          "creditors_application_admissible": false
+        },
+        "reasons_ru": [
+          "Гражданин вправе обратиться с заявлением при предвидении банкротства: обстоятельства очевидно свидетельствуют, что он не в состоянии исполнить обязательства в установленный срок, и он отвечает признакам неплатёжеспособности и (или) недостаточности имущества (пункт 2 статьи 213.4 закона). Что «очевидно свидетельствует», оценивает суд.",
+          "Требование кредитора имеет основание: оно подтверждено вступившим в законную силу решением суда (пункт 1 статьи 213.5).",
+          "Заявление кредитора принятию не подлежит: порог пункта 2 статьи 213.3 не выполнен, а к заявлению кредитора он применяется без изъятий.",
+          "Требуется оценка юриста: очевидность неспособности исполнить обязательства в срок и вытеснение порога статьёй 213.4 модель не устанавливает, а называет."
+        ]
+      },
+      {
+        "case_id": "citizen-commencement-red-threshold-as-either-condition",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "statutory_threshold_met": true
+        },
+        "observed_outcomes": {
+          "statutory_threshold_met": false
+        },
+        "reasons_ru": [
+          "Требование кредитора имеет основание: оно подтверждено вступившим в законную силу решением суда (пункт 1 статьи 213.5).",
+          "Заявление кредитора принятию не подлежит: порог пункта 2 статьи 213.3 не выполнен, а к заявлению кредитора он применяется без изъятий."
+        ]
+      },
+      {
+        "case_id": "citizen-commencement-red-creditor-without-basis",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "creditors_application_admissible": true
+        },
+        "observed_outcomes": {
+          "creditors_application_admissible": false
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Заявление кредитора принятию не подлежит: нет ни решения суда, вступившего в законную силу, ни требования из перечня пункта 2 статьи 213.5."
+        ]
+      },
+      {
+        "case_id": "citizen-commencement-red-notice-for-every-applicant",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "entrepreneur_notice_missing": true,
+          "creditors_application_admissible": false
+        },
+        "observed_outcomes": {
+          "entrepreneur_notice_missing": false,
+          "creditors_application_admissible": true
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Требование кредитора имеет основание: оно подтверждено вступившим в законную силу решением суда (пункт 1 статьи 213.5).",
+          "Заявление кредитора или уполномоченного органа о признании гражданина банкротом подлежит принятию арбитражным судом: заявитель вправе обратиться, требование имеет основание статьи 213.5, и порог пункта 2 статьи 213.3 выполнен."
+        ]
+      },
+      {
+        "case_id": "citizen-commencement-red-notice-for-the-authorised-body",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "entrepreneur_notice_missing": true
+        },
+        "observed_outcomes": {
+          "entrepreneur_notice_missing": false
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Требование кредитора имеет основание: оно подтверждено требованием из закрытого перечня пункта 2 статьи 213.5, подаваемым без решения суда.",
+          "Заявление кредитора или уполномоченного органа о признании гражданина банкротом подлежит принятию арбитражным судом: заявитель вправе обратиться, требование имеет основание статьи 213.5, и порог пункта 2 статьи 213.3 выполнен."
+        ]
+      },
+      {
+        "case_id": "citizen-commencement-red-entrepreneur-skips-the-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "debtors_application_admissible": true
+        },
+        "observed_outcomes": {
+          "debtors_application_admissible": false
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Должник — индивидуальный предприниматель, и право на заявление ещё не возникло: уведомление о намерении обратиться в суд не опубликовано в Едином федеральном реестре сведений о фактах деятельности юридических лиц не менее чем за пятнадцать календарных дней (пункт 2.1 статьи 213.4, пункт 2 статьи 213.5 закона)."
+        ]
+      },
+      {
+        "case_id": "citizen-commencement-red-listed-creditor-of-entrepreneur-skips-notice",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "creditors_application_admissible": true
+        },
+        "observed_outcomes": {
+          "creditors_application_admissible": false
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Требование кредитора имеет основание: оно подтверждено требованием из закрытого перечня пункта 2 статьи 213.5, подаваемым без решения суда.",
+          "Должник — индивидуальный предприниматель, и право на заявление ещё не возникло: уведомление о намерении обратиться в суд не опубликовано в Едином федеральном реестре сведений о фактах деятельности юридических лиц не менее чем за пятнадцать календарных дней (пункт 2.1 статьи 213.4, пункт 2 статьи 213.5 закона).",
+          "Заявление кредитора принятию не подлежит: уведомление предпринимателя не опубликовано."
+        ]
+      },
+      {
+        "case_id": "citizen-commencement-red-displacement-is-not-silent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_commencement_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_commencement_assessment": true
+        },
+        "reasons_ru": [
+          "Гражданин обязан обратиться в арбитражный суд с заявлением о признании его банкротом: удовлетворение требований одних кредиторов приводит к невозможности исполнения перед другими в полном объёме, и совокупный размер обязательств не менее пятисот тысяч рублей (пункт 1 статьи 213.4 закона). Срок — тридцать рабочих дней со дня, когда он узнал или должен был узнать об этом.",
+          "Заявление гражданина о признании его банкротом подлежит принятию арбитражным судом.",
+          "Заявление гражданина принимается без порога пункта 2 статьи 213.3: модель читает основания статьи 213.4 как то «иное», о котором говорит оговорка этого пункта, потому что обязанность пункта 1 надо исполнить в тридцать рабочих дней, а предвидение банкротства пункта 2 предшествует просрочке. Это прочтение структуры текста, а не прямая норма, и разъяснения Пленума о банкротстве граждан среди материалов пакета нет — требуется проверка юристом.",
+          "Требуется оценка юриста: очевидность неспособности исполнить обязательства в срок и вытеснение порога статьёй 213.4 модель не устанавливает, а называет."
+        ]
+      },
+      {
+        "case_id": "citizen-commencement-red-foreseen-bankruptcy-is-not-silent",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_commencement_assessment": false
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_commencement_assessment": true
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Гражданин вправе обратиться с заявлением при предвидении банкротства: обстоятельства очевидно свидетельствуют, что он не в состоянии исполнить обязательства в установленный срок, и он отвечает признакам неплатёжеспособности и (или) недостаточности имущества (пункт 2 статьи 213.4 закона). Что «очевидно свидетельствует», оценивает суд.",
+          "Заявление гражданина о признании его банкротом подлежит принятию арбитражным судом.",
+          "Требуется оценка юриста: очевидность неспособности исполнить обязательства в срок и вытеснение порога статьёй 213.4 модель не устанавливает, а называет."
+        ]
+      },
+      {
+        "case_id": "citizen-commencement-red-duty-without-the-aggregate",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "debtor_obliged_to_file": true
+        },
+        "observed_outcomes": {
+          "debtor_obliged_to_file": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "case_id": "citizen-commencement-red-signs-without-obviousness",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "debtor_may_file_on_foreseen_bankruptcy": true,
+          "debtors_application_admissible": true
+        },
+        "observed_outcomes": {
+          "debtor_may_file_on_foreseen_bankruptcy": false,
+          "debtors_application_admissible": false
+        },
+        "reasons_ru": []
+      },
+      {
+        "case_id": "citizen-commencement-red-threshold-met-raises-a-spurious-flag",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_commencement_assessment": true
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_commencement_assessment": false
+        },
+        "reasons_ru": [
+          "Порог пункта 2 статьи 213.3 закона 127-ФЗ выполнен: требования к гражданину составляют не менее пятисот тысяч рублей и не исполнены в течение трёх месяцев с даты, когда должны были быть исполнены.",
+          "Заявление гражданина о признании его банкротом подлежит принятию арбитражным судом."
+        ]
+      },
+      {
+        "case_id": "citizen-commencement-red-empty-facts-raise-no-flag",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "requires_human_citizen_commencement_assessment": true
+        },
+        "observed_outcomes": {
+          "requires_human_citizen_commencement_assessment": false
+        },
+        "reasons_ru": []
+      }
+    ]
+  },
+  "source_urls": [
+    "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527"
+  ]
+}

@@ -2378,6 +2378,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_synthetic_citizen_release_evaluation.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.27.0",
+        to_version="1.28.0",
+        reasons=[
+            "The analysis request gains a required field, citizen_commencement_evidence, and the result gains three: the mapping, the constraint set and the evaluation of the institute of articles 213.3-213.5. A stored request does not carry the field and cannot be replayed as it stands.",
+            "Two flags change meaning: the article 25 institute no longer raises the human flag on a raised ranking question, and the article 213.27 institute no longer raises it on an asserted exception to discharge, because both questions are answered by institutes modelled in releases 1.26.0 and 1.27.0. A stored analysis carrying those flags and the reasons that the package did not model articles 213.27 and 213.28 states something the package no longer holds and must be replayed.",
+        ],
+        reasons_ru=[
+            "Запрос анализа получает обязательное поле citizen_commencement_evidence, а результат — три: разбор, набор ограничений и вывод института статей 213.3–213.5. Сохранённый запрос этого поля не несёт и в прежнем виде повторно прогнан быть не может.",
+            "Два флага меняют смысл: институт статьи 25 больше не поднимает флаг юриста на поставленном вопросе об очерёдности, а институт статьи 213.27 — на заявленном исключении из погашения, потому что на оба вопроса отвечают институты, смоделированные в выпусках 1.26.0 и 1.27.0. Сохранённый анализ с этими флагами и с причинами «пакет статьи 213.27 и 213.28 не моделирует» говорит то, чего в пакете больше нет, и подлежит повторному прогону.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_citizen_commencement_evaluation.py",
+            "python scripts/export_synthetic_citizen_bankruptcy_evaluation.py",
+            "python scripts/export_synthetic_citizen_ranking_evaluation.py",
+        ],
+    ),
 ]
 
 
