@@ -35924,7 +35924,7 @@
     },
     "obligation_dynamics_constraint_set": {
       "id": "obligation-dynamics-constraint-set:reviewed-obligation-dynamics-evidence-supply-1-v0",
-      "model_version": "contracts-obligation-dynamics-articles-382-419-v0",
+      "model_version": "contracts-obligation-dynamics-articles-382-419-v1",
       "legal_source_refs": [
         "synthetic-ru-gk382-390-assignment-v1",
         "synthetic-ru-gk391-3923-debt-transfer-v1",
@@ -35966,8 +35966,8 @@
         "notary_deposit_discharge == obligation_exists AND notary_or_court_deposit_made AND deposit_ground_creditor_absent_or_evasive",
         "notary_deposit_notice_issue == notary_deposit_discharge AND NOT deposit_notice_sent",
         "novation_effective == obligation_exists AND novation_agreed AND novation_intent_clear AND new_subject_or_basis AND new_obligation_terms_agreed AND novation_form_observed",
-        "obligation_discharged_full == (proper_performance_discharge OR notary_deposit_discharge OR accord_discharge OR setoff_full_discharge OR novation_effective OR debt_forgiveness_effective OR merger_discharge OR impossibility_discharge OR government_act_discharge OR death_discharge OR liquidation_discharge OR other_discharge_effective) AND NOT partial_termination_intended",
-        "obligation_partially_remaining == obligation_exists AND (partial_performance_discharge OR setoff_partial_discharge OR partial_termination_intended) AND NOT obligation_discharged_full",
+        "obligation_discharged_full == (proper_performance_discharge OR notary_deposit_discharge OR accord_discharge OR setoff_full_discharge OR novation_effective OR debt_forgiveness_effective OR merger_discharge OR impossibility_discharge OR government_act_discharge OR death_discharge OR liquidation_discharge OR other_discharge_effective OR (debtor_original_performance_discharges AND NOT performance_partial)) AND NOT partial_termination_intended",
+        "obligation_partially_remaining == obligation_exists AND (partial_performance_discharge OR setoff_partial_discharge OR partial_termination_intended OR (debtor_original_performance_discharges AND performance_partial)) AND NOT obligation_discharged_full",
         "original_accessories_terminated_by_novation == novation_effective AND third_party_security_exists AND NOT third_party_security_consented_novation",
         "original_debtor_released_effective == debt_transfer_effective AND original_debtor_released",
         "other_discharge_effective == obligation_exists AND other_discharge_ground_proven",
@@ -39706,7 +39706,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.35.0",
+      "institutional_package_version": "contracts-ru-v0@1.36.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",

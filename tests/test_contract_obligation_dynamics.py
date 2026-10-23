@@ -182,9 +182,9 @@ def test_dynamics_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_obligation_dynamics_benchmark_suite()
     red_team = run_obligation_dynamics_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_OBLIGATION_DYNAMICS_BENCHMARKS) == 21
+    assert benchmark.total == len(SYNTHETIC_OBLIGATION_DYNAMICS_BENCHMARKS) == 23
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_OBLIGATION_DYNAMICS_RED_TEAM_CASES) == 22
+    assert red_team.total == len(SYNTHETIC_OBLIGATION_DYNAMICS_RED_TEAM_CASES) == 23
     assert red_team.blocked == red_team.total
 
 

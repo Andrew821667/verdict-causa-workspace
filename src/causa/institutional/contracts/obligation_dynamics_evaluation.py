@@ -321,6 +321,30 @@ SYNTHETIC_OBLIGATION_DYNAMICS_BENCHMARKS = (
             "competing_discharge_paths": True,
         },
     ),
+    ObligationDynamicsEvaluationTask(
+        id="dynamics-bench-performance-to-original-creditor",
+        title_ru="Исполнение первоначальному кредитору до уведомления прекращает обязательство",
+        facts=_assignment(debtor_performed_original_before_notice=True),
+        expected_outcomes={
+            "debtor_original_performance_discharges": True,
+            "obligation_discharged_full": True,
+            "parties_changed_not_discharged": False,
+        },
+    ),
+    ObligationDynamicsEvaluationTask(
+        id="dynamics-bench-partial-performance-to-original-creditor",
+        title_ru="Частичное исполнение первоначальному кредитору — обязательство в остатке",
+        facts=_assignment(
+            debtor_performed_original_before_notice=True,
+            performance_rendered=True,
+            performance_partial=True,
+        ),
+        expected_outcomes={
+            "debtor_original_performance_discharges": True,
+            "obligation_discharged_full": False,
+            "obligation_partially_remaining": True,
+        },
+    ),
 )
 
 
@@ -518,6 +542,12 @@ SYNTHETIC_OBLIGATION_DYNAMICS_RED_TEAM_CASES = (
             statutory_successor_exists=True,
         ),
         forbidden_outcomes={"liquidation_discharge": True},
+    ),
+    ObligationDynamicsRedTeamCase(
+        id="dynamics-red-performance-to-original-creditor-ignored",
+        title_ru="Считать обязательство неисполненным после исполнения прежнему кредитору",
+        facts=_assignment(debtor_performed_original_before_notice=True),
+        forbidden_outcomes={"obligation_discharged_full": False},
     ),
 )
 

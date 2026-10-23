@@ -566,19 +566,12 @@ LAYER_OUTPUT_ROUTES: dict[str, dict[str, tuple[OutputRoute, str]]] = {
         ),
     },
     "obligation_dynamics": {
-        "assignment_effective": (_CONTENT, _PARTY_CHANGE),
         "assignment_enforceable_against_debtor": (_CONTENT, _PARTY_CHANGE),
         "assignment_contract_breach_issue": (
             _REMEDY,
             "уступка денежного требования вопреки договорному запрету действительна, но "
             "цедент отвечает перед должником (пункт 3 статьи 388) — ответственность, а не "
             "судьба требования",
-        ),
-        "debtor_original_performance_discharges": (
-            _OPEN,
-            "исполнение первоначальному кредитору до уведомления об уступке прекращает "
-            "обязательство (пункт 3 статьи 382); в правило прекращения обязательства этот "
-            "вывод не входит, и obligation_discharged_full о нём не знает",
         ),
         "debtor_defenses_preserved": (
             _REMEDY,

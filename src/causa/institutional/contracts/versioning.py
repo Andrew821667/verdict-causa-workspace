@@ -46,6 +46,21 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.36.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Article 382(3) of the Civil Code is wired into the discharge rule of the obligation-dynamics institute: performance to the original creditor before notice of the assignment discharges the obligation - fully when complete, in the performed part when partial. The institute named this conclusion, but the discharge rule did not include it, so the obligation stayed unperformed and the general-effects layer kept the breach finding in force. The audit of conclusions found it. The performance is not added to the list of competing discharge grounds: it is performance, not a separate way of discharge.",
+        ],
+        notes_ru=[
+            "Пункт 3 статьи 382 ГК РФ входит в правило прекращения обязательства в институте динамики обязательства: исполнение первоначальному кредитору до уведомления об уступке прекращает обязательство — полностью при полном исполнении, в исполненной части при частичном. Институт называл этот вывод, но правило прекращения его не учитывало, обязательство оставалось неисполненным, и слой общих положений сохранял силу вывода о нарушении. Нашёл это аудит по выводам. В перечень конкурирующих оснований прекращения такое исполнение не включено: это исполнение, а не самостоятельный способ прекращения.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.35.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

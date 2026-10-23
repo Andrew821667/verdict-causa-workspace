@@ -2514,6 +2514,21 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_rule_parity_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.35.0",
+        to_version="1.36.0",
+        reasons=[
+            "The obligation-dynamics model version changes, and obligation_discharged_full and obligation_partially_remaining now hold after performance to the original creditor before notice of the assignment. A stored analysis where that performance occurred reported the obligation as not discharged and must be replayed.",
+        ],
+        reasons_ru=[
+            "Версия модели динамики обязательства меняется, а obligation_discharged_full и obligation_partially_remaining теперь истинны после исполнения первоначальному кредитору до уведомления об уступке. Сохранённый анализ, где такое исполнение было, называл обязательство непрекращённым и подлежит повторному прогону.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_rule_parity_report.py",
+        ],
+    ),
 ]
 
 

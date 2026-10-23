@@ -684,7 +684,7 @@
   },
   "constraint_set": {
     "id": "obligation-dynamics-constraint-set:reviewed-obligation-dynamics-evidence-supply-1-v0",
-    "model_version": "contracts-obligation-dynamics-articles-382-419-v0",
+    "model_version": "contracts-obligation-dynamics-articles-382-419-v1",
     "legal_source_refs": [
       "synthetic-ru-gk382-390-assignment-v1",
       "synthetic-ru-gk391-3923-debt-transfer-v1",
@@ -726,8 +726,8 @@
       "notary_deposit_discharge == obligation_exists AND notary_or_court_deposit_made AND deposit_ground_creditor_absent_or_evasive",
       "notary_deposit_notice_issue == notary_deposit_discharge AND NOT deposit_notice_sent",
       "novation_effective == obligation_exists AND novation_agreed AND novation_intent_clear AND new_subject_or_basis AND new_obligation_terms_agreed AND novation_form_observed",
-      "obligation_discharged_full == (proper_performance_discharge OR notary_deposit_discharge OR accord_discharge OR setoff_full_discharge OR novation_effective OR debt_forgiveness_effective OR merger_discharge OR impossibility_discharge OR government_act_discharge OR death_discharge OR liquidation_discharge OR other_discharge_effective) AND NOT partial_termination_intended",
-      "obligation_partially_remaining == obligation_exists AND (partial_performance_discharge OR setoff_partial_discharge OR partial_termination_intended) AND NOT obligation_discharged_full",
+      "obligation_discharged_full == (proper_performance_discharge OR notary_deposit_discharge OR accord_discharge OR setoff_full_discharge OR novation_effective OR debt_forgiveness_effective OR merger_discharge OR impossibility_discharge OR government_act_discharge OR death_discharge OR liquidation_discharge OR other_discharge_effective OR (debtor_original_performance_discharges AND NOT performance_partial)) AND NOT partial_termination_intended",
+      "obligation_partially_remaining == obligation_exists AND (partial_performance_discharge OR setoff_partial_discharge OR partial_termination_intended OR (debtor_original_performance_discharges AND performance_partial)) AND NOT obligation_discharged_full",
       "original_accessories_terminated_by_novation == novation_effective AND third_party_security_exists AND NOT third_party_security_consented_novation",
       "original_debtor_released_effective == debt_transfer_effective AND original_debtor_released",
       "other_discharge_effective == obligation_exists AND other_discharge_ground_proven",
@@ -807,8 +807,8 @@
   },
   "benchmark_report": {
     "id": "obligation-dynamics-benchmark-report-v0",
-    "total": 21,
-    "passed": 21,
+    "total": 23,
+    "passed": 23,
     "failed": 0,
     "results": [
       {
@@ -884,8 +884,8 @@
           "debtor_original_performance_discharges": true
         },
         "reasons_ru": [
-          "Состав участников изменен без прекращения обязательства.",
-          "Полное или частичное прекращение обязательства не подтверждено."
+          "Должник исполнил первоначальному кредитору до получения уведомления о переходе права: обязательство прекращается этим исполнением, а риск последствий несёт новый кредитор (пункт 3 статьи 382 ГК РФ).",
+          "Выявлено формальное основание полного прекращения обязательства."
         ]
       },
       {
@@ -1133,13 +1133,50 @@
         "reasons_ru": [
           "Выявлено формальное основание полного прекращения обязательства."
         ]
+      },
+      {
+        "task_id": "dynamics-bench-performance-to-original-creditor",
+        "passed": true,
+        "expected_outcomes": {
+          "debtor_original_performance_discharges": true,
+          "obligation_discharged_full": true,
+          "parties_changed_not_discharged": false
+        },
+        "observed_outcomes": {
+          "debtor_original_performance_discharges": true,
+          "obligation_discharged_full": true,
+          "parties_changed_not_discharged": false
+        },
+        "reasons_ru": [
+          "Должник исполнил первоначальному кредитору до получения уведомления о переходе права: обязательство прекращается этим исполнением, а риск последствий несёт новый кредитор (пункт 3 статьи 382 ГК РФ).",
+          "Выявлено формальное основание полного прекращения обязательства."
+        ]
+      },
+      {
+        "task_id": "dynamics-bench-partial-performance-to-original-creditor",
+        "passed": true,
+        "expected_outcomes": {
+          "debtor_original_performance_discharges": true,
+          "obligation_discharged_full": false,
+          "obligation_partially_remaining": true
+        },
+        "observed_outcomes": {
+          "debtor_original_performance_discharges": true,
+          "obligation_discharged_full": false,
+          "obligation_partially_remaining": true
+        },
+        "reasons_ru": [
+          "Состав участников изменен без прекращения обязательства.",
+          "Должник исполнил первоначальному кредитору до получения уведомления о переходе права: обязательство прекращается этим исполнением, а риск последствий несёт новый кредитор (пункт 3 статьи 382 ГК РФ).",
+          "Обязательство прекращено только в части и сохраняется в остатке."
+        ]
       }
     ]
   },
   "red_team_report": {
     "id": "obligation-dynamics-red-team-report-v0",
-    "total": 22,
-    "blocked": 22,
+    "total": 23,
+    "blocked": 23,
     "unblocked": 0,
     "results": [
       {
@@ -1427,6 +1464,20 @@
         },
         "reasons_ru": [
           "Полное или частичное прекращение обязательства не подтверждено."
+        ]
+      },
+      {
+        "case_id": "dynamics-red-performance-to-original-creditor-ignored",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "obligation_discharged_full": false
+        },
+        "observed_outcomes": {
+          "obligation_discharged_full": true
+        },
+        "reasons_ru": [
+          "Должник исполнил первоначальному кредитору до получения уведомления о переходе права: обязательство прекращается этим исполнением, а риск последствий несёт новый кредитор (пункт 3 статьи 382 ГК РФ).",
+          "Выявлено формальное основание полного прекращения обязательства."
         ]
       }
     ]

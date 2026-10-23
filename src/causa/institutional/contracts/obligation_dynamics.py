@@ -8,7 +8,7 @@ from causa.core.bootstrap import BootstrapReviewStatus
 
 OBLIGATION_DYNAMICS_EVIDENCE_SCHEMA_VERSION = "contracts.obligation-dynamics-evidence.v0"
 OBLIGATION_DYNAMICS_MAPPING_VERSION = "contracts-reviewed-obligation-dynamics-to-facts-v0"
-OBLIGATION_DYNAMICS_MODEL_VERSION = "contracts-obligation-dynamics-articles-382-419-v0"
+OBLIGATION_DYNAMICS_MODEL_VERSION = "contracts-obligation-dynamics-articles-382-419-v1"
 
 
 class ObligationDynamicsEvidencePredicate(str, Enum):
@@ -432,8 +432,8 @@ def build_obligation_dynamics_constraint_set(
             "notary_deposit_discharge == obligation_exists AND notary_or_court_deposit_made AND deposit_ground_creditor_absent_or_evasive",
             "notary_deposit_notice_issue == notary_deposit_discharge AND NOT deposit_notice_sent",
             "novation_effective == obligation_exists AND novation_agreed AND novation_intent_clear AND new_subject_or_basis AND new_obligation_terms_agreed AND novation_form_observed",
-            "obligation_discharged_full == (proper_performance_discharge OR notary_deposit_discharge OR accord_discharge OR setoff_full_discharge OR novation_effective OR debt_forgiveness_effective OR merger_discharge OR impossibility_discharge OR government_act_discharge OR death_discharge OR liquidation_discharge OR other_discharge_effective) AND NOT partial_termination_intended",
-            "obligation_partially_remaining == obligation_exists AND (partial_performance_discharge OR setoff_partial_discharge OR partial_termination_intended) AND NOT obligation_discharged_full",
+            "obligation_discharged_full == (proper_performance_discharge OR notary_deposit_discharge OR accord_discharge OR setoff_full_discharge OR novation_effective OR debt_forgiveness_effective OR merger_discharge OR impossibility_discharge OR government_act_discharge OR death_discharge OR liquidation_discharge OR other_discharge_effective OR (debtor_original_performance_discharges AND NOT performance_partial)) AND NOT partial_termination_intended",
+            "obligation_partially_remaining == obligation_exists AND (partial_performance_discharge OR setoff_partial_discharge OR partial_termination_intended OR (debtor_original_performance_discharges AND performance_partial)) AND NOT obligation_discharged_full",
             "original_accessories_terminated_by_novation == novation_effective AND third_party_security_exists AND NOT third_party_security_consented_novation",
             "original_debtor_released_effective == debt_transfer_effective AND original_debtor_released",
             "other_discharge_effective == obligation_exists AND other_discharge_ground_proven",
@@ -799,14 +799,26 @@ def evaluate_obligation_dynamics_constraints(
         outputs["liquidation_discharge"],
         outputs["other_discharge_effective"],
     ]
+    # Пункт 3 статьи 382: исполнение первоначальному кредитору до уведомления об
+    # уступке прекращает обязательство — полностью или в исполненной части. В
+    # перечень конкурирующих оснований оно не включено: это исполнение, а не
+    # самостоятельный способ прекращения.
+    performance_to_original_creditor = outputs["debtor_original_performance_discharges"]
     solver.add(
         outputs["obligation_discharged_full"]
-        == And(Or(*full_paths), Not(variables["partial_termination_intended"]))
+        == And(
+            Or(
+                *full_paths,
+                And(performance_to_original_creditor, Not(variables["performance_partial"])),
+            ),
+            Not(variables["partial_termination_intended"]),
+        )
     )
     partial_path = Or(
         outputs["partial_performance_discharge"],
         outputs["setoff_partial_discharge"],
         variables["partial_termination_intended"],
+        And(performance_to_original_creditor, variables["performance_partial"]),
     )
     solver.add(
         outputs["obligation_partially_remaining"]
@@ -890,6 +902,12 @@ def evaluate_obligation_dynamics_constraints(
     reasons_ru = []
     if values["parties_changed_not_discharged"]:
         reasons_ru.append("Состав участников изменен без прекращения обязательства.")
+    if values["debtor_original_performance_discharges"]:
+        reasons_ru.append(
+            "Должник исполнил первоначальному кредитору до получения уведомления о переходе "
+            "права: обязательство прекращается этим исполнением, а риск последствий несёт "
+            "новый кредитор (пункт 3 статьи 382 ГК РФ)."
+        )
     if values["obligation_discharged_full"]:
         reasons_ru.append("Выявлено формальное основание полного прекращения обязательства.")
     elif values["obligation_partially_remaining"]:
