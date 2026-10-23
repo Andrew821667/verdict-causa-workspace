@@ -6,10 +6,8 @@ from pydantic import ValidationError
 from causa.core.bootstrap import BootstrapReviewStatus
 from causa.institutional.contracts.attribution_delay import (
     ATTRIBUTION_DELAY_EVIDENCE_SCHEMA_VERSION,
-    ATTRIBUTION_DELAY_LAYER_ROUTES,
     ATTRIBUTION_DELAY_MAPPING_VERSION,
     ATTRIBUTION_DELAY_MODEL_VERSION,
-    AttributionDelayEvaluation,
     AttributionDelayFactSet,
     ReviewedAttributionDelayEvidence,
 )
@@ -19,7 +17,10 @@ from causa.institutional.contracts.attribution_delay_evaluation import (
     run_attribution_delay_benchmark_suite,
     run_attribution_delay_red_team_suite,
 )
-from causa.institutional.contracts.general_effects import GeneralEffectsInputs
+from causa.institutional.contracts.layer_output_routes import (
+    LAYER_OUTPUT_ROUTES,
+    measure_layer_outputs,
+)
 from causa.institutional.contracts.practice_coverage import institutes_for_article
 from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
 from causa.institutional.contracts.synthetic_attribution_delay import (
@@ -225,28 +226,18 @@ def test_breach_flag_raises_human_review_but_a_quiet_case_does_not() -> None:
     assert evaluation.requires_human_attribution_assessment is False
 
 
-def test_every_output_of_the_institute_has_a_route_to_the_layer_or_a_reason() -> None:
-    """Каждый вывод либо входит в слой общих положений, либо называет, почему нет.
+def test_both_fate_changing_outputs_of_the_institute_reach_the_layer() -> None:
+    """Оба вывода, меняющие судьбу требования к должнику, — входы слоя.
 
     Абзац docstring утверждал «недоходимость остаётся открытой» ещё тридцать
     выпусков после того, как просрочка кредитора была проведена в слой, — и при
     этом действительно не проведённое исключение статьи 403 никто не назвал.
-    Запись по каждому выводу не даёт ни тому, ни другому повториться молча.
+    Маршруты остальных выводов записаны в аудите связности по выводам
+    (`tests/test_layer_output_routes.py`).
     """
-    outputs = {
-        name
-        for name, field in AttributionDelayEvaluation.model_fields.items()
-        if field.annotation is bool
-        and name not in {"satisfiable", "requires_human_attribution_assessment"}
-    }
-    assert set(ATTRIBUTION_DELAY_LAYER_ROUTES) == outputs
+    measured = measure_layer_outputs()["attribution_delay"]
 
-    into_the_layer = {
-        name for name, route in ATTRIBUTION_DELAY_LAYER_ROUTES.items() if route == "в слой"
-    }
-    assert into_the_layer == {"liability_shifted_to_performer", "creditor_delay_excuses_debtor"}
-    assert into_the_layer <= set(GeneralEffectsInputs.model_fields)
-    for name, route in ATTRIBUTION_DELAY_LAYER_ROUTES.items():
-        if route != "в слой":
-            assert name not in GeneralEffectsInputs.model_fields, name
-            assert len(route) > 40, name
+    assert measured["wired"] == {"liability_shifted_to_performer", "creditor_delay_excuses_debtor"}
+    assert set(LAYER_OUTPUT_ROUTES["attribution_delay"]) == (
+        measured["outputs"] - measured["wired"] - measured["components"]
+    )
