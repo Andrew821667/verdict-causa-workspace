@@ -176,7 +176,7 @@ def test_the_set_of_layer_inputs_is_pinned() -> None:
 
     Он должен ломаться при изменении входов слоя, а не подстраиваться под них.
     """
-    assert len(GeneralEffectsInputs.model_fields) == 26
+    assert len(GeneralEffectsInputs.model_fields) == 27
     assert len(LAYER_FED_BY) == 16
     assert "freedom" not in LAYER_FED_BY
     # Проведён в выпуске 1.0.0: просрочка кредитора снимает основание считать

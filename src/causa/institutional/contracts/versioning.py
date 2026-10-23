@@ -46,6 +46,21 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.35.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Article 205 of the Civil Code reaches the general-effects layer: in exceptional cases, when the court recognises the reason for missing the limitation period as valid on circumstances relating to the claimant's person, a citizen's violated right is protected. limitation_restorable becomes a layer input. The bar itself stays - restoration is the court's decision - but the layer now names it in a separate conclusion, limitation_may_be_restored, instead of presenting the claims as finally time-barred. The human flag is already raised by the bar.",
+        ],
+        notes_ru=[
+            "Статья 205 ГК РФ доходит до слоя общих положений: в исключительных случаях, когда суд признаёт уважительной причину пропуска срока по обстоятельствам, связанным с личностью истца, нарушенное право гражданина подлежит защите. limitation_restorable становится входом слоя. Сам вывод о погашении остаётся — восстановление решает суд, — но слой называет его отдельным выводом limitation_may_be_restored, а не подаёт требования как окончательно погашенные. Флаг экспертизы уже поднят погашением.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.34.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

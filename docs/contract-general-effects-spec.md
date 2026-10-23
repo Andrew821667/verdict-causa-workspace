@@ -41,6 +41,7 @@
 | `transaction_void_for_form` | `form_evaluation` | 158–165 |
 | `limitation_defense_available` | `limitation_evaluation` | 195–208 |
 | `claim_not_subject_to_limitation` | `limitation_evaluation` | 208 |
+| `limitation_restorable` | `limitation_evaluation` | 205 |
 | `breach_issue` | `constraint_evaluation` | 309–328 |
 | `effective_termination` | `termination_evaluation` | 453 п. 2 |
 | `claims_accrued_before_termination` | `termination_evaluation` | 453 п. 5 |
@@ -87,6 +88,10 @@
 - `claims_barred_by_limitation` — договор действует, но в иске надлежит
   отказать по заявлению об истечении срока исковой давности
   (статья 199 ГК РФ).
+- `limitation_may_be_restored` — требования погашены давностью, но истец —
+  гражданин с причиной пропуска, связанной с его личностью: в исключительных
+  случаях суд признаёт её уважительной, и право подлежит защите (статья 205 ГК
+  РФ).
 - `contractual_claims_enforceable` — требования из договора могут быть
   рассмотрены по существу.
 - `institute_conclusions_displaced` — выводы специальных институтов о нарушении

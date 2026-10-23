@@ -2499,6 +2499,21 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_rule_parity_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.34.0",
+        to_version="1.35.0",
+        reasons=[
+            "The general-effects layer gains an input, limitation_restorable, and a conclusion, limitation_may_be_restored, and its model version changes. A stored analysis result carries neither and does not replay.",
+        ],
+        reasons_ru=[
+            "Слой общих положений получает вход limitation_restorable и вывод limitation_may_be_restored, и версия его модели меняется. Сохранённый результат анализа не несёт ни того, ни другого и не воспроизводится.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_rule_parity_report.py",
+        ],
+    ),
 ]
 
 

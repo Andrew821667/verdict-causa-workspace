@@ -1,0 +1,52 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-1.33.0:to-1.35.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-1.33.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "1.33.0",
+  "target_package_version": "1.35.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "1.33.0",
+      "to_version": "1.34.0",
+      "reasons": [
+        "The general-effects layer gains an input, disguised_transaction_rules_required, and a conclusion, disguised_transaction_governs, and its model version changes. A stored analysis result carries neither and does not replay.",
+        "restitution_regime_applies is no longer true for a feigned transaction whose disguised transaction is identified. A stored analysis that named restitution there states what the layer no longer holds and must be replayed."
+      ],
+      "reasons_ru": [
+        "Слой общих положений получает вход disguised_transaction_rules_required и вывод disguised_transaction_governs, и версия его модели меняется. Сохранённый результат анализа не несёт ни того, ни другого и не воспроизводится.",
+        "restitution_regime_applies больше не истинен для притворной сделки с установленной прикрываемой. Сохранённый анализ, назвавший там реституцию, говорит то, чего слой больше не утверждает, и подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_rule_parity_report.py"
+      ]
+    },
+    {
+      "from_version": "1.34.0",
+      "to_version": "1.35.0",
+      "reasons": [
+        "The general-effects layer gains an input, limitation_restorable, and a conclusion, limitation_may_be_restored, and its model version changes. A stored analysis result carries neither and does not replay."
+      ],
+      "reasons_ru": [
+        "Слой общих положений получает вход limitation_restorable и вывод limitation_may_be_restored, и версия его модели меняется. Сохранённый результат анализа не несёт ни того, ни другого и не воспроизводится."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_rule_parity_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

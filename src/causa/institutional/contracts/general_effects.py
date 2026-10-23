@@ -28,6 +28,10 @@
 - статья 199 ГК РФ — истечение срока исковой давности, о применении которой
   заявлено стороной, является основанием к вынесению судом решения об отказе
   в иске;
+- статья 205 ГК РФ — в исключительных случаях, когда суд признаёт уважительной
+  причину пропуска срока по обстоятельствам, связанным с личностью истца, право
+  гражданина подлежит защите; поэтому вывод о погашении давностью слой
+  сопровождает указанием, что срок может быть восстановлен;
 - статьи 190–194 ГК РФ — правила исчисления сроков, которым подчинён и срок
   исковой давности, поэтому порок исчисления обесценивает вывод о его
   истечении;
@@ -89,7 +93,7 @@ from z3 import And, Bool, Not, Or, Solver, sat
 
 GENERAL_EFFECTS_MODEL_VERSION = (
     "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199"
-    "-170-180-209-403-405-407-432-453-v15"
+    "-170-180-205-209-403-405-407-432-453-v16"
 )
 
 
@@ -116,6 +120,8 @@ class GeneralEffectsInputs(BaseModel):
     # Исковая давность (статьи 195–208 ГК РФ).
     limitation_defense_available: bool
     claim_not_subject_to_limitation: bool
+    # Истец — гражданин, причина пропуска связана с его личностью (статья 205).
+    limitation_restorable: bool
     # Исчисление сроков (статьи 190–194 ГК РФ).
     term_calculation_defective: bool
     # Представительство: сделка неуполномоченного лица (статья 183 ГК РФ).
@@ -174,6 +180,7 @@ class GeneralEffectsEvaluation(BaseModel):
     judicial_protection_available: bool
     claims_barred_by_limitation: bool
     limitation_conclusion_unreliable: bool
+    limitation_may_be_restored: bool
     protection_refused_for_abuse: bool
     # Совокупный эффект для требований из договора.
     contractual_claims_enforceable: bool
@@ -226,6 +233,7 @@ def build_general_effects_inputs(
         transaction_void_for_form=form_evaluation.transaction_void_for_form,
         limitation_defense_available=limitation_evaluation.limitation_defense_available,
         claim_not_subject_to_limitation=limitation_evaluation.claim_not_subject_to_limitation,
+        limitation_restorable=limitation_evaluation.limitation_restorable,
         unauthorized_representation_detected=(
             representation_evaluation.unauthorized_representation_detected
         ),
@@ -293,6 +301,7 @@ def build_general_effects_constraint_set(
             "limitation_conclusion_unreliable == limitation_defense_available AND term_calculation_defective",
             "judicial_protection_available == NOT limitation_bars_protection AND NOT abuse_of_right_detected",
             "claims_barred_by_limitation == contract_legally_effective AND limitation_bars_protection",
+            "limitation_may_be_restored == claims_barred_by_limitation AND limitation_restorable",
             "protection_refused_for_abuse == contract_legally_effective AND abuse_of_right_detected",
             "contractual_claims_enforceable == contract_legally_effective AND judicial_protection_available",
             "institute_conclusions_displaced == NOT contract_legally_effective",
@@ -334,6 +343,7 @@ def evaluate_general_effects_constraints(
     limitation_bars_protection = Bool("limitation_bars_protection")
     claims_barred_by_limitation = Bool("claims_barred_by_limitation")
     limitation_conclusion_unreliable = Bool("limitation_conclusion_unreliable")
+    limitation_may_be_restored = Bool("limitation_may_be_restored")
     protection_refused_for_abuse = Bool("protection_refused_for_abuse")
     contractual_claims_enforceable = Bool("contractual_claims_enforceable")
     transaction_challengeable_for_missing_consent = Bool(
@@ -448,6 +458,13 @@ def evaluate_general_effects_constraints(
     )
     solver.add(
         claims_barred_by_limitation == And(contract_legally_effective, limitation_bars_protection)
+    )
+    # Статья 205: восстановление срока — усмотрение суда «в исключительных случаях»,
+    # поэтому вывод о погашении остаётся, а возможность восстановления называется.
+    # Флаг уже поднят самим погашением.
+    solver.add(
+        limitation_may_be_restored
+        == And(claims_barred_by_limitation, variables["limitation_restorable"])
     )
     solver.add(
         protection_refused_for_abuse
@@ -583,6 +600,7 @@ def evaluate_general_effects_constraints(
             judicial_protection_available=False,
             claims_barred_by_limitation=False,
             limitation_conclusion_unreliable=False,
+            limitation_may_be_restored=False,
             protection_refused_for_abuse=False,
             contractual_claims_enforceable=False,
             transaction_challengeable_for_missing_consent=False,
@@ -693,6 +711,13 @@ def evaluate_general_effects_constraints(
             "Истечение срока исковой давности, о применении которой заявлено стороной спора, "
             "является самостоятельным основанием к вынесению судом решения об отказе в иске "
             "(статья 199 ГК РФ)."
+        )
+    if truth(limitation_may_be_restored):
+        reasons_ru.append(
+            "Истец — гражданин, и причина пропуска срока связана с его личностью: в "
+            "исключительных случаях, когда суд признаёт её уважительной, нарушенное право "
+            "подлежит защите (статья 205 ГК РФ). Погашение давностью поэтому не "
+            "окончательно — уважительность причины оценивает суд."
         )
     if truth(limitation_conclusion_unreliable):
         reasons_ru.append(
@@ -822,6 +847,7 @@ def evaluate_general_effects_constraints(
         judicial_protection_available=truth(judicial_protection_available),
         claims_barred_by_limitation=truth(claims_barred_by_limitation),
         limitation_conclusion_unreliable=truth(limitation_conclusion_unreliable),
+        limitation_may_be_restored=truth(limitation_may_be_restored),
         protection_refused_for_abuse=truth(protection_refused_for_abuse),
         contractual_claims_enforceable=truth(contractual_claims_enforceable),
         transaction_challengeable_for_missing_consent=truth(

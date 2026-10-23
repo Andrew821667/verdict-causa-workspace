@@ -125,6 +125,16 @@ SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS = (
         },
     ),
     GeneralEffectsEvaluationTask(
+        id="general-effects-bench-limitation-restorable",
+        title_ru="Требования погашены давностью, но гражданину срок может быть восстановлен",
+        inputs=_inputs(**_EFFECTIVE, limitation_defense_available=True, limitation_restorable=True),
+        expected_outcomes={
+            "claims_barred_by_limitation": True,
+            "limitation_may_be_restored": True,
+            "requires_human_general_effects_assessment": True,
+        },
+    ),
+    GeneralEffectsEvaluationTask(
         id="general-effects-bench-limitation-not-applicable",
         title_ru="Требование не подлежит давности — защита доступна несмотря на заявление",
         inputs=_inputs(
@@ -320,6 +330,12 @@ SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES = (
         title_ru="Удовлетворить требование вопреки заявленной исковой давности",
         inputs=_inputs(**_EFFECTIVE, limitation_defense_available=True),
         forbidden_outcomes={"contractual_claims_enforceable": True},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-silent-on-restorable-limitation",
+        title_ru="Умолчать о возможности восстановить срок давности гражданину",
+        inputs=_inputs(**_EFFECTIVE, limitation_defense_available=True, limitation_restorable=True),
+        forbidden_outcomes={"limitation_may_be_restored": False},
     ),
     GeneralEffectsRedTeamCase(
         id="general-effects-red-ignore-limitation-bar-flag",

@@ -208,6 +208,7 @@ def test_general_effects_never_displaces_an_effective_contract() -> None:
         transaction_void_for_form=False,
         limitation_defense_available=False,
         claim_not_subject_to_limitation=False,
+        limitation_restorable=False,
         unauthorized_representation_detected=False,
         unauthorized_disposal_detected=False,
         abuse_of_right_detected=False,
@@ -520,11 +521,42 @@ def test_a_feigned_transaction_hands_the_analysis_to_the_disguised_one() -> None
     assert not any("каждая из сторон обязана возвратить" in r for r in evaluation.reasons_ru)
 
 
+def test_a_restorable_limitation_period_is_named_with_the_bar() -> None:
+    """Статья 205: погашение давностью не окончательно, если срок может быть восстановлен.
+
+    До выпуска 1.35.0 слой называл требования погашенными давностью и не говорил,
+    что гражданину с уважительной причиной пропуска суд вправе срок восстановить.
+    """
+    request = build_synthetic_supply_analysis_request()
+    barred = run_reviewed_contract_analysis(
+        request.model_copy(
+            update={
+                "limitation_evidence": _flip(
+                    request.limitation_evidence,
+                    claim_subject_to_limitation=True,
+                    right_violation_and_defendant_known=True,
+                    general_three_year_term_elapsed=True,
+                    limitation_pleaded_by_party_before_judgment=True,
+                    claimant_is_individual_with_valid_excuse=True,
+                )
+            }
+        ),
+        build_synthetic_supply_analysis_sources(),
+    )
+
+    assert barred.limitation_evaluation.limitation_restorable is True
+    evaluation = barred.general_effects_evaluation
+    assert evaluation.claims_barred_by_limitation is True
+    assert evaluation.limitation_may_be_restored is True
+    assert evaluation.requires_human_general_effects_assessment is True
+    assert any("статья 205" in reason for reason in evaluation.reasons_ru)
+
+
 def test_general_effects_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_general_effects_benchmark_suite()
     red_team = run_general_effects_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 19
+    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 20
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 20
+    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 21
     assert red_team.blocked == red_team.total
