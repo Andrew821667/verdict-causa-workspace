@@ -81,6 +81,26 @@ RECONCILABLE_FACTS: dict[str, tuple[str, str]] = {
         "citizen_commencement_evidence",
         "debtor_is_a_citizen_under_chapter_10",
     ),
+    "citizen_procedure_debtor_regime": (
+        "citizen_procedure_evidence",
+        "debtor_is_a_citizen_under_chapter_10",
+    ),
+    "citizen_procedure_applicant_is_the_citizen": (
+        "citizen_procedure_evidence",
+        "application_by_the_citizen",
+    ),
+    "citizen_procedure_applicant_is_a_creditor": (
+        "citizen_procedure_evidence",
+        "application_by_creditor_or_authorised_body",
+    ),
+    "citizen_procedure_application_requirements": (
+        "citizen_procedure_evidence",
+        "application_meets_articles_213_3_to_213_5",
+    ),
+    "citizen_procedure_claim_confirmed_by_court": (
+        "citizen_procedure_evidence",
+        "claim_confirmed_by_court_decision_in_force",
+    ),
     "citizen_release_claim_in_register": (
         "citizen_release_evidence",
         "claim_filed_in_bankruptcy_register",

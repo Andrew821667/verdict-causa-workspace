@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1292,
+  "declared_rules": 1304,
   "divergences_total": 0,
-  "executed_rules": 1292,
+  "executed_rules": 1304,
   "institutes": [
     {
       "declared_rules": 5,
@@ -122,6 +122,14 @@
       "institute": "citizen_commencement",
       "matched": 13,
       "module": "citizen_commencement.py"
+    },
+    {
+      "declared_rules": 12,
+      "divergences": [],
+      "executed_rules": 12,
+      "institute": "citizen_procedure",
+      "matched": 12,
+      "module": "citizen_procedure.py"
     },
     {
       "declared_rules": 15,
@@ -812,8 +820,8 @@
       "module": "formal_checks.py"
     }
   ],
-  "institutes_clean": 101,
-  "institutes_total": 101,
-  "matched_rules": 1292,
+  "institutes_clean": 102,
+  "institutes_total": 102,
+  "matched_rules": 1304,
   "version": "reasoning-rule-parity-v0"
 }

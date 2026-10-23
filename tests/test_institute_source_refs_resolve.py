@@ -53,7 +53,7 @@ DECLARED = _declared_refs()
 def test_the_package_declares_source_refs_at_all() -> None:
     """Пустой перечень означал бы, что проверка ничего не проверяет.
 
-    Констант тридцать, и это не недосмотр: модульной константой ссылки
+    Констант тридцать три, и это не недосмотр: модульной константой ссылки
     объявляют институты банкротства, институт ответственности управляющих лиц,
     институт понятия договора, институт банкротства гражданина, институт
     очерёдности его требований и их наборы оценки — одна и та же константа видна
@@ -61,11 +61,11 @@ def test_the_package_declares_source_refs_at_all() -> None:
     конвейер. У остальных институтов ссылки приходят блоком доказательств, и их
     проверяет тест ниже.
     """
-    assert len(DECLARED) == 30, sorted(DECLARED)
+    assert len(DECLARED) == 33, sorted(DECLARED)
 
 
 def test_every_ref_of_the_demo_request_resolves_too() -> None:
-    """Девяносто восемь блоков доказательств — вторая половина той же проверки."""
+    """Девяносто девять блоков доказательств — вторая половина той же проверки."""
     from causa.institutional.contracts.synthetic_reviewed_analysis import (
         build_synthetic_supply_analysis_request,
     )
@@ -82,7 +82,7 @@ def test_every_ref_of_the_demo_request_resolves_too() -> None:
         if missing:
             dangling[field] = missing
 
-    assert blocks == 98, blocks
+    assert blocks == 99, blocks
     assert dangling == {}, dangling
 
 

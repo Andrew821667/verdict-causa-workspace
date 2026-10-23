@@ -3601,6 +3601,75 @@
       }
     },
     {
+      "id": "synthetic-ru-127fz-213.2-citizen-bankruptcy-procedures-v1",
+      "title": "127-ФЗ, статья 213.2: процедуры, применяемые в деле о банкротстве гражданина",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Статья 213.2. Процедуры, применяемые в деле о банкротстве гражданина.\n\nПри рассмотрении дела о банкротстве гражданина применяются реструктуризация долгов гражданина, реализация имущества гражданина, мировое соглашение.",
+      "valid_from": "2002-10-26",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "bankruptcy_article_213_2",
+        "legal_reference": "127-ФЗ, статья 213.2",
+        "specificity": "special",
+        "text_verbatim": true,
+        "basis_url": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-127fz-213.6-citizen-application-merits-v1",
+      "title": "127-ФЗ, статья 213.6: особенности рассмотрения обоснованности заявления о признании гражданина банкротом",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Статья 213.6. Особенности рассмотрения обоснованности заявления о признании гражданина банкротом.\n\n1. По результатам рассмотрения обоснованности заявления о признании гражданина банкротом арбитражный суд выносит одно из следующих определений:\n\nо признании обоснованным указанного заявления и введении реструктуризации долгов гражданина;\n\nо признании необоснованным указанного заявления и об оставлении его без рассмотрения;\n\nо признании необоснованным указанного заявления и прекращении производства по делу о банкротстве гражданина.\n\n2. Определение о признании обоснованным заявления конкурсного кредитора или уполномоченного органа о признании гражданина банкротом и введении реструктуризации его долгов выносится в случае, если указанное заявление соответствует требованиям, предусмотренным пунктом 2 статьи 213.3 и статьей 213.5 настоящего Федерального закона, требования конкурсного кредитора или уполномоченного органа признаны обоснованными, не удовлетворены гражданином на дату заседания арбитражного суда и доказана неплатежеспособность гражданина.\n\nОпределение о признании обоснованным заявления гражданина о признании его банкротом и введении реструктуризации долгов гражданина выносится в случае, если указанное заявление соответствует требованиям, предусмотренным статьей 213.4 настоящего Федерального закона, и доказана неплатежеспособность гражданина.\n\nПри вынесении арбитражным судом определения о признании обоснованным заявления должника, конкурсного кредитора или уполномоченного органа о признании гражданина банкротом, введении реструктуризации его долгов или признании гражданина банкротом и введении реализации имущества гражданина арбитражный суд привлекает к участию в рассмотрении дела о банкротстве гражданина орган опеки и попечительства в случае, если в рамках рассматриваемого дела затрагиваются права несовершеннолетнего лица либо права лица, признанного судом недееспособным.\n\n(в ред. Федерального закона от 23.06.2016 N 222-ФЗ)\n\nОпределение о признании необоснованным заявления должника, конкурсного кредитора или уполномоченного органа о признании гражданина банкротом и об оставлении указанного заявления без рассмотрения выносится при наличии иного заявления о признании гражданина банкротом в случае, если на дату заседания арбитражного суда по проверке обоснованности заявления о признании гражданина банкротом требования конкурсного кредитора или уполномоченного органа удовлетворены, либо признаны необоснованными, либо установлено отсутствие всех условий, предусмотренных статьями 213.3 - 213.5 настоящего Федерального закона, либо не доказана неплатежеспособность гражданина, либо на дату подачи заявления о признании гражданина банкротом требования конкурсного кредитора или уполномоченного органа не подтверждены вступившим в законную силу судебным актом и между конкурсным кредитором или уполномоченным органом и гражданином имеется спор о праве, который подлежит разрешению в порядке искового производства.\n\nКонсультантПлюс: примечание.\n\nОтсутствие у гражданина имущества, за счет которого возможно пропорционально удовлетворить требования кредиторов, само по себе не является основанием для прекращения производства по делу о банкротстве этого гражданина (Обзор судебной практики ВС РФ N 2 (2017).\n\nОпределение о признании необоснованным заявления должника, конкурсного кредитора или уполномоченного органа о признании гражданина банкротом и прекращении производства по делу о банкротстве гражданина выносится арбитражным судом при отсутствии иных заявлений о признании гражданина банкротом в случае, если на дату заседания арбитражного суда по проверке обоснованности заявления о признании гражданина банкротом требования конкурсного кредитора или уполномоченного органа удовлетворены, либо признаны необоснованными, либо установлено отсутствие на дату подачи указанного заявления всех условий, предусмотренных статьями 213.3 - 213.5 настоящего Федерального закона, либо не доказана неплатежеспособность гражданина, либо на дату подачи заявления о признании гражданина банкротом требования конкурсного кредитора или уполномоченного органа не подтверждены вступившим в законную силу судебным актом и между конкурсным кредитором или уполномоченным органом и гражданином имеется спор о праве, который подлежит разрешению в порядке искового производства.\n\nОтсутствие у гражданина имущества, которое могло бы быть после покрытия расходов на процедуру, применяемую в деле о банкротстве гражданина, направлено на удовлетворение требований кредиторов, не препятствует введению процедуры реализации имущества гражданина.\n\n(абзац введен Федеральным законом от 31.07.2020 N 289-ФЗ)\n\n3. Для целей настоящего параграфа под неплатежеспособностью гражданина понимается его неспособность удовлетворить в полном объеме требования кредиторов по денежным обязательствам и (или) исполнить обязанность по уплате обязательных платежей.\n\nЕсли не доказано иное, гражданин предполагается неплатежеспособным при условии, что имеет место хотя бы одно из следующих обстоятельств:\n\nгражданин прекратил расчеты с кредиторами, то есть перестал исполнять денежные обязательства и (или) обязанность по уплате обязательных платежей, срок исполнения которых наступил;\n\nболее чем десять процентов совокупного размера денежных обязательств и (или) обязанности по уплате обязательных платежей, которые имеются у гражданина и срок исполнения которых наступил, не исполнены им в течение более чем одного месяца со дня, когда такие обязательства и (или) обязанность должны быть исполнены;\n\nразмер задолженности гражданина превышает стоимость его имущества, в том числе права требования;\n\nналичие постановления об окончании исполнительного производства в связи с тем, что у гражданина отсутствует имущество, на которое может быть обращено взыскание.\n\nЕсли имеются достаточные основания полагать, что с учетом планируемых поступлений денежных средств, в том числе доходов от деятельности гражданина и погашения задолженности перед ним, гражданин в течение непродолжительного времени сможет исполнить в полном объеме денежные обязательства и (или) обязанность по уплате обязательных платежей, срок исполнения которых наступил, гражданин не может быть признан неплатежеспособным.\n\n4. В определении арбитражного суда о признании обоснованным заявления о признании гражданина банкротом и введении реструктуризации его долгов должны содержаться указания на:\n\nдату судебного заседания по рассмотрению дела о банкротстве гражданина;\n\nутверждение финансового управляющего (фамилия, имя, отчество арбитражного управляющего, наименование и адрес саморегулируемой организации, из числа членов которой утвержден финансовый управляющий).\n\nВ случае, если в заявлении о признании гражданина банкротом указан максимальный размер расходов финансового управляющего на оплату осуществляемых за счет подавшего заявление лица услуг лиц, привлеченных финансовым управляющим в целях обеспечения исполнения возложенных на него обязанностей, определение арбитражного суда о признании обоснованным заявления о признании гражданина банкротом и введении реструктуризации его долгов должно содержать также указание на данный размер расходов.\n\n5. Вопрос о признании обоснованным заявления о признании гражданина банкротом и введении реструктуризации его долгов должен быть рассмотрен на заседании арбитражного суда не ранее чем по истечении пятнадцати дней и не позднее чем в течение трех месяцев с даты принятия арбитражным судом заявления о признании гражданина банкротом.\n\n6. Судебные акты, предусмотренные пунктом 1 настоящей статьи, и другие предусмотренные настоящим параграфом судебные акты подлежат немедленному исполнению, если иное не установлено настоящим Федеральным законом.\n\n7. Производство по делу о банкротстве гражданина может быть приостановлено по ходатайству лица, участвующего в деле о банкротстве гражданина, в случае обжалования определений об оставлении заявления о признании гражданина банкротом без рассмотрения и о прекращении производства по делу о банкротстве гражданина.\n\nОбжалование определения о признании обоснованным заявления о признании гражданина банкротом и введении реструктуризации его долгов не приостанавливает исполнение этого определения.\n\n8. По результатам рассмотрения обоснованности заявления о признании гражданина банкротом, если гражданин не соответствует требованиям для утверждения плана реструктуризации долгов, установленным пунктом 1 статьи 213.13 настоящего Федерального закона, арбитражный суд вправе на основании ходатайства гражданина вынести решение о признании его банкротом и введении процедуры реализации имущества гражданина.",
+      "valid_from": "2002-10-26",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "bankruptcy_article_213_6",
+        "legal_reference": "127-ФЗ, статья 213.6",
+        "specificity": "special",
+        "text_verbatim": true,
+        "basis_url": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-ru-127fz-213.13-restructuring-plan-requirements-v1",
+      "title": "127-ФЗ, статья 213.13: требования к гражданину, в отношении задолженности которого может быть представлен план реструктуризации",
+      "source_type": "statute",
+      "jurisdiction": "RU",
+      "text": "Статья 213.13. Требования к гражданину, в отношении задолженности которого может быть представлен план реструктуризации его долгов.\n\n1. План реструктуризации долгов гражданина может быть представлен в отношении задолженности гражданина, соответствующего следующим требованиям:\n\nгражданин имеет источник дохода на дату представления плана реструктуризации его долгов;\n\nгражданин не имеет неснятой или непогашенной судимости за совершение умышленного преступления в сфере экономики и до даты принятия заявления о признании гражданина банкротом истек срок, в течение которого гражданин считается подвергнутым административному наказанию за мелкое хищение, умышленное уничтожение или повреждение имущества либо за фиктивное или преднамеренное банкротство;\n\nгражданин не признавался банкротом в течение пяти лет, предшествующих представлению плана реструктуризации его долгов;\n\nплан реструктуризации долгов гражданина в отношении его задолженности не утверждался в течение восьми лет, предшествующих представлению этого плана.\n\n2. Гражданин обязан уведомить кредиторов:\n\nо фактах привлечения гражданина к административной ответственности за мелкое хищение, умышленное уничтожение или повреждение имущества, неправомерные действия при банкротстве, фиктивное или преднамеренное банкротство;\n\nоб известных гражданину уголовных и административных делах в отношении его, а также о наличии неснятой или непогашенной судимости;\n\nо принятых решениях о признании гражданина банкротом или об исполненных планах реструктуризации его долгов в течение восьми лет, предшествующих представлению плана реструктуризации долгов гражданина.\n\nСведения, предусмотренные настоящим пунктом, указываются в плане реструктуризации долгов гражданина.",
+      "valid_from": "2002-10-26",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "topic": "bankruptcy_article_213_13",
+        "legal_reference": "127-ФЗ, статья 213.13",
+        "specificity": "special",
+        "text_verbatim": true,
+        "basis_url": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527",
+        "review_required": true
+      }
+    },
+    {
+      "id": "synthetic-case-supply-1-citizen-procedure-evidence",
+      "title": "Синтетическая проверенная запись фактов об обоснованности заявления и процедуре банкротства гражданина",
+      "source_type": "fact",
+      "jurisdiction": "RU",
+      "text": "Синтетическая запись: спор о поставке ведут две организации, заявления о признании гражданина банкротом никто не подавал, и вопрос об обоснованности заявления и процедуре в деле не стоит. Все признаки института статей 213.2, 213.6 и 213.13 закона 127-ФЗ ложны, и институт обязан промолчать.",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "metadata": {
+        "synthetic": true,
+        "non_authoritative": true,
+        "topic": "citizen_procedure_case_evidence",
+        "case_id": "case-supply-1"
+      }
+    },
+    {
       "id": "synthetic-ru-127fz-5-current-payments-v1",
       "title": "127-ФЗ, статья 5: текущие платежи",
       "source_type": "statute",
@@ -12869,10 +12938,218 @@
         "synthetic-ru-127fz-213.4-citizen-own-application-v1",
         "synthetic-ru-127fz-213.5-creditor-application-v1",
         "synthetic-ru-127fz-2-basic-definitions-v1",
+        "synthetic-ru-127fz-213.6-citizen-application-merits-v1",
         "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1"
       ],
       "review_status": "reviewed",
       "reviewer_id": "synthetic-citizen-commencement-reviewer"
+    },
+    "citizen_procedure_evidence": {
+      "id": "reviewed-citizen-procedure-evidence-supply-1-v0",
+      "case_id": "case-supply-1",
+      "schema_version": "contracts.citizen-procedure-evidence.v0",
+      "assertions": [
+        {
+          "id": "citizen-procedure-evidence-debtor_is_a_citizen_under_chapter_10",
+          "predicate": "debtor_is_a_citizen_under_chapter_10",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-application_by_the_citizen",
+          "predicate": "application_by_the_citizen",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-application_by_creditor_or_authorised_body",
+          "predicate": "application_by_creditor_or_authorised_body",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-application_meets_articles_213_3_to_213_5",
+          "predicate": "application_meets_articles_213_3_to_213_5",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-creditor_claims_found_well_founded",
+          "predicate": "creditor_claims_found_well_founded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-creditor_claims_found_unfounded",
+          "predicate": "creditor_claims_found_unfounded",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-creditor_claims_satisfied_by_hearing_date",
+          "predicate": "creditor_claims_satisfied_by_hearing_date",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-claim_confirmed_by_court_decision_in_force",
+          "predicate": "claim_confirmed_by_court_decision_in_force",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-dispute_about_the_right_for_action_proceedings",
+          "predicate": "dispute_about_the_right_for_action_proceedings",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-citizen_stopped_payments_to_creditors",
+          "predicate": "citizen_stopped_payments_to_creditors",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-over_ten_percent_of_due_obligations_unpaid_for_over_a_month",
+          "predicate": "over_ten_percent_of_due_obligations_unpaid_for_over_a_month",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-debt_exceeds_value_of_property",
+          "predicate": "debt_exceeds_value_of_property",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-enforcement_ended_for_lack_of_property",
+          "predicate": "enforcement_ended_for_lack_of_property",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-insolvency_presumption_rebutted",
+          "predicate": "insolvency_presumption_rebutted",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-inability_to_pay_in_full_shown_by_other_evidence",
+          "predicate": "inability_to_pay_in_full_shown_by_other_evidence",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-full_performance_expected_shortly_from_planned_receipts",
+          "predicate": "full_performance_expected_shortly_from_planned_receipts",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-another_application_to_declare_the_citizen_bankrupt_pending",
+          "predicate": "another_application_to_declare_the_citizen_bankrupt_pending",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-citizen_has_source_of_income",
+          "predicate": "citizen_has_source_of_income",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-conviction_or_administrative_penalty_bars_plan",
+          "predicate": "conviction_or_administrative_penalty_bars_plan",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-declared_bankrupt_within_five_years",
+          "predicate": "declared_bankrupt_within_five_years",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-restructuring_plan_approved_within_eight_years",
+          "predicate": "restructuring_plan_approved_within_eight_years",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-citizen_petitions_for_immediate_realisation",
+          "predicate": "citizen_petitions_for_immediate_realisation",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-rights_of_minor_or_incapacitated_person_affected",
+          "predicate": "rights_of_minor_or_incapacitated_person_affected",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "id": "citizen-procedure-evidence-no_property_left_for_creditors_after_procedure_costs",
+          "predicate": "no_property_left_for_creditors_after_procedure_costs",
+          "value": false,
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        }
+      ],
+      "legal_source_refs": [
+        "synthetic-ru-127fz-213.2-citizen-bankruptcy-procedures-v1",
+        "synthetic-ru-127fz-213.6-citizen-application-merits-v1",
+        "synthetic-ru-127fz-213.13-restructuring-plan-requirements-v1",
+        "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1"
+      ],
+      "review_status": "reviewed",
+      "reviewer_id": "synthetic-citizen-procedure-reviewer"
     },
     "bankruptcy_claims_evidence": {
       "id": "reviewed-bankruptcy-claims-evidence-supply-1-v0",
@@ -19507,6 +19784,7 @@
       "synthetic-case-evidence-reviewer",
       "synthetic-citizen-bankruptcy-reviewer",
       "synthetic-citizen-commencement-reviewer",
+      "synthetic-citizen-procedure-reviewer",
       "synthetic-citizen-ranking-reviewer",
       "synthetic-citizen-release-reviewer",
       "synthetic-civil-principles-reviewer",
@@ -19609,6 +19887,7 @@
       "synthetic-case-supply-1-carriage-evidence",
       "synthetic-case-supply-1-citizen-bankruptcy-evidence",
       "synthetic-case-supply-1-citizen-commencement-evidence",
+      "synthetic-case-supply-1-citizen-procedure-evidence",
       "synthetic-case-supply-1-citizen-ranking-evidence",
       "synthetic-case-supply-1-citizen-release-evidence",
       "synthetic-case-supply-1-civil-principles-evidence",
@@ -19698,11 +19977,14 @@
       "synthetic-ru-127fz-138-secured-creditor-claims-v1",
       "synthetic-ru-127fz-2-basic-definitions-v1",
       "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+      "synthetic-ru-127fz-213.13-restructuring-plan-requirements-v1",
+      "synthetic-ru-127fz-213.2-citizen-bankruptcy-procedures-v1",
       "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
       "synthetic-ru-127fz-213.28-citizen-release-from-obligations-v1",
       "synthetic-ru-127fz-213.3-citizen-case-commencement-v1",
       "synthetic-ru-127fz-213.4-citizen-own-application-v1",
       "synthetic-ru-127fz-213.5-creditor-application-v1",
+      "synthetic-ru-127fz-213.6-citizen-application-merits-v1",
       "synthetic-ru-127fz-5-current-payments-v1",
       "synthetic-ru-127fz-61.1-contest-transactions-general-v1",
       "synthetic-ru-127fz-61.2-contest-suspicious-transaction-v1",
@@ -30017,9 +30299,9 @@
       "requires_human_citizen_bankruptcy_assessment": false,
       "reasons_ru": [],
       "warnings_ru": [
-        "Модель отвечает, при каком условии гражданин может быть признан банкротом и каким законом его банкротство разбирается. Сами основания, порядок, последствия и очерёдность пункт 2 статьи 25 ГК РФ отдаёт закону 127-ФЗ. Из главы X этого закона пакет моделирует возбуждение дела (статьи 213.3–213.5), очерёдность (статья 213.27) и освобождение от обязательств (статья 213.28) — каждое своим институтом.",
+        "Модель отвечает, при каком условии гражданин может быть признан банкротом и каким законом его банкротство разбирается. Сами основания, порядок, последствия и очерёдность пункт 2 статьи 25 ГК РФ отдаёт закону 127-ФЗ. Из главы X этого закона пакет моделирует возбуждение дела (статьи 213.3–213.5), обоснованность заявления и процедуру (статьи 213.2, 213.6 и 213.13), очерёдность (статья 213.27) и освобождение от обязательств (статья 213.28) — каждое своим институтом.",
         "Пороги возбуждения дела — не менее пятисот тысяч рублей и три месяца неисполнения — устанавливает пункт 2 статьи 213.3 закона 127-ФЗ, а не статья 25; их проверяет институт возбуждения дела.",
-        "Процедуры дела о банкротстве гражданина (реструктуризация долгов, реализация имущества, мировое соглашение — статья 213.2 закона) в пакете не смоделированы.",
+        "Какая процедура вводится — реструктуризация долгов или реализация имущества (статьи 213.2, 213.6 и 213.13 закона), — определяет институт процедур. Мировое соглашение (статья 213.31) пакет не моделирует.",
         "Условия банкротства юридического лица даёт статья 65 ГК РФ, а не статья 25: модель о гражданине и молчит о юридическом лице."
       ]
     },
@@ -30422,6 +30704,7 @@
         "synthetic-ru-127fz-213.4-citizen-own-application-v1",
         "synthetic-ru-127fz-213.5-creditor-application-v1",
         "synthetic-ru-127fz-2-basic-definitions-v1",
+        "synthetic-ru-127fz-213.6-citizen-application-merits-v1",
         "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1"
       ],
       "provenance": [
@@ -30547,6 +30830,7 @@
         "synthetic-ru-127fz-213.4-citizen-own-application-v1",
         "synthetic-ru-127fz-213.5-creditor-application-v1",
         "synthetic-ru-127fz-2-basic-definitions-v1",
+        "synthetic-ru-127fz-213.6-citizen-application-merits-v1",
         "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1"
       ],
       "expressions": [
@@ -30583,10 +30867,264 @@
       "requires_human_citizen_commencement_assessment": false,
       "reasons_ru": [],
       "warnings_ru": [
-        "Модель отвечает, примет ли суд заявление, а не чем закончится его рассмотрение: обоснованность заявления и выбор процедуры (статья 213.6) лежат вне её.",
+        "Модель отвечает, примет ли суд заявление, а не чем закончится его рассмотрение: обоснованность заявления и выбор процедуры (статьи 213.2, 213.6 и 213.13) разбирает институт процедур.",
         "Пятьсот тысяч рублей, три месяца, тридцать рабочих и пятнадцать календарных дней — проверенные признаки рецензента, а не вычисления: денежных величин и дат в фактах модели нет.",
         "Комплект документов к заявлению (пункт 3 статьи 213.4, пункт 3 статьи 213.5) и внесение вознаграждения финансового управляющего на депозит суда — порядок подачи, а не право на неё; модель их не проверяет.",
-        "Вытеснение порога пункта 2 статьи 213.3 основаниями статьи 213.4 — прочтение структуры текста. Разъяснения Пленума Верховного Суда о банкротстве граждан среди материалов пакета нет, и на него модель не ссылается."
+        "Вытеснение порога пункта 2 статьи 213.3 основаниями статьи 213.4 — прочтение структуры текста, которое поддерживает и пункт 2 статьи 213.6, но прямой нормы о принятии заявления нет. Разъяснения Пленума Верховного Суда о банкротстве граждан среди материалов пакета нет, и на него модель не ссылается."
+      ]
+    },
+    "citizen_procedure_evidence_mapping": {
+      "evidence_id": "reviewed-citizen-procedure-evidence-supply-1-v0",
+      "schema_version": "contracts.citizen-procedure-evidence.v0",
+      "mapping_version": "contracts-reviewed-citizen-procedure-to-facts-v0",
+      "facts": {
+        "debtor_is_a_citizen_under_chapter_10": false,
+        "application_by_the_citizen": false,
+        "application_by_creditor_or_authorised_body": false,
+        "application_meets_articles_213_3_to_213_5": false,
+        "creditor_claims_found_well_founded": false,
+        "creditor_claims_found_unfounded": false,
+        "creditor_claims_satisfied_by_hearing_date": false,
+        "claim_confirmed_by_court_decision_in_force": false,
+        "dispute_about_the_right_for_action_proceedings": false,
+        "citizen_stopped_payments_to_creditors": false,
+        "over_ten_percent_of_due_obligations_unpaid_for_over_a_month": false,
+        "debt_exceeds_value_of_property": false,
+        "enforcement_ended_for_lack_of_property": false,
+        "insolvency_presumption_rebutted": false,
+        "inability_to_pay_in_full_shown_by_other_evidence": false,
+        "full_performance_expected_shortly_from_planned_receipts": false,
+        "another_application_to_declare_the_citizen_bankrupt_pending": false,
+        "citizen_has_source_of_income": false,
+        "conviction_or_administrative_penalty_bars_plan": false,
+        "declared_bankrupt_within_five_years": false,
+        "restructuring_plan_approved_within_eight_years": false,
+        "citizen_petitions_for_immediate_realisation": false,
+        "rights_of_minor_or_incapacitated_person_affected": false,
+        "no_property_left_for_creditors_after_procedure_costs": false
+      },
+      "legal_source_refs": [
+        "synthetic-ru-127fz-213.2-citizen-bankruptcy-procedures-v1",
+        "synthetic-ru-127fz-213.6-citizen-application-merits-v1",
+        "synthetic-ru-127fz-213.13-restructuring-plan-requirements-v1",
+        "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1"
+      ],
+      "provenance": [
+        {
+          "fact_name": "another_application_to_declare_the_citizen_bankrupt_pending",
+          "assertion_id": "citizen-procedure-evidence-another_application_to_declare_the_citizen_bankrupt_pending",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "application_by_creditor_or_authorised_body",
+          "assertion_id": "citizen-procedure-evidence-application_by_creditor_or_authorised_body",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "application_by_the_citizen",
+          "assertion_id": "citizen-procedure-evidence-application_by_the_citizen",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "application_meets_articles_213_3_to_213_5",
+          "assertion_id": "citizen-procedure-evidence-application_meets_articles_213_3_to_213_5",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "citizen_has_source_of_income",
+          "assertion_id": "citizen-procedure-evidence-citizen_has_source_of_income",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "citizen_petitions_for_immediate_realisation",
+          "assertion_id": "citizen-procedure-evidence-citizen_petitions_for_immediate_realisation",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "citizen_stopped_payments_to_creditors",
+          "assertion_id": "citizen-procedure-evidence-citizen_stopped_payments_to_creditors",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "claim_confirmed_by_court_decision_in_force",
+          "assertion_id": "citizen-procedure-evidence-claim_confirmed_by_court_decision_in_force",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "conviction_or_administrative_penalty_bars_plan",
+          "assertion_id": "citizen-procedure-evidence-conviction_or_administrative_penalty_bars_plan",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_claims_found_unfounded",
+          "assertion_id": "citizen-procedure-evidence-creditor_claims_found_unfounded",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_claims_found_well_founded",
+          "assertion_id": "citizen-procedure-evidence-creditor_claims_found_well_founded",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "creditor_claims_satisfied_by_hearing_date",
+          "assertion_id": "citizen-procedure-evidence-creditor_claims_satisfied_by_hearing_date",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "debt_exceeds_value_of_property",
+          "assertion_id": "citizen-procedure-evidence-debt_exceeds_value_of_property",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "debtor_is_a_citizen_under_chapter_10",
+          "assertion_id": "citizen-procedure-evidence-debtor_is_a_citizen_under_chapter_10",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "declared_bankrupt_within_five_years",
+          "assertion_id": "citizen-procedure-evidence-declared_bankrupt_within_five_years",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "dispute_about_the_right_for_action_proceedings",
+          "assertion_id": "citizen-procedure-evidence-dispute_about_the_right_for_action_proceedings",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "enforcement_ended_for_lack_of_property",
+          "assertion_id": "citizen-procedure-evidence-enforcement_ended_for_lack_of_property",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "full_performance_expected_shortly_from_planned_receipts",
+          "assertion_id": "citizen-procedure-evidence-full_performance_expected_shortly_from_planned_receipts",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "inability_to_pay_in_full_shown_by_other_evidence",
+          "assertion_id": "citizen-procedure-evidence-inability_to_pay_in_full_shown_by_other_evidence",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "insolvency_presumption_rebutted",
+          "assertion_id": "citizen-procedure-evidence-insolvency_presumption_rebutted",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "no_property_left_for_creditors_after_procedure_costs",
+          "assertion_id": "citizen-procedure-evidence-no_property_left_for_creditors_after_procedure_costs",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "over_ten_percent_of_due_obligations_unpaid_for_over_a_month",
+          "assertion_id": "citizen-procedure-evidence-over_ten_percent_of_due_obligations_unpaid_for_over_a_month",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "restructuring_plan_approved_within_eight_years",
+          "assertion_id": "citizen-procedure-evidence-restructuring_plan_approved_within_eight_years",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        },
+        {
+          "fact_name": "rights_of_minor_or_incapacitated_person_affected",
+          "assertion_id": "citizen-procedure-evidence-rights_of_minor_or_incapacitated_person_affected",
+          "source_refs": [
+            "synthetic-case-supply-1-citizen-procedure-evidence"
+          ]
+        }
+      ]
+    },
+    "citizen_procedure_constraint_set": {
+      "id": "citizen-procedure-constraint-set:reviewed-citizen-procedure-evidence-supply-1-v0",
+      "model_version": "contracts-citizen-procedure-articles-213-2-213-6-213-13-127fz-v0",
+      "legal_source_refs": [
+        "synthetic-ru-127fz-213.2-citizen-bankruptcy-procedures-v1",
+        "synthetic-ru-127fz-213.6-citizen-application-merits-v1",
+        "synthetic-ru-127fz-213.13-restructuring-plan-requirements-v1",
+        "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1"
+      ],
+      "expressions": [
+        "insolvency_presumed == debtor_is_a_citizen_under_chapter_10 AND (citizen_stopped_payments_to_creditors OR over_ten_percent_of_due_obligations_unpaid_for_over_a_month OR debt_exceeds_value_of_property OR enforcement_ended_for_lack_of_property)",
+        "insolvency_established == debtor_is_a_citizen_under_chapter_10 AND ((insolvency_presumed AND NOT insolvency_presumption_rebutted) OR inability_to_pay_in_full_shown_by_other_evidence) AND NOT full_performance_expected_shortly_from_planned_receipts",
+        "application_well_founded == debtor_is_a_citizen_under_chapter_10 AND application_meets_articles_213_3_to_213_5 AND insolvency_established AND (application_by_the_citizen OR (application_by_creditor_or_authorised_body AND creditor_claims_found_well_founded AND NOT creditor_claims_satisfied_by_hearing_date AND NOT (dispute_about_the_right_for_action_proceedings AND NOT claim_confirmed_by_court_decision_in_force)))",
+        "application_unfounded == debtor_is_a_citizen_under_chapter_10 AND (application_by_the_citizen OR application_by_creditor_or_authorised_body) AND NOT application_well_founded",
+        "application_left_without_consideration == application_unfounded AND another_application_to_declare_the_citizen_bankrupt_pending",
+        "bankruptcy_proceedings_terminated == application_unfounded AND NOT another_application_to_declare_the_citizen_bankrupt_pending",
+        "citizen_meets_restructuring_plan_requirements == debtor_is_a_citizen_under_chapter_10 AND citizen_has_source_of_income AND NOT conviction_or_administrative_penalty_bars_plan AND NOT declared_bankrupt_within_five_years AND NOT restructuring_plan_approved_within_eight_years",
+        "realisation_may_be_introduced_without_restructuring == application_well_founded AND citizen_petitions_for_immediate_realisation AND NOT citizen_meets_restructuring_plan_requirements",
+        "debt_restructuring_introduced == application_well_founded AND NOT realisation_may_be_introduced_without_restructuring",
+        "guardianship_authority_joins_the_case == application_well_founded AND rights_of_minor_or_incapacitated_person_affected",
+        "lack_of_property_disregarded == debtor_is_a_citizen_under_chapter_10 AND (application_by_the_citizen OR application_by_creditor_or_authorised_body) AND no_property_left_for_creditors_after_procedure_costs",
+        "requires_human_citizen_procedure_assessment == realisation_may_be_introduced_without_restructuring OR (debtor_is_a_citizen_under_chapter_10 AND (insolvency_presumption_rebutted OR inability_to_pay_in_full_shown_by_other_evidence OR (full_performance_expected_shortly_from_planned_receipts AND (insolvency_presumed OR inability_to_pay_in_full_shown_by_other_evidence))))"
+      ]
+    },
+    "citizen_procedure_evaluation": {
+      "constraint_set_id": "citizen-procedure-constraint-set:reviewed-citizen-procedure-evidence-supply-1-v0",
+      "satisfiable": true,
+      "insolvency_presumed": false,
+      "insolvency_established": false,
+      "application_well_founded": false,
+      "application_unfounded": false,
+      "application_left_without_consideration": false,
+      "bankruptcy_proceedings_terminated": false,
+      "citizen_meets_restructuring_plan_requirements": false,
+      "realisation_may_be_introduced_without_restructuring": false,
+      "debt_restructuring_introduced": false,
+      "guardianship_authority_joins_the_case": false,
+      "lack_of_property_disregarded": false,
+      "requires_human_citizen_procedure_assessment": false,
+      "reasons_ru": [],
+      "warnings_ru": [
+        "Соответствие заявления статьям 213.3–213.5 модель не выводит, а принимает и сверяет с институтом возбуждения дела.",
+        "Десять процентов, месяц, пять и восемь лет — проверенные признаки рецензента, а не вычисления: денежных величин и дат в фактах модели нет.",
+        "Мировое соглашение (статья 213.31) и ход реструктуризации и реализации имущества модель не разбирает: она отвечает, какая процедура вводится по результатам проверки обоснованности заявления.",
+        "Определение неплатёжеспособности пункта 3 статьи 213.6 дано «для целей настоящего параграфа»; что статьи 213.4 и 213.6 стоят в одном параграфе главы X, взято не из локальной выгрузки — разбивки на параграфы в ней нет."
       ]
     },
     "bankruptcy_claims_evidence_mapping": {
@@ -38947,7 +39485,7 @@
       "trace_id": "analysis:analysis-request-case-supply-1-v0",
       "locale": "ru-RU",
       "engine_version": "bounded-counterfactual-engine-v0",
-      "institutional_package_version": "contracts-ru-v0@1.28.0",
+      "institutional_package_version": "contracts-ru-v0@1.29.0",
       "operator_library_id": "contract-legal-operator-library:contracts-legal-operators-ru-v1",
       "operator_library_version": "contracts-legal-operators-ru-v1",
       "operator_library_hash": "sha256:0a37176b045c6622408ba36612f3c71816b9e908c2bdbeac860e65877151e7a8",
@@ -40966,6 +41504,7 @@
           "synthetic-case-supply-1-carriage-evidence",
           "synthetic-case-supply-1-citizen-bankruptcy-evidence",
           "synthetic-case-supply-1-citizen-commencement-evidence",
+          "synthetic-case-supply-1-citizen-procedure-evidence",
           "synthetic-case-supply-1-citizen-ranking-evidence",
           "synthetic-case-supply-1-citizen-release-evidence",
           "synthetic-case-supply-1-civil-principles-evidence",
@@ -41055,11 +41594,14 @@
           "synthetic-ru-127fz-138-secured-creditor-claims-v1",
           "synthetic-ru-127fz-2-basic-definitions-v1",
           "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+          "synthetic-ru-127fz-213.13-restructuring-plan-requirements-v1",
+          "synthetic-ru-127fz-213.2-citizen-bankruptcy-procedures-v1",
           "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
           "synthetic-ru-127fz-213.28-citizen-release-from-obligations-v1",
           "synthetic-ru-127fz-213.3-citizen-case-commencement-v1",
           "synthetic-ru-127fz-213.4-citizen-own-application-v1",
           "synthetic-ru-127fz-213.5-creditor-application-v1",
+          "synthetic-ru-127fz-213.6-citizen-application-merits-v1",
           "synthetic-ru-127fz-5-current-payments-v1",
           "synthetic-ru-127fz-61.1-contest-transactions-general-v1",
           "synthetic-ru-127fz-61.2-contest-suspicious-transaction-v1",
@@ -42292,6 +42834,7 @@
           "synthetic-case-supply-1-carriage-evidence",
           "synthetic-case-supply-1-citizen-bankruptcy-evidence",
           "synthetic-case-supply-1-citizen-commencement-evidence",
+          "synthetic-case-supply-1-citizen-procedure-evidence",
           "synthetic-case-supply-1-citizen-ranking-evidence",
           "synthetic-case-supply-1-citizen-release-evidence",
           "synthetic-case-supply-1-civil-principles-evidence",
@@ -42381,11 +42924,14 @@
           "synthetic-ru-127fz-138-secured-creditor-claims-v1",
           "synthetic-ru-127fz-2-basic-definitions-v1",
           "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+          "synthetic-ru-127fz-213.13-restructuring-plan-requirements-v1",
+          "synthetic-ru-127fz-213.2-citizen-bankruptcy-procedures-v1",
           "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
           "synthetic-ru-127fz-213.28-citizen-release-from-obligations-v1",
           "synthetic-ru-127fz-213.3-citizen-case-commencement-v1",
           "synthetic-ru-127fz-213.4-citizen-own-application-v1",
           "synthetic-ru-127fz-213.5-creditor-application-v1",
+          "synthetic-ru-127fz-213.6-citizen-application-merits-v1",
           "synthetic-ru-127fz-5-current-payments-v1",
           "synthetic-ru-127fz-61.1-contest-transactions-general-v1",
           "synthetic-ru-127fz-61.2-contest-suspicious-transaction-v1",
@@ -43618,6 +44164,7 @@
           "synthetic-case-supply-1-carriage-evidence",
           "synthetic-case-supply-1-citizen-bankruptcy-evidence",
           "synthetic-case-supply-1-citizen-commencement-evidence",
+          "synthetic-case-supply-1-citizen-procedure-evidence",
           "synthetic-case-supply-1-citizen-ranking-evidence",
           "synthetic-case-supply-1-citizen-release-evidence",
           "synthetic-case-supply-1-civil-principles-evidence",
@@ -43707,11 +44254,14 @@
           "synthetic-ru-127fz-138-secured-creditor-claims-v1",
           "synthetic-ru-127fz-2-basic-definitions-v1",
           "synthetic-ru-127fz-213.1-citizen-bankruptcy-regulation-v1",
+          "synthetic-ru-127fz-213.13-restructuring-plan-requirements-v1",
+          "synthetic-ru-127fz-213.2-citizen-bankruptcy-procedures-v1",
           "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1",
           "synthetic-ru-127fz-213.28-citizen-release-from-obligations-v1",
           "synthetic-ru-127fz-213.3-citizen-case-commencement-v1",
           "synthetic-ru-127fz-213.4-citizen-own-application-v1",
           "synthetic-ru-127fz-213.5-creditor-application-v1",
+          "synthetic-ru-127fz-213.6-citizen-application-merits-v1",
           "synthetic-ru-127fz-5-current-payments-v1",
           "synthetic-ru-127fz-61.1-contest-transactions-general-v1",
           "synthetic-ru-127fz-61.2-contest-suspicious-transaction-v1",
@@ -44004,7 +44554,7 @@
     "case_id": "case-supply-1",
     "versions": {
       "knowledge_version": "knowledge-demo-v0",
-      "institutional_package_version": "contracts-ru-v0@1.28.0",
+      "institutional_package_version": "contracts-ru-v0@1.29.0",
       "policy_version": "policy-snapshot:phase0-standard-t3@1",
       "policy_content_hash": "sha256:3ae00857433d12f12acc74e473548b24a294eba6b8db7ccf599e6090be6c43da",
       "translation_template_version": "translation-template-ru-v12",
@@ -46953,6 +47503,63 @@
         }
       },
       {
+        "id": "synthetic-ru-127fz-213.2-citizen-bankruptcy-procedures-v1",
+        "layer": "source",
+        "label": "127-ФЗ, статья 213.2: процедуры, применяемые в деле о банкротстве гражданина",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "bankruptcy_article_213_2",
+          "legal_reference": "127-ФЗ, статья 213.2",
+          "specificity": "special",
+          "text_verbatim": true,
+          "basis_url": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-127fz-213.6-citizen-application-merits-v1",
+        "layer": "source",
+        "label": "127-ФЗ, статья 213.6: особенности рассмотрения обоснованности заявления о признании гражданина банкротом",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "bankruptcy_article_213_6",
+          "legal_reference": "127-ФЗ, статья 213.6",
+          "specificity": "special",
+          "text_verbatim": true,
+          "basis_url": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-ru-127fz-213.13-restructuring-plan-requirements-v1",
+        "layer": "source",
+        "label": "127-ФЗ, статья 213.13: требования к гражданину, в отношении задолженности которого может быть представлен план реструктуризации",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "topic": "bankruptcy_article_213_13",
+          "legal_reference": "127-ФЗ, статья 213.13",
+          "specificity": "special",
+          "text_verbatim": true,
+          "basis_url": "http://pravo.gov.ru/proxy/ips/?docbody=&nd=102078527",
+          "review_required": true
+        }
+      },
+      {
+        "id": "synthetic-case-supply-1-citizen-procedure-evidence",
+        "layer": "source",
+        "label": "Синтетическая проверенная запись фактов об обоснованности заявления и процедуре банкротства гражданина",
+        "source_refs": [],
+        "metadata": {
+          "synthetic": true,
+          "non_authoritative": true,
+          "topic": "citizen_procedure_case_evidence",
+          "case_id": "case-supply-1"
+        }
+      },
+      {
         "id": "synthetic-ru-127fz-5-current-payments-v1",
         "layer": "source",
         "label": "127-ФЗ, статья 5: текущие платежи",
@@ -48426,6 +49033,7 @@
             "synthetic-case-evidence-reviewer",
             "synthetic-citizen-bankruptcy-reviewer",
             "synthetic-citizen-commencement-reviewer",
+            "synthetic-citizen-procedure-reviewer",
             "synthetic-citizen-ranking-reviewer",
             "synthetic-citizen-release-reviewer",
             "synthetic-civil-principles-reviewer",

@@ -28,9 +28,15 @@ ROOT = Path(__file__).resolve().parents[1]
 #: не может числиться смоделированной, если её источника нет среди правовых
 #: ссылок названного института.
 MODELLED_CHAPTER_10_ARTICLES: dict[str, tuple[str, str]] = {
+    "213.2": ("citizen_procedure", "synthetic-ru-127fz-213.2-citizen-bankruptcy-procedures-v1"),
     "213.3": ("citizen_commencement", "synthetic-ru-127fz-213.3-citizen-case-commencement-v1"),
     "213.4": ("citizen_commencement", "synthetic-ru-127fz-213.4-citizen-own-application-v1"),
     "213.5": ("citizen_commencement", "synthetic-ru-127fz-213.5-creditor-application-v1"),
+    "213.6": ("citizen_procedure", "synthetic-ru-127fz-213.6-citizen-application-merits-v1"),
+    "213.13": (
+        "citizen_procedure",
+        "synthetic-ru-127fz-213.13-restructuring-plan-requirements-v1",
+    ),
     "213.27": ("citizen_ranking", "synthetic-ru-127fz-213.27-citizen-creditor-ranking-v1"),
     "213.28": (
         "citizen_release",
@@ -48,6 +54,7 @@ INSTITUTES = (
     "citizen_ranking",
     "citizen_release",
     "citizen_commencement",
+    "citizen_procedure",
 )
 
 _ARTICLE = re.compile(r"213\.(\d+)(?![\d.])")
@@ -144,7 +151,7 @@ def test_the_detector_lets_true_statements_through() -> None:
     about_history = (
         "В выпуске 1.26.0 статья 213.28 пакетом не была смоделирована, и флаг поднимался."
     )
-    about_an_unmodelled_article = "Статью 213.2 о процедурах пакет не моделирует."
+    about_an_unmodelled_article = "Статью 213.31 о мировом соглашении пакет не моделирует."
     unrelated_neighbour = (
         "Статья 213.28 называет субсидиарную ответственность. Её саму пакет не моделирует."
     )

@@ -2,7 +2,9 @@
 
 import pytest
 
+import causa.institutional.contracts.citizen_commencement as commencement_module
 from causa.institutional.contracts.citizen_commencement import (
+    CITIZEN_COMMENCEMENT_LEGAL_SOURCE_REFS,
     CitizenCommencementConstraintSet,
     CitizenCommencementEvidenceMappingResult,
     CitizenCommencementFactSet,
@@ -339,3 +341,17 @@ def test_the_constraint_set_declares_what_it_executes() -> None:
         line.startswith("threshold_displaced_for_the_debtors_own_application ==")
         for line in expressions
     )
+
+
+def test_the_citizens_insolvency_is_sourced_from_article_213_6() -> None:
+    """Признаки неплатёжеспособности пункта 2 статьи 213.4 — в смысле пункта 3 статьи 213.6.
+
+    До выпуска 1.29.0 институт называл источником определения статью 2. Для
+    гражданина это неверно: пункт 3 статьи 213.6 даёт своё определение «для целей
+    настоящего параграфа».
+    """
+    assert (
+        "synthetic-ru-127fz-213.6-citizen-application-merits-v1"
+        in CITIZEN_COMMENCEMENT_LEGAL_SOURCE_REFS
+    )
+    assert "пункт 3 статьи 213.6" in (commencement_module.__doc__ or "")

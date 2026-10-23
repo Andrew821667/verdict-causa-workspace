@@ -638,6 +638,16 @@ from causa.institutional.contracts.citizen_commencement import (
     evaluate_citizen_commencement_constraints,
     map_reviewed_citizen_commencement_evidence,
 )
+from causa.institutional.contracts.citizen_procedure import (
+    CITIZEN_PROCEDURE_EVIDENCE_SCHEMA_VERSION,
+    CitizenProcedureConstraintSet,
+    CitizenProcedureEvaluation,
+    CitizenProcedureEvidenceMappingResult,
+    ReviewedCitizenProcedureEvidence,
+    build_citizen_procedure_constraint_set,
+    evaluate_citizen_procedure_constraints,
+    map_reviewed_citizen_procedure_evidence,
+)
 from causa.institutional.contracts.citizen_release import (
     CITIZEN_RELEASE_EVIDENCE_SCHEMA_VERSION,
     CitizenReleaseConstraintSet,
@@ -1209,6 +1219,7 @@ class ReviewedContractAnalysisRequest(BaseModel):
     citizen_ranking_evidence: ReviewedCitizenRankingEvidence
     citizen_release_evidence: ReviewedCitizenReleaseEvidence
     citizen_commencement_evidence: ReviewedCitizenCommencementEvidence
+    citizen_procedure_evidence: ReviewedCitizenProcedureEvidence
     bankruptcy_claims_evidence: ReviewedBankruptcyClaimsEvidence
     bankruptcy_ranking_evidence: ReviewedBankruptcyRankingEvidence
     bankruptcy_contest_evidence: ReviewedBankruptcyContestEvidence
@@ -1486,6 +1497,9 @@ class ReviewedContractAnalysisResult(BaseModel):
     citizen_commencement_evidence_mapping: CitizenCommencementEvidenceMappingResult
     citizen_commencement_constraint_set: CitizenCommencementConstraintSet
     citizen_commencement_evaluation: CitizenCommencementEvaluation
+    citizen_procedure_evidence_mapping: CitizenProcedureEvidenceMappingResult
+    citizen_procedure_constraint_set: CitizenProcedureConstraintSet
+    citizen_procedure_evaluation: CitizenProcedureEvaluation
     bankruptcy_claims_evidence_mapping: BankruptcyClaimsEvidenceMappingResult
     bankruptcy_claims_constraint_set: BankruptcyClaimsConstraintSet
     bankruptcy_claims_evaluation: BankruptcyClaimsEvaluation
@@ -2469,6 +2483,46 @@ class ReviewedContractAnalysisResult(BaseModel):
             self.citizen_commencement_evidence_mapping.facts.debtor_is_a_citizen_under_chapter_10,
             self.citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies,
         )
+        expected_citizen_procedure_set = build_citizen_procedure_constraint_set(
+            self.citizen_procedure_evidence_mapping
+        )
+        if self.citizen_procedure_constraint_set != expected_citizen_procedure_set:
+            raise ValueError(
+                "Citizen-procedure constraint set does not replay from reviewed evidence."
+            )
+        expected_citizen_procedure_evaluation = evaluate_citizen_procedure_constraints(
+            expected_citizen_procedure_set,
+            self.citizen_procedure_evidence_mapping.facts,
+        )
+        if self.citizen_procedure_evaluation != expected_citizen_procedure_evaluation:
+            raise ValueError("Citizen-procedure evaluation does not replay from reviewed evidence.")
+        facts_agree.equal(
+            "citizen_procedure_debtor_regime",
+            self.citizen_procedure_evidence_mapping.facts.debtor_is_a_citizen_under_chapter_10,
+            self.citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies,
+        )
+        facts_agree.equal(
+            "citizen_procedure_applicant_is_the_citizen",
+            self.citizen_procedure_evidence_mapping.facts.application_by_the_citizen,
+            self.citizen_commencement_evidence_mapping.facts.applicant_is_the_citizen,
+        )
+        facts_agree.equal(
+            "citizen_procedure_applicant_is_a_creditor",
+            self.citizen_procedure_evidence_mapping.facts.application_by_creditor_or_authorised_body,
+            self.citizen_commencement_evidence_mapping.facts.applicant_is_a_monetary_creditor
+            or self.citizen_commencement_evidence_mapping.facts.applicant_is_authorised_body,
+        )
+        facts_agree.equal(
+            "citizen_procedure_application_requirements",
+            self.citizen_procedure_evidence_mapping.facts.application_meets_articles_213_3_to_213_5,
+            self.citizen_commencement_evaluation.debtors_application_admissible
+            or self.citizen_commencement_evaluation.creditors_application_admissible,
+        )
+        facts_agree.equal(
+            "citizen_procedure_claim_confirmed_by_court",
+            self.citizen_procedure_evidence_mapping.facts.claim_confirmed_by_court_decision_in_force,
+            self.citizen_commencement_evidence_mapping.facts.claim_confirmed_by_court_decision_in_force,
+        )
         expected_bankruptcy_claims_set = build_bankruptcy_claims_constraint_set(
             self.bankruptcy_claims_evidence_mapping
         )
@@ -3267,6 +3321,8 @@ def _validate_request_integrity(
         raise ValueError(
             "Citizen-commencement evidence case_id does not match the analysis request."
         )
+    if request.citizen_procedure_evidence.case_id != request.case_id:
+        raise ValueError("Citizen-procedure evidence case_id does not match the analysis request.")
     if request.bankruptcy_claims_evidence.case_id != request.case_id:
         raise ValueError("Bankruptcy-claims evidence case_id does not match the analysis request.")
     if request.bankruptcy_ranking_evidence.case_id != request.case_id:
@@ -3531,6 +3587,11 @@ def _validate_request_integrity(
     ):
         raise ValueError("Citizen-commencement evidence uses an unsupported schema version.")
     if (
+        request.citizen_procedure_evidence.schema_version
+        != CITIZEN_PROCEDURE_EVIDENCE_SCHEMA_VERSION
+    ):
+        raise ValueError("Citizen-procedure evidence uses an unsupported schema version.")
+    if (
         request.bankruptcy_claims_evidence.schema_version
         != BANKRUPTCY_CLAIMS_EVIDENCE_SCHEMA_VERSION
     ):
@@ -3677,6 +3738,7 @@ def _validate_request_integrity(
         *request.citizen_ranking_evidence.legal_source_refs,
         *request.citizen_release_evidence.legal_source_refs,
         *request.citizen_commencement_evidence.legal_source_refs,
+        *request.citizen_procedure_evidence.legal_source_refs,
         *request.bankruptcy_claims_evidence.legal_source_refs,
         *request.bankruptcy_ranking_evidence.legal_source_refs,
         *request.bankruptcy_contest_evidence.legal_source_refs,
@@ -3851,6 +3913,8 @@ def _validate_request_integrity(
     for assertion in request.citizen_release_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.citizen_commencement_evidence.assertions:
+        referenced_source_ids.update(assertion.source_refs)
+    for assertion in request.citizen_procedure_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
     for assertion in request.bankruptcy_claims_evidence.assertions:
         referenced_source_ids.update(assertion.source_refs)
@@ -4692,6 +4756,17 @@ def _validate_request_integrity(
             "Citizen-commencement legal source refs must identify reviewed legal models: "
             + ", ".join(sorted(invalid_citizen_commencement_legal_sources))
         )
+    invalid_citizen_procedure_legal_sources = [
+        source_id
+        for source_id in request.citizen_procedure_evidence.legal_source_refs
+        if source_registry[source_id].source_type == SourceType.FACT
+        or not source_registry[source_id].metadata.get("legal_reference")
+    ]
+    if invalid_citizen_procedure_legal_sources:
+        raise ValueError(
+            "Citizen-procedure legal source refs must identify reviewed legal models: "
+            + ", ".join(sorted(invalid_citizen_procedure_legal_sources))
+        )
     invalid_bankruptcy_claims_legal_sources = [
         source_id
         for source_id in request.bankruptcy_claims_evidence.legal_source_refs
@@ -5451,6 +5526,11 @@ def run_reviewed_contract_analysis(
         artifact_name="Citizen-commencement evidence",
         review_status=request.citizen_commencement_evidence.review_status,
         reviewer_id=request.citizen_commencement_evidence.reviewer_id,
+    )
+    citizen_procedure_reviewer_id = _require_reviewed(
+        artifact_name="Citizen-procedure evidence",
+        review_status=request.citizen_procedure_evidence.review_status,
+        reviewer_id=request.citizen_procedure_evidence.reviewer_id,
     )
     bankruptcy_claims_reviewer_id = _require_reviewed(
         artifact_name="Bankruptcy-claims evidence",
@@ -6305,6 +6385,50 @@ def run_reviewed_contract_analysis(
         citizen_commencement_evidence_mapping.facts.debtor_is_a_citizen_under_chapter_10,
         citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies,
     )
+    citizen_procedure_evidence_mapping = map_reviewed_citizen_procedure_evidence(
+        request.citizen_procedure_evidence
+    )
+    citizen_procedure_constraint_set = build_citizen_procedure_constraint_set(
+        citizen_procedure_evidence_mapping
+    )
+    citizen_procedure_evaluation = evaluate_citizen_procedure_constraints(
+        citizen_procedure_constraint_set,
+        citizen_procedure_evidence_mapping.facts,
+    )
+    # Режим главы X — тот же, что выводит модель статьи 25.
+    facts_agree.equal(
+        "citizen_procedure_debtor_regime",
+        citizen_procedure_evidence_mapping.facts.debtor_is_a_citizen_under_chapter_10,
+        citizen_bankruptcy_evaluation.citizen_bankruptcy_regime_applies,
+    )
+    # Оба института описывают одно заявление: его подаёт одно и то же лицо.
+    facts_agree.equal(
+        "citizen_procedure_applicant_is_the_citizen",
+        citizen_procedure_evidence_mapping.facts.application_by_the_citizen,
+        citizen_commencement_evidence_mapping.facts.applicant_is_the_citizen,
+    )
+    facts_agree.equal(
+        "citizen_procedure_applicant_is_a_creditor",
+        citizen_procedure_evidence_mapping.facts.application_by_creditor_or_authorised_body,
+        citizen_commencement_evidence_mapping.facts.applicant_is_a_monetary_creditor
+        or citizen_commencement_evidence_mapping.facts.applicant_is_authorised_body,
+    )
+    # Соответствие статьям 213.3–213.5, которого пункт 2 статьи 213.6 требует от
+    # обоснованного заявления, выводит институт возбуждения дела; признак
+    # рецензента обязан с ним совпасть.
+    facts_agree.equal(
+        "citizen_procedure_application_requirements",
+        citizen_procedure_evidence_mapping.facts.application_meets_articles_213_3_to_213_5,
+        citizen_commencement_evaluation.debtors_application_admissible
+        or citizen_commencement_evaluation.creditors_application_admissible,
+    )
+    # Судебное подтверждение требования решает и основание заявления по статье
+    # 213.5, и то, мешает ли обоснованности спор о праве.
+    facts_agree.equal(
+        "citizen_procedure_claim_confirmed_by_court",
+        citizen_procedure_evidence_mapping.facts.claim_confirmed_by_court_decision_in_force,
+        citizen_commencement_evidence_mapping.facts.claim_confirmed_by_court_decision_in_force,
+    )
     bankruptcy_claims_evidence_mapping = map_reviewed_bankruptcy_claims_evidence(
         request.bankruptcy_claims_evidence
     )
@@ -6918,6 +7042,7 @@ def run_reviewed_contract_analysis(
         or citizen_ranking_evaluation.requires_human_citizen_ranking_assessment
         or citizen_release_evaluation.requires_human_citizen_release_assessment
         or citizen_commencement_evaluation.requires_human_citizen_commencement_assessment
+        or citizen_procedure_evaluation.requires_human_citizen_procedure_assessment
         or bankruptcy_claims_evaluation.requires_human_bankruptcy_claims_assessment
         or bankruptcy_ranking_evaluation.requires_human_bankruptcy_ranking_assessment
         or bankruptcy_contest_evaluation.requires_human_bankruptcy_contest_assessment
@@ -7028,6 +7153,7 @@ def run_reviewed_contract_analysis(
                 citizen_ranking_reviewer_id,
                 citizen_release_reviewer_id,
                 citizen_commencement_reviewer_id,
+                citizen_procedure_reviewer_id,
                 bankruptcy_claims_reviewer_id,
                 bankruptcy_ranking_reviewer_id,
                 bankruptcy_contest_reviewer_id,
@@ -7283,6 +7409,9 @@ def run_reviewed_contract_analysis(
         citizen_commencement_evidence_mapping=citizen_commencement_evidence_mapping,
         citizen_commencement_constraint_set=citizen_commencement_constraint_set,
         citizen_commencement_evaluation=citizen_commencement_evaluation,
+        citizen_procedure_evidence_mapping=citizen_procedure_evidence_mapping,
+        citizen_procedure_constraint_set=citizen_procedure_constraint_set,
+        citizen_procedure_evaluation=citizen_procedure_evaluation,
         bankruptcy_claims_evidence_mapping=bankruptcy_claims_evidence_mapping,
         bankruptcy_claims_constraint_set=bankruptcy_claims_constraint_set,
         bankruptcy_claims_evaluation=bankruptcy_claims_evaluation,

@@ -171,6 +171,12 @@ from causa.institutional.contracts.citizen_commencement import (
     CitizenCommencementEvidencePredicate,
     ReviewedCitizenCommencementEvidence,
 )
+from causa.institutional.contracts.citizen_procedure import (
+    CITIZEN_PROCEDURE_LEGAL_SOURCE_REFS,
+    CitizenProcedureEvidenceAssertion,
+    CitizenProcedureEvidencePredicate,
+    ReviewedCitizenProcedureEvidence,
+)
 from causa.institutional.contracts.citizen_release import (
     CITIZEN_RELEASE_LEGAL_SOURCE_REFS,
     CitizenReleaseEvidenceAssertion,
@@ -738,6 +744,10 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-127fz-213.4-citizen-own-application-v1",
     "synthetic-ru-127fz-213.5-creditor-application-v1",
     "synthetic-case-supply-1-citizen-commencement-evidence",
+    "synthetic-ru-127fz-213.2-citizen-bankruptcy-procedures-v1",
+    "synthetic-ru-127fz-213.6-citizen-application-merits-v1",
+    "synthetic-ru-127fz-213.13-restructuring-plan-requirements-v1",
+    "synthetic-case-supply-1-citizen-procedure-evidence",
     "synthetic-ru-127fz-5-current-payments-v1",
     "synthetic-ru-127fz-63-observation-effects-v1",
     "synthetic-ru-127fz-134-creditor-ranking-v1",
@@ -3419,6 +3429,25 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
             legal_source_refs=CITIZEN_COMMENCEMENT_LEGAL_SOURCE_REFS,
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-citizen-commencement-reviewer",
+        ),
+        citizen_procedure_evidence=ReviewedCitizenProcedureEvidence(
+            id="reviewed-citizen-procedure-evidence-supply-1-v0",
+            case_id="case-supply-1",
+            # Все признаки ложны: заявления о признании гражданина банкротом никто
+            # не подавал, и проверять обоснованность нечего. Институт обязан
+            # промолчать на таком наборе.
+            assertions=tuple(
+                CitizenProcedureEvidenceAssertion(
+                    id=f"citizen-procedure-evidence-{predicate.value}",
+                    predicate=predicate,
+                    value=False,
+                    source_refs=("synthetic-case-supply-1-citizen-procedure-evidence",),
+                )
+                for predicate in CitizenProcedureEvidencePredicate
+            ),
+            legal_source_refs=CITIZEN_PROCEDURE_LEGAL_SOURCE_REFS,
+            review_status=BootstrapReviewStatus.REVIEWED,
+            reviewer_id="synthetic-citizen-procedure-reviewer",
         ),
         citizen_release_evidence=ReviewedCitizenReleaseEvidence(
             id="reviewed-citizen-release-evidence-supply-1-v0",

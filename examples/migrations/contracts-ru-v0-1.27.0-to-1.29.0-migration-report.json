@@ -1,0 +1,56 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-1.27.0:to-1.29.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-1.27.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "1.27.0",
+  "target_package_version": "1.29.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "1.27.0",
+      "to_version": "1.28.0",
+      "reasons": [
+        "The analysis request gains a required field, citizen_commencement_evidence, and the result gains three: the mapping, the constraint set and the evaluation of the institute of articles 213.3-213.5. A stored request does not carry the field and cannot be replayed as it stands.",
+        "Two flags change meaning: the article 25 institute no longer raises the human flag on a raised ranking question, and the article 213.27 institute no longer raises it on an asserted exception to discharge, because both questions are answered by institutes modelled in releases 1.26.0 and 1.27.0. A stored analysis carrying those flags and the reasons that the package did not model articles 213.27 and 213.28 states something the package no longer holds and must be replayed."
+      ],
+      "reasons_ru": [
+        "Запрос анализа получает обязательное поле citizen_commencement_evidence, а результат — три: разбор, набор ограничений и вывод института статей 213.3–213.5. Сохранённый запрос этого поля не несёт и в прежнем виде повторно прогнан быть не может.",
+        "Два флага меняют смысл: институт статьи 25 больше не поднимает флаг юриста на поставленном вопросе об очерёдности, а институт статьи 213.27 — на заявленном исключении из погашения, потому что на оба вопроса отвечают институты, смоделированные в выпусках 1.26.0 и 1.27.0. Сохранённый анализ с этими флагами и с причинами «пакет статьи 213.27 и 213.28 не моделирует» говорит то, чего в пакете больше нет, и подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_citizen_commencement_evaluation.py",
+        "python scripts/export_synthetic_citizen_bankruptcy_evaluation.py",
+        "python scripts/export_synthetic_citizen_ranking_evaluation.py"
+      ]
+    },
+    {
+      "from_version": "1.28.0",
+      "to_version": "1.29.0",
+      "reasons": [
+        "The analysis request gains a required field, citizen_procedure_evidence, and the result gains three: the mapping, the constraint set and the evaluation of the institute of articles 213.2, 213.6 and 213.13. A stored request does not carry the field and cannot be replayed as it stands.",
+        "The commencement institute's legal sources gain article 213.6, and its reasons and warnings change: the insolvency definition is attributed to article 213.6(3), and the reading of the threshold cites article 213.6(2). The article 25 institute's warning that the procedures of article 213.2 were not modelled is replaced. A stored analysis carrying the old texts must be replayed."
+      ],
+      "reasons_ru": [
+        "Запрос анализа получает обязательное поле citizen_procedure_evidence, а результат — три: разбор, набор ограничений и вывод института статей 213.2, 213.6 и 213.13. Сохранённый запрос этого поля не несёт и в прежнем виде повторно прогнан быть не может.",
+        "Правовые источники института возбуждения дела пополняются статьёй 213.6, а его причины и предупреждения меняются: определение неплатёжеспособности отнесено к пункту 3 статьи 213.6, прочтение о пороге ссылается на пункт 2 статьи 213.6. Предупреждение института статьи 25 о том, что процедуры статьи 213.2 не смоделированы, заменено. Сохранённый анализ с прежними текстами подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_citizen_procedure_evaluation.py",
+        "python scripts/export_synthetic_citizen_commencement_evaluation.py",
+        "python scripts/export_synthetic_citizen_bankruptcy_evaluation.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}
