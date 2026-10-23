@@ -2414,6 +2414,23 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_synthetic_citizen_bankruptcy_evaluation.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.29.0",
+        to_version="1.30.0",
+        reasons=[
+            "The bankruptcy-setoff institute gains six required predicates on saldo (counter_obligations_arise_from_one_contract and five more) and three outputs, and its model version changes. A stored bankruptcy_setoff_evidence block does not carry the predicates and cannot be mapped as it stands.",
+            "The human flag of the institute changes meaning: a priority-violating setoff found to be saldo under one contract no longer raises it, and saldo resting on linked contracts or with a clearly disproportionate penalty now does. A stored analysis carrying the old flag and the reason that the qualification was left open must be replayed.",
+        ],
+        reasons_ru=[
+            "Институт зачёта в банкротстве получает шесть обязательных предикатов о сальдо (counter_obligations_arise_from_one_contract и ещё пять) и три вывода, и версия его модели меняется. Сохранённый блок bankruptcy_setoff_evidence этих предикатов не несёт и в прежнем виде разобран быть не может.",
+            "Флаг юриста института меняет смысл: зачёт, нарушающий очерёдность, который оказался сальдо по одному договору, его больше не поднимает, а сальдо по взаимосвязанным договорам или с явно несоразмерной неустойкой — поднимает. Сохранённый анализ с прежним флагом и причиной «квалификация оставлена открытой» подлежит повторному прогону.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_rule_parity_report.py",
+        ],
+    ),
 ]
 
 

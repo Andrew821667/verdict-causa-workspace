@@ -46,6 +46,27 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.30.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "The open question of the bankruptcy-setoff institute is answered: whether an operation is a setoff of two independent claims (article 410 of the Civil Code) or the determination of a balance (saldo) of counter-performances under one contract. The model applies the Supreme Court's criterion, quoted verbatim from paragraph 17 of the Review of insolvency practice for 2022 (approved 26.04.2023): comparing the parties' obligations under one contract (or several linked contracts) to determine who owes the final performance is not a setoff and cannot be challenged as a preference under article 61.3, because counter-claims do not in fact arise. Paragraph 16 of the same review and paragraph 4 of the Review for 2023 (approved 15.05.2024) are added verbatim as well, with articles 61.3 of law 127-FZ, 407-413 and 333 of the Civil Code.",
+            "The bankruptcy-setoff institute gains six required predicates: whether the counter-obligations arise from one contract or from linked contracts, whether the operation determines the final obligation, whether the counter-claims were already awarded by a court, whether a penalty was counted in the saldo and whether it is clearly disproportionate. Saldo lifts the article 63 prohibition and is derived without observation, since the article 61.3 contest concerns transactions before the case. The name a party gave the operation does not decide: in the case of paragraph 4 the customer sent a 'notice of setoff' and the Supreme Court treated it as saldo.",
+            "The human flag is narrowed in one place only. It is no longer raised on a priority-violating setoff that is found to be saldo under one contract, because the criterion answers that question. It stays where interpretation still decides: a refused saldo where the setoff would violate priority (the review requires interpreting the documents under article 431), saldo resting on linked contracts, and a clearly disproportionate penalty in the saldo, where the remedy is reduction under article 333 and not invalidity.",
+            "Prior court awards of the counter-claims do not bar saldo (paragraph 17); the model names the fact only to disregard it, and a test toggles it on every saldo benchmark and requires every other conclusion to stay the same. The red-team count is also made stricter: a case with several forbidden outcomes now counts as blocked only when none of them occurred. The institute gets its first specification, docs/contract-bankruptcy-setoff-spec.md.",
+        ],
+        notes_ru=[
+            "Открытый вопрос института зачёта в банкротстве получил ответ: зачёт ли операция двух независимых требований (статья 410 ГК РФ) или определение сальдо встречных предоставлений по одному договору. Модель применяет критерий Верховного Суда, дословно взятый из пункта 17 Обзора судебной практики разрешения споров о несостоятельности (банкротстве) за 2022 год (утверждён 26.04.2023): сопоставление обязанностей сторон из одного договора (либо нескольких взаимосвязанных) с целью определить, на кого возлагается завершающее исполнение, — не зачёт и не оспаривается как сделка с предпочтением по статье 61.3, потому что встречные требования фактически не возникают. Дословно добавлены и пункт 16 того же обзора, и пункт 4 Обзора за 2023 год (утверждён 15.05.2024), а также статья 61.3 127-ФЗ, статьи 407–413 и 333 ГК РФ.",
+            "Институт зачёта получает шесть обязательных предикатов: из одного ли договора или из взаимосвязанных встречные обязанности, определяет ли операция завершающую обязанность, взысканы ли встречные требования судом, учтена ли в сальдо неустойка и явно ли она несоразмерна. Сальдо снимает запрет статьи 63 и выводится и без наблюдения: оспаривание по статье 61.3 касается сделок до возбуждения дела. Название, которое дала операции сторона, не решает: в деле пункта 4 заказчик направил «уведомление о зачёте», а Верховный Суд разобрал его как сальдо.",
+            "Флаг юриста сужен в одном месте: он больше не поднимается на зачёте, нарушающем очерёдность, если операция оказалась сальдо по одному договору, — на этот вопрос отвечает критерий. Он остаётся там, где исход по-прежнему решает толкование: отказ в сальдо при нарушении очерёдности (обзор требует истолковать документы по статье 431), сальдо по взаимосвязанным договорам и явно несоразмерная неустойка в сальдо, где защита — уменьшение по статье 333, а не недействительность.",
+            "Взыскание встречных требований судом сальдо не препятствует (пункт 17); модель называет этот признак, только чтобы отбросить, и тест переключает его на каждом наборе benchmark с сальдо, требуя неизменности остальных выводов. Подсчёт red-team ужесточён: случай с несколькими запрещёнными исходами считается заблокированным, только если не наступил ни один. У института появилась первая спецификация — docs/contract-bankruptcy-setoff-spec.md.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.29.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

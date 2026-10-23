@@ -1,3 +1,14 @@
+"""Бенчмарк и red-team для модели зачёта и сальдирования в деле о банкротстве.
+
+Случаи сальдо нагружены тремя ловушками, на которых суды ошибались в делах,
+разобранных Верховным Судом. Первая — «название решает»: заказчик направил
+«уведомление о зачёте», а по содержанию это сальдо (пункт 4 Обзора ВС РФ по
+банкротству за 2023 год). Вторая — «судебные акты мешают»: взыскание встречных
+требований судом сальдированию не препятствует (пункт 17 Обзора за 2022 год).
+Третья — «неустойка порочит»: учёт неустойки в сальдо не делает его сделкой с
+предпочтением, а против явной несоразмерности защищает статья 333 ГК РФ.
+"""
+
 from pydantic import BaseModel, Field
 
 from causa.institutional.contracts.bankruptcy_setoff import (
@@ -63,6 +74,20 @@ def _facts(**updates: bool) -> BankruptcySetoffFactSet:
     return BankruptcySetoffFactSet(**values)
 
 
+#: Зачёт в наблюдении, который нарушил бы очерёдность, — если бы был зачётом.
+_PRIORITY_VIOLATING_SETOFF = dict(
+    observation_introduced=True,
+    setoff_of_mutual_homogeneous_claims_asserted=True,
+    setoff_would_violate_priority_order=True,
+)
+
+#: Сальдо по одному договору: пункт 17 Обзора ВС РФ по банкротству за 2022 год.
+_SALDO_ONE_CONTRACT = dict(
+    counter_obligations_arise_from_one_contract=True,
+    operation_determines_final_obligation_by_comparing_performances=True,
+)
+
+
 SYNTHETIC_BANKRUPTCY_SETOFF_BENCHMARKS = (
     BankruptcySetoffEvaluationTask(
         id="bankruptcy-setoff-bench-prohibited",
@@ -121,6 +146,88 @@ SYNTHETIC_BANKRUPTCY_SETOFF_BENCHMARKS = (
             "setoff_permitted_as_priority_neutral": False,
             "netting_permitted_by_financial_contract_exception": False,
             "requires_human_bankruptcy_setoff_assessment": False,
+        },
+    ),
+    BankruptcySetoffEvaluationTask(
+        id="bankruptcy-setoff-bench-saldo-one-contract",
+        title_ru="Сальдо по одному договору вместо зачёта, нарушающего очерёдность",
+        facts=_facts(**_PRIORITY_VIOLATING_SETOFF, **_SALDO_ONE_CONTRACT),
+        expected_outcomes={
+            "operation_is_saldo_not_setoff": True,
+            "setoff_prohibited": False,
+            "setoff_permitted_as_priority_neutral": False,
+            "requires_human_bankruptcy_setoff_assessment": False,
+        },
+    ),
+    BankruptcySetoffEvaluationTask(
+        id="bankruptcy-setoff-bench-saldo-linked-contracts",
+        title_ru="Сальдо по взаимосвязанным договорам — флаг юриста",
+        facts=_facts(
+            **_PRIORITY_VIOLATING_SETOFF,
+            counter_obligations_arise_from_linked_contracts=True,
+            operation_determines_final_obligation_by_comparing_performances=True,
+        ),
+        expected_outcomes={
+            "operation_is_saldo_not_setoff": True,
+            "setoff_prohibited": False,
+            "requires_human_bankruptcy_setoff_assessment": True,
+        },
+    ),
+    BankruptcySetoffEvaluationTask(
+        id="bankruptcy-setoff-bench-one-contract-without-final-obligation",
+        title_ru="Один договор, но завершающая обязанность не определяется — зачёт",
+        facts=_facts(
+            **_PRIORITY_VIOLATING_SETOFF, counter_obligations_arise_from_one_contract=True
+        ),
+        expected_outcomes={
+            "operation_is_saldo_not_setoff": False,
+            "setoff_prohibited": True,
+            "requires_human_bankruptcy_setoff_assessment": True,
+        },
+    ),
+    BankruptcySetoffEvaluationTask(
+        id="bankruptcy-setoff-bench-saldo-before-observation",
+        title_ru="Сальдо до введения наблюдения — не оспаривается как предпочтение",
+        facts=_facts(**_SALDO_ONE_CONTRACT),
+        expected_outcomes={
+            "operation_is_saldo_not_setoff": True,
+            "setoff_prohibited": False,
+            "requires_human_bankruptcy_setoff_assessment": False,
+        },
+    ),
+    BankruptcySetoffEvaluationTask(
+        id="bankruptcy-setoff-bench-saldo-after-judgments",
+        title_ru="Встречные требования взысканы судом — сальдо всё равно возможно",
+        facts=_facts(**_SALDO_ONE_CONTRACT, counter_claims_already_awarded_by_court=True),
+        expected_outcomes={
+            "operation_is_saldo_not_setoff": True,
+            "prior_judgments_do_not_bar_saldo": True,
+        },
+    ),
+    BankruptcySetoffEvaluationTask(
+        id="bankruptcy-setoff-bench-penalty-in-saldo",
+        title_ru="Соразмерная неустойка в сальдо — сальдо, без флага",
+        facts=_facts(
+            **_PRIORITY_VIOLATING_SETOFF, **_SALDO_ONE_CONTRACT, penalty_counted_in_saldo=True
+        ),
+        expected_outcomes={
+            "operation_is_saldo_not_setoff": True,
+            "penalty_disproportion_remedied_by_article_333": False,
+            "requires_human_bankruptcy_setoff_assessment": False,
+        },
+    ),
+    BankruptcySetoffEvaluationTask(
+        id="bankruptcy-setoff-bench-disproportionate-penalty-in-saldo",
+        title_ru="Явно несоразмерная неустойка в сальдо — статья 333, флаг юриста",
+        facts=_facts(
+            **_SALDO_ONE_CONTRACT,
+            penalty_counted_in_saldo=True,
+            penalty_clearly_disproportionate_to_breach=True,
+        ),
+        expected_outcomes={
+            "operation_is_saldo_not_setoff": True,
+            "penalty_disproportion_remedied_by_article_333": True,
+            "requires_human_bankruptcy_setoff_assessment": True,
         },
     ),
 )
@@ -183,6 +290,58 @@ SYNTHETIC_BANKRUPTCY_SETOFF_RED_TEAM_CASES = (
         ),
         forbidden_outcomes={"requires_human_bankruptcy_setoff_assessment": True},
     ),
+    BankruptcySetoffRedTeamCase(
+        id="bankruptcy-setoff-red-prohibit-saldo-as-setoff",
+        title_ru="Запретить сальдо по одному договору как зачёт, нарушающий очерёдность",
+        facts=_facts(**_PRIORITY_VIOLATING_SETOFF, **_SALDO_ONE_CONTRACT),
+        forbidden_outcomes={"setoff_prohibited": True},
+    ),
+    BankruptcySetoffRedTeamCase(
+        id="bankruptcy-setoff-red-the-name-decides",
+        title_ru="Счесть зачётом операцию, которую сторона назвала зачётом",
+        facts=_facts(setoff_of_mutual_homogeneous_claims_asserted=True, **_SALDO_ONE_CONTRACT),
+        forbidden_outcomes={"operation_is_saldo_not_setoff": False},
+    ),
+    BankruptcySetoffRedTeamCase(
+        id="bankruptcy-setoff-red-one-contract-is-not-yet-saldo",
+        title_ru="Признать сальдо по одному признаку единого договора",
+        facts=_facts(
+            **_PRIORITY_VIOLATING_SETOFF, counter_obligations_arise_from_one_contract=True
+        ),
+        forbidden_outcomes={"operation_is_saldo_not_setoff": True},
+    ),
+    BankruptcySetoffRedTeamCase(
+        id="bankruptcy-setoff-red-judgments-bar-saldo",
+        title_ru="Отказать в сальдо, потому что встречные требования взысканы судом",
+        facts=_facts(**_SALDO_ONE_CONTRACT, counter_claims_already_awarded_by_court=True),
+        forbidden_outcomes={"operation_is_saldo_not_setoff": False},
+    ),
+    BankruptcySetoffRedTeamCase(
+        id="bankruptcy-setoff-red-penalty-voids-saldo",
+        title_ru="Счесть сальдо с явно несоразмерной неустойкой запрещённым зачётом",
+        facts=_facts(
+            **_PRIORITY_VIOLATING_SETOFF,
+            **_SALDO_ONE_CONTRACT,
+            penalty_counted_in_saldo=True,
+            penalty_clearly_disproportionate_to_breach=True,
+        ),
+        forbidden_outcomes={"setoff_prohibited": True, "operation_is_saldo_not_setoff": False},
+    ),
+    BankruptcySetoffRedTeamCase(
+        id="bankruptcy-setoff-red-linked-contracts-without-flag",
+        title_ru="Признать сальдо по взаимосвязанным договорам без проверки юристом",
+        facts=_facts(
+            counter_obligations_arise_from_linked_contracts=True,
+            operation_determines_final_obligation_by_comparing_performances=True,
+        ),
+        forbidden_outcomes={"requires_human_bankruptcy_setoff_assessment": False},
+    ),
+    BankruptcySetoffRedTeamCase(
+        id="bankruptcy-setoff-red-spurious-flag-on-one-contract-saldo",
+        title_ru="Поднять флаг юриста на сальдо по одному договору",
+        facts=_facts(**_PRIORITY_VIOLATING_SETOFF, **_SALDO_ONE_CONTRACT),
+        forbidden_outcomes={"requires_human_bankruptcy_setoff_assessment": True},
+    ),
 )
 
 
@@ -227,7 +386,9 @@ def run_bankruptcy_setoff_red_team_suite() -> BankruptcySetoffRedTeamReport:
     for case in SYNTHETIC_BANKRUPTCY_SETOFF_RED_TEAM_CASES:
         evaluation = _evaluate(case.facts, case.id)
         observed = _outcomes(evaluation, case.forbidden_outcomes)
-        blocked = observed != case.forbidden_outcomes
+        blocked = all(
+            observed[name] != forbidden for name, forbidden in case.forbidden_outcomes.items()
+        )
         results.append(
             BankruptcySetoffRedTeamResult(
                 case_id=case.id,

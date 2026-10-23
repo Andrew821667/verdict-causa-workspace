@@ -1,0 +1,55 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-1.28.0:to-1.30.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-1.28.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "1.28.0",
+  "target_package_version": "1.30.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "1.28.0",
+      "to_version": "1.29.0",
+      "reasons": [
+        "The analysis request gains a required field, citizen_procedure_evidence, and the result gains three: the mapping, the constraint set and the evaluation of the institute of articles 213.2, 213.6 and 213.13. A stored request does not carry the field and cannot be replayed as it stands.",
+        "The commencement institute's legal sources gain article 213.6, and its reasons and warnings change: the insolvency definition is attributed to article 213.6(3), and the reading of the threshold cites article 213.6(2). The article 25 institute's warning that the procedures of article 213.2 were not modelled is replaced. A stored analysis carrying the old texts must be replayed."
+      ],
+      "reasons_ru": [
+        "Запрос анализа получает обязательное поле citizen_procedure_evidence, а результат — три: разбор, набор ограничений и вывод института статей 213.2, 213.6 и 213.13. Сохранённый запрос этого поля не несёт и в прежнем виде повторно прогнан быть не может.",
+        "Правовые источники института возбуждения дела пополняются статьёй 213.6, а его причины и предупреждения меняются: определение неплатёжеспособности отнесено к пункту 3 статьи 213.6, прочтение о пороге ссылается на пункт 2 статьи 213.6. Предупреждение института статьи 25 о том, что процедуры статьи 213.2 не смоделированы, заменено. Сохранённый анализ с прежними текстами подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_citizen_procedure_evaluation.py",
+        "python scripts/export_synthetic_citizen_commencement_evaluation.py",
+        "python scripts/export_synthetic_citizen_bankruptcy_evaluation.py"
+      ]
+    },
+    {
+      "from_version": "1.29.0",
+      "to_version": "1.30.0",
+      "reasons": [
+        "The bankruptcy-setoff institute gains six required predicates on saldo (counter_obligations_arise_from_one_contract and five more) and three outputs, and its model version changes. A stored bankruptcy_setoff_evidence block does not carry the predicates and cannot be mapped as it stands.",
+        "The human flag of the institute changes meaning: a priority-violating setoff found to be saldo under one contract no longer raises it, and saldo resting on linked contracts or with a clearly disproportionate penalty now does. A stored analysis carrying the old flag and the reason that the qualification was left open must be replayed."
+      ],
+      "reasons_ru": [
+        "Институт зачёта в банкротстве получает шесть обязательных предикатов о сальдо (counter_obligations_arise_from_one_contract и ещё пять) и три вывода, и версия его модели меняется. Сохранённый блок bankruptcy_setoff_evidence этих предикатов не несёт и в прежнем виде разобран быть не может.",
+        "Флаг юриста института меняет смысл: зачёт, нарушающий очерёдность, который оказался сальдо по одному договору, его больше не поднимает, а сальдо по взаимосвязанным договорам или с явно несоразмерной неустойкой — поднимает. Сохранённый анализ с прежним флагом и причиной «квалификация оставлена открытой» подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_rule_parity_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

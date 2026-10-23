@@ -228,6 +228,7 @@ from causa.institutional.contracts.bankruptcy_contest import (
     ReviewedBankruptcyContestEvidence,
 )
 from causa.institutional.contracts.bankruptcy_setoff import (
+    BANKRUPTCY_SETOFF_LEGAL_SOURCE_REFS,
     BankruptcySetoffEvidenceAssertion,
     BankruptcySetoffEvidencePredicate,
     ReviewedBankruptcySetoffEvidence,
@@ -751,6 +752,10 @@ SYNTHETIC_ANALYSIS_SOURCE_IDS = (
     "synthetic-ru-127fz-5-current-payments-v1",
     "synthetic-ru-127fz-63-observation-effects-v1",
     "synthetic-ru-127fz-134-creditor-ranking-v1",
+    "synthetic-ru-127fz-4.1-financial-contract-netting-v1",
+    "synthetic-ru-vs-review-bankruptcy-2022-16-contract-work-saldo-v1",
+    "synthetic-ru-vs-review-bankruptcy-2022-17-heat-transfer-saldo-v1",
+    "synthetic-ru-vs-review-bankruptcy-2023-4-penalty-in-saldo-v1",
     "synthetic-ru-127fz-135-first-rank-claims-v1",
     "synthetic-ru-127fz-138-secured-creditor-claims-v1",
     "synthetic-ru-127fz-61.1-contest-transactions-general-v1",
@@ -3693,10 +3698,7 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
                 )
                 for predicate in BankruptcySetoffEvidencePredicate
             ),
-            legal_source_refs=(
-                "synthetic-ru-127fz-63-observation-effects-v1",
-                "synthetic-ru-127fz-134-creditor-ranking-v1",
-            ),
+            legal_source_refs=BANKRUPTCY_SETOFF_LEGAL_SOURCE_REFS,
             review_status=BootstrapReviewStatus.REVIEWED,
             reviewer_id="synthetic-bankruptcy-setoff-reviewer",
         ),

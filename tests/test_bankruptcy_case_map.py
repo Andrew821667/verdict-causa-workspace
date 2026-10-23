@@ -114,6 +114,9 @@ def test_summarize_functions_have_a_fallback_for_unset_facts() -> None:
         setoff_prohibited=False,
         setoff_permitted_as_priority_neutral=False,
         netting_permitted_by_financial_contract_exception=False,
+        operation_is_saldo_not_setoff=False,
+        prior_judgments_do_not_bar_saldo=False,
+        penalty_disproportion_remedied_by_article_333=False,
         requires_human_bankruptcy_setoff_assessment=False,
     )
 

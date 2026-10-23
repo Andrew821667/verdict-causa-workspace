@@ -192,6 +192,8 @@ def summarize_transaction_status_ru(contest_evaluation: BankruptcyContestEvaluat
 
 def summarize_setoff_status_ru(setoff_evaluation: BankruptcySetoffEvaluation) -> str:
     """Одна строка вместо BankruptcySetoffEvaluation — только для отображения."""
+    if setoff_evaluation.operation_is_saldo_not_setoff:
+        return "сальдо по договору, а не зачёт (п. 17 Обзора ВС РФ по банкротству за 2022 г.)"
     if setoff_evaluation.setoff_prohibited:
         return "зачёт запрещён: нарушает очерёдность (абз. 6 п. 1 ст. 63 127-ФЗ)"
     if setoff_evaluation.setoff_permitted_as_priority_neutral:
