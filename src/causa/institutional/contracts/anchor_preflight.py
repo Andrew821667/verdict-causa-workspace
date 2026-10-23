@@ -25,6 +25,7 @@ from pydantic import BaseModel, Field
 
 from causa.institutional.contracts.formation import (
     build_formation_constraint_set,
+    contract_binds_the_parties,
     evaluate_formation_constraints,
     map_reviewed_formation_evidence,
 )
@@ -73,8 +74,11 @@ def check_anchor_consistency(request) -> AnchorPreflightReport:
         build_invalidity_constraint_set(invalidity_mapping), invalidity_mapping.facts
     )
 
-    concluded = formation.contract_concluded_prerequisites
-    displaced = invalidity.contractual_effect_displaced
+    # Те же понятия, что в сверках конвейера: договор связывает стороны и тогда,
+    # когда возражение о незаключённости отклонено (пункт 3 статьи 432), а
+    # обязанность снимает только недействительность всей сделки (статья 180).
+    concluded = contract_binds_the_parties(formation)
+    displaced = invalidity.entire_transaction_affected
     duty_expected = concluded and not displaced
 
     case = _facts(request.case_evidence)
@@ -85,6 +89,9 @@ def check_anchor_consistency(request) -> AnchorPreflightReport:
 
     concluded_ru = (
         "договор заключён (статья 432 ГК РФ)"
+        if formation.contract_concluded_prerequisites
+        else "договор связывает стороны: возражение о незаключённости отклонено (пункт 3 "
+        "статьи 432 ГК РФ)"
         if concluded
         else "договор не считается заключённым (статья 432 ГК РФ)"
     )
@@ -95,8 +102,11 @@ def check_anchor_consistency(request) -> AnchorPreflightReport:
         "недействительностью (статья 167 ГК РФ)"
     )
     displaced_ru = (
-        "договорный эффект вытеснен недействительностью (статьи 166–181 ГК РФ)"
+        "договорный эффект вытеснен недействительностью всей сделки (статьи 166–181 ГК РФ)"
         if displaced
+        else "недействительна только часть сделки, в остальной части она действует (статья "
+        "180 ГК РФ)"
+        if invalidity.partial_invalidity_only
         else "оснований недействительности не установлено (статьи 166–181 ГК РФ)"
     )
 

@@ -143,6 +143,19 @@ class FormationEvaluation(BaseModel):
     warnings_ru: list[str] = Field(default_factory=list)
 
 
+def contract_binds_the_parties(evaluation: FormationEvaluation) -> bool:
+    """Договор связывает стороны: заключён либо возражение о незаключённости отклонено.
+
+    Сторона, принявшая исполнение, не вправе недобросовестно ссылаться на
+    незаключённость договора, и между сторонами возникают соответствующие
+    обязательства (пункт 3 статьи 432 ГК РФ, пункт 6 постановления Пленума ВС РФ
+    № 49). Институты, которые сверяют «договор существует» с моделью заключения,
+    сверяют его с этим, а не с одной согласованностью условий, — и конвейер, и
+    предварительная сверка входов берут понятие отсюда.
+    """
+    return evaluation.contract_concluded_prerequisites or evaluation.non_conclusion_objection_barred
+
+
 def map_reviewed_formation_evidence(
     evidence: ReviewedFormationEvidence,
 ) -> FormationEvidenceMappingResult:

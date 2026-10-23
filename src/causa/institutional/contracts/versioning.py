@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.33.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Article 180 of the Civil Code reaches the general-effects layer: invalidity of a part of a transaction does not invalidate its other parts if the transaction would have been made without it. partial_invalidity_only becomes a layer input; the contract stays in force in the rest, institute conclusions are no longer displaced as a whole, and the layer names the invalid part in a separate conclusion, invalid_part_only, and raises the human flag, because it does not know which institute conclusions rest on that part. Restitution is described as applying to the invalid part.",
+            "Two fact-consistency checks change with it: the existence of the contractual duty and the invalidity of the main obligation for the security institute are now compared with invalidity of the whole transaction (entire_transaction_affected), not with any displacement of the contractual effect.",
+            "The release also corrects release 1.32.0. That release moved the pipeline's checks to 'the contract binds the parties', but the anchor preflight - the check that reports all input mismatches before the analysis runs - kept the old notion and would have demanded that institutes treat the contract as non-existent when the non-conclusion objection was barred. The two now take the notion from one function in the formation model, contract_binds_the_parties, and a test runs the same forged inputs through both and requires them to agree. The divergence was found by reading the code while preparing this release, not by a test.",
+        ],
+        notes_ru=[
+            "Статья 180 ГК РФ доходит до слоя общих положений: недействительность части сделки не влечёт недействительности прочих её частей, если сделка была бы совершена и без неё. partial_invalidity_only становится входом слоя; договор в остальной части действует, выводы институтов больше не снимаются целиком, а слой называет недействительную часть отдельным выводом invalid_part_only и поднимает флаг экспертизы — какие выводы институтов держатся на этой части, он не знает. Реституция описывается как относящаяся к недействительной части.",
+            "Вместе со слоем меняются две сверки фактов: существование договорной обязанности и недействительность основного обязательства для института обеспечения сверяются теперь с недействительностью всей сделки (entire_transaction_affected), а не с любым вытеснением договорного эффекта.",
+            "Выпуск исправляет и выпуск 1.32.0. Тот перевёл сверки конвейера на понятие «договор связывает стороны», а предварительная сверка входов — проверка, сообщающая обо всех расхождениях до запуска анализа, — осталась при прежнем и при отклонённом возражении о незаключённости требовала бы считать договор несуществующим. Теперь обе берут понятие из одной функции модели заключения, contract_binds_the_parties, а тест прогоняет одни и те же поддельные входы через обе и требует согласия. Расхождение нашлось при чтении кода во время подготовки этого выпуска, а не тестом.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.32.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

@@ -36,6 +36,7 @@
 | `non_conclusion_objection_barred` | `formation_evaluation` | 432 п. 3 |
 | `contractual_effect_displaced` | `invalidity_evaluation` | 166–181 |
 | `restitution_required` | `invalidity_evaluation` | 167 |
+| `partial_invalidity_only` | `invalidity_evaluation` | 180 |
 | `transaction_void_for_form` | `form_evaluation` | 158–165 |
 | `limitation_defense_available` | `limitation_evaluation` | 195–208 |
 | `claim_not_subject_to_limitation` | `limitation_evaluation` | 208 |
@@ -65,7 +66,11 @@
   (пункт 3 статьи 432 ГК РФ, пункт 6 постановления Пленума ВС РФ № 49).
 - `invalidity_displaces_contract` — недействительная сделка не влечёт
   юридических последствий, кроме связанных с её недействительностью
-  (статья 167 ГК РФ).
+  (статья 167 ГК РФ), — когда недействительна вся сделка.
+- `invalid_part_only` — недействительна только часть сделки, без которой она
+  была бы совершена: в остальной части договор действует (статья 180 ГК РФ).
+  Какие выводы институтов держатся на недействительной части, слой не знает и
+  поднимает флаг экспертизы.
 - `form_defect_displaces_contract` — сделка недействительна вследствие порока
   формы (статьи 162 и 165 ГК РФ).
 

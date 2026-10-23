@@ -15,6 +15,9 @@
   договора, и к отношениям сторон применяются правила о нём; поэтому при таком
   отклонённом возражении несогласованность условий действия договора не снимает;
 - статьи 162 и 165 ГК РФ — последствия несоблюдения формы сделки;
+- статья 180 ГК РФ — недействительность части сделки не влечёт недействительности
+  прочих её частей, если можно предположить, что сделка была бы совершена и без
+  недействительной части; тогда договор в остальной части действует;
 - статья 167 ГК РФ — недействительная сделка не влечёт юридических
   последствий, за исключением связанных с её недействительностью;
 - статья 199 ГК РФ — истечение срока исковой давности, о применении которой
@@ -81,7 +84,7 @@ from z3 import And, Bool, Not, Or, Solver, sat
 
 GENERAL_EFFECTS_MODEL_VERSION = (
     "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199"
-    "-209-403-405-407-432-453-v13"
+    "-180-209-403-405-407-432-453-v14"
 )
 
 
@@ -97,6 +100,9 @@ class GeneralEffectsInputs(BaseModel):
     non_conclusion_objection_barred: bool
     # Недействительность сделки (статьи 166–181 ГК РФ).
     contractual_effect_displaced: bool
+    # Недействительна только часть сделки, без которой она была бы совершена
+    # (статья 180).
+    partial_invalidity_only: bool
     restitution_required: bool
     # Форма сделки (статьи 158–165 ГК РФ).
     transaction_void_for_form: bool
@@ -151,6 +157,7 @@ class GeneralEffectsEvaluation(BaseModel):
     formation_defect_displaces_contract: bool
     non_conclusion_objection_disregarded: bool
     invalidity_displaces_contract: bool
+    invalid_part_only: bool
     form_defect_displaces_contract: bool
     unauthorized_representation_displaces_contract: bool
     incapacity_voids_transaction: bool
@@ -203,6 +210,7 @@ def build_general_effects_inputs(
         contract_concluded_prerequisites=formation_evaluation.contract_concluded_prerequisites,
         non_conclusion_objection_barred=formation_evaluation.non_conclusion_objection_barred,
         contractual_effect_displaced=invalidity_evaluation.contractual_effect_displaced,
+        partial_invalidity_only=invalidity_evaluation.partial_invalidity_only,
         restitution_required=invalidity_evaluation.restitution_required,
         transaction_void_for_form=form_evaluation.transaction_void_for_form,
         limitation_defense_available=limitation_evaluation.limitation_defense_available,
@@ -262,12 +270,13 @@ def build_general_effects_constraint_set(
         expressions=[
             "formation_defect_displaces_contract == NOT contract_concluded_prerequisites AND NOT non_conclusion_objection_barred",
             "non_conclusion_objection_disregarded == NOT contract_concluded_prerequisites AND non_conclusion_objection_barred",
-            "invalidity_displaces_contract == contractual_effect_displaced",
+            "invalidity_displaces_contract == contractual_effect_displaced AND NOT partial_invalidity_only",
+            "invalid_part_only == contractual_effect_displaced AND partial_invalidity_only",
             "form_defect_displaces_contract == transaction_void_for_form",
             "unauthorized_representation_displaces_contract == unauthorized_representation_detected",
             "incapacity_voids_transaction == party_lacks_capacity",
             "restricted_object_voids_transaction == object_excluded_from_circulation",
-            "contract_legally_effective == (contract_concluded_prerequisites OR non_conclusion_objection_barred) AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected AND NOT party_lacks_capacity AND NOT object_excluded_from_circulation",
+            "contract_legally_effective == (contract_concluded_prerequisites OR non_conclusion_objection_barred) AND NOT (contractual_effect_displaced AND NOT partial_invalidity_only) AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected AND NOT party_lacks_capacity AND NOT object_excluded_from_circulation",
             "limitation_bars_protection == limitation_defense_available AND NOT claim_not_subject_to_limitation AND NOT term_calculation_defective",
             "limitation_conclusion_unreliable == limitation_defense_available AND term_calculation_defective",
             "judicial_protection_available == NOT limitation_bars_protection AND NOT abuse_of_right_detected",
@@ -287,7 +296,7 @@ def build_general_effects_constraint_set(
             "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
             "title_transfer_defeated == unauthorized_disposal_detected",
             "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-            "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance",
+            "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance",
         ],
     )
 
@@ -301,6 +310,7 @@ def evaluate_general_effects_constraints(
     formation_defect_displaces_contract = Bool("formation_defect_displaces_contract")
     non_conclusion_objection_disregarded = Bool("non_conclusion_objection_disregarded")
     invalidity_displaces_contract = Bool("invalidity_displaces_contract")
+    invalid_part_only = Bool("invalid_part_only")
     form_defect_displaces_contract = Bool("form_defect_displaces_contract")
     unauthorized_representation_displaces_contract = Bool(
         "unauthorized_representation_displaces_contract"
@@ -351,7 +361,20 @@ def evaluate_general_effects_constraints(
             variables["non_conclusion_objection_barred"],
         )
     )
-    solver.add(invalidity_displaces_contract == variables["contractual_effect_displaced"])
+    # Статья 180: недействительность части не влечёт недействительности прочих
+    # частей. Договор в остальной части действует; какие выводы институтов держатся
+    # на недействительной части, слой не знает и поднимает дело человеку.
+    solver.add(
+        invalidity_displaces_contract
+        == And(
+            variables["contractual_effect_displaced"],
+            Not(variables["partial_invalidity_only"]),
+        )
+    )
+    solver.add(
+        invalid_part_only
+        == And(variables["contractual_effect_displaced"], variables["partial_invalidity_only"])
+    )
     solver.add(form_defect_displaces_contract == variables["transaction_void_for_form"])
     solver.add(
         unauthorized_representation_displaces_contract
@@ -366,7 +389,12 @@ def evaluate_general_effects_constraints(
                 variables["contract_concluded_prerequisites"],
                 variables["non_conclusion_objection_barred"],
             ),
-            Not(variables["contractual_effect_displaced"]),
+            Not(
+                And(
+                    variables["contractual_effect_displaced"],
+                    Not(variables["partial_invalidity_only"]),
+                )
+            ),
             Not(variables["transaction_void_for_form"]),
             Not(variables["unauthorized_representation_detected"]),
             Not(variables["party_lacks_capacity"]),
@@ -495,6 +523,7 @@ def evaluate_general_effects_constraints(
         == Or(
             institute_conclusions_displaced,
             non_conclusion_objection_disregarded,
+            invalid_part_only,
             claims_barred_by_limitation,
             protection_refused_for_abuse,
             breach_findings_without_effect,
@@ -517,6 +546,7 @@ def evaluate_general_effects_constraints(
             formation_defect_displaces_contract=False,
             non_conclusion_objection_disregarded=False,
             invalidity_displaces_contract=False,
+            invalid_part_only=False,
             form_defect_displaces_contract=False,
             unauthorized_representation_displaces_contract=False,
             incapacity_voids_transaction=False,
@@ -585,6 +615,14 @@ def evaluate_general_effects_constraints(
             "Недействительная сделка не влечёт юридических последствий, за исключением тех, "
             "которые связаны с её недействительностью, и недействительна с момента её "
             "совершения (статья 167 ГК РФ)."
+        )
+    if truth(invalid_part_only):
+        reasons_ru.append(
+            "Недействительна только часть сделки, и можно предположить, что сделка была бы "
+            "совершена и без неё: недействительность части не влечёт недействительности "
+            "прочих частей, и в остальной части договор действует (статья 180 ГК РФ). "
+            "Какие выводы специальных институтов держатся на недействительной части, слой не "
+            "знает — требуется проверка юристом."
         )
     if truth(form_defect_displaces_contract):
         reasons_ru.append(
@@ -717,6 +755,10 @@ def evaluate_general_effects_constraints(
             "сделки: каждая из сторон обязана возвратить другой всё полученное по сделке, а к "
             "требованиям о возврате исполненного применяются правила о неосновательном "
             "обогащении (статьи 167 и 1103 ГК РФ)."
+            if not truth(invalid_part_only)
+            else "Последствия недействительности применяются к недействительной части сделки: "
+            "полученное по ней подлежит возврату, а к требованиям о возврате применяются "
+            "правила о неосновательном обогащении (статьи 167, 180 и 1103 ГК РФ)."
         )
     if truth(contractual_claims_enforceable):
         reasons_ru.append(
@@ -730,6 +772,7 @@ def evaluate_general_effects_constraints(
         formation_defect_displaces_contract=truth(formation_defect_displaces_contract),
         non_conclusion_objection_disregarded=truth(non_conclusion_objection_disregarded),
         invalidity_displaces_contract=truth(invalidity_displaces_contract),
+        invalid_part_only=truth(invalid_part_only),
         form_defect_displaces_contract=truth(form_defect_displaces_contract),
         unauthorized_representation_displaces_contract=truth(
             unauthorized_representation_displaces_contract

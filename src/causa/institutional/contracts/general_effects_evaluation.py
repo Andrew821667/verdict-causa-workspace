@@ -194,6 +194,23 @@ SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS = (
         },
     ),
     GeneralEffectsEvaluationTask(
+        id="general-effects-bench-partial-invalidity",
+        title_ru="Недействительна только часть сделки — договор в остальной части действует",
+        inputs=_inputs(
+            **_EFFECTIVE,
+            contractual_effect_displaced=True,
+            partial_invalidity_only=True,
+            breach_issue=True,
+        ),
+        expected_outcomes={
+            "invalid_part_only": True,
+            "invalidity_displaces_contract": False,
+            "contract_legally_effective": True,
+            "institute_conclusions_displaced": False,
+            "requires_human_general_effects_assessment": True,
+        },
+    ),
+    GeneralEffectsEvaluationTask(
         id="general-effects-bench-restitution",
         title_ru="Сделка недействительна и требуется реституция",
         inputs=_inputs(**_EFFECTIVE, contractual_effect_displaced=True, restitution_required=True),
@@ -316,6 +333,14 @@ SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES = (
         id="general-effects-red-honour-a-barred-non-conclusion-objection",
         title_ru="Снять действие договора по возражению, которое пункт 3 статьи 432 отклоняет",
         inputs=_inputs(non_conclusion_objection_barred=True, breach_issue=True),
+        forbidden_outcomes={"contract_legally_effective": False},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-partial-invalidity-voids-the-whole",
+        title_ru="Снять весь договор из-за недействительности одной его части",
+        inputs=_inputs(
+            **_EFFECTIVE, contractual_effect_displaced=True, partial_invalidity_only=True
+        ),
         forbidden_outcomes={"contract_legally_effective": False},
     ),
     GeneralEffectsRedTeamCase(

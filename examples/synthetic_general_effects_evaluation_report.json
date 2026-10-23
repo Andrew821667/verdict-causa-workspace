@@ -5,6 +5,7 @@
     "contract_concluded_prerequisites": true,
     "non_conclusion_objection_barred": false,
     "contractual_effect_displaced": false,
+    "partial_invalidity_only": false,
     "restitution_required": false,
     "transaction_void_for_form": false,
     "limitation_defense_available": false,
@@ -29,7 +30,7 @@
   },
   "constraint_set": {
     "id": "general-effects-constraint-set:case-supply-1",
-    "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199-209-403-405-407-432-453-v13",
+    "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199-180-209-403-405-407-432-453-v14",
     "source_evaluations": [
       "formation_evaluation",
       "invalidity_evaluation",
@@ -51,12 +52,13 @@
     "expressions": [
       "formation_defect_displaces_contract == NOT contract_concluded_prerequisites AND NOT non_conclusion_objection_barred",
       "non_conclusion_objection_disregarded == NOT contract_concluded_prerequisites AND non_conclusion_objection_barred",
-      "invalidity_displaces_contract == contractual_effect_displaced",
+      "invalidity_displaces_contract == contractual_effect_displaced AND NOT partial_invalidity_only",
+      "invalid_part_only == contractual_effect_displaced AND partial_invalidity_only",
       "form_defect_displaces_contract == transaction_void_for_form",
       "unauthorized_representation_displaces_contract == unauthorized_representation_detected",
       "incapacity_voids_transaction == party_lacks_capacity",
       "restricted_object_voids_transaction == object_excluded_from_circulation",
-      "contract_legally_effective == (contract_concluded_prerequisites OR non_conclusion_objection_barred) AND NOT contractual_effect_displaced AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected AND NOT party_lacks_capacity AND NOT object_excluded_from_circulation",
+      "contract_legally_effective == (contract_concluded_prerequisites OR non_conclusion_objection_barred) AND NOT (contractual_effect_displaced AND NOT partial_invalidity_only) AND NOT transaction_void_for_form AND NOT unauthorized_representation_detected AND NOT party_lacks_capacity AND NOT object_excluded_from_circulation",
       "limitation_bars_protection == limitation_defense_available AND NOT claim_not_subject_to_limitation AND NOT term_calculation_defective",
       "limitation_conclusion_unreliable == limitation_defense_available AND term_calculation_defective",
       "judicial_protection_available == NOT limitation_bars_protection AND NOT abuse_of_right_detected",
@@ -76,7 +78,7 @@
       "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
       "title_transfer_defeated == unauthorized_disposal_detected",
       "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-      "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance"
+      "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance"
     ]
   },
   "derived_evaluation": {
@@ -86,6 +88,7 @@
     "formation_defect_displaces_contract": false,
     "non_conclusion_objection_disregarded": false,
     "invalidity_displaces_contract": false,
+    "invalid_part_only": false,
     "form_defect_displaces_contract": false,
     "unauthorized_representation_displaces_contract": false,
     "incapacity_voids_transaction": false,
@@ -120,8 +123,8 @@
   },
   "benchmark_report": {
     "id": "general-effects-benchmark-report-v0",
-    "total": 17,
-    "passed": 17,
+    "total": 18,
+    "passed": 18,
     "failed": 0,
     "results": [
       {
@@ -352,6 +355,29 @@
         ]
       },
       {
+        "task_id": "general-effects-bench-partial-invalidity",
+        "passed": true,
+        "expected_outcomes": {
+          "invalid_part_only": true,
+          "invalidity_displaces_contract": false,
+          "contract_legally_effective": true,
+          "institute_conclusions_displaced": false,
+          "requires_human_general_effects_assessment": true
+        },
+        "observed_outcomes": {
+          "invalid_part_only": true,
+          "invalidity_displaces_contract": false,
+          "contract_legally_effective": true,
+          "institute_conclusions_displaced": false,
+          "requires_human_general_effects_assessment": true
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Недействительна только часть сделки, и можно предположить, что сделка была бы совершена и без неё: недействительность части не влечёт недействительности прочих частей, и в остальной части договор действует (статья 180 ГК РФ). Какие выводы специальных институтов держатся на недействительной части, слой не знает — требуется проверка юристом.",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+        ]
+      },
+      {
         "task_id": "general-effects-bench-restitution",
         "passed": true,
         "expected_outcomes": {
@@ -472,8 +498,8 @@
   },
   "red_team_report": {
     "id": "general-effects-red-team-report-v0",
-    "total": 18,
-    "blocked": 18,
+    "total": 19,
+    "blocked": 19,
     "unblocked": 0,
     "results": [
       {
@@ -602,6 +628,21 @@
         "reasons_ru": [
           "Договор порождает правовые последствия: возражение о незаключённости отклонено (пункт 3 статьи 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
           "Соглашение по всем существенным условиям не установлено, но сторона, принявшая исполнение, ссылается на незаключённость договора недобросовестно: такое возражение не принимается, и к отношениям сторон применяются правила о договоре (пункт 3 статьи 432 ГК РФ, пункт 6 постановления Пленума ВС РФ № 49). Недобросовестность возражения оценивает суд.",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+        ]
+      },
+      {
+        "case_id": "general-effects-red-partial-invalidity-voids-the-whole",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "contract_legally_effective": false
+        },
+        "observed_outcomes": {
+          "contract_legally_effective": true
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Недействительна только часть сделки, и можно предположить, что сделка была бы совершена и без неё: недействительность части не влечёт недействительности прочих частей, и в остальной части договор действует (статья 180 ГК РФ). Какие выводы специальных институтов держатся на недействительной части, слой не знает — требуется проверка юристом.",
           "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
         ]
       },

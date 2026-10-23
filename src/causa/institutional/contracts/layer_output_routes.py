@@ -170,15 +170,11 @@ LAYER_OUTPUT_ROUTES: dict[str, dict[str, tuple[OutputRoute, str]]] = {
             "вытеснение выводов и флаг, но не называет, что разбор переходит к другой "
             "сделке",
         ),
-        "partial_invalidity_only": (
-            _OPEN,
-            "недействительность части сделки не влечёт недействительности прочих частей "
-            "(статья 180); слой читает contractual_effect_displaced как вытеснение "
-            "договора целиком и снимает все выводы институтов",
-        ),
         "entire_transaction_affected": (
-            _DEFAULT,
-            "вытеснение договора целиком — так слой сейчас и читает contractual_effect_displaced",
+            _VIA,
+            "недействительность всей сделки слой выводит сам из contractual_effect_displaced "
+            "и partial_invalidity_only; сверки конвейера и предварительная сверка входов "
+            "берут этот вывод для существования обязанности и основного обязательства",
         ),
         "restitution_in_kind": (
             _REMEDY,

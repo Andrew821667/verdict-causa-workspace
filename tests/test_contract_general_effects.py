@@ -202,6 +202,7 @@ def test_general_effects_never_displaces_an_effective_contract() -> None:
         contract_concluded_prerequisites=True,
         non_conclusion_objection_barred=False,
         contractual_effect_displaced=False,
+        partial_invalidity_only=False,
         restitution_required=False,
         transaction_void_for_form=False,
         limitation_defense_available=False,
@@ -433,11 +434,47 @@ def test_without_the_bar_a_non_concluded_contract_still_stops_the_analysis() -> 
     assert "contractual_duty" in failure.value.keys
 
 
+def test_partial_invalidity_keeps_the_rest_of_the_contract_in_force() -> None:
+    """Статья 180: недействительность части не влечёт недействительности прочих частей.
+
+    До выпуска 1.33.0 слой читал любое вытеснение договорного эффекта как
+    вытеснение договора целиком и снимал все выводы институтов, а сверка фактов
+    требовала от институтов считать недействительным и основное обязательство.
+    """
+    request = build_synthetic_supply_analysis_request()
+    sources = build_synthetic_supply_analysis_sources()
+
+    partial = run_reviewed_contract_analysis(
+        request.model_copy(
+            update={
+                "invalidity_evidence": _flip(
+                    request.invalidity_evidence,
+                    transaction_concluded=True,
+                    violates_law=True,
+                    law_expressly_makes_void=True,
+                    invalid_part_separable=True,
+                    remainder_preserves_transaction_purpose=True,
+                )
+            }
+        ),
+        sources,
+    )
+
+    assert partial.invalidity_evaluation.partial_invalidity_only is True
+    evaluation = partial.general_effects_evaluation
+    assert evaluation.invalid_part_only is True
+    assert evaluation.invalidity_displaces_contract is False
+    assert evaluation.contract_legally_effective is True
+    assert evaluation.institute_conclusions_displaced is False
+    assert evaluation.requires_human_general_effects_assessment is True
+    assert any("статья 180" in reason for reason in evaluation.reasons_ru)
+
+
 def test_general_effects_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_general_effects_benchmark_suite()
     red_team = run_general_effects_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 17
+    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 18
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 18
+    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 19
     assert red_team.blocked == red_team.total

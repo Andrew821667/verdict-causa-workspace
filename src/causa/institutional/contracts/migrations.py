@@ -2465,6 +2465,23 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_rule_parity_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.32.0",
+        to_version="1.33.0",
+        reasons=[
+            "The general-effects layer gains an input, partial_invalidity_only, and a conclusion, invalid_part_only, and its model version changes. A stored analysis result carries neither and does not replay.",
+            "The contractual-duty and security-invalidity checks now compare with invalidity of the whole transaction, and the anchor preflight takes its notions from the formation model's contract_binds_the_parties. A stored request rejected because a partly invalid contract left other institutes describing a valid main obligation would now pass and must be replayed.",
+        ],
+        reasons_ru=[
+            "Слой общих положений получает вход partial_invalidity_only и вывод invalid_part_only, и версия его модели меняется. Сохранённый результат анализа не несёт ни того, ни другого и не воспроизводится.",
+            "Сверки договорной обязанности и недействительности основного обязательства сравнивают теперь с недействительностью всей сделки, а предварительная сверка входов берёт понятия из contract_binds_the_parties модели заключения. Сохранённый запрос, отвергнутый из-за того, что при частично недействительном договоре другие институты описывали действующее основное обязательство, теперь проходит и подлежит повторному прогону.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_rule_parity_report.py",
+        ],
+    ),
 ]
 
 
