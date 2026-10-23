@@ -140,6 +140,18 @@ SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS = (
         },
     ),
     GeneralEffectsEvaluationTask(
+        id="general-effects-bench-non-conclusion-objection-barred",
+        title_ru="Условия не согласованы, но возражение о незаключённости отклонено",
+        inputs=_inputs(non_conclusion_objection_barred=True, breach_issue=True),
+        expected_outcomes={
+            "non_conclusion_objection_disregarded": True,
+            "formation_defect_displaces_contract": False,
+            "contract_legally_effective": True,
+            "breach_findings_without_effect": False,
+            "requires_human_general_effects_assessment": True,
+        },
+    ),
+    GeneralEffectsEvaluationTask(
         id="general-effects-bench-breach-without-effect",
         title_ru="Нарушение установлено, но договор не заключён — присуждение невозможно",
         inputs=_inputs(contract_concluded_prerequisites=False, breach_issue=True),
@@ -299,6 +311,12 @@ SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES = (
         title_ru="Не применить реституцию при недействительности с возвратом полученного",
         inputs=_inputs(**_EFFECTIVE, contractual_effect_displaced=True, restitution_required=True),
         forbidden_outcomes={"restitution_regime_applies": False},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-honour-a-barred-non-conclusion-objection",
+        title_ru="Снять действие договора по возражению, которое пункт 3 статьи 432 отклоняет",
+        inputs=_inputs(non_conclusion_objection_barred=True, breach_issue=True),
+        forbidden_outcomes={"contract_legally_effective": False},
     ),
     GeneralEffectsRedTeamCase(
         id="general-effects-red-displace-effective-contract",

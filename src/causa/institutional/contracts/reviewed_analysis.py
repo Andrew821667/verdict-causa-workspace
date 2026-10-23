@@ -1620,7 +1620,7 @@ class ReviewedContractAnalysisResult(BaseModel):
         facts_agree.implies(
             "temporal_effect_conclusion_moment",
             self.temporal_effect_evaluation.conclusion_moment_established,
-            self.formation_evaluation.contract_concluded_prerequisites,
+            _contract_binds_the_parties(self.formation_evaluation),
         )
         expected_limitation_set = build_limitation_constraint_set(self.limitation_evidence_mapping)
         if self.limitation_constraint_set != expected_limitation_set:
@@ -2805,10 +2805,10 @@ class ReviewedContractAnalysisResult(BaseModel):
         facts_agree.equal(
             "invalidity_transaction_status",
             self.invalidity_evidence_mapping.facts.transaction_concluded,
-            self.formation_evaluation.contract_concluded_prerequisites,
+            _contract_binds_the_parties(self.formation_evaluation),
         )
         expected_contractual_duty = (
-            self.formation_evaluation.contract_concluded_prerequisites
+            _contract_binds_the_parties(self.formation_evaluation)
             and not self.invalidity_evaluation.contractual_effect_displaced
         )
         facts_agree.equal(
@@ -2828,7 +2828,7 @@ class ReviewedContractAnalysisResult(BaseModel):
         facts_agree.equal(
             "security_main_obligation_status",
             self.security_evidence_mapping.facts.main_obligation_exists,
-            self.formation_evaluation.contract_concluded_prerequisites,
+            _contract_binds_the_parties(self.formation_evaluation),
         )
         facts_agree.equal(
             "security_invalidity_status",
@@ -2944,7 +2944,7 @@ class ReviewedContractAnalysisResult(BaseModel):
         facts_agree.equal(
             "sale_contract_status",
             sale_facts.contract_concluded,
-            self.formation_evaluation.contract_concluded_prerequisites,
+            _contract_binds_the_parties(self.formation_evaluation),
         )
         facts_agree.equal(
             "sale_transfer_status",
@@ -3006,7 +3006,7 @@ class ReviewedContractAnalysisResult(BaseModel):
         facts_agree.equal(
             "supply_contract_status",
             supply_facts.contract_concluded,
-            self.formation_evaluation.contract_concluded_prerequisites,
+            _contract_binds_the_parties(self.formation_evaluation),
         )
         facts_agree.equal(
             "supply_delivery_status",
@@ -3085,7 +3085,7 @@ class ReviewedContractAnalysisResult(BaseModel):
         facts_agree.equal(
             "termination_contract_status",
             self.termination_evidence_mapping.facts.contract_formed,
-            self.formation_evaluation.contract_concluded_prerequisites,
+            _contract_binds_the_parties(self.formation_evaluation),
         )
         facts_agree.implies(
             "termination_substantial_breach",
@@ -3136,6 +3136,21 @@ class ReviewedContractAnalysisArtifact(BaseModel):
     sources: list[LegalSource] = Field(default_factory=list)
     request: ReviewedContractAnalysisRequest
     result: ReviewedContractAnalysisResult
+
+
+def _contract_binds_the_parties(formation_evaluation: FormationEvaluation) -> bool:
+    """Договор связывает стороны: заключён либо возражение о незаключённости отклонено.
+
+    Сторона, принявшая исполнение, не вправе недобросовестно ссылаться на
+    незаключённость договора, и между сторонами возникают соответствующие
+    обязательства (пункт 3 статьи 432 ГК РФ, пункт 6 постановления Пленума ВС РФ
+    № 49). Поэтому институты, которые сверяют «договор существует» с моделью
+    заключения, сверяют его с этим, а не с одной согласованностью условий.
+    """
+    return (
+        formation_evaluation.contract_concluded_prerequisites
+        or formation_evaluation.non_conclusion_objection_barred
+    )
 
 
 def _require_reviewed(
@@ -5725,7 +5740,7 @@ def run_reviewed_contract_analysis(
     facts_agree.implies(
         "temporal_effect_conclusion_moment",
         temporal_effect_evaluation.conclusion_moment_established,
-        formation_evaluation.contract_concluded_prerequisites,
+        _contract_binds_the_parties(formation_evaluation),
     )
     limitation_evidence_mapping = map_reviewed_limitation_evidence(request.limitation_evidence)
     limitation_constraint_set = build_limitation_constraint_set(limitation_evidence_mapping)
@@ -6648,10 +6663,10 @@ def run_reviewed_contract_analysis(
     facts_agree.equal(
         "invalidity_transaction_status",
         invalidity_evidence_mapping.facts.transaction_concluded,
-        formation_evaluation.contract_concluded_prerequisites,
+        _contract_binds_the_parties(formation_evaluation),
     )
     expected_contractual_duty = (
-        formation_evaluation.contract_concluded_prerequisites
+        _contract_binds_the_parties(formation_evaluation)
         and not invalidity_evaluation.contractual_effect_displaced
     )
     facts_agree.equal(
@@ -6744,7 +6759,7 @@ def run_reviewed_contract_analysis(
     facts_agree.equal(
         "sale_contract_status",
         sale_facts.contract_concluded,
-        formation_evaluation.contract_concluded_prerequisites,
+        _contract_binds_the_parties(formation_evaluation),
     )
     facts_agree.equal(
         "sale_transfer_status",
@@ -6786,7 +6801,7 @@ def run_reviewed_contract_analysis(
     facts_agree.equal(
         "supply_contract_status",
         supply_facts.contract_concluded,
-        formation_evaluation.contract_concluded_prerequisites,
+        _contract_binds_the_parties(formation_evaluation),
     )
     facts_agree.equal(
         "supply_delivery_status",
@@ -6851,7 +6866,7 @@ def run_reviewed_contract_analysis(
     facts_agree.equal(
         "security_main_obligation_status",
         security_evidence_mapping.facts.main_obligation_exists,
-        formation_evaluation.contract_concluded_prerequisites,
+        _contract_binds_the_parties(formation_evaluation),
     )
     facts_agree.equal(
         "security_invalidity_status",
@@ -6877,7 +6892,7 @@ def run_reviewed_contract_analysis(
     facts_agree.equal(
         "termination_contract_status",
         termination_evidence_mapping.facts.contract_formed,
-        formation_evaluation.contract_concluded_prerequisites,
+        _contract_binds_the_parties(formation_evaluation),
     )
     facts_agree.implies(
         "termination_substantial_breach",

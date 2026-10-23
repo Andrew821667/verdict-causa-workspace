@@ -36,11 +36,11 @@ def test_the_record_covers_exactly_the_unwired_outputs(institute: str) -> None:
 def test_the_check_would_notice_an_unrecorded_output() -> None:
     """Проверка обязана уметь провалиться: удалённая запись обнаруживается."""
     record = dict(LAYER_OUTPUT_ROUTES["formation"])
-    record.pop("non_conclusion_objection_barred")
+    record.pop("counteroffer_detected")
 
     missing, _ = _unrecorded("formation", record)
 
-    assert missing == {"non_conclusion_objection_barred"}
+    assert missing == {"counteroffer_detected"}
 
 
 def test_a_route_through_another_input_names_a_real_layer_input() -> None:
@@ -56,7 +56,6 @@ def test_a_route_through_another_input_names_a_real_layer_input() -> None:
 def test_the_open_debt_is_pinned() -> None:
     """Открытый долг виден в тесте, а не только в модуле, и обязан уменьшаться."""
     assert open_output_debt() == {
-        "formation": ["non_conclusion_objection_barred"],
         "invalidity": ["disguised_transaction_rules_required", "partial_invalidity_only"],
         "limitation": ["limitation_restorable"],
         "obligation_dynamics": ["debtor_original_performance_discharges"],
@@ -85,4 +84,4 @@ def test_the_measurement_counts_what_the_audit_counts() -> None:
     components = sum(len(item["components"]) for item in MEASURED.values())
     recorded = sum(len(routes) for routes in LAYER_OUTPUT_ROUTES.values())
 
-    assert (outputs, wired, components, recorded) == (236, 23, 86, 127)
+    assert (outputs, wired, components, recorded) == (236, 24, 86, 126)

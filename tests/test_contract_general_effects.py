@@ -1,5 +1,7 @@
 """Тесты слоя применения общих положений ГК РФ к выводам специальных институтов."""
 
+import pytest
+
 from causa.institutional.contracts.general_effects import (
     GENERAL_EFFECTS_MODEL_VERSION,
     GeneralEffectsEvaluation,
@@ -14,6 +16,7 @@ from causa.institutional.contracts.general_effects_evaluation import (
     run_general_effects_benchmark_suite,
     run_general_effects_red_team_suite,
 )
+from causa.institutional.contracts.fact_consistency import FactConsistencyError
 from causa.institutional.contracts.reviewed_analysis import run_reviewed_contract_analysis
 from causa.institutional.contracts.synthetic_reviewed_analysis import (
     build_synthetic_supply_analysis_artifact,
@@ -197,6 +200,7 @@ def test_a_lawful_meeting_decision_binds_the_participants_who_voted_against() ->
 def test_general_effects_never_displaces_an_effective_contract() -> None:
     inputs = GeneralEffectsInputs(
         contract_concluded_prerequisites=True,
+        non_conclusion_objection_barred=False,
         contractual_effect_displaced=False,
         restitution_required=False,
         transaction_void_for_form=False,
@@ -372,11 +376,68 @@ def test_the_general_rule_of_article_403_changes_nothing_in_the_layer() -> None:
     assert answerable.general_effects_evaluation == baseline.general_effects_evaluation
 
 
+def test_a_barred_non_conclusion_objection_keeps_the_contract_in_force() -> None:
+    """Пункт 3 статьи 432: принявший исполнение не вправе ссылаться на незаключённость.
+
+    До выпуска 1.32.0 слой при несогласованных условиях снимал действие договора и
+    все выводы институтов, даже когда возражение о незаключённости было отклонено.
+    А сверка фактов требовала от институтов купли-продажи, поставки, обеспечения и
+    расторжения считать договор несуществующим. Пленум ВС № 49 (пункт 6) говорит
+    обратное: между сторонами возникают соответствующие обязательства.
+    """
+    request = build_synthetic_supply_analysis_request()
+    sources = build_synthetic_supply_analysis_sources()
+    not_agreed = {"acceptance_by_conduct": False, "performance_conduct_started_in_time": False}
+
+    barred = run_reviewed_contract_analysis(
+        request.model_copy(
+            update={
+                "formation_evidence": _flip(
+                    request.formation_evidence,
+                    **not_agreed,
+                    bad_faith_non_conclusion_objection=True,
+                )
+            }
+        ),
+        sources,
+    )
+
+    assert barred.formation_evaluation.contract_concluded_prerequisites is False
+    assert barred.formation_evaluation.non_conclusion_objection_barred is True
+    evaluation = barred.general_effects_evaluation
+    assert evaluation.non_conclusion_objection_disregarded is True
+    assert evaluation.formation_defect_displaces_contract is False
+    assert evaluation.contract_legally_effective is True
+    assert evaluation.institute_conclusions_displaced is False
+    assert evaluation.requires_human_general_effects_assessment is True
+    assert not any("существенные условия согласованы" in reason for reason in evaluation.reasons_ru)
+
+
+def test_without_the_bar_a_non_concluded_contract_still_stops_the_analysis() -> None:
+    """Обратная сторона: без отклонённого возражения институты не могут считать договор."""
+    request = build_synthetic_supply_analysis_request()
+    forged = request.model_copy(
+        update={
+            "formation_evidence": _flip(
+                request.formation_evidence,
+                acceptance_by_conduct=False,
+                performance_conduct_started_in_time=False,
+            )
+        }
+    )
+
+    with pytest.raises(FactConsistencyError) as failure:
+        run_reviewed_contract_analysis(forged, build_synthetic_supply_analysis_sources())
+
+    assert "sale_contract_status" in failure.value.keys
+    assert "contractual_duty" in failure.value.keys
+
+
 def test_general_effects_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_general_effects_benchmark_suite()
     red_team = run_general_effects_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 16
+    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 17
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 17
+    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 18
     assert red_team.blocked == red_team.total

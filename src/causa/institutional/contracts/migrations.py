@@ -2448,6 +2448,23 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_rule_parity_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.31.0",
+        to_version="1.32.0",
+        reasons=[
+            "The general-effects layer gains an input, non_conclusion_objection_barred, and a conclusion, non_conclusion_objection_disregarded, and its model version changes. A stored analysis result carries neither and does not replay.",
+            "Seven fact-consistency checks now compare against 'the contract binds the parties' rather than against the formation conclusion alone. A stored request that was rejected because a barred objection left other institutes describing an existing contract would now pass, and a stored analysis must be replayed.",
+        ],
+        reasons_ru=[
+            "Слой общих положений получает вход non_conclusion_objection_barred и вывод non_conclusion_objection_disregarded, и версия его модели меняется. Сохранённый результат анализа не несёт ни того, ни другого и не воспроизводится.",
+            "Семь сверок фактов сравнивают теперь с понятием «договор связывает стороны», а не с одним выводом о заключении. Сохранённый запрос, отвергнутый из-за того, что при отклонённом возражении другие институты описывали существующий договор, теперь проходит, и сохранённый анализ подлежит повторному прогону.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_rule_parity_report.py",
+        ],
+    ),
 ]
 
 

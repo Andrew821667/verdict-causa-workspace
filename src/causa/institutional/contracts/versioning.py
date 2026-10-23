@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.32.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Article 432(3) of the Civil Code reaches the general-effects layer: a party that accepted performance may not invoke non-conclusion of the contract in bad faith, and obligations arise between the parties (paragraph 6 of Supreme Court Plenum Resolution No. 49). non_conclusion_objection_barred becomes a layer input; a contract whose essential terms were not agreed is no longer displaced when that objection is barred, and the layer names the ground in a separate conclusion, non_conclusion_objection_disregarded, and raises the human flag, because bad faith is for the court.",
+            "The fact-consistency layer changes with it. Seven checks tied the reviewers of other institutes to the formation model's conclusion that the contract was concluded - invalidity, the obligation itself, sale, supply, security, termination and the conclusion moment - so a barred objection would have forced every one of them to treat the contract as non-existent. They now check against 'the contract binds the parties': concluded, or the objection barred.",
+            "The audit of conclusions had recorded the bar as open debt and noted that it concerns one party while the layer does not distinguish roles. The Plenum paragraph resolves this: the reviewer's predicate describes the objection actually raised in the case, by the party that accepted performance. The layer's reason no longer claims the essential terms were agreed when the contract is in force only because the objection was barred.",
+        ],
+        notes_ru=[
+            "Пункт 3 статьи 432 ГК РФ доходит до слоя общих положений: сторона, принявшая исполнение, не вправе недобросовестно ссылаться на незаключённость договора, и между сторонами возникают соответствующие обязательства (пункт 6 постановления Пленума ВС РФ № 49). non_conclusion_objection_barred становится входом слоя; договор с несогласованными существенными условиями больше не снимается, когда такое возражение отклонено, а слой называет основание отдельным выводом non_conclusion_objection_disregarded и поднимает флаг экспертизы — недобросовестность оценивает суд.",
+            "Вместе со слоем меняется сверка фактов. Семь сверок привязывали рецензентов других институтов к выводу модели заключения о том, что договор заключён, — недействительность, сама обязанность, купля-продажа, поставка, обеспечение, расторжение и момент заключения, — и отклонённое возражение заставило бы каждый из них считать договор несуществующим. Теперь они сверяются с понятием «договор связывает стороны»: заключён либо возражение отклонено.",
+            "Аудит по выводам записал этот запрет открытым долгом с оговоркой, что он касается одной стороны, а слой ролей не различает. Пункт Пленума снимает оговорку: признак рецензента описывает возражение, действительно заявленное в деле стороной, принявшей исполнение. Причина слоя больше не утверждает, что существенные условия согласованы, когда договор действует лишь потому, что возражение отклонено.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.31.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],
