@@ -2482,6 +2482,23 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_rule_parity_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.33.0",
+        to_version="1.34.0",
+        reasons=[
+            "The general-effects layer gains an input, disguised_transaction_rules_required, and a conclusion, disguised_transaction_governs, and its model version changes. A stored analysis result carries neither and does not replay.",
+            "restitution_regime_applies is no longer true for a feigned transaction whose disguised transaction is identified. A stored analysis that named restitution there states what the layer no longer holds and must be replayed.",
+        ],
+        reasons_ru=[
+            "Слой общих положений получает вход disguised_transaction_rules_required и вывод disguised_transaction_governs, и версия его модели меняется. Сохранённый результат анализа не несёт ни того, ни другого и не воспроизводится.",
+            "restitution_regime_applies больше не истинен для притворной сделки с установленной прикрываемой. Сохранённый анализ, назвавший там реституцию, говорит то, чего слой больше не утверждает, и подлежит повторному прогону.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_rule_parity_report.py",
+        ],
+    ),
 ]
 
 

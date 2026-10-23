@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1310,
+  "declared_rules": 1311,
   "divergences_total": 0,
-  "executed_rules": 1310,
+  "executed_rules": 1311,
   "institutes": [
     {
       "declared_rules": 5,
@@ -324,11 +324,11 @@
       "module": "general_consistency.py"
     },
     {
-      "declared_rules": 29,
+      "declared_rules": 30,
       "divergences": [],
-      "executed_rules": 29,
+      "executed_rules": 30,
       "institute": "general_effects",
-      "matched": 29,
+      "matched": 30,
       "module": "general_effects.py"
     },
     {
@@ -822,6 +822,6 @@
   ],
   "institutes_clean": 102,
   "institutes_total": 102,
-  "matched_rules": 1310,
+  "matched_rules": 1311,
   "version": "reasoning-rule-parity-v0"
 }

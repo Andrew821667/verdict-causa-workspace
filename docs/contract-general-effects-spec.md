@@ -37,6 +37,7 @@
 | `contractual_effect_displaced` | `invalidity_evaluation` | 166–181 |
 | `restitution_required` | `invalidity_evaluation` | 167 |
 | `partial_invalidity_only` | `invalidity_evaluation` | 180 |
+| `disguised_transaction_rules_required` | `invalidity_evaluation` | 170 п. 2 |
 | `transaction_void_for_form` | `form_evaluation` | 158–165 |
 | `limitation_defense_available` | `limitation_evaluation` | 195–208 |
 | `claim_not_subject_to_limitation` | `limitation_evaluation` | 208 |
@@ -67,6 +68,11 @@
 - `invalidity_displaces_contract` — недействительная сделка не влечёт
   юридических последствий, кроме связанных с её недействительностью
   (статья 167 ГК РФ), — когда недействительна вся сделка.
+- `disguised_transaction_governs` — сделка притворна, и прикрываемая сделка
+  установлена: выводы о притворной сделке лишены эффекта, но реституция по
+  статье 167 не называется — отношения сторон определяет прикрываемая сделка
+  (пункт 2 статьи 170 ГК РФ, пункт 87 постановления Пленума ВС РФ № 25); её
+  разбор требуется отдельно, флаг экспертизы.
 - `invalid_part_only` — недействительна только часть сделки, без которой она
   была бы совершена: в остальной части договор действует (статья 180 ГК РФ).
   Какие выводы институтов держатся на недействительной части, слой не знает и

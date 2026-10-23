@@ -211,6 +211,22 @@ SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS = (
         },
     ),
     GeneralEffectsEvaluationTask(
+        id="general-effects-bench-feigned-transaction",
+        title_ru="Притворная сделка — разбор переходит к прикрываемой, реституции нет",
+        inputs=_inputs(
+            **_EFFECTIVE,
+            contractual_effect_displaced=True,
+            restitution_required=True,
+            disguised_transaction_rules_required=True,
+        ),
+        expected_outcomes={
+            "disguised_transaction_governs": True,
+            "institute_conclusions_displaced": True,
+            "restitution_regime_applies": False,
+            "requires_human_general_effects_assessment": True,
+        },
+    ),
+    GeneralEffectsEvaluationTask(
         id="general-effects-bench-restitution",
         title_ru="Сделка недействительна и требуется реституция",
         inputs=_inputs(**_EFFECTIVE, contractual_effect_displaced=True, restitution_required=True),
@@ -342,6 +358,17 @@ SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES = (
             **_EFFECTIVE, contractual_effect_displaced=True, partial_invalidity_only=True
         ),
         forbidden_outcomes={"contract_legally_effective": False},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-restitution-for-a-feigned-transaction",
+        title_ru="Назвать реституцию по притворной сделке вместо правил прикрываемой",
+        inputs=_inputs(
+            **_EFFECTIVE,
+            contractual_effect_displaced=True,
+            restitution_required=True,
+            disguised_transaction_rules_required=True,
+        ),
+        forbidden_outcomes={"restitution_regime_applies": True},
     ),
     GeneralEffectsRedTeamCase(
         id="general-effects-red-displace-effective-contract",

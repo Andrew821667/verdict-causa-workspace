@@ -46,6 +46,23 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.34.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Article 170(2) of the Civil Code reaches the general-effects layer: a feigned transaction is void, and the rules relating to the transaction the parties actually intended apply to it (paragraph 87 of Supreme Court Plenum Resolution No. 25). disguised_transaction_rules_required becomes a layer input. Conclusions built on the feigned transaction's terms still lose their effect, but the layer no longer names restitution under article 167 - the parties' relations are governed by the disguised transaction, which may itself be invalid - and it names the hand-over in a separate conclusion, disguised_transaction_governs, with the human flag.",
+            "The layer's liveness test gains a base for an invalid contract: without it, restitution_required was alive only where all inputs are true, and there the feigned transaction now cancels it. The input is not dead; the probe set was too narrow.",
+        ],
+        notes_ru=[
+            "Пункт 2 статьи 170 ГК РФ доходит до слоя общих положений: притворная сделка ничтожна, а к сделке, которую стороны действительно имели в виду, применяются относящиеся к ней правила (пункт 87 постановления Пленума ВС РФ № 25). disguised_transaction_rules_required становится входом слоя. Выводы, построенные на условиях притворной сделки, по-прежнему теряют эффект, но слой больше не называет реституцию по статье 167 — отношения сторон определяет прикрываемая сделка, которая сама может быть недействительной, — и называет переход отдельным выводом disguised_transaction_governs с флагом экспертизы.",
+            "Проверка живости входов слоя получила базовый набор «договор недействителен»: без него restitution_required был жив только там, где все входы истинны, а там его теперь гасит притворность. Вход не мёртв — узким был набор проб.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.33.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

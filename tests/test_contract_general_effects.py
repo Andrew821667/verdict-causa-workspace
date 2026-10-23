@@ -203,6 +203,7 @@ def test_general_effects_never_displaces_an_effective_contract() -> None:
         non_conclusion_objection_barred=False,
         contractual_effect_displaced=False,
         partial_invalidity_only=False,
+        disguised_transaction_rules_required=False,
         restitution_required=False,
         transaction_void_for_form=False,
         limitation_defense_available=False,
@@ -272,6 +273,9 @@ def test_no_declared_layer_input_is_dead() -> None:
         {**effective, "limitation_defense_available": True},
         {**effective, "effective_termination": True},
         {**effective, "obligation_discharged_full": True},
+        # Договор недействителен: без этого набора реституция жива только при
+        # единицах, где её гасит притворность (пункт 2 статьи 170).
+        {**effective, "contractual_effect_displaced": True},
     ]
 
     dead = []
@@ -470,11 +474,57 @@ def test_partial_invalidity_keeps_the_rest_of_the_contract_in_force() -> None:
     assert any("статья 180" in reason for reason in evaluation.reasons_ru)
 
 
+def test_a_feigned_transaction_hands_the_analysis_to_the_disguised_one() -> None:
+    """Пункт 2 статьи 170: притворная сделка ничтожна, к прикрываемой применяются её правила.
+
+    До выпуска 1.34.0 слой снимал выводы и называл реституцию по статье 167 —
+    так, будто сторонам остаётся вернуть полученное. Но отношения сторон определяет
+    прикрываемая сделка (пункт 87 постановления Пленума ВС РФ № 25).
+    """
+    result = build_synthetic_supply_analysis_artifact().result
+    invalidity = result.invalidity_evaluation.model_copy(
+        update={
+            "contractual_effect_displaced": True,
+            "restitution_required": True,
+            "disguised_transaction_rules_required": True,
+        }
+    )
+    inputs = build_general_effects_inputs(
+        result.formation_evaluation,
+        invalidity,
+        result.form_evaluation,
+        result.limitation_evaluation,
+        result.representation_evaluation,
+        result.property_rights_evaluation,
+        result.civil_principles_evaluation,
+        result.transactions_evaluation,
+        result.terms_evaluation,
+        result.persons_evaluation,
+        result.objects_evaluation,
+        result.constraint_evaluation,
+        result.termination_evaluation,
+        result.attribution_delay_evaluation,
+        result.obligation_dynamics_evaluation,
+        result.meeting_decisions_evaluation,
+    )
+    assert inputs.disguised_transaction_rules_required is True
+
+    evaluation = evaluate_general_effects_constraints(
+        build_general_effects_constraint_set(inputs, "case-feigned"), inputs
+    )
+    assert evaluation.disguised_transaction_governs is True
+    assert evaluation.institute_conclusions_displaced is True
+    assert evaluation.restitution_regime_applies is False
+    assert evaluation.requires_human_general_effects_assessment is True
+    assert any("статьи 170" in reason for reason in evaluation.reasons_ru)
+    assert not any("каждая из сторон обязана возвратить" in r for r in evaluation.reasons_ru)
+
+
 def test_general_effects_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_general_effects_benchmark_suite()
     red_team = run_general_effects_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 18
+    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 19
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 19
+    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 20
     assert red_team.blocked == red_team.total

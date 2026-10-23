@@ -6,6 +6,7 @@
     "non_conclusion_objection_barred": false,
     "contractual_effect_displaced": false,
     "partial_invalidity_only": false,
+    "disguised_transaction_rules_required": false,
     "restitution_required": false,
     "transaction_void_for_form": false,
     "limitation_defense_available": false,
@@ -30,7 +31,7 @@
   },
   "constraint_set": {
     "id": "general-effects-constraint-set:case-supply-1",
-    "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199-180-209-403-405-407-432-453-v14",
+    "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199-170-180-209-403-405-407-432-453-v15",
     "source_evaluations": [
       "formation_evaluation",
       "invalidity_evaluation",
@@ -54,6 +55,7 @@
       "non_conclusion_objection_disregarded == NOT contract_concluded_prerequisites AND non_conclusion_objection_barred",
       "invalidity_displaces_contract == contractual_effect_displaced AND NOT partial_invalidity_only",
       "invalid_part_only == contractual_effect_displaced AND partial_invalidity_only",
+      "disguised_transaction_governs == contractual_effect_displaced AND disguised_transaction_rules_required",
       "form_defect_displaces_contract == transaction_void_for_form",
       "unauthorized_representation_displaces_contract == unauthorized_representation_detected",
       "incapacity_voids_transaction == party_lacks_capacity",
@@ -77,8 +79,8 @@
       "term_binding_on_all_participants == contractual_claims_enforceable AND contract_term_binds_all_participants",
       "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
       "title_transfer_defeated == unauthorized_disposal_detected",
-      "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-      "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance"
+      "restitution_regime_applies == contractual_effect_displaced AND restitution_required AND NOT disguised_transaction_rules_required",
+      "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR disguised_transaction_governs OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance"
     ]
   },
   "derived_evaluation": {
@@ -89,6 +91,7 @@
     "non_conclusion_objection_disregarded": false,
     "invalidity_displaces_contract": false,
     "invalid_part_only": false,
+    "disguised_transaction_governs": false,
     "form_defect_displaces_contract": false,
     "unauthorized_representation_displaces_contract": false,
     "incapacity_voids_transaction": false,
@@ -123,8 +126,8 @@
   },
   "benchmark_report": {
     "id": "general-effects-benchmark-report-v0",
-    "total": 18,
-    "passed": 18,
+    "total": 19,
+    "passed": 19,
     "failed": 0,
     "results": [
       {
@@ -378,6 +381,27 @@
         ]
       },
       {
+        "task_id": "general-effects-bench-feigned-transaction",
+        "passed": true,
+        "expected_outcomes": {
+          "disguised_transaction_governs": true,
+          "institute_conclusions_displaced": true,
+          "restitution_regime_applies": false,
+          "requires_human_general_effects_assessment": true
+        },
+        "observed_outcomes": {
+          "disguised_transaction_governs": true,
+          "institute_conclusions_displaced": true,
+          "restitution_regime_applies": false,
+          "requires_human_general_effects_assessment": true
+        },
+        "reasons_ru": [
+          "Договор не порождает правовых последствий как основание требований сторон; выводы специальных институтов о нарушении его условий правового эффекта не имеют.",
+          "Недействительная сделка не влечёт юридических последствий, за исключением тех, которые связаны с её недействительностью, и недействительна с момента её совершения (статья 167 ГК РФ).",
+          "Сделка притворна: она совершена, чтобы прикрыть другую сделку, и ничтожна, а к сделке, которую стороны действительно имели в виду, применяются относящиеся к ней правила (пункт 2 статьи 170 ГК РФ, пункт 87 постановления Пленума ВС РФ № 25). Выводы, построенные на условиях притворной сделки, эффекта не имеют, но реституции по статье 167 это не означает: отношения сторон определяет прикрываемая сделка, которая сама может оказаться недействительной. Её разбор требуется отдельно — проверка юристом."
+        ]
+      },
+      {
         "task_id": "general-effects-bench-restitution",
         "passed": true,
         "expected_outcomes": {
@@ -498,8 +522,8 @@
   },
   "red_team_report": {
     "id": "general-effects-red-team-report-v0",
-    "total": 19,
-    "blocked": 19,
+    "total": 20,
+    "blocked": 20,
     "unblocked": 0,
     "results": [
       {
@@ -644,6 +668,21 @@
           "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
           "Недействительна только часть сделки, и можно предположить, что сделка была бы совершена и без неё: недействительность части не влечёт недействительности прочих частей, и в остальной части договор действует (статья 180 ГК РФ). Какие выводы специальных институтов держатся на недействительной части, слой не знает — требуется проверка юристом.",
           "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+        ]
+      },
+      {
+        "case_id": "general-effects-red-restitution-for-a-feigned-transaction",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "restitution_regime_applies": true
+        },
+        "observed_outcomes": {
+          "restitution_regime_applies": false
+        },
+        "reasons_ru": [
+          "Договор не порождает правовых последствий как основание требований сторон; выводы специальных институтов о нарушении его условий правового эффекта не имеют.",
+          "Недействительная сделка не влечёт юридических последствий, за исключением тех, которые связаны с её недействительностью, и недействительна с момента её совершения (статья 167 ГК РФ).",
+          "Сделка притворна: она совершена, чтобы прикрыть другую сделку, и ничтожна, а к сделке, которую стороны действительно имели в виду, применяются относящиеся к ней правила (пункт 2 статьи 170 ГК РФ, пункт 87 постановления Пленума ВС РФ № 25). Выводы, построенные на условиях притворной сделки, эффекта не имеют, но реституции по статье 167 это не означает: отношения сторон определяет прикрываемая сделка, которая сама может оказаться недействительной. Её разбор требуется отдельно — проверка юристом."
         ]
       },
       {

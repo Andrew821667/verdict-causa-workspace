@@ -15,6 +15,11 @@
   договора, и к отношениям сторон применяются правила о нём; поэтому при таком
   отклонённом возражении несогласованность условий действия договора не снимает;
 - статьи 162 и 165 ГК РФ — последствия несоблюдения формы сделки;
+- пункт 2 статьи 170 ГК РФ и пункт 87 постановления Пленума ВС РФ № 25 —
+  притворная сделка ничтожна, а к сделке, которую стороны действительно имели в
+  виду, применяются относящиеся к ней правила; поэтому выводы о притворной сделке
+  лишены эффекта, но реституция по статье 167 не называется: отношения сторон
+  определяет прикрываемая сделка, которую слой не разбирает;
 - статья 180 ГК РФ — недействительность части сделки не влечёт недействительности
   прочих её частей, если можно предположить, что сделка была бы совершена и без
   недействительной части; тогда договор в остальной части действует;
@@ -84,7 +89,7 @@ from z3 import And, Bool, Not, Or, Solver, sat
 
 GENERAL_EFFECTS_MODEL_VERSION = (
     "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199"
-    "-180-209-403-405-407-432-453-v14"
+    "-170-180-209-403-405-407-432-453-v15"
 )
 
 
@@ -103,6 +108,8 @@ class GeneralEffectsInputs(BaseModel):
     # Недействительна только часть сделки, без которой она была бы совершена
     # (статья 180).
     partial_invalidity_only: bool
+    # Сделка притворна, и прикрываемая сделка установлена (пункт 2 статьи 170).
+    disguised_transaction_rules_required: bool
     restitution_required: bool
     # Форма сделки (статьи 158–165 ГК РФ).
     transaction_void_for_form: bool
@@ -158,6 +165,7 @@ class GeneralEffectsEvaluation(BaseModel):
     non_conclusion_objection_disregarded: bool
     invalidity_displaces_contract: bool
     invalid_part_only: bool
+    disguised_transaction_governs: bool
     form_defect_displaces_contract: bool
     unauthorized_representation_displaces_contract: bool
     incapacity_voids_transaction: bool
@@ -211,6 +219,9 @@ def build_general_effects_inputs(
         non_conclusion_objection_barred=formation_evaluation.non_conclusion_objection_barred,
         contractual_effect_displaced=invalidity_evaluation.contractual_effect_displaced,
         partial_invalidity_only=invalidity_evaluation.partial_invalidity_only,
+        disguised_transaction_rules_required=(
+            invalidity_evaluation.disguised_transaction_rules_required
+        ),
         restitution_required=invalidity_evaluation.restitution_required,
         transaction_void_for_form=form_evaluation.transaction_void_for_form,
         limitation_defense_available=limitation_evaluation.limitation_defense_available,
@@ -272,6 +283,7 @@ def build_general_effects_constraint_set(
             "non_conclusion_objection_disregarded == NOT contract_concluded_prerequisites AND non_conclusion_objection_barred",
             "invalidity_displaces_contract == contractual_effect_displaced AND NOT partial_invalidity_only",
             "invalid_part_only == contractual_effect_displaced AND partial_invalidity_only",
+            "disguised_transaction_governs == contractual_effect_displaced AND disguised_transaction_rules_required",
             "form_defect_displaces_contract == transaction_void_for_form",
             "unauthorized_representation_displaces_contract == unauthorized_representation_detected",
             "incapacity_voids_transaction == party_lacks_capacity",
@@ -295,8 +307,8 @@ def build_general_effects_constraint_set(
             "term_binding_on_all_participants == contractual_claims_enforceable AND contract_term_binds_all_participants",
             "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
             "title_transfer_defeated == unauthorized_disposal_detected",
-            "restitution_regime_applies == contractual_effect_displaced AND restitution_required",
-            "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance",
+            "restitution_regime_applies == contractual_effect_displaced AND restitution_required AND NOT disguised_transaction_rules_required",
+            "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR disguised_transaction_governs OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance",
         ],
     )
 
@@ -311,6 +323,7 @@ def evaluate_general_effects_constraints(
     non_conclusion_objection_disregarded = Bool("non_conclusion_objection_disregarded")
     invalidity_displaces_contract = Bool("invalidity_displaces_contract")
     invalid_part_only = Bool("invalid_part_only")
+    disguised_transaction_governs = Bool("disguised_transaction_governs")
     form_defect_displaces_contract = Bool("form_defect_displaces_contract")
     unauthorized_representation_displaces_contract = Bool(
         "unauthorized_representation_displaces_contract"
@@ -374,6 +387,16 @@ def evaluate_general_effects_constraints(
     solver.add(
         invalid_part_only
         == And(variables["contractual_effect_displaced"], variables["partial_invalidity_only"])
+    )
+    # Пункт 2 статьи 170: к прикрываемой сделке применяются её правила, и она сама
+    # может оказаться недействительной (пункт 87 постановления Пленума ВС РФ № 25).
+    # Разбирать её слой не может — он называет переход и поднимает дело человеку.
+    solver.add(
+        disguised_transaction_governs
+        == And(
+            variables["contractual_effect_displaced"],
+            variables["disguised_transaction_rules_required"],
+        )
     )
     solver.add(form_defect_displaces_contract == variables["transaction_void_for_form"])
     solver.add(
@@ -516,7 +539,11 @@ def evaluate_general_effects_constraints(
     solver.add(title_transfer_defeated == variables["unauthorized_disposal_detected"])
     solver.add(
         restitution_regime_applies
-        == And(variables["contractual_effect_displaced"], variables["restitution_required"])
+        == And(
+            variables["contractual_effect_displaced"],
+            variables["restitution_required"],
+            Not(variables["disguised_transaction_rules_required"]),
+        )
     )
     solver.add(
         requires_human_general_effects_assessment
@@ -524,6 +551,7 @@ def evaluate_general_effects_constraints(
             institute_conclusions_displaced,
             non_conclusion_objection_disregarded,
             invalid_part_only,
+            disguised_transaction_governs,
             claims_barred_by_limitation,
             protection_refused_for_abuse,
             breach_findings_without_effect,
@@ -547,6 +575,7 @@ def evaluate_general_effects_constraints(
             non_conclusion_objection_disregarded=False,
             invalidity_displaces_contract=False,
             invalid_part_only=False,
+            disguised_transaction_governs=False,
             form_defect_displaces_contract=False,
             unauthorized_representation_displaces_contract=False,
             incapacity_voids_transaction=False,
@@ -623,6 +652,16 @@ def evaluate_general_effects_constraints(
             "прочих частей, и в остальной части договор действует (статья 180 ГК РФ). "
             "Какие выводы специальных институтов держатся на недействительной части, слой не "
             "знает — требуется проверка юристом."
+        )
+    if truth(disguised_transaction_governs):
+        reasons_ru.append(
+            "Сделка притворна: она совершена, чтобы прикрыть другую сделку, и ничтожна, а к "
+            "сделке, которую стороны действительно имели в виду, применяются относящиеся к "
+            "ней правила (пункт 2 статьи 170 ГК РФ, пункт 87 постановления Пленума ВС РФ № "
+            "25). Выводы, построенные на условиях притворной сделки, эффекта не имеют, но "
+            "реституции по статье 167 это не означает: отношения сторон определяет "
+            "прикрываемая сделка, которая сама может оказаться недействительной. Её разбор "
+            "требуется отдельно — проверка юристом."
         )
     if truth(form_defect_displaces_contract):
         reasons_ru.append(
@@ -773,6 +812,7 @@ def evaluate_general_effects_constraints(
         non_conclusion_objection_disregarded=truth(non_conclusion_objection_disregarded),
         invalidity_displaces_contract=truth(invalidity_displaces_contract),
         invalid_part_only=truth(invalid_part_only),
+        disguised_transaction_governs=truth(disguised_transaction_governs),
         form_defect_displaces_contract=truth(form_defect_displaces_contract),
         unauthorized_representation_displaces_contract=truth(
             unauthorized_representation_displaces_contract

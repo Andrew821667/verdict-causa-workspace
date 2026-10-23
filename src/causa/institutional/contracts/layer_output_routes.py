@@ -163,13 +163,6 @@ LAYER_OUTPUT_ROUTES: dict[str, dict[str, tuple[OutputRoute, str]]] = {
             "сделка действует, пока действие не вытеснено, — то же слой выводит сам из "
             "contractual_effect_displaced",
         ),
-        "disguised_transaction_rules_required": (
-            _OPEN,
-            "к притворной сделке применяются правила прикрываемой (пункт 2 статьи 170): "
-            "требование может быть исполнимо по прикрываемой сделке. Слой показывает "
-            "вытеснение выводов и флаг, но не называет, что разбор переходит к другой "
-            "сделке",
-        ),
         "entire_transaction_affected": (
             _VIA,
             "недействительность всей сделки слой выводит сам из contractual_effect_displaced "
