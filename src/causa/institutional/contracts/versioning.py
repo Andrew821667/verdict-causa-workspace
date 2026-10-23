@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.31.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "The exception of article 403 of the Civil Code reaches the general-effects layer: when the law places liability on the third party who performed, not on the debtor, liability_shifted_to_performer becomes a layer input, the layer gains the conclusion debtor_not_liable_for_performer_breach, and the breach finding loses its effect against the debtor while the contract stays effective and judicial protection stays available.",
+            "Release 1.0.0 wired only the creditor's delay from the attribution-delay institute. Between the two releases its docstring and specification kept saying the institute's conclusions did not reach the layer and that the limitation was open - false since 1.0.0 - while the exception that really did not reach it was not named at all: the text put the general rule of article 403 in its place, which the layer does not need because it coincides with the layer's default. The defect was found by reviewing the declared debt, not by a test.",
+            "Every conclusion of the institute now has a recorded route, ATTRIBUTION_DELAY_LAYER_ROUTES: into the layer, or the reason it does not need to go there. A test checks the record against the evaluation fields and the layer inputs, and an end-to-end test runs the article 403 exception through the whole pipeline. The connectivity audit itself checks only whether an institute feeds the layer; a per-conclusion record for the other feeding institutes is named as the next level of the audit, not done.",
+        ],
+        notes_ru=[
+            "Исключение статьи 403 ГК РФ доходит до слоя общих положений: когда закон возлагает ответственность на третье лицо — непосредственного исполнителя, а не на должника, liability_shifted_to_performer становится входом слоя, слой получает вывод debtor_not_liable_for_performer_breach, и вывод о нарушении лишается эффекта против должника, а договор продолжает действовать и судебная защита остаётся доступной.",
+            "Выпуск 1.0.0 провёл из института возложения ответственности и просрочки только просрочку кредитора. Между двумя выпусками его docstring и спецификация продолжали писать, что выводы института до слоя не доходят и ограничение открыто, — неверно с 1.0.0, — а действительно не доходившее исключение не называлось вовсе: текст ставил на его место общее правило статьи 403, которое слою не нужно, потому что совпадает с его умолчанием. Дефект нашёл разбор объявленного техдолга, а не тест.",
+            "У каждого вывода института теперь записан маршрут — ATTRIBUTION_DELAY_LAYER_ROUTES: в слой или причина, по которой вход не нужен. Тест сверяет запись с полями оценки и со входами слоя, сквозной тест прогоняет исключение статьи 403 через весь конвейер. Аудит связности сам по себе проверяет только, питает ли институт слой; запись по выводам для остальных питающих институтов названа следующим уровнем аудита и не сделана.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.30.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

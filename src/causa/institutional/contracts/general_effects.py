@@ -35,6 +35,11 @@
   отчуждение неуправомоченным лицом не переносит право на приобретателя;
 - статья 1103 ГК РФ — применение правил о неосновательном обогащении к
   требованиям о возврате исполненного по недействительной сделке;
+- статья 403 ГК РФ — должник отвечает за третьих лиц, на которых возложено
+  исполнение, если законом не установлено, что ответственность несёт
+  являющееся непосредственным исполнителем третье лицо; в этом последнем случае
+  вывод специального института о нарушении не может быть положен в основание
+  присуждения против должника;
 - статья 405 пункт 3 ГК РФ — должник не считается просрочившим, пока
   обязательство не может быть исполнено вследствие просрочки кредитора, поэтому
   вывод специального института о нарушении не может быть положен в основание
@@ -72,7 +77,7 @@ from z3 import And, Bool, Not, Or, Solver, sat
 
 GENERAL_EFFECTS_MODEL_VERSION = (
     "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199"
-    "-209-405-407-432-453-v11"
+    "-209-403-405-407-432-453-v12"
 )
 
 
@@ -112,6 +117,9 @@ class GeneralEffectsInputs(BaseModel):
     claims_accrued_before_termination: bool
     # Просрочка кредитора снимает просрочку должника (статья 405 пункт 3).
     creditor_delay_excuses_debtor: bool
+    # Закон возлагает ответственность на непосредственного исполнителя, а не на
+    # должника (исключение статьи 403).
+    liability_shifted_to_performer: bool
     # Прекращение обязательства по главе 26 и судьба возникших требований.
     obligation_discharged_full: bool
     accrued_claims_preserved: bool
@@ -151,6 +159,7 @@ class GeneralEffectsEvaluation(BaseModel):
     institute_conclusions_displaced: bool
     breach_findings_without_effect: bool
     debtor_delay_excused_by_creditor: bool
+    debtor_not_liable_for_performer_breach: bool
     obligation_discharged_before_claim: bool
     termination_ends_future_performance: bool
     only_accrued_claims_survive_termination: bool
@@ -202,6 +211,9 @@ def build_general_effects_inputs(
         effective_termination=termination_evaluation.effective_termination,
         claims_accrued_before_termination=(termination_evaluation.accrued_claims_preserved),
         creditor_delay_excuses_debtor=(attribution_delay_evaluation.creditor_delay_excuses_debtor),
+        liability_shifted_to_performer=(
+            attribution_delay_evaluation.liability_shifted_to_performer
+        ),
         obligation_discharged_full=obligation_dynamics_evaluation.obligation_discharged_full,
         accrued_claims_preserved=obligation_dynamics_evaluation.accrued_claims_preserved,
         contract_term_lacks_meeting_basis=(
@@ -254,8 +266,9 @@ def build_general_effects_constraint_set(
             "contractual_claims_enforceable == contract_legally_effective AND judicial_protection_available",
             "institute_conclusions_displaced == NOT contract_legally_effective",
             "debtor_delay_excused_by_creditor == breach_issue AND creditor_delay_excuses_debtor",
+            "debtor_not_liable_for_performer_breach == breach_issue AND liability_shifted_to_performer",
             "obligation_discharged_before_claim == obligation_discharged_full AND NOT accrued_claims_preserved",
-            "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor OR obligation_discharged_before_claim)",
+            "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor OR liability_shifted_to_performer OR obligation_discharged_before_claim)",
             "termination_ends_future_performance == contract_legally_effective AND effective_termination",
             "only_accrued_claims_survive_termination == termination_ends_future_performance AND claims_accrued_before_termination",
             "term_deprived_of_meeting_basis == contract_legally_effective AND contract_term_lacks_meeting_basis",
@@ -295,6 +308,7 @@ def evaluate_general_effects_constraints(
     institute_conclusions_displaced = Bool("institute_conclusions_displaced")
     breach_findings_without_effect = Bool("breach_findings_without_effect")
     debtor_delay_excused_by_creditor = Bool("debtor_delay_excused_by_creditor")
+    debtor_not_liable_for_performer_breach = Bool("debtor_not_liable_for_performer_breach")
     obligation_discharged_before_claim = Bool("obligation_discharged_before_claim")
     termination_ends_future_performance = Bool("termination_ends_future_performance")
     only_accrued_claims_survive_termination = Bool("only_accrued_claims_survive_termination")
@@ -368,6 +382,14 @@ def evaluate_general_effects_constraints(
         debtor_delay_excused_by_creditor
         == And(variables["breach_issue"], variables["creditor_delay_excuses_debtor"])
     )
+    # Исключение статьи 403: когда закон возлагает ответственность на
+    # непосредственного исполнителя, нарушение остаётся нарушением, но должник за
+    # него не отвечает. Обратный вывод — «должник отвечает за третье лицо» —
+    # слою не нужен: он совпадает с умолчанием и ничего не меняет.
+    solver.add(
+        debtor_not_liable_for_performer_breach
+        == And(variables["breach_issue"], variables["liability_shifted_to_performer"])
+    )
     # Прекращение обязательства по главе 26 прекращает и требование о его
     # исполнении. Но требования, возникшие до прекращения, сохраняются
     # (статья 407 пункт 4), и тогда вывод о нарушении своего эффекта не теряет.
@@ -388,6 +410,7 @@ def evaluate_general_effects_constraints(
             Or(
                 Not(contractual_claims_enforceable),
                 variables["creditor_delay_excuses_debtor"],
+                variables["liability_shifted_to_performer"],
                 obligation_discharged_before_claim,
             ),
         )
@@ -476,6 +499,7 @@ def evaluate_general_effects_constraints(
             institute_conclusions_displaced=True,
             breach_findings_without_effect=False,
             debtor_delay_excused_by_creditor=False,
+            debtor_not_liable_for_performer_breach=False,
             obligation_discharged_before_claim=False,
             termination_ends_future_performance=False,
             only_accrued_claims_survive_termination=False,
@@ -568,6 +592,13 @@ def evaluate_general_effects_constraints(
             "просрочившим, пока обязательство не может быть исполнено вследствие "
             "просрочки кредитора; вывод специального института о нарушении не "
             "может быть положен в основание присуждения (статья 405 пункт 3 ГК РФ)."
+        )
+    if truth(debtor_not_liable_for_performer_breach):
+        reasons_ru.append(
+            "Исполнение было возложено на третье лицо, и законом установлено, что за "
+            "нарушение отвечает непосредственный исполнитель, а не должник; вывод "
+            "специального института о нарушении не может быть положен в основание "
+            "присуждения против должника (статья 403 ГК РФ)."
         )
     if truth(obligation_discharged_before_claim):
         reasons_ru.append(
@@ -671,6 +702,7 @@ def evaluate_general_effects_constraints(
         institute_conclusions_displaced=truth(institute_conclusions_displaced),
         breach_findings_without_effect=truth(breach_findings_without_effect),
         debtor_delay_excused_by_creditor=truth(debtor_delay_excused_by_creditor),
+        debtor_not_liable_for_performer_breach=truth(debtor_not_liable_for_performer_breach),
         obligation_discharged_before_claim=truth(obligation_discharged_before_claim),
         termination_ends_future_performance=truth(termination_ends_future_performance),
         only_accrued_claims_survive_termination=truth(only_accrued_claims_survive_termination),

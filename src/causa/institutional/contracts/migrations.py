@@ -2431,6 +2431,23 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_rule_parity_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.30.0",
+        to_version="1.31.0",
+        reasons=[
+            "The general-effects layer gains an input, liability_shifted_to_performer, and a conclusion, debtor_not_liable_for_performer_breach, and its model version changes. A stored analysis result carries neither and does not replay.",
+            "breach_findings_without_effect now also holds when the law places liability on the direct performer under article 403. A stored analysis where that exception applied reported the breach finding as an effective ground against the debtor and must be replayed.",
+        ],
+        reasons_ru=[
+            "Слой общих положений получает вход liability_shifted_to_performer и вывод debtor_not_liable_for_performer_breach, и версия его модели меняется. Сохранённый результат анализа не несёт ни того, ни другого и не воспроизводится.",
+            "breach_findings_without_effect теперь истинен и тогда, когда закон возлагает ответственность на непосредственного исполнителя по статье 403. Сохранённый анализ, где это исключение применялось, называл вывод о нарушении действующим основанием против должника и подлежит повторному прогону.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_rule_parity_report.py",
+        ],
+    ),
 ]
 
 

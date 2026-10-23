@@ -42,6 +42,7 @@
 | `effective_termination` | `termination_evaluation` | 453 п. 2 |
 | `claims_accrued_before_termination` | `termination_evaluation` | 453 п. 5 |
 | `creditor_delay_excuses_debtor` | `attribution_delay_evaluation` | 405 п. 3 |
+| `liability_shifted_to_performer` | `attribution_delay_evaluation` | 403 |
 | `obligation_discharged_full` | `obligation_dynamics_evaluation` | 407–419 |
 | `accrued_claims_preserved` | `obligation_dynamics_evaluation` | 407 п. 4 |
 | `contract_term_lacks_meeting_basis` | `meeting_decisions_evaluation` | 181.2, 181.5 |
@@ -76,13 +77,18 @@
 - `debtor_delay_excused_by_creditor` — кредитор просрочил принятие исполнения,
   поэтому должник не считается просрочившим, пока обязательство не может быть
   исполнено вследствие просрочки кредитора (статья 405 пункт 3 ГК РФ).
+- `debtor_not_liable_for_performer_breach` — исполнение возложено на третье
+  лицо, и законом установлено, что за нарушение отвечает непосредственный
+  исполнитель, а не должник (исключение статьи 403 ГК РФ). Договор действует,
+  судебная защита доступна — ответственность лежит на другом лице.
 - `obligation_discharged_before_claim` — обязательство прекращено по главе 26
   ГК РФ, и требований, возникших до прекращения, не сохранилось, поэтому
   требовать исполнения нельзя.
 - `breach_findings_without_effect` — нарушение установлено, но не может быть
   положено в основание присуждения: либо договор не порождает последствий и в
   защите отказано, либо просрочка должника снята просрочкой кредитора, либо
-  само обязательство прекращено.
+  по закону за нарушение отвечает непосредственный исполнитель, либо само
+  обязательство прекращено.
 - `termination_ends_future_performance` — договор расторгнут, обязательства
   сторон на будущее прекращены, требовать исполнения по нему нельзя
   (статья 453 пункт 2 ГК РФ).

@@ -170,6 +170,18 @@ SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS = (
         },
     ),
     GeneralEffectsEvaluationTask(
+        id="general-effects-bench-liability-shifted-to-performer",
+        title_ru="Нарушение установлено, но по закону отвечает непосредственный исполнитель",
+        inputs=_inputs(**_EFFECTIVE, breach_issue=True, liability_shifted_to_performer=True),
+        expected_outcomes={
+            "debtor_not_liable_for_performer_breach": True,
+            "breach_findings_without_effect": True,
+            "contract_legally_effective": True,
+            "contractual_claims_enforceable": True,
+            "requires_human_general_effects_assessment": True,
+        },
+    ),
+    GeneralEffectsEvaluationTask(
         id="general-effects-bench-restitution",
         title_ru="Сделка недействительна и требуется реституция",
         inputs=_inputs(**_EFFECTIVE, contractual_effect_displaced=True, restitution_required=True),
@@ -299,6 +311,12 @@ SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES = (
         title_ru="Пропустить экспертизу при вытеснении договорного эффекта",
         inputs=_inputs(contract_concluded_prerequisites=False),
         forbidden_outcomes={"requires_human_general_effects_assessment": False},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-debtor-liable-for-the-performer",
+        title_ru="Положить в основание присуждения против должника нарушение, за которое отвечает исполнитель",
+        inputs=_inputs(**_EFFECTIVE, breach_issue=True, liability_shifted_to_performer=True),
+        forbidden_outcomes={"breach_findings_without_effect": False},
     ),
     GeneralEffectsRedTeamCase(
         id="general-effects-red-termination-erases-past-breach",

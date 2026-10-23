@@ -213,6 +213,7 @@ def test_general_effects_never_displaces_an_effective_contract() -> None:
         effective_termination=False,
         claims_accrued_before_termination=False,
         creditor_delay_excuses_debtor=False,
+        liability_shifted_to_performer=False,
         obligation_discharged_full=False,
         accrued_claims_preserved=False,
         contract_term_lacks_meeting_basis=False,
@@ -309,11 +310,73 @@ def test_the_liveness_check_would_notice_a_dead_input() -> None:
     assert terminated.termination_ends_future_performance is True
 
 
+def test_the_article_403_exception_reaches_the_final_conclusions() -> None:
+    """Исключение статьи 403 доходит до итоговых выводов, а не остаётся при институте.
+
+    До выпуска 1.31.0 вывод `liability_shifted_to_performer` менял оценку
+    института просрочки и поднимал его флаг, но слой общих положений о нём не
+    знал: нарушение, за которое по закону отвечает непосредственный исполнитель,
+    оставалось основанием присуждения против должника.
+    """
+    request = build_synthetic_supply_analysis_request()
+    sources = build_synthetic_supply_analysis_sources()
+    baseline = run_reviewed_contract_analysis(request, sources)
+    assert baseline.general_effects_evaluation.breach_findings_without_effect is False
+
+    shifted = run_reviewed_contract_analysis(
+        request.model_copy(
+            update={
+                "attribution_delay_evidence": _flip(
+                    request.attribution_delay_evidence,
+                    performance_entrusted_to_third_party=True,
+                    third_party_caused_breach=True,
+                    law_assigns_liability_to_performer=True,
+                )
+            }
+        ),
+        sources,
+    )
+
+    assert shifted.attribution_delay_evaluation.liability_shifted_to_performer is True
+    assert shifted.constraint_evaluation.breach_issue is True
+    evaluation = shifted.general_effects_evaluation
+    assert evaluation.debtor_not_liable_for_performer_breach is True
+    assert evaluation.breach_findings_without_effect is True
+    # Договор не теряет силы, и судебная защита остаётся доступной: ответственность
+    # просто лежит на другом лице.
+    assert evaluation.contract_legally_effective is True
+    assert evaluation.contractual_claims_enforceable is True
+    assert any("статья 403" in reason for reason in evaluation.reasons_ru)
+
+
+def test_the_general_rule_of_article_403_changes_nothing_in_the_layer() -> None:
+    """«Должник отвечает за третье лицо» — умолчание слоя, а не новый вход."""
+    request = build_synthetic_supply_analysis_request()
+    sources = build_synthetic_supply_analysis_sources()
+    baseline = run_reviewed_contract_analysis(request, sources)
+    answerable = run_reviewed_contract_analysis(
+        request.model_copy(
+            update={
+                "attribution_delay_evidence": _flip(
+                    request.attribution_delay_evidence,
+                    performance_entrusted_to_third_party=True,
+                    third_party_caused_breach=True,
+                )
+            }
+        ),
+        sources,
+    )
+
+    assert answerable.attribution_delay_evaluation.debtor_answerable_for_third_party is True
+    assert answerable.general_effects_inputs == baseline.general_effects_inputs
+    assert answerable.general_effects_evaluation == baseline.general_effects_evaluation
+
+
 def test_general_effects_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_general_effects_benchmark_suite()
     red_team = run_general_effects_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 15
+    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 16
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 16
+    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 17
     assert red_team.blocked == red_team.total
