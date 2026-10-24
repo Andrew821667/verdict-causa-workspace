@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1317,
+  "declared_rules": 1322,
   "divergences_total": 0,
-  "executed_rules": 1317,
+  "executed_rules": 1322,
   "institutes": [
     {
       "declared_rules": 5,
@@ -324,11 +324,11 @@
       "module": "general_consistency.py"
     },
     {
-      "declared_rules": 33,
+      "declared_rules": 35,
       "divergences": [],
-      "executed_rules": 33,
+      "executed_rules": 35,
       "institute": "general_effects",
-      "matched": 33,
+      "matched": 35,
       "module": "general_effects.py"
     },
     {
@@ -764,11 +764,11 @@
       "module": "tort_life_health.py"
     },
     {
-      "declared_rules": 11,
+      "declared_rules": 14,
       "divergences": [],
-      "executed_rules": 11,
+      "executed_rules": 14,
       "institute": "transactions",
-      "matched": 11,
+      "matched": 14,
       "module": "transactions.py"
     },
     {
@@ -822,6 +822,6 @@
   ],
   "institutes_clean": 102,
   "institutes_total": 102,
-  "matched_rules": 1317,
+  "matched_rules": 1322,
   "version": "reasoning-rule-parity-v0"
 }

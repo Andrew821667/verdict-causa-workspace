@@ -13,19 +13,27 @@
 такая сделка является оспоримой, поэтому слой помечает её как оспоримую, но не
 лишает договор действия автоматически: оспоримая сделка недействительна только
 в силу признания её таковой судом (пункт 1 статьи 166 ГК РФ).
+
+С выпуска 1.39.0 слой получает и статус условия (статья 157):
+`suspensive_condition_unfulfilled` — отлагательное условие не наступило, и права
+и обязанности, поставленные в зависимость от него, не возникли;
+`resolutive_condition_fulfilled` — отменительное условие наступило, и они
+прекратились. Статус учитывает пункт 3: условие, наступлению которого
+недобросовестно воспрепятствовала сторона, признаётся наступившим, а условие,
+наступлению которого недобросовестно содействовала сторона, — ненаступившим.
 """
 
 from enum import Enum
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
-from z3 import And, Bool, Or, Solver, sat
+from z3 import And, Bool, Not, Or, Solver, sat
 
 from causa.core.bootstrap import BootstrapReviewStatus
 
 
 TRANSACTIONS_EVIDENCE_SCHEMA_VERSION = "contracts.transactions-evidence.v0"
 TRANSACTIONS_MAPPING_VERSION = "contracts-reviewed-transactions-to-facts-v0"
-TRANSACTIONS_MODEL_VERSION = "contracts-transactions-articles-153-157-1-v0"
+TRANSACTIONS_MODEL_VERSION = "contracts-transactions-articles-153-157-1-v1"
 
 
 class TransactionsEvidencePredicate(str, Enum):
@@ -36,9 +44,14 @@ class TransactionsEvidencePredicate(str, Enum):
     PARTIES_COUNT_RULES_BREACHED = "parties_count_rules_breached"
     UNILATERAL_TRANSACTION_EFFECT_BREACHED = "unilateral_transaction_effect_breached"
     UNILATERAL_REGULATION_BREACHED = "unilateral_regulation_breached"
-    # Сделки, совершённые под условием (статья 157 ГК РФ).
+    # Сделки, совершённые под условием (статья 157 ГК РФ): какое условие, наступило
+    # ли оно и не повлияла ли на это сторона недобросовестно.
     CONDITIONAL_TRANSACTION_RULES_BREACHED = "conditional_transaction_rules_breached"
-    CONDITION_INTERFERENCE_IN_BAD_FAITH = "condition_interference_in_bad_faith"
+    SUSPENSIVE_CONDITION_SET = "suspensive_condition_set"
+    RESOLUTIVE_CONDITION_SET = "resolutive_condition_set"
+    CONDITION_OCCURRED = "condition_occurred"
+    CONDITION_OBSTRUCTED_IN_BAD_FAITH = "condition_obstructed_in_bad_faith"
+    CONDITION_PROMOTED_IN_BAD_FAITH = "condition_promoted_in_bad_faith"
     # Согласие на совершение сделки (статья 157.1 ГК РФ).
     STATUTORY_CONSENT_NOT_OBTAINED = "statutory_consent_not_obtained"
     CONSENT_PROCEDURE_BREACHED = "consent_procedure_breached"
@@ -87,7 +100,11 @@ class TransactionsFactSet(BaseModel):
     unilateral_transaction_effect_breached: bool
     unilateral_regulation_breached: bool
     conditional_transaction_rules_breached: bool
-    condition_interference_in_bad_faith: bool
+    suspensive_condition_set: bool
+    resolutive_condition_set: bool
+    condition_occurred: bool
+    condition_obstructed_in_bad_faith: bool
+    condition_promoted_in_bad_faith: bool
     statutory_consent_not_obtained: bool
     consent_procedure_breached: bool
     silence_treated_as_consent: bool
@@ -103,6 +120,29 @@ class TransactionsFactSet(BaseModel):
             raise ValueError(
                 "Нарушение понятия сделки относится только к заявленному действию, "
                 "квалифицируемому как сделка."
+            )
+        condition_set = self.suspensive_condition_set or self.resolutive_condition_set
+        if condition_set and not self.transaction_asserted:
+            raise ValueError("Условие относится только к заявленной сделке.")
+        if self.suspensive_condition_set and self.resolutive_condition_set:
+            raise ValueError(
+                "Модель разбирает одно условие: права и обязанности, о которых спор, "
+                "поставлены в зависимость либо от отлагательного, либо от отменительного "
+                "условия."
+            )
+        if (
+            self.condition_occurred
+            or self.condition_obstructed_in_bad_faith
+            or self.condition_promoted_in_bad_faith
+        ) and not condition_set:
+            raise ValueError(
+                "Наступление условия и влияние на него относятся только к сделке, "
+                "совершённой под условием; условие не установлено."
+            )
+        if self.condition_obstructed_in_bad_faith and self.condition_promoted_in_bad_faith:
+            raise ValueError(
+                "Условие не может быть одновременно признано наступившим и ненаступившим "
+                "(пункт 3 статьи 157 ГК РФ): рецензент называет решающее воздействие."
             )
         return self
 
@@ -139,6 +179,11 @@ class TransactionsEvaluation(BaseModel):
     unilateral_regulation_duty_breached: bool
     conditional_transaction_duty_breached: bool
     condition_interference_duty_breached: bool
+    # Статус условия (статья 157): наступило ли оно или признаётся наступившим.
+    # Два последних вывода — входы слоя общих положений с выпуска 1.39.0.
+    condition_fulfilled: bool
+    suspensive_condition_unfulfilled: bool
+    resolutive_condition_fulfilled: bool
     # Ключевой вывод для слоя общих положений: сделка совершена без необходимого
     # в силу закона согласия, поэтому она оспорима (статья 173.1 ГК РФ).
     consent_missing_for_transaction: bool
@@ -199,7 +244,10 @@ def build_transactions_constraint_set(
             "unilateral_transaction_duty_breached == transactions_qualified AND unilateral_transaction_effect_breached",
             "unilateral_regulation_duty_breached == transactions_qualified AND unilateral_regulation_breached",
             "conditional_transaction_duty_breached == transactions_qualified AND conditional_transaction_rules_breached",
-            "condition_interference_duty_breached == transactions_qualified AND condition_interference_in_bad_faith",
+            "condition_interference_duty_breached == transactions_qualified AND (condition_obstructed_in_bad_faith OR condition_promoted_in_bad_faith)",
+            "condition_fulfilled == transactions_qualified AND (suspensive_condition_set OR resolutive_condition_set) AND ((condition_occurred AND NOT condition_promoted_in_bad_faith) OR condition_obstructed_in_bad_faith)",
+            "suspensive_condition_unfulfilled == transactions_qualified AND suspensive_condition_set AND NOT condition_fulfilled",
+            "resolutive_condition_fulfilled == resolutive_condition_set AND condition_fulfilled",
             "consent_missing_for_transaction == transactions_qualified AND statutory_consent_not_obtained",
             "consent_procedure_duty_breached == transactions_qualified AND consent_procedure_breached",
             "silence_as_consent_breached == transactions_qualified AND statutory_consent_not_obtained AND silence_treated_as_consent",
@@ -220,6 +268,9 @@ def evaluate_transactions_constraints(
     unilateral_regulation_duty_breached = Bool("unilateral_regulation_duty_breached")
     conditional_transaction_duty_breached = Bool("conditional_transaction_duty_breached")
     condition_interference_duty_breached = Bool("condition_interference_duty_breached")
+    condition_fulfilled = Bool("condition_fulfilled")
+    suspensive_condition_unfulfilled = Bool("suspensive_condition_unfulfilled")
+    resolutive_condition_fulfilled = Bool("resolutive_condition_fulfilled")
     consent_missing_for_transaction = Bool("consent_missing_for_transaction")
     consent_procedure_duty_breached = Bool("consent_procedure_duty_breached")
     silence_as_consent_breached = Bool("silence_as_consent_breached")
@@ -251,7 +302,42 @@ def evaluate_transactions_constraints(
     )
     solver.add(
         condition_interference_duty_breached
-        == And(transactions_qualified, variables["condition_interference_in_bad_faith"])
+        == And(
+            transactions_qualified,
+            Or(
+                variables["condition_obstructed_in_bad_faith"],
+                variables["condition_promoted_in_bad_faith"],
+            ),
+        )
+    )
+    # Пункт 3 статьи 157: условие, наступлению которого недобросовестно
+    # воспрепятствовали, признаётся наступившим, а условие, наступлению которого
+    # недобросовестно содействовали, — ненаступившим.
+    solver.add(
+        condition_fulfilled
+        == And(
+            transactions_qualified,
+            Or(variables["suspensive_condition_set"], variables["resolutive_condition_set"]),
+            Or(
+                And(
+                    variables["condition_occurred"],
+                    Not(variables["condition_promoted_in_bad_faith"]),
+                ),
+                variables["condition_obstructed_in_bad_faith"],
+            ),
+        )
+    )
+    solver.add(
+        suspensive_condition_unfulfilled
+        == And(
+            transactions_qualified,
+            variables["suspensive_condition_set"],
+            Not(condition_fulfilled),
+        )
+    )
+    solver.add(
+        resolutive_condition_fulfilled
+        == And(variables["resolutive_condition_set"], condition_fulfilled)
     )
     solver.add(
         consent_missing_for_transaction
@@ -295,6 +381,9 @@ def evaluate_transactions_constraints(
             unilateral_regulation_duty_breached=False,
             conditional_transaction_duty_breached=False,
             condition_interference_duty_breached=False,
+            condition_fulfilled=False,
+            suspensive_condition_unfulfilled=False,
+            resolutive_condition_fulfilled=False,
             consent_missing_for_transaction=False,
             consent_procedure_duty_breached=False,
             silence_as_consent_breached=False,
@@ -351,11 +440,33 @@ def evaluate_transactions_constraints(
         )
     if truth(condition_interference_duty_breached):
         reasons_ru.append(
-            "Сторона недобросовестно повлияла на наступление условия: если наступлению условия "
-            "недобросовестно воспрепятствовала сторона, которой это невыгодно, условие "
-            "признаётся наступившим; если наступлению условия недобросовестно содействовала "
-            "сторона, которой это выгодно, условие признаётся ненаступившим "
-            "(статья 157 ГК РФ)."
+            "Наступлению условия недобросовестно воспрепятствовала сторона, которой оно "
+            "невыгодно, поэтому условие признаётся наступившим (пункт 3 статьи 157 ГК РФ)."
+            if truth(variables["condition_obstructed_in_bad_faith"])
+            else "Наступлению условия недобросовестно содействовала сторона, которой оно "
+            "выгодно, поэтому условие признаётся ненаступившим (пункт 3 статьи 157 ГК РФ)."
+        )
+    if truth(suspensive_condition_unfulfilled):
+        reasons_ru.append(
+            "Сделка совершена под отлагательным условием, и оно не наступило: права и "
+            "обязанности, поставленные в зависимость от него, не возникли "
+            "(пункт 1 статьи 157 ГК РФ)."
+        )
+    elif truth(condition_fulfilled) and truth(variables["suspensive_condition_set"]):
+        reasons_ru.append(
+            "Отлагательное условие наступило: права и обязанности, поставленные в "
+            "зависимость от него, возникли (пункт 1 статьи 157 ГК РФ)."
+        )
+    if truth(resolutive_condition_fulfilled):
+        reasons_ru.append(
+            "Сделка совершена под отменительным условием, и оно наступило: права и "
+            "обязанности, поставленные в зависимость от него, прекратились "
+            "(пункт 2 статьи 157 ГК РФ)."
+        )
+    elif truth(transactions_qualified) and truth(variables["resolutive_condition_set"]):
+        reasons_ru.append(
+            "Отменительное условие не наступило: права и обязанности, поставленные в "
+            "зависимость от него, сохраняются (пункт 2 статьи 157 ГК РФ)."
         )
     if truth(consent_missing_for_transaction):
         reasons_ru.append(
@@ -387,6 +498,9 @@ def evaluate_transactions_constraints(
         unilateral_regulation_duty_breached=truth(unilateral_regulation_duty_breached),
         conditional_transaction_duty_breached=truth(conditional_transaction_duty_breached),
         condition_interference_duty_breached=truth(condition_interference_duty_breached),
+        condition_fulfilled=truth(condition_fulfilled),
+        suspensive_condition_unfulfilled=truth(suspensive_condition_unfulfilled),
+        resolutive_condition_fulfilled=truth(resolutive_condition_fulfilled),
         consent_missing_for_transaction=truth(consent_missing_for_transaction),
         consent_procedure_duty_breached=truth(consent_procedure_duty_breached),
         silence_as_consent_breached=truth(silence_as_consent_breached),

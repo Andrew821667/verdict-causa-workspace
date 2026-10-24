@@ -55,12 +55,7 @@ def test_a_route_through_another_input_names_a_real_layer_input() -> None:
 
 def test_the_open_debt_is_pinned() -> None:
     """Открытый долг виден в тесте, а не только в модуле, и обязан уменьшаться."""
-    assert open_output_debt() == {
-        "transactions": [
-            "condition_interference_duty_breached",
-            "conditional_transaction_duty_breached",
-        ],
-    }
+    assert open_output_debt() == {}
 
 
 def test_the_measurement_counts_what_the_audit_counts() -> None:
@@ -70,4 +65,4 @@ def test_the_measurement_counts_what_the_audit_counts() -> None:
     components = sum(len(item["components"]) for item in MEASURED.values())
     recorded = sum(len(routes) for routes in LAYER_OUTPUT_ROUTES.values())
 
-    assert (outputs, wired, components, recorded) == (238, 29, 95, 114)
+    assert (outputs, wired, components, recorded) == (241, 31, 96, 114)

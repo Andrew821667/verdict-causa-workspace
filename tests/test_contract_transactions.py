@@ -129,6 +129,26 @@ def test_transactions_fact_consistency_is_enforced() -> None:
     with pytest.raises(ValidationError, match="понятия сделки"):
         TransactionsFactSet(**definition)
 
+    base = {field_name: False for field_name in TransactionsFactSet.model_fields}
+    asserted = {**base, "transaction_asserted": True}
+    with pytest.raises(ValidationError, match="только к заявленной сделке"):
+        TransactionsFactSet(**{**base, "suspensive_condition_set": True})
+    with pytest.raises(ValidationError, match="одно условие"):
+        TransactionsFactSet(
+            **{**asserted, "suspensive_condition_set": True, "resolutive_condition_set": True}
+        )
+    with pytest.raises(ValidationError, match="условие не установлено"):
+        TransactionsFactSet(**{**asserted, "condition_occurred": True})
+    with pytest.raises(ValidationError, match="решающее воздействие"):
+        TransactionsFactSet(
+            **{
+                **asserted,
+                "suspensive_condition_set": True,
+                "condition_obstructed_in_bad_faith": True,
+                "condition_promoted_in_bad_faith": True,
+            }
+        )
+
 
 def test_transactions_sources_are_synthetic_review_models_with_official_basis() -> None:
     source_ids = (
@@ -181,13 +201,84 @@ def test_missing_consent_makes_transaction_challengeable_without_voiding_it() ->
     assert without_consent.requires_human_resolution is True
 
 
+def test_an_unfulfilled_suspensive_condition_leaves_nothing_to_claim() -> None:
+    """Статья 157: пока отлагательное условие не наступило, права и обязанности не возникли.
+
+    До выпуска 1.39.0 институт называл нарушение правил об условии, но не статус
+    условия, и слой сохранял силу вывода о нарушении обязанности, которой ещё нет.
+    """
+    request = build_synthetic_supply_analysis_request()
+    sources = build_synthetic_supply_analysis_sources()
+    pending = {"transaction_asserted": True, "suspensive_condition_set": True}
+
+    unfulfilled = run_reviewed_contract_analysis(
+        request.model_copy(
+            update={"transactions_evidence": _flip(request.transactions_evidence, **pending)}
+        ),
+        sources,
+    )
+    assert unfulfilled.constraint_evaluation.breach_issue is True
+    assert unfulfilled.transactions_evaluation.suspensive_condition_unfulfilled is True
+    evaluation = unfulfilled.general_effects_evaluation
+    assert evaluation.rights_not_arisen_under_condition is True
+    assert evaluation.breach_findings_without_effect is True
+    # Сделка под условием действительна: договор действует, прав ещё нет.
+    assert evaluation.contract_legally_effective is True
+    assert evaluation.institute_conclusions_displaced is False
+    assert unfulfilled.requires_human_resolution is True
+
+    # Сторона, которой условие невыгодно, недобросовестно воспрепятствовала его
+    # наступлению: условие признаётся наступившим, и права возникли.
+    obstructed = run_reviewed_contract_analysis(
+        request.model_copy(
+            update={
+                "transactions_evidence": _flip(
+                    request.transactions_evidence,
+                    **pending,
+                    condition_obstructed_in_bad_faith=True,
+                )
+            }
+        ),
+        sources,
+    )
+    assert obstructed.transactions_evaluation.condition_fulfilled is True
+    assert obstructed.general_effects_evaluation.rights_not_arisen_under_condition is False
+    assert obstructed.general_effects_evaluation.breach_findings_without_effect is False
+
+
+def test_a_fulfilled_resolutive_condition_ends_rights_for_the_future_only() -> None:
+    """Наступившее отменительное условие прекращает права, но не стирает прошлое нарушение."""
+    request = build_synthetic_supply_analysis_request()
+    result = run_reviewed_contract_analysis(
+        request.model_copy(
+            update={
+                "transactions_evidence": _flip(
+                    request.transactions_evidence,
+                    transaction_asserted=True,
+                    resolutive_condition_set=True,
+                    condition_occurred=True,
+                )
+            }
+        ),
+        build_synthetic_supply_analysis_sources(),
+    )
+
+    assert result.transactions_evaluation.resolutive_condition_fulfilled is True
+    evaluation = result.general_effects_evaluation
+    assert evaluation.rights_ended_by_condition is True
+    assert evaluation.rights_not_arisen_under_condition is False
+    assert evaluation.breach_findings_without_effect is False
+    assert result.requires_human_resolution is True
+    assert any("пункт 2 статьи 157" in reason for reason in evaluation.reasons_ru)
+
+
 def test_transactions_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_transactions_benchmark_suite()
     red_team = run_transactions_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_TRANSACTIONS_BENCHMARKS) == 10
+    assert benchmark.total == len(SYNTHETIC_TRANSACTIONS_BENCHMARKS) == 15
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_TRANSACTIONS_RED_TEAM_CASES) == 10
+    assert red_team.total == len(SYNTHETIC_TRANSACTIONS_RED_TEAM_CASES) == 14
     assert red_team.blocked == red_team.total
 
 

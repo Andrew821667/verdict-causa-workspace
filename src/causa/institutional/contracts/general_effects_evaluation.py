@@ -266,6 +266,27 @@ SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS = (
         },
     ),
     GeneralEffectsEvaluationTask(
+        id="general-effects-bench-suspensive-condition-unfulfilled",
+        title_ru="Нарушение установлено, но отлагательное условие не наступило",
+        inputs=_inputs(**_EFFECTIVE, breach_issue=True, suspensive_condition_unfulfilled=True),
+        expected_outcomes={
+            "rights_not_arisen_under_condition": True,
+            "breach_findings_without_effect": True,
+            "contract_legally_effective": True,
+            "requires_human_general_effects_assessment": True,
+        },
+    ),
+    GeneralEffectsEvaluationTask(
+        id="general-effects-bench-resolutive-condition-fulfilled",
+        title_ru="Наступило отменительное условие после нарушения",
+        inputs=_inputs(**_EFFECTIVE, breach_issue=True, resolutive_condition_fulfilled=True),
+        expected_outcomes={
+            "rights_ended_by_condition": True,
+            "breach_findings_without_effect": False,
+            "requires_human_general_effects_assessment": True,
+        },
+    ),
+    GeneralEffectsEvaluationTask(
         id="general-effects-bench-restitution",
         title_ru="Сделка недействительна и требуется реституция",
         inputs=_inputs(**_EFFECTIVE, contractual_effect_displaced=True, restitution_required=True),
@@ -444,6 +465,24 @@ SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES = (
             performance_term_calculation_defective=True,
         ),
         forbidden_outcomes={"breach_findings_without_effect": True},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-award-before-suspensive-condition",
+        title_ru="Положить в основание присуждения нарушение обязанности, которая ещё не возникла",
+        inputs=_inputs(**_EFFECTIVE, breach_issue=True, suspensive_condition_unfulfilled=True),
+        forbidden_outcomes={"breach_findings_without_effect": False},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-resolutive-condition-erases-past-breach",
+        title_ru="Выдать наступление отменительного условия за обесценивание прошлого нарушения",
+        inputs=_inputs(**_EFFECTIVE, breach_issue=True, resolutive_condition_fulfilled=True),
+        forbidden_outcomes={"breach_findings_without_effect": True},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-unconditional-contract-treated-as-conditional",
+        title_ru="Объявить права невозникшими без отлагательного условия",
+        inputs=_inputs(**_EFFECTIVE, breach_issue=True),
+        forbidden_outcomes={"rights_not_arisen_under_condition": True},
     ),
     GeneralEffectsRedTeamCase(
         id="general-effects-red-displace-effective-contract",

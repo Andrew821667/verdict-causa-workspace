@@ -125,11 +125,75 @@ SYNTHETIC_TRANSACTIONS_BENCHMARKS = (
     ),
     TransactionsEvaluationTask(
         id="transactions-bench-condition-interference",
-        title_ru="Сторона недобросовестно воспрепятствовала наступлению условия",
-        facts=_facts(transaction_asserted=True, condition_interference_in_bad_faith=True),
+        title_ru="Сторона недобросовестно воспрепятствовала наступлению отлагательного условия",
+        facts=_facts(
+            transaction_asserted=True,
+            suspensive_condition_set=True,
+            condition_obstructed_in_bad_faith=True,
+        ),
         expected_outcomes={
             "condition_interference_duty_breached": True,
+            "condition_fulfilled": True,
+            "suspensive_condition_unfulfilled": False,
             "requires_human_transactions_assessment": True,
+        },
+    ),
+    TransactionsEvaluationTask(
+        id="transactions-bench-suspensive-condition-pending",
+        title_ru="Отлагательное условие не наступило — права и обязанности не возникли",
+        facts=_facts(transaction_asserted=True, suspensive_condition_set=True),
+        expected_outcomes={
+            "condition_fulfilled": False,
+            "suspensive_condition_unfulfilled": True,
+            "resolutive_condition_fulfilled": False,
+        },
+    ),
+    TransactionsEvaluationTask(
+        id="transactions-bench-suspensive-condition-occurred",
+        title_ru="Отлагательное условие наступило — права и обязанности возникли",
+        facts=_facts(
+            transaction_asserted=True, suspensive_condition_set=True, condition_occurred=True
+        ),
+        expected_outcomes={
+            "condition_fulfilled": True,
+            "suspensive_condition_unfulfilled": False,
+        },
+    ),
+    TransactionsEvaluationTask(
+        id="transactions-bench-condition-promoted-in-bad-faith",
+        title_ru="Наступлению условия недобросовестно содействовала выгодоприобретающая сторона",
+        facts=_facts(
+            transaction_asserted=True,
+            suspensive_condition_set=True,
+            condition_occurred=True,
+            condition_promoted_in_bad_faith=True,
+        ),
+        expected_outcomes={
+            "condition_interference_duty_breached": True,
+            "condition_fulfilled": False,
+            "suspensive_condition_unfulfilled": True,
+            "requires_human_transactions_assessment": True,
+        },
+    ),
+    TransactionsEvaluationTask(
+        id="transactions-bench-resolutive-condition-occurred",
+        title_ru="Отменительное условие наступило — права и обязанности прекратились",
+        facts=_facts(
+            transaction_asserted=True, resolutive_condition_set=True, condition_occurred=True
+        ),
+        expected_outcomes={
+            "condition_fulfilled": True,
+            "resolutive_condition_fulfilled": True,
+            "suspensive_condition_unfulfilled": False,
+        },
+    ),
+    TransactionsEvaluationTask(
+        id="transactions-bench-resolutive-condition-pending",
+        title_ru="Отменительное условие не наступило — права и обязанности сохраняются",
+        facts=_facts(transaction_asserted=True, resolutive_condition_set=True),
+        expected_outcomes={
+            "resolutive_condition_fulfilled": False,
+            "suspensive_condition_unfulfilled": False,
         },
     ),
     TransactionsEvaluationTask(
@@ -198,8 +262,45 @@ SYNTHETIC_TRANSACTIONS_RED_TEAM_CASES = (
     TransactionsRedTeamCase(
         id="transactions-red-allow-bad-faith-interference",
         title_ru="Допустить недобросовестное воспрепятствование наступлению условия",
-        facts=_facts(transaction_asserted=True, condition_interference_in_bad_faith=True),
+        facts=_facts(
+            transaction_asserted=True,
+            resolutive_condition_set=True,
+            condition_obstructed_in_bad_faith=True,
+        ),
         forbidden_outcomes={"condition_interference_duty_breached": False},
+    ),
+    TransactionsRedTeamCase(
+        id="transactions-red-rights-before-suspensive-condition",
+        title_ru="Считать права возникшими до наступления отлагательного условия",
+        facts=_facts(transaction_asserted=True, suspensive_condition_set=True),
+        forbidden_outcomes={"suspensive_condition_unfulfilled": False},
+    ),
+    TransactionsRedTeamCase(
+        id="transactions-red-reward-obstruction",
+        title_ru="Оставить ненаступившим условие, наступлению которого недобросовестно воспрепятствовали",
+        facts=_facts(
+            transaction_asserted=True,
+            resolutive_condition_set=True,
+            condition_obstructed_in_bad_faith=True,
+        ),
+        forbidden_outcomes={"resolutive_condition_fulfilled": False},
+    ),
+    TransactionsRedTeamCase(
+        id="transactions-red-reward-promotion",
+        title_ru="Признать наступившим условие, наступлению которого недобросовестно содействовали",
+        facts=_facts(
+            transaction_asserted=True,
+            suspensive_condition_set=True,
+            condition_occurred=True,
+            condition_promoted_in_bad_faith=True,
+        ),
+        forbidden_outcomes={"suspensive_condition_unfulfilled": False},
+    ),
+    TransactionsRedTeamCase(
+        id="transactions-red-resolutive-condition-before-occurrence",
+        title_ru="Прекратить права по отменительному условию, которое не наступило",
+        facts=_facts(transaction_asserted=True, resolutive_condition_set=True),
+        forbidden_outcomes={"resolutive_condition_fulfilled": True},
     ),
     TransactionsRedTeamCase(
         id="transactions-red-ignore-missing-consent",

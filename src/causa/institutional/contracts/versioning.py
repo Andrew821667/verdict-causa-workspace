@@ -46,6 +46,23 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.39.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "The transactions institute derives the status of a condition (article 157 of the Civil Code), not only a breach of the rules about conditions. The reviewer states whether the rights and duties in dispute depend on a suspensive or a resolutive condition, whether the circumstance occurred, and the direction of bad-faith interference: the combined predicate condition_interference_in_bad_faith is replaced by condition_obstructed_in_bad_faith and condition_promoted_in_bad_faith, because the two lead to opposite consequences under paragraph 3. The institute derives condition_fulfilled, suspensive_condition_unfulfilled and resolutive_condition_fulfilled. The fact contract rejects a condition without an asserted transaction, both kinds of condition at once, occurrence or interference without a condition, and obstruction together with promotion. The transactions model version changes to v1.",
+            "The general-effects layer gains two inputs and two outputs. Under an unfulfilled suspensive condition the rights and duties have not arisen: rights_not_arisen_under_condition holds and enters breach_findings_without_effect, while the contract stays effective - a conditional transaction is valid. A fulfilled resolutive condition ends rights and duties for the future: rights_ended_by_condition holds and, like termination, does not enter breach_findings_without_effect. This closes the last legal question of the audit of conclusions: the open debt is empty.",
+        ],
+        notes_ru=[
+            "Институт сделок выводит статус условия (статья 157 ГК РФ), а не только нарушение правил об условии. Рецензент отмечает, от какого условия — отлагательного или отменительного — зависят права и обязанности, о которых спор, наступило ли обстоятельство и в какую сторону недобросовестно на него повлияли: общий признак condition_interference_in_bad_faith заменён на condition_obstructed_in_bad_faith и condition_promoted_in_bad_faith, потому что по пункту 3 они ведут к противоположным последствиям. Институт выводит condition_fulfilled, suspensive_condition_unfulfilled и resolutive_condition_fulfilled. Контракт фактов отвергает условие без заявленной сделки, оба вида условия сразу, наступление или воздействие без условия и воспрепятствование вместе с содействием. Версия модели сделок — v1.",
+            "Слой общих положений получает два входа и два вывода. Под ненаступившим отлагательным условием права и обязанности не возникли: rights_not_arisen_under_condition истинен и входит в breach_findings_without_effect, а договор сохраняет действие — сделка под условием действительна. Наступившее отменительное условие прекращает права и обязанности на будущее: rights_ended_by_condition истинен и, как расторжение, в breach_findings_without_effect не входит. Этим закрыт последний правовой вопрос аудита по выводам: открытый долг пуст.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.38.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

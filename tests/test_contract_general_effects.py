@@ -214,6 +214,8 @@ def test_general_effects_never_displaces_an_effective_contract() -> None:
         good_faith_acquirer_protected=False,
         abuse_of_right_detected=False,
         consent_missing_for_transaction=False,
+        suspensive_condition_unfulfilled=False,
+        resolutive_condition_fulfilled=False,
         term_calculation_defective=False,
         performance_term_calculation_defective=False,
         party_lacks_capacity=False,
@@ -614,7 +616,7 @@ def test_general_effects_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_general_effects_benchmark_suite()
     red_team = run_general_effects_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 22
+    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 24
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 24
+    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 27
     assert red_team.blocked == red_team.total

@@ -2565,6 +2565,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_rule_parity_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.38.0",
+        to_version="1.39.0",
+        reasons=[
+            "The transactions evidence replaces the predicate condition_interference_in_bad_faith with five required predicates - suspensive_condition_set, resolutive_condition_set, condition_occurred, condition_obstructed_in_bad_faith, condition_promoted_in_bad_faith - and the transactions model version changes to v1. A stored request carries the removed predicate and lacks the new ones and cannot be replayed as it stands; a reviewer must state the direction of the interference it recorded.",
+            "The general-effects layer gains two inputs and the outputs rights_not_arisen_under_condition and rights_ended_by_condition, and breach_findings_without_effect changes under an unfulfilled suspensive condition. A stored analysis must be replayed.",
+        ],
+        reasons_ru=[
+            "Сведения о сделке заменяют признак condition_interference_in_bad_faith пятью обязательными — suspensive_condition_set, resolutive_condition_set, condition_occurred, condition_obstructed_in_bad_faith, condition_promoted_in_bad_faith, — а версия модели сделок становится v1. Сохранённый запрос несёт удалённый признак, не несёт новых и в прежнем виде повторно прогнан быть не может; направление записанного в нём воздействия должен назвать рецензент.",
+            "Слой общих положений получает два входа и выводы rights_not_arisen_under_condition и rights_ended_by_condition, а breach_findings_without_effect меняется под ненаступившим отлагательным условием. Сохранённый анализ подлежит повторному прогону.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_transactions_evaluation.py",
+            "python scripts/export_rule_parity_report.py",
+        ],
+    ),
 ]
 
 

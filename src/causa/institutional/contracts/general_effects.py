@@ -36,6 +36,15 @@
   исковой давности, поэтому порок исчисления обесценивает вывод о его
   истечении; порок исчисления срока исполнения обязательства так же
   обесценивает вывод о просрочке: своевременность исполнения не установлена;
+- статья 157 ГК РФ — права и обязанности, поставленные в зависимость от
+  отлагательного условия, возникают с его наступлением, а от отменительного —
+  с его наступлением прекращаются; условие, наступлению которого
+  недобросовестно воспрепятствовала сторона, признаётся наступившим, а
+  условие, наступлению которого недобросовестно содействовала сторона, —
+  ненаступившим. Поэтому вывод о нарушении обязанности, которая под
+  ненаступившим отлагательным условием не возникла, эффекта не имеет, а
+  наступившее отменительное условие прекращает требования на будущее, как
+  расторжение;
 - статья 183 ГК РФ — при отсутствии полномочий сделка считается заключённой от
   имени совершившего её лица, пока представляемый её не одобрит;
 - статья 10 ГК РФ — при злоупотреблении правом суд отказывает лицу в защите
@@ -98,7 +107,7 @@ from z3 import And, Bool, Not, Or, Solver, sat
 
 GENERAL_EFFECTS_MODEL_VERSION = (
     "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199"
-    "-170-180-205-209-302-403-405-407-432-453-v18"
+    "-157-170-180-205-209-302-403-405-407-432-453-v19"
 )
 
 
@@ -141,6 +150,10 @@ class GeneralEffectsInputs(BaseModel):
     abuse_of_right_detected: bool
     # Сделки: отсутствие необходимого согласия (статьи 157.1 и 173.1 ГК РФ).
     consent_missing_for_transaction: bool
+    # Сделка под условием: отлагательное не наступило, отменительное наступило
+    # (статья 157 ГК РФ).
+    suspensive_condition_unfulfilled: bool
+    resolutive_condition_fulfilled: bool
     # Лица: недееспособность стороны (статьи 29 и 171 ГК РФ).
     party_lacks_capacity: bool
     # Объекты: изъятие объекта из оборота (статьи 129 и 168 ГК РФ).
@@ -202,6 +215,8 @@ class GeneralEffectsEvaluation(BaseModel):
     debtor_delay_excused_by_creditor: bool
     debtor_not_liable_for_performer_breach: bool
     obligation_discharged_before_claim: bool
+    rights_not_arisen_under_condition: bool
+    rights_ended_by_condition: bool
     termination_ends_future_performance: bool
     only_accrued_claims_survive_termination: bool
     term_deprived_of_meeting_basis: bool
@@ -252,6 +267,8 @@ def build_general_effects_inputs(
         good_faith_acquirer_protected=property_rights_evaluation.good_faith_acquirer_protected,
         abuse_of_right_detected=civil_principles_evaluation.abuse_of_right_detected,
         consent_missing_for_transaction=(transactions_evaluation.consent_missing_for_transaction),
+        suspensive_condition_unfulfilled=(transactions_evaluation.suspensive_condition_unfulfilled),
+        resolutive_condition_fulfilled=transactions_evaluation.resolutive_condition_fulfilled,
         term_calculation_defective=terms_evaluation.term_calculation_defective,
         performance_term_calculation_defective=(
             terms_evaluation.performance_term_calculation_defective
@@ -323,7 +340,9 @@ def build_general_effects_constraint_set(
             "debtor_delay_excused_by_creditor == breach_issue AND creditor_delay_excuses_debtor",
             "debtor_not_liable_for_performer_breach == breach_issue AND liability_shifted_to_performer",
             "obligation_discharged_before_claim == obligation_discharged_full AND NOT accrued_claims_preserved",
-            "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor OR liability_shifted_to_performer OR obligation_discharged_before_claim)",
+            "rights_not_arisen_under_condition == contract_legally_effective AND suspensive_condition_unfulfilled",
+            "rights_ended_by_condition == contract_legally_effective AND resolutive_condition_fulfilled",
+            "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor OR liability_shifted_to_performer OR obligation_discharged_before_claim OR rights_not_arisen_under_condition)",
             "breach_conclusion_unreliable == breach_issue AND performance_term_calculation_defective",
             "termination_ends_future_performance == contract_legally_effective AND effective_termination",
             "only_accrued_claims_survive_termination == termination_ends_future_performance AND claims_accrued_before_termination",
@@ -334,7 +353,7 @@ def build_general_effects_constraint_set(
             "title_transfer_defeated == unauthorized_disposal_detected AND NOT good_faith_acquirer_protected",
             "good_faith_acquirer_protected_from_reclaim == unauthorized_disposal_detected AND good_faith_acquirer_protected",
             "restitution_regime_applies == contractual_effect_displaced AND restitution_required AND NOT disguised_transaction_rules_required",
-            "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR disguised_transaction_governs OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR good_faith_acquirer_protected_from_reclaim OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR breach_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance",
+            "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR disguised_transaction_governs OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR good_faith_acquirer_protected_from_reclaim OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR breach_conclusion_unreliable OR rights_not_arisen_under_condition OR rights_ended_by_condition OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance",
         ],
     )
 
@@ -372,6 +391,8 @@ def evaluate_general_effects_constraints(
     debtor_delay_excused_by_creditor = Bool("debtor_delay_excused_by_creditor")
     debtor_not_liable_for_performer_breach = Bool("debtor_not_liable_for_performer_breach")
     obligation_discharged_before_claim = Bool("obligation_discharged_before_claim")
+    rights_not_arisen_under_condition = Bool("rights_not_arisen_under_condition")
+    rights_ended_by_condition = Bool("rights_ended_by_condition")
     termination_ends_future_performance = Bool("termination_ends_future_performance")
     only_accrued_claims_survive_termination = Bool("only_accrued_claims_survive_termination")
     term_deprived_of_meeting_basis = Bool("term_deprived_of_meeting_basis")
@@ -516,6 +537,18 @@ def evaluate_general_effects_constraints(
             Not(variables["accrued_claims_preserved"]),
         )
     )
+    # Под ненаступившим отлагательным условием права и обязанности не возникли
+    # (статья 157 пункт 1): нарушать нечего. Наступившее отменительное условие
+    # прекращает их на будущее (пункт 2) и, как расторжение, прошлого нарушения
+    # не стирает — в `breach_findings_without_effect` оно не входит.
+    solver.add(
+        rights_not_arisen_under_condition
+        == And(contract_legally_effective, variables["suspensive_condition_unfulfilled"])
+    )
+    solver.add(
+        rights_ended_by_condition
+        == And(contract_legally_effective, variables["resolutive_condition_fulfilled"])
+    )
     # Просрочка кредитора не отменяет договор и не лишает суда защиты: она
     # снимает основание считать должника просрочившим (статья 405 пункт 3), а
     # значит вывод института о нарушении не может лечь в основание присуждения.
@@ -528,6 +561,7 @@ def evaluate_general_effects_constraints(
                 variables["creditor_delay_excuses_debtor"],
                 variables["liability_shifted_to_performer"],
                 obligation_discharged_before_claim,
+                rights_not_arisen_under_condition,
             ),
         )
     )
@@ -620,6 +654,8 @@ def evaluate_general_effects_constraints(
             transaction_challengeable_for_missing_consent,
             limitation_conclusion_unreliable,
             breach_conclusion_unreliable,
+            rights_not_arisen_under_condition,
+            rights_ended_by_condition,
             term_deprived_of_meeting_basis,
             term_meeting_basis_challengeable,
             termination_ends_future_performance,
@@ -654,6 +690,8 @@ def evaluate_general_effects_constraints(
             debtor_delay_excused_by_creditor=False,
             debtor_not_liable_for_performer_breach=False,
             obligation_discharged_before_claim=False,
+            rights_not_arisen_under_condition=False,
+            rights_ended_by_condition=False,
             termination_ends_future_performance=False,
             only_accrued_claims_survive_termination=False,
             term_deprived_of_meeting_basis=False,
@@ -799,6 +837,21 @@ def evaluate_general_effects_constraints(
             "исполнения нельзя, а вывод специального института о нарушении не "
             "может быть положен в основание присуждения (статьи 407–419 ГК РФ)."
         )
+    if truth(rights_not_arisen_under_condition):
+        reasons_ru.append(
+            "Сделка совершена под отлагательным условием, которое не наступило: права и "
+            "обязанности, поставленные в зависимость от него, не возникли, поэтому требовать "
+            "их исполнения нельзя, а вывод специального института о нарушении не может быть "
+            "положен в основание присуждения (пункт 1 статьи 157 ГК РФ)."
+        )
+    if truth(rights_ended_by_condition):
+        reasons_ru.append(
+            "Наступило отменительное условие: права и обязанности, поставленные в "
+            "зависимость от него, прекратились, и требовать исполнения на будущее нельзя "
+            "(пункт 2 статьи 157 ГК РФ). Вывод о нарушении, совершённом до наступления "
+            "условия, слой не отменяет; что из возникшего до этого сохраняется, решается "
+            "по договору и закону — проверка юристом."
+        )
     if truth(breach_findings_without_effect):
         reasons_ru.append(
             "Установленное нарушение обязательства не влечёт удовлетворения требований: "
@@ -922,6 +975,8 @@ def evaluate_general_effects_constraints(
         debtor_delay_excused_by_creditor=truth(debtor_delay_excused_by_creditor),
         debtor_not_liable_for_performer_breach=truth(debtor_not_liable_for_performer_breach),
         obligation_discharged_before_claim=truth(obligation_discharged_before_claim),
+        rights_not_arisen_under_condition=truth(rights_not_arisen_under_condition),
+        rights_ended_by_condition=truth(rights_ended_by_condition),
         termination_ends_future_performance=truth(termination_ends_future_performance),
         only_accrued_claims_survive_termination=truth(only_accrued_claims_survive_termination),
         term_deprived_of_meeting_basis=truth(term_deprived_of_meeting_basis),
