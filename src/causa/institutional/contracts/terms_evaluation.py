@@ -122,9 +122,39 @@ SYNTHETIC_TERMS_BENCHMARKS = (
     TermsEvaluationTask(
         id="terms-bench-limitation-calculation",
         title_ru="Срок исковой давности исчислен с нарушением главы 11",
-        facts=_facts(term_asserted=True, limitation_term_calculation_breached=True),
+        facts=_facts(
+            term_asserted=True,
+            non_working_day_rule_breached=True,
+            limitation_term_calculation_breached=True,
+        ),
         expected_outcomes={
             "term_calculation_defective": True,
+            "performance_term_calculation_defective": False,
+            "requires_human_terms_assessment": True,
+        },
+    ),
+    TermsEvaluationTask(
+        id="terms-bench-performance-term-calculation",
+        title_ru="Срок исполнения обязательства окончен в нерабочий день без переноса",
+        facts=_facts(
+            term_asserted=True,
+            non_working_day_rule_breached=True,
+            performance_term_calculation_breached=True,
+        ),
+        expected_outcomes={
+            "performance_term_calculation_defective": True,
+            "term_calculation_defective": False,
+            "requires_human_terms_assessment": True,
+        },
+    ),
+    TermsEvaluationTask(
+        id="terms-bench-rule-breach-without-attribution",
+        title_ru="Правило нарушено, но ни к сроку давности, ни к сроку исполнения не отнесено",
+        facts=_facts(term_asserted=True, term_start_rules_breached=True),
+        expected_outcomes={
+            "term_start_duty_breached": True,
+            "term_calculation_defective": False,
+            "performance_term_calculation_defective": False,
             "requires_human_terms_assessment": True,
         },
     ),
@@ -202,8 +232,38 @@ SYNTHETIC_TERMS_RED_TEAM_CASES = (
     TermsRedTeamCase(
         id="terms-red-ignore-limitation-calculation",
         title_ru="Считать давность истекшей при пороке исчисления срока",
-        facts=_facts(term_asserted=True, limitation_term_calculation_breached=True),
+        facts=_facts(
+            term_asserted=True,
+            non_working_day_rule_breached=True,
+            limitation_term_calculation_breached=True,
+        ),
         forbidden_outcomes={"term_calculation_defective": False},
+    ),
+    TermsRedTeamCase(
+        id="terms-red-ignore-performance-term-calculation",
+        title_ru="Считать исполнение просроченным при пороке исчисления срока исполнения",
+        facts=_facts(
+            term_asserted=True,
+            written_notice_dispatch_breached=True,
+            performance_term_calculation_breached=True,
+        ),
+        forbidden_outcomes={"performance_term_calculation_defective": False},
+    ),
+    TermsRedTeamCase(
+        id="terms-red-performance-defect-taints-limitation",
+        title_ru="Перенести порок срока исполнения на срок исковой давности",
+        facts=_facts(
+            term_asserted=True,
+            term_end_rules_breached=True,
+            performance_term_calculation_breached=True,
+        ),
+        forbidden_outcomes={"term_calculation_defective": True},
+    ),
+    TermsRedTeamCase(
+        id="terms-red-unattributed-rule-taints-performance-term",
+        title_ru="Объявить порочным срок исполнения по нарушенному правилу, к нему не отнесённому",
+        facts=_facts(term_asserted=True, performance_deadline_breached=True),
+        forbidden_outcomes={"performance_term_calculation_defective": True},
     ),
     TermsRedTeamCase(
         id="terms-red-shorten-last-day",

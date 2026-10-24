@@ -46,6 +46,23 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.38.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "The terms institute distinguishes which term a calculation defect concerns. A new reviewer predicate, performance_term_calculation_breached, attributes the defect to the term of performance on which the breach finding rests, and the institute derives performance_term_calculation_defective. Both attributions - to the limitation term and to the term of performance - now need a breached rule of articles 190-194: the fact contract rejects an attribution without a named rule, and the defect is derived only from both. Before this release the limitation defect was a single predicate without a rule, and the defect of the term of performance was not expressed at all. The terms model version changes to v1.",
+            "The general-effects layer gains the input performance_term_calculation_defective and the output breach_conclusion_unreliable: the breach finding rests on a miscomputed term of performance, timeliness is not established, and the human flag is raised. The breach is not removed and breach_findings_without_effect does not change: a last day moved from a Saturday to a Monday or a notice posted before midnight may make performance timely, or may only move the start of the delay if the debtor did not perform later either. The audit of conclusions records the seven calculation rules as components of both layer inputs; the open debt falls from 10 conclusions to 2. The general-effects specification now documents limitation_conclusion_unreliable and its benchmark counts are corrected.",
+        ],
+        notes_ru=[
+            "Институт сроков различает, к какому сроку относится порок исчисления. Новый признак рецензента performance_term_calculation_breached относит порок к сроку исполнения обязательства, на котором построен вывод о нарушении, и институт выводит performance_term_calculation_defective. Оба отнесения — к сроку исковой давности и к сроку исполнения — теперь требуют нарушенного правила статей 190–194: контракт фактов отвергает отнесение без названного правила, а порок выводится только из обоих. До этого выпуска порок срока давности был одним признаком без правила, а порок срока исполнения не выражался вовсе. Версия модели сроков — v1.",
+            "Слой общих положений получает вход performance_term_calculation_defective и вывод breach_conclusion_unreliable: вывод о нарушении построен на неверно исчисленном сроке исполнения, своевременность не установлена, поднимается флаг экспертизы. Нарушение не снимается, и breach_findings_without_effect не меняется: последний день, перенесённый с субботы на понедельник, или извещение, сданное на почту до полуночи, могут сделать исполнение своевременным, а могут только сдвинуть начало просрочки, если должник не исполнил и позже. Аудит по выводам записывает семь правил исчисления составляющими обоих входов слоя; открытый долг уменьшается с 10 выводов до 2. Спецификация слоя теперь описывает limitation_conclusion_unreliable, счёт её benchmark исправлен.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.37.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

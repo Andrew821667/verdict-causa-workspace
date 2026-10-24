@@ -91,12 +91,6 @@ _NO_AUTHORITY_VIA_REPRESENTATION = (
     "unauthorized_representation_detected, когда рецензент отмечает неодобренное "
     "действие без полномочия; сверки между признаками нет"
 )
-_TERM_COMPUTATION_OPEN = (
-    "от исчисления срока зависит, своевременно ли исполнение, а значит, и вывод о "
-    "нарушении (breach_issue). Для срока давности порок проведён в слой "
-    "(term_calculation_defective), для срока исполнения — нет: институт не различает, к "
-    "какому сроку относится порок"
-)
 _CONDITION_OPEN = (
     "статус условия решает, возникли ли права и обязанности (статья 157): не наступило "
     "отлагательное — требовать нечего, наступило отменительное — обязательство "
@@ -407,14 +401,12 @@ LAYER_OUTPUT_ROUTES: dict[str, dict[str, tuple[OutputRoute, str]]] = {
         ),
     },
     "terms": {
-        "term_definition_duty_breached": (_OPEN, _TERM_COMPUTATION_OPEN),
-        "term_event_certainty_duty_breached": (_OPEN, _TERM_COMPUTATION_OPEN),
-        "term_start_duty_breached": (_OPEN, _TERM_COMPUTATION_OPEN),
-        "term_end_duty_breached": (_OPEN, _TERM_COMPUTATION_OPEN),
-        "non_working_day_duty_breached": (_OPEN, _TERM_COMPUTATION_OPEN),
-        "performance_deadline_duty_breached": (_OPEN, _TERM_COMPUTATION_OPEN),
-        "organisation_operating_hours_duty_breached": (_OPEN, _TERM_COMPUTATION_OPEN),
-        "written_notice_dispatch_duty_breached": (_OPEN, _TERM_COMPUTATION_OPEN),
+        "term_event_certainty_duty_breached": (
+            _VIA,
+            "частный случай порока определения срока (статья 190): вывод истинен, только "
+            "когда истинен term_definition_duty_breached, и до слоя доходит вместе с ним — "
+            "через term_calculation_defective или performance_term_calculation_defective",
+        ),
     },
     "persons": {
         "legal_capacity_duty_breached": (

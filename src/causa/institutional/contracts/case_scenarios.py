@@ -183,6 +183,8 @@ CASE_SCENARIOS = (
             "limitation_evidence": _LIMITATION_ELAPSED,
             "terms_evidence": {
                 "term_asserted": True,
+                "term_start_rules_breached": True,
+                "term_end_rules_breached": True,
                 "limitation_term_calculation_breached": True,
             },
         },

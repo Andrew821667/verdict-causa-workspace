@@ -3260,6 +3260,7 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
                     (TermsEvidencePredicate.TERM_END_RULES_BREACHED, False),
                     (TermsEvidencePredicate.NON_WORKING_DAY_RULE_BREACHED, False),
                     (TermsEvidencePredicate.LIMITATION_TERM_CALCULATION_BREACHED, False),
+                    (TermsEvidencePredicate.PERFORMANCE_TERM_CALCULATION_BREACHED, False),
                     (TermsEvidencePredicate.PERFORMANCE_DEADLINE_BREACHED, False),
                     (TermsEvidencePredicate.ORGANISATION_OPERATING_HOURS_BREACHED, False),
                     (TermsEvidencePredicate.WRITTEN_NOTICE_DISPATCH_BREACHED, False),

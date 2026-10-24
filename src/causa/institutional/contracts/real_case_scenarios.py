@@ -243,6 +243,7 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "term_end_rules_breached": False,
             "non_working_day_rule_breached": False,
             "limitation_term_calculation_breached": False,
+            "performance_term_calculation_breached": False,
             "performance_deadline_breached": False,
             "organisation_operating_hours_breached": False,
             "written_notice_dispatch_breached": False,
@@ -250,6 +251,7 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
         expected_conclusions={
             "terms_qualified": True,
             "term_calculation_defective": False,
+            "performance_term_calculation_defective": False,
             "term_event_certainty_duty_breached": False,
             "performance_deadline_duty_breached": False,
             "requires_human_terms_assessment": False,
@@ -3990,6 +3992,7 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "term_end_rules_breached": False,
             "non_working_day_rule_breached": False,
             "limitation_term_calculation_breached": False,
+            "performance_term_calculation_breached": False,
             "performance_deadline_breached": False,
             "organisation_operating_hours_breached": False,
             "written_notice_dispatch_breached": False,

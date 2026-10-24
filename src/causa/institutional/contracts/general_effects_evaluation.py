@@ -251,6 +251,21 @@ SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS = (
         },
     ),
     GeneralEffectsEvaluationTask(
+        id="general-effects-bench-performance-term-miscomputed",
+        title_ru="Нарушение установлено по сроку исполнения, исчисленному с нарушением статей 190–194",
+        inputs=_inputs(
+            **_EFFECTIVE,
+            breach_issue=True,
+            performance_term_calculation_defective=True,
+        ),
+        expected_outcomes={
+            "breach_conclusion_unreliable": True,
+            "breach_findings_without_effect": False,
+            "contractual_claims_enforceable": True,
+            "requires_human_general_effects_assessment": True,
+        },
+    ),
+    GeneralEffectsEvaluationTask(
         id="general-effects-bench-restitution",
         title_ru="Сделка недействительна и требуется реституция",
         inputs=_inputs(**_EFFECTIVE, contractual_effect_displaced=True, restitution_required=True),
@@ -409,6 +424,26 @@ SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES = (
             good_faith_acquirer_protected=True,
         ),
         forbidden_outcomes={"title_transfer_defeated": True},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-trust-breach-on-a-miscomputed-term",
+        title_ru="Положить в основание вывод о просрочке по неверно исчисленному сроку исполнения",
+        inputs=_inputs(
+            **_EFFECTIVE,
+            breach_issue=True,
+            performance_term_calculation_defective=True,
+        ),
+        forbidden_outcomes={"breach_conclusion_unreliable": False},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-miscomputed-term-erases-the-breach",
+        title_ru="Выдать порок исчисления срока исполнения за отсутствие нарушения",
+        inputs=_inputs(
+            **_EFFECTIVE,
+            breach_issue=True,
+            performance_term_calculation_defective=True,
+        ),
+        forbidden_outcomes={"breach_findings_without_effect": True},
     ),
     GeneralEffectsRedTeamCase(
         id="general-effects-red-displace-effective-contract",

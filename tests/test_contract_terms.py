@@ -177,6 +177,7 @@ def test_defective_term_calculation_suspends_the_limitation_bar() -> None:
                 "terms_evidence": _flip(
                     request.terms_evidence,
                     term_asserted=True,
+                    term_end_rules_breached=True,
                     limitation_term_calculation_breached=True,
                 ),
             }
@@ -185,23 +186,78 @@ def test_defective_term_calculation_suspends_the_limitation_bar() -> None:
     )
 
     assert with_defect.terms_evaluation.term_calculation_defective is True
+    assert with_defect.terms_evaluation.performance_term_calculation_defective is False
     evaluation = with_defect.general_effects_evaluation
     # Отказ в защите снят: истечение срока больше не считается установленным.
     assert evaluation.claims_barred_by_limitation is False
     assert evaluation.limitation_conclusion_unreliable is True
     assert evaluation.contractual_claims_enforceable is True
     assert evaluation.breach_findings_without_effect is False
+    assert evaluation.breach_conclusion_unreliable is False
     # Вопрос остаётся на экспертизе.
     assert with_defect.requires_human_resolution is True
+
+
+def test_a_miscomputed_performance_term_makes_the_breach_finding_unreliable() -> None:
+    """Порок исчисления срока исполнения обесценивает вывод о просрочке.
+
+    До выпуска 1.38.0 институт не различал, к какому сроку относится порок, и
+    слой получал его только для срока исковой давности: вывод о нарушении,
+    построенный на неверно исчисленном сроке исполнения, сохранял полную силу.
+    """
+    request = build_synthetic_supply_analysis_request()
+    sources = build_synthetic_supply_analysis_sources()
+    plain = run_reviewed_contract_analysis(request, sources)
+    assert plain.constraint_evaluation.breach_issue is True
+    assert plain.general_effects_evaluation.breach_conclusion_unreliable is False
+
+    miscomputed = run_reviewed_contract_analysis(
+        request.model_copy(
+            update={
+                "terms_evidence": _flip(
+                    request.terms_evidence,
+                    term_asserted=True,
+                    non_working_day_rule_breached=True,
+                    performance_term_calculation_breached=True,
+                )
+            }
+        ),
+        sources,
+    )
+
+    assert miscomputed.terms_evaluation.performance_term_calculation_defective is True
+    assert miscomputed.terms_evaluation.term_calculation_defective is False
+    evaluation = miscomputed.general_effects_evaluation
+    assert evaluation.breach_conclusion_unreliable is True
+    # Нарушение не снимается: если обязательство не исполнено и в верно
+    # исчисленный срок, просрочка остаётся, меняется только её начало.
+    assert evaluation.breach_findings_without_effect is False
+    assert evaluation.contractual_claims_enforceable is True
+    assert evaluation.limitation_conclusion_unreliable is False
+    assert miscomputed.requires_human_resolution is True
+    assert any("сроке исполнения" in reason for reason in evaluation.reasons_ru)
+
+
+def test_a_term_defect_needs_both_a_breached_rule_and_its_term() -> None:
+    """Порок срока — нарушенное правило, отнесённое к сроку, а не одно из двух."""
+    base = {field_name: False for field_name in TermsFactSet.model_fields}
+    for attribution in (
+        "limitation_term_calculation_breached",
+        "performance_term_calculation_breached",
+    ):
+        with pytest.raises(ValidationError, match="ни одно из них нарушенным не названо"):
+            TermsFactSet(**{**base, "term_asserted": True, attribution: True})
+        with pytest.raises(ValidationError, match="относится только к заявленному сроку"):
+            TermsFactSet(**{**base, "term_start_rules_breached": True, attribution: True})
 
 
 def test_terms_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_terms_benchmark_suite()
     red_team = run_terms_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_TERMS_BENCHMARKS) == 10
+    assert benchmark.total == len(SYNTHETIC_TERMS_BENCHMARKS) == 12
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_TERMS_RED_TEAM_CASES) == 10
+    assert red_team.total == len(SYNTHETIC_TERMS_RED_TEAM_CASES) == 13
     assert red_team.blocked == red_team.total
 
 

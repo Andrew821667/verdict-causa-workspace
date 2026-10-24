@@ -34,7 +34,8 @@
   сопровождает указанием, что срок может быть восстановлен;
 - статьи 190–194 ГК РФ — правила исчисления сроков, которым подчинён и срок
   исковой давности, поэтому порок исчисления обесценивает вывод о его
-  истечении;
+  истечении; порок исчисления срока исполнения обязательства так же
+  обесценивает вывод о просрочке: своевременность исполнения не установлена;
 - статья 183 ГК РФ — при отсутствии полномочий сделка считается заключённой от
   имени совершившего её лица, пока представляемый её не одобрит;
 - статья 10 ГК РФ — при злоупотреблении правом суд отказывает лицу в защите
@@ -97,7 +98,7 @@ from z3 import And, Bool, Not, Or, Solver, sat
 
 GENERAL_EFFECTS_MODEL_VERSION = (
     "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199"
-    "-170-180-205-209-302-403-405-407-432-453-v17"
+    "-170-180-205-209-302-403-405-407-432-453-v18"
 )
 
 
@@ -126,8 +127,10 @@ class GeneralEffectsInputs(BaseModel):
     claim_not_subject_to_limitation: bool
     # Истец — гражданин, причина пропуска связана с его личностью (статья 205).
     limitation_restorable: bool
-    # Исчисление сроков (статьи 190–194 ГК РФ).
+    # Исчисление сроков (статьи 190–194 ГК РФ): срока исковой давности и срока
+    # исполнения обязательства.
     term_calculation_defective: bool
+    performance_term_calculation_defective: bool
     # Представительство: сделка неуполномоченного лица (статья 183 ГК РФ).
     unauthorized_representation_detected: bool
     # Вещные права: распоряжение неуправомоченным лицом (статья 209 ГК РФ).
@@ -195,6 +198,7 @@ class GeneralEffectsEvaluation(BaseModel):
     good_faith_acquirer_protected_from_reclaim: bool
     institute_conclusions_displaced: bool
     breach_findings_without_effect: bool
+    breach_conclusion_unreliable: bool
     debtor_delay_excused_by_creditor: bool
     debtor_not_liable_for_performer_breach: bool
     obligation_discharged_before_claim: bool
@@ -249,6 +253,9 @@ def build_general_effects_inputs(
         abuse_of_right_detected=civil_principles_evaluation.abuse_of_right_detected,
         consent_missing_for_transaction=(transactions_evaluation.consent_missing_for_transaction),
         term_calculation_defective=terms_evaluation.term_calculation_defective,
+        performance_term_calculation_defective=(
+            terms_evaluation.performance_term_calculation_defective
+        ),
         party_lacks_capacity=persons_evaluation.party_lacks_capacity,
         object_excluded_from_circulation=(objects_evaluation.object_excluded_from_circulation),
         breach_issue=constraint_evaluation.breach_issue,
@@ -317,6 +324,7 @@ def build_general_effects_constraint_set(
             "debtor_not_liable_for_performer_breach == breach_issue AND liability_shifted_to_performer",
             "obligation_discharged_before_claim == obligation_discharged_full AND NOT accrued_claims_preserved",
             "breach_findings_without_effect == breach_issue AND (NOT contractual_claims_enforceable OR creditor_delay_excuses_debtor OR liability_shifted_to_performer OR obligation_discharged_before_claim)",
+            "breach_conclusion_unreliable == breach_issue AND performance_term_calculation_defective",
             "termination_ends_future_performance == contract_legally_effective AND effective_termination",
             "only_accrued_claims_survive_termination == termination_ends_future_performance AND claims_accrued_before_termination",
             "term_deprived_of_meeting_basis == contract_legally_effective AND contract_term_lacks_meeting_basis",
@@ -326,7 +334,7 @@ def build_general_effects_constraint_set(
             "title_transfer_defeated == unauthorized_disposal_detected AND NOT good_faith_acquirer_protected",
             "good_faith_acquirer_protected_from_reclaim == unauthorized_disposal_detected AND good_faith_acquirer_protected",
             "restitution_regime_applies == contractual_effect_displaced AND restitution_required AND NOT disguised_transaction_rules_required",
-            "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR disguised_transaction_governs OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR good_faith_acquirer_protected_from_reclaim OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance",
+            "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR disguised_transaction_governs OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR good_faith_acquirer_protected_from_reclaim OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR breach_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance",
         ],
     )
 
@@ -360,6 +368,7 @@ def evaluate_general_effects_constraints(
     )
     institute_conclusions_displaced = Bool("institute_conclusions_displaced")
     breach_findings_without_effect = Bool("breach_findings_without_effect")
+    breach_conclusion_unreliable = Bool("breach_conclusion_unreliable")
     debtor_delay_excused_by_creditor = Bool("debtor_delay_excused_by_creditor")
     debtor_not_liable_for_performer_breach = Bool("debtor_not_liable_for_performer_breach")
     obligation_discharged_before_claim = Bool("obligation_discharged_before_claim")
@@ -522,6 +531,14 @@ def evaluate_general_effects_constraints(
             ),
         )
     )
+    # Порок исчисления срока исполнения не снимает нарушение, а делает вывод о нём
+    # недостоверным: если обязательство не исполнено и в верно исчисленный срок,
+    # просрочка остаётся, но начинается с другого дня. Поэтому в
+    # `breach_findings_without_effect` он не входит.
+    solver.add(
+        breach_conclusion_unreliable
+        == And(variables["breach_issue"], variables["performance_term_calculation_defective"])
+    )
     # При расторжении договора обязательства сторон прекращаются (статья 453
     # пункт 2): требовать исполнения на будущее нельзя. Вывод о нарушении при
     # этом своей силы не теряет — нарушение совершено до расторжения, и в
@@ -602,6 +619,7 @@ def evaluate_general_effects_constraints(
             good_faith_acquirer_protected_from_reclaim,
             transaction_challengeable_for_missing_consent,
             limitation_conclusion_unreliable,
+            breach_conclusion_unreliable,
             term_deprived_of_meeting_basis,
             term_meeting_basis_challengeable,
             termination_ends_future_performance,
@@ -632,6 +650,7 @@ def evaluate_general_effects_constraints(
             transaction_challengeable_for_missing_consent=False,
             institute_conclusions_displaced=True,
             breach_findings_without_effect=False,
+            breach_conclusion_unreliable=False,
             debtor_delay_excused_by_creditor=False,
             debtor_not_liable_for_performer_breach=False,
             obligation_discharged_before_claim=False,
@@ -787,6 +806,16 @@ def evaluate_general_effects_constraints(
             "специальных институтов о нарушении его условий не могут быть положены в основание "
             "присуждения (статьи 167, 199 и 432 ГК РФ)."
         )
+    if truth(breach_conclusion_unreliable):
+        reasons_ru.append(
+            "Вывод специального института о нарушении построен на сроке исполнения, "
+            "исчисленном с нарушением правил об исчислении сроков: своевременность "
+            "исполнения не установлена, и вывод о просрочке не может считаться "
+            "установленным, пока срок не исчислен заново (статьи 190–194 и 314 ГК РФ). "
+            "Само нарушение этим не снимается: если обязательство не исполнено и в верно "
+            "исчисленный срок, просрочка остаётся, но её начало, а с ним и размер "
+            "последствий, требуют пересчёта."
+        )
     if truth(termination_ends_future_performance):
         reasons_ru.append(
             "Договор расторгнут, поэтому обязательства сторон на будущее прекращены и "
@@ -889,6 +918,7 @@ def evaluate_general_effects_constraints(
         ),
         institute_conclusions_displaced=truth(institute_conclusions_displaced),
         breach_findings_without_effect=truth(breach_findings_without_effect),
+        breach_conclusion_unreliable=truth(breach_conclusion_unreliable),
         debtor_delay_excused_by_creditor=truth(debtor_delay_excused_by_creditor),
         debtor_not_liable_for_performer_breach=truth(debtor_not_liable_for_performer_breach),
         obligation_discharged_before_claim=truth(obligation_discharged_before_claim),

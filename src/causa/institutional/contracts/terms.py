@@ -7,12 +7,20 @@
 последнего дня срока, прекращение соответствующих операций в организации и
 сдачу письменных заявлений в организацию связи.
 
-Ключевой вывод для слоя общих положений — `term_calculation_defective`: срок
-исковой давности исчислен с нарушением правил главы 11 ГК РФ. Исковая давность
-исчисляется по этим правилам, поэтому при пороке исчисления вывод модели
-статей 195–208 об истечении срока не может быть положен в основание отказа в
-иске: слой снимает препятствие к судебной защите и помечает вывод о давности
-как недостоверный.
+Порок исчисления — нарушение одного из этих правил. Рецензент отмечает, какое
+правило нарушено и к какому сроку порок относится; модель выводит порок срока
+только тогда, когда названо и то и другое.
+
+Слой общих положений получает два вывода:
+
+- `term_calculation_defective` — порочно исчислен срок исковой давности. Он
+  исчисляется по правилам главы 11 ГК РФ, поэтому вывод модели статей 195–208
+  об истечении срока не может быть положен в основание отказа в иске: слой
+  снимает препятствие к судебной защите и помечает вывод о давности как
+  недостоверный;
+- `performance_term_calculation_defective` — порочно исчислен срок исполнения
+  обязательства (с выпуска 1.38.0). Своевременность исполнения тогда не
+  установлена, и слой помечает вывод о нарушении как недостоверный.
 """
 
 from enum import Enum
@@ -25,7 +33,7 @@ from causa.core.bootstrap import BootstrapReviewStatus
 
 TERMS_EVIDENCE_SCHEMA_VERSION = "contracts.terms-evidence.v0"
 TERMS_MAPPING_VERSION = "contracts-reviewed-terms-to-facts-v0"
-TERMS_MODEL_VERSION = "contracts-terms-articles-190-194-v0"
+TERMS_MODEL_VERSION = "contracts-terms-articles-190-194-v1"
 
 
 class TermsEvidencePredicate(str, Enum):
@@ -37,8 +45,10 @@ class TermsEvidencePredicate(str, Enum):
     TERM_START_RULES_BREACHED = "term_start_rules_breached"
     TERM_END_RULES_BREACHED = "term_end_rules_breached"
     NON_WORKING_DAY_RULE_BREACHED = "non_working_day_rule_breached"
-    # Исчисление срока исковой давности по правилам главы 11 ГК РФ.
+    # К какому сроку относится порок исчисления: к сроку исковой давности или к
+    # сроку исполнения обязательства, от которого зависит вывод о нарушении.
     LIMITATION_TERM_CALCULATION_BREACHED = "limitation_term_calculation_breached"
+    PERFORMANCE_TERM_CALCULATION_BREACHED = "performance_term_calculation_breached"
     # Порядок совершения действий в последний день срока (статья 194 ГК РФ).
     PERFORMANCE_DEADLINE_BREACHED = "performance_deadline_breached"
     ORGANISATION_OPERATING_HOURS_BREACHED = "organisation_operating_hours_breached"
@@ -88,6 +98,7 @@ class TermsFactSet(BaseModel):
     term_end_rules_breached: bool
     non_working_day_rule_breached: bool
     limitation_term_calculation_breached: bool
+    performance_term_calculation_breached: bool
     performance_deadline_breached: bool
     organisation_operating_hours_breached: bool
     written_notice_dispatch_breached: bool
@@ -99,9 +110,26 @@ class TermsFactSet(BaseModel):
                 "Порок неизбежности события относится только к случаю, когда определение "
                 "срока нарушено."
             )
-        if self.limitation_term_calculation_breached and not self.term_asserted:
+        attributed = (
+            self.limitation_term_calculation_breached or self.performance_term_calculation_breached
+        )
+        if attributed and not self.term_asserted:
             raise ValueError(
-                "Нарушение исчисления срока исковой давности относится только к заявленному сроку."
+                "Порок исчисления срока исковой давности или срока исполнения относится только "
+                "к заявленному сроку."
+            )
+        if attributed and not (
+            self.term_definition_breached
+            or self.term_start_rules_breached
+            or self.term_end_rules_breached
+            or self.non_working_day_rule_breached
+            or self.performance_deadline_breached
+            or self.organisation_operating_hours_breached
+            or self.written_notice_dispatch_breached
+        ):
+            raise ValueError(
+                "Порок исчисления срока — нарушение одного из правил статей 190–194 ГК РФ, а "
+                "ни одно из них нарушенным не названо."
             )
         return self
 
@@ -137,12 +165,13 @@ class TermsEvaluation(BaseModel):
     term_start_duty_breached: bool
     term_end_duty_breached: bool
     non_working_day_duty_breached: bool
-    # Ключевой вывод для слоя общих положений: срок исковой давности исчислен с
-    # нарушением правил главы 11 ГК РФ (статьи 190–194).
-    term_calculation_defective: bool
     performance_deadline_duty_breached: bool
     organisation_operating_hours_duty_breached: bool
     written_notice_dispatch_duty_breached: bool
+    # Входы слоя общих положений: срок исковой давности и срок исполнения
+    # обязательства исчислены с нарушением правил главы 11 ГК РФ (статьи 190–194).
+    term_calculation_defective: bool
+    performance_term_calculation_defective: bool
     requires_human_terms_assessment: bool
     reasons_ru: list[str] = Field(default_factory=list)
     warnings_ru: list[str] = Field(default_factory=list)
@@ -190,10 +219,12 @@ def build_terms_constraint_set(mapping: TermsEvidenceMappingResult) -> TermsCons
             "term_start_duty_breached == terms_qualified AND term_start_rules_breached",
             "term_end_duty_breached == terms_qualified AND term_end_rules_breached",
             "non_working_day_duty_breached == terms_qualified AND non_working_day_rule_breached",
-            "term_calculation_defective == terms_qualified AND limitation_term_calculation_breached",
             "performance_deadline_duty_breached == terms_qualified AND performance_deadline_breached",
             "organisation_operating_hours_duty_breached == terms_qualified AND organisation_operating_hours_breached",
             "written_notice_dispatch_duty_breached == terms_qualified AND written_notice_dispatch_breached",
+            "term_rule_breached == term_definition_duty_breached OR term_start_duty_breached OR term_end_duty_breached OR non_working_day_duty_breached OR performance_deadline_duty_breached OR organisation_operating_hours_duty_breached OR written_notice_dispatch_duty_breached",
+            "term_calculation_defective == term_rule_breached AND limitation_term_calculation_breached",
+            "performance_term_calculation_defective == term_rule_breached AND performance_term_calculation_breached",
             "requires_human_terms_assessment == term_definition_duty_breached OR term_start_duty_breached OR term_end_duty_breached OR non_working_day_duty_breached OR term_calculation_defective OR performance_deadline_duty_breached OR organisation_operating_hours_duty_breached OR written_notice_dispatch_duty_breached",
         ],
     )
@@ -210,10 +241,12 @@ def evaluate_terms_constraints(
     term_start_duty_breached = Bool("term_start_duty_breached")
     term_end_duty_breached = Bool("term_end_duty_breached")
     non_working_day_duty_breached = Bool("non_working_day_duty_breached")
-    term_calculation_defective = Bool("term_calculation_defective")
     performance_deadline_duty_breached = Bool("performance_deadline_duty_breached")
     organisation_operating_hours_duty_breached = Bool("organisation_operating_hours_duty_breached")
     written_notice_dispatch_duty_breached = Bool("written_notice_dispatch_duty_breached")
+    term_rule_breached = Bool("term_rule_breached")
+    term_calculation_defective = Bool("term_calculation_defective")
+    performance_term_calculation_defective = Bool("performance_term_calculation_defective")
     requires_human_terms_assessment = Bool("requires_human_terms_assessment")
 
     solver = Solver()
@@ -240,10 +273,6 @@ def evaluate_terms_constraints(
         == And(terms_qualified, variables["non_working_day_rule_breached"])
     )
     solver.add(
-        term_calculation_defective
-        == And(terms_qualified, variables["limitation_term_calculation_breached"])
-    )
-    solver.add(
         performance_deadline_duty_breached
         == And(terms_qualified, variables["performance_deadline_breached"])
     )
@@ -254,6 +283,28 @@ def evaluate_terms_constraints(
     solver.add(
         written_notice_dispatch_duty_breached
         == And(terms_qualified, variables["written_notice_dispatch_breached"])
+    )
+    # Порок срока — нарушенное правило, отнесённое рецензентом к сроку. Какое из
+    # правил нарушено, не важно: важно, что исчисление этого срока порочно.
+    solver.add(
+        term_rule_breached
+        == Or(
+            term_definition_duty_breached,
+            term_start_duty_breached,
+            term_end_duty_breached,
+            non_working_day_duty_breached,
+            performance_deadline_duty_breached,
+            organisation_operating_hours_duty_breached,
+            written_notice_dispatch_duty_breached,
+        )
+    )
+    solver.add(
+        term_calculation_defective
+        == And(term_rule_breached, variables["limitation_term_calculation_breached"])
+    )
+    solver.add(
+        performance_term_calculation_defective
+        == And(term_rule_breached, variables["performance_term_calculation_breached"])
     )
     solver.add(
         requires_human_terms_assessment
@@ -280,10 +331,11 @@ def evaluate_terms_constraints(
             term_start_duty_breached=False,
             term_end_duty_breached=False,
             non_working_day_duty_breached=False,
-            term_calculation_defective=False,
             performance_deadline_duty_breached=False,
             organisation_operating_hours_duty_breached=False,
             written_notice_dispatch_duty_breached=False,
+            term_calculation_defective=False,
+            performance_term_calculation_defective=False,
             requires_human_terms_assessment=True,
             reasons_ru=["Набор фактов об исчислении срока противоречив."],
             warnings_ru=["Требуется проверка исходных доказательств юристом."],
@@ -333,13 +385,6 @@ def evaluate_terms_constraints(
             "нерабочий день, днём окончания срока считается ближайший следующий за ним "
             "рабочий день (статья 193 ГК РФ)."
         )
-    if truth(term_calculation_defective):
-        reasons_ru.append(
-            "Срок исковой давности исчислен с нарушением правил об исчислении сроков: "
-            "определение срока, начало его течения, окончание и перенос на ближайший "
-            "следующий рабочий день подчиняются статьям 190–193 ГК РФ, поэтому вывод об "
-            "истечении срока исковой давности не может считаться установленным."
-        )
     if truth(performance_deadline_duty_breached):
         reasons_ru.append(
             "Нарушен порядок совершения действий в последний день срока: если срок установлен "
@@ -359,6 +404,31 @@ def evaluate_terms_constraints(
             "до двадцати четырёх часов последнего дня срока, они считаются совершёнными в "
             "срок (статья 194 ГК РФ)."
         )
+    if truth(term_calculation_defective):
+        reasons_ru.append(
+            "Нарушенное правило относится к сроку исковой давности: он исчисляется по общим "
+            "правилам об исчислении сроков (статьи 190–194 ГК РФ), поэтому вывод об истечении "
+            "срока исковой давности не может считаться установленным."
+        )
+    if truth(performance_term_calculation_defective):
+        reasons_ru.append(
+            "Нарушенное правило относится к сроку исполнения обязательства: от его исчисления "
+            "зависит, своевременно ли исполнение, поэтому вывод о просрочке, построенный на "
+            "этом сроке, не может считаться установленным, пока срок не исчислен заново "
+            "(статьи 190–194 ГК РФ)."
+        )
+    warnings_ru = [
+        "Модель проверяет только формальные правила об исчислении сроков и не заменяет "
+        "судебную оценку.",
+        "Неизбежность события, которым определён срок, режим рабочих и нерабочих дней и "
+        "фактическое время совершения действия оцениваются экспертом и судом "
+        "(статьи 190, 193 и 194 ГК РФ).",
+    ]
+    if truth(term_calculation_defective) and truth(performance_term_calculation_defective):
+        warnings_ru.append(
+            "Порок отнесён и к сроку исковой давности, и к сроку исполнения; какое из "
+            "нарушенных правил относится к какому сроку, модель не различает."
+        )
     return TermsEvaluation(
         constraint_set_id=constraint_set.id,
         satisfiable=True,
@@ -368,19 +438,14 @@ def evaluate_terms_constraints(
         term_start_duty_breached=truth(term_start_duty_breached),
         term_end_duty_breached=truth(term_end_duty_breached),
         non_working_day_duty_breached=truth(non_working_day_duty_breached),
-        term_calculation_defective=truth(term_calculation_defective),
         performance_deadline_duty_breached=truth(performance_deadline_duty_breached),
         organisation_operating_hours_duty_breached=truth(
             organisation_operating_hours_duty_breached
         ),
         written_notice_dispatch_duty_breached=truth(written_notice_dispatch_duty_breached),
+        term_calculation_defective=truth(term_calculation_defective),
+        performance_term_calculation_defective=truth(performance_term_calculation_defective),
         requires_human_terms_assessment=truth(requires_human_terms_assessment),
         reasons_ru=reasons_ru,
-        warnings_ru=[
-            "Модель проверяет только формальные правила об исчислении сроков и не заменяет "
-            "судебную оценку.",
-            "Неизбежность события, которым определён срок, режим рабочих и нерабочих дней и "
-            "фактическое время совершения действия оцениваются экспертом и судом "
-            "(статьи 190, 193 и 194 ГК РФ).",
-        ],
+        warnings_ru=warnings_ru,
     )

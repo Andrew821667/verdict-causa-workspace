@@ -2547,6 +2547,24 @@ CONTRACTS_PACKAGE_MIGRATION_STEPS = [
             "python scripts/export_rule_parity_report.py",
         ],
     ),
+    PackageMigrationStep(
+        from_version="1.37.0",
+        to_version="1.38.0",
+        reasons=[
+            "The terms evidence gains a required predicate, performance_term_calculation_breached, and the terms model version changes to v1; a stored request does not carry the predicate and cannot be replayed as it stands. A stored request that attributes the defect to the limitation term without a breached rule is now rejected.",
+            "The general-effects layer gains an input and an output, breach_conclusion_unreliable. A stored analysis must be replayed.",
+        ],
+        reasons_ru=[
+            "Сведения об исчислении сроков получают обязательный признак performance_term_calculation_breached, а версия модели сроков становится v1; сохранённый запрос этого признака не несёт и в прежнем виде повторно прогнан быть не может. Сохранённый запрос, относящий порок к сроку давности без нарушенного правила, теперь отвергается.",
+            "Слой общих положений получает вход и вывод breach_conclusion_unreliable. Сохранённый анализ подлежит повторному прогону.",
+        ],
+        replay_commands=[
+            "python scripts/export_phase0_readiness_report.py",
+            "python scripts/export_synthetic_reviewed_contract_analysis.py",
+            "python scripts/export_synthetic_terms_evaluation.py",
+            "python scripts/export_rule_parity_report.py",
+        ],
+    ),
 ]
 
 
