@@ -1,14 +1,14 @@
 from enum import Enum
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
-from z3 import And, Bool, Or, Solver, sat
+from z3 import And, Bool, Not, Or, Solver, sat
 
 from causa.core.bootstrap import BootstrapReviewStatus
 
 
 PROPERTY_RIGHTS_EVIDENCE_SCHEMA_VERSION = "contracts.property-rights-evidence.v0"
 PROPERTY_RIGHTS_MAPPING_VERSION = "contracts-reviewed-property-rights-to-facts-v0"
-PROPERTY_RIGHTS_MODEL_VERSION = "contracts-property-rights-articles-209-306-v0"
+PROPERTY_RIGHTS_MODEL_VERSION = "contracts-property-rights-articles-209-306-v1"
 
 
 class PropertyRightsEvidencePredicate(str, Enum):
@@ -27,6 +27,13 @@ class PropertyRightsEvidencePredicate(str, Enum):
     # Истребование имущества из чужого незаконного владения (статьи 301 и 302 ГК РФ).
     VINDICATION_RULES_BREACHED = "vindication_rules_breached"
     GOOD_FAITH_PURCHASER_PROTECTION_DISREGARDED = "good_faith_purchaser_protection_disregarded"
+    # Защита добросовестного приобретателя как вывод, а не только как нарушенное
+    # правило (статья 302 ГК РФ): возмездность, добросовестность, выбытие помимо
+    # воли собственника, деньги и ценные бумаги на предъявителя.
+    ACQUIRED_FOR_VALUE = "acquired_for_value"
+    ACQUIRER_IN_GOOD_FAITH = "acquirer_in_good_faith"
+    PROPERTY_LEFT_OWNER_AGAINST_WILL = "property_left_owner_against_will"
+    MONEY_OR_BEARER_SECURITIES = "money_or_bearer_securities"
     # Защита прав владельца, не являющегося собственником (статьи 304 и 305 ГК РФ).
     NEGATORY_OR_POSSESSOR_CLAIM_BREACHED = "negatory_or_possessor_claim_breached"
     # Прекращение права собственности в силу закона (статья 306 ГК РФ).
@@ -79,6 +86,10 @@ class PropertyRightsFactSet(BaseModel):
     common_property_rules_breached: bool
     vindication_rules_breached: bool
     good_faith_purchaser_protection_disregarded: bool
+    acquired_for_value: bool
+    acquirer_in_good_faith: bool
+    property_left_owner_against_will: bool
+    money_or_bearer_securities: bool
     negatory_or_possessor_claim_breached: bool
     ownership_terminated_by_federal_law: bool
     losses_from_statutory_termination_proven: bool
@@ -89,6 +100,18 @@ class PropertyRightsFactSet(BaseModel):
             raise ValueError(
                 "Неучёт защиты добросовестного приобретателя относится только к случаю, когда "
                 "нарушение правил об истребовании имущества установлено."
+            )
+        if (
+            self.acquired_for_value
+            or self.acquirer_in_good_faith
+            or self.property_left_owner_against_will
+            or self.money_or_bearer_securities
+        ) and not self.disposal_by_non_owner_detected:
+            raise ValueError(
+                "Возмездность и добросовестность приобретения, выбытие имущества помимо воли "
+                "собственника и деньги на предъявителя — признаки приобретения у лица, не "
+                "имевшего права отчуждать (статья 302 ГК РФ); распоряжение неуправомоченным "
+                "лицом не установлено."
             )
         if self.ownership_powers_breached and not self.property_right_asserted:
             raise ValueError(
@@ -141,6 +164,9 @@ class PropertyRightsEvaluation(BaseModel):
     common_property_duty_breached: bool
     vindication_duty_breached: bool
     good_faith_purchaser_breached: bool
+    # Приобретатель защищён от истребования (статья 302 ГК РФ). Вход слоя общих
+    # положений с выпуска 1.37.0.
+    good_faith_acquirer_protected: bool
     negatory_claim_duty_breached: bool
     statutory_termination_of_ownership: bool
     # Единственный вывод института, где должник — государство, а не частное лицо
@@ -206,10 +232,11 @@ def build_property_rights_constraint_set(
             "common_property_duty_breached == property_rights_qualified AND common_property_rules_breached",
             "vindication_duty_breached == property_rights_qualified AND vindication_rules_breached",
             "good_faith_purchaser_breached == property_rights_qualified AND vindication_rules_breached AND good_faith_purchaser_protection_disregarded",
+            "good_faith_acquirer_protected == unauthorized_disposal_detected AND acquired_for_value AND acquirer_in_good_faith AND (NOT property_left_owner_against_will OR money_or_bearer_securities)",
             "negatory_claim_duty_breached == property_rights_qualified AND negatory_or_possessor_claim_breached",
             "statutory_termination_of_ownership == property_rights_qualified AND ownership_terminated_by_federal_law",
             "state_compensation_duty == statutory_termination_of_ownership AND losses_from_statutory_termination_proven",
-            "requires_human_property_rights_assessment == ownership_powers_duty_breached OR unauthorized_disposal_detected OR risk_and_burden_duty_breached OR acquisition_moment_duty_breached OR acquisitive_prescription_duty_breached OR common_property_duty_breached OR vindication_duty_breached OR negatory_claim_duty_breached OR statutory_termination_of_ownership",
+            "requires_human_property_rights_assessment == ownership_powers_duty_breached OR unauthorized_disposal_detected OR good_faith_acquirer_protected OR risk_and_burden_duty_breached OR acquisition_moment_duty_breached OR acquisitive_prescription_duty_breached OR common_property_duty_breached OR vindication_duty_breached OR negatory_claim_duty_breached OR statutory_termination_of_ownership",
         ],
     )
 
@@ -228,6 +255,7 @@ def evaluate_property_rights_constraints(
     common_property_duty_breached = Bool("common_property_duty_breached")
     vindication_duty_breached = Bool("vindication_duty_breached")
     good_faith_purchaser_breached = Bool("good_faith_purchaser_breached")
+    good_faith_acquirer_protected = Bool("good_faith_acquirer_protected")
     negatory_claim_duty_breached = Bool("negatory_claim_duty_breached")
     statutory_termination_of_ownership = Bool("statutory_termination_of_ownership")
     state_compensation_duty = Bool("state_compensation_duty")
@@ -273,6 +301,22 @@ def evaluate_property_rights_constraints(
             variables["good_faith_purchaser_protection_disregarded"],
         )
     )
+    # Статья 302: от возмездного добросовестного приобретателя собственник
+    # истребует имущество, только если оно выбыло помимо его воли; деньги и ценные
+    # бумаги на предъявителя не истребуются вовсе. «Добросовестный приобретатель»
+    # пункта 1 — возмездный, поэтому возмездность нужна и для пункта 3.
+    solver.add(
+        good_faith_acquirer_protected
+        == And(
+            unauthorized_disposal_detected,
+            variables["acquired_for_value"],
+            variables["acquirer_in_good_faith"],
+            Or(
+                Not(variables["property_left_owner_against_will"]),
+                variables["money_or_bearer_securities"],
+            ),
+        )
+    )
     solver.add(
         negatory_claim_duty_breached
         == And(property_rights_qualified, variables["negatory_or_possessor_claim_breached"])
@@ -293,6 +337,7 @@ def evaluate_property_rights_constraints(
         == Or(
             ownership_powers_duty_breached,
             unauthorized_disposal_detected,
+            good_faith_acquirer_protected,
             risk_and_burden_duty_breached,
             acquisition_moment_duty_breached,
             acquisitive_prescription_duty_breached,
@@ -317,6 +362,7 @@ def evaluate_property_rights_constraints(
             common_property_duty_breached=False,
             vindication_duty_breached=False,
             good_faith_purchaser_breached=False,
+            good_faith_acquirer_protected=False,
             negatory_claim_duty_breached=False,
             statutory_termination_of_ownership=False,
             state_compensation_duty=False,
@@ -393,6 +439,18 @@ def evaluate_property_rights_constraints(
             "из его владения иным путём помимо его воли; деньги и ценные бумаги на предъявителя "
             "у добросовестного приобретателя истребованы быть не могут (статья 302 ГК РФ)."
         )
+    if truth(good_faith_acquirer_protected):
+        ground = (
+            "деньги и ценные бумаги на предъявителя от добросовестного приобретателя не "
+            "истребуются (пункт 3 статьи 302 ГК РФ)"
+            if truth(variables["money_or_bearer_securities"])
+            else "имущество возмездно приобретено добросовестным приобретателем и выбыло из "
+            "владения собственника по его воле (пункт 1 статьи 302 ГК РФ)"
+        )
+        reasons_ru.append(
+            f"Собственник не вправе истребовать имущество у приобретателя: {ground}. "
+            "Добросовестность приобретателя оценивает суд."
+        )
     if truth(negatory_claim_duty_breached):
         reasons_ru.append(
             "Собственник может требовать устранения всяких нарушений его права, хотя бы эти "
@@ -431,6 +489,7 @@ def evaluate_property_rights_constraints(
         common_property_duty_breached=truth(common_property_duty_breached),
         vindication_duty_breached=truth(vindication_duty_breached),
         good_faith_purchaser_breached=truth(good_faith_purchaser_breached),
+        good_faith_acquirer_protected=truth(good_faith_acquirer_protected),
         negatory_claim_duty_breached=truth(negatory_claim_duty_breached),
         statutory_termination_of_ownership=truth(statutory_termination_of_ownership),
         state_compensation_duty=truth(state_compensation_duty),

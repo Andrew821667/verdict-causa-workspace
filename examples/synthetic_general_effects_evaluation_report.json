@@ -15,6 +15,7 @@
     "term_calculation_defective": false,
     "unauthorized_representation_detected": false,
     "unauthorized_disposal_detected": false,
+    "good_faith_acquirer_protected": false,
     "abuse_of_right_detected": false,
     "consent_missing_for_transaction": false,
     "party_lacks_capacity": false,
@@ -32,7 +33,7 @@
   },
   "constraint_set": {
     "id": "general-effects-constraint-set:case-supply-1",
-    "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199-170-180-205-209-403-405-407-432-453-v16",
+    "model_version": "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199-170-180-205-209-302-403-405-407-432-453-v17",
     "source_evaluations": [
       "formation_evaluation",
       "invalidity_evaluation",
@@ -80,9 +81,10 @@
       "term_meeting_basis_challengeable == contract_legally_effective AND contract_term_basis_voidable",
       "term_binding_on_all_participants == contractual_claims_enforceable AND contract_term_binds_all_participants",
       "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
-      "title_transfer_defeated == unauthorized_disposal_detected",
+      "title_transfer_defeated == unauthorized_disposal_detected AND NOT good_faith_acquirer_protected",
+      "good_faith_acquirer_protected_from_reclaim == unauthorized_disposal_detected AND good_faith_acquirer_protected",
       "restitution_regime_applies == contractual_effect_displaced AND restitution_required AND NOT disguised_transaction_rules_required",
-      "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR disguised_transaction_governs OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance"
+      "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR disguised_transaction_governs OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR good_faith_acquirer_protected_from_reclaim OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance"
     ]
   },
   "derived_evaluation": {
@@ -106,6 +108,7 @@
     "contractual_claims_enforceable": true,
     "transaction_challengeable_for_missing_consent": false,
     "title_transfer_defeated": false,
+    "good_faith_acquirer_protected_from_reclaim": false,
     "institute_conclusions_displaced": false,
     "breach_findings_without_effect": false,
     "debtor_delay_excused_by_creditor": false,
@@ -129,8 +132,8 @@
   },
   "benchmark_report": {
     "id": "general-effects-benchmark-report-v0",
-    "total": 20,
-    "passed": 20,
+    "total": 21,
+    "passed": 21,
     "failed": 0,
     "results": [
       {
@@ -424,6 +427,25 @@
         ]
       },
       {
+        "task_id": "general-effects-bench-good-faith-acquirer",
+        "passed": true,
+        "expected_outcomes": {
+          "title_transfer_defeated": false,
+          "good_faith_acquirer_protected_from_reclaim": true,
+          "requires_human_general_effects_assessment": true
+        },
+        "observed_outcomes": {
+          "title_transfer_defeated": false,
+          "good_faith_acquirer_protected_from_reclaim": true,
+          "requires_human_general_effects_assessment": true
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Имуществом распорядилось лицо, не управомоченное на его отчуждение, но собственник не вправе истребовать его у добросовестного приобретателя: распоряжение неуправомоченным лицом переход к нему не поражает (статья 302 ГК РФ). Добросовестность приобретателя оценивает суд.",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
+        ]
+      },
+      {
         "task_id": "general-effects-bench-restitution",
         "passed": true,
         "expected_outcomes": {
@@ -544,8 +566,8 @@
   },
   "red_team_report": {
     "id": "general-effects-red-team-report-v0",
-    "total": 21,
-    "blocked": 21,
+    "total": 22,
+    "blocked": 22,
     "unblocked": 0,
     "results": [
       {
@@ -720,6 +742,21 @@
           "Договор не порождает правовых последствий как основание требований сторон; выводы специальных институтов о нарушении его условий правового эффекта не имеют.",
           "Недействительная сделка не влечёт юридических последствий, за исключением тех, которые связаны с её недействительностью, и недействительна с момента её совершения (статья 167 ГК РФ).",
           "Сделка притворна: она совершена, чтобы прикрыть другую сделку, и ничтожна, а к сделке, которую стороны действительно имели в виду, применяются относящиеся к ней правила (пункт 2 статьи 170 ГК РФ, пункт 87 постановления Пленума ВС РФ № 25). Выводы, построенные на условиях притворной сделки, эффекта не имеют, но реституции по статье 167 это не означает: отношения сторон определяет прикрываемая сделка, которая сама может оказаться недействительной. Её разбор требуется отдельно — проверка юристом."
+        ]
+      },
+      {
+        "case_id": "general-effects-red-defeat-title-of-a-protected-acquirer",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "title_transfer_defeated": true
+        },
+        "observed_outcomes": {
+          "title_transfer_defeated": false
+        },
+        "reasons_ru": [
+          "Договор порождает правовые последствия: существенные условия согласованы в требуемой форме (статья 432 ГК РФ), основания недействительности не установлены (статьи 166–181 ГК РФ), порок формы отсутствует (статьи 162 и 165 ГК РФ).",
+          "Имуществом распорядилось лицо, не управомоченное на его отчуждение, но собственник не вправе истребовать его у добросовестного приобретателя: распоряжение неуправомоченным лицом переход к нему не поражает (статья 302 ГК РФ). Добросовестность приобретателя оценивает суд.",
+          "Требования, основанные на договоре, могут быть предъявлены и рассмотрены по существу: договор действует и срок исковой давности не препятствует защите права."
         ]
       },
       {

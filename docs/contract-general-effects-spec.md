@@ -42,6 +42,14 @@
 | `limitation_defense_available` | `limitation_evaluation` | 195–208 |
 | `claim_not_subject_to_limitation` | `limitation_evaluation` | 208 |
 | `limitation_restorable` | `limitation_evaluation` | 205 |
+| `unauthorized_representation_detected` | `representation_evaluation` | 183 |
+| `unauthorized_disposal_detected` | `property_rights_evaluation` | 209 |
+| `good_faith_acquirer_protected` | `property_rights_evaluation` | 302 |
+| `abuse_of_right_detected` | `civil_principles_evaluation` | 10 |
+| `consent_missing_for_transaction` | `transactions_evaluation` | 157.1, 173.1 |
+| `term_calculation_defective` | `terms_evaluation` | 190–194 |
+| `party_lacks_capacity` | `persons_evaluation` | 29, 171 |
+| `object_excluded_from_circulation` | `objects_evaluation` | 129, 168 |
 | `breach_issue` | `constraint_evaluation` | 309–328 |
 | `effective_termination` | `termination_evaluation` | 453 п. 2 |
 | `claims_accrued_before_termination` | `termination_evaluation` | 453 п. 5 |

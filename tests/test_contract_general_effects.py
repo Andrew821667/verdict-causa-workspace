@@ -211,6 +211,7 @@ def test_general_effects_never_displaces_an_effective_contract() -> None:
         limitation_restorable=False,
         unauthorized_representation_detected=False,
         unauthorized_disposal_detected=False,
+        good_faith_acquirer_protected=False,
         abuse_of_right_detected=False,
         consent_missing_for_transaction=False,
         term_calculation_defective=False,
@@ -552,11 +553,67 @@ def test_a_restorable_limitation_period_is_named_with_the_bar() -> None:
     assert any("статья 205" in reason for reason in evaluation.reasons_ru)
 
 
+def test_a_good_faith_acquirer_keeps_what_the_non_owner_disposed_of() -> None:
+    """Статья 302: от добросовестного приобретателя имущество истребуется не всегда.
+
+    До выпуска 1.37.0 слой выводил поражение перехода права из одного распоряжения
+    неуправомоченным лицом, а защиту приобретателя институт называл только
+    нарушенным правилом, не выводом.
+    """
+    request = build_synthetic_supply_analysis_request()
+    sources = build_synthetic_supply_analysis_sources()
+    disposal = {"property_right_asserted": True, "disposal_by_non_owner_detected": True}
+
+    defeated = run_reviewed_contract_analysis(
+        request.model_copy(
+            update={"property_rights_evidence": _flip(request.property_rights_evidence, **disposal)}
+        ),
+        sources,
+    ).general_effects_evaluation
+    protected = run_reviewed_contract_analysis(
+        request.model_copy(
+            update={
+                "property_rights_evidence": _flip(
+                    request.property_rights_evidence,
+                    **disposal,
+                    acquired_for_value=True,
+                    acquirer_in_good_faith=True,
+                )
+            }
+        ),
+        sources,
+    ).general_effects_evaluation
+
+    assert defeated.title_transfer_defeated is True
+    assert defeated.good_faith_acquirer_protected_from_reclaim is False
+    assert protected.title_transfer_defeated is False
+    assert protected.good_faith_acquirer_protected_from_reclaim is True
+    assert protected.requires_human_general_effects_assessment is True
+    assert any("статья 302" in reason for reason in protected.reasons_ru)
+
+
+def test_the_specification_lists_every_layer_input() -> None:
+    """Таблица входов в спецификации не отстаёт от кода.
+
+    При проводке статьи 302 выяснилось, что восьми входов в таблице не было вовсе —
+    они появлялись в слое, а документ о них молчал.
+    """
+    from pathlib import Path
+
+    spec = (
+        Path(__file__).resolve().parents[1] / "docs" / "contract-general-effects-spec.md"
+    ).read_text(encoding="utf-8")
+    table = spec.split("## Входы слоя", 1)[1].split("\n## ", 1)[0]
+    listed = {line.split("`")[1] for line in table.splitlines() if line.startswith("| `")}
+
+    assert listed == set(GeneralEffectsInputs.model_fields)
+
+
 def test_general_effects_benchmark_and_red_team_cover_boundaries() -> None:
     benchmark = run_general_effects_benchmark_suite()
     red_team = run_general_effects_red_team_suite()
 
-    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 20
+    assert benchmark.total == len(SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS) == 21
     assert benchmark.passed == benchmark.total
-    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 21
+    assert red_team.total == len(SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES) == 22
     assert red_team.blocked == red_team.total

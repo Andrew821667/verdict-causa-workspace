@@ -1,0 +1,136 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-1.30.0:to-1.37.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-1.30.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "1.30.0",
+  "target_package_version": "1.37.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "1.30.0",
+      "to_version": "1.31.0",
+      "reasons": [
+        "The general-effects layer gains an input, liability_shifted_to_performer, and a conclusion, debtor_not_liable_for_performer_breach, and its model version changes. A stored analysis result carries neither and does not replay.",
+        "breach_findings_without_effect now also holds when the law places liability on the direct performer under article 403. A stored analysis where that exception applied reported the breach finding as an effective ground against the debtor and must be replayed."
+      ],
+      "reasons_ru": [
+        "Слой общих положений получает вход liability_shifted_to_performer и вывод debtor_not_liable_for_performer_breach, и версия его модели меняется. Сохранённый результат анализа не несёт ни того, ни другого и не воспроизводится.",
+        "breach_findings_without_effect теперь истинен и тогда, когда закон возлагает ответственность на непосредственного исполнителя по статье 403. Сохранённый анализ, где это исключение применялось, называл вывод о нарушении действующим основанием против должника и подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_rule_parity_report.py"
+      ]
+    },
+    {
+      "from_version": "1.31.0",
+      "to_version": "1.32.0",
+      "reasons": [
+        "The general-effects layer gains an input, non_conclusion_objection_barred, and a conclusion, non_conclusion_objection_disregarded, and its model version changes. A stored analysis result carries neither and does not replay.",
+        "Seven fact-consistency checks now compare against 'the contract binds the parties' rather than against the formation conclusion alone. A stored request that was rejected because a barred objection left other institutes describing an existing contract would now pass, and a stored analysis must be replayed."
+      ],
+      "reasons_ru": [
+        "Слой общих положений получает вход non_conclusion_objection_barred и вывод non_conclusion_objection_disregarded, и версия его модели меняется. Сохранённый результат анализа не несёт ни того, ни другого и не воспроизводится.",
+        "Семь сверок фактов сравнивают теперь с понятием «договор связывает стороны», а не с одним выводом о заключении. Сохранённый запрос, отвергнутый из-за того, что при отклонённом возражении другие институты описывали существующий договор, теперь проходит, и сохранённый анализ подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_rule_parity_report.py"
+      ]
+    },
+    {
+      "from_version": "1.32.0",
+      "to_version": "1.33.0",
+      "reasons": [
+        "The general-effects layer gains an input, partial_invalidity_only, and a conclusion, invalid_part_only, and its model version changes. A stored analysis result carries neither and does not replay.",
+        "The contractual-duty and security-invalidity checks now compare with invalidity of the whole transaction, and the anchor preflight takes its notions from the formation model's contract_binds_the_parties. A stored request rejected because a partly invalid contract left other institutes describing a valid main obligation would now pass and must be replayed."
+      ],
+      "reasons_ru": [
+        "Слой общих положений получает вход partial_invalidity_only и вывод invalid_part_only, и версия его модели меняется. Сохранённый результат анализа не несёт ни того, ни другого и не воспроизводится.",
+        "Сверки договорной обязанности и недействительности основного обязательства сравнивают теперь с недействительностью всей сделки, а предварительная сверка входов берёт понятия из contract_binds_the_parties модели заключения. Сохранённый запрос, отвергнутый из-за того, что при частично недействительном договоре другие институты описывали действующее основное обязательство, теперь проходит и подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_rule_parity_report.py"
+      ]
+    },
+    {
+      "from_version": "1.33.0",
+      "to_version": "1.34.0",
+      "reasons": [
+        "The general-effects layer gains an input, disguised_transaction_rules_required, and a conclusion, disguised_transaction_governs, and its model version changes. A stored analysis result carries neither and does not replay.",
+        "restitution_regime_applies is no longer true for a feigned transaction whose disguised transaction is identified. A stored analysis that named restitution there states what the layer no longer holds and must be replayed."
+      ],
+      "reasons_ru": [
+        "Слой общих положений получает вход disguised_transaction_rules_required и вывод disguised_transaction_governs, и версия его модели меняется. Сохранённый результат анализа не несёт ни того, ни другого и не воспроизводится.",
+        "restitution_regime_applies больше не истинен для притворной сделки с установленной прикрываемой. Сохранённый анализ, назвавший там реституцию, говорит то, чего слой больше не утверждает, и подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_rule_parity_report.py"
+      ]
+    },
+    {
+      "from_version": "1.34.0",
+      "to_version": "1.35.0",
+      "reasons": [
+        "The general-effects layer gains an input, limitation_restorable, and a conclusion, limitation_may_be_restored, and its model version changes. A stored analysis result carries neither and does not replay."
+      ],
+      "reasons_ru": [
+        "Слой общих положений получает вход limitation_restorable и вывод limitation_may_be_restored, и версия его модели меняется. Сохранённый результат анализа не несёт ни того, ни другого и не воспроизводится."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_rule_parity_report.py"
+      ]
+    },
+    {
+      "from_version": "1.35.0",
+      "to_version": "1.36.0",
+      "reasons": [
+        "The obligation-dynamics model version changes, and obligation_discharged_full and obligation_partially_remaining now hold after performance to the original creditor before notice of the assignment. A stored analysis where that performance occurred reported the obligation as not discharged and must be replayed."
+      ],
+      "reasons_ru": [
+        "Версия модели динамики обязательства меняется, а obligation_discharged_full и obligation_partially_remaining теперь истинны после исполнения первоначальному кредитору до уведомления об уступке. Сохранённый анализ, где такое исполнение было, называл обязательство непрекращённым и подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_rule_parity_report.py"
+      ]
+    },
+    {
+      "from_version": "1.36.0",
+      "to_version": "1.37.0",
+      "reasons": [
+        "The property-rights evidence gains four required predicates - acquired_for_value, acquirer_in_good_faith, property_left_owner_against_will, money_or_bearer_securities - and the property-rights model version changes to v1. A stored request does not carry these predicates and cannot be replayed as it stands.",
+        "The general-effects layer gains an input and an output, and title_transfer_defeated changes for a protected good-faith acquirer. A stored analysis with an unauthorized disposal must be replayed."
+      ],
+      "reasons_ru": [
+        "Сведения о вещных правах получают четыре обязательных признака — acquired_for_value, acquirer_in_good_faith, property_left_owner_against_will, money_or_bearer_securities, — а версия модели вещных прав становится v1; вывод good_faith_acquirer_protected — новый. Сохранённый запрос этих признаков не несёт и в прежнем виде повторно прогнан быть не может.",
+        "Слой общих положений получает вход и вывод, а title_transfer_defeated меняется для защищённого добросовестного приобретателя. Сохранённый анализ с распоряжением неуправомоченным лицом подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_property_rights_evaluation.py",
+        "python scripts/export_rule_parity_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

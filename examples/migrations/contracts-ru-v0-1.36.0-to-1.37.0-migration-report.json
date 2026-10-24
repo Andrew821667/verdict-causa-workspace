@@ -1,0 +1,38 @@
+{
+  "id": "migration:legacy-phase0-trace-contracts-ru-v0-1.36.0:to-1.37.0",
+  "artifact_id": "legacy-phase0-trace-contracts-ru-v0-1.36.0",
+  "artifact_type": "phase0_decision_trace",
+  "source_package_version": "1.36.0",
+  "target_package_version": "1.37.0",
+  "disposition": "requires_regeneration",
+  "disposition_label_ru": "Требуется повторное формирование",
+  "steps": [
+    {
+      "from_version": "1.36.0",
+      "to_version": "1.37.0",
+      "reasons": [
+        "The property-rights evidence gains four required predicates - acquired_for_value, acquirer_in_good_faith, property_left_owner_against_will, money_or_bearer_securities - and the property-rights model version changes to v1. A stored request does not carry these predicates and cannot be replayed as it stands.",
+        "The general-effects layer gains an input and an output, and title_transfer_defeated changes for a protected good-faith acquirer. A stored analysis with an unauthorized disposal must be replayed."
+      ],
+      "reasons_ru": [
+        "Сведения о вещных правах получают четыре обязательных признака — acquired_for_value, acquirer_in_good_faith, property_left_owner_against_will, money_or_bearer_securities, — а версия модели вещных прав становится v1; вывод good_faith_acquirer_protected — новый. Сохранённый запрос этих признаков не несёт и в прежнем виде повторно прогнан быть не может.",
+        "Слой общих положений получает вход и вывод, а title_transfer_defeated меняется для защищённого добросовестного приобретателя. Сохранённый анализ с распоряжением неуправомоченным лицом подлежит повторному прогону."
+      ],
+      "replay_commands": [
+        "python scripts/export_phase0_readiness_report.py",
+        "python scripts/export_synthetic_reviewed_contract_analysis.py",
+        "python scripts/export_synthetic_property_rights_evaluation.py",
+        "python scripts/export_rule_parity_report.py"
+      ]
+    }
+  ],
+  "reasons": [
+    "Legacy artifact is retained as input evidence only.",
+    "Replay is required because package analysis or artifact semantics changed."
+  ],
+  "reasons_ru": [
+    "Прежний артефакт сохраняется только как входное доказательство.",
+    "Требуется повторное формирование, поскольку изменились семантика анализа или форма артефакта."
+  ],
+  "payload_preserved_without_interpretation": true
+}

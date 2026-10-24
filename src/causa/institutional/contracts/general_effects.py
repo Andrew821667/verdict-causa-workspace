@@ -49,6 +49,10 @@
   посягающая при этом на публичные интересы, ничтожна;
 - статья 209 ГК РФ — распоряжение имуществом принадлежит собственнику, поэтому
   отчуждение неуправомоченным лицом не переносит право на приобретателя;
+- статья 302 ГК РФ — от возмездного добросовестного приобретателя собственник
+  истребует имущество, только если оно выбыло из его владения помимо его воли, а
+  деньги и ценные бумаги на предъявителя не истребуются вовсе; тогда распоряжение
+  неуправомоченным лицом переход к приобретателю не поражает;
 - статья 1103 ГК РФ — применение правил о неосновательном обогащении к
   требованиям о возврате исполненного по недействительной сделке;
 - статья 403 ГК РФ — должник отвечает за третьих лиц, на которых возложено
@@ -93,7 +97,7 @@ from z3 import And, Bool, Not, Or, Solver, sat
 
 GENERAL_EFFECTS_MODEL_VERSION = (
     "contracts-general-part-effects-articles-10-129-167-171-173-1-181-1-181-5-183-190-199"
-    "-170-180-205-209-403-405-407-432-453-v16"
+    "-170-180-205-209-302-403-405-407-432-453-v17"
 )
 
 
@@ -128,6 +132,8 @@ class GeneralEffectsInputs(BaseModel):
     unauthorized_representation_detected: bool
     # Вещные права: распоряжение неуправомоченным лицом (статья 209 ГК РФ).
     unauthorized_disposal_detected: bool
+    # Приобретатель защищён от истребования (статья 302).
+    good_faith_acquirer_protected: bool
     # Пределы осуществления гражданских прав (статья 10 ГК РФ).
     abuse_of_right_detected: bool
     # Сделки: отсутствие необходимого согласия (статьи 157.1 и 173.1 ГК РФ).
@@ -186,6 +192,7 @@ class GeneralEffectsEvaluation(BaseModel):
     contractual_claims_enforceable: bool
     transaction_challengeable_for_missing_consent: bool
     title_transfer_defeated: bool
+    good_faith_acquirer_protected_from_reclaim: bool
     institute_conclusions_displaced: bool
     breach_findings_without_effect: bool
     debtor_delay_excused_by_creditor: bool
@@ -238,6 +245,7 @@ def build_general_effects_inputs(
             representation_evaluation.unauthorized_representation_detected
         ),
         unauthorized_disposal_detected=(property_rights_evaluation.unauthorized_disposal_detected),
+        good_faith_acquirer_protected=property_rights_evaluation.good_faith_acquirer_protected,
         abuse_of_right_detected=civil_principles_evaluation.abuse_of_right_detected,
         consent_missing_for_transaction=(transactions_evaluation.consent_missing_for_transaction),
         term_calculation_defective=terms_evaluation.term_calculation_defective,
@@ -315,9 +323,10 @@ def build_general_effects_constraint_set(
             "term_meeting_basis_challengeable == contract_legally_effective AND contract_term_basis_voidable",
             "term_binding_on_all_participants == contractual_claims_enforceable AND contract_term_binds_all_participants",
             "transaction_challengeable_for_missing_consent == contract_legally_effective AND consent_missing_for_transaction",
-            "title_transfer_defeated == unauthorized_disposal_detected",
+            "title_transfer_defeated == unauthorized_disposal_detected AND NOT good_faith_acquirer_protected",
+            "good_faith_acquirer_protected_from_reclaim == unauthorized_disposal_detected AND good_faith_acquirer_protected",
             "restitution_regime_applies == contractual_effect_displaced AND restitution_required AND NOT disguised_transaction_rules_required",
-            "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR disguised_transaction_governs OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance",
+            "requires_human_general_effects_assessment == institute_conclusions_displaced OR non_conclusion_objection_disregarded OR invalid_part_only OR disguised_transaction_governs OR claims_barred_by_limitation OR protection_refused_for_abuse OR breach_findings_without_effect OR restitution_regime_applies OR title_transfer_defeated OR good_faith_acquirer_protected_from_reclaim OR transaction_challengeable_for_missing_consent OR limitation_conclusion_unreliable OR term_deprived_of_meeting_basis OR term_meeting_basis_challengeable OR termination_ends_future_performance",
         ],
     )
 
@@ -360,6 +369,7 @@ def evaluate_general_effects_constraints(
     term_meeting_basis_challengeable = Bool("term_meeting_basis_challengeable")
     term_binding_on_all_participants = Bool("term_binding_on_all_participants")
     title_transfer_defeated = Bool("title_transfer_defeated")
+    good_faith_acquirer_protected_from_reclaim = Bool("good_faith_acquirer_protected_from_reclaim")
     restitution_regime_applies = Bool("restitution_regime_applies")
     requires_human_general_effects_assessment = Bool("requires_human_general_effects_assessment")
 
@@ -553,7 +563,22 @@ def evaluate_general_effects_constraints(
         transaction_challengeable_for_missing_consent
         == And(contract_legally_effective, variables["consent_missing_for_transaction"])
     )
-    solver.add(title_transfer_defeated == variables["unauthorized_disposal_detected"])
+    # Статья 302: распоряжение неуправомоченным лицом не поражает переход к
+    # приобретателю, которого собственник не вправе истребовать.
+    solver.add(
+        title_transfer_defeated
+        == And(
+            variables["unauthorized_disposal_detected"],
+            Not(variables["good_faith_acquirer_protected"]),
+        )
+    )
+    solver.add(
+        good_faith_acquirer_protected_from_reclaim
+        == And(
+            variables["unauthorized_disposal_detected"],
+            variables["good_faith_acquirer_protected"],
+        )
+    )
     solver.add(
         restitution_regime_applies
         == And(
@@ -574,6 +599,7 @@ def evaluate_general_effects_constraints(
             breach_findings_without_effect,
             restitution_regime_applies,
             title_transfer_defeated,
+            good_faith_acquirer_protected_from_reclaim,
             transaction_challengeable_for_missing_consent,
             limitation_conclusion_unreliable,
             term_deprived_of_meeting_basis,
@@ -615,6 +641,7 @@ def evaluate_general_effects_constraints(
             term_meeting_basis_challengeable=False,
             term_binding_on_all_participants=False,
             title_transfer_defeated=False,
+            good_faith_acquirer_protected_from_reclaim=False,
             restitution_regime_applies=False,
             requires_human_general_effects_assessment=True,
             reasons_ru=["Выводы моделей общей части противоречивы."],
@@ -808,10 +835,17 @@ def evaluate_general_effects_constraints(
         )
     if truth(title_transfer_defeated):
         reasons_ru.append(
-            "Имуществом распорядилось лицо, не управомоченное на его отчуждение, поэтому право "
-            "собственности к приобретателю по общему правилу не перешло; требование о переходе "
-            "титула не может быть удовлетворено, а защита добросовестного приобретателя "
-            "оценивается по правилам статьи 302 ГК РФ (статьи 209 и 302 ГК РФ)."
+            "Имуществом распорядилось лицо, не управомоченное на его отчуждение, и защиты "
+            "добросовестного приобретателя нет, поэтому право собственности к приобретателю не "
+            "перешло, и требование о переходе титула не может быть удовлетворено (статьи 209 и "
+            "302 ГК РФ)."
+        )
+    if truth(good_faith_acquirer_protected_from_reclaim):
+        reasons_ru.append(
+            "Имуществом распорядилось лицо, не управомоченное на его отчуждение, но собственник "
+            "не вправе истребовать его у добросовестного приобретателя: распоряжение "
+            "неуправомоченным лицом переход к нему не поражает (статья 302 ГК РФ). "
+            "Добросовестность приобретателя оценивает суд."
         )
     if truth(restitution_regime_applies):
         reasons_ru.append(
@@ -864,6 +898,9 @@ def evaluate_general_effects_constraints(
         term_meeting_basis_challengeable=truth(term_meeting_basis_challengeable),
         term_binding_on_all_participants=truth(term_binding_on_all_participants),
         title_transfer_defeated=truth(title_transfer_defeated),
+        good_faith_acquirer_protected_from_reclaim=truth(
+            good_faith_acquirer_protected_from_reclaim
+        ),
         restitution_regime_applies=truth(restitution_regime_applies),
         requires_human_general_effects_assessment=truth(requires_human_general_effects_assessment),
         reasons_ru=reasons_ru,

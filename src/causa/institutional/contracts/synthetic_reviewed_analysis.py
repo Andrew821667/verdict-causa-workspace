@@ -3839,6 +3839,10 @@ def build_synthetic_supply_analysis_request() -> ReviewedContractAnalysisRequest
                         PropertyRightsEvidencePredicate.GOOD_FAITH_PURCHASER_PROTECTION_DISREGARDED,
                         False,
                     ),
+                    (PropertyRightsEvidencePredicate.ACQUIRED_FOR_VALUE, False),
+                    (PropertyRightsEvidencePredicate.ACQUIRER_IN_GOOD_FAITH, False),
+                    (PropertyRightsEvidencePredicate.PROPERTY_LEFT_OWNER_AGAINST_WILL, False),
+                    (PropertyRightsEvidencePredicate.MONEY_OR_BEARER_SECURITIES, False),
                     (
                         PropertyRightsEvidencePredicate.NEGATORY_OR_POSSESSOR_CLAIM_BREACHED,
                         False,

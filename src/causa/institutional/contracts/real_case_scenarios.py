@@ -317,7 +317,15 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "неучёт защиты приобретателя сопровождался нарушением правил об "
             "истребовании. Проверка права: имущество было истребовано у возмездного "
             "добросовестного приобретателя вопреки статье 302, то есть правила "
-            "истребования нарушены. Ошибка была в переводе, а не в модели."
+            "истребования нарушены. Ошибка была в переводе, а не в модели.\n\n"
+            "Признаки статьи 302 (выпуск 1.37.0). Возмездность и добросовестность суд "
+            "установил прямо: квартира куплена, приобретатель полагался на данные ЕГРН и "
+            "нотариальное свидетельство. `property_left_owner_against_will` — False, хотя "
+            "завещание было поддельным: для целей статьи 302 обстоятельства выбытия "
+            "выморочного жилья оцениваются с учётом действий (бездействия) публичного "
+            "собственника, и длительное бездействие истца виндикацию исключило. Это "
+            "оценочный вывод суда, а не следствие подделки, и модель принимает его как "
+            "признак."
         ),
         facts={
             "property_right_asserted": True,
@@ -329,6 +337,10 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "common_property_rules_breached": False,
             "vindication_rules_breached": True,
             "good_faith_purchaser_protection_disregarded": True,
+            "acquired_for_value": True,
+            "acquirer_in_good_faith": True,
+            "property_left_owner_against_will": False,
+            "money_or_bearer_securities": False,
             "negatory_or_possessor_claim_breached": False,
             "ownership_terminated_by_federal_law": False,
             "losses_from_statutory_termination_proven": False,
@@ -336,6 +348,7 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
         expected_conclusions={
             "property_rights_qualified": True,
             "good_faith_purchaser_breached": True,
+            "good_faith_acquirer_protected": True,
             "unauthorized_disposal_detected": True,
             "vindication_duty_breached": True,
             "requires_human_property_rights_assessment": True,
@@ -581,6 +594,10 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "common_property_rules_breached": False,
             "vindication_rules_breached": False,
             "good_faith_purchaser_protection_disregarded": False,
+            "acquired_for_value": False,
+            "acquirer_in_good_faith": False,
+            "property_left_owner_against_will": False,
+            "money_or_bearer_securities": False,
             "negatory_or_possessor_claim_breached": False,
             "ownership_terminated_by_federal_law": False,
             "losses_from_statutory_termination_proven": False,
@@ -590,6 +607,7 @@ REAL_CASE_SCENARIOS: tuple[RealCaseScenario, ...] = (
             "vindication_duty_breached": False,
             "unauthorized_disposal_detected": False,
             "good_faith_purchaser_breached": False,
+            "good_faith_acquirer_protected": False,
             "requires_human_property_rights_assessment": False,
         },
     ),

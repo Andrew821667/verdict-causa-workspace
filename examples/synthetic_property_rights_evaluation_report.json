@@ -15,6 +15,10 @@
       "common_property_rules_breached": false,
       "vindication_rules_breached": false,
       "good_faith_purchaser_protection_disregarded": false,
+      "acquired_for_value": false,
+      "acquirer_in_good_faith": false,
+      "property_left_owner_against_will": false,
+      "money_or_bearer_securities": false,
       "negatory_or_possessor_claim_breached": false,
       "ownership_terminated_by_federal_law": false,
       "losses_from_statutory_termination_proven": false
@@ -25,6 +29,20 @@
       "synthetic-ru-gk306-statutory-termination-compensation-v1"
     ],
     "provenance": [
+      {
+        "fact_name": "acquired_for_value",
+        "assertion_id": "property-rights-evidence-acquired_for_value",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
+        "fact_name": "acquirer_in_good_faith",
+        "assertion_id": "property-rights-evidence-acquirer_in_good_faith",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
       {
         "fact_name": "acquisition_moment_rules_breached",
         "assertion_id": "property-rights-evidence-acquisition_moment_rules_breached",
@@ -68,6 +86,13 @@
         ]
       },
       {
+        "fact_name": "money_or_bearer_securities",
+        "assertion_id": "property-rights-evidence-money_or_bearer_securities",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
         "fact_name": "negatory_or_possessor_claim_breached",
         "assertion_id": "property-rights-evidence-negatory_or_possessor_claim_breached",
         "source_refs": [
@@ -84,6 +109,13 @@
       {
         "fact_name": "ownership_terminated_by_federal_law",
         "assertion_id": "property-rights-evidence-ownership_terminated_by_federal_law",
+        "source_refs": [
+          "synthetic-case-supply-1-property-rights-evidence"
+        ]
+      },
+      {
+        "fact_name": "property_left_owner_against_will",
+        "assertion_id": "property-rights-evidence-property_left_owner_against_will",
         "source_refs": [
           "synthetic-case-supply-1-property-rights-evidence"
         ]
@@ -113,7 +145,7 @@
   },
   "constraint_set": {
     "id": "property-rights-constraint-set:reviewed-property-rights-evidence-supply-1-v0",
-    "model_version": "contracts-property-rights-articles-209-306-v0",
+    "model_version": "contracts-property-rights-articles-209-306-v1",
     "legal_source_refs": [
       "synthetic-ru-gk209-234-ownership-content-acquisition-and-prescription-v1",
       "synthetic-ru-gk244-305-common-property-and-protection-of-rights-v1",
@@ -129,10 +161,11 @@
       "common_property_duty_breached == property_rights_qualified AND common_property_rules_breached",
       "vindication_duty_breached == property_rights_qualified AND vindication_rules_breached",
       "good_faith_purchaser_breached == property_rights_qualified AND vindication_rules_breached AND good_faith_purchaser_protection_disregarded",
+      "good_faith_acquirer_protected == unauthorized_disposal_detected AND acquired_for_value AND acquirer_in_good_faith AND (NOT property_left_owner_against_will OR money_or_bearer_securities)",
       "negatory_claim_duty_breached == property_rights_qualified AND negatory_or_possessor_claim_breached",
       "statutory_termination_of_ownership == property_rights_qualified AND ownership_terminated_by_federal_law",
       "state_compensation_duty == statutory_termination_of_ownership AND losses_from_statutory_termination_proven",
-      "requires_human_property_rights_assessment == ownership_powers_duty_breached OR unauthorized_disposal_detected OR risk_and_burden_duty_breached OR acquisition_moment_duty_breached OR acquisitive_prescription_duty_breached OR common_property_duty_breached OR vindication_duty_breached OR negatory_claim_duty_breached OR statutory_termination_of_ownership"
+      "requires_human_property_rights_assessment == ownership_powers_duty_breached OR unauthorized_disposal_detected OR good_faith_acquirer_protected OR risk_and_burden_duty_breached OR acquisition_moment_duty_breached OR acquisitive_prescription_duty_breached OR common_property_duty_breached OR vindication_duty_breached OR negatory_claim_duty_breached OR statutory_termination_of_ownership"
     ]
   },
   "reviewed_evaluation": {
@@ -147,6 +180,7 @@
     "common_property_duty_breached": false,
     "vindication_duty_breached": false,
     "good_faith_purchaser_breached": false,
+    "good_faith_acquirer_protected": false,
     "negatory_claim_duty_breached": false,
     "statutory_termination_of_ownership": false,
     "state_compensation_duty": false,
@@ -162,8 +196,8 @@
   },
   "benchmark_report": {
     "id": "property-rights-benchmark-report-v0",
-    "total": 12,
-    "passed": 12,
+    "total": 15,
+    "passed": 15,
     "failed": 0,
     "results": [
       {
@@ -362,13 +396,61 @@
           "Право собственности прекращено принятием закона Российской Федерации. Убытки, причинённые собственнику принятием этого акта, в том числе стоимость имущества, возмещаются государством (статья 306 ГК РФ). Это единственный случай в институте, где обязанным лицом выступает государство, а не частная сторона спора.",
           "Размер убытков от прекращения права собственности не доказан, поэтому обязанность государства возместить их модель не выводит. Это утверждение о доказанности убытков, а не о том, что право на возмещение отсутствует."
         ]
+      },
+      {
+        "task_id": "property-rights-bench-good-faith-acquirer-protected",
+        "passed": true,
+        "expected_outcomes": {
+          "unauthorized_disposal_detected": true,
+          "good_faith_acquirer_protected": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "observed_outcomes": {
+          "unauthorized_disposal_detected": true,
+          "good_faith_acquirer_protected": true,
+          "requires_human_property_rights_assessment": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Распоряжение имуществом совершено лицом, не управомоченным на его отчуждение: право распоряжения принадлежит собственнику, и отчуждение чужого имущества по общему правилу не влечёт перехода права собственности к приобретателю (статьи 209 и 302 ГК РФ).",
+          "Собственник не вправе истребовать имущество у приобретателя: имущество возмездно приобретено добросовестным приобретателем и выбыло из владения собственника по его воле (пункт 1 статьи 302 ГК РФ). Добросовестность приобретателя оценивает суд."
+        ]
+      },
+      {
+        "task_id": "property-rights-bench-property-left-against-will",
+        "passed": true,
+        "expected_outcomes": {
+          "good_faith_acquirer_protected": false
+        },
+        "observed_outcomes": {
+          "good_faith_acquirer_protected": false
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Распоряжение имуществом совершено лицом, не управомоченным на его отчуждение: право распоряжения принадлежит собственнику, и отчуждение чужого имущества по общему правилу не влечёт перехода права собственности к приобретателю (статьи 209 и 302 ГК РФ)."
+        ]
+      },
+      {
+        "task_id": "property-rights-bench-money-never-reclaimed",
+        "passed": true,
+        "expected_outcomes": {
+          "good_faith_acquirer_protected": true
+        },
+        "observed_outcomes": {
+          "good_faith_acquirer_protected": true
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Распоряжение имуществом совершено лицом, не управомоченным на его отчуждение: право распоряжения принадлежит собственнику, и отчуждение чужого имущества по общему правилу не влечёт перехода права собственности к приобретателю (статьи 209 и 302 ГК РФ).",
+          "Собственник не вправе истребовать имущество у приобретателя: деньги и ценные бумаги на предъявителя от добросовестного приобретателя не истребуются (пункт 3 статьи 302 ГК РФ). Добросовестность приобретателя оценивает суд."
+        ]
       }
     ]
   },
   "red_team_report": {
     "id": "property-rights-red-team-report-v0",
-    "total": 12,
-    "blocked": 12,
+    "total": 14,
+    "blocked": 14,
     "unblocked": 0,
     "results": [
       {
@@ -536,6 +618,34 @@
           "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
           "Право собственности прекращено принятием закона Российской Федерации. Убытки, причинённые собственнику принятием этого акта, в том числе стоимость имущества, возмещаются государством (статья 306 ГК РФ). Это единственный случай в институте, где обязанным лицом выступает государство, а не частная сторона спора.",
           "Размер убытков от прекращения права собственности не доказан, поэтому обязанность государства возместить их модель не выводит. Это утверждение о доказанности убытков, а не о том, что право на возмещение отсутствует."
+        ]
+      },
+      {
+        "case_id": "property-rights-red-gratuitous-acquirer-protected",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "good_faith_acquirer_protected": true
+        },
+        "observed_outcomes": {
+          "good_faith_acquirer_protected": false
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Распоряжение имуществом совершено лицом, не управомоченным на его отчуждение: право распоряжения принадлежит собственнику, и отчуждение чужого имущества по общему правилу не влечёт перехода права собственности к приобретателю (статьи 209 и 302 ГК РФ)."
+        ]
+      },
+      {
+        "case_id": "property-rights-red-bad-faith-acquirer-protected",
+        "blocked": true,
+        "forbidden_outcomes": {
+          "good_faith_acquirer_protected": true
+        },
+        "observed_outcomes": {
+          "good_faith_acquirer_protected": false
+        },
+        "reasons_ru": [
+          "Заявлено вещное право: собственнику принадлежат права владения, пользования и распоряжения своим имуществом, и он вправе по своему усмотрению совершать в отношении принадлежащего ему имущества любые действия, не противоречащие закону и не нарушающие права и охраняемые законом интересы других лиц (статья 209 ГК РФ).",
+          "Распоряжение имуществом совершено лицом, не управомоченным на его отчуждение: право распоряжения принадлежит собственнику, и отчуждение чужого имущества по общему правилу не влечёт перехода права собственности к приобретателю (статьи 209 и 302 ГК РФ)."
         ]
       }
     ]

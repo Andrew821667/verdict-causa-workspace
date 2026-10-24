@@ -46,6 +46,25 @@ class PackageCompatibilityCheck(BaseModel):
 
 CONTRACTS_PACKAGE_COMPATIBILITY = [
     PackageCompatibilityEntry(
+        package_version="1.37.0",
+        core_version="0.1.0",
+        bootstrap_schema_versions=["contracts.norm.v0"],
+        translator_versions=["contracts-json-to-formal-v0"],
+        case_evidence_schema_versions=["contracts.case-evidence.v9"],
+        analysis_pipeline_versions=["contracts-reviewed-analysis-v9"],
+        status=CompatibilityStatus.SUPPORTED,
+        notes=[
+            "Article 302 of the Civil Code becomes a conclusion of the property-rights institute, not only a breached rule: four new reviewer predicates - acquisition for value, good faith of the acquirer, property that left the owner against the owner's will, money or bearer securities - yield good_faith_acquirer_protected. The owner may not reclaim property acquired for value by a good-faith acquirer from a person without the right to dispose of it, unless it left the owner against the owner's will; money and bearer securities are not reclaimed from a good-faith acquirer at all. The predicates require a detected disposal by a non-owner, and the protection raises the human flag: good faith is assessed by the court.",
+            "The general-effects layer gains the input good_faith_acquirer_protected and the output good_faith_acquirer_protected_from_reclaim, and title_transfer_defeated no longer holds when the acquirer is protected. Before this release the layer treated every unauthorized disposal as defeating the transfer of title. The audit of conclusions moves good_faith_purchaser_breached from open debt to a route through the new input. The general-effects specification lists all layer inputs, and a test now enforces it.",
+            "The real case 5-KG24-43-K2 (an escheated flat sold after a forged will) is about article 302 and is translated by its four predicates: the acquirer bought for value relying on the state register and the notary's certificate, and the Supreme Court assessed the departure of the property with regard to the public owner's long inaction and refused the reclaim. The model now derives the protection and the layer refuses the reclaim, as the court did. Stale explanations of the real-case run are corrected: the A51-8801/2025 note called non_conclusion_objection_barred unwired although release 1.32.0 wired it, and the input counts quoted in the notes no longer matched the code.",
+        ],
+        notes_ru=[
+            "Статья 302 ГК РФ становится выводом института вещных прав, а не только нарушенным правилом: из четырёх новых признаков рецензента — возмездность приобретения, добросовестность приобретателя, выбытие имущества помимо воли собственника, деньги или ценные бумаги на предъявителя — выводится good_faith_acquirer_protected. Собственник не вправе истребовать имущество, возмездно приобретённое добросовестным приобретателем у лица, не имевшего права его отчуждать, если оно не выбыло из владения собственника помимо его воли; деньги и ценные бумаги на предъявителя от добросовестного приобретателя не истребуются вовсе. Признаки требуют установленного распоряжения неуправомоченным лицом, а защита поднимает флаг юриста: добросовестность оценивает суд.",
+            "Слой общих положений получает вход good_faith_acquirer_protected и вывод good_faith_acquirer_protected_from_reclaim, а title_transfer_defeated больше не истинен, когда приобретатель защищён. До этого выпуска слой считал любое распоряжение неуправомоченным лицом поражающим переход права. Аудит по выводам переводит good_faith_purchaser_breached из открытого долга в маршрут через новый вход. Спецификация слоя перечисляет все его входы, и теперь это проверяет тест.",
+            "Реальное дело 5-КГ24-43-К2 (выморочная квартира, проданная по поддельному завещанию) — именно о статье 302, и оно переведено по четырём признакам: приобретатель купил возмездно, полагаясь на ЕГРН и нотариальное свидетельство, а Верховный Суд оценил выбытие имущества с учётом длительного бездействия публичного собственника и в истребовании отказал. Модель теперь выводит защиту приобретателя, а слой — отказ в истребовании, как и суд. Исправлены устаревшие пояснения к прогону реальных дел: в деле А51-8801/2025 non_conclusion_objection_barred назывался непроведённым в слой, хотя его провёл выпуск 1.32.0, а счёт входов слоя в пояснениях давно не совпадал с кодом.",
+        ],
+    ),
+    PackageCompatibilityEntry(
         package_version="1.36.0",
         core_version="0.1.0",
         bootstrap_schema_versions=["contracts.norm.v0"],

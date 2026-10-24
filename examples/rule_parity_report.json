@@ -1,7 +1,7 @@
 {
-  "declared_rules": 1312,
+  "declared_rules": 1314,
   "divergences_total": 0,
-  "executed_rules": 1312,
+  "executed_rules": 1314,
   "institutes": [
     {
       "declared_rules": 5,
@@ -324,11 +324,11 @@
       "module": "general_consistency.py"
     },
     {
-      "declared_rules": 31,
+      "declared_rules": 32,
       "divergences": [],
-      "executed_rules": 31,
+      "executed_rules": 32,
       "institute": "general_effects",
-      "matched": 31,
+      "matched": 32,
       "module": "general_effects.py"
     },
     {
@@ -564,11 +564,11 @@
       "module": "product_liability.py"
     },
     {
-      "declared_rules": 13,
+      "declared_rules": 14,
       "divergences": [],
-      "executed_rules": 13,
+      "executed_rules": 14,
       "institute": "property_rights",
-      "matched": 13,
+      "matched": 14,
       "module": "property_rights.py"
     },
     {
@@ -822,6 +822,6 @@
   ],
   "institutes_clean": 102,
   "institutes_total": 102,
-  "matched_rules": 1312,
+  "matched_rules": 1314,
   "version": "reasoning-rule-parity-v0"
 }

@@ -12465,7 +12465,7 @@
       "kind": "institute",
       "kind_ru": "институт",
       "title_ru": "Право собственности и его защита",
-      "detail_ru": "выводы: property_rights_qualified, unauthorized_disposal_detected, vindication_duty_breached, good_faith_purchaser_breached, requires_human_property_rights_assessment",
+      "detail_ru": "выводы: property_rights_qualified, unauthorized_disposal_detected, vindication_duty_breached, good_faith_purchaser_breached, good_faith_acquirer_protected, requires_human_property_rights_assessment",
       "needs_human": true
      },
      {

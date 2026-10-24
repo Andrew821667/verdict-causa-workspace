@@ -62,6 +62,16 @@ def _facts(**updates: bool) -> PropertyRightsFactSet:
     return PropertyRightsFactSet(**values)
 
 
+#: Распоряжение неуправомоченным лицом в пользу возмездного добросовестного
+#: приобретателя (статья 302 ГК РФ).
+_GOOD_FAITH_ACQUISITION = dict(
+    property_right_asserted=True,
+    disposal_by_non_owner_detected=True,
+    acquired_for_value=True,
+    acquirer_in_good_faith=True,
+)
+
+
 SYNTHETIC_PROPERTY_RIGHTS_BENCHMARKS = (
     PropertyRightsEvaluationTask(
         id="property-rights-bench-not-qualified",
@@ -182,6 +192,32 @@ SYNTHETIC_PROPERTY_RIGHTS_BENCHMARKS = (
             "requires_human_property_rights_assessment": True,
         },
     ),
+    PropertyRightsEvaluationTask(
+        id="property-rights-bench-good-faith-acquirer-protected",
+        title_ru="Возмездный добросовестный приобретатель, имущество выбыло по воле собственника",
+        facts=_facts(**_GOOD_FAITH_ACQUISITION),
+        expected_outcomes={
+            "unauthorized_disposal_detected": True,
+            "good_faith_acquirer_protected": True,
+            "requires_human_property_rights_assessment": True,
+        },
+    ),
+    PropertyRightsEvaluationTask(
+        id="property-rights-bench-property-left-against-will",
+        title_ru="Имущество выбыло помимо воли собственника — истребуется и у добросовестного",
+        facts=_facts(**_GOOD_FAITH_ACQUISITION, property_left_owner_against_will=True),
+        expected_outcomes={"good_faith_acquirer_protected": False},
+    ),
+    PropertyRightsEvaluationTask(
+        id="property-rights-bench-money-never-reclaimed",
+        title_ru="Деньги не истребуются у добросовестного приобретателя даже при выбытии помимо воли",
+        facts=_facts(
+            **_GOOD_FAITH_ACQUISITION,
+            property_left_owner_against_will=True,
+            money_or_bearer_securities=True,
+        ),
+        expected_outcomes={"good_faith_acquirer_protected": True},
+    ),
 )
 
 
@@ -260,6 +296,26 @@ SYNTHETIC_PROPERTY_RIGHTS_RED_TEAM_CASES = (
             ownership_terminated_by_federal_law=True,
         ),
         forbidden_outcomes={"state_compensation_duty": True},
+    ),
+    PropertyRightsRedTeamCase(
+        id="property-rights-red-gratuitous-acquirer-protected",
+        title_ru="Защитить безвозмездного приобретателя по статье 302",
+        facts=_facts(
+            property_right_asserted=True,
+            disposal_by_non_owner_detected=True,
+            acquirer_in_good_faith=True,
+        ),
+        forbidden_outcomes={"good_faith_acquirer_protected": True},
+    ),
+    PropertyRightsRedTeamCase(
+        id="property-rights-red-bad-faith-acquirer-protected",
+        title_ru="Защитить приобретателя, который знал или мог знать о пороке",
+        facts=_facts(
+            property_right_asserted=True,
+            disposal_by_non_owner_detected=True,
+            acquired_for_value=True,
+        ),
+        forbidden_outcomes={"good_faith_acquirer_protected": True},
     ),
 )
 

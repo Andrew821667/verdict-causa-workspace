@@ -237,6 +237,20 @@ SYNTHETIC_GENERAL_EFFECTS_BENCHMARKS = (
         },
     ),
     GeneralEffectsEvaluationTask(
+        id="general-effects-bench-good-faith-acquirer",
+        title_ru="Распоряжение неуправомоченным лицом, но приобретатель защищён статьёй 302",
+        inputs=_inputs(
+            **_EFFECTIVE,
+            unauthorized_disposal_detected=True,
+            good_faith_acquirer_protected=True,
+        ),
+        expected_outcomes={
+            "title_transfer_defeated": False,
+            "good_faith_acquirer_protected_from_reclaim": True,
+            "requires_human_general_effects_assessment": True,
+        },
+    ),
+    GeneralEffectsEvaluationTask(
         id="general-effects-bench-restitution",
         title_ru="Сделка недействительна и требуется реституция",
         inputs=_inputs(**_EFFECTIVE, contractual_effect_displaced=True, restitution_required=True),
@@ -385,6 +399,16 @@ SYNTHETIC_GENERAL_EFFECTS_RED_TEAM_CASES = (
             disguised_transaction_rules_required=True,
         ),
         forbidden_outcomes={"restitution_regime_applies": True},
+    ),
+    GeneralEffectsRedTeamCase(
+        id="general-effects-red-defeat-title-of-a-protected-acquirer",
+        title_ru="Поразить переход к добросовестному приобретателю, защищённому статьёй 302",
+        inputs=_inputs(
+            **_EFFECTIVE,
+            unauthorized_disposal_detected=True,
+            good_faith_acquirer_protected=True,
+        ),
+        forbidden_outcomes={"title_transfer_defeated": True},
     ),
     GeneralEffectsRedTeamCase(
         id="general-effects-red-displace-effective-contract",
